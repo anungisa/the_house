@@ -27,6 +27,12 @@ const CONFIG_KEYS = [
   'OUTBOX_BASE_DELAY_MS',
   'OUTBOX_MAX_DELAY_MS',
   'OUTBOX_MAX_RETRIES',
+  'OUTBOX_WORKER_ENABLED',
+  'OUTBOX_WORKER_INTERVAL_MS',
+  'OUTBOX_WORKER_BATCH_SIZE',
+  'OUTBOX_WORKER_ID',
+  'OUTBOX_WORKER_LOCK_SECONDS',
+  'OUTBOX_WORKER_RUN_ONCE',
   'API_HOST',
   'API_PORT',
 ] as const;
@@ -102,6 +108,19 @@ describe('loadConfig', () => {
     const { outbox } = loadConfig();
     expect(outbox.batchSize).toBe(5);
     expect(outbox.maxRetries).toBe(3);
+  });
+
+  // Outbox worker runtime-host settings default sensibly when unset.
+  it('loads outbox worker runtime defaults when unset', () => {
+    const { outboxWorker } = loadConfig();
+    expect(outboxWorker).toEqual({
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-outbox-worker',
+      lockSeconds: 60,
+      runOnce: false,
+    });
   });
 
   // (6) Non-numeric integer config is rejected.

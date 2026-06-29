@@ -25,6 +25,11 @@ describe('package scripts', () => {
     expect(scripts['demo:seed:affiliation']).toBe('tsx scripts/demo-seed-affiliation.ts');
   });
 
+  // (13) Outbox worker runtime script is present.
+  it('defines worker:outbox', () => {
+    expect(scripts['worker:outbox']).toBe('tsx scripts/outbox-worker.ts');
+  });
+
   it('does not remove or rename existing scripts', () => {
     for (const name of [
       'typecheck',
@@ -35,6 +40,8 @@ describe('package scripts', () => {
       'build',
       'db:migrate',
       'db:seed',
+      'dev:api',
+      'demo:seed:affiliation',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

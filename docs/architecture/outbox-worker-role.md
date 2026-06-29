@@ -153,9 +153,11 @@ app-role RLS still fails closed without tenant context.
   (`AzureServiceBusPublisher`, selected by `createOutboxPublisher` when
   `SERVICE_BUS_ENABLED=true`); see
   [azure-service-bus-publisher.md](azure-service-bus-publisher.md). It is **disabled by
-  default** (Noop publisher) and is not yet wired into a running worker host.
+  default** (Noop publisher).
 - **DLQ processor.** Downstream Service Bus dead-letter handling is not implemented.
 - **Production observability / alerting.** No metrics, dashboards, or alerts on outbox lag,
   failed-row growth, or lease churn.
-- **Worker runtime host.** The timer-triggered (Azure Function-compatible) loop that calls
-  `OutboxWorker.processBatch()` on a schedule is not provisioned in this pass.
+- **Worker runtime host.** A local/operational runtime host that calls
+  `OutboxWorker.processBatch()` on an interval now exists (`npm run worker:outbox`); see
+  [outbox-worker-runtime.md](outbox-worker-runtime.md). A timer-triggered Azure Functions
+  host is still not provisioned in this pass.

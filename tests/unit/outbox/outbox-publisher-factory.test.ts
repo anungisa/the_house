@@ -52,6 +52,14 @@ function makeConfig(serviceBus: ServiceBusConfig): AppConfig {
     serviceBus,
     outbox: { batchSize: 25, lockSeconds: 120, baseDelayMs: 1000, maxDelayMs: 300_000, maxRetries: 10 },
     api: { host: '127.0.0.1', port: 3000 },
+    outboxWorker: {
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-outbox-worker',
+      lockSeconds: 60,
+      runOnce: false,
+    },
   };
 }
 

@@ -37,6 +37,14 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       maxRetries: 10,
     },
     api: { host: '127.0.0.1', port: 3000 },
+    outboxWorker: {
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-outbox-worker',
+      lockSeconds: 60,
+      runOnce: false,
+    },
     ...over,
   };
 }

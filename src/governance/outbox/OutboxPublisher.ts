@@ -26,6 +26,12 @@ export interface OutboxPublisher {
    * broker-side de-duplication. Propagate correlationId/causationId as properties.
    */
   publish(message: PublishableMessage): Promise<PublishResult>;
+
+  /**
+   * Release any underlying resources (e.g. a Service Bus sender/client). Optional: the
+   * no-op publisher has nothing to close. A worker runtime host calls this on shutdown.
+   */
+  close?(): Promise<void>;
 }
 
 /**
@@ -41,5 +47,10 @@ export class NoopServiceBusPublisher implements OutboxPublisher {
         note: 'Service Bus sessions are NOT used in v1. Real publisher wired in a later pass.',
       },
     });
+  }
+
+  /** Nothing to release: the no-op publisher holds no broker resources. */
+  async close(): Promise<void> {
+    // intentionally empty
   }
 }

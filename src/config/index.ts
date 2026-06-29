@@ -53,6 +53,26 @@ export interface ApiConfig {
   readonly port: number;
 }
 
+/**
+ * Settings for the outbox worker RUNTIME HOST (the interval loop that drains the outbox).
+ * Distinct from {@link OutboxConfig}: those tune the worker's retry/backoff mechanics, these
+ * tune the host that schedules {@link OutboxConfig}-driven batches.
+ */
+export interface OutboxWorkerRuntimeSettings {
+  /** Whether the worker host should start. The script exits early when false. */
+  readonly enabled: boolean;
+  /** Delay between batch ticks (ms) in continuous mode. */
+  readonly intervalMs: number;
+  /** Max rows claimed per batch. */
+  readonly batchSize: number;
+  /** Stable worker identity used for outbox row leasing. */
+  readonly workerId: string;
+  /** Lease duration (seconds) applied to claimed rows. */
+  readonly lockSeconds: number;
+  /** Process exactly one batch then shut down (useful for cron/smoke runs). */
+  readonly runOnce: boolean;
+}
+
 export interface AppConfig {
   readonly appEnv: AppEnv;
   readonly appRegion: string;
@@ -61,6 +81,7 @@ export interface AppConfig {
   readonly serviceBus: ServiceBusConfig;
   readonly outbox: OutboxConfig;
   readonly api: ApiConfig;
+  readonly outboxWorker: OutboxWorkerRuntimeSettings;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -94,6 +115,41 @@ function readBool(key: string, fallback: boolean): boolean {
   if (normalized === 'true' || normalized === '1') return true;
   if (normalized === 'false' || normalized === '0') return false;
   throw new Error(`Invalid boolean for environment variable ${key}: "${raw}"`);
+}
+
+function readPositiveInt(key: string, fallback: number): number {
+  const value = readInt(key, fallback);
+  if (!Number.isInteger(value) || value <= 0) {
+    throw new Error(`Environment variable ${key} must be a positive integer (got "${value}").`);
+  }
+  return value;
+}
+
+/**
+ * Read a required-non-empty identifier with a default. An ABSENT variable falls back to the
+ * default; a PRESENT-but-empty/whitespace value fails closed (a blank worker id would break
+ * outbox leasing).
+ */
+function readNonEmpty(key: string, fallback: string): string {
+  const present = process.env[key];
+  if (present === undefined) return fallback;
+  const trimmed = present.trim();
+  if (trimmed === '') {
+    throw new Error(`Environment variable ${key} must be non-empty.`);
+  }
+  return trimmed;
+}
+
+/** Resolve and validate the outbox worker runtime-host settings. */
+function readOutboxWorkerSettings(): OutboxWorkerRuntimeSettings {
+  return {
+    enabled: readBool('OUTBOX_WORKER_ENABLED', true),
+    intervalMs: readPositiveInt('OUTBOX_WORKER_INTERVAL_MS', 5000),
+    batchSize: readPositiveInt('OUTBOX_WORKER_BATCH_SIZE', 25),
+    workerId: readNonEmpty('OUTBOX_WORKER_ID', 'local-outbox-worker'),
+    lockSeconds: readPositiveInt('OUTBOX_WORKER_LOCK_SECONDS', 60),
+    runOnce: readBool('OUTBOX_WORKER_RUN_ONCE', false),
+  };
 }
 
 /**
@@ -184,5 +240,6 @@ export function loadConfig(): AppConfig {
       host: readString('API_HOST') ?? '127.0.0.1',
       port: readInt('API_PORT', 3000),
     },
+    outboxWorker: readOutboxWorkerSettings(),
   };
 }

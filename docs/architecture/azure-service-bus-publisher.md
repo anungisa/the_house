@@ -164,13 +164,14 @@ publisher or worker.
 
 ## Not covered (future work)
 
-- Worker runtime host/timer that runs `processBatch()` on a schedule.
 - Dead-letter (DLQ) handling and downstream consumers.
 - Topic/subscription fan-out topology.
 - Managed identity / credential-based auth.
 - Broker-side duplicate-detection enablement and observability/metrics.
 - Production deployment/IaC.
 
+> A worker runtime host/timer that runs `processBatch()` on a schedule now exists; see
+> [outbox-worker-runtime.md](outbox-worker-runtime.md).
+>
 > After this pass the system has a **real publisher** but is **not** production-ready: it
-> still needs a worker runtime host/timer, an auth boundary, observability, secrets
-> management, and deployment hardening.
+> still needs an auth boundary, observability, secrets management, and deployment hardening.
