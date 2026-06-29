@@ -17,9 +17,11 @@ const CONFIG_KEYS = [
   'APP_REGION',
   'LOG_LEVEL',
   'DATABASE_URL',
-  'AZURE_SERVICE_BUS_CONNECTION_STRING',
-  'AZURE_SERVICE_BUS_OUTBOX_TOPIC',
-  'AZURE_SERVICE_BUS_OUTBOX_QUEUE',
+  'SERVICE_BUS_ENABLED',
+  'SERVICE_BUS_CONNECTION_STRING',
+  'SERVICE_BUS_QUEUE_NAME',
+  'SERVICE_BUS_TOPIC_NAME',
+  'SERVICE_BUS_PUBLISH_TARGET',
   'OUTBOX_BATCH_SIZE',
   'OUTBOX_LOCK_SECONDS',
   'OUTBOX_BASE_DELAY_MS',
@@ -59,9 +61,11 @@ describe('loadConfig', () => {
     expect(cfg.appRegion).toBe('canada');
     expect(cfg.logLevel).toBe('info');
     expect(cfg.databaseUrl).toBe('');
+    expect(cfg.serviceBus.enabled).toBe(false);
     expect(cfg.serviceBus.connectionString).toBe('');
-    expect(cfg.serviceBus.outboxTopic).toBe('');
-    expect(cfg.serviceBus.outboxQueue).toBe('');
+    expect(cfg.serviceBus.publishTarget).toBe('queue');
+    expect(cfg.serviceBus.queueName).toBe('');
+    expect(cfg.serviceBus.topicName).toBe('');
   });
 
   // (2) Production-like env fails closed when DATABASE_URL is missing.

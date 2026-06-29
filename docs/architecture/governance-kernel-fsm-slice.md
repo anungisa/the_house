@@ -142,8 +142,12 @@ state transition, request, audit event, evidence object, or outbox message.
 
 ## Intentional stubs
 
-- **`NoopServiceBusPublisher`**: `publish()` throws; the real Azure Service Bus publisher
-  is wired in a later pass. The `OutboxPublisher` interface and the worker are production-ready.
+- **`NoopServiceBusPublisher`**: `publish()` throws; it is the default when Service Bus is
+  disabled. A real `AzureServiceBusPublisher` now exists and is selected by
+  `createOutboxPublisher` when `SERVICE_BUS_ENABLED=true` (see
+  [azure-service-bus-publisher.md](azure-service-bus-publisher.md)); a worker runtime host
+  that runs the loop is a later pass. The `OutboxPublisher` interface and the worker are
+  production-ready.
 - **`PayloadBackedAffiliationGuardRepository`**: guard facts are read from
   `input.payload.facts` so the slice is testable end-to-end without building the real
   affiliation/payment/compliance data sources. The repository **interface** is production-ready.

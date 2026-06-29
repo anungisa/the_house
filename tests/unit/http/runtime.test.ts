@@ -22,7 +22,13 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
     appRegion: 'canada',
     logLevel: 'info',
     databaseUrl: 'postgres://u:p@localhost:5432/db',
-    serviceBus: { connectionString: '', outboxTopic: '', outboxQueue: '' },
+    serviceBus: {
+      enabled: false,
+      connectionString: '',
+      publishTarget: 'queue',
+      queueName: '',
+      topicName: '',
+    },
     outbox: {
       batchSize: 25,
       lockSeconds: 120,

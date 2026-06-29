@@ -204,7 +204,10 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
 
 ## Current stubs (unchanged by this pass)
 
-- **Noop Service Bus publisher** — the outbox enqueues rows but no real broker is wired.
+- **Service Bus disabled by default** — a real `AzureServiceBusPublisher` now exists, but
+  `SERVICE_BUS_ENABLED=false` (the default) keeps the outbox publisher a no-op; this local
+  runtime never requires a broker. See
+  [azure-service-bus-publisher.md](azure-service-bus-publisher.md).
 - **No production authentication** — local/demo trusts the request `actor`/`tenantId`.
 - **No workflow executor** — approval-required transitions record a request only.
 - **No real payment processor** — `payment_obligation` is a persisted record only.

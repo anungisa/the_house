@@ -24,6 +24,7 @@
     "demo:seed:affiliation": "tsx scripts/demo-seed-affiliation.ts"
   },
   "dependencies": {
+    "@azure/service-bus": "^7.9.5",
     "dotenv": "^16.4.5",
     "pg": "^8.13.1"
   },

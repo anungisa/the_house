@@ -25,15 +25,25 @@ export interface OutboxConfig {
   readonly maxRetries: number;
 }
 
+/** Where the outbox publisher sends messages. v1 defaults to a single queue. */
+export type ServiceBusPublishTarget = 'queue' | 'topic';
+
 export interface ServiceBusConfig {
   /**
-   * Connection string for Azure Service Bus. Empty in the scaffold; the outbox
-   * publisher is a no-op skeleton until a real publisher is wired in a later pass.
+   * Master switch for real Azure Service Bus publishing. Defaults to `false` so local
+   * and test runtimes NEVER require a broker or a connection string. When `false` the
+   * publisher factory returns the no-op publisher and no Service Bus config is required.
    * NOTE: Service Bus sessions are NOT used in v1.
    */
+  readonly enabled: boolean;
+  /** Connection string for Azure Service Bus. Required only when `enabled` is true. */
   readonly connectionString: string;
-  readonly outboxTopic: string;
-  readonly outboxQueue: string;
+  /** Target entity kind. Required to be 'queue' or 'topic' when `enabled` is true. */
+  readonly publishTarget: ServiceBusPublishTarget;
+  /** Queue name. Required when `enabled` and `publishTarget` is 'queue'. */
+  readonly queueName: string;
+  /** Topic name. Required when `enabled` and `publishTarget` is 'topic'. */
+  readonly topicName: string;
 }
 
 export interface ApiConfig {
@@ -75,6 +85,46 @@ function readInt(key: string, fallback: number): number {
     throw new Error(`Invalid integer for environment variable ${key}: "${raw}"`);
   }
   return parsed;
+}
+
+function readBool(key: string, fallback: boolean): boolean {
+  const raw = readString(key);
+  if (raw === undefined) return fallback;
+  const normalized = raw.toLowerCase();
+  if (normalized === 'true' || normalized === '1') return true;
+  if (normalized === 'false' || normalized === '0') return false;
+  throw new Error(`Invalid boolean for environment variable ${key}: "${raw}"`);
+}
+
+/**
+ * Resolve and validate Service Bus configuration. Fails closed only when publishing is
+ * explicitly enabled: a disabled config (the default) requires no connection string and
+ * never blocks local/test runtimes.
+ */
+function readServiceBusConfig(): ServiceBusConfig {
+  const enabled = readBool('SERVICE_BUS_ENABLED', false);
+  const connectionString = readString('SERVICE_BUS_CONNECTION_STRING') ?? '';
+  const queueName = readString('SERVICE_BUS_QUEUE_NAME') ?? '';
+  const topicName = readString('SERVICE_BUS_TOPIC_NAME') ?? '';
+  const targetRaw = readString('SERVICE_BUS_PUBLISH_TARGET') ?? 'queue';
+  if (targetRaw !== 'queue' && targetRaw !== 'topic') {
+    throw new Error(`Invalid SERVICE_BUS_PUBLISH_TARGET: "${targetRaw}" (expected 'queue' or 'topic').`);
+  }
+  const publishTarget: ServiceBusPublishTarget = targetRaw;
+
+  if (enabled) {
+    if (connectionString === '') {
+      throw new Error('SERVICE_BUS_CONNECTION_STRING is required when SERVICE_BUS_ENABLED=true.');
+    }
+    if (publishTarget === 'queue' && queueName === '') {
+      throw new Error('SERVICE_BUS_QUEUE_NAME is required when SERVICE_BUS_PUBLISH_TARGET=queue.');
+    }
+    if (publishTarget === 'topic' && topicName === '') {
+      throw new Error('SERVICE_BUS_TOPIC_NAME is required when SERVICE_BUS_PUBLISH_TARGET=topic.');
+    }
+  }
+
+  return { enabled, connectionString, publishTarget, queueName, topicName };
 }
 
 function readAppEnv(): AppEnv {
@@ -121,12 +171,7 @@ export function loadConfig(): AppConfig {
     appRegion: readString('APP_REGION') ?? 'canada',
     logLevel: readLogLevel(),
     databaseUrl: databaseUrl ?? '',
-    serviceBus: {
-      // Intentionally not required in the scaffold; the publisher is a skeleton.
-      connectionString: readString('AZURE_SERVICE_BUS_CONNECTION_STRING') ?? '',
-      outboxTopic: readString('AZURE_SERVICE_BUS_OUTBOX_TOPIC') ?? '',
-      outboxQueue: readString('AZURE_SERVICE_BUS_OUTBOX_QUEUE') ?? '',
-    },
+    serviceBus: readServiceBusConfig(),
     outbox: {
       batchSize: readInt('OUTBOX_BATCH_SIZE', 25),
       lockSeconds: readInt('OUTBOX_LOCK_SECONDS', 120),

@@ -128,8 +128,12 @@ export class OutboxWorker {
     const message: { -readonly [K in keyof PublishableMessage]: PublishableMessage[K] } = {
       messageId,
       messageType: row.messageType,
+      tenantId: row.tenantId,
       body: row.payload,
+      createdAt: row.createdAt,
+      attempt: row.retryCount,
     };
+    if (row.dedupeKey !== '') message.dedupeKey = row.dedupeKey;
     if (row.correlationId !== undefined) message.correlationId = row.correlationId;
     if (row.causationId !== undefined) message.causationId = row.causationId;
     return message;

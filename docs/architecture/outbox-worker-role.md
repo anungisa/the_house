@@ -149,8 +149,11 @@ app-role RLS still fails closed without tenant context.
 
 ## What remains stubbed
 
-- **Real Azure Service Bus publisher.** The worker still publishes via the `OutboxPublisher`
-  abstraction; the production Service Bus implementation is not wired (Noop publisher only).
+- **Real Azure Service Bus publisher.** A real publisher now exists
+  (`AzureServiceBusPublisher`, selected by `createOutboxPublisher` when
+  `SERVICE_BUS_ENABLED=true`); see
+  [azure-service-bus-publisher.md](azure-service-bus-publisher.md). It is **disabled by
+  default** (Noop publisher) and is not yet wired into a running worker host.
 - **DLQ processor.** Downstream Service Bus dead-letter handling is not implemented.
 - **Production observability / alerting.** No metrics, dashboards, or alerts on outbox lag,
   failed-row growth, or lease churn.
