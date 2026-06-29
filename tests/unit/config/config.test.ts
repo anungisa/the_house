@@ -36,6 +36,10 @@ const CONFIG_KEYS = [
   'API_HOST',
   'API_PORT',
   'AUTH_MODE',
+  'EVIDENCE_STORAGE_PROVIDER',
+  'EVIDENCE_BLOB_CONNECTION_STRING',
+  'EVIDENCE_BLOB_CONTAINER_NAME',
+  'EVIDENCE_STORAGE_REQUIRE_HASH',
 ] as const;
 
 let saved: Record<string, string | undefined>;
@@ -166,6 +170,52 @@ describe('loadConfig', () => {
   it('rejects an unknown AUTH_MODE', () => {
     process.env['AUTH_MODE'] = 'bogus';
     expect(() => loadConfig()).toThrow(/Invalid AUTH_MODE/);
+  });
+
+  // Evidence storage defaults to the in-memory provider (no Azure config required).
+  it('defaults evidence storage to the memory provider', () => {
+    const cfg = loadConfig().evidenceStorage;
+    expect(cfg.provider).toBe('memory');
+    expect(cfg.requireHash).toBe(true);
+    expect(cfg.connectionString).toBe('');
+    expect(cfg.containerName).toBe('');
+  });
+
+  // Evidence storage can require hashing be disabled explicitly.
+  it('reads EVIDENCE_STORAGE_REQUIRE_HASH=false', () => {
+    process.env['EVIDENCE_STORAGE_REQUIRE_HASH'] = 'false';
+    expect(loadConfig().evidenceStorage.requireHash).toBe(false);
+  });
+
+  // An unknown evidence storage provider fails closed.
+  it('rejects an unknown EVIDENCE_STORAGE_PROVIDER', () => {
+    process.env['EVIDENCE_STORAGE_PROVIDER'] = 'gcs';
+    expect(() => loadConfig()).toThrow(/Invalid EVIDENCE_STORAGE_PROVIDER/);
+  });
+
+  // azure_blob without a connection string fails closed.
+  it('rejects azure_blob without a connection string', () => {
+    process.env['EVIDENCE_STORAGE_PROVIDER'] = 'azure_blob';
+    process.env['EVIDENCE_BLOB_CONTAINER_NAME'] = 'evidence';
+    expect(() => loadConfig()).toThrow(/EVIDENCE_BLOB_CONNECTION_STRING is required/);
+  });
+
+  // azure_blob without a container name fails closed.
+  it('rejects azure_blob without a container name', () => {
+    process.env['EVIDENCE_STORAGE_PROVIDER'] = 'azure_blob';
+    process.env['EVIDENCE_BLOB_CONNECTION_STRING'] = 'UseDevelopmentStorage=true';
+    expect(() => loadConfig()).toThrow(/EVIDENCE_BLOB_CONTAINER_NAME is required/);
+  });
+
+  // azure_blob with full config loads.
+  it('reads a complete azure_blob evidence storage config', () => {
+    process.env['EVIDENCE_STORAGE_PROVIDER'] = 'azure_blob';
+    process.env['EVIDENCE_BLOB_CONNECTION_STRING'] = 'UseDevelopmentStorage=true';
+    process.env['EVIDENCE_BLOB_CONTAINER_NAME'] = 'evidence';
+    const cfg = loadConfig().evidenceStorage;
+    expect(cfg.provider).toBe('azure_blob');
+    expect(cfg.connectionString).toBe('UseDevelopmentStorage=true');
+    expect(cfg.containerName).toBe('evidence');
   });
 
   // Invalid enum values fail closed.

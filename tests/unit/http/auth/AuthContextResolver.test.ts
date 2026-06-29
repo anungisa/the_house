@@ -42,6 +42,7 @@ function makeAppConfig(mode: AuthMode): AppConfig {
       runOnce: false,
     },
     auth: { mode },
+    evidenceStorage: { provider: 'memory', connectionString: '', containerName: '', requireHash: true },
   };
 }
 

@@ -46,6 +46,7 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       runOnce: false,
     },
     auth: { mode: 'demo' },
+    evidenceStorage: { provider: 'memory', connectionString: '', containerName: '', requireHash: true },
     ...over,
   };
 }

@@ -18,6 +18,12 @@ export const ErrorCode = {
   UNAUTHENTICATED: 'UNAUTHENTICATED',
   /** Identity established but the request is not permitted at the edge boundary. Maps to 403. */
   FORBIDDEN: 'FORBIDDEN',
+  /** A requested evidence object payload does not exist in storage. */
+  EVIDENCE_NOT_FOUND: 'EVIDENCE_NOT_FOUND',
+  /** A stored evidence payload's digest does not match the expected SHA-256. */
+  EVIDENCE_HASH_MISMATCH: 'EVIDENCE_HASH_MISMATCH',
+  /** An evidence storage backend operation failed (controlled, sanitized). */
+  EVIDENCE_STORAGE_ERROR: 'EVIDENCE_STORAGE_ERROR',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

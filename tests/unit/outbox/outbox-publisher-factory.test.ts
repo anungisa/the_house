@@ -61,6 +61,7 @@ function makeConfig(serviceBus: ServiceBusConfig): AppConfig {
       runOnce: false,
     },
     auth: { mode: 'demo' },
+    evidenceStorage: { provider: 'memory', connectionString: '', containerName: '', requireHash: true },
   };
 }
 

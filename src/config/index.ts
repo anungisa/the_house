@@ -68,6 +68,26 @@ export interface AuthConfig {
 }
 
 /**
+ * Evidence payload/document storage backend.
+ *  - `memory`: in-process store. LOCAL/DEMO/TEST ONLY. Requires no Azure config.
+ *  - `azure_blob`: real Azure Blob Storage. Requires a connection string + container name.
+ *
+ * This is the PAYLOAD layer only. Governance evidence METADATA always lives in PostgreSQL
+ * (governance.evidence_object) and is created solely by the Governance Kernel.
+ */
+export type EvidenceStorageProvider = 'memory' | 'azure_blob';
+
+export interface EvidenceStorageConfig {
+  readonly provider: EvidenceStorageProvider;
+  /** Connection string for Azure Blob. Required only when provider is `azure_blob`. */
+  readonly connectionString: string;
+  /** Target container name. Required only when provider is `azure_blob`. */
+  readonly containerName: string;
+  /** When true, stored payloads are SHA-256 verified on read (defaults to true). */
+  readonly requireHash: boolean;
+}
+
+/**
  * Settings for the outbox worker RUNTIME HOST (the interval loop that drains the outbox).
  * Distinct from {@link OutboxConfig}: those tune the worker's retry/backoff mechanics, these
  * tune the host that schedules {@link OutboxConfig}-driven batches.
@@ -97,6 +117,7 @@ export interface AppConfig {
   readonly api: ApiConfig;
   readonly outboxWorker: OutboxWorkerRuntimeSettings;
   readonly auth: AuthConfig;
+  readonly evidenceStorage: EvidenceStorageConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -178,6 +199,39 @@ function readAuthConfig(): AuthConfig {
     throw new Error(`Invalid AUTH_MODE: "${raw}" (expected 'demo' or 'trusted_headers').`);
   }
   return { mode: raw };
+}
+
+/**
+ * Resolve and validate evidence payload storage configuration. Fails closed only when the
+ * `azure_blob` provider is selected: the default `memory` provider requires no Azure config
+ * and never blocks local/test runtimes. An unknown provider fails closed.
+ */
+function readEvidenceStorageConfig(): EvidenceStorageConfig {
+  const raw = readString('EVIDENCE_STORAGE_PROVIDER') ?? 'memory';
+  if (raw !== 'memory' && raw !== 'azure_blob') {
+    throw new Error(
+      `Invalid EVIDENCE_STORAGE_PROVIDER: "${raw}" (expected 'memory' or 'azure_blob').`,
+    );
+  }
+  const provider: EvidenceStorageProvider = raw;
+  const connectionString = readString('EVIDENCE_BLOB_CONNECTION_STRING') ?? '';
+  const containerName = readString('EVIDENCE_BLOB_CONTAINER_NAME') ?? '';
+  const requireHash = readBool('EVIDENCE_STORAGE_REQUIRE_HASH', true);
+
+  if (provider === 'azure_blob') {
+    if (connectionString === '') {
+      throw new Error(
+        'EVIDENCE_BLOB_CONNECTION_STRING is required when EVIDENCE_STORAGE_PROVIDER=azure_blob.',
+      );
+    }
+    if (containerName === '') {
+      throw new Error(
+        'EVIDENCE_BLOB_CONTAINER_NAME is required when EVIDENCE_STORAGE_PROVIDER=azure_blob.',
+      );
+    }
+  }
+
+  return { provider, connectionString, containerName, requireHash };
 }
 
 /**
@@ -270,5 +324,6 @@ export function loadConfig(): AppConfig {
     },
     outboxWorker: readOutboxWorkerSettings(),
     auth: readAuthConfig(),
+    evidenceStorage: readEvidenceStorageConfig(),
   };
 }
