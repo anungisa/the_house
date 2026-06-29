@@ -9,7 +9,12 @@ import { GuardRegistry } from '../../../src/governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../../../src/governance/guards/handlers.js';
 import { PgGovernanceStore } from '../../../src/governance/store/PgGovernanceStore.js';
 import { ErrorCode } from '../../../src/shared/errors/AppError.js';
-import { closePool, queryRaw, withTenantTransaction } from '../../../src/db/pool.js';
+import {
+  closePool,
+  queryRaw,
+  withTenantTransaction,
+  type QueryClient,
+} from '../../../src/db/pool.js';
 import type { TransitionInput } from '../../../src/governance/types/TransitionTypes.js';
 
 /**
@@ -17,8 +22,11 @@ import type { TransitionInput } from '../../../src/governance/types/TransitionTy
  * PostgreSQL database. GATED: they run only when RUN_DB_TESTS=1 and DATABASE_URL are set;
  * otherwise the suite is skipped so the default `npm test` stays hermetic.
  *
- * Setup applies db/migrations/*.sql (idempotent). The connection MUST be a non-superuser,
- * non-BYPASSRLS role for the RLS isolation assertions to hold.
+ * RLS: the runtime connection (DATABASE_URL) MUST be a non-superuser, non-BYPASSRLS role
+ * for the RLS isolation assertions to hold. Migrations are DDL and require elevated
+ * privileges, so they are applied through MIGRATE_DATABASE_URL when provided (falling
+ * back to DATABASE_URL for superuser-run local dev). Migration application is idempotent
+ * via the public.schema_migrations ledger.
  */
 const RUN = process.env.RUN_DB_TESTS === '1' && (process.env.DATABASE_URL ?? '') !== '';
 const d = RUN ? describe : describe.skip;
@@ -28,6 +36,7 @@ const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 
 const TENANT_A = '11111111-1111-1111-1111-111111111111';
 const TENANT_B = '22222222-2222-2222-2222-222222222222';
+const ENTITY_TYPE = 'AffiliationApplication';
 const ALL_PASS = {
   requiredFieldsComplete: true,
   requiredDocsPresent: true,
@@ -36,14 +45,30 @@ const ALL_PASS = {
   seasonIsCurrent: true,
 };
 
+/** Apply migrations idempotently using an elevated connection (DDL needs privileges). */
 async function applyMigrations(): Promise<void> {
-  const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+  const adminUrl = process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL;
+  const pool = new pg.Pool({ connectionString: adminUrl });
   const client = await pool.connect();
   try {
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS public.schema_migrations (
+        filename   text PRIMARY KEY,
+        applied_at timestamptz NOT NULL DEFAULT now()
+      )
+    `);
+    const { rows } = await client.query<{ filename: string }>(
+      'SELECT filename FROM public.schema_migrations',
+    );
+    const applied = new Set(rows.map((r) => r.filename));
     const files = (await readdir(MIGRATIONS_DIR)).filter((f) => f.endsWith('.sql')).sort();
     for (const file of files) {
+      if (applied.has(file)) continue;
       const sql = await readFile(join(MIGRATIONS_DIR, file), 'utf8');
+      await client.query('BEGIN');
       await client.query(sql);
+      await client.query('INSERT INTO public.schema_migrations(filename) VALUES ($1)', [file]);
+      await client.query('COMMIT');
     }
   } finally {
     client.release();
@@ -61,7 +86,7 @@ function input(
   o: Pick<TransitionInput, 'entityId' | 'trigger' | 'idempotencyKey'> & Partial<TransitionInput>,
 ): TransitionInput {
   return {
-    entityType: 'AffiliationApplication',
+    entityType: ENTITY_TYPE,
     actor: o.actor ?? {
       actorId: 'reviewer-1',
       tenantId: TENANT_A,
@@ -74,6 +99,30 @@ function input(
   };
 }
 
+async function count(tenantId: string, sql: string, params: readonly unknown[]): Promise<number> {
+  const rows = await withTenantTransaction(tenantId, (c: QueryClient) =>
+    c.query<{ n: number }>(sql, params),
+  );
+  return rows[0]!.n;
+}
+
+/** Position an entity directly at a given state (test fixture for hard-to-reach states). */
+async function seedEntityStateAt(entityId: string, state: string): Promise<void> {
+  await withTenantTransaction(TENANT_A, async (c: QueryClient) => {
+    const sm = await c.query<{ id: string }>(
+      `SELECT id FROM governance.state_machine
+        WHERE entity_type = $1 AND status = 'active' ORDER BY version DESC LIMIT 1`,
+      [ENTITY_TYPE],
+    );
+    await c.query(
+      `INSERT INTO governance.entity_state
+         (tenant_id, entity_type, entity_id, current_state, state_machine_id)
+       VALUES ($1,$2,$3,$4,$5)`,
+      [TENANT_A, ENTITY_TYPE, entityId, state, sm[0]!.id],
+    );
+  });
+}
+
 d('AffiliationApplication governed transition (integration)', () => {
   beforeAll(async () => {
     await applyMigrations();
@@ -83,7 +132,15 @@ d('AffiliationApplication governed transition (integration)', () => {
     await closePool();
   });
 
-  it('executes draft -> submitted and writes journal, audit, and one outbox row', async () => {
+  it('runtime connection is a non-superuser, non-BYPASSRLS role (RLS is enforced)', async () => {
+    const rows = await queryRaw<{ rolsuper: boolean; rolbypassrls: boolean }>(
+      `SELECT rolsuper, rolbypassrls FROM pg_roles WHERE rolname = current_user`,
+    );
+    expect(rows[0]!.rolsuper).toBe(false);
+    expect(rows[0]!.rolbypassrls).toBe(false);
+  });
+
+  it('executes draft -> submitted and writes entity_state, journal, audit, and one outbox row', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
     const result = await kernel.transition(
@@ -92,13 +149,37 @@ d('AffiliationApplication governed transition (integration)', () => {
     expect(result.status).toBe('executed');
     expect(result.toState).toBe('submitted');
 
-    const states = await withTenantTransaction(TENANT_A, (c) =>
-      c.query(
-        `SELECT current_state FROM governance.entity_state WHERE entity_id = $1`,
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.entity_state
+          WHERE entity_id = $1 AND current_state = 'submitted'`,
         [entityId],
       ),
-    );
-    expect(states[0]!['current_state']).toBe('submitted');
+    ).toBe(1);
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.state_transition WHERE entity_id = $1`,
+        [entityId],
+      ),
+    ).toBe(1);
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.audit_event
+          WHERE entity_id = $1 AND action = 'transition.executed'`,
+        [entityId],
+      ),
+    ).toBe(1);
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.outbox_message
+          WHERE payload->>'entityId' = $1`,
+        [entityId],
+      ),
+    ).toBe(1);
   });
 
   it('denies an unknown transition (fail closed)', async () => {
@@ -110,6 +191,75 @@ d('AffiliationApplication governed transition (integration)', () => {
     ).rejects.toMatchObject({ code: ErrorCode.UNKNOWN_TRANSITION });
   });
 
+  it('approval-required transition records a request and does NOT mutate state or outbox', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }));
+    await kernel.transition(
+      input({ entityId, trigger: 'review_start', idempotencyKey: randomUUID() }),
+    );
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'approve', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('approval_required');
+    expect(result.transitionRequestId).toBeDefined();
+
+    // No state mutation: still under_review.
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.entity_state
+          WHERE entity_id = $1 AND current_state = 'under_review'`,
+        [entityId],
+      ),
+    ).toBe(1);
+    // A request row exists.
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.transition_request
+          WHERE entity_id = $1 AND trigger = 'approve'`,
+        [entityId],
+      ),
+    ).toBe(1);
+    // No executed transition to 'approved', and no outbox for approve.
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.state_transition
+          WHERE entity_id = $1 AND to_state = 'approved'`,
+        [entityId],
+      ),
+    ).toBe(0);
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.outbox_message
+          WHERE payload->>'entityId' = $1 AND message_type LIKE '%approve%'`,
+        [entityId],
+      ),
+    ).toBe(0);
+  });
+
+  it('high-risk executed transition (archive) creates evidence metadata', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await seedEntityStateAt(entityId, 'closed');
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'archive', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('executed');
+    expect(result.toState).toBe('archived');
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.evidence_object
+          WHERE entity_id = $1 AND trigger = 'archive'`,
+        [entityId],
+      ),
+    ).toBe(1);
+  });
+
   it('idempotent retry does not duplicate state_transition or outbox rows', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
@@ -118,16 +268,24 @@ d('AffiliationApplication governed transition (integration)', () => {
     const replay = await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: key }));
     expect(replay.status).toBe('idempotent_replay');
 
-    const rows = await withTenantTransaction(TENANT_A, (c) =>
-      c.query(
+    expect(
+      await count(
+        TENANT_A,
         `SELECT count(*)::int AS n FROM governance.state_transition WHERE entity_id = $1`,
         [entityId],
       ),
-    );
-    expect(rows[0]!['n']).toBe(1);
+    ).toBe(1);
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.outbox_message
+          WHERE payload->>'entityId' = $1`,
+        [entityId],
+      ),
+    ).toBe(1);
   });
 
-  it('enforces RLS tenant isolation: tenant B cannot see tenant A entity_state', async () => {
+  it('enforces RLS read isolation: tenant B cannot see tenant A entity_state', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
     await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }));
@@ -136,6 +294,33 @@ d('AffiliationApplication governed transition (integration)', () => {
       c.query(`SELECT id FROM governance.entity_state WHERE entity_id = $1`, [entityId]),
     );
     expect(visibleToB).toHaveLength(0);
+  });
+
+  it('enforces RLS write isolation: tenant B cannot update tenant A entity_state', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }));
+
+    // Attempt to mutate tenant A's row while in tenant B context: RLS hides the row,
+    // so 0 rows are affected and tenant A's state is unchanged.
+    const affected = await withTenantTransaction(TENANT_B, async (c) => {
+      const res = await c.query<{ id: string }>(
+        `UPDATE governance.entity_state SET current_state = 'revoked'
+          WHERE entity_id = $1 RETURNING id`,
+        [entityId],
+      );
+      return res.length;
+    });
+    expect(affected).toBe(0);
+
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.entity_state
+          WHERE entity_id = $1 AND current_state = 'submitted'`,
+        [entityId],
+      ),
+    ).toBe(1);
   });
 
   it('fails closed at the database when tenant context is not set', async () => {

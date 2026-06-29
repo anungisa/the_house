@@ -12,7 +12,6 @@ import { readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import pg from 'pg';
-import { loadConfig } from '../src/config/index.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(here, '..', 'db', 'migrations');
@@ -34,14 +33,14 @@ async function appliedFiles(client: pg.PoolClient): Promise<Set<string>> {
 }
 
 async function main(): Promise<void> {
-  const config = loadConfig();
-  if (config.databaseUrl === '') {
+  const databaseUrl = process.env.DATABASE_URL ?? '';
+  if (databaseUrl === '') {
     console.error('[db:migrate] DATABASE_URL is not set. Nothing to do.');
     process.exitCode = 1;
     return;
   }
 
-  const pool = new pg.Pool({ connectionString: config.databaseUrl });
+  const pool = new pg.Pool({ connectionString: databaseUrl });
   const client = await pool.connect();
   try {
     await ensureLedger(client);
