@@ -8,6 +8,8 @@ import { GovernanceKernel } from '../../../src/governance/kernel/GovernanceKerne
 import { GuardRegistry } from '../../../src/governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../../../src/governance/guards/handlers.js';
 import { PgGovernanceStore } from '../../../src/governance/store/PgGovernanceStore.js';
+import { PgAffiliationApplicationStore } from '../../../src/domains/affiliation/PgAffiliationApplicationStore.js';
+import { DomainBackedAffiliationGuardRepository } from '../../../src/domains/affiliation/DomainBackedAffiliationGuardRepository.js';
 import { ErrorCode } from '../../../src/shared/errors/AppError.js';
 import {
   closePool,
@@ -37,13 +39,7 @@ const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 const TENANT_A = '11111111-1111-1111-1111-111111111111';
 const TENANT_B = '22222222-2222-2222-2222-222222222222';
 const ENTITY_TYPE = 'AffiliationApplication';
-const ALL_PASS = {
-  requiredFieldsComplete: true,
-  requiredDocsPresent: true,
-  openComplianceFlags: false,
-  feesPaid: true,
-  seasonIsCurrent: true,
-};
+const SEASON = '2025-26';
 
 /** Apply migrations idempotently using an elevated connection (DDL needs privileges). */
 async function applyMigrations(): Promise<void> {
@@ -78,7 +74,11 @@ async function applyMigrations(): Promise<void> {
 
 function makeKernel(): GovernanceKernel {
   const registry = new GuardRegistry();
-  registerAffiliationGuards(registry);
+  // PRODUCTION wiring: guards read PERSISTED affiliation domain facts, not payload facts.
+  registerAffiliationGuards(
+    registry,
+    new DomainBackedAffiliationGuardRepository(new PgAffiliationApplicationStore()),
+  );
   return new GovernanceKernel({ store: new PgGovernanceStore(), guards: registry });
 }
 
@@ -94,9 +94,71 @@ function input(
       roles: ['reviewer'],
     },
     context: o.context ?? { tenantId: TENANT_A, scopeType: 'national_organization' },
-    payload: o.payload ?? { facts: ALL_PASS },
     ...o,
   };
+}
+
+/**
+ * Seed an affiliation DOMAIN application row (+ optional supporting rows) used by the
+ * persistence-backed guards. This writes DOMAIN facts only — never governed lifecycle
+ * state. Runs as the restricted runtime role under tenant context (RLS enforced).
+ */
+async function seedApplication(
+  entityId: string,
+  opts: {
+    tenantId?: string;
+    requiredFieldsComplete?: boolean;
+    documentStatus?: 'approved' | 'pending';
+    openComplianceFlag?: boolean;
+    unpaid?: boolean;
+    seasonCurrent?: boolean;
+  } = {},
+): Promise<void> {
+  const tenantId = opts.tenantId ?? TENANT_A;
+  await withTenantTransaction(tenantId, async (c: QueryClient) => {
+    await c.query(
+      `INSERT INTO affiliation.affiliation_application
+         (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status)
+       VALUES ($1,$2,$3,$4,$4,$5)`,
+      [
+        entityId,
+        tenantId,
+        SEASON,
+        opts.requiredFieldsComplete ?? true,
+        opts.unpaid === true ? 'unpaid' : 'paid',
+      ],
+    );
+    await c.query(
+      `INSERT INTO affiliation.application_document
+         (tenant_id, application_id, document_type, required, status)
+       VALUES ($1,$2,'affiliation_form',true,$3)`,
+      [tenantId, entityId, opts.documentStatus ?? 'approved'],
+    );
+    if (opts.openComplianceFlag === true) {
+      await c.query(
+        `INSERT INTO affiliation.compliance_flag
+           (tenant_id, application_id, flag_type, status)
+         VALUES ($1,$2,'eligibility','open')`,
+        [tenantId, entityId],
+      );
+    }
+    if (opts.unpaid === true) {
+      await c.query(
+        `INSERT INTO affiliation.payment_obligation
+           (tenant_id, application_id, obligation_type, status, amount_cents)
+         VALUES ($1,$2,'affiliation_fee','unpaid',5000)`,
+        [tenantId, entityId],
+      );
+    }
+    if (opts.seasonCurrent === true) {
+      await c.query(
+        `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
+         VALUES ($1,$2,true)
+         ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
+        [tenantId, SEASON],
+      );
+    }
+  });
 }
 
 async function count(tenantId: string, sql: string, params: readonly unknown[]): Promise<number> {
@@ -143,6 +205,7 @@ d('AffiliationApplication governed transition (integration)', () => {
   it('executes draft -> submitted and writes entity_state, journal, audit, and one outbox row', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
+    await seedApplication(entityId);
     const result = await kernel.transition(
       input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }),
     );
@@ -194,6 +257,7 @@ d('AffiliationApplication governed transition (integration)', () => {
   it('approval-required transition records a request and does NOT mutate state or outbox', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
+    await seedApplication(entityId);
     await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }));
     await kernel.transition(
       input({ entityId, trigger: 'review_start', idempotencyKey: randomUUID() }),
@@ -264,6 +328,7 @@ d('AffiliationApplication governed transition (integration)', () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
     const key = randomUUID();
+    await seedApplication(entityId);
     await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: key }));
     const replay = await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: key }));
     expect(replay.status).toBe('idempotent_replay');
@@ -288,6 +353,7 @@ d('AffiliationApplication governed transition (integration)', () => {
   it('enforces RLS read isolation: tenant B cannot see tenant A entity_state', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
+    await seedApplication(entityId);
     await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }));
 
     const visibleToB = await withTenantTransaction(TENANT_B, (c) =>
@@ -299,6 +365,7 @@ d('AffiliationApplication governed transition (integration)', () => {
   it('enforces RLS write isolation: tenant B cannot update tenant A entity_state', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();
+    await seedApplication(entityId);
     await kernel.transition(input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }));
 
     // Attempt to mutate tenant A's row while in tenant B context: RLS hides the row,
@@ -326,6 +393,96 @@ d('AffiliationApplication governed transition (integration)', () => {
   it('fails closed at the database when tenant context is not set', async () => {
     await expect(
       queryRaw(`SELECT governance.current_tenant_id()`),
+    ).rejects.toThrow(/TENANT_CONTEXT_MISSING/);
+  });
+
+  it('guards PASS from persisted domain facts (submit succeeds when facts are complete)', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await seedApplication(entityId, { requiredFieldsComplete: true, documentStatus: 'approved' });
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('executed');
+    expect(result.toState).toBe('submitted');
+  });
+
+  it('guards FAIL from persisted domain facts (submit rejected when required fields incomplete)', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await seedApplication(entityId, { requiredFieldsComplete: false });
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('rejected');
+    // No state mutation occurred on a guard rejection.
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.entity_state WHERE entity_id = $1`,
+        [entityId],
+      ),
+    ).toBe(0);
+  });
+
+  it('guards FAIL when a required document is not approved (persisted docs drive the outcome)', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await seedApplication(entityId, { requiredFieldsComplete: true, documentStatus: 'pending' });
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'submit', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('rejected');
+  });
+
+  it('persisted domain facts override caller payload facts (payload cannot force a pass)', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    // Persisted state says incomplete; caller still sends an optimistic payload.
+    await seedApplication(entityId, { requiredFieldsComplete: false });
+    const result = await kernel.transition(
+      input({
+        entityId,
+        trigger: 'submit',
+        idempotencyKey: randomUUID(),
+        payload: {
+          facts: {
+            requiredFieldsComplete: true,
+            requiredDocsPresent: true,
+            openComplianceFlags: false,
+            feesPaid: true,
+            seasonIsCurrent: true,
+          },
+        },
+      }),
+    );
+    expect(result.status).toBe('rejected');
+  });
+
+  it('restricted app role can read/write its own affiliation domain rows', async () => {
+    const entityId = randomUUID();
+    await seedApplication(entityId, { requiredFieldsComplete: true });
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM affiliation.affiliation_application WHERE id = $1`,
+        [entityId],
+      ),
+    ).toBe(1);
+  });
+
+  it('enforces RLS isolation on affiliation domain tables (tenant B cannot see tenant A rows)', async () => {
+    const entityId = randomUUID();
+    await seedApplication(entityId, { tenantId: TENANT_A });
+    const visibleToB = await withTenantTransaction(TENANT_B, (c) =>
+      c.query(`SELECT id FROM affiliation.affiliation_application WHERE id = $1`, [entityId]),
+    );
+    expect(visibleToB).toHaveLength(0);
+  });
+
+  it('fails closed on affiliation domain tables when tenant context is not set', async () => {
+    await expect(
+      queryRaw(`SELECT count(*) FROM affiliation.affiliation_application`),
     ).rejects.toThrow(/TENANT_CONTEXT_MISSING/);
   });
 });

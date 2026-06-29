@@ -1,6 +1,10 @@
 import { GovernanceKernel } from '../../src/governance/kernel/GovernanceKernel.js';
 import { GuardRegistry } from '../../src/governance/guards/GuardRegistry.js';
-import { registerAffiliationGuards } from '../../src/governance/guards/handlers.js';
+import {
+  registerAffiliationGuards,
+  PayloadBackedAffiliationGuardRepository,
+  type AffiliationGuardRepository,
+} from '../../src/governance/guards/handlers.js';
 import { InMemoryGovernanceStore } from '../../src/governance/store/InMemoryGovernanceStore.js';
 import { InMemoryOutboxStore } from '../../src/governance/outbox/InMemoryOutboxStore.js';
 import { buildAffiliationSeed } from '../../src/governance/store/affiliationSeed.js';
@@ -39,7 +43,7 @@ export interface KernelHarness {
  * enqueued by the kernel are visible to the outbox worker.
  */
 export function buildKernelHarness(
-  options: { registerGuards?: boolean } = {},
+  options: { registerGuards?: boolean; guardRepo?: AffiliationGuardRepository } = {},
 ): KernelHarness {
   const clock = fixedClock(1_700_000_000_000);
   const ids = sequentialIds();
@@ -52,7 +56,12 @@ export function buildKernelHarness(
 
   const registry = new GuardRegistry();
   if (options.registerGuards !== false) {
-    registerAffiliationGuards(registry);
+    // Unit tests use the payload-backed FAKE so guard outcomes are driven by ALL_PASS_FACTS
+    // (or per-test facts). Persistence-backed guards are covered by their own tests.
+    registerAffiliationGuards(
+      registry,
+      options.guardRepo ?? new PayloadBackedAffiliationGuardRepository(),
+    );
   }
 
   const kernel = new GovernanceKernel({ store, guards: registry, clock, outboxMaxRetries: 5 });

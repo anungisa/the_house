@@ -97,3 +97,20 @@ export {
 } from './AffiliationApplicationService.js';
 
 export { handleAffiliationApplicationTransition } from './AffiliationApplicationHandler.js';
+
+// ---------------------------------------------------------------------------------------
+// Domain persistence (application facts behind the guards).
+//
+// The domain owns application facts ONLY. Lifecycle state stays in governance.entity_state,
+// written exclusively by the Governance Kernel. The guard repository reads these persisted
+// facts instead of caller-supplied payload facts.
+// ---------------------------------------------------------------------------------------
+
+export type {
+  AffiliationApplicationFacts,
+  AffiliationApplicationStore,
+} from './AffiliationApplicationStore.js';
+
+export { InMemoryAffiliationApplicationStore } from './InMemoryAffiliationApplicationStore.js';
+export { PgAffiliationApplicationStore } from './PgAffiliationApplicationStore.js';
+export { DomainBackedAffiliationGuardRepository } from './DomainBackedAffiliationGuardRepository.js';

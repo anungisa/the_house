@@ -85,9 +85,11 @@ export interface AffiliationApplicationTransitionRequest {
   readonly reason?: string;
 
   /**
-   * Intentional stub bridge: guard facts consumed by the in-memory
-   * PayloadBackedAffiliationGuardRepository via `payload.facts`. Real affiliation-domain
-   * persistence will replace this in a later pass.
+   * @deprecated Guard outcomes are now derived from PERSISTED affiliation domain state
+   * (see `DomainBackedAffiliationGuardRepository` and `affiliation.*` tables), NOT from
+   * caller-supplied facts. This field is retained only for the test-only
+   * `PayloadBackedAffiliationGuardRepository` fake and is ignored by production wiring.
+   * It will be removed once the payload bridge is fully retired.
    */
   readonly facts?: Readonly<Record<string, unknown>>;
 

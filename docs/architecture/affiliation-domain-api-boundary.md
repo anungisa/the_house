@@ -80,7 +80,9 @@ Unknown commands fail closed (`INVALID_INPUT`) before any kernel call.
   `correlationId`, `causationId`
 - `idempotencyKey` (required — never auto-generated; see Idempotency)
 - `reason` (required for high-risk triggers)
-- `facts` — intentional stub bridge to the in-memory guard repository (`payload.facts`)
+- `facts` — **deprecated**. Guards now read persisted affiliation domain state (see
+  [affiliation-domain-persistence.md](affiliation-domain-persistence.md)); ignored by
+  production wiring and retained only for the test-only payload fake.
 - `payload` — optional opaque domain payload
 
 Mapping notes:
@@ -137,9 +139,10 @@ constraint, stable outbox dedupe key). The boundary does not duplicate that enfo
 
 ## What remains stubbed
 
-- `facts` → `payload.facts` is an intentional bridge to the in-memory
-  `PayloadBackedAffiliationGuardRepository`; real affiliation-domain persistence will
-  replace it.
+- `facts` → `payload.facts` is **deprecated**. Guard evaluation now reads PERSISTED
+  affiliation domain state via `DomainBackedAffiliationGuardRepository`; the payload bridge
+  survives only for the test-only `PayloadBackedAffiliationGuardRepository` fake. See
+  [affiliation-domain-persistence.md](affiliation-domain-persistence.md).
 - `workflowInstanceId` is never populated (no workflow engine wired in v1).
 - `permissionKeys` is carried but not consumed by the v1 `DefaultPermissionChecker`.
 

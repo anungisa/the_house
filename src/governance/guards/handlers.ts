@@ -5,12 +5,11 @@
  * Each handler is dependency-injected with an {@link AffiliationGuardRepository} so the
  * underlying data source can change (DB, services) without touching handler logic.
  *
- * INTENTIONAL STUB (documented): the default repository
- * ({@link PayloadBackedAffiliationGuardRepository}) reads facts from
- * `input.payload.facts`. This keeps the slice testable end-to-end WITHOUT building the
- * real affiliation/payment/compliance data sources, while the repository INTERFACE is
- * production-ready. A production repository implements the same interface against real
- * data.
+ * PRODUCTION wiring binds a persistence-backed repository (the affiliation domain's
+ * `DomainBackedAffiliationGuardRepository`) so guard outcomes derive from PERSISTED domain
+ * facts. {@link PayloadBackedAffiliationGuardRepository} below is a TEST-ONLY FAKE that
+ * reads facts from `input.payload.facts`; it must NOT be used in production wiring because
+ * it would let callers make guards pass by supplying their own "facts".
  */
 
 import type {
@@ -50,8 +49,10 @@ function readFacts(input: GuardEvaluationInput): AffiliationFacts {
 }
 
 /**
- * Default repository backed by `input.payload.facts`. INTENTIONAL STUB — see file header.
- * Missing facts default to the SAFE (fail-closed) interpretation for each guard.
+ * TEST-ONLY FAKE repository backed by `input.payload.facts`. Do NOT use in production
+ * wiring — it treats caller-supplied facts as authoritative, which the persistence-backed
+ * repository deliberately does not. Missing facts default to the SAFE (fail-closed)
+ * interpretation for each guard.
  */
 export class PayloadBackedAffiliationGuardRepository implements AffiliationGuardRepository {
   hasRequiredFields(input: GuardEvaluationInput): boolean {
@@ -134,10 +135,14 @@ export function createAffiliationGuardHandlers(
 
 /**
  * Register all six AffiliationApplication guards on a registry.
+ *
+ * `repo` is REQUIRED and explicit: production callers pass a persistence-backed repository
+ * (the affiliation domain's `DomainBackedAffiliationGuardRepository`); tests may pass the
+ * {@link PayloadBackedAffiliationGuardRepository} fake.
  */
 export function registerAffiliationGuards(
   registry: GuardRegistry,
-  repo: AffiliationGuardRepository = new PayloadBackedAffiliationGuardRepository(),
+  repo: AffiliationGuardRepository,
 ): void {
   const handlers = createAffiliationGuardHandlers(repo);
   for (const code of AFFILIATION_GUARD_CODES) {
