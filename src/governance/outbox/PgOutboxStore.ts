@@ -1,16 +1,23 @@
 /**
- * PostgreSQL OutboxStore (integration).
+ * PostgreSQL OutboxStore (integration) — WORKER side.
  *
- * Implements claim/lease/retry against governance.outbox_message. Claiming uses
- * FOR UPDATE SKIP LOCKED with locked_until/locked_by leasing.
+ * Implements cross-tenant claim/lease/retry against governance.outbox_message. The outbox
+ * processor runs across ALL tenants, but governance.outbox_message is under FORCE RLS, so a
+ * non-superuser, non-BYPASSRLS worker role cannot read tenant-owned rows directly.
  *
- * Tenant context: the outbox processor runs cross-tenant. This store therefore operates
- * through a connection that is expected to be a privileged background-worker role (or a
- * per-tenant context loop). See db/migrations/0001 header for the production guidance.
- * For gated integration tests, a non-RLS-bypassing role with explicit tenant context is
- * used per operation.
+ * Rather than grant the worker broad table access (or BYPASSRLS), all worker operations go
+ * through a NARROW set of SECURITY DEFINER functions added in migration 0004
+ * (governance.claim_outbox_messages / mark_outbox_processed / reschedule_outbox_message /
+ * mark_outbox_failed / recover_expired_outbox_messages / get_outbox_message). The worker
+ * role is granted EXECUTE on those functions and nothing else on governed tables. Direct
+ * table access by the worker role stays blocked; normal app-role RLS is untouched.
+ * See docs/architecture/outbox-worker-role.md.
+ *
+ * `pool` is injectable so production can wire the dedicated worker connection while the
+ * default falls back to the shared pool.
  */
 
+import type pg from 'pg';
 import { withTenantTransaction, queryRaw } from '../../db/pool.js';
 import type { OutboxRow } from './OutboxTypes.js';
 import type { OutboxEnqueueInput, OutboxStore } from './OutboxStore.js';
@@ -54,102 +61,101 @@ function mapRow(r: OutboxDbRow): OutboxRow {
 }
 
 export class PgOutboxStore implements OutboxStore {
+  /**
+   * @param pool Optional dedicated worker connection pool. When omitted, the shared pool
+   *   (DATABASE_URL) is used. Production wires the worker-role pool here.
+   */
+  constructor(private readonly pool?: pg.Pool) {}
+
+  /**
+   * Tenant-scoped enqueue. NOTE: the governed transition path enqueues directly inside the
+   * kernel transaction (PgGovernanceStore.insertOutboxMessage); this method exists for
+   * non-kernel wiring/tests and runs under tenant context (RLS-enforced), not the worker
+   * role.
+   */
   async enqueue(input: OutboxEnqueueInput): Promise<string> {
-    return withTenantTransaction(input.tenantId, async (client) => {
-      const rows = await client.query<{ id: string }>(
-        `INSERT INTO governance.outbox_message
-           (tenant_id, message_type, payload, status, max_retries, dedupe_key,
-            correlation_id, causation_id)
-         VALUES ($1,$2,$3,'pending',$4,$5,$6,$7)
-         ON CONFLICT (tenant_id, dedupe_key) WHERE dedupe_key IS NOT NULL
-         DO UPDATE SET tenant_id = governance.outbox_message.tenant_id
-         RETURNING id`,
-        [
-          input.tenantId,
-          input.messageType,
-          JSON.stringify(input.payload),
-          input.maxRetries,
-          input.dedupeKey,
-          input.correlationId ?? null,
-          input.causationId ?? null,
-        ],
-      );
-      return rows[0]!.id;
-    });
+    return withTenantTransaction(
+      input.tenantId,
+      async (client) => {
+        const rows = await client.query<{ id: string }>(
+          `INSERT INTO governance.outbox_message
+             (tenant_id, message_type, payload, status, max_retries, dedupe_key,
+              correlation_id, causation_id)
+           VALUES ($1,$2,$3,'pending',$4,$5,$6,$7)
+           ON CONFLICT (tenant_id, dedupe_key) WHERE dedupe_key IS NOT NULL
+           DO UPDATE SET tenant_id = governance.outbox_message.tenant_id
+           RETURNING id`,
+          [
+            input.tenantId,
+            input.messageType,
+            JSON.stringify(input.payload),
+            input.maxRetries,
+            input.dedupeKey,
+            input.correlationId ?? null,
+            input.causationId ?? null,
+          ],
+        );
+        return rows[0]!.id;
+      },
+      this.pool,
+    );
   }
 
   /**
-   * Claim across all tenants. Uses a privileged connection (no tenant context); intended
-   * for the background worker role. Lease window is `lockMs`.
+   * Claim across all tenants via the SECURITY DEFINER function. The worker role has no
+   * direct table access; cross-tenant claiming is mediated entirely by the function, which
+   * performs FOR UPDATE SKIP LOCKED + locked_until/locked_by leasing. Lease window is
+   * `lockMs`.
    */
   async claimBatch(workerId: string, limit: number, lockMs: number): Promise<OutboxRow[]> {
     const lockSeconds = Math.ceil(lockMs / 1000);
     const rows = await queryRaw<OutboxDbRow>(
-      `WITH claimed AS (
-         SELECT id FROM governance.outbox_message
-          WHERE status = 'pending' AND next_attempt_at <= now()
-          ORDER BY next_attempt_at ASC
-          FOR UPDATE SKIP LOCKED
-          LIMIT $1
-       )
-       UPDATE governance.outbox_message o
-          SET status = 'processing',
-              locked_by = $2,
-              locked_until = now() + make_interval(secs => $3),
-              last_attempt_at = now()
-         FROM claimed
-        WHERE o.id = claimed.id
-       RETURNING o.*`,
+      `SELECT * FROM governance.claim_outbox_messages($1, $2, $3)`,
       [limit, workerId, lockSeconds],
+      this.pool,
     );
     return rows.map(mapRow);
   }
 
   async markProcessed(id: string, publishedMessageId: string): Promise<void> {
     await queryRaw(
-      `UPDATE governance.outbox_message
-          SET status = 'processed', processed_at = now(), published_message_id = $2,
-              locked_until = NULL, locked_by = NULL, error = NULL
-        WHERE id = $1`,
+      `SELECT governance.mark_outbox_processed($1, $2)`,
       [id, publishedMessageId],
+      this.pool,
     );
   }
 
   async reschedule(id: string, nextAttemptInMs: number, errorMessage: string): Promise<void> {
     const seconds = Math.ceil(nextAttemptInMs / 1000);
     await queryRaw(
-      `UPDATE governance.outbox_message
-          SET status = 'pending', retry_count = retry_count + 1,
-              next_attempt_at = now() + make_interval(secs => $2),
-              error = $3, locked_until = NULL, locked_by = NULL
-        WHERE id = $1`,
+      `SELECT governance.reschedule_outbox_message($1, $2, $3)`,
       [id, seconds, errorMessage],
+      this.pool,
     );
   }
 
   async markFailed(id: string, errorMessage: string): Promise<void> {
     await queryRaw(
-      `UPDATE governance.outbox_message
-          SET status = 'failed', error = $2, locked_until = NULL, locked_by = NULL
-        WHERE id = $1`,
+      `SELECT governance.mark_outbox_failed($1, $2)`,
       [id, errorMessage],
+      this.pool,
     );
   }
 
   async recoverExpiredLeases(): Promise<number> {
-    const rows = await queryRaw<{ id: string }>(
-      `UPDATE governance.outbox_message
-          SET status = 'pending', locked_until = NULL, locked_by = NULL
-        WHERE status = 'processing' AND locked_until IS NOT NULL AND locked_until <= now()
-       RETURNING id`,
+    const rows = await queryRaw<{ recovered: number }>(
+      `SELECT governance.recover_expired_outbox_messages() AS recovered`,
+      undefined,
+      this.pool,
     );
-    return rows.length;
+    return rows[0]?.recovered ?? 0;
   }
 
   async get(id: string): Promise<OutboxRow | undefined> {
     const rows = await queryRaw<OutboxDbRow>(
-      `SELECT * FROM governance.outbox_message WHERE id = $1`,
+      `SELECT * FROM governance.get_outbox_message($1)`,
       [id],
+      this.pool,
     );
     const r = rows[0];
     return r === undefined ? undefined : mapRow(r);
