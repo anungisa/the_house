@@ -27,6 +27,13 @@ import {
   type AffiliationHttpResult,
 } from './AffiliationHttpAdapter.js';
 import type { AuthContextResolver } from './auth/AuthContextResolver.js';
+import {
+  evidenceErrorToHttpResult,
+  handleEvidenceDownload,
+  handleEvidenceUpload,
+  type EvidenceHttpDeps,
+  type EvidenceHttpResult,
+} from './evidence/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -38,12 +45,21 @@ export interface AffiliationHttpServerDeps {
   readonly resolver?: AuthContextResolver;
   /** Max JSON body size in bytes (default 1 MiB) — a basic safeguard against oversized payloads. */
   readonly maxBodyBytes?: number;
+  /**
+   * Optional evidence payload transport. When provided, the narrow evidence upload/download
+   * endpoints are served; when omitted they 404. Evidence storage is governance
+   * infrastructure — these routes never touch governed tables or the kernel.
+   */
+  readonly evidence?: EvidenceHttpDeps;
 }
 
 const DEFAULT_MAX_BODY_BYTES = 1_048_576;
 
 const TRANSITION_ROUTE =
   /^\/v1\/affiliation\/applications\/([^/]+)\/transitions\/([^/]+)\/?$/;
+
+const EVIDENCE_UPLOAD_PATH = '/v1/evidence/objects';
+const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
 
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
@@ -85,6 +101,96 @@ function headerMap(req: IncomingMessage): Record<string, string | undefined> {
   return out;
 }
 
+/** Read the raw request body bytes, enforcing a size cap. */
+async function readRawBody(req: IncomingMessage, maxBytes: number): Promise<Buffer> {
+  const chunks: Buffer[] = [];
+  let total = 0;
+  for await (const chunk of req) {
+    const buf = chunk as Buffer;
+    total += buf.length;
+    if (total > maxBytes) {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'Request body exceeds the maximum allowed size.');
+    }
+    chunks.push(buf);
+  }
+  return Buffer.concat(chunks);
+}
+
+/** Send a raw-bytes response (used for evidence downloads). */
+function sendBytes(
+  res: ServerResponse,
+  status: number,
+  contentType: string,
+  body: Uint8Array,
+): void {
+  const buf = Buffer.from(body.buffer, body.byteOffset, body.byteLength);
+  res.writeHead(status, {
+    'content-type': contentType,
+    'content-length': buf.byteLength.toString(),
+  });
+  res.end(buf);
+}
+
+/** Dispatch an evidence result as either JSON metadata/error or raw bytes. */
+function sendEvidence(res: ServerResponse, result: EvidenceHttpResult): void {
+  if (result.kind === 'bytes') {
+    sendBytes(res, result.status, result.contentType, result.body);
+    return;
+  }
+  sendJson(res, { status: result.status, body: result.body });
+}
+
+/** Serve the narrow evidence upload/download endpoints. */
+async function handleEvidenceRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  evidence: EvidenceHttpDeps,
+  path: string,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  jsonMaxBytes: number,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'POST') {
+    res.setHeader('allow', 'POST');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only POST is allowed for evidence endpoints.',
+        requestId,
+      },
+    });
+    return;
+  }
+
+  const headers = headerMap(req);
+
+  if (path === EVIDENCE_UPLOAD_PATH) {
+    let content: Buffer;
+    try {
+      content = await readRawBody(req, evidence.maxUploadBytes);
+    } catch (err) {
+      sendEvidence(res, evidenceErrorToHttpResult(err, requestId));
+      return;
+    }
+    const result = await handleEvidenceUpload(evidence, { headers, content }, requestId, resolver);
+    sendEvidence(res, result);
+    return;
+  }
+
+  // EVIDENCE_DOWNLOAD_PATH — small JSON body carrying the storage reference.
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, jsonMaxBytes);
+  } catch (err) {
+    sendEvidence(res, evidenceErrorToHttpResult(err, requestId));
+    return;
+  }
+  const result = await handleEvidenceDownload(evidence, { headers, body }, requestId, resolver);
+  sendEvidence(res, result);
+}
+
 async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
@@ -98,6 +204,15 @@ async function handleRequest(
   // Liveness / readiness.
   if (method === 'GET' && (path === '/healthz' || path === '/readyz')) {
     sendJson(res, { status: 200, body: { status: 'ok', requestId } });
+    return;
+  }
+
+  // Evidence payload transport (only when wired).
+  if (
+    deps.evidence !== undefined &&
+    (path === EVIDENCE_UPLOAD_PATH || path === EVIDENCE_DOWNLOAD_PATH)
+  ) {
+    await handleEvidenceRoute(req, res, deps.evidence, path, requestId, deps.resolver, maxBytes);
     return;
   }
 

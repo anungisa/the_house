@@ -18,6 +18,7 @@ const MEMORY_CONFIG: EvidenceStorageConfig = {
   connectionString: '',
   containerName: '',
   requireHash: true,
+  uploadMaxBytes: 10_485_760,
 };
 
 const AZURE_CONFIG: EvidenceStorageConfig = {
@@ -25,6 +26,7 @@ const AZURE_CONFIG: EvidenceStorageConfig = {
   connectionString: 'UseDevelopmentStorage=true',
   containerName: 'evidence',
   requireHash: true,
+  uploadMaxBytes: 10_485_760,
 };
 
 class StubBlockBlobClient implements BlockBlobClientLike {

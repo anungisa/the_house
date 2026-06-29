@@ -15,7 +15,8 @@
  *
  * Intentional stubs at this layer (unchanged by this pass; tracked for later):
  *  - Outbox publishing still uses the Noop Service Bus publisher (no real broker in v1).
- *  - No real document/blob evidence storage, workflow executor, or payment processor.
+ *  - Evidence payload storage defaults to in-memory (durable `azure_blob` is config-gated);
+ *    no workflow executor or payment processor.
  *  - Edge identity is established by an {@link AuthContextResolver} selected from AUTH_MODE
  *    (`demo` = LOCAL/DEMO body-trusted default; `trusted_headers` = identity derived from
  *    trusted headers injected by a verifying edge). This is NOT token/JWT validation: a real
@@ -31,8 +32,11 @@ import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
 import { PgGovernanceStore } from '../governance/store/PgGovernanceStore.js';
+import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
+import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
+import type { EvidenceHttpDeps } from './evidence/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -51,6 +55,21 @@ export function createPgAffiliationApplicationService(): AffiliationApplicationS
 }
 
 /**
+ * Build the evidence HTTP transport from the evidence-storage config. The provider defaults
+ * to in-memory (no Azure required); `azure_blob` is config-gated. This is governance
+ * infrastructure only — it never touches governed tables or the kernel.
+ */
+export function createEvidenceHttpDeps(): EvidenceHttpDeps {
+  const config = loadConfig();
+  const storage = createEvidenceStorage(config.evidenceStorage);
+  return {
+    uploadService: new GovernanceEvidenceService(storage),
+    storage,
+    maxUploadBytes: config.evidenceStorage.uploadMaxBytes,
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -62,6 +81,7 @@ export function createPgAffiliationHttpServer(
   return createAffiliationHttpServer({
     executor: createPgAffiliationApplicationService(),
     resolver: createAuthContextResolver(config),
+    evidence: createEvidenceHttpDeps(),
     ...options,
   });
 }

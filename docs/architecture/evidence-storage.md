@@ -138,9 +138,12 @@ metadata — instead of becoming a parallel, ungoverned document system.
 
 ## Out of scope (separate passes)
 
-- Upload/download HTTP endpoints.
 - Two-tier document review workflow and review states.
 - Virus scanning, OCR, and AI document classification.
 - Retention automation and immutable-blob (WORM) policies.
 - Managed-identity auth and production secrets management.
 - Production deployment / IaC.
+
+> The HTTP transport for uploading/downloading payload bytes is documented separately in
+> [evidence-http-endpoints.md](evidence-http-endpoints.md). It is transport only and never
+> creates governance metadata or calls the kernel.

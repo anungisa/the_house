@@ -22,7 +22,23 @@ export {
 export {
   createPgAffiliationApplicationService,
   createPgAffiliationHttpServer,
+  createEvidenceHttpDeps,
 } from './composition.js';
+
+// Evidence payload transport surface (upload/download).
+export {
+  handleEvidenceUpload,
+  handleEvidenceDownload,
+  evidenceErrorToHttpResult,
+  EVIDENCE_HEADER_NAMES,
+  type EvidenceHttpDeps,
+  type EvidenceHttpResult,
+  type EvidenceReadPort,
+  type EvidenceUploadService,
+  type EvidenceUploadRequest,
+  type EvidenceDownloadRequest,
+  type EvidenceUploadResponseBody,
+} from './evidence/index.js';
 
 // Edge identity / auth surface.
 export type { AuthActor, AuthContext } from './auth/AuthContext.js';

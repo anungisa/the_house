@@ -213,7 +213,10 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
 - **No production authentication** — local/demo trusts the request `actor`/`tenantId`.
 - **No workflow executor** — approval-required transitions record a request only.
 - **No real payment processor** — `payment_obligation` is a persisted record only.
-- **No real document/blob storage** — evidence is metadata only.
+- **Evidence payloads default to in-memory** — narrow upload/download HTTP endpoints
+  (`POST /v1/evidence/objects`, `POST /v1/evidence/objects/read`) are served when evidence is
+  wired; the default `memory` provider needs no Azure. See
+  [evidence-http-endpoints.md](evidence-http-endpoints.md). Durable `azure_blob` is config-gated.
 - **No frontend** — this is a backend platform core.
 
 ## Recommended next pass

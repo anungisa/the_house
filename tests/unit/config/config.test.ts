@@ -40,6 +40,7 @@ const CONFIG_KEYS = [
   'EVIDENCE_BLOB_CONNECTION_STRING',
   'EVIDENCE_BLOB_CONTAINER_NAME',
   'EVIDENCE_STORAGE_REQUIRE_HASH',
+  'EVIDENCE_UPLOAD_MAX_BYTES',
 ] as const;
 
 let saved: Record<string, string | undefined>;
@@ -179,6 +180,18 @@ describe('loadConfig', () => {
     expect(cfg.requireHash).toBe(true);
     expect(cfg.connectionString).toBe('');
     expect(cfg.containerName).toBe('');
+    expect(cfg.uploadMaxBytes).toBe(10_485_760);
+  });
+
+  // (15) Evidence upload size cap can be overridden and must be a positive integer.
+  it('reads EVIDENCE_UPLOAD_MAX_BYTES override', () => {
+    process.env['EVIDENCE_UPLOAD_MAX_BYTES'] = '2048';
+    expect(loadConfig().evidenceStorage.uploadMaxBytes).toBe(2048);
+  });
+
+  it('rejects a non-positive EVIDENCE_UPLOAD_MAX_BYTES', () => {
+    process.env['EVIDENCE_UPLOAD_MAX_BYTES'] = '0';
+    expect(() => loadConfig()).toThrow(/EVIDENCE_UPLOAD_MAX_BYTES must be a positive integer/);
   });
 
   // Evidence storage can require hashing be disabled explicitly.

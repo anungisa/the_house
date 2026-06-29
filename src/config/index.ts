@@ -85,6 +85,11 @@ export interface EvidenceStorageConfig {
   readonly containerName: string;
   /** When true, stored payloads are SHA-256 verified on read (defaults to true). */
   readonly requireHash: boolean;
+  /**
+   * Maximum accepted evidence upload size in bytes (defaults to 10 MiB). Applies to the
+   * HTTP upload endpoint regardless of provider; it does NOT require any Azure config.
+   */
+  readonly uploadMaxBytes: number;
 }
 
 /**
@@ -217,6 +222,7 @@ function readEvidenceStorageConfig(): EvidenceStorageConfig {
   const connectionString = readString('EVIDENCE_BLOB_CONNECTION_STRING') ?? '';
   const containerName = readString('EVIDENCE_BLOB_CONTAINER_NAME') ?? '';
   const requireHash = readBool('EVIDENCE_STORAGE_REQUIRE_HASH', true);
+  const uploadMaxBytes = readPositiveInt('EVIDENCE_UPLOAD_MAX_BYTES', 10_485_760);
 
   if (provider === 'azure_blob') {
     if (connectionString === '') {
@@ -231,7 +237,7 @@ function readEvidenceStorageConfig(): EvidenceStorageConfig {
     }
   }
 
-  return { provider, connectionString, containerName, requireHash };
+  return { provider, connectionString, containerName, requireHash, uploadMaxBytes };
 }
 
 /**
