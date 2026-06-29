@@ -10,6 +10,7 @@ import { InMemoryOutboxStore } from '../../src/governance/outbox/InMemoryOutboxS
 import { buildAffiliationSeed } from '../../src/governance/store/affiliationSeed.js';
 import { fixedClock } from '../../src/shared/time/clock.js';
 import type { IdGenerator } from '../../src/shared/uuid/id.js';
+import type { WorkflowPlanner } from '../../src/governance/workflow/WorkflowPlanner.js';
 import type {
   TransitionActor,
   TransitionContext,
@@ -43,7 +44,11 @@ export interface KernelHarness {
  * enqueued by the kernel are visible to the outbox worker.
  */
 export function buildKernelHarness(
-  options: { registerGuards?: boolean; guardRepo?: AffiliationGuardRepository } = {},
+  options: {
+    registerGuards?: boolean;
+    guardRepo?: AffiliationGuardRepository;
+    workflowPlanner?: WorkflowPlanner;
+  } = {},
 ): KernelHarness {
   const clock = fixedClock(1_700_000_000_000);
   const ids = sequentialIds();
@@ -64,7 +69,13 @@ export function buildKernelHarness(
     );
   }
 
-  const kernel = new GovernanceKernel({ store, guards: registry, clock, outboxMaxRetries: 5 });
+  const kernel = new GovernanceKernel({
+    store,
+    guards: registry,
+    clock,
+    outboxMaxRetries: 5,
+    ...(options.workflowPlanner !== undefined ? { workflowPlanner: options.workflowPlanner } : {}),
+  });
   return { kernel, store, outbox, registry, tenantId: TENANT };
 }
 

@@ -149,6 +149,13 @@ export interface TransitionResult {
   /** Id of the created transition_request when approval is required. */
   readonly transitionRequestId?: string;
 
+  /**
+   * Id of the review workflow instance created alongside an approval-required
+   * transition_request (two-tier review METADATA). Present only when a workflow planner
+   * produced a plan for the transition.
+   */
+  readonly workflowInstanceId?: string;
+
   /** Id of the appended state_transition (immutable journal) for an executed transition. */
   readonly stateTransitionId?: string;
 

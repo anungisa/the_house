@@ -27,6 +27,7 @@ import type {
   TransitionGuardRow,
   TransitionRequestInsert,
 } from '../kernel/ports.js';
+import type { WorkflowInstanceInsert, WorkflowStepInsert } from '../workflow/WorkflowTypes.js';
 
 export class PgGovernanceStore implements GovernanceStore {
   async findExistingResult(
@@ -402,5 +403,46 @@ class PgGovernanceTx implements GovernanceTx {
       ],
     );
     return rows[0]!.id;
+  }
+
+  async insertWorkflowInstance(input: WorkflowInstanceInsert): Promise<string> {
+    const rows = await this.client.query<{ id: string }>(
+      `INSERT INTO governance.workflow_instance
+         (tenant_id, transition_request_id, entity_type, entity_id, workflow_type,
+          status, current_step_code)
+       VALUES ($1,$2,$3,$4,$5,'pending',$6)
+       RETURNING id`,
+      [
+        input.tenantId,
+        input.transitionRequestId,
+        input.entityType,
+        input.entityId,
+        input.workflowType,
+        input.currentStepCode ?? null,
+      ],
+    );
+    return rows[0]!.id;
+  }
+
+  async insertWorkflowSteps(inputs: readonly WorkflowStepInsert[]): Promise<void> {
+    for (const s of inputs) {
+      await this.client.query(
+        `INSERT INTO governance.workflow_step
+           (tenant_id, workflow_instance_id, step_code, step_order, review_tier,
+            required, status, assigned_scope_type, assigned_scope_id, assigned_role_key)
+         VALUES ($1,$2,$3,$4,$5,$6,'pending',$7,$8,$9)`,
+        [
+          s.tenantId,
+          s.workflowInstanceId,
+          s.stepCode,
+          s.stepOrder,
+          s.reviewTier,
+          s.required,
+          s.assignedScopeType ?? null,
+          s.assignedScopeId ?? null,
+          s.assignedRoleKey ?? null,
+        ],
+      );
+    }
   }
 }

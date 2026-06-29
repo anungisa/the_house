@@ -11,11 +11,13 @@ import type { GuardRegistry } from '../guards/GuardRegistry.js';
 import { DefaultPermissionChecker } from '../permissions/PermissionChecker.js';
 import type {
   GovernanceStore,
+  GovernanceTx,
   GuardResultInsert,
   PermissionChecker,
   StateMachineRow,
   TransitionDefinitionRow,
 } from './ports.js';
+import type { WorkflowPlanner } from '../workflow/WorkflowPlanner.js';
 
 /**
  * Dependencies for the GovernanceKernel. All ports are injected so the kernel runs
@@ -27,6 +29,13 @@ export interface GovernanceKernelDeps {
   readonly permissions?: PermissionChecker;
   readonly clock?: Clock;
   readonly outboxMaxRetries?: number;
+  /**
+   * Optional review-workflow planner. When configured, the kernel asks it for a review plan
+   * inside the approval-required branch and persists the resulting workflow instance + steps
+   * atomically with the transition_request (two-tier review METADATA). When absent or when it
+   * returns no plan, approval-required transitions behave exactly as before.
+   */
+  readonly workflowPlanner?: WorkflowPlanner;
 }
 
 /**
@@ -54,6 +63,7 @@ export class GovernanceKernel {
   private readonly permissions: PermissionChecker;
   private readonly clock: Clock;
   private readonly outboxMaxRetries: number;
+  private readonly workflowPlanner: WorkflowPlanner | undefined;
 
   constructor(deps: GovernanceKernelDeps) {
     this.store = deps.store;
@@ -61,6 +71,7 @@ export class GovernanceKernel {
     this.permissions = deps.permissions ?? new DefaultPermissionChecker();
     this.clock = deps.clock ?? systemClock;
     this.outboxMaxRetries = deps.outboxMaxRetries ?? 10;
+    this.workflowPlanner = deps.workflowPlanner;
   }
 
   async transition(input: TransitionInput): Promise<TransitionResult> {
@@ -207,6 +218,18 @@ export class GovernanceKernel {
         await tx.insertAuditEvent(
           this.audit(input, 'transition.requested', fromState, def.toState),
         );
+
+        // 2j-i) Optional two-tier review workflow METADATA, persisted atomically with the
+        // request. Does NOT mutate entity_state and does NOT execute the transition.
+        const workflowInstanceId = await this.persistWorkflow(
+          tx,
+          input,
+          tenantId,
+          fromState,
+          def.toState,
+          requestId,
+        );
+
         return {
           status: 'approval_required',
           entityType: input.entityType,
@@ -216,6 +239,7 @@ export class GovernanceKernel {
           toState: def.toState,
           guardResults,
           transitionRequestId: requestId,
+          ...(workflowInstanceId !== undefined ? { workflowInstanceId } : {}),
           idempotencyKey: input.idempotencyKey,
         };
       }
@@ -375,6 +399,65 @@ export class GovernanceKernel {
       passed: r.passed,
       ...(r.message !== undefined ? { failureMessage: r.message } : {}),
     }));
+  }
+
+  /**
+   * Persist a two-tier review workflow (instance + ordered steps) for an approval-required
+   * transition, atomically with its transition_request. Returns the workflow instance id, or
+   * undefined when no planner is configured or the planner produces no plan. METADATA only:
+   * never mutates entity_state and never executes the transition.
+   */
+  private async persistWorkflow(
+    tx: GovernanceTx,
+    input: TransitionInput,
+    tenantId: string,
+    fromState: string,
+    toState: string,
+    transitionRequestId: string,
+  ): Promise<string | undefined> {
+    if (this.workflowPlanner === undefined) {
+      return undefined;
+    }
+    const plan = this.workflowPlanner.planFor({
+      entityType: input.entityType,
+      entityId: input.entityId,
+      trigger: input.trigger,
+      fromState,
+      toState,
+      tenantId,
+      actor: input.actor,
+    });
+    if (plan === undefined || plan.steps.length === 0) {
+      return undefined;
+    }
+
+    const orderedSteps = [...plan.steps].sort((a, b) => a.stepOrder - b.stepOrder);
+    const firstStepCode = orderedSteps[0]!.stepCode;
+
+    const workflowInstanceId = await tx.insertWorkflowInstance({
+      tenantId,
+      transitionRequestId,
+      entityType: input.entityType,
+      entityId: input.entityId,
+      workflowType: plan.workflowType,
+      currentStepCode: firstStepCode,
+    });
+
+    await tx.insertWorkflowSteps(
+      orderedSteps.map((s) => ({
+        tenantId,
+        workflowInstanceId,
+        stepCode: s.stepCode,
+        stepOrder: s.stepOrder,
+        reviewTier: s.reviewTier,
+        required: s.required,
+        ...(s.assignedScopeType !== undefined ? { assignedScopeType: s.assignedScopeType } : {}),
+        ...(s.assignedScopeId !== undefined ? { assignedScopeId: s.assignedScopeId } : {}),
+        ...(s.assignedRoleKey !== undefined ? { assignedRoleKey: s.assignedRoleKey } : {}),
+      })),
+    );
+
+    return workflowInstanceId;
   }
 
   private audit(

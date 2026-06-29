@@ -32,6 +32,7 @@ import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
 import { PgGovernanceStore } from '../governance/store/PgGovernanceStore.js';
+import { AffiliationWorkflowPlanner } from '../governance/workflow/AffiliationWorkflowPlanner.js';
 import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
 import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
@@ -50,7 +51,11 @@ export function createPgAffiliationApplicationService(): AffiliationApplicationS
     registry,
     new DomainBackedAffiliationGuardRepository(new PgAffiliationApplicationStore()),
   );
-  const kernel = new GovernanceKernel({ store: new PgGovernanceStore(), guards: registry });
+  const kernel = new GovernanceKernel({
+    store: new PgGovernanceStore(),
+    guards: registry,
+    workflowPlanner: new AffiliationWorkflowPlanner(),
+  });
   return new AffiliationApplicationService(kernel);
 }
 

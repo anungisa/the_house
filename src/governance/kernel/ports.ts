@@ -13,6 +13,7 @@ import type {
   GuardEvaluationResult,
   TransitionActor,
 } from '../types/TransitionTypes.js';
+import type { WorkflowInstanceInsert, WorkflowStepInsert } from '../workflow/WorkflowTypes.js';
 
 // -----------------------------------------------------------------------------
 // Row DTOs (mirror governance.* tables, camelCased)
@@ -210,6 +211,16 @@ export interface GovernanceTx {
   insertEvidenceObject(input: EvidenceObjectInsert): Promise<string>;
 
   insertOutboxMessage(input: OutboxMessageInsert): Promise<string>;
+
+  /**
+   * Create the review workflow instance for an approval-required transition request, in the
+   * same transaction. Returns the new workflow instance id. (Two-tier review METADATA — does
+   * not affect entity_state.)
+   */
+  insertWorkflowInstance(input: WorkflowInstanceInsert): Promise<string>;
+
+  /** Insert the ordered review steps for a workflow instance, in the same transaction. */
+  insertWorkflowSteps(inputs: readonly WorkflowStepInsert[]): Promise<void>;
 }
 
 // -----------------------------------------------------------------------------

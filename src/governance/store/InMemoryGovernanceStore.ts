@@ -19,6 +19,13 @@ import { uuidGenerator } from '../../shared/uuid/id.js';
 import type { AuditEventInput } from '../types/TransitionTypes.js';
 import type { OutboxRecord } from '../outbox/OutboxStore.js';
 import type {
+  WorkflowBacking,
+  WorkflowInstanceInsert,
+  WorkflowInstanceRecord,
+  WorkflowStepInsert,
+  WorkflowStepRecord,
+} from '../workflow/WorkflowTypes.js';
+import type {
   EntityStateInsert,
   EntityStateRow,
   EvidenceObjectInsert,
@@ -78,6 +85,9 @@ interface GovernanceData {
   auditEvents: Array<AuditEventInput & { id: string }>;
   evidenceObjects: Array<EvidenceObjectInsert & { id: string }>;
   outbox: OutboxRecord[];
+  workflowInstances: WorkflowInstanceRecord[];
+  workflowSteps: WorkflowStepRecord[];
+  workflowDecisions: WorkflowBacking['decisions'];
 }
 
 export class InMemoryGovernanceStore implements GovernanceStore {
@@ -98,12 +108,24 @@ export class InMemoryGovernanceStore implements GovernanceStore {
       auditEvents: backing?.auditEvents ?? [],
       evidenceObjects: backing?.evidenceObjects ?? [],
       outbox: backing?.outbox ?? [],
+      workflowInstances: backing?.workflowInstances ?? [],
+      workflowSteps: backing?.workflowSteps ?? [],
+      workflowDecisions: backing?.workflowDecisions ?? [],
     };
   }
 
   /** Share the outbox backing array with an InMemoryOutboxStore. */
   get outboxRecords(): OutboxRecord[] {
     return this.data.outbox;
+  }
+
+  /** Share the workflow backing arrays with an InMemoryWorkflowStore. */
+  get workflowBacking(): WorkflowBacking {
+    return {
+      instances: this.data.workflowInstances,
+      steps: this.data.workflowSteps,
+      decisions: this.data.workflowDecisions,
+    };
   }
 
   findExistingResult(
@@ -157,6 +179,8 @@ class InMemoryGovernanceTx implements GovernanceTx {
   private readonly pendingAudits: Array<AuditEventInput & { id: string }> = [];
   private readonly pendingEvidence: Array<EvidenceObjectInsert & { id: string }> = [];
   private readonly pendingOutbox: OutboxRecord[] = [];
+  private readonly pendingWorkflowInstances: WorkflowInstanceRecord[] = [];
+  private readonly pendingWorkflowSteps: WorkflowStepRecord[] = [];
 
   constructor(
     private readonly data: GovernanceData,
@@ -312,6 +336,43 @@ class InMemoryGovernanceTx implements GovernanceTx {
     return Promise.resolve(rec.id);
   }
 
+  insertWorkflowInstance(input: WorkflowInstanceInsert): Promise<string> {
+    const id = this.ids.newId();
+    this.pendingWorkflowInstances.push({
+      id,
+      tenantId: input.tenantId,
+      transitionRequestId: input.transitionRequestId,
+      entityType: input.entityType,
+      entityId: input.entityId,
+      workflowType: input.workflowType,
+      status: 'pending',
+      currentStepCode: input.currentStepCode,
+    });
+    return Promise.resolve(id);
+  }
+
+  insertWorkflowSteps(inputs: readonly WorkflowStepInsert[]): Promise<void> {
+    for (const s of inputs) {
+      this.pendingWorkflowSteps.push({
+        id: this.ids.newId(),
+        tenantId: s.tenantId,
+        workflowInstanceId: s.workflowInstanceId,
+        stepCode: s.stepCode,
+        stepOrder: s.stepOrder,
+        reviewTier: s.reviewTier,
+        required: s.required,
+        status: 'pending',
+        assignedScopeType: s.assignedScopeType,
+        assignedScopeId: s.assignedScopeId,
+        assignedRoleKey: s.assignedRoleKey,
+        decidedByUserId: undefined,
+        decidedAt: undefined,
+        decisionReason: undefined,
+      });
+    }
+    return Promise.resolve();
+  }
+
   /** Apply all buffered writes, enforcing idempotency/dedupe uniqueness. */
   commit(): void {
     // Enforce idempotency uniqueness (mirrors DB unique constraints).
@@ -359,5 +420,7 @@ class InMemoryGovernanceTx implements GovernanceTx {
     this.data.auditEvents.push(...this.pendingAudits);
     this.data.evidenceObjects.push(...this.pendingEvidence);
     this.data.outbox.push(...this.pendingOutbox);
+    this.data.workflowInstances.push(...this.pendingWorkflowInstances);
+    this.data.workflowSteps.push(...this.pendingWorkflowSteps);
   }
 }
