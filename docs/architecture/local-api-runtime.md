@@ -217,6 +217,11 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
   (`POST /v1/evidence/objects`, `POST /v1/evidence/objects/read`) are served when evidence is
   wired; the default `memory` provider needs no Azure. See
   [evidence-http-endpoints.md](evidence-http-endpoints.md). Durable `azure_blob` is config-gated.
+- **Workflow decisions are metadata only** — a narrow endpoint
+  (`POST /v1/workflows/:workflowInstanceId/steps/:stepCode/decision`) records reviewer
+  approve/reject decisions when the workflow transport is wired. It never executes the pending
+  lifecycle transition. See
+  [workflow-decision-http-endpoints.md](workflow-decision-http-endpoints.md).
 - **No frontend** — this is a backend platform core.
 
 ## Recommended next pass
@@ -224,4 +229,4 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
 - Real Azure Service Bus publisher (replace the Noop publisher).
 - Production auth / edge identity adapter (derive `actor`/`tenantId` from verified claims).
 - Real document/evidence storage.
-- Workflow metadata for two-tier review.
+- Approved-workflow transition execution (act on a `approved` workflow's pending request).

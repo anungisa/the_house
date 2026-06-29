@@ -33,11 +33,14 @@ import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
 import { PgGovernanceStore } from '../governance/store/PgGovernanceStore.js';
 import { AffiliationWorkflowPlanner } from '../governance/workflow/AffiliationWorkflowPlanner.js';
+import { PgWorkflowStore } from '../governance/workflow/PgWorkflowStore.js';
+import { WorkflowDecisionService } from '../governance/workflow/WorkflowDecisionService.js';
 import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
 import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import type { EvidenceHttpDeps } from './evidence/index.js';
+import type { WorkflowHttpDeps } from './workflow/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -75,6 +78,17 @@ export function createEvidenceHttpDeps(): EvidenceHttpDeps {
 }
 
 /**
+ * Build the workflow decision HTTP transport backed by PostgreSQL. The decision service
+ * records review metadata (approve/reject) through the RLS-enforced {@link PgWorkflowStore};
+ * it never mutates governed state and never executes the pending lifecycle transition.
+ */
+export function createWorkflowHttpDeps(): WorkflowHttpDeps {
+  return {
+    decisionService: new WorkflowDecisionService(new PgWorkflowStore()),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -87,6 +101,7 @@ export function createPgAffiliationHttpServer(
     executor: createPgAffiliationApplicationService(),
     resolver: createAuthContextResolver(config),
     evidence: createEvidenceHttpDeps(),
+    workflow: createWorkflowHttpDeps(),
     ...options,
   });
 }

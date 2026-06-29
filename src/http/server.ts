@@ -34,6 +34,11 @@ import {
   type EvidenceHttpDeps,
   type EvidenceHttpResult,
 } from './evidence/index.js';
+import {
+  handleWorkflowDecision,
+  workflowErrorToHttpResult,
+  type WorkflowHttpDeps,
+} from './workflow/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -51,6 +56,12 @@ export interface AffiliationHttpServerDeps {
    * infrastructure — these routes never touch governed tables or the kernel.
    */
   readonly evidence?: EvidenceHttpDeps;
+  /**
+   * Optional workflow decision transport. When provided, the narrow workflow decision
+   * endpoint is served; when omitted it 404s. Recording a decision is METADATA only — it
+   * never mutates governed state and never executes the pending lifecycle transition.
+   */
+  readonly workflow?: WorkflowHttpDeps;
 }
 
 const DEFAULT_MAX_BODY_BYTES = 1_048_576;
@@ -60,6 +71,9 @@ const TRANSITION_ROUTE =
 
 const EVIDENCE_UPLOAD_PATH = '/v1/evidence/objects';
 const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
+
+const WORKFLOW_DECISION_ROUTE =
+  /^\/v1\/workflows\/([^/]+)\/steps\/([^/]+)\/decision\/?$/;
 
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
@@ -191,6 +205,50 @@ async function handleEvidenceRoute(
   sendEvidence(res, result);
 }
 
+/** Serve the narrow workflow decision endpoint (metadata only — never executes a transition). */
+async function handleWorkflowRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  workflow: WorkflowHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'POST') {
+    res.setHeader('allow', 'POST');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only POST is allowed for the workflow decision endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+
+  const workflowInstanceId = decodeURIComponent(match[1] ?? '');
+  const stepCode = decodeURIComponent(match[2] ?? '');
+
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, workflowErrorToHttpResult(err, requestId));
+    return;
+  }
+
+  const result = await handleWorkflowDecision(
+    workflow,
+    { workflowInstanceId, stepCode, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
@@ -214,6 +272,23 @@ async function handleRequest(
   ) {
     await handleEvidenceRoute(req, res, deps.evidence, path, requestId, deps.resolver, maxBytes);
     return;
+  }
+
+  // Workflow decision transport (only when wired).
+  if (deps.workflow !== undefined) {
+    const workflowMatch = WORKFLOW_DECISION_ROUTE.exec(path);
+    if (workflowMatch !== null) {
+      await handleWorkflowRoute(
+        req,
+        res,
+        deps.workflow,
+        workflowMatch,
+        requestId,
+        deps.resolver,
+        maxBytes,
+      );
+      return;
+    }
   }
 
   const match = TRANSITION_ROUTE.exec(path);

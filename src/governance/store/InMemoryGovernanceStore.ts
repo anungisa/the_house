@@ -128,6 +128,19 @@ export class InMemoryGovernanceStore implements GovernanceStore {
     };
   }
 
+  /** Read-only entity-state snapshots (test affordance for asserting state integrity). */
+  get entityStateSnapshots(): ReadonlyArray<{
+    readonly entityType: string;
+    readonly entityId: string;
+    readonly currentState: string;
+  }> {
+    return this.data.entityStates.map((e) => ({
+      entityType: e.entityType,
+      entityId: e.entityId,
+      currentState: e.currentState,
+    }));
+  }
+
   findExistingResult(
     tenantId: string,
     entityType: string,

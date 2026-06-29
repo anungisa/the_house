@@ -98,9 +98,11 @@ Crucially, recording decisions **never** mutates governance `entity_state` and *
 `approved` — turning that into an executed lifecycle transition is deliberately left to a
 future pass.
 
+The narrow HTTP surface for recording these decisions is documented in
+[workflow-decision-http-endpoints.md](./workflow-decision-http-endpoints.md).
+
 ## Out of scope (intentionally not built in this pass)
 
-- HTTP endpoints for submitting review decisions (next pass).
 - Auto-execution of the pending transition once a workflow is `approved`.
 - A `more_info_needed` lifecycle state or any new FSM states.
 - Frontend review screens / dashboards.
