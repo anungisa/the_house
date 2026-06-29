@@ -1,0 +1,95 @@
+---
+description: House v2 Governance Kernel architecture and implementation rules
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.sql"
+  - "**/*.md"
+alwaysApply: true
+---
+
+# House v2 Governance Kernel Rules
+
+The House v2 is a governed backend platform core, not a frontend prototype.
+
+The current priority is the Governance Kernel vertical slice for AffiliationApplication lifecycle transitions.
+
+## Architecture
+
+Use a modular monolith.
+
+Do not introduce microservices, frontend UI, or unrelated domain modules unless explicitly instructed.
+
+## State Transitions
+
+Domain modules may request lifecycle transitions but may not directly mutate governed state fields.
+
+All governed lifecycle transitions must go through the GovernanceKernel.
+
+Unknown transitions fail closed.
+
+Unknown guards fail closed.
+
+Unknown permissions fail closed.
+
+## Guards
+
+Use a named TypeScript guard registry.
+
+Do not implement dynamic JSON expression evaluation.
+
+Guards must be read-only and testable.
+
+Guard parameters come from transition_guard.parameters.
+
+## Transactions
+
+State update, transition journal, audit event, evidence metadata, guard results, and outbox enqueue must commit atomically.
+
+External side effects such as email, webhooks, Service Bus publishing, payment calls, and integrations must happen after commit through outbox processing.
+
+## Idempotency
+
+Every transition request requires an idempotency key.
+
+Idempotent retries must return the prior deterministic result and must not duplicate audit, evidence, state transition, transition request, or outbox rows.
+
+## Outbox
+
+Use a transactional outbox with leasing:
+
+- status: pending | processing | processed | failed
+- retry_count
+- max_retries
+- next_attempt_at
+- locked_until
+- locked_by
+- dedupe_key
+- correlation_id
+- causation_id
+
+Use FOR UPDATE SKIP LOCKED for claiming pending rows.
+
+Use true full jitter retry backoff.
+
+Do not use Azure Service Bus sessions in v1.
+
+## Dead Letters
+
+Publisher failures before Service Bus accepts a message are Postgres outbox failures, not Service Bus DLQ events.
+
+Service Bus DLQ handling applies to downstream consumer failures after message acceptance.
+
+## RLS
+
+Tenant-owned tables must include tenant_id and enforce RLS.
+
+Application code must set app.tenant_id inside the transaction.
+
+Fail closed on missing tenant context.
+
+## Scope
+
+Hard stop after the requested vertical slice.
+
+Report files changed, tests run, results, gaps, and stubs.
