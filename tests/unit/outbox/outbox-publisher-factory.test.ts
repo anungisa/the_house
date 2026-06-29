@@ -60,6 +60,7 @@ function makeConfig(serviceBus: ServiceBusConfig): AppConfig {
       lockSeconds: 60,
       runOnce: false,
     },
+    auth: { mode: 'demo' },
   };
 }
 

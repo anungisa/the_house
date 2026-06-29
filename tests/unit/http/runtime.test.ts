@@ -45,6 +45,7 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       lockSeconds: 60,
       runOnce: false,
     },
+    auth: { mode: 'demo' },
     ...over,
   };
 }

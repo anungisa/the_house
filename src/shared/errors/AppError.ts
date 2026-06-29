@@ -14,6 +14,10 @@ export const ErrorCode = {
   NOT_IMPLEMENTED: 'NOT_IMPLEMENTED',
   INVALID_INPUT: 'INVALID_INPUT',
   CONFIG_ERROR: 'CONFIG_ERROR',
+  /** Edge identity could not be established (missing/invalid verified identity). Maps to 401. */
+  UNAUTHENTICATED: 'UNAUTHENTICATED',
+  /** Identity established but the request is not permitted at the edge boundary. Maps to 403. */
+  FORBIDDEN: 'FORBIDDEN',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

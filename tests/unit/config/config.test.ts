@@ -35,6 +35,7 @@ const CONFIG_KEYS = [
   'OUTBOX_WORKER_RUN_ONCE',
   'API_HOST',
   'API_PORT',
+  'AUTH_MODE',
 ] as const;
 
 let saved: Record<string, string | undefined>;
@@ -148,6 +149,23 @@ describe('loadConfig', () => {
   it('rejects a non-numeric API_PORT', () => {
     process.env['API_PORT'] = 'abc';
     expect(() => loadConfig()).toThrow(/Invalid integer/);
+  });
+
+  // (16) Edge identity defaults to demo mode (local/demo only).
+  it('defaults the auth mode to demo when AUTH_MODE is unset', () => {
+    expect(loadConfig().auth.mode).toBe('demo');
+  });
+
+  // Edge identity reads trusted_headers when explicitly selected.
+  it('reads AUTH_MODE=trusted_headers from the environment', () => {
+    process.env['AUTH_MODE'] = 'trusted_headers';
+    expect(loadConfig().auth.mode).toBe('trusted_headers');
+  });
+
+  // (15) An unknown AUTH_MODE fails closed at config load.
+  it('rejects an unknown AUTH_MODE', () => {
+    process.env['AUTH_MODE'] = 'bogus';
+    expect(() => loadConfig()).toThrow(/Invalid AUTH_MODE/);
   });
 
   // Invalid enum values fail closed.

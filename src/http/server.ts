@@ -26,10 +26,16 @@ import {
   type AffiliationCommandExecutor,
   type AffiliationHttpResult,
 } from './AffiliationHttpAdapter.js';
+import type { AuthContextResolver } from './auth/AuthContextResolver.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
   readonly executor: AffiliationCommandExecutor;
+  /**
+   * Edge-identity resolver. When omitted the adapter falls back to its LOCAL/DEMO default
+   * (body-trusted). Production wiring injects a config-selected resolver (see composition).
+   */
+  readonly resolver?: AuthContextResolver;
   /** Max JSON body size in bytes (default 1 MiB) — a basic safeguard against oversized payloads. */
   readonly maxBodyBytes?: number;
 }
@@ -133,6 +139,7 @@ async function handleRequest(
     deps.executor,
     { applicationId, action, headers: headerMap(req), body },
     requestId,
+    deps.resolver,
   );
   sendJson(res, result);
 }

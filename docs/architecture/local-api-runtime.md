@@ -1,9 +1,11 @@
 # Local/Demo API Runtime — AffiliationApplication
 
-> **LOCAL/DEMO ONLY.** This runtime ships **no edge authentication**. The HTTP adapter
-> trusts the `actor`/`tenantId` parsed from each request. Do **not** expose this process
+> **LOCAL/DEMO ONLY.** This runtime defaults to `AUTH_MODE=demo`, where the HTTP adapter
+> trusts the `actor`/`tenantId` parsed from each request body. Do **not** expose this process
 > publicly. A real deployment must terminate authentication in a gateway/identity layer in
-> front of the adapter and derive `actor`/`tenantId` from verified claims.
+> front of the adapter and run the adapter in `AUTH_MODE=trusted_headers` so identity is
+> derived from verified, edge-injected `x-house-*` headers. See
+> [auth-edge-identity-adapter.md](auth-edge-identity-adapter.md).
 
 ## Purpose
 

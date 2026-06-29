@@ -16,11 +16,14 @@
  * Intentional stubs at this layer (unchanged by this pass; tracked for later):
  *  - Outbox publishing still uses the Noop Service Bus publisher (no real broker in v1).
  *  - No real document/blob evidence storage, workflow executor, or payment processor.
- *  - AuthN/AuthZ at the edge is NOT implemented here: the adapter trusts the parsed
- *    `actor`/`tenantId` in the request. A real deployment must terminate auth in front of
- *    this adapter (gateway/identity) and derive these from verified claims.
+ *  - Edge identity is established by an {@link AuthContextResolver} selected from AUTH_MODE
+ *    (`demo` = LOCAL/DEMO body-trusted default; `trusted_headers` = identity derived from
+ *    trusted headers injected by a verifying edge). This is NOT token/JWT validation: a real
+ *    deployment must still terminate authentication in front of this adapter
+ *    (gateway/identity provider) so the trusted headers can be trusted.
  */
 
+import { loadConfig } from '../config/index.js';
 import { AffiliationApplicationService } from '../domains/affiliation/AffiliationApplicationService.js';
 import { DomainBackedAffiliationGuardRepository } from '../domains/affiliation/DomainBackedAffiliationGuardRepository.js';
 import { PgAffiliationApplicationStore } from '../domains/affiliation/PgAffiliationApplicationStore.js';
@@ -28,6 +31,7 @@ import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
 import { PgGovernanceStore } from '../governance/store/PgGovernanceStore.js';
+import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import type { Server } from 'node:http';
 
@@ -48,13 +52,16 @@ export function createPgAffiliationApplicationService(): AffiliationApplicationS
 
 /**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
+ * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
  */
 export function createPgAffiliationHttpServer(
   options?: Omit<AffiliationHttpServerDeps, 'executor'>,
 ): Server {
+  const config = loadConfig();
   return createAffiliationHttpServer({
     executor: createPgAffiliationApplicationService(),
+    resolver: createAuthContextResolver(config),
     ...options,
   });
 }

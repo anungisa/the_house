@@ -23,3 +23,15 @@ export {
   createPgAffiliationApplicationService,
   createPgAffiliationHttpServer,
 } from './composition.js';
+
+// Edge identity / auth surface.
+export type { AuthActor, AuthContext } from './auth/AuthContext.js';
+export {
+  createAuthContextResolver,
+  TRUSTED_HEADER_NAMES,
+  type AuthContextResolver,
+  type AuthResolveInput,
+} from './auth/AuthContextResolver.js';
+export { DemoAuthContextResolver } from './auth/DemoAuthContextResolver.js';
+export { TrustedHeadersAuthContextResolver } from './auth/TrustedHeadersAuthContextResolver.js';
+export { UnauthenticatedError, ForbiddenError } from './auth/AuthErrors.js';

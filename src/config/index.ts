@@ -54,6 +54,20 @@ export interface ApiConfig {
 }
 
 /**
+ * Edge identity mode for the HTTP boundary.
+ *  - `demo`: LOCAL/DEMO ONLY. tenant/actor are taken from the request body (the caller is
+ *    trusted to declare who they are). Never use outside local/demo.
+ *  - `trusted_headers`: tenant/actor are derived from trusted request headers injected by a
+ *    verifying edge (reverse proxy / gateway / identity provider). Body-supplied identity is
+ *    rejected. This is NOT full token validation — it assumes a trusted upstream.
+ */
+export type AuthMode = 'demo' | 'trusted_headers';
+
+export interface AuthConfig {
+  readonly mode: AuthMode;
+}
+
+/**
  * Settings for the outbox worker RUNTIME HOST (the interval loop that drains the outbox).
  * Distinct from {@link OutboxConfig}: those tune the worker's retry/backoff mechanics, these
  * tune the host that schedules {@link OutboxConfig}-driven batches.
@@ -82,6 +96,7 @@ export interface AppConfig {
   readonly outbox: OutboxConfig;
   readonly api: ApiConfig;
   readonly outboxWorker: OutboxWorkerRuntimeSettings;
+  readonly auth: AuthConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -150,6 +165,19 @@ function readOutboxWorkerSettings(): OutboxWorkerRuntimeSettings {
     lockSeconds: readPositiveInt('OUTBOX_WORKER_LOCK_SECONDS', 60),
     runOnce: readBool('OUTBOX_WORKER_RUN_ONCE', false),
   };
+}
+
+/**
+ * Resolve and validate the HTTP edge identity mode. Defaults to `demo` (local/demo only).
+ * An unknown AUTH_MODE fails closed at config load so a misconfigured edge can never fall
+ * back to trusting request bodies in production.
+ */
+function readAuthConfig(): AuthConfig {
+  const raw = readString('AUTH_MODE') ?? 'demo';
+  if (raw !== 'demo' && raw !== 'trusted_headers') {
+    throw new Error(`Invalid AUTH_MODE: "${raw}" (expected 'demo' or 'trusted_headers').`);
+  }
+  return { mode: raw };
 }
 
 /**
@@ -241,5 +269,6 @@ export function loadConfig(): AppConfig {
       port: readInt('API_PORT', 3000),
     },
     outboxWorker: readOutboxWorkerSettings(),
+    auth: readAuthConfig(),
   };
 }

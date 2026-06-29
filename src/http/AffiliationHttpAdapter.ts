@@ -32,6 +32,16 @@ import type {
   AffiliationApplicationTransitionResponse,
 } from '../domains/affiliation/AffiliationApplicationDtos.js';
 import { AppError, ErrorCode } from '../shared/errors/AppError.js';
+import type { AuthActor, AuthContext } from './auth/AuthContext.js';
+import type { AuthContextResolver } from './auth/AuthContextResolver.js';
+import { DemoAuthContextResolver } from './auth/DemoAuthContextResolver.js';
+
+/**
+ * Default edge-identity resolver. LOCAL/DEMO ONLY: trusts body-supplied actor/tenant. The
+ * server/composition inject a config-selected resolver; this default only keeps the
+ * adapter's pre-auth ergonomics for tests and direct callers.
+ */
+const DEFAULT_DEMO_RESOLVER: AuthContextResolver = new DemoAuthContextResolver();
 
 /**
  * Minimal domain surface the adapter depends on. Depending on the command-executor method
@@ -92,6 +102,26 @@ function asString(value: unknown): string | undefined {
   return typeof value === 'string' ? value : undefined;
 }
 
+/** Map the trusted {@link AuthActor} onto the affiliation actor DTO (no identity from body). */
+function authActorToDto(a: AuthActor): AffiliationActorDto {
+  return {
+    userId: a.userId,
+    roleKeys: a.roleKeys,
+    permissionKeys: a.permissionKeys,
+    ...(a.scopeType !== undefined ? { scopeType: a.scopeType } : {}),
+    ...(a.scopeId !== undefined ? { scopeId: a.scopeId } : {}),
+    ...(a.organizationId !== undefined ? { organizationId: a.organizationId } : {}),
+    ...(a.organizationUnitId !== undefined ? { organizationUnitId: a.organizationUnitId } : {}),
+    ...(a.nationalOrganizationId !== undefined
+      ? { nationalOrganizationId: a.nationalOrganizationId }
+      : {}),
+    ...(a.regionalOrganizationId !== undefined
+      ? { regionalOrganizationId: a.regionalOrganizationId }
+      : {}),
+    ...(a.localOrganizationId !== undefined ? { localOrganizationId: a.localOrganizationId } : {}),
+  };
+}
+
 /**
  * Reconcile the idempotency key from the `Idempotency-Key` header and/or the request body.
  * Header is preferred. If BOTH are present and DIFFER, the request is rejected (fail
@@ -118,8 +148,13 @@ function resolveIdempotencyKey(
  * Adapter-level concerns ONLY (action→command resolution, idempotency reconciliation,
  * facts rejection). Field-presence/required validation is deferred to the domain boundary,
  * so the kernel/domain remains the single source of validation truth.
+ *
+ * The trusted `auth` context (not the request body) is authoritative for tenant + actor.
  */
-function buildCommandRequest(req: AffiliationHttpRequest): {
+function buildCommandRequest(
+  req: AffiliationHttpRequest,
+  auth: AuthContext,
+): {
   readonly command: AffiliationApplicationCommand;
   readonly request: AffiliationApplicationTransitionRequest;
   readonly correlationId: string | undefined;
@@ -149,7 +184,6 @@ function buildCommandRequest(req: AffiliationHttpRequest): {
     );
   }
 
-  const actor = (isPlainObject(body['actor']) ? body['actor'] : {}) as unknown as AffiliationActorDto;
   const context = (
     isPlainObject(body['context']) ? body['context'] : {}
   ) as unknown as AffiliationContextDto;
@@ -157,10 +191,11 @@ function buildCommandRequest(req: AffiliationHttpRequest): {
   const payload = isPlainObject(body['payload']) ? body['payload'] : undefined;
 
   const request: AffiliationApplicationTransitionRequest = {
-    tenantId: asString(body['tenantId']) ?? '',
+    // Tenant + actor come from the TRUSTED identity context, never the request body.
+    tenantId: auth.tenantId,
     // Path parameter is authoritative for the resource id.
     applicationId: req.applicationId,
-    actor,
+    actor: authActorToDto(auth.actor),
     context,
     idempotencyKey: resolveIdempotencyKey(req.headers, body),
     ...(reason !== undefined ? { reason } : {}),
@@ -204,7 +239,10 @@ function appErrorHttpStatus(code: ErrorCode): number {
   switch (code) {
     case ErrorCode.INVALID_INPUT:
       return 400;
+    case ErrorCode.UNAUTHENTICATED:
+      return 401;
     case ErrorCode.PERMISSION_DENIED:
+    case ErrorCode.FORBIDDEN:
       return 403;
     case ErrorCode.UNKNOWN_TRANSITION:
     case ErrorCode.GUARD_FAILED:
@@ -258,17 +296,20 @@ export function errorToHttpResult(err: unknown, requestId: string): AffiliationH
 /**
  * Handle one HTTP-shaped AffiliationApplication transition request.
  *
- * Flow: map request → call the domain boundary's `executeCommand` EXACTLY ONCE → map the
- * response DTO (or caught error) to `{ status, body }`. The adapter never bypasses the
- * service/kernel and never performs governed writes itself.
+ * Flow: resolve TRUSTED identity (auth context) → map request (tenant/actor come from the
+ * auth context, not the body) → call the domain boundary's `executeCommand` EXACTLY ONCE →
+ * map the response DTO (or caught error) to `{ status, body }`. The adapter never bypasses
+ * the service/kernel and never performs governed writes itself.
  */
 export async function handleAffiliationHttpTransition(
   executor: AffiliationCommandExecutor,
   req: AffiliationHttpRequest,
   requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<AffiliationHttpResult> {
   try {
-    const { command, request, correlationId } = buildCommandRequest(req);
+    const auth = resolver.resolve({ headers: req.headers, body: req.body });
+    const { command, request, correlationId } = buildCommandRequest(req, auth);
     const response = await executor.executeCommand(command, request);
     return successToHttpResult(response, requestId, correlationId);
   } catch (err) {

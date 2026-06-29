@@ -167,9 +167,11 @@ HTTP adapter (server.ts / AffiliationHttpAdapter.ts)
 
 ## Intentional stubs / out of scope (future passes)
 
-- **Edge authentication/authorization** is not implemented. The adapter trusts the parsed
-  `actor` / `tenantId`. A real deployment must terminate auth in front of this adapter
-  (gateway / identity) and derive these from verified claims.
+- **Edge identity** is now established by an `AuthContextResolver` selected from `AUTH_MODE`
+  (`demo` = LOCAL/DEMO body-trusted default; `trusted_headers` = identity derived from trusted
+  `x-house-*` headers). See [auth-edge-identity-adapter.md](auth-edge-identity-adapter.md).
+  This is **not** token/JWT validation: a real deployment must still terminate authentication
+  in a gateway / identity layer that sets the trusted headers from verified claims.
 - **Outbox publishing** still uses the Noop Service Bus publisher (no real broker in v1).
 - No real **document/blob evidence storage**, **workflow executor**, or **payment processor**.
 - No **local/demo runtime script** (no `listen()` bootstrap / npm script) — recommended as
