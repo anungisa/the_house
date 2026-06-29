@@ -19,7 +19,9 @@
     "test:watch": "vitest",
     "build": "tsc -p tsconfig.build.json",
     "db:migrate": "node --experimental-strip-types scripts/db-migrate.ts",
-    "db:seed": "node --experimental-strip-types scripts/db-seed.ts"
+    "db:seed": "node --experimental-strip-types scripts/db-seed.ts",
+    "dev:api": "tsx scripts/api-dev.ts",
+    "demo:seed:affiliation": "tsx scripts/demo-seed-affiliation.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

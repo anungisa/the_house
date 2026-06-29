@@ -36,6 +36,13 @@ export interface ServiceBusConfig {
   readonly outboxQueue: string;
 }
 
+export interface ApiConfig {
+  /** Bind address for the local/demo HTTP runtime. Defaults to loopback only. */
+  readonly host: string;
+  /** TCP port for the local/demo HTTP runtime. */
+  readonly port: number;
+}
+
 export interface AppConfig {
   readonly appEnv: AppEnv;
   readonly appRegion: string;
@@ -43,6 +50,7 @@ export interface AppConfig {
   readonly databaseUrl: string;
   readonly serviceBus: ServiceBusConfig;
   readonly outbox: OutboxConfig;
+  readonly api: ApiConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -125,6 +133,11 @@ export function loadConfig(): AppConfig {
       baseDelayMs: readInt('OUTBOX_BASE_DELAY_MS', 1000),
       maxDelayMs: readInt('OUTBOX_MAX_DELAY_MS', 300_000),
       maxRetries: readInt('OUTBOX_MAX_RETRIES', 10),
+    },
+    api: {
+      // Loopback-only by default: this runtime is local/demo and ships no edge auth.
+      host: readString('API_HOST') ?? '127.0.0.1',
+      port: readInt('API_PORT', 3000),
     },
   };
 }

@@ -1,5 +1,8 @@
 # AffiliationApplication HTTP Adapter
 
+> To start this adapter locally and exercise it end-to-end against PostgreSQL, see
+> [local-api-runtime.md](local-api-runtime.md).
+
 ## Purpose
 
 This document describes the **thin HTTP adapter** that exposes the existing

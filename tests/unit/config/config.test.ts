@@ -8,9 +8,8 @@ import { loadConfig } from '../../../src/config/index.js';
  * each test, then restored afterward, so tests neither depend on nor pollute the ambient
  * environment. No secrets and no live resources are required.
  *
- * NOTE: API_HOST / API_PORT are intentionally NOT tested — the config loader does not
- * define them yet (no local runtime has been added). We test only the config that exists
- * and do not invent runtime config here.
+ * API_HOST / API_PORT ARE covered here now that the local/demo runtime exists and the
+ * config loader defines them (defaults 127.0.0.1:3000).
  */
 
 const CONFIG_KEYS = [
@@ -26,6 +25,8 @@ const CONFIG_KEYS = [
   'OUTBOX_BASE_DELAY_MS',
   'OUTBOX_MAX_DELAY_MS',
   'OUTBOX_MAX_RETRIES',
+  'API_HOST',
+  'API_PORT',
 ] as const;
 
 let saved: Record<string, string | undefined>;
@@ -102,6 +103,27 @@ describe('loadConfig', () => {
   // (6) Non-numeric integer config is rejected.
   it('rejects a non-numeric integer env value', () => {
     process.env['OUTBOX_BATCH_SIZE'] = 'not-a-number';
+    expect(() => loadConfig()).toThrow(/Invalid integer/);
+  });
+
+  // (10) API runtime config defaults to loopback:3000 when unset.
+  it('loads API host/port defaults when unset', () => {
+    const { api } = loadConfig();
+    expect(api).toEqual({ host: '127.0.0.1', port: 3000 });
+  });
+
+  // (10) API host/port can be overridden from the environment.
+  it('reads API host/port overrides from the environment', () => {
+    process.env['API_HOST'] = '0.0.0.0';
+    process.env['API_PORT'] = '8080';
+    const { api } = loadConfig();
+    expect(api.host).toBe('0.0.0.0');
+    expect(api.port).toBe(8080);
+  });
+
+  // (10) A non-numeric API_PORT fails closed.
+  it('rejects a non-numeric API_PORT', () => {
+    process.env['API_PORT'] = 'abc';
     expect(() => loadConfig()).toThrow(/Invalid integer/);
   });
 
