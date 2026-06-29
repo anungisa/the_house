@@ -19,7 +19,9 @@ lifecycle approval and **must not** bypass governance metadata. Raw documents ar
 in PostgreSQL.
 
 > Transition evidence can remain metadata-only when no document payload is supplied — the
-> kernel's existing behavior is unchanged by this pass.
+> kernel's existing behavior is unchanged when `TransitionInput.evidence` is absent. When a
+> binding **is** supplied, the kernel records it on the evidence metadata it creates (see
+> [Binding payload storage to governance metadata](#binding-payload-storage-to-governance-metadata)).
 
 ## Module layout
 
@@ -37,6 +39,11 @@ in PostgreSQL.
   `ContainerClient` to `ContainerClientLike`.
 - `EvidenceStorageFactory.ts` — `createEvidenceStorage(config, deps?)` selects the backend.
 - `EvidenceStorageService.ts` — thin seam to store a payload and obtain its metadata/ref.
+- `EvidenceMetadataBinding.ts` — converts `StoredEvidenceMetadata` into the governance
+  binding (`content_hash` + serialized `storage_ref`); `buildEvidenceStorageRef`,
+  `serializeEvidenceStorageRef`, `parseEvidenceStorageRef`, `toEvidencePayloadBinding`.
+- `GovernanceEvidenceService.ts` — stores payload bytes and returns the stored metadata
+  **plus** the governance binding a governed transition can attach. Writes no governed tables.
 - `index.ts` — public surface.
 
 ## Storage providers
@@ -87,10 +94,47 @@ segments.
 - This storage layer does **not** call the kernel, run transitions, or weaken RLS. It touches
   no governed tables.
 - The `governance.evidence_object` table already carries `content_hash` and `storage_ref`
-  placeholder columns. **No migration was added in this pass.** A future pass can populate
-  those columns from the `StoredEvidenceMetadata` (`sha256` → `content_hash`,
-  `storageKey`/provider → `storage_ref`) when wiring kernel-created metadata to a stored
-  payload. Until then, evidence metadata remains metadata-only and valid.
+  columns. **No migration was added in this pass** — both columns already exist and are
+  nullable. This pass populates them when a transition supplies a payload binding.
+
+## Binding payload storage to governance metadata
+
+This pass makes a stored payload a first-class part of governance evidence metadata, **without**
+letting the kernel touch blob storage or raw bytes.
+
+The flow is:
+
+1. A caller stores payload bytes through `GovernanceEvidenceService.storeEvidencePayload(...)`
+   (or `EvidenceStorageService`), receiving `StoredEvidenceMetadata`.
+2. `toEvidencePayloadBinding(metadata)` derives an `EvidencePayloadBinding`:
+   - `contentHash` — the lowercase hex SHA-256 digest of the payload.
+   - `storageRef` — a stable JSON string locating the payload
+     (`{ provider, container, key, contentType, sizeBytes, sha256, sourceFilename?,
+     retentionClass? }`).
+3. The caller passes that binding as the optional `TransitionInput.evidence` field.
+4. Inside the governed transaction, for an **evidence-required** transition, the kernel persists
+   `contentHash` → `governance.evidence_object.content_hash` and `storageRef` → `storage_ref`.
+
+Column semantics:
+
+- `content_hash` holds the SHA-256 hex digest — the tamper-evident link to the payload.
+- `storage_ref` holds the serialized `EvidenceStorageRef` JSON — the durable, provider-agnostic
+  pointer to the bytes. **Raw payload bytes are never stored in PostgreSQL** — only the digest
+  and a reference.
+
+### Metadata-only evidence remains valid
+
+When a transition does **not** supply `evidence`, the kernel creates evidence metadata exactly
+as before with `content_hash` and `storage_ref` left `NULL`. Binding is purely additive; the
+kernel never receives bytes, never contacts Azure, and transition execution never depends on
+blob storage.
+
+### Why upload/download endpoints are still a future pass
+
+This pass only binds **already-stored** payload references to governance metadata. HTTP
+upload/download endpoints (and their auth, streaming, and size limits) are a separate concern.
+They now have a governed place to put their storage references — the kernel's evidence
+metadata — instead of becoming a parallel, ungoverned document system.
 
 ## Out of scope (separate passes)
 

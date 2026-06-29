@@ -366,8 +366,8 @@ class PgGovernanceTx implements GovernanceTx {
     const rows = await this.client.query<{ id: string }>(
       `INSERT INTO governance.evidence_object
          (tenant_id, entity_type, entity_id, trigger, state_transition_id, manifest,
-          created_by)
-       VALUES ($1,$2,$3,$4,$5,$6,$7)
+          content_hash, storage_ref, created_by)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
        RETURNING id`,
       [
         input.tenantId,
@@ -376,6 +376,8 @@ class PgGovernanceTx implements GovernanceTx {
         input.trigger,
         input.stateTransitionId,
         JSON.stringify(input.manifest),
+        input.contentHash ?? null,
+        input.storageRef ?? null,
         input.createdBy,
       ],
     );

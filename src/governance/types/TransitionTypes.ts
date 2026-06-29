@@ -93,6 +93,32 @@ export interface TransitionInput {
 
   /** Optional domain payload for guards/evidence. Opaque to the kernel. */
   readonly payload?: Readonly<Record<string, unknown>>;
+
+  /**
+   * Optional PRE-COMPUTED evidence payload binding for an evidence-required (high-risk)
+   * transition. This is NEVER raw bytes: the kernel never touches blob storage. When a
+   * governed transition is accompanied by a stored document, the caller stores the bytes via
+   * the evidence storage layer FIRST and passes the resulting {@link EvidencePayloadBinding}
+   * (content hash + serialized storage reference) here. The kernel persists it onto the
+   * governance evidence metadata it creates. Absent → metadata-only evidence (unchanged
+   * behavior). Ignored for transitions that do not require evidence.
+   */
+  readonly evidence?: EvidencePayloadBinding;
+}
+
+/**
+ * A pre-computed binding from a stored evidence payload to governance evidence metadata.
+ *
+ * Produced by the evidence storage layer (never by the kernel). Contains only the digest and
+ * a stable, serialized storage reference — never raw bytes and never a live SDK handle. This
+ * is the seam that lets governance evidence metadata point at a hash-addressed payload without
+ * the Governance Kernel ever depending on Azure Blob.
+ */
+export interface EvidencePayloadBinding {
+  /** Lowercase hex SHA-256 digest of the stored payload → persisted to `content_hash`. */
+  readonly contentHash: string;
+  /** Stable serialized storage reference (JSON string) → persisted to `storage_ref`. */
+  readonly storageRef: string;
 }
 
 export type TransitionStatus =

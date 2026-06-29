@@ -324,6 +324,63 @@ d('AffiliationApplication governed transition (integration)', () => {
     ).toBe(1);
   });
 
+  it('persists and reads back an evidence payload binding (content_hash + storage_ref)', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await seedEntityStateAt(entityId, 'closed');
+
+    const sha = 'a'.repeat(64);
+    const storageRef = JSON.stringify({
+      provider: 'memory',
+      container: 'evidence',
+      key: `tenants/${TENANT_A}/evidence/${entityId}/${sha}`,
+      contentType: 'application/pdf',
+      sizeBytes: 42,
+      sha256: sha,
+    });
+
+    const result = await kernel.transition(
+      input({
+        entityId,
+        trigger: 'archive',
+        idempotencyKey: randomUUID(),
+        evidence: { contentHash: sha, storageRef },
+      }),
+    );
+    expect(result.status).toBe('executed');
+
+    const rows = await withTenantTransaction(TENANT_A, (c: QueryClient) =>
+      c.query<{ content_hash: string | null; storage_ref: string | null }>(
+        `SELECT content_hash, storage_ref FROM governance.evidence_object
+          WHERE entity_id = $1 AND trigger = 'archive'`,
+        [entityId],
+      ),
+    );
+    expect(rows).toHaveLength(1);
+    expect(rows[0]!.content_hash).toBe(sha);
+    expect(rows[0]!.storage_ref).toBe(storageRef);
+    expect(JSON.parse(rows[0]!.storage_ref!)).toMatchObject({ provider: 'memory', sha256: sha });
+  });
+
+  it('metadata-only evidence persists with NULL content_hash and storage_ref', async () => {
+    const kernel = makeKernel();
+    const entityId = randomUUID();
+    await seedEntityStateAt(entityId, 'closed');
+
+    await kernel.transition(input({ entityId, trigger: 'archive', idempotencyKey: randomUUID() }));
+
+    const rows = await withTenantTransaction(TENANT_A, (c: QueryClient) =>
+      c.query<{ content_hash: string | null; storage_ref: string | null }>(
+        `SELECT content_hash, storage_ref FROM governance.evidence_object
+          WHERE entity_id = $1 AND trigger = 'archive'`,
+        [entityId],
+      ),
+    );
+    expect(rows).toHaveLength(1);
+    expect(rows[0]!.content_hash).toBeNull();
+    expect(rows[0]!.storage_ref).toBeNull();
+  });
+
   it('idempotent retry does not duplicate state_transition or outbox rows', async () => {
     const kernel = makeKernel();
     const entityId = randomUUID();

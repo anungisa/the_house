@@ -260,7 +260,10 @@ export class GovernanceKernel {
         this.audit(input, 'transition.executed', fromState, def.toState),
       );
 
-      // 2n) Evidence metadata for evidence-required (high-risk) transitions.
+      // 2n) Evidence metadata for evidence-required (high-risk) transitions. When the caller
+      // supplied a pre-computed payload binding (content hash + serialized storage ref), it is
+      // persisted onto the metadata; otherwise the evidence remains metadata-only. The kernel
+      // never receives raw bytes and never contacts blob storage.
       let evidenceObjectId: string | undefined;
       if (def.evidenceRequired) {
         evidenceObjectId = await tx.insertEvidenceObject({
@@ -278,6 +281,12 @@ export class GovernanceKernel {
             recordedAt: this.clock.nowIso(),
           },
           createdBy: input.actor.actorId,
+          ...(input.evidence?.contentHash !== undefined
+            ? { contentHash: input.evidence.contentHash }
+            : {}),
+          ...(input.evidence?.storageRef !== undefined
+            ? { storageRef: input.evidence.storageRef }
+            : {}),
         });
       }
 

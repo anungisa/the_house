@@ -142,6 +142,51 @@ describe('GovernanceKernel.transition', () => {
     expect(h.store.data.evidenceObjects[0]!.trigger).toBe('close');
   });
 
+  it('evidence-required transition without a payload binding stays metadata-only', async () => {
+    const h = buildKernelHarness();
+    await h.kernel.transition(makeInput({ entityId: 'app-7a', trigger: 'submit', idempotencyKey: 's' }));
+    await h.kernel.transition(
+      makeInput({ entityId: 'app-7a', trigger: 'review_start', idempotencyKey: 'r' }),
+    );
+    h.store.data.entityStates[0]!.currentState = 'rejected';
+
+    await h.kernel.transition(makeInput({ entityId: 'app-7a', trigger: 'close', idempotencyKey: 'c' }));
+
+    expect(h.store.data.evidenceObjects).toHaveLength(1);
+    expect(h.store.data.evidenceObjects[0]!.contentHash).toBeUndefined();
+    expect(h.store.data.evidenceObjects[0]!.storageRef).toBeUndefined();
+  });
+
+  it('persists a supplied evidence payload binding onto kernel-created evidence metadata', async () => {
+    const h = buildKernelHarness();
+    await h.kernel.transition(makeInput({ entityId: 'app-7b', trigger: 'submit', idempotencyKey: 's' }));
+    await h.kernel.transition(
+      makeInput({ entityId: 'app-7b', trigger: 'review_start', idempotencyKey: 'r' }),
+    );
+    h.store.data.entityStates[0]!.currentState = 'rejected';
+
+    const storageRef = JSON.stringify({
+      provider: 'memory',
+      container: 'evidence',
+      key: 'tenants/t/evidence/e/' + 'a'.repeat(64),
+      contentType: 'application/pdf',
+      sizeBytes: 10,
+      sha256: 'a'.repeat(64),
+    });
+    await h.kernel.transition(
+      makeInput({
+        entityId: 'app-7b',
+        trigger: 'close',
+        idempotencyKey: 'c',
+        evidence: { contentHash: 'a'.repeat(64), storageRef },
+      }),
+    );
+
+    expect(h.store.data.evidenceObjects).toHaveLength(1);
+    expect(h.store.data.evidenceObjects[0]!.contentHash).toBe('a'.repeat(64));
+    expect(h.store.data.evidenceObjects[0]!.storageRef).toBe(storageRef);
+  });
+
   it('idempotent retry returns the previous result and does not duplicate writes', async () => {
     const h = buildKernelHarness();
     const input = makeInput({ entityId: 'app-8', trigger: 'submit', idempotencyKey: 'k1' });

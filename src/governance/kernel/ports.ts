@@ -126,6 +126,17 @@ export interface EvidenceObjectInsert {
   readonly stateTransitionId: string;
   readonly manifest: Readonly<Record<string, unknown>>;
   readonly createdBy: string;
+  /**
+   * Optional SHA-256 digest of a bound evidence payload → persisted to `content_hash`.
+   * Absent for metadata-only evidence (the digest column stays NULL).
+   */
+  readonly contentHash?: string;
+  /**
+   * Optional stable, serialized storage reference (JSON) for a bound evidence payload →
+   * persisted to `storage_ref`. Absent for metadata-only evidence (the column stays NULL).
+   * Never contains raw payload bytes.
+   */
+  readonly storageRef?: string;
 }
 
 export interface OutboxMessageInsert {

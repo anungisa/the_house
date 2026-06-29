@@ -46,3 +46,16 @@ export {
   type EvidenceStorageServiceDeps,
   type StoreEvidencePayloadInput,
 } from './EvidenceStorageService.js';
+export {
+  buildEvidenceStorageRef,
+  parseEvidenceStorageRef,
+  serializeEvidenceStorageRef,
+  toEvidencePayloadBinding,
+  type EvidencePayloadBinding,
+  type EvidenceStorageRef,
+} from './EvidenceMetadataBinding.js';
+export {
+  GovernanceEvidenceService,
+  type GovernanceEvidenceServiceDeps,
+  type StoredEvidenceWithBinding,
+} from './GovernanceEvidenceService.js';
