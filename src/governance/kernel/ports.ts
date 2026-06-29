@@ -194,7 +194,7 @@ export interface GovernanceTx {
 
   insertStateTransition(input: StateTransitionInsert): Promise<string>;
 
-  insertAuditEvent(input: AuditEventInput): Promise<void>;
+  insertAuditEvent(input: AuditEventInput): Promise<string>;
 
   insertEvidenceObject(input: EvidenceObjectInsert): Promise<string>;
 

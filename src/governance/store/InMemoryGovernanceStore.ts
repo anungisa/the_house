@@ -75,7 +75,7 @@ interface GovernanceData {
   stateTransitions: StateTransitionRecord[];
   transitionRequests: TransitionRequestRecord[];
   guardResults: GuardResultInsert[];
-  auditEvents: AuditEventInput[];
+  auditEvents: Array<AuditEventInput & { id: string }>;
   evidenceObjects: Array<EvidenceObjectInsert & { id: string }>;
   outbox: OutboxRecord[];
 }
@@ -154,7 +154,7 @@ class InMemoryGovernanceTx implements GovernanceTx {
   private readonly pendingEntityInserts: EntityStateRecord[] = [];
   private readonly pendingEntityUpdates: Array<{ id: string; toState: string }> = [];
   private readonly pendingTransitions: StateTransitionRecord[] = [];
-  private readonly pendingAudits: AuditEventInput[] = [];
+  private readonly pendingAudits: Array<AuditEventInput & { id: string }> = [];
   private readonly pendingEvidence: Array<EvidenceObjectInsert & { id: string }> = [];
   private readonly pendingOutbox: OutboxRecord[] = [];
 
@@ -280,9 +280,10 @@ class InMemoryGovernanceTx implements GovernanceTx {
     return Promise.resolve(id);
   }
 
-  insertAuditEvent(input: AuditEventInput): Promise<void> {
-    this.pendingAudits.push(input);
-    return Promise.resolve();
+  insertAuditEvent(input: AuditEventInput): Promise<string> {
+    const id = this.ids.newId();
+    this.pendingAudits.push({ ...input, id });
+    return Promise.resolve(id);
   }
 
   insertEvidenceObject(input: EvidenceObjectInsert): Promise<string> {

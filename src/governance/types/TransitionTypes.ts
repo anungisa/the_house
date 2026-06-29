@@ -123,6 +123,15 @@ export interface TransitionResult {
   /** Id of the created transition_request when approval is required. */
   readonly transitionRequestId?: string;
 
+  /** Id of the appended state_transition (immutable journal) for an executed transition. */
+  readonly stateTransitionId?: string;
+
+  /** Id of the appended audit_event for an executed transition. */
+  readonly auditEventId?: string;
+
+  /** Id of the created evidence_object when an executed transition required evidence. */
+  readonly evidenceObjectId?: string;
+
   /** Stable idempotency echo so replays can be recognized by callers. */
   readonly idempotencyKey: string;
 }

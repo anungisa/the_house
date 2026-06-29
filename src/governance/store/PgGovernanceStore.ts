@@ -338,12 +338,13 @@ class PgGovernanceTx implements GovernanceTx {
     return rows[0]!.id;
   }
 
-  async insertAuditEvent(input: AuditEventInput): Promise<void> {
-    await this.client.query(
+  async insertAuditEvent(input: AuditEventInput): Promise<string> {
+    const rows = await this.client.query<{ id: string }>(
       `INSERT INTO governance.audit_event
          (tenant_id, entity_type, entity_id, action, trigger, from_state, to_state,
           actor_user_id, correlation_id, causation_id, payload)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+       RETURNING id`,
       [
         input.tenantId,
         input.entityType,
@@ -358,6 +359,7 @@ class PgGovernanceTx implements GovernanceTx {
         JSON.stringify(input.metadata ?? {}),
       ],
     );
+    return rows[0]!.id;
   }
 
   async insertEvidenceObject(input: EvidenceObjectInsert): Promise<string> {

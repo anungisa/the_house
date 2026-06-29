@@ -256,11 +256,14 @@ export class GovernanceKernel {
       });
 
       // 2m) Append audit event.
-      await tx.insertAuditEvent(this.audit(input, 'transition.executed', fromState, def.toState));
+      const auditEventId = await tx.insertAuditEvent(
+        this.audit(input, 'transition.executed', fromState, def.toState),
+      );
 
       // 2n) Evidence metadata for evidence-required (high-risk) transitions.
+      let evidenceObjectId: string | undefined;
       if (def.evidenceRequired) {
-        await tx.insertEvidenceObject({
+        evidenceObjectId = await tx.insertEvidenceObject({
           tenantId,
           entityType: input.entityType,
           entityId: input.entityId,
@@ -308,6 +311,9 @@ export class GovernanceKernel {
         fromState,
         toState: def.toState,
         guardResults,
+        stateTransitionId,
+        auditEventId,
+        ...(evidenceObjectId !== undefined ? { evidenceObjectId } : {}),
         idempotencyKey: input.idempotencyKey,
       };
     });

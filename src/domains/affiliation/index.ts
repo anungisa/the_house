@@ -59,3 +59,41 @@ export const AFFILIATION_HIGH_RISK_TRIGGERS: ReadonlySet<AffiliationTrigger> = n
   'close',
   'archive',
 ]);
+
+// ---------------------------------------------------------------------------------------
+// Domain API boundary (thin, typed request/service layer over the Governance Kernel).
+//
+// The boundary lets consumers reach the governed path WITHOUT bypassing the kernel: it
+// validates and maps a typed request, then calls GovernanceKernel.transition() and maps
+// the result back. It never mutates governed state, evaluates guards, or writes
+// audit/evidence/outbox directly.
+// ---------------------------------------------------------------------------------------
+
+export type {
+  AffiliationActorDto,
+  AffiliationContextDto,
+  AffiliationApplicationTransitionRequest,
+  AffiliationApplicationTransitionResponse,
+  AffiliationApplicationExecutedResponse,
+  AffiliationApplicationApprovalRequiredResponse,
+  AffiliationApplicationRejectedResponse,
+} from './AffiliationApplicationDtos.js';
+
+export {
+  AFFILIATION_APPLICATION_COMMANDS,
+  AFFILIATION_APPLICATION_COMMAND_NAMES,
+  isAffiliationApplicationCommand,
+  triggerForCommand,
+  type AffiliationApplicationCommand,
+} from './AffiliationApplicationCommands.js';
+
+export { validateTransitionRequest, suggestIdempotencyKey } from './AffiliationApplicationErrors.js';
+
+export { toTransitionInput, toResponse } from './AffiliationApplicationMapper.js';
+
+export {
+  AffiliationApplicationService,
+  type AffiliationKernelPort,
+} from './AffiliationApplicationService.js';
+
+export { handleAffiliationApplicationTransition } from './AffiliationApplicationHandler.js';
