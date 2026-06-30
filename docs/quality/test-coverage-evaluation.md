@@ -413,3 +413,52 @@ persistence paths are executed happy-path without exercising their conditional l
    then a **Facility preflight coverage map** (pass #5).
 10. **Coverage thresholds now, later, or not yet?** **Not yet** globally; introduce subsystem-
     specific thresholds after the P1 branch gaps close (§15).
+
+---
+
+## Appendix — Branch Coverage Sweep 1 — Authz / Guards / Kernel Execution
+
+- **Date:** 2026-06-30
+- **Commit:** (this pass) — see `Add authz guard kernel branch coverage`
+- **Type:** test-confidence pass (no feature, runtime, or governance-semantics changes). Hermetic only — no DB, no network.
+
+### Tests added (31 new hermetic tests across 4 files)
+
+- `tests/unit/governance/workflow/ApprovedWorkflowExecutionService.branch.test.ts` (10) — exercises the THIN coordinator's own decision branches directly (the kernel execution path was already covered by `ApprovedWorkflowExecution.test.ts`): blank tenantId/workflowInstanceId/actorId/idempotencyKey validation, unknown-instance `WORKFLOW_NOT_FOUND`, non-approved (`pending`/`rejected`/`cancelled`) fast gate, delegation using the resolved `transitionRequestId`, and the optional `reason`/`correlationId` pass-through (omitted vs forwarded).
+- `tests/unit/governance/GovernanceKernel.branch.test.ts` (6) — approval-required request created with **no planner** (no workflow instance persisted; `workflowInstanceId` omitted); the execution gate failing closed (`WORKFLOW_NOT_APPROVED`) when no review workflow exists; executing a request whose status is neither `pending_approval` nor `executed`; idempotent replay of an approval-required request (the `replayResult` `request` branch); and the `correlationId`/`causationId` conditional-spread branches on the audit + outbox rows (omitted vs propagated).
+- `tests/unit/governance/guards/guard-handlers.branch.test.ts` (12) — both outcome branches of every named guard with explicit failure messages, reviewer-scope pass for each reviewer-class role, fail-closed for a non-reviewer / no-roles actor (`?? []`), and fail-closed for missing/malformed (non-object) facts; one async `GuardRegistry.evaluate` unknown-code fail-closed assertion.
+- `tests/unit/authz/AuthorizationPolicy.branch.test.ts` (3) — the residual `authorize` branches not reached by the main suite: the defensive `?? []` fallbacks for a malformed actor missing both arrays, and the `roleGrants` loop skipping an unmapped role before matching a later mapped one (plus the loop-exhausts-without-match deny).
+
+### Branches targeted
+
+Authorization precedence + fail-closed fallbacks; guard pass/fail/fail-closed (missing + malformed facts, no-roles actor); kernel approval-required-without-planner, execution gate, non-executable request status, approval-required idempotent replay, and lineage (correlationId/causationId) pass-through.
+
+### Coverage delta (hermetic)
+
+| Metric | Before | After | Delta |
+| --- | --- | --- | --- |
+| Statements | 79.39% (10418/13121) | **79.79%** (10470/13121) | +0.40 |
+| Branches | 80.22% (2653/3307) | **81.09%** (2702/3332) | +0.87 |
+| Functions | 83.27% (682/819) | **83.51%** (684/819) | +0.24 |
+
+Per-file branch coverage (the targeted files):
+
+| File | Branch before | Branch after |
+| --- | --- | --- |
+| `ApprovedWorkflowExecutionService.ts` | 57.1% | **100%** (st 81.4 → 100) |
+| `AuthorizationPolicy.ts` | 91.3% | **100%** |
+| `governance/guards/handlers.ts` | 86.2% | **100%** |
+| `GovernanceKernel.ts` | 70.4% | **77.8%** (st 87.1 → 90.8) |
+
+- ApprovedWorkflowExecutionService branch coverage improved (57% → 100%). ✔
+- GovernanceKernel branch coverage improved (70% → 78%). ✔
+- AuthorizationPolicy branch coverage improved (91% → 100%) and remains strong. ✔
+- No new weak files appeared; no production code changed (no bug found).
+
+### Remaining branch gaps (GovernanceKernel, deliberately not contrived hermetically)
+
+The residual ~22% uncovered `GovernanceKernel` branches are deep defensive fail-closed paths in `executeApprovedTransitionRequest` that only arise under concurrent/persisted drift: missing active state machine at execution time, `lockEntityState` returning undefined at execution, transition re-resolution returning undefined, active-policy target drift (`def.toState !== requestedToState`), an unknown guard code surfacing only at execution, and the `executionReplay` paths reached via the `status==='executed'`/in-transaction `findStateTransition` seams. These are best proven by **gated DB** integration (where row locks and persisted state make them reachable without contriving the in-memory store), not by synthetic hermetic manipulation — covering them hermetically would be blind coverage.
+
+### Recommended next branch sweep
+
+**Participant Registry write-path branch sweep** (the weakest persisted domain at 57–62% write/service/Pg branch) before adding any Participant write surface — ideally as gated DB tests that also reach the residual `GovernanceKernel.executeApprovedTransitionRequest` defensive branches above.
