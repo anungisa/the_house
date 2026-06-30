@@ -10,11 +10,14 @@
  * It confirms the Participant Registry baseline stays coherent: the domain module, migration,
  * architecture doc, unit tests, and gated integration tests all exist; the `participant:check`
  * script is wired and chained into `ci:check`; the synthetic lifecycle suite references the
- * participant registry; the read-only HTTP surface (adapter, DTOs, auth, barrel) and its unit +
- * gated integration tests exist; the server wires the `/v1/participants` read routes and the
- * authorization catalog defines `participant.read`; the doc documents its purpose/scope, the key
- * invariants, and the HTTP read surface; and NO secret-looking values or sport-specific
- * terminology leak into the domain code, HTTP surface, doc, test, or migration.
+ * participant registry; the read-only HTTP surface (adapter, DTOs, auth, barrel) AND the phase-1
+ * write surface (create + update adapter + DTOs) and their unit tests exist; the server wires the
+ * `/v1/participants` read routes plus the create/update handlers; the authorization catalog
+ * defines BOTH `participant.read` and `participant.write`; NO status-transition or organization-
+ * link write surface is exposed (deferred phases); the doc documents its purpose/scope, the key
+ * invariants, and the HTTP read + write surfaces; and NO secret-looking values, sport-specific
+ * terminology, or out-of-scope behavior terms leak into the domain code, HTTP surface, doc, test,
+ * or migration.
  *
  * The thin CLI wrapper lives in scripts/validate-participant-registry-baseline.ts.
  */
@@ -71,6 +74,15 @@ export const PARTICIPANT_HTTP_TEST_REL =
   'tests/unit/http/participant/ParticipantReadHttpAdapter.test.ts';
 export const PARTICIPANT_HTTP_INTEGRATION_TEST_REL =
   'tests/integration/governance/participant-registry-http.integration.test.ts';
+// HTTP write surface (phase 1 — create + update only): mutation endpoints gated by the centralized
+// `participant.write` action. NO status-transition, organization-link, or relationship-status
+// write surface here (deliberately deferred to later phases).
+export const PARTICIPANT_HTTP_WRITE_ADAPTER_REL =
+  'src/http/participant/ParticipantWriteHttpAdapter.ts';
+export const PARTICIPANT_HTTP_WRITE_DTO_REL =
+  'src/http/participant/ParticipantWriteHttpDtos.ts';
+export const PARTICIPANT_HTTP_WRITE_TEST_REL =
+  'tests/unit/http/participant/ParticipantWriteHttpAdapter.test.ts';
 export const SERVER_MODULE_REL = 'src/http/server.ts';
 export const AUTHZ_ACTIONS_MODULE_REL = 'src/authz/AuthorizationActions.ts';
 
@@ -93,10 +105,17 @@ const PARTICIPANT_HTTP_FILES: readonly string[] = [
   PARTICIPANT_HTTP_AUTH_REL,
 ];
 
+/** HTTP write-surface files that MUST exist now that phase-1 (create + update) is implemented. */
+const PARTICIPANT_HTTP_WRITE_FILES: readonly string[] = [
+  PARTICIPANT_HTTP_WRITE_ADAPTER_REL,
+  PARTICIPANT_HTTP_WRITE_DTO_REL,
+];
+
 /** Files scanned for leaked secrets (only those present). */
 const PARTICIPANT_SECRET_SCAN_FILES: readonly string[] = [
   ...PARTICIPANT_DOMAIN_FILES,
   ...PARTICIPANT_HTTP_FILES,
+  ...PARTICIPANT_HTTP_WRITE_FILES,
   PARTICIPANT_DOC_REL,
   PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
   PARTICIPANT_MIGRATION_REL,
@@ -105,17 +124,36 @@ const PARTICIPANT_SECRET_SCAN_FILES: readonly string[] = [
 ];
 
 /**
- * Files scanned for sport-specific terminology. The domain code, HTTP read surface, doc, test, and
- * migration must all stay NSO-generic.
+ * Files scanned for sport-specific terminology. The domain code, HTTP read/write surface, doc,
+ * test, and migration must all stay NSO-generic.
  */
 const PARTICIPANT_DOMAIN_SCAN_FILES: readonly string[] = [
   ...PARTICIPANT_DOMAIN_FILES,
   ...PARTICIPANT_HTTP_FILES,
+  ...PARTICIPANT_HTTP_WRITE_FILES,
   PARTICIPANT_DOC_REL,
   PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
   PARTICIPANT_TEST_REL,
   PARTICIPANT_INTEGRATION_TEST_REL,
   PARTICIPANT_MIGRATION_REL,
+];
+
+/**
+ * Out-of-scope BEHAVIOR terms that must NOT appear in the phase-1 write surface. Their absence is
+ * a coherence signal that the create/update slice did not opportunistically grow status
+ * transitions, organization links, registration, payments, enrollment, or eligibility.
+ */
+const WRITE_SCOPE_FORBIDDEN_TERMS: readonly string[] = [
+  'registration',
+  'payment',
+  'enrollment',
+  'eligibility',
+];
+
+/** Phase-1 write-surface files scanned for out-of-scope behavior terms. */
+const PARTICIPANT_HTTP_WRITE_SCAN_FILES: readonly string[] = [
+  ...PARTICIPANT_HTTP_WRITE_FILES,
+  PARTICIPANT_HTTP_WRITE_TEST_REL,
 ];
 
 /** Markers the architecture doc MUST reference, keyed by a stable check name. */
@@ -139,6 +177,11 @@ const DOC_MARKERS: ReadonlyArray<{ name: string; marker: RegExp; label: string }
     name: 'doc documents the HTTP read surface',
     marker: /HTTP read surface/i,
     label: 'HTTP read surface',
+  },
+  {
+    name: 'doc documents the HTTP write surface',
+    marker: /HTTP write surface/i,
+    label: 'HTTP write surface',
   },
   { name: 'doc documents out-of-scope', marker: /out of scope/i, label: 'out of scope' },
 ];
@@ -265,6 +308,66 @@ export function validateParticipantRegistryBaseline(
     detail: definesAction ? "defines 'participant.read'" : "missing 'participant.read' action",
   });
 
+  // 7e. The HTTP write-surface files (adapter + DTOs) exist now that phase 1 is implemented.
+  for (const rel of PARTICIPANT_HTTP_WRITE_FILES) {
+    const present = existsSync(join(repoRoot, rel));
+    checks.push({ name: `HTTP write-surface file exists: ${rel}`, ok: present, detail: rel });
+  }
+
+  // 7f. The HTTP write-surface unit test exists.
+  const httpWriteTestPresent = existsSync(join(repoRoot, PARTICIPANT_HTTP_WRITE_TEST_REL));
+  checks.push({
+    name: 'participant HTTP write-surface unit test exists',
+    ok: httpWriteTestPresent,
+    detail: PARTICIPANT_HTTP_WRITE_TEST_REL,
+  });
+
+  // 7g. The authorization catalog defines participant.write (distinct from participant.read).
+  const definesWriteAction = authzText.includes("'participant.write'");
+  checks.push({
+    name: 'authz catalog defines participant.write',
+    ok: definesWriteAction,
+    detail: definesWriteAction
+      ? "defines 'participant.write'"
+      : "missing 'participant.write' action",
+  });
+
+  // 7h. The server wires the phase-1 participant create + update handlers.
+  const wiresWrite =
+    serverText.includes('handleParticipantCreate') &&
+    serverText.includes('handleParticipantUpdate');
+  checks.push({
+    name: 'server wires the participant create + update handlers',
+    ok: wiresWrite,
+    detail: wiresWrite
+      ? 'references handleParticipantCreate + handleParticipantUpdate'
+      : 'missing participant write handler wiring',
+  });
+
+  // 7i. Scope guard: NO participant status-transition route is exposed (later phase).
+  const hasStatusRoute = /\/v1\/participants\/[^'"\s]*\/(status|transitions)/i.test(serverText);
+  checks.push({
+    name: 'server exposes NO participant status-transition route',
+    ok: !hasStatusRoute,
+    detail: hasStatusRoute
+      ? 'unexpected participant status/transition route present'
+      : 'no status-transition route (correct for phase 1)',
+  });
+
+  // 7j. Scope guard: NO organization-participant WRITE handler is exposed (later phase). The
+  //     organization-participants route stays read-only.
+  const hasOrgLinkWrite =
+    serverText.includes('handleOrganizationParticipantCreate') ||
+    serverText.includes('handleOrganizationParticipantUpdate') ||
+    serverText.includes('handleParticipantLink');
+  checks.push({
+    name: 'server exposes NO organization-link write handler',
+    ok: !hasOrgLinkWrite,
+    detail: hasOrgLinkWrite
+      ? 'unexpected organization-link write handler present'
+      : 'no organization-link write handler (correct for phase 1)',
+  });
+
   // 8. package.json exposes participant:check.
   const scripts = parseScripts(readIfExists(join(repoRoot, 'package.json')));
   const hasCheck = typeof scripts['participant:check'] === 'string';
@@ -309,8 +412,22 @@ export function validateParticipantRegistryBaseline(
     detail: domainLeaks.length === 0 ? 'clean' : domainLeaks.join('; '),
   });
 
-  // 13. The write HTTP preflight design/contract doc exists and documents the required obligations
-  //     BEFORE any write endpoint is implemented. This asserts the DESIGN, not write code.
+  // 12b. No out-of-scope behavior terms in the phase-1 write surface (scope did not grow status
+  //      transitions, organization links, registration, payments, enrollment, or eligibility).
+  const writeScopeLeaks = scanFiles(
+    repoRoot,
+    PARTICIPANT_HTTP_WRITE_SCAN_FILES,
+    findWriteScopeTermsFor,
+  );
+  checks.push({
+    name: 'no out-of-scope behavior terms in the phase-1 participant write surface',
+    ok: writeScopeLeaks.length === 0,
+    detail: writeScopeLeaks.length === 0 ? 'clean' : writeScopeLeaks.join('; '),
+  });
+
+  // 13. The write HTTP preflight design/contract doc exists and stays coherent now that phase 1
+  //     (create + update) is implemented while later phases (status transitions / organization
+  //     links) remain unimplemented.
   const preflight = readIfExists(join(repoRoot, PARTICIPANT_WRITE_PREFLIGHT_DOC_REL));
   checks.push({
     name: 'participant write HTTP preflight doc exists',
@@ -318,7 +435,8 @@ export function validateParticipantRegistryBaseline(
     detail: PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
   });
   const preflightMarkers: ReadonlyArray<{ marker: RegExp; label: string }> = [
-    { marker: /NOT IMPLEMENTED/i, label: 'no write endpoints implemented yet' },
+    { marker: /phase 1/i, label: 'phase 1 scope' },
+    { marker: /not implemented/i, label: 'later phases (status/link) not implemented' },
     { marker: /idempotenc/i, label: 'idempotency model' },
     { marker: /\bRLS\b|tenant[- ]isolation/i, label: 'RLS / tenant isolation' },
     { marker: /privacy/i, label: 'privacy / payload safety' },
@@ -360,6 +478,17 @@ function findDomainTermsFor(rel: string, text: string): string[] {
   for (const term of FORBIDDEN_DOMAIN_TERMS) {
     if (lowered.includes(term)) {
       leaks.push(`${rel} contains "${term}"`);
+    }
+  }
+  return leaks;
+}
+
+function findWriteScopeTermsFor(rel: string, text: string): string[] {
+  const lowered = text.toLowerCase();
+  const leaks: string[] = [];
+  for (const term of WRITE_SCOPE_FORBIDDEN_TERMS) {
+    if (lowered.includes(term)) {
+      leaks.push(`${rel} contains out-of-scope term "${term}"`);
     }
   }
   return leaks;

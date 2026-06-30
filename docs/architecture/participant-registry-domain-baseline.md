@@ -189,25 +189,64 @@ RUN_DB_TESTS=1 \
   npx vitest run tests/integration/governance/participant-registry-http.integration.test.ts
 ```
 
-**Write endpoints remain out of scope** (see below). The safe HTTP write surface has been
-*designed* ahead of implementation in
+**Phase-1 write endpoints (create + update) are now implemented** — see the HTTP write surface
+section below. Status transitions and organization-link writes remain out of scope. The full write
+contract is in
 [participant-write-http-preflight.md](participant-write-http-preflight.md): it defines the
-proposed mutation endpoints, the new write authorization actions, DTO contracts, idempotency model,
-error mapping, privacy/payload rules, RLS test obligations, and a go/no-go checklist. **No write
-endpoint, write DTO, write authorization action, or write route is implemented yet**, and any
-future implementation must not add registration, payments, program enrollment, eligibility, or
+proposed mutation endpoints, the write authorization actions, DTO contracts, idempotency model,
+error mapping, privacy/payload rules, RLS test obligations, and a go/no-go checklist. Any future
+implementation must not add registration, payments, program enrollment, eligibility, or
 sensitive attributes, and must never invoke the Governance Kernel or mutate the Organization
 Registry.
 
+## HTTP write surface
+
+Phase-1 mutation endpoints expose participant **create** and **update** to authorized operators.
+They are a THIN transport over the validated `ParticipantRegistryService` (which owns the
+transactional outbox): the adapter never enqueues an outbox message directly, never touches
+governed lifecycle state, and never invokes the Governance Kernel. Participant status is reference
+data, not a governed FSM — and status transitions are NOT part of phase 1.
+
+| Method & path | Purpose |
+| --- | --- |
+| `POST /v1/participants` | Create a participant for the authenticated tenant. |
+| `PATCH /v1/participants/:participantId` | Update a participant's safe profile fields. |
+
+Key properties:
+
+- **Authorization** is the centralized `participant.write` action (distinct from
+  `participant.read`; neither implies the other). The `participant_admin` role grants both read and
+  write; `participant_reader` stays read-only. Denials fail closed (`401` unauthenticated, `403`
+  unauthorized) and emit the sanitized `authz.denied` signal.
+- **Tenant isolation**: tenant comes EXCLUSIVELY from the resolved auth context; the body never
+  carries identity. Updating another tenant's participant returns `404` (RLS makes the row
+  invisible) and never reveals cross-tenant existence.
+- **Create contract**: requires a client-supplied `participantId` and an `Idempotency-Key` header
+  (`400` if absent); a duplicate `participantId` for the tenant returns `409`
+  (`PARTICIPANT_ALREADY_EXISTS`). The initial `status` is restricted to `draft` (default) or
+  `active`. There is no replay cache in phase 1 — the idempotency key is propagated as outbox
+  correlation lineage only.
+- **Update contract**: at least one field required; `null` clears an optional field, omitted leaves
+  it unchanged, a string sets it; `displayName` cannot be cleared. `status` and any
+  organization-link field are rejected as unknown keys (`400`).
+- **Safe projection**: both endpoints return the SAME closed `ParticipantDto` as the read surface.
+  Email may be read back by the authorized same-tenant operator but is **never** in the outbox or
+  telemetry. Bodies reject unknown keys, so secrets and unexpected fields fail closed.
+- **Telemetry**: each write emits the `participant.registry.write.count` counter tagged with the
+  operation (`create` / `update`) and result (`success` / `failure`) only — no ids, names, email,
+  headers, or secrets.
+
 ## Out of scope (intentionally not built)
 
-This pass adds the read surface above only. The following are **intentionally not built** and must
-not be added without an explicit request:
+This pass adds the read surface plus the phase-1 create + update write surface above. The following
+are **intentionally not built** and must not be added without an explicit request:
 
 - registration, payments, program enrollment, competition, or eligibility;
 - any sport-specific concepts or terminology;
-- write/admin HTTP endpoints or a generic CRUD API (only the read surface above is exposed);
-- new authorization actions beyond `participant.read` (e.g. `participant.manage`);
+- participant status-transition or organization-link write endpoints (deferred to a later phase);
+- a generic CRUD API or dynamic field schema;
+- write authorization actions beyond `participant.write` (e.g. `participant.status.write`,
+  `participant.organization_link.write` are deferred);
 - identity-provider coupling beyond the generic `externalRefs` correlation field;
 - demographic, medical, or other sensitive attributes;
 - any direct mutation of the Organization Registry or the Governance Kernel.

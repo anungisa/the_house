@@ -70,7 +70,10 @@ import {
   handleParticipantList,
   handleParticipantDetail,
   handleOrganizationParticipantList,
+  handleParticipantCreate,
+  handleParticipantUpdate,
   type ParticipantReadHttpDeps,
+  type ParticipantWriteHttpDeps,
 } from './participant/index.js';
 
 export interface AffiliationHttpServerDeps {
@@ -130,6 +133,16 @@ export interface AffiliationHttpServerDeps {
    * centralized `participant.read` action.
    */
   readonly participantRead?: ParticipantReadHttpDeps;
+  /**
+   * Optional Participant Registry WRITE transport — PHASE 1 (create + update only). When provided,
+   * `POST /v1/participants` (create) and `PATCH /v1/participants/:participantId` (update safe
+   * profile fields) are served; when omitted those methods 404/405. These endpoints mutate the
+   * registry ONLY through the validated Participant Registry service (which owns the transactional
+   * outbox) — they NEVER touch governed lifecycle state and NEVER invoke the kernel. They are
+   * gated by the centralized `participant.write` action (distinct from `participant.read`). Status
+   * transitions and organization-link writes are deliberately NOT part of phase 1.
+   */
+  readonly participantWrite?: ParticipantWriteHttpDeps;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -753,6 +766,99 @@ async function handleOrganizationParticipantListRoute(
   sendJson(res, result);
 }
 
+/** Serve the phase-1 participant CREATE endpoint (`POST /v1/participants`). */
+async function handleParticipantCreateRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantWrite: ParticipantWriteHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const result = await handleParticipantCreate(
+    participantWrite,
+    { headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the phase-1 participant UPDATE endpoint (`PATCH /v1/participants/:participantId`). */
+async function handleParticipantUpdateRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantWrite: ParticipantWriteHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const participantId = decodeURIComponent(match[1] ?? '');
+  const result = await handleParticipantUpdate(
+    participantWrite,
+    { participantId, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/**
+ * The HTTP methods available on the participant COLLECTION path (`/v1/participants`) given the
+ * wired transports: GET when read is wired, POST when phase-1 write is wired. Used to build the
+ * `Allow` header for a 405.
+ */
+function participantCollectionAllow(deps: AffiliationHttpServerDeps): string[] {
+  const methods: string[] = [];
+  if (deps.participantRead !== undefined) methods.push('GET');
+  if (deps.participantWrite !== undefined) methods.push('POST');
+  return methods;
+}
+
+/**
+ * The HTTP methods available on the participant ITEM path (`/v1/participants/:id`) given the wired
+ * transports: GET when read is wired, PATCH when phase-1 write is wired.
+ */
+function participantItemAllow(deps: AffiliationHttpServerDeps): string[] {
+  const methods: string[] = [];
+  if (deps.participantRead !== undefined) methods.push('GET');
+  if (deps.participantWrite !== undefined) methods.push('PATCH');
+  return methods;
+}
+
+/** Emit a 405 for a known participant path with the correct `Allow` header. */
+function sendParticipantMethodNotAllowed(
+  res: ServerResponse,
+  requestId: string,
+  allow: string[],
+): void {
+  res.setHeader('allow', allow.join(', '));
+  sendJson(res, {
+    status: 405,
+    body: {
+      status: 'error',
+      code: 'METHOD_NOT_ALLOWED',
+      message: `Method not allowed. Allowed: ${allow.join(', ')}.`,
+      requestId,
+    },
+  });
+}
+
 /**
  * Classify a request into a STABLE, low-cardinality route label for telemetry. Returns the
  * route PATTERN (with `:id` placeholders) — never the raw URL — so resource identifiers and
@@ -947,37 +1053,75 @@ async function handleRequest(
     }
   }
 
-  // Participant Registry READ transport (only when wired). GET participant list + detail, plus the
-  // organization-participant relationship list; all read-only. The path is matched first, then the
-  // method, so a non-GET request to a participant route returns 405 rather than a 404 fall-through.
-  if (deps.participantRead !== undefined) {
+  // Participant Registry transport (read and/or phase-1 write, only when wired). The path is
+  // matched first, then the method: GET serves the read projection (when read is wired); POST on
+  // the collection creates and PATCH on the item updates (when phase-1 write is wired). Any other
+  // method on a known participant path returns 405 with the correct `Allow` header (reflecting the
+  // wired transports) rather than a 404 fall-through. Status-transition paths (two segments) never
+  // match the single-segment item route, so they fall through to 404. The organization-participant
+  // relationship list is READ-ONLY (no phase-1 write surface).
+  if (deps.participantRead !== undefined || deps.participantWrite !== undefined) {
     const orgParticipantsMatch = ORGANIZATION_PARTICIPANTS_ROUTE.exec(path);
     if (orgParticipantsMatch !== null) {
-      await handleOrganizationParticipantListRoute(
-        req,
-        res,
-        deps.participantRead,
-        orgParticipantsMatch,
-        requestId,
-        deps.resolver,
-      );
+      if (deps.participantRead !== undefined) {
+        await handleOrganizationParticipantListRoute(
+          req,
+          res,
+          deps.participantRead,
+          orgParticipantsMatch,
+          requestId,
+          deps.resolver,
+        );
+        return;
+      }
+      // Write-only wiring: the read-only relationship list is unavailable → fall through to 404.
+    } else if (path === PARTICIPANT_LIST_PATH) {
+      if (method === 'GET' && deps.participantRead !== undefined) {
+        await handleParticipantListRoute(req, res, deps.participantRead, requestId, deps.resolver);
+        return;
+      }
+      if (method === 'POST' && deps.participantWrite !== undefined) {
+        await handleParticipantCreateRoute(
+          req,
+          res,
+          deps.participantWrite,
+          requestId,
+          deps.resolver,
+          maxBytes,
+        );
+        return;
+      }
+      sendParticipantMethodNotAllowed(res, requestId, participantCollectionAllow(deps));
       return;
-    }
-    if (path === PARTICIPANT_LIST_PATH) {
-      await handleParticipantListRoute(req, res, deps.participantRead, requestId, deps.resolver);
-      return;
-    }
-    const participantDetailMatch = PARTICIPANT_DETAIL_ROUTE.exec(path);
-    if (participantDetailMatch !== null) {
-      await handleParticipantDetailRoute(
-        req,
-        res,
-        deps.participantRead,
-        participantDetailMatch,
-        requestId,
-        deps.resolver,
-      );
-      return;
+    } else {
+      const participantDetailMatch = PARTICIPANT_DETAIL_ROUTE.exec(path);
+      if (participantDetailMatch !== null) {
+        if (method === 'GET' && deps.participantRead !== undefined) {
+          await handleParticipantDetailRoute(
+            req,
+            res,
+            deps.participantRead,
+            participantDetailMatch,
+            requestId,
+            deps.resolver,
+          );
+          return;
+        }
+        if (method === 'PATCH' && deps.participantWrite !== undefined) {
+          await handleParticipantUpdateRoute(
+            req,
+            res,
+            deps.participantWrite,
+            participantDetailMatch,
+            requestId,
+            deps.resolver,
+            maxBytes,
+          );
+          return;
+        }
+        sendParticipantMethodNotAllowed(res, requestId, participantItemAllow(deps));
+        return;
+      }
     }
   }
 

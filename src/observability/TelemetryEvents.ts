@@ -31,6 +31,7 @@ export const TelemetryCounters = {
   participantRegistryStatusChanged: 'participant.registry.status_changed.count',
   participantRegistryOrganizationLinked: 'participant.registry.organization_linked.count',
   participantRegistryRead: 'participant.registry.read.count',
+  participantRegistryWrite: 'participant.registry.write.count',
 } as const;
 
 /** Duration metric names (milliseconds). */

@@ -1,0 +1,97 @@
+/**
+ * Request/response DTOs for the Participant Registry HTTP WRITE surface — PHASE 1 ONLY.
+ *
+ * Phase 1 exposes exactly two mutations: create a participant (`POST /v1/participants`) and update
+ * a participant's safe profile fields (`PATCH /v1/participants/:participantId`). There is NO
+ * status-transition, organization-link, or relationship-status shape here — those are deliberately
+ * out of scope (see docs/architecture/participant-write-http-preflight.md).
+ *
+ * These shapes are the STABLE wire contract for the write surface. Requests carry ONLY the safe,
+ * NSO-generic profile fields; identity (tenant + actor) comes EXCLUSIVELY from the resolved auth
+ * context (the `x-house-*` trusted-header contract), never from the body. Responses reuse the
+ * read surface's CLOSED {@link ParticipantDto} projection (identity / reference / status fields
+ * only) — never secrets, raw headers, connection strings, store metadata, or payload bytes.
+ *
+ * PRIVACY: a write response may carry the participant's contact `email` (the minimal identifying
+ * attribute an authorized SAME-TENANT operator may read back). That email NEVER appears in
+ * telemetry or outbox signals — only in the authorized response body.
+ */
+
+import type { ParticipantDto } from './ParticipantReadHttpDtos.js';
+import type { ParticipantExternalRef } from '../../domains/participant-registry/ParticipantTypes.js';
+
+/**
+ * Create-allowed initial status. Phase 1 deliberately restricts creation to `draft` (default) or
+ * `active`; promoting to `suspended`/`archived` is a status transition (a later phase), not a
+ * create concern.
+ */
+export type ParticipantCreateStatus = 'draft' | 'active';
+
+/** The CLOSED set of body keys accepted by `POST /v1/participants`. Any other key is rejected. */
+export const PARTICIPANT_CREATE_BODY_KEYS: readonly string[] = [
+  'participantId',
+  'displayName',
+  'givenName',
+  'familyName',
+  'email',
+  'externalRefs',
+  'status',
+];
+
+/** The CLOSED set of body keys accepted by `PATCH /v1/participants/:participantId`. */
+export const PARTICIPANT_UPDATE_BODY_KEYS: readonly string[] = [
+  'displayName',
+  'givenName',
+  'familyName',
+  'email',
+  'externalRefs',
+];
+
+/**
+ * Wire body for `POST /v1/participants`. `participantId` is REQUIRED in phase 1 (client-supplied)
+ * so creation is deterministically idempotent on the id (a duplicate id is a `409`, not a silent
+ * replay). No identity, status-transition, organization-link, or sensitive fields are accepted.
+ */
+export interface ParticipantCreateRequestBody {
+  readonly participantId: string;
+  readonly displayName: string;
+  readonly givenName?: string;
+  readonly familyName?: string;
+  readonly email?: string;
+  readonly externalRefs?: readonly ParticipantExternalRef[];
+  readonly status?: ParticipantCreateStatus;
+}
+
+/**
+ * Wire body for `PATCH /v1/participants/:participantId`. All fields are optional but AT LEAST ONE
+ * must be present. `null` clears an optional field; an omitted field is left unchanged; a string
+ * sets it. `displayName` cannot be cleared. `status` and any organization-link field are NOT
+ * accepted (rejected as unknown keys).
+ */
+export interface ParticipantUpdateRequestBody {
+  readonly displayName?: string;
+  readonly givenName?: string | null;
+  readonly familyName?: string | null;
+  readonly email?: string | null;
+  readonly externalRefs?: readonly ParticipantExternalRef[] | null;
+}
+
+/** `POST /v1/participants` request: parsed JSON body + auth headers + idempotency header. */
+export interface ParticipantCreateHttpRequest {
+  readonly headers: Readonly<Record<string, string | undefined>>;
+  readonly body: unknown;
+}
+
+/** `PATCH /v1/participants/:participantId` request: path id + parsed JSON body + auth headers. */
+export interface ParticipantUpdateHttpRequest {
+  readonly participantId: string;
+  readonly headers: Readonly<Record<string, string | undefined>>;
+  readonly body: unknown;
+}
+
+/** Successful create/update response body (reuses the CLOSED read DTO projection). */
+export type ParticipantWriteResponseBody = {
+  readonly status: 'ok';
+  readonly participant: ParticipantDto;
+  readonly requestId: string;
+};

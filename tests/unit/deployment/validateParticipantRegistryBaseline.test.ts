@@ -18,6 +18,9 @@ import {
   PARTICIPANT_HTTP_AUTH_REL,
   PARTICIPANT_HTTP_TEST_REL,
   PARTICIPANT_HTTP_INTEGRATION_TEST_REL,
+  PARTICIPANT_HTTP_WRITE_ADAPTER_REL,
+  PARTICIPANT_HTTP_WRITE_DTO_REL,
+  PARTICIPANT_HTTP_WRITE_TEST_REL,
   SERVER_MODULE_REL,
   AUTHZ_ACTIONS_MODULE_REL,
   SYNTHETIC_TEST_REL,
@@ -62,15 +65,18 @@ const VALID_DOC = [
   '## HTTP read surface',
   'Read-only list/detail and organization relationship endpoints gated by participant.read.',
   '',
+  '## HTTP write surface',
+  'Phase-1 create + update endpoints gated by participant.write.',
+  '',
   '## Out of scope (intentionally not built)',
-  'No registration, payments, enrollment, eligibility, or write transport.',
+  'No status-transition or organization-link write endpoints, no write transport beyond create/update.',
   '',
 ].join('\n');
 
 const VALID_PREFLIGHT_DOC = [
   '# Participant write HTTP preflight',
   '',
-  'Status: DESIGN / CONTRACT ONLY — NOT IMPLEMENTED.',
+  'Status: Phase 1 (create + update) IMPLEMENTED. Later phases NOT IMPLEMENTED.',
   '',
   '## Idempotency & concurrency model',
   'POST mutations require an Idempotency-Key; replays return the prior result.',
@@ -124,9 +130,14 @@ function baseFiles(): Record<string, string | null> {
     [PARTICIPANT_HTTP_TEST_REL]: '// participant read http adapter test (fixture)\n',
     [PARTICIPANT_HTTP_INTEGRATION_TEST_REL]:
       '// participant read http integration test (fixture)\n',
+    [PARTICIPANT_HTTP_WRITE_ADAPTER_REL]: '// participant write http adapter (fixture)\n',
+    [PARTICIPANT_HTTP_WRITE_DTO_REL]: '// participant write http dtos (fixture)\n',
+    [PARTICIPANT_HTTP_WRITE_TEST_REL]: '// participant write http adapter test (fixture)\n',
     [SERVER_MODULE_REL]:
-      "// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n",
-    [AUTHZ_ACTIONS_MODULE_REL]: "ParticipantRead: 'participant.read',\n",
+      '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
+      '// handleParticipantCreate handleParticipantUpdate (fixture)\n',
+    [AUTHZ_ACTIONS_MODULE_REL]:
+      "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n",
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {

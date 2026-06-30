@@ -55,7 +55,12 @@ import type {
   WorkflowReadHttpDeps,
 } from './workflow/index.js';
 import type { OrganizationReadHttpDeps } from './organization/index.js';
+import type { ParticipantWriteHttpDeps } from './participant/index.js';
 import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
+import {
+  ParticipantRegistryService,
+  PgParticipantRegistryStore,
+} from '../domains/participant-registry/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -195,6 +200,26 @@ export function createOrganizationReadHttpDeps(telemetry?: Telemetry): Organizat
 }
 
 /**
+ * Build the phase-1 Participant Registry WRITE transport (create + update) backed by PostgreSQL.
+ * Both the command service and the create duplicate pre-check read port share a single
+ * RLS-enforced {@link PgParticipantRegistryStore}, so they see exactly the same tenant-scoped
+ * rows. The service owns the transactional outbox; the adapter never enqueues directly, never
+ * touches governed lifecycle state, and never invokes the kernel. Status transitions and
+ * organization-link writes are deliberately NOT part of phase 1.
+ */
+export function createParticipantWriteHttpDeps(telemetry?: Telemetry): ParticipantWriteHttpDeps {
+  const store = new PgParticipantRegistryStore();
+  const service = new ParticipantRegistryService(store, {
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  });
+  return {
+    service,
+    readStore: store,
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -216,6 +241,7 @@ export function createPgAffiliationHttpServer(
     workflowExecution: createWorkflowExecutionHttpDeps(telemetry),
     workflowRead: createWorkflowReadHttpDeps(telemetry),
     organizationRead: createOrganizationReadHttpDeps(telemetry),
+    participantWrite: createParticipantWriteHttpDeps(telemetry),
     readiness: createDatabaseReadinessCheck({
       // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
       probe: () => queryRaw('SELECT 1'),

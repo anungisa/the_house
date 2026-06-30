@@ -250,7 +250,7 @@ function parseOrganizationParticipantListFilter(
 }
 
 /** Project a canonical participant view onto the CLOSED, null-normalized wire DTO. */
-function toParticipantDto(view: ParticipantView): ParticipantDto {
+export function toParticipantDto(view: ParticipantView): ParticipantDto {
   return {
     tenantId: view.tenantId,
     participantId: view.participantId,

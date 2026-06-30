@@ -1,13 +1,36 @@
 # Participant write HTTP preflight
 
-> **Status: DESIGN / CONTRACT ONLY — NOT IMPLEMENTED.**
-> This document defines the safe HTTP write surface for the Participant Registry *before* any
-> mutation endpoint is built. No write route, write DTO, write authorization action, or write
-> integration test exists yet. Implementation must not begin until the contract, authorization,
-> privacy, RLS, idempotency, and negative-path test requirements below are explicit and agreed.
+> **Status: PHASE 1 (create + update) IMPLEMENTED. Later phases NOT IMPLEMENTED.**
+> Phase 1 of the safe HTTP write surface — `POST /v1/participants` (create) and
+> `PATCH /v1/participants/:participantId` (update safe profile fields) — is now implemented,
+> gated by the new `participant.write` action (see §3 rows 1–2 and §5.1–§5.2). The remaining write
+> operations in this contract — participant **status transitions** (§5.3) and **organization-link**
+> create / relationship-status changes (§5.4–§5.5), and their `participant.status.write` /
+> `participant.organization_link.write` actions — remain **NOT IMPLEMENTED** and are deferred to a
+> later phase. This document stays the binding contract for those deferred phases.
 > The Participant Registry remains a **reference-data** domain: it NEVER invokes the Governance
 > Kernel, NEVER mutates governed lifecycle state, and NEVER mutates the Organization Registry
 > (it reads organizations as same-tenant reference structure only).
+
+## Phase 1 — what shipped
+
+The implemented phase-1 write surface is intentionally the minimal create + update slice:
+
+- `POST /v1/participants` — create a participant (requires an `Idempotency-Key` header; a duplicate
+  `participantId` for the tenant returns `409`). See §5.1.
+- `PATCH /v1/participants/:participantId` — update safe profile fields (`null` clears, omitted
+  leaves unchanged; `status` and organization-link fields are rejected as unknown keys). See §5.2.
+
+Both go through the validated `ParticipantRegistryService` (which owns the transactional outbox),
+are gated by `participant.write`, resolve tenant exclusively from the `x-house-*` auth context, and
+return the closed `ParticipantDto`. Files: `src/http/participant/ParticipantWriteHttpAdapter.ts`,
+`src/http/participant/ParticipantWriteHttpDtos.ts`, server wiring in `src/http/server.ts`, hermetic
+tests in `tests/unit/http/participant/ParticipantWriteHttpAdapter.test.ts` and
+`tests/unit/http/participant/participant-write-server.test.ts`.
+
+**Deferred (NOT IMPLEMENTED):** status transitions (§5.3), organization-link create (§5.4),
+relationship-status changes (§5.5), and the `participant.status.write` /
+`participant.organization_link.write` actions. The sections below remain their contract.
 
 ## 1. Purpose
 
@@ -53,19 +76,17 @@ following. None may be added without an explicit, separate request:
 
 ## 3. Proposed endpoints
 
-The domain service exposes five write operations. The recommended **first** write surface exposes
-all five, because each is already implemented, sanitized, and tenant-scoped in the domain layer;
-splitting them would create an inconsistent partial surface. If a smaller first slice is preferred,
-the recommended minimal subset is **create + update** only (rows 1–2), deferring status and linking
-to a second pass.
+The domain service exposes five write operations. **Phase 1 (now implemented) chose the minimal
+create + update subset (rows 1–2)**; status transitions and organization linking (rows 3–5) are
+deferred to a later phase and remain unimplemented.
 
-| # | Method & path | Operation | Service method | Authz action |
-| --- | --- | --- | --- | --- |
-| 1 | `POST /v1/participants` | Create a participant | `createParticipant` | `participant.write` |
-| 2 | `PATCH /v1/participants/:participantId` | Update safe profile fields | `updateParticipant` | `participant.write` |
-| 3 | `POST /v1/participants/:participantId/status-transitions` | Change participant status | `changeParticipantStatus` | `participant.status.write` |
-| 4 | `POST /v1/organizations/:organizationId/participants` | Link participant to organization | `linkParticipantToOrganization` | `participant.organization_link.write` |
-| 5 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change relationship status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` |
+| # | Method & path | Operation | Service method | Authz action | Phase |
+| --- | --- | --- | --- | --- | --- |
+| 1 | `POST /v1/participants` | Create a participant | `createParticipant` | `participant.write` | **1 (done)** |
+| 2 | `PATCH /v1/participants/:participantId` | Update safe profile fields | `updateParticipant` | `participant.write` | **1 (done)** |
+| 3 | `POST /v1/participants/:participantId/status-transitions` | Change participant status | `changeParticipantStatus` | `participant.status.write` | deferred |
+| 4 | `POST /v1/organizations/:organizationId/participants` | Link participant to organization | `linkParticipantToOrganization` | `participant.organization_link.write` | deferred |
+| 5 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change relationship status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` | deferred |
 
 Routing notes (the read surface already establishes these path shapes in `src/http/server.ts`):
 
