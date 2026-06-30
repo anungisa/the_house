@@ -165,6 +165,31 @@ The Governance Kernel is the sole authority for lifecycle state. These endpoints
 transition remain separate, explicit, governed passes. Keeping reads strictly read-only
 preserves the kernel's authority and keeps audit/evidence/idempotency controls intact.
 
+## Database / RLS validation
+
+The read surfaces are validated against a real PostgreSQL database under a **restricted,
+non-superuser, non-`BYPASSRLS`** application role (gated integration tests in
+[`tests/integration/governance/workflow-admin-read-surfaces.integration.test.ts`](../../tests/integration/governance/workflow-admin-read-surfaces.integration.test.ts),
+which run only when `RUN_DB_TESTS=1`). They prove:
+
+- **List and detail work through the real `PgWorkflowStore` and the HTTP read path.** Data is
+  built through governed paths only (kernel `submit → review_start → approve` creates the
+  workflow metadata; the decision/execution services drive approval/execution) — never by
+  inserting workflow rows by hand.
+- **Tenant isolation is enforced by RLS, not by application filtering.** A tenant never sees
+  another tenant's workflow in a list, and a detail request for another tenant's workflow returns
+  a safe `404`. Reads run only with tenant context set; a direct query without tenant context
+  **fails closed** at the database (`current_tenant_id()`), and a request with no tenant identity
+  returns `401`.
+- **Reads are strictly read-only.** Before/after a list + detail call, `governance.entity_state`
+  is unchanged and no new `state_transition`, `audit_event`, or `workflow_decision` rows are
+  written. The restricted role reads through its expected `SELECT` grants only.
+- **Readiness is a hint, not execution authorization.** It reports `executable: false` for a
+  pending workflow, `executable: true` for an approved (not-yet-executed) one, and
+  `executable: false` (`workflow_already_executed`) once the approved transition has been
+  executed — all without ever mutating state. The `executed` marker is derived from
+  `transition_request.status = 'executed'`, while the instance itself stays `approved`.
+
 ## Out of scope (intentional)
 
 - Frontend/admin UI (no React/Vue/Svelte, no screens).
