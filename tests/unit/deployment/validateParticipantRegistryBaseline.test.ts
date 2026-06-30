@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import {
   validateParticipantRegistryBaseline,
   PARTICIPANT_DOC_REL,
+  PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
   PARTICIPANT_TEST_REL,
   PARTICIPANT_INTEGRATION_TEST_REL,
   PARTICIPANT_MIGRATION_REL,
@@ -66,6 +67,25 @@ const VALID_DOC = [
   '',
 ].join('\n');
 
+const VALID_PREFLIGHT_DOC = [
+  '# Participant write HTTP preflight',
+  '',
+  'Status: DESIGN / CONTRACT ONLY — NOT IMPLEMENTED.',
+  '',
+  '## Idempotency & concurrency model',
+  'POST mutations require an Idempotency-Key; replays return the prior result.',
+  '',
+  '## RLS / tenant-isolation requirements',
+  'Tenant A cannot mutate tenant B; RLS forced; NOSUPERUSER NOBYPASSRLS.',
+  '',
+  '## Privacy & payload safety',
+  'Email response-only; names/email never in outbox or telemetry.',
+  '',
+  '## Required test matrix',
+  'Hermetic adapter, server routing, gated DB/RLS, coverage.',
+  '',
+].join('\n');
+
 const DOMAIN_FILES = [
   'ParticipantTypes.ts',
   'ParticipantRegistryErrors.ts',
@@ -92,6 +112,7 @@ const VALID_PACKAGE_JSON = JSON.stringify(
 function baseFiles(): Record<string, string | null> {
   const files: Record<string, string | null> = {
     [PARTICIPANT_DOC_REL]: VALID_DOC,
+    [PARTICIPANT_WRITE_PREFLIGHT_DOC_REL]: VALID_PREFLIGHT_DOC,
     [PARTICIPANT_TEST_REL]: '// participant registry service test (fixture)\n',
     [PARTICIPANT_INTEGRATION_TEST_REL]: '// participant registry integration test (fixture)\n',
     [PARTICIPANT_MIGRATION_REL]: '-- 0010 participant registry (fixture)\n',
@@ -274,6 +295,23 @@ describe('validateParticipantRegistryBaseline', () => {
     );
     const root = writeRepo(files);
     expect(checkOk(root, 'doc documents privacy stance')).toBe(false);
+  });
+
+  it('fails when the write HTTP preflight doc is missing', () => {
+    const files = baseFiles();
+    delete files[PARTICIPANT_WRITE_PREFLIGHT_DOC_REL];
+    const root = writeRepo(files);
+    expect(checkOk(root, 'participant write HTTP preflight doc exists')).toBe(false);
+  });
+
+  it('fails when the preflight doc omits the idempotency model', () => {
+    const files = baseFiles();
+    files[PARTICIPANT_WRITE_PREFLIGHT_DOC_REL] = VALID_PREFLIGHT_DOC.replace(
+      /## Idempotency & concurrency model[\s\S]*?Idempotency-Key[^\n]*\n/i,
+      '## Other\nplaceholder\n',
+    );
+    const root = writeRepo(files);
+    expect(checkOk(root, 'participant write preflight documents idempotency model')).toBe(false);
   });
 
   it('flags sport-specific terminology leaking into a domain file', () => {

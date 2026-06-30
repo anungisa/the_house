@@ -40,6 +40,14 @@ export interface ParticipantRegistryBaselineResult {
 
 export const PARTICIPANT_DOMAIN_DIR_REL = 'src/domains/participant-registry';
 export const PARTICIPANT_DOC_REL = 'docs/architecture/participant-registry-domain-baseline.md';
+/**
+ * Design/contract preflight for the (not-yet-implemented) HTTP write surface. It must exist and
+ * document the idempotency, RLS, privacy, and test-matrix obligations BEFORE any write endpoint is
+ * built. This check intentionally does NOT assert any write code exists — it keeps the
+ * "design-before-implementation" invariant coherent.
+ */
+export const PARTICIPANT_WRITE_PREFLIGHT_DOC_REL =
+  'docs/architecture/participant-write-http-preflight.md';
 export const PARTICIPANT_TEST_REL =
   'tests/unit/domains/participant-registry/ParticipantRegistryService.test.ts';
 export const PARTICIPANT_INTEGRATION_TEST_REL =
@@ -90,6 +98,7 @@ const PARTICIPANT_SECRET_SCAN_FILES: readonly string[] = [
   ...PARTICIPANT_DOMAIN_FILES,
   ...PARTICIPANT_HTTP_FILES,
   PARTICIPANT_DOC_REL,
+  PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
   PARTICIPANT_MIGRATION_REL,
   PARTICIPANT_VALIDATOR_MODULE,
   PARTICIPANT_VALIDATOR_SCRIPT,
@@ -103,6 +112,7 @@ const PARTICIPANT_DOMAIN_SCAN_FILES: readonly string[] = [
   ...PARTICIPANT_DOMAIN_FILES,
   ...PARTICIPANT_HTTP_FILES,
   PARTICIPANT_DOC_REL,
+  PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
   PARTICIPANT_TEST_REL,
   PARTICIPANT_INTEGRATION_TEST_REL,
   PARTICIPANT_MIGRATION_REL,
@@ -298,6 +308,30 @@ export function validateParticipantRegistryBaseline(
     ok: domainLeaks.length === 0,
     detail: domainLeaks.length === 0 ? 'clean' : domainLeaks.join('; '),
   });
+
+  // 13. The write HTTP preflight design/contract doc exists and documents the required obligations
+  //     BEFORE any write endpoint is implemented. This asserts the DESIGN, not write code.
+  const preflight = readIfExists(join(repoRoot, PARTICIPANT_WRITE_PREFLIGHT_DOC_REL));
+  checks.push({
+    name: 'participant write HTTP preflight doc exists',
+    ok: preflight !== undefined,
+    detail: PARTICIPANT_WRITE_PREFLIGHT_DOC_REL,
+  });
+  const preflightMarkers: ReadonlyArray<{ marker: RegExp; label: string }> = [
+    { marker: /NOT IMPLEMENTED/i, label: 'no write endpoints implemented yet' },
+    { marker: /idempotenc/i, label: 'idempotency model' },
+    { marker: /\bRLS\b|tenant[- ]isolation/i, label: 'RLS / tenant isolation' },
+    { marker: /privacy/i, label: 'privacy / payload safety' },
+    { marker: /test matrix/i, label: 'test matrix' },
+  ];
+  for (const { marker, label } of preflightMarkers) {
+    const present = preflight !== undefined && marker.test(preflight);
+    checks.push({
+      name: `participant write preflight documents ${label}`,
+      ok: present,
+      detail: present ? `references ${label}` : `preflight missing reference to ${label}`,
+    });
+  }
 
   return finalize(checks);
 }

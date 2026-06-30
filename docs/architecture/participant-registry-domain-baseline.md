@@ -189,7 +189,15 @@ RUN_DB_TESTS=1 \
   npx vitest run tests/integration/governance/participant-registry-http.integration.test.ts
 ```
 
-**Write endpoints remain out of scope** (see below).
+**Write endpoints remain out of scope** (see below). The safe HTTP write surface has been
+*designed* ahead of implementation in
+[participant-write-http-preflight.md](participant-write-http-preflight.md): it defines the
+proposed mutation endpoints, the new write authorization actions, DTO contracts, idempotency model,
+error mapping, privacy/payload rules, RLS test obligations, and a go/no-go checklist. **No write
+endpoint, write DTO, write authorization action, or write route is implemented yet**, and any
+future implementation must not add registration, payments, program enrollment, eligibility, or
+sensitive attributes, and must never invoke the Governance Kernel or mutate the Organization
+Registry.
 
 ## Out of scope (intentionally not built)
 
