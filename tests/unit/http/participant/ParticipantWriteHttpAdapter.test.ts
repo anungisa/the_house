@@ -3,12 +3,14 @@ import { describe, it, expect } from 'vitest';
 import {
   handleParticipantCreate,
   handleParticipantUpdate,
+  handleParticipantStatusTransition,
   participantWriteErrorToHttpResult,
   type ParticipantWriteHttpDeps,
 } from '../../../../src/http/participant/ParticipantWriteHttpAdapter.js';
 import {
   InMemoryParticipantRegistryStore,
   ParticipantRegistryService,
+  PARTICIPANT_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
 } from '../../../../src/domains/participant-registry/index.js';
 import { InMemoryOutboxStore } from '../../../../src/governance/outbox/InMemoryOutboxStore.js';
 import { InMemoryTelemetry } from '../../../../src/observability/index.js';
@@ -16,14 +18,16 @@ import { TelemetryCounters } from '../../../../src/observability/TelemetryEvents
 import { fixedClock } from '../../../../src/shared/time/clock.js';
 
 /**
- * Unit tests for the Participant Registry WRITE HTTP adapter — PHASE 1 (create + update only).
+ * Unit tests for the Participant Registry WRITE HTTP adapter — create, update, and the
+ * reference-data status transition (`POST /v1/participants/:participantId/status-transitions`).
  *
  * Protocol-pure and fully hermetic: handlers are called directly with parsed request shapes,
  * identity is carried in the shared `x-house-*` trusted-header contract, and the backing store is
  * in-memory. NO database, NO Docker, NO real Azure or Entra are required. These endpoints mutate
  * the registry ONLY through the validated Participant Registry service — they never touch governed
  * lifecycle state, never invoke the Governance Kernel, and never enqueue outbox messages directly.
- * Status transitions and organization-link writes are NOT part of phase 1.
+ * The status transition changes a denormalized reference-data status (it is NOT a governed FSM);
+ * organization-link writes are NOT part of this surface.
  */
 
 const TENANT_A = '11111111-1111-1111-1111-111111111111';
@@ -355,5 +359,312 @@ describe('participantWriteErrorToHttpResult', () => {
     const body = res.body as { code: string; message: string };
     expect(body.code).toBe('INTERNAL');
     expect(body.message).not.toContain('boom');
+  });
+});
+
+describe('participant write HTTP adapter — status transition', () => {
+  /** Seed an active participant (so suspend/archive/reinstate transitions have a target). */
+  async function seedActive(h: Harness, participantId = 'p-st'): Promise<void> {
+    const res = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(),
+      body: {
+        participantId,
+        displayName: 'Seed Person',
+        givenName: 'Given',
+        familyName: 'Family',
+        email: 'seed@example.test',
+        status: 'active',
+      },
+    });
+    expect(res.status).toBe(201);
+  }
+
+  /** Headers carrying ONLY the `participant.write` permission (NOT `participant.status.write`). */
+  function profileWriteOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-2',
+      'x-house-actor-permission-keys': 'participant.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  it('(23) transitions a draft participant to active and returns 200 with the closed DTO', async () => {
+    const h = build();
+    const created = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(),
+      body: { participantId: 'p-d', displayName: 'Draft Person' },
+    });
+    expect(created.status).toBe(201);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-d',
+      headers: adminHeaders(),
+      body: { targetStatus: 'active' },
+    });
+    expect(res.status).toBe(200);
+    const body = res.body as { status: string; participant: Record<string, unknown> };
+    expect(body.status).toBe('ok');
+    expect(body.participant['status']).toBe('active');
+    for (const key of Object.keys(body.participant)) {
+      expect(ALLOWED_PARTICIPANT_DTO_KEYS.has(key)).toBe(true);
+    }
+  });
+
+  it('(24) transitions active → suspended', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(200);
+    expect((res.body as { participant: { status: string } }).participant.status).toBe('suspended');
+  });
+
+  it('(25) transitions suspended → active (reinstate)', async () => {
+    const h = build();
+    await seedActive(h);
+    await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'active' },
+    });
+    expect(res.status).toBe(200);
+    expect((res.body as { participant: { status: string } }).participant.status).toBe('active');
+  });
+
+  it('(26) transitions active → archived', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'archived' },
+    });
+    expect(res.status).toBe(200);
+    expect((res.body as { participant: { status: string } }).participant.status).toBe('archived');
+  });
+
+  it('(27) denies a read-only actor (participant.read only) with 403', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: readerHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(28) denies an actor with participant.write but NOT participant.status.write with 403', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: profileWriteOnlyHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(29) requires the Idempotency-Key header (400 when absent)', async () => {
+    const h = build();
+    await seedActive(h);
+    const headers = adminHeaders();
+    delete headers['idempotency-key'];
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers,
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(30) rejects a missing targetStatus with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: {},
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(31) rejects an unknown targetStatus value with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'banished' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(32) rejects a misplaced profile field (displayName) with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', displayName: 'Nope' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(33) rejects a misplaced organization-link field (organizationId) with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', organizationId: 'org-1' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(34) rejects any other unknown body key with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', surprise: 1 },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(35) returns 404 for a missing participant', async () => {
+    const h = build();
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'does-not-exist',
+      headers: adminHeaders(),
+      body: { targetStatus: 'active' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(36) returns 404 for a cross-tenant participant (never reveals existence)', async () => {
+    const h = build();
+    await seedActive(h); // seeded in TENANT_A
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(TENANT_B),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(37) requires a tenant identity (401 when absent)', async () => {
+    const h = build();
+    await seedActive(h);
+    const headers = adminHeaders();
+    delete headers['x-house-tenant-id'];
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers,
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(401);
+  });
+
+  it('(38) re-applying the current status is an idempotent no-op (no duplicate outbox row)', async () => {
+    const h = build();
+    await seedActive(h); // status already active
+    const before = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+    ).length;
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'active' },
+    });
+    expect(res.status).toBe(200);
+    expect((res.body as { participant: { status: string } }).participant.status).toBe('active');
+    const after = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+    ).length;
+    expect(after).toBe(before); // no-op emits no status_changed signal
+  });
+
+  it('(39) a real transition enqueues exactly one status_changed outbox row (service owns the outbox)', async () => {
+    const h = build();
+    await seedActive(h);
+    await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    const statusRows = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+    );
+    expect(statusRows.length).toBe(1);
+    // The payload is sanitized: it carries no email or names.
+    const serialized = JSON.stringify(statusRows[0]?.payload);
+    expect(serialized).not.toContain('seed@example.test');
+    expect(serialized).not.toContain('Seed Person');
+    expect(serialized).not.toContain('Given');
+    expect(serialized).not.toContain('Family');
+  });
+
+  it('(40) emits a write telemetry counter tagged status_transition/success without leaking PII', async () => {
+    const h = build();
+    await seedActive(h);
+    await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    const signals = h.telemetry.signalsNamed(TelemetryCounters.participantRegistryWrite);
+    const stSignals = signals.filter((s) => s.attributes?.['operation'] === 'status_transition');
+    expect(stSignals.length).toBe(1);
+    expect(stSignals[0]?.attributes?.['result']).toBe('success');
+    const serialized = JSON.stringify(h.telemetry.snapshot());
+    expect(serialized).not.toContain('seed@example.test');
+    expect(serialized).not.toContain('Seed Person');
+  });
+
+  it('(41) accepts an optional reason (200) — the reason is never persisted or signaled', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', reason: 'operator note' },
+    });
+    expect(res.status).toBe(200);
+    const serializedOutbox = JSON.stringify(h.outbox.records);
+    expect(serializedOutbox).not.toContain('operator note');
+    const serializedTelemetry = JSON.stringify(h.telemetry.snapshot());
+    expect(serializedTelemetry).not.toContain('operator note');
+  });
+
+  it('(42) rejects an over-length reason with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', reason: 'x'.repeat(1025) },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(43) rejects a non-string reason with 400', async () => {
+    const h = build();
+    await seedActive(h);
+    const res = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-st',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', reason: 123 },
+    });
+    expect(res.status).toBe(400);
   });
 });

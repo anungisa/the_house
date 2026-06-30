@@ -10,29 +10,37 @@ import { ParticipantRegistryService } from '../../../src/domains/participant-reg
 import {
   handleParticipantCreate,
   handleParticipantUpdate,
+  handleParticipantStatusTransition,
   type ParticipantWriteHttpDeps,
 } from '../../../src/http/participant/ParticipantWriteHttpAdapter.js';
 import { TrustedHeadersAuthContextResolver } from '../../../src/http/auth/TrustedHeadersAuthContextResolver.js';
 
 /**
- * Gated PostgreSQL integration tests for the PARTICIPANT REGISTRY HTTP *WRITE* surface — PHASE 1
- * (create + update only) — over the real {@link PgParticipantRegistryStore} and the real HTTP
- * write adapter (`POST /v1/participants`, `PATCH /v1/participants/:participantId`).
+ * Gated PostgreSQL integration tests for the PARTICIPANT REGISTRY HTTP *WRITE* surface — create,
+ * update, and the reference-data status transition — over the real
+ * {@link PgParticipantRegistryStore} and the real HTTP write adapter
+ * (`POST /v1/participants`, `PATCH /v1/participants/:participantId`,
+ * `POST /v1/participants/:participantId/status-transitions`).
  *
  * These prove, against REAL PostgreSQL with RLS FORCED and a least-privilege NON-superuser,
  * NON-BYPASSRLS runtime role, that the HTTP write path:
- *   * creates and updates only the AUTHENTICATED tenant's participant (tenant from the trusted
- *     `x-house-*` headers, never the body);
- *   * enforces the centralized `participant.write` action (read-only actors get 403);
+ *   * creates, updates, and transitions the status of only the AUTHENTICATED tenant's participant
+ *     (tenant from the trusted `x-house-*` headers, never the body);
+ *   * enforces the centralized `participant.write` / `participant.status.write` actions (read-only
+ *     actors get 403);
  *   * is idempotency-gated on create (missing key → 400; duplicate id → 409);
  *   * normalizes email in the persisted row AND the authorized read-back;
  *   * writes the participant row and its transactional outbox row together (atomic), with a
  *     SANITIZED outbox payload that never carries email, names, raw headers, bearer tokens,
  *     connection strings, or raw bytes;
+ *   * treats a status transition as a service-validated reference-data change: a real change emits a
+ *     single sanitized `participant.registry.status_changed` outbox row, while re-applying the
+ *     current status is an idempotent no-op that emits NO row;
  *   * NEVER mutates governance.entity_state / governance.state_transition / governance.audit_event
  *     (participant registry is reference data — it never calls the Governance Kernel);
- *   * keeps tenants isolated: a cross-tenant update returns 404 (never revealing existence) and a
- *     duplicate-id pre-check is tenant-scoped (so it cannot leak another tenant's row).
+ *   * keeps tenants isolated: a cross-tenant update/transition returns 404 (never revealing
+ *     existence) and a duplicate-id pre-check is tenant-scoped (so it cannot leak another tenant's
+ *     row).
  *
  * GATING: runs only when RUN_DB_TESTS=1 and an admin connection URL is provided
  * (MIGRATE_DATABASE_URL preferred, else DATABASE_URL). Otherwise the suite is skipped so the
@@ -209,6 +217,20 @@ const SAFE_PAYLOAD_KEYS = new Set([
   'actorUserId',
 ]);
 
+/**
+ * The CLOSED set of safe keys for a status_changed outbox payload: stable identifiers, the
+ * before/after status, and correlation lineage only. NEVER names, email, headers, tokens, or bytes.
+ */
+const SAFE_STATUS_PAYLOAD_KEYS = new Set([
+  'participantId',
+  'tenantId',
+  'previousStatus',
+  'newStatus',
+  'requestId',
+  'correlationId',
+  'actorUserId',
+]);
+
 /** Sentinels that MUST NOT appear anywhere in an outbox payload (privacy / no-secret-leak). */
 const FORBIDDEN_PAYLOAD_SENTINELS = [
   'Pat', // given name
@@ -319,6 +341,19 @@ d('participant registry HTTP write surface (integration)', () => {
     body: Record<string, unknown>,
   ): ReturnType<typeof handleParticipantUpdate> {
     return handleParticipantUpdate(deps, { headers, participantId, body }, randomUUID(), TRUSTED);
+  }
+
+  function statusTransition(
+    headers: Record<string, string | undefined>,
+    participantId: string,
+    body: Record<string, unknown>,
+  ): ReturnType<typeof handleParticipantStatusTransition> {
+    return handleParticipantStatusTransition(
+      deps,
+      { headers, participantId, body },
+      randomUUID(),
+      TRUSTED,
+    );
   }
 
   // --- Role / RLS posture invariants -------------------------------------------------------
@@ -629,6 +664,195 @@ d('participant registry HTTP write surface (integration)', () => {
       familyName: 'Writer',
       email: 'pat.writer@example.test',
     });
+    const participant = res.body['participant'] as Record<string, unknown>;
+    expect(new Set(Object.keys(participant))).toEqual(ALLOWED_PARTICIPANT_DTO_KEYS);
+  });
+
+  // --- STATUS TRANSITION -------------------------------------------------------------------
+
+  // (S1) The restricted write role transitions an own-tenant participant's status (draft → active).
+  it('(S1) transitions an own-tenant participant status over the HTTP write path', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'Status Subject' });
+
+    const res = await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(200);
+    expect((res.body['participant'] as Record<string, unknown>)['status']).toBe('active');
+
+    const row = await adminGetParticipant(admin, TENANT_A, id);
+    expect(row?.status).toBe('active');
+  });
+
+  // (S2) The status transition requires participant.status.write: a read-only actor is denied 403.
+  it('(S2) status transition denies a read-only actor with 403', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'Guarded' });
+
+    const res = await statusTransition(readerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(403);
+    const row = await adminGetParticipant(admin, TENANT_A, id);
+    expect(row?.status).toBe('draft'); // unchanged
+  });
+
+  // (S3) The status transition fails closed (401) when no tenant identity is present.
+  it('(S3) status transition fails closed with 401 when tenant identity is absent', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'NoTenant' });
+    const res = await statusTransition(
+      {
+        'x-house-actor-user-id': randomUUID(),
+        'x-house-actor-role-keys': 'participant_admin',
+        'idempotency-key': `idem-${randomUUID()}`,
+      },
+      id,
+      { targetStatus: 'active' },
+    );
+    expect(res.status).toBe(401);
+  });
+
+  // (S4) The status transition rejects a missing Idempotency-Key with 400.
+  it('(S4) status transition rejects a missing Idempotency-Key with 400', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'NoKey' });
+    const headers = writerHeaders(TENANT_A);
+    delete headers['idempotency-key'];
+    const res = await statusTransition(headers, id, { targetStatus: 'active' });
+    expect(res.status).toBe(400);
+  });
+
+  // (S5/S6) The status transition rejects a missing/invalid targetStatus with 400.
+  it('(S5/S6) status transition rejects a missing or invalid targetStatus with 400', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'BadTarget' });
+    expect((await statusTransition(writerHeaders(TENANT_A), id, {})).status).toBe(400);
+    expect(
+      (await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'banished' })).status,
+    ).toBe(400);
+    const row = await adminGetParticipant(admin, TENANT_A, id);
+    expect(row?.status).toBe('draft'); // unchanged
+  });
+
+  // (S7) The status transition rejects a misplaced profile / organization-link field with 400.
+  it('(S7) status transition rejects misplaced body fields with 400', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'Closed' });
+    expect(
+      (await statusTransition(writerHeaders(TENANT_A), id, {
+        targetStatus: 'active',
+        displayName: 'Nope',
+      })).status,
+    ).toBe(400);
+    expect(
+      (await statusTransition(writerHeaders(TENANT_A), id, {
+        targetStatus: 'active',
+        organizationId: randomUUID(),
+      })).status,
+    ).toBe(400);
+  });
+
+  // (S8) The status transition returns 404 for a participant that exists nowhere.
+  it('(S8) status transition returns 404 for a missing participant', async () => {
+    const res = await statusTransition(writerHeaders(TENANT_A), randomUUID(), {
+      targetStatus: 'active',
+    });
+    expect(res.status).toBe(404);
+    expect(res.body['code']).toBe('PARTICIPANT_NOT_FOUND');
+  });
+
+  // (S9) Tenant A transitioning Tenant B's participant returns 404 (never reveals existence).
+  it('(S9) cross-tenant status transition returns 404 and never touches the other tenant', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_B), { participantId: id, displayName: 'B Member' });
+
+    const res = await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'suspended' });
+    expect(res.status).toBe(404);
+    expect(res.body['code']).toBe('PARTICIPANT_NOT_FOUND');
+
+    const row = await adminGetParticipant(admin, TENANT_B, id);
+    expect(row?.status).toBe('draft'); // Tenant B's row untouched
+  });
+
+  // (S10) A real status transition writes the participant row AND a sanitized status_changed outbox
+  //       row together (atomic); the payload carries no email, names, headers, tokens, or bytes.
+  it('(S10) status transition writes the row and a sanitized status_changed outbox atomically', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), {
+      participantId: id,
+      displayName: 'Pat Writer',
+      givenName: 'Pat',
+      familyName: 'Writer',
+      email: 'pat.writer@example.test',
+    });
+    // Clear the create outbox so the assertion targets the status_changed row only.
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [TENANT_A]);
+
+    const res = await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'suspended' });
+    expect(res.status).toBe(200);
+
+    const changed = await adminGetOutboxByType(
+      admin,
+      'participant.registry.status_changed',
+      TENANT_A,
+    );
+    expect(changed.length).toBe(1);
+    expect(changed[0]!.payload['participantId']).toBe(id);
+    expect(changed[0]!.payload['previousStatus']).toBe('draft');
+    expect(changed[0]!.payload['newStatus']).toBe('suspended');
+    const serialized = JSON.stringify(changed[0]!.payload);
+    for (const sentinel of FORBIDDEN_PAYLOAD_SENTINELS) {
+      expect(serialized.includes(sentinel)).toBe(false);
+    }
+    for (const key of Object.keys(changed[0]!.payload)) {
+      expect(SAFE_STATUS_PAYLOAD_KEYS.has(key)).toBe(true);
+    }
+    const row = await adminGetParticipant(admin, TENANT_A, id);
+    expect(row?.status).toBe('suspended');
+  });
+
+  // (S11) Re-applying the current status is an idempotent no-op: 200, and NO status_changed outbox
+  //       row is written (the service short-circuits an unchanged status).
+  it('(S11) re-applying the current status is a no-op with no status_changed outbox row', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'Idem', status: 'active' });
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [TENANT_A]);
+
+    const res = await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(200);
+    expect((res.body['participant'] as Record<string, unknown>)['status']).toBe('active');
+
+    const changed = await adminGetOutboxByType(
+      admin,
+      'participant.registry.status_changed',
+      TENANT_A,
+    );
+    expect(changed.length).toBe(0);
+  });
+
+  // (S12) The status transition NEVER mutates governance.entity_state / state_transition /
+  //       audit_event (participant status is reference data, not a governed lifecycle FSM).
+  it('(S12) status transition does not mutate governance lifecycle tables', async () => {
+    const before = await adminCountGovernance(admin, TENANT_A);
+
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), { participantId: id, displayName: 'NotGoverned' });
+    await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'suspended' });
+
+    const after = await adminCountGovernance(admin, TENANT_A);
+    expect(after.entityState).toBe(before.entityState);
+    expect(after.stateTransition).toBe(before.stateTransition);
+    expect(after.auditEvent).toBe(before.auditEvent);
+  });
+
+  // (S13) The status-transition read-back exposes ONLY the closed, safe DTO field set.
+  it('(S13) status transition responses expose only the safe closed DTO field set', async () => {
+    const id = randomUUID();
+    await create(writerHeaders(TENANT_A), {
+      participantId: id,
+      displayName: 'Pat Writer',
+      email: 'pat.writer@example.test',
+    });
+    const res = await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
     const participant = res.body['participant'] as Record<string, unknown>;
     expect(new Set(Object.keys(participant))).toEqual(ALLOWED_PARTICIPANT_DTO_KEYS);
   });

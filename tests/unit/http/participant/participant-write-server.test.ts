@@ -18,11 +18,13 @@ import { fixedClock } from '../../../../src/shared/time/clock.js';
 const { fetch } = globalThis;
 
 /**
- * Transport tests for the Participant Registry WRITE endpoints (phase 1 — create + update) wired
- * into the native HTTP server. They drive POST /v1/participants and PATCH /v1/participants/:id over
- * a short-lived ephemeral loopback listener and confirm method-based dispatch (read GET coexists
- * with write POST/PATCH; unsupported methods 405 with the correct Allow header). NO database, NO
- * Docker, NO real Azure — the registry store is in-process.
+ * Transport tests for the Participant Registry WRITE endpoints (create, update, and the
+ * reference-data status transition) wired into the native HTTP server. They drive
+ * POST /v1/participants, PATCH /v1/participants/:id, and
+ * POST /v1/participants/:id/status-transitions over a short-lived ephemeral loopback listener and
+ * confirm method-based dispatch (read GET coexists with write POST/PATCH; the status-transitions
+ * sub-resource only accepts POST; unsupported methods 405 with the correct Allow header). NO
+ * database, NO Docker, NO real Azure — the registry store is in-process.
  */
 
 const CLOCK = fixedClock(1_700_000_000_000);
@@ -139,7 +141,36 @@ describe('participant write routes (server transport)', () => {
     expect(res.headers.get('allow')).toBe('GET, PATCH');
   });
 
-  it('does not expose a status-transition route (two-segment path → 404)', async () => {
+  it('transitions status via POST /v1/participants/:id/status-transitions', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    await fetch(`${baseUrl}/v1/participants`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: JSON.stringify({ participantId: 'st-1', displayName: 'Status One' }),
+    });
+    const res = await fetch(`${baseUrl}/v1/participants/st-1/status-transitions`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: JSON.stringify({ targetStatus: 'active' }),
+    });
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { participant: { status: string } };
+    expect(body.participant.status).toBe('active');
+  });
+
+  it('returns 405 with Allow: POST for an unsupported status-transitions method', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/participants/st-1/status-transitions`, {
+      method: 'GET',
+      headers: adminHeaders(),
+    });
+    expect(res.status).toBe(405);
+    expect(res.headers.get('allow')).toBe('POST');
+  });
+
+  it('does not expose an organization-link write route (two-segment path → 404)', async () => {
     const { server, baseUrl } = await build();
     active = server;
     const res = await fetch(`${baseUrl}/v1/participants/http-1/status`, {

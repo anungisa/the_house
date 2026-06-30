@@ -66,20 +66,20 @@ const VALID_DOC = [
   'Read-only list/detail and organization relationship endpoints gated by participant.read.',
   '',
   '## HTTP write surface',
-  'Phase-1 create + update endpoints gated by participant.write.',
+  'Create + update + status-transition endpoints gated by participant.write and participant.status.write.',
   '',
   '## Out of scope (intentionally not built)',
-  'No status-transition or organization-link write endpoints, no write transport beyond create/update.',
+  'No organization-link write endpoints, no write transport beyond create/update/status-transition.',
   '',
 ].join('\n');
 
 const VALID_PREFLIGHT_DOC = [
   '# Participant write HTTP preflight',
   '',
-  'Status: Phase 1 (create + update) IMPLEMENTED. Later phases NOT IMPLEMENTED.',
+  'Status: Phase 1 create + update plus status mutation IMPLEMENTED. Org relationship write NOT IMPLEMENTED.',
   '',
   '## Phase 2 preflight — status transitions & organization-link mutations',
-  'Phase 2 designs the status-transition and organization-link routes; NOT implemented yet.',
+  'Phase 2 status-transition route IMPLEMENTED; organization-link route NOT implemented yet.',
   '',
   '## Idempotency & concurrency model',
   'POST mutations require an Idempotency-Key; replays return the prior result.',
@@ -138,9 +138,11 @@ function baseFiles(): Record<string, string | null> {
     [PARTICIPANT_HTTP_WRITE_TEST_REL]: '// participant write http adapter test (fixture)\n',
     [SERVER_MODULE_REL]:
       '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
-      '// handleParticipantCreate handleParticipantUpdate (fixture)\n',
+      '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
+      '// handleParticipantStatusTransition status-transitions (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]:
-      "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n",
+      "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n" +
+      "ParticipantStatusWrite: 'participant.status.write',\n",
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
@@ -268,6 +270,44 @@ describe('validateParticipantRegistryBaseline', () => {
     files[AUTHZ_ACTIONS_MODULE_REL] = '// authz catalog without participant.read (fixture)\n';
     const root = writeRepo(files);
     expect(checkOk(root, 'authz catalog defines participant.read')).toBe(false);
+  });
+
+  it('fails when the authz catalog does not define participant.status.write', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] =
+      "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n";
+    const root = writeRepo(files);
+    expect(checkOk(root, 'authz catalog defines participant.status.write')).toBe(false);
+  });
+
+  it('fails when the server does not wire the status-transition route', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] =
+      '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
+      '// handleParticipantCreate handleParticipantUpdate (fixture)\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'server wires the participant status-transition route')).toBe(false);
+  });
+
+  it('fails when the server wires an organization-link write handler', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] =
+      '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
+      '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
+      '// handleParticipantStatusTransition status-transitions (fixture)\n' +
+      '// handleParticipantLink (fixture)\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'server exposes NO organization-link write handler')).toBe(false);
+  });
+
+  it('flags an out-of-scope behavior term leaking into the write surface', () => {
+    const files = baseFiles();
+    files[PARTICIPANT_HTTP_WRITE_ADAPTER_REL] =
+      '// participant write http adapter handles registration (fixture)\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'no out-of-scope behavior terms in the participant write surface'),
+    ).toBe(false);
   });
 
   it('fails when the doc omits the HTTP read surface section', () => {

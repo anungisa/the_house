@@ -1,29 +1,32 @@
 /**
- * Participant Registry WRITE HTTP adapter — PHASE 1 (create + update only).
+ * Participant Registry WRITE HTTP adapter.
  *
- * Two protocol-pure mutation handlers over the validated {@link ParticipantRegistryService}:
+ * Protocol-pure mutation handlers over the validated {@link ParticipantRegistryService}:
  *  - `POST /v1/participants` — create a participant.
  *  - `PATCH /v1/participants/:participantId` — update a participant's safe profile fields.
+ *  - `POST /v1/participants/:participantId/status-transitions` — transition a participant's
+ *    reference-data status (draft/active/suspended/archived).
  *
  * Architectural boundaries (DO NOT violate):
  *  - All mutations go THROUGH {@link ParticipantRegistryService}. The adapter never writes to a
  *    store directly, never enqueues an outbox message itself (the service owns the transactional
  *    outbox), never touches governance.entity_state, and never invokes the Governance Kernel.
- *    Participant status is reference data, not a governed lifecycle FSM — and status transitions
- *    are NOT part of phase 1 anyway.
+ *    Participant status is REFERENCE DATA, not a governed lifecycle FSM — the status-transition
+ *    route changes a denormalized status field, it does not drive a kernel state machine.
  *  - Tenant comes EXCLUSIVELY from the resolved {@link AuthContext} (the `x-house-*` trusted
  *    headers). The body never carries identity; a cross-tenant participant is invisible (RLS), so
- *    an update of another tenant's participant returns 404 — never revealing cross-tenant
+ *    a write against another tenant's participant returns 404 — never revealing cross-tenant
  *    existence.
- *  - Authorization is the centralized `participant.write` action (distinct from `participant.read`;
- *    neither implies the other). Denials emit the sanitized `authz.denied` signal.
+ *  - Authorization is centralized: create/update use the `participant.write` action; the status
+ *    transition uses the distinct `participant.status.write` action (neither implies the other,
+ *    and neither implies `participant.read`). Denials emit the sanitized `authz.denied` signal.
  *
- * IDEMPOTENCY (phase 1): create REQUIRES a client-supplied `participantId` and an
- * `Idempotency-Key` header. A duplicate `participantId` for the tenant is rejected with 409
- * (there is no replay cache yet — we do not pretend a retry is a verified replay). The idempotency
- * key is propagated as outbox correlation lineage only. PATCH is deterministic and does not
- * require an idempotency key; the service guarantees a no-op update emits no duplicate signal for
- * an unchanged record.
+ * IDEMPOTENCY: create REQUIRES a client-supplied `participantId` and an `Idempotency-Key` header. A
+ * duplicate `participantId` for the tenant is rejected with 409 (there is no replay cache yet — we
+ * do not pretend a retry is a verified replay). The status transition also REQUIRES an
+ * `Idempotency-Key` header and is naturally idempotent: re-applying the same target status is a
+ * no-op (the service emits no duplicate outbox signal). The idempotency key is propagated as
+ * outbox correlation lineage only. PATCH is deterministic and does not require an idempotency key.
  *
  * PRIVACY: a response may carry the participant's `email` (authorized same-tenant read-back). That
  * email — and the participant's names — NEVER appear in telemetry or outbox signals.
@@ -46,19 +49,25 @@ import { requireTenant, resolveParticipantAuth } from './participantHttpAuth.js'
 import { toParticipantDto, type ParticipantReadHttpResult } from './ParticipantReadHttpAdapter.js';
 import {
   PARTICIPANT_CREATE_BODY_KEYS,
+  PARTICIPANT_STATUS_TRANSITION_BODY_KEYS,
+  PARTICIPANT_STATUS_TRANSITION_REASON_MAX_LENGTH,
   PARTICIPANT_UPDATE_BODY_KEYS,
   type ParticipantCreateHttpRequest,
+  type ParticipantStatusTransitionHttpRequest,
   type ParticipantUpdateHttpRequest,
   type ParticipantWriteResponseBody,
 } from './ParticipantWriteHttpDtos.js';
 import type {
+  ChangeParticipantStatusInput,
   CreateParticipantInput,
   ParticipantRegistryService,
   UpdateParticipantInput,
 } from '../../domains/participant-registry/ParticipantRegistryService.js';
-import type {
-  ParticipantExternalRef,
-  ParticipantView,
+import {
+  isParticipantStatus,
+  type ParticipantExternalRef,
+  type ParticipantStatus,
+  type ParticipantView,
 } from '../../domains/participant-registry/ParticipantTypes.js';
 
 /** Default resolver mirrors the read adapter: demo identity unless one is supplied. */
@@ -306,6 +315,97 @@ export async function handleParticipantUpdate(
   } catch (err) {
     telemetry.incrementCounter(TelemetryCounters.participantRegistryWrite, 1, {
       [TelemetryAttributeKeys.operation]: 'update',
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
+    return participantWriteErrorToHttpResult(err, requestId);
+  }
+}
+
+/**
+ * Handle `POST /v1/participants/:participantId/status-transitions` — transition a participant's
+ * reference-data status.
+ *
+ * Flow: resolve identity (tenant from auth, never the body) → enforce the distinct
+ * `participant.status.write` action → require the `Idempotency-Key` header → validate the path
+ * `participantId` → validate the CLOSED status-transition body (require a known `targetStatus`;
+ * `reason` optional + length-capped; any other key — a profile field, an organization-link field,
+ * or an out-of-scope behavior field — is rejected) →
+ * {@link ParticipantRegistryService.changeParticipantStatus} → project to the safe DTO.
+ *
+ * A missing or cross-tenant participant returns 404 (never reveals cross-tenant existence). The
+ * status change is naturally idempotent: re-applying the current status is a service-level no-op
+ * that emits no duplicate outbox signal. `reason` is validated at the boundary but NOT persisted —
+ * the service records no free-text note — and never enters the outbox payload or telemetry. The
+ * service owns the transactional outbox; the adapter enqueues nothing itself and never invokes the
+ * Governance Kernel (participant status is reference data, not a governed lifecycle FSM).
+ */
+export async function handleParticipantStatusTransition(
+  deps: ParticipantWriteHttpDeps,
+  req: ParticipantStatusTransitionHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<ParticipantReadHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
+  try {
+    const auth = await resolveParticipantAuth(resolver, req.headers);
+    const tenantId = requireTenant(auth);
+    assertAuthorized(auth, AuthorizationAction.ParticipantStatusWrite, telemetry);
+
+    const idempotencyKey = requireIdempotencyKey(req.headers);
+
+    if (req.participantId.trim() === '') {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'participantId path parameter is required.');
+    }
+    const participantId = req.participantId.trim();
+
+    const obj = asObjectBody(req.body);
+    rejectUnknownKeys(obj, PARTICIPANT_STATUS_TRANSITION_BODY_KEYS, 'participant status transition');
+
+    const targetStatusRaw = obj['targetStatus'];
+    if (!isParticipantStatus(targetStatusRaw)) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'targetStatus must be one of: draft, active, suspended, archived.',
+      );
+    }
+    const targetStatus: ParticipantStatus = targetStatusRaw;
+
+    const reasonRaw = obj['reason'];
+    if (reasonRaw !== undefined) {
+      if (typeof reasonRaw !== 'string') {
+        throw new AppError(ErrorCode.INVALID_INPUT, 'reason must be a string when provided.');
+      }
+      if (reasonRaw.length > PARTICIPANT_STATUS_TRANSITION_REASON_MAX_LENGTH) {
+        throw new AppError(
+          ErrorCode.INVALID_INPUT,
+          `reason must be at most ${PARTICIPANT_STATUS_TRANSITION_REASON_MAX_LENGTH} characters.`,
+        );
+      }
+    }
+
+    const input: ChangeParticipantStatusInput = {
+      tenantId,
+      participantId,
+      status: targetStatus,
+      correlationId: idempotencyKey,
+      requestId,
+    };
+
+    const view = await deps.service.changeParticipantStatus(input);
+
+    const body: ParticipantWriteResponseBody = {
+      status: 'ok',
+      participant: toParticipantDto(view),
+      requestId,
+    };
+    telemetry.incrementCounter(TelemetryCounters.participantRegistryWrite, 1, {
+      [TelemetryAttributeKeys.operation]: 'status_transition',
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
+    return { status: 200, body };
+  } catch (err) {
+    telemetry.incrementCounter(TelemetryCounters.participantRegistryWrite, 1, {
+      [TelemetryAttributeKeys.operation]: 'status_transition',
       [TelemetryAttributeKeys.result]: TelemetryResult.failure,
     });
     return participantWriteErrorToHttpResult(err, requestId);

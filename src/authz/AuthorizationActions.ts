@@ -30,6 +30,7 @@ export const AuthorizationAction = {
   OrganizationRead: 'organization.read',
   ParticipantRead: 'participant.read',
   ParticipantWrite: 'participant.write',
+  ParticipantStatusWrite: 'participant.status.write',
 } as const;
 
 /** Union of the valid action string literals. */
@@ -62,9 +63,11 @@ export const PLATFORM_ADMIN_ROLE = 'platform_admin';
  *  - organization_reader: read-only Organization Registry operator surface.
  *  - organization_admin: Organization Registry operator (read-only at the HTTP edge in v1).
  *  - participant_reader: read-only Participant Registry operator surface.
- *  - participant_admin: Participant Registry operator. Reads, plus phase-1 write (create a
- *    participant + update its safe profile fields) via `participant.write`. It does NOT imply
- *    status-transition or organization-link write actions (later phases).
+ *  - participant_admin: Participant Registry operator. Reads, plus profile write (create a
+ *    participant + update its safe profile fields) via `participant.write`, plus a participant
+ *    STATUS transition (`participant.status.write`) — a reference-data status change, NOT a
+ *    governed lifecycle transition. It does NOT imply organization-link write actions (a later
+ *    phase).
  */
 export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationAction[]>> = {
   workflow_reader: [AuthorizationAction.WorkflowRead],
@@ -101,7 +104,11 @@ export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationActi
   organization_reader: [AuthorizationAction.OrganizationRead],
   organization_admin: [AuthorizationAction.OrganizationRead],
   participant_reader: [AuthorizationAction.ParticipantRead],
-  participant_admin: [AuthorizationAction.ParticipantRead, AuthorizationAction.ParticipantWrite],
+  participant_admin: [
+    AuthorizationAction.ParticipantRead,
+    AuthorizationAction.ParticipantWrite,
+    AuthorizationAction.ParticipantStatusWrite,
+  ],
 };
 
 /** Type guard: is `value` a known action string? */

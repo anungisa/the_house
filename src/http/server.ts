@@ -72,6 +72,7 @@ import {
   handleOrganizationParticipantList,
   handleParticipantCreate,
   handleParticipantUpdate,
+  handleParticipantStatusTransition,
   type ParticipantReadHttpDeps,
   type ParticipantWriteHttpDeps,
 } from './participant/index.js';
@@ -134,13 +135,15 @@ export interface AffiliationHttpServerDeps {
    */
   readonly participantRead?: ParticipantReadHttpDeps;
   /**
-   * Optional Participant Registry WRITE transport — PHASE 1 (create + update only). When provided,
-   * `POST /v1/participants` (create) and `PATCH /v1/participants/:participantId` (update safe
-   * profile fields) are served; when omitted those methods 404/405. These endpoints mutate the
-   * registry ONLY through the validated Participant Registry service (which owns the transactional
-   * outbox) — they NEVER touch governed lifecycle state and NEVER invoke the kernel. They are
-   * gated by the centralized `participant.write` action (distinct from `participant.read`). Status
-   * transitions and organization-link writes are deliberately NOT part of phase 1.
+   * Optional Participant Registry WRITE transport. When provided, `POST /v1/participants` (create),
+   * `PATCH /v1/participants/:participantId` (update safe profile fields), and
+   * `POST /v1/participants/:participantId/status-transitions` (transition the reference-data
+   * status) are served; when omitted those methods 404/405. These endpoints mutate the registry
+   * ONLY through the validated Participant Registry service (which owns the transactional outbox) —
+   * they NEVER touch governed lifecycle state and NEVER invoke the kernel. Create/update are gated
+   * by the centralized `participant.write` action; the status transition is gated by the distinct
+   * `participant.status.write` action (neither implies `participant.read`). Organization-link
+   * writes are deliberately NOT part of this surface yet.
    */
   readonly participantWrite?: ParticipantWriteHttpDeps;
   /**
@@ -210,6 +213,13 @@ const PARTICIPANT_LIST_PATH = '/v1/participants';
  * list path above.
  */
 const PARTICIPANT_DETAIL_ROUTE = /^\/v1\/participants\/([^/]+)\/?$/;
+/**
+ * POST a participant reference-data status transition. A two-segment path
+ * (`.../:participantId/status-transitions`), so it never collides with the single-segment
+ * participant detail route above. Matched BEFORE the detail route in dispatch for clarity.
+ */
+const PARTICIPANT_STATUS_TRANSITIONS_ROUTE =
+  /^\/v1\/participants\/([^/]+)\/status-transitions\/?$/;
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
   res.writeHead(result.status, {
@@ -819,6 +829,36 @@ async function handleParticipantUpdateRoute(
 }
 
 /**
+ * Serve the participant status-transition endpoint
+ * (`POST /v1/participants/:participantId/status-transitions`).
+ */
+async function handleParticipantStatusTransitionRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantWrite: ParticipantWriteHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const participantId = decodeURIComponent(match[1] ?? '');
+  const result = await handleParticipantStatusTransition(
+    participantWrite,
+    { participantId, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/**
  * The HTTP methods available on the participant COLLECTION path (`/v1/participants`) given the
  * wired transports: GET when read is wired, POST when phase-1 write is wired. Used to build the
  * `Allow` header for a 405.
@@ -886,6 +926,9 @@ function classifyRoute(method: string, path: string): string {
   }
   if (ORGANIZATION_DETAIL_ROUTE.test(path)) return `${method} /v1/organizations/:id`;
   if (path === PARTICIPANT_LIST_PATH) return `${method} /v1/participants`;
+  if (PARTICIPANT_STATUS_TRANSITIONS_ROUTE.test(path)) {
+    return `${method} /v1/participants/:id/status-transitions`;
+  }
   if (PARTICIPANT_DETAIL_ROUTE.test(path)) return `${method} /v1/participants/:id`;
   if (TRANSITION_ROUTE.test(path)) {
     return `${method} /v1/affiliation/applications/:id/transitions/:action`;
@@ -1053,13 +1096,14 @@ async function handleRequest(
     }
   }
 
-  // Participant Registry transport (read and/or phase-1 write, only when wired). The path is
-  // matched first, then the method: GET serves the read projection (when read is wired); POST on
-  // the collection creates and PATCH on the item updates (when phase-1 write is wired). Any other
-  // method on a known participant path returns 405 with the correct `Allow` header (reflecting the
-  // wired transports) rather than a 404 fall-through. Status-transition paths (two segments) never
-  // match the single-segment item route, so they fall through to 404. The organization-participant
-  // relationship list is READ-ONLY (no phase-1 write surface).
+  // Participant Registry transport (read and/or write, only when wired). The path is matched
+  // first, then the method: GET serves the read projection (when read is wired); POST on the
+  // collection creates, PATCH on the item updates, and POST on the item's status-transitions
+  // sub-resource changes the reference-data status (when write is wired). Any other method on a
+  // known participant path returns 405 with the correct `Allow` header (reflecting the wired
+  // transports) rather than a 404 fall-through. The status-transitions path (two segments) is
+  // matched explicitly BEFORE the single-segment item route. The organization-participant
+  // relationship list is READ-ONLY (no write surface).
   if (deps.participantRead !== undefined || deps.participantWrite !== undefined) {
     const orgParticipantsMatch = ORGANIZATION_PARTICIPANTS_ROUTE.exec(path);
     if (orgParticipantsMatch !== null) {
@@ -1094,33 +1138,56 @@ async function handleRequest(
       sendParticipantMethodNotAllowed(res, requestId, participantCollectionAllow(deps));
       return;
     } else {
-      const participantDetailMatch = PARTICIPANT_DETAIL_ROUTE.exec(path);
-      if (participantDetailMatch !== null) {
-        if (method === 'GET' && deps.participantRead !== undefined) {
-          await handleParticipantDetailRoute(
-            req,
-            res,
-            deps.participantRead,
-            participantDetailMatch,
-            requestId,
-            deps.resolver,
-          );
-          return;
-        }
-        if (method === 'PATCH' && deps.participantWrite !== undefined) {
-          await handleParticipantUpdateRoute(
+      const participantStatusMatch = PARTICIPANT_STATUS_TRANSITIONS_ROUTE.exec(path);
+      if (participantStatusMatch !== null) {
+        if (method === 'POST' && deps.participantWrite !== undefined) {
+          await handleParticipantStatusTransitionRoute(
             req,
             res,
             deps.participantWrite,
-            participantDetailMatch,
+            participantStatusMatch,
             requestId,
             deps.resolver,
             maxBytes,
           );
           return;
         }
-        sendParticipantMethodNotAllowed(res, requestId, participantItemAllow(deps));
-        return;
+        // Known status-transition sub-resource: only POST is supported. Return 405 when the write
+        // transport is wired; when write is NOT wired the route does not exist → fall through to
+        // 404 (don't advertise a route the server cannot serve).
+        if (deps.participantWrite !== undefined) {
+          sendParticipantMethodNotAllowed(res, requestId, ['POST']);
+          return;
+        }
+      } else {
+        const participantDetailMatch = PARTICIPANT_DETAIL_ROUTE.exec(path);
+        if (participantDetailMatch !== null) {
+          if (method === 'GET' && deps.participantRead !== undefined) {
+            await handleParticipantDetailRoute(
+              req,
+              res,
+              deps.participantRead,
+              participantDetailMatch,
+              requestId,
+              deps.resolver,
+            );
+            return;
+          }
+          if (method === 'PATCH' && deps.participantWrite !== undefined) {
+            await handleParticipantUpdateRoute(
+              req,
+              res,
+              deps.participantWrite,
+              participantDetailMatch,
+              requestId,
+              deps.resolver,
+              maxBytes,
+            );
+            return;
+          }
+          sendParticipantMethodNotAllowed(res, requestId, participantItemAllow(deps));
+          return;
+        }
       }
     }
   }
