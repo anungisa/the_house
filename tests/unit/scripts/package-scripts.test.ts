@@ -66,6 +66,12 @@ describe('package scripts', () => {
     expect(scripts['sbom:attest']).toBe('tsx scripts/attest-sbom.ts');
   });
 
+  // Azure environment smoke-test baseline scripts are present.
+  it('defines smoke:check and smoke:azure', () => {
+    expect(scripts['smoke:check']).toBe('tsx scripts/validate-azure-smoke-baseline.ts');
+    expect(scripts['smoke:azure']).toBe('tsx scripts/azure-smoke-test.ts');
+  });
+
   // Aggregate CI gate script is present and chains the required gates.
   it('defines ci:check chaining the required gates', () => {
     const ciCheck = scripts['ci:check'];
@@ -80,6 +86,7 @@ describe('package scripts', () => {
       'npm run migrations:check',
       'npm run supply-chain:check',
       'npm run provenance:check',
+      'npm run smoke:check',
     ]) {
       expect(ciCheck).toContain(gate);
     }
@@ -104,6 +111,8 @@ describe('package scripts', () => {
       'migrations:check',
       'supply-chain:check',
       'provenance:check',
+      'smoke:check',
+      'smoke:azure',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

@@ -27,6 +27,11 @@ on:
         required: false
         default: 'latest'
         type: string
+      run_smoke_tests:
+        description: 'Run read-only post-deploy Azure smoke tests after rollout.'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -145,3 +150,20 @@ jobs:
               --name "${{ vars.AZURE_WORKER_CONTAINER_APP }}" \
               --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
               --image "${{ vars.AZURE_CONTAINER_REGISTRY }}.azurecr.io/the-house-worker:${{ inputs.image_tag }}"
+
+      # Post-deploy READ-ONLY smoke tests against the freshly rolled-out
+      # environment. MANUAL + GUARDED: this step runs only when the operator opts
+      # in (run_smoke_tests == true) on top of the DEPLOY confirmation. The runner
+      # is default-off and refuses to call anything unless AZURE_SMOKE_ENABLED is
+      # "true". It performs read-only readiness/liveness/auth checks and NEVER
+      # mutates governed state. The base URL and token come from environment
+      # references, never committed secret values. See
+      # docs/architecture/azure-environment-smoke-test-baseline.md.
+      - name: Post-deploy Azure smoke tests (read-only, manual, guarded)
+        if: ${{ inputs.run_smoke_tests == true }}
+        env:
+          AZURE_SMOKE_ENABLED: 'true'
+          AZURE_SMOKE_BASE_URL: ${{ vars.AZURE_SMOKE_BASE_URL }}
+          AZURE_SMOKE_EXPECTED_ENV: ${{ vars.AZURE_SMOKE_EXPECTED_ENV }}
+          AZURE_SMOKE_AUTH_TOKEN: ${{ secrets.AZURE_SMOKE_AUTH_TOKEN }}
+        run: npm run smoke:azure

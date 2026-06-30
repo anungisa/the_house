@@ -60,3 +60,6 @@ jobs:
 
       - name: Validate provenance baseline
         run: npm run provenance:check
+
+      - name: Validate Azure smoke baseline
+        run: npm run smoke:check
