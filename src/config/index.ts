@@ -153,6 +153,24 @@ export interface EvidenceMalwareScanningConfig {
 }
 
 /**
+ * Evidence QUARANTINE workflow configuration. When a malware scan blocks an upload, the
+ * platform records a sanitized security event and emits an outbox event — WITHOUT storing the
+ * infected bytes. This is operational security metadata, NOT lifecycle governance.
+ */
+export interface EvidenceQuarantineConfig {
+  /**
+   * When true (default), blocked uploads are recorded as quarantine events and an outbox event
+   * is emitted. When false, a blocked upload is still rejected — just not recorded.
+   */
+  readonly enabled: boolean;
+  /**
+   * When true (default), a rejection response includes the recorded `quarantineEventId` as a
+   * non-sensitive correlation id. Threat details are never surfaced regardless.
+   */
+  readonly includeEventIdInResponse: boolean;
+}
+
+/**
  * Settings for the outbox worker RUNTIME HOST (the interval loop that drains the outbox).
  * Distinct from {@link OutboxConfig}: those tune the worker's retry/backoff mechanics, these
  * tune the host that schedules {@link OutboxConfig}-driven batches.
@@ -184,6 +202,7 @@ export interface AppConfig {
   readonly auth: AuthConfig;
   readonly evidenceStorage: EvidenceStorageConfig;
   readonly evidenceMalwareScanning: EvidenceMalwareScanningConfig;
+  readonly evidenceQuarantine: EvidenceQuarantineConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -402,6 +421,18 @@ function readEvidenceMalwareScanningConfig(): EvidenceMalwareScanningConfig {
 }
 
 /**
+ * Resolve evidence quarantine configuration. Defaults to enabled (a blocked upload should be
+ * an auditable security event) and to including the non-sensitive event id in the rejection
+ * response. Neither default requires any external system.
+ */
+function readEvidenceQuarantineConfig(): EvidenceQuarantineConfig {
+  return {
+    enabled: readBool('EVIDENCE_QUARANTINE_ENABLED', true),
+    includeEventIdInResponse: readBool('EVIDENCE_QUARANTINE_INCLUDE_EVENT_ID_IN_RESPONSE', true),
+  };
+}
+
+/**
  * Resolve and validate Service Bus configuration. Fails closed only when publishing is
  * explicitly enabled: a disabled config (the default) requires no connection string and
  * never blocks local/test runtimes.
@@ -493,5 +524,6 @@ export function loadConfig(): AppConfig {
     auth: readAuthConfig(),
     evidenceStorage: readEvidenceStorageConfig(),
     evidenceMalwareScanning: readEvidenceMalwareScanningConfig(),
+    evidenceQuarantine: readEvidenceQuarantineConfig(),
   };
 }

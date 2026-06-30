@@ -30,15 +30,21 @@ import type {
   EvidenceObjectRef,
 } from '../../governance/evidence/EvidenceStorage.js';
 import { buildEvidenceStorageKey } from '../../governance/evidence/EvidenceStorage.js';
+import { sha256Hex } from '../../governance/evidence/EvidenceHasher.js';
 import {
   parseEvidenceStorageRef,
   type EvidenceStorageRef,
 } from '../../governance/evidence/EvidenceMetadataBinding.js';
 import type { StoredEvidenceWithBinding } from '../../governance/evidence/GovernanceEvidenceService.js';
 import {
-  enforceEvidenceScan,
+  evaluateEvidenceScan,
   type EvidenceMalwareScanner,
+  type EvidenceScanDecision,
 } from '../../governance/evidence/scanning/index.js';
+import {
+  toQuarantineScanStatus,
+  type EvidenceQuarantineRecorder,
+} from '../../governance/evidence/quarantine/index.js';
 import {
   EVIDENCE_HEADER_NAMES,
   type EvidenceDownloadRequest,
@@ -78,6 +84,19 @@ export interface EvidenceHttpDeps {
   readonly scanner: EvidenceMalwareScanner;
   /** When true, a `skipped`/`error` scan fails closed and rejects the upload. */
   readonly scanRequired: boolean;
+  /**
+   * Optional quarantine recorder. When present, a blocked upload (infected, or error/skipped
+   * when scanning is required) is recorded as a sanitized security event and an outbox event
+   * is emitted BEFORE the upload is rejected. The infected bytes are NEVER stored. When
+   * absent (quarantine disabled), the upload is still rejected — just not recorded.
+   */
+  readonly quarantine?: EvidenceQuarantineRecorder;
+  /**
+   * When true (and a quarantine event was recorded), the rejection response includes the
+   * `quarantineEventId` as a top-level field. The event id is a non-sensitive correlation id;
+   * threat details are never surfaced regardless.
+   */
+  readonly includeQuarantineEventIdInResponse?: boolean;
 }
 
 /** Discriminated transport result: JSON for metadata/errors, raw bytes for a download. */
@@ -202,6 +221,70 @@ export function evidenceErrorToHttpResult(
   };
 }
 
+/** Context needed to quarantine a blocked upload (sanitized metadata only; never the bytes). */
+interface BlockedUploadContext {
+  readonly tenantId: string;
+  readonly content: Uint8Array;
+  readonly contentType: string;
+  /** Resolved actor user id (may be empty when not provided). */
+  readonly actorUserId: string;
+  readonly evidenceObjectId?: string;
+  readonly sourceFilename?: string;
+  readonly correlationId?: string;
+}
+
+/**
+ * Record a blocked upload as a sanitized quarantine security event (when quarantine is wired)
+ * and map the gate's rejection to a transport result. The infected bytes are NEVER stored —
+ * only a content hash + sanitized scan metadata are recorded, and an outbox event is emitted.
+ * A quarantine-store failure NEVER turns a rejection into an acceptance: the upload is still
+ * rejected with its original status code.
+ */
+async function rejectBlockedUpload(
+  deps: EvidenceHttpDeps,
+  decision: Extract<EvidenceScanDecision, { outcome: 'reject' }>,
+  requestId: string,
+  ctx: BlockedUploadContext,
+): Promise<EvidenceHttpResult> {
+  let quarantineEventId: string | undefined;
+  if (decision.quarantine && deps.quarantine !== undefined) {
+    try {
+      const recorded = await deps.quarantine.recordBlockedUpload({
+        tenantId: ctx.tenantId,
+        contentType: ctx.contentType,
+        sizeBytes: ctx.content.byteLength,
+        // Hash-only retention: the rejected bytes are never stored, only their digest.
+        contentHash: sha256Hex(ctx.content),
+        scanStatus: toQuarantineScanStatus(decision.result.status),
+        scanner: decision.result.scanner,
+        requestId,
+        ...(ctx.evidenceObjectId !== undefined ? { evidenceObjectId: ctx.evidenceObjectId } : {}),
+        ...(ctx.sourceFilename !== undefined ? { sourceFilename: ctx.sourceFilename } : {}),
+        ...(decision.result.signatureVersion !== undefined
+          ? { signatureVersion: decision.result.signatureVersion }
+          : {}),
+        ...(decision.result.threatName !== undefined
+          ? { threatName: decision.result.threatName }
+          : {}),
+        ...(decision.result.reason !== undefined ? { reason: decision.result.reason } : {}),
+        ...(ctx.actorUserId !== '' ? { uploadActorUserId: ctx.actorUserId } : {}),
+        ...(ctx.correlationId !== undefined ? { correlationId: ctx.correlationId } : {}),
+      });
+      quarantineEventId = recorded.quarantineEventId;
+    } catch {
+      // A quarantine-store failure MUST NOT cause the rejected upload to be accepted and MUST
+      // NOT surface payload-derived internals. Fall through to the original rejection.
+      quarantineEventId = undefined;
+    }
+  }
+
+  const mapped = evidenceErrorToHttpResult(decision.error, requestId);
+  if (quarantineEventId !== undefined && deps.includeQuarantineEventIdInResponse === true) {
+    return { kind: 'json', status: mapped.status, body: { ...mapped.body, quarantineEventId } };
+  }
+  return mapped;
+}
+
 /** Store an uploaded payload and return its governance binding metadata (never the bytes). */
 export async function handleEvidenceUpload(
   deps: EvidenceHttpDeps,
@@ -210,7 +293,8 @@ export async function handleEvidenceUpload(
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceHttpResult> {
   try {
-    const tenantId = requireTenant(await resolveEvidenceAuth(resolver, req.headers));
+    const auth = await resolveEvidenceAuth(resolver, req.headers);
+    const tenantId = requireTenant(auth);
 
     const contentType = trimmedHeader(req.headers['content-type']);
     if (contentType === undefined) {
@@ -229,23 +313,37 @@ export async function handleEvidenceUpload(
       );
     }
 
-    // Ingestion gate: scan the payload BEFORE it is stored. An infected payload (or a
-    // skipped/failed scan when scanning is required) throws and is never persisted.
-    const scan = await enforceEvidenceScan(
+    const evidenceObjectId = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.evidenceObjectId]);
+    const sourceFilename = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.sourceFilename]);
+    const retentionClass = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.retentionClass]);
+    const correlationId = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.correlationId]);
+
+    // Ingestion gate: DECIDE whether the payload may be stored BEFORE it is stored. A
+    // rejection (infected, or skipped/failed when scanning is required) is quarantined (a
+    // sanitized security event + outbox event) and the bytes are NEVER persisted.
+    const decision = await evaluateEvidenceScan(
       { scanner: deps.scanner, required: deps.scanRequired },
       { content: req.content, contentType, tenantId },
     );
+    if (decision.outcome === 'reject') {
+      return await rejectBlockedUpload(deps, decision, requestId, {
+        tenantId,
+        content: req.content,
+        contentType,
+        actorUserId: auth.actor.userId,
+        ...(evidenceObjectId !== undefined ? { evidenceObjectId } : {}),
+        ...(sourceFilename !== undefined ? { sourceFilename } : {}),
+        ...(correlationId !== undefined ? { correlationId } : {}),
+      });
+    }
+
+    const scan = decision.result;
     const malwareScan: EvidenceScanResultSummary = {
       status: scan.status,
       scanner: scan.scanner,
       scannedAt: scan.scannedAt,
       ...(scan.signatureVersion !== undefined ? { signatureVersion: scan.signatureVersion } : {}),
     };
-
-    const evidenceObjectId = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.evidenceObjectId]);
-    const sourceFilename = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.sourceFilename]);
-    const retentionClass = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.retentionClass]);
-    const correlationId = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.correlationId]);
 
     const stored = await deps.uploadService.storeEvidencePayload({
       tenantId,

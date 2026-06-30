@@ -44,6 +44,7 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       uploadMaxBytes: 10_485_760,
     },
     evidenceMalwareScanning: { mode: 'disabled', required: false, testSignaturesEnabled: false },
+    evidenceQuarantine: { enabled: true, includeEventIdInResponse: true },
     ...over,
   };
 }
@@ -147,6 +148,17 @@ describe('config diagnostics', () => {
       }),
     );
     expect(diag.warnings.some((w) => w.includes('EVIDENCE_STORAGE_PROVIDER=memory'))).toBe(true);
+  });
+
+  // Warns on disabled quarantine in a production-like environment.
+  it('warns when evidence quarantine is disabled in a production-like environment', () => {
+    const diag = buildConfigDiagnostics(
+      makeConfig({
+        appEnv: 'production',
+        evidenceQuarantine: { enabled: false, includeEventIdInResponse: true },
+      }),
+    );
+    expect(diag.warnings.some((w) => w.includes('EVIDENCE_QUARANTINE_ENABLED=false'))).toBe(true);
   });
 
   // (10) Warns on disabled malware scanning with azure_blob storage.

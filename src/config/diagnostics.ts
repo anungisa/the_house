@@ -87,6 +87,10 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
       required: config.evidenceMalwareScanning.required,
       testSignaturesEnabled: config.evidenceMalwareScanning.testSignaturesEnabled,
     },
+    evidenceQuarantine: {
+      enabled: config.evidenceQuarantine.enabled,
+      includeEventIdInResponse: config.evidenceQuarantine.includeEventIdInResponse,
+    },
     outbox: {
       batchSize: config.outbox.batchSize,
       lockSeconds: config.outbox.lockSeconds,
@@ -130,6 +134,12 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
   ) {
     warnings.push(
       'EVIDENCE_MALWARE_SCANNING_MODE=disabled while EVIDENCE_STORAGE_PROVIDER=azure_blob: durable evidence is stored without a scan gate.',
+    );
+  }
+
+  if (!config.evidenceQuarantine.enabled && productionLike) {
+    warnings.push(
+      'EVIDENCE_QUARANTINE_ENABLED=false in a production-like environment: blocked malware uploads are still rejected but are not recorded as auditable security events.',
     );
   }
 

@@ -63,6 +63,7 @@ function makeConfig(serviceBus: ServiceBusConfig): AppConfig {
     auth: { mode: 'demo' },
     evidenceStorage: { provider: 'memory', connectionString: '', containerName: '', requireHash: true, uploadMaxBytes: 10_485_760 },
     evidenceMalwareScanning: { mode: 'disabled', required: false, testSignaturesEnabled: false },
+    evidenceQuarantine: { enabled: true, includeEventIdInResponse: true },
   };
 }
 

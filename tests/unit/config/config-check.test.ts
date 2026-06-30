@@ -39,6 +39,7 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       uploadMaxBytes: 10_485_760,
     },
     evidenceMalwareScanning: { mode: 'disabled', required: false, testSignaturesEnabled: false },
+    evidenceQuarantine: { enabled: true, includeEventIdInResponse: true },
     ...over,
   };
 }

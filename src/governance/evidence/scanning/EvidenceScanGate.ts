@@ -33,13 +33,37 @@ export interface EvidenceScanGateOptions {
 }
 
 /**
- * Scan a payload and enforce the ingestion policy. Returns the (clean/skipped) scan result
- * when the upload may proceed; throws an {@link AppError} when it must be rejected.
+ * Decision produced by {@link evaluateEvidenceScan}: either the upload may proceed
+ * (`accept`) or it must be rejected (`reject`). A rejection carries the (sanitized) scan
+ * result, the mapped {@link AppError}, and whether the blocked upload should be quarantined.
+ *
+ * The scan RESULT (status/scanner/threatName) is preserved on a rejection so the caller can
+ * record quarantine metadata; it is NOT surfaced to the HTTP client.
  */
-export async function enforceEvidenceScan(
+export type EvidenceScanDecision =
+  | { readonly outcome: 'accept'; readonly result: EvidenceScanResult }
+  | {
+      readonly outcome: 'reject';
+      readonly result: EvidenceScanResult;
+      readonly error: AppError;
+      /**
+       * Whether the blocked upload should be quarantined. True for every rejection (infected,
+       * or error/skipped when required) — a blocked upload is always a recordable security
+       * event. Kept explicit so the policy is visible at the call site.
+       */
+      readonly quarantine: boolean;
+    };
+
+/**
+ * Run the scanner and DECIDE whether the upload may proceed, WITHOUT throwing. This is the
+ * single decision point; {@link enforceEvidenceScan} is a thin throwing wrapper over it. The
+ * caller (evidence HTTP adapter) uses the richer decision so it can record quarantine metadata
+ * for a rejection before mapping the error to a response.
+ */
+export async function evaluateEvidenceScan(
   options: EvidenceScanGateOptions,
   input: EvidenceScanInput,
-): Promise<EvidenceScanResult> {
+): Promise<EvidenceScanDecision> {
   const clock = options.clock ?? systemClock;
 
   let result: EvidenceScanResult;
@@ -58,37 +82,73 @@ export async function enforceEvidenceScan(
 
   switch (result.status) {
     case 'infected':
-      throw new AppError(
-        ErrorCode.EVIDENCE_MALWARE_DETECTED,
-        'Evidence upload was rejected: malware was detected in the payload.',
-        { details: { scanner: result.scanner, threatName: result.threatName } },
-      );
+      return {
+        outcome: 'reject',
+        result,
+        quarantine: true,
+        error: new AppError(
+          ErrorCode.EVIDENCE_MALWARE_DETECTED,
+          'Evidence upload was rejected: malware was detected in the payload.',
+          { details: { scanner: result.scanner, threatName: result.threatName } },
+        ),
+      };
     case 'error':
       if (options.required) {
-        throw new AppError(
-          ErrorCode.EVIDENCE_MALWARE_SCAN_FAILED,
-          'Evidence upload was rejected: malware scanning is required but could not complete.',
-          { details: { scanner: result.scanner } },
-        );
+        return {
+          outcome: 'reject',
+          result,
+          quarantine: true,
+          error: new AppError(
+            ErrorCode.EVIDENCE_MALWARE_SCAN_FAILED,
+            'Evidence upload was rejected: malware scanning is required but could not complete.',
+            { details: { scanner: result.scanner } },
+          ),
+        };
       }
-      return result;
+      return { outcome: 'accept', result };
     case 'skipped':
       if (options.required) {
-        throw new AppError(
-          ErrorCode.EVIDENCE_MALWARE_SCAN_REQUIRED,
-          'Evidence upload was rejected: malware scanning is required but was not performed.',
-          { details: { scanner: result.scanner } },
-        );
+        return {
+          outcome: 'reject',
+          result,
+          quarantine: true,
+          error: new AppError(
+            ErrorCode.EVIDENCE_MALWARE_SCAN_REQUIRED,
+            'Evidence upload was rejected: malware scanning is required but was not performed.',
+            { details: { scanner: result.scanner } },
+          ),
+        };
       }
-      return result;
+      return { outcome: 'accept', result };
     case 'clean':
-      return result;
+      return { outcome: 'accept', result };
     default:
-      // Exhaustiveness guard: an unknown status fails closed.
-      throw new AppError(
-        ErrorCode.EVIDENCE_MALWARE_SCAN_FAILED,
-        'Evidence upload was rejected: malware scan returned an unknown status.',
-        { details: { scanner: result.scanner } },
-      );
+      // Exhaustiveness guard: an unknown status fails closed (and is quarantined).
+      return {
+        outcome: 'reject',
+        result,
+        quarantine: true,
+        error: new AppError(
+          ErrorCode.EVIDENCE_MALWARE_SCAN_FAILED,
+          'Evidence upload was rejected: malware scan returned an unknown status.',
+          { details: { scanner: result.scanner } },
+        ),
+      };
   }
+}
+
+/**
+ * Scan a payload and enforce the ingestion policy. Returns the (clean/skipped) scan result
+ * when the upload may proceed; throws an {@link AppError} when it must be rejected. Thin
+ * wrapper over {@link evaluateEvidenceScan} for callers that only need accept-or-throw.
+ */
+export async function enforceEvidenceScan(
+  options: EvidenceScanGateOptions,
+  input: EvidenceScanInput,
+): Promise<EvidenceScanResult> {
+  const decision = await evaluateEvidenceScan(options, input);
+  if (decision.outcome === 'reject') {
+    throw decision.error;
+  }
+  return decision.result;
 }

@@ -29,5 +29,7 @@ export {
 } from './EvidenceMalwareScannerFactory.js';
 export {
   enforceEvidenceScan,
+  evaluateEvidenceScan,
+  type EvidenceScanDecision,
   type EvidenceScanGateOptions,
 } from './EvidenceScanGate.js';

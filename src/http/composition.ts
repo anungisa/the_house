@@ -39,6 +39,10 @@ import { WorkflowDecisionService } from '../governance/workflow/WorkflowDecision
 import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
 import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
 import { createEvidenceMalwareScanner } from '../governance/evidence/scanning/index.js';
+import {
+  EvidenceQuarantineService,
+  PgEvidenceQuarantineStore,
+} from '../governance/evidence/quarantine/index.js';
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createDatabaseReadinessCheck } from './readiness.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
@@ -81,8 +85,11 @@ export function createPgAffiliationApplicationService(): AffiliationApplicationS
 
 /**
  * Build the evidence HTTP transport from the evidence-storage config. The provider defaults
- * to in-memory (no Azure required); `azure_blob` is config-gated. This is governance
- * infrastructure only — it never touches governed tables or the kernel.
+ * to in-memory (no Azure required); `azure_blob` is config-gated. When quarantine is enabled
+ * (default), blocked uploads are recorded as sanitized security events that emit an outbox
+ * event through the RLS-enforced {@link PgEvidenceQuarantineStore} — the infected bytes are
+ * never stored. This is governance infrastructure only — it never touches governed tables or
+ * the kernel.
  */
 export function createEvidenceHttpDeps(): EvidenceHttpDeps {
   const config = loadConfig();
@@ -93,6 +100,14 @@ export function createEvidenceHttpDeps(): EvidenceHttpDeps {
     maxUploadBytes: config.evidenceStorage.uploadMaxBytes,
     scanner: createEvidenceMalwareScanner(config.evidenceMalwareScanning),
     scanRequired: config.evidenceMalwareScanning.required,
+    ...(config.evidenceQuarantine.enabled
+      ? {
+          quarantine: new EvidenceQuarantineService(new PgEvidenceQuarantineStore(), {
+            maxRetries: config.outbox.maxRetries,
+          }),
+          includeQuarantineEventIdInResponse: config.evidenceQuarantine.includeEventIdInResponse,
+        }
+      : {}),
   };
 }
 
