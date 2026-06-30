@@ -118,6 +118,33 @@ LEVEL SECURITY`, and its policies require `tenant_id = governance.current_tenant
 application role (`house_app`, non-superuser, `NOBYPASSRLS`) is granted only `SELECT, INSERT,
 UPDATE`. Missing tenant context fails closed (`TENANT_CONTEXT_MISSING`).
 
+## Database / RLS validation
+
+The quarantine database path is exercised by a gated PostgreSQL integration suite
+(`tests/integration/governance/evidence-quarantine.integration.test.ts`) that runs only when
+`RUN_DB_TESTS=1` and an admin connection URL is supplied; the default `npm test` run stays
+hermetic and skips it. The suite provisions a dedicated **non-superuser, `NOBYPASSRLS`**
+application role granted only `SELECT, INSERT, UPDATE` on `evidence_quarantine_event` and
+`outbox_message` (no `DELETE`/`TRUNCATE`), and connects as that role to prove the production-grade
+posture against real PostgreSQL. It validates:
+
+- migration `0007` applies and `governance.evidence_quarantine_event` exists with
+  `relrowsecurity` **and** `relforcerowsecurity` set (FORCE RLS);
+- the application role is `rolsuper = false` and `rolbypassrls = false`;
+- recording a blocked upload writes the quarantine row **and** the outbox row atomically in one
+  transaction (a transient `REVOKE INSERT` on `outbox_message` rolls back the quarantine row too);
+- the quarantine row stores only sanitized metadata (`content_hash`, `content_type`, `size_bytes`,
+  scanner/scan fields) — there is **no** `bytea`/`payload`/raw-content column;
+- the outbox payload carries correlation fields (`quarantineEventId`, `contentHash`, `scanStatus`)
+  but never the raw bytes, uploader actor id, or source filename;
+- tenant isolation holds: a tenant reads only its own rows, cannot see another tenant's rows, and
+  an insert with no tenant context fails closed (`P0001` / `TENANT_CONTEXT_MISSING`);
+- quarantine does **not** mutate governed lifecycle tables — `entity_state`, `state_transition`,
+  `audit_event`, and `evidence_object` counts are unchanged;
+- the HTTP upload seam (`handleEvidenceUpload`) rejects an EICAR payload with
+  `422 EVIDENCE_MALWARE_DETECTED`, never calls clean-evidence storage, and records the
+  quarantine + outbox rows with a hash of the rejected bytes.
+
 ## Error behaviour (fail-safe)
 
 Quarantine recording is wrapped so it can **never weaken** the rejection:
