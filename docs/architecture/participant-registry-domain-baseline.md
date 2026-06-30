@@ -141,14 +141,65 @@ Email, when present, is normalized and format-validated, but is **never** emitte
 payloads or telemetry. Records are retained (status-changed, never deleted) so history stays
 auditable downstream.
 
+## HTTP read surface
+
+Read-only HTTP endpoints expose the registry to authorized operators. The endpoints are a THIN
+transport over the read store: they never mutate the registry, never enqueue an outbox message,
+never touch governed state, and never invoke the Governance Kernel.
+
+| Method & path | Purpose |
+| --- | --- |
+| `GET /v1/participants` | List the authenticated tenant's participants (keyset-paginated). |
+| `GET /v1/participants/:participantId` | Read a single participant for the tenant. |
+| `GET /v1/organizations/:organizationId/participants` | List an organization's participant relationships for the tenant. |
+
+Key properties:
+
+- **Authorization** is the centralized `participant.read` action (see
+  `src/authz/AuthorizationActions.ts`). The `participant_reader` and `participant_admin` roles
+  imply it, as does the platform-admin wildcard and the exact `participant.read` permission key.
+  Authorization fails closed: an unauthenticated request is `401`, an authenticated-but-unauthorized
+  request is `403`, and a denial emits the sanitized `authz.denied` signal.
+- **Tenant isolation**: tenant identity comes EXCLUSIVELY from the resolved auth context
+  (`x-house-*` trusted headers) — never from the query string, path, or body. A detail read of
+  another tenant's participant returns `404` and never reveals cross-tenant existence (RLS makes
+  the row invisible to the read). The organization-participants route does **not** probe
+  organization existence: an unknown or cross-tenant `organizationId` yields an **empty list**, so
+  it can never reveal whether an organization exists in another tenant.
+- **Pagination & filters**: list supports `limit` (positive integer; default 50, clamped to a
+  maximum of 100), an opaque base64url `cursor`, and optional filters — `status` and `email` on
+  participants, and `participantId`, `relationshipType`, and `status` on organization
+  relationships. Invalid input is rejected with `400`.
+- **Safe projection**: responses expose a CLOSED DTO field set (identity / reference / status
+  fields only). Email is returned only on an authorized same-tenant read and is **never** exposed
+  to other tenants, in the outbox, or in telemetry. Secrets, raw headers, connection strings, and
+  payload bytes are never projected.
+- **Telemetry**: each read emits the `participant.registry.read.count` counter tagged with the
+  operation (`list` / `detail` / `organization_links`) and result (`success` / `failure`). Names
+  stay NSO-generic.
+
+Reads run through the same RLS-enforced `PgParticipantRegistryStore` used elsewhere, so a
+non-superuser, non-`BYPASSRLS` role with `SELECT` only is sufficient — no write privileges are
+required for the read surface. The gated DB integration suite proves this:
+
+```
+RUN_DB_TESTS=1 \
+  MIGRATE_DATABASE_URL=postgres://<admin>@<host>:<port>/<db> \
+  DATABASE_URL=postgres://<restricted-role>@<host>:<port>/<db> \
+  npx vitest run tests/integration/governance/participant-registry-http.integration.test.ts
+```
+
+**Write endpoints remain out of scope** (see below).
+
 ## Out of scope (intentionally not built)
 
-This pass is a domain baseline only. The following are **intentionally not built** and must not be
-added without an explicit request:
+This pass adds the read surface above only. The following are **intentionally not built** and must
+not be added without an explicit request:
 
 - registration, payments, program enrollment, competition, or eligibility;
 - any sport-specific concepts or terminology;
-- HTTP transport / read or write endpoints for participants;
+- write/admin HTTP endpoints or a generic CRUD API (only the read surface above is exposed);
+- new authorization actions beyond `participant.read` (e.g. `participant.manage`);
 - identity-provider coupling beyond the generic `externalRefs` correlation field;
 - demographic, medical, or other sensitive attributes;
 - any direct mutation of the Organization Registry or the Governance Kernel.

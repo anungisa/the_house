@@ -66,6 +66,12 @@ import {
   handleOrganizationDetail,
   type OrganizationReadHttpDeps,
 } from './organization/index.js';
+import {
+  handleParticipantList,
+  handleParticipantDetail,
+  handleOrganizationParticipantList,
+  type ParticipantReadHttpDeps,
+} from './participant/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -116,6 +122,14 @@ export interface AffiliationHttpServerDeps {
    * tenant-isolated projection gated by the centralized `organization.read` action.
    */
   readonly organizationRead?: OrganizationReadHttpDeps;
+  /**
+   * Optional Participant Registry READ transport. When provided, the read-only participant
+   * list/detail and organization-participant relationship list endpoints are served; when omitted
+   * they 404. These endpoints NEVER mutate the registry, enqueue outbox messages, touch governed
+   * state, or invoke the kernel — they are thin, tenant-isolated projections gated by the
+   * centralized `participant.read` action.
+   */
+  readonly participantRead?: ParticipantReadHttpDeps;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -170,6 +184,19 @@ const ORGANIZATION_LIST_PATH = '/v1/organizations';
  * exact list path above.
  */
 const ORGANIZATION_DETAIL_ROUTE = /^\/v1\/organizations\/([^/]+)\/?$/;
+/**
+ * GET the participant relationships for one organization. A two-segment path
+ * (`.../:organizationId/participants`), so it never collides with the single-segment organization
+ * detail route above.
+ */
+const ORGANIZATION_PARTICIPANTS_ROUTE = /^\/v1\/organizations\/([^/]+)\/participants\/?$/;
+/** GET list of participants (exact path). */
+const PARTICIPANT_LIST_PATH = '/v1/participants';
+/**
+ * GET a single participant by id. A single trailing segment only; never collides with the exact
+ * list path above.
+ */
+const PARTICIPANT_DETAIL_ROUTE = /^\/v1\/participants\/([^/]+)\/?$/;
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
   res.writeHead(result.status, {
@@ -632,6 +659,100 @@ async function handleOrganizationDetailRoute(
   sendJson(res, result);
 }
 
+/** Serve the read-only participant list endpoint (GET only). */
+async function handleParticipantListRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantRead: ParticipantReadHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the participant list endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const result = await handleParticipantList(
+    participantRead,
+    { headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the read-only participant detail endpoint (GET only). */
+async function handleParticipantDetailRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantRead: ParticipantReadHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the participant detail endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const participantId = decodeURIComponent(match[1] ?? '');
+  const result = await handleParticipantDetail(
+    participantRead,
+    { participantId, headers: headerMap(req) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the read-only organization-participant relationship list endpoint (GET only). */
+async function handleOrganizationParticipantListRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantRead: ParticipantReadHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the organization participants endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const organizationId = decodeURIComponent(match[1] ?? '');
+  const result = await handleOrganizationParticipantList(
+    participantRead,
+    { organizationId, headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 /**
  * Classify a request into a STABLE, low-cardinality route label for telemetry. Returns the
  * route PATTERN (with `:id` placeholders) — never the raw URL — so resource identifiers and
@@ -654,7 +775,12 @@ function classifyRoute(method: string, path: string): string {
   if (path === WORKFLOW_LIST_PATH) return `${method} /v1/workflows`;
   if (WORKFLOW_DETAIL_ROUTE.test(path)) return `${method} /v1/workflows/:id`;
   if (path === ORGANIZATION_LIST_PATH) return `${method} /v1/organizations`;
+  if (ORGANIZATION_PARTICIPANTS_ROUTE.test(path)) {
+    return `${method} /v1/organizations/:id/participants`;
+  }
   if (ORGANIZATION_DETAIL_ROUTE.test(path)) return `${method} /v1/organizations/:id`;
+  if (path === PARTICIPANT_LIST_PATH) return `${method} /v1/participants`;
+  if (PARTICIPANT_DETAIL_ROUTE.test(path)) return `${method} /v1/participants/:id`;
   if (TRANSITION_ROUTE.test(path)) {
     return `${method} /v1/affiliation/applications/:id/transitions/:action`;
   }
@@ -814,6 +940,40 @@ async function handleRequest(
         res,
         deps.organizationRead,
         orgDetailMatch,
+        requestId,
+        deps.resolver,
+      );
+      return;
+    }
+  }
+
+  // Participant Registry READ transport (only when wired). GET participant list + detail, plus the
+  // organization-participant relationship list; all read-only. The path is matched first, then the
+  // method, so a non-GET request to a participant route returns 405 rather than a 404 fall-through.
+  if (deps.participantRead !== undefined) {
+    const orgParticipantsMatch = ORGANIZATION_PARTICIPANTS_ROUTE.exec(path);
+    if (orgParticipantsMatch !== null) {
+      await handleOrganizationParticipantListRoute(
+        req,
+        res,
+        deps.participantRead,
+        orgParticipantsMatch,
+        requestId,
+        deps.resolver,
+      );
+      return;
+    }
+    if (path === PARTICIPANT_LIST_PATH) {
+      await handleParticipantListRoute(req, res, deps.participantRead, requestId, deps.resolver);
+      return;
+    }
+    const participantDetailMatch = PARTICIPANT_DETAIL_ROUTE.exec(path);
+    if (participantDetailMatch !== null) {
+      await handleParticipantDetailRoute(
+        req,
+        res,
+        deps.participantRead,
+        participantDetailMatch,
         requestId,
         deps.resolver,
       );

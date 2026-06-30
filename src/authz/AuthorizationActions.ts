@@ -28,6 +28,7 @@ export const AuthorizationAction = {
   EvidenceQuarantineRead: 'evidence.quarantine.read',
   EvidenceQuarantineDisposition: 'evidence.quarantine.disposition',
   OrganizationRead: 'organization.read',
+  ParticipantRead: 'participant.read',
 } as const;
 
 /** Union of the valid action string literals. */
@@ -59,6 +60,8 @@ export const PLATFORM_ADMIN_ROLE = 'platform_admin';
  *  - evidence_admin: evidence object read/upload/download.
  *  - organization_reader: read-only Organization Registry operator surface.
  *  - organization_admin: Organization Registry operator (read-only at the HTTP edge in v1).
+ *  - participant_reader: read-only Participant Registry operator surface.
+ *  - participant_admin: Participant Registry operator (read-only at the HTTP edge in v1).
  */
 export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationAction[]>> = {
   workflow_reader: [AuthorizationAction.WorkflowRead],
@@ -94,6 +97,8 @@ export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationActi
   ],
   organization_reader: [AuthorizationAction.OrganizationRead],
   organization_admin: [AuthorizationAction.OrganizationRead],
+  participant_reader: [AuthorizationAction.ParticipantRead],
+  participant_admin: [AuthorizationAction.ParticipantRead],
 };
 
 /** Type guard: is `value` a known action string? */

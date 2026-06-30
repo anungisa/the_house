@@ -10,10 +10,11 @@
  * It confirms the Participant Registry baseline stays coherent: the domain module, migration,
  * architecture doc, unit tests, and gated integration tests all exist; the `participant:check`
  * script is wired and chained into `ci:check`; the synthetic lifecycle suite references the
- * participant registry; the doc documents its purpose/scope and the key invariants; NO HTTP
- * surface was opportunistically added for participants (out of scope this pass); and NO
- * secret-looking values or sport-specific terminology leak into the domain code, doc, test, or
- * migration.
+ * participant registry; the read-only HTTP surface (adapter, DTOs, auth, barrel) and its unit +
+ * gated integration tests exist; the server wires the `/v1/participants` read routes and the
+ * authorization catalog defines `participant.read`; the doc documents its purpose/scope, the key
+ * invariants, and the HTTP read surface; and NO secret-looking values or sport-specific
+ * terminology leak into the domain code, HTTP surface, doc, test, or migration.
  *
  * The thin CLI wrapper lives in scripts/validate-participant-registry-baseline.ts.
  */
@@ -50,9 +51,20 @@ export const PARTICIPANT_VALIDATOR_SCRIPT =
   'scripts/validate-participant-registry-baseline.ts';
 export const SYNTHETIC_TEST_REL = 'tests/unit/synthetic/synthetic-tenant-lifecycle.test.ts';
 
-// This pass is a DOMAIN baseline only: NO HTTP transport is added for participants. The validator
-// enforces that scope boundary by asserting this directory does not exist.
+// HTTP read surface (this pass): a thin, read-only participant list/detail + organization-
+// participant relationship list transport gated by the centralized `participant.read` action.
 export const PARTICIPANT_HTTP_DIR_REL = 'src/http/participant';
+export const PARTICIPANT_HTTP_ADAPTER_REL =
+  'src/http/participant/ParticipantReadHttpAdapter.ts';
+export const PARTICIPANT_HTTP_DTO_REL = 'src/http/participant/ParticipantReadHttpDtos.ts';
+export const PARTICIPANT_HTTP_INDEX_REL = 'src/http/participant/index.ts';
+export const PARTICIPANT_HTTP_AUTH_REL = 'src/http/participant/participantHttpAuth.ts';
+export const PARTICIPANT_HTTP_TEST_REL =
+  'tests/unit/http/participant/ParticipantReadHttpAdapter.test.ts';
+export const PARTICIPANT_HTTP_INTEGRATION_TEST_REL =
+  'tests/integration/governance/participant-registry-http.integration.test.ts';
+export const SERVER_MODULE_REL = 'src/http/server.ts';
+export const AUTHZ_ACTIONS_MODULE_REL = 'src/authz/AuthorizationActions.ts';
 
 /** Domain module files that MUST exist for the baseline to be coherent. */
 const PARTICIPANT_DOMAIN_FILES: readonly string[] = [
@@ -65,9 +77,18 @@ const PARTICIPANT_DOMAIN_FILES: readonly string[] = [
   `${PARTICIPANT_DOMAIN_DIR_REL}/index.ts`,
 ];
 
+/** HTTP read-surface files that MUST exist now that the read endpoints are implemented. */
+const PARTICIPANT_HTTP_FILES: readonly string[] = [
+  PARTICIPANT_HTTP_ADAPTER_REL,
+  PARTICIPANT_HTTP_DTO_REL,
+  PARTICIPANT_HTTP_INDEX_REL,
+  PARTICIPANT_HTTP_AUTH_REL,
+];
+
 /** Files scanned for leaked secrets (only those present). */
 const PARTICIPANT_SECRET_SCAN_FILES: readonly string[] = [
   ...PARTICIPANT_DOMAIN_FILES,
+  ...PARTICIPANT_HTTP_FILES,
   PARTICIPANT_DOC_REL,
   PARTICIPANT_MIGRATION_REL,
   PARTICIPANT_VALIDATOR_MODULE,
@@ -75,11 +96,12 @@ const PARTICIPANT_SECRET_SCAN_FILES: readonly string[] = [
 ];
 
 /**
- * Files scanned for sport-specific terminology. The domain code, doc, test, and migration must
- * all stay NSO-generic.
+ * Files scanned for sport-specific terminology. The domain code, HTTP read surface, doc, test, and
+ * migration must all stay NSO-generic.
  */
 const PARTICIPANT_DOMAIN_SCAN_FILES: readonly string[] = [
   ...PARTICIPANT_DOMAIN_FILES,
+  ...PARTICIPANT_HTTP_FILES,
   PARTICIPANT_DOC_REL,
   PARTICIPANT_TEST_REL,
   PARTICIPANT_INTEGRATION_TEST_REL,
@@ -103,6 +125,11 @@ const DOC_MARKERS: ReadonlyArray<{ name: string; marker: RegExp; label: string }
   { name: 'doc documents outbox signals', marker: /outbox/i, label: 'outbox' },
   { name: 'doc documents telemetry signals', marker: /telemetry/i, label: 'telemetry' },
   { name: 'doc documents privacy stance', marker: /privacy/i, label: 'privacy' },
+  {
+    name: 'doc documents the HTTP read surface',
+    marker: /HTTP read surface/i,
+    label: 'HTTP read surface',
+  },
   { name: 'doc documents out-of-scope', marker: /out of scope/i, label: 'out of scope' },
 ];
 
@@ -180,14 +207,52 @@ export function validateParticipantRegistryBaseline(
       : 'missing participant registry reference in synthetic suite',
   });
 
-  // 7. NO participant HTTP surface was added (domain baseline only this pass).
-  const httpDirAbsent = !existsSync(join(repoRoot, PARTICIPANT_HTTP_DIR_REL));
+  // 7a. The HTTP read-surface files exist.
+  for (const rel of PARTICIPANT_HTTP_FILES) {
+    const present = existsSync(join(repoRoot, rel));
+    checks.push({ name: `HTTP read-surface file exists: ${rel}`, ok: present, detail: rel });
+  }
+
+  // 7b. The HTTP read-surface tests (unit + gated integration) exist.
+  const httpTestPresent = existsSync(join(repoRoot, PARTICIPANT_HTTP_TEST_REL));
   checks.push({
-    name: 'no participant HTTP surface added (out of scope this pass)',
-    ok: httpDirAbsent,
-    detail: httpDirAbsent
-      ? `${PARTICIPANT_HTTP_DIR_REL} absent`
-      : `${PARTICIPANT_HTTP_DIR_REL} unexpectedly present`,
+    name: 'participant HTTP read-surface unit test exists',
+    ok: httpTestPresent,
+    detail: PARTICIPANT_HTTP_TEST_REL,
+  });
+  const httpIntegrationTestPresent = existsSync(
+    join(repoRoot, PARTICIPANT_HTTP_INTEGRATION_TEST_REL),
+  );
+  checks.push({
+    name: 'participant HTTP read-surface integration test exists',
+    ok: httpIntegrationTestPresent,
+    detail: PARTICIPANT_HTTP_INTEGRATION_TEST_REL,
+  });
+
+  // 7c. The server wires the participant read routes.
+  const serverText = readIfExists(join(repoRoot, SERVER_MODULE_REL)) ?? '';
+  const wiresList = serverText.includes('/v1/participants');
+  checks.push({
+    name: 'server wires the /v1/participants read routes',
+    ok: wiresList,
+    detail: wiresList ? 'references /v1/participants' : 'missing /v1/participants route',
+  });
+  const wiresOrgLinks = serverText.includes('/participants') && serverText.includes('organizations');
+  checks.push({
+    name: 'server wires the organization participant read route',
+    ok: wiresOrgLinks,
+    detail: wiresOrgLinks
+      ? 'references /v1/organizations/:organizationId/participants'
+      : 'missing organization participant route',
+  });
+
+  // 7d. The authorization catalog defines participant.read.
+  const authzText = readIfExists(join(repoRoot, AUTHZ_ACTIONS_MODULE_REL)) ?? '';
+  const definesAction = authzText.includes("'participant.read'");
+  checks.push({
+    name: 'authz catalog defines participant.read',
+    ok: definesAction,
+    detail: definesAction ? "defines 'participant.read'" : "missing 'participant.read' action",
   });
 
   // 8. package.json exposes participant:check.

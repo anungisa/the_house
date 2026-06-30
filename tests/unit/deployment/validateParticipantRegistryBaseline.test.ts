@@ -11,7 +11,14 @@ import {
   PARTICIPANT_INTEGRATION_TEST_REL,
   PARTICIPANT_MIGRATION_REL,
   PARTICIPANT_DOMAIN_DIR_REL,
-  PARTICIPANT_HTTP_DIR_REL,
+  PARTICIPANT_HTTP_ADAPTER_REL,
+  PARTICIPANT_HTTP_DTO_REL,
+  PARTICIPANT_HTTP_INDEX_REL,
+  PARTICIPANT_HTTP_AUTH_REL,
+  PARTICIPANT_HTTP_TEST_REL,
+  PARTICIPANT_HTTP_INTEGRATION_TEST_REL,
+  SERVER_MODULE_REL,
+  AUTHZ_ACTIONS_MODULE_REL,
   SYNTHETIC_TEST_REL,
 } from '../../../src/deployment/validateParticipantRegistryBaseline.js';
 
@@ -51,8 +58,11 @@ const VALID_DOC = [
   '## Privacy stance',
   'Minimal fields; email excluded from outbox payloads.',
   '',
+  '## HTTP read surface',
+  'Read-only list/detail and organization relationship endpoints gated by participant.read.',
+  '',
   '## Out of scope (intentionally not built)',
-  'No registration, payments, enrollment, eligibility, or HTTP transport.',
+  'No registration, payments, enrollment, eligibility, or write transport.',
   '',
 ].join('\n');
 
@@ -86,6 +96,16 @@ function baseFiles(): Record<string, string | null> {
     [PARTICIPANT_INTEGRATION_TEST_REL]: '// participant registry integration test (fixture)\n',
     [PARTICIPANT_MIGRATION_REL]: '-- 0010 participant registry (fixture)\n',
     [SYNTHETIC_TEST_REL]: "// references participant-registry domain in synthetic suite\n",
+    [PARTICIPANT_HTTP_ADAPTER_REL]: '// participant read http adapter (fixture)\n',
+    [PARTICIPANT_HTTP_DTO_REL]: '// participant read http dtos (fixture)\n',
+    [PARTICIPANT_HTTP_INDEX_REL]: '// participant http barrel (fixture)\n',
+    [PARTICIPANT_HTTP_AUTH_REL]: '// participant http auth (fixture)\n',
+    [PARTICIPANT_HTTP_TEST_REL]: '// participant read http adapter test (fixture)\n',
+    [PARTICIPANT_HTTP_INTEGRATION_TEST_REL]:
+      '// participant read http integration test (fixture)\n',
+    [SERVER_MODULE_REL]:
+      "// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n",
+    [AUTHZ_ACTIONS_MODULE_REL]: "ParticipantRead: 'participant.read',\n",
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
@@ -178,13 +198,51 @@ describe('validateParticipantRegistryBaseline', () => {
     ).toBe(false);
   });
 
-  it('fails when a participant HTTP surface was added (out of scope)', () => {
+  it('fails when an HTTP read-surface file is missing', () => {
     const files = baseFiles();
-    files[`${PARTICIPANT_HTTP_DIR_REL}/ParticipantReadHttpAdapter.ts`] = '// unexpected http\n';
+    files[PARTICIPANT_HTTP_ADAPTER_REL] = null;
     const root = writeRepo(files);
     expect(
-      checkOk(root, 'no participant HTTP surface added (out of scope this pass)'),
+      checkOk(root, `HTTP read-surface file exists: ${PARTICIPANT_HTTP_ADAPTER_REL}`),
     ).toBe(false);
+  });
+
+  it('fails when the HTTP read-surface unit test is missing', () => {
+    const files = baseFiles();
+    files[PARTICIPANT_HTTP_TEST_REL] = null;
+    const root = writeRepo(files);
+    expect(checkOk(root, 'participant HTTP read-surface unit test exists')).toBe(false);
+  });
+
+  it('fails when the HTTP read-surface integration test is missing', () => {
+    const files = baseFiles();
+    files[PARTICIPANT_HTTP_INTEGRATION_TEST_REL] = null;
+    const root = writeRepo(files);
+    expect(checkOk(root, 'participant HTTP read-surface integration test exists')).toBe(false);
+  });
+
+  it('fails when the server does not wire the /v1/participants routes', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] = '// server without participant routes (fixture)\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'server wires the /v1/participants read routes')).toBe(false);
+  });
+
+  it('fails when the authz catalog does not define participant.read', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] = '// authz catalog without participant.read (fixture)\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'authz catalog defines participant.read')).toBe(false);
+  });
+
+  it('fails when the doc omits the HTTP read surface section', () => {
+    const files = baseFiles();
+    files[PARTICIPANT_DOC_REL] = VALID_DOC.replace(/## HTTP read surface/i, '## Notes').replace(
+      /Read-only list\/detail and organization relationship endpoints gated by participant\.read\./i,
+      'no notes',
+    );
+    const root = writeRepo(files);
+    expect(checkOk(root, 'doc documents the HTTP read surface')).toBe(false);
   });
 
   it('fails when participant:check script is missing', () => {
