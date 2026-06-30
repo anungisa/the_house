@@ -36,7 +36,10 @@ import {
 } from './evidence/index.js';
 import {
   handleWorkflowDecision,
+  handleWorkflowExecution,
   workflowErrorToHttpResult,
+  workflowExecutionErrorToHttpResult,
+  type WorkflowExecutionHttpDeps,
   type WorkflowHttpDeps,
 } from './workflow/index.js';
 
@@ -62,6 +65,13 @@ export interface AffiliationHttpServerDeps {
    * never mutates governed state and never executes the pending lifecycle transition.
    */
   readonly workflow?: WorkflowHttpDeps;
+  /**
+   * Optional workflow execution transport. When provided, the explicit "execute the approved
+   * transition" endpoint is served; when omitted it 404s. This is the only workflow surface
+   * that causes a lifecycle transition, and it does so exclusively through the Governance
+   * Kernel (never auto-invoked by the decision endpoint).
+   */
+  readonly workflowExecution?: WorkflowExecutionHttpDeps;
 }
 
 const DEFAULT_MAX_BODY_BYTES = 1_048_576;
@@ -74,6 +84,8 @@ const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
 
 const WORKFLOW_DECISION_ROUTE =
   /^\/v1\/workflows\/([^/]+)\/steps\/([^/]+)\/decision\/?$/;
+
+const WORKFLOW_EXECUTE_ROUTE = /^\/v1\/workflows\/([^/]+)\/execute\/?$/;
 
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
@@ -249,6 +261,52 @@ async function handleWorkflowRoute(
   sendJson(res, result);
 }
 
+/**
+ * Serve the explicit workflow execution endpoint. This is the only workflow surface that
+ * causes a lifecycle transition, and it does so exclusively through the Governance Kernel.
+ */
+async function handleWorkflowExecuteRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  workflowExecution: WorkflowExecutionHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'POST') {
+    res.setHeader('allow', 'POST');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only POST is allowed for the workflow execution endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+
+  const workflowInstanceId = decodeURIComponent(match[1] ?? '');
+
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, workflowExecutionErrorToHttpResult(err, requestId));
+    return;
+  }
+
+  const result = await handleWorkflowExecution(
+    workflowExecution,
+    { workflowInstanceId, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
@@ -283,6 +341,23 @@ async function handleRequest(
         res,
         deps.workflow,
         workflowMatch,
+        requestId,
+        deps.resolver,
+        maxBytes,
+      );
+      return;
+    }
+  }
+
+  // Workflow execution transport (only when wired). Distinct path from the decision route.
+  if (deps.workflowExecution !== undefined) {
+    const executeMatch = WORKFLOW_EXECUTE_ROUTE.exec(path);
+    if (executeMatch !== null) {
+      await handleWorkflowExecuteRoute(
+        req,
+        res,
+        deps.workflowExecution,
+        executeMatch,
         requestId,
         deps.resolver,
         maxBytes,

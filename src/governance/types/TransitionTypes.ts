@@ -170,6 +170,56 @@ export interface TransitionResult {
 }
 
 /**
+ * Input to execute a previously approval-required transition request through the kernel.
+ *
+ * This is the governed execution path: an explicitly approved review workflow's ORIGINAL
+ * pending transition is run exactly once. It is NEVER auto-invoked from the workflow decision
+ * endpoint — a separate, explicit execution call is required. The kernel re-resolves the
+ * policy, re-checks permissions, and RE-RUNS guards at execution time (fail closed).
+ */
+export interface ExecuteApprovedTransitionInput {
+  readonly tenantId: string;
+  /** The id of the governance.transition_request created when approval was required. */
+  readonly transitionRequestId: string;
+  /** The actor performing the execution (re-checked against the transition's permission). */
+  readonly actor: TransitionActor;
+  /** Required idempotency key for the execution command (enforces exactly-once). */
+  readonly idempotencyKey: string;
+  /** Optional human-readable reason recorded in audit metadata. */
+  readonly reason?: string;
+  /** Optional correlation id; falls back to the original request's correlation id. */
+  readonly correlationId?: string;
+}
+
+/** Outcome of an approved-transition execution attempt. */
+export type ExecutionStatus = 'executed' | 'idempotent_replay';
+
+/**
+ * Deterministic result of executing an approved transition request.
+ *
+ * Governed rejections (request not found, not approved, state conflict, guard failure,
+ * permission denial) are THROWN as {@link AppError}s rather than returned, so the only
+ * successful outcomes are a fresh execution or an idempotent replay of a prior execution.
+ */
+export interface ExecuteApprovedTransitionResult {
+  readonly status: ExecutionStatus;
+  readonly transitionRequestId: string;
+  readonly entityType: string;
+  readonly entityId: string;
+  readonly trigger: string;
+  readonly fromState: string;
+  readonly toState: string;
+
+  readonly stateTransitionId?: string;
+  readonly auditEventId?: string;
+  readonly evidenceObjectId?: string;
+  readonly outboxMessageId?: string;
+
+  /** Stable idempotency echo for the execution command. */
+  readonly idempotencyKey: string;
+}
+
+/**
  * Input passed to a guard handler during evaluation. Read-only by contract.
  */
 export interface GuardEvaluationInput {

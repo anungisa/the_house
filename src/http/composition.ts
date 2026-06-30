@@ -33,6 +33,7 @@ import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
 import { PgGovernanceStore } from '../governance/store/PgGovernanceStore.js';
 import { AffiliationWorkflowPlanner } from '../governance/workflow/AffiliationWorkflowPlanner.js';
+import { ApprovedWorkflowExecutionService } from '../governance/workflow/ApprovedWorkflowExecutionService.js';
 import { PgWorkflowStore } from '../governance/workflow/PgWorkflowStore.js';
 import { WorkflowDecisionService } from '../governance/workflow/WorkflowDecisionService.js';
 import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
@@ -40,8 +41,27 @@ import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvid
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import type { EvidenceHttpDeps } from './evidence/index.js';
-import type { WorkflowHttpDeps } from './workflow/index.js';
+import type { WorkflowExecutionHttpDeps, WorkflowHttpDeps } from './workflow/index.js';
 import type { Server } from 'node:http';
+
+/**
+ * Build the production-intended {@link GovernanceKernel} backed by PostgreSQL. Guards read
+ * PERSISTED affiliation domain facts (never caller payloads); the review-workflow planner is
+ * wired so approval-required transitions create two-tier review metadata atomically. Shared by
+ * the domain command boundary and the approved-workflow execution path.
+ */
+export function createPgGovernanceKernel(): GovernanceKernel {
+  const registry = new GuardRegistry();
+  registerAffiliationGuards(
+    registry,
+    new DomainBackedAffiliationGuardRepository(new PgAffiliationApplicationStore()),
+  );
+  return new GovernanceKernel({
+    store: new PgGovernanceStore(),
+    guards: registry,
+    workflowPlanner: new AffiliationWorkflowPlanner(),
+  });
+}
 
 /**
  * Build the production-intended {@link AffiliationApplicationService} backed by PostgreSQL.
@@ -49,17 +69,7 @@ import type { Server } from 'node:http';
  * pool (DATABASE_URL) via the Pg stores.
  */
 export function createPgAffiliationApplicationService(): AffiliationApplicationService {
-  const registry = new GuardRegistry();
-  registerAffiliationGuards(
-    registry,
-    new DomainBackedAffiliationGuardRepository(new PgAffiliationApplicationStore()),
-  );
-  const kernel = new GovernanceKernel({
-    store: new PgGovernanceStore(),
-    guards: registry,
-    workflowPlanner: new AffiliationWorkflowPlanner(),
-  });
-  return new AffiliationApplicationService(kernel);
+  return new AffiliationApplicationService(createPgGovernanceKernel());
 }
 
 /**
@@ -89,6 +99,21 @@ export function createWorkflowHttpDeps(): WorkflowHttpDeps {
 }
 
 /**
+ * Build the workflow execution HTTP transport backed by PostgreSQL. Resolves an approved
+ * workflow instance to its governing transition request and drives the GOVERNED execution of
+ * the original pending transition through the Governance Kernel (exactly once). It never
+ * mutates governed state itself and is never invoked by the decision endpoint.
+ */
+export function createWorkflowExecutionHttpDeps(): WorkflowExecutionHttpDeps {
+  return {
+    executor: new ApprovedWorkflowExecutionService(
+      createPgGovernanceKernel(),
+      new PgWorkflowStore(),
+    ),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -102,6 +127,7 @@ export function createPgAffiliationHttpServer(
     resolver: createAuthContextResolver(config),
     evidence: createEvidenceHttpDeps(),
     workflow: createWorkflowHttpDeps(),
+    workflowExecution: createWorkflowExecutionHttpDeps(),
     ...options,
   });
 }

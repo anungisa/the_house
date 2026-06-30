@@ -3,19 +3,24 @@ import type { Clock } from '../../shared/time/clock.js';
 import { systemClock } from '../../shared/time/clock.js';
 import type {
   AuditEventInput,
+  ExecuteApprovedTransitionInput,
+  ExecuteApprovedTransitionResult,
   GuardEvaluationResult,
+  TransitionContext,
   TransitionInput,
   TransitionResult,
 } from '../types/TransitionTypes.js';
 import type { GuardRegistry } from '../guards/GuardRegistry.js';
 import { DefaultPermissionChecker } from '../permissions/PermissionChecker.js';
 import type {
+  ExistingTransitionRow,
   GovernanceStore,
   GovernanceTx,
   GuardResultInsert,
   PermissionChecker,
   StateMachineRow,
   TransitionDefinitionRow,
+  TransitionRequestForExecutionRow,
 } from './ports.js';
 import type { WorkflowPlanner } from '../workflow/WorkflowPlanner.js';
 
@@ -352,6 +357,321 @@ export class GovernanceKernel {
     });
   }
 
+  /**
+   * Execute a previously approval-required transition that has been EXPLICITLY approved by
+   * its review workflow. This is the governed execution path: it runs the request's ORIGINAL
+   * pending transition through the kernel exactly once. It is never auto-invoked by the
+   * workflow decision endpoint — an explicit execution command is required.
+   *
+   * Atomic (one DB transaction): lock the transition_request (serialize concurrent executes)
+   * → idempotent-replay / already-consumed handling → require an APPROVED review workflow
+   * (fail closed) → re-resolve the active policy and lock entity_state → reject if the entity
+   * state no longer matches the approved source (TRANSITION_STATE_CONFLICT) → re-check the
+   * permission with the EXECUTION actor → RE-RUN guards against the recorded request payload
+   * (fail closed; guard failure mutates nothing) → update entity_state → append the immutable
+   * state_transition (keyed by the execution idempotency key, linked to the request) → append
+   * audit → create evidence metadata when required → enqueue the outbox message → mark the
+   * transition_request 'executed' (consumed) → COMMIT.
+   *
+   * Governed rejections are THROWN as {@link AppError}s; the only returned outcomes are a
+   * fresh execution or an idempotent replay of a prior execution.
+   */
+  async executeApprovedTransitionRequest(
+    input: ExecuteApprovedTransitionInput,
+  ): Promise<ExecuteApprovedTransitionResult> {
+    this.validateExecutionInput(input);
+    const tenantId = input.tenantId;
+
+    return this.store.runInTransaction(tenantId, async (tx) => {
+      // 1) Lock the request FOR UPDATE (serializes concurrent execution attempts).
+      const req = await tx.lockTransitionRequestById(input.transitionRequestId);
+      if (req === undefined) {
+        throw new AppError(
+          ErrorCode.TRANSITION_REQUEST_NOT_FOUND,
+          'No transition request found for the supplied id.',
+          { details: { transitionRequestId: input.transitionRequestId } },
+        );
+      }
+
+      // 2) Already-consumed / idempotent-replay handling.
+      if (req.status === 'executed') {
+        const prior = await tx.findStateTransition(
+          req.entityType,
+          req.entityId,
+          input.idempotencyKey,
+        );
+        if (prior !== undefined) {
+          return this.executionReplay(req, prior, input.idempotencyKey);
+        }
+        throw new AppError(
+          ErrorCode.IDEMPOTENCY_CONFLICT,
+          'Transition request already executed under a different idempotency key.',
+          { details: { transitionRequestId: req.id } },
+        );
+      }
+      if (req.status !== 'pending_approval') {
+        throw new AppError(
+          ErrorCode.WORKFLOW_NOT_APPROVED,
+          `Transition request is '${req.status}', not executable.`,
+          { details: { transitionRequestId: req.id, status: req.status } },
+        );
+      }
+
+      // 3) A state_transition may already exist for this execution key (idempotent replay).
+      const dup = await tx.findStateTransition(req.entityType, req.entityId, input.idempotencyKey);
+      if (dup !== undefined) {
+        return this.executionReplay(req, dup, input.idempotencyKey);
+      }
+
+      // 4) Require an APPROVED review workflow (execution gate; fail closed).
+      const workflow = await tx.findWorkflowApprovalForRequest(req.id);
+      if (workflow === undefined) {
+        throw new AppError(
+          ErrorCode.WORKFLOW_NOT_APPROVED,
+          'No review workflow exists for this transition request.',
+          { details: { transitionRequestId: req.id } },
+        );
+      }
+      if (workflow.status !== 'approved') {
+        throw new AppError(
+          ErrorCode.WORKFLOW_NOT_APPROVED,
+          `Review workflow is '${workflow.status}', not approved.`,
+          { details: { transitionRequestId: req.id, workflowStatus: workflow.status } },
+        );
+      }
+
+      // 5) Re-resolve the active policy and lock the current entity_state.
+      const machine = await tx.loadActiveStateMachine(req.entityType);
+      if (machine === undefined) {
+        throw new AppError(
+          ErrorCode.UNKNOWN_TRANSITION,
+          `No active state machine for entity type '${req.entityType}'.`,
+          { details: { entityType: req.entityType } },
+        );
+      }
+      const entity = await tx.lockEntityState(req.entityType, req.entityId);
+      if (entity === undefined) {
+        throw new AppError(
+          ErrorCode.TRANSITION_STATE_CONFLICT,
+          'Entity has no current state; the approved transition can no longer be executed.',
+          { details: { transitionRequestId: req.id } },
+        );
+      }
+      if (entity.currentState !== req.fromState) {
+        throw new AppError(
+          ErrorCode.TRANSITION_STATE_CONFLICT,
+          `Entity state '${entity.currentState}' no longer matches the approved transition source '${req.fromState}'.`,
+          {
+            details: {
+              transitionRequestId: req.id,
+              currentState: entity.currentState,
+              expectedFromState: req.fromState,
+            },
+          },
+        );
+      }
+
+      // 6) Re-resolve the transition definition; deny unknown / target drift (fail closed).
+      const def = await tx.resolveTransition(machine.id, entity.currentState, req.trigger);
+      if (def === undefined) {
+        throw new AppError(
+          ErrorCode.UNKNOWN_TRANSITION,
+          `No transition for trigger '${req.trigger}' from state '${entity.currentState}'.`,
+          { details: { entityType: req.entityType, fromState: entity.currentState, trigger: req.trigger } },
+        );
+      }
+      if (def.toState !== req.requestedToState) {
+        throw new AppError(
+          ErrorCode.TRANSITION_STATE_CONFLICT,
+          'The active policy target no longer matches the approved transition target.',
+          {
+            details: {
+              transitionRequestId: req.id,
+              activeToState: def.toState,
+              approvedToState: req.requestedToState,
+            },
+          },
+        );
+      }
+
+      // 7) Re-check the permission with the EXECUTION actor.
+      const decision = this.permissions.check({
+        actor: input.actor,
+        entityType: req.entityType,
+        trigger: req.trigger,
+        riskLevel: def.riskLevel,
+        approvalRequired: def.approvalRequired,
+      });
+      if (!decision.allowed) {
+        throw new AppError(
+          (decision.reasonCode as ErrorCode | undefined) ?? ErrorCode.PERMISSION_DENIED,
+          decision.reasonMessage ?? 'Permission denied.',
+          { details: { transitionRequestId: req.id, trigger: req.trigger } },
+        );
+      }
+
+      // 8) RE-RUN guards against the RECORDED request payload (fail closed on unknown code).
+      const context = this.executionContext(input, req);
+      const bindings = await tx.loadGuards(def.id);
+      for (const binding of bindings) {
+        if (!this.guards.hasGuard(binding.guardCode)) {
+          throw new AppError(ErrorCode.UNKNOWN_GUARD, `Unknown guard code: ${binding.guardCode}`, {
+            details: { guardCode: binding.guardCode, trigger: req.trigger },
+          });
+        }
+      }
+      const guardResults: GuardEvaluationResult[] = [];
+      for (const binding of bindings) {
+        const result = await this.guards.evaluate({
+          guardCode: binding.guardCode,
+          parameters: binding.parameters,
+          entityType: req.entityType,
+          entityId: req.entityId,
+          trigger: req.trigger,
+          fromState: req.fromState,
+          toState: def.toState,
+          actor: input.actor,
+          context,
+          payload: req.payload,
+        });
+        guardResults.push(result);
+      }
+
+      // 9) Persist guard results keyed by the execution idempotency key + request linkage.
+      await tx.insertGuardResults(
+        guardResults.map((r) => ({
+          tenantId,
+          entityType: req.entityType,
+          entityId: req.entityId,
+          trigger: req.trigger,
+          idempotencyKey: input.idempotencyKey,
+          guardCode: r.guardCode,
+          passed: r.passed,
+          transitionRequestId: req.id,
+          ...(r.message !== undefined ? { failureMessage: r.message } : {}),
+        })),
+      );
+
+      // 10) Any failing guard => fail closed, NO state mutation.
+      const failed = guardResults.find((g) => !g.passed);
+      if (failed !== undefined) {
+        throw new AppError(
+          ErrorCode.GUARD_FAILED,
+          failed.message ?? `Guard failed: ${failed.guardCode}`,
+          { details: { transitionRequestId: req.id, guardCode: failed.guardCode } },
+        );
+      }
+
+      const correlationId = input.correlationId ?? req.correlationId;
+
+      // 11) Execute: update entity_state (the approval-required branch never bootstrapped it).
+      await tx.updateEntityState(entity.id, def.toState, input.actor.actorId);
+
+      // 12) Append the immutable journal (keyed by the execution idempotency key; linked to
+      // the request; caused by the request).
+      const stateTransitionId = await tx.insertStateTransition({
+        tenantId,
+        entityType: req.entityType,
+        entityId: req.entityId,
+        trigger: req.trigger,
+        fromState: req.fromState,
+        toState: def.toState,
+        idempotencyKey: input.idempotencyKey,
+        stateMachineId: machine.id,
+        policyVersionId: machine.policyVersionId,
+        transitionRequestId: req.id,
+        actorUserId: input.actor.actorId,
+        ...(correlationId !== undefined ? { correlationId } : {}),
+        causationId: req.id,
+      });
+
+      // 13) Append the audit event.
+      const auditEventId = await tx.insertAuditEvent({
+        entityType: req.entityType,
+        entityId: req.entityId,
+        trigger: req.trigger,
+        action: 'transition.executed',
+        tenantId,
+        actorId: input.actor.actorId,
+        fromState: req.fromState,
+        toState: def.toState,
+        ...(correlationId !== undefined ? { correlationId } : {}),
+        causationId: req.id,
+        metadata: {
+          idempotencyKey: input.idempotencyKey,
+          transitionRequestId: req.id,
+          executedFromApprovedWorkflow: true,
+          ...(input.reason !== undefined ? { reason: input.reason } : {}),
+        },
+      });
+
+      // 14) Evidence metadata for evidence-required (high-risk) transitions.
+      let evidenceObjectId: string | undefined;
+      if (def.evidenceRequired) {
+        evidenceObjectId = await tx.insertEvidenceObject({
+          tenantId,
+          entityType: req.entityType,
+          entityId: req.entityId,
+          trigger: req.trigger,
+          stateTransitionId,
+          manifest: {
+            fromState: req.fromState,
+            toState: def.toState,
+            riskLevel: def.riskLevel,
+            actorId: input.actor.actorId,
+            transitionRequestId: req.id,
+            guardResults,
+            recordedAt: this.clock.nowIso(),
+          },
+          createdBy: input.actor.actorId,
+        });
+      }
+
+      // 15) Enqueue the outbox message (same transaction; dedupe by the execution key).
+      const outboxMessageId = await tx.insertOutboxMessage({
+        tenantId,
+        messageType: `${req.entityType}.${req.trigger}`,
+        payload: {
+          entityType: req.entityType,
+          entityId: req.entityId,
+          trigger: req.trigger,
+          fromState: req.fromState,
+          toState: def.toState,
+          stateTransitionId,
+          transitionRequestId: req.id,
+        },
+        dedupeKey: `${req.entityType}:${req.entityId}:${input.idempotencyKey}`,
+        ...(correlationId !== undefined ? { correlationId } : {}),
+        causationId: stateTransitionId,
+        maxRetries: this.outboxMaxRetries,
+      });
+
+      // 16) Mark the transition_request consumed (status='executed').
+      await tx.markTransitionRequestExecuted({
+        transitionRequestId: req.id,
+        executedByUserId: input.actor.actorId,
+        executedAtIso: this.clock.nowIso(),
+        executionStateTransitionId: stateTransitionId,
+      });
+
+      // 17) Deterministic result.
+      return {
+        status: 'executed',
+        transitionRequestId: req.id,
+        entityType: req.entityType,
+        entityId: req.entityId,
+        trigger: req.trigger,
+        fromState: req.fromState,
+        toState: def.toState,
+        stateTransitionId,
+        auditEventId,
+        ...(evidenceObjectId !== undefined ? { evidenceObjectId } : {}),
+        outboxMessageId,
+        idempotencyKey: input.idempotencyKey,
+      };
+    });
+  }
+
   // ---------------------------------------------------------------------------
   // helpers
   // ---------------------------------------------------------------------------
@@ -383,6 +703,61 @@ export class GovernanceKernel {
 
   private dedupeKey(input: TransitionInput): string {
     return `${input.entityType}:${input.entityId}:${input.idempotencyKey}`;
+  }
+
+  private validateExecutionInput(input: ExecuteApprovedTransitionInput): void {
+    if (input.tenantId.trim() === '') {
+      throw new AppError(ErrorCode.TENANT_CONTEXT_MISSING, 'tenantId is required.');
+    }
+    if (input.actor.tenantId.trim() === '') {
+      throw new AppError(ErrorCode.TENANT_CONTEXT_MISSING, 'actor.tenantId is required.');
+    }
+    if (input.actor.tenantId !== input.tenantId) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'Actor tenant does not match tenant context (cross-tenant request denied).',
+        { details: { actorTenant: input.actor.tenantId, contextTenant: input.tenantId } },
+      );
+    }
+    if (input.transitionRequestId.trim() === '') {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'transitionRequestId is required.');
+    }
+    if (input.idempotencyKey.trim() === '') {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'idempotencyKey is required.');
+    }
+  }
+
+  /** Reconstruct the guard/audit context for an execution from the execution input + request. */
+  private executionContext(
+    input: ExecuteApprovedTransitionInput,
+    req: TransitionRequestForExecutionRow,
+  ): TransitionContext {
+    const correlationId = input.correlationId ?? req.correlationId;
+    return {
+      tenantId: input.tenantId,
+      scopeType: input.actor.scopeType,
+      ...(input.actor.scopeId !== undefined ? { scopeId: input.actor.scopeId } : {}),
+      ...(correlationId !== undefined ? { correlationId } : {}),
+    };
+  }
+
+  /** Deterministic idempotent-replay result for an already-executed approved transition. */
+  private executionReplay(
+    req: TransitionRequestForExecutionRow,
+    prior: ExistingTransitionRow,
+    idempotencyKey: string,
+  ): ExecuteApprovedTransitionResult {
+    return {
+      status: 'idempotent_replay',
+      transitionRequestId: req.id,
+      entityType: req.entityType,
+      entityId: req.entityId,
+      trigger: req.trigger,
+      fromState: prior.fromState,
+      toState: prior.toState,
+      stateTransitionId: prior.id,
+      idempotencyKey,
+    };
   }
 
   private toGuardInserts(

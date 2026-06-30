@@ -34,12 +34,15 @@ import type {
   GovernanceStore,
   GovernanceTx,
   GuardResultInsert,
+  MarkTransitionRequestExecutedInput,
   OutboxMessageInsert,
   StateMachineRow,
   StateTransitionInsert,
   TransitionDefinitionRow,
   TransitionGuardRow,
+  TransitionRequestForExecutionRow,
   TransitionRequestInsert,
+  WorkflowApprovalStatusRow,
 } from '../kernel/ports.js';
 
 interface DefTransition {
@@ -67,12 +70,27 @@ interface StateTransitionRecord extends ExistingTransitionRow {
   tenantId: string;
   entityType: string;
   entityId: string;
+  transitionRequestId?: string;
 }
 
-interface TransitionRequestRecord extends ExistingRequestRow {
+interface TransitionRequestRecord {
+  id: string;
+  fromState: string;
+  requestedToState: string;
+  trigger: string;
+  idempotencyKey: string;
+  status: string;
   tenantId: string;
   entityType: string;
   entityId: string;
+  /** Captured at request creation so execution can re-run guards against the recorded intent. */
+  actorUserId?: string;
+  correlationId?: string;
+  payload: Readonly<Record<string, unknown>>;
+  /** Execution (consumed) markers, set by markTransitionRequestExecuted. */
+  executedByUserId?: string;
+  executedAtIso?: string;
+  executionStateTransitionId?: string;
 }
 
 interface GovernanceData {
@@ -194,6 +212,7 @@ class InMemoryGovernanceTx implements GovernanceTx {
   private readonly pendingOutbox: OutboxRecord[] = [];
   private readonly pendingWorkflowInstances: WorkflowInstanceRecord[] = [];
   private readonly pendingWorkflowSteps: WorkflowStepRecord[] = [];
+  private readonly pendingRequestExecutions: MarkTransitionRequestExecutedInput[] = [];
 
   constructor(
     private readonly data: GovernanceData,
@@ -264,6 +283,39 @@ class InMemoryGovernanceTx implements GovernanceTx {
     );
   }
 
+  lockTransitionRequestById(
+    transitionRequestId: string,
+  ): Promise<TransitionRequestForExecutionRow | undefined> {
+    const rec = this.data.transitionRequests.find(
+      (r) => r.tenantId === this.tenantId && r.id === transitionRequestId,
+    );
+    if (rec === undefined) return Promise.resolve(undefined);
+    return Promise.resolve({
+      id: rec.id,
+      tenantId: rec.tenantId,
+      entityType: rec.entityType,
+      entityId: rec.entityId,
+      trigger: rec.trigger,
+      fromState: rec.fromState,
+      requestedToState: rec.requestedToState,
+      idempotencyKey: rec.idempotencyKey,
+      status: rec.status,
+      payload: { ...rec.payload },
+      ...(rec.actorUserId !== undefined ? { actorUserId: rec.actorUserId } : {}),
+      ...(rec.correlationId !== undefined ? { correlationId: rec.correlationId } : {}),
+    });
+  }
+
+  findWorkflowApprovalForRequest(
+    transitionRequestId: string,
+  ): Promise<WorkflowApprovalStatusRow | undefined> {
+    const inst = this.data.workflowInstances.find(
+      (w) => w.tenantId === this.tenantId && w.transitionRequestId === transitionRequestId,
+    );
+    if (inst === undefined) return Promise.resolve(undefined);
+    return Promise.resolve({ workflowInstanceId: inst.id, status: inst.status });
+  }
+
   insertGuardResults(results: readonly GuardResultInsert[]): Promise<void> {
     this.pendingGuardResults.push(...results);
     return Promise.resolve();
@@ -281,6 +333,9 @@ class InMemoryGovernanceTx implements GovernanceTx {
       requestedToState: input.requestedToState,
       idempotencyKey: input.idempotencyKey,
       status: 'pending_approval',
+      actorUserId: input.actorUserId,
+      payload: { ...input.payload },
+      ...(input.correlationId !== undefined ? { correlationId: input.correlationId } : {}),
     });
     return Promise.resolve(id);
   }
@@ -313,6 +368,9 @@ class InMemoryGovernanceTx implements GovernanceTx {
       fromState: input.fromState,
       toState: input.toState,
       idempotencyKey: input.idempotencyKey,
+      ...(input.transitionRequestId !== undefined
+        ? { transitionRequestId: input.transitionRequestId }
+        : {}),
     });
     return Promise.resolve(id);
   }
@@ -386,6 +444,11 @@ class InMemoryGovernanceTx implements GovernanceTx {
     return Promise.resolve();
   }
 
+  markTransitionRequestExecuted(input: MarkTransitionRequestExecutedInput): Promise<void> {
+    this.pendingRequestExecutions.push(input);
+    return Promise.resolve();
+  }
+
   /** Apply all buffered writes, enforcing idempotency/dedupe uniqueness. */
   commit(): void {
     // Enforce idempotency uniqueness (mirrors DB unique constraints).
@@ -435,5 +498,16 @@ class InMemoryGovernanceTx implements GovernanceTx {
     this.data.outbox.push(...this.pendingOutbox);
     this.data.workflowInstances.push(...this.pendingWorkflowInstances);
     this.data.workflowSteps.push(...this.pendingWorkflowSteps);
+    for (const e of this.pendingRequestExecutions) {
+      const rec = this.data.transitionRequests.find(
+        (r) => r.tenantId === this.tenantId && r.id === e.transitionRequestId,
+      );
+      if (rec !== undefined) {
+        rec.status = 'executed';
+        rec.executedByUserId = e.executedByUserId;
+        rec.executedAtIso = e.executedAtIso;
+        rec.executionStateTransitionId = e.executionStateTransitionId;
+      }
+    }
   }
 }

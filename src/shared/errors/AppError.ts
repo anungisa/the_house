@@ -32,6 +32,12 @@ export const ErrorCode = {
   WORKFLOW_INVALID_DECISION: 'WORKFLOW_INVALID_DECISION',
   /** The workflow (or step) has already reached a terminal decision and cannot change. */
   WORKFLOW_ALREADY_DECIDED: 'WORKFLOW_ALREADY_DECIDED',
+  /** An approved-workflow execution was requested but the workflow is not in an approved state. */
+  WORKFLOW_NOT_APPROVED: 'WORKFLOW_NOT_APPROVED',
+  /** A referenced governed transition request does not exist for the tenant. */
+  TRANSITION_REQUEST_NOT_FOUND: 'TRANSITION_REQUEST_NOT_FOUND',
+  /** The entity's current governed state no longer matches the approved transition's expected source. */
+  TRANSITION_STATE_CONFLICT: 'TRANSITION_STATE_CONFLICT',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

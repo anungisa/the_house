@@ -211,7 +211,9 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
   runtime never requires a broker. See
   [azure-service-bus-publisher.md](azure-service-bus-publisher.md).
 - **No production authentication** — local/demo trusts the request `actor`/`tenantId`.
-- **No workflow executor** — approval-required transitions record a request only.
+- **Approval-required transitions record a request only** — they do not auto-execute. An
+  **approved** review workflow can then be executed through an explicit governed call (see the
+  workflow execution endpoint below).
 - **No real payment processor** — `payment_obligation` is a persisted record only.
 - **Evidence payloads default to in-memory** — narrow upload/download HTTP endpoints
   (`POST /v1/evidence/objects`, `POST /v1/evidence/objects/read`) are served when evidence is
@@ -222,6 +224,11 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
   approve/reject decisions when the workflow transport is wired. It never executes the pending
   lifecycle transition. See
   [workflow-decision-http-endpoints.md](workflow-decision-http-endpoints.md).
+- **Approved-workflow execution is explicit** — a narrow endpoint
+  (`POST /v1/workflows/:workflowInstanceId/execute`) drives the original pending transition of an
+  **approved** workflow through the Governance Kernel exactly once when the execution transport
+  is wired. It is never a side effect of recording a decision. See
+  [approved-workflow-transition-execution.md](approved-workflow-transition-execution.md).
 - **No frontend** — this is a backend platform core.
 
 ## Recommended next pass
@@ -229,4 +236,3 @@ this local runtime — `/readyz` does **not** perform a deep database probe. Dee
 - Real Azure Service Bus publisher (replace the Noop publisher).
 - Production auth / edge identity adapter (derive `actor`/`tenantId` from verified claims).
 - Real document/evidence storage.
-- Approved-workflow transition execution (act on a `approved` workflow's pending request).

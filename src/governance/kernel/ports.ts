@@ -71,6 +71,33 @@ export interface ExistingRequestRow {
   readonly status: string;
 }
 
+/**
+ * A transition_request locked FOR UPDATE during approved-workflow execution. Carries the
+ * ORIGINAL request payload + actor so the kernel can faithfully re-resolve the policy and
+ * RE-RUN guards at execution time (rather than trusting the approval).
+ */
+export interface TransitionRequestForExecutionRow {
+  readonly id: string;
+  readonly tenantId: string;
+  readonly entityType: string;
+  readonly entityId: string;
+  readonly trigger: string;
+  readonly fromState: string;
+  readonly requestedToState: string;
+  readonly idempotencyKey: string;
+  readonly status: string;
+  readonly actorUserId?: string;
+  readonly correlationId?: string;
+  /** The opaque domain payload captured when the request was created (guard/evidence input). */
+  readonly payload: Readonly<Record<string, unknown>>;
+}
+
+/** The review workflow approval state for a transition request (execution gate). */
+export interface WorkflowApprovalStatusRow {
+  readonly workflowInstanceId: string;
+  readonly status: string;
+}
+
 // -----------------------------------------------------------------------------
 // Write inputs
 // -----------------------------------------------------------------------------
@@ -160,6 +187,14 @@ export interface EntityStateInsert {
   readonly scopeId?: string;
 }
 
+/** Marks a transition_request consumed by a successful approved-workflow execution. */
+export interface MarkTransitionRequestExecutedInput {
+  readonly transitionRequestId: string;
+  readonly executedByUserId: string;
+  readonly executedAtIso: string;
+  readonly executionStateTransitionId: string;
+}
+
 // -----------------------------------------------------------------------------
 // Transaction port — all governed table access happens through this within a
 // single DB transaction with tenant context (RLS) already applied.
@@ -196,6 +231,20 @@ export interface GovernanceTx {
     idempotencyKey: string,
   ): Promise<ExistingRequestRow | undefined>;
 
+  /**
+   * Lock a transition_request by id FOR UPDATE (serializes concurrent execution attempts).
+   * Returns undefined when no request with that id exists for the current tenant. Carries the
+   * original payload/actor so execution can re-run guards against the recorded intent.
+   */
+  lockTransitionRequestById(
+    transitionRequestId: string,
+  ): Promise<TransitionRequestForExecutionRow | undefined>;
+
+  /** Resolve the review workflow approval state bound to a transition request (execution gate). */
+  findWorkflowApprovalForRequest(
+    transitionRequestId: string,
+  ): Promise<WorkflowApprovalStatusRow | undefined>;
+
   insertGuardResults(results: readonly GuardResultInsert[]): Promise<void>;
 
   insertTransitionRequest(input: TransitionRequestInsert): Promise<string>;
@@ -211,6 +260,9 @@ export interface GovernanceTx {
   insertEvidenceObject(input: EvidenceObjectInsert): Promise<string>;
 
   insertOutboxMessage(input: OutboxMessageInsert): Promise<string>;
+
+  /** Mark a transition_request as executed (consumed) by an approved-workflow execution. */
+  markTransitionRequestExecuted(input: MarkTransitionRequestExecutedInput): Promise<void>;
 
   /**
    * Create the review workflow instance for an approval-required transition request, in the

@@ -10,6 +10,14 @@ import type {
 } from '../../../../src/domains/affiliation/AffiliationApplicationDtos.js';
 import type { WorkflowHttpDeps } from '../../../../src/http/workflow/WorkflowHttpAdapter.js';
 import type {
+  WorkflowExecutionHttpDeps,
+  WorkflowTransitionExecutor,
+} from '../../../../src/http/workflow/WorkflowExecutionHttpAdapter.js';
+import type {
+  ExecuteApprovedWorkflowInput,
+} from '../../../../src/governance/workflow/ApprovedWorkflowExecutionService.js';
+import type { ExecuteApprovedTransitionResult } from '../../../../src/governance/types/TransitionTypes.js';
+import type {
   RecordWorkflowDecisionInput,
   WorkflowDecisionOutcome,
 } from '../../../../src/governance/workflow/WorkflowDecisionService.js';
@@ -64,6 +72,32 @@ function buildWorkflow(): { deps: WorkflowHttpDeps; recorder: RecordingRecorder 
   return { deps: { decisionService: recorder }, recorder };
 }
 
+class RecordingWorkflowExecutor implements WorkflowTransitionExecutor {
+  public readonly calls: ExecuteApprovedWorkflowInput[] = [];
+  execute(input: ExecuteApprovedWorkflowInput): Promise<ExecuteApprovedTransitionResult> {
+    this.calls.push(input);
+    return Promise.resolve({
+      status: 'executed',
+      transitionRequestId: 'tr-1',
+      entityType: 'AffiliationApplication',
+      entityId: 'app-1',
+      trigger: 'approve',
+      fromState: 'under_review',
+      toState: 'approved',
+      stateTransitionId: 'st-1',
+      idempotencyKey: input.idempotencyKey,
+    });
+  }
+}
+
+function buildExecution(): {
+  deps: WorkflowExecutionHttpDeps;
+  executor: RecordingWorkflowExecutor;
+} {
+  const executor = new RecordingWorkflowExecutor();
+  return { deps: { executor }, executor };
+}
+
 function buildEvidence(maxUploadBytes = 1024): EvidenceHttpDeps {
   const storage = new InMemoryEvidenceStorage({ clock: fixedClock(0) });
   return { uploadService: new GovernanceEvidenceService(storage), storage, maxUploadBytes };
@@ -84,11 +118,13 @@ afterEach(async () => {
 
 async function start(opts: {
   workflow?: WorkflowHttpDeps;
+  workflowExecution?: WorkflowExecutionHttpDeps;
   evidence?: EvidenceHttpDeps;
 }): Promise<string> {
   const server = createAffiliationHttpServer({
     executor: new RecordingExecutor(),
     ...(opts.workflow !== undefined ? { workflow: opts.workflow } : {}),
+    ...(opts.workflowExecution !== undefined ? { workflowExecution: opts.workflowExecution } : {}),
     ...(opts.evidence !== undefined ? { evidence: opts.evidence } : {}),
   });
   openServers.push(server);
@@ -176,5 +212,45 @@ describe('workflow decision HTTP server transport', () => {
       body: JSON.stringify({ decision: 'approve' }),
     });
     expect(wf.status).toBe(200);
+  });
+});
+
+describe('workflow execution HTTP server transport', () => {
+  // Executes an approved transition through the wired route and returns the response DTO.
+  it('executes through the wired route', async () => {
+    const { deps, executor } = buildExecution();
+    const base = await start({ workflowExecution: deps });
+
+    const res = await fetch(`${base}/v1/workflows/wf-1/execute`, {
+      method: 'POST',
+      headers: { ...ID_HEADERS, 'content-type': 'application/json', 'idempotency-key': 'exec-1' },
+      body: JSON.stringify({}),
+    });
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as Record<string, unknown>;
+    expect(body['status']).toBe('executed');
+    expect(body['workflowInstanceId']).toBe('wf-1');
+    expect(body['toState']).toBe('approved');
+    expect(executor.calls).toHaveLength(1);
+    expect(executor.calls[0]?.idempotencyKey).toBe('exec-1');
+  });
+
+  // GET on the execute route is rejected with 405.
+  it('rejects a non-POST method with 405', async () => {
+    const { deps } = buildExecution();
+    const base = await start({ workflowExecution: deps });
+    const res = await fetch(`${base}/v1/workflows/wf-1/execute`, { method: 'GET' });
+    expect(res.status).toBe(405);
+  });
+
+  // When the execution transport is NOT wired, the route 404s (no accidental exposure).
+  it('404s the execute route when execution transport is not wired', async () => {
+    const base = await start({});
+    const res = await fetch(`${base}/v1/workflows/wf-1/execute`, {
+      method: 'POST',
+      headers: { ...ID_HEADERS, 'content-type': 'application/json', 'idempotency-key': 'exec-1' },
+      body: JSON.stringify({}),
+    });
+    expect(res.status).toBe(404);
   });
 });

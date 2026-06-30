@@ -20,12 +20,15 @@ import type {
   GovernanceStore,
   GovernanceTx,
   GuardResultInsert,
+  MarkTransitionRequestExecutedInput,
   OutboxMessageInsert,
   StateMachineRow,
   StateTransitionInsert,
   TransitionDefinitionRow,
   TransitionGuardRow,
+  TransitionRequestForExecutionRow,
   TransitionRequestInsert,
+  WorkflowApprovalStatusRow,
 } from '../kernel/ports.js';
 import type { WorkflowInstanceInsert, WorkflowStepInsert } from '../workflow/WorkflowTypes.js';
 
@@ -230,6 +233,64 @@ class PgGovernanceTx implements GovernanceTx {
       idempotencyKey: r.idempotency_key,
       status: r.status,
     };
+  }
+
+  async lockTransitionRequestById(
+    transitionRequestId: string,
+  ): Promise<TransitionRequestForExecutionRow | undefined> {
+    const rows = await this.client.query<{
+      id: string;
+      tenant_id: string;
+      entity_type: string;
+      entity_id: string;
+      trigger: string;
+      from_state: string;
+      requested_to_state: string;
+      idempotency_key: string;
+      status: string;
+      actor_user_id: string | null;
+      correlation_id: string | null;
+      payload: Record<string, unknown> | null;
+    }>(
+      `SELECT id, tenant_id, entity_type, entity_id, trigger, from_state,
+              requested_to_state, idempotency_key, status, actor_user_id,
+              correlation_id, payload
+         FROM governance.transition_request
+        WHERE id = $1
+        FOR UPDATE`,
+      [transitionRequestId],
+    );
+    const r = rows[0];
+    if (r === undefined) return undefined;
+    return {
+      id: r.id,
+      tenantId: r.tenant_id,
+      entityType: r.entity_type,
+      entityId: r.entity_id,
+      trigger: r.trigger,
+      fromState: r.from_state,
+      requestedToState: r.requested_to_state,
+      idempotencyKey: r.idempotency_key,
+      status: r.status,
+      payload: r.payload ?? {},
+      ...(r.actor_user_id !== null ? { actorUserId: r.actor_user_id } : {}),
+      ...(r.correlation_id !== null ? { correlationId: r.correlation_id } : {}),
+    };
+  }
+
+  async findWorkflowApprovalForRequest(
+    transitionRequestId: string,
+  ): Promise<WorkflowApprovalStatusRow | undefined> {
+    const rows = await this.client.query<{ id: string; status: string }>(
+      `SELECT id, status
+         FROM governance.workflow_instance
+        WHERE transition_request_id = $1
+        LIMIT 1`,
+      [transitionRequestId],
+    );
+    const r = rows[0];
+    if (r === undefined) return undefined;
+    return { workflowInstanceId: r.id, status: r.status };
   }
 
   async insertGuardResults(results: readonly GuardResultInsert[]): Promise<void> {
@@ -444,5 +505,25 @@ class PgGovernanceTx implements GovernanceTx {
         ],
       );
     }
+  }
+
+  async markTransitionRequestExecuted(
+    input: MarkTransitionRequestExecutedInput,
+  ): Promise<void> {
+    await this.client.query(
+      `UPDATE governance.transition_request
+          SET status = 'executed',
+              executed_at = $2,
+              executed_by_user_id = $3,
+              execution_state_transition_id = $4,
+              updated_at = now()
+        WHERE id = $1`,
+      [
+        input.transitionRequestId,
+        input.executedAtIso,
+        input.executedByUserId,
+        input.executionStateTransitionId,
+      ],
+    );
   }
 }

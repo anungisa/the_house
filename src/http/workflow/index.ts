@@ -1,9 +1,12 @@
 /**
- * Workflow decision HTTP endpoint surface — public exports.
+ * Workflow HTTP endpoint surface — public exports.
  *
- * A narrow transport over the existing {@link WorkflowDecisionService}. It records
- * approve/reject metadata on review steps and NEVER bypasses or invokes the Governance
- * Kernel, NEVER mutates governance.entity_state, and NEVER executes a lifecycle transition.
+ * Two narrow transports:
+ *  - the decision surface over {@link WorkflowDecisionService} (records approve/reject
+ *    METADATA only; never executes a transition), and
+ *  - the execution surface over {@link ApprovedWorkflowExecutionService} (the explicit,
+ *    governed "run the approved transition" command — the only workflow surface that causes a
+ *    lifecycle transition, and only through the Governance Kernel).
  */
 
 export {
@@ -18,3 +21,16 @@ export {
   type WorkflowDecisionHttpRequest,
   type WorkflowDecisionResponseBody,
 } from './WorkflowHttpDtos.js';
+
+export {
+  handleWorkflowExecution,
+  workflowExecutionErrorToHttpResult,
+  type WorkflowExecutionHttpDeps,
+  type WorkflowExecutionHttpResult,
+  type WorkflowTransitionExecutor,
+} from './WorkflowExecutionHttpAdapter.js';
+
+export {
+  type WorkflowExecutionHttpRequest,
+  type WorkflowExecutionResponseBody,
+} from './WorkflowExecutionHttpDtos.js';

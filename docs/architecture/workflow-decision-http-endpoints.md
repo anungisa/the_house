@@ -108,9 +108,10 @@ approved. This endpoint:
 
 Even when both review tiers approve, the affiliation application stays in `under_review`.
 Turning an approved workflow into an executed lifecycle transition is a separate, explicit
-**governed** pass (the kernel remains the sole authority for lifecycle state). This separation
-keeps reviewer sign-off auditable as metadata while preserving the kernel's exclusive control
-over governed state.
+**governed** pass (the kernel remains the sole authority for lifecycle state) — see
+[approved-workflow-transition-execution.md](./approved-workflow-transition-execution.md). This
+separation keeps reviewer sign-off auditable as metadata while preserving the kernel's exclusive
+control over governed state.
 
 ## Relationship to `transition_request`
 
@@ -118,8 +119,9 @@ The workflow instance was created **atomically** by the Governance Kernel inside
 transaction that created the approval-required `transition_request` (see
 [workflow-metadata-two-tier-review.md](./workflow-metadata-two-tier-review.md)). This endpoint
 operates only on that already-existing workflow; it never creates workflows and never touches
-the transition request. The pending request remains pending until a future governed execution
-pass acts on it.
+the transition request. The pending request remains pending until the explicit execution pass
+([approved-workflow-transition-execution.md](./approved-workflow-transition-execution.md)) acts
+on it.
 
 ## Error mapping
 
