@@ -61,6 +61,11 @@ import {
   type WorkflowHttpDeps,
   type WorkflowReadHttpDeps,
 } from './workflow/index.js';
+import {
+  handleOrganizationList,
+  handleOrganizationDetail,
+  type OrganizationReadHttpDeps,
+} from './organization/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -104,6 +109,13 @@ export interface AffiliationHttpServerDeps {
    * decisions, and never execute a transition — the execution-readiness field is a hint only.
    */
   readonly workflowRead?: WorkflowReadHttpDeps;
+  /**
+   * Optional Organization Registry READ transport. When provided, the read-only list/detail
+   * endpoints are served; when omitted they 404. These endpoints NEVER mutate the registry,
+   * enqueue outbox messages, touch governed state, or invoke the kernel — they are a thin,
+   * tenant-isolated projection gated by the centralized `organization.read` action.
+   */
+  readonly organizationRead?: OrganizationReadHttpDeps;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -151,7 +163,13 @@ const WORKFLOW_LIST_PATH = '/v1/workflows';
  * segments.
  */
 const WORKFLOW_DETAIL_ROUTE = /^\/v1\/workflows\/([^/]+)\/?$/;
-
+/** GET list of organizations (exact path). */
+const ORGANIZATION_LIST_PATH = '/v1/organizations';
+/**
+ * GET a single organization by id. A single trailing segment only; never collides with the
+ * exact list path above.
+ */
+const ORGANIZATION_DETAIL_ROUTE = /^\/v1\/organizations\/([^/]+)\/?$/;
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
   res.writeHead(result.status, {
@@ -552,6 +570,68 @@ async function handleWorkflowDetailRoute(
   sendJson(res, result);
 }
 
+/** Serve the read-only organization list endpoint (GET only). */
+async function handleOrganizationListRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  organizationRead: OrganizationReadHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the organization list endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const result = await handleOrganizationList(
+    organizationRead,
+    { headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the read-only organization detail endpoint (GET only). */
+async function handleOrganizationDetailRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  organizationRead: OrganizationReadHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the organization detail endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const organizationId = decodeURIComponent(match[1] ?? '');
+  const result = await handleOrganizationDetail(
+    organizationRead,
+    { organizationId, headers: headerMap(req) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 /**
  * Classify a request into a STABLE, low-cardinality route label for telemetry. Returns the
  * route PATTERN (with `:id` placeholders) — never the raw URL — so resource identifiers and
@@ -573,6 +653,8 @@ function classifyRoute(method: string, path: string): string {
   if (WORKFLOW_EXECUTE_ROUTE.test(path)) return `${method} /v1/workflows/:id/execute`;
   if (path === WORKFLOW_LIST_PATH) return `${method} /v1/workflows`;
   if (WORKFLOW_DETAIL_ROUTE.test(path)) return `${method} /v1/workflows/:id`;
+  if (path === ORGANIZATION_LIST_PATH) return `${method} /v1/organizations`;
+  if (ORGANIZATION_DETAIL_ROUTE.test(path)) return `${method} /v1/organizations/:id`;
   if (TRANSITION_ROUTE.test(path)) {
     return `${method} /v1/affiliation/applications/:id/transitions/:action`;
   }
@@ -710,6 +792,28 @@ async function handleRequest(
         res,
         deps.workflowRead,
         detailMatch,
+        requestId,
+        deps.resolver,
+      );
+      return;
+    }
+  }
+
+  // Organization Registry READ transport (only when wired). GET list + GET detail; read-only.
+  // The path is matched first, then the method, so a non-GET request to an organization route
+  // returns 405 (Method Not Allowed) rather than falling through to the transition 404.
+  if (deps.organizationRead !== undefined) {
+    if (path === ORGANIZATION_LIST_PATH) {
+      await handleOrganizationListRoute(req, res, deps.organizationRead, requestId, deps.resolver);
+      return;
+    }
+    const orgDetailMatch = ORGANIZATION_DETAIL_ROUTE.exec(path);
+    if (orgDetailMatch !== null) {
+      await handleOrganizationDetailRoute(
+        req,
+        res,
+        deps.organizationRead,
+        orgDetailMatch,
         requestId,
         deps.resolver,
       );

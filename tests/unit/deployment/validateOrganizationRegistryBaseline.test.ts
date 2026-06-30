@@ -10,6 +10,14 @@ import {
   ORGANIZATION_TEST_REL,
   ORGANIZATION_MIGRATION_REL,
   ORGANIZATION_DOMAIN_DIR_REL,
+  ORGANIZATION_HTTP_ADAPTER_REL,
+  ORGANIZATION_HTTP_DTO_REL,
+  ORGANIZATION_HTTP_INDEX_REL,
+  ORGANIZATION_HTTP_AUTH_REL,
+  ORGANIZATION_HTTP_TEST_REL,
+  ORGANIZATION_HTTP_INTEGRATION_TEST_REL,
+  SERVER_MODULE_REL,
+  AUTHZ_ACTIONS_MODULE_REL,
 } from '../../../src/deployment/validateOrganizationRegistryBaseline.js';
 
 /**
@@ -45,11 +53,11 @@ const VALID_DOC = [
   '## Telemetry signals',
   'Counters and events.',
   '',
-  '## HTTP surfaces — deferred (out of scope this pass)',
-  'HTTP surfaces are deferred.',
+  '## HTTP read surface',
+  'Read-only GET /v1/organizations list and detail gated by organization.read.',
   '',
   '## Out of scope (intentionally not built)',
-  'No HTTP endpoints.',
+  'No write HTTP endpoints.',
   '',
 ].join('\n');
 
@@ -80,6 +88,14 @@ function baseFiles(): Record<string, string | null> {
     [ORGANIZATION_DOC_REL]: VALID_DOC,
     [ORGANIZATION_TEST_REL]: '// organization registry service test (fixture)\n',
     [ORGANIZATION_MIGRATION_REL]: '-- 0009 organization registry (fixture)\n',
+    [ORGANIZATION_HTTP_ADAPTER_REL]: '// organization read http adapter (fixture)\n',
+    [ORGANIZATION_HTTP_DTO_REL]: '// organization read http dtos (fixture)\n',
+    [ORGANIZATION_HTTP_INDEX_REL]: '// organization http barrel (fixture)\n',
+    [ORGANIZATION_HTTP_AUTH_REL]: '// organization http auth (fixture)\n',
+    [ORGANIZATION_HTTP_TEST_REL]: '// organization read http adapter test (fixture)\n',
+    [ORGANIZATION_HTTP_INTEGRATION_TEST_REL]: '// organization http integration test (fixture)\n',
+    [SERVER_MODULE_REL]: "// fixture server with '/v1/organizations' route\n",
+    [AUTHZ_ACTIONS_MODULE_REL]: "export const A = { OrganizationRead: 'organization.read' };\n",
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
@@ -177,12 +193,37 @@ describe('validateOrganizationRegistryBaseline', () => {
     expect(checkOk(root, 'ci:check includes organization:check')).toBe(false);
   });
 
-  it('fails when the doc omits the deferred-HTTP section', () => {
+  it('fails when the doc omits the HTTP read-surface section', () => {
     const files = baseFiles();
-    files[ORGANIZATION_DOC_REL] = VALID_DOC.replace(/HTTP surfaces — deferred.*$/im, '## Notes')
-      .replace(/HTTP surfaces are deferred\./i, 'endpoints exist');
+    files[ORGANIZATION_DOC_REL] = VALID_DOC.replace(/## HTTP read surface/i, '## Notes').replace(
+      /Read-only GET \/v1\/organizations.*$/im,
+      'no endpoints',
+    );
     const root = writeRepo(files);
-    expect(checkOk(root, 'doc documents HTTP surfaces are deferred')).toBe(false);
+    expect(checkOk(root, 'doc documents the HTTP read surface')).toBe(false);
+  });
+
+  it('fails when an HTTP read-surface file is missing', () => {
+    const files = baseFiles();
+    files[ORGANIZATION_HTTP_ADAPTER_REL] = null;
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, `http read-surface file exists: ${ORGANIZATION_HTTP_ADAPTER_REL}`),
+    ).toBe(false);
+  });
+
+  it('fails when the server omits the /v1/organizations route', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] = '// fixture server without the route\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'server wires the /v1/organizations read routes')).toBe(false);
+  });
+
+  it('fails when the authz catalog omits organization.read', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] = 'export const A = {};\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'authz catalog defines organization.read')).toBe(false);
   });
 
   it('flags sport-specific terminology leaking into a domain file', () => {

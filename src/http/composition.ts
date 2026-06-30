@@ -54,6 +54,8 @@ import type {
   WorkflowHttpDeps,
   WorkflowReadHttpDeps,
 } from './workflow/index.js';
+import type { OrganizationReadHttpDeps } from './organization/index.js';
+import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -181,6 +183,18 @@ export function createWorkflowReadHttpDeps(telemetry?: Telemetry): WorkflowReadH
 }
 
 /**
+ * Build the read-only Organization Registry transport backed by PostgreSQL. Reads run through
+ * the RLS-enforced {@link PgOrganizationRegistryStore}; the adapter is read-only and never
+ * mutates the registry, enqueues outbox messages, touches governed state, or invokes the kernel.
+ */
+export function createOrganizationReadHttpDeps(telemetry?: Telemetry): OrganizationReadHttpDeps {
+  return {
+    readStore: new PgOrganizationRegistryStore(),
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -201,6 +215,7 @@ export function createPgAffiliationHttpServer(
     workflow: createWorkflowHttpDeps(telemetry),
     workflowExecution: createWorkflowExecutionHttpDeps(telemetry),
     workflowRead: createWorkflowReadHttpDeps(telemetry),
+    organizationRead: createOrganizationReadHttpDeps(telemetry),
     readiness: createDatabaseReadinessCheck({
       // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
       probe: () => queryRaw('SELECT 1'),

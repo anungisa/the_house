@@ -46,6 +46,21 @@ export const ORGANIZATION_VALIDATOR_MODULE =
 export const ORGANIZATION_VALIDATOR_SCRIPT =
   'scripts/validate-organization-registry-baseline.ts';
 
+// HTTP read surface (this pass): a thin, read-only list/detail transport gated by the
+// centralized `organization.read` authorization action.
+export const ORGANIZATION_HTTP_DIR_REL = 'src/http/organization';
+export const ORGANIZATION_HTTP_ADAPTER_REL =
+  'src/http/organization/OrganizationReadHttpAdapter.ts';
+export const ORGANIZATION_HTTP_DTO_REL = 'src/http/organization/OrganizationReadHttpDtos.ts';
+export const ORGANIZATION_HTTP_INDEX_REL = 'src/http/organization/index.ts';
+export const ORGANIZATION_HTTP_AUTH_REL = 'src/http/organization/organizationHttpAuth.ts';
+export const ORGANIZATION_HTTP_TEST_REL =
+  'tests/unit/http/organization/OrganizationReadHttpAdapter.test.ts';
+export const ORGANIZATION_HTTP_INTEGRATION_TEST_REL =
+  'tests/integration/governance/organization-registry-http.integration.test.ts';
+export const SERVER_MODULE_REL = 'src/http/server.ts';
+export const AUTHZ_ACTIONS_MODULE_REL = 'src/authz/AuthorizationActions.ts';
+
 /** Domain module files that MUST exist for the baseline to be coherent. */
 const ORGANIZATION_DOMAIN_FILES: readonly string[] = [
   `${ORGANIZATION_DOMAIN_DIR_REL}/OrganizationTypes.ts`,
@@ -57,9 +72,18 @@ const ORGANIZATION_DOMAIN_FILES: readonly string[] = [
   `${ORGANIZATION_DOMAIN_DIR_REL}/index.ts`,
 ];
 
+/** HTTP read-surface files that MUST exist now that the read endpoints are implemented. */
+const ORGANIZATION_HTTP_FILES: readonly string[] = [
+  ORGANIZATION_HTTP_ADAPTER_REL,
+  ORGANIZATION_HTTP_DTO_REL,
+  ORGANIZATION_HTTP_INDEX_REL,
+  ORGANIZATION_HTTP_AUTH_REL,
+];
+
 /** Files scanned for leaked secrets (only those present). */
 const ORGANIZATION_SECRET_SCAN_FILES: readonly string[] = [
   ...ORGANIZATION_DOMAIN_FILES,
+  ...ORGANIZATION_HTTP_FILES,
   ORGANIZATION_DOC_REL,
   ORGANIZATION_MIGRATION_REL,
   ORGANIZATION_VALIDATOR_MODULE,
@@ -67,11 +91,12 @@ const ORGANIZATION_SECRET_SCAN_FILES: readonly string[] = [
 ];
 
 /**
- * Files scanned for sport-specific terminology. The domain code, doc, test, and migration must
- * all stay NSO-generic.
+ * Files scanned for sport-specific terminology. The domain code, HTTP read surface, doc, test,
+ * and migration must all stay NSO-generic.
  */
 const ORGANIZATION_DOMAIN_SCAN_FILES: readonly string[] = [
   ...ORGANIZATION_DOMAIN_FILES,
+  ...ORGANIZATION_HTTP_FILES,
   ORGANIZATION_DOC_REL,
   ORGANIZATION_TEST_REL,
   ORGANIZATION_MIGRATION_REL,
@@ -94,9 +119,9 @@ const DOC_MARKERS: ReadonlyArray<{ name: string; marker: RegExp; label: string }
   { name: 'doc documents outbox signals', marker: /outbox/i, label: 'outbox' },
   { name: 'doc documents telemetry signals', marker: /telemetry/i, label: 'telemetry' },
   {
-    name: 'doc documents HTTP surfaces are deferred',
-    marker: /HTTP surfaces .* deferred|deferred .* HTTP/i,
-    label: 'HTTP surfaces deferred',
+    name: 'doc documents the HTTP read surface',
+    marker: /HTTP read surface/i,
+    label: 'HTTP read surface',
   },
   { name: 'doc documents out-of-scope', marker: /out of scope/i, label: 'out of scope' },
 ];
@@ -153,6 +178,46 @@ export function validateOrganizationRegistryBaseline(
     name: 'organization registry test exists',
     ok: testPresent,
     detail: ORGANIZATION_TEST_REL,
+  });
+
+  // 4a. HTTP read-surface files exist (adapter, DTOs, barrel, auth helper).
+  for (const rel of ORGANIZATION_HTTP_FILES) {
+    const present = existsSync(join(repoRoot, rel));
+    checks.push({ name: `http read-surface file exists: ${rel}`, ok: present, detail: rel });
+  }
+
+  // 4b. HTTP read-surface unit + integration tests exist.
+  const httpUnitTestPresent = existsSync(join(repoRoot, ORGANIZATION_HTTP_TEST_REL));
+  checks.push({
+    name: 'organization HTTP read-surface unit test exists',
+    ok: httpUnitTestPresent,
+    detail: ORGANIZATION_HTTP_TEST_REL,
+  });
+  const httpIntegrationTestPresent = existsSync(
+    join(repoRoot, ORGANIZATION_HTTP_INTEGRATION_TEST_REL),
+  );
+  checks.push({
+    name: 'organization HTTP read-surface integration test exists',
+    ok: httpIntegrationTestPresent,
+    detail: ORGANIZATION_HTTP_INTEGRATION_TEST_REL,
+  });
+
+  // 4c. The HTTP server wires the read-only organization routes.
+  const serverText = readIfExists(join(repoRoot, SERVER_MODULE_REL));
+  const serverWiresRoute = serverText !== undefined && serverText.includes('/v1/organizations');
+  checks.push({
+    name: 'server wires the /v1/organizations read routes',
+    ok: serverWiresRoute,
+    detail: serverWiresRoute ? 'wired in src/http/server.ts' : 'missing /v1/organizations route',
+  });
+
+  // 4d. The centralized authorization catalog defines the organization.read action.
+  const authzText = readIfExists(join(repoRoot, AUTHZ_ACTIONS_MODULE_REL));
+  const authzHasAction = authzText !== undefined && authzText.includes("'organization.read'");
+  checks.push({
+    name: 'authz catalog defines organization.read',
+    ok: authzHasAction,
+    detail: authzHasAction ? 'organization.read action present' : 'missing organization.read action',
   });
 
   // 5. package.json exposes organization:check.

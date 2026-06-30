@@ -178,19 +178,44 @@ npx vitest run tests/integration
 restricted runtime role is derived internally. Connection strings come from the environment —
 none are hardcoded, and no secrets are logged.
 
-## HTTP surfaces — deferred (out of scope this pass)
+## HTTP read surface
 
-No HTTP endpoints and no new authorization actions are added in this pass. Reads are proven at
-the **service level** (`getOrganization`, `listOrganizations`, both tenant-scoped and
-keyset-paginated). Exposing an admin read surface (with `organization.read` authorization, an
-`OrganizationReadHttpAdapter`, and cursor pagination over the native server) is a deliberate
-follow-up so this pass stays a focused domain baseline.
+Read-only HTTP endpoints expose the registry to authorized operators. The endpoints are a THIN
+transport over the read store: they never mutate the registry, never enqueue an outbox message,
+never touch governed state, and never invoke the Governance Kernel.
+
+| Method & path | Purpose |
+| --- | --- |
+| `GET /v1/organizations` | List the authenticated tenant's organizations (keyset-paginated). |
+| `GET /v1/organizations/:organizationId` | Read a single organization for the tenant. |
+
+Key properties:
+
+- **Authorization** is the centralized `organization.read` action (see
+  `src/authz/AuthorizationActions.ts`). The `organization_reader` and `organization_admin` roles
+  imply it, as does the platform-admin wildcard and the exact `organization.read` permission key.
+  Authorization fails closed: an unauthenticated request is `401`, an authenticated-but-unauthorized
+  request is `403`, and a denial emits the sanitized `authz.denied` signal.
+- **Tenant isolation**: tenant identity comes EXCLUSIVELY from the resolved auth context
+  (`x-house-*` trusted headers) — never from the query string, path, or body. A detail read of
+  another tenant's organization returns `404` and never reveals cross-tenant existence (RLS makes
+  the row invisible to the read).
+- **Pagination & filters**: list supports `limit` (positive integer; clamped to the domain
+  maximum), an opaque base64url `cursor`, and the optional `organizationType`, `status`, and
+  `parentOrganizationId` filters. Invalid input is rejected with `400`.
+- **Safe projection**: responses expose a CLOSED DTO field set (identity / reference / status
+  fields only) — never secrets, raw headers, connection strings, or payload bytes.
+- **Telemetry**: each read emits the `organization.registry.read.count` counter tagged with the
+  operation (`list`/`detail`) and result (`success`/`failure`). Names stay NSO-generic.
+
+Reads run through the same RLS-enforced `PgOrganizationRegistryStore` used elsewhere, so a
+non-superuser, non-BYPASSRLS role with `SELECT` only is sufficient — no write privileges are
+required for the read surface. **Write endpoints remain out of scope** (see below).
 
 ## Out of scope (intentionally not built)
 
-- Any HTTP/admin UI or read endpoints (deferred, above).
-- Write endpoints or a generic CRUD API.
-- New authorization actions / roles.
+- Write/admin HTTP endpoints or a generic CRUD API (only the read surface above is exposed).
+- New authorization actions beyond `organization.read`.
 - Sport-specific organization vocabulary or attributes.
 - A second `organization_relationship` table — the self-referencing parent column models the
   hierarchy for this baseline.
