@@ -143,6 +143,7 @@ async function start(opts: {
 const ID_HEADERS = {
   'x-house-tenant-id': 'tenant-a',
   'x-house-actor-user-id': 'reviewer-1',
+  'x-house-actor-role-keys': 'workflow_admin',
 };
 
 describe('workflow decision HTTP server transport', () => {

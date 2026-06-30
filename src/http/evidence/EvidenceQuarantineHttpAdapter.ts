@@ -16,17 +16,17 @@
  *    a still-needed document must be re-uploaded through the normal evidence path and re-scanned.
  *  - Tenant comes EXCLUSIVELY from the resolved {@link AuthContext}; query/path/body inputs
  *    never carry identity.
- *  - Authorization is a v1 local gate: read requires `evidence.quarantine.read` (or a security
- *    role); disposition requires `evidence.quarantine.disposition` (or a security role).
- *    Centralized authorization policy is future work.
+ *  - Authorization is enforced by the centralized policy (src/authz): read requires the
+ *    `evidence.quarantine.read` action; disposition requires the
+ *    `evidence.quarantine.disposition` action. The policy is the single source of truth for
+ *    role/permission mappings.
  */
 
 import { randomUUID } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 
 import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
-import { ForbiddenError } from '../auth/AuthErrors.js';
-import type { AuthContext } from '../auth/AuthContext.js';
+import { assertAuthorized, AuthorizationAction } from '../../authz/index.js';
 import type { AuthContextResolver } from '../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../auth/DemoAuthContextResolver.js';
 import { requireActorUserId, requireTenant, resolveEvidenceAuth } from './evidenceHttpAuth.js';
@@ -53,13 +53,6 @@ import type {
 /** Default resolver mirrors the other evidence adapters: demo identity unless one is supplied. */
 const DEFAULT_DEMO_RESOLVER: AuthContextResolver = new DemoAuthContextResolver();
 
-/** Permission that grants quarantine read access. */
-const QUARANTINE_READ_PERMISSION = 'evidence.quarantine.read';
-/** Permission that grants quarantine disposition access. */
-const QUARANTINE_DISPOSITION_PERMISSION = 'evidence.quarantine.disposition';
-/** Security roles that implicitly grant quarantine access (v1 gate; centralized policy later). */
-const SECURITY_ROLES: readonly string[] = ['security_reviewer', 'security_admin'];
-
 const VALID_QUARANTINE_STATUSES: readonly QuarantineStatus[] = [
   'recorded',
   'notified',
@@ -78,28 +71,6 @@ export interface EvidenceQuarantineHttpDeps {
 export interface EvidenceQuarantineHttpResult {
   readonly status: number;
   readonly body: Readonly<Record<string, unknown>>;
-}
-
-/** Read gate: fails CLOSED unless the actor holds the read permission or a security role. */
-function requireQuarantineReadAccess(auth: AuthContext): void {
-  const hasPermission = auth.actor.permissionKeys.includes(QUARANTINE_READ_PERMISSION);
-  const hasRole = auth.actor.roleKeys.some((r) => SECURITY_ROLES.includes(r));
-  if (!hasPermission && !hasRole) {
-    throw new ForbiddenError(
-      'Quarantine read access requires the evidence.quarantine.read permission or a security role.',
-    );
-  }
-}
-
-/** Disposition gate: fails CLOSED unless the actor holds the disposition permission or a role. */
-function requireQuarantineDispositionAccess(auth: AuthContext): void {
-  const hasPermission = auth.actor.permissionKeys.includes(QUARANTINE_DISPOSITION_PERMISSION);
-  const hasRole = auth.actor.roleKeys.some((r) => SECURITY_ROLES.includes(r));
-  if (!hasPermission && !hasRole) {
-    throw new ForbiddenError(
-      'Quarantine disposition requires the evidence.quarantine.disposition permission or a security role.',
-    );
-  }
 }
 
 /** Encode a keyset cursor as an opaque base64url token. */
@@ -247,7 +218,7 @@ export async function handleQuarantineList(
   try {
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    requireQuarantineReadAccess(auth);
+    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineRead);
 
     const filter = parseListFilter(req.query);
     const result = await deps.reviewer.listQuarantineEvents(tenantId, filter);
@@ -274,7 +245,7 @@ export async function handleQuarantineDetail(
   try {
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    requireQuarantineReadAccess(auth);
+    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineRead);
 
     if (req.quarantineEventId.trim() === '') {
       throw new AppError(ErrorCode.INVALID_INPUT, 'quarantineEventId path parameter is required.');
@@ -311,7 +282,7 @@ export async function handleQuarantineDisposition(
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
     const actorUserId = requireActorUserId(auth);
-    requireQuarantineDispositionAccess(auth);
+    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineDisposition);
 
     if (req.quarantineEventId.trim() === '') {
       throw new AppError(ErrorCode.INVALID_INPUT, 'quarantineEventId path parameter is required.');

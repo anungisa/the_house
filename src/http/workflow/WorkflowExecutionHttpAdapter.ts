@@ -13,11 +13,15 @@
  *  - Tenant + actor come EXCLUSIVELY from the resolved {@link AuthContext} (trusted headers).
  *    The JSON body carries only `{ reason?, idempotencyKey? }`; any `actor`/`tenantId` in the
  *    body is IGNORED. The `Idempotency-Key` header is preferred for the idempotency key.
+ *  - Authorization is enforced by the centralized policy (src/authz): the actor must be
+ *    authorized for the `workflow.execute` action. This is an EDGE authorization gate only —
+ *    the Governance Kernel still independently enforces lifecycle transition permission/guards.
  */
 
 import { randomUUID } from 'node:crypto';
 
 import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
+import { assertAuthorized, AuthorizationAction } from '../../authz/index.js';
 import type { AuthContext } from '../auth/AuthContext.js';
 import type { AuthContextResolver } from '../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../auth/DemoAuthContextResolver.js';
@@ -194,6 +198,7 @@ export async function handleWorkflowExecution(
     const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
     requireActorUserId(auth);
+    assertAuthorized(auth, AuthorizationAction.WorkflowExecute);
 
     if (req.workflowInstanceId.trim() === '') {
       throw new AppError(

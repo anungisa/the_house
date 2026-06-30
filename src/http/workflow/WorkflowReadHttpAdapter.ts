@@ -14,16 +14,16 @@
  *    context per read.
  *  - Tenant comes EXCLUSIVELY from the resolved {@link AuthContext}. Query/path inputs never
  *    carry identity; any tenantId in the query is IGNORED.
- *  - Authorization is a v1 read gate: the actor must hold the `workflow.read` permission OR one
- *    of the reviewer/reader roles. Centralized role policy administration is future work.
+ *  - Authorization is enforced by the centralized policy (src/authz): the actor must be
+ *    authorized for the `workflow.read` action. The policy is the single source of truth for
+ *    role/permission mappings.
  */
 
 import { randomUUID } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 
 import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
-import { ForbiddenError } from '../auth/AuthErrors.js';
-import type { AuthContext } from '../auth/AuthContext.js';
+import { assertAuthorized, AuthorizationAction } from '../../authz/index.js';
 import type { AuthContextResolver } from '../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../auth/DemoAuthContextResolver.js';
 import { requireTenant, resolveWorkflowAuth } from './workflowHttpAuth.js';
@@ -53,15 +53,6 @@ import type {
 /** Default resolver mirrors the other workflow adapters: demo identity unless one is supplied. */
 const DEFAULT_DEMO_RESOLVER: AuthContextResolver = new DemoAuthContextResolver();
 
-/** Permission that grants workflow read access. */
-const WORKFLOW_READ_PERMISSION = 'workflow.read';
-/** Roles that implicitly grant workflow read access (v1 gate; centralized policy is future work). */
-const WORKFLOW_READ_ROLES: readonly string[] = [
-  'workflow_reader',
-  'regional_reviewer',
-  'national_reviewer',
-];
-
 const VALID_STATUSES: readonly WorkflowInstanceStatus[] = [
   'pending',
   'approved',
@@ -79,18 +70,6 @@ export interface WorkflowReadHttpDeps {
 export interface WorkflowReadHttpResult {
   readonly status: number;
   readonly body: Readonly<Record<string, unknown>>;
-}
-
-/**
- * Enforce the v1 workflow-read gate. Identity is established; this checks authorization.
- * Fails CLOSED: an actor without the permission or a reader/reviewer role is denied (403).
- */
-function requireWorkflowReadAccess(auth: AuthContext): void {
-  const hasPermission = auth.actor.permissionKeys.includes(WORKFLOW_READ_PERMISSION);
-  const hasRole = auth.actor.roleKeys.some((r) => WORKFLOW_READ_ROLES.includes(r));
-  if (!hasPermission && !hasRole) {
-    throw new ForbiddenError('Workflow read access requires the workflow.read permission or a reviewer role.');
-  }
 }
 
 /** Encode a keyset cursor as an opaque base64url token. */
@@ -248,7 +227,7 @@ export async function handleWorkflowList(
   try {
     const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    requireWorkflowReadAccess(auth);
+    assertAuthorized(auth, AuthorizationAction.WorkflowRead);
 
     const filter = parseListFilter(req.query);
     const result = await deps.readStore.listWorkflows(tenantId, filter);
@@ -281,7 +260,7 @@ export async function handleWorkflowDetail(
   try {
     const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    requireWorkflowReadAccess(auth);
+    assertAuthorized(auth, AuthorizationAction.WorkflowRead);
 
     if (req.workflowInstanceId.trim() === '') {
       throw new AppError(ErrorCode.INVALID_INPUT, 'workflowInstanceId path parameter is required.');

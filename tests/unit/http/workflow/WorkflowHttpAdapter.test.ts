@@ -362,6 +362,7 @@ describe('workflow decision HTTP adapter', () => {
         headers: {
           'x-house-tenant-id': 'tenant-a',
           'x-house-actor-user-id': 'reviewer-1',
+          'x-house-actor-permission-keys': 'workflow.decide',
         },
         body: { decision: 'approve' },
       },
@@ -443,5 +444,60 @@ describe('workflow decision HTTP adapter — metadata integrity', () => {
 
     const after = h.store.entityStateSnapshots.find((e) => e.entityId === 'e2e-11');
     expect(after?.currentState).toBe('under_review');
+  });
+});
+
+/**
+ * Centralized authorization regression: the decision endpoint is gated by the `workflow.decide`
+ * action. An authenticated actor lacking that authorization is denied with a 403 that leaks no
+ * role/permission/token detail; an actor holding the permission key is allowed.
+ */
+describe('workflow decision HTTP adapter — centralized authorization', () => {
+  // Denies an authenticated actor without workflow.decide (403, no recordDecision call).
+  it('denies an actor lacking workflow.decide with 403 and does not call the service', async () => {
+    const recorder = new RecordingRecorder(outcome());
+    const result = await handleWorkflowDecision(
+      deps(recorder),
+      {
+        workflowInstanceId: 'wf-1',
+        stepCode: 'regional_signoff',
+        // Authenticated (tenant + actor) but holds only a read-capable role.
+        headers: {
+          'x-house-tenant-id': 'tenant-a',
+          'x-house-actor-user-id': 'reader-1',
+          'x-house-actor-role-keys': 'workflow_reader',
+        },
+        body: { decision: 'approve' },
+      },
+      'req-authz-deny',
+      DEMO,
+    );
+    expect(result.status).toBe(403);
+    expect(result.body['code']).toBe('FORBIDDEN');
+    expect(recorder.calls).toHaveLength(0);
+    // The public body must not leak role lists, permission keys, or token detail.
+    expect(JSON.stringify(result.body)).not.toMatch(/workflow_reader|roleKeys|permissionKeys|token/i);
+  });
+
+  // Allows an actor holding the exact workflow.decide permission key.
+  it('allows an actor holding the workflow.decide permission key', async () => {
+    const recorder = new RecordingRecorder(outcome());
+    const result = await handleWorkflowDecision(
+      deps(recorder),
+      {
+        workflowInstanceId: 'wf-1',
+        stepCode: 'regional_signoff',
+        headers: {
+          'x-house-tenant-id': 'tenant-a',
+          'x-house-actor-user-id': 'reviewer-1',
+          'x-house-actor-permission-keys': 'workflow.decide',
+        },
+        body: { decision: 'approve' },
+      },
+      'req-authz-allow',
+      DEMO,
+    );
+    expect(result.status).toBe(200);
+    expect(recorder.calls).toHaveLength(1);
   });
 });

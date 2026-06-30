@@ -365,3 +365,54 @@ describe('workflow execution HTTP adapter — end-to-end (no DB)', () => {
     );
   });
 });
+
+/**
+ * Centralized authorization regression: the execution endpoint is gated by the `workflow.execute`
+ * action BEFORE the executor is reached. The Governance Kernel still independently enforces
+ * lifecycle transition permission — this edge gate does not replace it.
+ */
+describe('workflow execution HTTP adapter — centralized authorization', () => {
+  // Denies an authenticated actor lacking workflow.execute (403, executor never called).
+  it('denies an actor lacking workflow.execute with 403 and never calls the executor', async () => {
+    const executor = new RecordingExecutor(executedResult());
+    const result = await handleWorkflowExecution(
+      deps(executor),
+      {
+        workflowInstanceId: 'wf-1',
+        // Authenticated but holds only a decide-capable role (regional reviewer cannot execute).
+        headers: authHeaders('tenant-a', 'reviewer-region', {
+          'x-house-actor-role-keys': 'regional_reviewer',
+          'idempotency-key': 'exec-deny',
+        }),
+        body: {},
+      },
+      'req-authz-deny',
+      DEMO,
+    );
+    expect(result.status).toBe(403);
+    expect(result.body['code']).toBe('FORBIDDEN');
+    expect(executor.calls).toHaveLength(0);
+    expect(JSON.stringify(result.body)).not.toMatch(/regional_reviewer|roleKeys|permissionKeys|token/i);
+  });
+
+  // Allows an actor holding the exact workflow.execute permission key.
+  it('allows an actor holding the workflow.execute permission key', async () => {
+    const executor = new RecordingExecutor(executedResult());
+    const result = await handleWorkflowExecution(
+      deps(executor),
+      {
+        workflowInstanceId: 'wf-1',
+        headers: authHeaders('tenant-a', 'op-1', {
+          'x-house-actor-role-keys': '',
+          'x-house-actor-permission-keys': 'workflow.execute',
+          'idempotency-key': 'exec-allow',
+        }),
+        body: {},
+      },
+      'req-authz-allow',
+      DEMO,
+    );
+    expect(result.status).toBe(200);
+    expect(executor.calls).toHaveLength(1);
+  });
+});

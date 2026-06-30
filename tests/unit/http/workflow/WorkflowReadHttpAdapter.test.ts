@@ -448,7 +448,7 @@ describe('workflow admin read HTTP adapter', () => {
         headers: {
           'x-house-tenant-id': 'tenant-a',
           'x-house-actor-user-id': 'op-1',
-          'x-house-actor-role-keys': 'national_reviewer',
+          'x-house-actor-role-keys': 'workflow_admin',
           'idempotency-key': 'idem-1',
         },
         body: {},
