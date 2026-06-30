@@ -1,0 +1,24 @@
+# Trivy scanner configuration for The House v2 container images.
+#
+# Reporting-only baseline: pull_request scans SURFACE findings but do NOT fail
+# the build (exit-code 0 in CI). A future production gate may flip the exit code
+# to fail on CRITICAL/HIGH once the baseline is clean — see
+# docs/architecture/image-sbom-vulnerability-baseline.md.
+#
+# This config suppresses NO vulnerabilities. There is intentionally no
+# `.trivyignore`; any future suppression must be an explicit, reviewed,
+# per-CVE exception with justification.
+
+# Explicit severity thresholds — what we care about reviewing.
+severity:
+  - HIGH
+  - CRITICAL
+
+# Only scan for vulnerabilities in this baseline (not secrets/misconfig here).
+scan:
+  scanners:
+    - vuln
+
+vulnerability:
+  # Report fixable AND not-yet-fixable findings — nothing is hidden.
+  ignore-unfixed: false

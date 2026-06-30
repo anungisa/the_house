@@ -29,7 +29,10 @@
     "migrations:check": "tsx scripts/validate-migrations.ts",
     "migrations:plan": "tsx scripts/migrate-db.ts --plan",
     "migrations:apply": "tsx scripts/migrate-db.ts --apply",
-    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check"
+    "supply-chain:check": "tsx scripts/validate-supply-chain-baseline.ts",
+    "sbom:generate": "tsx scripts/generate-sbom.ts",
+    "image:scan": "tsx scripts/scan-image.ts",
+    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check"
   },
   "dependencies": {
     "@azure/identity": "^4.13.1",

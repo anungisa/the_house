@@ -52,6 +52,13 @@ describe('package scripts', () => {
     expect(scripts['migrations:apply']).toBe('tsx scripts/migrate-db.ts --apply');
   });
 
+  // Supply-chain (SBOM + vulnerability scan) baseline scripts are present.
+  it('defines supply-chain:check, sbom:generate, and image:scan', () => {
+    expect(scripts['supply-chain:check']).toBe('tsx scripts/validate-supply-chain-baseline.ts');
+    expect(scripts['sbom:generate']).toBe('tsx scripts/generate-sbom.ts');
+    expect(scripts['image:scan']).toBe('tsx scripts/scan-image.ts');
+  });
+
   // Aggregate CI gate script is present and chains the required gates.
   it('defines ci:check chaining the required gates', () => {
     const ciCheck = scripts['ci:check'];
@@ -64,6 +71,7 @@ describe('package scripts', () => {
       'npm run deploy:check',
       'npm run container:check',
       'npm run migrations:check',
+      'npm run supply-chain:check',
     ]) {
       expect(ciCheck).toContain(gate);
     }
@@ -86,6 +94,7 @@ describe('package scripts', () => {
       'deploy:check',
       'container:check',
       'migrations:check',
+      'supply-chain:check',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

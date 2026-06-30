@@ -1,8 +1,15 @@
-# Container image build validation. This workflow proves the API and worker
-# images BUILD from the committed Dockerfile. It NEVER pushes images to a
-# registry, requires NO secrets, and contacts NO Azure. Pushing to a registry is
-# the responsibility of the manual production-deploy-template workflow once a real
-# registry and credentials are configured.
+# Container image build + supply-chain validation. This workflow proves the API
+# and worker images BUILD from the committed Dockerfile, generates an SBOM for
+# each image, and runs a vulnerability scan in REPORTING-ONLY mode. It NEVER
+# pushes images to a registry, requires NO secrets, and contacts NO Azure.
+# Pushing to a registry is the responsibility of the manual
+# production-deploy-template workflow once a real registry and credentials are
+# configured.
+#
+# Scan posture: reporting-only on pull_request (exit-code 0) so a noisy upstream
+# CVE or a transient vulnerability-database hiccup never blocks a PR. A future
+# production gate may fail on CRITICAL/HIGH once the baseline is clean — see
+# docs/architecture/image-sbom-vulnerability-baseline.md.
 name: container-build
 
 on:
@@ -32,5 +39,35 @@ jobs:
           context: .
           target: ${{ matrix.target }}
           push: false
-          load: false
+          load: true
           tags: the-house-${{ matrix.target }}:ci
+
+      # Generate an SPDX Software Bill of Materials for the built image and upload
+      # it as a build artifact. No registry, no secrets.
+      - name: Generate SBOM (SPDX) for ${{ matrix.target }} image
+        uses: anchore/sbom-action@v0
+        with:
+          image: the-house-${{ matrix.target }}:ci
+          format: spdx-json
+          output-file: sbom-${{ matrix.target }}.spdx.json
+          artifact-name: sbom-${{ matrix.target }}.spdx.json
+
+      # Vulnerability scan, reporting-only (exit-code 0). continue-on-error keeps a
+      # transient vulnerability-database outage from failing the build.
+      - name: Vulnerability scan (reporting-only) for ${{ matrix.target }} image
+        uses: aquasecurity/trivy-action@0.24.0
+        continue-on-error: true
+        with:
+          image-ref: the-house-${{ matrix.target }}:ci
+          trivy-config: trivy.yaml
+          format: table
+          output: trivy-${{ matrix.target }}.txt
+          exit-code: '0'
+
+      - name: Upload vulnerability scan report for ${{ matrix.target }} image
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-${{ matrix.target }}
+          path: trivy-${{ matrix.target }}.txt
+          if-no-files-found: ignore

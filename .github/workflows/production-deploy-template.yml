@@ -69,6 +69,16 @@ jobs:
               --template-file infra/azure/main.bicep \
               --parameters infra/azure/parameters/prod.example.bicepparam
 
+      # Verify image scan / SBOM artifacts exist for the tag being deployed BEFORE
+      # any image is built or rolled out. Placeholder: wire this to your artifact
+      # store / scan gate (e.g. confirm an SBOM and a passing CRITICAL/HIGH scan
+      # for the candidate tag). This step must NOT be bypassed when promoting a
+      # release; it deliberately runs ahead of the build/migrate/rollout steps.
+      - name: Verify image scan / SBOM artifacts (placeholder gate)
+        run: |
+          echo "Verify SBOM + vulnerability scan artifacts for tag ${{ inputs.image_tag }}."
+          echo "See docs/architecture/image-sbom-vulnerability-baseline.md for the gate contract."
+
       # Preview pending schema migrations BEFORE any change is applied. Read-only:
       # plan never writes to the database. MIGRATE_DATABASE_URL is the privileged
       # migration role, distinct from the restricted application DATABASE_URL.
