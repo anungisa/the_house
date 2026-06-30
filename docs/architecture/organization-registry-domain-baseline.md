@@ -32,6 +32,7 @@ This is **reference-data structure, not lifecycle governance.** The registry NEV
 | Barrel | [src/domains/organization-registry/index.ts](../../src/domains/organization-registry/index.ts) |
 | Migration + RLS | [db/migrations/0009_organization_registry.sql](../../db/migrations/0009_organization_registry.sql) |
 | Unit tests | [tests/unit/domains/organization-registry/OrganizationRegistryService.test.ts](../../tests/unit/domains/organization-registry/OrganizationRegistryService.test.ts) |
+| Gated PostgreSQL/RLS integration tests | [tests/integration/governance/organization-registry.integration.test.ts](../../tests/integration/governance/organization-registry.integration.test.ts) |
 
 ## Domain model
 
@@ -124,6 +125,58 @@ domain terminology in telemetry names):
 - Counters: `organization.registry.created.count`, `organization.registry.updated.count`,
   `organization.registry.read.count`.
 - Events: `organization.registry.created`, `organization.registry.status_changed`.
+
+## PostgreSQL/RLS validation
+
+The registry's persistence guarantees are proven against **real PostgreSQL** by a gated
+integration suite
+([tests/integration/governance/organization-registry.integration.test.ts](../../tests/integration/governance/organization-registry.integration.test.ts)).
+The suite is **hermetic by default**: it runs only when `RUN_DB_TESTS=1` and an admin connection
+URL is set, otherwise every case is skipped so `npm test` needs no database, container, or
+network. It contacts no Azure, Entra/JWKS, antivirus, Service Bus, Key Vault, registry, Cosign,
+or transparency-log service.
+
+Using the admin connection it applies migrations idempotently and self-provisions one
+least-privilege role, `house_app_org_registry_test` (`LOGIN`, **`NOSUPERUSER`**,
+**`NOBYPASSRLS`**, `NOCREATEDB`, `NOCREATEROLE`), granted only `SELECT, INSERT, UPDATE` on
+`organization_registry.organization` and `governance.outbox_message` plus `EXECUTE` on
+`governance.current_tenant_id()` — no `DELETE`, no `TRUNCATE`, no superuser, no BYPASSRLS. The
+store/service run as that restricted, RLS-confined role.
+
+It proves, against that role:
+
+- **FORCE RLS** — the table reports `relrowsecurity` and `relforcerowsecurity` both true, so the
+  policies apply even to the table owner.
+- **Fail closed** — a read or write with no `app.tenant_id` set raises `P0001`
+  (`current_tenant_id()` fails closed); the registry is never reachable without tenant context.
+- **Tenant isolation** — Tenant Alpha inserts and reads its own national → regional → local
+  hierarchy; Tenant Alpha cannot read Tenant Beta's organizations (detail and list); a
+  cross-tenant parent id is unresolvable and rejected as `ORGANIZATION_PARENT_NOT_FOUND`; a
+  cycle is rejected as `ORGANIZATION_PARENT_CYCLE`.
+- **Least privilege** — the role is `NOSUPERUSER` / `NOBYPASSRLS` and holds exactly
+  `{SELECT, INSERT, UPDATE}` on the registry table (no `DELETE`/`TRUNCATE`).
+- **Outbox atomicity** — a create/status-change writes the organization row and its sanitized
+  `organization.registry.*` outbox message in one transaction; if the outbox insert is denied
+  (`42501`) the organization insert rolls back with it (no silent partial write). Payloads carry
+  no `displayName`/`legalName`, headers, bearer tokens, secrets, or bytes.
+- **No governed lifecycle mutation** — across create, status change, and affiliation projection,
+  the counts of `governance.entity_state`, `governance.state_transition`, and
+  `governance.audit_event` for the suite's tenants stay at zero. The registry is reference data;
+  governed lifecycle stays with the kernel/workflow.
+- **NSO-generic schema** — no registry column carries sport-specific terminology.
+
+### Running the gated DB integration
+
+```sh
+RUN_DB_TESTS=1 \
+MIGRATE_DATABASE_URL=postgres://<admin-user>:<admin-password>@127.0.0.1:55432/the_house_test \
+DATABASE_URL=postgres://<app-user>:<app-password>@127.0.0.1:55432/the_house_test \
+npx vitest run tests/integration
+```
+
+`MIGRATE_DATABASE_URL` is the elevated/admin connection used for DDL and role provisioning; the
+restricted runtime role is derived internally. Connection strings come from the environment —
+none are hardcoded, and no secrets are logged.
 
 ## HTTP surfaces — deferred (out of scope this pass)
 
