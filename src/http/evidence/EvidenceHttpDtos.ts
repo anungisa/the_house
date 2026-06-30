@@ -8,6 +8,7 @@
  */
 
 import type { EvidenceStorageProvider } from '../../governance/evidence/EvidenceStorage.js';
+import type { EvidenceScanStatus } from '../../governance/evidence/scanning/index.js';
 
 /**
  * Evidence-specific request headers (lowercased to match Node's incoming header map).
@@ -54,4 +55,18 @@ export type EvidenceUploadResponseBody = {
   readonly contentType: string;
   readonly sizeBytes: number;
   readonly requestId: string;
+  /**
+   * Outcome of the malware scan that gated this upload. Only sanitized scan metadata is
+   * surfaced (status/scanner/version/timestamp) — never the payload bytes, a threat name, or
+   * a failure reason (infected/error results reject the upload and never reach this body).
+   */
+  readonly malwareScan: EvidenceScanResultSummary;
+};
+
+/** Sanitized, client-safe summary of a malware scan outcome attached to an upload response. */
+export type EvidenceScanResultSummary = {
+  readonly status: EvidenceScanStatus;
+  readonly scanner: string;
+  readonly scannedAt: string;
+  readonly signatureVersion?: string;
 };

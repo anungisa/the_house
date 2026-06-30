@@ -24,6 +24,12 @@ export const ErrorCode = {
   EVIDENCE_HASH_MISMATCH: 'EVIDENCE_HASH_MISMATCH',
   /** An evidence storage backend operation failed (controlled, sanitized). */
   EVIDENCE_STORAGE_ERROR: 'EVIDENCE_STORAGE_ERROR',
+  /** An evidence upload was rejected because malware was positively detected in the payload. */
+  EVIDENCE_MALWARE_DETECTED: 'EVIDENCE_MALWARE_DETECTED',
+  /** Malware scanning is required but the scanner could not complete (transient/internal). */
+  EVIDENCE_MALWARE_SCAN_FAILED: 'EVIDENCE_MALWARE_SCAN_FAILED',
+  /** Malware scanning is required but no scan was performed (scanner skipped / unavailable). */
+  EVIDENCE_MALWARE_SCAN_REQUIRED: 'EVIDENCE_MALWARE_SCAN_REQUIRED',
   /** A referenced review workflow instance does not exist for the tenant. */
   WORKFLOW_NOT_FOUND: 'WORKFLOW_NOT_FOUND',
   /** A workflow step code is unknown or not the step currently awaiting a decision. */

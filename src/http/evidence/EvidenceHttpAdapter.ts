@@ -3,9 +3,12 @@
  *
  * These handlers translate raw HTTP shapes into calls against the existing evidence storage
  * services and back. They are deliberately narrow: store a payload, retrieve a payload. They
- * do NOT approve/reject anything, do NOT call GovernanceKernel.transition(), do NOT scan,
- * classify, OCR, or run review workflow. Lifecycle evidence binding stays in the governance
- * kernel; this surface only moves bytes in and out of {@link EvidenceStorage}.
+ * do NOT approve/reject anything, do NOT call GovernanceKernel.transition(), do NOT classify,
+ * OCR, or run review workflow. Uploads ARE gated by a malware scan (an ingestion check that
+ * inspects the bytes before storage and never makes a lifecycle decision); see
+ * {@link enforceEvidenceScan} and docs/architecture/evidence-malware-scanning.md. Lifecycle
+ * evidence binding stays in the governance kernel; this surface only moves bytes in and out
+ * of {@link EvidenceStorage}.
  *
  * Identity: evidence request bodies are binary (upload) or a storage reference (download),
  * so identity is ALWAYS carried in the shared `x-house-*` trusted-header contract — unlike
@@ -33,8 +36,13 @@ import {
 } from '../../governance/evidence/EvidenceMetadataBinding.js';
 import type { StoredEvidenceWithBinding } from '../../governance/evidence/GovernanceEvidenceService.js';
 import {
+  enforceEvidenceScan,
+  type EvidenceMalwareScanner,
+} from '../../governance/evidence/scanning/index.js';
+import {
   EVIDENCE_HEADER_NAMES,
   type EvidenceDownloadRequest,
+  type EvidenceScanResultSummary,
   type EvidenceUploadRequest,
   type EvidenceUploadResponseBody,
 } from './EvidenceHttpDtos.js';
@@ -63,6 +71,13 @@ export interface EvidenceHttpDeps {
   readonly storage: EvidenceReadPort;
   /** Maximum accepted upload size in bytes; enforced here in addition to the server cap. */
   readonly maxUploadBytes: number;
+  /**
+   * Malware scanner that inspects payload bytes BEFORE storage. Always present so the upload
+   * path is gated; the no-op scanner (mode `disabled`) returns `skipped`.
+   */
+  readonly scanner: EvidenceMalwareScanner;
+  /** When true, a `skipped`/`error` scan fails closed and rejects the upload. */
+  readonly scanRequired: boolean;
 }
 
 /** Discriminated transport result: JSON for metadata/errors, raw bytes for a download. */
@@ -149,6 +164,13 @@ function evidenceAppErrorStatus(code: ErrorCode): number {
       return 404;
     case ErrorCode.EVIDENCE_HASH_MISMATCH:
       return 409;
+    case ErrorCode.EVIDENCE_MALWARE_DETECTED:
+      // Unprocessable content: the upload was well-formed but its payload is not acceptable.
+      return 422;
+    case ErrorCode.EVIDENCE_MALWARE_SCAN_FAILED:
+    case ErrorCode.EVIDENCE_MALWARE_SCAN_REQUIRED:
+      // Service unavailable: scanning is required but could not complete / was not performed.
+      return 503;
     case ErrorCode.NOT_IMPLEMENTED:
       return 501;
     default:
@@ -207,6 +229,19 @@ export async function handleEvidenceUpload(
       );
     }
 
+    // Ingestion gate: scan the payload BEFORE it is stored. An infected payload (or a
+    // skipped/failed scan when scanning is required) throws and is never persisted.
+    const scan = await enforceEvidenceScan(
+      { scanner: deps.scanner, required: deps.scanRequired },
+      { content: req.content, contentType, tenantId },
+    );
+    const malwareScan: EvidenceScanResultSummary = {
+      status: scan.status,
+      scanner: scan.scanner,
+      scannedAt: scan.scannedAt,
+      ...(scan.signatureVersion !== undefined ? { signatureVersion: scan.signatureVersion } : {}),
+    };
+
     const evidenceObjectId = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.evidenceObjectId]);
     const sourceFilename = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.sourceFilename]);
     const retentionClass = trimmedHeader(req.headers[EVIDENCE_HEADER_NAMES.retentionClass]);
@@ -233,6 +268,7 @@ export async function handleEvidenceUpload(
       contentType: stored.metadata.contentType,
       sizeBytes: stored.metadata.sizeBytes,
       requestId,
+      malwareScan,
     };
     return { kind: 'json', status: 201, body };
   } catch (err) {

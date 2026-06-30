@@ -93,6 +93,31 @@ export interface EvidenceStorageConfig {
 }
 
 /**
+ * Evidence malware scanning mode (the ingestion gate that inspects payload bytes BEFORE
+ * storage).
+ *  - `disabled`  : no scanning is performed. The no-op scanner returns `skipped`. Default;
+ *    keeps local/demo runtimes working with no antivirus engine.
+ *  - `signature` : a deterministic, in-process signature matcher inspects the bytes. No
+ *    external process, network call, or third-party AV SDK is used.
+ */
+export type EvidenceMalwareScanMode = 'disabled' | 'signature';
+
+export interface EvidenceMalwareScanningConfig {
+  readonly mode: EvidenceMalwareScanMode;
+  /**
+   * When true, an upload fails closed unless the scan returns `clean`. A `skipped`/`error`
+   * scan rejects the upload. When false, scanning is best-effort: only a positive `infected`
+   * result rejects the upload.
+   */
+  readonly required: boolean;
+  /**
+   * When true, the signature scanner loads the harmless EICAR test signature so the pipeline
+   * can be exercised without real malware. LOCAL/DEMO/TEST ONLY; defaults to false.
+   */
+  readonly testSignaturesEnabled: boolean;
+}
+
+/**
  * Settings for the outbox worker RUNTIME HOST (the interval loop that drains the outbox).
  * Distinct from {@link OutboxConfig}: those tune the worker's retry/backoff mechanics, these
  * tune the host that schedules {@link OutboxConfig}-driven batches.
@@ -123,6 +148,7 @@ export interface AppConfig {
   readonly outboxWorker: OutboxWorkerRuntimeSettings;
   readonly auth: AuthConfig;
   readonly evidenceStorage: EvidenceStorageConfig;
+  readonly evidenceMalwareScanning: EvidenceMalwareScanningConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -241,6 +267,33 @@ function readEvidenceStorageConfig(): EvidenceStorageConfig {
 }
 
 /**
+ * Resolve and validate evidence malware scanning configuration. Defaults to `disabled` so
+ * local/demo/test runtimes never require a scanner. An unknown mode fails closed. A
+ * `disabled` mode combined with `required=true` is contradictory and fails closed at load:
+ * a deployment that requires scanning must also configure a scanner.
+ */
+function readEvidenceMalwareScanningConfig(): EvidenceMalwareScanningConfig {
+  const raw = readString('EVIDENCE_MALWARE_SCANNING_MODE') ?? 'disabled';
+  if (raw !== 'disabled' && raw !== 'signature') {
+    throw new Error(
+      `Invalid EVIDENCE_MALWARE_SCANNING_MODE: "${raw}" (expected 'disabled' or 'signature').`,
+    );
+  }
+  const mode: EvidenceMalwareScanMode = raw;
+  const required = readBool('EVIDENCE_MALWARE_SCANNING_REQUIRED', false);
+  const testSignaturesEnabled = readBool('EVIDENCE_MALWARE_TEST_SIGNATURES_ENABLED', false);
+
+  if (mode === 'disabled' && required) {
+    throw new Error(
+      'EVIDENCE_MALWARE_SCANNING_REQUIRED=true requires EVIDENCE_MALWARE_SCANNING_MODE to be a ' +
+        'real scanner (e.g. signature), not disabled.',
+    );
+  }
+
+  return { mode, required, testSignaturesEnabled };
+}
+
+/**
  * Resolve and validate Service Bus configuration. Fails closed only when publishing is
  * explicitly enabled: a disabled config (the default) requires no connection string and
  * never blocks local/test runtimes.
@@ -331,5 +384,6 @@ export function loadConfig(): AppConfig {
     outboxWorker: readOutboxWorkerSettings(),
     auth: readAuthConfig(),
     evidenceStorage: readEvidenceStorageConfig(),
+    evidenceMalwareScanning: readEvidenceMalwareScanningConfig(),
   };
 }

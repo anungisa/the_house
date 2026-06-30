@@ -24,6 +24,7 @@ import type {
 import type { EvidenceHttpDeps } from '../../../../src/http/evidence/EvidenceHttpAdapter.js';
 import { InMemoryEvidenceStorage } from '../../../../src/governance/evidence/InMemoryEvidenceStorage.js';
 import { GovernanceEvidenceService } from '../../../../src/governance/evidence/GovernanceEvidenceService.js';
+import { NoopEvidenceMalwareScanner } from '../../../../src/governance/evidence/scanning/index.js';
 import { fixedClock } from '../../../../src/shared/time/clock.js';
 
 const { fetch } = globalThis;
@@ -100,7 +101,13 @@ function buildExecution(): {
 
 function buildEvidence(maxUploadBytes = 1024): EvidenceHttpDeps {
   const storage = new InMemoryEvidenceStorage({ clock: fixedClock(0) });
-  return { uploadService: new GovernanceEvidenceService(storage), storage, maxUploadBytes };
+  return {
+    uploadService: new GovernanceEvidenceService(storage),
+    storage,
+    maxUploadBytes,
+    scanner: new NoopEvidenceMalwareScanner({ clock: fixedClock(0) }),
+    scanRequired: false,
+  };
 }
 
 const openServers: Server[] = [];

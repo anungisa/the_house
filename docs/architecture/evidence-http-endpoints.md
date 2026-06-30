@@ -2,8 +2,9 @@
 
 This document describes the narrow **evidence payload HTTP endpoints** that expose the
 existing evidence storage layer over HTTP. The scope is deliberately small: store payload
-bytes and retrieve them again. Nothing here approves, reviews, classifies, scans, or governs
-anything.
+bytes (after a malware-scan ingestion check) and retrieve them again. Nothing here approves,
+reviews, classifies, or governs anything — the malware scan is an ingestion gate, not a
+lifecycle decision (see [evidence-malware-scanning.md](evidence-malware-scanning.md)).
 
 ## Scope (and hard non-goals)
 
@@ -17,11 +18,17 @@ These endpoints are **transport only** over the evidence **payload** layer (see
 They explicitly do **not** (and must not grow to) include:
 
 - any frontend UI or document-management screens;
-- virus / malware scanning, OCR, or AI classification;
+- OCR or AI classification;
 - a document **review workflow** or any lifecycle approval;
 - retention automation or WORM / immutable-blob policies;
 - public/pre-signed blob URL generation;
 - any call to `GovernanceKernel.transition()` or any write to a governed table.
+
+Uploads **are** gated by a malware scan that inspects the payload bytes before storage. That
+scan is an **ingestion check only**: it can reject an upload (an infected payload is never
+stored) but it never approves/rejects a lifecycle transition, mutates governed state, or
+bypasses evidence metadata binding. See
+[evidence-malware-scanning.md](evidence-malware-scanning.md).
 
 Creating governance **evidence metadata** for a lifecycle action remains the sole
 responsibility of the Governance Kernel during a governed transition. Uploading a payload
@@ -85,6 +92,12 @@ Headers:
 Body: raw payload bytes. The size is capped by `EVIDENCE_UPLOAD_MAX_BYTES` (default 10 MiB),
 enforced both while reading the socket and again in the adapter. Empty bodies are rejected.
 
+After size/content-type validation and **before** storage, the payload is run through the
+malware scanning gate. An `infected` result rejects the upload (`422`) and the bytes are
+never stored; when scanning is **required**, a `skipped`/`error` scan also rejects (`503`).
+On success the response carries a sanitized `malwareScan` summary. See
+[evidence-malware-scanning.md](evidence-malware-scanning.md).
+
 Success — `201`:
 
 ```json
@@ -98,9 +111,18 @@ Success — `201`:
   "storageKey": "tenants/<tenantId>/evidence/<evidenceObjectId>/<sha256>",
   "contentType": "…",
   "sizeBytes": 1234,
-  "requestId": "…"
+  "requestId": "…",
+  "malwareScan": {
+    "status": "clean | skipped",
+    "scanner": "signature | noop",
+    "scannedAt": "<iso-8601>",
+    "signatureVersion": "local-signatures-v1"
+  }
 }
 ```
+
+`malwareScan` is **sanitized metadata only**: a threat name or failure reason is never
+surfaced (infected/failed scans reject the upload and never reach this body).
 
 `contentHash` is the governance `content_hash` and `storageRef` is the governance
 `storage_ref`; a later governed transition binds these into evidence metadata via the kernel.
@@ -128,6 +150,9 @@ storage layer re-verifies the SHA-256 digest on read.
 | storageRef belongs to another tenant | `FORBIDDEN` | `403` |
 | No stored object for the reference | `EVIDENCE_NOT_FOUND` | `404` |
 | Stored digest mismatch | `EVIDENCE_HASH_MISMATCH` | `409` |
+| Malware detected in the uploaded payload | `EVIDENCE_MALWARE_DETECTED` | `422` |
+| Scan required but the scanner could not complete | `EVIDENCE_MALWARE_SCAN_FAILED` | `503` |
+| Scan required but not performed (skipped) | `EVIDENCE_MALWARE_SCAN_REQUIRED` | `503` |
 | Controlled storage failure | `EVIDENCE_STORAGE_ERROR` | `500` |
 
 Any non-`AppError` (e.g. a raw SDK/storage failure) collapses to an opaque

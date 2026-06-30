@@ -59,3 +59,19 @@ export {
   type GovernanceEvidenceServiceDeps,
   type StoredEvidenceWithBinding,
 } from './GovernanceEvidenceService.js';
+export {
+  createEvidenceMalwareScanner,
+  enforceEvidenceScan,
+  EICAR_TEST_SIGNATURE,
+  NoopEvidenceMalwareScanner,
+  SignatureEvidenceMalwareScanner,
+  type CreateEvidenceMalwareScannerDeps,
+  type EvidenceMalwareScanner,
+  type EvidenceScanGateOptions,
+  type EvidenceScanInput,
+  type EvidenceScanResult,
+  type EvidenceScanStatus,
+  type MalwareSignature,
+  type NoopEvidenceMalwareScannerOptions,
+  type SignatureEvidenceMalwareScannerOptions,
+} from './scanning/index.js';

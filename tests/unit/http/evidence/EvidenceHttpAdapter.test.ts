@@ -10,6 +10,7 @@ import {
 } from '../../../../src/http/evidence/EvidenceHttpAdapter.js';
 import { InMemoryEvidenceStorage } from '../../../../src/governance/evidence/InMemoryEvidenceStorage.js';
 import { GovernanceEvidenceService } from '../../../../src/governance/evidence/GovernanceEvidenceService.js';
+import { NoopEvidenceMalwareScanner } from '../../../../src/governance/evidence/scanning/index.js';
 import { buildEvidenceStorageKey } from '../../../../src/governance/evidence/EvidenceStorage.js';
 import type { EvidenceStorageRef } from '../../../../src/governance/evidence/EvidenceMetadataBinding.js';
 import { DemoAuthContextResolver } from '../../../../src/http/auth/DemoAuthContextResolver.js';
@@ -33,6 +34,8 @@ function buildDeps(maxUploadBytes = 1024): EvidenceHttpDeps {
     uploadService: new GovernanceEvidenceService(storage),
     storage,
     maxUploadBytes,
+    scanner: new NoopEvidenceMalwareScanner({ clock: fixedClock(0) }),
+    scanRequired: false,
   };
 }
 
@@ -289,6 +292,8 @@ describe('evidence HTTP adapter — download', () => {
       uploadService: new GovernanceEvidenceService(new InMemoryEvidenceStorage({ clock: fixedClock(0) })),
       storage: throwingStorage,
       maxUploadBytes: 1024,
+      scanner: new NoopEvidenceMalwareScanner({ clock: fixedClock(0) }),
+      scanRequired: false,
     };
     const ref: EvidenceStorageRef = {
       provider: 'memory',

@@ -38,6 +38,7 @@ import { PgWorkflowStore } from '../governance/workflow/PgWorkflowStore.js';
 import { WorkflowDecisionService } from '../governance/workflow/WorkflowDecisionService.js';
 import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
 import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
+import { createEvidenceMalwareScanner } from '../governance/evidence/scanning/index.js';
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import type { EvidenceHttpDeps } from './evidence/index.js';
@@ -84,6 +85,8 @@ export function createEvidenceHttpDeps(): EvidenceHttpDeps {
     uploadService: new GovernanceEvidenceService(storage),
     storage,
     maxUploadBytes: config.evidenceStorage.uploadMaxBytes,
+    scanner: createEvidenceMalwareScanner(config.evidenceMalwareScanning),
+    scanRequired: config.evidenceMalwareScanning.required,
   };
 }
 
