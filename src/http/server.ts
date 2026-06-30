@@ -32,6 +32,14 @@ import {
 import type { AuthContextResolver } from './auth/AuthContextResolver.js';
 import type { ReadinessCheck } from './readiness.js';
 import {
+  NOOP_TELEMETRY,
+  startStopwatch,
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryDurations,
+  type Telemetry,
+} from '../observability/index.js';
+import {
   evidenceErrorToHttpResult,
   handleEvidenceDownload,
   handleEvidenceUpload,
@@ -102,6 +110,13 @@ export interface AffiliationHttpServerDeps {
    * dependency is unavailable. When omitted, `/readyz` stays shallow (process-level only).
    */
   readonly readiness?: ReadinessCheck;
+  /**
+   * Optional telemetry sink for operational metrics (request count/duration/error count, plus
+   * the per-surface counters/events emitted by the adapters). Defaults to a no-op when omitted.
+   * Telemetry is VISIBILITY only: it never affects routing, governed state, or responses, and
+   * emission failures are swallowed so they can never break request handling.
+   */
+  readonly telemetry?: Telemetry;
 }
 
 const DEFAULT_MAX_BODY_BYTES = 1_048_576;
@@ -537,6 +552,59 @@ async function handleWorkflowDetailRoute(
   sendJson(res, result);
 }
 
+/**
+ * Classify a request into a STABLE, low-cardinality route label for telemetry. Returns the
+ * route PATTERN (with `:id` placeholders) — never the raw URL — so resource identifiers and
+ * query values never become metric attributes. Unmatched paths collapse to `unmatched`.
+ */
+function classifyRoute(method: string, path: string): string {
+  if (method === 'GET' && path === '/healthz') return 'GET /healthz';
+  if (method === 'GET' && path === '/readyz') return 'GET /readyz';
+  if (path === EVIDENCE_UPLOAD_PATH) return `${method} /v1/evidence/objects`;
+  if (path === EVIDENCE_DOWNLOAD_PATH) return `${method} /v1/evidence/objects/read`;
+  if (QUARANTINE_DISPOSITION_ROUTE.test(path)) {
+    return `${method} /v1/evidence/quarantine/:id/disposition`;
+  }
+  if (path === QUARANTINE_LIST_PATH) return `${method} /v1/evidence/quarantine`;
+  if (QUARANTINE_DETAIL_ROUTE.test(path)) return `${method} /v1/evidence/quarantine/:id`;
+  if (WORKFLOW_DECISION_ROUTE.test(path)) {
+    return `${method} /v1/workflows/:id/steps/:code/decision`;
+  }
+  if (WORKFLOW_EXECUTE_ROUTE.test(path)) return `${method} /v1/workflows/:id/execute`;
+  if (path === WORKFLOW_LIST_PATH) return `${method} /v1/workflows`;
+  if (WORKFLOW_DETAIL_ROUTE.test(path)) return `${method} /v1/workflows/:id`;
+  if (TRANSITION_ROUTE.test(path)) {
+    return `${method} /v1/affiliation/applications/:id/transitions/:action`;
+  }
+  return 'unmatched';
+}
+
+/**
+ * Emit HTTP-level operational metrics for one completed request. Captures method, the route
+ * PATTERN (never the raw URL with ids), status code, and duration. Deliberately omits the raw
+ * Authorization header, raw URL query values, request body, and uploaded bytes. Best-effort:
+ * the underlying telemetry swallows exporter errors, and this is only ever called from a
+ * `finish` listener so it can never affect the response.
+ */
+function emitHttpMetrics(
+  telemetry: Telemetry,
+  method: string,
+  route: string,
+  statusCode: number,
+  elapsedMs: number,
+): void {
+  const attributes = {
+    [TelemetryAttributeKeys.method]: method,
+    [TelemetryAttributeKeys.route]: route,
+    [TelemetryAttributeKeys.status]: statusCode,
+  };
+  telemetry.incrementCounter(TelemetryCounters.httpRequest, 1, attributes);
+  telemetry.recordDuration(TelemetryDurations.httpRequest, elapsedMs, attributes);
+  if (statusCode >= 500) {
+    telemetry.incrementCounter(TelemetryCounters.httpRequestError, 1, attributes);
+  }
+}
+
 async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
@@ -698,7 +766,17 @@ async function handleRequest(
  */
 export function createAffiliationHttpServer(deps: AffiliationHttpServerDeps): Server {
   const maxBytes = deps.maxBodyBytes ?? DEFAULT_MAX_BODY_BYTES;
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   return createServer((req, res) => {
+    // Capture HTTP-level metrics once the response is fully sent. Using `finish` means we
+    // observe the real status code regardless of which handler produced it (including the
+    // last-resort error path) without coupling telemetry into every handler.
+    const stop = startStopwatch();
+    const method = req.method ?? 'GET';
+    const route = classifyRoute(method, (req.url ?? '/').split('?')[0] ?? '/');
+    res.on('finish', () => {
+      emitHttpMetrics(telemetry, method, route, res.statusCode, stop());
+    });
     handleRequest(req, res, deps, maxBytes).catch((err: unknown) => {
       // Last-resort guard: never leak internals; never crash the process on a bad request.
       const requestId = randomUUID();

@@ -25,6 +25,7 @@ import { PgOutboxStore } from '../src/governance/outbox/PgOutboxStore.js';
 import { OutboxWorker } from '../src/workers/outbox/OutboxWorker.js';
 import { OutboxWorkerRuntime } from '../src/workers/outbox/OutboxWorkerRuntime.js';
 import { createLogger } from '../src/shared/logging/logger.js';
+import { createTelemetry } from '../src/observability/index.js';
 
 async function main(): Promise<void> {
   const config = loadConfig();
@@ -72,6 +73,7 @@ async function main(): Promise<void> {
     },
     log: (message) => logger.info(message),
     onError: (message, error) => logger.error(message, { err: error }),
+    telemetry: createTelemetry(config.observability),
     closePublisher: async () => {
       await publisher.close?.();
     },

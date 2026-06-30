@@ -32,6 +32,13 @@ import { DemoAuthContextResolver } from '../auth/DemoAuthContextResolver.js';
 import { requireActorUserId, requireTenant, resolveEvidenceAuth } from './evidenceHttpAuth.js';
 import type { EvidenceQuarantineReviewer } from '../../governance/evidence/quarantine/index.js';
 import {
+  NOOP_TELEMETRY,
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryEvents,
+  type Telemetry,
+} from '../../observability/index.js';
+import {
   QUARANTINE_LIST_MAX_LIMIT,
   type QuarantineDisposition,
   type QuarantineEventView,
@@ -65,6 +72,12 @@ const VALID_SCAN_STATUSES: readonly QuarantineScanStatus[] = ['infected', 'error
 /** Dependencies for the quarantine review adapter: just the narrow reviewer port. */
 export interface EvidenceQuarantineHttpDeps {
   readonly reviewer: EvidenceQuarantineReviewer;
+  /**
+   * Optional telemetry sink. A successful disposition emits an
+   * `evidence.quarantine.disposition.count` counter + an
+   * `evidence.quarantine.disposition.recorded` event. Visibility only — never affects the review.
+   */
+  readonly telemetry?: Telemetry;
 }
 
 /** Protocol-pure result: an HTTP status code and a JSON-serializable body. */
@@ -215,10 +228,11 @@ export async function handleQuarantineList(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceQuarantineHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   try {
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineRead);
+    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineRead, telemetry);
 
     const filter = parseListFilter(req.query);
     const result = await deps.reviewer.listQuarantineEvents(tenantId, filter);
@@ -242,10 +256,11 @@ export async function handleQuarantineDetail(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceQuarantineHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   try {
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineRead);
+    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineRead, telemetry);
 
     if (req.quarantineEventId.trim() === '') {
       throw new AppError(ErrorCode.INVALID_INPUT, 'quarantineEventId path parameter is required.');
@@ -278,11 +293,12 @@ export async function handleQuarantineDisposition(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceQuarantineHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   try {
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
     const actorUserId = requireActorUserId(auth);
-    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineDisposition);
+    assertAuthorized(auth, AuthorizationAction.EvidenceQuarantineDisposition, telemetry);
 
     if (req.quarantineEventId.trim() === '') {
       throw new AppError(ErrorCode.INVALID_INPUT, 'quarantineEventId path parameter is required.');
@@ -318,6 +334,14 @@ export async function handleQuarantineDisposition(
       disposition: dispositionRaw.trim() as QuarantineDisposition,
       requestId,
     };
+    telemetry.incrementCounter(TelemetryCounters.evidenceQuarantineDisposition, 1, {
+      [TelemetryAttributeKeys.disposition]: dispositionRaw.trim(),
+      [TelemetryAttributeKeys.status]: result.newStatus,
+    });
+    telemetry.recordEvent(TelemetryEvents.evidenceQuarantineDispositionRecorded, {
+      [TelemetryAttributeKeys.disposition]: dispositionRaw.trim(),
+      [TelemetryAttributeKeys.status]: result.newStatus,
+    });
     return { status: 200, body };
   } catch (err) {
     return quarantineErrorToHttpResult(err, requestId);

@@ -23,6 +23,16 @@
 
 import type { ProcessBatchSummary } from './OutboxWorker.js';
 import { setInterval, clearInterval } from 'node:timers';
+import {
+  NOOP_TELEMETRY,
+  startStopwatch,
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryDurations,
+  TelemetryEvents,
+  TelemetryResult,
+  type Telemetry,
+} from '../../observability/index.js';
 
 /** Minimal surface the runtime needs from the worker. */
 export interface OutboxWorkerRunnable {
@@ -60,6 +70,12 @@ export interface OutboxWorkerRuntimeDeps {
   /** Injectable timers for deterministic tests. */
   readonly setIntervalFn?: (handler: () => void, ms: number) => IntervalHandle;
   readonly clearIntervalFn?: (handle: IntervalHandle) => void;
+  /**
+   * Optional telemetry sink. Each batch emits `outbox.batch.count` + `outbox.batch.duration_ms`
+   * and per-message published/failed counters, plus a completed/failed event. Visibility only —
+   * never affects claim/publish/retry behavior or governed state.
+   */
+  readonly telemetry?: Telemetry;
 }
 
 const DEFAULT_LOG = (message: string): void => {
@@ -79,6 +95,7 @@ export class OutboxWorkerRuntime {
   private readonly closePool: (() => Promise<void>) | undefined;
   private readonly setIntervalFn: (handler: () => void, ms: number) => IntervalHandle;
   private readonly clearIntervalFn: (handle: IntervalHandle) => void;
+  private readonly telemetry: Telemetry;
 
   private started = false;
   private inFlight = false;
@@ -95,6 +112,7 @@ export class OutboxWorkerRuntime {
     this.closePool = deps.closePool;
     this.setIntervalFn = deps.setIntervalFn ?? ((handler, ms) => setInterval(handler, ms));
     this.clearIntervalFn = deps.clearIntervalFn ?? ((handle) => clearInterval(handle));
+    this.telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   }
 
   /**
@@ -144,16 +162,57 @@ export class OutboxWorkerRuntime {
 
   /** Execute exactly one batch, logging the summary or handling an operational error. */
   private async executeBatch(): Promise<void> {
+    const stop = startStopwatch();
     try {
       const s = await this.worker.processBatch();
       this.log(
         `batch complete: claimed=${s.claimed} published=${s.published} ` +
           `rescheduled=${s.rescheduled} failed=${s.failed} recovered=${s.recoveredLeases}`,
       );
+      this.emitBatchTelemetry(s, stop());
     } catch (error) {
       // Keep the worker alive in continuous mode; do not leak internals into the info log.
       this.onError('outbox batch encountered an operational error; worker stays alive', error);
+      this.emitBatchFailure(stop());
     }
+  }
+
+  /** Emit operational metrics for a completed batch (visibility only; never throws). */
+  private emitBatchTelemetry(summary: ProcessBatchSummary, elapsedMs: number): void {
+    const attributes = {
+      [TelemetryAttributeKeys.workerId]: this.config.workerId,
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+      [TelemetryAttributeKeys.claimed]: summary.claimed,
+      [TelemetryAttributeKeys.published]: summary.published,
+      [TelemetryAttributeKeys.failed]: summary.failed,
+      [TelemetryAttributeKeys.rescheduled]: summary.rescheduled,
+    };
+    this.telemetry.incrementCounter(TelemetryCounters.outboxBatch, 1, attributes);
+    this.telemetry.recordDuration(TelemetryDurations.outboxBatch, elapsedMs, attributes);
+    if (summary.published > 0) {
+      this.telemetry.incrementCounter(
+        TelemetryCounters.outboxMessagePublished,
+        summary.published,
+        { [TelemetryAttributeKeys.workerId]: this.config.workerId },
+      );
+    }
+    if (summary.failed > 0) {
+      this.telemetry.incrementCounter(TelemetryCounters.outboxMessageFailed, summary.failed, {
+        [TelemetryAttributeKeys.workerId]: this.config.workerId,
+      });
+    }
+    this.telemetry.recordEvent(TelemetryEvents.outboxBatchCompleted, attributes);
+  }
+
+  /** Emit operational metrics for a batch that threw (visibility only; never throws). */
+  private emitBatchFailure(elapsedMs: number): void {
+    const attributes = {
+      [TelemetryAttributeKeys.workerId]: this.config.workerId,
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    };
+    this.telemetry.incrementCounter(TelemetryCounters.outboxBatch, 1, attributes);
+    this.telemetry.recordDuration(TelemetryDurations.outboxBatch, elapsedMs, attributes);
+    this.telemetry.recordEvent(TelemetryEvents.outboxBatchFailed, attributes);
   }
 
   /**

@@ -46,6 +46,16 @@ import {
   type EvidenceQuarantineRecorder,
 } from '../../governance/evidence/quarantine/index.js';
 import {
+  NOOP_TELEMETRY,
+  startStopwatch,
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryDurations,
+  TelemetryEvents,
+  TelemetryResult,
+  type Telemetry,
+} from '../../observability/index.js';
+import {
   EVIDENCE_HEADER_NAMES,
   type EvidenceDownloadRequest,
   type EvidenceScanResultSummary,
@@ -97,6 +107,12 @@ export interface EvidenceHttpDeps {
    * threat details are never surfaced regardless.
    */
   readonly includeQuarantineEventIdInResponse?: boolean;
+  /**
+   * Optional telemetry sink. Emits `evidence.upload.count`, `evidence.upload.rejected.count`,
+   * `evidence.quarantine.recorded.count`, and an upload duration. Visibility only — never
+   * affects the scan decision, storage, or quarantine recording.
+   */
+  readonly telemetry?: Telemetry;
 }
 
 /** Discriminated transport result: JSON for metadata/errors, raw bytes for a download. */
@@ -279,6 +295,18 @@ async function rejectBlockedUpload(
   }
 
   const mapped = evidenceErrorToHttpResult(decision.error, requestId);
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
+  telemetry.incrementCounter(TelemetryCounters.evidenceUploadRejected, 1, {
+    [TelemetryAttributeKeys.scanStatus]: decision.result.status,
+  });
+  if (quarantineEventId !== undefined) {
+    telemetry.incrementCounter(TelemetryCounters.evidenceQuarantineRecorded, 1, {
+      [TelemetryAttributeKeys.scanStatus]: decision.result.status,
+    });
+    telemetry.recordEvent(TelemetryEvents.evidenceQuarantineRecorded, {
+      [TelemetryAttributeKeys.scanStatus]: decision.result.status,
+    });
+  }
   if (quarantineEventId !== undefined && deps.includeQuarantineEventIdInResponse === true) {
     return { kind: 'json', status: mapped.status, body: { ...mapped.body, quarantineEventId } };
   }
@@ -292,6 +320,8 @@ export async function handleEvidenceUpload(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
+  const stop = startStopwatch();
   try {
     const auth = await resolveEvidenceAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
@@ -326,7 +356,7 @@ export async function handleEvidenceUpload(
       { content: req.content, contentType, tenantId },
     );
     if (decision.outcome === 'reject') {
-      return await rejectBlockedUpload(deps, decision, requestId, {
+      const rejection = await rejectBlockedUpload(deps, decision, requestId, {
         tenantId,
         content: req.content,
         contentType,
@@ -335,6 +365,10 @@ export async function handleEvidenceUpload(
         ...(sourceFilename !== undefined ? { sourceFilename } : {}),
         ...(correlationId !== undefined ? { correlationId } : {}),
       });
+      telemetry.recordDuration(TelemetryDurations.evidenceUpload, stop(), {
+        [TelemetryAttributeKeys.result]: 'rejected',
+      });
+      return rejection;
     }
 
     const scan = decision.result;
@@ -368,8 +402,17 @@ export async function handleEvidenceUpload(
       requestId,
       malwareScan,
     };
+    telemetry.incrementCounter(TelemetryCounters.evidenceUpload, 1, {
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
+    telemetry.recordDuration(TelemetryDurations.evidenceUpload, stop(), {
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
     return { kind: 'json', status: 201, body };
   } catch (err) {
+    telemetry.recordDuration(TelemetryDurations.evidenceUpload, stop(), {
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
     return evidenceErrorToHttpResult(err, requestId);
   }
 }

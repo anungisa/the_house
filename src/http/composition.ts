@@ -47,6 +47,7 @@ import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createDatabaseReadinessCheck } from './readiness.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import { queryRaw } from '../db/pool.js';
+import { createTelemetry, type Telemetry } from '../observability/index.js';
 import type { EvidenceHttpDeps, EvidenceQuarantineHttpDeps } from './evidence/index.js';
 import type {
   WorkflowExecutionHttpDeps,
@@ -84,6 +85,16 @@ export function createPgAffiliationApplicationService(): AffiliationApplicationS
 }
 
 /**
+ * Build the single, shared {@link Telemetry} instance from the observability config. Returns a
+ * no-op when observability is disabled or the exporter is `noop`; otherwise the configured
+ * exporter (`console`/`memory`). This is the ONE place runtime telemetry is constructed so the
+ * server and every adapter share an identical, behavior-neutral sink.
+ */
+export function createPgTelemetry(): Telemetry {
+  return createTelemetry(loadConfig().observability);
+}
+
+/**
  * Build the evidence HTTP transport from the evidence-storage config. The provider defaults
  * to in-memory (no Azure required); `azure_blob` is config-gated. When quarantine is enabled
  * (default), blocked uploads are recorded as sanitized security events that emit an outbox
@@ -91,7 +102,7 @@ export function createPgAffiliationApplicationService(): AffiliationApplicationS
  * never stored. This is governance infrastructure only — it never touches governed tables or
  * the kernel.
  */
-export function createEvidenceHttpDeps(): EvidenceHttpDeps {
+export function createEvidenceHttpDeps(telemetry?: Telemetry): EvidenceHttpDeps {
   const config = loadConfig();
   const storage = createEvidenceStorage(config.evidenceStorage);
   return {
@@ -100,6 +111,7 @@ export function createEvidenceHttpDeps(): EvidenceHttpDeps {
     maxUploadBytes: config.evidenceStorage.uploadMaxBytes,
     scanner: createEvidenceMalwareScanner(config.evidenceMalwareScanning),
     scanRequired: config.evidenceMalwareScanning.required,
+    ...(telemetry !== undefined ? { telemetry } : {}),
     ...(config.evidenceQuarantine.enabled
       ? {
           quarantine: new EvidenceQuarantineService(new PgEvidenceQuarantineStore(), {
@@ -118,12 +130,13 @@ export function createEvidenceHttpDeps(): EvidenceHttpDeps {
  * status and emits a sanitized outbox event. It never stores payload bytes, creates governed
  * evidence, mutates governed state, or invokes the kernel.
  */
-export function createEvidenceQuarantineHttpDeps(): EvidenceQuarantineHttpDeps {
+export function createEvidenceQuarantineHttpDeps(telemetry?: Telemetry): EvidenceQuarantineHttpDeps {
   const config = loadConfig();
   return {
     reviewer: new EvidenceQuarantineService(new PgEvidenceQuarantineStore(), {
       maxRetries: config.outbox.maxRetries,
     }),
+    ...(telemetry !== undefined ? { telemetry } : {}),
   };
 }
 
@@ -132,9 +145,10 @@ export function createEvidenceQuarantineHttpDeps(): EvidenceQuarantineHttpDeps {
  * records review metadata (approve/reject) through the RLS-enforced {@link PgWorkflowStore};
  * it never mutates governed state and never executes the pending lifecycle transition.
  */
-export function createWorkflowHttpDeps(): WorkflowHttpDeps {
+export function createWorkflowHttpDeps(telemetry?: Telemetry): WorkflowHttpDeps {
   return {
     decisionService: new WorkflowDecisionService(new PgWorkflowStore()),
+    ...(telemetry !== undefined ? { telemetry } : {}),
   };
 }
 
@@ -144,12 +158,13 @@ export function createWorkflowHttpDeps(): WorkflowHttpDeps {
  * the original pending transition through the Governance Kernel (exactly once). It never
  * mutates governed state itself and is never invoked by the decision endpoint.
  */
-export function createWorkflowExecutionHttpDeps(): WorkflowExecutionHttpDeps {
+export function createWorkflowExecutionHttpDeps(telemetry?: Telemetry): WorkflowExecutionHttpDeps {
   return {
     executor: new ApprovedWorkflowExecutionService(
       createPgGovernanceKernel(),
       new PgWorkflowStore(),
     ),
+    ...(telemetry !== undefined ? { telemetry } : {}),
   };
 }
 
@@ -158,9 +173,10 @@ export function createWorkflowExecutionHttpDeps(): WorkflowExecutionHttpDeps {
  * RLS-enforced {@link PgWorkflowStore}; the adapter is read-only and never mutates governed
  * state, records decisions, or executes a transition.
  */
-export function createWorkflowReadHttpDeps(): WorkflowReadHttpDeps {
+export function createWorkflowReadHttpDeps(telemetry?: Telemetry): WorkflowReadHttpDeps {
   return {
     readStore: new PgWorkflowStore(),
+    ...(telemetry !== undefined ? { telemetry } : {}),
   };
 }
 
@@ -173,16 +189,18 @@ export function createPgAffiliationHttpServer(
   options?: Omit<AffiliationHttpServerDeps, 'executor'>,
 ): Server {
   const config = loadConfig();
+  const telemetry = createTelemetry(config.observability);
   return createAffiliationHttpServer({
     executor: createPgAffiliationApplicationService(),
     resolver: createAuthContextResolver(config),
-    evidence: createEvidenceHttpDeps(),
+    telemetry,
+    evidence: createEvidenceHttpDeps(telemetry),
     ...(config.evidenceQuarantine.enabled
-      ? { evidenceQuarantine: createEvidenceQuarantineHttpDeps() }
+      ? { evidenceQuarantine: createEvidenceQuarantineHttpDeps(telemetry) }
       : {}),
-    workflow: createWorkflowHttpDeps(),
-    workflowExecution: createWorkflowExecutionHttpDeps(),
-    workflowRead: createWorkflowReadHttpDeps(),
+    workflow: createWorkflowHttpDeps(telemetry),
+    workflowExecution: createWorkflowExecutionHttpDeps(telemetry),
+    workflowRead: createWorkflowReadHttpDeps(telemetry),
     readiness: createDatabaseReadinessCheck({
       // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
       probe: () => queryRaw('SELECT 1'),

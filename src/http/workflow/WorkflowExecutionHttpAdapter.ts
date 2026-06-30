@@ -22,6 +22,16 @@ import { randomUUID } from 'node:crypto';
 
 import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
 import { assertAuthorized, AuthorizationAction } from '../../authz/index.js';
+import {
+  NOOP_TELEMETRY,
+  startStopwatch,
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryDurations,
+  TelemetryEvents,
+  TelemetryResult,
+  type Telemetry,
+} from '../../observability/index.js';
 import type { AuthContext } from '../auth/AuthContext.js';
 import type { AuthContextResolver } from '../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../auth/DemoAuthContextResolver.js';
@@ -59,6 +69,11 @@ export interface WorkflowTransitionExecutor {
 
 export interface WorkflowExecutionHttpDeps {
   readonly executor: WorkflowTransitionExecutor;
+  /**
+   * Optional telemetry sink. Emits a `workflow.execution.count` counter + duration and a
+   * `workflow.execution.requested` event. Visibility only — never affects the governed execution.
+   */
+  readonly telemetry?: Telemetry;
 }
 
 /** Protocol-pure result: an HTTP status code and a JSON-serializable body. */
@@ -194,11 +209,13 @@ export async function handleWorkflowExecution(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<WorkflowExecutionHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
+  const stop = startStopwatch();
   try {
     const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
     requireActorUserId(auth);
-    assertAuthorized(auth, AuthorizationAction.WorkflowExecute);
+    assertAuthorized(auth, AuthorizationAction.WorkflowExecute, telemetry);
 
     if (req.workflowInstanceId.trim() === '') {
       throw new AppError(
@@ -237,8 +254,26 @@ export async function handleWorkflowExecution(
       idempotentReplay: result.status === 'idempotent_replay',
       requestId,
     };
+    telemetry.incrementCounter(TelemetryCounters.workflowExecution, 1, {
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
+    telemetry.recordDuration(TelemetryDurations.workflowExecution, stop(), {
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
+    telemetry.recordEvent(TelemetryEvents.workflowExecutionRequested, {
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
     return { status: 200, body: responseBody };
   } catch (err) {
+    telemetry.incrementCounter(TelemetryCounters.workflowExecution, 1, {
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
+    telemetry.recordDuration(TelemetryDurations.workflowExecution, stop(), {
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
+    telemetry.recordEvent(TelemetryEvents.workflowExecutionRequested, {
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
     return workflowExecutionErrorToHttpResult(err, requestId);
   }
 }

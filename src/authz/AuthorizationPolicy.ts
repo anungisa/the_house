@@ -27,6 +27,12 @@ import {
   type AuthorizationAction,
 } from './AuthorizationActions.js';
 import { AuthorizationDeniedError } from './AuthorizationErrors.js';
+import {
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryEvents,
+  type Telemetry,
+} from '../observability/index.js';
 
 /** Why a decision was reached. Stable, NSO-generic; safe for INTERNAL logs/tests (no secrets). */
 export type AuthorizationReason =
@@ -97,10 +103,27 @@ export function authorize(
  *
  * This is the helper HTTP adapters call after authentication has established identity. It does
  * NOT log secrets/tokens and does NOT leak role/permission lists in the thrown message.
+ *
+ * Optional telemetry: when supplied, a DENIED decision emits an `authz.denied` counter + event
+ * carrying only the action and the (NSO-generic, secret-free) reason. The pure {@link authorize}
+ * decision is unchanged and never depends on telemetry; emission is best-effort and cannot
+ * affect the authorization outcome.
  */
-export function assertAuthorized(auth: AuthContext, action: AuthorizationAction): void {
+export function assertAuthorized(
+  auth: AuthContext,
+  action: AuthorizationAction,
+  telemetry?: Telemetry,
+): void {
   const decision = authorize(auth.actor, action);
   if (!decision.allowed) {
+    if (telemetry !== undefined) {
+      const attributes = {
+        [TelemetryAttributeKeys.action]: decision.action,
+        [TelemetryAttributeKeys.reason]: decision.reason,
+      };
+      telemetry.incrementCounter(TelemetryCounters.authzDenied, 1, attributes);
+      telemetry.recordEvent(TelemetryEvents.authzDenied, attributes);
+    }
     throw new AuthorizationDeniedError(action);
   }
 }

@@ -24,6 +24,13 @@ import { Buffer } from 'node:buffer';
 
 import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
 import { assertAuthorized, AuthorizationAction } from '../../authz/index.js';
+import {
+  NOOP_TELEMETRY,
+  TelemetryAttributeKeys,
+  TelemetryCounters,
+  TelemetryResult,
+  type Telemetry,
+} from '../../observability/index.js';
 import type { AuthContextResolver } from '../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../auth/DemoAuthContextResolver.js';
 import { requireTenant, resolveWorkflowAuth } from './workflowHttpAuth.js';
@@ -64,6 +71,11 @@ const VALID_REVIEW_TIERS: readonly WorkflowReviewTier[] = ['regional_review', 'n
 /** Dependencies for the read adapter: just the narrow read store. */
 export interface WorkflowReadHttpDeps {
   readonly readStore: WorkflowReadStore;
+  /**
+   * Optional telemetry sink. Emits a `workflow.read.count` counter tagged with the operation
+   * (list/detail) and result (success/failure). Visibility only — never affects reads or auth.
+   */
+  readonly telemetry?: Telemetry;
 }
 
 /** Protocol-pure result: an HTTP status code and a JSON-serializable body. */
@@ -224,10 +236,11 @@ export async function handleWorkflowList(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<WorkflowReadHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   try {
     const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    assertAuthorized(auth, AuthorizationAction.WorkflowRead);
+    assertAuthorized(auth, AuthorizationAction.WorkflowRead, telemetry);
 
     const filter = parseListFilter(req.query);
     const result = await deps.readStore.listWorkflows(tenantId, filter);
@@ -238,8 +251,16 @@ export async function handleWorkflowList(
       nextCursor: result.nextCursor !== undefined ? encodeCursor(result.nextCursor) : null,
       requestId,
     };
+    telemetry.incrementCounter(TelemetryCounters.workflowRead, 1, {
+      [TelemetryAttributeKeys.operation]: 'list',
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
     return { status: 200, body };
   } catch (err) {
+    telemetry.incrementCounter(TelemetryCounters.workflowRead, 1, {
+      [TelemetryAttributeKeys.operation]: 'list',
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
     return workflowReadErrorToHttpResult(err, requestId);
   }
 }
@@ -257,10 +278,11 @@ export async function handleWorkflowDetail(
   requestId: string = randomUUID(),
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<WorkflowReadHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
   try {
     const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
-    assertAuthorized(auth, AuthorizationAction.WorkflowRead);
+    assertAuthorized(auth, AuthorizationAction.WorkflowRead, telemetry);
 
     if (req.workflowInstanceId.trim() === '') {
       throw new AppError(ErrorCode.INVALID_INPUT, 'workflowInstanceId path parameter is required.');
@@ -296,8 +318,16 @@ export async function handleWorkflowDetail(
       execution: executionHint(detail.instance),
       requestId,
     };
+    telemetry.incrementCounter(TelemetryCounters.workflowRead, 1, {
+      [TelemetryAttributeKeys.operation]: 'detail',
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
     return { status: 200, body };
   } catch (err) {
+    telemetry.incrementCounter(TelemetryCounters.workflowRead, 1, {
+      [TelemetryAttributeKeys.operation]: 'detail',
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
     return workflowReadErrorToHttpResult(err, requestId);
   }
 }

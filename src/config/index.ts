@@ -171,6 +171,23 @@ export interface EvidenceQuarantineConfig {
 }
 
 /**
+ * Centralized observability / metrics configuration. Telemetry is operational VISIBILITY,
+ * not governance state: it never writes governed tables and never contacts an external system
+ * by default. Allowed exporters this pass: `noop`, `memory`, `console`.
+ */
+export interface ObservabilityConfig {
+  /** Master switch. When false, the runtime wires a no-op telemetry (allocation-free). */
+  readonly enabled: boolean;
+  /** Exporter selection. `console` writes sanitized JSON lines; `memory` retains in-process. */
+  readonly exporter: ObservabilityExporter;
+  /** Reserved hook for future verbose attribute expansion. Defaults to false. */
+  readonly includeDebugAttributes: boolean;
+}
+
+/** Exporter modes supported this pass (fail-closed enum). */
+export type ObservabilityExporter = 'noop' | 'memory' | 'console';
+
+/**
  * Settings for the outbox worker RUNTIME HOST (the interval loop that drains the outbox).
  * Distinct from {@link OutboxConfig}: those tune the worker's retry/backoff mechanics, these
  * tune the host that schedules {@link OutboxConfig}-driven batches.
@@ -203,6 +220,7 @@ export interface AppConfig {
   readonly evidenceStorage: EvidenceStorageConfig;
   readonly evidenceMalwareScanning: EvidenceMalwareScanningConfig;
   readonly evidenceQuarantine: EvidenceQuarantineConfig;
+  readonly observability: ObservabilityConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -463,6 +481,25 @@ function readServiceBusConfig(): ServiceBusConfig {
   return { enabled, connectionString, publishTarget, queueName, topicName };
 }
 
+/**
+ * Resolve and validate observability configuration. The exporter enum fails CLOSED: an
+ * unknown value throws at config load rather than silently degrading to a default sink.
+ */
+function readObservabilityConfig(): ObservabilityConfig {
+  const exporterRaw = readString('OBSERVABILITY_EXPORTER') ?? 'console';
+  const allowed: ReadonlySet<string> = new Set(['noop', 'memory', 'console']);
+  if (!allowed.has(exporterRaw)) {
+    throw new Error(
+      `Invalid OBSERVABILITY_EXPORTER: "${exporterRaw}" (expected 'noop', 'memory', or 'console').`,
+    );
+  }
+  return {
+    enabled: readBool('OBSERVABILITY_ENABLED', true),
+    exporter: exporterRaw as ObservabilityExporter,
+    includeDebugAttributes: readBool('OBSERVABILITY_INCLUDE_DEBUG_ATTRIBUTES', false),
+  };
+}
+
 function readAppEnv(): AppEnv {
   const raw = (readString('APP_ENV') ?? 'local') as AppEnv;
   const allowed: ReadonlySet<string> = new Set([
@@ -525,5 +562,6 @@ export function loadConfig(): AppConfig {
     evidenceStorage: readEvidenceStorageConfig(),
     evidenceMalwareScanning: readEvidenceMalwareScanningConfig(),
     evidenceQuarantine: readEvidenceQuarantineConfig(),
+    observability: readObservabilityConfig(),
   };
 }

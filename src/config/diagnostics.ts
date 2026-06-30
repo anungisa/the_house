@@ -91,6 +91,11 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
       enabled: config.evidenceQuarantine.enabled,
       includeEventIdInResponse: config.evidenceQuarantine.includeEventIdInResponse,
     },
+    observability: {
+      enabled: config.observability.enabled,
+      exporter: config.observability.exporter,
+      includeDebugAttributes: config.observability.includeDebugAttributes,
+    },
     outbox: {
       batchSize: config.outbox.batchSize,
       lockSeconds: config.outbox.lockSeconds,
