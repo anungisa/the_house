@@ -23,6 +23,9 @@ export const TelemetryCounters = {
   outboxBatch: 'outbox.batch.count',
   outboxMessagePublished: 'outbox.message.published.count',
   outboxMessageFailed: 'outbox.message.failed.count',
+  organizationRegistryCreated: 'organization.registry.created.count',
+  organizationRegistryUpdated: 'organization.registry.updated.count',
+  organizationRegistryRead: 'organization.registry.read.count',
 } as const;
 
 /** Duration metric names (milliseconds). */
@@ -43,6 +46,8 @@ export const TelemetryEvents = {
   evidenceQuarantineDispositionRecorded: 'evidence.quarantine.disposition.recorded',
   outboxBatchCompleted: 'outbox.batch.completed',
   outboxBatchFailed: 'outbox.batch.failed',
+  organizationRegistryCreated: 'organization.registry.created',
+  organizationRegistryStatusChanged: 'organization.registry.status_changed',
 } as const;
 
 /** Stable, low-cardinality attribute keys. */

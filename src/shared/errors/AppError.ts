@@ -53,6 +53,16 @@ export const ErrorCode = {
   TRANSITION_REQUEST_NOT_FOUND: 'TRANSITION_REQUEST_NOT_FOUND',
   /** The entity's current governed state no longer matches the approved transition's expected source. */
   TRANSITION_STATE_CONFLICT: 'TRANSITION_STATE_CONFLICT',
+  /** A referenced organization does not exist for the tenant. */
+  ORGANIZATION_NOT_FOUND: 'ORGANIZATION_NOT_FOUND',
+  /** A referenced parent organization does not exist for the tenant (covers cross-tenant parents). */
+  ORGANIZATION_PARENT_NOT_FOUND: 'ORGANIZATION_PARENT_NOT_FOUND',
+  /** The requested parent relationship would introduce a hierarchy cycle. */
+  ORGANIZATION_PARENT_CYCLE: 'ORGANIZATION_PARENT_CYCLE',
+  /** An organization with the same tenant-scoped id already exists (idempotency conflict). */
+  ORGANIZATION_ALREADY_EXISTS: 'ORGANIZATION_ALREADY_EXISTS',
+  /** A required source-entity reference is missing (e.g. active affiliation-sourced organization). */
+  ORGANIZATION_SOURCE_REFERENCE_REQUIRED: 'ORGANIZATION_SOURCE_REFERENCE_REQUIRED',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

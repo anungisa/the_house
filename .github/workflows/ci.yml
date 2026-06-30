@@ -69,3 +69,6 @@ jobs:
 
       - name: Validate synthetic tenant lifecycle baseline
         run: npm run synthetic:check
+
+      - name: Validate organization registry baseline
+        run: npm run organization:check

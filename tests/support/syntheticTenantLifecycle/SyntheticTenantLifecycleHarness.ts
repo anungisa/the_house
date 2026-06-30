@@ -55,6 +55,12 @@ import {
 import { InMemoryEvidenceQuarantineStore } from '../../../src/governance/evidence/quarantine/InMemoryEvidenceQuarantineStore.js';
 import { EvidenceQuarantineService } from '../../../src/governance/evidence/quarantine/EvidenceQuarantineService.js';
 import type { QuarantineDisposition } from '../../../src/governance/evidence/quarantine/EvidenceQuarantineTypes.js';
+import {
+  InMemoryOrganizationRegistryStore,
+  OrganizationRegistryService,
+  type OrganizationType,
+  type OrganizationView,
+} from '../../../src/domains/organization-registry/index.js';
 import { createAffiliationHttpServer } from '../../../src/http/server.js';
 import {
   TrustedHeadersAuthContextResolver,
@@ -110,6 +116,7 @@ export class SyntheticTenantLifecycleHarness {
   readonly evidence: GovernanceEvidenceService;
   readonly evidenceStorage: InMemoryEvidenceStorage;
   readonly quarantine: EvidenceQuarantineService;
+  readonly organizationRegistry: OrganizationRegistryService;
   readonly tenantId: string;
 
   /** Evidence object ids that were actually STORED (clean uploads only). */
@@ -162,6 +169,19 @@ export class SyntheticTenantLifecycleHarness {
     this.quarantine = new EvidenceQuarantineService(
       new InMemoryEvidenceQuarantineStore(quarantineOutbox, { clock: SYNTHETIC_CLOCK }),
       { generateId: sequentialIds('qev') },
+    );
+
+    // Organization registry shares the SAME lifecycle outbox backing array, so a registry signal
+    // (organization.registry.created) is observable alongside the lifecycle/quarantine effects.
+    // The registry NEVER calls the kernel or mutates governed state — it is reference structure.
+    const registryOutbox = new InMemoryOutboxStore(
+      SYNTHETIC_CLOCK,
+      sequentialIds('robx'),
+      this.kernel.store.outboxRecords,
+    );
+    this.organizationRegistry = new OrganizationRegistryService(
+      new InMemoryOrganizationRegistryStore(registryOutbox, { clock: SYNTHETIC_CLOCK }),
+      { telemetry: this.telemetry, clock: SYNTHETIC_CLOCK, ids: sequentialIds('org') },
     );
   }
 
@@ -370,6 +390,40 @@ export class SyntheticTenantLifecycleHarness {
   /** Project a synthetic actor to the authenticated identity the authz policy reasons about. */
   authActor(actor: SyntheticActor): ReturnType<typeof toAuthActor> {
     return toAuthActor(actor);
+  }
+
+  // ---------------------------------------------------------------------------------------------
+  // Organization registry (reference structure; NEVER calls the kernel or mutates governed state)
+  // ---------------------------------------------------------------------------------------------
+
+  /**
+   * Register an organization as a one-way PROJECTION of an already-approved affiliation
+   * application. This neither calls the kernel nor mutates governed state — it records reference
+   * structure derived from the approved application, with its id retained as the source reference.
+   */
+  registerOrganizationFromApprovedAffiliation(args: {
+    readonly affiliationApplicationId: string;
+    readonly organizationType?: OrganizationType;
+    readonly displayName?: string;
+    readonly tenantId?: string;
+  }): Promise<OrganizationView> {
+    return this.organizationRegistry.registerOrganizationFromApprovedAffiliationApplication({
+      tenantId: args.tenantId ?? this.tenantId,
+      affiliationApplicationId: args.affiliationApplicationId,
+      organizationType: args.organizationType ?? 'local',
+      displayName: args.displayName ?? 'Registered Local Organization',
+    });
+  }
+
+  /** Tenant-scoped registry detail read. */
+  getOrganization(tenantId: string, organizationId: string): Promise<OrganizationView | undefined> {
+    return this.organizationRegistry.getOrganization(tenantId, organizationId);
+  }
+
+  /** Tenant-scoped registry list read (organization ids only). */
+  async listOrganizationIds(tenantId: string): Promise<readonly string[]> {
+    const result = await this.organizationRegistry.listOrganizations(tenantId);
+    return result.items.map((o) => o.organizationId);
   }
 }
 

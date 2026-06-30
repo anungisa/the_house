@@ -39,6 +39,7 @@ import {
 } from '../../../src/governance/evidence/quarantine/EvidenceQuarantineTypes.js';
 import { authorize, AuthorizationAction } from '../../../src/authz/index.js';
 import { TelemetryCounters, TelemetryEvents } from '../../../src/observability/index.js';
+import { ORGANIZATION_REGISTRY_CREATED_MESSAGE_TYPE } from '../../../src/domains/organization-registry/index.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const supportDir = join(here, '..', '..', 'support', 'syntheticTenantLifecycle');
@@ -356,6 +357,44 @@ describe('synthetic tenant lifecycle', () => {
     expect(h.kernel.store.data.stateTransitions.length).toBe(transitionsBefore);
     expect(h.entityState('app-19')).toBe(stateBefore);
     expect(h.entityState('app-19')).toBe('approved');
+  });
+
+  // (21) An organization registered from an approved application is tenant-isolated reference data.
+  it('(21) approved application projects a tenant-isolated registry organization', async () => {
+    const h = new SyntheticTenantLifecycleHarness();
+    const approval = await h.driveToApprovalRequest('app-21');
+    await h.recordRegionalDecision(approval.workflowInstanceId as string);
+    await h.recordNationalDecision(approval.workflowInstanceId as string);
+    await h.executeApprovedWorkflow({
+      workflowInstanceId: approval.workflowInstanceId as string,
+      idempotencyKey: 'app-21-exec',
+    });
+    // The application is now governed-approved; registering an organization is a one-way
+    // PROJECTION (no kernel call, no governed-state mutation).
+    expect(h.entityState('app-21')).toBe('approved');
+
+    const org = await h.registerOrganizationFromApprovedAffiliation({
+      affiliationApplicationId: 'app-21',
+      organizationType: 'local',
+      displayName: 'Registered Local Organization',
+    });
+
+    // The organization belongs to Tenant Alpha and is readable by Tenant Alpha only.
+    expect(org.tenantId).toBe(TENANT_ALPHA_ID);
+    expect(org.status).toBe('active');
+    expect(org.sourceEntityId).toBe('app-21');
+    expect(await h.getOrganization(TENANT_ALPHA_ID, org.organizationId)).toBeDefined();
+    // Tenant Beta cannot read Tenant Alpha's registry organization.
+    expect(await h.getOrganization(TENANT_BETA_ID, org.organizationId)).toBeUndefined();
+    expect(await h.listOrganizationIds(TENANT_BETA_ID)).toHaveLength(0);
+
+    // A sanitized registry signal landed on the shared outbox, and telemetry recorded the create.
+    expect(h.outboxMessageTypes()).toContain(ORGANIZATION_REGISTRY_CREATED_MESSAGE_TYPE);
+    expect(h.telemetry.counterTotal(TelemetryCounters.organizationRegistryCreated)).toBe(1);
+    expect(h.telemetry.hasEvent(TelemetryEvents.organizationRegistryCreated)).toBe(true);
+
+    // Governed lifecycle state is untouched by the registry projection.
+    expect(h.entityState('app-21')).toBe('approved');
   });
 
   // (20) No sport-specific terminology appears in the synthetic fixtures or this test file.

@@ -84,6 +84,13 @@ describe('package scripts', () => {
     );
   });
 
+  // Organization registry baseline script is present.
+  it('defines organization:check', () => {
+    expect(scripts['organization:check']).toBe(
+      'tsx scripts/validate-organization-registry-baseline.ts',
+    );
+  });
+
   // Aggregate CI gate script is present and chains the required gates.
   it('defines ci:check chaining the required gates', () => {
     const ciCheck = scripts['ci:check'];
@@ -101,6 +108,7 @@ describe('package scripts', () => {
       'npm run smoke:check',
       'npm run release:check',
       'npm run synthetic:check',
+      'npm run organization:check',
     ]) {
       expect(ciCheck).toContain(gate);
     }
@@ -129,6 +137,7 @@ describe('package scripts', () => {
       'smoke:azure',
       'release:check',
       'synthetic:check',
+      'organization:check',
     ]) {
       expect(scripts[name]).toBeDefined();
     }
