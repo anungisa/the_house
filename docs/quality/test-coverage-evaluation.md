@@ -462,3 +462,66 @@ The residual ~22% uncovered `GovernanceKernel` branches are deep defensive fail-
 ### Recommended next branch sweep
 
 **Participant Registry write-path branch sweep** (the weakest persisted domain at 57–62% write/service/Pg branch) before adding any Participant write surface — ideally as gated DB tests that also reach the residual `GovernanceKernel.executeApprovedTransitionRequest` defensive branches above.
+
+---
+
+## Appendix — Branch Coverage Sweep 2 — Participant Registry Write Paths
+
+- **Date:** 2026-06-30
+- **Commit:** (this pass) — see `Add participant registry write branch coverage`
+- **Type:** test-confidence pass (no feature, runtime, or governance-semantics changes). No production code changed (no bug found). Hermetic suite + a gated DB write-branch suite (skipped unless `RUN_DB_TESTS=1`).
+- **Motivation:** the Participant Registry was the weakest persisted domain (service/store/builder write branches at 52–62%). This sweep proves write-path behavior **before** any Participant write HTTP surface is added (read-only at the HTTP edge in v1 remains unchanged).
+
+### Tests added
+
+- `tests/unit/domains/participant-registry/ParticipantRegistryService.branch.test.ts` (31 hermetic) — the decision branches the behavioral suite does not reach:
+  - **create:** blank `tenantId` fail-closed; idempotent replay of a duplicate id (one row, one signal, one telemetry increment); explicit `externalRefs` + `correlationId`-on-created-event.
+  - **update:** blank `participantId`; participant-not-found; `null`-clearing vs `undefined`-unchanged semantics for `givenName`/`familyName`/`email`/`externalRefs`; setting concrete values (incl. email normalization); an updated signal emitted even when no field changes.
+  - **status:** invalid enum fail-closed; not-found; idempotent no-op (same status → no mutation/signal); a real transition emitting a `status_changed` signal with lineage.
+  - **link:** fail-closed when **no organization reader** is configured; invalid `relationshipType`/`status`; an archived participant receiving a **non-active** relationship (allowed); duplicate-active link idempotency (existing relationship returned, one signal); a fresh relationship created once the prior same-type one has ended; lineage + `startDate`/`endDate` pass-through.
+  - **relationship status:** absent/blank `relationshipId` → not-found; missing relationship; invalid enum; idempotent no-op; `endDate`-only change treated as a real (non-no-op) update.
+  - **read:** absent `participantId` returns undefined yet still records a read.
+  - **outbox lineage + sanitization:** `correlationId`/`causationId` propagated onto **all five** registry signals while every payload excludes name/email and any secret/token marker.
+  - **`InMemoryParticipantRegistryStore` directly:** `not_found` on update of an absent participant/relationship; `conflict` on a duplicate relationship id (no new signal); keyset-cursor pagination + status/email/type/org/participant filters on both list methods.
+- `tests/integration/governance/participant-registry-write-branches.integration.test.ts` (5 gated, `describe.skip` unless `RUN_DB_TESTS=1`) — residual Pg write branches not covered by `participant-registry.integration.test.ts`, all under FORCE RLS as a NON-superuser / NON-BYPASSRLS role: the **profile-update** write path + its transactional `participant.registry.updated` outbox row (sanitized); the **relationship status-change** `organization_link_status_changed` outbox row; the **database backstop** (`organization_participant_active_unique_idx`) rejecting a duplicate non-ended relationship of the same type with a `23505` unique violation when the service idempotency guard is bypassed; a fresh active relationship allowed once the prior one ended; and a profile update touching **no** governed lifecycle row (`entity_state`/`state_transition`/`audit_event` unchanged).
+
+### Branches targeted
+
+Service create/update/status/link/relationship-status write branches (fail-closed validation, idempotent no-ops/replays, not-found paths, null-clear vs unchanged, missing-org-reader, archived-but-non-active linking); the five outbox builders' optional-meta + lineage spreads; in-memory store conflict/not_found/list-cursor branches; and (gated) the Pg update path, the relationship-status outbox row, the single-active-relationship DB unique index, and the no-governance-mutation invariant.
+
+### Coverage delta (hermetic)
+
+| Metric | Before | After | Delta |
+| --- | --- | --- | --- |
+| Statements | 79.79% | **80.36%** | +0.57 |
+| Branches | 81.09% | **83.25%** | +2.16 |
+| Functions | 83.51% | **83.76%** | +0.25 |
+
+Per-file branch coverage (the targeted files):
+
+| File | Branch before | Branch after |
+| --- | --- | --- |
+| `ParticipantRegistryService.ts` | 56.57% | **94.44%** (st 87.5 → 94.23) |
+| `InMemoryParticipantRegistryStore.ts` | 62.68% | **94.44%** (st 87.63 → 98.92) |
+| `ParticipantRegistryStore.ts` (outbox builders) | 52.17% | **100%** |
+| `ParticipantRegistryErrors.ts` | 79.59% | **85.48%** (st 61.11 → 84.02) |
+
+`PgParticipantRegistryStore.ts` remains ~4% statements in the **hermetic** report by design (it is only reached under gated DB); the 5 gated tests above exercise its update / link-status / conflict-backstop branches against real PostgreSQL but do not affect the default hermetic delta.
+
+### DB integration result
+
+The gated suite was executed against a local PostgreSQL (`RUN_DB_TESTS=1`, restricted `house_app_participant_writebranch_test` role, NON-superuser / NON-BYPASSRLS, RLS-confined): **5/5 passed**. The pre-existing `participant-registry.integration.test.ts` remains the authority for create/read/cross-tenant/RLS-forced/outbox-on-create+link/no-governance-mutation; this file is purely additive for the residual write branches. No real Azure, Entra/JWKS, antivirus, Service Bus, Key Vault, Docker image build, registry, Cosign, transparency log, or external network was contacted.
+
+### Remaining participant branch gaps
+
+- `ParticipantRegistryErrors.ts` (~15% uncovered) — a few `optionalExternalRefs` malformed-entry branches (non-array, non-object entry, blank provider/externalId, duplicate pair) and `optionalIsoDate` malformed-format branch are only partially exercised; these are pure boundary validators with no write side effects and could be closed by a small dedicated validator-branch test if desired.
+- `ParticipantRegistryService.ts` (~5% uncovered) — the store `not_found`-after-existence-check races on `updateParticipant`/`updateOrganizationLink` (the service reads the row first, so these store outcomes are only reachable under true concurrent deletion); best left to gated DB rather than contrived hermetic manipulation.
+- `PgParticipantRegistryStore.ts` — list-filter permutations and the `parseExternalRefs` string-vs-array branch remain gated-only; not blocking.
+
+### Is a Participant write HTTP surface now safe to consider?
+
+**Yes, the write-path *behavior* is now well proven** (service branches 56% → 94%, store 63% → 94%, builders → 100%, gated DB backstops verified). The remaining gaps are boundary-validator edges and concurrency races, not core write logic. A Participant write HTTP surface can now be **designed** (preflight) — but it must route through the same validated service, stay tenant-scoped under RLS, and remain reference-data only (no registration/payment/enrollment/eligibility/sensitive attributes). The HTTP edge itself still needs its own negative-path coverage before exposure.
+
+### Recommended next pass
+
+**Participant write HTTP preflight design under the existing service** — map the request/response contracts, authorization actions (a new `participant.write`-class action distinct from `participant.read`), and HTTP edge negative-path coverage, without adding domain behavior. (Alternatives: an HTTP-edge negative-path coverage sweep, or an RLS cross-tenant regression suite consolidation.)
