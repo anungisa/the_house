@@ -97,4 +97,23 @@ describe('redaction', () => {
     expect(isSensitiveKey('host')).toBe(false);
     expect(isSensitiveKey('port')).toBe(false);
   });
+
+  // (22) Authorization / Bearer token metadata is treated as sensitive and redacted.
+  it('redacts Authorization headers and bearer token fields', () => {
+    expect(isSensitiveKey('Authorization')).toBe(true);
+    expect(isSensitiveKey('authorization')).toBe(true);
+    expect(isSensitiveKey('bearerToken')).toBe(true);
+    const input = {
+      headers: {
+        authorization: 'Bearer eyJabc.def.ghi',
+        'content-type': 'application/json',
+      },
+      accessToken: 'eyJsomeaccesstoken',
+    };
+    const out = redactSecrets(input);
+    expect(out.headers.authorization).toBe(REDACTED);
+    expect(out.accessToken).toBe(REDACTED);
+    expect(out.headers['content-type']).toBe('application/json');
+    expect(JSON.stringify(out)).not.toContain('eyJabc');
+  });
 });

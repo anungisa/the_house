@@ -82,6 +82,42 @@ describe('config diagnostics', () => {
     expect((diag.summary['auth'] as { mode: string }).mode).toBe('trusted_headers');
   });
 
+  // (21) Entra JWT diagnostics report presence booleans + claim names, never tokens/secrets.
+  it('summarizes entra_jwt config without printing tokens or secrets', () => {
+    const diag = buildConfigDiagnostics(
+      makeConfig({
+        auth: {
+          mode: 'entra_jwt',
+          entra: {
+            tenantId: 'contoso-tenant-id',
+            issuer: 'https://login.microsoftonline.com/contoso/v2.0',
+            audience: 'api://house-v2',
+            jwksUri: 'https://login.microsoftonline.com/contoso/discovery/v2.0/keys',
+            roleClaim: 'roles',
+            permissionClaim: 'scp',
+            userIdClaim: 'oid',
+            tenantIdClaim: 'tid',
+          },
+        },
+      }),
+    );
+    const auth = diag.summary['auth'] as {
+      mode: string;
+      entra: { issuerConfigured: boolean; audienceConfigured: boolean; jwksConfigured: boolean; claims: Record<string, string> };
+    };
+    expect(auth.mode).toBe('entra_jwt');
+    expect(auth.entra.issuerConfigured).toBe(true);
+    expect(auth.entra.audienceConfigured).toBe(true);
+    expect(auth.entra.jwksConfigured).toBe(true);
+    expect(auth.entra.claims.userIdClaim).toBe('oid');
+    expect(auth.entra.claims.tenantIdClaim).toBe('tid');
+
+    // No bearer token, secret, or claim VALUE leaks. (Issuer/JWKS URIs are public, not secrets.)
+    const serialized = JSON.stringify(diag.summary);
+    expect(serialized).not.toMatch(/eyJ[A-Za-z0-9_-]+\./); // no JWT
+    expect(serialized).not.toContain('Bearer ');
+  });
+
   it('reports database/service-bus/evidence configured status as booleans', () => {
     const diag = buildConfigDiagnostics(makeConfig());
     expect((diag.summary['database'] as { configured: boolean }).configured).toBe(true);

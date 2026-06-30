@@ -10,6 +10,7 @@
  */
 
 import { config as loadDotenv } from 'dotenv';
+import { URL } from 'node:url';
 
 loadDotenv();
 
@@ -60,11 +61,45 @@ export interface ApiConfig {
  *  - `trusted_headers`: tenant/actor are derived from trusted request headers injected by a
  *    verifying edge (reverse proxy / gateway / identity provider). Body-supplied identity is
  *    rejected. This is NOT full token validation — it assumes a trusted upstream.
+ *  - `entra_jwt`: tenant/actor are derived from a validated `Authorization: Bearer <token>`
+ *    JWT (signature/issuer/audience/expiry verified against a JWKS). This is the trusted
+ *    identity boundary: neither request body nor `x-house-*` headers are trusted for identity.
  */
-export type AuthMode = 'demo' | 'trusted_headers';
+export type AuthMode = 'demo' | 'trusted_headers' | 'entra_jwt';
+
+/**
+ * Microsoft Entra (JWT) validation configuration. Required only when AUTH_MODE=entra_jwt.
+ * Claim NAMES are configurable (NSO-generic, no sport-specific names) and default to the
+ * standard Entra claims. `jwksUri` is a public endpoint, NOT a secret; tokens are never
+ * logged.
+ */
+export interface EntraJwtConfig {
+  /** Optional Entra directory (tenant) id — informational/diagnostic only. */
+  readonly tenantId: string;
+  /** Expected token issuer (`iss`). Required. */
+  readonly issuer: string;
+  /** Expected token audience (`aud`). Required. */
+  readonly audience: string;
+  /** JWKS endpoint used to resolve signing keys. Required. Public (not a secret). */
+  readonly jwksUri: string;
+  /** Claim carrying role keys (default `roles`). */
+  readonly roleClaim: string;
+  /** Claim carrying permission/scope keys (default `scp`). */
+  readonly permissionClaim: string;
+  /** Claim carrying the actor user id (default `oid`). */
+  readonly userIdClaim: string;
+  /** Claim carrying the House tenant id (default `tid`). */
+  readonly tenantIdClaim: string;
+  /** Optional claim carrying a generic organization id. */
+  readonly organizationIdClaim?: string;
+  /** Optional claim carrying a generic organization-unit id. */
+  readonly organizationUnitIdClaim?: string;
+}
 
 export interface AuthConfig {
   readonly mode: AuthMode;
+  /** Present (and validated) only when `mode === 'entra_jwt'`. */
+  readonly entra?: EntraJwtConfig;
 }
 
 /**
@@ -235,10 +270,74 @@ function readOutboxWorkerSettings(): OutboxWorkerRuntimeSettings {
  */
 function readAuthConfig(): AuthConfig {
   const raw = readString('AUTH_MODE') ?? 'demo';
-  if (raw !== 'demo' && raw !== 'trusted_headers') {
-    throw new Error(`Invalid AUTH_MODE: "${raw}" (expected 'demo' or 'trusted_headers').`);
+  if (raw !== 'demo' && raw !== 'trusted_headers' && raw !== 'entra_jwt') {
+    throw new Error(
+      `Invalid AUTH_MODE: "${raw}" (expected 'demo', 'trusted_headers', or 'entra_jwt').`,
+    );
   }
-  return { mode: raw };
+  const mode: AuthMode = raw;
+  if (mode !== 'entra_jwt') {
+    return { mode };
+  }
+  return { mode, entra: readEntraJwtConfig() };
+}
+
+/** Parse and validate an absolute http(s) URL; fail closed on malformed input. */
+function readRequiredUrl(key: string): string {
+  const value = readString(key);
+  if (value === undefined) {
+    throw new Error(`${key} is required when AUTH_MODE=entra_jwt.`);
+  }
+  let parsed: URL;
+  try {
+    parsed = new URL(value);
+  } catch {
+    throw new Error(`Invalid ${key}: "${value}" is not a valid URL.`);
+  }
+  if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+    throw new Error(`Invalid ${key}: "${value}" must be an http(s) URL.`);
+  }
+  return value;
+}
+
+/**
+ * Resolve and validate Microsoft Entra (JWT) configuration. Called only when
+ * AUTH_MODE=entra_jwt. Fails closed when issuer/audience/JWKS URI are missing or malformed.
+ * Claim names default to the standard Entra claims; none are secrets.
+ */
+function readEntraJwtConfig(): EntraJwtConfig {
+  const issuer = readRequiredUrl('ENTRA_ISSUER');
+  const audience = readString('ENTRA_AUDIENCE');
+  if (audience === undefined) {
+    throw new Error('ENTRA_AUDIENCE is required when AUTH_MODE=entra_jwt.');
+  }
+  const jwksUri = readRequiredUrl('ENTRA_JWKS_URI');
+
+  const userIdClaim = readString('ENTRA_USER_ID_CLAIM') ?? 'oid';
+  const tenantIdClaim = readString('ENTRA_TENANT_ID_CLAIM') ?? 'tid';
+  // The claim NAMES carrying identity must be configured (defaults applied above).
+  if (userIdClaim === '') {
+    throw new Error('ENTRA_USER_ID_CLAIM must name the claim carrying the actor user id.');
+  }
+  if (tenantIdClaim === '') {
+    throw new Error('ENTRA_TENANT_ID_CLAIM must name the claim carrying the tenant id.');
+  }
+
+  const organizationIdClaim = readString('ENTRA_ORGANIZATION_ID_CLAIM');
+  const organizationUnitIdClaim = readString('ENTRA_ORGANIZATION_UNIT_ID_CLAIM');
+
+  return {
+    tenantId: readString('ENTRA_TENANT_ID') ?? '',
+    issuer,
+    audience,
+    jwksUri,
+    roleClaim: readString('ENTRA_ROLE_CLAIM') ?? 'roles',
+    permissionClaim: readString('ENTRA_PERMISSION_CLAIM') ?? 'scp',
+    userIdClaim,
+    tenantIdClaim,
+    ...(organizationIdClaim !== undefined ? { organizationIdClaim } : {}),
+    ...(organizationUnitIdClaim !== undefined ? { organizationUnitIdClaim } : {}),
+  };
 }
 
 /**

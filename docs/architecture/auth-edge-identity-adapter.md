@@ -33,6 +33,7 @@ fails closed). Default: `demo`.
 | --- | --- | --- |
 | `demo` | Request **body** (`tenantId`, `actor`) | **LOCAL/DEMO ONLY.** Preserves pre-auth ergonomics. Never expose publicly. |
 | `trusted_headers` | Trusted `x-house-*` request **headers** | Behind a verifying edge that authenticates the user and sets these headers. |
+| `entra_jwt` | Validated `Authorization: Bearer <JWT>` | API exposed directly to token-bearing clients. See [JWT / Entra auth adapter](jwt-entra-auth-adapter.md). |
 
 ### Single switch (intentional deviation)
 

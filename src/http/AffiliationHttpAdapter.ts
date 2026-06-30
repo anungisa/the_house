@@ -308,7 +308,7 @@ export async function handleAffiliationHttpTransition(
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<AffiliationHttpResult> {
   try {
-    const auth = resolver.resolve({ headers: req.headers, body: req.body });
+    const auth = await resolver.resolve({ headers: req.headers, body: req.body });
     const { command, request, correlationId } = buildCommandRequest(req, auth);
     const response = await executor.executeCommand(command, request);
     return successToHttpResult(response, requestId, correlationId);

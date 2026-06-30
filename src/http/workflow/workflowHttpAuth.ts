@@ -63,11 +63,11 @@ function identityBodyFromHeaders(
 export function resolveWorkflowAuth(
   resolver: AuthContextResolver,
   headers: Readonly<Record<string, string | undefined>>,
-): AuthContext {
+): Promise<AuthContext> {
   if (resolver.mode === 'demo') {
-    return resolver.resolve({ headers, body: identityBodyFromHeaders(headers) });
+    return Promise.resolve(resolver.resolve({ headers, body: identityBodyFromHeaders(headers) }));
   }
-  return resolver.resolve({ headers, body: undefined });
+  return Promise.resolve(resolver.resolve({ headers, body: undefined }));
 }
 
 export function requireTenant(auth: AuthContext): string {

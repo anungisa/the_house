@@ -135,7 +135,7 @@ export async function handleWorkflowDecision(
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<WorkflowHttpResult> {
   try {
-    const auth = resolveWorkflowAuth(resolver, req.headers);
+    const auth = await resolveWorkflowAuth(resolver, req.headers);
     const tenantId = requireTenant(auth);
     const actorUserId = requireActorUserId(auth);
 

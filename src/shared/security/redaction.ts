@@ -31,6 +31,8 @@ const SECRET_KEY_SUBSTRINGS: readonly string[] = [
   'privatekey',
   'sharedaccesskey',
   'credential',
+  'authorization',
+  'bearer',
   'key',
 ];
 

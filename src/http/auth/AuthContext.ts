@@ -40,5 +40,5 @@ export interface AuthContext {
   readonly tenantId: string;
   readonly actor: AuthActor;
   /** Which resolver produced this context (diagnostics only). */
-  readonly mode: 'demo' | 'trusted_headers';
+  readonly mode: 'demo' | 'trusted_headers' | 'entra_jwt';
 }

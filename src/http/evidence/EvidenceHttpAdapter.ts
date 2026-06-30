@@ -137,11 +137,11 @@ function identityBodyFromHeaders(
 function resolveEvidenceAuth(
   resolver: AuthContextResolver,
   headers: Readonly<Record<string, string | undefined>>,
-): AuthContext {
+): Promise<AuthContext> {
   if (resolver.mode === 'demo') {
-    return resolver.resolve({ headers, body: identityBodyFromHeaders(headers) });
+    return Promise.resolve(resolver.resolve({ headers, body: identityBodyFromHeaders(headers) }));
   }
-  return resolver.resolve({ headers, body: undefined });
+  return Promise.resolve(resolver.resolve({ headers, body: undefined }));
 }
 
 function requireTenant(auth: AuthContext): string {
@@ -210,7 +210,7 @@ export async function handleEvidenceUpload(
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceHttpResult> {
   try {
-    const tenantId = requireTenant(resolveEvidenceAuth(resolver, req.headers));
+    const tenantId = requireTenant(await resolveEvidenceAuth(resolver, req.headers));
 
     const contentType = trimmedHeader(req.headers['content-type']);
     if (contentType === undefined) {
@@ -297,7 +297,7 @@ export async function handleEvidenceDownload(
   resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
 ): Promise<EvidenceHttpResult> {
   try {
-    const tenantId = requireTenant(resolveEvidenceAuth(resolver, req.headers));
+    const tenantId = requireTenant(await resolveEvidenceAuth(resolver, req.headers));
 
     if (!isPlainObject(req.body)) {
       throw new AppError(ErrorCode.INVALID_INPUT, 'Request body must be a JSON object.');

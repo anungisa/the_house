@@ -20,6 +20,40 @@ export interface ConfigDiagnostics {
 }
 
 /**
+ * Summarize the auth configuration WITHOUT printing secrets or tokens. For entra_jwt this
+ * reports only non-sensitive presence booleans and configured claim NAMES — never the issuer
+ * secrets, JWKS contents, bearer tokens, or claim values.
+ */
+function buildAuthSummary(config: AppConfig): Readonly<Record<string, unknown>> {
+  const { auth } = config;
+  if (auth.mode !== 'entra_jwt' || auth.entra === undefined) {
+    return { mode: auth.mode };
+  }
+  const { entra } = auth;
+  return {
+    mode: auth.mode,
+    entra: {
+      issuerConfigured: entra.issuer !== '',
+      audienceConfigured: entra.audience !== '',
+      jwksConfigured: entra.jwksUri !== '',
+      tenantIdConfigured: entra.tenantId !== '',
+      claims: {
+        userIdClaim: entra.userIdClaim,
+        tenantIdClaim: entra.tenantIdClaim,
+        roleClaim: entra.roleClaim,
+        permissionClaim: entra.permissionClaim,
+        ...(entra.organizationIdClaim !== undefined
+          ? { organizationIdClaim: entra.organizationIdClaim }
+          : {}),
+        ...(entra.organizationUnitIdClaim !== undefined
+          ? { organizationUnitIdClaim: entra.organizationUnitIdClaim }
+          : {}),
+      },
+    },
+  };
+}
+
+/**
  * Build a redacted operational summary and advisory warnings from an {@link AppConfig}.
  * Defaults to loading the process config when none is supplied.
  */
@@ -32,7 +66,7 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
     logLevel: config.logLevel,
     productionLike,
     api: { host: config.api.host, port: config.api.port },
-    auth: { mode: config.auth.mode },
+    auth: buildAuthSummary(config),
     database: { configured: config.databaseUrl !== '' },
     serviceBus: {
       enabled: config.serviceBus.enabled,

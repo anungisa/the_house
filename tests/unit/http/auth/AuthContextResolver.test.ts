@@ -212,6 +212,31 @@ describe('createAuthContextResolver', () => {
   it('selects the trusted-headers resolver for AUTH_MODE=trusted_headers', () => {
     expect(createAuthContextResolver(makeAppConfig('trusted_headers')).mode).toBe('trusted_headers');
   });
+
+  it('selects the entra_jwt resolver for AUTH_MODE=entra_jwt', () => {
+    const config: AppConfig = {
+      ...makeAppConfig('entra_jwt'),
+      auth: {
+        mode: 'entra_jwt',
+        entra: {
+          tenantId: 'contoso',
+          issuer: 'https://login.microsoftonline.com/contoso/v2.0',
+          audience: 'api://house-v2',
+          jwksUri: 'https://login.microsoftonline.com/contoso/discovery/v2.0/keys',
+          roleClaim: 'roles',
+          permissionClaim: 'scp',
+          userIdClaim: 'oid',
+          tenantIdClaim: 'tid',
+        },
+      },
+    };
+    // No network: createRemoteJWKSet is lazy and no token is verified here.
+    expect(createAuthContextResolver(config).mode).toBe('entra_jwt');
+  });
+
+  it('fails closed when AUTH_MODE=entra_jwt but entra config is absent', () => {
+    expect(() => createAuthContextResolver(makeAppConfig('entra_jwt'))).toThrow();
+  });
 });
 
 describe('trusted header contract (platform-core neutrality)', () => {
