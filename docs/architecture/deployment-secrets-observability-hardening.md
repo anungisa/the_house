@@ -19,6 +19,11 @@ platform needs a **hardening baseline** so that operators can:
 This is **not** a production deployment. It adds no broker, no cluster, no managed identity,
 and no JWT validation.
 
+> Follow-up: the Azure deployment shape (IaC skeleton, environment model, config/secrets
+> matrix, migration/startup order) and the static `npm run deploy:check` validator are
+> documented in [production-deployment-baseline.md](./production-deployment-baseline.md).
+> That pass is also non-deploying — it makes the platform deployable *on paper*.
+
 ## What this pass adds
 
 | Area | Artifact |

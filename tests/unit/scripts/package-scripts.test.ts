@@ -35,6 +35,11 @@ describe('package scripts', () => {
     expect(scripts['config:check']).toBe('tsx scripts/config-check.ts');
   });
 
+  // Deployment baseline validation script is present.
+  it('defines deploy:check', () => {
+    expect(scripts['deploy:check']).toBe('tsx scripts/validate-deployment-baseline.ts');
+  });
+
   it('does not remove or rename existing scripts', () => {
     for (const name of [
       'typecheck',

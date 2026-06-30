@@ -1,0 +1,46 @@
+# Static deployment-baseline validation. This workflow NEVER deploys, requires
+# no secrets, and contacts no Azure / database / Service Bus / Entra. It only runs
+# the hermetic checks already used locally. DB-gated integration tests stay
+# skipped by default (RUN_DB_TESTS is not set).
+name: deployment-baseline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test (hermetic; DB integration skipped)
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate deployment baseline
+        run: npm run deploy:check
