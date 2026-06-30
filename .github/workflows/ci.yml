@@ -66,3 +66,6 @@ jobs:
 
       - name: Validate release runbook baseline
         run: npm run release:check
+
+      - name: Validate synthetic tenant lifecycle baseline
+        run: npm run synthetic:check

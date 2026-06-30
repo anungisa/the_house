@@ -91,11 +91,18 @@ npm run supply-chain:check
 npm run provenance:check
 npm run smoke:check
 npm run release:check
+npm run synthetic:check
 npm run ci:check
 ```
 
 `npm run ci:check` chains all of the above static gates. A failing preflight is an
 automatic **no-go**.
+
+The hermetic `npm test` run includes the
+[synthetic tenant lifecycle test suite](../architecture/synthetic-tenant-lifecycle-test-suite.md),
+which exercises submission → two-tier review → approved execution → evidence/quarantine →
+outbox → authorization → telemetry against in-memory stores. It is **pre-release confidence
+only** and is **not** a substitute for the live, opt-in Azure smoke validation in section 10.
 
 ---
 

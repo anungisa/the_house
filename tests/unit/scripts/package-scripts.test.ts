@@ -77,6 +77,13 @@ describe('package scripts', () => {
     expect(scripts['release:check']).toBe('tsx scripts/validate-release-runbook-baseline.ts');
   });
 
+  // Synthetic tenant-lifecycle baseline script is present.
+  it('defines synthetic:check', () => {
+    expect(scripts['synthetic:check']).toBe(
+      'tsx scripts/validate-synthetic-lifecycle-baseline.ts',
+    );
+  });
+
   // Aggregate CI gate script is present and chains the required gates.
   it('defines ci:check chaining the required gates', () => {
     const ciCheck = scripts['ci:check'];
@@ -93,6 +100,7 @@ describe('package scripts', () => {
       'npm run provenance:check',
       'npm run smoke:check',
       'npm run release:check',
+      'npm run synthetic:check',
     ]) {
       expect(ciCheck).toContain(gate);
     }
@@ -120,6 +128,7 @@ describe('package scripts', () => {
       'smoke:check',
       'smoke:azure',
       'release:check',
+      'synthetic:check',
     ]) {
       expect(scripts[name]).toBeDefined();
     }
