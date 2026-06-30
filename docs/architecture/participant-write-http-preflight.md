@@ -40,7 +40,258 @@ update is indistinguishable from not-found — identical `404` / `PARTICIPANT_NO
 
 **Deferred (NOT IMPLEMENTED):** status transitions (§5.3), organization-link create (§5.4),
 relationship-status changes (§5.5), and the `participant.status.write` /
-`participant.organization_link.write` actions. The sections below remain their contract.
+`participant.organization_link.write` actions. The sections below remain their contract, and the
+consolidated **Phase 2 preflight** (immediately below) is the binding design/decision record that
+gates that implementation pass.
+
+## Phase 2 preflight — status transitions & organization-link mutations
+
+> **Status: PHASE 2 DESIGNED, NOT IMPLEMENTED.** This section is the consolidated, decision-bearing
+> contract for the remaining write routes. It is a design-and-contract pass only: no phase-2
+> endpoint, route, DTO file, authorization action, or service change is created here. The detailed
+> per-endpoint contracts in §3–§14 remain authoritative; this section makes the phase-2-specific
+> **decisions** explicit (kernel boundary, authorization, idempotency stance, error mapping,
+> privacy, RLS matrix, sequence, go/no-go) so the implementation pass does not re-litigate them.
+
+### P2.1 Scope
+
+Phase 2 designs exactly these three future routes (and nothing else):
+
+| # | Method & path | Operation | Service method (already exists) | Authz action (new) |
+| --- | --- | --- | --- | --- |
+| 1 | `POST /v1/participants/:participantId/status-transitions` | Change a participant's reference status | `changeParticipantStatus` | `participant.status.write` |
+| 2 | `POST /v1/organizations/:organizationId/participants` | Link a participant to an organization | `linkParticipantToOrganization` | `participant.organization_link.write` |
+| 3 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change a relationship's status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` |
+
+**Explicitly NOT in phase 2** (no design, no implementation): payments, registration, program
+enrollment, event/competition participation, eligibility, identity-provider account provisioning,
+bulk imports, delegated-admin UI, medical/health fields, sensitive demographic fields, any
+sport-specific flow, hard deletes, and any mutation of the Organization Registry from the
+Participant HTTP surface (organizations remain read-only reference data — the link route only
+*reads* the organization to confirm same-tenant existence).
+
+### P2.2 Decision — reference-data service, NOT the Governance Kernel
+
+**Decision (final for phase 2): all three routes are reference-data mutations through
+`ParticipantRegistryService`. They MUST NOT call the Governance Kernel and MUST NOT mutate governed
+lifecycle state (`governance.entity_state` / `state_transition` / `audit_event` /
+`evidence_object`).**
+
+Rationale:
+
+- The Participant Registry is a tenant-scoped **reference registry of people and their
+  organizational relationships**, not an eligibility or regulated-lifecycle engine.
+- Participant status and relationship status are **operational availability/status markers**, not
+  formally adjudicated lifecycle states. They carry no approval workflow, no guard evaluation, and
+  no evidence requirement.
+- The Governance Kernel stays reserved for **governed organizational lifecycle transitions and
+  approval workflows** (e.g. AffiliationApplication). Overloading the registry into the kernel would
+  blur that boundary and invite an arbitrary state machine into reference data.
+- If a regulated participant-eligibility workflow is ever needed, it must be a **separate governed
+  domain** layered on top of the registry — never retrofitted into these routes.
+
+Boundary statements (must remain true in implementation and tests):
+
+- participant status **≠** eligibility.
+- organization-link status **≠** registration / enrollment.
+- relationship status **≠** payment standing.
+- **no formal adjudication** happens on these routes — they set reference fields and emit a
+  sanitized outbox signal, nothing more.
+
+### P2.3 Authorization
+
+Two new centralized actions (added in `src/authz/AuthorizationActions.ts` during the *implementation*
+pass, not now), fail-closed and NSO-generic:
+
+| Action constant | String key | Grants |
+| --- | --- | --- |
+| `ParticipantStatusWrite` | `participant.status.write` | Change a participant's reference status. |
+| `ParticipantOrganizationLinkWrite` | `participant.organization_link.write` | Create an organization↔participant relationship; change a relationship's status. |
+
+Neither is implied by `participant.read` or `participant.write`, and neither implies them
+(least-privilege, explicit). Recommended v1 role mapping for the implementation pass:
+
+| Role | `participant.status.write` | `participant.organization_link.write` |
+| --- | --- | --- |
+| `participant_reader` | ✗ | ✗ |
+| `participant_admin` | ✓ | ✓ |
+| `platform_admin` | ✓ (wildcard) | ✓ (wildcard) |
+| exact permission key on actor | ✓ (authoritative) | ✓ (authoritative) |
+
+**Scope decision: v1 stays tenant-scoped only.** Authorization answers "may this actor write
+participants/links *in this tenant*". Tenant identity comes EXCLUSIVELY from the resolved
+`AuthContext` (`x-house-*` trusted-header contract) — never from the body or path.
+
+- **`organization_admin` is deferred.** A tenant-scoped `participant.organization_link.write` lets
+  any holder link to any organization within their tenant. Granting `organization_admin` the link
+  action would require a reliable **organization-scope** auth model that guarantees an org admin can
+  only link participants to *their* organization(s). That model does not exist yet, so phase 2 does
+  **not** grant `organization_admin` the link action. Start phase 2 with
+  `participant_admin` + `platform_admin` + the exact permission key only; add `organization_admin`
+  **only** once org-scoped authz is proven.
+
+### P2.4 DTO contracts (closed field sets; enums confirmed against `ParticipantTypes.ts`)
+
+All request bodies reject unknown keys; identity (tenant + actor) is never accepted in the body.
+Responses reuse the existing closed `ParticipantDto` / `OrganizationParticipantDto` shapes.
+
+**1. `POST /v1/participants/:participantId/status-transitions`**
+
+```
+{ "targetStatus": "draft|active|suspended|archived",   // required; unknown → 400
+  "reason": "string (optional, audit note; max 1024 chars)" }
+```
+- `Idempotency-Key` header **required** (→ `400` if absent).
+- No `displayName` / `email` / profile / eligibility / payment / enrollment fields.
+- `reason` is audit-only: **never** in the outbox payload or telemetry.
+- Response `200` `{ participant: ParticipantDto }`. No-op (already `targetStatus`) → `200`, **no**
+  outbox row (service treats it as an idempotent no-op).
+
+**2. `POST /v1/organizations/:organizationId/participants`**
+
+```
+{ "participantId": "uuid (required)",
+  "relationshipType": "member|staff|volunteer|official|contact|other",  // required; unknown → 400
+  "relationshipId": "uuid (optional; client-supplied enables idempotent replay)",
+  "status": "active|suspended|ended (optional; default active)",
+  "startDate": "YYYY-MM-DD (optional)",
+  "endDate":   "YYYY-MM-DD (optional)" }
+```
+- `Idempotency-Key` header **required**. `organizationId` comes from the **path only**.
+- No registration / payment / enrollment / eligibility fields.
+- Cross-tenant or missing organization/participant → `404` (never reveals cross-tenant existence).
+- Response `201` `{ relationship: OrganizationParticipantDto }`.
+
+**3. `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`**
+
+```
+{ "targetStatus": "active|suspended|ended",   // required; unknown → 400
+  "reason": "string (optional, audit note)",
+  "endDate": "YYYY-MM-DD (optional; used when ending)" }
+```
+- `Idempotency-Key` header **required**. `organizationId` + `relationshipId` come from the **path**.
+- The relationship must belong to the path organization and the caller's tenant.
+- No profile / registration / payment / enrollment / eligibility fields.
+- Response `200` `{ relationship: OrganizationParticipantDto }`. No-op (same status, no new
+  `endDate`) → `200`, **no** outbox row.
+
+### P2.5 Idempotency & concurrency (phase-2 stance)
+
+Phase 2 keeps the conservative, **no-new-infrastructure** model that matches the service today:
+
+- **All three POST routes require an `Idempotency-Key` header** (missing/blank → `400`). In phase 2
+  the key is used as **correlation lineage only** (mapped into the outbox `correlationId`/
+  `causationId`); **do not** introduce a generic idempotency/replay table.
+- **Link replay is service-native and replay-safe.** `linkParticipantToOrganization` already returns
+  the **existing** non-ended relationship for the same `(tenant, organization, participant,
+  relationshipType)` instead of erroring — so a duplicate same-type active link returns the existing
+  relationship (idempotent), **not** a `409`. A `409`
+  (`ORGANIZATION_PARTICIPANT_ALREADY_EXISTS`) is reserved for the **DB partial-unique-index backstop**
+  (`organization_participant_active_unique_idx`) under concurrency / a conflicting `relationshipId`.
+  > **Decision:** phase 2 must **not** change the service to throw `409` for the common duplicate;
+  > it relies on the existing replay-safe return. Tests assert "duplicate same-type active link
+  > returns the existing relationship with no second outbox row". (Recorded as an intentional
+  > refinement of the naive "always 409" model — changing service behavior is out of scope.)
+- **Status transitions are idempotent by construction.** A repeat transition to the current status
+  is a no-op: `200`, **no** new outbox row (proven by test — see P2.6 #12/#13). Only an actual change
+  emits exactly one sanitized signal.
+- **Concurrency backstop**: active-relationship uniqueness is enforced by the DB partial unique
+  index; the application pre-check is advisory. Concurrent duplicate links resolve to one success +
+  one `409` (`23505` → `409`), never two active relationships.
+
+### P2.6 Error mapping (extends the phase-1 `writeAppErrorStatus`)
+
+| Condition | `ErrorCode` | HTTP |
+| --- | --- | --- |
+| Bad/missing field, bad enum (`targetStatus` / `relationshipType` / `status`), missing `Idempotency-Key`, malformed body, bad date | `INVALID_INPUT` | `400` |
+| Unauthenticated (no/blank tenant or actor) | `UNAUTHENTICATED` | `401` |
+| Authorized check fails | `FORBIDDEN` / `PERMISSION_DENIED` | `403` |
+| Participant not found / cross-tenant | `PARTICIPANT_NOT_FOUND` | `404` |
+| Organization not found / cross-tenant (link route) | `ORGANIZATION_NOT_FOUND` | `404` |
+| Relationship not found / cross-tenant (relationship-status route) | `ORGANIZATION_PARTICIPANT_NOT_FOUND` | `404` |
+| Archived participant cannot receive a new active link (state precondition) | `PARTICIPANT_ARCHIVED_NO_ACTIVE_LINK` | `409` |
+| Duplicate active relationship surfaced by the unique-index backstop | `ORGANIZATION_PARTICIPANT_ALREADY_EXISTS` | `409` |
+| Unexpected store/DB error | (any) | `500` (opaque, sanitized) |
+
+**Cross-tenant rule (non-negotiable):** a participant / organization / relationship that exists only
+in another tenant returns the **same** `404` as a truly missing id. A `409` may occur **only** for
+in-tenant conflicts, so it can never be used as a cross-tenant existence probe. Error bodies stay
+sanitized (`{ status:'error', code, message, requestId }`) — no SQL, stack traces, connection
+strings, or header echoes; unknown errors collapse to an opaque `500` (`INTERNAL`).
+
+### P2.7 Privacy & payload safety (unchanged stance, applied to phase-2 routes)
+
+- **Responses** may carry the authorized same-tenant `ParticipantDto` / `OrganizationParticipantDto`
+  (including `email` only where the existing DTO already allows it).
+- **Telemetry** carries `operation` + `result` tags only — never `email`, names
+  (`displayName` / `givenName` / `familyName`), request body, raw headers, bearer token,
+  connection strings, or raw bytes.
+- **Outbox** uses the existing service signals only; the HTTP adapter **never** enqueues directly.
+  Payloads remain **ID + status/relationship metadata only** — no `email`, names, or `reason`.
+
+### P2.8 RLS / DB validation matrix (gated tests the implementation pass must add)
+
+The phase-2 implementation must add gated (`RUN_DB_TESTS=1`) DB/RLS tests proving all of:
+
+1. restricted app role can change an **own-tenant** participant status through HTTP.
+2. restricted app role can link an **own-tenant** participant to an **own-tenant** organization.
+3. restricted app role can change an **own-tenant** relationship status through HTTP.
+4. Tenant A cannot change Tenant B's participant status (→ `404`).
+5. Tenant A cannot link Tenant B's participant (→ `404`).
+6. Tenant A cannot link to Tenant B's organization (→ `404`).
+7. Tenant A cannot mutate Tenant B's relationship (→ `404`).
+8. missing tenant context fails closed (→ `401`; no row written).
+9. unauthorized actor (lacking the action) → `403`.
+10. missing `Idempotency-Key` → `400`.
+11. duplicate active relationship: same-type returns the existing relationship (no second row/
+    outbox); the unique-index backstop yields `409` under a conflicting id.
+12. outbox commits **atomically** with each mutation (rollback leaves no orphan row/signal).
+13. outbox payload excludes `email` / names / secrets / tokens / raw bytes / `reason`.
+14. governance tables (`entity_state` / `state_transition` / `audit_event` / `evidence_object`)
+    remain **untouched** by every route.
+15. FORCE RLS remains enabled on the participant + relationship tables.
+16. app role remains `NOSUPERUSER` / `NOBYPASSRLS`.
+17. phase-1 create/update routes still work unchanged.
+18. registration/payment/enrollment/eligibility routes remain **absent**.
+
+Harness contract (per repo memory `integration-db-harness.md`): `MIGRATE_DATABASE_URL` =
+admin/migration URL; `DATABASE_URL` = the **restricted** runtime role (NOT superuser); any suite
+that self-provisions roles/grants holds the shared `pg_advisory_lock(918273)` during setup; every
+parallel integration suite uses a **unique tenant-UUID namespace** to avoid cross-suite collisions.
+
+### P2.9 Implementation sequence (when phase 2 is approved)
+
+1. **Authz** — add the two actions + role mappings + deny-by-default unit tests.
+2. **DTOs** — add closed phase-2 request/response DTO types + key-set assertion tests.
+3. **HTTP adapters** — add the three protocol-pure handlers; extend `writeAppErrorStatus` per P2.6;
+   no server wiring yet.
+4. **Hermetic adapter tests** — success + every negative path + DTO/telemetry safety + no-duplicate
+   outbox on replay + no-op status emits no outbox + no direct enqueue + no governance mutation.
+5. **Server routing** — add the `POST` sub-resource routes; `405` for unsupported methods; phase-1
+   and read routes unaffected; correct `allow` headers; routing tests.
+6. **Gated DB / RLS tests** — all of P2.8.
+7. **Validator + docs** — flip the baseline validator/docs from "no status/link write surface" to
+   "phase-2 surface present"; update this preflight and the domain baseline.
+8. **Validation + commit.**
+
+### P2.10 Phase 2 go / no-go checklist
+
+Implementation may begin **only** when all are true:
+
+- [ ] Kernel-boundary decision (P2.2: reference-data, never the kernel) is accepted.
+- [ ] The two actions + tenant-scoped role mapping (P2.3), with `organization_admin` deferred, are
+      accepted.
+- [ ] The three endpoint DTO contracts + confirmed enum sets (P2.4) are accepted.
+- [ ] The idempotency stance (P2.5: key-as-correlation-only, no idempotency table, replay-safe link
+      returns existing) is accepted.
+- [ ] The error-mapping table incl. the cross-tenant-`404` rule (P2.6) is accepted.
+- [ ] The privacy/payload-safety rules (P2.7) are accepted.
+- [ ] The full RLS/DB matrix (P2.8) is accepted as required, not optional.
+- [ ] No scope creep from P2.1 (no payments/registration/enrollment/eligibility, no sensitive
+      fields, no Organization Registry mutation, no kernel invocation).
+
+Until every box is checked, **no phase-2 endpoint, route, DTO, action, or service change is
+implemented.** This section is the contract; the implementation pass is separate.
 
 ## 1. Purpose
 

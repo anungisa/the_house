@@ -441,6 +441,11 @@ export function validateParticipantRegistryBaseline(
     { marker: /\bRLS\b|tenant[- ]isolation/i, label: 'RLS / tenant isolation' },
     { marker: /privacy/i, label: 'privacy / payload safety' },
     { marker: /test matrix/i, label: 'test matrix' },
+    // Phase-2 design coherence: the preflight must keep the status-transition + organization-link
+    // design (and its "not implemented" status) documented BEFORE any phase-2 code is built.
+    { marker: /phase 2/i, label: 'phase 2 scope' },
+    { marker: /status[- ]transition/i, label: 'phase 2 status-transition design' },
+    { marker: /organization[- ]link/i, label: 'phase 2 organization-link design' },
   ];
   for (const { marker, label } of preflightMarkers) {
     const present = preflight !== undefined && marker.test(preflight);

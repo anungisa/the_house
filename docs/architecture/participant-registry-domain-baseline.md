@@ -258,6 +258,22 @@ headers, tokens, or connection strings); that write routes NEVER mutate
 update is indistinguishable from a not-found — identical `404` / `PARTICIPANT_NOT_FOUND`). The
 role holds `SELECT, INSERT, UPDATE` (no `DELETE`) on the participant table and the outbox only.
 
+### Phase 2 (status transitions + organization links) — designed, NOT implemented
+
+- **Phase 1 (create + update) is implemented and DB/RLS-validated** (above).
+- **Phase 2** — participant **status transitions**
+  (`POST /v1/participants/:participantId/status-transitions`) and **organization-link** mutations
+  (`POST /v1/organizations/:organizationId/participants` and its
+  `/:relationshipId/status-transitions` status route) — is **designed but not implemented**. Its
+  binding contract is the "Phase 2 preflight" section of
+  [participant-write-http-preflight.md](participant-write-http-preflight.md): reference-data
+  mutations through `ParticipantRegistryService` only (NEVER the Governance Kernel), tenant-scoped
+  `participant.status.write` / `participant.organization_link.write` actions, `Idempotency-Key` as
+  correlation-only, and a full RLS/DB validation matrix.
+- **Registration, payments, program enrollment, event participation, and eligibility remain out of
+  scope** for the entire Participant Registry — phase 1, phase 2, and beyond.
+
+
 ## Out of scope (intentionally not built)
 
 This pass adds the read surface plus the phase-1 create + update write surface above. The following

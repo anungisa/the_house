@@ -78,6 +78,9 @@ const VALID_PREFLIGHT_DOC = [
   '',
   'Status: Phase 1 (create + update) IMPLEMENTED. Later phases NOT IMPLEMENTED.',
   '',
+  '## Phase 2 preflight — status transitions & organization-link mutations',
+  'Phase 2 designs the status-transition and organization-link routes; NOT implemented yet.',
+  '',
   '## Idempotency & concurrency model',
   'POST mutations require an Idempotency-Key; replays return the prior result.',
   '',
@@ -323,6 +326,22 @@ describe('validateParticipantRegistryBaseline', () => {
     );
     const root = writeRepo(files);
     expect(checkOk(root, 'participant write preflight documents idempotency model')).toBe(false);
+  });
+
+  it('fails when the preflight doc omits the phase 2 status/link design', () => {
+    const files = baseFiles();
+    files[PARTICIPANT_WRITE_PREFLIGHT_DOC_REL] = VALID_PREFLIGHT_DOC.replace(
+      /## Phase 2 preflight[\s\S]*?not implemented yet\.\n/i,
+      '## Other\nplaceholder design content\n',
+    );
+    const root = writeRepo(files);
+    expect(checkOk(root, 'participant write preflight documents phase 2 scope')).toBe(false);
+    expect(
+      checkOk(root, 'participant write preflight documents phase 2 status-transition design'),
+    ).toBe(false);
+    expect(
+      checkOk(root, 'participant write preflight documents phase 2 organization-link design'),
+    ).toBe(false);
   });
 
   it('flags sport-specific terminology leaking into a domain file', () => {
