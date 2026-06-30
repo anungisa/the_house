@@ -24,7 +24,9 @@
     "demo:seed:affiliation": "tsx scripts/demo-seed-affiliation.ts",
     "worker:outbox": "tsx scripts/outbox-worker.ts",
     "config:check": "tsx scripts/config-check.ts",
-    "deploy:check": "tsx scripts/validate-deployment-baseline.ts"
+    "deploy:check": "tsx scripts/validate-deployment-baseline.ts",
+    "container:check": "tsx scripts/validate-container-baseline.ts",
+    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check"
   },
   "dependencies": {
     "@azure/identity": "^4.13.1",

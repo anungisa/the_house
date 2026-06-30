@@ -1,0 +1,97 @@
+# Production deployment TEMPLATE — DISABLED-BY-DEFAULT, MANUAL-ONLY.
+#
+# This workflow is a documented contract for how a future production deployment
+# would run. It does NOT deploy until a human:
+#   1. configures a real container registry + Azure environment, and
+#   2. manually dispatches it AND types the confirmation phrase "DEPLOY".
+#
+# It triggers ONLY on workflow_dispatch (never on push or pull_request). Every
+# job is guarded by an explicit confirmation input, so an accidental dispatch
+# without the phrase is a no-op. All credentials are GitHub-environment secrets
+# referenced as ${{ secrets.* }} — NO secret values are committed here.
+#
+# Replace the placeholder repository/registry/resource names and configure the
+# "production" environment (with required reviewers) before enabling.
+name: production-deploy-template
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type DEPLOY to confirm a real production deployment.'
+        required: true
+        default: ''
+        type: string
+      image_tag:
+        description: 'Container image tag to deploy.'
+        required: false
+        default: 'latest'
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    # Hard guard: this job is skipped unless the operator types the exact phrase.
+    if: ${{ inputs.confirm == 'DEPLOY' }}
+    runs-on: ubuntu-latest
+    # Use a protected GitHub environment with required reviewers before enabling.
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure login (OIDC; no static credentials)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Infrastructure what-if (preview only; no changes applied)
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az deployment group what-if \
+              --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+              --template-file infra/azure/main.bicep \
+              --parameters infra/azure/parameters/prod.example.bicepparam
+
+      - name: Build and publish images to the registry
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az acr build \
+              --registry "${{ vars.AZURE_CONTAINER_REGISTRY }}" \
+              --image "the-house-api:${{ inputs.image_tag }}" \
+              --target api \
+              --file Dockerfile .
+            az acr build \
+              --registry "${{ vars.AZURE_CONTAINER_REGISTRY }}" \
+              --image "the-house-worker:${{ inputs.image_tag }}" \
+              --target worker \
+              --file Dockerfile .
+
+      - name: Roll out the API container app
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az containerapp update \
+              --name "${{ vars.AZURE_API_CONTAINER_APP }}" \
+              --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+              --image "${{ vars.AZURE_CONTAINER_REGISTRY }}.azurecr.io/the-house-api:${{ inputs.image_tag }}"
+
+      - name: Roll out the worker container app
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az containerapp update \
+              --name "${{ vars.AZURE_WORKER_CONTAINER_APP }}" \
+              --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+              --image "${{ vars.AZURE_CONTAINER_REGISTRY }}.azurecr.io/the-house-worker:${{ inputs.image_tag }}"

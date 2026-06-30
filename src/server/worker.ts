@@ -1,26 +1,21 @@
 /**
- * Outbox worker runtime entrypoint.
+ * Compiled outbox worker runtime entrypoint (container target `worker`).
  *
- * Wires the PRODUCTION-intended worker graph and runs the drain loop:
+ * Runs the transactional-outbox drain loop using the shared production-intended
+ * composition root (src/workers/outbox/composition.ts). Built into
+ * `dist/src/server/worker.js` and run with `node dist/src/server/worker.js`
+ * (requires DATABASE_URL).
  *
- *   OutboxWorkerRuntime (interval host / graceful shutdown)
- *     → OutboxWorker.processBatch()          (recover → claim → publish → mark)
- *       → PgOutboxStore                       (SECURITY DEFINER worker functions, migration 0004)
- *       → OutboxPublisher                     (Noop when SERVICE_BUS_ENABLED=false; Azure when true)
- *
- * Run with: `npm run worker:outbox` (requires DATABASE_URL). Service Bus stays DISABLED
- * unless SERVICE_BUS_ENABLED=true. The reusable, unit-tested loop lives in
+ * Service Bus stays DISABLED unless SERVICE_BUS_ENABLED=true (no Azure Service Bus
+ * sessions in v1). The process should connect with the dedicated SECURITY DEFINER
+ * worker role. The reusable, unit-tested loop lives in
  * src/workers/outbox/OutboxWorkerRuntime.ts; this file is a thin shell.
- *
- * The process should connect with the dedicated SECURITY DEFINER worker role (DATABASE_URL
- * pointing at e.g. house_outbox_worker). This pass does NOT add an Azure Functions host,
- * DLQ consumer, observability, leader election, or deployment/IaC.
  */
 
-import { loadConfig } from '../src/config/index.js';
-import { buildConfigDiagnostics } from '../src/config/diagnostics.js';
-import { createLogger } from '../src/shared/logging/logger.js';
-import { createPgOutboxWorkerRuntime } from '../src/workers/outbox/composition.js';
+import { buildConfigDiagnostics } from '../config/diagnostics.js';
+import { loadConfig } from '../config/index.js';
+import { createLogger } from '../shared/logging/logger.js';
+import { createPgOutboxWorkerRuntime } from '../workers/outbox/composition.js';
 
 async function main(): Promise<void> {
   const config = loadConfig();

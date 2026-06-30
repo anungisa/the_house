@@ -40,6 +40,27 @@ describe('package scripts', () => {
     expect(scripts['deploy:check']).toBe('tsx scripts/validate-deployment-baseline.ts');
   });
 
+  // Container/CI baseline validation script is present.
+  it('defines container:check', () => {
+    expect(scripts['container:check']).toBe('tsx scripts/validate-container-baseline.ts');
+  });
+
+  // Aggregate CI gate script is present and chains the required gates.
+  it('defines ci:check chaining the required gates', () => {
+    const ciCheck = scripts['ci:check'];
+    expect(ciCheck).toBeDefined();
+    for (const gate of [
+      'npm run typecheck',
+      'npm run lint',
+      'npm test',
+      'npm run build',
+      'npm run deploy:check',
+      'npm run container:check',
+    ]) {
+      expect(ciCheck).toContain(gate);
+    }
+  });
+
   it('does not remove or rename existing scripts', () => {
     for (const name of [
       'typecheck',
@@ -53,6 +74,8 @@ describe('package scripts', () => {
       'dev:api',
       'demo:seed:affiliation',
       'worker:outbox',
+      'config:check',
+      'deploy:check',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

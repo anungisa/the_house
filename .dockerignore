@@ -1,0 +1,41 @@
+# Build context exclusions for the container image.
+#
+# Keep secrets, local state, tests, and build artifacts out of the image and
+# out of the Docker build context. The image is built from package.json,
+# the lockfile, tsconfig*.json, and src/ only (see Dockerfile).
+
+# Dependencies and build output (reinstalled/recompiled inside the image)
+node_modules
+dist
+build
+coverage
+
+# Secrets and local environment (never copy into an image)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+
+# Version control and CI
+.git
+.gitignore
+.github
+
+# Tests and scripts are not part of the runtime image
+tests
+scripts
+
+# Editor / tooling noise
+.vscode
+.idea
+*.log
+.DS_Store
+
+# Docs, legacy, and the build recipe itself
+docs
+legacy
+Dockerfile
+.dockerignore
+README.md

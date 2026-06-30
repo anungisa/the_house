@@ -1,0 +1,50 @@
+# Continuous integration gate. This workflow NEVER deploys, requires NO secrets,
+# and contacts NO Azure / database / Service Bus / Entra / registry. It only runs
+# the hermetic checks used locally (typecheck, lint, test, build, and the static
+# deployment + container/CI baseline validators). DB-gated integration tests stay
+# skipped by default (RUN_DB_TESTS is not set).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test (hermetic; DB integration skipped)
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate deployment baseline
+        run: npm run deploy:check
+
+      - name: Validate container/CI baseline
+        run: npm run container:check
