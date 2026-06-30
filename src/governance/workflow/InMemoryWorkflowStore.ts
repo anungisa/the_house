@@ -11,7 +11,9 @@ import type { IdGenerator } from '../../shared/uuid/id.js';
 import { uuidGenerator } from '../../shared/uuid/id.js';
 import type {
   WorkflowBacking,
+  WorkflowDetailView,
   WorkflowInstanceRecord,
+  WorkflowInstanceSummaryView,
   WorkflowInstanceView,
   WorkflowStepRecord,
   WorkflowStepView,
@@ -19,10 +21,22 @@ import type {
 import type {
   WorkflowDecisionInsert,
   WorkflowInstanceProgressUpdate,
+  WorkflowListFilter,
+  WorkflowListResult,
   WorkflowStepDecisionUpdate,
   WorkflowStore,
   WorkflowTx,
 } from './WorkflowStore.js';
+import { WORKFLOW_LIST_DEFAULT_LIMIT, WORKFLOW_LIST_MAX_LIMIT } from './WorkflowStore.js';
+
+/** Clamp a requested page size to [1, WORKFLOW_LIST_MAX_LIMIT], defaulting when absent/invalid. */
+function clampLimit(requested: number | undefined): number {
+  if (requested === undefined || !Number.isFinite(requested)) return WORKFLOW_LIST_DEFAULT_LIMIT;
+  const floored = Math.floor(requested);
+  if (floored < 1) return 1;
+  if (floored > WORKFLOW_LIST_MAX_LIMIT) return WORKFLOW_LIST_MAX_LIMIT;
+  return floored;
+}
 
 function toInstanceView(rec: WorkflowInstanceRecord): WorkflowInstanceView {
   return {
@@ -56,10 +70,37 @@ function toStepView(rec: WorkflowStepRecord): WorkflowStepView {
   };
 }
 
+/** Map an in-memory instance record to the admin summary view (timestamps + executed marker). */
+function toSummaryView(
+  rec: WorkflowInstanceRecord,
+  executed: boolean,
+): WorkflowInstanceSummaryView {
+  return {
+    id: rec.id,
+    tenantId: rec.tenantId,
+    transitionRequestId: rec.transitionRequestId,
+    entityType: rec.entityType,
+    entityId: rec.entityId,
+    workflowType: rec.workflowType,
+    status: rec.status,
+    ...(rec.currentStepCode !== undefined ? { currentStepCode: rec.currentStepCode } : {}),
+    createdAt: rec.createdAt,
+    updatedAt: rec.updatedAt,
+    executed,
+  };
+}
+
+/**
+ * In-memory WorkflowStore for unit tests. The optional `isExecuted` predicate lets a harness
+ * model the governing transition request's consumed/executed marker (the in-memory store has no
+ * visibility into governance transition_request rows on its own); when omitted, instances are
+ * reported as not executed.
+ */
 export class InMemoryWorkflowStore implements WorkflowStore {
   constructor(
     private readonly backing: WorkflowBacking,
     private readonly ids: IdGenerator = uuidGenerator,
+    private readonly isExecuted: (transitionRequestId: string) => boolean = () => false,
   ) {}
 
   getInstanceByTransitionRequestId(
@@ -88,6 +129,71 @@ export class InMemoryWorkflowStore implements WorkflowStore {
       .sort((a, b) => a.stepOrder - b.stepOrder)
       .map(toStepView);
     return Promise.resolve(steps);
+  }
+
+  listWorkflows(tenantId: string, filter: WorkflowListFilter): Promise<WorkflowListResult> {
+    const limit = clampLimit(filter.limit);
+    // Steps lookup for reviewTier / assignedRoleKey filters (match if ANY step matches).
+    const stepMatches = (instanceId: string): boolean => {
+      if (filter.reviewTier === undefined && filter.assignedRoleKey === undefined) return true;
+      return this.backing.steps.some(
+        (s) =>
+          s.tenantId === tenantId &&
+          s.workflowInstanceId === instanceId &&
+          (filter.reviewTier === undefined || s.reviewTier === filter.reviewTier) &&
+          (filter.assignedRoleKey === undefined || s.assignedRoleKey === filter.assignedRoleKey),
+      );
+    };
+    const matched = this.backing.instances
+      .filter((i) => i.tenantId === tenantId)
+      .filter((i) => filter.status === undefined || i.status === filter.status)
+      .filter((i) => filter.entityType === undefined || i.entityType === filter.entityType)
+      .filter((i) => filter.entityId === undefined || i.entityId === filter.entityId)
+      .filter((i) => stepMatches(i.id))
+      // Stable keyset order: (createdAt, id) ascending.
+      .sort((a, b) =>
+        a.createdAt === b.createdAt
+          ? a.id.localeCompare(b.id)
+          : a.createdAt.localeCompare(b.createdAt),
+      );
+    const afterCursor =
+      filter.cursor === undefined
+        ? matched
+        : matched.filter((i) => {
+            const c = filter.cursor as { createdAt: string; id: string };
+            return (
+              i.createdAt > c.createdAt ||
+              (i.createdAt === c.createdAt && i.id.localeCompare(c.id) > 0)
+            );
+          });
+    const page = afterCursor.slice(0, limit);
+    const items = page.map((i) => toSummaryView(i, this.isExecuted(i.transitionRequestId)));
+    const last = page[page.length - 1];
+    const hasMore = afterCursor.length > page.length;
+    return Promise.resolve({
+      items,
+      ...(hasMore && last !== undefined
+        ? { nextCursor: { createdAt: last.createdAt, id: last.id } }
+        : {}),
+    });
+  }
+
+  getWorkflowDetail(
+    tenantId: string,
+    workflowInstanceId: string,
+  ): Promise<WorkflowDetailView | undefined> {
+    const rec = this.backing.instances.find(
+      (i) => i.tenantId === tenantId && i.id === workflowInstanceId,
+    );
+    if (rec === undefined) return Promise.resolve(undefined);
+    const steps = this.backing.steps
+      .filter((s) => s.tenantId === tenantId && s.workflowInstanceId === workflowInstanceId)
+      .sort((a, b) => a.stepOrder - b.stepOrder)
+      .map(toStepView);
+    return Promise.resolve({
+      instance: toSummaryView(rec, this.isExecuted(rec.transitionRequestId)),
+      steps,
+    });
   }
 
   async runInTransaction<T>(tenantId: string, fn: (tx: WorkflowTx) => Promise<T>): Promise<T> {
@@ -152,6 +258,7 @@ class InMemoryWorkflowTx implements WorkflowTx {
     if (rec !== undefined) {
       rec.status = update.status;
       rec.currentStepCode = update.currentStepCode ?? undefined;
+      rec.updatedAt = new Date().toISOString();
     }
     return Promise.resolve();
   }

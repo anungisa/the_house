@@ -20,6 +20,7 @@
 
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from 'node:http';
 import { Buffer } from 'node:buffer';
+import { URLSearchParams } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { AppError, ErrorCode } from '../shared/errors/AppError.js';
 import {
@@ -40,10 +41,13 @@ import {
 import {
   handleWorkflowDecision,
   handleWorkflowExecution,
+  handleWorkflowList,
+  handleWorkflowDetail,
   workflowErrorToHttpResult,
   workflowExecutionErrorToHttpResult,
   type WorkflowExecutionHttpDeps,
   type WorkflowHttpDeps,
+  type WorkflowReadHttpDeps,
 } from './workflow/index.js';
 
 export interface AffiliationHttpServerDeps {
@@ -76,6 +80,12 @@ export interface AffiliationHttpServerDeps {
    */
   readonly workflowExecution?: WorkflowExecutionHttpDeps;
   /**
+   * Optional workflow admin READ transport. When provided, the read-only list/detail endpoints
+   * are served; when omitted they 404. These endpoints NEVER mutate governed state, never record
+   * decisions, and never execute a transition — the execution-readiness field is a hint only.
+   */
+  readonly workflowRead?: WorkflowReadHttpDeps;
+  /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
    * dependency is unavailable. When omitted, `/readyz` stays shallow (process-level only).
@@ -95,6 +105,15 @@ const WORKFLOW_DECISION_ROUTE =
   /^\/v1\/workflows\/([^/]+)\/steps\/([^/]+)\/decision\/?$/;
 
 const WORKFLOW_EXECUTE_ROUTE = /^\/v1\/workflows\/([^/]+)\/execute\/?$/;
+
+/** GET list of workflows (exact path). */
+const WORKFLOW_LIST_PATH = '/v1/workflows';
+/**
+ * GET a single workflow by id. A single trailing segment only, so it never collides with the
+ * decision (`.../steps/:code/decision`) or execute (`.../execute`) routes, which have more
+ * segments.
+ */
+const WORKFLOW_DETAIL_ROUTE = /^\/v1\/workflows\/([^/]+)\/?$/;
 
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
@@ -316,6 +335,80 @@ async function handleWorkflowExecuteRoute(
   sendJson(res, result);
 }
 
+/** Parse the query string of a request URL into a flat record (first value wins per key). */
+function queryMap(url: string | undefined): Record<string, string | undefined> {
+  const out: Record<string, string | undefined> = {};
+  const qIndex = (url ?? '').indexOf('?');
+  if (qIndex < 0) return out;
+  const params = new URLSearchParams((url ?? '').slice(qIndex + 1));
+  for (const [key, value] of params) {
+    if (!(key in out)) out[key] = value;
+  }
+  return out;
+}
+
+/** Serve the read-only workflow list endpoint (GET only). */
+async function handleWorkflowListRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  workflowRead: WorkflowReadHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the workflow list endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const result = await handleWorkflowList(
+    workflowRead,
+    { headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the read-only workflow detail endpoint (GET only). */
+async function handleWorkflowDetailRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  workflowRead: WorkflowReadHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the workflow detail endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const workflowInstanceId = decodeURIComponent(match[1] ?? '');
+  const result = await handleWorkflowDetail(
+    workflowRead,
+    { workflowInstanceId, headers: headerMap(req) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
@@ -389,6 +482,26 @@ async function handleRequest(
         requestId,
         deps.resolver,
         maxBytes,
+      );
+      return;
+    }
+  }
+
+  // Workflow admin READ transport (only when wired). GET list + GET detail; read-only.
+  if (deps.workflowRead !== undefined && method === 'GET') {
+    if (path === WORKFLOW_LIST_PATH) {
+      await handleWorkflowListRoute(req, res, deps.workflowRead, requestId, deps.resolver);
+      return;
+    }
+    const detailMatch = WORKFLOW_DETAIL_ROUTE.exec(path);
+    if (detailMatch !== null) {
+      await handleWorkflowDetailRoute(
+        req,
+        res,
+        deps.workflowRead,
+        detailMatch,
+        requestId,
+        deps.resolver,
       );
       return;
     }

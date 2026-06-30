@@ -17,8 +17,11 @@
  */
 
 import type {
+  WorkflowDetailView,
   WorkflowInstanceStatus,
+  WorkflowInstanceSummaryView,
   WorkflowInstanceView,
+  WorkflowReviewTier,
   WorkflowStepDecision,
   WorkflowStepView,
 } from './WorkflowTypes.js';
@@ -70,7 +73,59 @@ export interface WorkflowTx {
   updateInstanceProgress(update: WorkflowInstanceProgressUpdate): Promise<void>;
 }
 
-export interface WorkflowStore {
+// -----------------------------------------------------------------------------
+// Admin/operator READ surfaces (list pending review work + inspect a workflow).
+// -----------------------------------------------------------------------------
+
+/** Maximum page size for workflow list reads. */
+export const WORKFLOW_LIST_MAX_LIMIT = 100;
+/** Default page size when the caller does not specify a limit. */
+export const WORKFLOW_LIST_DEFAULT_LIMIT = 50;
+
+/** Opaque keyset cursor: the last seen (createdAt, id) pair. */
+export interface WorkflowListCursor {
+  readonly createdAt: string;
+  readonly id: string;
+}
+
+/**
+ * Filters and keyset pagination for {@link WorkflowReadStore.listWorkflows}. All filters are
+ * optional and combine with AND. `limit` is clamped to [1, {@link WORKFLOW_LIST_MAX_LIMIT}] by
+ * the store. `cursor` is an opaque value produced by a previous page (keyset on createdAt,id).
+ */
+export interface WorkflowListFilter {
+  readonly status?: WorkflowInstanceStatus;
+  readonly entityType?: string;
+  readonly entityId?: string;
+  readonly reviewTier?: WorkflowReviewTier;
+  readonly assignedRoleKey?: string;
+  readonly limit?: number;
+  readonly cursor?: WorkflowListCursor;
+}
+
+/** A page of workflow summaries plus the cursor for the next page (undefined if exhausted). */
+export interface WorkflowListResult {
+  readonly items: readonly WorkflowInstanceSummaryView[];
+  readonly nextCursor?: WorkflowListCursor;
+}
+
+/**
+ * Narrow read-only port the workflow admin HTTP adapter depends on. Both the in-memory and
+ * PostgreSQL workflow stores implement this (it is a subset of {@link WorkflowStore}). Keeping
+ * it narrow lets adapter unit tests inject a fake without any governance/DB coupling.
+ */
+export interface WorkflowReadStore {
+  /** List workflow summaries for a tenant, filtered + keyset-paginated. */
+  listWorkflows(tenantId: string, filter: WorkflowListFilter): Promise<WorkflowListResult>;
+
+  /** Full detail (instance summary + ordered steps) for one instance; undefined if absent. */
+  getWorkflowDetail(
+    tenantId: string,
+    workflowInstanceId: string,
+  ): Promise<WorkflowDetailView | undefined>;
+}
+
+export interface WorkflowStore extends WorkflowReadStore {
   /** Read the workflow instance bound to an approval-required transition request. */
   getInstanceByTransitionRequestId(
     tenantId: string,

@@ -409,6 +409,7 @@ class InMemoryGovernanceTx implements GovernanceTx {
 
   insertWorkflowInstance(input: WorkflowInstanceInsert): Promise<string> {
     const id = this.ids.newId();
+    const nowIso = this.clock.nowIso();
     this.pendingWorkflowInstances.push({
       id,
       tenantId: input.tenantId,
@@ -418,6 +419,8 @@ class InMemoryGovernanceTx implements GovernanceTx {
       workflowType: input.workflowType,
       status: 'pending',
       currentStepCode: input.currentStepCode,
+      createdAt: nowIso,
+      updatedAt: nowIso,
     });
     return Promise.resolve(id);
   }

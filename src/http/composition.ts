@@ -44,7 +44,11 @@ import { createDatabaseReadinessCheck } from './readiness.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import { queryRaw } from '../db/pool.js';
 import type { EvidenceHttpDeps } from './evidence/index.js';
-import type { WorkflowExecutionHttpDeps, WorkflowHttpDeps } from './workflow/index.js';
+import type {
+  WorkflowExecutionHttpDeps,
+  WorkflowHttpDeps,
+  WorkflowReadHttpDeps,
+} from './workflow/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -119,6 +123,17 @@ export function createWorkflowExecutionHttpDeps(): WorkflowExecutionHttpDeps {
 }
 
 /**
+ * Build the read-only workflow admin transport backed by PostgreSQL. Reads run through the
+ * RLS-enforced {@link PgWorkflowStore}; the adapter is read-only and never mutates governed
+ * state, records decisions, or executes a transition.
+ */
+export function createWorkflowReadHttpDeps(): WorkflowReadHttpDeps {
+  return {
+    readStore: new PgWorkflowStore(),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -133,6 +148,7 @@ export function createPgAffiliationHttpServer(
     evidence: createEvidenceHttpDeps(),
     workflow: createWorkflowHttpDeps(),
     workflowExecution: createWorkflowExecutionHttpDeps(),
+    workflowRead: createWorkflowReadHttpDeps(),
     readiness: createDatabaseReadinessCheck({
       // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
       probe: () => queryRaw('SELECT 1'),

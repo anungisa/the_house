@@ -103,6 +103,32 @@ export interface WorkflowStepView {
   readonly decisionReason?: string;
 }
 
+/**
+ * Admin/operator read summary for a workflow instance. Adds creation/update timestamps and the
+ * `executed` marker (derived from the governing transition request) on top of the base instance
+ * fields. Returned by list and embedded in detail reads.
+ */
+export interface WorkflowInstanceSummaryView {
+  readonly id: string;
+  readonly tenantId: string;
+  readonly transitionRequestId: string;
+  readonly entityType: string;
+  readonly entityId: string;
+  readonly workflowType: string;
+  readonly status: WorkflowInstanceStatus;
+  readonly currentStepCode?: string;
+  readonly createdAt: string;
+  readonly updatedAt: string;
+  /** Whether the governing transition request has already been consumed/executed. */
+  readonly executed: boolean;
+}
+
+/** Full admin/operator read view: instance summary plus its ordered steps. */
+export interface WorkflowDetailView {
+  readonly instance: WorkflowInstanceSummaryView;
+  readonly steps: readonly WorkflowStepView[];
+}
+
 // -----------------------------------------------------------------------------
 // In-memory record types (mutable backing for InMemoryWorkflowStore / kernel tx).
 // Shared with InMemoryGovernanceStore so kernel-created workflows are visible to the
@@ -118,6 +144,8 @@ export interface WorkflowInstanceRecord {
   readonly workflowType: string;
   status: WorkflowInstanceStatus;
   currentStepCode: string | undefined;
+  readonly createdAt: string;
+  updatedAt: string;
 }
 
 export interface WorkflowStepRecord {

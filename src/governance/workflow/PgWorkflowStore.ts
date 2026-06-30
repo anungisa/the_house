@@ -13,11 +13,19 @@ import { withTenantTransaction, type QueryClient } from '../../db/pool.js';
 import type {
   WorkflowDecisionInsert,
   WorkflowInstanceProgressUpdate,
+  WorkflowListFilter,
+  WorkflowListResult,
   WorkflowStepDecisionUpdate,
   WorkflowStore,
   WorkflowTx,
 } from './WorkflowStore.js';
-import type { WorkflowInstanceView, WorkflowStepView } from './WorkflowTypes.js';
+import { WORKFLOW_LIST_DEFAULT_LIMIT, WORKFLOW_LIST_MAX_LIMIT } from './WorkflowStore.js';
+import type {
+  WorkflowDetailView,
+  WorkflowInstanceSummaryView,
+  WorkflowInstanceView,
+  WorkflowStepView,
+} from './WorkflowTypes.js';
 
 type InstanceRow = {
   id: string;
@@ -49,6 +57,45 @@ type StepRow = {
 
 const INSTANCE_COLUMNS = `id, tenant_id, transition_request_id, entity_type, entity_id,
   workflow_type, status, current_step_code`;
+
+/**
+ * Summary row: instance columns + timestamps + an `executed` flag derived from the governing
+ * transition request (LEFT JOIN, so a missing request reports executed = false rather than
+ * dropping the row).
+ */
+type SummaryRow = InstanceRow & {
+  created_at: string;
+  updated_at: string;
+  executed: boolean;
+};
+
+const SUMMARY_COLUMNS = `wi.id, wi.tenant_id, wi.transition_request_id, wi.entity_type,
+  wi.entity_id, wi.workflow_type, wi.status, wi.current_step_code, wi.created_at, wi.updated_at,
+  COALESCE(tr.status = 'executed', false) AS executed`;
+
+function clampLimit(requested: number | undefined): number {
+  if (requested === undefined || !Number.isFinite(requested)) return WORKFLOW_LIST_DEFAULT_LIMIT;
+  const floored = Math.floor(requested);
+  if (floored < 1) return 1;
+  if (floored > WORKFLOW_LIST_MAX_LIMIT) return WORKFLOW_LIST_MAX_LIMIT;
+  return floored;
+}
+
+function toSummaryView(r: SummaryRow): WorkflowInstanceSummaryView {
+  return {
+    id: r.id,
+    tenantId: r.tenant_id,
+    transitionRequestId: r.transition_request_id,
+    entityType: r.entity_type,
+    entityId: r.entity_id,
+    workflowType: r.workflow_type,
+    status: r.status,
+    ...(r.current_step_code !== null ? { currentStepCode: r.current_step_code } : {}),
+    createdAt: r.created_at,
+    updatedAt: r.updated_at,
+    executed: r.executed,
+  };
+}
 
 const STEP_COLUMNS = `id, tenant_id, workflow_instance_id, step_code, step_order, review_tier,
   required, status, assigned_scope_type, assigned_scope_id, assigned_role_key,
@@ -124,6 +171,88 @@ export class PgWorkflowStore implements WorkflowStore {
         [workflowInstanceId],
       );
       return rows.map(toStepView);
+    });
+  }
+
+  listWorkflows(tenantId: string, filter: WorkflowListFilter): Promise<WorkflowListResult> {
+    const limit = clampLimit(filter.limit);
+    return withTenantTransaction(tenantId, async (client) => {
+      const conditions: string[] = [];
+      const params: unknown[] = [];
+      const add = (sql: (idx: number) => string, value: unknown): void => {
+        params.push(value);
+        conditions.push(sql(params.length));
+      };
+      if (filter.status !== undefined) add((i) => `wi.status = $${i}`, filter.status);
+      if (filter.entityType !== undefined) add((i) => `wi.entity_type = $${i}`, filter.entityType);
+      if (filter.entityId !== undefined) add((i) => `wi.entity_id = $${i}`, filter.entityId);
+      if (filter.reviewTier !== undefined) {
+        add(
+          (i) =>
+            `EXISTS (SELECT 1 FROM governance.workflow_step ws
+               WHERE ws.workflow_instance_id = wi.id AND ws.review_tier = $${i})`,
+          filter.reviewTier,
+        );
+      }
+      if (filter.assignedRoleKey !== undefined) {
+        add(
+          (i) =>
+            `EXISTS (SELECT 1 FROM governance.workflow_step ws
+               WHERE ws.workflow_instance_id = wi.id AND ws.assigned_role_key = $${i})`,
+          filter.assignedRoleKey,
+        );
+      }
+      if (filter.cursor !== undefined) {
+        params.push(filter.cursor.createdAt);
+        const cIdx = params.length;
+        params.push(filter.cursor.id);
+        const idIdx = params.length;
+        conditions.push(`(wi.created_at, wi.id) > ($${cIdx}, $${idIdx})`);
+      }
+      params.push(limit);
+      const limitIdx = params.length;
+      const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+      const rows = await client.query<SummaryRow>(
+        `SELECT ${SUMMARY_COLUMNS}
+           FROM governance.workflow_instance wi
+           LEFT JOIN governance.transition_request tr ON tr.id = wi.transition_request_id
+           ${where}
+          ORDER BY wi.created_at ASC, wi.id ASC
+          LIMIT $${limitIdx}`,
+        params,
+      );
+      const items = rows.map(toSummaryView);
+      const last = rows[rows.length - 1];
+      const hasMore = rows.length === limit && last !== undefined;
+      return {
+        items,
+        ...(hasMore && last !== undefined
+          ? { nextCursor: { createdAt: last.created_at, id: last.id } }
+          : {}),
+      };
+    });
+  }
+
+  getWorkflowDetail(
+    tenantId: string,
+    workflowInstanceId: string,
+  ): Promise<WorkflowDetailView | undefined> {
+    return withTenantTransaction(tenantId, async (client) => {
+      const instanceRows = await client.query<SummaryRow>(
+        `SELECT ${SUMMARY_COLUMNS}
+           FROM governance.workflow_instance wi
+           LEFT JOIN governance.transition_request tr ON tr.id = wi.transition_request_id
+          WHERE wi.id = $1 LIMIT 1`,
+        [workflowInstanceId],
+      );
+      const inst = instanceRows[0];
+      if (inst === undefined) return undefined;
+      const stepRows = await client.query<StepRow>(
+        `SELECT ${STEP_COLUMNS} FROM governance.workflow_step
+          WHERE workflow_instance_id = $1 ORDER BY step_order ASC`,
+        [workflowInstanceId],
+      );
+      return { instance: toSummaryView(inst), steps: stepRows.map(toStepView) };
     });
   }
 
