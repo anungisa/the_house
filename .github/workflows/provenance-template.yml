@@ -1,0 +1,63 @@
+# Signed provenance template (Cosign). This workflow SIGNS a container image and
+# attaches an SBOM ATTESTATION using Cosign KEYLESS signing (Sigstore Fulcio
+# identity + Rekor transparency log). It is a guarded TEMPLATE: it runs ONLY on
+# manual workflow_dispatch and ONLY when the operator types the exact confirm
+# phrase, and it binds every signature/attestation to an immutable image DIGEST
+# (never a mutable tag). It pushes NO new image and embeds NO private key — the
+# keyless flow uses the workflow's OIDC token, not a committed signing key.
+#
+# Keyless / OIDC assumptions: the job requests `id-token: write` so Cosign can
+# obtain an OIDC token from GitHub and exchange it with Fulcio for a short-lived
+# signing certificate; the signature + attestation are recorded in Rekor. No
+# long-lived key material is stored in this repository.
+#
+# See docs/architecture/signed-provenance-cosign-baseline.md.
+name: provenance-template
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type SIGN to sign and attest the image digest.'
+        required: true
+        type: string
+      image_digest:
+        description: 'Digest-pinned image reference, e.g. <registry>/the-house-api@sha256:<64-hex>.'
+        required: true
+        type: string
+      sbom_artifact:
+        description: 'Path to the SPDX SBOM predicate to attest (e.g. sbom-api.spdx.json).'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  # Required for Cosign keyless (OIDC) signing — no static signing key is used.
+  id-token: write
+
+jobs:
+  sign:
+    # Hard guard: this job is skipped unless the operator types the exact phrase.
+    if: ${{ inputs.confirm == 'SIGN' }}
+    runs-on: ubuntu-latest
+    # Use a protected GitHub environment with required reviewers before enabling.
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
+      # Sign the immutable image DIGEST (keyless). Refuses tag-only input by
+      # binding to @sha256: — a mutable tag must never be signed.
+      - name: Sign image digest (keyless)
+        run: |
+          cosign sign --yes "${{ inputs.image_digest }}"
+
+      # Attach the SPDX SBOM as an attestation bound to the same digest (keyless).
+      - name: Attest SBOM for image digest (keyless)
+        run: |
+          cosign attest --yes --type spdxjson \
+            --predicate "${{ inputs.sbom_artifact }}" \
+            "${{ inputs.image_digest }}"

@@ -111,6 +111,21 @@ jobs:
           MIGRATE_DATABASE_URL: ${{ secrets.MIGRATE_DATABASE_URL }}
         run: npm run migrations:apply
 
+      # Verify the candidate image is SIGNED and carries an SBOM ATTESTATION
+      # BEFORE any new revision rolls out. Placeholders: wire these to your
+      # Cosign keyless verification (Fulcio identity + Rekor transparency log).
+      # Both gates bind to the immutable image DIGEST, never a mutable tag, and
+      # must NOT be bypassed (no `|| true`, no continue-on-error) when promoting.
+      # See docs/architecture/signed-provenance-cosign-baseline.md.
+      - name: Verify image signature (placeholder gate)
+        run: |
+          echo "Resolve digest for the-house-api:${{ inputs.image_tag }} and verify its signature."
+          echo "Production: cosign verify --certificate-identity ... --certificate-oidc-issuer ... <registry>/the-house-api@sha256:<digest>"
+      - name: Verify SBOM attestation (placeholder gate)
+        run: |
+          echo "Verify the SPDX SBOM attestation bound to the candidate image digest."
+          echo "Production: cosign verify-attestation --type spdxjson --certificate-identity ... <registry>/the-house-api@sha256:<digest>"
+
       - name: Roll out the API container app
         uses: azure/cli@v2
         with:

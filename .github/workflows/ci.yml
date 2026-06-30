@@ -1,10 +1,11 @@
 # Continuous integration gate. This workflow NEVER deploys, requires NO secrets,
 # and contacts NO Azure / database / Service Bus / Entra / registry. It only runs
 # the hermetic checks used locally (typecheck, lint, test, build, and the static
-# deployment + container/CI + migration + supply-chain baseline validators).
-# DB-gated integration tests stay skipped by default (RUN_DB_TESTS is not set).
+# deployment + container/CI + migration + supply-chain + provenance baseline
+# validators). DB-gated integration tests stay skipped by default (RUN_DB_TESTS
+# is not set).
 # Migrations are validated statically only — they are NEVER applied against a
-# database in CI, and no images are built, pushed, or scanned here.
+# database in CI, and no images are built, pushed, scanned, or signed here.
 name: ci
 
 on:
@@ -56,3 +57,6 @@ jobs:
 
       - name: Validate supply-chain baseline
         run: npm run supply-chain:check
+
+      - name: Validate provenance baseline
+        run: npm run provenance:check

@@ -32,7 +32,10 @@
     "supply-chain:check": "tsx scripts/validate-supply-chain-baseline.ts",
     "sbom:generate": "tsx scripts/generate-sbom.ts",
     "image:scan": "tsx scripts/scan-image.ts",
-    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check"
+    "provenance:check": "tsx scripts/validate-provenance-baseline.ts",
+    "image:sign": "tsx scripts/sign-image.ts",
+    "sbom:attest": "tsx scripts/attest-sbom.ts",
+    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check"
   },
   "dependencies": {
     "@azure/identity": "^4.13.1",

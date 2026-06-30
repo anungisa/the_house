@@ -59,6 +59,13 @@ describe('package scripts', () => {
     expect(scripts['image:scan']).toBe('tsx scripts/scan-image.ts');
   });
 
+  // Signed-provenance / Cosign baseline scripts are present.
+  it('defines provenance:check, image:sign, and sbom:attest', () => {
+    expect(scripts['provenance:check']).toBe('tsx scripts/validate-provenance-baseline.ts');
+    expect(scripts['image:sign']).toBe('tsx scripts/sign-image.ts');
+    expect(scripts['sbom:attest']).toBe('tsx scripts/attest-sbom.ts');
+  });
+
   // Aggregate CI gate script is present and chains the required gates.
   it('defines ci:check chaining the required gates', () => {
     const ciCheck = scripts['ci:check'];
@@ -72,6 +79,7 @@ describe('package scripts', () => {
       'npm run container:check',
       'npm run migrations:check',
       'npm run supply-chain:check',
+      'npm run provenance:check',
     ]) {
       expect(ciCheck).toContain(gate);
     }
@@ -95,6 +103,7 @@ describe('package scripts', () => {
       'container:check',
       'migrations:check',
       'supply-chain:check',
+      'provenance:check',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

@@ -71,3 +71,10 @@ jobs:
           name: trivy-${{ matrix.target }}
           path: trivy-${{ matrix.target }}.txt
           if-no-files-found: ignore
+
+      # Image signing and SBOM attestation (Cosign provenance) are deliberately
+      # NOT performed here. A pull_request build is unsigned and unpushed: there
+      # is no digest to bind a signature to and no registry/credentials in scope.
+      # Signing + attestation run only via the guarded, workflow_dispatch-only
+      # .github/workflows/provenance-template.yml against a pushed, digest-pinned
+      # image. See docs/architecture/signed-provenance-cosign-baseline.md.
