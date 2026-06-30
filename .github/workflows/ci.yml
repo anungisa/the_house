@@ -72,3 +72,6 @@ jobs:
 
       - name: Validate organization registry baseline
         run: npm run organization:check
+
+      - name: Validate participant registry baseline
+        run: npm run participant:check

@@ -54,6 +54,32 @@ const TENANT_B = '40000000-0000-4000-8000-0000000000b2';
 const APP_ROLE = 'house_app_org_registry_test';
 const APP_PW = 'org_app_pw';
 
+// Shared advisory-lock key used to SERIALIZE schema setup (migrations + role provisioning) across
+// gated integration suites that run in parallel. Multiple suites mutate the SAME catalog rows
+// (e.g. grants on governance.outbox_message), which races as "tuple concurrently updated" unless
+// the whole setup phase is serialized. Every suite that provisions a role MUST use this key.
+const PROVISION_LOCK_KEY = 918273;
+
+/**
+ * Run `fn` while holding the shared provisioning advisory lock on a single dedicated connection,
+ * so concurrent suites serialize their schema-setup phase. The lock + unlock run on the SAME
+ * backend connection (a requirement of session-level advisory locks).
+ */
+async function withProvisionLock<T>(admin: pg.Pool, fn: () => Promise<T>): Promise<T> {
+  const client = await admin.connect();
+  try {
+    await client.query('SELECT pg_advisory_lock($1)', [PROVISION_LOCK_KEY]);
+    return await fn();
+  } finally {
+    try {
+      await client.query('SELECT pg_advisory_unlock($1)', [PROVISION_LOCK_KEY]);
+    } catch {
+      /* best-effort unlock */
+    }
+    client.release();
+  }
+}
+
 /** Build a connection string from a base URL, swapping in role credentials. */
 function deriveUrl(base: string, user: string, password: string): string {
   const u = new URL(base);
@@ -186,8 +212,10 @@ d('organization registry — PostgreSQL RLS integration', () => {
 
   beforeAll(async () => {
     admin = new pg.Pool({ connectionString: ADMIN_URL });
-    await applyMigrations(admin);
-    await provisionRole(admin);
+    await withProvisionLock(admin, async () => {
+      await applyMigrations(admin);
+      await provisionRole(admin);
+    });
 
     const appUrl = deriveUrl(ADMIN_URL, APP_ROLE, APP_PW);
     appPool = new pg.Pool({ connectionString: appUrl });

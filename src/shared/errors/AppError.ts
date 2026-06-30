@@ -63,6 +63,18 @@ export const ErrorCode = {
   ORGANIZATION_ALREADY_EXISTS: 'ORGANIZATION_ALREADY_EXISTS',
   /** A required source-entity reference is missing (e.g. active affiliation-sourced organization). */
   ORGANIZATION_SOURCE_REFERENCE_REQUIRED: 'ORGANIZATION_SOURCE_REFERENCE_REQUIRED',
+  /** A referenced participant does not exist for the tenant. */
+  PARTICIPANT_NOT_FOUND: 'PARTICIPANT_NOT_FOUND',
+  /** A participant with the same tenant-scoped id already exists (idempotency conflict). */
+  PARTICIPANT_ALREADY_EXISTS: 'PARTICIPANT_ALREADY_EXISTS',
+  /** A provided contact email is not a syntactically valid address. */
+  PARTICIPANT_INVALID_EMAIL: 'PARTICIPANT_INVALID_EMAIL',
+  /** An archived participant cannot receive a new active organization relationship. */
+  PARTICIPANT_ARCHIVED_NO_ACTIVE_LINK: 'PARTICIPANT_ARCHIVED_NO_ACTIVE_LINK',
+  /** A referenced organization-participant relationship does not exist for the tenant. */
+  ORGANIZATION_PARTICIPANT_NOT_FOUND: 'ORGANIZATION_PARTICIPANT_NOT_FOUND',
+  /** An organization-participant relationship with the same id already exists (idempotency conflict). */
+  ORGANIZATION_PARTICIPANT_ALREADY_EXISTS: 'ORGANIZATION_PARTICIPANT_ALREADY_EXISTS',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

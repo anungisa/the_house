@@ -26,6 +26,11 @@ export const TelemetryCounters = {
   organizationRegistryCreated: 'organization.registry.created.count',
   organizationRegistryUpdated: 'organization.registry.updated.count',
   organizationRegistryRead: 'organization.registry.read.count',
+  participantRegistryCreated: 'participant.registry.created.count',
+  participantRegistryUpdated: 'participant.registry.updated.count',
+  participantRegistryStatusChanged: 'participant.registry.status_changed.count',
+  participantRegistryOrganizationLinked: 'participant.registry.organization_linked.count',
+  participantRegistryRead: 'participant.registry.read.count',
 } as const;
 
 /** Duration metric names (milliseconds). */
@@ -48,6 +53,9 @@ export const TelemetryEvents = {
   outboxBatchFailed: 'outbox.batch.failed',
   organizationRegistryCreated: 'organization.registry.created',
   organizationRegistryStatusChanged: 'organization.registry.status_changed',
+  participantRegistryCreated: 'participant.registry.created',
+  participantRegistryStatusChanged: 'participant.registry.status_changed',
+  participantRegistryOrganizationLinked: 'participant.registry.organization_linked',
 } as const;
 
 /** Stable, low-cardinality attribute keys. */

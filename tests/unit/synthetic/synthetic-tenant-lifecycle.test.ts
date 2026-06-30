@@ -40,6 +40,10 @@ import {
 import { authorize, AuthorizationAction } from '../../../src/authz/index.js';
 import { TelemetryCounters, TelemetryEvents } from '../../../src/observability/index.js';
 import { ORGANIZATION_REGISTRY_CREATED_MESSAGE_TYPE } from '../../../src/domains/organization-registry/index.js';
+import {
+  PARTICIPANT_REGISTRY_CREATED_MESSAGE_TYPE,
+  PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE,
+} from '../../../src/domains/participant-registry/index.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const supportDir = join(here, '..', '..', 'support', 'syntheticTenantLifecycle');
@@ -395,6 +399,49 @@ describe('synthetic tenant lifecycle', () => {
 
     // Governed lifecycle state is untouched by the registry projection.
     expect(h.entityState('app-21')).toBe('approved');
+  });
+
+  // (22) A participant recorded against a registry organization is tenant-isolated reference data.
+  it('(22) participant recorded against a registry organization stays tenant-isolated', async () => {
+    const h = new SyntheticTenantLifecycleHarness();
+    const approval = await h.driveToApprovalRequest('app-22');
+    await h.recordRegionalDecision(approval.workflowInstanceId as string);
+    await h.recordNationalDecision(approval.workflowInstanceId as string);
+    await h.executeApprovedWorkflow({
+      workflowInstanceId: approval.workflowInstanceId as string,
+      idempotencyKey: 'app-22-exec',
+    });
+    expect(h.entityState('app-22')).toBe('approved');
+
+    // Project a registry organization, then record a participant and link it to that organization.
+    // None of this calls the kernel or mutates governed state.
+    const org = await h.registerOrganizationFromApprovedAffiliation({
+      affiliationApplicationId: 'app-22',
+    });
+    const participant = await h.registerParticipant({ displayName: 'Reference Person' });
+    const link = await h.linkParticipantToOrganization({
+      organizationId: org.organizationId,
+      participantId: participant.participantId,
+    });
+
+    // Participant + relationship belong to Tenant Alpha and are readable by Tenant Alpha only.
+    expect(participant.tenantId).toBe(TENANT_ALPHA_ID);
+    expect(link.tenantId).toBe(TENANT_ALPHA_ID);
+    expect(link.organizationId).toBe(org.organizationId);
+    expect(await h.getParticipant(TENANT_ALPHA_ID, participant.participantId)).toBeDefined();
+    // Tenant Beta cannot read Tenant Alpha's participant, and sees an empty participant list.
+    expect(await h.getParticipant(TENANT_BETA_ID, participant.participantId)).toBeUndefined();
+    expect(await h.listParticipantIds(TENANT_BETA_ID)).toHaveLength(0);
+
+    // Sanitized participant signals landed on the shared outbox, and telemetry recorded them.
+    expect(h.outboxMessageTypes()).toContain(PARTICIPANT_REGISTRY_CREATED_MESSAGE_TYPE);
+    expect(h.outboxMessageTypes()).toContain(PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE);
+    expect(h.telemetry.counterTotal(TelemetryCounters.participantRegistryCreated)).toBe(1);
+    expect(h.telemetry.hasEvent(TelemetryEvents.participantRegistryCreated)).toBe(true);
+    expect(h.telemetry.hasEvent(TelemetryEvents.participantRegistryOrganizationLinked)).toBe(true);
+
+    // Governed lifecycle state is untouched by the participant projection.
+    expect(h.entityState('app-22')).toBe('approved');
   });
 
   // (20) No sport-specific terminology appears in the synthetic fixtures or this test file.

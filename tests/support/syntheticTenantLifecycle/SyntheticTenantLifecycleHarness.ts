@@ -61,6 +61,13 @@ import {
   type OrganizationType,
   type OrganizationView,
 } from '../../../src/domains/organization-registry/index.js';
+import {
+  InMemoryParticipantRegistryStore,
+  ParticipantRegistryService,
+  type ParticipantView,
+  type OrganizationParticipantView,
+  type RelationshipType,
+} from '../../../src/domains/participant-registry/index.js';
 import { createAffiliationHttpServer } from '../../../src/http/server.js';
 import {
   TrustedHeadersAuthContextResolver,
@@ -117,6 +124,7 @@ export class SyntheticTenantLifecycleHarness {
   readonly evidenceStorage: InMemoryEvidenceStorage;
   readonly quarantine: EvidenceQuarantineService;
   readonly organizationRegistry: OrganizationRegistryService;
+  readonly participantRegistry: ParticipantRegistryService;
   readonly tenantId: string;
 
   /** Evidence object ids that were actually STORED (clean uploads only). */
@@ -179,9 +187,33 @@ export class SyntheticTenantLifecycleHarness {
       sequentialIds('robx'),
       this.kernel.store.outboxRecords,
     );
-    this.organizationRegistry = new OrganizationRegistryService(
-      new InMemoryOrganizationRegistryStore(registryOutbox, { clock: SYNTHETIC_CLOCK }),
-      { telemetry: this.telemetry, clock: SYNTHETIC_CLOCK, ids: sequentialIds('org') },
+    const organizationStore = new InMemoryOrganizationRegistryStore(registryOutbox, {
+      clock: SYNTHETIC_CLOCK,
+    });
+    this.organizationRegistry = new OrganizationRegistryService(organizationStore, {
+      telemetry: this.telemetry,
+      clock: SYNTHETIC_CLOCK,
+      ids: sequentialIds('org'),
+    });
+
+    // Participant registry shares the SAME lifecycle outbox backing array, so a participant
+    // signal (participant.registry.created / organization_linked) is observable alongside the
+    // lifecycle/quarantine/organization effects. The registry NEVER calls the kernel or mutates
+    // governed state, and it only READS the organization registry as same-tenant reference
+    // structure — it never mutates it.
+    const participantOutbox = new InMemoryOutboxStore(
+      SYNTHETIC_CLOCK,
+      sequentialIds('pobx'),
+      this.kernel.store.outboxRecords,
+    );
+    this.participantRegistry = new ParticipantRegistryService(
+      new InMemoryParticipantRegistryStore(participantOutbox, { clock: SYNTHETIC_CLOCK }),
+      {
+        telemetry: this.telemetry,
+        clock: SYNTHETIC_CLOCK,
+        ids: sequentialIds('ptp'),
+        organizationReader: organizationStore,
+      },
     );
   }
 
@@ -424,6 +456,54 @@ export class SyntheticTenantLifecycleHarness {
   async listOrganizationIds(tenantId: string): Promise<readonly string[]> {
     const result = await this.organizationRegistry.listOrganizations(tenantId);
     return result.items.map((o) => o.organizationId);
+  }
+
+  // ---------------------------------------------------------------------------------------------
+  // Participant registry (reference structure; NEVER calls the kernel or mutates governed state)
+  // ---------------------------------------------------------------------------------------------
+
+  /**
+   * Record a participant as tenant-scoped reference structure. This neither calls the kernel nor
+   * mutates governed state — it is a generic person/member record, with no registration,
+   * eligibility, or sport-specific meaning attached.
+   */
+  registerParticipant(args: {
+    readonly displayName?: string;
+    readonly tenantId?: string;
+    readonly participantId?: string;
+  }): Promise<ParticipantView> {
+    return this.participantRegistry.createParticipant({
+      tenantId: args.tenantId ?? this.tenantId,
+      ...(args.participantId !== undefined ? { participantId: args.participantId } : {}),
+      displayName: args.displayName ?? 'Reference Person',
+      status: 'active',
+    });
+  }
+
+  /** Link a participant to a same-tenant organization (read-only org reference; idempotent). */
+  linkParticipantToOrganization(args: {
+    readonly organizationId: string;
+    readonly participantId: string;
+    readonly relationshipType?: RelationshipType;
+    readonly tenantId?: string;
+  }): Promise<OrganizationParticipantView> {
+    return this.participantRegistry.linkParticipantToOrganization({
+      tenantId: args.tenantId ?? this.tenantId,
+      organizationId: args.organizationId,
+      participantId: args.participantId,
+      relationshipType: args.relationshipType ?? 'member',
+    });
+  }
+
+  /** Tenant-scoped participant detail read. */
+  getParticipant(tenantId: string, participantId: string): Promise<ParticipantView | undefined> {
+    return this.participantRegistry.getParticipant(tenantId, participantId);
+  }
+
+  /** Tenant-scoped participant list read (participant ids only). */
+  async listParticipantIds(tenantId: string): Promise<readonly string[]> {
+    const result = await this.participantRegistry.listParticipants(tenantId);
+    return result.items.map((p) => p.participantId);
   }
 }
 
