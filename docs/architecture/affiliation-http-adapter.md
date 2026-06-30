@@ -46,8 +46,10 @@ unknown `:action` fails closed.
 
 ### Health endpoints
 
-- `GET /healthz` → `200` (process is up)
-- `GET /readyz` → `200` (adapter wired; deeper dependency checks are a future pass)
+- `GET /healthz` → `200` (process is up; shallow, no dependency I/O)
+- `GET /readyz` → `200` when wired; with an injected readiness probe, returns `503 not_ready`
+  when a bounded, tenant-agnostic database probe is unavailable (see
+  [deployment-secrets-observability-hardening.md](deployment-secrets-observability-hardening.md))
 
 ## Request contract
 
@@ -176,5 +178,6 @@ HTTP adapter (server.ts / AffiliationHttpAdapter.ts)
 - No real **document/blob evidence storage**, **workflow executor**, or **payment processor**.
 - No **local/demo runtime script** (no `listen()` bootstrap / npm script) — recommended as
   the next pass.
-- `/readyz` does not yet perform a deep dependency (DB) probe.
+- `/readyz` performs a bounded, tenant-agnostic database probe when a readiness check is
+  injected (wired in the Pg-backed composition); it stays shallow when none is provided.
 - No frontend.

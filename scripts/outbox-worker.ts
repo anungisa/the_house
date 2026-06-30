@@ -18,25 +18,31 @@
  */
 
 import { loadConfig } from '../src/config/index.js';
+import { buildConfigDiagnostics } from '../src/config/diagnostics.js';
 import { closePool } from '../src/db/pool.js';
 import { createOutboxPublisher } from '../src/governance/outbox/OutboxPublisherFactory.js';
 import { PgOutboxStore } from '../src/governance/outbox/PgOutboxStore.js';
 import { OutboxWorker } from '../src/workers/outbox/OutboxWorker.js';
 import { OutboxWorkerRuntime } from '../src/workers/outbox/OutboxWorkerRuntime.js';
-
-function log(message: string): void {
-  console.log(`[outbox-worker] ${message}`);
-}
+import { createLogger } from '../src/shared/logging/logger.js';
 
 async function main(): Promise<void> {
   const config = loadConfig();
+  const logger = createLogger(config.logLevel);
 
   if (!config.outboxWorker.enabled) {
-    log('OUTBOX_WORKER_ENABLED=false; not starting. Exiting.');
+    logger.warn('OUTBOX_WORKER_ENABLED=false; not starting');
     return;
   }
   if (config.databaseUrl === '') {
     throw new Error('DATABASE_URL is required to run the outbox worker.');
+  }
+
+  // Redacted operational summary (never includes connection strings/credentials).
+  const diagnostics = buildConfigDiagnostics(config);
+  logger.info('config diagnostics', { config: diagnostics.summary });
+  for (const warning of diagnostics.warnings) {
+    logger.warn('config warning', { warning });
   }
 
   const store = new PgOutboxStore();
@@ -64,7 +70,8 @@ async function main(): Promise<void> {
       lockSeconds: config.outboxWorker.lockSeconds,
       serviceBusEnabled: config.serviceBus.enabled,
     },
-    log,
+    log: (message) => logger.info(message),
+    onError: (message, error) => logger.error(message, { err: error }),
     closePublisher: async () => {
       await publisher.close?.();
     },
@@ -81,23 +88,22 @@ async function main(): Promise<void> {
   const handleSignal = (signal: string): void => {
     if (shuttingDown) return;
     shuttingDown = true;
-    log(`Received ${signal}; shutting down...`);
+    logger.info('shutdown signal received', { signal });
     runtime
       .shutdown()
       .then(() => process.exit(0))
       .catch((err: unknown) => {
-        console.error(err);
+        logger.error('shutdown failed', { err });
         process.exit(1);
       });
   };
   process.on('SIGINT', () => handleSignal('SIGINT'));
   process.on('SIGTERM', () => handleSignal('SIGTERM'));
 
-  log('Press Ctrl+C to stop.');
   await runtime.start();
 }
 
 main().catch((error: unknown) => {
-  console.error(error);
+  createLogger().error('outbox-worker failed to start', { err: error });
   process.exitCode = 1;
 });

@@ -40,7 +40,9 @@ import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFac
 import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
 import { createEvidenceMalwareScanner } from '../governance/evidence/scanning/index.js';
 import { createAuthContextResolver } from './auth/AuthContextResolver.js';
+import { createDatabaseReadinessCheck } from './readiness.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
+import { queryRaw } from '../db/pool.js';
 import type { EvidenceHttpDeps } from './evidence/index.js';
 import type { WorkflowExecutionHttpDeps, WorkflowHttpDeps } from './workflow/index.js';
 import type { Server } from 'node:http';
@@ -131,6 +133,10 @@ export function createPgAffiliationHttpServer(
     evidence: createEvidenceHttpDeps(),
     workflow: createWorkflowHttpDeps(),
     workflowExecution: createWorkflowExecutionHttpDeps(),
+    readiness: createDatabaseReadinessCheck({
+      // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
+      probe: () => queryRaw('SELECT 1'),
+    }),
     ...options,
   });
 }

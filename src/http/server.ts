@@ -12,8 +12,10 @@
  * suspend, reinstate, revoke, close, archive).
  *
  * Liveness/readiness:
- *   GET /healthz  → 200 (process is up)
- *   GET /readyz   → 200 (adapter wired; deeper dependency checks are a future pass)
+ *   GET /healthz  → 200 (process is up; deliberately shallow, no dependency I/O)
+ *   GET /readyz   → 200 when wired (and, when a readiness probe is injected, the backing
+ *                   database answers a bounded, tenant-agnostic `SELECT 1`); 503 not_ready
+ *                   when the probe is unavailable.
  */
 
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from 'node:http';
@@ -27,6 +29,7 @@ import {
   type AffiliationHttpResult,
 } from './AffiliationHttpAdapter.js';
 import type { AuthContextResolver } from './auth/AuthContextResolver.js';
+import type { ReadinessCheck } from './readiness.js';
 import {
   evidenceErrorToHttpResult,
   handleEvidenceDownload,
@@ -72,6 +75,12 @@ export interface AffiliationHttpServerDeps {
    * Kernel (never auto-invoked by the decision endpoint).
    */
   readonly workflowExecution?: WorkflowExecutionHttpDeps;
+  /**
+   * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
+   * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
+   * dependency is unavailable. When omitted, `/readyz` stays shallow (process-level only).
+   */
+  readonly readiness?: ReadinessCheck;
 }
 
 const DEFAULT_MAX_BODY_BYTES = 1_048_576;
@@ -317,9 +326,28 @@ async function handleRequest(
   const method = req.method ?? 'GET';
   const path = (req.url ?? '/').split('?')[0] ?? '/';
 
-  // Liveness / readiness.
-  if (method === 'GET' && (path === '/healthz' || path === '/readyz')) {
+  // Liveness: process is up. Deliberately shallow (no dependency I/O).
+  if (method === 'GET' && path === '/healthz') {
     sendJson(res, { status: 200, body: { status: 'ok', requestId } });
+    return;
+  }
+
+  // Readiness: process is wired, plus an optional bounded dependency probe. Stays shallow
+  // (process-level only) when no readiness check is wired.
+  if (method === 'GET' && path === '/readyz') {
+    const checks: Record<string, string> = { process: 'ok', config: 'ok' };
+    if (deps.readiness !== undefined) {
+      try {
+        await deps.readiness.checkDatabase();
+        checks['database'] = 'ok';
+      } catch {
+        // Never leak probe internals; surface a non-ready status only.
+        checks['database'] = 'unavailable';
+        sendJson(res, { status: 503, body: { status: 'not_ready', checks, requestId } });
+        return;
+      }
+    }
+    sendJson(res, { status: 200, body: { status: 'ok', checks, requestId } });
     return;
   }
 

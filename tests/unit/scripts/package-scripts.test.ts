@@ -30,6 +30,11 @@ describe('package scripts', () => {
     expect(scripts['worker:outbox']).toBe('tsx scripts/outbox-worker.ts');
   });
 
+  // Operational config check script is present.
+  it('defines config:check', () => {
+    expect(scripts['config:check']).toBe('tsx scripts/config-check.ts');
+  });
+
   it('does not remove or rename existing scripts', () => {
     for (const name of [
       'typecheck',
@@ -42,6 +47,7 @@ describe('package scripts', () => {
       'db:seed',
       'dev:api',
       'demo:seed:affiliation',
+      'worker:outbox',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

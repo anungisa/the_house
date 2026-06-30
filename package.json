@@ -22,7 +22,8 @@
     "db:seed": "node --experimental-strip-types scripts/db-seed.ts",
     "dev:api": "tsx scripts/api-dev.ts",
     "demo:seed:affiliation": "tsx scripts/demo-seed-affiliation.ts",
-    "worker:outbox": "tsx scripts/outbox-worker.ts"
+    "worker:outbox": "tsx scripts/outbox-worker.ts",
+    "config:check": "tsx scripts/config-check.ts"
   },
   "dependencies": {
     "@azure/service-bus": "^7.9.5",

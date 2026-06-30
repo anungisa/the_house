@@ -12,41 +12,45 @@
  */
 
 import { loadConfig } from '../src/config/index.js';
+import { buildConfigDiagnostics } from '../src/config/diagnostics.js';
 import { closePool } from '../src/db/pool.js';
 import { createPgAffiliationHttpServer } from '../src/http/composition.js';
 import { listen, resolveApiRuntimeOptions, shutdown } from '../src/http/runtime.js';
-
-function log(message: string): void {
-  console.log(`[api-dev] ${message}`);
-}
+import { createLogger } from '../src/shared/logging/logger.js';
 
 async function main(): Promise<void> {
-  const options = resolveApiRuntimeOptions(loadConfig());
+  const config = loadConfig();
+  const logger = createLogger(config.logLevel);
+  const options = resolveApiRuntimeOptions(config);
   const server = createPgAffiliationHttpServer();
 
   await listen(server, options.host, options.port);
 
+  // Redacted operational summary (never includes connection strings/credentials).
+  const diagnostics = buildConfigDiagnostics(config);
+  logger.info('config diagnostics', { config: diagnostics.summary });
+  for (const warning of diagnostics.warnings) {
+    logger.warn('config warning', { warning });
+  }
+
   const base = `http://${options.host}:${options.port}`;
-  log('AffiliationApplication local/demo API is listening.');
-  log(`  base URL     : ${base}`);
-  log(`  health       : GET  ${base}/healthz`);
-  log(`  readiness    : GET  ${base}/readyz   (shallow: process-level only)`);
-  log(
-    `  transition   : POST ${base}/v1/affiliation/applications/:applicationId/transitions/:action`,
-  );
-  log('  action ∈ submit|review_start|approve|reject|activate|suspend|reinstate|revoke|close|archive');
-  log('  LOCAL/DEMO ONLY — no edge auth; do not expose this process publicly.');
-  log('Press Ctrl+C to stop.');
+  logger.info('AffiliationApplication local/demo API is listening', {
+    baseUrl: base,
+    health: `GET ${base}/healthz`,
+    readiness: `GET ${base}/readyz`,
+    transition: `POST ${base}/v1/affiliation/applications/:applicationId/transitions/:action`,
+    note: 'LOCAL/DEMO ONLY — no edge auth; do not expose this process publicly.',
+  });
 
   let shuttingDown = false;
   const handleSignal = (signal: string): void => {
     if (shuttingDown) return;
     shuttingDown = true;
-    log(`Received ${signal}; shutting down...`);
-    shutdown({ server, closePool, log })
+    logger.info('shutdown signal received', { signal });
+    shutdown({ server, closePool, log: (message) => logger.info(message) })
       .then(() => process.exit(0))
       .catch((err: unknown) => {
-        console.error(err);
+        logger.error('shutdown failed', { err });
         process.exit(1);
       });
   };
@@ -55,6 +59,6 @@ async function main(): Promise<void> {
 }
 
 main().catch((error: unknown) => {
-  console.error(error);
+  createLogger().error('api-dev failed to start', { err: error });
   process.exitCode = 1;
 });

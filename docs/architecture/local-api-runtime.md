@@ -189,9 +189,14 @@ A body containing `facts` is rejected:
 
 ## Readiness
 
-`/healthz` and `/readyz` both return `200 {"status":"ok"}` and are **process-level only** in
-this local runtime — `/readyz` does **not** perform a deep database probe. Deep readiness
-(e.g. a lightweight `SELECT 1`) is deferred to a later operational pass.
+`/healthz` is liveness only and returns `200 {"status":"ok"}` with no dependency I/O.
+
+`/readyz` returns `200 {"status":"ok","checks":{...}}` when wired. The Pg-backed composition
+injects a bounded, **tenant-agnostic** database readiness probe (`SELECT 1`), so when the
+database is unreachable `/readyz` returns `503 {"status":"not_ready","checks":{"database":"unavailable"}}`.
+The probe never touches tenant-owned tables, never sets tenant context, and never mutates
+state. See [deployment-secrets-observability-hardening.md](deployment-secrets-observability-hardening.md)
+for the full health/readiness contract.
 
 ## Troubleshooting
 

@@ -158,6 +158,15 @@ const PRODUCTION_LIKE: ReadonlySet<AppEnv> = new Set<AppEnv>([
   'production',
 ]);
 
+/**
+ * True for environments that must fail closed on missing required config (development,
+ * staging, production). Local/test are NOT production-like. Exported so operational
+ * diagnostics can warn about local/demo-unsafe combinations without duplicating the set.
+ */
+export function isProductionLikeEnv(env: AppEnv): boolean {
+  return PRODUCTION_LIKE.has(env);
+}
+
 function readString(key: string): string | undefined {
   const value = process.env[key];
   if (value === undefined) return undefined;

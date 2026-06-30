@@ -116,6 +116,38 @@ describe('AffiliationApplication HTTP server (transport)', () => {
     expect(body['status']).toBe('ok');
   });
 
+  it('GET /readyz reports database ok when the readiness probe succeeds', async () => {
+    const server = createAffiliationHttpServer({
+      executor: new RecordingExecutor(),
+      readiness: { checkDatabase: () => Promise.resolve() },
+    });
+    openServers.push(server);
+    await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+    const { port } = server.address() as AddressInfo;
+    const res = await fetch(`http://127.0.0.1:${port}/readyz`);
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { status: string; checks: Record<string, string> };
+    expect(body.status).toBe('ok');
+    expect(body.checks['database']).toBe('ok');
+  });
+
+  it('GET /readyz returns 503 not_ready when the readiness probe fails', async () => {
+    const server = createAffiliationHttpServer({
+      executor: new RecordingExecutor(),
+      readiness: { checkDatabase: () => Promise.reject(new Error('db down: host=secret')) },
+    });
+    openServers.push(server);
+    await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+    const { port } = server.address() as AddressInfo;
+    const res = await fetch(`http://127.0.0.1:${port}/readyz`);
+    expect(res.status).toBe(503);
+    const text = await res.text();
+    expect(text).not.toContain('secret');
+    const body = JSON.parse(text) as { status: string; checks: Record<string, string> };
+    expect(body.status).toBe('not_ready');
+    expect(body.checks['database']).toBe('unavailable');
+  });
+
   // (3)(5)(6) POST transition route → routes to the handler with parsed body + mapped command.
   it('routes a POST transition to the handler with the mapped command and parsed body', async () => {
     const executor = new RecordingExecutor();
