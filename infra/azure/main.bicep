@@ -93,6 +93,13 @@ param observabilityExporter string = 'console'
 @description('Whether to publish outbox messages to Azure Service Bus.')
 param serviceBusEnabled bool = true
 
+@description('Secret delivery mode. Production uses key_vault (managed identity); env reads OS env vars.')
+@allowed([
+  'env'
+  'key_vault'
+])
+param secretProvider string = 'key_vault'
+
 @description('Container image reference for the HTTP API process.')
 param apiImage string = 'mcr.microsoft.com/azuredocs/aci-helloworld:latest'
 
@@ -177,6 +184,30 @@ module containerApps 'modules/container-apps.bicep' = {
     apiImage: apiImage
     outboxWorkerImage: outboxWorkerImage
     logAnalyticsCustomerId: observability.outputs.logAnalyticsCustomerId
+    secretProvider: secretProvider
+    keyVaultUri: keyVault.outputs.keyVaultUri
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Key Vault RBAC: grant each workload managed identity least-privilege read
+// access to secrets. principalIds resolve after the container apps deploy.
+// ---------------------------------------------------------------------------
+module apiKeyVaultAccess 'modules/key-vault-access.bicep' = {
+  name: 'apiKeyVaultAccess'
+  params: {
+    keyVaultName: keyVault.outputs.keyVaultName
+    principalId: containerApps.outputs.apiPrincipalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
+module outboxWorkerKeyVaultAccess 'modules/key-vault-access.bicep' = {
+  name: 'outboxWorkerKeyVaultAccess'
+  params: {
+    keyVaultName: keyVault.outputs.keyVaultName
+    principalId: containerApps.outputs.outboxWorkerPrincipalId
+    principalType: 'ServicePrincipal'
   }
 }
 
@@ -190,3 +221,5 @@ output serviceBusNamespace string = serviceBus.outputs.namespaceName
 output postgresServerName string = postgres.outputs.serverName
 output apiFqdn string = containerApps.outputs.apiFqdn
 output environment string = environmentName
+output apiPrincipalId string = containerApps.outputs.apiPrincipalId
+output outboxWorkerPrincipalId string = containerApps.outputs.outboxWorkerPrincipalId

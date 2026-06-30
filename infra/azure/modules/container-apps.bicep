@@ -50,6 +50,12 @@ param outboxWorkerImage string
 @description('Log Analytics customer id for the Container Apps environment.')
 param logAnalyticsCustomerId string
 
+@description('Secret provider mode injected into both processes (env or key_vault).')
+param secretProvider string = 'env'
+
+@description('Key Vault URI (public, NOT a secret) used when secretProvider=key_vault.')
+param keyVaultUri string = ''
+
 @description('Container target port for the HTTP API.')
 param apiTargetPort int = 3000
 
@@ -93,12 +99,25 @@ var sharedEnv = [
     name: 'SERVICE_BUS_ENABLED'
     value: string(serviceBusEnabled)
   }
+  {
+    name: 'SECRET_PROVIDER'
+    value: secretProvider
+  }
+  {
+    name: 'KEY_VAULT_URI'
+    value: keyVaultUri
+  }
 ]
 
 resource apiApp 'Microsoft.App/containerApps@2024-03-01' = {
   name: '${namePrefix}-api'
   location: location
   tags: tags
+  identity: {
+    // System-assigned managed identity: used by the runtime (DefaultAzureCredential)
+    // to read secrets from Key Vault. No client secret/credential is stored anywhere.
+    type: 'SystemAssigned'
+  }
   properties: {
     managedEnvironmentId: environment.id
     configuration: {
@@ -163,6 +182,10 @@ resource outboxWorkerApp 'Microsoft.App/containerApps@2024-03-01' = {
   name: '${namePrefix}-outbox-worker'
   location: location
   tags: tags
+  identity: {
+    // System-assigned managed identity for Key Vault secret reads (see apiApp).
+    type: 'SystemAssigned'
+  }
   properties: {
     managedEnvironmentId: environment.id
     configuration: {
@@ -198,3 +221,6 @@ resource outboxWorkerApp 'Microsoft.App/containerApps@2024-03-01' = {
 
 output apiFqdn string = apiApp.properties.configuration.ingress.fqdn
 output environmentName string = environment.name
+// Managed identity object ids (NOT secrets) for Key Vault RBAC grants.
+output apiPrincipalId string = apiApp.identity.principalId
+output outboxWorkerPrincipalId string = outboxWorkerApp.identity.principalId

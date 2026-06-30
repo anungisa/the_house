@@ -11,6 +11,14 @@
 
 import { config as loadDotenv } from 'dotenv';
 import { URL } from 'node:url';
+import {
+  createSecretProvider,
+  resolveSecrets,
+  type SecretsConfig,
+  type SecretProviderMode,
+  type SecretProvider,
+  type KeyVaultSecretClient,
+} from '../secrets/index.js';
 
 loadDotenv();
 
@@ -221,6 +229,7 @@ export interface AppConfig {
   readonly evidenceMalwareScanning: EvidenceMalwareScanningConfig;
   readonly evidenceQuarantine: EvidenceQuarantineConfig;
   readonly observability: ObservabilityConfig;
+  readonly secrets: SecretsConfig;
 }
 
 /** Environments where missing required configuration must fail closed. */
@@ -500,6 +509,43 @@ function readObservabilityConfig(): ObservabilityConfig {
   };
 }
 
+/**
+ * Resolve and validate secret-provider selection. The provider enum fails CLOSED: an unknown
+ * SECRET_PROVIDER throws at config load. Selecting `key_vault` requires a valid HTTPS
+ * KEY_VAULT_URI; the optional KEY_VAULT_SECRET_PREFIX namespaces vault secret names. No secret
+ * values are read here — this only resolves how secrets will be sourced at runtime.
+ */
+function readSecretsConfig(): SecretsConfig {
+  const providerRaw = readString('SECRET_PROVIDER') ?? 'env';
+  const allowed: ReadonlySet<string> = new Set(['env', 'key_vault']);
+  if (!allowed.has(providerRaw)) {
+    throw new Error(
+      `Invalid SECRET_PROVIDER: "${providerRaw}" (expected 'env' or 'key_vault').`,
+    );
+  }
+  const provider = providerRaw as SecretProviderMode;
+  const secretPrefix = readString('KEY_VAULT_SECRET_PREFIX') ?? '';
+
+  if (provider === 'env') {
+    return { provider, keyVaultUri: '', keyVaultSecretPrefix: secretPrefix };
+  }
+
+  const keyVaultUri = readString('KEY_VAULT_URI');
+  if (keyVaultUri === undefined) {
+    throw new Error('KEY_VAULT_URI is required when SECRET_PROVIDER=key_vault.');
+  }
+  let parsed: URL;
+  try {
+    parsed = new URL(keyVaultUri);
+  } catch {
+    throw new Error(`Invalid KEY_VAULT_URI: "${keyVaultUri}" is not a valid URL.`);
+  }
+  if (parsed.protocol !== 'https:') {
+    throw new Error(`Invalid KEY_VAULT_URI: "${keyVaultUri}" must be an https URL.`);
+  }
+  return { provider, keyVaultUri, keyVaultSecretPrefix: secretPrefix };
+}
+
 function readAppEnv(): AppEnv {
   const raw = (readString('APP_ENV') ?? 'local') as AppEnv;
   const allowed: ReadonlySet<string> = new Set([
@@ -563,5 +609,59 @@ export function loadConfig(): AppConfig {
     evidenceMalwareScanning: readEvidenceMalwareScanningConfig(),
     evidenceQuarantine: readEvidenceQuarantineConfig(),
     observability: readObservabilityConfig(),
+    secrets: readSecretsConfig(),
   };
+}
+
+export interface LoadConfigFromSecretProviderOptions {
+  /**
+   * Pre-built provider to resolve secrets through. When omitted, a provider is constructed from
+   * the env-derived {@link SecretsConfig} via {@link createSecretProvider}.
+   */
+  readonly provider?: SecretProvider;
+  /** Injected Key Vault client, forwarded to the provider factory (avoids the Azure SDK in tests). */
+  readonly keyVaultClient?: KeyVaultSecretClient;
+  /**
+   * Target environment record that resolved secrets are written into before {@link loadConfig}
+   * reads them. Defaults to `process.env`. {@link loadConfig} itself always reads `process.env`,
+   * so non-default targets are intended only for advanced/host wiring.
+   */
+  readonly env?: Record<string, string | undefined>;
+}
+
+/**
+ * Async configuration entrypoint for deployed runtimes that source secrets from a provider.
+ *
+ * Non-invasive companion to the synchronous {@link loadConfig}: it resolves the configured
+ * secret set through a {@link SecretProvider}, overlays the resolved values onto the environment,
+ * then delegates to {@link loadConfig} for the same typed/validated shape. With the default
+ * `SECRET_PROVIDER=env` this is behaviorally identical to {@link loadConfig} (it reads env and
+ * writes the same values back). When `SECRET_PROVIDER=key_vault`, secrets are fetched via the
+ * managed-identity-backed Key Vault provider before validation.
+ *
+ * Fail-closed: provider transport/auth errors propagate, and any required value still missing
+ * after resolution causes {@link loadConfig} to throw in production-like environments. Resolved
+ * secret values are never logged.
+ *
+ * Deployed runtimes should call this (not the synchronous {@link loadConfig}) at startup when
+ * `SECRET_PROVIDER=key_vault`.
+ */
+export async function loadConfigFromSecretProvider(
+  options: LoadConfigFromSecretProviderOptions = {},
+): Promise<AppConfig> {
+  const secretsConfig = readSecretsConfig();
+  const provider =
+    options.provider ??
+    createSecretProvider(secretsConfig, {
+      ...(options.env !== undefined ? { env: options.env } : {}),
+      ...(options.keyVaultClient !== undefined ? { keyVaultClient: options.keyVaultClient } : {}),
+    });
+
+  const resolved = await resolveSecrets(provider);
+  const target = options.env ?? process.env;
+  for (const [key, value] of Object.entries(resolved)) {
+    target[key] = value;
+  }
+
+  return loadConfig();
 }

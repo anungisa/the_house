@@ -65,6 +65,7 @@ function makeConfig(serviceBus: ServiceBusConfig): AppConfig {
     evidenceMalwareScanning: { mode: 'disabled', required: false, testSignaturesEnabled: false },
     evidenceQuarantine: { enabled: true, includeEventIdInResponse: true },
     observability: { enabled: true, exporter: 'console', includeDebugAttributes: false },
+    secrets: { provider: 'env', keyVaultUri: '', keyVaultSecretPrefix: '' },
   };
 }
 

@@ -47,8 +47,10 @@ flowchart TB
 - **Service Bus** is the outbox transport (topic; **no sessions** in v1).
 - **Storage Account / Blob** holds evidence payload **bytes** only; governance metadata stays
   in PostgreSQL.
-- **Key Vault** is the secrets boundary; runtime reads secrets via **managed identity**
-  (future pass).
+- **Key Vault** is the secrets boundary; runtime reads secrets via **managed identity** using
+  the vendor-isolated secret-provider seam (`SECRET_PROVIDER=key_vault`). See
+  [managed-identity-key-vault-binding.md](managed-identity-key-vault-binding.md). Live vault
+  population and deployment remain future work.
 - **Log Analytics** optionally collects stdout. Telemetry remains **vendor-neutral**; there is
   no hard dependency on Application Insights or any vendor SDK.
 
@@ -79,8 +81,9 @@ fail closed on missing required configuration. `local` and `test` are not.
 ## Config / secrets matrix
 
 Secrets live in **Key Vault** (or platform secrets), never in `.env`, IaC, or parameter files.
-The table classifies each value; **secret** values are delivered to the runtime as Container
-Apps secrets sourced from Key Vault via managed identity (future pass).
+The table classifies each value; **secret** values are delivered to the runtime via the
+secret-provider seam (`SECRET_PROVIDER=key_vault`) backed by a system-assigned **managed
+identity** with the **Key Vault Secrets User** role. Live vault population is out of band.
 
 | Variable | Class | local | dev/test | prod |
 | --- | --- | --- | --- | --- |
@@ -151,8 +154,10 @@ Migrations run as a **separate step**, never on app startup:
 
 ## Known gaps (intentionally future)
 
-- **Managed identity** runtime binding to Key Vault / Storage / Service Bus is **not** wired;
-  the skeleton documents it but injects only non-secret values.
+- **Managed identity** runtime binding to Key Vault is **wired as a baseline seam**: both
+  container apps declare system-assigned identities, a Key Vault Secrets User RBAC grant
+  skeleton exists, and the runtime resolves secrets via `SECRET_PROVIDER=key_vault`. Live vault
+  population, deployment, and binding to Storage / Service Bus remain future work.
 - **Microsoft Entra app registration** (issuer/audience/app roles) is **adjacent** and not
   created by this IaC.
 - **Private networking** (private endpoints, VNet integration, disabled public access) is

@@ -13,6 +13,7 @@ azure/
     service-bus.bicep        ← Service Bus namespace + outbox topic (no sessions)
     storage.bicep            ← Storage account + Blob container (evidence payload bytes)
     key-vault.bicep          ← Key Vault (secrets boundary)
+    key-vault-access.bicep   ← Key Vault Secrets User RBAC grant for workload identities
     observability.bicep      ← Log Analytics workspace (optional stdout collection)
   parameters/
     dev.example.bicepparam   ← example DEV params (non-secret)
@@ -31,8 +32,11 @@ azure/
 - **Networking:** intentionally **future** — resources use public access with platform auth in
   this baseline. Hardening points (private endpoints, disabled public access) are marked in the
   module comments.
-- **Identity:** managed-identity wiring to Key Vault / Storage / Service Bus is **future**; the
-  skeleton injects only non-secret environment values into the containers.
+- **Identity:** both container apps declare a **system-assigned managed identity** and receive
+  the **Key Vault Secrets User** role (`key-vault-access.bicep`) so the runtime can read secrets
+  via `SECRET_PROVIDER=key_vault`. Binding to Storage / Service Bus and live vault population are
+  **future**; the containers still receive only non-secret environment values inline. See
+  [managed-identity-key-vault-binding.md](../../docs/architecture/managed-identity-key-vault-binding.md).
 
 ## Validating (no deployment)
 

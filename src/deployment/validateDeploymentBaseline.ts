@@ -50,6 +50,7 @@ export const REQUIRED_INFRA_MODULES: readonly string[] = [
   'modules/service-bus.bicep',
   'modules/storage.bicep',
   'modules/key-vault.bicep',
+  'modules/key-vault-access.bicep',
   'modules/observability.bicep',
 ];
 
@@ -81,6 +82,9 @@ export const REQUIRED_ENV_VARS: readonly string[] = [
   'OBSERVABILITY_ENABLED',
   'OBSERVABILITY_EXPORTER',
   'LOG_LEVEL',
+  'SECRET_PROVIDER',
+  'KEY_VAULT_URI',
+  'KEY_VAULT_SECRET_PREFIX',
 ];
 
 /** Sport-specific terminology that must never leak into platform IaC. */

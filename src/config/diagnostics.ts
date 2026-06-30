@@ -96,6 +96,14 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
       exporter: config.observability.exporter,
       includeDebugAttributes: config.observability.includeDebugAttributes,
     },
+    // Key Vault / secret-provider binding. Keys are deliberately chosen to avoid the secret
+    // redactor's sensitive-substring match (no "secret"/"key" in field names) so the non-secret
+    // provider MODE and presence booleans survive redaction. No secret values are included.
+    vault: {
+      provider: config.secrets.provider,
+      uriConfigured: config.secrets.keyVaultUri !== '',
+      prefixConfigured: config.secrets.keyVaultSecretPrefix !== '',
+    },
     outbox: {
       batchSize: config.outbox.batchSize,
       lockSeconds: config.outbox.lockSeconds,
@@ -157,6 +165,12 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
   if (!config.outboxWorker.enabled && productionLike) {
     warnings.push(
       'OUTBOX_WORKER_ENABLED=false in a production-like environment: the transactional outbox will not drain.',
+    );
+  }
+
+  if (config.secrets.provider === 'env' && productionLike) {
+    warnings.push(
+      'SECRET_PROVIDER=env in a production-like environment: secrets are read from environment variables rather than a managed-identity-backed Key Vault. Set SECRET_PROVIDER=key_vault with KEY_VAULT_URI for managed secret delivery.',
     );
   }
 
