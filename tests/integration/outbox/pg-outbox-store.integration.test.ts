@@ -37,6 +37,28 @@ const d = RUN ? describe : describe.skip;
 const here = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 
+// Shared provisioning advisory-lock key. Self-provisioning gated suites run in parallel and mutate
+// the SAME catalog ACL rows (grants on governance.outbox_message), which throws "tuple concurrently
+// updated" unless the whole migrate+grant setup phase is serialized. Every suite that grants on
+// governance.outbox_message MUST hold this lock during setup.
+const PROVISION_LOCK_KEY = 918273;
+
+/** Run `fn` while holding the shared provisioning advisory lock on a single dedicated connection. */
+async function withProvisionLock<T>(admin: pg.Pool, fn: () => Promise<T>): Promise<T> {
+  const client = await admin.connect();
+  try {
+    await client.query('SELECT pg_advisory_lock($1)', [PROVISION_LOCK_KEY]);
+    return await fn();
+  } finally {
+    try {
+      await client.query('SELECT pg_advisory_unlock($1)', [PROVISION_LOCK_KEY]);
+    } catch {
+      /* best-effort unlock */
+    }
+    client.release();
+  }
+}
+
 const TENANT_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 const TENANT_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
@@ -206,8 +228,10 @@ d('PgOutboxStore worker integration (SECURITY DEFINER, least-privilege role)', (
 
   beforeAll(async () => {
     admin = new pg.Pool({ connectionString: ADMIN_URL });
-    await applyMigrations(admin);
-    await provisionRoles(admin);
+    await withProvisionLock(admin, async () => {
+      await applyMigrations(admin);
+      await provisionRoles(admin);
+    });
     // Start from a clean outbox so claim-ordering/concurrency assertions are deterministic
     // across re-runs (claimBatch operates globally across all tenants).
     await admin.query('TRUNCATE governance.outbox_message');

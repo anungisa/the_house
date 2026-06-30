@@ -28,6 +28,16 @@ return the closed `ParticipantDto`. Files: `src/http/participant/ParticipantWrit
 tests in `tests/unit/http/participant/ParticipantWriteHttpAdapter.test.ts` and
 `tests/unit/http/participant/participant-write-server.test.ts`.
 
+**DB/RLS-validated.** The phase-1 write surface is now proven end-to-end through real PostgreSQL
+in `tests/integration/governance/participant-registry-write-http.integration.test.ts` (gated by
+`RUN_DB_TESTS=1`). Against a least-privilege NON-superuser / NON-BYPASSRLS role with RLS FORCED,
+the gated suite proves: own-tenant create/update over the HTTP path; `participant.write`
+enforcement (read-only actor → `403`); idempotency-key requirement and duplicate → `409`; email
+normalization in the persisted row and read-back; atomic participant-row + outbox-row writes with a
+sanitized payload (no email / names / headers / tokens / connection strings); NO mutation of
+`governance.entity_state` / `state_transition` / `audit_event`; and tenant isolation (cross-tenant
+update is indistinguishable from not-found — identical `404` / `PARTICIPANT_NOT_FOUND`).
+
 **Deferred (NOT IMPLEMENTED):** status transitions (§5.3), organization-link create (§5.4),
 relationship-status changes (§5.5), and the `participant.status.write` /
 `participant.organization_link.write` actions. The sections below remain their contract.

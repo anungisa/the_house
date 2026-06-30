@@ -236,6 +236,28 @@ Key properties:
   operation (`create` / `update`) and result (`success` / `failure`) only — no ids, names, email,
   headers, or secrets.
 
+### Gated DB/RLS validation
+
+The phase-1 write surface is proven end-to-end through real PostgreSQL with RLS FORCED and a
+least-privilege NON-superuser / NON-BYPASSRLS role in
+`tests/integration/governance/participant-registry-write-http.integration.test.ts` (gated by
+`RUN_DB_TESTS=1`; skipped by default so `npm test` stays hermetic):
+
+```
+RUN_DB_TESTS=1 \
+  MIGRATE_DATABASE_URL=postgres://<admin>@host/db \
+  DATABASE_URL=postgres://<admin>@host/db \
+  npx vitest run tests/integration/governance/participant-registry-write-http.integration.test.ts
+```
+
+It proves: own-tenant create/update over the HTTP path; `participant.write` enforcement; the
+idempotency-key requirement and duplicate → `409`; email normalization in the persisted row and
+read-back; atomic participant-row + outbox-row writes with a sanitized payload (no email, names,
+headers, tokens, or connection strings); that write routes NEVER mutate
+`governance.entity_state` / `state_transition` / `audit_event`; and tenant isolation (a cross-tenant
+update is indistinguishable from a not-found — identical `404` / `PARTICIPANT_NOT_FOUND`). The
+role holds `SELECT, INSERT, UPDATE` (no `DELETE`) on the participant table and the outbox only.
+
 ## Out of scope (intentionally not built)
 
 This pass adds the read surface plus the phase-1 create + update write surface above. The following

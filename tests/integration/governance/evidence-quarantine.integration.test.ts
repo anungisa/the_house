@@ -57,6 +57,28 @@ const d = RUN ? describe : describe.skip;
 const here = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 
+// Shared provisioning advisory-lock key. Self-provisioning gated suites run in parallel and mutate
+// the SAME catalog ACL rows (grants on governance.outbox_message), which throws "tuple concurrently
+// updated" unless the whole migrate+grant setup phase is serialized. Every suite that grants on
+// governance.outbox_message MUST hold this lock during setup.
+const PROVISION_LOCK_KEY = 918273;
+
+/** Run `fn` while holding the shared provisioning advisory lock on a single dedicated connection. */
+async function withProvisionLock<T>(admin: pg.Pool, fn: () => Promise<T>): Promise<T> {
+  const client = await admin.connect();
+  try {
+    await client.query('SELECT pg_advisory_lock($1)', [PROVISION_LOCK_KEY]);
+    return await fn();
+  } finally {
+    try {
+      await client.query('SELECT pg_advisory_unlock($1)', [PROVISION_LOCK_KEY]);
+    } catch {
+      /* best-effort unlock */
+    }
+    client.release();
+  }
+}
+
 // Suite-specific tenant UUIDs (distinct from other integration suites to avoid cross-suite
 // interference when the gated suites share a database).
 const TENANT_A = '7c000000-0000-4000-8000-0000000000a1';
@@ -191,8 +213,10 @@ d('evidence quarantine — PostgreSQL RLS integration', () => {
 
   beforeAll(async () => {
     admin = new pg.Pool({ connectionString: ADMIN_URL });
-    await applyMigrations(admin);
-    await provisionRole(admin);
+    await withProvisionLock(admin, async () => {
+      await applyMigrations(admin);
+      await provisionRole(admin);
+    });
 
     const appUrl = deriveUrl(ADMIN_URL, APP_ROLE, APP_PW);
     appPool = new pg.Pool({ connectionString: appUrl });

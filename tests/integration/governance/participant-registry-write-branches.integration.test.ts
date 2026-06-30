@@ -46,8 +46,13 @@ const here = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 
 // Distinct tenant UUIDs + role for this suite (avoids cross-suite interference on a shared DB).
-const TENANT_A = '40000000-0000-4000-8000-0000000000e5';
-const TENANT_B = '40000000-0000-4000-8000-0000000000f6';
+// NOTE: these MUST NOT overlap any other integration suite — the suites run in parallel with
+// destructive `beforeEach` cleanup, and THIS suite also writes to organization_registry, so the
+// pair must be unique across BOTH the participant and organization suites. Current 40000000-…
+// map: org=a1/b2, org-http=c1/d2, participant-main=c3/d4, participant-read-http=e5/f6,
+// participant-write-http=a7/b8, participant-write-branches=91/92 (here).
+const TENANT_A = '40000000-0000-4000-8000-000000000091';
+const TENANT_B = '40000000-0000-4000-8000-000000000092';
 const APP_ROLE = 'house_app_participant_writebranch_test';
 const APP_PW = 'participant_writebranch_pw';
 
