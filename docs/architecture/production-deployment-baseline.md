@@ -4,6 +4,9 @@
 > Azure shape for The House v2 and provide static validation tooling. They do **not** deploy
 > live resources, require credentials, or change application runtime behavior. Real deployment
 > (identity wiring, Key Vault secret population, networking hardening, CI/CD) is future work.
+>
+> For the operator-facing release procedure that uses this baseline, see
+> [docs/operations/production-release-runbook.md](../operations/production-release-runbook.md).
 
 ## Purpose
 

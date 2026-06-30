@@ -5,6 +5,9 @@
 > dev/test environment, while keeping default validation fully **hermetic** — no
 > Azure, no Azure CLI, no live app URL, no database, no credentials, and no
 > network in `npm test`, `npm run smoke:check`, or `ci:check`.
+>
+> Smoke validation is the post-deploy step of the operator release procedure in
+> [docs/operations/production-release-runbook.md](../operations/production-release-runbook.md).
 
 ## Purpose
 

@@ -5,6 +5,10 @@ migrations are governed as an explicit, ordered, release-checkable step for The
 House v2. It does **not** introduce automatic migrations at application startup
 and it does **not** deploy any live Azure or database resources.
 
+The migration plan/apply steps below are invoked from the operator release
+procedure in
+[docs/operations/production-release-runbook.md](../operations/production-release-runbook.md).
+
 ## Purpose
 
 Production deployment already exists as a packaging/CI contract (see

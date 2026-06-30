@@ -12,6 +12,10 @@
 #
 # Replace the placeholder repository/registry/resource names and configure the
 # "production" environment (with required reviewers) before enabling.
+#
+# OPERATOR PROCEDURE: this workflow is dispatched as part of the documented
+# go/no-go release procedure in docs/operations/production-release-runbook.md.
+# Record release evidence in docs/operations/templates/production-release-checklist.md.
 name: production-deploy-template
 
 on:

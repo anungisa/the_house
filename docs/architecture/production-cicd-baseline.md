@@ -9,6 +9,9 @@ requires repository secrets for normal validation, or contacts external systems.
 Live deployment stays gated behind a manual, confirmation-guarded template until
 a real registry and Azure environment are configured.
 
+> The end-to-end human go/no-go release procedure that drives this contract lives
+> in [docs/operations/production-release-runbook.md](../operations/production-release-runbook.md).
+
 ## Overview
 
 | Concern | Artifact | Behaviour |

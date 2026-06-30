@@ -37,7 +37,8 @@
     "sbom:attest": "tsx scripts/attest-sbom.ts",
     "smoke:check": "tsx scripts/validate-azure-smoke-baseline.ts",
     "smoke:azure": "tsx scripts/azure-smoke-test.ts",
-    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check && npm run smoke:check"
+    "release:check": "tsx scripts/validate-release-runbook-baseline.ts",
+    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check && npm run smoke:check && npm run release:check"
   },
   "dependencies": {
     "@azure/identity": "^4.13.1",
