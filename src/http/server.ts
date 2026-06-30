@@ -35,8 +35,12 @@ import {
   evidenceErrorToHttpResult,
   handleEvidenceDownload,
   handleEvidenceUpload,
+  handleQuarantineDetail,
+  handleQuarantineDisposition,
+  handleQuarantineList,
   type EvidenceHttpDeps,
   type EvidenceHttpResult,
+  type EvidenceQuarantineHttpDeps,
 } from './evidence/index.js';
 import {
   handleWorkflowDecision,
@@ -66,6 +70,13 @@ export interface AffiliationHttpServerDeps {
    * infrastructure — these routes never touch governed tables or the kernel.
    */
   readonly evidence?: EvidenceHttpDeps;
+  /**
+   * Optional evidence QUARANTINE review transport. When provided, the read-only list/detail and
+   * the disposition (reviewed/released/discarded) endpoints are served; when omitted they 404.
+   * Quarantine is OPERATIONAL SECURITY metadata — these routes never store payload bytes, create
+   * governed evidence, mutate governed state, or invoke the kernel.
+   */
+  readonly evidenceQuarantine?: EvidenceQuarantineHttpDeps;
   /**
    * Optional workflow decision transport. When provided, the narrow workflow decision
    * endpoint is served; when omitted it 404s. Recording a decision is METADATA only — it
@@ -100,6 +111,17 @@ const TRANSITION_ROUTE =
 
 const EVIDENCE_UPLOAD_PATH = '/v1/evidence/objects';
 const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
+
+/** GET list of quarantine events (exact path). */
+const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
+/**
+ * POST a disposition for one quarantine event. Checked BEFORE the detail route so the more
+ * specific `.../disposition` path never collides with the single-segment detail route.
+ */
+const QUARANTINE_DISPOSITION_ROUTE =
+  /^\/v1\/evidence\/quarantine\/([^/]+)\/disposition\/?$/;
+/** GET a single quarantine event by id (single trailing segment only). */
+const QUARANTINE_DETAIL_ROUTE = /^\/v1\/evidence\/quarantine\/([^/]+)\/?$/;
 
 const WORKFLOW_DECISION_ROUTE =
   /^\/v1\/workflows\/([^/]+)\/steps\/([^/]+)\/decision\/?$/;
@@ -243,6 +265,112 @@ async function handleEvidenceRoute(
   }
   const result = await handleEvidenceDownload(evidence, { headers, body }, requestId, resolver);
   sendEvidence(res, result);
+}
+
+/**
+ * Serve the narrow evidence quarantine REVIEW endpoints: GET list, GET detail, POST disposition.
+ * Returns true when the path matched a quarantine route (handled), false otherwise. These routes
+ * are operational-security metadata only — they never store bytes, create governed evidence,
+ * mutate governed state, or invoke the kernel.
+ */
+async function handleEvidenceQuarantineRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  quarantine: EvidenceQuarantineHttpDeps,
+  path: string,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  jsonMaxBytes: number,
+): Promise<boolean> {
+  const method = req.method ?? 'GET';
+
+  // POST .../:id/disposition — checked first (most specific path).
+  const dispositionMatch = QUARANTINE_DISPOSITION_ROUTE.exec(path);
+  if (dispositionMatch !== null) {
+    if (method !== 'POST') {
+      res.setHeader('allow', 'POST');
+      sendJson(res, {
+        status: 405,
+        body: {
+          status: 'error',
+          code: 'METHOD_NOT_ALLOWED',
+          message: 'Only POST is allowed for the quarantine disposition endpoint.',
+          requestId,
+        },
+      });
+      return true;
+    }
+    const quarantineEventId = decodeURIComponent(dispositionMatch[1] ?? '');
+    let body: unknown;
+    try {
+      body = await readJsonBody(req, jsonMaxBytes);
+    } catch (err) {
+      sendJson(res, errorToHttpResult(err, requestId));
+      return true;
+    }
+    const result = await handleQuarantineDisposition(
+      quarantine,
+      { quarantineEventId, headers: headerMap(req), body },
+      requestId,
+      resolver,
+    );
+    sendJson(res, result);
+    return true;
+  }
+
+  // GET /v1/evidence/quarantine — list.
+  if (path === QUARANTINE_LIST_PATH) {
+    if (method !== 'GET') {
+      res.setHeader('allow', 'GET');
+      sendJson(res, {
+        status: 405,
+        body: {
+          status: 'error',
+          code: 'METHOD_NOT_ALLOWED',
+          message: 'Only GET is allowed for the quarantine list endpoint.',
+          requestId,
+        },
+      });
+      return true;
+    }
+    const result = await handleQuarantineList(
+      quarantine,
+      { headers: headerMap(req), query: queryMap(req.url) },
+      requestId,
+      resolver,
+    );
+    sendJson(res, result);
+    return true;
+  }
+
+  // GET /v1/evidence/quarantine/:id — detail.
+  const detailMatch = QUARANTINE_DETAIL_ROUTE.exec(path);
+  if (detailMatch !== null) {
+    if (method !== 'GET') {
+      res.setHeader('allow', 'GET');
+      sendJson(res, {
+        status: 405,
+        body: {
+          status: 'error',
+          code: 'METHOD_NOT_ALLOWED',
+          message: 'Only GET is allowed for the quarantine detail endpoint.',
+          requestId,
+        },
+      });
+      return true;
+    }
+    const quarantineEventId = decodeURIComponent(detailMatch[1] ?? '');
+    const result = await handleQuarantineDetail(
+      quarantine,
+      { quarantineEventId, headers: headerMap(req) },
+      requestId,
+      resolver,
+    );
+    sendJson(res, result);
+    return true;
+  }
+
+  return false;
 }
 
 /** Serve the narrow workflow decision endpoint (metadata only — never executes a transition). */
@@ -451,6 +579,20 @@ async function handleRequest(
   ) {
     await handleEvidenceRoute(req, res, deps.evidence, path, requestId, deps.resolver, maxBytes);
     return;
+  }
+
+  // Evidence quarantine review transport (only when wired). Distinct path prefix from upload.
+  if (deps.evidenceQuarantine !== undefined) {
+    const handled = await handleEvidenceQuarantineRoute(
+      req,
+      res,
+      deps.evidenceQuarantine,
+      path,
+      requestId,
+      deps.resolver,
+      maxBytes,
+    );
+    if (handled) return;
   }
 
   // Workflow decision transport (only when wired).

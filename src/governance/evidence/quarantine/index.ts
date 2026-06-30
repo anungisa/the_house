@@ -9,14 +9,36 @@
 
 export {
   EVIDENCE_QUARANTINE_RECORDED_MESSAGE_TYPE,
+  EVIDENCE_QUARANTINE_REVIEWED_MESSAGE_TYPE,
+  EVIDENCE_QUARANTINE_RELEASED_MESSAGE_TYPE,
+  EVIDENCE_QUARANTINE_DISCARDED_MESSAGE_TYPE,
+  QUARANTINE_DISPOSITIONS,
+  QUARANTINE_LIST_DEFAULT_LIMIT,
+  QUARANTINE_LIST_MAX_LIMIT,
+  TERMINAL_QUARANTINE_STATUSES,
+  dispositionMessageType,
+  dispositionTargetStatus,
+  isAllowedQuarantineTransition,
   toQuarantineScanStatus,
+  type EvidenceQuarantineDispositionPayload,
   type EvidenceQuarantineRecord,
   type EvidenceQuarantineRecordedPayload,
+  type QuarantineDisposition,
+  type QuarantineEventView,
+  type QuarantineListCursor,
+  type QuarantineListFilter,
+  type QuarantineListResult,
   type QuarantineScanStatus,
   type QuarantineStatus,
   type RecordedQuarantineEvent,
 } from './EvidenceQuarantineTypes.js';
-export { type EvidenceQuarantineStore } from './EvidenceQuarantineStore.js';
+export {
+  buildQuarantineDispositionOutbox,
+  type EvidenceQuarantineStore,
+  type QuarantineOutboxRowContext,
+  type RecordQuarantineDispositionOutcome,
+  type RecordQuarantineDispositionStoreInput,
+} from './EvidenceQuarantineStore.js';
 export {
   InMemoryEvidenceQuarantineStore,
   type InMemoryEvidenceQuarantineStoreDeps,
@@ -26,7 +48,10 @@ export { PgEvidenceQuarantineStore } from './PgEvidenceQuarantineStore.js';
 export {
   EvidenceQuarantineService,
   type EvidenceQuarantineRecorder,
+  type EvidenceQuarantineReviewer,
   type EvidenceQuarantineServiceDeps,
   type RecordBlockedUploadInput,
   type RecordBlockedUploadResult,
+  type RecordQuarantineDispositionInput,
+  type RecordQuarantineDispositionResult,
 } from './EvidenceQuarantineService.js';

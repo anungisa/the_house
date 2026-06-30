@@ -52,7 +52,7 @@ describe('EvidenceQuarantineService', () => {
 
     expect(result.quarantineEventId).toBe('q-1');
 
-    const events = store.list();
+    const events = store.listAll();
     expect(events).toHaveLength(1);
     const event = events[0]!;
     expect(event.tenantId).toBe(TENANT);
@@ -84,7 +84,7 @@ describe('EvidenceQuarantineService', () => {
       scanner: 'signature',
     });
 
-    const serializedEvent = JSON.stringify(store.list()[0]);
+    const serializedEvent = JSON.stringify(store.listAll()[0]);
     const serializedPayload = JSON.stringify(outbox.records[0]!.payload);
     // No byte-bearing fields anywhere.
     for (const blob of [serializedEvent, serializedPayload]) {
@@ -139,6 +139,6 @@ describe('EvidenceQuarantineService', () => {
       scanner: 'noop',
     });
 
-    expect(store.list().map((e) => e.scanStatus)).toEqual(['error', 'skipped']);
+    expect(store.listAll().map((e) => e.scanStatus)).toEqual(['error', 'skipped']);
   });
 });

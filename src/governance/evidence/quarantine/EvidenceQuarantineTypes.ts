@@ -25,8 +25,68 @@ export type QuarantineScanStatus = 'infected' | 'error' | 'skipped';
  */
 export type QuarantineStatus = 'recorded' | 'notified' | 'reviewed' | 'released' | 'discarded';
 
+/**
+ * Operator-driven disposition of a quarantine event. A SECURITY OPERATOR (not the uploader)
+ * marks an event as one of these. The disposition value maps 1:1 onto the {@link
+ * QuarantineStatus} the event moves to.
+ */
+export type QuarantineDisposition = 'reviewed' | 'released' | 'discarded';
+
+/** The set of valid {@link QuarantineDisposition} values (runtime-checkable). */
+export const QUARANTINE_DISPOSITIONS: readonly QuarantineDisposition[] = [
+  'reviewed',
+  'released',
+  'discarded',
+];
+
+/** Terminal quarantine statuses: once reached, an event can no longer be re-dispositioned. */
+export const TERMINAL_QUARANTINE_STATUSES: readonly QuarantineStatus[] = ['released', 'discarded'];
+
+/**
+ * Allowed quarantine status transitions for operator disposition. Recording always starts at
+ * `recorded`; an event may be `notified` by a downstream consumer. From either of those an
+ * operator may move it to `reviewed`, `released`, or `discarded`; a `reviewed` event may still
+ * be `released` or `discarded`. `released`/`discarded` are TERMINAL — no reopening in v1.
+ */
+const ALLOWED_QUARANTINE_TRANSITIONS: Readonly<Record<QuarantineStatus, readonly QuarantineStatus[]>> =
+  {
+    recorded: ['reviewed', 'released', 'discarded'],
+    notified: ['reviewed', 'released', 'discarded'],
+    reviewed: ['released', 'discarded'],
+    released: [],
+    discarded: [],
+  };
+
+/** True when moving from `from` to `to` is a legal operator disposition transition. */
+export function isAllowedQuarantineTransition(from: QuarantineStatus, to: QuarantineStatus): boolean {
+  return ALLOWED_QUARANTINE_TRANSITIONS[from].includes(to);
+}
+
+/** Map a disposition to the quarantine status the event moves to (identity mapping). */
+export function dispositionTargetStatus(disposition: QuarantineDisposition): QuarantineStatus {
+  return disposition;
+}
+
 /** Outbox message type emitted when a quarantine event is recorded. */
 export const EVIDENCE_QUARANTINE_RECORDED_MESSAGE_TYPE = 'evidence.quarantine.recorded';
+/** Outbox message type emitted when a quarantine event is dispositioned as reviewed. */
+export const EVIDENCE_QUARANTINE_REVIEWED_MESSAGE_TYPE = 'evidence.quarantine.reviewed';
+/** Outbox message type emitted when a quarantine event is dispositioned as released. */
+export const EVIDENCE_QUARANTINE_RELEASED_MESSAGE_TYPE = 'evidence.quarantine.released';
+/** Outbox message type emitted when a quarantine event is dispositioned as discarded. */
+export const EVIDENCE_QUARANTINE_DISCARDED_MESSAGE_TYPE = 'evidence.quarantine.discarded';
+
+/** Map a disposition to its outbox message type. */
+export function dispositionMessageType(disposition: QuarantineDisposition): string {
+  switch (disposition) {
+    case 'reviewed':
+      return EVIDENCE_QUARANTINE_REVIEWED_MESSAGE_TYPE;
+    case 'released':
+      return EVIDENCE_QUARANTINE_RELEASED_MESSAGE_TYPE;
+    case 'discarded':
+      return EVIDENCE_QUARANTINE_DISCARDED_MESSAGE_TYPE;
+  }
+}
 
 /**
  * Sanitized metadata describing a blocked/suspicious upload. NEVER includes raw payload
@@ -87,4 +147,84 @@ export interface EvidenceQuarantineRecordedPayload {
  */
 export function toQuarantineScanStatus(status: string): QuarantineScanStatus {
   return status === 'infected' || status === 'error' || status === 'skipped' ? status : 'error';
+}
+
+/**
+ * A sanitized, operator-facing projection of a stored quarantine event. Returned by the
+ * read/list surfaces for security operators. It carries investigation metadata (including the
+ * uploader id + source filename, which a security operator legitimately needs) but NEVER the
+ * raw payload bytes (none are stored), tokens, headers, or the matched signature contents.
+ */
+export interface QuarantineEventView {
+  readonly quarantineEventId: string;
+  readonly tenantId: string;
+  readonly evidenceObjectId?: string;
+  readonly sourceFilename?: string;
+  readonly contentType: string;
+  readonly sizeBytes: number;
+  readonly contentHash: string;
+  readonly scanStatus: QuarantineScanStatus;
+  readonly scanner: string;
+  readonly signatureVersion?: string;
+  readonly threatName?: string;
+  readonly reason?: string;
+  readonly quarantineStatus: QuarantineStatus;
+  readonly uploadActorUserId?: string;
+  readonly requestId?: string;
+  readonly correlationId?: string;
+  /** Security operator who recorded the latest disposition (never the uploader). */
+  readonly reviewedByUserId?: string;
+  readonly reviewedAt?: string;
+  readonly dispositionReason?: string;
+  readonly createdAt: string;
+  readonly updatedAt: string;
+}
+
+/** Maximum page size for quarantine list reads. */
+export const QUARANTINE_LIST_MAX_LIMIT = 100;
+/** Default page size when the caller does not specify a limit. */
+export const QUARANTINE_LIST_DEFAULT_LIMIT = 50;
+
+/** Opaque keyset cursor: the last seen (createdAt, id) pair. */
+export interface QuarantineListCursor {
+  readonly createdAt: string;
+  readonly id: string;
+}
+
+/**
+ * Filters + keyset pagination for a quarantine list read. All filters are optional and combine
+ * with AND. `limit` is clamped to [1, {@link QUARANTINE_LIST_MAX_LIMIT}] by the store.
+ */
+export interface QuarantineListFilter {
+  readonly quarantineStatus?: QuarantineStatus;
+  readonly scanStatus?: QuarantineScanStatus;
+  readonly limit?: number;
+  readonly cursor?: QuarantineListCursor;
+}
+
+/** A page of quarantine views plus the cursor for the next page (undefined if exhausted). */
+export interface QuarantineListResult {
+  readonly items: readonly QuarantineEventView[];
+  readonly nextCursor?: QuarantineListCursor;
+}
+
+/**
+ * Sanitized outbox payload for a quarantine DISPOSITION change (reviewed/released/discarded).
+ * Carries only NSO-generic, non-secret routing/observability metadata plus the operator id
+ * who acted — NEVER raw bytes, tokens, headers, the uploader id, the source filename, or the
+ * matched signature contents.
+ */
+export interface EvidenceQuarantineDispositionPayload {
+  readonly quarantineEventId: string;
+  readonly tenantId: string;
+  readonly contentHash: string;
+  readonly scanStatus: QuarantineScanStatus;
+  readonly scanner: string;
+  readonly previousStatus: QuarantineStatus;
+  readonly newStatus: QuarantineStatus;
+  /** The security operator who recorded the disposition (never the uploader). */
+  readonly actorUserId: string;
+  readonly threatName?: string;
+  readonly requestId?: string;
+  readonly correlationId?: string;
 }

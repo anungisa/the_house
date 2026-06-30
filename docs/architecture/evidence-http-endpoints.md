@@ -47,6 +47,11 @@ Both routes are `POST` and live under `/v1/evidence`:
 Download is a `POST` (not a `GET`) so the (potentially long) storage reference travels in the
 request body rather than the URL/query string, and never lands in access logs.
 
+The read-only **quarantine review** routes (`GET /v1/evidence/quarantine`,
+`GET /v1/evidence/quarantine/:id`, `POST /v1/evidence/quarantine/:id/disposition`) live under
+the same `/v1/evidence` prefix but are an independent operational-security surface; see the
+[evidence quarantine workflow](./evidence-quarantine-workflow.md) for their contract.
+
 The endpoints are served by the same native HTTP server as the affiliation adapter
 (`createAffiliationHttpServer`). They are wired only when the server is built with `evidence`
 dependencies (the production composition root always wires them; when absent the routes

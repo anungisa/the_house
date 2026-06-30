@@ -30,6 +30,15 @@ export const ErrorCode = {
   EVIDENCE_MALWARE_SCAN_FAILED: 'EVIDENCE_MALWARE_SCAN_FAILED',
   /** Malware scanning is required but no scan was performed (scanner skipped / unavailable). */
   EVIDENCE_MALWARE_SCAN_REQUIRED: 'EVIDENCE_MALWARE_SCAN_REQUIRED',
+  /** A referenced evidence quarantine event does not exist for the tenant. */
+  EVIDENCE_QUARANTINE_NOT_FOUND: 'EVIDENCE_QUARANTINE_NOT_FOUND',
+  /** A quarantine disposition value is not one of the allowed dispositions. */
+  EVIDENCE_QUARANTINE_INVALID_DISPOSITION: 'EVIDENCE_QUARANTINE_INVALID_DISPOSITION',
+  /**
+   * The requested quarantine disposition is not a legal transition from the event's current
+   * status (e.g. a terminal released/discarded event, or an illegal status change).
+   */
+  EVIDENCE_QUARANTINE_DISPOSITION_CONFLICT: 'EVIDENCE_QUARANTINE_DISPOSITION_CONFLICT',
   /** A referenced review workflow instance does not exist for the tenant. */
   WORKFLOW_NOT_FOUND: 'WORKFLOW_NOT_FOUND',
   /** A workflow step code is unknown or not the step currently awaiting a decision. */

@@ -47,7 +47,7 @@ import { createAuthContextResolver } from './auth/AuthContextResolver.js';
 import { createDatabaseReadinessCheck } from './readiness.js';
 import { createAffiliationHttpServer, type AffiliationHttpServerDeps } from './server.js';
 import { queryRaw } from '../db/pool.js';
-import type { EvidenceHttpDeps } from './evidence/index.js';
+import type { EvidenceHttpDeps, EvidenceQuarantineHttpDeps } from './evidence/index.js';
 import type {
   WorkflowExecutionHttpDeps,
   WorkflowHttpDeps,
@@ -112,6 +112,22 @@ export function createEvidenceHttpDeps(): EvidenceHttpDeps {
 }
 
 /**
+ * Build the evidence QUARANTINE review HTTP transport backed by PostgreSQL. Operators list/read
+ * quarantine events and record dispositions through the RLS-enforced
+ * {@link PgEvidenceQuarantineStore}; a disposition advances only the quarantine event's own
+ * status and emits a sanitized outbox event. It never stores payload bytes, creates governed
+ * evidence, mutates governed state, or invokes the kernel.
+ */
+export function createEvidenceQuarantineHttpDeps(): EvidenceQuarantineHttpDeps {
+  const config = loadConfig();
+  return {
+    reviewer: new EvidenceQuarantineService(new PgEvidenceQuarantineStore(), {
+      maxRetries: config.outbox.maxRetries,
+    }),
+  };
+}
+
+/**
  * Build the workflow decision HTTP transport backed by PostgreSQL. The decision service
  * records review metadata (approve/reject) through the RLS-enforced {@link PgWorkflowStore};
  * it never mutates governed state and never executes the pending lifecycle transition.
@@ -161,6 +177,9 @@ export function createPgAffiliationHttpServer(
     executor: createPgAffiliationApplicationService(),
     resolver: createAuthContextResolver(config),
     evidence: createEvidenceHttpDeps(),
+    ...(config.evidenceQuarantine.enabled
+      ? { evidenceQuarantine: createEvidenceQuarantineHttpDeps() }
+      : {}),
     workflow: createWorkflowHttpDeps(),
     workflowExecution: createWorkflowExecutionHttpDeps(),
     workflowRead: createWorkflowReadHttpDeps(),

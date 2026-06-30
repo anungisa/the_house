@@ -2,7 +2,9 @@
 
 This document describes the **asynchronous quarantine workflow** that records a sanitized
 security event whenever the [malware scanning gate](./evidence-malware-scanning.md) **blocks**
-an evidence upload.
+an evidence upload, plus the **operator review / disposition workflow** that lets an authorized
+security operator triage those events (list, read, and mark them `reviewed`, `released`, or
+`discarded`).
 
 ## Purpose
 
@@ -79,8 +81,12 @@ event are atomic.
 | `scanner`, `signature_version`, `threat_name`, `reason` | Sanitized scan provenance. |
 | `quarantine_status` | Lifecycle of the security event itself: `recorded` (default) → `notified` → `reviewed` → `released` \| `discarded`. **Not** a governed entity lifecycle. |
 | `upload_actor_user_id`, `request_id`, `correlation_id` | Observability/correlation only. |
+| `reviewed_by_user_id`, `reviewed_at`, `disposition_reason` | Set by the operator **disposition** workflow (the acting operator, the time, and an optional note). Never the uploader. |
+| `disposition_outbox_message_id` | The outbox message enqueued by the latest disposition (transactional correlation). |
 
-There is **no payload/bytes column by design.**
+There is **no payload/bytes column by design.** The disposition columns are added by migration
+`0008` (additive `ALTER TABLE ... ADD COLUMN IF NOT EXISTS`); the existing `quarantine_status`
+`CHECK` already admits `reviewed`/`released`/`discarded`.
 
 ## Outbox event contract
 
@@ -108,6 +114,114 @@ upload headers):
 Publishing follows the normal outbox path (claim → publish → mark processed) with true full
 jitter retries. A publisher failure **before** Service Bus accepts the message is a failed
 Postgres outbox row, not a Service Bus DLQ event. Azure Service Bus sessions are **not** used.
+
+## Review and disposition workflow
+
+Recording a quarantine event is asynchronous and operatorless. A separate, **synchronous**
+review surface lets an authorized **security operator** triage the queue: list events, inspect
+one, and record a **disposition**. This is the only part of the module that mutates an existing
+quarantine row, and it still touches **no** governed lifecycle table and **never** calls the
+kernel.
+
+### HTTP routes
+
+All three routes are served only when `EVIDENCE_QUARANTINE_ENABLED=true` (otherwise they 404).
+Identity (tenant + acting operator) is always taken from the shared `x-house-*` trusted-header
+contract — never from the query, path, or body.
+
+| Method & path | Purpose |
+| --- | --- |
+| `GET /v1/evidence/quarantine` | List quarantine events for the caller's tenant. Optional query: `status`, `scanStatus`, `limit` (≤ 100), `cursor` (opaque keyset cursor). |
+| `GET /v1/evidence/quarantine/:id` | Read one quarantine event for the caller's tenant. |
+| `POST /v1/evidence/quarantine/:id/disposition` | Record a disposition. Body: `{ "disposition": "reviewed" \| "released" \| "discarded", "reason"?: string }`. |
+
+The read responses return a **sanitized operator view** (`QuarantineEventView`) — it includes
+investigation metadata a security operator legitimately needs (including `uploadActorUserId` and
+`sourceFilename`) but **never** raw bytes (none are stored), tokens, headers, or the matched
+signature contents. The disposition response is `{ status, quarantineEventId, previousStatus,
+newStatus, disposition, requestId }`.
+
+### Status transition rules (fail closed)
+
+A disposition advances only the quarantine event's **own** `quarantine_status`, validated atomically
+under a `SELECT … FOR UPDATE` row lock by a shared pure function (`isAllowedQuarantineTransition`):
+
+```
+recorded ─┐
+notified ─┼─→ reviewed ─→ released (terminal)
+          │            └─→ discarded (terminal)
+          ├──────────────→ released (terminal)
+          └──────────────→ discarded (terminal)
+```
+
+- `released` and `discarded` are **terminal** — there is no reopening in v1.
+- An unknown disposition value is rejected **before** any store access (`400`
+  `EVIDENCE_QUARANTINE_INVALID_DISPOSITION`).
+- A disposition against an unknown / cross-tenant event is `404`
+  `EVIDENCE_QUARANTINE_NOT_FOUND` (RLS makes another tenant's row invisible, so it reads as
+  not-found).
+- An illegal transition (including any disposition of a terminal event) is `409`
+  `EVIDENCE_QUARANTINE_DISPOSITION_CONFLICT`; the stored status is unchanged.
+
+### Authorization model (v1 local gate)
+
+Authorization is a **local, fail-closed gate** at the adapter (centralized authorization policy
+is future work):
+
+- **read** (`list` / detail) requires the `evidence.quarantine.read` permission **or** a
+  security role (`security_reviewer` / `security_admin`);
+- **disposition** requires the `evidence.quarantine.disposition` permission **or** a security
+  role.
+
+A missing tenant identity is `401`; a present identity without the required permission/role is
+`403`. The acting operator id recorded on the row and emitted in the outbox event is the
+**dispositioning operator** — never the uploader.
+
+### Disposition outbox events
+
+Each disposition emits its own sanitized outbox event in the **same transaction** as the row
+update (transactional outbox):
+
+| Disposition | Message type |
+| --- | --- |
+| `reviewed` | `evidence.quarantine.reviewed` |
+| `released` | `evidence.quarantine.released` |
+| `discarded` | `evidence.quarantine.discarded` |
+
+Dedupe key: `<messageType>:<quarantineEventId>`. Payload (sanitized — **no** raw bytes, **no**
+uploader identity, **no** source filename, **no** headers):
+
+```jsonc
+{
+  "quarantineEventId": "…",
+  "tenantId": "…",
+  "contentHash": "<sha256-hex>",
+  "scanStatus": "infected",
+  "scanner": "signature",
+  "previousStatus": "recorded",
+  "newStatus": "reviewed",
+  "actorUserId": "<dispositioning operator>",  // never the uploader
+  "threatName": "…",       // optional
+  "requestId": "…",        // optional
+  "correlationId": "…"     // optional
+}
+```
+
+### Why "released" does not restore or create evidence
+
+`released` is a **security disposition** (for example a confirmed false positive, or metadata
+worth keeping for the record). Because the infected bytes were **never retained** (only a hash
+plus sanitized metadata), there is nothing to restore: release does **not** un-quarantine bytes,
+does **not** create a `governance.evidence_object`, and does **not** mark any governed evidence
+requirement satisfied. If the underlying document is still genuinely needed, it must be
+**re-uploaded** through the normal evidence path and **re-scanned**. Creating governed evidence
+remains the sole responsibility of the Governance Kernel during a governed transition.
+
+### Why infected bytes are still not stored
+
+Disposition does not change the no-bytes posture. Even a `released` event keeps only the content
+hash and sanitized metadata — there is still no `bytea`/`payload` column. A disposition is a
+metadata state change plus an outbox event; it never reintroduces the original bytes.
 
 ## Tenancy and RLS
 
@@ -143,7 +257,15 @@ posture against real PostgreSQL. It validates:
   `audit_event`, and `evidence_object` counts are unchanged;
 - the HTTP upload seam (`handleEvidenceUpload`) rejects an EICAR payload with
   `422 EVIDENCE_MALWARE_DETECTED`, never calls clean-evidence storage, and records the
-  quarantine + outbox rows with a hash of the rejected bytes.
+  quarantine + outbox rows with a hash of the rejected bytes;
+- migration `0008` applies and adds the disposition columns (`reviewed_by_user_id`,
+  `reviewed_at`, `disposition_reason`, `disposition_outbox_message_id`);
+- the restricted role can record a disposition (status advances; reviewer + timestamp + note +
+  disposition outbox id persisted), emitting a sanitized disposition outbox event atomically
+  with **no** uploader identity, filename, or raw bytes;
+- disposition is tenant-isolated (another tenant's event reads as not-found), terminal events
+  cannot be re-dispositioned, disposition mutates **no** governed lifecycle table, and a
+  disposition `UPDATE` with no tenant context fails closed (`P0001`).
 
 ## Error behaviour (fail-safe)
 
@@ -186,9 +308,9 @@ box (with quarantine recording through the Postgres store when a database is con
 
 - a real antivirus engine (Microsoft Defender, ClamAV, or any third-party AV SDK);
 - a dedicated, access-controlled **quarantine blob store** for the infected bytes;
-- a security-analyst **quarantine review UI**;
-- the `released` / `discarded` **review workflow** (the `quarantine_status` column models the
-  states, but no transition logic is implemented yet);
+- a security-analyst **quarantine review UI** / client surface;
+- **reopening** a `released` / `discarded` event (terminal in v1);
+- centralized authorization policy (the read/disposition gate is a local permission/role check);
 - automated incident response or SIEM / alerting integration.
 
 ## Related

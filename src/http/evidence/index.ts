@@ -21,3 +21,28 @@ export {
   type EvidenceUploadRequest,
   type EvidenceUploadResponseBody,
 } from './EvidenceHttpDtos.js';
+
+export {
+  handleQuarantineList,
+  handleQuarantineDetail,
+  handleQuarantineDisposition,
+  quarantineErrorToHttpResult,
+  type EvidenceQuarantineHttpDeps,
+  type EvidenceQuarantineHttpResult,
+} from './EvidenceQuarantineHttpAdapter.js';
+
+export {
+  resolveEvidenceAuth,
+  requireActorUserId,
+  requireTenant as requireEvidenceTenant,
+} from './evidenceHttpAuth.js';
+
+export type {
+  QuarantineDetailHttpRequest,
+  QuarantineDetailResponseBody,
+  QuarantineDispositionHttpRequest,
+  QuarantineDispositionResponseBody,
+  QuarantineEventDto,
+  QuarantineListHttpRequest,
+  QuarantineListResponseBody,
+} from './EvidenceQuarantineHttpDtos.js';

@@ -7,7 +7,11 @@ import pg from 'pg';
 
 import { PgEvidenceQuarantineStore } from '../../../src/governance/evidence/quarantine/PgEvidenceQuarantineStore.js';
 import { EvidenceQuarantineService } from '../../../src/governance/evidence/quarantine/EvidenceQuarantineService.js';
-import { EVIDENCE_QUARANTINE_RECORDED_MESSAGE_TYPE } from '../../../src/governance/evidence/quarantine/EvidenceQuarantineTypes.js';
+import {
+  EVIDENCE_QUARANTINE_RECORDED_MESSAGE_TYPE,
+  dispositionMessageType,
+  type QuarantineDisposition,
+} from '../../../src/governance/evidence/quarantine/EvidenceQuarantineTypes.js';
 import {
   handleEvidenceUpload,
   type EvidenceHttpDeps,
@@ -163,6 +167,9 @@ async function adminGetOutboxByDedupe(
 
 const dedupeKeyFor = (eventId: string): string =>
   `${EVIDENCE_QUARANTINE_RECORDED_MESSAGE_TYPE}:${eventId}`;
+
+const dispositionDedupeKeyFor = (eventId: string, disposition: QuarantineDisposition): string =>
+  `${dispositionMessageType(disposition)}:${eventId}`;
 
 interface BlockedInput {
   tenantId?: string;
@@ -522,5 +529,161 @@ d('evidence quarantine — PostgreSQL RLS integration', () => {
     // No governed evidence_object row was created (quarantine is not governed evidence).
     const evidenceAfter = await countForTenants(admin, 'governance.evidence_object');
     expect(evidenceAfter).toBe(evidenceBefore);
+  });
+
+  // ---------------------------------------------------------------------------------------------
+  // DISPOSITION workflow (migration 0008 + recordQuarantineDisposition). Proves an authorized
+  // operator can advance a quarantine event's OWN status (reviewed/released/discarded) under RLS,
+  // emitting a sanitized disposition outbox event atomically, WITHOUT storing bytes and WITHOUT
+  // touching any governed lifecycle table.
+  // ---------------------------------------------------------------------------------------------
+
+  // (D1) Migration 0008 applied and the disposition columns exist.
+  it('applies migration 0008 and adds the disposition columns', async () => {
+    const { rows: mig } = await admin.query<{ n: number }>(
+      `SELECT count(*)::int AS n FROM public.schema_migrations WHERE filename = $1`,
+      ['0008_evidence_quarantine_disposition.sql'],
+    );
+    expect(mig[0]!.n).toBe(1);
+
+    const { rows } = await admin.query<{ column_name: string }>(
+      `SELECT column_name FROM information_schema.columns
+        WHERE table_schema = 'governance' AND table_name = 'evidence_quarantine_event'`,
+    );
+    const names = new Set(rows.map((r) => r.column_name));
+    expect(names.has('reviewed_by_user_id')).toBe(true);
+    expect(names.has('reviewed_at')).toBe(true);
+    expect(names.has('disposition_reason')).toBe(true);
+    expect(names.has('disposition_outbox_message_id')).toBe(true);
+  });
+
+  // (D2) Restricted role records a disposition: status advances + reviewer/timestamp persisted.
+  it('records a disposition through the restricted role and advances status', async () => {
+    const { quarantineEventId } = await record({ requestId: 'req-disp-1' });
+
+    const outcome = await service.recordQuarantineDisposition({
+      tenantId: TENANT_A,
+      quarantineEventId,
+      disposition: 'reviewed',
+      actorUserId: 'security-operator-1',
+      reason: 'confirmed false positive candidate',
+      requestId: 'req-disp-1b',
+    });
+    expect(outcome.previousStatus).toBe('recorded');
+    expect(outcome.newStatus).toBe('reviewed');
+
+    const row = await adminGetQuarantine(admin, quarantineEventId);
+    expect(row!['quarantine_status']).toBe('reviewed');
+    expect(row!['reviewed_by_user_id']).toBe('security-operator-1');
+    expect(row!['reviewed_at']).not.toBeNull();
+    expect(row!['disposition_reason']).toBe('confirmed false positive candidate');
+    expect(row!['disposition_outbox_message_id']).not.toBeNull();
+  });
+
+  // (D3) Disposition emits a sanitized disposition outbox event, atomically, with no bytes / no
+  //      uploader identity / no filename.
+  it('emits a sanitized disposition outbox event without bytes or uploader identity', async () => {
+    const { quarantineEventId } = await record({
+      uploadActorUserId: 'uploader-secret-id',
+      requestId: 'req-disp-payload',
+    });
+
+    await service.recordQuarantineDisposition({
+      tenantId: TENANT_A,
+      quarantineEventId,
+      disposition: 'released',
+      actorUserId: 'security-operator-2',
+    });
+
+    const out = await adminGetOutboxByDedupe(
+      admin,
+      dispositionDedupeKeyFor(quarantineEventId, 'released'),
+    );
+    expect(out).toBeDefined();
+    expect(out!.message_type).toBe(dispositionMessageType('released'));
+    expect(out!.tenant_id).toBe(TENANT_A);
+
+    const payload = out!.payload;
+    expect(payload['quarantineEventId']).toBe(quarantineEventId);
+    expect(payload['previousStatus']).toBe('recorded');
+    expect(payload['newStatus']).toBe('released');
+    expect(payload['actorUserId']).toBe('security-operator-2');
+    // Defence-in-depth: no uploader identity, no filename, no raw bytes.
+    const serialized = JSON.stringify(payload);
+    expect(serialized).not.toContain('uploader-secret-id');
+    expect(payload['uploadActorUserId']).toBeUndefined();
+    expect(payload['sourceFilename']).toBeUndefined();
+  });
+
+  // (D4) Disposition is tenant-isolated: an event in tenant B is invisible to tenant A.
+  it('cannot disposition another tenant event (RLS isolation -> not found)', async () => {
+    const { quarantineEventId: bId } = await record({ tenantId: TENANT_B });
+    await expect(
+      service.recordQuarantineDisposition({
+        tenantId: TENANT_A,
+        quarantineEventId: bId,
+        disposition: 'reviewed',
+        actorUserId: 'security-operator-1',
+      }),
+    ).rejects.toMatchObject({ code: 'EVIDENCE_QUARANTINE_NOT_FOUND' });
+  });
+
+  // (D5) Terminal events cannot be re-dispositioned (conflict, fail closed).
+  it('rejects re-dispositioning a terminal (released) event', async () => {
+    const { quarantineEventId } = await record({ requestId: 'req-disp-terminal' });
+    await service.recordQuarantineDisposition({
+      tenantId: TENANT_A,
+      quarantineEventId,
+      disposition: 'released',
+      actorUserId: 'security-operator-1',
+    });
+    await expect(
+      service.recordQuarantineDisposition({
+        tenantId: TENANT_A,
+        quarantineEventId,
+        disposition: 'discarded',
+        actorUserId: 'security-operator-1',
+      }),
+    ).rejects.toMatchObject({ code: 'EVIDENCE_QUARANTINE_DISPOSITION_CONFLICT' });
+
+    // The terminal status is unchanged.
+    const row = await adminGetQuarantine(admin, quarantineEventId);
+    expect(row!['quarantine_status']).toBe('released');
+  });
+
+  // (D6) Disposition never mutates governed lifecycle tables.
+  it('does not create or mutate any governed lifecycle row during disposition', async () => {
+    const tables = [
+      'governance.entity_state',
+      'governance.state_transition',
+      'governance.audit_event',
+      'governance.evidence_object',
+    ] as const;
+    const { quarantineEventId } = await record({ requestId: 'req-disp-no-mutation' });
+    const before = await Promise.all(tables.map((t) => countForTenants(admin, t)));
+
+    await service.recordQuarantineDisposition({
+      tenantId: TENANT_A,
+      quarantineEventId,
+      disposition: 'discarded',
+      actorUserId: 'security-operator-1',
+    });
+
+    const after = await Promise.all(tables.map((t) => countForTenants(admin, t)));
+    expect(after).toEqual(before);
+    expect(after).toEqual([0, 0, 0, 0]);
+  });
+
+  // (D7) A disposition UPDATE without tenant context fails closed (RLS raises P0001).
+  it('fails closed on a disposition UPDATE when tenant context is missing', async () => {
+    const { quarantineEventId } = await record({ requestId: 'req-disp-failclosed' });
+    await expect(
+      appPool.query(
+        `UPDATE governance.evidence_quarantine_event
+            SET quarantine_status = 'reviewed', updated_at = now()
+          WHERE id = $1`,
+        [quarantineEventId],
+      ),
+    ).rejects.toMatchObject({ code: 'P0001' });
   });
 });
