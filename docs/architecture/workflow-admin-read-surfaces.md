@@ -190,6 +190,12 @@ which run only when `RUN_DB_TESTS=1`). They prove:
   executed — all without ever mutating state. The `executed` marker is derived from
   `transition_request.status = 'executed'`, while the instance itself stays `approved`.
 
+## Consumers
+
+The framework-neutral admin/reviewer client that consumes these read endpoints (alongside the
+decision and execution endpoints) is documented in
+[workflow-admin-review-surface.md](./workflow-admin-review-surface.md).
+
 ## Out of scope (intentional)
 
 - Frontend/admin UI (no React/Vue/Svelte, no screens).
