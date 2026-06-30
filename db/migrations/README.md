@@ -3,9 +3,12 @@
 This folder holds ordered SQL migrations for the PostgreSQL-backed Governance Kernel
 and supporting platform-core schemas.
 
-> **Scaffold status:** Only a placeholder migration exists today
-> ([`0001_governance_schema_placeholder.sql`](0001_governance_schema_placeholder.sql)).
-> Production DDL is intentionally deferred to the Governance Kernel implementation pass.
+> **Status:** Migrations `0001`–`0008` implement the governance schema, the
+> AffiliationApplication v1 state machine, the affiliation domain, workflow metadata,
+> and evidence quarantine. They are governed as an explicit, ordered release step —
+> see [migration orchestration baseline](../../docs/architecture/migration-orchestration-baseline.md).
+> Migrations are validated statically in CI (`npm run migrations:check`) and are
+> **never** applied automatically at application startup.
 
 ## Conventions
 
@@ -31,7 +34,7 @@ and supporting platform-core schemas.
 - **Production DDL comes in the next implementation pass.** The current placeholder only
   documents intended tables, RLS, and seed scope via comments/TODOs.
 
-## Intended governance schema (documented in the placeholder, not yet implemented)
+## Intended governance schema
 
 `governance` schema with:
 
@@ -43,6 +46,19 @@ the AffiliationApplication v1 state-machine seed.
 
 ## Migration runner
 
-`npm run db:migrate` and `npm run db:seed` are **placeholder scripts** in this scaffold
-(see [`../../scripts`](../../scripts)). A real runner (ordering, applied-migration ledger,
-transactional application) is wired in the implementation pass.
+Migrations are run as a controlled release operation, never from the API or worker at
+startup:
+
+- `npm run migrations:check` — static validation only (ordering, naming, no secrets,
+  no destructive/superuser statements, RLS forced). Requires no database; runs in CI.
+- `npm run migrations:plan` — preview pending migrations (read-only).
+- `npm run migrations:apply` — apply pending migrations in order.
+
+The governed runner ([`scripts/migrate-db.ts`](../../scripts/migrate-db.ts) →
+[`src/db/migrations/MigrationRunner.ts`](../../src/db/migrations/MigrationRunner.ts))
+uses the privileged `MIGRATE_DATABASE_URL` connection (never the restricted
+application `DATABASE_URL`), records applied files in a `public.schema_migrations`
+ledger, and applies each migration in its own transaction. `npm run db:migrate`
+remains a legacy local-development convenience. See the
+[migration orchestration baseline](../../docs/architecture/migration-orchestration-baseline.md)
+for the full release contract.

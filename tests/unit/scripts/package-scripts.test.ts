@@ -45,6 +45,13 @@ describe('package scripts', () => {
     expect(scripts['container:check']).toBe('tsx scripts/validate-container-baseline.ts');
   });
 
+  // Migration baseline validation + governed runner scripts are present.
+  it('defines migrations:check, migrations:plan, and migrations:apply', () => {
+    expect(scripts['migrations:check']).toBe('tsx scripts/validate-migrations.ts');
+    expect(scripts['migrations:plan']).toBe('tsx scripts/migrate-db.ts --plan');
+    expect(scripts['migrations:apply']).toBe('tsx scripts/migrate-db.ts --apply');
+  });
+
   // Aggregate CI gate script is present and chains the required gates.
   it('defines ci:check chaining the required gates', () => {
     const ciCheck = scripts['ci:check'];
@@ -56,6 +63,7 @@ describe('package scripts', () => {
       'npm run build',
       'npm run deploy:check',
       'npm run container:check',
+      'npm run migrations:check',
     ]) {
       expect(ciCheck).toContain(gate);
     }
@@ -76,6 +84,8 @@ describe('package scripts', () => {
       'worker:outbox',
       'config:check',
       'deploy:check',
+      'container:check',
+      'migrations:check',
     ]) {
       expect(scripts[name]).toBeDefined();
     }

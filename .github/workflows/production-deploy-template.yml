@@ -43,6 +43,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Azure login (OIDC; no static credentials)
         uses: azure/login@v2
         with:
@@ -60,6 +69,14 @@ jobs:
               --template-file infra/azure/main.bicep \
               --parameters infra/azure/parameters/prod.example.bicepparam
 
+      # Preview pending schema migrations BEFORE any change is applied. Read-only:
+      # plan never writes to the database. MIGRATE_DATABASE_URL is the privileged
+      # migration role, distinct from the restricted application DATABASE_URL.
+      - name: Migration plan (preview; no schema changes)
+        env:
+          MIGRATE_DATABASE_URL: ${{ secrets.MIGRATE_DATABASE_URL }}
+        run: npm run migrations:plan
+
       - name: Build and publish images to the registry
         uses: azure/cli@v2
         with:
@@ -75,6 +92,14 @@ jobs:
               --image "the-house-worker:${{ inputs.image_tag }}" \
               --target worker \
               --file Dockerfile .
+
+      # Apply migrations as an explicit release step AFTER images are built but
+      # BEFORE the new containers roll out, so the schema is ready when the new
+      # app/worker revisions start. Migrations are never run from app startup.
+      - name: Migration apply (ordered, forward-only)
+        env:
+          MIGRATE_DATABASE_URL: ${{ secrets.MIGRATE_DATABASE_URL }}
+        run: npm run migrations:apply
 
       - name: Roll out the API container app
         uses: azure/cli@v2
