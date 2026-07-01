@@ -17,8 +17,8 @@ import {
   FACILITY_HTTP_WRITE_FILES,
   AUTHZ_ACTIONS_MODULE_REL,
   FACILITY_READ_PREFLIGHT_REL,
+  FACILITY_WRITE_PREFLIGHT_REL,
 } from '../../../src/deployment/validateFacilityRegistryBaseline.js';
-
 /**
  * Hermetic tests for the Facility Registry baseline validator. Fully static / in-process: they read
  * repo files and build temp fixtures. They NEVER run tests, deploy, migrate, build/push/scan/sign
@@ -82,6 +82,17 @@ const VALID_PREFLIGHT = [
   '',
 ].join('\n');
 
+/** A write-surface preflight fixture that enumerates the three future write route strings. */
+const VALID_WRITE_PREFLIGHT = [
+  '# Facility HTTP write-surface preflight',
+  '',
+  'Design-only. The three future write routes:',
+  '- POST /v1/facilities',
+  '- PATCH /v1/facilities/:facilityId',
+  '- POST /v1/facilities/:facilityId/status-transitions',
+  '',
+].join('\n');
+
 const VALID_PACKAGE_JSON = JSON.stringify(
   {
     name: 'fixture',
@@ -108,6 +119,7 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_READ,
     [FACILITY_READ_PREFLIGHT_REL]: VALID_PREFLIGHT,
+    [FACILITY_WRITE_PREFLIGHT_REL]: VALID_WRITE_PREFLIGHT,
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
@@ -259,6 +271,33 @@ describe('validateFacilityRegistryBaseline', () => {
       checkOk(
         writeRepo(files),
         'facility HTTP read-surface preflight documents the three read routes',
+      ),
+    ).toBe(false);
+  });
+
+  it('fails when the write-surface preflight document is missing', () => {
+    const files = baseFiles();
+    files[FACILITY_WRITE_PREFLIGHT_REL] = null;
+    expect(
+      checkOk(
+        writeRepo(files),
+        'facility HTTP write-surface preflight documents the three write routes',
+      ),
+    ).toBe(false);
+  });
+
+  it('fails when the write-surface preflight omits a write route path', () => {
+    const files = baseFiles();
+    files[FACILITY_WRITE_PREFLIGHT_REL] = [
+      '# Facility HTTP write-surface preflight',
+      '- POST /v1/facilities',
+      '- PATCH /v1/facilities/:facilityId',
+      '', // missing the status-transitions route
+    ].join('\n');
+    expect(
+      checkOk(
+        writeRepo(files),
+        'facility HTTP write-surface preflight documents the three write routes',
       ),
     ).toBe(false);
   });

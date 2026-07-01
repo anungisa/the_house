@@ -68,6 +68,24 @@ export const FACILITY_READ_ROUTE_PATHS: readonly string[] = [
 ];
 
 /**
+ * Design-only readiness marker for the FUTURE write surface. The write-surface preflight fixes the
+ * write boundary (endpoints, authz, DTOs, idempotency, error mapping, routing, tests) BEFORE any
+ * Facility write HTTP code is written. Its presence + the three documented `METHOD /path` write
+ * route strings are asserted here. This is a DESIGN-ONLY marker — it does NOT invert the
+ * write-files-absent / no-write-action guards (checks 6/7); those still require the write surface to
+ * be ABSENT until the implementation pass.
+ */
+export const FACILITY_WRITE_PREFLIGHT_REL =
+  'docs/architecture/facility-http-write-surface-preflight.md';
+
+/** The three future Facility write routes the write preflight must enumerate (method + path). */
+export const FACILITY_WRITE_ROUTE_PATHS: readonly string[] = [
+  'POST /v1/facilities',
+  'PATCH /v1/facilities/:facilityId',
+  'POST /v1/facilities/:facilityId/status-transitions',
+];
+
+/**
  * READ-ONLY HTTP scope guards. The Facility HTTP READ surface (list/detail + an organization's
  * facilities) has shipped, so these read files MUST exist; the WRITE surface is a deliberately
  * separate future pass, so the corresponding write files MUST stay absent. Likewise the
@@ -355,6 +373,20 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     detail: preflightOk
       ? 'preflight present and documents all three read routes'
       : `${FACILITY_READ_PREFLIGHT_REL} missing or missing a read route path`,
+  });
+  // 15. DESIGN-ONLY marker: the HTTP write-surface preflight exists and enumerates the three future
+  //     write routes (method + path). This does NOT invert the write-files-absent guards (6/7) —
+  //     the write surface itself must still be ABSENT until the implementation pass.
+  const writePreflight = readIfExists(join(repoRoot, FACILITY_WRITE_PREFLIGHT_REL));
+  const writePreflightOk =
+    writePreflight !== undefined &&
+    FACILITY_WRITE_ROUTE_PATHS.every((route) => writePreflight.includes(route));
+  checks.push({
+    name: 'facility HTTP write-surface preflight documents the three write routes',
+    ok: writePreflightOk,
+    detail: writePreflightOk
+      ? 'write preflight present and documents all three write routes'
+      : `${FACILITY_WRITE_PREFLIGHT_REL} missing or missing a write route path`,
   });
   return finalize(checks);
 }

@@ -177,3 +177,14 @@ Organization or Participant registries. The read `FacilityDto` deliberately omit
 facility write HTTP surface and no `facility.write` / `facility.status.write` action exist** —
 `facility:check` guards that the read HTTP files are present, the write HTTP files are absent, the
 `facility.read` action is present, and no facility write action exists.
+
+A **write-surface preflight** (design/contract only) now fixes the future write boundary:
+[facility-http-write-surface-preflight.md](./facility-http-write-surface-preflight.md) specifies the
+three future write routes (`POST /v1/facilities`, `PATCH /v1/facilities/:facilityId`,
+`POST /v1/facilities/:facilityId/status-transitions`), the two future actions
+(`facility.write` / `facility.status.write`), authorization, closed DTO contracts, the create
+`409`-via-pre-check and idempotency model, error mapping, privacy/telemetry/outbox rules, server
+route ordering, the test matrix, and a phased implementation plan. **No write route, DTO, adapter,
+or authorization action has been implemented** — the preflight is design only, and `facility:check`
+continues to guard that no facility write HTTP file or `facility.write` / `facility.status.write`
+action exists.
