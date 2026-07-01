@@ -140,20 +140,23 @@ suite skips cleanly when `RUN_DB_TESTS` is unset so the default `npm test` stays
 This baseline is deliberately narrow. It does **not** add, and future work must not smuggle in via
 this domain: booking, scheduling, calendars, reservations; maintenance or work-order flows;
 inventory; inspections or accreditation workflows; venue contracts; registration or payments;
-program enrollment; event or competition flows; eligibility logic; any HTTP surface; any facility
-authorization action; or any frontend. The Facility Registry never calls the Governance Kernel and
-never mutates the Organization or Participant registries.
+program enrollment; event or competition flows; eligibility logic; any facility **write** HTTP
+surface; any facility write authorization action; or any frontend. The Facility Registry never calls
+the Governance Kernel and never mutates the Organization or Participant registries.
 
 ## Future considerations
 
-Deferred, non-committal ideas for later passes: a read-only HTTP surface (preflight-first, mirroring
-the participant read surface); a `facility.read` authorization action; a `virtual` facility type; and
-richer `visibility` semantics. None of these are implemented here.
+Deferred, non-committal ideas for later passes: a `virtual` facility type; and richer `visibility`
+semantics. None of these are implemented here.
 
-The read-only HTTP surface has a **design/contract preflight**
-([facility-http-read-surface-preflight.md](./facility-http-read-surface-preflight.md)) fixing the
-three GET routes (`/v1/facilities`, `/v1/facilities/:facilityId`,
-`/v1/organizations/:organizationId/facilities`), DTOs, `facility.read` authorization, pagination,
-error mapping, privacy, and route ordering. **No HTTP route, DTO, adapter, or authorization action
-has been implemented yet** — the preflight is design only, and `facility:check` still guards that no
-Facility HTTP file and no `facility.*` action exist.
+The read-only HTTP surface is now **implemented** (its
+[design/contract preflight](./facility-http-read-surface-preflight.md) is retained as the fixed
+contract). Three GET routes are live — `/v1/facilities`, `/v1/facilities/:facilityId`, and
+`/v1/organizations/:organizationId/facilities` — projecting the existing Facility Registry read
+store through the `FacilityReadHttpAdapter`. The `facility.read` authorization action was added and
+mapped to the `facility_reader` and `facility_admin` roles. The read surface is GET-only: it never
+writes, never enqueues an outbox message, never invokes the Governance Kernel, and never mutates the
+Organization or Participant registries. The read `FacilityDto` deliberately omits `tenantId`. **No
+facility write HTTP surface and no `facility.write` / `facility.status.write` action exist** —
+`facility:check` guards that the read HTTP files are present, the write HTTP files are absent, the
+`facility.read` action is present, and no facility write action exists.

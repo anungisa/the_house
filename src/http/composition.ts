@@ -56,11 +56,13 @@ import type {
 } from './workflow/index.js';
 import type { OrganizationReadHttpDeps } from './organization/index.js';
 import type { ParticipantWriteHttpDeps } from './participant/index.js';
+import type { FacilityReadHttpDeps } from './facility/index.js';
 import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
 import {
   ParticipantRegistryService,
   PgParticipantRegistryStore,
 } from '../domains/participant-registry/index.js';
+import { PgFacilityRegistryStore } from '../domains/facility-registry/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -222,6 +224,19 @@ export function createParticipantWriteHttpDeps(telemetry?: Telemetry): Participa
 }
 
 /**
+ * Build the read-only Facility Registry transport backed by PostgreSQL. Reads run through the
+ * RLS-enforced {@link PgFacilityRegistryStore}; the adapter is read-only and never mutates the
+ * registry, enqueues outbox messages, touches governed state, invokes the kernel, or mutates the
+ * Organization Registry.
+ */
+export function createFacilityReadHttpDeps(telemetry?: Telemetry): FacilityReadHttpDeps {
+  return {
+    readStore: new PgFacilityRegistryStore(),
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -244,6 +259,7 @@ export function createPgAffiliationHttpServer(
     workflowRead: createWorkflowReadHttpDeps(telemetry),
     organizationRead: createOrganizationReadHttpDeps(telemetry),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
+    facilityRead: createFacilityReadHttpDeps(telemetry),
     readiness: createDatabaseReadinessCheck({
       // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
       probe: () => queryRaw('SELECT 1'),

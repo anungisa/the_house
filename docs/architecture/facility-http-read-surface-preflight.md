@@ -1,11 +1,22 @@
 # Facility HTTP read-surface preflight
 
-> **Status: DESIGN / CONTRACT ONLY.** No Facility HTTP route, DTO file, adapter, authorization
-> action, server wiring, or HTTP test exists yet, and **none is added by this pass**. This document
-> fixes the read boundary — endpoints, DTOs, authorization, privacy, pagination/filter behavior,
-> server route sequencing, error mapping, the test matrix, the validator plan, and the
-> implementation sequence — so that the **Facility HTTP read surface** can be implemented
-> deterministically in a later pass without re-litigating scope mid-implementation.
+> **Status: IMPLEMENTED.** The Facility HTTP read surface described by this document has shipped:
+> the three GET routes (`/v1/facilities`, `/v1/facilities/:facilityId`,
+> `/v1/organizations/:organizationId/facilities`), the read DTOs, the `facilityHttpAuth` helper, the
+> `FacilityReadHttpAdapter`, the `facility.read` authorization action (mapped to `facility_reader`
+> and `facility_admin`), server route wiring, composition wiring, and hermetic adapter + server
+> tests all exist. The **write surface remains out of scope** (see below) and is a separate future
+> pass. This document is retained as the fixed read contract.
+>
+> **One implementation deviation from this document:** the shipped `FacilityDto` deliberately OMITS
+> `tenantId` (the tenant is established by the authenticated context and is never echoed in a read
+> body). The DTO table below still lists `tenantId`; the implemented closed key set excludes it.
+> All other fields match.
+>
+> This document fixes the read boundary — endpoints, DTOs, authorization, privacy, pagination/filter
+> behavior, server route sequencing, error mapping, the test matrix, the validator plan, and the
+> implementation sequence — so that the **Facility HTTP read surface** could be implemented
+> deterministically without re-litigating scope mid-implementation.
 >
 > The Facility HTTP read surface will be a **thin, GET-only projection** over the existing Facility
 > Registry read store. It NEVER writes, NEVER enqueues an outbox message, NEVER invokes the

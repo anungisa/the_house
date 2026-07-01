@@ -32,6 +32,7 @@ export const AuthorizationAction = {
   ParticipantWrite: 'participant.write',
   ParticipantStatusWrite: 'participant.status.write',
   ParticipantOrganizationLinkWrite: 'participant.organization_link.write',
+  FacilityRead: 'facility.read',
 } as const;
 
 /** Union of the valid action string literals. */
@@ -70,6 +71,9 @@ export const PLATFORM_ADMIN_ROLE = 'platform_admin';
  *    governed lifecycle transition — plus recording an organization↔participant relationship
  *    (`participant.organization_link.write`). These reference-data write actions are all distinct
  *    (none implies another); none is a governed lifecycle transition.
+ *  - facility_reader: read-only Facility Registry operator surface.
+ *  - facility_admin: Facility Registry operator (read-only at the HTTP edge in v1 — the write
+ *    surface is a deliberately separate future pass, so no facility write action exists yet).
  */
 export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationAction[]>> = {
   workflow_reader: [AuthorizationAction.WorkflowRead],
@@ -112,6 +116,8 @@ export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationActi
     AuthorizationAction.ParticipantStatusWrite,
     AuthorizationAction.ParticipantOrganizationLinkWrite,
   ],
+  facility_reader: [AuthorizationAction.FacilityRead],
+  facility_admin: [AuthorizationAction.FacilityRead],
 };
 
 /** Type guard: is `value` a known action string? */

@@ -11,10 +11,11 @@
  * architecture doc, unit test, and gated integration test all exist; the `facility:check` script is
  * wired and chained into `ci:check`; the doc documents its purpose/scope and key invariants; and NO
  * secret-looking values, sport-specific terminology, or out-of-scope behavior terms leak into the
- * domain code, doc, test, or migration. It ALSO enforces the backend-only scope of this pass with
- * fail-closed guards: no facility HTTP surface and no facility authorization action may exist yet.
- * As a DESIGN-ONLY readiness marker (not an inversion of those guards), it also confirms the HTTP
- * read-surface preflight document exists and enumerates the three planned read route paths.
+ * domain code, HTTP read surface, doc, test, or migration. It ALSO enforces the READ-ONLY scope of
+ * the HTTP surface with fail-closed guards: the facility HTTP READ files and the `facility.read`
+ * action MUST exist, while any facility WRITE HTTP file or facility WRITE authorization action MUST
+ * stay absent (the write surface is a deliberately separate future pass). It additionally confirms
+ * the HTTP read-surface preflight document exists and enumerates the three implemented read routes.
  *
  * The thin CLI wrapper lives in scripts/validate-facility-registry-baseline.ts.
  */
@@ -51,13 +52,13 @@ export const FACILITY_VALIDATOR_SCRIPT = 'scripts/validate-facility-registry-bas
 /**
  * Design-only readiness marker. The HTTP read-surface preflight fixes the read boundary (endpoints,
  * DTOs, authz, privacy, pagination, routing, tests) BEFORE any Facility HTTP code is written. Its
- * presence + the three documented read route paths are asserted here; this does NOT invert the
- * backend-only guards (no HTTP files, no `facility.*` action may exist yet).
+ * presence + the three documented read route paths are asserted here; it now sits alongside the
+ * shipped read surface (checks 6/7).
  */
 export const FACILITY_READ_PREFLIGHT_REL =
   'docs/architecture/facility-http-read-surface-preflight.md';
 
-/** The three planned Facility read route paths the preflight must enumerate. */
+/** The three implemented Facility read route paths the preflight must enumerate. */
 export const FACILITY_READ_ROUTE_PATHS: readonly string[] = [
   '/v1/facilities',
   '/v1/facilities/:facilityId',
@@ -65,11 +66,23 @@ export const FACILITY_READ_ROUTE_PATHS: readonly string[] = [
 ];
 
 /**
- * Backend-only scope guards. The Facility Registry baseline pass deliberately ships NO HTTP surface
- * and NO authorization action. These paths MUST stay absent so the slice does not opportunistically
- * grow an edge/authz surface.
+ * READ-ONLY HTTP scope guards. The Facility HTTP READ surface (list/detail + an organization's
+ * facilities) has shipped, so these read files MUST exist; the WRITE surface is a deliberately
+ * separate future pass, so the corresponding write files MUST stay absent. Likewise the
+ * `facility.read` action MUST exist while no facility WRITE action may.
  */
 export const FACILITY_HTTP_DIR_REL = 'src/http/facility';
+export const FACILITY_HTTP_READ_FILES: readonly string[] = [
+  `${FACILITY_HTTP_DIR_REL}/FacilityReadHttpDtos.ts`,
+  `${FACILITY_HTTP_DIR_REL}/facilityHttpAuth.ts`,
+  `${FACILITY_HTTP_DIR_REL}/FacilityReadHttpAdapter.ts`,
+  `${FACILITY_HTTP_DIR_REL}/index.ts`,
+];
+/** Facility WRITE HTTP files that MUST stay absent (write surface is a separate future pass). */
+export const FACILITY_HTTP_WRITE_FILES: readonly string[] = [
+  `${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpAdapter.ts`,
+  `${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpDtos.ts`,
+];
 export const AUTHZ_ACTIONS_MODULE_REL = 'src/authz/AuthorizationActions.ts';
 
 /** Domain module files that MUST exist for the baseline to be coherent. */
@@ -86,6 +99,7 @@ const FACILITY_DOMAIN_FILES: readonly string[] = [
 /** Files scanned for leaked secrets (only those present). */
 const FACILITY_SECRET_SCAN_FILES: readonly string[] = [
   ...FACILITY_DOMAIN_FILES,
+  ...FACILITY_HTTP_READ_FILES,
   FACILITY_DOC_REL,
   FACILITY_MIGRATION_REL,
   FACILITY_VALIDATOR_MODULE,
@@ -93,12 +107,13 @@ const FACILITY_SECRET_SCAN_FILES: readonly string[] = [
 ];
 
 /**
- * Files scanned for sport-specific terminology. The domain code, doc, test, and migration must all
- * stay NSO-generic. The validator module and its test are intentionally excluded (they DEFINE the
- * forbidden vocabulary as fixtures/data).
+ * Files scanned for sport-specific terminology. The domain code, HTTP read surface, doc, test, and
+ * migration must all stay NSO-generic. The validator module and its test are intentionally excluded
+ * (they DEFINE the forbidden vocabulary as fixtures/data).
  */
 const FACILITY_DOMAIN_SCAN_FILES: readonly string[] = [
   ...FACILITY_DOMAIN_FILES,
+  ...FACILITY_HTTP_READ_FILES,
   FACILITY_DOC_REL,
   FACILITY_TEST_REL,
   FACILITY_MIGRATION_REL,
@@ -129,7 +144,10 @@ const SCOPE_FORBIDDEN_TERMS: readonly string[] = [
 ];
 
 /** Domain-code files scanned for out-of-scope behavior terms. */
-const FACILITY_SCOPE_SCAN_FILES: readonly string[] = [...FACILITY_DOMAIN_FILES];
+const FACILITY_SCOPE_SCAN_FILES: readonly string[] = [
+  ...FACILITY_DOMAIN_FILES,
+  ...FACILITY_HTTP_READ_FILES,
+];
 
 /**
  * Sport-specific place vocabulary that must never appear, matched on WORD BOUNDARIES so generic
@@ -215,23 +233,50 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     detail: FACILITY_INTEGRATION_TEST_REL,
   });
 
-  // 6. Backend-only scope guard: NO facility HTTP surface exists in this pass.
-  const httpAbsent = !existsSync(join(repoRoot, FACILITY_HTTP_DIR_REL));
+  // 6. READ-ONLY HTTP scope guard: the facility HTTP READ surface exists (this pass shipped it) and
+  //    the WRITE surface stays absent (a deliberately separate future pass).
+  const missingReadFiles = FACILITY_HTTP_READ_FILES.filter(
+    (rel) => !existsSync(join(repoRoot, rel)),
+  );
   checks.push({
-    name: 'no facility HTTP surface exists (backend-only scope guard)',
-    ok: httpAbsent,
-    detail: httpAbsent ? `${FACILITY_HTTP_DIR_REL} absent` : `${FACILITY_HTTP_DIR_REL} unexpectedly present`,
+    name: 'facility HTTP read surface exists (read-only scope guard)',
+    ok: missingReadFiles.length === 0,
+    detail:
+      missingReadFiles.length === 0
+        ? 'all facility HTTP read files present'
+        : `missing: ${missingReadFiles.join(', ')}`,
+  });
+  const presentWriteFiles = FACILITY_HTTP_WRITE_FILES.filter((rel) =>
+    existsSync(join(repoRoot, rel)),
+  );
+  checks.push({
+    name: 'no facility HTTP write surface exists (write is a separate future pass)',
+    ok: presentWriteFiles.length === 0,
+    detail:
+      presentWriteFiles.length === 0
+        ? 'no facility HTTP write files present'
+        : `unexpectedly present: ${presentWriteFiles.join(', ')}`,
   });
 
-  // 7. Backend-only scope guard: NO facility authorization action is defined in this pass.
+  // 7. READ-ONLY authz scope guard: the `facility.read` action IS defined; no facility WRITE action
+  //    (facility.write / facility.status.write) may exist yet.
   const authzText = readIfExists(join(repoRoot, AUTHZ_ACTIONS_MODULE_REL)) ?? '';
-  const noFacilityAction = !authzText.includes("'facility.");
+  const hasReadAction = authzText.includes("'facility.read'");
   checks.push({
-    name: 'no facility authorization action defined (backend-only scope guard)',
-    ok: noFacilityAction,
-    detail: noFacilityAction
-      ? 'authz catalog defines no facility.* action'
-      : 'authz catalog unexpectedly defines a facility.* action',
+    name: 'facility.read authorization action defined (read-only scope guard)',
+    ok: hasReadAction,
+    detail: hasReadAction
+      ? 'authz catalog defines facility.read'
+      : 'authz catalog missing facility.read action',
+  });
+  const noFacilityWriteAction =
+    !authzText.includes("'facility.write'") && !authzText.includes("'facility.status.write'");
+  checks.push({
+    name: 'no facility write authorization action defined (write is a separate future pass)',
+    ok: noFacilityWriteAction,
+    detail: noFacilityWriteAction
+      ? 'authz catalog defines no facility write action'
+      : 'authz catalog unexpectedly defines a facility write action',
   });
 
   // 8. package.json exposes facility:check.
@@ -286,9 +331,8 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     ok: scopeLeaks.length === 0,
     detail: scopeLeaks.length === 0 ? 'clean' : scopeLeaks.join('; '),
   });
-  // 14. Design-only readiness marker: the HTTP read-surface preflight exists and enumerates the
-  //     three planned read route paths. This does NOT invert the backend-only guards (checks 6/7):
-  //     no Facility HTTP implementation file and no facility.* action may exist yet.
+  // 14. The HTTP read-surface preflight exists and enumerates the three implemented read route
+  //     paths. It now sits alongside the shipped read surface (checks 6/7).
   const preflight = readIfExists(join(repoRoot, FACILITY_READ_PREFLIGHT_REL));
   const preflightOk =
     preflight !== undefined && FACILITY_READ_ROUTE_PATHS.every((route) => preflight.includes(route));

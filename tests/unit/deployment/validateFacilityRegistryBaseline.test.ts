@@ -12,6 +12,8 @@ import {
   FACILITY_MIGRATION_REL,
   FACILITY_DOMAIN_DIR_REL,
   FACILITY_HTTP_DIR_REL,
+  FACILITY_HTTP_READ_FILES,
+  FACILITY_HTTP_WRITE_FILES,
   AUTHZ_ACTIONS_MODULE_REL,
   FACILITY_READ_PREFLIGHT_REL,
 } from '../../../src/deployment/validateFacilityRegistryBaseline.js';
@@ -91,8 +93,9 @@ const VALID_PACKAGE_JSON = JSON.stringify(
   2,
 );
 
-/** An authorization catalog fixture that defines NO facility action (scope guard passes). */
-const AUTHZ_NO_FACILITY = "ParticipantRead: 'participant.read',\n";
+/** An authorization catalog fixture that DEFINES facility.read (read-only scope guard passes). */
+const AUTHZ_WITH_FACILITY_READ =
+  "ParticipantRead: 'participant.read',\n  FacilityRead: 'facility.read',\n";
 
 function baseFiles(): Record<string, string | null> {
   const files: Record<string, string | null> = {
@@ -100,12 +103,15 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_TEST_REL]: '// facility registry service test (fixture)\n',
     [FACILITY_INTEGRATION_TEST_REL]: '// facility registry integration test (fixture)\n',
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
-    [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_NO_FACILITY,
+    [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_READ,
     [FACILITY_READ_PREFLIGHT_REL]: VALID_PREFLIGHT,
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
     files[`${FACILITY_DOMAIN_DIR_REL}/${f}`] = `// ${f} (fixture)\n`;
+  }
+  for (const rel of FACILITY_HTTP_READ_FILES) {
+    files[rel] = `// ${rel} (fixture)\n`;
   }
   return files;
 }
@@ -181,21 +187,43 @@ describe('validateFacilityRegistryBaseline', () => {
     expect(checkOk(writeRepo(files), 'facility registry integration test exists')).toBe(false);
   });
 
-  it('fails the scope guard when a facility HTTP surface exists', () => {
+  it('fails the read-only scope guard when a facility HTTP read file is missing', () => {
     const files = baseFiles();
-    files[`${FACILITY_HTTP_DIR_REL}/index.ts`] = '// unexpected facility http surface\n';
+    files[`${FACILITY_HTTP_DIR_REL}/FacilityReadHttpAdapter.ts`] = null;
     const root = writeRepo(files);
     expect(
-      checkOk(root, 'no facility HTTP surface exists (backend-only scope guard)'),
+      checkOk(root, 'facility HTTP read surface exists (read-only scope guard)'),
     ).toBe(false);
   });
 
-  it('fails the scope guard when a facility authorization action is defined', () => {
+  it('fails the read-only scope guard when a facility HTTP write file is present', () => {
     const files = baseFiles();
-    files[AUTHZ_ACTIONS_MODULE_REL] = "FacilityRead: 'facility.read',\n";
+    files[FACILITY_HTTP_WRITE_FILES[0]!] = '// unexpected facility http write surface\n';
     const root = writeRepo(files);
     expect(
-      checkOk(root, 'no facility authorization action defined (backend-only scope guard)'),
+      checkOk(root, 'no facility HTTP write surface exists (write is a separate future pass)'),
+    ).toBe(false);
+  });
+
+  it('fails the read-only scope guard when the facility.read action is missing', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] = "ParticipantRead: 'participant.read',\n";
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility.read authorization action defined (read-only scope guard)'),
+    ).toBe(false);
+  });
+
+  it('fails the read-only scope guard when a facility WRITE action is defined', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] =
+      "FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n";
+    const root = writeRepo(files);
+    expect(
+      checkOk(
+        root,
+        'no facility write authorization action defined (write is a separate future pass)',
+      ),
     ).toBe(false);
   });
 

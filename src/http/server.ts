@@ -78,6 +78,12 @@ import {
   type ParticipantReadHttpDeps,
   type ParticipantWriteHttpDeps,
 } from './participant/index.js';
+import {
+  handleFacilityList,
+  handleFacilityDetail,
+  handleOrganizationFacilityList,
+  type FacilityReadHttpDeps,
+} from './facility/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -155,6 +161,14 @@ export interface AffiliationHttpServerDeps {
    * SAME `participant.organization_link.write` action.
    */
   readonly participantWrite?: ParticipantWriteHttpDeps;
+  /**
+   * Optional Facility Registry READ transport. When provided, the read-only facility list/detail
+   * and an organization's facilities list endpoints are served; when omitted they 404. These
+   * endpoints NEVER mutate the registry, enqueue outbox messages, touch governed state, invoke the
+   * kernel, or mutate the Organization Registry — they are thin, tenant-isolated projections gated
+   * by the centralized `facility.read` action.
+   */
+  readonly facilityRead?: FacilityReadHttpDeps;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -237,6 +251,19 @@ const PARTICIPANT_DETAIL_ROUTE = /^\/v1\/participants\/([^/]+)\/?$/;
  */
 const PARTICIPANT_STATUS_TRANSITIONS_ROUTE =
   /^\/v1\/participants\/([^/]+)\/status-transitions\/?$/;
+/** GET list of facilities (exact path). */
+const FACILITY_LIST_PATH = '/v1/facilities';
+/**
+ * GET a single facility by id. A single trailing segment only; never collides with the exact list
+ * path above.
+ */
+const FACILITY_DETAIL_ROUTE = /^\/v1\/facilities\/([^/]+)\/?$/;
+/**
+ * GET one organization's facilities. A two-segment path (`.../:organizationId/facilities`) anchored
+ * on a trailing `facilities` segment, so it never collides with the single-segment organization
+ * detail route or the participant-anchored organization routes.
+ */
+const ORGANIZATION_FACILITIES_ROUTE = /^\/v1\/organizations\/([^/]+)\/facilities\/?$/;
 function sendJson(res: ServerResponse, result: AffiliationHttpResult): void {
   const payload = JSON.stringify(result.body);
   res.writeHead(result.status, {
@@ -761,6 +788,100 @@ async function handleParticipantDetailRoute(
   sendJson(res, result);
 }
 
+/** Serve the read-only facility list endpoint (GET only). */
+async function handleFacilityListRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  facilityRead: FacilityReadHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the facility list endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const result = await handleFacilityList(
+    facilityRead,
+    { headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the read-only facility detail endpoint (GET only). */
+async function handleFacilityDetailRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  facilityRead: FacilityReadHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the facility detail endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const facilityId = decodeURIComponent(match[1] ?? '');
+  const result = await handleFacilityDetail(
+    facilityRead,
+    { facilityId, headers: headerMap(req) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the read-only organization-facilities list endpoint (GET only). */
+async function handleOrganizationFacilityListRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  facilityRead: FacilityReadHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the organization facilities endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const organizationId = decodeURIComponent(match[1] ?? '');
+  const result = await handleOrganizationFacilityList(
+    facilityRead,
+    { organizationId, headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 /** Serve the read-only organization-participant relationship list endpoint (GET only). */
 async function handleOrganizationParticipantListRoute(
   req: IncomingMessage,
@@ -993,12 +1114,17 @@ function classifyRoute(method: string, path: string): string {
   if (ORGANIZATION_PARTICIPANTS_ROUTE.test(path)) {
     return `${method} /v1/organizations/:id/participants`;
   }
+  if (ORGANIZATION_FACILITIES_ROUTE.test(path)) {
+    return `${method} /v1/organizations/:id/facilities`;
+  }
   if (ORGANIZATION_DETAIL_ROUTE.test(path)) return `${method} /v1/organizations/:id`;
   if (path === PARTICIPANT_LIST_PATH) return `${method} /v1/participants`;
   if (PARTICIPANT_STATUS_TRANSITIONS_ROUTE.test(path)) {
     return `${method} /v1/participants/:id/status-transitions`;
   }
   if (PARTICIPANT_DETAIL_ROUTE.test(path)) return `${method} /v1/participants/:id`;
+  if (path === FACILITY_LIST_PATH) return `${method} /v1/facilities`;
+  if (FACILITY_DETAIL_ROUTE.test(path)) return `${method} /v1/facilities/:id`;
   if (TRANSITION_ROUTE.test(path)) {
     return `${method} /v1/affiliation/applications/:id/transitions/:action`;
   }
@@ -1305,6 +1431,44 @@ async function handleRequest(
           return;
         }
       }
+    }
+  }
+
+  // Facility Registry READ transport (only when wired). GET-only: an organization's facilities,
+  // the facility list, and a single facility. The path is matched first, then the method (inside
+  // each route handler), so a non-GET request to a known facility path returns 405 (Allow: GET)
+  // rather than a 404 fall-through. The org-facilities path (two segments anchored on a trailing
+  // `facilities`) is matched BEFORE the single-segment facility routes; it is disjoint from every
+  // organization/participant route. Read-only: never mutates the registry, enqueues outbox, touches
+  // governed state, invokes the kernel, or mutates the Organization Registry.
+  if (deps.facilityRead !== undefined) {
+    const orgFacilitiesMatch = ORGANIZATION_FACILITIES_ROUTE.exec(path);
+    if (orgFacilitiesMatch !== null) {
+      await handleOrganizationFacilityListRoute(
+        req,
+        res,
+        deps.facilityRead,
+        orgFacilitiesMatch,
+        requestId,
+        deps.resolver,
+      );
+      return;
+    }
+    if (path === FACILITY_LIST_PATH) {
+      await handleFacilityListRoute(req, res, deps.facilityRead, requestId, deps.resolver);
+      return;
+    }
+    const facilityDetailMatch = FACILITY_DETAIL_ROUTE.exec(path);
+    if (facilityDetailMatch !== null) {
+      await handleFacilityDetailRoute(
+        req,
+        res,
+        deps.facilityRead,
+        facilityDetailMatch,
+        requestId,
+        deps.resolver,
+      );
+      return;
     }
   }
 
