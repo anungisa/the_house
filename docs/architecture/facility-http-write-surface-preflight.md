@@ -25,8 +25,11 @@
 > hold (one facility row + one sanitized outbox row per mutation; no Organization Registry or
 > governed-lifecycle mutation; closed `FacilityDto` excluding `tenantId`; sanitized outbox payloads).
 > The suite skips cleanly when `RUN_DB_TESTS` is unset, so default `npm test` stays hermetic. It uses
-> the dedicated tenant namespace `…d5`/`…e6` (distinct from every other gated suite). The facility
-> **status-transition** surface remains deferred and is NOT exercised.
+> the dedicated tenant namespace `…d5`/`…e6` (distinct from every other gated suite). This suite has
+> now been **executed** against a real local PostgreSQL (`house_pg_test`, `127.0.0.1:55432`) with the
+> restricted runtime role — **45/45 passing**, and green inside the full gated integration run
+> (**305/305** across 16 files). The facility **status-transition** surface remains deferred and is
+> NOT exercised.
 >
 > The Facility Registry stays a **reference-data** domain. The write surface is a thin projection
 > over the already-validated `FacilityRegistryService`, which owns the transactional outbox. It

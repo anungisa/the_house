@@ -171,10 +171,10 @@ connection strings); no Organization Registry or governed-lifecycle (`entity_sta
 `state_transition` / `audit_event`) mutation; the status-transition sub-resource unimplemented (404)
 and `facility.status.write` absent; 405 with the correct `Allow` header on unsupported methods; and
 error responses that leak no PII, SQL, or stack details. It uses the dedicated tenant namespace
-`…d5`/`…e6`. The suite skips cleanly when `RUN_DB_TESTS` is unset. (In this pass no local PostgreSQL
-was reachable, so the gated run was authored + collected but not executed here; it runs under
-`RUN_DB_TESTS=1` against a local restricted role.) The facility **status-transition** HTTP surface
-remains deferred.
+`…d5`/`…e6`. The suite skips cleanly when `RUN_DB_TESTS` is unset. This gated suite has now been
+**executed** against a real local PostgreSQL (`house_pg_test`, `127.0.0.1:55432`) with the restricted
+runtime role — **45/45 passing** — and is green inside the full gated integration run
+(**305/305** across 16 files). The facility **status-transition** HTTP surface remains deferred.
 
 ## Out of scope (intentionally not built)
 

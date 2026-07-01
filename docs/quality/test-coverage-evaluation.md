@@ -635,7 +635,7 @@ remains deferred; no Facility write route, action, or preflight exists.
 
 ## Facility HTTP Write PostgreSQL/RLS Validation
 
-_Date: 2026-07-01 (commit: see `Validate facility write HTTP PostgreSQL RLS`). Test + docs only; NO production code changed (no adapter, server, composition, DTO, or migration bug found). Gated DB run was NOT executed locally — no PostgreSQL was reachable in this environment (Docker daemon down, ports 5432/55432 closed); the suite was authored + collected (45 tests skip cleanly) and runs under `RUN_DB_TESTS=1` against a local restricted role._
+_Date: 2026-07-01 (commits: `Validate facility write HTTP PostgreSQL RLS` authored the suite; `Execute facility write HTTP PostgreSQL RLS validation` executed it). Test + docs only; NO production code changed (no adapter, server, composition, DTO, or migration bug found). The gated DB run has now been **executed** against a real local PostgreSQL (`house_pg_test`, `127.0.0.1:55432`) using the restricted runtime role: the dedicated suite passes **45/45** and the full gated integration run passes **305/305** across 16 files._
 
 A gated integration pass adding an end-to-end PostgreSQL/RLS proof for the already-shipped
 **Facility HTTP write surface — phase 1 (create + update)** through the REAL native HTTP server and a
@@ -684,14 +684,16 @@ sink), consistent with the read-surface pass.
 ### Validation result
 
 - Default hermetic suite unchanged and green; the new file skips cleanly when `RUN_DB_TESTS` is
-  unset, so `npm test` remains DB-free.
-- Dedicated gated suite: **NOT executed** — no local PostgreSQL reachable in this environment. 45
-  tests collected and skipped cleanly.
-- Full gated integration: **NOT executed** for the same reason.
-- No production code changed.
+  unset, so `npm test` remains DB-free (1270 passed / 305 skipped).
+- Dedicated gated suite: **45/45 passing** against a real local PostgreSQL (`house_pg_test`,
+  `127.0.0.1:55432`) with the restricted `house_app_facility_http_write_test` runtime role
+  (non-superuser, non-`BYPASSRLS`, no `DELETE`).
+- Full gated integration: **305/305 passing** across 16 files (serialized under the gated Vitest
+  config).
+- Coverage unchanged (82.55% st / 83.54% br / 85% fn); gated tests add no hermetic coverage.
+- No production code changed. Local PostgreSQL only; no external systems contacted.
 
 ### Recommended next pass (do not auto-start)
 
-Facility HTTP status-transition implementation, OR (once a local/dev PostgreSQL is available)
-execution of this gated suite + the full gated integration run, OR actual Azure dev-environment
-smoke execution.
+With the gated write validation now executed and proven, the next pass is Facility HTTP
+status-transition implementation, OR actual Azure dev-environment smoke execution.
