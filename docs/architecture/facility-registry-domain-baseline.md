@@ -149,3 +149,11 @@ never mutates the Organization or Participant registries.
 Deferred, non-committal ideas for later passes: a read-only HTTP surface (preflight-first, mirroring
 the participant read surface); a `facility.read` authorization action; a `virtual` facility type; and
 richer `visibility` semantics. None of these are implemented here.
+
+The read-only HTTP surface has a **design/contract preflight**
+([facility-http-read-surface-preflight.md](./facility-http-read-surface-preflight.md)) fixing the
+three GET routes (`/v1/facilities`, `/v1/facilities/:facilityId`,
+`/v1/organizations/:organizationId/facilities`), DTOs, `facility.read` authorization, pagination,
+error mapping, privacy, and route ordering. **No HTTP route, DTO, adapter, or authorization action
+has been implemented yet** — the preflight is design only, and `facility:check` still guards that no
+Facility HTTP file and no `facility.*` action exist.

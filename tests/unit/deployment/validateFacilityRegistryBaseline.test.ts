@@ -13,6 +13,7 @@ import {
   FACILITY_DOMAIN_DIR_REL,
   FACILITY_HTTP_DIR_REL,
   AUTHZ_ACTIONS_MODULE_REL,
+  FACILITY_READ_PREFLIGHT_REL,
 } from '../../../src/deployment/validateFacilityRegistryBaseline.js';
 
 /**
@@ -67,6 +68,17 @@ const DOMAIN_FILES = [
   'index.ts',
 ];
 
+/** A read-surface preflight fixture that enumerates the three planned read route paths. */
+const VALID_PREFLIGHT = [
+  '# Facility HTTP read-surface preflight',
+  '',
+  'Design-only. The three read routes:',
+  '- GET /v1/facilities',
+  '- GET /v1/facilities/:facilityId',
+  '- GET /v1/organizations/:organizationId/facilities',
+  '',
+].join('\n');
+
 const VALID_PACKAGE_JSON = JSON.stringify(
   {
     name: 'fixture',
@@ -89,6 +101,7 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_INTEGRATION_TEST_REL]: '// facility registry integration test (fixture)\n',
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_NO_FACILITY,
+    [FACILITY_READ_PREFLIGHT_REL]: VALID_PREFLIGHT,
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
@@ -183,6 +196,33 @@ describe('validateFacilityRegistryBaseline', () => {
     const root = writeRepo(files);
     expect(
       checkOk(root, 'no facility authorization action defined (backend-only scope guard)'),
+    ).toBe(false);
+  });
+
+  it('fails when the read-surface preflight document is missing', () => {
+    const files = baseFiles();
+    files[FACILITY_READ_PREFLIGHT_REL] = null;
+    expect(
+      checkOk(
+        writeRepo(files),
+        'facility HTTP read-surface preflight documents the three read routes',
+      ),
+    ).toBe(false);
+  });
+
+  it('fails when the read-surface preflight omits a read route path', () => {
+    const files = baseFiles();
+    files[FACILITY_READ_PREFLIGHT_REL] = [
+      '# Facility HTTP read-surface preflight',
+      '- GET /v1/facilities',
+      '- GET /v1/facilities/:facilityId',
+      '', // missing the organization-scoped facilities route
+    ].join('\n');
+    expect(
+      checkOk(
+        writeRepo(files),
+        'facility HTTP read-surface preflight documents the three read routes',
+      ),
     ).toBe(false);
   });
 

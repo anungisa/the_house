@@ -13,6 +13,8 @@
  * secret-looking values, sport-specific terminology, or out-of-scope behavior terms leak into the
  * domain code, doc, test, or migration. It ALSO enforces the backend-only scope of this pass with
  * fail-closed guards: no facility HTTP surface and no facility authorization action may exist yet.
+ * As a DESIGN-ONLY readiness marker (not an inversion of those guards), it also confirms the HTTP
+ * read-surface preflight document exists and enumerates the three planned read route paths.
  *
  * The thin CLI wrapper lives in scripts/validate-facility-registry-baseline.ts.
  */
@@ -45,6 +47,22 @@ export const FACILITY_INTEGRATION_TEST_REL =
 export const FACILITY_MIGRATION_REL = 'db/migrations/0011_facility_registry.sql';
 export const FACILITY_VALIDATOR_MODULE = 'src/deployment/validateFacilityRegistryBaseline.ts';
 export const FACILITY_VALIDATOR_SCRIPT = 'scripts/validate-facility-registry-baseline.ts';
+
+/**
+ * Design-only readiness marker. The HTTP read-surface preflight fixes the read boundary (endpoints,
+ * DTOs, authz, privacy, pagination, routing, tests) BEFORE any Facility HTTP code is written. Its
+ * presence + the three documented read route paths are asserted here; this does NOT invert the
+ * backend-only guards (no HTTP files, no `facility.*` action may exist yet).
+ */
+export const FACILITY_READ_PREFLIGHT_REL =
+  'docs/architecture/facility-http-read-surface-preflight.md';
+
+/** The three planned Facility read route paths the preflight must enumerate. */
+export const FACILITY_READ_ROUTE_PATHS: readonly string[] = [
+  '/v1/facilities',
+  '/v1/facilities/:facilityId',
+  '/v1/organizations/:organizationId/facilities',
+];
 
 /**
  * Backend-only scope guards. The Facility Registry baseline pass deliberately ships NO HTTP surface
@@ -268,7 +286,19 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     ok: scopeLeaks.length === 0,
     detail: scopeLeaks.length === 0 ? 'clean' : scopeLeaks.join('; '),
   });
-
+  // 14. Design-only readiness marker: the HTTP read-surface preflight exists and enumerates the
+  //     three planned read route paths. This does NOT invert the backend-only guards (checks 6/7):
+  //     no Facility HTTP implementation file and no facility.* action may exist yet.
+  const preflight = readIfExists(join(repoRoot, FACILITY_READ_PREFLIGHT_REL));
+  const preflightOk =
+    preflight !== undefined && FACILITY_READ_ROUTE_PATHS.every((route) => preflight.includes(route));
+  checks.push({
+    name: 'facility HTTP read-surface preflight documents the three read routes',
+    ok: preflightOk,
+    detail: preflightOk
+      ? 'preflight present and documents all three read routes'
+      : `${FACILITY_READ_PREFLIGHT_REL} missing or missing a read route path`,
+  });
   return finalize(checks);
 }
 
