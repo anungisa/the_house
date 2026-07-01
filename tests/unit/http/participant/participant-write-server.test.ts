@@ -312,4 +312,92 @@ describe('participant write routes (server transport)', () => {
     );
     expect(res.status).toBe(404);
   });
+
+  // Malformed-body and route-shadowing negative paths driven through the real server transport.
+  // The write handlers parse the request body at the server layer, so invalid JSON must surface a
+  // deterministic 400 error DTO (never a 500 or a partial write). The shadowing case guards against
+  // a 3-segment org-participants relationship path being misrouted to the 4-segment status route.
+  it('returns 400 for malformed JSON on POST /v1/participants', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/participants`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: '{not valid json',
+    });
+    expect(res.status).toBe(400);
+    const body = (await res.json()) as { status: string };
+    expect(body.status).toBe('error');
+  });
+
+  it('returns 400 for malformed JSON on PATCH /v1/participants/:id', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    await fetch(`${baseUrl}/v1/participants`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: JSON.stringify({ participantId: 'bad-json-1', displayName: 'Bad JSON One' }),
+    });
+    const res = await fetch(`${baseUrl}/v1/participants/bad-json-1`, {
+      method: 'PATCH',
+      headers: adminHeaders(),
+      body: '{not valid json',
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('returns 400 for malformed JSON on POST /v1/participants/:id/status-transitions', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/participants/bad-json-1/status-transitions`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: '{not valid json',
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('returns 400 for malformed JSON on POST /v1/organizations/:organizationId/participants', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/organizations/${ORG_A}/participants`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: '{not valid json',
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('returns 400 for malformed JSON on POST .../participants/:relationshipId/status-transitions', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(
+      `${baseUrl}/v1/organizations/${ORG_A}/participants/some-rel/status-transitions`,
+      { method: 'POST', headers: adminHeaders(), body: '{not valid json' },
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('404s POST /v1/organizations/:organizationId/participants/:relationshipId (no /status-transitions)', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/organizations/${ORG_A}/participants/some-rel`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: JSON.stringify({ targetStatus: 'suspended' }),
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('returns 405 with Allow: GET, POST for a PATCH on the organization-participants collection', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/organizations/${ORG_A}/participants`, {
+      method: 'PATCH',
+      headers: adminHeaders(),
+      body: JSON.stringify({ participantId: 'x', relationshipType: 'member' }),
+    });
+    expect(res.status).toBe(405);
+    expect(res.headers.get('allow')).toBe('GET, POST');
+  });
 });

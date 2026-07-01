@@ -9,6 +9,12 @@ import type {
   AffiliationApplicationTransitionResponse,
 } from '../../../../src/domains/affiliation/AffiliationApplicationDtos.js';
 import type { WorkflowHttpDeps } from '../../../../src/http/workflow/WorkflowHttpAdapter.js';
+import type { WorkflowReadHttpDeps } from '../../../../src/http/workflow/WorkflowReadHttpAdapter.js';
+import { InMemoryWorkflowStore } from '../../../../src/governance/workflow/InMemoryWorkflowStore.js';
+import type {
+  WorkflowInstanceRecord,
+  WorkflowStepRecord,
+} from '../../../../src/governance/workflow/WorkflowTypes.js';
 import type {
   WorkflowExecutionHttpDeps,
   WorkflowTransitionExecutor,
@@ -126,12 +132,14 @@ afterEach(async () => {
 async function start(opts: {
   workflow?: WorkflowHttpDeps;
   workflowExecution?: WorkflowExecutionHttpDeps;
+  workflowRead?: WorkflowReadHttpDeps;
   evidence?: EvidenceHttpDeps;
 }): Promise<string> {
   const server = createAffiliationHttpServer({
     executor: new RecordingExecutor(),
     ...(opts.workflow !== undefined ? { workflow: opts.workflow } : {}),
     ...(opts.workflowExecution !== undefined ? { workflowExecution: opts.workflowExecution } : {}),
+    ...(opts.workflowRead !== undefined ? { workflowRead: opts.workflowRead } : {}),
     ...(opts.evidence !== undefined ? { evidence: opts.evidence } : {}),
   });
   openServers.push(server);
@@ -260,5 +268,95 @@ describe('workflow execution HTTP server transport', () => {
       body: JSON.stringify({}),
     });
     expect(res.status).toBe(404);
+  });
+});
+
+/** Build an in-memory workflow-read transport seeded with one pending instance + step. */
+function buildWorkflowRead(): WorkflowReadHttpDeps {
+  const instance: WorkflowInstanceRecord = {
+    id: 'wf-1',
+    tenantId: 'tenant-a',
+    transitionRequestId: 'tr-1',
+    entityType: 'AffiliationApplication',
+    entityId: 'app-1',
+    workflowType: 'affiliation_two_tier_review',
+    status: 'pending',
+    currentStepCode: 'regional_signoff',
+    createdAt: '2024-01-01T00:00:01.000Z',
+    updatedAt: '2024-01-01T00:00:01.000Z',
+  };
+  const step: WorkflowStepRecord = {
+    id: 'step-1',
+    tenantId: 'tenant-a',
+    workflowInstanceId: 'wf-1',
+    stepCode: 'regional_signoff',
+    stepOrder: 1,
+    reviewTier: 'regional_review',
+    required: true,
+    status: 'pending',
+    assignedScopeType: undefined,
+    assignedScopeId: undefined,
+    assignedRoleKey: 'regional_reviewer',
+    decidedByUserId: undefined,
+    decidedAt: undefined,
+    decisionReason: undefined,
+  };
+  const store = new InMemoryWorkflowStore({ instances: [instance], steps: [step], decisions: [] });
+  return { readStore: store };
+}
+
+/**
+ * Server-transport coverage for the workflow-admin READ routes (list + detail) and for malformed
+ * request bodies on the decision/execute write routes. The read routes are dispatched only for GET
+ * and previously had no server-level test; the malformed-body cases drive the body-parse catch
+ * blocks that convert invalid JSON into a deterministic 400 error DTO.
+ */
+describe('workflow read + malformed-body HTTP server transport (negative paths)', () => {
+  it('serves GET /v1/workflows (list) when the read transport is wired', async () => {
+    const base = await start({ workflowRead: buildWorkflowRead() });
+    const res = await fetch(`${base}/v1/workflows`, { headers: ID_HEADERS });
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { items: unknown[] };
+    expect(body.items.length).toBe(1);
+  });
+
+  it('serves GET /v1/workflows/:id (detail) when the read transport is wired', async () => {
+    const base = await start({ workflowRead: buildWorkflowRead() });
+    const res = await fetch(`${base}/v1/workflows/wf-1`, { headers: ID_HEADERS });
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { workflowInstanceId: string };
+    expect(body.workflowInstanceId).toBe('wf-1');
+  });
+
+  it('404s the workflow list route when the read transport is not wired', async () => {
+    const base = await start({});
+    const res = await fetch(`${base}/v1/workflows`, { headers: ID_HEADERS });
+    expect(res.status).toBe(404);
+  });
+
+  it('returns 400 for a malformed JSON body on the decision route', async () => {
+    const { deps } = buildWorkflow();
+    const base = await start({ workflow: deps });
+    const res = await fetch(`${base}/v1/workflows/wf-1/steps/regional_signoff/decision`, {
+      method: 'POST',
+      headers: { ...ID_HEADERS, 'content-type': 'application/json' },
+      body: '{not valid json',
+    });
+    expect(res.status).toBe(400);
+    const body = (await res.json()) as { status: string };
+    expect(body.status).toBe('error');
+  });
+
+  it('returns 400 for a malformed JSON body on the execute route', async () => {
+    const { deps } = buildExecution();
+    const base = await start({ workflowExecution: deps });
+    const res = await fetch(`${base}/v1/workflows/wf-1/execute`, {
+      method: 'POST',
+      headers: { ...ID_HEADERS, 'content-type': 'application/json', 'idempotency-key': 'exec-1' },
+      body: '{not valid json',
+    });
+    expect(res.status).toBe(400);
+    const body = (await res.json()) as { status: string };
+    expect(body.status).toBe('error');
   });
 });

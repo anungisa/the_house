@@ -129,6 +129,21 @@ describe('organization read routes (server transport)', () => {
     expect(res.status).toBe(401);
   });
 
+  // Authenticated (tenant + actor present) but the actor's role does not grant organization.read:
+  // the read gate must fail closed with 403 (not 401, not 200) through the server transport.
+  it('returns 403 when the authenticated actor lacks the organization-read role', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/organizations`, {
+      headers: {
+        'x-house-tenant-id': TENANT_A,
+        'x-house-actor-user-id': 'op-1',
+        'x-house-actor-role-keys': 'member',
+      },
+    });
+    expect(res.status).toBe(403);
+  });
+
   it('still serves the existing transition route (405 on GET)', async () => {
     const { server, baseUrl } = await build();
     active = server;

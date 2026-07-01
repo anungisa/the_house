@@ -525,3 +525,47 @@ The gated suite was executed against a local PostgreSQL (`RUN_DB_TESTS=1`, restr
 ### Recommended next pass
 
 **Participant write HTTP preflight design under the existing service** — map the request/response contracts, authorization actions (a new `participant.write`-class action distinct from `participant.read`), and HTTP edge negative-path coverage, without adding domain behavior. (Alternatives: an HTTP-edge negative-path coverage sweep, or an RLS cross-tenant regression suite consolidation.)
+
+---
+
+## HTTP Edge Negative-Path Sweep
+
+_Date: 2025 (commit: see `Add HTTP edge negative path coverage`). Test-only + docs; NO production code changed._
+
+A test-confidence pass hardening the native HTTP server transport (`src/http/server.ts` and its adapters) against malformed input, method misuse, route shadowing, and not-wired exposure — before Facility domain work begins. All additions are hermetic (in-memory stores, ephemeral `127.0.0.1:0` listeners, no DB / Docker / Azure / external systems).
+
+### Routes covered (server-transport level)
+
+- **Evidence quarantine** (`handleEvidenceQuarantineRoute`, previously exercised only at the adapter level, never wired into a server test): `GET /v1/evidence/quarantine` (list), `GET /v1/evidence/quarantine/:id` (detail), `POST /v1/evidence/quarantine/:id/disposition`.
+- **Workflow admin read** (`handleWorkflowListRoute` / `handleWorkflowDetailRoute`, never wired into a server test): `GET /v1/workflows`, `GET /v1/workflows/:id`.
+- **Workflow write body-parse**: `POST /v1/workflows/:id/steps/:step/decision`, `POST /v1/workflows/:id/execute`.
+- **Participant write** (`POST /v1/participants`, `PATCH /v1/participants/:id`, `POST /v1/participants/:id/status-transitions`, `POST /v1/organizations/:orgId/participants`, `POST /v1/organizations/:orgId/participants/:relationshipId/status-transitions`).
+- **Organization read** (`GET /v1/organizations`).
+
+### Negative-path categories exercised
+
+- **Malformed body parsing** → deterministic `400` error DTO (never `500`, never a partial write) on every write route: participant create/update/status-transition/org-link/rel-status, workflow decision, workflow execute, evidence quarantine disposition.
+- **Method gating / 405 + Allow** — quarantine list/detail (`Allow: GET`), disposition (`Allow: POST`); participant org-participants collection `PATCH` (`Allow: GET, POST`).
+- **Route shadowing** — `POST /v1/organizations/:orgId/participants/:relationshipId` (3-segment, no `/status-transitions`) correctly `404`s rather than misrouting to the 4-segment status route.
+- **Authz fail-closed** — organization read returns `403` for an authenticated actor whose role lacks `organization.read` (distinct from the existing `401` no-tenant case).
+- **Not-wired exposure** — quarantine and workflow-read routes `404` when their transport is not configured (no accidental exposure).
+
+### Coverage delta (hermetic default suite)
+
+| Metric | Before | After | Δ |
+| --- | --- | --- | --- |
+| Statements | 81.23% | **82.33%** | +1.10 |
+| Branches | 83.81% | **84.13%** | +0.32 |
+| Functions | 84.12% | **84.36%** | +0.24 |
+
+Tests: 1108 → **1129** passing (212 skipped, unchanged). The gain concentrates in `src/http/server.ts` (quarantine + workflow-read dispatch branches and write-route body-parse catch blocks) plus first server-level exercise of `EvidenceQuarantineHttpAdapter` and `WorkflowReadHttpAdapter`.
+
+### Remaining HTTP-edge gaps (intentional / defensive)
+
+- The `405`-branches **inside** `handleParticipantListRoute` / `handleParticipantDetailRoute` / `handleWorkflowListRoute` / `handleWorkflowDetailRoute` are unreachable dead code: dispatch in `handleRequest` pre-guards `method === 'GET'` before those handlers are called, so a non-GET method never enters them. Covering them would require a production change and is intentionally left uncovered.
+- The inner last-resort `500` fallback inside `createAffiliationHttpServer` (the defensive `catch { if (!res.headersSent) writeHead(500) }`) is near-unreachable because the outer `.catch` already converts thrown errors into structured responses; left as defensive code.
+- These are documented as intentional defensive branches, not test gaps.
+
+### Recommended next pass (do not auto-start)
+
+Facility domain preflight coverage map → Facility Registry domain baseline → actual Azure dev-environment smoke execution.
