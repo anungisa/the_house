@@ -569,3 +569,9 @@ Tests: 1108 → **1129** passing (212 skipped, unchanged). The gain concentrates
 ### Recommended next pass (do not auto-start)
 
 Facility domain preflight coverage map → Facility Registry domain baseline → actual Azure dev-environment smoke execution.
+
+> **Facility Registry should begin with a preflight coverage map before any code.** The HTTP edge
+> and the Participant Registry write surface have just been hardened, so the next domain must first
+> fix its scope, kernel boundary, RLS/migration shape, authorization actions, and test matrix in a
+> design pass — see [facility-domain-preflight-coverage-map.md](../architecture/facility-domain-preflight-coverage-map.md) —
+> before the baseline implementation adds types, a migration, or tests.
