@@ -190,6 +190,23 @@ which run only when `RUN_DB_TESTS=1`). They prove:
   executed — all without ever mutating state. The `executed` marker is derived from
   `transition_request.status = 'executed'`, while the instance itself stays `approved`.
 
+### Gated-run isolation (harness note)
+
+The gated integration suites share a single persistent PostgreSQL database that is **not**
+truncated between runs. Two harness rules keep the full gated run repeatable without manual
+cleanup:
+
+- **Unique per-run tenant.** This suite generates fresh random `TENANT_A` / `TENANT_B` UUIDs per
+  run instead of fixed constants. Its status-filter assertion lists approved workflows against the
+  default 50-row page, so accumulated rows under a shared tenant used to push the freshly-created
+  workflow off page 1. A per-run tenant makes the suite see only its own rows (no truncation, RLS
+  preserved). Any gated suite with a default-page list assertion must do the same or scope its
+  assertions to created identifiers — never assume an empty DB.
+- **Serialized gated files.** `vitest.config.ts` disables file parallelism when `RUN_DB_TESTS=1`,
+  so gated suites run one file at a time. They share tables (e.g. `governance.outbox_message`) and
+  assert exact outbox-row counts after clearing, which raced under parallel file execution.
+  Hermetic `npm test` stays fully parallel.
+
 ## Consumers
 
 The framework-neutral admin/reviewer client that consumes these read endpoints (alongside the

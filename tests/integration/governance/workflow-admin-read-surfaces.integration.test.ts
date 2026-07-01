@@ -51,8 +51,17 @@ const { fetch } = globalThis;
 const here = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 
-const TENANT_A = '11111111-1111-1111-1111-111111111111';
-const TENANT_B = '22222222-2222-2222-2222-222222222222';
+// HARNESS ISOLATION: these gated suites run against a PERSISTENT PostgreSQL test DB that is NOT
+// truncated between runs. This suite has a default-page-dependent assertion ("filters the list by
+// status" lists approved workflows with no entityId filter, so it depends on the default 50-row
+// page). With a fixed tenant, repeated gated runs (and other workflow suites that share the same
+// fixed tenant) accumulate dozens of approved/pending workflow rows under that tenant, eventually
+// pushing this suite's freshly-created approved workflow off the first page and failing the run.
+// Fix: give each RUN a UNIQUE tenant namespace so this suite only ever sees the rows it created,
+// regardless of leftover data or parallel workflow suites. This preserves RLS (any UUID is a valid
+// tenant), needs no truncation (no cross-suite races), and does not change production pagination.
+const TENANT_A = randomUUID();
+const TENANT_B = randomUUID();
 const ENTITY_TYPE = 'AffiliationApplication';
 const SEASON = '2025-26';
 const TRUSTED = new TrustedHeadersAuthContextResolver();
