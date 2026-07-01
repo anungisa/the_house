@@ -75,6 +75,12 @@ export const ErrorCode = {
   ORGANIZATION_PARTICIPANT_NOT_FOUND: 'ORGANIZATION_PARTICIPANT_NOT_FOUND',
   /** An organization-participant relationship with the same id already exists (idempotency conflict). */
   ORGANIZATION_PARTICIPANT_ALREADY_EXISTS: 'ORGANIZATION_PARTICIPANT_ALREADY_EXISTS',
+  /** A referenced facility does not exist for the tenant. */
+  FACILITY_NOT_FOUND: 'FACILITY_NOT_FOUND',
+  /** A facility with the same tenant-scoped id already exists (idempotency conflict). */
+  FACILITY_ALREADY_EXISTS: 'FACILITY_ALREADY_EXISTS',
+  /** A facility's referenced organization does not exist for the tenant (covers cross-tenant orgs). */
+  FACILITY_ORGANIZATION_NOT_FOUND: 'FACILITY_ORGANIZATION_NOT_FOUND',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

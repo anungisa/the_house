@@ -42,7 +42,8 @@
     "synthetic:check": "tsx scripts/validate-synthetic-lifecycle-baseline.ts",
     "organization:check": "tsx scripts/validate-organization-registry-baseline.ts",
     "participant:check": "tsx scripts/validate-participant-registry-baseline.ts",
-    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check && npm run smoke:check && npm run release:check && npm run synthetic:check && npm run organization:check && npm run participant:check"
+    "facility:check": "tsx scripts/validate-facility-registry-baseline.ts",
+    "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check && npm run smoke:check && npm run release:check && npm run synthetic:check && npm run organization:check && npm run participant:check && npm run facility:check"
   },
   "dependencies": {
     "@azure/identity": "^4.13.1",

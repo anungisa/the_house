@@ -75,3 +75,6 @@ jobs:
 
       - name: Validate participant registry baseline
         run: npm run participant:check
+
+      - name: Validate facility registry baseline
+        run: npm run facility:check

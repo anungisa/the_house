@@ -32,6 +32,11 @@ export const TelemetryCounters = {
   participantRegistryOrganizationLinked: 'participant.registry.organization_linked.count',
   participantRegistryRead: 'participant.registry.read.count',
   participantRegistryWrite: 'participant.registry.write.count',
+  facilityRegistryCreated: 'facility.registry.created.count',
+  facilityRegistryUpdated: 'facility.registry.updated.count',
+  facilityRegistryStatusChanged: 'facility.registry.status_changed.count',
+  facilityRegistryRead: 'facility.registry.read.count',
+  facilityRegistryWrite: 'facility.registry.write.count',
 } as const;
 
 /** Duration metric names (milliseconds). */
@@ -57,6 +62,8 @@ export const TelemetryEvents = {
   participantRegistryCreated: 'participant.registry.created',
   participantRegistryStatusChanged: 'participant.registry.status_changed',
   participantRegistryOrganizationLinked: 'participant.registry.organization_linked',
+  facilityRegistryCreated: 'facility.registry.created',
+  facilityRegistryStatusChanged: 'facility.registry.status_changed',
 } as const;
 
 /** Stable, low-cardinality attribute keys. */
