@@ -7,27 +7,30 @@ import pg from 'pg';
 
 import { PgParticipantRegistryStore } from '../../../src/domains/participant-registry/PgParticipantRegistryStore.js';
 import { ParticipantRegistryService } from '../../../src/domains/participant-registry/ParticipantRegistryService.js';
+import { PgOrganizationRegistryStore } from '../../../src/domains/organization-registry/PgOrganizationRegistryStore.js';
 import {
   handleParticipantCreate,
   handleParticipantUpdate,
   handleParticipantStatusTransition,
+  handleOrganizationParticipantLink,
   type ParticipantWriteHttpDeps,
 } from '../../../src/http/participant/ParticipantWriteHttpAdapter.js';
 import { TrustedHeadersAuthContextResolver } from '../../../src/http/auth/TrustedHeadersAuthContextResolver.js';
 
 /**
  * Gated PostgreSQL integration tests for the PARTICIPANT REGISTRY HTTP *WRITE* surface — create,
- * update, and the reference-data status transition — over the real
+ * update, the reference-data status transition, and the organization-link create — over the real
  * {@link PgParticipantRegistryStore} and the real HTTP write adapter
  * (`POST /v1/participants`, `PATCH /v1/participants/:participantId`,
- * `POST /v1/participants/:participantId/status-transitions`).
+ * `POST /v1/participants/:participantId/status-transitions`,
+ * `POST /v1/organizations/:organizationId/participants`).
  *
  * These prove, against REAL PostgreSQL with RLS FORCED and a least-privilege NON-superuser,
  * NON-BYPASSRLS runtime role, that the HTTP write path:
  *   * creates, updates, and transitions the status of only the AUTHENTICATED tenant's participant
  *     (tenant from the trusted `x-house-*` headers, never the body);
- *   * enforces the centralized `participant.write` / `participant.status.write` actions (read-only
- *     actors get 403);
+ *   * enforces the centralized `participant.write` / `participant.status.write` /
+ *     `participant.organization_link.write` actions (read-only actors get 403);
  *   * is idempotency-gated on create (missing key → 400; duplicate id → 409);
  *   * normalizes email in the persisted row AND the authorized read-back;
  *   * writes the participant row and its transactional outbox row together (atomic), with a
@@ -50,8 +53,10 @@ import { TrustedHeadersAuthContextResolver } from '../../../src/http/auth/Truste
  * SELF-PROVISIONING: using the admin connection, the suite applies migrations and creates one
  * least-privilege WRITE role (idempotent, re-runnable):
  *   * house_app_participant_http_write_test — LOGIN, NOSUPERUSER, NOBYPASSRLS; SELECT/INSERT/UPDATE
- *     on participant_registry.participant and governance.outbox_message; EXECUTE
- *     current_tenant_id(). No DELETE, no governance lifecycle-table grants.
+ *     on participant_registry.participant, participant_registry.organization_participant, and
+ *     governance.outbox_message; SELECT on organization_registry.organization (the link route reads
+ *     the org to confirm same-tenant existence); EXECUTE current_tenant_id(). No DELETE, no
+ *     governance lifecycle-table grants.
  */
 
 const ADMIN_URL = process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL ?? '';
@@ -64,6 +69,10 @@ const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 // Suite-specific tenant UUIDs (distinct from other integration suites to avoid interference).
 const TENANT_A = '40000000-0000-4000-8000-0000000000a7';
 const TENANT_B = '40000000-0000-4000-8000-0000000000b8';
+
+// Suite-specific organization UUIDs (one per tenant) seeded via admin for the link route.
+const ORG_A = '40000000-0000-4000-8000-00000000a001';
+const ORG_B = '40000000-0000-4000-8000-00000000b002';
 
 const APP_ROLE = 'house_app_participant_http_write_test';
 const APP_PW = 'participant_http_write_pw';
@@ -135,17 +144,27 @@ async function provisionRole(admin: pg.Pool): Promise<void> {
       END IF;
     END $$;
   `);
-  // Least privilege for the phase-1 WRITE surface: SELECT/INSERT/UPDATE on the participant table
-  // (the create duplicate pre-check needs SELECT; create/update need INSERT/UPDATE) plus the
-  // transactional outbox. NO DELETE anywhere, and NO grants on governance lifecycle tables
-  // (entity_state / state_transition / audit_event) — the registry never touches them.
+  // Least privilege for the WRITE surface: SELECT/INSERT/UPDATE on the participant table
+  // (the create duplicate pre-check needs SELECT; create/update need INSERT/UPDATE), the
+  // organization_participant table (the link route pre-check needs SELECT; the link create needs
+  // INSERT/UPDATE), plus the transactional outbox. SELECT on organization_registry.organization so
+  // the link route can confirm same-tenant organization existence. NO DELETE anywhere, and NO
+  // grants on governance lifecycle tables (entity_state / state_transition / audit_event) — the
+  // registry never touches them.
   await admin.query(`REVOKE ALL ON participant_registry.participant FROM ${APP_ROLE}`);
+  await admin.query(`REVOKE ALL ON participant_registry.organization_participant FROM ${APP_ROLE}`);
+  await admin.query(`REVOKE ALL ON organization_registry.organization FROM ${APP_ROLE}`);
   await admin.query(`REVOKE ALL ON governance.outbox_message FROM ${APP_ROLE}`);
   await admin.query(`GRANT USAGE ON SCHEMA participant_registry TO ${APP_ROLE}`);
+  await admin.query(`GRANT USAGE ON SCHEMA organization_registry TO ${APP_ROLE}`);
   await admin.query(`GRANT USAGE ON SCHEMA governance TO ${APP_ROLE}`);
   await admin.query(
     `GRANT SELECT, INSERT, UPDATE ON participant_registry.participant TO ${APP_ROLE}`,
   );
+  await admin.query(
+    `GRANT SELECT, INSERT, UPDATE ON participant_registry.organization_participant TO ${APP_ROLE}`,
+  );
+  await admin.query(`GRANT SELECT ON organization_registry.organization TO ${APP_ROLE}`);
   await admin.query(
     `GRANT SELECT, INSERT, UPDATE ON governance.outbox_message TO ${APP_ROLE}`,
   );
@@ -231,6 +250,36 @@ const SAFE_STATUS_PAYLOAD_KEYS = new Set([
   'actorUserId',
 ]);
 
+/**
+ * The CLOSED set of safe keys for an organization_linked outbox payload: stable identifiers, the
+ * relationship type/status, and correlation lineage only. NEVER names, email, headers, tokens, or
+ * bytes.
+ */
+const SAFE_LINK_PAYLOAD_KEYS = new Set([
+  'relationshipId',
+  'tenantId',
+  'organizationId',
+  'participantId',
+  'relationshipType',
+  'status',
+  'requestId',
+  'correlationId',
+  'actorUserId',
+]);
+
+const ALLOWED_RELATIONSHIP_DTO_KEYS = new Set([
+  'relationshipId',
+  'tenantId',
+  'organizationId',
+  'participantId',
+  'relationshipType',
+  'status',
+  'startDate',
+  'endDate',
+  'createdAt',
+  'updatedAt',
+]);
+
 /** Sentinels that MUST NOT appear anywhere in an outbox payload (privacy / no-secret-leak). */
 const FORBIDDEN_PAYLOAD_SENTINELS = [
   'Pat', // given name
@@ -296,6 +345,27 @@ async function adminCountGovernance(admin: pg.Pool, tenantId: string): Promise<{
   };
 }
 
+async function adminCountOrganizationLinks(admin: pg.Pool, tenantId: string): Promise<number> {
+  const { rows } = await admin.query<{ n: string }>(
+    `SELECT count(*)::text AS n FROM participant_registry.organization_participant WHERE tenant_id = $1`,
+    [tenantId],
+  );
+  return Number(rows[0]!.n);
+}
+
+async function adminGetOrganization(
+  admin: pg.Pool,
+  tenantId: string,
+  organizationId: string,
+): Promise<{ display_name: string; status: string } | undefined> {
+  const { rows } = await admin.query<{ display_name: string; status: string }>(
+    `SELECT display_name, status FROM organization_registry.organization
+       WHERE tenant_id = $1 AND id = $2`,
+    [tenantId, organizationId],
+  );
+  return rows[0];
+}
+
 d('participant registry HTTP write surface (integration)', () => {
   let admin: pg.Pool;
   let appPool: pg.Pool;
@@ -310,15 +380,33 @@ d('participant registry HTTP write surface (integration)', () => {
     const appUrl = deriveUrl(ADMIN_URL, APP_ROLE, APP_PW);
     appPool = new pg.Pool({ connectionString: appUrl });
     const store = new PgParticipantRegistryStore(appPool);
-    const service = new ParticipantRegistryService(store);
+    // The link route reads the organization registry (same-tenant existence) through this reader.
+    // Without it the service fails closed (ORGANIZATION_NOT_FOUND) on every link attempt.
+    const organizationReader = new PgOrganizationRegistryStore(appPool);
+    const service = new ParticipantRegistryService(store, { organizationReader });
     deps = { service, readStore: store };
+
+    // Seed one active organization per tenant via admin (superuser bypasses RLS).
+    await admin.query(
+      `INSERT INTO organization_registry.organization (id, tenant_id, organization_type, display_name, status)
+         VALUES ($1, $2, 'local', 'Org A', 'active'), ($3, $4, 'local', 'Org B', 'active')
+       ON CONFLICT (id) DO NOTHING`,
+      [ORG_A, TENANT_A, ORG_B, TENANT_B],
+    );
   });
 
   afterAll(async () => {
+    await admin?.query(`DELETE FROM organization_registry.organization WHERE id = ANY($1::uuid[])`, [
+      [ORG_A, ORG_B],
+    ]);
     await Promise.all([admin?.end(), appPool?.end()]);
   });
 
   beforeEach(async () => {
+    await admin.query(
+      `DELETE FROM participant_registry.organization_participant WHERE tenant_id = ANY($1::uuid[])`,
+      [[TENANT_A, TENANT_B]],
+    );
     await admin.query(
       `DELETE FROM participant_registry.participant WHERE tenant_id = ANY($1::uuid[])`,
       [[TENANT_A, TENANT_B]],
@@ -354,6 +442,49 @@ d('participant registry HTTP write surface (integration)', () => {
       randomUUID(),
       TRUSTED,
     );
+  }
+
+  function link(
+    headers: Record<string, string | undefined>,
+    organizationId: string,
+    body: Record<string, unknown>,
+  ): ReturnType<typeof handleOrganizationParticipantLink> {
+    return handleOrganizationParticipantLink(
+      deps,
+      { headers, organizationId, body },
+      randomUUID(),
+      TRUSTED,
+    );
+  }
+
+  /** Trusted-header identity carrying ONLY the exact `participant.organization_link.write`
+   *  permission key (no role) — proves the action gate, not a role. */
+  function linkPermissionHeaders(
+    tenantId: string,
+    over: Record<string, string | undefined> = {},
+  ): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': randomUUID(),
+      'x-house-actor-permission-keys': 'participant.organization_link.write',
+      'idempotency-key': `idem-${randomUUID()}`,
+      ...over,
+    };
+  }
+
+  /** Trusted-header identity carrying ONLY `participant.write` (create/update) — must NOT be able
+   *  to create an organization link. */
+  function writeOnlyPermissionHeaders(
+    tenantId: string,
+    over: Record<string, string | undefined> = {},
+  ): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': randomUUID(),
+      'x-house-actor-permission-keys': 'participant.write',
+      'idempotency-key': `idem-${randomUUID()}`,
+      ...over,
+    };
   }
 
   // --- Role / RLS posture invariants -------------------------------------------------------
@@ -855,5 +986,292 @@ d('participant registry HTTP write surface (integration)', () => {
     const res = await statusTransition(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
     const participant = res.body['participant'] as Record<string, unknown>;
     expect(new Set(Object.keys(participant))).toEqual(ALLOWED_PARTICIPANT_DTO_KEYS);
+  });
+
+  // --- ORGANIZATION LINK -------------------------------------------------------------------
+
+  /** Seed an own-tenant participant so it can be linked. */
+  async function seedLinkable(
+    tenantId: string,
+    over: CreateBody = {},
+  ): Promise<string> {
+    const id = randomUUID();
+    await create(writerHeaders(tenantId), {
+      participantId: id,
+      displayName: 'Linkable',
+      ...over,
+    });
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [tenantId]);
+    return id;
+  }
+
+  // (L1) The restricted write role links an own-tenant participant to an own-tenant organization
+  //      over the HTTP write path and gets 201 with the newly created relationship.
+  it('(L1) links an own-tenant participant to an own-tenant organization (201)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(201);
+    const relationship = res.body['relationship'] as Record<string, unknown>;
+    expect(relationship['organizationId']).toBe(ORG_A);
+    expect(relationship['participantId']).toBe(participantId);
+    expect(relationship['relationshipType']).toBe('member');
+    expect(relationship['status']).toBe('active');
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(1);
+  });
+
+  // (L2) The exact `participant.organization_link.write` permission (no role) authorizes the link.
+  it('(L2) the exact organization-link permission authorizes the link (201)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(linkPermissionHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'staff',
+    });
+    expect(res.status).toBe(201);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(1);
+  });
+
+  // (L3) participant.write alone (create/update) does NOT authorize a link → 403, no row written.
+  it('(L3) participant.write alone cannot link (403)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(writeOnlyPermissionHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(403);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L4) A read-only actor is denied with 403 and writes no relationship row.
+  it('(L4) a read-only actor cannot link (403)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(readerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(403);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L5) The link fails closed (401) when no tenant identity is present; no row written.
+  it('(L5) link fails closed with 401 when tenant identity is absent', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(
+      {
+        'x-house-actor-user-id': randomUUID(),
+        'x-house-actor-role-keys': 'participant_admin',
+        'idempotency-key': `idem-${randomUUID()}`,
+      },
+      ORG_A,
+      { participantId, relationshipType: 'member' },
+    );
+    expect(res.status).toBe(401);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L6) The link rejects a missing Idempotency-Key with 400; no row written.
+  it('(L6) link rejects a missing Idempotency-Key with 400', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(
+      writerHeaders(TENANT_A, { 'idempotency-key': undefined }),
+      ORG_A,
+      { participantId, relationshipType: 'member' },
+    );
+    expect(res.status).toBe(400);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L7) The link rejects a missing or invalid relationshipType with 400; no row written.
+  it('(L7) link rejects a missing/invalid relationshipType with 400', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const missing = await link(writerHeaders(TENANT_A), ORG_A, { participantId });
+    expect(missing.status).toBe(400);
+    const invalid = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'captain',
+    });
+    expect(invalid.status).toBe(400);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L8) The link returns 404 for a missing participant (never a 500), and writes no row.
+  it('(L8) link returns 404 for a missing participant', async () => {
+    const res = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId: randomUUID(),
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(404);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L9) The link returns 404 for a missing organization, indistinguishable from not-found.
+  it('(L9) link returns 404 for a missing organization', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(writerHeaders(TENANT_A), randomUUID(), {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(404);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L10) A cross-tenant organization is indistinguishable from not-found: linking tenant A's
+  //       participant to tenant B's organization returns 404 (no cross-tenant existence leak).
+  it('(L10) cross-tenant organization returns 404 (no existence leak)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(writerHeaders(TENANT_A), ORG_B, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(404);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L11) A cross-tenant participant is indistinguishable from not-found: tenant A cannot link
+  //       tenant B's participant (RLS makes the row invisible) → 404.
+  it('(L11) cross-tenant participant returns 404 (no existence leak)', async () => {
+    const participantId = await seedLinkable(TENANT_B);
+    const res = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(404);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L12) A duplicate same-type active link is replay-safe: the first create returns 201, the second
+  //       returns 200 with the existing relationship, and only ONE relationship row + ONE outbox row
+  //       exist (no duplicate signal).
+  it('(L12) duplicate same-type active link is replay-safe (201 then 200, one row, one outbox)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const first = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(first.status).toBe(201);
+    const relationshipId = (first.body['relationship'] as Record<string, unknown>)['relationshipId'];
+
+    const second = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(second.status).toBe(200);
+    expect((second.body['relationship'] as Record<string, unknown>)['relationshipId']).toBe(
+      relationshipId,
+    );
+
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(1);
+    const linked = await adminGetOutboxByType(
+      admin,
+      'participant.registry.organization_linked',
+      TENANT_A,
+    );
+    expect(linked.length).toBe(1);
+  });
+
+  // (L13) The link writes the relationship row and a SANITIZED organization_linked outbox row
+  //       atomically; the payload carries only the closed safe key set and NO PII / secrets.
+  it('(L13) link writes the row and a sanitized organization_linked outbox atomically', async () => {
+    const participantId = await seedLinkable(TENANT_A, {
+      displayName: 'Pat Writer',
+      givenName: 'Pat',
+      familyName: 'Writer',
+      email: 'pat.writer@example.test',
+    });
+    const res = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(201);
+
+    const linked = await adminGetOutboxByType(
+      admin,
+      'participant.registry.organization_linked',
+      TENANT_A,
+    );
+    expect(linked.length).toBe(1);
+    const payload = linked[0]!.payload;
+    expect(payload['organizationId']).toBe(ORG_A);
+    expect(payload['participantId']).toBe(participantId);
+    expect(payload['relationshipType']).toBe('member');
+    expect(payload['status']).toBe('active');
+    const serialized = JSON.stringify(payload);
+    for (const sentinel of FORBIDDEN_PAYLOAD_SENTINELS) {
+      expect(serialized.includes(sentinel)).toBe(false);
+    }
+    for (const key of Object.keys(payload)) {
+      expect(SAFE_LINK_PAYLOAD_KEYS.has(key)).toBe(true);
+    }
+  });
+
+  // (L14) Distinct relationship types for the same participant+organization create two rows.
+  it('(L14) distinct relationship types create two relationship rows', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const a = await link(writerHeaders(TENANT_A), ORG_A, { participantId, relationshipType: 'member' });
+    const b = await link(writerHeaders(TENANT_A), ORG_A, { participantId, relationshipType: 'staff' });
+    expect(a.status).toBe(201);
+    expect(b.status).toBe(201);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(2);
+  });
+
+  // (L15) The link NEVER mutates governance.entity_state / state_transition / audit_event
+  //       (organization links are reference data — never a governed lifecycle transition).
+  it('(L15) link does not mutate governance lifecycle tables', async () => {
+    const before = await adminCountGovernance(admin, TENANT_A);
+    const participantId = await seedLinkable(TENANT_A);
+    await link(writerHeaders(TENANT_A), ORG_A, { participantId, relationshipType: 'member' });
+    const after = await adminCountGovernance(admin, TENANT_A);
+    expect(after.entityState).toBe(before.entityState);
+    expect(after.stateTransition).toBe(before.stateTransition);
+    expect(after.auditEvent).toBe(before.auditEvent);
+  });
+
+  // (L16) The link NEVER mutates the Organization Registry — it only reads the org to confirm
+  //       same-tenant existence.
+  it('(L16) link does not mutate the organization registry', async () => {
+    const before = await adminGetOrganization(admin, TENANT_A, ORG_A);
+    const participantId = await seedLinkable(TENANT_A);
+    await link(writerHeaders(TENANT_A), ORG_A, { participantId, relationshipType: 'member' });
+    const after = await adminGetOrganization(admin, TENANT_A, ORG_A);
+    expect(after).toEqual(before);
+  });
+
+  // (L17) An archived participant cannot receive a new active link (state precondition) → 409;
+  //       no relationship row is written.
+  it('(L17) archived participant cannot receive a new active link (409)', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    await statusTransition(writerHeaders(TENANT_A), participantId, { targetStatus: 'archived' });
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [TENANT_A]);
+
+    const res = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(res.status).toBe(409);
+    expect(await adminCountOrganizationLinks(admin, TENANT_A)).toBe(0);
+  });
+
+  // (L18) The organization_participant table has RLS enabled AND forced.
+  it('(L18) organization_participant table has RLS enabled AND forced', async () => {
+    const { rows } = await admin.query<{ relrowsecurity: boolean; relforcerowsecurity: boolean }>(
+      `SELECT relrowsecurity, relforcerowsecurity
+         FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+        WHERE n.nspname = 'participant_registry' AND c.relname = 'organization_participant'`,
+    );
+    expect(rows[0]!.relrowsecurity).toBe(true);
+    expect(rows[0]!.relforcerowsecurity).toBe(true);
+  });
+
+  // (L19) The link read-back exposes ONLY the closed, safe relationship DTO field set.
+  it('(L19) link responses expose only the safe closed relationship DTO field set', async () => {
+    const participantId = await seedLinkable(TENANT_A);
+    const res = await link(writerHeaders(TENANT_A), ORG_A, {
+      participantId,
+      relationshipType: 'member',
+    });
+    const relationship = res.body['relationship'] as Record<string, unknown>;
+    expect(new Set(Object.keys(relationship))).toEqual(ALLOWED_RELATIONSHIP_DTO_KEYS);
   });
 });

@@ -3,12 +3,14 @@
  *
  * Read transport: participant list + detail and an organization's participant-relationship list.
  * Write transport: create a participant and update its safe profile fields (gated by the
- * `participant.write` action), plus a reference-data status transition
+ * `participant.write` action), a reference-data status transition
  * (`POST /v1/participants/:participantId/status-transitions`, gated by the distinct
- * `participant.status.write` action). These endpoints NEVER touch governed lifecycle state, NEVER
- * invoke the Governance Kernel, and NEVER enqueue an outbox message directly (the Participant
- * Registry service owns the transactional outbox). Reads use the `participant.read` action.
- * Organization-link writes are deliberately NOT part of this surface yet.
+ * `participant.status.write` action), and recording an organization↔participant relationship
+ * (`POST /v1/organizations/:organizationId/participants`, gated by the distinct
+ * `participant.organization_link.write` action). These endpoints NEVER touch governed lifecycle
+ * state, NEVER invoke the Governance Kernel, and NEVER enqueue an outbox message directly (the
+ * Participant Registry service owns the transactional outbox). Reads use the `participant.read`
+ * action. Changing an existing relationship's status is deliberately NOT part of this surface yet.
  */
 
 export {
@@ -41,6 +43,7 @@ export {
   handleParticipantCreate,
   handleParticipantUpdate,
   handleParticipantStatusTransition,
+  handleOrganizationParticipantLink,
   participantWriteErrorToHttpResult,
   type ParticipantWriteHttpDeps,
   type ParticipantExistenceReader,
@@ -60,4 +63,8 @@ export {
   type ParticipantStatusTransitionRequestBody,
   type ParticipantStatusTransitionHttpRequest,
   type ParticipantStatusTransitionResponseBody,
+  PARTICIPANT_ORGANIZATION_LINK_BODY_KEYS,
+  type OrganizationParticipantLinkRequestBody,
+  type OrganizationParticipantLinkHttpRequest,
+  type OrganizationParticipantLinkResponseBody,
 } from './ParticipantWriteHttpDtos.js';

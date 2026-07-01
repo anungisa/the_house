@@ -31,6 +31,7 @@ export const AuthorizationAction = {
   ParticipantRead: 'participant.read',
   ParticipantWrite: 'participant.write',
   ParticipantStatusWrite: 'participant.status.write',
+  ParticipantOrganizationLinkWrite: 'participant.organization_link.write',
 } as const;
 
 /** Union of the valid action string literals. */
@@ -66,8 +67,9 @@ export const PLATFORM_ADMIN_ROLE = 'platform_admin';
  *  - participant_admin: Participant Registry operator. Reads, plus profile write (create a
  *    participant + update its safe profile fields) via `participant.write`, plus a participant
  *    STATUS transition (`participant.status.write`) — a reference-data status change, NOT a
- *    governed lifecycle transition. It does NOT imply organization-link write actions (a later
- *    phase).
+ *    governed lifecycle transition — plus recording an organization↔participant relationship
+ *    (`participant.organization_link.write`). These reference-data write actions are all distinct
+ *    (none implies another); none is a governed lifecycle transition.
  */
 export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationAction[]>> = {
   workflow_reader: [AuthorizationAction.WorkflowRead],
@@ -108,6 +110,7 @@ export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationActi
     AuthorizationAction.ParticipantRead,
     AuthorizationAction.ParticipantWrite,
     AuthorizationAction.ParticipantStatusWrite,
+    AuthorizationAction.ParticipantOrganizationLinkWrite,
   ],
 };
 

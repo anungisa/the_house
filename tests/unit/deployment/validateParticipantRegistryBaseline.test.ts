@@ -66,10 +66,10 @@ const VALID_DOC = [
   'Read-only list/detail and organization relationship endpoints gated by participant.read.',
   '',
   '## HTTP write surface',
-  'Create + update + status-transition endpoints gated by participant.write and participant.status.write.',
+  'Create + update + status-transition + organization-link endpoints gated by participant.write, participant.status.write, and participant.organization_link.write.',
   '',
   '## Out of scope (intentionally not built)',
-  'No organization-link write endpoints, no write transport beyond create/update/status-transition.',
+  'No relationship-status write endpoints; no write transport beyond create/update/status-transition/organization-link.',
   '',
 ].join('\n');
 
@@ -79,7 +79,7 @@ const VALID_PREFLIGHT_DOC = [
   'Status: Phase 1 create + update plus status mutation IMPLEMENTED. Org relationship write NOT IMPLEMENTED.',
   '',
   '## Phase 2 preflight — status transitions & organization-link mutations',
-  'Phase 2 status-transition route IMPLEMENTED; organization-link route NOT implemented yet.',
+  'Phase 2 status-transition route IMPLEMENTED; organization-link create route IMPLEMENTED; relationship-status route NOT implemented yet.',
   '',
   '## Idempotency & concurrency model',
   'POST mutations require an Idempotency-Key; replays return the prior result.',
@@ -139,10 +139,12 @@ function baseFiles(): Record<string, string | null> {
     [SERVER_MODULE_REL]:
       '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
       '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
-      '// handleParticipantStatusTransition status-transitions (fixture)\n',
+      '// handleParticipantStatusTransition status-transitions (fixture)\n' +
+      '// handleOrganizationParticipantLink (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]:
       "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n" +
-      "ParticipantStatusWrite: 'participant.status.write',\n",
+      "ParticipantStatusWrite: 'participant.status.write',\n" +
+      "ParticipantOrganizationLinkWrite: 'participant.organization_link.write',\n",
     'package.json': VALID_PACKAGE_JSON,
   };
   for (const f of DOMAIN_FILES) {
@@ -280,6 +282,15 @@ describe('validateParticipantRegistryBaseline', () => {
     expect(checkOk(root, 'authz catalog defines participant.status.write')).toBe(false);
   });
 
+  it('fails when the authz catalog does not define participant.organization_link.write', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] =
+      "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n" +
+      "ParticipantStatusWrite: 'participant.status.write',\n";
+    const root = writeRepo(files);
+    expect(checkOk(root, 'authz catalog defines participant.organization_link.write')).toBe(false);
+  });
+
   it('fails when the server does not wire the status-transition route', () => {
     const files = baseFiles();
     files[SERVER_MODULE_REL] =
@@ -289,15 +300,26 @@ describe('validateParticipantRegistryBaseline', () => {
     expect(checkOk(root, 'server wires the participant status-transition route')).toBe(false);
   });
 
-  it('fails when the server wires an organization-link write handler', () => {
+  it('fails when the server does not wire the organization-link write route', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] =
+      '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
+      '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
+      '// handleParticipantStatusTransition status-transitions (fixture)\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'server wires the organization-link write route')).toBe(false);
+  });
+
+  it('fails when the server wires a relationship-status write handler', () => {
     const files = baseFiles();
     files[SERVER_MODULE_REL] =
       '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
       '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
       '// handleParticipantStatusTransition status-transitions (fixture)\n' +
-      '// handleParticipantLink (fixture)\n';
+      '// handleOrganizationParticipantLink (fixture)\n' +
+      '// handleOrganizationParticipantStatus (fixture)\n';
     const root = writeRepo(files);
-    expect(checkOk(root, 'server exposes NO organization-link write handler')).toBe(false);
+    expect(checkOk(root, 'server exposes NO relationship-status write handler')).toBe(false);
   });
 
   it('flags an out-of-scope behavior term leaking into the write surface', () => {

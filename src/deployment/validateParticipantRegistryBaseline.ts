@@ -12,13 +12,14 @@
  * script is wired and chained into `ci:check`; the synthetic lifecycle suite references the
  * participant registry; the read-only HTTP surface (adapter, DTOs, auth, barrel) AND the write
  * surface (create + update + status-transition adapter + DTOs) and their unit tests exist; the
- * server wires the `/v1/participants` read routes plus the create/update handlers and the
- * `POST /v1/participants/:participantId/status-transitions` handler; the authorization catalog
- * defines `participant.read`, `participant.write`, AND `participant.status.write`; NO organization-
- * link write surface is exposed (still deferred); the doc documents its purpose/scope, the key
- * invariants, and the HTTP read + write surfaces; and NO secret-looking values, sport-specific
- * terminology, or out-of-scope behavior terms leak into the domain code, HTTP surface, doc, test,
- * or migration.
+ * server wires the `/v1/participants` read routes plus the create/update handlers, the
+ * `POST /v1/participants/:participantId/status-transitions` handler, AND the
+ * `POST /v1/organizations/:organizationId/participants` organization-link handler; the
+ * authorization catalog defines `participant.read`, `participant.write`, `participant.status.write`,
+ * AND `participant.organization_link.write`; NO relationship-STATUS write surface is exposed (still
+ * deferred); the doc documents its purpose/scope, the key invariants, and the HTTP read + write
+ * surfaces; and NO secret-looking values, sport-specific terminology, or out-of-scope behavior
+ * terms leak into the domain code, HTTP surface, doc, test, or migration.
  *
  * The thin CLI wrapper lives in scripts/validate-participant-registry-baseline.ts.
  */
@@ -344,6 +345,17 @@ export function validateParticipantRegistryBaseline(
       : "missing 'participant.status.write' action",
   });
 
+  // 7g3. The authorization catalog defines participant.organization_link.write (a distinct action
+  //      gating the organization-link create, NOT implied by participant.write/status.write).
+  const definesOrgLinkWriteAction = authzText.includes("'participant.organization_link.write'");
+  checks.push({
+    name: 'authz catalog defines participant.organization_link.write',
+    ok: definesOrgLinkWriteAction,
+    detail: definesOrgLinkWriteAction
+      ? "defines 'participant.organization_link.write'"
+      : "missing 'participant.organization_link.write' action",
+  });
+
   // 7h. The server wires the participant create + update handlers.
   const wiresWrite =
     serverText.includes('handleParticipantCreate') &&
@@ -369,18 +381,32 @@ export function validateParticipantRegistryBaseline(
       : 'missing participant status-transition route wiring',
   });
 
-  // 7j. Scope guard: NO organization-participant WRITE handler is exposed (still deferred). The
-  //     organization-participants route stays read-only.
-  const hasOrgLinkWrite =
-    serverText.includes('handleOrganizationParticipantCreate') ||
-    serverText.includes('handleOrganizationParticipantUpdate') ||
-    serverText.includes('handleParticipantLink');
+  // 7j. The server wires the organization-link write handler AND route. (This flipped from a prior
+  //     "no organization-link write handler" scope guard now that the organization-link create
+  //     exists. The organization-participants path now serves GET read + POST link.)
+  const wiresOrgLinkWrite =
+    serverText.includes('handleOrganizationParticipantLink') &&
+    serverText.includes('organizations') &&
+    serverText.includes('participants');
   checks.push({
-    name: 'server exposes NO organization-link write handler',
-    ok: !hasOrgLinkWrite,
-    detail: hasOrgLinkWrite
-      ? 'unexpected organization-link write handler present'
-      : 'no organization-link write handler (still deferred)',
+    name: 'server wires the organization-link write route',
+    ok: wiresOrgLinkWrite,
+    detail: wiresOrgLinkWrite
+      ? 'references handleOrganizationParticipantLink + organization-participants route'
+      : 'missing organization-link write route wiring',
+  });
+
+  // 7k. Scope guard: NO relationship-STATUS write handler is exposed (still deferred). Changing an
+  //     existing relationship's status is a later phase.
+  const hasRelStatusWrite =
+    serverText.includes('handleOrganizationParticipantStatus') ||
+    serverText.includes('handleRelationshipStatusTransition');
+  checks.push({
+    name: 'server exposes NO relationship-status write handler',
+    ok: !hasRelStatusWrite,
+    detail: hasRelStatusWrite
+      ? 'unexpected relationship-status write handler present'
+      : 'no relationship-status write handler (still deferred)',
   });
 
   // 8. package.json exposes participant:check.

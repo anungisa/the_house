@@ -73,6 +73,7 @@ import {
   handleParticipantCreate,
   handleParticipantUpdate,
   handleParticipantStatusTransition,
+  handleOrganizationParticipantLink,
   type ParticipantReadHttpDeps,
   type ParticipantWriteHttpDeps,
 } from './participant/index.js';
@@ -136,14 +137,18 @@ export interface AffiliationHttpServerDeps {
   readonly participantRead?: ParticipantReadHttpDeps;
   /**
    * Optional Participant Registry WRITE transport. When provided, `POST /v1/participants` (create),
-   * `PATCH /v1/participants/:participantId` (update safe profile fields), and
+   * `PATCH /v1/participants/:participantId` (update safe profile fields),
    * `POST /v1/participants/:participantId/status-transitions` (transition the reference-data
-   * status) are served; when omitted those methods 404/405. These endpoints mutate the registry
-   * ONLY through the validated Participant Registry service (which owns the transactional outbox) —
-   * they NEVER touch governed lifecycle state and NEVER invoke the kernel. Create/update are gated
-   * by the centralized `participant.write` action; the status transition is gated by the distinct
-   * `participant.status.write` action (neither implies `participant.read`). Organization-link
-   * writes are deliberately NOT part of this surface yet.
+   * status), and `POST /v1/organizations/:organizationId/participants` (record an
+   * organization↔participant relationship) are served; when omitted those methods 404/405. These
+   * endpoints mutate the registry ONLY through the validated Participant Registry service (which
+   * owns the transactional outbox) — they NEVER touch governed lifecycle state, NEVER invoke the
+   * kernel, and NEVER mutate the read-only Organization Registry. Create/update are gated by the
+   * centralized `participant.write` action; the status transition by the distinct
+   * `participant.status.write` action; the organization-link create by the distinct
+   * `participant.organization_link.write` action (none implies another, and none implies
+   * `participant.read`). Changing an existing relationship's status is deliberately NOT part of
+   * this surface yet.
    */
   readonly participantWrite?: ParticipantWriteHttpDeps;
   /**
@@ -753,23 +758,40 @@ async function handleOrganizationParticipantListRoute(
   requestId: string,
   resolver: AuthContextResolver | undefined,
 ): Promise<void> {
-  if ((req.method ?? 'GET') !== 'GET') {
-    res.setHeader('allow', 'GET');
-    sendJson(res, {
-      status: 405,
-      body: {
-        status: 'error',
-        code: 'METHOD_NOT_ALLOWED',
-        message: 'Only GET is allowed for the organization participants endpoint.',
-        requestId,
-      },
-    });
-    return;
-  }
   const organizationId = decodeURIComponent(match[1] ?? '');
   const result = await handleOrganizationParticipantList(
     participantRead,
     { organizationId, headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/**
+ * Serve the organization-participant LINK endpoint
+ * (`POST /v1/organizations/:organizationId/participants`) — record a reference-data relationship.
+ */
+async function handleOrganizationParticipantLinkRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantWrite: ParticipantWriteHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const organizationId = decodeURIComponent(match[1] ?? '');
+  const result = await handleOrganizationParticipantLink(
+    participantWrite,
+    { organizationId, headers: headerMap(req), body },
     requestId,
     resolver,
   );
@@ -1107,7 +1129,19 @@ async function handleRequest(
   if (deps.participantRead !== undefined || deps.participantWrite !== undefined) {
     const orgParticipantsMatch = ORGANIZATION_PARTICIPANTS_ROUTE.exec(path);
     if (orgParticipantsMatch !== null) {
-      if (deps.participantRead !== undefined) {
+      if (method === 'POST' && deps.participantWrite !== undefined) {
+        await handleOrganizationParticipantLinkRoute(
+          req,
+          res,
+          deps.participantWrite,
+          orgParticipantsMatch,
+          requestId,
+          deps.resolver,
+          maxBytes,
+        );
+        return;
+      }
+      if (method === 'GET' && deps.participantRead !== undefined) {
         await handleOrganizationParticipantListRoute(
           req,
           res,
@@ -1118,7 +1152,17 @@ async function handleRequest(
         );
         return;
       }
-      // Write-only wiring: the read-only relationship list is unavailable → fall through to 404.
+      // Known org-participants path but an unsupported method/transport: return 405 with the
+      // `Allow` header reflecting the wired transports (GET when read is wired, POST when write is
+      // wired). Never advertise a method the server cannot serve.
+      const orgParticipantsAllow: string[] = [];
+      if (deps.participantRead !== undefined) orgParticipantsAllow.push('GET');
+      if (deps.participantWrite !== undefined) orgParticipantsAllow.push('POST');
+      if (orgParticipantsAllow.length > 0) {
+        sendParticipantMethodNotAllowed(res, requestId, orgParticipantsAllow);
+        return;
+      }
+      // Neither transport can serve this path → fall through to 404.
     } else if (path === PARTICIPANT_LIST_PATH) {
       if (method === 'GET' && deps.participantRead !== undefined) {
         await handleParticipantListRoute(req, res, deps.participantRead, requestId, deps.resolver);

@@ -4,6 +4,7 @@ import {
   handleParticipantCreate,
   handleParticipantUpdate,
   handleParticipantStatusTransition,
+  handleOrganizationParticipantLink,
   participantWriteErrorToHttpResult,
   type ParticipantWriteHttpDeps,
 } from '../../../../src/http/participant/ParticipantWriteHttpAdapter.js';
@@ -11,11 +12,13 @@ import {
   InMemoryParticipantRegistryStore,
   ParticipantRegistryService,
   PARTICIPANT_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+  PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE,
 } from '../../../../src/domains/participant-registry/index.js';
 import { InMemoryOutboxStore } from '../../../../src/governance/outbox/InMemoryOutboxStore.js';
 import { InMemoryTelemetry } from '../../../../src/observability/index.js';
 import { TelemetryCounters } from '../../../../src/observability/TelemetryEvents.js';
 import { fixedClock } from '../../../../src/shared/time/clock.js';
+import { AppError, ErrorCode } from '../../../../src/shared/errors/AppError.js';
 
 /**
  * Unit tests for the Participant Registry WRITE HTTP adapter — create, update, and the
@@ -54,17 +57,46 @@ interface Harness {
   readonly outbox: InMemoryOutboxStore;
   readonly telemetry: InMemoryTelemetry;
   readonly service: ParticipantRegistryService;
+  readonly organizations: StubOrganizationReader;
+}
+
+/**
+ * A read-only, tenant-scoped organization-existence reader for the hermetic harness. Mirrors the
+ * narrow {@link OrganizationReader} port the service depends on: it never creates or mutates an
+ * organization (the Organization Registry is read-only reference), and a cross-tenant organization
+ * simply does not resolve.
+ */
+class StubOrganizationReader {
+  private readonly orgs = new Set<string>();
+  seed(tenantId: string, organizationId: string): void {
+    this.orgs.add(`${tenantId}:${organizationId}`);
+  }
+  async getById(
+    tenantId: string,
+    organizationId: string,
+  ): Promise<{ readonly organizationId: string } | undefined> {
+    return this.orgs.has(`${tenantId}:${organizationId}`) ? { organizationId } : undefined;
+  }
 }
 
 function build(): Harness {
   const outbox = new InMemoryOutboxStore(CLOCK);
   const store = new InMemoryParticipantRegistryStore(outbox, { clock: CLOCK });
+  const organizations = new StubOrganizationReader();
   const telemetry = new InMemoryTelemetry();
   const service = new ParticipantRegistryService(store, {
     telemetry: new InMemoryTelemetry(),
     clock: CLOCK,
+    organizationReader: organizations,
   });
-  return { deps: { service, readStore: store, telemetry }, store, outbox, telemetry, service };
+  return {
+    deps: { service, readStore: store, telemetry },
+    store,
+    outbox,
+    telemetry,
+    service,
+    organizations,
+  };
 }
 
 /** Admin headers: the `participant_admin` role grants `participant.write` (and read) in v1. */
@@ -666,5 +698,486 @@ describe('participant write HTTP adapter — status transition', () => {
       body: { targetStatus: 'suspended', reason: 123 },
     });
     expect(res.status).toBe(400);
+  });
+});
+
+/** The CLOSED set of keys an organization-participant relationship DTO may ever expose. */
+const ALLOWED_RELATIONSHIP_DTO_KEYS = new Set([
+  'tenantId',
+  'relationshipId',
+  'organizationId',
+  'participantId',
+  'relationshipType',
+  'status',
+  'startDate',
+  'endDate',
+  'createdAt',
+  'updatedAt',
+]);
+
+const ORG_A = '33333333-3333-3333-3333-333333333333';
+
+describe('participant write HTTP adapter — organization link', () => {
+  /** Seed an organization (read-only reference) + a participant in TENANT_A, returning the harness. */
+  async function seedLinkable(h: Harness, tenantId = TENANT_A): Promise<void> {
+    h.organizations.seed(tenantId, ORG_A);
+    const created = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(tenantId),
+      body: {
+        participantId: 'p-link',
+        displayName: 'Link Person',
+        givenName: 'Given',
+        familyName: 'Family',
+        email: 'link@example.test',
+        status: 'active',
+      },
+    });
+    expect(created.status).toBe(201);
+  }
+
+  /** Headers carrying ONLY the exact `participant.organization_link.write` permission. */
+  function linkOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-3',
+      'x-house-actor-permission-keys': 'participant.organization_link.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  /** Headers carrying ONLY the `participant.write` permission (NOT the link action). */
+  function profileWriteOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-4',
+      'x-house-actor-permission-keys': 'participant.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  /** Headers carrying ONLY the `participant.status.write` permission (NOT the link action). */
+  function statusWriteOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-5',
+      'x-house-actor-permission-keys': 'participant.status.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  it('(L1) links a participant to an organization and returns 201 with the closed relationship DTO', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(201);
+    const body = res.body as { status: string; relationship: Record<string, unknown> };
+    expect(body.status).toBe('ok');
+    expect(body.relationship['organizationId']).toBe(ORG_A);
+    expect(body.relationship['participantId']).toBe('p-link');
+    expect(body.relationship['relationshipType']).toBe('member');
+    expect(body.relationship['status']).toBe('active');
+    for (const key of Object.keys(body.relationship)) {
+      expect(ALLOWED_RELATIONSHIP_DTO_KEYS.has(key)).toBe(true);
+    }
+  });
+
+  it('(L2) accepts an explicit status and ISO dates', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: {
+        participantId: 'p-link',
+        relationshipType: 'staff',
+        status: 'suspended',
+        startDate: '2024-01-01',
+        endDate: '2024-12-31',
+      },
+    });
+    expect(res.status).toBe(201);
+    const rel = (res.body as { relationship: Record<string, unknown> }).relationship;
+    expect(rel['status']).toBe('suspended');
+    expect(rel['startDate']).toBe('2024-01-01');
+    expect(rel['endDate']).toBe('2024-12-31');
+  });
+
+  it('(L3) authorizes the exact participant.organization_link.write permission (201)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: linkOnlyHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(201);
+  });
+
+  it('(L4) denies an actor with participant.write but NOT the link action (403)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: profileWriteOnlyHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(L5) denies an actor with participant.status.write but NOT the link action (403)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: statusWriteOnlyHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(L6) denies a read-only actor (participant.read only) with 403', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: readerHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(L7) fails closed for an actor with no roles or permissions (403)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: {
+        'x-house-tenant-id': TENANT_A,
+        'x-house-actor-user-id': 'nobody',
+        'idempotency-key': 'idem-001',
+      },
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(L8) requires a tenant identity (401 when absent)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const headers = adminHeaders();
+    delete headers['x-house-tenant-id'];
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers,
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(401);
+  });
+
+  it('(L9) requires the Idempotency-Key header (400 when absent)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const headers = adminHeaders();
+    delete headers['idempotency-key'];
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers,
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L10) rejects a blank organizationId path parameter with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: '   ',
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L11) rejects a missing participantId with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { relationshipType: 'member' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L12) rejects a missing relationshipType with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L13) rejects an unknown relationshipType value with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'captain' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L14) rejects an unknown status value with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member', status: 'pending' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L15) rejects a non-string startDate with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member', startDate: 20240101 },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L16) rejects a misplaced profile field (displayName) with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member', displayName: 'Nope' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L17) rejects a misplaced participant-status field (targetStatus) with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member', targetStatus: 'archived' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L18) rejects a relationshipId in the body with 400 (server-generated only)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member', relationshipId: 'r-1' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L19) rejects any other unknown body key with 400', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member', surprise: 1 },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(L20) returns 404 for a missing participant', async () => {
+    const h = build();
+    h.organizations.seed(TENANT_A, ORG_A);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'does-not-exist', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(L21) returns 404 for a missing organization', async () => {
+    const h = build();
+    // Seed the participant but NOT the organization.
+    const created = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', displayName: 'Link Person', status: 'active' },
+    });
+    expect(created.status).toBe(201);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(L22) returns 404 for a cross-tenant organization (never reveals existence)', async () => {
+    const h = build();
+    // Organization ORG_A exists only in TENANT_A; the participant exists in TENANT_B.
+    h.organizations.seed(TENANT_A, ORG_A);
+    const created = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(TENANT_B),
+      body: { participantId: 'p-link', displayName: 'Link Person', status: 'active' },
+    });
+    expect(created.status).toBe(201);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(TENANT_B),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(L23) linking the same type twice is idempotent: 201 then 200 with one outbox row', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const first = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(first.status).toBe(201);
+    const firstRel = (first.body as { relationship: { relationshipId: string } }).relationship;
+    const second = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(second.status).toBe(200);
+    const secondRel = (second.body as { relationship: { relationshipId: string } }).relationship;
+    // Same relationship returned (no new row), and exactly one organization_linked outbox signal.
+    expect(secondRel.relationshipId).toBe(firstRel.relationshipId);
+    const linkedRows = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE,
+    );
+    expect(linkedRows.length).toBe(1);
+  });
+
+  it('(L24) an archived participant cannot receive a NEW active link (409)', async () => {
+    const h = build();
+    h.organizations.seed(TENANT_A, ORG_A);
+    const created = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(),
+      body: { participantId: 'p-arch', displayName: 'Archived One', status: 'active' },
+    });
+    expect(created.status).toBe(201);
+    const archived = await handleParticipantStatusTransition(h.deps, {
+      participantId: 'p-arch',
+      headers: adminHeaders(),
+      body: { targetStatus: 'archived' },
+    });
+    expect(archived.status).toBe(200);
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-arch', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(409);
+  });
+
+  it('(L25) the create enqueues exactly one sanitized organization_linked outbox row', async () => {
+    const h = build();
+    await seedLinkable(h);
+    await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    const linkedRows = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE,
+    );
+    expect(linkedRows.length).toBe(1);
+    // The payload carries no email or names.
+    const serialized = JSON.stringify(linkedRows[0]?.payload);
+    expect(serialized).not.toContain('link@example.test');
+    expect(serialized).not.toContain('Link Person');
+    expect(serialized).not.toContain('Given');
+    expect(serialized).not.toContain('Family');
+  });
+
+  it('(L26) emits a write telemetry counter tagged organization_link/success without leaking PII', async () => {
+    const h = build();
+    await seedLinkable(h);
+    await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    const signals = h.telemetry.signalsNamed(TelemetryCounters.participantRegistryWrite);
+    const linkSignals = signals.filter((s) => s.attributes?.['operation'] === 'organization_link');
+    expect(linkSignals.length).toBe(1);
+    expect(linkSignals[0]?.attributes?.['result']).toBe('success');
+    const serialized = JSON.stringify(h.telemetry.snapshot());
+    expect(serialized).not.toContain('link@example.test');
+    expect(serialized).not.toContain('Link Person');
+  });
+
+  it('(L27) the idempotent read-back (200) enqueues no additional outbox row', async () => {
+    const h = build();
+    await seedLinkable(h);
+    await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    const before = h.outbox.records.length;
+    const res = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(res.status).toBe(200);
+    expect(h.outbox.records.length).toBe(before); // no new signal on the idempotent read-back
+  });
+
+  it('(L28) a different relationship type creates a distinct relationship (201)', async () => {
+    const h = build();
+    await seedLinkable(h);
+    const member = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'member' },
+    });
+    expect(member.status).toBe(201);
+    const staff = await handleOrganizationParticipantLink(h.deps, {
+      organizationId: ORG_A,
+      headers: adminHeaders(),
+      body: { participantId: 'p-link', relationshipType: 'staff' },
+    });
+    expect(staff.status).toBe(201);
+    const memberId = (member.body as { relationship: { relationshipId: string } }).relationship
+      .relationshipId;
+    const staffId = (staff.body as { relationship: { relationshipId: string } }).relationship
+      .relationshipId;
+    expect(memberId).not.toBe(staffId);
+    const linkedRows = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE,
+    );
+    expect(linkedRows.length).toBe(2);
+  });
+
+  it('(L29) participantWriteErrorToHttpResult maps ORGANIZATION_NOT_FOUND to 404', () => {
+    const res = participantWriteErrorToHttpResult(
+      new AppError(ErrorCode.ORGANIZATION_NOT_FOUND, 'nope'),
+      'req-1',
+    );
+    expect(res.status).toBe(404);
   });
 });

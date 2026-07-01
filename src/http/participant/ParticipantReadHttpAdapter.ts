@@ -269,7 +269,7 @@ export function toParticipantDto(view: ParticipantView): ParticipantDto {
 }
 
 /** Project a canonical relationship view onto the CLOSED, null-normalized wire DTO. */
-function toOrganizationParticipantDto(
+export function toOrganizationParticipantDto(
   view: OrganizationParticipantView,
 ): OrganizationParticipantDto {
   return {

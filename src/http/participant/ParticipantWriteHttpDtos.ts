@@ -1,11 +1,13 @@
 /**
  * Request/response DTOs for the Participant Registry HTTP WRITE surface.
  *
- * The write surface exposes three mutations: create a participant (`POST /v1/participants`),
- * update a participant's safe profile fields (`PATCH /v1/participants/:participantId`), and
- * transition a participant's reference-data status
- * (`POST /v1/participants/:participantId/status-transitions`). There is NO organization-link or
- * relationship-status shape here — those remain deliberately out of scope (see
+ * The write surface exposes four mutations: create a participant (`POST /v1/participants`),
+ * update a participant's safe profile fields (`PATCH /v1/participants/:participantId`), transition
+ * a participant's reference-data status
+ * (`POST /v1/participants/:participantId/status-transitions`), and record an
+ * organization↔participant relationship
+ * (`POST /v1/organizations/:organizationId/participants`). There is NO relationship-STATUS shape
+ * here — changing an existing relationship's status remains deliberately out of scope (see
  * docs/architecture/participant-write-http-preflight.md).
  *
  * A participant `status` is REFERENCE DATA, not a governed lifecycle FSM: the status-transition
@@ -24,10 +26,12 @@
  * telemetry or outbox signals — only in the authorized response body.
  */
 
-import type { ParticipantDto } from './ParticipantReadHttpDtos.js';
+import type { OrganizationParticipantDto, ParticipantDto } from './ParticipantReadHttpDtos.js';
 import type {
   ParticipantExternalRef,
   ParticipantStatus,
+  RelationshipStatus,
+  RelationshipType,
 } from '../../domains/participant-registry/ParticipantTypes.js';
 
 /**
@@ -143,3 +147,51 @@ export interface ParticipantStatusTransitionHttpRequest {
 
 /** Successful status-transition response body (reuses the CLOSED read DTO projection). */
 export type ParticipantStatusTransitionResponseBody = ParticipantWriteResponseBody;
+
+/**
+ * The CLOSED set of body keys accepted by `POST /v1/organizations/:organizationId/participants`.
+ * The organization is identified by the PATH (never the body); identity (tenant + actor) comes
+ * from the trusted-header auth context. `participantId` + `relationshipType` are REQUIRED; `status`
+ * defaults to `active`; `startDate`/`endDate` are optional ISO dates (YYYY-MM-DD). Any other key
+ * — a profile field, a participant STATUS field, a relationship id, or an out-of-scope behavior
+ * field — is rejected so it can never ride in on a link create.
+ */
+export const PARTICIPANT_ORGANIZATION_LINK_BODY_KEYS: readonly string[] = [
+  'participantId',
+  'relationshipType',
+  'status',
+  'startDate',
+  'endDate',
+];
+
+/**
+ * Wire body for `POST /v1/organizations/:organizationId/participants`. Records a tenant-scoped
+ * relationship between the PATH organization and an existing participant. `participantId` and
+ * `relationshipType` are REQUIRED. `status` defaults to `active`. `startDate`/`endDate` are
+ * optional ISO dates. No identity, profile, participant-status, relationship-id, or sensitive
+ * fields are accepted.
+ */
+export interface OrganizationParticipantLinkRequestBody {
+  readonly participantId: string;
+  readonly relationshipType: RelationshipType;
+  readonly status?: RelationshipStatus;
+  readonly startDate?: string;
+  readonly endDate?: string;
+}
+
+/**
+ * `POST /v1/organizations/:organizationId/participants` request: the path `organizationId` +
+ * parsed JSON body + auth headers (which also carry the required `Idempotency-Key`).
+ */
+export interface OrganizationParticipantLinkHttpRequest {
+  readonly organizationId: string;
+  readonly headers: Readonly<Record<string, string | undefined>>;
+  readonly body: unknown;
+}
+
+/** Successful organization-link response body (reuses the CLOSED relationship read DTO). */
+export type OrganizationParticipantLinkResponseBody = {
+  readonly status: 'ok';
+  readonly relationship: OrganizationParticipantDto;
+  readonly requestId: string;
+};

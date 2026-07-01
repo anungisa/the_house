@@ -200,16 +200,18 @@ export function createOrganizationReadHttpDeps(telemetry?: Telemetry): Organizat
 }
 
 /**
- * Build the phase-1 Participant Registry WRITE transport (create + update) backed by PostgreSQL.
- * Both the command service and the create duplicate pre-check read port share a single
- * RLS-enforced {@link PgParticipantRegistryStore}, so they see exactly the same tenant-scoped
- * rows. The service owns the transactional outbox; the adapter never enqueues directly, never
- * touches governed lifecycle state, and never invokes the kernel. Status transitions and
- * organization-link writes are deliberately NOT part of phase 1.
+ * Build the Participant Registry WRITE transport (create + update + reference-data status
+ * transition + organization-link create) backed by PostgreSQL. The command service, the write
+ * pre-check read port, and the organization-existence reader all run through RLS-enforced Pg
+ * stores, so they see exactly the same tenant-scoped rows. The service owns the transactional
+ * outbox; the adapter never enqueues directly, never touches governed lifecycle state, never
+ * invokes the kernel, and never mutates the read-only Organization Registry. Changing an existing
+ * relationship's status is deliberately NOT part of this surface.
  */
 export function createParticipantWriteHttpDeps(telemetry?: Telemetry): ParticipantWriteHttpDeps {
   const store = new PgParticipantRegistryStore();
   const service = new ParticipantRegistryService(store, {
+    organizationReader: new PgOrganizationRegistryStore(),
     ...(telemetry !== undefined ? { telemetry } : {}),
   });
   return {
