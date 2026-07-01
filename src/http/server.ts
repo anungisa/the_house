@@ -74,6 +74,7 @@ import {
   handleParticipantUpdate,
   handleParticipantStatusTransition,
   handleOrganizationParticipantLink,
+  handleOrganizationParticipantStatusTransition,
   type ParticipantReadHttpDeps,
   type ParticipantWriteHttpDeps,
 } from './participant/index.js';
@@ -139,16 +140,19 @@ export interface AffiliationHttpServerDeps {
    * Optional Participant Registry WRITE transport. When provided, `POST /v1/participants` (create),
    * `PATCH /v1/participants/:participantId` (update safe profile fields),
    * `POST /v1/participants/:participantId/status-transitions` (transition the reference-data
-   * status), and `POST /v1/organizations/:organizationId/participants` (record an
-   * organization↔participant relationship) are served; when omitted those methods 404/405. These
+   * status), `POST /v1/organizations/:organizationId/participants` (record an
+   * organization↔participant relationship), and
+   * `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`
+   * (transition an existing relationship's reference-data status) are served; when omitted those
+   * methods 404/405. These
    * endpoints mutate the registry ONLY through the validated Participant Registry service (which
    * owns the transactional outbox) — they NEVER touch governed lifecycle state, NEVER invoke the
    * kernel, and NEVER mutate the read-only Organization Registry. Create/update are gated by the
    * centralized `participant.write` action; the status transition by the distinct
    * `participant.status.write` action; the organization-link create by the distinct
    * `participant.organization_link.write` action (none implies another, and none implies
-   * `participant.read`). Changing an existing relationship's status is deliberately NOT part of
-   * this surface yet.
+   * `participant.read`). Transitioning an existing relationship's reference-data status reuses the
+   * SAME `participant.organization_link.write` action.
    */
   readonly participantWrite?: ParticipantWriteHttpDeps;
   /**
@@ -211,6 +215,14 @@ const ORGANIZATION_DETAIL_ROUTE = /^\/v1\/organizations\/([^/]+)\/?$/;
  * detail route above.
  */
 const ORGANIZATION_PARTICIPANTS_ROUTE = /^\/v1\/organizations\/([^/]+)\/participants\/?$/;
+/**
+ * POST an organization↔participant relationship reference-data status transition. A four-segment
+ * path (`.../:organizationId/participants/:relationshipId/status-transitions`), so it never
+ * collides with the two-segment organization-participants list/link route above (which anchors on a
+ * trailing `participants` segment). Matched BEFORE that route in dispatch for clarity.
+ */
+const ORGANIZATION_PARTICIPANT_STATUS_TRANSITIONS_ROUTE =
+  /^\/v1\/organizations\/([^/]+)\/participants\/([^/]+)\/status-transitions\/?$/;
 /** GET list of participants (exact path). */
 const PARTICIPANT_LIST_PATH = '/v1/participants';
 /**
@@ -881,6 +893,38 @@ async function handleParticipantStatusTransitionRoute(
 }
 
 /**
+ * Serve the organization-participant relationship status-transition endpoint
+ * (`POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`) —
+ * transition an existing reference-data relationship's status.
+ */
+async function handleOrganizationParticipantStatusTransitionRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  participantWrite: ParticipantWriteHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const organizationId = decodeURIComponent(match[1] ?? '');
+  const relationshipId = decodeURIComponent(match[2] ?? '');
+  const result = await handleOrganizationParticipantStatusTransition(
+    participantWrite,
+    { organizationId, relationshipId, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/**
  * The HTTP methods available on the participant COLLECTION path (`/v1/participants`) given the
  * wired transports: GET when read is wired, POST when phase-1 write is wired. Used to build the
  * `Allow` header for a 405.
@@ -943,6 +987,9 @@ function classifyRoute(method: string, path: string): string {
   if (path === WORKFLOW_LIST_PATH) return `${method} /v1/workflows`;
   if (WORKFLOW_DETAIL_ROUTE.test(path)) return `${method} /v1/workflows/:id`;
   if (path === ORGANIZATION_LIST_PATH) return `${method} /v1/organizations`;
+  if (ORGANIZATION_PARTICIPANT_STATUS_TRANSITIONS_ROUTE.test(path)) {
+    return `${method} /v1/organizations/:id/participants/:id/status-transitions`;
+  }
   if (ORGANIZATION_PARTICIPANTS_ROUTE.test(path)) {
     return `${method} /v1/organizations/:id/participants`;
   }
@@ -1125,8 +1172,33 @@ async function handleRequest(
   // known participant path returns 405 with the correct `Allow` header (reflecting the wired
   // transports) rather than a 404 fall-through. The status-transitions path (two segments) is
   // matched explicitly BEFORE the single-segment item route. The organization-participant
-  // relationship list is READ-ONLY (no write surface).
+  // relationship list is READ-ONLY, but its per-relationship status-transitions sub-resource
+  // (four segments) accepts POST when write is wired and is matched BEFORE the two-segment list.
   if (deps.participantRead !== undefined || deps.participantWrite !== undefined) {
+    const orgParticipantStatusMatch =
+      ORGANIZATION_PARTICIPANT_STATUS_TRANSITIONS_ROUTE.exec(path);
+    if (orgParticipantStatusMatch !== null) {
+      if (method === 'POST' && deps.participantWrite !== undefined) {
+        await handleOrganizationParticipantStatusTransitionRoute(
+          req,
+          res,
+          deps.participantWrite,
+          orgParticipantStatusMatch,
+          requestId,
+          deps.resolver,
+          maxBytes,
+        );
+        return;
+      }
+      // Known relationship status-transition sub-resource: only POST is supported. Return 405 when
+      // the write transport is wired; when write is NOT wired the route does not exist → fall
+      // through to 404 (don't advertise a route the server cannot serve).
+      if (deps.participantWrite !== undefined) {
+        sendParticipantMethodNotAllowed(res, requestId, ['POST']);
+        return;
+      }
+      // Write transport not wired → fall through to 404.
+    }
     const orgParticipantsMatch = ORGANIZATION_PARTICIPANTS_ROUTE.exec(path);
     if (orgParticipantsMatch !== null) {
       if (method === 'POST' && deps.participantWrite !== undefined) {

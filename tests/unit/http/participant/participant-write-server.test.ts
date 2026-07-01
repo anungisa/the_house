@@ -20,11 +20,14 @@ const { fetch } = globalThis;
 /**
  * Transport tests for the Participant Registry WRITE endpoints (create, update, and the
  * reference-data status transition) wired into the native HTTP server. They drive
- * POST /v1/participants, PATCH /v1/participants/:id, and
- * POST /v1/participants/:id/status-transitions over a short-lived ephemeral loopback listener and
- * confirm method-based dispatch (read GET coexists with write POST/PATCH; the status-transitions
- * sub-resource only accepts POST; unsupported methods 405 with the correct Allow header). NO
- * database, NO Docker, NO real Azure — the registry store is in-process.
+ * POST /v1/participants, PATCH /v1/participants/:id,
+ * POST /v1/participants/:id/status-transitions,
+ * POST /v1/organizations/:organizationId/participants, and
+ * POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions over a
+ * short-lived ephemeral loopback listener and confirm method-based dispatch (read GET coexists with
+ * write POST/PATCH; the status-transitions sub-resources only accept POST; unsupported methods 405
+ * with the correct Allow header). NO database, NO Docker, NO real Azure — the registry store is
+ * in-process.
  */
 
 const CLOCK = fixedClock(1_700_000_000_000);
@@ -253,5 +256,60 @@ describe('participant write routes (server transport)', () => {
     });
     expect(res.status).toBe(405);
     expect(res.headers.get('allow')).toBe('GET, POST');
+  });
+
+  it('transitions a relationship status via POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    await fetch(`${baseUrl}/v1/participants`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: JSON.stringify({ participantId: 'rel-1', displayName: 'Rel One', status: 'active' }),
+    });
+    const linked = await fetch(`${baseUrl}/v1/organizations/${ORG_A}/participants`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: JSON.stringify({ participantId: 'rel-1', relationshipType: 'member' }),
+    });
+    expect(linked.status).toBe(201);
+    const relationshipId = (
+      (await linked.json()) as { relationship: { relationshipId: string } }
+    ).relationship.relationshipId;
+    const res = await fetch(
+      `${baseUrl}/v1/organizations/${ORG_A}/participants/${relationshipId}/status-transitions`,
+      {
+        method: 'POST',
+        headers: adminHeaders(),
+        body: JSON.stringify({ targetStatus: 'suspended' }),
+      },
+    );
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { relationship: { status: string } };
+    expect(body.relationship.status).toBe('suspended');
+  });
+
+  it('returns 405 with Allow: POST for an unsupported relationship status-transitions method', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(
+      `${baseUrl}/v1/organizations/${ORG_A}/participants/some-rel/status-transitions`,
+      { method: 'GET', headers: adminHeaders() },
+    );
+    expect(res.status).toBe(405);
+    expect(res.headers.get('allow')).toBe('POST');
+  });
+
+  it('returns 404 for a relationship status transition on an unknown relationship', async () => {
+    const { server, baseUrl } = await build();
+    active = server;
+    const res = await fetch(
+      `${baseUrl}/v1/organizations/${ORG_A}/participants/nope/status-transitions`,
+      {
+        method: 'POST',
+        headers: adminHeaders(),
+        body: JSON.stringify({ targetStatus: 'suspended' }),
+      },
+    );
+    expect(res.status).toBe(404);
   });
 });

@@ -8,6 +8,8 @@
  *    reference-data status (draft/active/suspended/archived).
  *  - `POST /v1/organizations/:organizationId/participants` — record an organization↔participant
  *    relationship (reference data).
+ *  - `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` —
+ *    transition an existing relationship's reference-data status (active/suspended/ended).
  *
  * Architectural boundaries (DO NOT violate):
  *  - All mutations go THROUGH {@link ParticipantRegistryService}. The adapter never writes to a
@@ -56,17 +58,22 @@ import {
 import {
   PARTICIPANT_CREATE_BODY_KEYS,
   PARTICIPANT_ORGANIZATION_LINK_BODY_KEYS,
+  PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_BODY_KEYS,
+  PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_REASON_MAX_LENGTH,
   PARTICIPANT_STATUS_TRANSITION_BODY_KEYS,
   PARTICIPANT_STATUS_TRANSITION_REASON_MAX_LENGTH,
   PARTICIPANT_UPDATE_BODY_KEYS,
   type OrganizationParticipantLinkHttpRequest,
   type OrganizationParticipantLinkResponseBody,
+  type OrganizationParticipantStatusTransitionHttpRequest,
+  type OrganizationParticipantStatusTransitionResponseBody,
   type ParticipantCreateHttpRequest,
   type ParticipantStatusTransitionHttpRequest,
   type ParticipantUpdateHttpRequest,
   type ParticipantWriteResponseBody,
 } from './ParticipantWriteHttpDtos.js';
 import type {
+  ChangeOrganizationParticipantStatusInput,
   ChangeParticipantStatusInput,
   CreateParticipantInput,
   LinkParticipantToOrganizationInput,
@@ -80,6 +87,7 @@ import {
   type OrganizationParticipantView,
   type ParticipantExternalRef,
   type ParticipantStatus,
+  type RelationshipStatus,
   type RelationshipType,
   type ParticipantView,
 } from '../../domains/participant-registry/ParticipantTypes.js';
@@ -104,6 +112,10 @@ export interface ParticipantExistenceReader {
     organizationId: string,
     participantId: string,
     relationshipType: RelationshipType,
+  ): Promise<OrganizationParticipantView | undefined>;
+  getOrganizationLinkById(
+    tenantId: string,
+    relationshipId: string,
   ): Promise<OrganizationParticipantView | undefined>;
 }
 
@@ -167,6 +179,7 @@ function writeAppErrorStatus(code: ErrorCode): number {
       return 403;
     case ErrorCode.PARTICIPANT_NOT_FOUND:
     case ErrorCode.ORGANIZATION_NOT_FOUND:
+    case ErrorCode.ORGANIZATION_PARTICIPANT_NOT_FOUND:
       return 404;
     case ErrorCode.PARTICIPANT_ALREADY_EXISTS:
     case ErrorCode.ORGANIZATION_PARTICIPANT_ALREADY_EXISTS:
@@ -559,6 +572,124 @@ export async function handleOrganizationParticipantLink(
   } catch (err) {
     telemetry.incrementCounter(TelemetryCounters.participantRegistryWrite, 1, {
       [TelemetryAttributeKeys.operation]: 'organization_link',
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
+    return participantWriteErrorToHttpResult(err, requestId);
+  }
+}
+
+/**
+ * Handle `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` —
+ * transition an existing relationship's reference-data status.
+ *
+ * Flow: resolve identity (tenant from auth, never the body) → enforce the
+ * `participant.organization_link.write` action (the SAME action that gates link creation) → require
+ * the `Idempotency-Key` header → validate the path `organizationId` + `relationshipId` → validate
+ * the CLOSED status-transition body (require a known `targetStatus`; `reason` optional +
+ * length-capped; any other key — a profile field, a participant STATUS field, a link-CREATE field,
+ * or an out-of-scope behavior field — is rejected) → read-back pre-check (the relationship must
+ * exist for the tenant AND belong to the path organization; otherwise 404, indistinguishable from
+ * not-found) → {@link ParticipantRegistryService.changeOrganizationParticipantStatus} → project to
+ * the safe relationship DTO.
+ *
+ * A missing relationship, a relationship under a different organization, or a cross-tenant
+ * relationship all return 404 (never revealing cross-tenant existence). The status change is
+ * naturally idempotent: re-applying the current status with no new end date is a service-level
+ * no-op that emits no duplicate outbox signal. `reason` is validated at the boundary but NOT
+ * persisted — the service records no free-text note — and never enters the outbox payload or
+ * telemetry. The service owns the transactional outbox; the adapter enqueues nothing itself, never
+ * touches governance.entity_state, never invokes the Governance Kernel (relationship status is
+ * reference data, not a governed lifecycle FSM), and never mutates the Organization Registry.
+ */
+export async function handleOrganizationParticipantStatusTransition(
+  deps: ParticipantWriteHttpDeps,
+  req: OrganizationParticipantStatusTransitionHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<ParticipantReadHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
+  try {
+    const auth = await resolveParticipantAuth(resolver, req.headers);
+    const tenantId = requireTenant(auth);
+    assertAuthorized(auth, AuthorizationAction.ParticipantOrganizationLinkWrite, telemetry);
+
+    const idempotencyKey = requireIdempotencyKey(req.headers);
+
+    if (req.organizationId.trim() === '') {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'organizationId path parameter is required.');
+    }
+    const organizationId = req.organizationId.trim();
+
+    if (req.relationshipId.trim() === '') {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'relationshipId path parameter is required.');
+    }
+    const relationshipId = req.relationshipId.trim();
+
+    const obj = asObjectBody(req.body);
+    rejectUnknownKeys(
+      obj,
+      PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_BODY_KEYS,
+      'organization participant status transition',
+    );
+
+    const targetStatusRaw = obj['targetStatus'];
+    if (!isRelationshipStatus(targetStatusRaw)) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'targetStatus must be one of: active, suspended, ended.',
+      );
+    }
+    const targetStatus: RelationshipStatus = targetStatusRaw;
+
+    const reasonRaw = obj['reason'];
+    if (reasonRaw !== undefined) {
+      if (typeof reasonRaw !== 'string') {
+        throw new AppError(ErrorCode.INVALID_INPUT, 'reason must be a string when provided.');
+      }
+      if (reasonRaw.length > PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_REASON_MAX_LENGTH) {
+        throw new AppError(
+          ErrorCode.INVALID_INPUT,
+          `reason must be at most ${PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_REASON_MAX_LENGTH} characters.`,
+        );
+      }
+    }
+
+    // Read-back pre-check: the relationship must exist for this tenant (RLS makes a cross-tenant
+    // relationship invisible → undefined → 404) AND belong to the PATH organization. A relationship
+    // that exists but under a DIFFERENT organization is treated as not-found (404) so the path
+    // scope is authoritative and no cross-organization existence leaks. The service itself resolves
+    // only by (tenant, relationshipId), so this is where the organization scope is enforced.
+    const existing = await deps.readStore.getOrganizationLinkById(tenantId, relationshipId);
+    if (existing === undefined || existing.organizationId !== organizationId) {
+      throw new AppError(
+        ErrorCode.ORGANIZATION_PARTICIPANT_NOT_FOUND,
+        'Organization-participant relationship not found.',
+      );
+    }
+
+    const input: ChangeOrganizationParticipantStatusInput = {
+      tenantId,
+      relationshipId,
+      status: targetStatus,
+      correlationId: idempotencyKey,
+      requestId,
+    };
+
+    const view = await deps.service.changeOrganizationParticipantStatus(input);
+
+    const body: OrganizationParticipantStatusTransitionResponseBody = {
+      status: 'ok',
+      relationship: toOrganizationParticipantDto(view),
+      requestId,
+    };
+    telemetry.incrementCounter(TelemetryCounters.participantRegistryWrite, 1, {
+      [TelemetryAttributeKeys.operation]: 'organization_link_status',
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
+    return { status: 200, body };
+  } catch (err) {
+    telemetry.incrementCounter(TelemetryCounters.participantRegistryWrite, 1, {
+      [TelemetryAttributeKeys.operation]: 'organization_link_status',
       [TelemetryAttributeKeys.result]: TelemetryResult.failure,
     });
     return participantWriteErrorToHttpResult(err, requestId);

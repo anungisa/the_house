@@ -1,23 +1,25 @@
 # Participant write HTTP preflight
 
-> **Status: create + update + participant status-transition + organization-link create IMPLEMENTED. Relationship-status write NOT IMPLEMENTED.**
+> **Status: create + update + participant status-transition + organization-link create + relationship-status transition ALL IMPLEMENTED. The Phase 2 write surface is complete.**
 > The safe HTTP write surface — `POST /v1/participants` (create),
 > `PATCH /v1/participants/:participantId` (update safe profile fields),
 > `POST /v1/participants/:participantId/status-transitions` (change a participant's reference-data
-> status), and `POST /v1/organizations/:organizationId/participants` (link a participant to a
-> same-tenant organization) — is now implemented, gated by the `participant.write`,
-> `participant.status.write`, and `participant.organization_link.write` actions (see §3 rows 1–4
-> and §5.1–§5.4). The remaining write operation in this contract —
-> **relationship-status** changes (§5.5), also gated by
-> `participant.organization_link.write` — remains **NOT IMPLEMENTED** and is deferred to a
-> later phase. This document stays the binding contract for that deferred phase.
+> status), `POST /v1/organizations/:organizationId/participants` (link a participant to a
+> same-tenant organization), and
+> `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`
+> (change an existing relationship's reference-data status) — are all implemented, gated by the
+> `participant.write`, `participant.status.write`, and `participant.organization_link.write`
+> actions (see §3 rows 1–5 and §5.1–§5.5). The relationship-status transition (§5.5) reuses the
+> `participant.organization_link.write` action. This document stays the binding contract for the
+> full write surface.
 > The Participant Registry remains a **reference-data** domain: it NEVER invokes the Governance
 > Kernel, NEVER mutates governed lifecycle state, and NEVER mutates the Organization Registry
 > (it reads organizations as same-tenant reference structure only).
 
 ## What shipped
 
-The implemented write surface is the create + update + status-transition + organization-link slice:
+The implemented write surface is the create + update + status-transition + organization-link +
+relationship-status slice:
 
 - `POST /v1/participants` — create a participant (requires an `Idempotency-Key` header; a duplicate
   `participantId` for the tenant returns `409`). See §5.1.
@@ -34,6 +36,14 @@ The implemented write surface is the create + update + status-transition + organ
   returns `200` with the existing relationship and NO second outbox row; a newly created link
   returns `201`. Missing/cross-tenant organization or participant → `404`; an archived participant
   cannot receive a new active link → `409`. See §5.4.
+- `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` — change
+  an existing relationship's reference-data `status` (closed body `{ targetStatus, reason? }`;
+  `reason` is boundary-validated but NEVER persisted or signalled). `organizationId` and
+  `relationshipId` come from the path only. Gated by `participant.organization_link.write` (the SAME
+  action as the link create). The adapter enforces the path-organization scope: a relationship that
+  is missing, under a different organization, or cross-tenant all return an indistinguishable `404`
+  (`ORGANIZATION_PARTICIPANT_NOT_FOUND`). Re-applying the current status is an idempotent no-op (no
+  `organization_link_status_changed` outbox row). See §5.5.
 
 All go through the validated `ParticipantRegistryService` (which owns the transactional outbox),
 resolve tenant exclusively from the `x-house-*` auth context, and return the closed `ParticipantDto`.
@@ -52,22 +62,27 @@ headers / tokens / connection strings); a single sanitized `participant.registry
 row on a real status change and NO row on an idempotent no-op; NO mutation of
 `governance.entity_state` / `state_transition` / `audit_event`; and tenant isolation (cross-tenant
 update/transition is indistinguishable from not-found — identical `404` / `PARTICIPANT_NOT_FOUND`).
+The organization-link create and the **relationship-status transition** are covered by the same
+gated suite: own-tenant transition works; `participant.organization_link.write` is required
+(read-only / `participant.write` / `participant.status.write` actors → `403`); a missing, different-
+organization, or cross-tenant relationship is an indistinguishable `404`; a real change writes a
+single sanitized `participant.registry.organization_link_status_changed` row while a no-op writes
+none; and the transition never touches governance lifecycle tables or the Organization Registry.
 
-**Deferred (NOT IMPLEMENTED):** relationship-status changes (§5.5). It reuses the
-`participant.organization_link.write` action. The sections below remain its
-contract, and the consolidated **Phase 2 preflight** (immediately below) is the binding
-design/decision record that gates that implementation pass.
+**Fully implemented.** The Phase 2 write surface is complete: participant status-transition,
+organization-link create, and relationship-status transition are all shipped, all gated by their
+centralized actions (the relationship-status transition reuses `participant.organization_link.write`).
+The sections below remain the binding contract, and the consolidated **Phase 2 preflight**
+(immediately below) records the design/decision record that gated the implementation.
 
 ## Phase 2 preflight — status transitions & organization-link mutations
 
 > **Status: participant status-transition (route 1) IMPLEMENTED; organization-link create (route 2)
-> IMPLEMENTED; relationship-status (route 3) DESIGNED, NOT IMPLEMENTED.** This section is the
-> consolidated, decision-bearing contract for the remaining write route. The relationship-status
-> route is a design-and-contract pass only: no relationship-status endpoint, route, DTO file,
-> authorization action, or service change is created here. The detailed per-endpoint contracts in
-> §3–§14 remain authoritative; this section makes the phase-2-specific **decisions** explicit
-> (kernel boundary, authorization, idempotency stance, error mapping, privacy, RLS matrix, sequence,
-> go/no-go) so the implementation pass does not re-litigate them.
+> IMPLEMENTED; relationship-status (route 3) IMPLEMENTED.** This section is the
+> consolidated, decision-bearing contract for the phase-2 write routes, now all shipped. The
+> detailed per-endpoint contracts in §3–§14 remain authoritative; this section makes the
+> phase-2-specific **decisions** explicit (kernel boundary, authorization, idempotency stance,
+> error mapping, privacy, RLS matrix, sequence, go/no-go) as the record of how they were resolved.
 
 ### P2.1 Scope
 
@@ -77,7 +92,7 @@ Phase 2 covers exactly these three routes (and nothing else):
 | --- | --- | --- | --- | --- | --- |
 | 1 | `POST /v1/participants/:participantId/status-transitions` | Change a participant's reference status | `changeParticipantStatus` | `participant.status.write` | IMPLEMENTED |
 | 2 | `POST /v1/organizations/:organizationId/participants` | Link a participant to an organization | `linkParticipantToOrganization` | `participant.organization_link.write` | IMPLEMENTED |
-| 3 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change a relationship's status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` | NOT IMPLEMENTED |
+| 3 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change a relationship's status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` | IMPLEMENTED |
 
 **Explicitly NOT in phase 2** (no design, no implementation): payments, registration, program
 enrollment, event/competition participation, eligibility, identity-provider account provisioning,
@@ -353,9 +368,9 @@ following. None may be added without an explicit, separate request:
 
 ## 3. Proposed endpoints
 
-The domain service exposes five write operations. **Phase 1 (now implemented) chose the minimal
-create + update subset (rows 1–2)**; status transitions and organization linking (rows 3–5) are
-deferred to a later phase and remain unimplemented.
+The domain service exposes five write operations. **Phase 1 chose the minimal
+create + update subset (rows 1–2)**; the Phase 2 pass added status transitions and organization
+linking (rows 3–5). All five are now implemented.
 
 | # | Method & path | Operation | Service method | Authz action | Phase |
 | --- | --- | --- | --- | --- | --- |
@@ -363,7 +378,7 @@ deferred to a later phase and remain unimplemented.
 | 2 | `PATCH /v1/participants/:participantId` | Update safe profile fields | `updateParticipant` | `participant.write` | **1 (done)** |
 | 3 | `POST /v1/participants/:participantId/status-transitions` | Change participant status | `changeParticipantStatus` | `participant.status.write` | **done** |
 | 4 | `POST /v1/organizations/:organizationId/participants` | Link participant to organization | `linkParticipantToOrganization` | `participant.organization_link.write` | **done** |
-| 5 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change relationship status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` | deferred |
+| 5 | `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change relationship status | `changeOrganizationParticipantStatus` | `participant.organization_link.write` | **done** |
 
 Routing notes (the read surface already establishes these path shapes in `src/http/server.ts`):
 
@@ -530,19 +545,29 @@ payload bytes. Identity (tenant + actor) is never accepted in the body; it comes
 
 ### 5.5 `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`
 
+- **Status: IMPLEMENTED.** Reuses the `participant.organization_link.write` action (the same action
+  as the link create).
 - **Authz**: `participant.organization_link.write`.
 - **Idempotency**: `Idempotency-Key` header **required** (see §6).
-- **Request body**:
+- **Request body** (CLOSED set — any other key, including link-create fields such as
+  `participantId` / `relationshipType` / `startDate` / `endDate`, is rejected with `400`):
 
   | Field | Type | Required | Notes |
   | --- | --- | --- | --- |
-  | `targetStatus` | enum | **required** | Known `RelationshipStatus`; unknown → `400`. |
-  | `endDate` | string (date) | optional | Used when ending a relationship. |
+  | `targetStatus` | enum | **required** | Known `RelationshipStatus` (`active`/`suspended`/`ended`); unknown → `400`. |
+  | `reason` | string | optional | Boundary-validated (≤ 1024 chars) audit note; NEVER persisted or signalled. |
 
-- **Response**: `200 OK` with the updated `OrganizationParticipantDto`. `404` when the relationship
-  does not exist for the tenant/organization. No-op transition returns `200` idempotently.
-- **Outbox**: one `participant.registry.organization_link_status_changed` row (sanitized).
-- **Telemetry**: `participant.registry.organization_link_status_changed.count` tagged `result`.
+- **Path-organization scope**: the adapter reads the relationship by `(tenant, relationshipId)` and
+  requires `relationship.organizationId === :organizationId`. A relationship that is missing, under a
+  different organization, or cross-tenant all return an indistinguishable `404`
+  (`ORGANIZATION_PARTICIPANT_NOT_FOUND`) — no cross-organization / cross-tenant existence leaks.
+- **Response**: `200 OK` with the updated `OrganizationParticipantDto` (closed field set). A no-op
+  transition (re-applying the current status) returns `200` idempotently with NO outbox row.
+- **Outbox**: one sanitized `participant.registry.organization_link_status_changed` row on a real
+  change (payload: relationshipId, tenantId, organizationId, participantId, relationshipType,
+  previousStatus, newStatus, + correlation lineage — never names/email).
+- **Telemetry**: `participant.registry.write.count` tagged `operation=organization_link_status`,
+  `result`.
 
 ## 6. Idempotency & concurrency model
 

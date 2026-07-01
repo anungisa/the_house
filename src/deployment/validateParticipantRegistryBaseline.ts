@@ -13,11 +13,13 @@
  * participant registry; the read-only HTTP surface (adapter, DTOs, auth, barrel) AND the write
  * surface (create + update + status-transition adapter + DTOs) and their unit tests exist; the
  * server wires the `/v1/participants` read routes plus the create/update handlers, the
- * `POST /v1/participants/:participantId/status-transitions` handler, AND the
- * `POST /v1/organizations/:organizationId/participants` organization-link handler; the
+ * `POST /v1/participants/:participantId/status-transitions` handler, the
+ * `POST /v1/organizations/:organizationId/participants` organization-link handler, AND the
+ * `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`
+ * organization-relationship status-transition handler; the
  * authorization catalog defines `participant.read`, `participant.write`, `participant.status.write`,
- * AND `participant.organization_link.write`; NO relationship-STATUS write surface is exposed (still
- * deferred); the doc documents its purpose/scope, the key invariants, and the HTTP read + write
+ * AND `participant.organization_link.write` (the last also gates the relationship status
+ * transition); the doc documents its purpose/scope, the key invariants, and the HTTP read + write
  * surfaces; and NO secret-looking values, sport-specific terminology, or out-of-scope behavior
  * terms leak into the domain code, HTTP surface, doc, test, or migration.
  *
@@ -76,9 +78,10 @@ export const PARTICIPANT_HTTP_TEST_REL =
   'tests/unit/http/participant/ParticipantReadHttpAdapter.test.ts';
 export const PARTICIPANT_HTTP_INTEGRATION_TEST_REL =
   'tests/integration/governance/participant-registry-http.integration.test.ts';
-// HTTP write surface (create + update + reference-data status transition): mutation endpoints
-// gated by the centralized `participant.write` / `participant.status.write` actions. NO
-// organization-link or relationship-status write surface here (deliberately deferred).
+// HTTP write surface (create + update + reference-data status transition + organization-link
+// create + organization-relationship status transition): mutation endpoints gated by the
+// centralized `participant.write` / `participant.status.write` / `participant.organization_link.write`
+// actions. This completes the Phase 2 write surface.
 export const PARTICIPANT_HTTP_WRITE_ADAPTER_REL =
   'src/http/participant/ParticipantWriteHttpAdapter.ts';
 export const PARTICIPANT_HTTP_WRITE_DTO_REL =
@@ -396,17 +399,22 @@ export function validateParticipantRegistryBaseline(
       : 'missing organization-link write route wiring',
   });
 
-  // 7k. Scope guard: NO relationship-STATUS write handler is exposed (still deferred). Changing an
-  //     existing relationship's status is a later phase.
-  const hasRelStatusWrite =
-    serverText.includes('handleOrganizationParticipantStatus') ||
-    serverText.includes('handleRelationshipStatusTransition');
+  // 7k. The server wires the organization-relationship status-transition handler AND route. (This
+  //     flipped from a prior "no relationship-status write handler" scope guard now that the
+  //     relationship reference-data status transition exists. It reuses the
+  //     `participant.organization_link.write` action and adds the four-segment
+  //     `.../participants/:relationshipId/status-transitions` POST sub-resource.)
+  const wiresRelStatusWrite =
+    serverText.includes('handleOrganizationParticipantStatusTransition') &&
+    serverText.includes('organizations') &&
+    serverText.includes('participants') &&
+    serverText.includes('status-transitions');
   checks.push({
-    name: 'server exposes NO relationship-status write handler',
-    ok: !hasRelStatusWrite,
-    detail: hasRelStatusWrite
-      ? 'unexpected relationship-status write handler present'
-      : 'no relationship-status write handler (still deferred)',
+    name: 'server wires the organization-relationship status-transition route',
+    ok: wiresRelStatusWrite,
+    detail: wiresRelStatusWrite
+      ? 'references handleOrganizationParticipantStatusTransition + relationship status-transitions route'
+      : 'missing organization-relationship status-transition route wiring',
   });
 
   // 8. package.json exposes participant:check.
@@ -467,8 +475,9 @@ export function validateParticipantRegistryBaseline(
   });
 
   // 13. The write HTTP preflight design/contract doc exists and stays coherent now that create,
-  //     update, and the reference-data status transition are implemented while the organization-
-  //     link write surface remains unimplemented.
+  //     update, the reference-data status transition, the organization-link create, AND the
+  //     organization-relationship status transition are all implemented (the Phase 2 write surface
+  //     is complete).
   const preflight = readIfExists(join(repoRoot, PARTICIPANT_WRITE_PREFLIGHT_DOC_REL));
   checks.push({
     name: 'participant write HTTP preflight doc exists',
@@ -477,13 +486,13 @@ export function validateParticipantRegistryBaseline(
   });
   const preflightMarkers: ReadonlyArray<{ marker: RegExp; label: string }> = [
     { marker: /phase 1/i, label: 'phase 1 scope' },
-    { marker: /not implemented/i, label: 'later phases (status/link) not implemented' },
+    { marker: /implemented/i, label: 'route implementation status' },
     { marker: /idempotenc/i, label: 'idempotency model' },
     { marker: /\bRLS\b|tenant[- ]isolation/i, label: 'RLS / tenant isolation' },
     { marker: /privacy/i, label: 'privacy / payload safety' },
     { marker: /test matrix/i, label: 'test matrix' },
     // Phase-2 design coherence: the preflight must keep the status-transition + organization-link
-    // design (and its "not implemented" status) documented BEFORE any phase-2 code is built.
+    // design documented alongside the (now-shipped) phase-2 routes.
     { marker: /phase 2/i, label: 'phase 2 scope' },
     { marker: /status[- ]transition/i, label: 'phase 2 status-transition design' },
     { marker: /organization[- ]link/i, label: 'phase 2 organization-link design' },

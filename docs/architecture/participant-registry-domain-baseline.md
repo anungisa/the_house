@@ -189,24 +189,25 @@ RUN_DB_TESTS=1 \
   npx vitest run tests/integration/governance/participant-registry-http.integration.test.ts
 ```
 
-**Create, update, participant status-transition, and organization-link create endpoints are now
-implemented** — see the HTTP write surface section below. Relationship-status writes remain out of
-scope. The full write contract is in
+**Create, update, participant status-transition, organization-link create, and relationship-status
+transition endpoints are now implemented** — see the HTTP write surface section below. This
+completes the Phase 2 write surface. The full write contract is in
 [participant-write-http-preflight.md](participant-write-http-preflight.md): it defines the
-proposed mutation endpoints, the write authorization actions, DTO contracts, idempotency model,
-error mapping, privacy/payload rules, RLS test obligations, and a go/no-go checklist. Any future
-implementation must not add registration, payments, program enrollment, eligibility, or
+mutation endpoints, the write authorization actions, DTO contracts, idempotency model,
+error mapping, privacy/payload rules, RLS test obligations, and a go/no-go checklist. Future work
+must not add registration, payments, program enrollment, eligibility, or
 sensitive attributes, and must never invoke the Governance Kernel or mutate the Organization
 Registry.
 
 ## HTTP write surface
 
-Mutation endpoints expose participant **create**, **update**, **status transition**, and
-**organization-link create** to authorized operators. They are a THIN transport over the validated
+Mutation endpoints expose participant **create**, **update**, **status transition**,
+**organization-link create**, and **relationship-status transition** to authorized operators. They
+are a THIN transport over the validated
 `ParticipantRegistryService` (which owns the transactional outbox): the adapter never enqueues an
 outbox message directly, never touches governed lifecycle state, and never invokes the Governance
 Kernel. Participant status and organization links are reference data, not a governed FSM — the
-status-transition route changes a denormalized status field and the link route creates a
+status-transition routes change a denormalized status field and the link route creates a
 same-tenant relationship record through the validated service, NOT the Governance Kernel.
 
 | Method & path | Purpose |
@@ -215,6 +216,7 @@ same-tenant relationship record through the validated service, NOT the Governanc
 | `PATCH /v1/participants/:participantId` | Update a participant's safe profile fields. |
 | `POST /v1/participants/:participantId/status-transitions` | Change a participant's reference-data status. |
 | `POST /v1/organizations/:organizationId/participants` | Link a participant to a same-tenant organization. |
+| `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` | Change an existing relationship's reference-data status. |
 
 Key properties:
 
@@ -250,18 +252,31 @@ Key properties:
   `409`. The route creates reference data only — it never calls the Governance Kernel and never
   mutates the Organization Registry (it only reads the organization to confirm same-tenant
   existence).
+- **Relationship-status-transition contract**: closed body `{ targetStatus, reason? }` (unknown
+  keys — including link-create fields such as `participantId` / `relationshipType` / `endDate` —
+  → `400`); `organizationId` and `relationshipId` come from the path only. `targetStatus` must be a
+  known `RelationshipStatus`; `reason` is optional (≤1024 chars) and is **never** persisted,
+  signalled, or placed in telemetry. Gated by the SAME `participant.organization_link.write` action
+  as the link create. The adapter enforces the path-organization scope: a relationship that is
+  missing, under a different organization, or cross-tenant all return an indistinguishable `404`
+  (`ORGANIZATION_PARTICIPANT_NOT_FOUND`). Re-applying the current status is an idempotent no-op
+  (`200`, no `organization_link_status_changed` outbox row). The route changes reference data only —
+  it never calls the Governance Kernel and never mutates the Organization Registry.
 - **Safe projection**: all endpoints return the SAME closed `ParticipantDto` as the read surface.
   Email may be read back by the authorized same-tenant operator but is **never** in the outbox or
   telemetry. Bodies reject unknown keys, so secrets and unexpected fields fail closed.
 - **Telemetry**: each write emits the `participant.registry.write.count` counter tagged with the
-  operation (`create` / `update` / `status_transition` / `organization_link`) and result
+  operation (`create` / `update` / `status_transition` / `organization_link` /
+  `organization_link_status`) and result
   (`success` / `failure`) only — no ids, names, email, headers, or secrets. A real status change
   additionally emits the service-level `participant.registry.status_changed.count`; a newly created
-  link additionally emits the service-level `participant.registry.organization_linked.count`.
+  link additionally emits the service-level `participant.registry.organization_linked.count`; a real
+  relationship-status change additionally emits the service-level
+  `participant.registry.organization_link_status_changed.count`.
 
 ### Gated DB/RLS validation
 
-The phase-1 write surface is proven end-to-end through real PostgreSQL with RLS FORCED and a
+The write surface is proven end-to-end through real PostgreSQL with RLS FORCED and a
 least-privilege NON-superuser / NON-BYPASSRLS role in
 `tests/integration/governance/participant-registry-write-http.integration.test.ts` (gated by
 `RUN_DB_TESTS=1`; skipped by default so `npm test` stays hermetic):
@@ -281,32 +296,38 @@ sanitized `participant.registry.status_changed` row on a real status change and 
 idempotent no-op; that write routes NEVER mutate
 `governance.entity_state` / `state_transition` / `audit_event`; and tenant isolation (a cross-tenant
 update/transition is indistinguishable from a not-found — identical `404` / `PARTICIPANT_NOT_FOUND`).
-The role holds `SELECT, INSERT, UPDATE` (no `DELETE`) on the participant table and the outbox only.
+The same gated suite covers the organization-link create and the **relationship-status transition**:
+`participant.organization_link.write` enforcement; a missing / different-organization / cross-tenant
+relationship as an indistinguishable `404`; a single sanitized
+`participant.registry.organization_link_status_changed` row on a real change and none on a no-op;
+and no mutation of governance lifecycle tables or the Organization Registry.
+The role holds `SELECT, INSERT, UPDATE` (no `DELETE`) on the participant table, the organization
+relationship table, and the outbox only.
 
-### Phase 2 (relationship status) — designed, NOT implemented
+### Phase 2 (write surface) — implemented
 
-- **Create, update, the participant status transition, and the organization-link create are
-  implemented and DB/RLS-validated** (above).
+- **Create, update, the participant status transition, the organization-link create, AND the
+  relationship-status transition are all implemented and DB/RLS-validated** (above). This completes
+  the Phase 2 write surface.
 - **Relationship-status mutations** — (`POST
-  /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`) — are
-  **designed but not implemented**. Their binding contract is the "Phase 2 preflight" section of
-  [participant-write-http-preflight.md](participant-write-http-preflight.md): reference-data
-  mutations through `ParticipantRegistryService` only (NEVER the Governance Kernel), tenant-scoped
-  `participant.organization_link.write` action, `Idempotency-Key` as
-  correlation-only, and a full RLS/DB validation matrix.
+  /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`) — change an
+  existing relationship's reference-data status through `ParticipantRegistryService` only (NEVER the
+  Governance Kernel), gated by the tenant-scoped `participant.organization_link.write` action, with
+  `Idempotency-Key` as correlation-only and a full RLS/DB validation matrix. Their binding contract
+  is the "Phase 2 preflight" section of
+  [participant-write-http-preflight.md](participant-write-http-preflight.md).
 - **Registration, payments, program enrollment, event participation, and eligibility remain out of
   scope** for the entire Participant Registry.
 
 
 ## Out of scope (intentionally not built)
 
-This pass adds the read surface plus the create, update, status-transition, and organization-link
-create write surface above. The following are **intentionally not built** and must not be added
-without an explicit request:
+This pass adds the read surface plus the create, update, status-transition, organization-link
+create, and relationship-status transition write surface above. The following are **intentionally
+not built** and must not be added without an explicit request:
 
 - registration, payments, program enrollment, competition, or eligibility;
 - any sport-specific concepts or terminology;
-- relationship-status write endpoints (deferred to a later phase);
 - a generic CRUD API or dynamic field schema;
 - write authorization actions beyond `participant.write` / `participant.status.write` /
   `participant.organization_link.write`;

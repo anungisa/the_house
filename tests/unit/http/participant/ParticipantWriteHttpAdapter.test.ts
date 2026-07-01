@@ -5,6 +5,7 @@ import {
   handleParticipantUpdate,
   handleParticipantStatusTransition,
   handleOrganizationParticipantLink,
+  handleOrganizationParticipantStatusTransition,
   participantWriteErrorToHttpResult,
   type ParticipantWriteHttpDeps,
 } from '../../../../src/http/participant/ParticipantWriteHttpAdapter.js';
@@ -13,6 +14,7 @@ import {
   ParticipantRegistryService,
   PARTICIPANT_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
   PARTICIPANT_REGISTRY_ORGANIZATION_LINKED_MESSAGE_TYPE,
+  PARTICIPANT_REGISTRY_ORGANIZATION_LINK_STATUS_CHANGED_MESSAGE_TYPE,
 } from '../../../../src/domains/participant-registry/index.js';
 import { InMemoryOutboxStore } from '../../../../src/governance/outbox/InMemoryOutboxStore.js';
 import { InMemoryTelemetry } from '../../../../src/observability/index.js';
@@ -1179,5 +1181,429 @@ describe('participant write HTTP adapter — organization link', () => {
       'req-1',
     );
     expect(res.status).toBe(404);
+  });
+});
+
+describe('participant write HTTP adapter — organization relationship status transition', () => {
+  const ORG_B = '44444444-4444-4444-4444-444444444444';
+
+  /** Headers carrying ONLY the exact `participant.organization_link.write` permission. */
+  function linkOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-6',
+      'x-house-actor-permission-keys': 'participant.organization_link.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  /** Headers carrying ONLY the `participant.write` permission (NOT the link action). */
+  function profileWriteOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-7',
+      'x-house-actor-permission-keys': 'participant.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  /** Headers carrying ONLY the `participant.status.write` permission (NOT the link action). */
+  function statusWriteOnlyHeaders(tenantId = TENANT_A): Record<string, string | undefined> {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': 'op-8',
+      'x-house-actor-permission-keys': 'participant.status.write',
+      'idempotency-key': 'idem-001',
+    };
+  }
+
+  /**
+   * Seed an organization + a participant + an active `member` relationship in the given tenant,
+   * returning the server-generated relationshipId. The organization is read-only reference; the
+   * relationship is created through the validated link route.
+   */
+  async function seedRelationship(
+    h: Harness,
+    tenantId = TENANT_A,
+    organizationId = ORG_A,
+  ): Promise<string> {
+    h.organizations.seed(tenantId, organizationId);
+    const created = await handleParticipantCreate(h.deps, {
+      headers: adminHeaders(tenantId),
+      body: {
+        participantId: 'p-rel',
+        displayName: 'Rel Person',
+        givenName: 'Given',
+        familyName: 'Family',
+        email: 'rel@example.test',
+        status: 'active',
+      },
+    });
+    expect(created.status).toBe(201);
+    const linked = await handleOrganizationParticipantLink(h.deps, {
+      organizationId,
+      headers: adminHeaders(tenantId),
+      body: { participantId: 'p-rel', relationshipType: 'member' },
+    });
+    expect(linked.status).toBe(201);
+    return (linked.body as { relationship: { relationshipId: string } }).relationship.relationshipId;
+  }
+
+  it('(S1) transitions a relationship status and returns 200 with the closed relationship DTO', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(200);
+    const body = res.body as { status: string; relationship: Record<string, unknown> };
+    expect(body.status).toBe('ok');
+    expect(body.relationship['relationshipId']).toBe(relationshipId);
+    expect(body.relationship['status']).toBe('suspended');
+    for (const key of Object.keys(body.relationship)) {
+      expect(ALLOWED_RELATIONSHIP_DTO_KEYS.has(key)).toBe(true);
+    }
+  });
+
+  it('(S2) accepts an optional reason (validated but not persisted) — 200', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'ended', reason: 'season complete' },
+    });
+    expect(res.status).toBe(200);
+    // The reason never reaches the outbox payload.
+    const rows = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINK_STATUS_CHANGED_MESSAGE_TYPE,
+    );
+    expect(rows.length).toBe(1);
+    expect(JSON.stringify(rows[0]?.payload)).not.toContain('season complete');
+  });
+
+  it('(S3) authorizes the exact participant.organization_link.write permission (200)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: linkOnlyHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(200);
+  });
+
+  it('(S4) denies an actor with participant.write but NOT the link action (403)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: profileWriteOnlyHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(S5) denies an actor with participant.status.write but NOT the link action (403)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: statusWriteOnlyHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(S6) denies a read-only actor (participant.read only) with 403', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: readerHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(403);
+  });
+
+  it('(S7) requires a tenant identity (401 when absent)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const headers = adminHeaders();
+    delete headers['x-house-tenant-id'];
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers,
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(401);
+  });
+
+  it('(S8) requires the Idempotency-Key header (400 when absent)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const headers = adminHeaders();
+    delete headers['idempotency-key'];
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers,
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S9) rejects a blank organizationId path parameter with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: '   ',
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S10) rejects a blank relationshipId path parameter with 400', async () => {
+    const h = build();
+    await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId: '   ',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S11) rejects a missing targetStatus with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: {},
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S12) rejects an unknown targetStatus value with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'archived' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S13) rejects a non-string reason with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', reason: 42 },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S14) rejects an over-long reason with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', reason: 'x'.repeat(1025) },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S15) rejects a misplaced link-CREATE field (participantId) with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', participantId: 'p-rel' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S16) rejects a misplaced link-CREATE field (relationshipType/endDate) with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', relationshipType: 'staff', endDate: '2024-12-31' },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S17) rejects any other unknown body key with 400', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended', surprise: 1 },
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(S18) returns 404 for a missing relationship', async () => {
+    const h = build();
+    h.organizations.seed(TENANT_A, ORG_A);
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId: 'does-not-exist',
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(S19) returns 404 when the relationship exists but under a DIFFERENT organization', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    // The relationship belongs to ORG_A; asking for it under ORG_B must be indistinguishable
+    // from not-found (the path organization is authoritative).
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_B,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(S20) returns 404 for a cross-tenant relationship (never reveals existence)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h, TENANT_A);
+    // Same relationshipId, but the caller is in TENANT_B where it is invisible.
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(TENANT_B),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(404);
+  });
+
+  it('(S21) re-applying the current status is an idempotent no-op: 200 with no new outbox row', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const first = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(first.status).toBe(200);
+    const afterFirst = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINK_STATUS_CHANGED_MESSAGE_TYPE,
+    ).length;
+    const second = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(second.status).toBe(200);
+    const afterSecond = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINK_STATUS_CHANGED_MESSAGE_TYPE,
+    ).length;
+    expect(afterSecond).toBe(afterFirst); // no duplicate signal on the no-op re-apply
+  });
+
+  it('(S22) enqueues exactly one sanitized status-changed outbox row (no PII)', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    const rows = h.outbox.records.filter(
+      (r) => r.messageType === PARTICIPANT_REGISTRY_ORGANIZATION_LINK_STATUS_CHANGED_MESSAGE_TYPE,
+    );
+    expect(rows.length).toBe(1);
+    const payload = rows[0]?.payload as Record<string, unknown>;
+    const SAFE_LINK_STATUS_PAYLOAD_KEYS = new Set([
+      'relationshipId',
+      'tenantId',
+      'organizationId',
+      'participantId',
+      'relationshipType',
+      'previousStatus',
+      'newStatus',
+      'requestId',
+      'correlationId',
+      'actorUserId',
+    ]);
+    for (const key of Object.keys(payload)) {
+      expect(SAFE_LINK_STATUS_PAYLOAD_KEYS.has(key)).toBe(true);
+    }
+    const serialized = JSON.stringify(payload);
+    expect(serialized).not.toContain('rel@example.test');
+    expect(serialized).not.toContain('Rel Person');
+    expect(serialized).not.toContain('Given');
+    expect(serialized).not.toContain('Family');
+    expect(payload['previousStatus']).toBe('active');
+    expect(payload['newStatus']).toBe('suspended');
+  });
+
+  it('(S23) emits a write telemetry counter tagged organization_link_status/success without leaking PII', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: adminHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    const signals = h.telemetry.signalsNamed(TelemetryCounters.participantRegistryWrite);
+    const statusSignals = signals.filter(
+      (s) => s.attributes?.['operation'] === 'organization_link_status',
+    );
+    expect(statusSignals.length).toBe(1);
+    expect(statusSignals[0]?.attributes?.['result']).toBe('success');
+    const serialized = JSON.stringify(h.telemetry.snapshot());
+    expect(serialized).not.toContain('rel@example.test');
+    expect(serialized).not.toContain('Rel Person');
+  });
+
+  it('(S24) a denied request (403) never enqueues an outbox row', async () => {
+    const h = build();
+    const relationshipId = await seedRelationship(h);
+    const before = h.outbox.records.length;
+    const res = await handleOrganizationParticipantStatusTransition(h.deps, {
+      organizationId: ORG_A,
+      relationshipId,
+      headers: readerHeaders(),
+      body: { targetStatus: 'suspended' },
+    });
+    expect(res.status).toBe(403);
+    expect(h.outbox.records.length).toBe(before);
   });
 });

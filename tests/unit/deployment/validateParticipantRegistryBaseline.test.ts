@@ -69,17 +69,17 @@ const VALID_DOC = [
   'Create + update + status-transition + organization-link endpoints gated by participant.write, participant.status.write, and participant.organization_link.write.',
   '',
   '## Out of scope (intentionally not built)',
-  'No relationship-status write endpoints; no write transport beyond create/update/status-transition/organization-link.',
+  'No registration, payments, enrollment, or eligibility in the participant write surface.',
   '',
 ].join('\n');
 
 const VALID_PREFLIGHT_DOC = [
   '# Participant write HTTP preflight',
   '',
-  'Status: Phase 1 create + update plus status mutation IMPLEMENTED. Org relationship write NOT IMPLEMENTED.',
+  'Status: Phase 1 create + update plus status mutation IMPLEMENTED. Organization relationship writes IMPLEMENTED.',
   '',
   '## Phase 2 preflight — status transitions & organization-link mutations',
-  'Phase 2 status-transition route IMPLEMENTED; organization-link create route IMPLEMENTED; relationship-status route NOT implemented yet.',
+  'Phase 2 status-transition route IMPLEMENTED; organization-link create route IMPLEMENTED; relationship-status route IMPLEMENTED.',
   '',
   '## Idempotency & concurrency model',
   'POST mutations require an Idempotency-Key; replays return the prior result.',
@@ -140,7 +140,8 @@ function baseFiles(): Record<string, string | null> {
       '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
       '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
       '// handleParticipantStatusTransition status-transitions (fixture)\n' +
-      '// handleOrganizationParticipantLink (fixture)\n',
+      '// handleOrganizationParticipantLink (fixture)\n' +
+      '// handleOrganizationParticipantStatusTransition status-transitions (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]:
       "ParticipantRead: 'participant.read',\nParticipantWrite: 'participant.write',\n" +
       "ParticipantStatusWrite: 'participant.status.write',\n" +
@@ -305,21 +306,23 @@ describe('validateParticipantRegistryBaseline', () => {
     files[SERVER_MODULE_REL] =
       '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
       '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
-      '// handleParticipantStatusTransition status-transitions (fixture)\n';
+      '// handleParticipantStatusTransition status-transitions (fixture)\n' +
+      '// handleOrganizationParticipantStatusTransition status-transitions (fixture)\n';
     const root = writeRepo(files);
     expect(checkOk(root, 'server wires the organization-link write route')).toBe(false);
   });
 
-  it('fails when the server wires a relationship-status write handler', () => {
+  it('fails when the server does not wire the relationship-status write route', () => {
     const files = baseFiles();
     files[SERVER_MODULE_REL] =
       '// server wires /v1/participants and /v1/organizations/:id/participants (fixture)\n' +
       '// handleParticipantCreate handleParticipantUpdate (fixture)\n' +
       '// handleParticipantStatusTransition status-transitions (fixture)\n' +
-      '// handleOrganizationParticipantLink (fixture)\n' +
-      '// handleOrganizationParticipantStatus (fixture)\n';
+      '// handleOrganizationParticipantLink (fixture)\n';
     const root = writeRepo(files);
-    expect(checkOk(root, 'server exposes NO relationship-status write handler')).toBe(false);
+    expect(
+      checkOk(root, 'server wires the organization-relationship status-transition route'),
+    ).toBe(false);
   });
 
   it('flags an out-of-scope behavior term leaking into the write surface', () => {
@@ -393,7 +396,7 @@ describe('validateParticipantRegistryBaseline', () => {
   it('fails when the preflight doc omits the phase 2 status/link design', () => {
     const files = baseFiles();
     files[PARTICIPANT_WRITE_PREFLIGHT_DOC_REL] = VALID_PREFLIGHT_DOC.replace(
-      /## Phase 2 preflight[\s\S]*?not implemented yet\.\n/i,
+      /## Phase 2 preflight[\s\S]*?relationship-status route IMPLEMENTED\.\n/i,
       '## Other\nplaceholder design content\n',
     );
     const root = writeRepo(files);

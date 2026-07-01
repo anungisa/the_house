@@ -13,17 +13,20 @@ import {
   handleParticipantUpdate,
   handleParticipantStatusTransition,
   handleOrganizationParticipantLink,
+  handleOrganizationParticipantStatusTransition,
   type ParticipantWriteHttpDeps,
 } from '../../../src/http/participant/ParticipantWriteHttpAdapter.js';
 import { TrustedHeadersAuthContextResolver } from '../../../src/http/auth/TrustedHeadersAuthContextResolver.js';
 
 /**
  * Gated PostgreSQL integration tests for the PARTICIPANT REGISTRY HTTP *WRITE* surface — create,
- * update, the reference-data status transition, and the organization-link create — over the real
+ * update, the reference-data status transition, the organization-link create, and the
+ * organization-relationship status transition — over the real
  * {@link PgParticipantRegistryStore} and the real HTTP write adapter
  * (`POST /v1/participants`, `PATCH /v1/participants/:participantId`,
  * `POST /v1/participants/:participantId/status-transitions`,
- * `POST /v1/organizations/:organizationId/participants`).
+ * `POST /v1/organizations/:organizationId/participants`, and
+ * `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`).
  *
  * These prove, against REAL PostgreSQL with RLS FORCED and a least-privilege NON-superuser,
  * NON-BYPASSRLS runtime role, that the HTTP write path:
@@ -267,6 +270,24 @@ const SAFE_LINK_PAYLOAD_KEYS = new Set([
   'actorUserId',
 ]);
 
+/**
+ * The CLOSED set of safe keys for an organization_link_status_changed outbox payload: stable
+ * identifiers, the relationship type, the before/after status, and correlation lineage only. NEVER
+ * names, email, headers, tokens, or bytes.
+ */
+const SAFE_LINK_STATUS_PAYLOAD_KEYS = new Set([
+  'relationshipId',
+  'tenantId',
+  'organizationId',
+  'participantId',
+  'relationshipType',
+  'previousStatus',
+  'newStatus',
+  'requestId',
+  'correlationId',
+  'actorUserId',
+]);
+
 const ALLOWED_RELATIONSHIP_DTO_KEYS = new Set([
   'relationshipId',
   'tenantId',
@@ -452,6 +473,20 @@ d('participant registry HTTP write surface (integration)', () => {
     return handleOrganizationParticipantLink(
       deps,
       { headers, organizationId, body },
+      randomUUID(),
+      TRUSTED,
+    );
+  }
+
+  function relationshipStatusTransition(
+    headers: Record<string, string | undefined>,
+    organizationId: string,
+    relationshipId: string,
+    body: Record<string, unknown>,
+  ): ReturnType<typeof handleOrganizationParticipantStatusTransition> {
+    return handleOrganizationParticipantStatusTransition(
+      deps,
+      { headers, organizationId, relationshipId, body },
       randomUUID(),
       TRUSTED,
     );
@@ -1273,5 +1308,289 @@ d('participant registry HTTP write surface (integration)', () => {
     });
     const relationship = res.body['relationship'] as Record<string, unknown>;
     expect(new Set(Object.keys(relationship))).toEqual(ALLOWED_RELATIONSHIP_DTO_KEYS);
+  });
+
+  // --- ORGANIZATION RELATIONSHIP STATUS TRANSITION -----------------------------------------
+
+  /**
+   * Seed an own-tenant participant + an active `member` relationship to the given organization,
+   * returning the server-generated relationshipId. Clears the outbox afterward so status-transition
+   * assertions start from a clean slate.
+   */
+  async function seedRelationship(
+    tenantId: string,
+    organizationId: string,
+    over: CreateBody = {},
+  ): Promise<string> {
+    const participantId = await seedLinkable(tenantId, over);
+    const linked = await link(writerHeaders(tenantId), organizationId, {
+      participantId,
+      relationshipType: 'member',
+    });
+    expect(linked.status).toBe(201);
+    const relationshipId = (linked.body['relationship'] as Record<string, unknown>)[
+      'relationshipId'
+    ] as string;
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [tenantId]);
+    return relationshipId;
+  }
+
+  // (RS1) The restricted write role transitions an own-tenant relationship status and gets 200 with
+  //       the updated relationship; the persisted row reflects the new status.
+  it('(RS1) transitions an own-tenant relationship status over the HTTP write path (200)', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    expect(res.status).toBe(200);
+    const relationship = res.body['relationship'] as Record<string, unknown>;
+    expect(relationship['relationshipId']).toBe(relationshipId);
+    expect(relationship['status']).toBe('suspended');
+  });
+
+  // (RS2) The exact `participant.organization_link.write` permission (no role) authorizes the
+  //       transition.
+  it('(RS2) the exact organization-link permission authorizes the transition (200)', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(
+      linkPermissionHeaders(TENANT_A),
+      ORG_A,
+      relationshipId,
+      { targetStatus: 'ended' },
+    );
+    expect(res.status).toBe(200);
+  });
+
+  // (RS3) participant.write alone (create/update) does NOT authorize a relationship transition → 403.
+  it('(RS3) participant.write alone cannot transition a relationship (403)', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(
+      writeOnlyPermissionHeaders(TENANT_A),
+      ORG_A,
+      relationshipId,
+      { targetStatus: 'suspended' },
+    );
+    expect(res.status).toBe(403);
+  });
+
+  // (RS4) A read-only actor is denied with 403.
+  it('(RS4) a read-only actor cannot transition a relationship (403)', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(readerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    expect(res.status).toBe(403);
+  });
+
+  // (RS5) The transition fails closed (401) when no tenant identity is present.
+  it('(RS5) transition fails closed with 401 when tenant identity is absent', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(
+      {
+        'x-house-actor-user-id': randomUUID(),
+        'x-house-actor-role-keys': 'participant_admin',
+        'idempotency-key': `idem-${randomUUID()}`,
+      },
+      ORG_A,
+      relationshipId,
+      { targetStatus: 'suspended' },
+    );
+    expect(res.status).toBe(401);
+  });
+
+  // (RS6) The transition rejects a missing Idempotency-Key with 400.
+  it('(RS6) transition rejects a missing Idempotency-Key with 400', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(
+      writerHeaders(TENANT_A, { 'idempotency-key': undefined }),
+      ORG_A,
+      relationshipId,
+      { targetStatus: 'suspended' },
+    );
+    expect(res.status).toBe(400);
+  });
+
+  // (RS7) The transition rejects a missing or invalid targetStatus with 400.
+  it('(RS7) transition rejects a missing/invalid targetStatus with 400', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const missing = await relationshipStatusTransition(
+      writerHeaders(TENANT_A),
+      ORG_A,
+      relationshipId,
+      {},
+    );
+    expect(missing.status).toBe(400);
+    const invalid = await relationshipStatusTransition(
+      writerHeaders(TENANT_A),
+      ORG_A,
+      relationshipId,
+      { targetStatus: 'archived' },
+    );
+    expect(invalid.status).toBe(400);
+  });
+
+  // (RS8) The transition rejects misplaced link-CREATE fields with 400 (closed body).
+  it('(RS8) transition rejects misplaced link-create fields with 400', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+      relationshipType: 'staff',
+      participantId: randomUUID(),
+    });
+    expect(res.status).toBe(400);
+  });
+
+  // (RS9) The transition returns 404 for an unknown relationship (never a 500).
+  it('(RS9) transition returns 404 for a missing relationship', async () => {
+    const res = await relationshipStatusTransition(
+      writerHeaders(TENANT_A),
+      ORG_A,
+      randomUUID(),
+      { targetStatus: 'suspended' },
+    );
+    expect(res.status).toBe(404);
+  });
+
+  // (RS10) A relationship that exists but under a DIFFERENT organization is indistinguishable from
+  //        not-found: the path organization is authoritative → 404, no mutation.
+  it('(RS10) transition returns 404 when the relationship is under a different organization', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    // Seed a second organization in TENANT_A so the org exists but does not own the relationship.
+    const otherOrg = '40000000-0000-4000-8000-00000000a009';
+    await admin.query(
+      `INSERT INTO organization_registry.organization (id, tenant_id, organization_type, display_name, status)
+         VALUES ($1, $2, 'local', 'Org A2', 'active') ON CONFLICT (id) DO NOTHING`,
+      [otherOrg, TENANT_A],
+    );
+    try {
+      const res = await relationshipStatusTransition(
+        writerHeaders(TENANT_A),
+        otherOrg,
+        relationshipId,
+        { targetStatus: 'suspended' },
+      );
+      expect(res.status).toBe(404);
+      // The relationship remains untouched (still active under ORG_A).
+      const rows = await adminGetOutboxByType(
+        admin,
+        'participant.registry.organization_link_status_changed',
+        TENANT_A,
+      );
+      expect(rows.length).toBe(0);
+    } finally {
+      await admin.query(`DELETE FROM organization_registry.organization WHERE id = $1`, [otherOrg]);
+    }
+  });
+
+  // (RS11) A cross-tenant relationship is indistinguishable from not-found: tenant B cannot
+  //        transition tenant A's relationship (RLS makes the row invisible) → 404.
+  it('(RS11) cross-tenant relationship returns 404 (no existence leak)', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_B), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    expect(res.status).toBe(404);
+  });
+
+  // (RS12) A real status change writes a single SANITIZED organization_link_status_changed outbox
+  //        row atomically; the payload carries only the closed safe key set and NO PII / secrets.
+  it('(RS12) a real transition writes a sanitized status-changed outbox row atomically', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A, {
+      displayName: 'Pat Writer',
+      givenName: 'Pat',
+      familyName: 'Writer',
+      email: 'pat.writer@example.test',
+    });
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    expect(res.status).toBe(200);
+
+    const rows = await adminGetOutboxByType(
+      admin,
+      'participant.registry.organization_link_status_changed',
+      TENANT_A,
+    );
+    expect(rows.length).toBe(1);
+    const payload = rows[0]!.payload;
+    expect(payload['relationshipId']).toBe(relationshipId);
+    expect(payload['organizationId']).toBe(ORG_A);
+    expect(payload['previousStatus']).toBe('active');
+    expect(payload['newStatus']).toBe('suspended');
+    const serialized = JSON.stringify(payload);
+    for (const sentinel of FORBIDDEN_PAYLOAD_SENTINELS) {
+      expect(serialized.includes(sentinel)).toBe(false);
+    }
+    for (const key of Object.keys(payload)) {
+      expect(SAFE_LINK_STATUS_PAYLOAD_KEYS.has(key)).toBe(true);
+    }
+  });
+
+  // (RS13) Re-applying the current status is an idempotent no-op: 200 with NO new outbox row.
+  it('(RS13) re-applying the current status is an idempotent no-op (200, no outbox row)', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    // The seeded relationship is already `active`; re-applying `active` must be a no-op.
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'active',
+    });
+    expect(res.status).toBe(200);
+    const rows = await adminGetOutboxByType(
+      admin,
+      'participant.registry.organization_link_status_changed',
+      TENANT_A,
+    );
+    expect(rows.length).toBe(0);
+  });
+
+  // (RS14) The transition NEVER mutates governance.entity_state / state_transition / audit_event
+  //        (relationship status is reference data — never a governed lifecycle transition).
+  it('(RS14) transition does not mutate governance lifecycle tables', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const before = await adminCountGovernance(admin, TENANT_A);
+    await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    const after = await adminCountGovernance(admin, TENANT_A);
+    expect(after.entityState).toBe(before.entityState);
+    expect(after.stateTransition).toBe(before.stateTransition);
+    expect(after.auditEvent).toBe(before.auditEvent);
+  });
+
+  // (RS15) The transition NEVER mutates the Organization Registry — it only reads the relationship.
+  it('(RS15) transition does not mutate the organization registry', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const before = await adminGetOrganization(admin, TENANT_A, ORG_A);
+    await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    const after = await adminGetOrganization(admin, TENANT_A, ORG_A);
+    expect(after).toEqual(before);
+  });
+
+  // (RS16) The transition read-back exposes ONLY the closed, safe relationship DTO field set.
+  it('(RS16) transition responses expose only the safe closed relationship DTO field set', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+    });
+    const relationship = res.body['relationship'] as Record<string, unknown>;
+    expect(new Set(Object.keys(relationship))).toEqual(ALLOWED_RELATIONSHIP_DTO_KEYS);
+  });
+
+  // (RS17) An optional reason is accepted at the boundary but NEVER persisted to the outbox payload.
+  it('(RS17) an optional reason is validated but never persisted to the outbox', async () => {
+    const relationshipId = await seedRelationship(TENANT_A, ORG_A);
+    const res = await relationshipStatusTransition(writerHeaders(TENANT_A), ORG_A, relationshipId, {
+      targetStatus: 'suspended',
+      reason: 'coach on leave',
+    });
+    expect(res.status).toBe(200);
+    const rows = await adminGetOutboxByType(
+      admin,
+      'participant.registry.organization_link_status_changed',
+      TENANT_A,
+    );
+    expect(rows.length).toBe(1);
+    expect(JSON.stringify(rows[0]!.payload).includes('coach on leave')).toBe(false);
   });
 });

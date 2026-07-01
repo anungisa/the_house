@@ -1,19 +1,19 @@
 /**
  * Request/response DTOs for the Participant Registry HTTP WRITE surface.
  *
- * The write surface exposes four mutations: create a participant (`POST /v1/participants`),
+ * The write surface exposes five mutations: create a participant (`POST /v1/participants`),
  * update a participant's safe profile fields (`PATCH /v1/participants/:participantId`), transition
  * a participant's reference-data status
- * (`POST /v1/participants/:participantId/status-transitions`), and record an
+ * (`POST /v1/participants/:participantId/status-transitions`), record an
  * organization↔participant relationship
- * (`POST /v1/organizations/:organizationId/participants`). There is NO relationship-STATUS shape
- * here — changing an existing relationship's status remains deliberately out of scope (see
- * docs/architecture/participant-write-http-preflight.md).
+ * (`POST /v1/organizations/:organizationId/participants`), and transition an existing
+ * relationship's reference-data status
+ * (`POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`).
  *
- * A participant `status` is REFERENCE DATA, not a governed lifecycle FSM: the status-transition
- * route changes a denormalized status field through the validated Participant Registry service. It
- * NEVER invokes the Governance Kernel and NEVER touches governance.entity_state /
- * governance.state_transition / governance.audit_event.
+ * A participant `status` AND a relationship `status` are both REFERENCE DATA, not a governed
+ * lifecycle FSM: the status-transition routes change a denormalized status field through the
+ * validated Participant Registry service. They NEVER invoke the Governance Kernel and NEVER touch
+ * governance.entity_state / governance.state_transition / governance.audit_event.
  *
  * These shapes are the STABLE wire contract for the write surface. Requests carry ONLY the safe,
  * NSO-generic fields; identity (tenant + actor) comes EXCLUSIVELY from the resolved auth context
@@ -195,3 +195,51 @@ export type OrganizationParticipantLinkResponseBody = {
   readonly relationship: OrganizationParticipantDto;
   readonly requestId: string;
 };
+
+/**
+ * The CLOSED set of body keys accepted by
+ * `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`.
+ * `targetStatus` is the REQUIRED new relationship reference-data status; `reason` is an OPTIONAL
+ * free-text audit note. Any other key — a profile field, a participant STATUS field, an
+ * organization-link CREATE field (`participantId`/`relationshipType`/`startDate`/`endDate`), or an
+ * out-of-scope behavior field — is rejected so it can never ride in on a relationship status
+ * transition.
+ */
+export const PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_BODY_KEYS: readonly string[] = [
+  'targetStatus',
+  'reason',
+];
+
+/**
+ * Maximum accepted length of the optional `reason` audit note. This is a request-boundary guard
+ * only — `reason` is NOT persisted by this route (the Participant Registry relationship status
+ * change records no free-text note), and it NEVER appears in the outbox payload or telemetry.
+ */
+export const PARTICIPANT_ORGANIZATION_LINK_STATUS_TRANSITION_REASON_MAX_LENGTH = 1024;
+
+/**
+ * Wire body for
+ * `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions`.
+ * `targetStatus` is the REQUIRED new relationship reference-data status
+ * (`active`/`suspended`/`ended`). `reason` is an OPTIONAL audit note that is validated at the
+ * boundary but NOT persisted by this route.
+ */
+export interface OrganizationParticipantStatusTransitionRequestBody {
+  readonly targetStatus: RelationshipStatus;
+  readonly reason?: string;
+}
+
+/**
+ * `POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions` request:
+ * the path `organizationId` + `relationshipId` + parsed JSON body + auth headers (which also carry
+ * the required `Idempotency-Key`).
+ */
+export interface OrganizationParticipantStatusTransitionHttpRequest {
+  readonly organizationId: string;
+  readonly relationshipId: string;
+  readonly headers: Readonly<Record<string, string | undefined>>;
+  readonly body: unknown;
+}
+
+/** Successful relationship status-transition response body (reuses the CLOSED relationship DTO). */
+export type OrganizationParticipantStatusTransitionResponseBody = OrganizationParticipantLinkResponseBody;
