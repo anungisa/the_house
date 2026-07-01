@@ -23,8 +23,8 @@ import { AuthorizationAction } from '../../../src/authz/index.js';
 const { fetch } = globalThis;
 
 /**
- * Gated PostgreSQL integration tests for the FACILITY REGISTRY HTTP WRITE surface (phase 1:
- * create + update), driven through the REAL native HTTP server (`createAffiliationHttpServer`)
+ * Gated PostgreSQL integration tests for the FACILITY REGISTRY HTTP WRITE surface (create + update
+ * + status transition), driven through the REAL native HTTP server (`createAffiliationHttpServer`)
  * over an ephemeral loopback listener with `fetch`, backed by the REAL `PgFacilityRegistryStore`
  * + `FacilityRegistryService` running as a restricted, RLS-confined role.
  *
@@ -35,8 +35,12 @@ const { fetch } = globalThis;
  * registry outbox message in the SAME transaction as the row, and the write path NEVER touches the
  * Governance Kernel, any governed lifecycle table, or the Organization Registry. A facility STATUS
  * transition (`POST /v1/facilities/:facilityId/status-transitions`) is a distinct reference-data
- * route gated by `facility.status.write`; its full PostgreSQL/RLS validation is deferred to a
- * dedicated pass, so this suite only asserts the route is served and the action exists.
+ * route gated by the SEPARATE `facility.status.write` action (NOT implied by `facility.write`); the
+ * `(S…)` section below validates it end-to-end over the same real PostgreSQL/RLS path — an
+ * authorized status change flips the row status, emits exactly one sanitized
+ * `facility.registry.status_changed` outbox row (never name/address/contact/coordinates/tags/
+ * `reason`), a same-status POST is a 200 no-op emitting no new signal, and the path never mutates
+ * the Organization Registry nor any governed lifecycle table.
  *
  * GATING: runs only when RUN_DB_TESTS=1 and an admin connection URL is provided
  * (MIGRATE_DATABASE_URL preferred, else DATABASE_URL). Otherwise the suite is skipped so the
@@ -1172,5 +1176,346 @@ d('facility registry HTTP write surface — PostgreSQL RLS integration', () => {
     expect(new Set(Object.keys(res.body))).toEqual(
       new Set(['status', 'code', 'message', 'requestId']),
     );
+  });
+
+  // ==== STATUS TRANSITION (S) ==============================================================
+  // POST /v1/facilities/:facilityId/status-transitions — a reference-data status change ONLY. These
+  // prove, over REAL PostgreSQL/RLS with the restricted runtime role, that the DISTINCT
+  // `facility.status.write` action gates the route (NOT implied by `facility.write`), the change is
+  // same-tenant and RLS-confined, the closed FacilityDto never leaks `tenantId` or `reason`, a real
+  // change emits EXACTLY one sanitized `facility.registry.status_changed` outbox row (never a name,
+  // address, contact field, coordinate, capability tag, `reason`, header, token, or connection
+  // string), a same-status POST is a 200 no-op emitting no new signal, and the path mutates NEITHER
+  // the Organization Registry NOR any governed lifecycle table (facility status is reference data,
+  // not a governed lifecycle FSM). The runtime role/grant + FORCE-RLS invariants proven in (F1) and
+  // (F2/F3/F4) above apply unchanged (the status change reuses the SELECT/UPDATE grants, no DELETE).
+
+  /**
+   * The CLOSED set of safe keys a status-changed outbox payload may carry: stable identifiers, the
+   * facility type, the previous/new status, optional visibility, and correlation lineage only.
+   * NEVER name, address, contact fields, coordinates, capability tags, `reason`, headers, or tokens.
+   */
+  const SAFE_STATUS_OUTBOX_KEYS = new Set([
+    'facilityId',
+    'tenantId',
+    'organizationId',
+    'facilityType',
+    'previousStatus',
+    'newStatus',
+    'visibility',
+    'actorUserId',
+    'requestId',
+    'correlationId',
+  ]);
+
+  // A sentinel free-text reason that is accepted at the HTTP boundary but MUST NOT be persisted nor
+  // appear in the outbox payload or the response.
+  const SECRET_REASON = 'do-not-persist-secret-reason';
+
+  /** An actor holding the EXACT `facility.status.write` permission ONLY (no roles). */
+  function statusWriteHeaders(tenantId: string, over: Headers = {}): Headers {
+    return {
+      'x-house-tenant-id': tenantId,
+      'x-house-actor-user-id': randomUUID(),
+      'x-house-actor-permission-keys': 'facility.status.write',
+      'idempotency-key': `idem-${randomUUID()}`,
+      ...over,
+    };
+  }
+
+  async function postStatus(
+    headers: Headers,
+    facilityId: string,
+    body: unknown,
+  ): Promise<HttpResult> {
+    const res = await fetch(`${baseUrl}/v1/facilities/${facilityId}/status-transitions`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...headers },
+      body: JSON.stringify(body),
+    });
+    return readResult(res);
+  }
+
+  async function postStatusRaw(
+    headers: Headers,
+    facilityId: string,
+    raw: string,
+  ): Promise<HttpResult> {
+    const res = await fetch(`${baseUrl}/v1/facilities/${facilityId}/status-transitions`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...headers },
+      body: raw,
+    });
+    return readResult(res);
+  }
+
+  /** Seed a full-PII facility (status draft) over the HTTP write path and return its id. */
+  async function seedPiiViaHttp(tenantId: string): Promise<string> {
+    const id = randomUUID();
+    const res = await postFacility(writerHeaders(tenantId), piiCreateBody({ facilityId: id }));
+    expect(res.status).toBe(201);
+    return id;
+  }
+
+  // (S1/S3) A facility_admin changes a same-tenant facility's status over the real HTTP/Pg path.
+  it('(S1/S3) facility_admin transitions status over the HTTP write path', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+    const res = await postStatus(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(200);
+    expect((res.body['facility'] as Record<string, unknown>)['status']).toBe('active');
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('active');
+  });
+
+  // (S2) The EXACT `facility.status.write` permission (no roles) transitions status.
+  it('(S2) exact facility.status.write permission transitions status', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(statusWriteHeaders(TENANT_A), id, { targetStatus: 'inactive' });
+    expect(res.status).toBe(200);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('inactive');
+  });
+
+  // (S4) A platform_admin transitions status (wildcard).
+  it('(S4) platform_admin transitions status', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(platformAdminHeaders(TENANT_A), id, { targetStatus: 'archived' });
+    expect(res.status).toBe(200);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('archived');
+  });
+
+  // (S5) The EXACT `facility.write` permission WITHOUT status.write CANNOT transition (403); the
+  // status is a distinct action, so a write-only actor is denied and the row is untouched.
+  it('(S5) exact facility.write cannot transition status (403)', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(exactWriteHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(403);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S6) A facility_reader CANNOT transition (403).
+  it('(S6) facility_reader cannot transition status (403)', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(readerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(403);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S7) The exact `facility.read` permission (only) CANNOT transition (403).
+  it('(S7) exact facility.read-only cannot transition status (403)', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(exactReadHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(403);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S8) An organization_reader CANNOT transition (403).
+  it('(S8) organization_reader cannot transition status (403)', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(orgReaderHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(403);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S9) Missing trusted tenant/auth → 401 (fails closed before any DB access); row untouched.
+  it('(S9) missing tenant/auth returns 401', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const noTenant: Headers = {
+      'x-house-actor-user-id': randomUUID(),
+      'x-house-actor-role-keys': 'facility_admin',
+      'idempotency-key': `idem-${randomUUID()}`,
+    };
+    const res = await postStatus(noTenant, id, { targetStatus: 'active' });
+    expect(res.status).toBe(401);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S10) Missing Idempotency-Key → 400; row untouched.
+  it('(S10) missing Idempotency-Key returns 400', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const headers = writerHeaders(TENANT_A);
+    delete headers['idempotency-key'];
+    const res = await postStatus(headers, id, { targetStatus: 'active' });
+    expect(res.status).toBe(400);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S11) Malformed JSON → 400.
+  it('(S11) malformed JSON returns 400', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatusRaw(writerHeaders(TENANT_A), id, '{ not valid json');
+    expect(res.status).toBe(400);
+  });
+
+  // (S12) A non-object JSON body (array) → 400.
+  it('(S12) non-object body returns 400', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(writerHeaders(TENANT_A), id, []);
+    expect(res.status).toBe(400);
+  });
+
+  // (S13) Missing `targetStatus` → 400.
+  it('(S13) missing targetStatus returns 400', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(writerHeaders(TENANT_A), id, { reason: 'no target' });
+    expect(res.status).toBe(400);
+  });
+
+  // (S14) Invalid `targetStatus` → 400; row untouched.
+  it('(S14) invalid targetStatus returns 400', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(writerHeaders(TENANT_A), id, { targetStatus: 'bogus' });
+    expect(res.status).toBe(400);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S15) Unknown/misplaced fields → 400 (closed body allow-list is targetStatus + optional reason).
+  it('(S15) unknown fields return 400', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const bogus = await postStatus(writerHeaders(TENANT_A), id, {
+      targetStatus: 'active',
+      bogus: 1,
+    });
+    expect(bogus.status).toBe(400);
+    const identity = await postStatus(writerHeaders(TENANT_A), id, {
+      targetStatus: 'active',
+      tenantId: TENANT_B,
+    });
+    expect(identity.status).toBe(400);
+  });
+
+  // (S16) create/update/profile body fields are rejected (only targetStatus + reason are allowed).
+  it('(S16) create/update/profile fields are rejected (400)', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    for (const bad of [
+      { targetStatus: 'active', name: 'X' },
+      { targetStatus: 'active', organizationId: ORG_A },
+      { targetStatus: 'active', facilityType: 'office' },
+      { targetStatus: 'active', contactEmail: SECRET_EMAIL },
+      { targetStatus: 'active', capabilityTags: [SECRET_TAG] },
+    ]) {
+      const res = await postStatus(writerHeaders(TENANT_A), id, bad);
+      expect(res.status).toBe(400);
+    }
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S17) A missing facility → 404.
+  it('(S17) missing facility returns 404', async () => {
+    const res = await postStatus(writerHeaders(TENANT_A), randomUUID(), { targetStatus: 'active' });
+    expect(res.status).toBe(404);
+  });
+
+  // (S18) A cross-tenant facility is invisible (RLS) → 404, INDISTINGUISHABLE from not-found.
+  it('(S18) cross-tenant and not-found are indistinguishable 404', async () => {
+    const inB = await seedViaHttp(TENANT_B);
+    const crossTenant = await postStatus(writerHeaders(TENANT_A), inB, { targetStatus: 'active' });
+    const notFound = await postStatus(writerHeaders(TENANT_A), randomUUID(), {
+      targetStatus: 'active',
+    });
+    expect(crossTenant.status).toBe(404);
+    expect(notFound.status).toBe(404);
+    expect(crossTenant.body['code']).toBe(notFound.body['code']);
+    // Tenant B's row is untouched.
+    expect((await adminGetFacility(admin, TENANT_B, inB))?.status).toBe('draft');
+  });
+
+  // (S19) The status response is a closed-key FacilityDto that EXCLUDES tenantId AND reason.
+  it('(S19) status response is a closed-key DTO excluding tenantId and reason', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await postStatus(writerHeaders(TENANT_A), id, {
+      targetStatus: 'active',
+      reason: SECRET_REASON,
+    });
+    expect(res.status).toBe(200);
+    const facility = res.body['facility'] as Record<string, unknown>;
+    for (const key of Object.keys(facility)) {
+      expect(ALLOWED_FACILITY_DTO_KEYS.has(key)).toBe(true);
+    }
+    expect('tenantId' in facility).toBe(false);
+    expect('reason' in facility).toBe(false);
+    expect(JSON.stringify(res.body).includes(SECRET_REASON)).toBe(false);
+  });
+
+  // (S20/S21) A real status change writes EXACTLY one sanitized `facility.registry.status_changed`
+  // outbox row carrying only the closed set of safe keys — never name/address/contact/coordinates/
+  // capability tags/reason/headers/tokens/connection strings.
+  it('(S20/S21) status change writes exactly one sanitized status_changed outbox row', async () => {
+    const id = await seedPiiViaHttp(TENANT_A);
+    // Isolate the status signal from the seed create's `facility.registry.created` row.
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [TENANT_A]);
+
+    const res = await postStatus(writerHeaders(TENANT_A), id, {
+      targetStatus: 'active',
+      reason: SECRET_REASON,
+    });
+    expect(res.status).toBe(200);
+
+    const changed = await adminGetOutboxByType(admin, 'facility.registry.status_changed', TENANT_A);
+    expect(changed.length).toBe(1);
+    expect(changed[0]!.payload['facilityId']).toBe(id);
+    expect(changed[0]!.payload['previousStatus']).toBe('draft');
+    expect(changed[0]!.payload['newStatus']).toBe('active');
+    const serialized = JSON.stringify(changed[0]!.payload);
+    for (const sentinel of [...FORBIDDEN_PAYLOAD_SENTINELS, SECRET_REASON]) {
+      expect(serialized.includes(sentinel)).toBe(false);
+    }
+    for (const key of Object.keys(changed[0]!.payload)) {
+      expect(SAFE_STATUS_OUTBOX_KEYS.has(key)).toBe(true);
+    }
+    // Only ONE status_changed row total (no duplicate signal).
+    expect(await adminCountFacilities(admin, TENANT_A)).toBe(1);
+  });
+
+  // (S22) A same-status POST is a 200 no-op that writes NO new status_changed outbox row.
+  it('(S22) same-status transition is a 200 no-op with no new outbox row', async () => {
+    const id = await seedViaHttp(TENANT_A); // seeded at status 'draft'
+    await admin.query(`DELETE FROM governance.outbox_message WHERE tenant_id = $1`, [TENANT_A]);
+
+    const res = await postStatus(writerHeaders(TENANT_A), id, { targetStatus: 'draft' });
+    expect(res.status).toBe(200);
+    expect((res.body['facility'] as Record<string, unknown>)['status']).toBe('draft');
+
+    const changed = await adminGetOutboxByType(admin, 'facility.registry.status_changed', TENANT_A);
+    expect(changed.length).toBe(0);
+    expect((await adminGetFacility(admin, TENANT_A, id))?.status).toBe('draft');
+  });
+
+  // (S23/S24/S25) A status change mutates NEITHER the Organization Registry NOR any governed
+  // lifecycle table, and never writes GovernanceKernel lifecycle state.
+  it('(S23/S24/S25) status change touches neither Organization Registry nor governed lifecycle tables', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const orgBefore = await adminGetOrganization(admin, TENANT_A, ORG_A);
+    const govBefore = await adminCountGovernance(admin, TENANT_A);
+
+    const res = await postStatus(writerHeaders(TENANT_A), id, { targetStatus: 'active' });
+    expect(res.status).toBe(200);
+
+    expect(await adminGetOrganization(admin, TENANT_A, ORG_A)).toEqual(orgBefore);
+    expect(await adminCountGovernance(admin, TENANT_A)).toEqual(govBefore);
+    expect(govBefore.entityState).toBe(0);
+    expect(govBefore.stateTransition).toBe(0);
+    expect(govBefore.auditEvent).toBe(0);
+  });
+
+  // (S32) An unsupported method on the status-transition route → 405 with Allow: POST.
+  it('(S32) unsupported method on the status route returns 405 Allow: POST', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await fetch(`${baseUrl}/v1/facilities/${id}/status-transitions`, {
+      method: 'GET',
+      headers: writerHeaders(TENANT_A),
+    });
+    expect(res.status).toBe(405);
+    expect(res.headers.get('allow')).toBe('POST');
+  });
+
+  // (S33) A deeper unknown status path → 404 (the status route does not swallow sub-paths).
+  it('(S33) deeper unknown status path returns 404', async () => {
+    const id = await seedViaHttp(TENANT_A);
+    const res = await fetch(`${baseUrl}/v1/facilities/${id}/status-transitions/extra`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...writerHeaders(TENANT_A) },
+      body: JSON.stringify({ targetStatus: 'active' }),
+    });
+    expect(res.status).toBe(404);
   });
 });

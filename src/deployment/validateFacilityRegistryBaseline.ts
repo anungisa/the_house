@@ -280,15 +280,29 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     detail: FACILITY_HTTP_INTEGRATION_TEST_REL,
   });
 
-  // 5c. Gated HTTP WRITE-surface integration test exists (validates create/update over real
-  //     PostgreSQL/RLS with a restricted runtime role holding no DELETE grant).
-  const httpWriteIntegrationTestPresent = existsSync(
-    join(repoRoot, FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL),
-  );
+  // 5c. Gated HTTP WRITE-surface integration test exists (validates create/update + status
+  //     transition over real PostgreSQL/RLS with a restricted runtime role holding no DELETE grant).
+  const httpWriteIntegrationTestPath = join(repoRoot, FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL);
+  const httpWriteIntegrationTestPresent = existsSync(httpWriteIntegrationTestPath);
   checks.push({
     name: 'facility HTTP write integration test exists',
     ok: httpWriteIntegrationTestPresent,
     detail: FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL,
+  });
+
+  // 5d. The gated WRITE-surface integration test also covers the status-transition route over real
+  //     PostgreSQL/RLS (it exercises the `status-transitions` sub-resource and asserts the sanitized
+  //     `facility.registry.status_changed` outbox signal).
+  const httpWriteIntegrationText = readIfExists(httpWriteIntegrationTestPath) ?? '';
+  const writeIntegrationCoversStatus =
+    /status-transitions/.test(httpWriteIntegrationText) &&
+    httpWriteIntegrationText.includes('facility.registry.status_changed');
+  checks.push({
+    name: 'facility HTTP write integration test covers the status transition',
+    ok: writeIntegrationCoversStatus,
+    detail: writeIntegrationCoversStatus
+      ? 'write integration test exercises the status-transitions route + status_changed outbox'
+      : 'write integration test does not cover the status-transition route over PostgreSQL/RLS',
   });
 
   // 6. HTTP scope guard: BOTH the facility HTTP READ surface and the WRITE surface (create/update +

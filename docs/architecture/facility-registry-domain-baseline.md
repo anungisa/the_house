@@ -153,29 +153,30 @@ non-superuser / non-`BYPASSRLS` status are re-asserted. Telemetry redaction rema
 hermetic adapter suite.
 
 A third gated suite (`tests/integration/governance/facility-registry-write-http.integration.test.ts`,
-45 tests, `RUN_DB_TESTS=1` only) validates the **Facility HTTP write surface — phase 1 (create +
-update)** over a real local PostgreSQL and a dedicated restricted runtime role
+68 tests, `RUN_DB_TESTS=1` only) validates the **Facility HTTP write surface (create + update +
+status transition)** over a real local PostgreSQL and a dedicated restricted runtime role
 (`house_app_facility_http_write_test`; NOSUPERUSER, NOBYPASSRLS; `SELECT`/`INSERT`/`UPDATE` on the
 facility table and outbox, `SELECT` on the organization registry, **no `DELETE`**, no
-governance-lifecycle grants). It drives `POST /v1/facilities` and `PATCH /v1/facilities/:facilityId`
-through the native HTTP server backed by `PgFacilityRegistryStore` + `FacilityRegistryService` and
-proves: same-tenant create/update via the exact `facility.write` permission, `facility_admin`, and
-`platform_admin`; 403 for `facility_reader` / exact `facility.read` / `organization_reader`; 401 on
+governance-lifecycle grants). It drives `POST /v1/facilities`, `PATCH /v1/facilities/:facilityId`,
+and `POST /v1/facilities/:facilityId/status-transitions` through the native HTTP server backed by
+`PgFacilityRegistryStore` + `FacilityRegistryService` and
+proves: same-tenant create/update/status-transition via the exact permission, `facility_admin`, and
+`platform_admin`; 403 for `facility_reader` / exact `facility.read` / `organization_reader` (and, for
+status, exact `facility.write` WITHOUT `facility.status.write`); 401 on
 missing auth/tenant; 400 on missing `Idempotency-Key`, missing/invalid body fields, invalid enum,
-and unknown/misplaced keys; 404 for unknown / cross-tenant organization on create and for missing /
-cross-tenant facility on update (existence never leaked); 409 on duplicate `facilityId`; closed-key
-`FacilityDto` excluding `tenantId` with null-normalized optionals; exactly one facility row + one
-sanitized `facility.registry.created` / `facility.registry.updated` outbox row per mutation
-(payloads exclude name, address, contact, coordinates, capability tags, headers, tokens, and
-connection strings); no Organization Registry or governed-lifecycle (`entity_state` /
-`state_transition` / `audit_event`) mutation; the status-transition sub-resource now served and
-gated by `facility.status.write`; 405 with the correct `Allow` header on unsupported methods; and
+malformed/non-object body, and unknown/misplaced keys; 404 for unknown / cross-tenant organization on create and for missing /
+cross-tenant facility on update/status (existence never leaked); 409 on duplicate `facilityId`; closed-key
+`FacilityDto` excluding `tenantId` (and `reason`) with null-normalized optionals; exactly one facility row + one
+sanitized `facility.registry.created` / `updated` / `status_changed` outbox row per mutation
+(payloads exclude name, address, contact, coordinates, capability tags, `reason`, headers, tokens, and
+connection strings); a same-status POST that is a 200 no-op emitting no new signal; no Organization Registry or governed-lifecycle (`entity_state` /
+`state_transition` / `audit_event`) mutation; 405 with the correct `Allow` header on unsupported methods; and
 error responses that leak no PII, SQL, or stack details. It uses the dedicated tenant namespace
-`…d5`/`…e6`. The suite skips cleanly when `RUN_DB_TESTS` is unset. This gated suite has now been
+`…d5`/`…e6`. The suite skips cleanly when `RUN_DB_TESTS` is unset. This gated suite has been
 **executed** against a real local PostgreSQL (`house_pg_test`, `127.0.0.1:55432`) with the restricted
-runtime role — **45/45 passing** — and is green inside the full gated integration run
-(**305/305** across 16 files). The facility **status-transition** HTTP route is now served, but its
-dedicated PostgreSQL/RLS validation is deferred to a later pass.
+runtime role — **68/68 passing** — and is green inside the full gated integration run
+(**328/328** across 16 files). The facility **status-transition** HTTP route is therefore fully
+served AND PostgreSQL/RLS-validated: the Facility HTTP write validation loop is closed.
 
 ## Out of scope (intentionally not built)
 
@@ -218,11 +219,13 @@ for a missing or cross-tenant facility. The status-transition route accepts a cl
 missing or cross-tenant facility. The write adapter mutates the registry ONLY through the service,
 which owns the transactional outbox — it never enqueues the outbox directly, never invokes the
 Governance Kernel, and never mutates the Organization or Participant registries. Write endpoints are
-covered by hermetic adapter + server tests; create/update were PostgreSQL/RLS-validated over HTTP,
-while the status-transition route's dedicated PostgreSQL/RLS validation is deferred. `facility:check`
+covered by hermetic adapter + server tests; create, update, AND the status transition are all
+PostgreSQL/RLS-validated over the real HTTP/Pg path (the Facility HTTP write validation loop is
+closed). `facility:check`
 guards that the read + write HTTP files are present, the `facility.read` + `facility.write` +
 `facility.status.write` actions are present, `facility_admin` maps to all of them, the server wires
-create + update + status-transition routes, and the write adapter calls no kernel / enqueues no
+create + update + status-transition routes, the gated write integration suite covers the
+status-transition route, and the write adapter calls no kernel / enqueues no
 outbox / mutates no organization.
 
 A **write-surface preflight** fixes the write boundary:

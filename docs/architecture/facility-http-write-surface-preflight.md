@@ -10,28 +10,30 @@
 > BEFORE the single-segment detail/update route and only accepts `POST`. No Facility DELETE route
 > exists. This document fixes the write boundary — endpoints, authorization, request/response DTO
 > contracts, idempotency, error mapping, privacy / telemetry / outbox rules, server route
-> sequencing, the test matrix, and validator expectations. The full PostgreSQL/RLS integration
-> validation of the status-transition route is deferred to a dedicated pass; the gated write suite
-> currently asserts only that the route is served and the action exists.
+> sequencing, the test matrix, and validator expectations. The status-transition route is now
+> **PostgreSQL/RLS-validated** end-to-end alongside create/update (see the gated suite below).
 >
-> A gated PostgreSQL/RLS integration suite now exists for the phase-1 write endpoints:
+> A gated PostgreSQL/RLS integration suite covers ALL THREE write endpoints (create, update, and
+> status transition):
 > [facility-registry-write-http.integration.test.ts](../../tests/integration/governance/facility-registry-write-http.integration.test.ts)
-> (45 tests). Driven through the REAL native HTTP server (`createAffiliationHttpServer` + `fetch`)
-> over an ephemeral loopback listener, backed by the REAL `PgFacilityRegistryStore` +
-> `FacilityRegistryService` running as a restricted `NOSUPERUSER`, `NOBYPASSRLS` role
-> (`house_app_facility_http_write_test`; `SELECT`/`INSERT`/`UPDATE` on the facility table and the
-> outbox, `SELECT` on the organization registry, **no `DELETE`**, no governance-lifecycle grants),
-> it proves create/update work end-to-end and that tenant/RLS/outbox/privacy/non-mutation invariants
-> hold (one facility row + one sanitized outbox row per mutation; no Organization Registry or
-> governed-lifecycle mutation; closed `FacilityDto` excluding `tenantId`; sanitized outbox payloads).
-> The suite skips cleanly when `RUN_DB_TESTS` is unset, so default `npm test` stays hermetic. It uses
-> the dedicated tenant namespace `…d5`/`…e6` (distinct from every other gated suite). This suite has
-> now been **executed** against a real local PostgreSQL (`house_pg_test`, `127.0.0.1:55432`) with the
-> restricted runtime role — **45/45 passing**, and green inside the full gated integration run
-> (**305/305** across 16 files). The facility **status-transition** route is now served and gated by
-> `facility.status.write`, but its dedicated PostgreSQL/RLS validation (outbox row, RLS isolation,
-> non-mutation of governed state) is deferred to a later pass; the gated suite currently asserts only
-> that the route is served and the action exists.
+> (68 tests, including a dedicated `(S…)` status-transition section of 23 cases). Driven through the
+> REAL native HTTP server (`createAffiliationHttpServer` + `fetch`) over an ephemeral loopback
+> listener, backed by the REAL `PgFacilityRegistryStore` + `FacilityRegistryService` running as a
+> restricted `NOSUPERUSER`, `NOBYPASSRLS` role (`house_app_facility_http_write_test`;
+> `SELECT`/`INSERT`/`UPDATE` on the facility table and the outbox, `SELECT` on the organization
+> registry, **no `DELETE`**, no governance-lifecycle grants), it proves create/update/status-transition
+> work end-to-end and that tenant/RLS/outbox/privacy/non-mutation invariants hold (one facility row +
+> one sanitized outbox row per mutation; a same-status POST is a 200 no-op emitting no new signal; no
+> Organization Registry or governed-lifecycle mutation; closed `FacilityDto` excluding `tenantId` and
+> `reason`; sanitized `facility.registry.status_changed` outbox payloads carrying only safe
+> identifiers/status fields). The suite skips cleanly when `RUN_DB_TESTS` is unset, so default
+> `npm test` stays hermetic. It uses the dedicated tenant namespace `…d5`/`…e6` (distinct from every
+> other gated suite). This suite has been **executed** against a real local PostgreSQL
+> (`house_pg_test`, `127.0.0.1:55432`) with the restricted runtime role — **68/68 passing**, and green
+> inside the full gated integration run (**328/328** across 16 files). The facility status-transition
+> route (gated by the distinct `facility.status.write` action) is therefore fully served AND
+> PostgreSQL/RLS-validated: an authorized status change flips the row, emits exactly one sanitized
+> `status_changed` outbox row, and never mutates governed lifecycle state or the Organization Registry.
 >
 > The Facility Registry stays a **reference-data** domain. The write surface is a thin projection
 > over the already-validated `FacilityRegistryService`, which owns the transactional outbox. It
@@ -491,10 +493,11 @@ The write pass extends `src/http/server.ts` (in the implementation pass only):
 - existing read routes (`GET /v1/facilities`, detail, org-facilities) still work unchanged.
 - Participant / Organization routes remain unshadowed.
 
-### 14.5 Gated DB/RLS tests (later, `RUN_DB_TESTS=1`)
+### 14.5 Gated DB/RLS tests (`RUN_DB_TESTS=1`) — EXECUTED
 
-Add a gated suite proving, through the **real** HTTP/Pg path under a least-privilege
-(`NOSUPERUSER`, `NOBYPASSRLS`) runtime role with FORCE RLS:
+The gated suite proves, through the **real** HTTP/Pg path under a least-privilege
+(`NOSUPERUSER`, `NOBYPASSRLS`) runtime role with FORCE RLS (create + update + a dedicated `(S…)`
+status-transition section — **68/68 executed** against `house_pg_test`, `127.0.0.1:55432`):
 
 1. own-tenant create / update / status-transition succeed.
 2. `facility.write` / `facility.status.write` enforced (reader → `403`).

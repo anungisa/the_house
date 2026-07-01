@@ -128,7 +128,7 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_HTTP_INTEGRATION_TEST_REL]:
       '// facility registry HTTP integration test (fixture)\n',
     [FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL]:
-      '// facility registry HTTP write integration test (fixture)\n',
+      '// facility registry HTTP write integration test (fixture)\n// POST /v1/facilities/:id/status-transitions\n// asserts facility.registry.status_changed outbox\n',
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_WRITE,
     [SERVER_MODULE_REL]: SERVER_WITH_FACILITY_WRITE,
@@ -233,6 +233,15 @@ describe('validateFacilityRegistryBaseline', () => {
     const files = baseFiles();
     files[FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL] = null;
     expect(checkOk(writeRepo(files), 'facility HTTP write integration test exists')).toBe(false);
+  });
+
+  it('fails when the HTTP write integration test does not cover the status transition', () => {
+    const files = baseFiles();
+    files[FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL] =
+      '// facility registry HTTP write integration test (fixture) with no status coverage\n';
+    expect(
+      checkOk(writeRepo(files), 'facility HTTP write integration test covers the status transition'),
+    ).toBe(false);
   });
 
   it('fails when a facility HTTP read file is missing', () => {

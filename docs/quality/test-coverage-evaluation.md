@@ -6,6 +6,16 @@
 > product features, domain behavior, HTTP endpoints, or runtime-semantic changes. The only
 > code touched is coverage **tooling** (a dev-only coverage provider, a `coverage:report`
 > script, and a coverage-scoping block in `vitest.config.ts`).
+>
+> **Update (Facility HTTP status-transition PostgreSQL/RLS validation):** the gated write suite
+> `tests/integration/governance/facility-registry-write-http.integration.test.ts` now includes a
+> dedicated `(S…)` status-transition section (23 cases) proving `POST /v1/facilities/:facilityId/
+> status-transitions` end-to-end over the **real** HTTP/Pg path under the restricted, RLS-confined
+> runtime role (`house_app_facility_http_write_test`; NOSUPERUSER, NOBYPASSRLS, **no `DELETE`**). It
+> was **executed** against local PostgreSQL only (`house_pg_test`, `127.0.0.1:55432`) — the write
+> suite is **68/68** and the full gated integration run is **328/328** across 16 files (up from
+> 305). No external systems were contacted. Gated tests remain skipped under default `npm test`, so
+> hermetic coverage is materially unchanged (statements 82.69% / branches 83.72% / functions 85.03%).
 
 ---
 
