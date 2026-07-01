@@ -82,7 +82,10 @@ import {
   handleFacilityList,
   handleFacilityDetail,
   handleOrganizationFacilityList,
+  handleFacilityCreate,
+  handleFacilityUpdate,
   type FacilityReadHttpDeps,
+  type FacilityWriteHttpDeps,
 } from './facility/index.js';
 
 export interface AffiliationHttpServerDeps {
@@ -169,6 +172,17 @@ export interface AffiliationHttpServerDeps {
    * by the centralized `facility.read` action.
    */
   readonly facilityRead?: FacilityReadHttpDeps;
+  /**
+   * Optional Facility Registry WRITE transport (phase 1: create + update). When provided,
+   * `POST /v1/facilities` and `PATCH /v1/facilities/:facilityId` are served; when omitted they are
+   * not wired (a known facility path returns 405 reflecting the wired transports, or 404 when no
+   * facility transport is wired). Create/update go THROUGH the validated
+   * `FacilityRegistryService` (the service owns the transactional outbox); the adapter never
+   * enqueues directly, never touches governed state, never invokes the kernel, and never mutates
+   * the Organization Registry. Gated by the centralized `facility.write` action. A facility STATUS
+   * transition is a deliberately separate future pass — no status-transition route is wired.
+   */
+  readonly facilityWrite?: FacilityWriteHttpDeps;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -882,7 +896,99 @@ async function handleOrganizationFacilityListRoute(
   sendJson(res, result);
 }
 
-/** Serve the read-only organization-participant relationship list endpoint (GET only). */
+/** Serve the phase-1 facility CREATE endpoint (`POST /v1/facilities`). */
+async function handleFacilityCreateRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  facilityWrite: FacilityWriteHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const result = await handleFacilityCreate(
+    facilityWrite,
+    { headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/** Serve the phase-1 facility UPDATE endpoint (`PATCH /v1/facilities/:facilityId`). */
+async function handleFacilityUpdateRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  facilityWrite: FacilityWriteHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const facilityId = decodeURIComponent(match[1] ?? '');
+  const result = await handleFacilityUpdate(
+    facilityWrite,
+    { facilityId, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/**
+ * The HTTP methods available on the facility COLLECTION path (`/v1/facilities`) given the wired
+ * transports: GET when read is wired, POST when phase-1 write is wired. Used to build the `Allow`
+ * header for a 405.
+ */
+function facilityCollectionAllow(deps: AffiliationHttpServerDeps): string[] {
+  const methods: string[] = [];
+  if (deps.facilityRead !== undefined) methods.push('GET');
+  if (deps.facilityWrite !== undefined) methods.push('POST');
+  return methods;
+}
+
+/**
+ * The HTTP methods available on the facility ITEM path (`/v1/facilities/:id`) given the wired
+ * transports: GET when read is wired, PATCH when phase-1 write is wired.
+ */
+function facilityItemAllow(deps: AffiliationHttpServerDeps): string[] {
+  const methods: string[] = [];
+  if (deps.facilityRead !== undefined) methods.push('GET');
+  if (deps.facilityWrite !== undefined) methods.push('PATCH');
+  return methods;
+}
+
+/** Emit a 405 for a known facility path with the correct `Allow` header. */
+function sendFacilityMethodNotAllowed(
+  res: ServerResponse,
+  requestId: string,
+  allow: string[],
+): void {
+  res.setHeader('allow', allow.join(', '));
+  sendJson(res, {
+    status: 405,
+    body: {
+      status: 'error',
+      code: 'METHOD_NOT_ALLOWED',
+      message: `Method not allowed. Allowed: ${allow.join(', ')}.`,
+      requestId,
+    },
+  });
+}
+
 async function handleOrganizationParticipantListRoute(
   req: IncomingMessage,
   res: ServerResponse,
@@ -1434,41 +1540,82 @@ async function handleRequest(
     }
   }
 
-  // Facility Registry READ transport (only when wired). GET-only: an organization's facilities,
-  // the facility list, and a single facility. The path is matched first, then the method (inside
-  // each route handler), so a non-GET request to a known facility path returns 405 (Allow: GET)
-  // rather than a 404 fall-through. The org-facilities path (two segments anchored on a trailing
-  // `facilities`) is matched BEFORE the single-segment facility routes; it is disjoint from every
-  // organization/participant route. Read-only: never mutates the registry, enqueues outbox, touches
-  // governed state, invokes the kernel, or mutates the Organization Registry.
-  if (deps.facilityRead !== undefined) {
+  // Facility Registry transport (only when a read or write transport is wired). READ is GET-only
+  // (an organization's facilities, the facility list, and a single facility). WRITE (phase 1) adds
+  // POST to the collection (create) and PATCH to the item (update). The org-facilities path (two
+  // segments anchored on a trailing `facilities`) is matched BEFORE the single-segment facility
+  // routes; it is disjoint from every organization/participant route and stays GET-only. A facility
+  // STATUS-transition sub-resource (two segments) is deliberately NOT wired — it never matches a
+  // facility route here and falls through to 404. Writes go THROUGH the validated service (which
+  // owns the transactional outbox); the adapter never enqueues outbox, touches governed state,
+  // invokes the kernel, or mutates the Organization Registry.
+  if (deps.facilityRead !== undefined || deps.facilityWrite !== undefined) {
     const orgFacilitiesMatch = ORGANIZATION_FACILITIES_ROUTE.exec(path);
     if (orgFacilitiesMatch !== null) {
-      await handleOrganizationFacilityListRoute(
-        req,
-        res,
-        deps.facilityRead,
-        orgFacilitiesMatch,
-        requestId,
-        deps.resolver,
-      );
+      if (method === 'GET' && deps.facilityRead !== undefined) {
+        await handleOrganizationFacilityListRoute(
+          req,
+          res,
+          deps.facilityRead,
+          orgFacilitiesMatch,
+          requestId,
+          deps.resolver,
+        );
+        return;
+      }
+      // Known org-facilities path but an unsupported method/transport: GET-only when read is wired.
+      if (deps.facilityRead !== undefined) {
+        sendFacilityMethodNotAllowed(res, requestId, ['GET']);
+        return;
+      }
+      // Read transport not wired → fall through to 404.
+    } else if (path === FACILITY_LIST_PATH) {
+      if (method === 'GET' && deps.facilityRead !== undefined) {
+        await handleFacilityListRoute(req, res, deps.facilityRead, requestId, deps.resolver);
+        return;
+      }
+      if (method === 'POST' && deps.facilityWrite !== undefined) {
+        await handleFacilityCreateRoute(
+          req,
+          res,
+          deps.facilityWrite,
+          requestId,
+          deps.resolver,
+          maxBytes,
+        );
+        return;
+      }
+      sendFacilityMethodNotAllowed(res, requestId, facilityCollectionAllow(deps));
       return;
-    }
-    if (path === FACILITY_LIST_PATH) {
-      await handleFacilityListRoute(req, res, deps.facilityRead, requestId, deps.resolver);
-      return;
-    }
-    const facilityDetailMatch = FACILITY_DETAIL_ROUTE.exec(path);
-    if (facilityDetailMatch !== null) {
-      await handleFacilityDetailRoute(
-        req,
-        res,
-        deps.facilityRead,
-        facilityDetailMatch,
-        requestId,
-        deps.resolver,
-      );
-      return;
+    } else {
+      const facilityDetailMatch = FACILITY_DETAIL_ROUTE.exec(path);
+      if (facilityDetailMatch !== null) {
+        if (method === 'GET' && deps.facilityRead !== undefined) {
+          await handleFacilityDetailRoute(
+            req,
+            res,
+            deps.facilityRead,
+            facilityDetailMatch,
+            requestId,
+            deps.resolver,
+          );
+          return;
+        }
+        if (method === 'PATCH' && deps.facilityWrite !== undefined) {
+          await handleFacilityUpdateRoute(
+            req,
+            res,
+            deps.facilityWrite,
+            facilityDetailMatch,
+            requestId,
+            deps.resolver,
+            maxBytes,
+          );
+          return;
+        }
+        sendFacilityMethodNotAllowed(res, requestId, facilityItemAllow(deps));
+        return;
+      }
     }
   }
 

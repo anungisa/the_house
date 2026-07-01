@@ -56,13 +56,16 @@ import type {
 } from './workflow/index.js';
 import type { OrganizationReadHttpDeps } from './organization/index.js';
 import type { ParticipantWriteHttpDeps } from './participant/index.js';
-import type { FacilityReadHttpDeps } from './facility/index.js';
+import type { FacilityReadHttpDeps, FacilityWriteHttpDeps } from './facility/index.js';
 import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
 import {
   ParticipantRegistryService,
   PgParticipantRegistryStore,
 } from '../domains/participant-registry/index.js';
-import { PgFacilityRegistryStore } from '../domains/facility-registry/index.js';
+import {
+  FacilityRegistryService,
+  PgFacilityRegistryStore,
+} from '../domains/facility-registry/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -237,6 +240,27 @@ export function createFacilityReadHttpDeps(telemetry?: Telemetry): FacilityReadH
 }
 
 /**
+ * Build the Facility Registry WRITE transport (phase 1: create + update) backed by PostgreSQL. The
+ * command service, the write pre-check read port, and the organization-existence reader all run
+ * through RLS-enforced Pg stores, so they see exactly the same tenant-scoped rows. The service owns
+ * the transactional outbox; the adapter never enqueues directly, never touches governed lifecycle
+ * state, never invokes the kernel, and never mutates the read-only Organization Registry. A facility
+ * STATUS transition is deliberately NOT part of this surface (a separate future pass).
+ */
+export function createFacilityWriteHttpDeps(telemetry?: Telemetry): FacilityWriteHttpDeps {
+  const store = new PgFacilityRegistryStore();
+  const service = new FacilityRegistryService(store, {
+    organizationReader: new PgOrganizationRegistryStore(),
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  });
+  return {
+    service,
+    readStore: store,
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  };
+}
+
+/**
  * Build (but do not start) the production HTTP server wired to the Pg-backed service.
  * The edge-identity resolver is selected from AUTH_MODE (see {@link createAuthContextResolver}).
  * The caller owns `listen()`; an explicit local/demo runtime script is a future pass.
@@ -260,6 +284,7 @@ export function createPgAffiliationHttpServer(
     organizationRead: createOrganizationReadHttpDeps(telemetry),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
+    facilityWrite: createFacilityWriteHttpDeps(telemetry),
     readiness: createDatabaseReadinessCheck({
       // Tenant-agnostic, read-only probe: never touches governed/tenant-owned tables.
       probe: () => queryRaw('SELECT 1'),

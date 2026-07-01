@@ -15,6 +15,9 @@ import {
   FACILITY_HTTP_DIR_REL,
   FACILITY_HTTP_READ_FILES,
   FACILITY_HTTP_WRITE_FILES,
+  FACILITY_HTTP_WRITE_ADAPTER_TEST_REL,
+  FACILITY_HTTP_WRITE_SERVER_TEST_REL,
+  SERVER_MODULE_REL,
   AUTHZ_ACTIONS_MODULE_REL,
   FACILITY_READ_PREFLIGHT_REL,
   FACILITY_WRITE_PREFLIGHT_REL,
@@ -105,9 +108,16 @@ const VALID_PACKAGE_JSON = JSON.stringify(
   2,
 );
 
-/** An authorization catalog fixture that DEFINES facility.read (read-only scope guard passes). */
-const AUTHZ_WITH_FACILITY_READ =
-  "ParticipantRead: 'participant.read',\n  FacilityRead: 'facility.read',\n";
+/**
+ * An authorization catalog fixture that DEFINES facility.read + facility.write and maps
+ * facility_admin to BOTH, without a facility.status.write action.
+ */
+const AUTHZ_WITH_FACILITY_WRITE =
+  "ParticipantRead: 'participant.read',\n  FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n  // facility_admin: [FacilityRead, FacilityWrite]\n";
+
+/** A server module fixture that wires the facility create + update routes and no status route. */
+const SERVER_WITH_FACILITY_WRITE =
+  '// server fixture\nhandleFacilityCreate();\nhandleFacilityUpdate();\n';
 
 function baseFiles(): Record<string, string | null> {
   const files: Record<string, string | null> = {
@@ -117,7 +127,10 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_HTTP_INTEGRATION_TEST_REL]:
       '// facility registry HTTP integration test (fixture)\n',
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
-    [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_READ,
+    [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_WRITE,
+    [SERVER_MODULE_REL]: SERVER_WITH_FACILITY_WRITE,
+    [FACILITY_HTTP_WRITE_ADAPTER_TEST_REL]: '// facility write adapter test (fixture)\n',
+    [FACILITY_HTTP_WRITE_SERVER_TEST_REL]: '// facility write server test (fixture)\n',
     [FACILITY_READ_PREFLIGHT_REL]: VALID_PREFLIGHT,
     [FACILITY_WRITE_PREFLIGHT_REL]: VALID_WRITE_PREFLIGHT,
     'package.json': VALID_PACKAGE_JSON,
@@ -126,6 +139,9 @@ function baseFiles(): Record<string, string | null> {
     files[`${FACILITY_DOMAIN_DIR_REL}/${f}`] = `// ${f} (fixture)\n`;
   }
   for (const rel of FACILITY_HTTP_READ_FILES) {
+    files[rel] = `// ${rel} (fixture)\n`;
+  }
+  for (const rel of FACILITY_HTTP_WRITE_FILES) {
     files[rel] = `// ${rel} (fixture)\n`;
   }
   return files;
@@ -208,44 +224,128 @@ describe('validateFacilityRegistryBaseline', () => {
     expect(checkOk(writeRepo(files), 'facility HTTP read integration test exists')).toBe(false);
   });
 
-  it('fails the read-only scope guard when a facility HTTP read file is missing', () => {
+  it('fails when a facility HTTP read file is missing', () => {
     const files = baseFiles();
     files[`${FACILITY_HTTP_DIR_REL}/FacilityReadHttpAdapter.ts`] = null;
     const root = writeRepo(files);
-    expect(
-      checkOk(root, 'facility HTTP read surface exists (read-only scope guard)'),
-    ).toBe(false);
+    expect(checkOk(root, 'facility HTTP read surface exists')).toBe(false);
   });
 
-  it('fails the read-only scope guard when a facility HTTP write file is present', () => {
+  it('fails when a facility HTTP write file is missing', () => {
     const files = baseFiles();
-    files[FACILITY_HTTP_WRITE_FILES[0]!] = '// unexpected facility http write surface\n';
+    files[FACILITY_HTTP_WRITE_FILES[0]!] = null;
     const root = writeRepo(files);
     expect(
-      checkOk(root, 'no facility HTTP write surface exists (write is a separate future pass)'),
+      checkOk(root, 'facility HTTP write surface exists (create/update phase 1)'),
     ).toBe(false);
   });
 
-  it('fails the read-only scope guard when the facility.read action is missing', () => {
+  it('fails when the facility.read action is missing', () => {
     const files = baseFiles();
     files[AUTHZ_ACTIONS_MODULE_REL] = "ParticipantRead: 'participant.read',\n";
     const root = writeRepo(files);
+    expect(checkOk(root, 'facility.read authorization action defined')).toBe(false);
+  });
+
+  it('fails when the facility.write action is missing', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] = "FacilityRead: 'facility.read',\n";
+    const root = writeRepo(files);
     expect(
-      checkOk(root, 'facility.read authorization action defined (read-only scope guard)'),
+      checkOk(root, 'facility.write authorization action defined (create/update phase 1)'),
     ).toBe(false);
   });
 
-  it('fails the read-only scope guard when a facility WRITE action is defined', () => {
+  it('fails when facility_admin does not map the write action', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] = "FacilityRead: 'facility.read',\n";
+    const root = writeRepo(files);
+    expect(checkOk(root, 'facility_admin maps to facility read + write')).toBe(false);
+  });
+
+  it('fails when a facility.status.write action is defined (status is a future pass)', () => {
     const files = baseFiles();
     files[AUTHZ_ACTIONS_MODULE_REL] =
-      "FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n";
+      "FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n  FacilityStatusWrite: 'facility.status.write',\n";
     const root = writeRepo(files);
     expect(
       checkOk(
         root,
-        'no facility write authorization action defined (write is a separate future pass)',
+        'no facility.status.write action defined (status transition is a separate future pass)',
       ),
     ).toBe(false);
+  });
+
+  it('fails when the server does not wire facility create + update routes', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] = '// server fixture with no facility write wiring\n';
+    const root = writeRepo(files);
+    expect(checkOk(root, 'server wires facility create + update routes')).toBe(false);
+  });
+
+  it('fails when the server wires a facility status-transition route (status is a future pass)', () => {
+    const files = baseFiles();
+    files[SERVER_MODULE_REL] =
+      '// server fixture\nhandleFacilityCreate();\nhandleFacilityUpdate();\nhandleFacilityStatusTransition();\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(
+        root,
+        'no facility status-transition route wired (status transition is a separate future pass)',
+      ),
+    ).toBe(false);
+  });
+
+  it('fails when the write adapter calls the Governance Kernel', () => {
+    const files = baseFiles();
+    files[`${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpAdapter.ts`] =
+      'const k = new GovernanceKernel();\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility write adapter does not call the Governance Kernel'),
+    ).toBe(false);
+  });
+
+  it('passes the kernel guard when only a comment mentions the Governance Kernel', () => {
+    const files = baseFiles();
+    files[`${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpAdapter.ts`] =
+      '// never invokes the Governance Kernel\nexport const x = 1;\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility write adapter does not call the Governance Kernel'),
+    ).toBe(true);
+  });
+
+  it('fails when the write adapter enqueues the outbox directly', () => {
+    const files = baseFiles();
+    files[`${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpAdapter.ts`] =
+      'await outbox.enqueue(msg);\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility write adapter does not enqueue the outbox directly'),
+    ).toBe(false);
+  });
+
+  it('fails when the write adapter mutates the Organization Registry', () => {
+    const files = baseFiles();
+    files[`${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpAdapter.ts`] =
+      'await service.updateOrganization(input);\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility write adapter does not mutate the Organization Registry'),
+    ).toBe(false);
+  });
+
+  it('fails when the facility write adapter test is missing', () => {
+    const files = baseFiles();
+    files[FACILITY_HTTP_WRITE_ADAPTER_TEST_REL] = null;
+    expect(checkOk(writeRepo(files), 'facility write HTTP adapter test exists')).toBe(false);
+  });
+
+  it('fails when the facility write server test is missing', () => {
+    const files = baseFiles();
+    files[FACILITY_HTTP_WRITE_SERVER_TEST_REL] = null;
+    expect(checkOk(writeRepo(files), 'facility write HTTP server test exists')).toBe(false);
   });
 
   it('fails when the read-surface preflight document is missing', () => {

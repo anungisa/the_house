@@ -157,9 +157,10 @@ hermetic adapter suite.
 This baseline is deliberately narrow. It does **not** add, and future work must not smuggle in via
 this domain: booking, scheduling, calendars, reservations; maintenance or work-order flows;
 inventory; inspections or accreditation workflows; venue contracts; registration or payments;
-program enrollment; event or competition flows; eligibility logic; any facility **write** HTTP
-surface; any facility write authorization action; or any frontend. The Facility Registry never calls
-the Governance Kernel and never mutates the Organization or Participant registries.
+program enrollment; event or competition flows; eligibility logic; a facility **status-transition**
+HTTP route; a `facility.status.write` authorization action; a facility DELETE route; or any
+frontend. The Facility Registry never calls the Governance Kernel and never mutates the Organization
+or Participant registries.
 
 ## Future considerations
 
@@ -173,18 +174,33 @@ contract). Three GET routes are live — `/v1/facilities`, `/v1/facilities/:faci
 store through the `FacilityReadHttpAdapter`. The `facility.read` authorization action was added and
 mapped to the `facility_reader` and `facility_admin` roles. The read surface is GET-only: it never
 writes, never enqueues an outbox message, never invokes the Governance Kernel, and never mutates the
-Organization or Participant registries. The read `FacilityDto` deliberately omits `tenantId`. **No
-facility write HTTP surface and no `facility.write` / `facility.status.write` action exist** —
-`facility:check` guards that the read HTTP files are present, the write HTTP files are absent, the
-`facility.read` action is present, and no facility write action exists.
+Organization or Participant registries. The read `FacilityDto` deliberately omits `tenantId`.
 
-A **write-surface preflight** (design/contract only) now fixes the future write boundary:
+The **phase-1 write surface (create + update)** is now **implemented**. Two routes are live —
+`POST /v1/facilities` (create) and `PATCH /v1/facilities/:facilityId` (update) — projecting the
+validated `FacilityRegistryService` through the `FacilityWriteHttpAdapter`. A new `facility.write`
+action gates both and is mapped to `facility_admin` only (`facility_reader` stays read-only). Create
+requires a client-supplied `facilityId` and an `Idempotency-Key` header, returns `409` on a
+duplicate id via a read pre-check, and returns `404` when the same-tenant organization is unknown;
+update uses a closed allow-list (so `status`, `facilityType`, `organizationId`, and `facilityId` are
+rejected as unknown keys) and returns `404` for a missing or cross-tenant facility. The write
+adapter mutates the registry ONLY through the service, which owns the transactional outbox — it
+never enqueues the outbox directly, never invokes the Governance Kernel, and never mutates the
+Organization or Participant registries. Phase-1 write endpoints are covered by hermetic adapter +
+server tests; they were **not** PostgreSQL/RLS-validated over HTTP in this pass. **No facility
+status-transition route and no `facility.status.write` action exist yet** — `facility:check` guards
+that the read + write HTTP files are present, the `facility.read` + `facility.write` actions are
+present, `facility_admin` maps to both, the server wires create + update but no status-transition
+route, the write adapter calls no kernel / enqueues no outbox / mutates no organization, and no
+`facility.status.write` action exists.
+
+A **write-surface preflight** fixes the write boundary:
 [facility-http-write-surface-preflight.md](./facility-http-write-surface-preflight.md) specifies the
-three future write routes (`POST /v1/facilities`, `PATCH /v1/facilities/:facilityId`,
-`POST /v1/facilities/:facilityId/status-transitions`), the two future actions
+three write routes (`POST /v1/facilities`, `PATCH /v1/facilities/:facilityId`,
+`POST /v1/facilities/:facilityId/status-transitions`), the actions
 (`facility.write` / `facility.status.write`), authorization, closed DTO contracts, the create
 `409`-via-pre-check and idempotency model, error mapping, privacy/telemetry/outbox rules, server
-route ordering, the test matrix, and a phased implementation plan. **No write route, DTO, adapter,
-or authorization action has been implemented** — the preflight is design only, and `facility:check`
-continues to guard that no facility write HTTP file or `facility.write` / `facility.status.write`
-action exists.
+route ordering, the test matrix, and a phased implementation plan. **Phase 1 (create + update) is
+now implemented**; the **status-transition** route and the `facility.status.write` action remain
+design-only, and `facility:check` continues to guard that no facility status-transition route or
+`facility.status.write` action exists.

@@ -33,6 +33,7 @@ export const AuthorizationAction = {
   ParticipantStatusWrite: 'participant.status.write',
   ParticipantOrganizationLinkWrite: 'participant.organization_link.write',
   FacilityRead: 'facility.read',
+  FacilityWrite: 'facility.write',
 } as const;
 
 /** Union of the valid action string literals. */
@@ -72,8 +73,11 @@ export const PLATFORM_ADMIN_ROLE = 'platform_admin';
  *    (`participant.organization_link.write`). These reference-data write actions are all distinct
  *    (none implies another); none is a governed lifecycle transition.
  *  - facility_reader: read-only Facility Registry operator surface.
- *  - facility_admin: Facility Registry operator (read-only at the HTTP edge in v1 — the write
- *    surface is a deliberately separate future pass, so no facility write action exists yet).
+ *  - facility_admin: Facility Registry operator. Reads, plus a reference-data profile write (create
+ *    a facility + update its safe descriptive fields) via `facility.write`. That write action is a
+ *    reference-data mutation, NOT a governed lifecycle transition. The distinct facility STATUS
+ *    transition action (`facility.status.write`) is a deliberately separate future pass and does
+ *    NOT exist yet, so `facility.write` never implies a status change.
  */
 export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationAction[]>> = {
   workflow_reader: [AuthorizationAction.WorkflowRead],
@@ -117,7 +121,7 @@ export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationActi
     AuthorizationAction.ParticipantOrganizationLinkWrite,
   ],
   facility_reader: [AuthorizationAction.FacilityRead],
-  facility_admin: [AuthorizationAction.FacilityRead],
+  facility_admin: [AuthorizationAction.FacilityRead, AuthorizationAction.FacilityWrite],
 };
 
 /** Type guard: is `value` a known action string? */

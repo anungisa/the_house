@@ -1,19 +1,27 @@
 # Facility HTTP write-surface preflight
 
-> **Status: DESIGN / CONTRACT ONLY — NO IMPLEMENTATION.** No Facility write route, write DTO file,
-> write adapter, `facility.write` / `facility.status.write` authorization action, or server write
-> wiring exists, and **none is added by this pass.** This document fixes the write boundary —
+> **Status: PHASE 1 IMPLEMENTED (create + update). STATUS-TRANSITION STILL DESIGN-ONLY.** The
+> Facility HTTP write **create** (`POST /v1/facilities`) and **update** (`PATCH /v1/facilities/:facilityId`)
+> routes, their write DTO file and write adapter, the `facility.write` authorization action (mapped
+> to `facility_admin`), and the server/composition write wiring now exist and are covered by hermetic
+> adapter + server tests. The facility **status-transition** route
+> (`POST /v1/facilities/:facilityId/status-transitions`) and the `facility.status.write` action remain
+> **DESIGN / CONTRACT ONLY — NOT IMPLEMENTED**; that sub-resource does not match any wired route and
+> falls through to 404. No Facility DELETE route exists. This document fixes the write boundary —
 > endpoints, authorization, request/response DTO contracts, idempotency, error mapping, privacy /
 > telemetry / outbox rules, server route sequencing, the test matrix, validator expectations, and a
-> phased implementation plan — so the **Facility HTTP write surface** can be implemented
+> phased implementation plan — so the remaining **status-transition** surface can be implemented
 > deterministically in a later pass without re-litigating scope, the kernel boundary, or the
 > create-conflict/idempotency semantics mid-implementation.
 >
-> The Facility Registry stays a **reference-data** domain. The future write surface will be a thin
-> projection over the already-validated `FacilityRegistryService`, which owns the transactional
-> outbox. It NEVER invokes the Governance Kernel, NEVER mutates governed lifecycle state, and NEVER
-> mutates the Organization or Participant registries (it only READS the Organization Registry to
-> confirm same-tenant existence on create).
+> Phase-1 write endpoints were NOT PostgreSQL/RLS-validated over HTTP in this pass (hermetic tests
+> only); that end-to-end write validation remains a follow-up.
+>
+> The Facility Registry stays a **reference-data** domain. The write surface is a thin projection
+> over the already-validated `FacilityRegistryService`, which owns the transactional outbox. It
+> NEVER invokes the Governance Kernel, NEVER mutates governed lifecycle state, and NEVER mutates the
+> Organization or Participant registries (it only READS the Organization Registry to confirm
+> same-tenant existence on create).
 
 ## 1. Purpose
 
