@@ -9,6 +9,7 @@ import {
   FACILITY_DOC_REL,
   FACILITY_TEST_REL,
   FACILITY_INTEGRATION_TEST_REL,
+  FACILITY_HTTP_INTEGRATION_TEST_REL,
   FACILITY_MIGRATION_REL,
   FACILITY_DOMAIN_DIR_REL,
   FACILITY_HTTP_DIR_REL,
@@ -102,6 +103,8 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_DOC_REL]: VALID_DOC,
     [FACILITY_TEST_REL]: '// facility registry service test (fixture)\n',
     [FACILITY_INTEGRATION_TEST_REL]: '// facility registry integration test (fixture)\n',
+    [FACILITY_HTTP_INTEGRATION_TEST_REL]:
+      '// facility registry HTTP integration test (fixture)\n',
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_READ,
     [FACILITY_READ_PREFLIGHT_REL]: VALID_PREFLIGHT,
@@ -185,6 +188,12 @@ describe('validateFacilityRegistryBaseline', () => {
     const files = baseFiles();
     files[FACILITY_INTEGRATION_TEST_REL] = null;
     expect(checkOk(writeRepo(files), 'facility registry integration test exists')).toBe(false);
+  });
+
+  it('fails when the HTTP read integration test is missing', () => {
+    const files = baseFiles();
+    files[FACILITY_HTTP_INTEGRATION_TEST_REL] = null;
+    expect(checkOk(writeRepo(files), 'facility HTTP read integration test exists')).toBe(false);
   });
 
   it('fails the read-only scope guard when a facility HTTP read file is missing', () => {

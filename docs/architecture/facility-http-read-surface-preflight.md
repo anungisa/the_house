@@ -13,6 +13,16 @@
 > body). The DTO table below still lists `tenantId`; the implemented closed key set excludes it.
 > All other fields match.
 >
+> **PostgreSQL/RLS validation executed.** The read surface was validated end-to-end over real local
+> PostgreSQL with a restricted (`NOSUPERUSER`, `NOBYPASSRLS`) runtime role by the gated suite
+> `tests/integration/governance/facility-registry-http.integration.test.ts` (29 tests). It drives the
+> three GET routes through the native HTTP server backed by `PgFacilityRegistryStore` and proves
+> tenant isolation, `FORCE ROW LEVEL SECURITY` on `facility_registry.facility`, authz/role/wildcard
+> behavior, closed-key `tenantId`-free DTOs, filter/cursor validation, HTTP limit clamping, 401/403/
+> 404/405 mapping, org-route non-shadowing, and non-mutation of facility/organization/governance
+> tables plus no outbox rows. The suite skips cleanly when `RUN_DB_TESTS` is unset, so default
+> `npm test` stays hermetic. The **write surface remains deferred.**
+>
 > This document fixes the read boundary — endpoints, DTOs, authorization, privacy, pagination/filter
 > behavior, server route sequencing, error mapping, the test matrix, the validator plan, and the
 > implementation sequence — so that the **Facility HTTP read surface** could be implemented

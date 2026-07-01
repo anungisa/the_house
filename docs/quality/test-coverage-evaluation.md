@@ -575,3 +575,58 @@ Facility domain preflight coverage map → Facility Registry domain baseline →
 > fix its scope, kernel boundary, RLS/migration shape, authorization actions, and test matrix in a
 > design pass — see [facility-domain-preflight-coverage-map.md](../architecture/facility-domain-preflight-coverage-map.md) —
 > before the baseline implementation adds types, a migration, or tests.
+
+---
+
+## Facility HTTP Read PostgreSQL/RLS Validation
+
+_Date: 2026-07-01 (commit: see `Validate facility HTTP read PostgreSQL RLS`). Test + docs only; NO production code changed (no adapter, server, composition, DTO, or migration bug found)._
+
+A gated integration pass proving the already-shipped **Facility HTTP read surface** against real
+local PostgreSQL under a restricted runtime role — the deferred validation from the read-surface
+implementation pass (`df88e1e`). No write semantics, authz broadening, RLS weakening, or new domain
+behavior introduced.
+
+### Suite added
+
+- `tests/integration/governance/facility-registry-http.integration.test.ts` — **29 tests**,
+  `describe.skip` unless `RUN_DB_TESTS=1`, serialized by the Vitest gated config. Uses
+  `MIGRATE_DATABASE_URL` for admin/migration and a restricted `DATABASE_URL` runtime role
+  (`NOSUPERUSER`, `NOBYPASSRLS`, no DELETE) for all HTTP-path assertions. Own unique tenant
+  namespace (no collision with the Organization/Participant/Facility integration suites). Drives the
+  three GET routes through the native HTTP server (ephemeral `127.0.0.1:0` listener) backed by
+  `PgFacilityRegistryStore`; seeds via `PgOrganizationRegistryStore` + `FacilityRegistryService`.
+
+### What it proves
+
+- **Routing / DTO**: same-tenant list, detail, and org-scoped list; closed-key `FacilityDto` with no
+  `tenantId`; optional-field null-normalization; opaque cursor pagination that never leaks tenant id
+  or SQL internals; HTTP limit clamping; `405` + `Allow: GET` on non-GET; deeper unknown path `404`;
+  organization participant routes not shadowed by org-facilities.
+- **Authz**: `facility.read` exact permission, `facility_reader` / `facility_admin` roles,
+  `platform_admin` wildcard; `401` on missing auth/tenant; `403` for `organization_reader`,
+  `participant_reader`, and other actors lacking `facility.read`.
+- **Tenant/RLS/privacy**: cross-tenant detail `404`, missing detail `404`, cross-tenant / unknown org
+  list → empty; invalid status / facilityType / limit / cursor → `400`; `FORCE ROW LEVEL SECURITY`
+  on `facility_registry.facility`; runtime role is non-superuser / non-`BYPASSRLS`.
+- **Non-mutation**: reads create zero outbox rows and mutate no facility, Organization Registry, or
+  governance lifecycle (`entity_state` / `state_transition` / `audit_event`) rows.
+
+Telemetry redaction (no name / address / contact / coordinates / capabilityTags / headers / body /
+tokens) stays covered by the hermetic adapter suite, which reaches the telemetry snapshot without
+the scope creep of threading an in-process telemetry exporter through the gated HTTP path.
+
+### Validation result
+
+- Default hermetic suite unchanged and green; the new file skips cleanly when `RUN_DB_TESTS` is
+  unset, so `npm test` remains DB-free.
+- Dedicated gated suite: **29/29 passed** against local PostgreSQL with the restricted runtime role.
+- Full gated integration (`RUN_DB_TESTS=1 npx vitest run tests/integration`): **all passed**, no
+  cross-suite interference.
+- No production code changed — no Facility HTTP adapter, server, composition, DTO, or migration
+  defect was surfaced by real Pg/RLS.
+
+### Recommended next pass (do not auto-start)
+
+Facility write-surface preflight → actual Azure dev-environment smoke execution. The write surface
+remains deferred; no Facility write route, action, or preflight exists.

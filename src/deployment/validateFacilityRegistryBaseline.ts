@@ -45,6 +45,8 @@ export const FACILITY_TEST_REL =
   'tests/unit/domains/facility-registry/FacilityRegistryService.test.ts';
 export const FACILITY_INTEGRATION_TEST_REL =
   'tests/integration/governance/facility-registry.integration.test.ts';
+export const FACILITY_HTTP_INTEGRATION_TEST_REL =
+  'tests/integration/governance/facility-registry-http.integration.test.ts';
 export const FACILITY_MIGRATION_REL = 'db/migrations/0011_facility_registry.sql';
 export const FACILITY_VALIDATOR_MODULE = 'src/deployment/validateFacilityRegistryBaseline.ts';
 export const FACILITY_VALIDATOR_SCRIPT = 'scripts/validate-facility-registry-baseline.ts';
@@ -231,6 +233,17 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     name: 'facility registry integration test exists',
     ok: integrationTestPresent,
     detail: FACILITY_INTEGRATION_TEST_REL,
+  });
+
+  // 5b. Gated HTTP read-surface integration test exists (validates the read surface over real
+  //     PostgreSQL/RLS with a restricted runtime role).
+  const httpIntegrationTestPresent = existsSync(
+    join(repoRoot, FACILITY_HTTP_INTEGRATION_TEST_REL),
+  );
+  checks.push({
+    name: 'facility HTTP read integration test exists',
+    ok: httpIntegrationTestPresent,
+    detail: FACILITY_HTTP_INTEGRATION_TEST_REL,
   });
 
   // 6. READ-ONLY HTTP scope guard: the facility HTTP READ surface exists (this pass shipped it) and

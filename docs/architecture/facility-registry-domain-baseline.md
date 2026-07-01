@@ -135,6 +135,23 @@ capability tags; no governed lifecycle table (`entity_state` / `state_transition
 and no Organization Registry row is mutated; and the restricted role holds no DELETE grant. The
 suite skips cleanly when `RUN_DB_TESTS` is unset so the default `npm test` stays hermetic.
 
+A second gated suite (`tests/integration/governance/facility-registry-http.integration.test.ts`, 29
+tests, `RUN_DB_TESTS=1` only) validates the **Facility HTTP read surface** over the same real local
+PostgreSQL and restricted runtime role. It drives the three GET routes
+(`/v1/facilities`, `/v1/facilities/:facilityId`, `/v1/organizations/:organizationId/facilities`)
+through the native HTTP server backed by `PgFacilityRegistryStore` and proves: same-tenant list /
+detail / org-scoped list; closed-key `FacilityDto` with no `tenantId`; optional-field
+null-normalization; `facility.read` exact permission, `facility_reader` / `facility_admin` roles, and
+`platform_admin` wildcard; 401 on missing auth, 403 for `organization_reader` / `participant_reader` /
+other actors lacking `facility.read`; cross-tenant detail → 404, missing detail → 404, cross-tenant /
+unknown org list → empty; 400 on invalid status / facilityType / limit / cursor; HTTP limit clamping;
+opaque cursor pagination that never leaks tenant id or SQL internals; 405 + `Allow: GET` on
+non-GET; deeper unknown paths → 404; organization participant routes not shadowed; and non-mutation
+of facility, Organization Registry, and governance lifecycle rows with zero outbox rows created by
+reads. `FORCE ROW LEVEL SECURITY` on `facility_registry.facility` and the runtime role's
+non-superuser / non-`BYPASSRLS` status are re-asserted. Telemetry redaction remains covered by the
+hermetic adapter suite.
+
 ## Out of scope (intentionally not built)
 
 This baseline is deliberately narrow. It does **not** add, and future work must not smuggle in via
