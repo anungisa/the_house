@@ -124,6 +124,17 @@ no DB, Azure, or network. A gated PostgreSQL/RLS integration test
 `RUN_DB_TESTS=1`. The pure `validateFacilityRegistryBaseline` checker (run via `npm run
 facility:check`, chained into `ci:check`) statically asserts baseline coherence.
 
+The gated PostgreSQL/RLS suite has been executed against a real local PostgreSQL using a restricted,
+self-provisioned runtime role (NOSUPERUSER, NOBYPASSRLS, `SELECT/INSERT/UPDATE` only — no DELETE).
+It proves, end to end: migration `0011` applies; `facility_registry.facility` exists with RLS
+enabled AND forced; missing tenant context fails closed; same-tenant create/read/update/status-change
+succeed; cross-tenant reads and cross-tenant organization references are denied; the facility row and
+its sanitized `facility.registry.*` outbox row commit atomically (an in-transaction outbox failure
+rolls the facility write back); outbox payloads exclude name, address, contact, coordinates, and
+capability tags; no governed lifecycle table (`entity_state` / `state_transition` / `audit_event`)
+and no Organization Registry row is mutated; and the restricted role holds no DELETE grant. The
+suite skips cleanly when `RUN_DB_TESTS` is unset so the default `npm test` stays hermetic.
+
 ## Out of scope (intentionally not built)
 
 This baseline is deliberately narrow. It does **not** add, and future work must not smuggle in via

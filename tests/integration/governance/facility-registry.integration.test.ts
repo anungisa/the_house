@@ -10,6 +10,7 @@ import { FacilityRegistryService } from '../../../src/domains/facility-registry/
 import {
   FACILITY_REGISTRY_CREATED_MESSAGE_TYPE,
   FACILITY_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+  FACILITY_REGISTRY_UPDATED_MESSAGE_TYPE,
 } from '../../../src/domains/facility-registry/FacilityTypes.js';
 import { facilityCreatedDedupeKey } from '../../../src/domains/facility-registry/FacilityRegistryStore.js';
 import { PgOrganizationRegistryStore } from '../../../src/domains/organization-registry/PgOrganizationRegistryStore.js';
@@ -49,9 +50,10 @@ const here = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(here, '..', '..', '..', 'db', 'migrations');
 
 // Suite-specific tenant UUIDs (distinct from other integration suites to avoid cross-suite
-// interference when the gated suites share a database).
-const TENANT_A = '40000000-0000-4000-8000-0000000000e5';
-const TENANT_B = '40000000-0000-4000-8000-0000000000f6';
+// interference when the gated suites share a database). a3/b4 are reserved for THIS suite; do not
+// reuse another suite's namespace (e5/f6 belongs to participant-registry-http).
+const TENANT_A = '40000000-0000-4000-8000-0000000000a3';
+const TENANT_B = '40000000-0000-4000-8000-0000000000b4';
 
 const APP_ROLE = 'house_app_facility_registry_test';
 const APP_PW = 'facility_app_pw';
@@ -317,6 +319,36 @@ d('facility registry — PostgreSQL RLS integration', () => {
     expect(await service.getFacility(TENANT_B, id)).toBeDefined();
   });
 
+  // (8b) Same-tenant update mutates descriptive fields and emits a facility.registry.updated signal.
+  it('updates a facility for its own tenant and emits an updated outbox signal', async () => {
+    const orgId = randomUUID();
+    const id = randomUUID();
+    await seedOrg(TENANT_A, orgId);
+    await createFacility(TENANT_A, orgId, id);
+    const updated = await service.updateFacility({
+      tenantId: TENANT_A,
+      facilityId: id,
+      name: 'Renamed Facility',
+      locality: 'Ottawa',
+    });
+    expect(updated.name).toBe('Renamed Facility');
+    expect(updated.locality).toBe('Ottawa');
+    // Immutable attributes are preserved through the update.
+    expect(updated.organizationId).toBe(orgId);
+    expect(updated.facilityType).toBe('venue');
+
+    const row = await adminGetFacility(admin, id);
+    expect(row!['name']).toBe('Renamed Facility');
+    expect(row!['locality']).toBe('Ottawa');
+
+    const { rows } = await admin.query<{ n: number }>(
+      `SELECT count(*)::int AS n FROM governance.outbox_message
+        WHERE message_type = $1 AND payload->>'facilityId' = $2`,
+      [FACILITY_REGISTRY_UPDATED_MESSAGE_TYPE, id],
+    );
+    expect(rows[0]!.n).toBe(1);
+  });
+
   // (9) Tenant A cannot attach a facility to a Tenant B organization (cross-tenant rejected).
   it('rejects creating a facility for a different tenant organization', async () => {
     const orgId = randomUUID();
@@ -388,8 +420,8 @@ d('facility registry — PostgreSQL RLS integration', () => {
     expect(rows[0]!.payload['newStatus']).toBe('archived');
   });
 
-  // (14) Outbox payloads carry no names, addresses, contact info, secrets, or tokens.
-  it('emits sanitized payloads that exclude name, address, and contact material', async () => {
+  // (14) Outbox payloads carry no names, addresses, contact info, coordinates, tags, or secrets.
+  it('emits sanitized payloads that exclude name, address, contact, coordinates, and tags', async () => {
     const orgId = randomUUID();
     const id = randomUUID();
     await seedOrg(TENANT_A, orgId);
@@ -400,19 +432,96 @@ d('facility registry — PostgreSQL RLS integration', () => {
       name: 'SECRET-NAME-MARKER',
       facilityType: 'venue',
       addressLine1: 'SECRET-ADDRESS-MARKER',
+      locality: 'SECRET-LOCALITY-MARKER',
+      postalCode: 'K1A0B1',
+      contactName: 'SECRET-CONTACT-MARKER',
       contactEmail: 'secret-email-marker@example.com',
+      contactPhone: '+1-555-0100',
+      latitude: 45.421532,
+      longitude: -75.697189,
+      capabilityTags: ['secret-tag-marker'],
       status: 'active',
     });
     const out = await adminGetOutboxByDedupe(admin, facilityCreatedDedupeKey(id));
     expect(out).toBeDefined();
     const serialized = JSON.stringify(out!.payload).toLowerCase();
-    expect(serialized).not.toContain('secret-name-marker');
-    expect(serialized).not.toContain('secret-address-marker');
-    expect(serialized).not.toContain('secret-email-marker');
-    expect(out!.payload['name']).toBeUndefined();
-    expect(out!.payload['contactEmail']).toBeUndefined();
+    for (const marker of [
+      'secret-name-marker',
+      'secret-address-marker',
+      'secret-locality-marker',
+      'k1a0b1',
+      'secret-contact-marker',
+      'secret-email-marker',
+      '555-0100',
+      '45.421532',
+      '-75.697189',
+      'secret-tag-marker',
+    ]) {
+      expect(serialized, `payload must not contain ${marker}`).not.toContain(marker);
+    }
+    // Only the closed identity/routing key set is present.
+    for (const key of [
+      'name',
+      'addressLine1',
+      'locality',
+      'postalCode',
+      'contactName',
+      'contactEmail',
+      'contactPhone',
+      'latitude',
+      'longitude',
+      'capabilityTags',
+    ]) {
+      expect(out!.payload[key], `payload must not carry ${key}`).toBeUndefined();
+    }
     for (const banned of ['bearer', 'authorization', 'password', 'secret=', 'apikey', 'set-cookie']) {
       expect(serialized).not.toContain(banned);
+    }
+  });
+
+  // (14b) An outbox write failure inside the create transaction rolls the facility row back
+  //       (transactional-outbox atomicity: the row and its signal commit together or not at all).
+  it('rolls back the facility row when the outbox write fails within the transaction', async () => {
+    const orgId = randomUUID();
+    const id = randomUUID();
+    await seedOrg(TENANT_A, orgId);
+    // Install a temporary trigger (admin) that fails the outbox INSERT for THIS facility only.
+    await admin.query(`
+      CREATE OR REPLACE FUNCTION facility_test_fail_outbox() RETURNS trigger AS $fn$
+      BEGIN
+        IF NEW.message_type LIKE 'facility.registry.%'
+           AND NEW.payload->>'facilityId' = '${id}' THEN
+          RAISE EXCEPTION 'forced outbox failure for rollback test';
+        END IF;
+        RETURN NEW;
+      END;
+      $fn$ LANGUAGE plpgsql;
+    `);
+    await admin.query(`
+      CREATE TRIGGER facility_test_fail_outbox_trg
+        BEFORE INSERT ON governance.outbox_message
+        FOR EACH ROW EXECUTE FUNCTION facility_test_fail_outbox();
+    `);
+    try {
+      await expect(
+        service.createFacility({
+          tenantId: TENANT_A,
+          facilityId: id,
+          organizationId: orgId,
+          name: 'Rollback Facility',
+          facilityType: 'venue',
+          status: 'active',
+        }),
+      ).rejects.toBeDefined();
+
+      // The whole transaction rolled back: neither the facility row nor any outbox row persisted.
+      expect(await adminGetFacility(admin, id)).toBeUndefined();
+      expect(await adminGetOutboxByDedupe(admin, facilityCreatedDedupeKey(id))).toBeUndefined();
+    } finally {
+      await admin.query(
+        `DROP TRIGGER IF EXISTS facility_test_fail_outbox_trg ON governance.outbox_message`,
+      );
+      await admin.query(`DROP FUNCTION IF EXISTS facility_test_fail_outbox()`);
     }
   });
 
@@ -434,6 +543,48 @@ d('facility registry — PostgreSQL RLS integration', () => {
     const after = await Promise.all(tables.map((t) => countForTenants(admin, t)));
     expect(after).toEqual(before);
     expect(after).toEqual([0, 0, 0]);
+  });
+
+  // (18) The registry only READS the Organization Registry; it never mutates an organization row.
+  it('does not mutate any Organization Registry row', async () => {
+    const orgId = randomUUID();
+    const id = randomUUID();
+    const org = await seedOrg(TENANT_A, orgId);
+    const beforeRows = await admin.query<{ display_name: string; status: string; updated_at: string }>(
+      `SELECT display_name, status, updated_at FROM organization_registry.organization WHERE id = $1`,
+      [orgId],
+    );
+    const before = beforeRows.rows[0]!;
+
+    await createFacility(TENANT_A, orgId, id);
+    await service.updateFacility({ tenantId: TENANT_A, facilityId: id, locality: 'Ottawa' });
+    await service.changeFacilityStatus({ tenantId: TENANT_A, facilityId: id, status: 'inactive' });
+
+    const afterRows = await admin.query<{ display_name: string; status: string; updated_at: string }>(
+      `SELECT display_name, status, updated_at FROM organization_registry.organization WHERE id = $1`,
+      [orgId],
+    );
+    const after = afterRows.rows[0]!;
+    expect(after.display_name).toBe(before.display_name);
+    expect(after.status).toBe(before.status);
+    expect(after.updated_at).toStrictEqual(before.updated_at);
+    expect(org.organizationId).toBe(orgId);
+
+    // Exactly one organization row exists for this tenant (no inserts/duplicates from the registry).
+    expect(await countForTenants(admin, 'organization_registry.organization')).toBe(1);
+  });
+
+  // (19) The restricted app role has SELECT/INSERT/UPDATE only on the facility table — never DELETE.
+  it('grants the restricted app role no DELETE on facility_registry.facility', async () => {
+    const { rows } = await admin.query<{ privilege_type: string }>(
+      `SELECT privilege_type FROM information_schema.role_table_grants
+        WHERE grantee = $1 AND table_schema = 'facility_registry' AND table_name = 'facility'`,
+      [APP_ROLE],
+    );
+    const privileges = new Set(rows.map((r) => r.privilege_type));
+    expect(privileges).toEqual(new Set(['SELECT', 'INSERT', 'UPDATE']));
+    expect(privileges.has('DELETE')).toBe(false);
+    expect(privileges.has('TRUNCATE')).toBe(false);
   });
 
   // (extra) The registry table carries no sport-specific column terminology (NSO-generic core).
