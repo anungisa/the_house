@@ -34,6 +34,7 @@ export const AuthorizationAction = {
   ParticipantOrganizationLinkWrite: 'participant.organization_link.write',
   FacilityRead: 'facility.read',
   FacilityWrite: 'facility.write',
+  FacilityStatusWrite: 'facility.status.write',
 } as const;
 
 /** Union of the valid action string literals. */
@@ -74,10 +75,11 @@ export const PLATFORM_ADMIN_ROLE = 'platform_admin';
  *    (none implies another); none is a governed lifecycle transition.
  *  - facility_reader: read-only Facility Registry operator surface.
  *  - facility_admin: Facility Registry operator. Reads, plus a reference-data profile write (create
- *    a facility + update its safe descriptive fields) via `facility.write`. That write action is a
- *    reference-data mutation, NOT a governed lifecycle transition. The distinct facility STATUS
- *    transition action (`facility.status.write`) is a deliberately separate future pass and does
- *    NOT exist yet, so `facility.write` never implies a status change.
+ *    a facility + update its safe descriptive fields) via `facility.write`, plus a facility STATUS
+ *    transition (`facility.status.write`) — a reference-data status change, NOT a governed lifecycle
+ *    transition. These reference-data write actions are distinct: `facility.write` never implies a
+ *    status change, and `facility.status.write` never implies a profile write. Neither is a governed
+ *    lifecycle transition.
  */
 export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationAction[]>> = {
   workflow_reader: [AuthorizationAction.WorkflowRead],
@@ -121,7 +123,11 @@ export const ROLE_ACTION_MAP: Readonly<Record<string, readonly AuthorizationActi
     AuthorizationAction.ParticipantOrganizationLinkWrite,
   ],
   facility_reader: [AuthorizationAction.FacilityRead],
-  facility_admin: [AuthorizationAction.FacilityRead, AuthorizationAction.FacilityWrite],
+  facility_admin: [
+    AuthorizationAction.FacilityRead,
+    AuthorizationAction.FacilityWrite,
+    AuthorizationAction.FacilityStatusWrite,
+  ],
 };
 
 /** Type guard: is `value` a known action string? */

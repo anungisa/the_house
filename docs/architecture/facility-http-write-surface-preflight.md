@@ -1,18 +1,18 @@
 # Facility HTTP write-surface preflight
 
-> **Status: PHASE 1 IMPLEMENTED (create + update). STATUS-TRANSITION STILL DESIGN-ONLY.** The
-> Facility HTTP write **create** (`POST /v1/facilities`) and **update** (`PATCH /v1/facilities/:facilityId`)
-> routes, their write DTO file and write adapter, the `facility.write` authorization action (mapped
-> to `facility_admin`), and the server/composition write wiring now exist and are covered by hermetic
-> adapter + server tests. The facility **status-transition** route
-> (`POST /v1/facilities/:facilityId/status-transitions`) and the `facility.status.write` action remain
-> **DESIGN / CONTRACT ONLY — NOT IMPLEMENTED**; that sub-resource does not match any wired route and
-> falls through to 404. No Facility DELETE route exists. This document fixes the write boundary —
-> endpoints, authorization, request/response DTO contracts, idempotency, error mapping, privacy /
-> telemetry / outbox rules, server route sequencing, the test matrix, validator expectations, and a
-> phased implementation plan — so the remaining **status-transition** surface can be implemented
-> deterministically in a later pass without re-litigating scope, the kernel boundary, or the
-> create-conflict/idempotency semantics mid-implementation.
+> **Status: IMPLEMENTED (create + update + status transition).** The Facility HTTP write **create**
+> (`POST /v1/facilities`), **update** (`PATCH /v1/facilities/:facilityId`), and **status-transition**
+> (`POST /v1/facilities/:facilityId/status-transitions`) routes, their write DTO file and write
+> adapter, the `facility.write` and `facility.status.write` authorization actions (both mapped to
+> `facility_admin`), and the server/composition write wiring now exist and are covered by hermetic
+> adapter + server tests. The status-transition route is a **reference-data** status change gated by
+> the DISTINCT `facility.status.write` action (never implied by `facility.write`); it is matched
+> BEFORE the single-segment detail/update route and only accepts `POST`. No Facility DELETE route
+> exists. This document fixes the write boundary — endpoints, authorization, request/response DTO
+> contracts, idempotency, error mapping, privacy / telemetry / outbox rules, server route
+> sequencing, the test matrix, and validator expectations. The full PostgreSQL/RLS integration
+> validation of the status-transition route is deferred to a dedicated pass; the gated write suite
+> currently asserts only that the route is served and the action exists.
 >
 > A gated PostgreSQL/RLS integration suite now exists for the phase-1 write endpoints:
 > [facility-registry-write-http.integration.test.ts](../../tests/integration/governance/facility-registry-write-http.integration.test.ts)
@@ -28,8 +28,10 @@
 > the dedicated tenant namespace `…d5`/`…e6` (distinct from every other gated suite). This suite has
 > now been **executed** against a real local PostgreSQL (`house_pg_test`, `127.0.0.1:55432`) with the
 > restricted runtime role — **45/45 passing**, and green inside the full gated integration run
-> (**305/305** across 16 files). The facility **status-transition** surface remains deferred and is
-> NOT exercised.
+> (**305/305** across 16 files). The facility **status-transition** route is now served and gated by
+> `facility.status.write`, but its dedicated PostgreSQL/RLS validation (outbox row, RLS isolation,
+> non-mutation of governed state) is deferred to a later pass; the gated suite currently asserts only
+> that the route is served and the action exists.
 >
 > The Facility Registry stays a **reference-data** domain. The write surface is a thin projection
 > over the already-validated `FacilityRegistryService`, which owns the transactional outbox. It
@@ -78,7 +80,7 @@ Confirmed against the codebase at this pass (baseline `49d2ee4`):
 | Error codes | `FACILITY_NOT_FOUND`, `FACILITY_ALREADY_EXISTS`, `FACILITY_ORGANIZATION_NOT_FOUND` already exist in `AppError.ErrorCode`. | No new error codes needed. |
 | Enums / guards | `FacilityStatus` = `draft\|active\|inactive\|archived`; `FacilityType` = `venue\|training_site\|office\|storage_site\|partner_site\|other`; `FacilityVisibility` = `internal\|public`. Guards `isFacilityStatus`/`isFacilityType`/`isFacilityVisibility` exist. | Boundary validation fails closed on unknown enum → `400`. |
 | Read DTO | Closed `FacilityDto` (omits `tenantId`) + `{ status:'ok', facility, requestId }` envelope exist and are reused by all write responses. | No new response DTO shape. |
-| Authz | `facility.read`, roles `facility_reader` / `facility_admin`, `platform_admin` wildcard exist. **No `facility.write` / `facility.status.write` yet.** | Two new actions added in the implementation pass only. |
+| Authz | `facility.read`, `facility.write`, `facility.status.write` actions and roles `facility_reader` / `facility_admin` (mapped to all three write/read actions) / `platform_admin` wildcard all exist. | All three actions are implemented and role-mapped. |
 | Telemetry | `facility.registry.write.count` counter already defined (`facilityRegistryWrite`). | HTTP write adapter emits it with `operation` + `result` tags only. |
 | Server routes | `FACILITY_LIST_PATH`, `FACILITY_DETAIL_ROUTE`, `ORGANIZATION_FACILITIES_ROUTE` constants exist; all GET-only. | Add a status-transition route matched **before** the detail route; extend method handling to `POST`/`PATCH`. |
 
@@ -89,7 +91,7 @@ Confirmed against the codebase at this pass (baseline `49d2ee4`):
 
 The write surface exposes exactly three routes and nothing else:
 
-| # | Method & path | Operation | Service method (exists) | Authz action (future) |
+| # | Method & path | Operation | Service method (exists) | Authz action |
 | --- | --- | --- | --- | --- |
 | 1 | `POST /v1/facilities` | Create a facility | `createFacility` | `facility.write` |
 | 2 | `PATCH /v1/facilities/:facilityId` | Update safe reference fields | `updateFacility` | `facility.write` |

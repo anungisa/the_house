@@ -110,15 +110,15 @@ const VALID_PACKAGE_JSON = JSON.stringify(
 );
 
 /**
- * An authorization catalog fixture that DEFINES facility.read + facility.write and maps
- * facility_admin to BOTH, without a facility.status.write action.
+ * An authorization catalog fixture that DEFINES facility.read + facility.write + facility.status.write
+ * and maps facility_admin to all three.
  */
 const AUTHZ_WITH_FACILITY_WRITE =
-  "ParticipantRead: 'participant.read',\n  FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n  // facility_admin: [FacilityRead, FacilityWrite]\n";
+  "ParticipantRead: 'participant.read',\n  FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n  FacilityStatusWrite: 'facility.status.write',\n  // facility_admin: [FacilityRead, FacilityWrite, FacilityStatusWrite]\n";
 
-/** A server module fixture that wires the facility create + update routes and no status route. */
+/** A server module fixture that wires the facility create + update + status-transition routes. */
 const SERVER_WITH_FACILITY_WRITE =
-  '// server fixture\nhandleFacilityCreate();\nhandleFacilityUpdate();\n';
+  '// server fixture\nhandleFacilityCreate();\nhandleFacilityUpdate();\nhandleFacilityStatusTransition();\n// POST /v1/facilities/:id/status-transitions\n';
 
 function baseFiles(): Record<string, string | null> {
   const files: Record<string, string | null> = {
@@ -132,8 +132,10 @@ function baseFiles(): Record<string, string | null> {
     [FACILITY_MIGRATION_REL]: '-- 0011 facility registry (fixture)\n',
     [AUTHZ_ACTIONS_MODULE_REL]: AUTHZ_WITH_FACILITY_WRITE,
     [SERVER_MODULE_REL]: SERVER_WITH_FACILITY_WRITE,
-    [FACILITY_HTTP_WRITE_ADAPTER_TEST_REL]: '// facility write adapter test (fixture)\n',
-    [FACILITY_HTTP_WRITE_SERVER_TEST_REL]: '// facility write server test (fixture)\n',
+    [FACILITY_HTTP_WRITE_ADAPTER_TEST_REL]:
+      '// facility write adapter test (fixture)\nhandleFacilityStatusTransition();\n',
+    [FACILITY_HTTP_WRITE_SERVER_TEST_REL]:
+      '// facility write server test (fixture) POST /v1/facilities/:id/status-transitions\n',
     [FACILITY_READ_PREFLIGHT_REL]: VALID_PREFLIGHT,
     [FACILITY_WRITE_PREFLIGHT_REL]: VALID_WRITE_PREFLIGHT,
     'package.json': VALID_PACKAGE_JSON,
@@ -245,7 +247,7 @@ describe('validateFacilityRegistryBaseline', () => {
     files[FACILITY_HTTP_WRITE_FILES[0]!] = null;
     const root = writeRepo(files);
     expect(
-      checkOk(root, 'facility HTTP write surface exists (create/update phase 1)'),
+      checkOk(root, 'facility HTTP write surface exists (create/update/status)'),
     ).toBe(false);
   });
 
@@ -261,7 +263,7 @@ describe('validateFacilityRegistryBaseline', () => {
     files[AUTHZ_ACTIONS_MODULE_REL] = "FacilityRead: 'facility.read',\n";
     const root = writeRepo(files);
     expect(
-      checkOk(root, 'facility.write authorization action defined (create/update phase 1)'),
+      checkOk(root, 'facility.write authorization action defined (create/update)'),
     ).toBe(false);
   });
 
@@ -272,17 +274,25 @@ describe('validateFacilityRegistryBaseline', () => {
     expect(checkOk(root, 'facility_admin maps to facility read + write')).toBe(false);
   });
 
-  it('fails when a facility.status.write action is defined (status is a future pass)', () => {
+  it('fails when a facility.status.write action is missing', () => {
     const files = baseFiles();
     files[AUTHZ_ACTIONS_MODULE_REL] =
-      "FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n  FacilityStatusWrite: 'facility.status.write',\n";
+      "FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n";
     const root = writeRepo(files);
     expect(
       checkOk(
         root,
-        'no facility.status.write action defined (status transition is a separate future pass)',
+        'facility.status.write authorization action defined (status transition)',
       ),
     ).toBe(false);
+  });
+
+  it('fails when facility_admin does not map the status.write action', () => {
+    const files = baseFiles();
+    files[AUTHZ_ACTIONS_MODULE_REL] =
+      "FacilityRead: 'facility.read',\n  FacilityWrite: 'facility.write',\n  'facility.status.write',\n";
+    const root = writeRepo(files);
+    expect(checkOk(root, 'facility_admin maps to facility.status.write')).toBe(false);
   });
 
   it('fails when the server does not wire facility create + update routes', () => {
@@ -292,17 +302,12 @@ describe('validateFacilityRegistryBaseline', () => {
     expect(checkOk(root, 'server wires facility create + update routes')).toBe(false);
   });
 
-  it('fails when the server wires a facility status-transition route (status is a future pass)', () => {
+  it('fails when the server does not wire a facility status-transition route', () => {
     const files = baseFiles();
     files[SERVER_MODULE_REL] =
-      '// server fixture\nhandleFacilityCreate();\nhandleFacilityUpdate();\nhandleFacilityStatusTransition();\n';
+      '// server fixture\nhandleFacilityCreate();\nhandleFacilityUpdate();\n';
     const root = writeRepo(files);
-    expect(
-      checkOk(
-        root,
-        'no facility status-transition route wired (status transition is a separate future pass)',
-      ),
-    ).toBe(false);
+    expect(checkOk(root, 'server wires the facility status-transition route')).toBe(false);
   });
 
   it('fails when the write adapter calls the Governance Kernel', () => {
@@ -355,6 +360,24 @@ describe('validateFacilityRegistryBaseline', () => {
     const files = baseFiles();
     files[FACILITY_HTTP_WRITE_SERVER_TEST_REL] = null;
     expect(checkOk(writeRepo(files), 'facility write HTTP server test exists')).toBe(false);
+  });
+
+  it('fails when the write adapter test does not cover the status transition', () => {
+    const files = baseFiles();
+    files[FACILITY_HTTP_WRITE_ADAPTER_TEST_REL] = '// facility write adapter test (fixture)\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility write adapter test covers the status transition'),
+    ).toBe(false);
+  });
+
+  it('fails when the write server test does not cover the status-transition route', () => {
+    const files = baseFiles();
+    files[FACILITY_HTTP_WRITE_SERVER_TEST_REL] = '// facility write server test (fixture)\n';
+    const root = writeRepo(files);
+    expect(
+      checkOk(root, 'facility write server test covers the status-transition route'),
+    ).toBe(false);
   });
 
   it('fails when the read-surface preflight document is missing', () => {

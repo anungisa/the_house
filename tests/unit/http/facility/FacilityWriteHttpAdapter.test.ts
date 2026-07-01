@@ -3,6 +3,7 @@ import { describe, it, expect } from 'vitest';
 import {
   handleFacilityCreate,
   handleFacilityUpdate,
+  handleFacilityStatusTransition,
   facilityWriteErrorToHttpResult,
   type FacilityWriteHttpDeps,
 } from '../../../../src/http/facility/FacilityWriteHttpAdapter.js';
@@ -11,6 +12,7 @@ import {
   InMemoryFacilityRegistryStore,
   FACILITY_REGISTRY_CREATED_MESSAGE_TYPE,
   FACILITY_REGISTRY_UPDATED_MESSAGE_TYPE,
+  FACILITY_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
   type OrganizationReader,
 } from '../../../../src/domains/facility-registry/index.js';
 import { InMemoryOutboxStore } from '../../../../src/governance/outbox/InMemoryOutboxStore.js';
@@ -21,16 +23,16 @@ import { fixedClock } from '../../../../src/shared/time/clock.js';
 import { AppError, ErrorCode } from '../../../../src/shared/errors/AppError.js';
 
 /**
- * Unit tests for the Facility Registry WRITE HTTP adapter — phase 1: create + update.
+ * Unit tests for the Facility Registry WRITE HTTP adapter — create + update + status transition.
  *
  * Protocol-pure and fully hermetic: handlers are called directly with parsed request shapes,
  * identity is carried in the shared `x-house-*` trusted-header contract, and the backing store is
  * in-memory. NO database, NO Docker, NO real Azure or Entra are required. These endpoints mutate
  * the registry ONLY through the validated Facility Registry service — they never touch governed
  * lifecycle state, never invoke the Governance Kernel, and never enqueue outbox messages directly
- * (the service/store owns the transactional outbox). A facility STATUS transition is a separate
- * future pass and is NOT part of this surface, and the write path never mutates the read-only
- * Organization Registry.
+ * (the service/store owns the transactional outbox). A facility STATUS transition is a distinct
+ * reference-data mutation gated by `facility.status.write` (never implied by `facility.write`), and
+ * the write path never mutates the read-only Organization Registry.
  */
 
 const DEMO = new DemoAuthContextResolver();
@@ -144,6 +146,21 @@ function memberHeaders(tenantId = TENANT_A): Record<string, string | undefined> 
     'x-house-actor-user-id': 'op-1',
     'x-house-actor-role-keys': 'member',
     'idempotency-key': 'idem-001',
+  };
+}
+
+/** Direct-permission headers holding EXACTLY `facility.status.write` (grants the status action). */
+function statusWriteHeaders(
+  tenantId = TENANT_A,
+  extra: Record<string, string> = {},
+): Record<string, string | undefined> {
+  return {
+    'x-house-tenant-id': tenantId,
+    'x-house-actor-user-id': 'op-1',
+    'x-house-actor-role-keys': 'member',
+    'x-house-actor-permission-keys': 'facility.status.write',
+    'idempotency-key': 'idem-001',
+    ...extra,
   };
 }
 
@@ -584,6 +601,319 @@ describe('Facility write HTTP adapter — update', () => {
       .filter((s) => s.attributes?.['operation'] === 'update');
     expect(signals.length).toBe(1);
     expect(signals[0]?.attributes?.['result']).toBe('success');
+  });
+});
+
+describe('Facility write HTTP adapter — status transition', () => {
+  it('(1) transitions status for a facility_admin (200)', async () => {
+    const h = build();
+    await seed(h); // created with default status 'draft'
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(200);
+    const body = res.body as { facility: Record<string, unknown> };
+    expect(body.facility['status']).toBe('active');
+  });
+
+  it('(2) transitions via the EXACT facility.status.write permission (200)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: statusWriteHeaders(), body: { targetStatus: 'inactive' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(200);
+    const body = res.body as { facility: Record<string, unknown> };
+    expect(body.facility['status']).toBe('inactive');
+  });
+
+  it('(3) transitions for platform_admin (wildcard super-role) (200)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: platformAdminHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(200);
+  });
+
+  it('(4) denies an actor holding ONLY facility.write (status is a distinct action → 403)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: permissionHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(403);
+  });
+
+  it('(5) denies a facility_reader with 403', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: readerHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(403);
+  });
+
+  it('(6) denies an authenticated member without the status action with 403', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: memberHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(403);
+  });
+
+  it('(7) returns 401 when no tenant identity is present', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      {
+        facilityId: 'fac-1',
+        headers: { 'x-house-actor-role-keys': 'facility_admin' },
+        body: { targetStatus: 'active' },
+      },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(401);
+  });
+
+  it('(8) returns 400 when the Idempotency-Key header is missing', async () => {
+    const h = build();
+    await seed(h);
+    const headers = adminHeaders();
+    delete headers['idempotency-key'];
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers, body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(9) returns 400 for a non-object body', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: 'nope' },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(10) returns 400 when targetStatus is missing', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: { reason: 'because' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(11) returns 400 for an invalid targetStatus value', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: { targetStatus: 'retired' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(12) returns 400 for an unknown body field (closed allow-list)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      {
+        facilityId: 'fac-1',
+        headers: adminHeaders(),
+        body: { targetStatus: 'active', tenantId: TENANT_B },
+      },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(13) rejects a smuggled profile field on the status route (unknown key → 400)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      {
+        facilityId: 'fac-1',
+        headers: adminHeaders(),
+        body: { targetStatus: 'active', name: 'Renamed via status route' },
+      },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(14) returns 400 when reason exceeds the maximum length', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      {
+        facilityId: 'fac-1',
+        headers: adminHeaders(),
+        body: { targetStatus: 'active', reason: 'x'.repeat(1025) },
+      },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(15) returns 400 when the path facilityId is blank', async () => {
+    const h = build();
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: '   ', headers: adminHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('(16) returns 404 for a missing facility', async () => {
+    const h = build();
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'missing', headers: adminHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(404);
+  });
+
+  it('(17) returns 404 for a cross-tenant facility (never reveals existence)', async () => {
+    const h = build();
+    await seed(h); // TENANT_A
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(TENANT_B), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(404);
+  });
+
+  it('(18) re-applying the CURRENT status is a safe no-op (200, no duplicate outbox)', async () => {
+    const h = build();
+    await seed(h); // status 'draft'
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: { targetStatus: 'draft' } },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(200);
+    const statusRows = h.outbox.records.filter(
+      (r) => r.messageType === FACILITY_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+    );
+    expect(statusRows.length).toBe(0);
+  });
+
+  it('(19) response exposes only the CLOSED DTO key set (never tenantId)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    const body = res.body as { facility: Record<string, unknown> };
+    for (const key of Object.keys(body.facility)) {
+      expect(ALLOWED_FACILITY_DTO_KEYS.has(key)).toBe(true);
+    }
+    expect(Object.keys(body.facility)).not.toContain('tenantId');
+  });
+
+  it('(20) enqueues exactly one status_changed outbox row; reason never leaks into it', async () => {
+    const h = build();
+    await seed(h);
+    await handleFacilityStatusTransition(
+      h.deps,
+      {
+        facilityId: 'fac-1',
+        headers: adminHeaders(),
+        body: { targetStatus: 'active', reason: 'secret-audit-note' },
+      },
+      'r',
+      DEMO,
+    );
+    const statusRows = h.outbox.records.filter(
+      (r) => r.messageType === FACILITY_REGISTRY_STATUS_CHANGED_MESSAGE_TYPE,
+    );
+    expect(statusRows.length).toBe(1);
+    const serialized = JSON.stringify(statusRows[0]?.payload);
+    expect(serialized).not.toContain('secret-audit-note');
+  });
+
+  it('(21) emits a write telemetry counter tagged status_transition/success', async () => {
+    const h = build();
+    await seed(h);
+    await handleFacilityStatusTransition(
+      h.deps,
+      { facilityId: 'fac-1', headers: adminHeaders(), body: { targetStatus: 'active' } },
+      'r',
+      DEMO,
+    );
+    const signals = h.telemetry
+      .signalsNamed(TelemetryCounters.facilityRegistryWrite)
+      .filter((s) => s.attributes?.['operation'] === 'status_transition');
+    expect(signals.length).toBe(1);
+    expect(signals[0]?.attributes?.['result']).toBe('success');
+  });
+
+  it('(22) accepts an in-range optional reason without persisting it (200)', async () => {
+    const h = build();
+    await seed(h);
+    const res = await handleFacilityStatusTransition(
+      h.deps,
+      {
+        facilityId: 'fac-1',
+        headers: adminHeaders(),
+        body: { targetStatus: 'active', reason: 'operator note' },
+      },
+      'r',
+      DEMO,
+    );
+    expect(res.status).toBe(200);
+    const body = res.body as { facility: Record<string, unknown> };
+    expect(body.facility).not.toHaveProperty('reason');
   });
 });
 

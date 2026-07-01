@@ -12,10 +12,10 @@
  * wired and chained into `ci:check`; the doc documents its purpose/scope and key invariants; and NO
  * secret-looking values, sport-specific terminology, or out-of-scope behavior terms leak into the
  * domain code, HTTP read surface, doc, test, or migration. It ALSO enforces the SCOPE of the HTTP
- * surface with fail-closed guards: the facility HTTP READ + phase-1 WRITE (create/update) files and
- * the `facility.read` + `facility.write` actions MUST exist, while the facility STATUS-transition
- * action (`facility.status.write`) and route MUST stay absent (a deliberately separate future
- * pass). It confirms the write adapter never calls the Governance Kernel, never enqueues the outbox
+ * surface with fail-closed guards: the facility HTTP READ + WRITE (create/update + status
+ * transition) files and the `facility.read` + `facility.write` + `facility.status.write` actions
+ * MUST exist, and the facility create, update, and status-transition routes MUST be wired. It
+ * confirms the write adapter never calls the Governance Kernel, never enqueues the outbox
  * directly, and never mutates the Organization Registry. It additionally confirms the HTTP
  * read-surface and write-surface preflight documents exist and enumerate their routes.
  *
@@ -72,17 +72,15 @@ export const FACILITY_READ_ROUTE_PATHS: readonly string[] = [
 ];
 
 /**
- * Design-only readiness marker for the FUTURE write surface. The write-surface preflight fixes the
- * write boundary (endpoints, authz, DTOs, idempotency, error mapping, routing, tests) BEFORE any
- * Facility write HTTP code is written. Its presence + the three documented `METHOD /path` write
- * route strings are asserted here. This is a DESIGN-ONLY marker — it does NOT invert the
- * write-files-absent / no-write-action guards (checks 6/7); those still require the write surface to
- * be ABSENT until the implementation pass.
+ * Design-only readiness marker for the write surface. The write-surface preflight fixes the write
+ * boundary (endpoints, authz, DTOs, idempotency, error mapping, routing, tests) and now sits
+ * alongside the shipped write surface. Its presence + the three documented `METHOD /path` write
+ * route strings (create, update, status transition) are asserted here.
  */
 export const FACILITY_WRITE_PREFLIGHT_REL =
   'docs/architecture/facility-http-write-surface-preflight.md';
 
-/** The three future Facility write routes the write preflight must enumerate (method + path). */
+/** The three Facility write routes the write preflight must enumerate (method + path). */
 export const FACILITY_WRITE_ROUTE_PATHS: readonly string[] = [
   'POST /v1/facilities',
   'PATCH /v1/facilities/:facilityId',
@@ -91,10 +89,9 @@ export const FACILITY_WRITE_ROUTE_PATHS: readonly string[] = [
 
 /**
  * HTTP scope guards. The Facility HTTP READ surface (list/detail + an organization's facilities)
- * and the phase-1 WRITE surface (create/update) have both shipped, so these read + write files MUST
- * exist. Likewise the `facility.read` + `facility.write` actions MUST exist. A facility STATUS
- * transition is a deliberately separate future pass, so no `facility.status.write` action or
- * status-transition route may exist yet.
+ * and the WRITE surface (create/update + status transition) have both shipped, so these read +
+ * write files MUST exist. Likewise the `facility.read` + `facility.write` + `facility.status.write`
+ * actions MUST exist.
  */
 export const FACILITY_HTTP_DIR_REL = 'src/http/facility';
 export const FACILITY_HTTP_READ_FILES: readonly string[] = [
@@ -103,12 +100,12 @@ export const FACILITY_HTTP_READ_FILES: readonly string[] = [
   `${FACILITY_HTTP_DIR_REL}/FacilityReadHttpAdapter.ts`,
   `${FACILITY_HTTP_DIR_REL}/index.ts`,
 ];
-/** Facility phase-1 WRITE HTTP files (create/update) that MUST exist now the write surface shipped. */
+/** Facility WRITE HTTP files (create/update/status) that MUST exist now the write surface shipped. */
 export const FACILITY_HTTP_WRITE_FILES: readonly string[] = [
   `${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpAdapter.ts`,
   `${FACILITY_HTTP_DIR_REL}/FacilityWriteHttpDtos.ts`,
 ];
-/** The phase-1 write-surface hermetic tests (adapter + server) that MUST exist. */
+/** The write-surface hermetic tests (adapter + server) that MUST exist. */
 export const FACILITY_HTTP_WRITE_ADAPTER_TEST_REL =
   'tests/unit/http/facility/FacilityWriteHttpAdapter.test.ts';
 export const FACILITY_HTTP_WRITE_SERVER_TEST_REL =
@@ -294,8 +291,8 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     detail: FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL,
   });
 
-  // 6. HTTP scope guard: BOTH the facility HTTP READ surface and the phase-1 WRITE surface
-  //    (create/update) exist. The STATUS-transition route stays absent (a separate future pass).
+  // 6. HTTP scope guard: BOTH the facility HTTP READ surface and the WRITE surface (create/update +
+  //    status transition) exist.
   const missingReadFiles = FACILITY_HTTP_READ_FILES.filter(
     (rel) => !existsSync(join(repoRoot, rel)),
   );
@@ -311,7 +308,7 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     (rel) => !existsSync(join(repoRoot, rel)),
   );
   checks.push({
-    name: 'facility HTTP write surface exists (create/update phase 1)',
+    name: 'facility HTTP write surface exists (create/update/status)',
     ok: missingWriteFiles.length === 0,
     detail:
       missingWriteFiles.length === 0
@@ -319,8 +316,8 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
         : `missing: ${missingWriteFiles.join(', ')}`,
   });
 
-  // 7. Authz scope guard: the `facility.read` + `facility.write` actions ARE defined and
-  //    `facility_admin` maps to BOTH; the STATUS action (`facility.status.write`) stays absent.
+  // 7. Authz scope guard: the `facility.read` + `facility.write` + `facility.status.write` actions
+  //    ARE defined and `facility_admin` maps to all three.
   const authzText = readIfExists(join(repoRoot, AUTHZ_ACTIONS_MODULE_REL)) ?? '';
   const hasReadAction = authzText.includes("'facility.read'");
   checks.push({
@@ -332,7 +329,7 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
   });
   const hasWriteAction = authzText.includes("'facility.write'");
   checks.push({
-    name: 'facility.write authorization action defined (create/update phase 1)',
+    name: 'facility.write authorization action defined (create/update)',
     ok: hasWriteAction,
     detail: hasWriteAction
       ? 'authz catalog defines facility.write'
@@ -347,17 +344,24 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
       ? 'authz maps FacilityRead + FacilityWrite'
       : 'authz does not map both FacilityRead and FacilityWrite',
   });
-  const noStatusWriteAction = !authzText.includes("'facility.status.write'");
+  const hasStatusWriteAction = authzText.includes("'facility.status.write'");
   checks.push({
-    name: 'no facility.status.write action defined (status transition is a separate future pass)',
-    ok: noStatusWriteAction,
-    detail: noStatusWriteAction
-      ? 'authz catalog defines no facility.status.write action'
-      : 'authz catalog unexpectedly defines facility.status.write',
+    name: 'facility.status.write authorization action defined (status transition)',
+    ok: hasStatusWriteAction,
+    detail: hasStatusWriteAction
+      ? 'authz catalog defines facility.status.write'
+      : 'authz catalog missing facility.status.write action',
+  });
+  const adminMapsStatusWrite = authzText.includes('FacilityStatusWrite');
+  checks.push({
+    name: 'facility_admin maps to facility.status.write',
+    ok: adminMapsStatusWrite,
+    detail: adminMapsStatusWrite
+      ? 'authz maps FacilityStatusWrite'
+      : 'authz does not map FacilityStatusWrite',
   });
 
-  // 7b. Server wiring: the facility create + update routes ARE wired and no facility
-  //     status-transition route is wired yet (a deliberately separate future pass).
+  // 7b. Server wiring: the facility create + update + status-transition routes ARE all wired.
   const serverText = readIfExists(join(repoRoot, SERVER_MODULE_REL)) ?? '';
   const wiresWrite =
     serverText.includes('handleFacilityCreate') && serverText.includes('handleFacilityUpdate');
@@ -368,15 +372,15 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
       ? 'server references handleFacilityCreate + handleFacilityUpdate'
       : 'server does not wire both facility create and update handlers',
   });
-  const noFacilityStatusRoute =
-    !serverText.includes('handleFacilityStatusTransition') &&
-    !/facilities\/[^']*status-transitions/.test(serverText);
+  const wiresStatusRoute =
+    serverText.includes('handleFacilityStatusTransition') &&
+    /facilities\/[^']*status-transitions/.test(serverText);
   checks.push({
-    name: 'no facility status-transition route wired (status transition is a separate future pass)',
-    ok: noFacilityStatusRoute,
-    detail: noFacilityStatusRoute
-      ? 'server wires no facility status-transition route'
-      : 'server unexpectedly wires a facility status-transition route',
+    name: 'server wires the facility status-transition route',
+    ok: wiresStatusRoute,
+    detail: wiresStatusRoute
+      ? 'server wires handleFacilityStatusTransition over a status-transitions route'
+      : 'server does not wire a facility status-transition route',
   });
 
   // 7c. Write-adapter containment: the facility write adapter never invokes the Governance Kernel,
@@ -415,20 +419,38 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
       : 'write adapter unexpectedly mutates the Organization Registry',
   });
 
-  // 7d. Phase-1 write-surface hermetic tests (adapter + server) exist.
-  const writeAdapterTestPresent = existsSync(
-    join(repoRoot, FACILITY_HTTP_WRITE_ADAPTER_TEST_REL),
-  );
+  // 7d. Write-surface hermetic tests (adapter + server) exist and cover the status transition.
+  const writeAdapterTestPath = join(repoRoot, FACILITY_HTTP_WRITE_ADAPTER_TEST_REL);
+  const writeAdapterTestPresent = existsSync(writeAdapterTestPath);
   checks.push({
     name: 'facility write HTTP adapter test exists',
     ok: writeAdapterTestPresent,
     detail: FACILITY_HTTP_WRITE_ADAPTER_TEST_REL,
   });
-  const writeServerTestPresent = existsSync(join(repoRoot, FACILITY_HTTP_WRITE_SERVER_TEST_REL));
+  const writeServerTestPath = join(repoRoot, FACILITY_HTTP_WRITE_SERVER_TEST_REL);
+  const writeServerTestPresent = existsSync(writeServerTestPath);
   checks.push({
     name: 'facility write HTTP server test exists',
     ok: writeServerTestPresent,
     detail: FACILITY_HTTP_WRITE_SERVER_TEST_REL,
+  });
+  const adapterTestText = readIfExists(writeAdapterTestPath) ?? '';
+  const serverTestText = readIfExists(writeServerTestPath) ?? '';
+  const adapterTestCoversStatus = adapterTestText.includes('handleFacilityStatusTransition');
+  checks.push({
+    name: 'facility write adapter test covers the status transition',
+    ok: adapterTestCoversStatus,
+    detail: adapterTestCoversStatus
+      ? 'adapter test exercises handleFacilityStatusTransition'
+      : 'adapter test does not exercise the status transition handler',
+  });
+  const serverTestCoversStatus = /status-transitions/.test(serverTestText);
+  checks.push({
+    name: 'facility write server test covers the status-transition route',
+    ok: serverTestCoversStatus,
+    detail: serverTestCoversStatus
+      ? 'server test exercises the status-transitions route'
+      : 'server test does not exercise the status-transitions route',
   });
 
   // 8. package.json exposes facility:check.
@@ -495,9 +517,8 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
       ? 'preflight present and documents all three read routes'
       : `${FACILITY_READ_PREFLIGHT_REL} missing or missing a read route path`,
   });
-  // 15. DESIGN-ONLY marker: the HTTP write-surface preflight exists and enumerates the three future
-  //     write routes (method + path). This does NOT invert the write-files-absent guards (6/7) —
-  //     the write surface itself must still be ABSENT until the implementation pass.
+  // 15. The HTTP write-surface preflight exists and enumerates the three write routes (method +
+  //     path: create, update, status transition). It now sits alongside the shipped write surface.
   const writePreflight = readIfExists(join(repoRoot, FACILITY_WRITE_PREFLIGHT_REL));
   const writePreflightOk =
     writePreflight !== undefined &&

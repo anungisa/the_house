@@ -5,8 +5,8 @@
  * (`POST /v1/facilities`) and update a facility's safe descriptive fields
  * (`PATCH /v1/facilities/:facilityId`). A facility `status` is REFERENCE DATA, not a governed
  * lifecycle FSM; changing it is a DISTINCT status-transition route
- * (`POST /v1/facilities/:facilityId/status-transitions`) that is deliberately deferred to a later
- * pass and is NOT part of this contract. Neither route ever invokes the Governance Kernel or
+ * (`POST /v1/facilities/:facilityId/status-transitions`) gated by the separate
+ * `facility.status.write` action. None of these routes ever invokes the Governance Kernel or
  * touches governance.entity_state / governance.state_transition / governance.audit_event.
  *
  * These shapes are the STABLE wire contract. Requests carry ONLY safe, NSO-generic fields; identity
@@ -57,7 +57,8 @@ export const FACILITY_CREATE_BODY_KEYS: readonly string[] = [
  * The CLOSED set of body keys accepted by `PATCH /v1/facilities/:facilityId`. `facilityId`,
  * `organizationId`, `facilityType`, and `status` are DELIBERATELY absent: the id comes from the
  * path, the organization + type are immutable after create, and a status change is the separate
- * (deferred) status-transition route. Any key outside this list is rejected with `400`.
+ * status-transition route (`POST /v1/facilities/:facilityId/status-transitions`). Any key outside
+ * this list is rejected with `400`.
  */
 export const FACILITY_UPDATE_BODY_KEYS: readonly string[] = [
   'name',
@@ -134,6 +135,45 @@ export interface FacilityCreateHttpRequest {
 
 /** `PATCH /v1/facilities/:facilityId` request: path id + parsed JSON body + auth headers. */
 export interface FacilityUpdateHttpRequest {
+  readonly facilityId: string;
+  readonly headers: Readonly<Record<string, string | undefined>>;
+  readonly body: unknown;
+}
+
+/**
+ * The CLOSED set of body keys accepted by
+ * `POST /v1/facilities/:facilityId/status-transitions`. `targetStatus` is the required new
+ * reference-data status; `reason` is an OPTIONAL free-text audit note. Any other key is rejected
+ * with `400` — so a profile field (`name`, address/contact), an immutable field (`facilityId`,
+ * `organizationId`, `facilityType`), a bare `status` field, or any out-of-scope behavior field can
+ * never ride in on a status transition.
+ */
+export const FACILITY_STATUS_TRANSITION_BODY_KEYS: readonly string[] = ['targetStatus', 'reason'];
+
+/**
+ * Maximum accepted length of the optional `reason` audit note. This is a request-boundary guard
+ * only — `reason` is NOT persisted by this route (the Facility Registry status change records no
+ * free-text note), and it NEVER appears in the outbox payload or telemetry. Mirrors the participant
+ * status-transition convention.
+ */
+export const FACILITY_STATUS_TRANSITION_REASON_MAX_LENGTH = 1024;
+
+/**
+ * Wire body for `POST /v1/facilities/:facilityId/status-transitions`. `targetStatus` is the REQUIRED
+ * new facility reference-data status (`draft`/`active`/`inactive`/`archived`). `reason` is an
+ * OPTIONAL audit note that is validated at the boundary but NOT persisted by this route. No
+ * identity, immutable-reassignment, or descriptive fields are accepted.
+ */
+export interface FacilityStatusTransitionRequestBody {
+  readonly targetStatus: FacilityStatus;
+  readonly reason?: string;
+}
+
+/**
+ * `POST /v1/facilities/:facilityId/status-transitions` request: path id + parsed JSON body + auth
+ * headers (which also carry the required `Idempotency-Key`).
+ */
+export interface FacilityStatusTransitionHttpRequest {
   readonly facilityId: string;
   readonly headers: Readonly<Record<string, string | undefined>>;
   readonly body: unknown;

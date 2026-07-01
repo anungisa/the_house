@@ -1,13 +1,16 @@
 /**
- * Facility Registry WRITE HTTP adapter — phase 1: create + update.
+ * Facility Registry WRITE HTTP adapter — create + update + status transition.
  *
  * Protocol-pure mutation handlers over the validated {@link FacilityRegistryService}:
  *  - `POST /v1/facilities` — create a facility.
  *  - `PATCH /v1/facilities/:facilityId` — update a facility's safe descriptive fields.
+ *  - `POST /v1/facilities/:facilityId/status-transitions` — change a facility's reference-data
+ *    status.
  *
- * A facility STATUS transition (`POST /v1/facilities/:facilityId/status-transitions`) is REFERENCE
- * DATA, not a governed lifecycle FSM, and is a deliberately SEPARATE future pass — it is NOT served
- * here, and no `facility.status.write` action exists yet.
+ * A facility STATUS transition is REFERENCE DATA, not a governed lifecycle FSM. It is gated by the
+ * distinct `facility.status.write` action (NOT implied by `facility.write`), and — like create and
+ * update — it never invokes the Governance Kernel, never enqueues the outbox directly, and never
+ * mutates the Organization Registry. The service owns the transactional outbox.
  *
  * Architectural boundaries (DO NOT violate):
  *  - All mutations go THROUGH {@link FacilityRegistryService}. The adapter never writes to a store
@@ -49,12 +52,16 @@ import { requireTenant, resolveFacilityAuth } from './facilityHttpAuth.js';
 import { toFacilityDto, type FacilityReadHttpResult } from './FacilityReadHttpAdapter.js';
 import {
   FACILITY_CREATE_BODY_KEYS,
+  FACILITY_STATUS_TRANSITION_BODY_KEYS,
+  FACILITY_STATUS_TRANSITION_REASON_MAX_LENGTH,
   FACILITY_UPDATE_BODY_KEYS,
   type FacilityCreateHttpRequest,
+  type FacilityStatusTransitionHttpRequest,
   type FacilityUpdateHttpRequest,
   type FacilityWriteResponseBody,
 } from './FacilityWriteHttpDtos.js';
 import type {
+  ChangeFacilityStatusInput,
   CreateFacilityInput,
   FacilityRegistryService,
   UpdateFacilityInput,
@@ -357,6 +364,96 @@ export async function handleFacilityUpdate(
   } catch (err) {
     telemetry.incrementCounter(TelemetryCounters.facilityRegistryWrite, 1, {
       [TelemetryAttributeKeys.operation]: 'update',
+      [TelemetryAttributeKeys.result]: TelemetryResult.failure,
+    });
+    return facilityWriteErrorToHttpResult(err, requestId);
+  }
+}
+
+/**
+ * Handle `POST /v1/facilities/:facilityId/status-transitions` — change a facility's reference-data
+ * status.
+ *
+ * Flow: resolve identity (tenant from auth, never the body) → enforce the DISTINCT
+ * `facility.status.write` action (NOT implied by `facility.write`) → require the `Idempotency-Key`
+ * header → validate the path `facilityId` → validate the CLOSED status-transition body (require a
+ * known `targetStatus`; `reason` optional + length-capped; any other key — a profile field, an
+ * immutable-reassignment field, or an out-of-scope behavior field — is rejected) →
+ * {@link FacilityRegistryService.changeFacilityStatus} → project to the safe DTO.
+ *
+ * A missing or cross-tenant facility returns 404 (never reveals cross-tenant existence). The status
+ * change is naturally idempotent: re-applying the current status is a service-level no-op that
+ * mutates nothing and emits no duplicate outbox signal (still a 200 with the current facility).
+ * `reason` is validated at the boundary but NOT persisted — the service records no free-text note —
+ * and never enters the outbox payload or telemetry. The service owns the transactional outbox; the
+ * adapter enqueues nothing itself and never invokes the Governance Kernel (facility status is
+ * reference data, not a governed lifecycle FSM).
+ */
+export async function handleFacilityStatusTransition(
+  deps: FacilityWriteHttpDeps,
+  req: FacilityStatusTransitionHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<FacilityReadHttpResult> {
+  const telemetry = deps.telemetry ?? NOOP_TELEMETRY;
+  try {
+    const auth = await resolveFacilityAuth(resolver, req.headers);
+    const tenantId = requireTenant(auth);
+    assertAuthorized(auth, AuthorizationAction.FacilityStatusWrite, telemetry);
+
+    const idempotencyKey = requireIdempotencyKey(req.headers);
+
+    if (req.facilityId.trim() === '') {
+      throw new AppError(ErrorCode.INVALID_INPUT, 'facilityId path parameter is required.');
+    }
+    const facilityId = req.facilityId.trim();
+
+    const obj = asObjectBody(req.body);
+    rejectUnknownKeys(obj, FACILITY_STATUS_TRANSITION_BODY_KEYS, 'facility status transition');
+
+    if (!isFacilityStatus(obj['targetStatus'])) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        `targetStatus must be one of: ${FACILITY_STATUSES.join(', ')}.`,
+      );
+    }
+
+    const reasonRaw = obj['reason'];
+    if (reasonRaw !== undefined) {
+      if (typeof reasonRaw !== 'string') {
+        throw new AppError(ErrorCode.INVALID_INPUT, 'reason must be a string when provided.');
+      }
+      if (reasonRaw.length > FACILITY_STATUS_TRANSITION_REASON_MAX_LENGTH) {
+        throw new AppError(
+          ErrorCode.INVALID_INPUT,
+          `reason must be at most ${FACILITY_STATUS_TRANSITION_REASON_MAX_LENGTH} characters.`,
+        );
+      }
+    }
+
+    const input: ChangeFacilityStatusInput = {
+      tenantId,
+      facilityId,
+      status: obj['targetStatus'],
+      correlationId: idempotencyKey,
+      requestId,
+    };
+
+    const view = await deps.service.changeFacilityStatus(input);
+
+    const body: FacilityWriteResponseBody = {
+      status: 'ok',
+      facility: toFacilityDto(view),
+      requestId,
+    };
+    telemetry.incrementCounter(TelemetryCounters.facilityRegistryWrite, 1, {
+      [TelemetryAttributeKeys.operation]: 'status_transition',
+      [TelemetryAttributeKeys.result]: TelemetryResult.success,
+    });
+    return { status: 200, body };
+  } catch (err) {
+    telemetry.incrementCounter(TelemetryCounters.facilityRegistryWrite, 1, {
+      [TelemetryAttributeKeys.operation]: 'status_transition',
       [TelemetryAttributeKeys.result]: TelemetryResult.failure,
     });
     return facilityWriteErrorToHttpResult(err, requestId);

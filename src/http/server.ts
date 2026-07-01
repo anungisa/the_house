@@ -84,6 +84,7 @@ import {
   handleOrganizationFacilityList,
   handleFacilityCreate,
   handleFacilityUpdate,
+  handleFacilityStatusTransition,
   type FacilityReadHttpDeps,
   type FacilityWriteHttpDeps,
 } from './facility/index.js';
@@ -272,6 +273,12 @@ const FACILITY_LIST_PATH = '/v1/facilities';
  * path above.
  */
 const FACILITY_DETAIL_ROUTE = /^\/v1\/facilities\/([^/]+)\/?$/;
+/**
+ * POST a facility reference-data status transition. A two-segment path
+ * (`.../:facilityId/status-transitions`), so it never collides with the single-segment facility
+ * detail route above. Matched BEFORE the detail route in dispatch for clarity.
+ */
+const FACILITY_STATUS_TRANSITIONS_ROUTE = /^\/v1\/facilities\/([^/]+)\/status-transitions\/?$/;
 /**
  * GET one organization's facilities. A two-segment path (`.../:organizationId/facilities`) anchored
  * on a trailing `facilities` segment, so it never collides with the single-segment organization
@@ -949,6 +956,37 @@ async function handleFacilityUpdateRoute(
 }
 
 /**
+ * Serve the facility status-transition endpoint
+ * (`POST /v1/facilities/:facilityId/status-transitions`) — change a facility's reference-data
+ * status.
+ */
+async function handleFacilityStatusTransitionRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  facilityWrite: FacilityWriteHttpDeps,
+  match: RegExpExecArray,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBytes: number,
+): Promise<void> {
+  let body: unknown;
+  try {
+    body = await readJsonBody(req, maxBytes);
+  } catch (err) {
+    sendJson(res, errorToHttpResult(err, requestId));
+    return;
+  }
+  const facilityId = decodeURIComponent(match[1] ?? '');
+  const result = await handleFacilityStatusTransition(
+    facilityWrite,
+    { facilityId, headers: headerMap(req), body },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
+/**
  * The HTTP methods available on the facility COLLECTION path (`/v1/facilities`) given the wired
  * transports: GET when read is wired, POST when phase-1 write is wired. Used to build the `Allow`
  * header for a 405.
@@ -1230,6 +1268,9 @@ function classifyRoute(method: string, path: string): string {
   }
   if (PARTICIPANT_DETAIL_ROUTE.test(path)) return `${method} /v1/participants/:id`;
   if (path === FACILITY_LIST_PATH) return `${method} /v1/facilities`;
+  if (FACILITY_STATUS_TRANSITIONS_ROUTE.test(path)) {
+    return `${method} /v1/facilities/:id/status-transitions`;
+  }
   if (FACILITY_DETAIL_ROUTE.test(path)) return `${method} /v1/facilities/:id`;
   if (TRANSITION_ROUTE.test(path)) {
     return `${method} /v1/affiliation/applications/:id/transitions/:action`;
@@ -1541,14 +1582,15 @@ async function handleRequest(
   }
 
   // Facility Registry transport (only when a read or write transport is wired). READ is GET-only
-  // (an organization's facilities, the facility list, and a single facility). WRITE (phase 1) adds
-  // POST to the collection (create) and PATCH to the item (update). The org-facilities path (two
-  // segments anchored on a trailing `facilities`) is matched BEFORE the single-segment facility
-  // routes; it is disjoint from every organization/participant route and stays GET-only. A facility
-  // STATUS-transition sub-resource (two segments) is deliberately NOT wired — it never matches a
-  // facility route here and falls through to 404. Writes go THROUGH the validated service (which
-  // owns the transactional outbox); the adapter never enqueues outbox, touches governed state,
-  // invokes the kernel, or mutates the Organization Registry.
+  // (an organization's facilities, the facility list, and a single facility). WRITE adds POST to
+  // the collection (create), PATCH to the item (update), and POST to the item's status-transitions
+  // sub-resource (reference-data status change). The org-facilities path (two segments anchored on
+  // a trailing `facilities`) is matched BEFORE the single-segment facility routes; it is disjoint
+  // from every organization/participant route and stays GET-only. The facility STATUS-transition
+  // sub-resource (two segments anchored on a trailing `status-transitions`) is matched BEFORE the
+  // single-segment facility detail/update route and only accepts POST. Writes go THROUGH the
+  // validated service (which owns the transactional outbox); the adapter never enqueues outbox,
+  // touches governed state, invokes the kernel, or mutates the Organization Registry.
   if (deps.facilityRead !== undefined || deps.facilityWrite !== undefined) {
     const orgFacilitiesMatch = ORGANIZATION_FACILITIES_ROUTE.exec(path);
     if (orgFacilitiesMatch !== null) {
@@ -1588,33 +1630,56 @@ async function handleRequest(
       sendFacilityMethodNotAllowed(res, requestId, facilityCollectionAllow(deps));
       return;
     } else {
-      const facilityDetailMatch = FACILITY_DETAIL_ROUTE.exec(path);
-      if (facilityDetailMatch !== null) {
-        if (method === 'GET' && deps.facilityRead !== undefined) {
-          await handleFacilityDetailRoute(
-            req,
-            res,
-            deps.facilityRead,
-            facilityDetailMatch,
-            requestId,
-            deps.resolver,
-          );
-          return;
-        }
-        if (method === 'PATCH' && deps.facilityWrite !== undefined) {
-          await handleFacilityUpdateRoute(
+      const facilityStatusMatch = FACILITY_STATUS_TRANSITIONS_ROUTE.exec(path);
+      if (facilityStatusMatch !== null) {
+        if (method === 'POST' && deps.facilityWrite !== undefined) {
+          await handleFacilityStatusTransitionRoute(
             req,
             res,
             deps.facilityWrite,
-            facilityDetailMatch,
+            facilityStatusMatch,
             requestId,
             deps.resolver,
             maxBytes,
           );
           return;
         }
-        sendFacilityMethodNotAllowed(res, requestId, facilityItemAllow(deps));
-        return;
+        // Known status-transition sub-resource: only POST is supported. Return 405 when the write
+        // transport is wired; when write is NOT wired the route does not exist → fall through to
+        // 404 (don't advertise a route the server cannot serve).
+        if (deps.facilityWrite !== undefined) {
+          sendFacilityMethodNotAllowed(res, requestId, ['POST']);
+          return;
+        }
+      } else {
+        const facilityDetailMatch = FACILITY_DETAIL_ROUTE.exec(path);
+        if (facilityDetailMatch !== null) {
+          if (method === 'GET' && deps.facilityRead !== undefined) {
+            await handleFacilityDetailRoute(
+              req,
+              res,
+              deps.facilityRead,
+              facilityDetailMatch,
+              requestId,
+              deps.resolver,
+            );
+            return;
+          }
+          if (method === 'PATCH' && deps.facilityWrite !== undefined) {
+            await handleFacilityUpdateRoute(
+              req,
+              res,
+              deps.facilityWrite,
+              facilityDetailMatch,
+              requestId,
+              deps.resolver,
+              maxBytes,
+            );
+            return;
+          }
+          sendFacilityMethodNotAllowed(res, requestId, facilityItemAllow(deps));
+          return;
+        }
       }
     }
   }

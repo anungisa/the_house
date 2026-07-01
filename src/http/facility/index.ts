@@ -2,12 +2,13 @@
  * Facility Registry HTTP endpoint surface — public exports.
  *
  * READ transport: list + detail over the Facility Registry read store, plus one organization's
- * facilities list. WRITE transport (phase 1): create + update over the validated
+ * facilities list. WRITE transport: create + update + status transition over the validated
  * {@link FacilityRegistryService}. The write handlers NEVER enqueue outbox messages, touch governed
  * state, invoke the Governance Kernel, or mutate the Organization Registry (the service only READS
  * it). Read authorization is the centralized `facility.read` action; create/update use
- * `facility.write`. A facility STATUS transition is a deliberately separate future pass — no
- * `facility.status.write` action or status-transition route exists yet.
+ * `facility.write`; a facility STATUS transition uses the DISTINCT `facility.status.write` action
+ * over `POST /v1/facilities/:facilityId/status-transitions` (reference-data status, not a governed
+ * lifecycle FSM).
  */
 
 export {
@@ -25,6 +26,7 @@ export {
 export {
   handleFacilityCreate,
   handleFacilityUpdate,
+  handleFacilityStatusTransition,
   facilityWriteErrorToHttpResult,
   type FacilityWriteHttpDeps,
   type FacilityExistenceReader,
@@ -44,9 +46,13 @@ export {
 export {
   FACILITY_CREATE_BODY_KEYS,
   FACILITY_UPDATE_BODY_KEYS,
+  FACILITY_STATUS_TRANSITION_BODY_KEYS,
+  FACILITY_STATUS_TRANSITION_REASON_MAX_LENGTH,
   type FacilityCreateRequestBody,
   type FacilityUpdateRequestBody,
+  type FacilityStatusTransitionRequestBody,
   type FacilityCreateHttpRequest,
   type FacilityUpdateHttpRequest,
+  type FacilityStatusTransitionHttpRequest,
   type FacilityWriteResponseBody,
 } from './FacilityWriteHttpDtos.js';

@@ -19,11 +19,11 @@ import { fixedClock } from '../../../../src/shared/time/clock.js';
 const { fetch } = globalThis;
 
 /**
- * Transport tests for the Facility Registry phase-1 WRITE endpoints (create + update) wired into the
- * native HTTP server alongside the read surface. They drive the routes over a short-lived ephemeral
- * loopback listener. NO database, NO Docker, NO real Azure are involved — the registry store is
- * in-process. A facility STATUS transition is a deliberately separate future pass, so its path is
- * NOT served (it falls through to 404).
+ * Transport tests for the Facility Registry WRITE endpoints (create + update + status transition)
+ * wired into the native HTTP server alongside the read surface. They drive the routes over a
+ * short-lived ephemeral loopback listener. NO database, NO Docker, NO real Azure are involved — the
+ * registry store is in-process. A facility STATUS transition is a distinct reference-data route
+ * (`POST /v1/facilities/:facilityId/status-transitions`) gated by `facility.status.write`.
  */
 
 const CLOCK = fixedClock(1_700_000_000_000);
@@ -139,7 +139,7 @@ describe('facility write routes (server transport)', () => {
     expect(body.facility.name).toBe('Renamed Venue');
   });
 
-  it('(3) POST /v1/facilities/:id/status-transitions is not implemented (404)', async () => {
+  it('(3) POST /v1/facilities/:id/status-transitions transitions status (200)', async () => {
     const { server, baseUrl, seededId } = await build();
     active = server;
     const res = await fetch(`${baseUrl}/v1/facilities/${seededId}/status-transitions`, {
@@ -147,7 +147,56 @@ describe('facility write routes (server transport)', () => {
       headers: adminHeaders(),
       body: JSON.stringify({ targetStatus: 'active' }),
     });
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { facility: { status: string } };
+    expect(body.facility.status).toBe('active');
+  });
+
+  it('(3b) GET on the status-transitions route returns 405 with Allow: POST', async () => {
+    const { server, baseUrl, seededId } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/facilities/${seededId}/status-transitions`, {
+      headers: adminHeaders(),
+    });
+    expect(res.status).toBe(405);
+    expect(res.headers.get('allow')).toBe('POST');
+  });
+
+  it('(3c) the status route does not shadow GET/PATCH on the detail route', async () => {
+    const { server, baseUrl, seededId } = await build();
+    active = server;
+    const getRes = await fetch(`${baseUrl}/v1/facilities/${seededId}`, {
+      headers: readerHeaders(),
+    });
+    expect(getRes.status).toBe(200);
+    const patchRes = await fetch(`${baseUrl}/v1/facilities/${seededId}`, {
+      method: 'PATCH',
+      headers: adminHeaders(),
+      body: JSON.stringify({ name: 'Renamed Venue' }),
+    });
+    expect(patchRes.status).toBe(200);
+  });
+
+  it('(3d) malformed JSON on the status route returns 400', async () => {
+    const { server, baseUrl, seededId } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/facilities/${seededId}/status-transitions`, {
+      method: 'POST',
+      headers: adminHeaders(),
+      body: '{ not json',
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it('(3e) an actor lacking facility.status.write is denied with 403 on the status route', async () => {
+    const { server, baseUrl, seededId } = await build();
+    active = server;
+    const res = await fetch(`${baseUrl}/v1/facilities/${seededId}/status-transitions`, {
+      method: 'POST',
+      headers: memberHeaders(),
+      body: JSON.stringify({ targetStatus: 'active' }),
+    });
+    expect(res.status).toBe(403);
   });
 
   it('(4) DELETE /v1/facilities returns 405 with Allow: GET, POST', async () => {

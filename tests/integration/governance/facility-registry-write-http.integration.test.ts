@@ -34,8 +34,9 @@ const { fetch } = globalThis;
  * `tenantId`) never leaks unsafe fields, each mutation atomically enqueues exactly one sanitized
  * registry outbox message in the SAME transaction as the row, and the write path NEVER touches the
  * Governance Kernel, any governed lifecycle table, or the Organization Registry. A facility STATUS
- * transition (`POST /v1/facilities/:facilityId/status-transitions`) is a deliberately separate
- * FUTURE pass — it is not implemented (404) and no `facility.status.write` action exists yet.
+ * transition (`POST /v1/facilities/:facilityId/status-transitions`) is a distinct reference-data
+ * route gated by `facility.status.write`; its full PostgreSQL/RLS validation is deferred to a
+ * dedicated pass, so this suite only asserts the route is served and the action exists.
  *
  * GATING: runs only when RUN_DB_TESTS=1 and an admin connection URL is provided
  * (MIGRATE_DATABASE_URL preferred, else DATABASE_URL). Otherwise the suite is skipped so the
@@ -1061,17 +1062,18 @@ d('facility registry HTTP write surface — PostgreSQL RLS integration', () => {
 
   // ==== ROUTING / ABSENCE (E) ==============================================================
 
-  // (E1/E2) The status-transition sub-resource is NOT implemented (404); the `facility.status.write`
-  // action does not exist yet.
-  it('(E1/E2) status-transition route is not implemented (404) and facility.status.write is absent', async () => {
+  // (E1/E2) The status-transition sub-resource IS implemented and gated by `facility.status.write`.
+  // Full PostgreSQL/RLS status validation is deferred to a dedicated pass; here we only assert the
+  // route is served (an authorized writer gets 200) and the action exists in the catalog.
+  it('(E1/E2) status-transition route is served and facility.status.write exists', async () => {
     const id = await seedViaHttp(TENANT_A);
     const res = await fetch(`${baseUrl}/v1/facilities/${id}/status-transitions`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', ...writerHeaders(TENANT_A) },
-      body: JSON.stringify({ status: 'active' }),
+      body: JSON.stringify({ targetStatus: 'active' }),
     });
-    expect(res.status).toBe(404);
-    expect(Object.values(AuthorizationAction as Record<string, string>)).not.toContain(
+    expect(res.status).toBe(200);
+    expect(Object.values(AuthorizationAction as Record<string, string>)).toContain(
       'facility.status.write',
     );
   });
