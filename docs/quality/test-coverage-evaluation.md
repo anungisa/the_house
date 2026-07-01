@@ -630,3 +630,68 @@ the scope creep of threading an in-process telemetry exporter through the gated 
 
 Facility write-surface preflight → actual Azure dev-environment smoke execution. The write surface
 remains deferred; no Facility write route, action, or preflight exists.
+
+---
+
+## Facility HTTP Write PostgreSQL/RLS Validation
+
+_Date: 2026-07-01 (commit: see `Validate facility write HTTP PostgreSQL RLS`). Test + docs only; NO production code changed (no adapter, server, composition, DTO, or migration bug found). Gated DB run was NOT executed locally — no PostgreSQL was reachable in this environment (Docker daemon down, ports 5432/55432 closed); the suite was authored + collected (45 tests skip cleanly) and runs under `RUN_DB_TESTS=1` against a local restricted role._
+
+A gated integration pass adding an end-to-end PostgreSQL/RLS proof for the already-shipped
+**Facility HTTP write surface — phase 1 (create + update)** through the REAL native HTTP server and a
+restricted runtime role. No status-transition implementation, no `facility.status.write`, no authz
+broadening, no RLS weakening.
+
+### Suite added
+
+- `tests/integration/governance/facility-registry-write-http.integration.test.ts` — **45 tests**,
+  `describe.skip` unless `RUN_DB_TESTS=1`, serialized by the Vitest gated config. `MIGRATE_DATABASE_URL`
+  for admin/migration; a dedicated restricted `DATABASE_URL` runtime role
+  (`house_app_facility_http_write_test`; `NOSUPERUSER`, `NOBYPASSRLS`; `SELECT`/`INSERT`/`UPDATE` on
+  `facility_registry.facility` and `governance.outbox_message`, `SELECT` on
+  `organization_registry.organization` + participant tables, **no `DELETE`**, no
+  governance-lifecycle grants). Drives `POST /v1/facilities` + `PATCH /v1/facilities/:facilityId`
+  through the native HTTP server (ephemeral `127.0.0.1:0` listener) backed by
+  `PgFacilityRegistryStore` + `FacilityRegistryService` (organization existence via
+  `PgOrganizationRegistryStore`). Own unique tenant namespace `…d5`/`…e6` (no collision with any
+  other integration suite). Shares the `918273` provisioning advisory lock.
+
+### What it proves (when run under `RUN_DB_TESTS=1`)
+
+- **Create**: same-tenant create via exact `facility.write`, `facility_admin`, `platform_admin`;
+  `403` for `facility_reader` / exact `facility.read` / `organization_reader`; `401` on missing
+  auth/tenant; `400` on missing `Idempotency-Key`, missing required fields, invalid enum, unknown
+  keys; `404` on unknown / cross-tenant organization; `409` on duplicate `facilityId`; closed-key
+  `FacilityDto` excluding `tenantId` with null-normalized optionals; exactly one facility row + one
+  sanitized `facility.registry.created` outbox row (payload excludes name/address/contact/
+  coordinates/tags/headers/tokens/connection strings); no Organization Registry or governed-lifecycle
+  mutation.
+- **Update**: same-tenant update via the three writer identities; `403` for read-only actors; `401`
+  on missing auth; `400` on empty body, malformed JSON, immutable/identity keys, unknown keys; `404`
+  for missing / cross-tenant facility (indistinguishable); explicit `null` clears an optional; closed
+  DTO excluding `tenantId`; one sanitized `facility.registry.updated` outbox row; no Organization
+  Registry or governed-lifecycle mutation.
+- **Routing / RLS / privacy**: status-transition sub-resource unimplemented (`404`) and
+  `facility.status.write` absent; `405` with `Allow: GET, POST` (collection) / `GET, PATCH` (item);
+  deeper unknown path `404`; GET routes still work after create/update; org-participant routes not
+  shadowed; `FORCE ROW LEVEL SECURITY` on the facility table; runtime role non-superuser /
+  non-`BYPASSRLS` / no `DELETE`; cross-tenant facility invisible; missing tenant fails closed;
+  error responses leak no PII, SQL, or stack details.
+
+Telemetry redaction stays covered by the hermetic adapter suite (the gated server wires no telemetry
+sink), consistent with the read-surface pass.
+
+### Validation result
+
+- Default hermetic suite unchanged and green; the new file skips cleanly when `RUN_DB_TESTS` is
+  unset, so `npm test` remains DB-free.
+- Dedicated gated suite: **NOT executed** — no local PostgreSQL reachable in this environment. 45
+  tests collected and skipped cleanly.
+- Full gated integration: **NOT executed** for the same reason.
+- No production code changed.
+
+### Recommended next pass (do not auto-start)
+
+Facility HTTP status-transition implementation, OR (once a local/dev PostgreSQL is available)
+execution of this gated suite + the full gated integration run, OR actual Azure dev-environment
+smoke execution.

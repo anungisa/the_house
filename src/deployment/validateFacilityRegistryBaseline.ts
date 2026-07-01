@@ -49,6 +49,8 @@ export const FACILITY_INTEGRATION_TEST_REL =
   'tests/integration/governance/facility-registry.integration.test.ts';
 export const FACILITY_HTTP_INTEGRATION_TEST_REL =
   'tests/integration/governance/facility-registry-http.integration.test.ts';
+export const FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL =
+  'tests/integration/governance/facility-registry-write-http.integration.test.ts';
 export const FACILITY_MIGRATION_REL = 'db/migrations/0011_facility_registry.sql';
 export const FACILITY_VALIDATOR_MODULE = 'src/deployment/validateFacilityRegistryBaseline.ts';
 export const FACILITY_VALIDATOR_SCRIPT = 'scripts/validate-facility-registry-baseline.ts';
@@ -279,6 +281,17 @@ export function validateFacilityRegistryBaseline(repoRoot: string): FacilityRegi
     name: 'facility HTTP read integration test exists',
     ok: httpIntegrationTestPresent,
     detail: FACILITY_HTTP_INTEGRATION_TEST_REL,
+  });
+
+  // 5c. Gated HTTP WRITE-surface integration test exists (validates create/update over real
+  //     PostgreSQL/RLS with a restricted runtime role holding no DELETE grant).
+  const httpWriteIntegrationTestPresent = existsSync(
+    join(repoRoot, FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL),
+  );
+  checks.push({
+    name: 'facility HTTP write integration test exists',
+    ok: httpWriteIntegrationTestPresent,
+    detail: FACILITY_HTTP_WRITE_INTEGRATION_TEST_REL,
   });
 
   // 6. HTTP scope guard: BOTH the facility HTTP READ surface and the phase-1 WRITE surface

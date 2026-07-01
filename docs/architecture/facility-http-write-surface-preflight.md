@@ -14,8 +14,19 @@
 > deterministically in a later pass without re-litigating scope, the kernel boundary, or the
 > create-conflict/idempotency semantics mid-implementation.
 >
-> Phase-1 write endpoints were NOT PostgreSQL/RLS-validated over HTTP in this pass (hermetic tests
-> only); that end-to-end write validation remains a follow-up.
+> A gated PostgreSQL/RLS integration suite now exists for the phase-1 write endpoints:
+> [facility-registry-write-http.integration.test.ts](../../tests/integration/governance/facility-registry-write-http.integration.test.ts)
+> (45 tests). Driven through the REAL native HTTP server (`createAffiliationHttpServer` + `fetch`)
+> over an ephemeral loopback listener, backed by the REAL `PgFacilityRegistryStore` +
+> `FacilityRegistryService` running as a restricted `NOSUPERUSER`, `NOBYPASSRLS` role
+> (`house_app_facility_http_write_test`; `SELECT`/`INSERT`/`UPDATE` on the facility table and the
+> outbox, `SELECT` on the organization registry, **no `DELETE`**, no governance-lifecycle grants),
+> it proves create/update work end-to-end and that tenant/RLS/outbox/privacy/non-mutation invariants
+> hold (one facility row + one sanitized outbox row per mutation; no Organization Registry or
+> governed-lifecycle mutation; closed `FacilityDto` excluding `tenantId`; sanitized outbox payloads).
+> The suite skips cleanly when `RUN_DB_TESTS` is unset, so default `npm test` stays hermetic. It uses
+> the dedicated tenant namespace `…d5`/`…e6` (distinct from every other gated suite). The facility
+> **status-transition** surface remains deferred and is NOT exercised.
 >
 > The Facility Registry stays a **reference-data** domain. The write surface is a thin projection
 > over the already-validated `FacilityRegistryService`, which owns the transactional outbox. It
