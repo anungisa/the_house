@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.11.0
+version: 0.12.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -663,5 +663,28 @@ records:
       - Post-freeze changes require the Volume 1 amendment process (REG-107 amendment decision, version increment, re-ratification)
       - No implementation, procurement, or master development plan authorized by the Volume 1 freeze
       - Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Release-provenance amendment (patch v1.0.1) ---
+  - id: APP-V1-045
+    artifact_id: V1-G
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    supersedes: APP-V1-043 base_commit 677f10e whole-volume-source interpretation
+    release_provenance:
+      package_closure_commit: "677f10e"
+      source_snapshot_commit: "9c0f04f"
+      freeze_commit: "32d9cd5"
+      merged_release_commit: "3d1e481"
+      release_tag: central-registration-volume-1-v1.0.0
+    conditions:
+      - Release-provenance amendment (V1-G) ratified; narrow governance-metadata correction (DEC-V1-031)
+      - "Supersedes ONLY the base_commit 677f10e whole-volume-source interpretation in APP-V1-043 and DEC-V1-030"
+      - "Correct four-commit model; Package 5 closure 677f10e; source snapshot 9c0f04f; freeze commit 32d9cd5; merged release 3d1e481; tag central-registration-volume-1-v1.0.0"
+      - 677f10e preserved as the valid Package 5 closure commit; no substantive finding, disposition, contradiction, or qualification decision changed
+      - V1-E, V1-F, and all qualification decisions unchanged; published v1.0.0 tag not moved or overwritten
+      - "Gate V1-G5 remains PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized"
+      - Published as patch release v1.0.1; Volume 2 authoring proceeds from the corrected v1.0.1 baseline
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

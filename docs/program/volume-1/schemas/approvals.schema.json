@@ -38,6 +38,18 @@
           "closure_record": { "type": "string", "pattern": "^V1-[A-Z]$" },
           "base_commit": { "type": "string" },
           "amendment_process": { "type": "string" },
+          "supersedes": { "type": "string" },
+          "release_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "package_closure_commit": { "type": "string" },
+              "source_snapshot_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "merged_release_commit": { "type": "string" },
+              "release_tag": { "type": "string" }
+            }
+          },
           "frozen": { "type": "boolean" },
           "frozen_artifacts": {
             "type": "array",
