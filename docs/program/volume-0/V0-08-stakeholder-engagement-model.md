@@ -1,12 +1,14 @@
 # V0-08 - Stakeholder and Engagement Model
 
 Document ID: V0-08
-Status: IN_REVIEW
+Status: RATIFIED
 Version: 1.0.0
 Owner: Aubert Nungisa (Accountable Program Authority)
 Approver: Nolan (Executive Acceptance Authority)
 Associated Gate: G0
-Related Decisions: DEC-V0-020, DEC-V0-021
+Ratification: Package 2; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable future gate (REG-006 APP-007)
+Related Documents: V0-06 (authority doctrine), V0-07 (governance and decision rights)
+Related Decisions: DEC-V0-020, DEC-V0-021, DEC-V0-023
 Related Registers: REG-001 (stakeholders), REG-002 (decisions), REG-003 (RAID)
 
 ## 8.1 Purpose
@@ -33,7 +35,7 @@ normative narrative those records implement.
   commitment, and material expenditure.
 - Rich - strategic challenge and alignment. Consulted on strategic scope and program
   direction (class D7).
-- Helene - business, financial, and sustainability challenge. Consulted on financial,
+- Hélène - business, financial, and sustainability challenge. Consulted on financial,
   payment, and sustainability matters (class D4 domain input).
 - Jen - compliance, policy, privacy, and operating-rule challenge. Consulted on
   affiliation requirements, evidence rules, privacy, and compliance (class D4 domain
@@ -72,7 +74,7 @@ finalized, in the following cases:
 | Trigger | Required consultation |
 | --- | --- |
 | Strategic scope or program direction | Rich |
-| Financial, payment, or sustainability impact | Helene |
+| Financial, payment, or sustainability impact | Hélène |
 | Affiliation requirements, evidence rules, privacy, or compliance | Jen |
 | Pilot exposure, organizational commitment, or material expenditure | Nolan (executive acceptance) |
 | Club workflow usability | Club representatives |
@@ -107,6 +109,11 @@ Certain claims are validated only through real use, not through author review:
 Pilot participation is bounded and requires executive acceptance (Nolan, D0) before
 any organizational commitment or exposure of real stakeholders.
 
+Club and PTSO participants validate operational fit and usability. They do not set
+national policy: their operational feedback informs decisions but does not implicitly
+determine national policy, which remains a program-authority decision (D1) subject to
+executive acceptance (D0) where the change is material.
+
 ## 8.7 When independent expertise is mandatory
 
 Author verification is insufficient, and independent expertise is mandatory, where a
@@ -127,9 +134,11 @@ verification.
 Domain contributors are engaged consultatively and as validators of specific claims.
 They are not permanent delivery gatekeepers over unrelated work. Executive decisions
 are limited to material organizational commitments (D0). Independent assurance is
-reserved for claims that require independence. Engagement roles and their thresholds
-are recorded in REG-001 and REG-002; changes require a governance decision recorded
-in REG-002.
+reserved for claims that require independence. A recorded `consulted` status means
+input was sought and considered; it is not an endorsement of the outcome and MUST NOT
+be represented as approval or sign-off. Engagement roles and their thresholds are
+recorded in REG-001 and REG-002; changes require a governance decision recorded in
+REG-002.
 
 Ratification: Package 2. Evidence label SELF-ATTESTED / AUTHOR-VERIFIED; independent
 validation not claimed; executive acceptance pending at applicable future gate.

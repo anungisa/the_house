@@ -1,7 +1,7 @@
 register_id: REG-000
 name: Corpus Index
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 records:
   - id: V0-00
     title: Document Control and Normative Usage
@@ -55,7 +55,7 @@ records:
     title: Product, Repository, and Authority Doctrine
     owner: Aubert Nungisa (Accountable Program Authority)
     approver: Nolan (Executive Acceptance Authority)
-    status: IN_REVIEW
+    status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-0/V0-06-product-and-authority-doctrine.md
     gate: G0
@@ -71,7 +71,7 @@ records:
     title: Stakeholder and Engagement Model
     owner: Aubert Nungisa (Accountable Program Authority)
     approver: Nolan (Executive Acceptance Authority)
-    status: IN_REVIEW
+    status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-0/V0-08-stakeholder-engagement-model.md
     gate: G0
@@ -122,4 +122,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-0/V0-E-package1-review-record.md
+    gate: G0
+  - id: V0-F
+    title: Annex F - Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-F-package2-closure-record.md
     gate: G0

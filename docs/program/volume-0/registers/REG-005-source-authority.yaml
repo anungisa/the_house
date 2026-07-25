@@ -1,7 +1,7 @@
 register_id: REG-005
 name: Source and Authority Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 records:
   - id: SRC-001
     source_name: Ratified Curling Canada policy and executive decisions
@@ -41,11 +41,12 @@ records:
     source_type: synchronization_partner
     authority_level: 4
     owner: Aubert Nungisa (Accountable Program Authority)
-    applicable_scope: club_league_competition_operational_data
+    applicable_scope: league_and_competition_operational_data
     note: >-
-      Bidirectional operational data exchange within its bounded domain. The House
-      remains authoritative for governed affiliation and participant state derived
-      from it.
+      Bidirectional operational data exchange within its bounded domain. Holds no
+      club or participant master-data authority: The House is master-data authority
+      for club, affiliation, and participant records. Competition or league standing
+      never overrides governed master data.
   - id: SRC-006
     source_name: Current registration provider (incumbent)
     source_type: temporary_transition_platform
@@ -54,8 +55,9 @@ records:
     applicable_scope: incumbent_registration_and_membership_records
     note: >-
       Authoritative for legacy registration and membership data only during
-      transition. Retired after migration. Not authoritative for the future target
-      state.
+      transition. Transition authority expires on an explicit migration-completion
+      trigger (a recorded cutover decision in REG-002); retired after migration. Not
+      authoritative for the future target state.
   - id: SRC-007
     source_name: Payment processors
     source_type: execution_plane
@@ -63,8 +65,10 @@ records:
     owner: Helene (Business and Financial Authority)
     applicable_scope: payment_authorization_and_capture
     note: >-
-      Executes payment instructions. The governed decision to charge, the evidence,
-      and the resulting governed record remain in The House.
+      Executes payment instructions. The governed decision to charge, the fee policy,
+      the evidence, and the resulting governed record remain in The House. Does not
+      own Curling Canada fee policy and is not the accounting truth. Reconciliation
+      boundary with accounting systems (SRC-012) is explicit.
   - id: SRC-008
     source_name: Sideline Learning
     source_type: authoritative_source_external
@@ -99,8 +103,8 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     applicable_scope: reporting_and_business_intelligence
     note: >-
-      Consumes projected data only. Holds no authority over underlying records and
-      writes no governed state.
+      Consumes projected data only. Holds no authority over underlying records,
+      writes no governed state, and MUST NOT become a system of record.
   - id: SRC-012
     source_name: Accounting systems
     source_type: authoritative_source_external
@@ -109,4 +113,7 @@ records:
     applicable_scope: financial_ledger_and_accounting_system_of_record
     note: >-
       External financial system of record. The House synchronizes to it and does not
-      overwrite the accounting ledger.
+      overwrite the accounting ledger. Reconciliation boundary: payment processors
+      (SRC-007) execute and evidence transactions, The House holds the governed charge
+      decision and fee policy, the accounting system holds the financial ledger; none
+      silently overrides another.

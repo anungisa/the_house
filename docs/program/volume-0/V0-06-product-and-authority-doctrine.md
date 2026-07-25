@@ -1,12 +1,14 @@
 # V0-06 - Product, Repository, and Authority Doctrine
 
 Document ID: V0-06
-Status: IN_REVIEW
+Status: RATIFIED
 Version: 1.0.0
 Owner: Aubert Nungisa (Accountable Program Authority)
 Approver: Nolan (Executive Acceptance Authority)
 Associated Gate: G0
-Related Decisions: DEC-V0-018, DEC-V0-019
+Ratification: Package 2; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable future gate (REG-006 APP-006)
+Related Documents: V0-07 (governance and decision rights), V0-08 (stakeholder and engagement model)
+Related Decisions: DEC-V0-018, DEC-V0-019, DEC-V0-023
 Related Registers: REG-005 (source and authority), REG-002 (decisions), REG-003 (RAID)
 
 ## 6.1 Purpose
@@ -38,7 +40,9 @@ Every system is assigned exactly one primary authority type. The permitted types
 - reporting source: consumes projected data for analysis or presentation; it holds
   no authority over the underlying records.
 - temporary transition platform: currently holds operational or legacy truth that
-  will be migrated and retired; authoritative only until migration completes.
+  will be migrated and retired; authoritative only until an explicit
+  migration-completion trigger (a recorded cutover decision in REG-002) fires, after
+  which its authority expires and it is retired.
 - replaceable provider: supplies a commodity capability that can be substituted
   without changing governed truth.
 
@@ -152,7 +156,7 @@ authorization, or production release readiness.
 
 | Platform | Primary authority type | Bounded domain |
 | --- | --- | --- |
-| Curling I/O | synchronization partner | club, league, and competition operational data |
+| Curling I/O | synchronization partner | league and competition operational data (not club or participant master data) |
 | Current registration provider | temporary transition platform | incumbent registration and membership records, until migrated and retired |
 | Payment processors | execution plane | payment authorization and capture on instruction |
 | Sideline Learning | authoritative source (external) | learning and certification completion records |
@@ -171,21 +175,33 @@ Non-authority (all external platforms). No external platform may:
 
 Lifecycle and transition posture.
 
-- Curling I/O exchanges operational data within its bounded domain; The House remains
-  authoritative for governed affiliation and participant state derived from it.
+- Curling I/O exchanges league and competition operational data within its bounded
+  domain. It holds no club or participant master-data authority: The House is the
+  master-data authority for club, affiliation, and participant records, and Curling
+  I/O competition or league standing never overrides that governed master data.
 - The current registration provider holds incumbent truth only until migration
   completes; it is then retired. It is authoritative for legacy data during
-  transition, not for the future target state.
+  transition, not for the future target state. Its transition authority expires on an
+  explicit migration-completion trigger: a recorded cutover decision in REG-002 that
+  marks the domain migrated. Absent that trigger, its authority neither silently
+  persists nor silently lapses.
 - Payment processors execute payment instructions; the governed decision to charge,
-  the evidence, and the resulting record remain in The House.
+  the fee policy, the evidence, and the resulting governed record remain in The
+  House. Payment processors do not own Curling Canada fee policy and are not the
+  accounting truth.
 - Sideline Learning and accreditation platforms remain external systems of record for
   their respective domains; The House holds a projection and governs how that status
   is used, not the underlying record.
 - Document360 hosts documentation and can be substituted without changing governed
   truth.
-- Analytics platforms consume projected data only and write no governed state.
+- Analytics platforms consume projected data only, write no governed state, and MUST
+  NOT become a system of record; a reporting projection never converts into
+  authoritative truth.
 - Accounting systems remain the financial system of record; The House synchronizes to
-  them and does not overwrite the accounting ledger.
+  them and does not overwrite the accounting ledger. The reconciliation boundary is
+  explicit: payment processors execute and evidence transactions, The House holds the
+  governed charge decision and the fee policy, and the accounting system holds the
+  financial ledger; the three are reconciled and none silently overrides another.
 
 Conflict rule. Where an external platform's data conflicts with governed truth inside
 its assigned authority type, the assigned type decides: an external authoritative

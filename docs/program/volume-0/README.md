@@ -28,8 +28,8 @@ A capability enters production only when its purpose, authority, policy, data, e
 Current package status:
 
 - Package 1: RATIFIED (constitutional foundation baseline; frozen)
-- Package 2: IN_PROGRESS (authority and governance: V0-06, V0-07, V0-08)
-- Package 3: DRAFT
+- Package 2: RATIFIED (authority and governance: V0-06, V0-07, V0-08; frozen)
+- Package 3: DRAFT (not yet authorized)
 - Package 4: DRAFT
 
 Package 1 is ratified and frozen as the constitutional foundation baseline
@@ -40,6 +40,12 @@ organizational acceptance pending at the applicable future gate (REG-006 APP-005
 V0-E). Frozen means Package 1 constitutional text changes only through a documented
 constitutional amendment under V0-00 amendment control; the registers and Gate G0
 evidence remain living instruments.
+
+Package 2 is ratified and frozen as the authority and governance baseline (V0-06,
+V0-07, V0-08, Status RATIFIED, Version 1.0.0), following a line-level constitutional
+closure review with finding ACCEPTED WITH CORRECTIONS (V0-F closure record; REG-006
+APP-006, APP-007, APP-008; REG-002 DEC-V0-023). Same ratification basis and evidence
+labels as Package 1. Package 3 is not authorized until this closure is committed.
 
 Gate G0 disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS (see V0-12 and
 evidence/G0/). The program operates under a solo-led, institutionally accountable

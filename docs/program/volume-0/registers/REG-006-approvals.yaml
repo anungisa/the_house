@@ -1,7 +1,7 @@
 register_id: REG-006
 name: Approval Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 records:
   - id: APP-001
     artifact_id: V0-01
@@ -61,8 +61,8 @@ records:
   - id: APP-006
     artifact_id: V0-06
     approver_role: Accountable Program Authority (Aubert Nungisa)
-    approval_state: authorized
-    evidence_label: AUTHOR-VERIFIED
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     conditions:
       - External-platform authority classifications recorded in REG-005
       - Executive acceptance (Nolan, D0) pending for organizational ratification
@@ -70,9 +70,28 @@ records:
   - id: APP-007
     artifact_id: V0-08
     approver_role: Accountable Program Authority (Aubert Nungisa)
-    approval_state: authorized
-    evidence_label: AUTHOR-VERIFIED
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     conditions:
       - Domain contributor engagement is consultative, not a permanent delivery gate
       - Independent assurance reserved for independence-requiring claims
+    approved_at: null
+  - id: APP-008
+    artifact_id: PACKAGE-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    finding: ACCEPTED_WITH_SPECIFIC_CORRECTIONS
+    scope:
+      - V0-06
+      - V0-07
+      - V0-08
+    conditions:
+      - Independent validation not claimed
+      - Executive organizational acceptance pending at applicable future gate
+      - Funding pending as time-bounded Gate G0 condition
+      - Domain validation pending when review-ready
+      - Independent production assurance pending before production exposure
+      - Package 2 frozen; changes only via constitutional amendment (V0-00 control)
+    closure_record: V0-F
     approved_at: null

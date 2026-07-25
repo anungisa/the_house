@@ -1,7 +1,7 @@
 register_id: REG-002
 name: Decision Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 records:
   - id: DEC-V0-001
     class: D1
@@ -256,6 +256,25 @@ records:
       G0 disposition PASS_WITH_TIME_BOUNDED_CONDITIONS is preserved. Registers and
       Gate G0 evidence remain living instruments.
     evidence_refs: [V0-00, V0-E, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-023
+    class: D1
+    question: What is the closure status of Volume 0 Package 2?
+    decision: >-
+      Package 2 (Authority and Governance) passed a line-level constitutional closure
+      review with finding ACCEPTED_WITH_SPECIFIC_CORRECTIONS. Targeted corrections
+      were applied to V0-06 (Curling I/O master-data separation, payment/fee-policy
+      and accounting boundary, analytics not a system of record, explicit
+      transition-expiry trigger, reconciliation boundary) and V0-08 (club/PTSO do not
+      set national policy, consulted is not endorsement, name consistency). V0-06,
+      V0-07, and V0-08 are RATIFIED (v1.0.0) and Package 2 is frozen; changes require
+      a constitutional amendment under V0-00 control. Registers and Gate G0 evidence
+      remain living instruments.
+    evidence_refs: [V0-F, V0-06, V0-07, V0-08, REG-006]
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
