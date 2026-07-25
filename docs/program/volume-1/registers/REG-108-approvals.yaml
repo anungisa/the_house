@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -209,4 +209,114 @@ records:
       - Package 3 is a current-state assessment of The House (SRC-002), not a material-commitment or construction step
       - Executive organizational acceptance (Nolan, D0) reserved for a later material-commitment gate; not required to begin Package 3
       - No implementation and no master development plan authorized by this approval
+    approved_at: null
+  - id: APP-V1-016
+    artifact_id: V1-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - House source baseline and implementation inventory ratified on the fingerprinted baseline (SRC-002)
+      - Structural implementation truth is E3; production readiness is not claimed
+    approved_at: null
+  - id: APP-V1-017
+    artifact_id: V1-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Domain, data, API, and integration architecture qualified from source and migrations
+      - Cross-schema FK omission recorded as an intentional trade-off (CON-011)
+    approved_at: null
+  - id: APP-V1-018
+    artifact_id: V1-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Kernel, authorization, workflow, and evidence qualified on the eight-rung assurance ladder
+      - No control reaches integration-test proof (rung 7); role-only authorization confirmed (FND-023)
+    approved_at: null
+  - id: APP-V1-019
+    artifact_id: V1-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Skipped and infrastructure-dependent tests disclosed, not counted as passing (FND-028)
+      - Production-readiness determination NOT ESTABLISHED; no deployed environment (FND-029)
+    approved_at: null
+  - id: APP-V1-020
+    artifact_id: V1-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Retain/adapt/rebuild dispositions and the eight release-blocking affiliation gaps recorded
+      - Release-wave hypothesis is unproven and unauthorized; House/Base44 convergence reserved for Package 5
+    approved_at: null
+  - id: APP-V1-021
+    artifact_id: V1-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-C
+    conditions:
+      - Package 3 closure record ratified; Gate V1-G3 disposed PASS (DEC-V1-017)
+      - Authored and committed separately from Package 3 authoring work
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-022
+    artifact_id: GATE-V1-G3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: HOUSE_QUALIFICATION_COMPLETE
+    conditions:
+      - Internal-progression gate authorized by the Accountable Program Authority (DEC-V1-017)
+      - All twelve Gate V1-G3 conditions met (V1-C.4)
+      - No implementation authorized; every qualification decision carries authorizes_implementation false
+      - Executive organizational acceptance (Nolan, D0) pending before material commitment
+    approved_at: null
+  - id: APP-V1-023
+    artifact_id: PACKAGE-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-C
+    base_commit: 605c798
+    amendment_process: >-
+      Any change to a frozen Package 3 chapter requires an amendment decision in
+      REG-107 (with amends set to the artifact id and a stated amendment_reason),
+      a version increment, and re-ratification. The freeze-integrity control
+      rejects unamended version drift. Package 3 registers (REG-101..REG-106) and
+      the qualification tooling remain living machinery and are not frozen by this
+      approval.
+    frozen: true
+    frozen_artifacts:
+      - id: V1-10
+        version: 1.0.0
+      - id: V1-11
+        version: 1.0.0
+      - id: V1-12
+        version: 1.0.0
+      - id: V1-13
+        version: 1.0.0
+      - id: V1-14
+        version: 1.0.0
+      - id: V1-C
+        version: 1.0.0
+    scope:
+      - V1-10
+      - V1-11
+      - V1-12
+      - V1-13
+      - V1-14
+      - V1-C
+    conditions:
+      - Package 3 reviewed and closed separately from authoring
+      - Volume 0, Package 1, and Package 2 freezes preserved; no frozen artifact modified
+      - No implementation and no master development plan authorized by Package 3
+      - Gate V1-G3 disposed PASS (DEC-V1-017); Package 4 planning authorized to begin (DEC-V1-019)
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

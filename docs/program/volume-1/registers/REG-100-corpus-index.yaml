@@ -1,7 +1,7 @@
 register_id: REG-100
 name: Volume 1 Corpus Index
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 records:
   - id: V1-00
     title: Volume Control and Inheritance
@@ -99,3 +99,51 @@ records:
     version: 1.1.0
     path: docs/program/volume-1/V1-B-package-2-closure-record.md
     gate: V1-G2
+  - id: V1-10
+    title: The House Source Baseline and Implementation Inventory
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-10-house-source-baseline-and-implementation-inventory.md
+    gate: V1-G3
+  - id: V1-11
+    title: The House Domain, Data, API, and Integration Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-11-house-domain-data-api-and-integration-architecture.md
+    gate: V1-G3
+  - id: V1-12
+    title: The House Governance Kernel, Authorization, Workflow, and Evidence Qualification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-12-house-governance-kernel-authorization-workflow-and-evidence-qualification.md
+    gate: V1-G3
+  - id: V1-13
+    title: The House Test, Operational, Security, and Production-Readiness Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-13-house-test-operational-security-and-production-readiness-assessment.md
+    gate: V1-G3
+  - id: V1-14
+    title: The House to Target - Hardening, Convergence, and First-Release Path
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-14-house-to-target-hardening-convergence-and-first-release-path.md
+    gate: V1-G3
+  - id: V1-C
+    title: Package 3 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-C-package-3-closure-record.md
+    gate: V1-G3

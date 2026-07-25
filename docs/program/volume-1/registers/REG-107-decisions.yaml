@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -339,6 +339,102 @@ records:
       - GATE-V1-G2
       - DEC-V1-014
       - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-016
+    class: D1
+    question: >-
+      What method qualifies The House implementation truth in Package 3 without
+      rewarding architecture vocabulary or treating engineering discipline as
+      production readiness?
+    decision: >-
+      Adopt the deterministic `npm run qualification:house` tooling as the
+      canonical House inventory method (cryptographic repository/runtime
+      fingerprint plus 14 reproducible machine-readable inventories), together
+      with an explicit eight-rung assurance ladder (model exists ... integration
+      test proves ... production wires) and the evidence hierarchy (executable
+      test > runtime code > DB constraint > migration > service contract >
+      architecture document). The runtime-tree last-change commit (de6312f8) is
+      distinguished from documentation-program work, and skipped tests are never
+      counted as passing. This method governs all Package 3 chapters and
+      registers.
+    evidence_refs:
+      - REG-101
+      - V1-10
+      - V1-12
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-017
+    class: D1
+    question: >-
+      Is Gate V1-G3 (The House Qualification Complete) disposed PASS on the
+      assessed baseline?
+    decision: >-
+      Dispose Gate V1-G3 PASS. All twelve gate conditions are met (V1-C.4): the
+      baseline is fingerprinted, the inventory is reproducible, all material
+      implementation paths are assessed, the P0 questions are revalidated against
+      source, every House capability has a disposition, production value is
+      separated from production readiness, the affiliation journey and its
+      release-blocking gaps are enumerated, skipped and infrastructure-dependent
+      tests are disclosed, operational/deployment readiness is assessed and found
+      unproven, no implementation is authorized, contradictions are registered,
+      and V1-C provides line-level closure. The PASS records a completed
+      assessment, not a production-readiness or affiliation-readiness assertion.
+    evidence_refs:
+      - GATE-V1-G3
+      - V1-10
+      - V1-11
+      - V1-12
+      - V1-13
+      - V1-14
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-018
+    class: D1
+    question: >-
+      Is Volume 1 Package 3 closed and frozen?
+    decision: >-
+      Close and freeze Volume 1 Package 3 at v1.0.0. The frozen artifacts are
+      chapters V1-10, V1-11, V1-12, V1-13, V1-14, and the closure record V1-C,
+      each at v1.0.0, plus Gate V1-G3 (V1-C.5; REG-108 APP-V1-023). The Package 3
+      registers and the qualification tooling remain living machinery. Any change
+      to a frozen artifact requires an amendment decision here (with `amends` set)
+      and re-ratification. Volume 0, Package 1, and Package 2 freezes are
+      preserved and unmodified.
+    evidence_refs:
+      - V1-C
+      - GATE-V1-G3
+      - DEC-V1-017
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-019
+    class: D1
+    question: >-
+      With Gate V1-G3 disposed PASS, may Volume 1 Package 4 (master development
+      planning) begin?
+    decision: >-
+      Authorize Volume 1 Package 4 to begin as the next planning and assessment
+      step only. Package 4 authoring remains a planning activity; it does not
+      authorize implementation, construction, or any material commitment, which
+      remain reserved for a later executive-accepted material-commitment gate. No
+      master development plan is executed by this decision.
+    evidence_refs:
+      - GATE-V1-G3
+      - DEC-V1-017
+      - V1-14
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: not_required

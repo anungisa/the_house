@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T19:35:52.950Z
+Generated: 2026-07-25T20:36:05.452Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T19:35:52.950Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 12 |
+| RATIFIED | 18 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.3.0 | 12 |
-| REG-101 | Source Inventory | IN_REVIEW | 0.3.0 | 9 |
-| REG-102 | Evidence Register | IN_REVIEW | 0.3.0 | 22 |
-| REG-103 | Capability Inventory | IN_REVIEW | 0.3.0 | 18 |
-| REG-104 | Finding Register | IN_REVIEW | 0.3.1 | 22 |
-| REG-105 | Contradiction Register | IN_REVIEW | 0.3.0 | 7 |
-| REG-106 | Qualification Decision Register | IN_REVIEW | 0.3.0 | 18 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.4.0 | 15 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.4.0 | 15 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.4.0 | 18 |
+| REG-101 | Source Inventory | IN_REVIEW | 0.4.0 | 15 |
+| REG-102 | Evidence Register | IN_REVIEW | 0.4.0 | 34 |
+| REG-103 | Capability Inventory | IN_REVIEW | 0.4.0 | 30 |
+| REG-104 | Finding Register | IN_REVIEW | 0.4.0 | 33 |
+| REG-105 | Contradiction Register | IN_REVIEW | 0.4.0 | 11 |
+| REG-106 | Qualification Decision Register | IN_REVIEW | 0.4.0 | 30 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.5.0 | 19 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.5.0 | 23 |
 
 ## Findings by control
 
@@ -105,3 +105,25 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-015 (PACKAGE-3): Package 3 is a current-state assessment of The House (SRC-002), not a material-commitment or construction step
 - APP-V1-015 (PACKAGE-3): Executive organizational acceptance (Nolan, D0) reserved for a later material-commitment gate; not required to begin Package 3
 - APP-V1-015 (PACKAGE-3): No implementation and no master development plan authorized by this approval
+- APP-V1-016 (V1-10): House source baseline and implementation inventory ratified on the fingerprinted baseline (SRC-002)
+- APP-V1-016 (V1-10): Structural implementation truth is E3; production readiness is not claimed
+- APP-V1-017 (V1-11): Domain, data, API, and integration architecture qualified from source and migrations
+- APP-V1-017 (V1-11): Cross-schema FK omission recorded as an intentional trade-off (CON-011)
+- APP-V1-018 (V1-12): Kernel, authorization, workflow, and evidence qualified on the eight-rung assurance ladder
+- APP-V1-018 (V1-12): No control reaches integration-test proof (rung 7); role-only authorization confirmed (FND-023)
+- APP-V1-019 (V1-13): Skipped and infrastructure-dependent tests disclosed, not counted as passing (FND-028)
+- APP-V1-019 (V1-13): Production-readiness determination NOT ESTABLISHED; no deployed environment (FND-029)
+- APP-V1-020 (V1-14): Retain/adapt/rebuild dispositions and the eight release-blocking affiliation gaps recorded
+- APP-V1-020 (V1-14): Release-wave hypothesis is unproven and unauthorized; House/Base44 convergence reserved for Package 5
+- APP-V1-021 (V1-C): Package 3 closure record ratified; Gate V1-G3 disposed PASS (DEC-V1-017)
+- APP-V1-021 (V1-C): Authored and committed separately from Package 3 authoring work
+- APP-V1-021 (V1-C): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-022 (GATE-V1-G3): Internal-progression gate authorized by the Accountable Program Authority (DEC-V1-017)
+- APP-V1-022 (GATE-V1-G3): All twelve Gate V1-G3 conditions met (V1-C.4)
+- APP-V1-022 (GATE-V1-G3): No implementation authorized; every qualification decision carries authorizes_implementation false
+- APP-V1-022 (GATE-V1-G3): Executive organizational acceptance (Nolan, D0) pending before material commitment
+- APP-V1-023 (PACKAGE-3): Package 3 reviewed and closed separately from authoring
+- APP-V1-023 (PACKAGE-3): Volume 0, Package 1, and Package 2 freezes preserved; no frozen artifact modified
+- APP-V1-023 (PACKAGE-3): No implementation and no master development plan authorized by Package 3
+- APP-V1-023 (PACKAGE-3): Gate V1-G3 disposed PASS (DEC-V1-017); Package 4 planning authorized to begin (DEC-V1-019)
+- APP-V1-023 (PACKAGE-3): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
