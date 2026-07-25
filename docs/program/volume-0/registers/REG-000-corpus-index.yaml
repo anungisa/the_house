@@ -8,7 +8,7 @@ records:
     owner: Program Owner (TBD)
     approver: Executive Sponsor (TBD)
     status: IN_REVIEW
-    version: 0.1.0
+    version: 0.2.0
     path: docs/program/volume-0/V0-00-document-control.md
     gate: G0
   - id: V0-01
@@ -88,6 +88,6 @@ records:
     owner: Program Owner (TBD)
     approver: Executive Sponsor (TBD)
     status: IN_REVIEW
-    version: 0.1.0
+    version: 0.2.0
     path: docs/program/volume-0/V0-E-package1-review-record.md
     gate: G0

@@ -2,7 +2,7 @@
 
 Document ID: V0-E-PACKAGE1-REVIEW
 Status: IN_REVIEW
-Version: 0.1.0
+Version: 0.2.0
 Associated Gate: G0
 
 ## Review context
@@ -47,3 +47,39 @@ incomplete. This record captures the resulting changes.
 No executive approval, funding, stakeholder validation, evidence, or operational
 baseline has been fabricated. All unresolved names and figures remain TBD or
 PROPOSED.
+
+## Line-level constitutional review (second-stage)
+
+A line-level review of V0-01..V0-05, V0-06, V0-00, V0-A..V0-E, and REG-000/002/003/
+005/008 was performed against the actual document contents (not the execution
+record).
+
+### Finding
+
+Package 1 accepted with specific corrections (finding type 2 of 3). The corpus is
+internally coherent and free of material overclaims after the corrections below.
+Gate G0 remains HOLD. Package 2 remains NOT AUTHORIZED.
+
+### Corrections applied in this review
+
+- V0-00 residual overclaim corrected: DEC-V0-002 related-decision wording changed
+  from "The House is governed production foundation" to the production-candidate
+  wording used consistently in V0-06, REG-002, REG-005, and Annex B.
+- V0-00 version bumped 0.1.0 -> 0.2.0 to align with the hardened Package 1 set.
+- Dangling reference closed: V0-07 now records that decision classes D0..D9,
+  referenced provisionally by V0-05 and Annex B, are authoritatively defined and
+  ratified in Package 2.
+
+### Certified consistent
+
+- Affiliation outcome expressed consistently across V0-04 4.5, PR-002, and OUT-002.
+- The House authority language consistent across V0-02, V0-06, REG-002, REG-005.
+- Decision classes in Annex B match REG-002 (DEC-V0-001..015).
+- Multi-sport reuse consistently bounded (OUT-010, PR-020, V0-02, V0-03).
+- No fabricated approvals, funding, baselines, or stakeholder validation.
+
+### Residual limitations (not blockers for review baseline)
+
+- V0-07 and V0-10 remain DRAFT stubs (Package 2 and Package 3 scope).
+- Registers are machine-readable but not machine-governed (Package 3).
+- Outcome baselines/targets remain TBD pending discovery.

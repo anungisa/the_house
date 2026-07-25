@@ -3,7 +3,7 @@
 Document ID: V0-00  
 Title: Volume 0 Document Control and Normative Usage  
 Status: IN_REVIEW  
-Version: 0.1.0  
+Version: 0.2.0  
 Classification: Internal - Program Governance  
 Owner: Program Owner (TBD)  
 Approver: Executive Sponsor (TBD)  
@@ -20,12 +20,17 @@ Volume 0 controls all constitutional requirements for the Central Registration P
 
 Associated gate: G0 (Constitutional readiness)
 
-Related decisions:
+Related decisions (see REG-002 and Annex B for the full set DEC-V0-001..015):
 
 - DEC-V0-001 (proposed): Affiliation is first production vertical
-- DEC-V0-002 (proposed): The House is governed production foundation
-- DEC-V0-003 (proposed): The Button is client-facing operating experience
+- DEC-V0-002 (proposed): The House is the governed production foundation, treated
+  as target-platform current implementation truth (production-candidate baseline),
+  not established production truth
+- DEC-V0-003 (proposed): The Button is the intended client-facing operating experience
 - DEC-V0-004 (proposed): Base44 is discovery and reference corpus, not production authority
+
+Decision classes (D0..D9) referenced by principles (V0-05) and Annex B are defined
+in V0-07 and are ratified in Package 2. Until then they are provisional references.
 
 ## V0-FM-02 How to use this volume
 
