@@ -2,8 +2,8 @@
 
 ## Volume 0 - Program Constitution and Control System
 
-Status: IN_REVIEW  
-Version: 0.5.0  
+Status: RATIFIED  
+Version: 1.0.0  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)
 
@@ -30,7 +30,10 @@ Current package status:
 - Package 1: RATIFIED (constitutional foundation baseline; frozen)
 - Package 2: RATIFIED (authority and governance: V0-06, V0-07, V0-08; frozen)
 - Package 3: RATIFIED (executable governance control system: V0-09, V0-10, V0-11; frozen)
-- Package 4: DRAFT (not authorized)
+- Package 4: RATIFIED (Volume 0 constitutional closure: V0-12, V0-H, V0-I; frozen)
+
+Volume 0 is CLOSED and FROZEN at v1.0.0. Volume 1 (Current-State Qualification and
+Repository Convergence) is formally authorized.
 
 Package 1 is ratified and frozen as the constitutional foundation baseline
 (V0-00..V0-05 and annexes V0-A..V0-E, Status RATIFIED, Version 1.0.0). Ratification
@@ -56,7 +59,19 @@ execute via npm run governance:check with zero errors, enforcing schema conforma
 identifier uniqueness, cross-reference integrity, ratification integrity, authority
 integrity, exception expiry, and frozen-package amendment integrity. Generated control
 reports are non-authoritative projections. Same ratification basis and evidence labels
-as Packages 1 and 2. Package 4 is not authorized.
+as Packages 1 and 2.
+
+Package 4 is ratified and frozen as the Volume 0 constitutional closure (V0-12, V0-H,
+V0-I, Status RATIFIED, Version 1.0.0), following a line-level and control-system
+closure review with finding ACCEPTED (V0-I completion record; REG-006 APP-013,
+APP-014; REG-002 DEC-V0-026, DEC-V0-027). V0-12 is the authoritative Gate G0 record
+(disposition PASS_WITH_TIME_BOUNDED_CONDITIONS); the Gate G0 evidence package is
+reconciled under evidence/G0/ with a machine-readable evidence-index.yaml; V0-H is
+the executive constitutional brief for the Executive Acceptance Authority; and V0-I is
+the Volume 0 completion record. With this closure, the complete Volume 0 corpus is
+frozen at v1.0.0 and Volume 1 is formally authorized. Same ratification basis and
+evidence labels as Packages 1-3; independent certification is not claimed and
+executive organizational acceptance is required at the material commitment gate.
 
 Gate G0 disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS (see V0-12 and
 evidence/G0/). The program operates under a solo-led, institutionally accountable
@@ -88,5 +103,5 @@ Companion controls:
 - schemas/ (JSON Schemas for REG-000..REG-008)
 - controls/ (executable governance controls; governance:check / governance:report)
 - templates/ (controlled templates)
-- evidence/G0/ (Gate G0 evidence package)
-- generated/ (non-authoritative reports and executive formats generated from source)
+- evidence/G0/ (Gate G0 evidence package, including evidence-index.yaml)
+- generated/ (non-authoritative reports and executive DOCX/PDF formats generated from source)
