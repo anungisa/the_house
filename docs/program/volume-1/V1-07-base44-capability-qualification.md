@@ -3,15 +3,33 @@
 Document ID: V1-07  
 Title: Base44 Capability Qualification  
 Status: RATIFIED  
-Version: 1.0.0  
-Ratification: Package 2 baseline; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-010)  
+Version: 1.1.0  
+Ratification: Package 2 baseline, amended v1.1.0; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-010; amendment REG-107 DEC-V1-011)  
 Classification: Internal - Program Governance  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)  
 Effective Date: TBD (Gate V1-G2)  
 Supersedes: None  
-Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process  
+Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process (amended to v1.1.0 under that process, DEC-V1-011)  
 Repository Path: docs/program/volume-1/
+
+## V1-07.0 Amendment record (v1.1.0) - source-baseline correction
+
+This section is normative.
+
+The assessed baseline was corrected from `curl-link-hub (5).zip` to the current
+declared export `curl-link-hub (7).zip` (SRC-001; see V1-05.0 and REG-107
+DEC-V1-011). All sixteen capability dispositions below were reassessed against
+the `(7)` evidence and are **reaffirmed unchanged** (REG-103 v0.3.0): because the
+`(5)` -> `(7)` delta is strictly additive and every underlying finding is
+CONFIRMED_IN_CURRENT, no disposition weakened. Two capability domains present in
+`(7)` but absent from `(5)` are added: **CAP-017 IEBOK Knowledge Body** (DEFER)
+and **CAP-018 Jobs Board** (DEFER), recorded with findings FND-021 and FND-022.
+Neither is authorized for construction. The affiliation deep-dive in V1-07.4 was
+re-verified against `(7)`: the Application entity retains its status enum
+(`ptso_review`, `cc_review`, `more_info_needed`), the `annual_fee_paid` flag, and
+the `ptso_reviewer` / `cc_reviewer` scopes; the journey design (ADAPT) and the
+direct-mutation mechanism (REBUILD) are unchanged in the current export.
 
 ## V1-07.1 Purpose
 
@@ -65,6 +83,8 @@ production risk, and evidence rating in REG-103. Summarized here:
 | CAP-014 | Access and Authorization Model | REBUILD | critical | E3 |
 | CAP-015 | Dashboards and Navigation Surfaces | CONSOLIDATE | medium | E2 |
 | CAP-016 | Generic Workflow Builder | RETIRE | high | E2 |
+| CAP-017 | IEBOK Knowledge Body (new in export 7) | DEFER | unknown | E1 |
+| CAP-018 | Jobs Board (new in export 7) | DEFER | unknown | E1 |
 
 Disposition rationale for each capability is recorded in REG-106 (QD-001..016).
 The first governed vertical is CAP-001 (Club Affiliation), whose target is the

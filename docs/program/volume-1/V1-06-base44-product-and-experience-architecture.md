@@ -3,15 +3,31 @@
 Document ID: V1-06  
 Title: Base44 Product and Experience Architecture  
 Status: RATIFIED  
-Version: 1.0.0  
-Ratification: Package 2 baseline; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-009)  
+Version: 1.1.0  
+Ratification: Package 2 baseline, amended v1.1.0; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-009; amendment REG-107 DEC-V1-011)  
 Classification: Internal - Program Governance  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)  
 Effective Date: TBD (Gate V1-G2)  
 Supersedes: None  
-Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process  
+Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process (amended to v1.1.0 under that process, DEC-V1-011)  
 Repository Path: docs/program/volume-1/
+
+## V1-06.0 Amendment record (v1.1.0) - source-baseline correction
+
+This section is normative.
+
+The assessed baseline was corrected from `curl-link-hub (5).zip` to the current
+declared export `curl-link-hub (7).zip` (SRC-001; see V1-05.0 and REG-107
+DEC-V1-011). The product and experience conclusions below hold on the corrected
+baseline: the stack, surface classification, and duplication findings are
+unchanged in kind. Corrected counts: 155 routes, 101 functions, 95 entities, 151
+page components, 604 other components. The `(7)` export adds two product domains
+that the original `(5)` assessment did not describe - an **IEBOK** body-of-
+knowledge module and a **Jobs board** (see V1-05.0; CAP-017, CAP-018; FND-021,
+FND-022). Both are new, un-qualified surfaces dispositioned DEFER and inherit the
+same client-authority / direct-mutation posture assessed in V1-08; they do not
+change the product architecture conclusions of this chapter.
 
 ## V1-06.1 Purpose
 

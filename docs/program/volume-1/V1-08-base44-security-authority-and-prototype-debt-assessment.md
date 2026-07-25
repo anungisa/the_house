@@ -3,15 +3,32 @@
 Document ID: V1-08  
 Title: Base44 Security, Authority, and Prototype-Debt Assessment  
 Status: RATIFIED  
-Version: 1.0.0  
-Ratification: Package 2 baseline; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-011)  
+Version: 1.1.0  
+Ratification: Package 2 baseline, amended v1.1.0; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-011; amendment REG-107 DEC-V1-011)  
 Classification: Internal - Program Governance  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)  
 Effective Date: TBD (Gate V1-G2)  
 Supersedes: None  
-Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process  
+Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process (amended to v1.1.0 under that process, DEC-V1-011)  
 Repository Path: docs/program/volume-1/
+
+## V1-08.0 Amendment record (v1.1.0) - source-baseline correction
+
+This section is normative.
+
+The assessed baseline was corrected from `curl-link-hub (5).zip` to the current
+declared export `curl-link-hub (7).zip` (SRC-001; see V1-05.0 and REG-107
+DEC-V1-011). Every production-risk finding in this chapter is **CONFIRMED in the
+current export** and, where counted, marginally worse. Corrected current-state
+counts: 68 of 101 server functions mutate without a server-side permission check
+(only 2 of 101 check permission); 80 of 101 run privileged via `asServiceRole`;
+83 routes hardcode role lists; 93 of 95 entities carry app-layer `rls` blocks;
+unknown paths still default open. The correction did not resolve a single safety
+finding; it revealed that the original `(5)` inventory was **incomplete**,
+missing two whole domains (IEBOK, Jobs board; FND-021, FND-022) that inherit the
+same disqualifying posture. This strengthens, and does not weaken, the conclusion
+that the Base44 corpus must not become production authority.
 
 ## V1-08.1 Purpose
 

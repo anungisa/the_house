@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -144,14 +144,15 @@ records:
   - id: APP-V1-013
     artifact_id: GATE-V1-G2
     approver_role: Accountable Program Authority (Aubert Nungisa)
-    approval_state: authorized
+    approval_state: withdrawn
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
-    gate_disposition: BASE44_QUALIFICATION_COMPLETE
+    gate_disposition: BASE44_QUALIFICATION_ON_HOLD
     conditions:
-      - Internal-progression gate authorized by the Accountable Program Authority
-      - No Base44 implementation declared production-authoritative
-      - No application development authorized from Package 2 alone
-      - Executive organizational acceptance (Nolan, D0) pending before material commitment
+      - Original PASS authorization (BASE44_QUALIFICATION_COMPLETE) withdrawn per DEC-V1-012
+      - Source-baseline defect - original disposition rested on curl-link-hub (5), not the current declared export (7)
+      - Requalification required on the corrected (7) baseline per the eleven conditions in V1-B.3
+      - Package 3 is NOT authorized while Gate V1-G2 is on HOLD
+      - Returns to PASS only on Accountable Program Authority re-authorization; executive acceptance (Nolan, D0) still pending
     approved_at: null
   - id: APP-V1-014
     artifact_id: PACKAGE-2
@@ -165,21 +166,24 @@ records:
       REG-107 (with amends set to the artifact id and a stated amendment_reason),
       a version increment, and re-ratification. The freeze-integrity control
       rejects unamended version drift. Package 2 registers remain living machinery
-      and are not frozen by this approval.
+      and are not frozen by this approval. This snapshot was re-frozen at v1.1.0
+      on the corrected (7) baseline via DEC-V1-011 and DEC-V1-013; the original
+      v1.0.0 (5)-baseline freeze (base_commit 3a75690) is preserved in git
+      history.
     frozen: true
     frozen_artifacts:
       - id: V1-05
-        version: 1.0.0
+        version: 1.1.0
       - id: V1-06
-        version: 1.0.0
+        version: 1.1.0
       - id: V1-07
-        version: 1.0.0
+        version: 1.1.0
       - id: V1-08
-        version: 1.0.0
+        version: 1.1.0
       - id: V1-09
-        version: 1.0.0
+        version: 1.1.0
       - id: V1-B
-        version: 1.0.0
+        version: 1.1.0
     scope:
       - V1-05
       - V1-06
@@ -191,5 +195,6 @@ records:
       - Package 2 reviewed and closed separately from authoring
       - Volume 0 and Package 1 freezes preserved; no frozen artifact modified
       - No implementation and no master development plan authorized by Package 2
+      - Re-frozen at v1.1.0 on the corrected (7) baseline per DEC-V1-013; Gate V1-G2 on HOLD (DEC-V1-012)
       - Executive organizational acceptance (Nolan, D0) pending
     approved_at: null

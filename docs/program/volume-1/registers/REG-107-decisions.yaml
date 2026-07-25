@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -173,7 +173,7 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
     effective_date: TBD
-    status: accepted_by_accountable_authority
+    status: superseded
   - id: DEC-V1-010
     class: D1
     question: Is Volume 1 Package 2 reviewed, closed, and frozen?
@@ -192,3 +192,91 @@ records:
     executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority
+  - id: DEC-V1-011
+    class: D1
+    question: >-
+      The Package 2 assessment fixed SRC-001 to curl-link-hub (5).zip, but the
+      program's declared current Base44 export is curl-link-hub (7).zip. How is
+      this source-baseline defect corrected without discarding the completed
+      assessment?
+    decision: >-
+      Correct the Package 2 source baseline by controlled amendment, not rewrite.
+      Register the current declared export curl-link-hub (7).zip as SRC-001
+      (SHA-256 50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412;
+      3,336,492 bytes; 1,576 files) and re-point SRC-004..008 to its extraction;
+      preserve the historical curl-link-hub (5).zip immutably as SRC-009
+      (qualification_status superseded). Re-run the extraction on both sources and
+      record the reproducible (5) -> (7) delta
+      (generated/base44/delta-5-to-7.json). The methodology, sub-source model,
+      analyzers, and registers are retained; only the assessed baseline was
+      wrong. The delta is strictly additive (zero removals); every safety finding
+      is CONFIRMED_IN_CURRENT and none was resolved; the defect caused an
+      incomplete inventory that missed two domains (IEBOK, Jobs board), now added
+      as CAP-017/CAP-018 and FND-021/FND-022. Chapters V1-05..V1-09 and V1-B are
+      amended to v1.1.0 under the governed amendment process.
+    evidence_refs:
+      - V1-05
+      - REG-101
+      - REG-103
+      - REG-104
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: V1-05
+    amendment_reason: >-
+      Source-baseline defect: the assessed artifact (5) was not the current
+      declared export (7). Corrected by re-baselining SRC-001 to (7) and
+      preserving (5) as SRC-009.
+  - id: DEC-V1-012
+    class: D1
+    question: >-
+      Given that the original Gate V1-G2 PASS rested on an incomplete (5)-based
+      inventory, what is the corrected gate disposition?
+    decision: >-
+      Set Gate V1-G2 (Base44 Qualification Complete) to HOLD, superseding the
+      original PASS (DEC-V1-009). Package 3 is NOT authorized while the gate is on
+      HOLD. The prior PASS was authorized on the (5) baseline; because closure
+      relied on an incomplete inventory that missed the IEBOK and Jobs-board
+      domains, requalification on the corrected (7) baseline is required. Gate
+      V1-G2 returns to PASS only when the eleven corrected gate conditions in
+      V1-B.3 are met and re-authorized by the Accountable Program Authority.
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+      - DEC-V1-011
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-013
+    class: D1
+    question: >-
+      How is Package 2 re-closed and re-frozen after the source-baseline
+      correction?
+    decision: >-
+      Re-close and re-freeze Volume 1 Package 2 on the corrected (7) baseline.
+      Chapters V1-05..V1-09 and the closure record V1-B are amended to v1.1.0 and
+      re-frozen (REG-108 APP-V1-014 frozen-artifact snapshot updated to 1.1.0).
+      The original v1.0.0 freeze on the (5) baseline is preserved in git history
+      and in the retained historical chapter text; the historical (5) source is
+      preserved as SRC-009. This re-closure does not lift the Gate V1-G2 HOLD
+      (DEC-V1-012) and authorizes no implementation and no master development
+      plan.
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+      - DEC-V1-011
+      - DEC-V1-012
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: V1-B
+    amendment_reason: >-
+      Re-freeze Package 2 on the corrected (7) baseline at v1.1.0 following the
+      source-baseline correction (DEC-V1-011); original v1.0.0 (5)-baseline
+      freeze preserved in history.

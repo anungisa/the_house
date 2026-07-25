@@ -3,15 +3,67 @@
 Document ID: V1-05  
 Title: Base44 Source Baseline and Technical Inventory  
 Status: RATIFIED  
-Version: 1.0.0  
-Ratification: Package 2 baseline; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-008)  
+Version: 1.1.0  
+Ratification: Package 2 baseline, amended v1.1.0; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V1-B, REG-108 APP-V1-008; amendment REG-107 DEC-V1-011)  
 Classification: Internal - Program Governance  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)  
 Effective Date: TBD (Gate V1-G2)  
 Supersedes: None  
-Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process  
+Review Cycle: Frozen at Package 2 closure; changes require the recorded amendment process (this chapter amended to v1.1.0 under that process, DEC-V1-011)  
 Repository Path: docs/program/volume-1/
+
+## V1-05.0 Amendment record (v1.1.0) - source-baseline correction
+
+This section is normative.
+
+This chapter was originally ratified at v1.0.0 against the export archive
+`curl-link-hub (5).zip`. After Package 2 closure it was found that the program's
+declared current Base44 export is `curl-link-hub (7).zip`, not `(5)`. The original
+assessment methodology, sub-source decomposition, analyzers, and registers are
+sound and are retained; only the assessed baseline artifact was wrong. Under the
+governed amendment process (REG-107 DEC-V1-011) the source baseline is corrected
+as follows, without discarding the historical `(5)` assessment:
+
+- **SRC-001 (current declared export)** now fixes `curl-link-hub (7).zip`,
+  SHA-256 `50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412`,
+  3,336,492 bytes, 1,576 archive entries yielding 1,576 extracted files
+  (reproducible), extracted to `legacy/curl-link-hub-7-extracted/`; known
+  generation on or about 2025-07-25. SRC-004..008 are re-pointed to the `(7)`
+  extraction.
+- **SRC-009 (historical export, superseded)** preserves the original `(5)`
+  baseline immutably: `curl-link-hub (5).zip`, SHA-256
+  `a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95`,
+  3,046,971 bytes, 1,485 files. The `(5)` fingerprint and counts recorded in
+  V1-05.2..V1-05.5 below are retained as the historical baseline and are read as
+  SRC-009, not SRC-001.
+
+**Corrected current-state counts (SRC-001 = export 7), reproducible via
+`npm run qualification:base44 -- --source-id SRC-001`:** 1,576 files; 95 entities
+(93 with app-layer `rls`, 53 with a status enum); 101 server functions (99
+`Deno.serve` handlers; 2 of 101 reference a permission check; 68 of 101 mutate
+without a check; 80 of 101 use `asServiceRole`); 155 declared routes (guards:
+none 46, RoleGate 83, ProtectedRoute 23, FeatureGate 3); 132 access-matrix
+entries; 23 routes with no matrix entry; unknown paths still default open; 151
+page components; 604 other components; 288 governance-style markdown documents;
+198 library files; 1 agent. Dependencies (65/17 dev, Stripe present) and
+localization (5 i18n files) are unchanged from `(5)`. Automated tests and CI
+remain absent.
+
+**Delta (5) -> (7) [`generated/base44/delta-5-to-7.json`, deterministic]:** the
+change is strictly **additive** - zero routes, entities, or functions were
+removed. Routes +7, entities +8, functions +2. The additions are two capability
+domains that the original `(5)` assessment never saw: an **IEBOK** body-of-
+knowledge module (entities IEBOKArtifact, IEBOKGlossaryTerm, IEBOKMechanic,
+IEBOKProposal, IEBOKRelationship, IEBOKWorkingGroup; `/iebok/*` routes and pages)
+and a **Jobs board** (entities JobPosting, SavedJob; `/jobs`, `/jobs/review`;
+functions expireJobPostings, notifyJobStatus). These are recorded as new findings
+FND-021 and FND-022 and new capabilities CAP-017 and CAP-018, both DEFER. Every
+security-relevant finding from the `(5)` assessment is CONFIRMED_IN_CURRENT (and
+marginally worse in absolute counts); none was resolved by the newer export.
+
+The sections below are the original v1.0.0 text preserved as the historical
+`(5)` / SRC-009 baseline; read them together with this amendment record.
 
 ## V1-05.1 Purpose
 
