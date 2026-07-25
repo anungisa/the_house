@@ -3,7 +3,7 @@
 ## Volume 0 - Program Constitution and Control System
 
 Status: IN_REVIEW  
-Version: 0.2.0  
+Version: 0.3.0  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)
 
@@ -27,10 +27,19 @@ A capability enters production only when its purpose, authority, policy, data, e
 
 Current package status:
 
-- Package 1: IN_REVIEW (constitutional hardening applied)
-- Package 2: IN_PROGRESS (solo-led governance operating model in V0-07)
+- Package 1: RATIFIED (constitutional foundation baseline; frozen)
+- Package 2: IN_PROGRESS (authority and governance: V0-06, V0-07, V0-08)
 - Package 3: DRAFT
 - Package 4: DRAFT
+
+Package 1 is ratified and frozen as the constitutional foundation baseline
+(V0-00..V0-05 and annexes V0-A..V0-E, Status RATIFIED, Version 1.0.0). Ratification
+authority: Aubert Nungisa, Accountable Program Authority; evidence label
+SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive
+organizational acceptance pending at the applicable future gate (REG-006 APP-005,
+V0-E). Frozen means Package 1 constitutional text changes only through a documented
+constitutional amendment under V0-00 amendment control; the registers and Gate G0
+evidence remain living instruments.
 
 Gate G0 disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS (see V0-12 and
 evidence/G0/). The program operates under a solo-led, institutionally accountable

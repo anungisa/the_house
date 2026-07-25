@@ -1,8 +1,8 @@
 # Annex C - Unresolved Ratification Questions
 
 Document ID: V0-C-UNRESOLVED-QUESTIONS
-Status: IN_REVIEW
-Version: 0.2.0
+Status: RATIFIED
+Version: 1.0.0
 Associated Gate: G0
 
 Under the solo-led model (V0-07), the authority questions are resolved. The

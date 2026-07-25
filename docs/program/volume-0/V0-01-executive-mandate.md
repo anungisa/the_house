@@ -1,8 +1,9 @@
 # V0-01 - Executive Mandate
 
 Document ID: V0-01
-Status: IN_REVIEW
-Version: 0.3.0
+Status: RATIFIED
+Version: 1.0.0
+Ratification: Package 1 baseline; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V0-E, REG-006 APP-005)
 Owner: Aubert Nungisa (Accountable Program Authority)
 Approver: Nolan (Executive Acceptance Authority; surname to be recorded in REG-001)
 Associated Gate: G0

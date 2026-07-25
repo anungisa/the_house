@@ -1,8 +1,8 @@
 # Annex B - Initial Constitutional Decisions
 
 Document ID: V0-B-INITIAL-DECISIONS
-Status: IN_REVIEW
-Version: 0.2.0
+Status: RATIFIED
+Version: 1.0.0
 Associated Gate: G0
 
 These decisions are PROPOSED for ratification at Gate G0. Each is mirrored in

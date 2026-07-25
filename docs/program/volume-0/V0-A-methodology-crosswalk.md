@@ -1,8 +1,8 @@
 # Annex A - Methodology Crosswalk
 
 Document ID: V0-A-METHODOLOGY-CROSSWALK
-Status: IN_REVIEW
-Version: 0.1.0
+Status: RATIFIED
+Version: 1.0.0
 Associated Gate: G0
 
 This annex is explanatory except where it references normative controls elsewhere.

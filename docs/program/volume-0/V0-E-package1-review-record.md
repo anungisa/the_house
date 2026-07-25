@@ -1,8 +1,8 @@
 # Annex E - Package 1 Review Record
 
 Document ID: V0-E-PACKAGE1-REVIEW
-Status: IN_REVIEW
-Version: 0.3.0
+Status: RATIFIED
+Version: 1.0.0
 Associated Gate: G0
 
 ## Review context
@@ -100,3 +100,26 @@ No executive acceptance, funding, independent assurance, or outcome baseline has
 been fabricated; each remains a recorded time-bounded condition. Combined
 authority is labeled AUTHOR-VERIFIED / SELF-ATTESTED and is not represented as
 independent validation.
+
+## Package 1 ratification (Accountable Program Authority)
+
+On commencement of Volume 0 Package 2, Package 1 was ratified as the constitutional
+foundation baseline and frozen.
+
+- Ratified documents: V0-00, V0-01, V0-02, V0-03, V0-04, V0-05, and annexes V0-A,
+  V0-B, V0-C, V0-D, V0-E (this record). Each moves to Status RATIFIED, Version 1.0.0.
+- Ratification authority: Aubert Nungisa, Accountable Program Authority.
+- Evidence label: SELF-ATTESTED / AUTHOR-VERIFIED.
+- Independent validation: not claimed.
+- Executive organizational acceptance: pending at the applicable future gate.
+- Gate G0 disposition preserved: PASS_WITH_TIME_BOUNDED_CONDITIONS (unchanged).
+- Freeze: Package 1 is frozen. Changes are permitted only through a documented
+  constitutional amendment recorded under V0-00 amendment control and REG-002. No
+  Package 2 or later work may silently alter a ratified Package 1 document.
+- Living controls excepted from freeze: the registers (REG-000..REG-008) and Gate
+  G0 evidence remain living instruments and continue to be updated in Package 2,
+  because they record ongoing program state rather than ratified constitutional text.
+- Provenance baseline: branch docs/volume-0-package-1 remains intact at commit
+  346f9df as the pre-ratification evidence baseline.
+
+Recorded as REG-006 APP-005.

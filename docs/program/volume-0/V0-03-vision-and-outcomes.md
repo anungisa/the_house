@@ -1,8 +1,9 @@
 # V0-03 - Vision and National Outcomes
 
 Document ID: V0-03
-Status: IN_REVIEW
-Version: 0.3.0
+Status: RATIFIED
+Version: 1.0.0
+Ratification: Package 1 baseline; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable gate (see V0-E, REG-006 APP-005)
 Owner: Aubert Nungisa (Accountable Program Authority)
 Approver: Nolan (Executive Acceptance Authority)
 Associated Gate: G0

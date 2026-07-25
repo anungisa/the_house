@@ -1,8 +1,8 @@
 # Annex D - Package 1 Completeness Checklist
 
 Document ID: V0-D-PACKAGE1-CHECKLIST
-Status: IN_REVIEW
-Version: 0.2.0
+Status: RATIFIED
+Version: 1.0.0
 Associated Gate: G0
 
 Package 1 is complete only when V0-01 through V0-05 are detailed enough to guide a
