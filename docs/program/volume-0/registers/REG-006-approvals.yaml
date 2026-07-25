@@ -1,0 +1,17 @@
+register_id: REG-006
+name: Approval Register
+status: DRAFT
+version: 0.1.0
+records:
+  - id: APP-001
+    artifact_id: V0-01
+    approver_role: Executive Sponsor
+    approval_state: pending
+    conditions: []
+    approved_at: null
+  - id: APP-002
+    artifact_id: V0-05
+    approver_role: Executive Steering Authority
+    approval_state: pending
+    conditions: []
+    approved_at: null

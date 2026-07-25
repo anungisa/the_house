@@ -1,0 +1,57 @@
+register_id: REG-003
+name: RAID Register
+status: DRAFT
+version: 0.2.0
+records:
+  - id: RISK-001
+    type: risk
+    title: Unratified authority boundaries may create conflicting decisions
+    owner: Program Owner (TBD)
+    likelihood: medium
+    impact: high
+    mitigation: Ratify V0-06 and DEC-V0-002/003/004 at G0
+    target_resolution: TBD
+    gate_impact: G0
+    status: open
+  - id: RISK-002
+    type: risk
+    title: >-
+      The House may be treated as established production truth before gaps are
+      closed
+    owner: Technology Authority (TBD)
+    likelihood: medium
+    impact: high
+    mitigation: >-
+      Enforce target-platform current implementation truth wording in V0-06 and
+      REG-005; require gap closure before production-truth claims
+    target_resolution: TBD
+    gate_impact: G0
+    status: open
+  - id: ASM-001
+    type: assumption
+    title: Club affiliation remains the first production vertical
+    owner: Program Owner (TBD)
+    validation_due: TBD
+    consequence_if_false: Reset sequencing and dependencies
+    status: open
+  - id: ASM-002
+    type: assumption
+    title: Initial funding envelope and funding authority exist
+    owner: Executive Sponsor (TBD)
+    validation_due: TBD
+    consequence_if_false: Program cannot claim funded status; G0 remains HOLD
+    status: open
+  - id: ASM-003
+    type: assumption
+    title: Delivery capacity and staffing model are available
+    owner: Program Owner (TBD)
+    validation_due: TBD
+    consequence_if_false: Delivery timeline and pilot scope must be revised
+    status: open
+  - id: ASM-004
+    type: assumption
+    title: Operating-cost sustainability assumptions hold
+    owner: Business and Financial Authority (TBD)
+    validation_due: TBD
+    consequence_if_false: Sustainability outcome (OUT-009) at risk
+    status: open

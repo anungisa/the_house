@@ -1,0 +1,132 @@
+register_id: REG-002
+name: Decision Register
+status: IN_REVIEW
+version: 0.2.0
+records:
+  - id: DEC-V0-001
+    class: D1
+    question: What is the first production vertical slice?
+    decision: Club affiliation is first production flow.
+    evidence_refs: [V0-04]
+    approver: Executive Sponsor (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-002
+    class: D3
+    question: What is the production system-of-record foundation?
+    decision: >-
+      The House is the governed production foundation, treated as target-platform
+      current implementation truth (production-candidate baseline), not established
+      production truth.
+    evidence_refs: [V0-06]
+    approver: Technology and Architecture Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-003
+    class: D1
+    question: What is The Button authority role?
+    decision: The Button is the intended client-facing operating experience.
+    evidence_refs: [V0-06]
+    approver: Product Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-004
+    class: D1
+    question: What is the Base44 authority role?
+    decision: Base44 is discovery and reference corpus, not production authority.
+    evidence_refs: [V0-06]
+    approver: Product Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-005
+    class: D3
+    question: How are capabilities adopted?
+    decision: Capabilities are qualified individually, not ported wholesale.
+    evidence_refs: [V0-04]
+    approver: Technology and Architecture Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-006
+    class: D1
+    question: When is testing developed?
+    decision: Testing is developed concurrently with requirements and implementation.
+    evidence_refs: [V0-05]
+    approver: Program Owner (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-007
+    class: D4
+    question: What are release requirements?
+    decision: >-
+      Security, privacy, accessibility, bilingual parity, and operability are
+      release requirements.
+    evidence_refs: [V0-03, V0-05]
+    approver: Compliance, Privacy, and Policy Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-008
+    class: D1
+    question: How does production delivery proceed?
+    decision: Production delivery proceeds through vertical slices and explicit gates.
+    evidence_refs: [V0-04, V0-09]
+    approver: Program Owner (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-009
+    class: D0
+    question: How is national rollout approached?
+    decision: No national big-bang launch by default.
+    evidence_refs: [V0-05]
+    approver: Executive Sponsor (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-010
+    class: D1
+    question: What traceability is required?
+    decision: Every production capability requires end-to-end traceability.
+    evidence_refs: [V0-10]
+    approver: Program Owner (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-011
+    class: D1
+    question: How is AI-assisted development governed?
+    decision: AI-assisted development is permitted only within approved scope and controls.
+    evidence_refs: [V0-05]
+    approver: Program Owner (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-012
+    class: D4
+    question: How is institutional continuity handled?
+    decision: >-
+      Historical affiliations and continuity must be preserved or explicitly
+      dispositioned.
+    evidence_refs: [V0-05]
+    approver: Compliance, Privacy, and Policy Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-013
+    class: D3
+    question: What is the architectural posture?
+    decision: The platform remains a modular monolith unless evidence justifies separation.
+    evidence_refs: [V0-06]
+    approver: Technology and Architecture Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-014
+    class: D3
+    question: How do external providers integrate?
+    decision: External providers integrate through governed contracts and reconciliation.
+    evidence_refs: [V0-04, V0-06]
+    approver: Technology and Architecture Authority (TBD)
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-015
+    class: D1
+    question: What is the evidence rule for claims?
+    decision: No readiness or capability claim may exceed available evidence.
+    evidence_refs: [V0-05]
+    approver: Program Owner (TBD)
+    effective_date: TBD
+    status: proposed

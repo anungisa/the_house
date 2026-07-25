@@ -1,0 +1,93 @@
+register_id: REG-000
+name: Corpus Index
+status: IN_REVIEW
+version: 0.2.0
+records:
+  - id: V0-00
+    title: Document Control and Normative Usage
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.1.0
+    path: docs/program/volume-0/V0-00-document-control.md
+    gate: G0
+  - id: V0-01
+    title: Executive Mandate
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.2.0
+    path: docs/program/volume-0/V0-01-executive-mandate.md
+    gate: G0
+  - id: V0-02
+    title: Problem and Opportunity
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.2.0
+    path: docs/program/volume-0/V0-02-problem-and-opportunity.md
+    gate: G0
+  - id: V0-03
+    title: Vision and National Outcomes
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.2.0
+    path: docs/program/volume-0/V0-03-vision-and-outcomes.md
+    gate: G0
+  - id: V0-04
+    title: Scope and Boundaries
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.2.0
+    path: docs/program/volume-0/V0-04-scope-and-boundaries.md
+    gate: G0
+  - id: V0-05
+    title: Program Principles
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.2.0
+    path: docs/program/volume-0/V0-05-program-principles.md
+    gate: G0
+  - id: V0-A
+    title: Annex A - Methodology Crosswalk
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.1.0
+    path: docs/program/volume-0/V0-A-methodology-crosswalk.md
+    gate: G0
+  - id: V0-B
+    title: Annex B - Initial Constitutional Decisions
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.1.0
+    path: docs/program/volume-0/V0-B-initial-constitutional-decisions.md
+    gate: G0
+  - id: V0-C
+    title: Annex C - Unresolved Ratification Questions
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.1.0
+    path: docs/program/volume-0/V0-C-unresolved-ratification-questions.md
+    gate: G0
+  - id: V0-D
+    title: Annex D - Package 1 Completeness Checklist
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.1.0
+    path: docs/program/volume-0/V0-D-package1-completeness-checklist.md
+    gate: G0
+  - id: V0-E
+    title: Annex E - Package 1 Review Record
+    owner: Program Owner (TBD)
+    approver: Executive Sponsor (TBD)
+    status: IN_REVIEW
+    version: 0.1.0
+    path: docs/program/volume-0/V0-E-package1-review-record.md
+    gate: G0

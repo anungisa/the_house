@@ -1,0 +1,15 @@
+register_id: REG-004
+name: Glossary
+status: DRAFT
+version: 0.1.0
+terms:
+  - term: affiliation
+    definition: Formal standing relationship between a club and governing authority.
+  - term: membership
+    definition: Governed participant relationship and entitlement within approved periods.
+  - term: registration
+    definition: Enrollment and eligibility process for programs and services.
+  - term: system_of_record
+    definition: Authoritative platform that governs transactional truth for controlled entities.
+  - term: authoritative_source
+    definition: Approved origin of truth for a defined decision or data domain.

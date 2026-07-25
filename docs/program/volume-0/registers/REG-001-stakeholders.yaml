@@ -1,0 +1,19 @@
+register_id: REG-001
+name: Stakeholder Register
+status: DRAFT
+version: 0.1.0
+records:
+  - id: STK-001
+    stakeholder: Executive Sponsor
+    organization: Curling Canada
+    role: Program Mandate Authority
+    authority_level: decision_authority
+    engagement_level: accountable_owner
+    status: proposed
+  - id: STK-002
+    stakeholder: Program Owner
+    organization: Curling Canada
+    role: End-to-end Program Coherence
+    authority_level: decision_authority
+    engagement_level: accountable_owner
+    status: proposed
