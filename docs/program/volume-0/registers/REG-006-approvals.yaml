@@ -1,7 +1,7 @@
 register_id: REG-006
 name: Approval Register
 status: IN_REVIEW
-version: 0.6.0
+version: 0.7.0
 records:
   - id: APP-001
     artifact_id: V0-01
@@ -174,4 +174,41 @@ records:
       - { id: V0-10, version: 1.0.0 }
       - { id: V0-11, version: 1.0.0 }
       - { id: V0-G, version: 1.0.0 }
+    approved_at: null
+  - id: APP-013
+    artifact_id: V0-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Gate G0 disposition PASS_WITH_TIME_BOUNDED_CONDITIONS
+      - Independent certification not claimed
+      - Executive organizational acceptance required at material commitment gate
+    approved_at: null
+  - id: APP-014
+    artifact_id: PACKAGE-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    finding: ACCEPTED
+    scope:
+      - V0-12
+      - V0-H
+      - V0-I
+    conditions:
+      - Independent validation not claimed
+      - Executive organizational acceptance pending at applicable future gate
+      - Funding pending as time-bounded Gate G0 condition
+      - Domain validation pending when review-ready
+      - Independent production assurance pending before production exposure
+      - Volume 0 frozen at v1.0.0; changes only via constitutional amendment (V0-00 control)
+      - Volume 1 authorized; no Volume 1 content created within Package 4
+    closure_record: V0-I
+    base_commit: 8cd6ee8
+    amendment_process: Constitutional amendment under V0-00 control (V0-10 10.11)
+    frozen: true
+    frozen_artifacts:
+      - { id: V0-12, version: 1.0.0 }
+      - { id: V0-H, version: 1.0.0 }
+      - { id: V0-I, version: 1.0.0 }
     approved_at: null

@@ -34,6 +34,7 @@
           "target_resolution": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
           "gate_impact": { "type": "string" },
           "validation_due": { "type": "string" },
+          "blocking_gate": { "type": "string" },
           "consequence_if_false": { "type": "string" },
           "depends_on": { "type": "string" },
           "remediation": { "type": "string" },

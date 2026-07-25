@@ -1,6 +1,6 @@
 # Gate G0 Findings
 
-Status: IN_REVIEW
+Status: RECONCILED (Package 4)
 
 ## Disposition
 
@@ -35,3 +35,18 @@ withhold controlled delivery.
 PASS_WITH_TIME_BOUNDED_CONDITIONS is not unconditional approval. Executive
 acceptance (D0), funding, domain validation, independent assurance (D9), outcome
 baselines, and pilot cohort remain conditional at their applicable later gates.
+
+## Package 4 reconciliation findings
+
+- The full constitutional baseline (Packages 1-3) is RATIFIED and frozen with
+  recorded closure records V0-E, V0-F, and V0-G and freeze metadata in REG-006.
+- The governance control system executes cleanly: schema conformance, identifier
+  uniqueness, cross-reference integrity, ratification integrity, authority
+  integrity, exception expiry, and freeze/amendment integrity all pass with zero
+  errors (permitted informational conditions only: REG-008 TBD baselines).
+- V0-12 is ratified as the authoritative Gate G0 record; the remaining conditions
+  are mapped to named owners and future blocking gates (V0-12 12.6,
+  conditions.md, evidence-index.yaml).
+- No document claims independent validation; no platform holds conflicting
+  authority; all frozen packages carry freeze metadata; all package closures are
+  indexed in REG-000.

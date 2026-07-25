@@ -1,8 +1,13 @@
 # Gate G0 Checklist
 
-Status: IN_REVIEW
+Status: RECONCILED (Package 4)
 
 Current disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS.
+
+Reconciled at Volume 0 closure (Package 4). Constitutional baseline complete and
+frozen: Package 1 (V0-00..V0-05, V0-A..V0-E), Package 2 (V0-06..V0-08, V0-F),
+Package 3 (V0-09..V0-11, V0-G), and Package 4 (V0-12, V0-H, V0-I). Machine
+validation via npm run governance:check passes with zero errors.
 
 Legend: [x] satisfied now; [~] time-bounded condition at a later gate.
 

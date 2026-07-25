@@ -1,7 +1,7 @@
 register_id: REG-002
 name: Decision Register
 status: IN_REVIEW
-version: 0.7.0
+version: 0.8.0
 records:
   - id: DEC-V0-001
     class: D1
@@ -311,6 +311,41 @@ records:
       constitutional amendment under V0-00 control. Registers and Gate G0 evidence
       remain living instruments.
     evidence_refs: [V0-G, V0-09, V0-10, V0-11, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-026
+    class: D1
+    question: Is V0-12 ratified as the authoritative Gate G0 record?
+    decision: >-
+      V0-12 is RATIFIED (v1.0.0) as the authoritative Gate G0 record. The Gate G0
+      disposition is PASS_WITH_TIME_BOUNDED_CONDITIONS, authorized by the
+      Accountable Program Authority (Aubert Nungisa), evidence SELF-ATTESTED /
+      AUTHOR-VERIFIED, independent certification not claimed, executive
+      organizational acceptance required at the material commitment gate. Remaining
+      conditions are mapped to named owners and future blocking gates (V0-12 12.6).
+    evidence_refs: [V0-12, REG-003, REG-006, REG-008]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-027
+    class: D1
+    question: Is Volume 0 complete, frozen at v1.0.0, and is Volume 1 authorized?
+    decision: >-
+      Package 4 (Volume 0 constitutional closure) passed a line-level and
+      control-system closure review with finding ACCEPTED. V0-12, V0-H, and V0-I
+      are RATIFIED (v1.0.0); the Gate G0 evidence package is reconciled with a
+      machine-readable evidence-index.yaml; npm run governance:check passes with
+      zero errors (permitted informational conditions only). The complete Volume 0
+      corpus is frozen at v1.0.0; changes require a constitutional amendment under
+      V0-00 control. Volume 1 (Current-State Qualification and Repository
+      Convergence) is formally authorized; no Volume 1 content is created within
+      Package 4. Registers and Gate G0 evidence remain living instruments.
+    evidence_refs: [V0-I, V0-12, V0-H, REG-000, REG-006]
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending

@@ -1,7 +1,7 @@
 register_id: REG-000
 name: Corpus Index
 status: IN_REVIEW
-version: 0.7.0
+version: 0.8.0
 records:
   - id: V0-00
     title: Document Control and Normative Usage
@@ -103,8 +103,8 @@ records:
     title: Ratification and Gate G0
     owner: Aubert Nungisa (Accountable Program Authority)
     approver: Nolan (Executive Acceptance Authority)
-    status: IN_REVIEW
-    version: 0.2.0
+    status: RATIFIED
+    version: 1.0.0
     path: docs/program/volume-0/V0-12-gate-g0-ratification.md
     gate: G0
   - id: V0-A
@@ -162,4 +162,20 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-0/V0-G-package3-closure-record.md
+    gate: G0
+  - id: V0-H
+    title: Annex H - Executive Constitutional Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-H-executive-constitutional-brief.md
+    gate: G0
+  - id: V0-I
+    title: Annex I - Volume 0 Completion Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-I-volume0-completion-record.md
     gate: G0

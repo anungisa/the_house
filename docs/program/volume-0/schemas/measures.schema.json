@@ -23,7 +23,8 @@
           "owner": { "type": "string" },
           "method": { "type": "string" },
           "evidence_source": { "type": "string" },
-          "review_cadence": { "type": "string" }
+          "review_cadence": { "type": "string" },
+          "blocking_gate": { "type": "string" }
         }
       }
     }

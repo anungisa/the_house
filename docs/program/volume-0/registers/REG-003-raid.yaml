@@ -1,7 +1,7 @@
 register_id: REG-003
 name: RAID Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 records:
   - id: RISK-001
     type: risk
@@ -41,6 +41,7 @@ records:
     title: Initial funding envelope and funding authority exist
     owner: Nolan (Executive Acceptance Authority)
     validation_due: Before material external expenditure or production commitment
+    blocking_gate: External expenditure or funded delivery commitment
     consequence_if_false: >-
       Program cannot claim funded status; material external spend and production
       commitment blocked (time-bounded G0 condition, not a delivery blocker)
@@ -57,7 +58,9 @@ records:
     title: Operating-cost sustainability assumptions hold
     owner: Helene (Business and Financial contributor)
     validation_due: When review-ready
-    consequence_if_false: Sustainability outcome (OUT-009) at risk
+    blocking_gate: Financial model, fees, payments, or sustainability decisions
+    consequence_if_false: >-
+      Sustainability outcome (OUT-009) at risk
     status: open
   - id: DEP-001
     type: dependency
@@ -65,6 +68,7 @@ records:
     owner: Aubert Nungisa (Data and Integration Authority)
     depends_on: Current registration provider (REG-005 SRC-006, temporary transition platform)
     validation_due: Before The House claims system-of-record authority for registration
+    blocking_gate: The House claims system-of-record authority for registration
     consequence_if_false: >-
       Legacy registration/membership truth cannot be retired; The House cannot assume
       authoritative status for that domain
@@ -75,6 +79,7 @@ records:
     owner: Helene (Business and Financial Authority)
     depends_on: Payment processors (REG-005 SRC-007, execution plane)
     validation_due: Before production payment flows
+    blocking_gate: Production payment flows
     consequence_if_false: Governed charge decisions cannot be executed
     status: open
   - id: DEP-003
@@ -83,6 +88,7 @@ records:
     owner: Jen (Compliance and Policy Authority)
     depends_on: Sideline Learning (SRC-008) and accreditation platforms (SRC-009)
     validation_due: Before governed use of learning/accreditation status
+    blocking_gate: Governed use of learning or accreditation status
     consequence_if_false: >-
       Certification and accreditation status cannot be projected or governed reliably
     status: open
@@ -92,5 +98,6 @@ records:
     owner: Helene (Business and Financial Authority)
     depends_on: Accounting systems (REG-005 SRC-012, external authoritative source)
     validation_due: Before financial reconciliation is relied upon
+    blocking_gate: Financial reconciliation is relied upon
     consequence_if_false: Financial ledger reconciliation cannot be assured
     status: open
