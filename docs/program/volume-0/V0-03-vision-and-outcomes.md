@@ -2,9 +2,9 @@
 
 Document ID: V0-03
 Status: IN_REVIEW
-Version: 0.2.0
-Owner: Strategy Authority (TBD)
-Approver: Executive Sponsor (TBD)
+Version: 0.3.0
+Owner: Aubert Nungisa (Accountable Program Authority)
+Approver: Nolan (Executive Acceptance Authority)
 Associated Gate: G0
 
 This chapter is normative except where a subsection is marked explanatory.
@@ -46,7 +46,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - baseline method: count of duplicate/conflicting organization records today.
 - target method: define acceptable maximum duplicate/conflict rate.
 - likely measures: duplicate record rate; percentage with known jurisdiction.
-- owner: Domain Policy Owner - Organization Records (TBD)
+- owner: Aubert Nungisa (Data and Integration Authority)
 - evidence source: organization registry data quality reports.
 - anti-gaming note: merging records to reduce counts MUST NOT lose lineage.
 - gate relationship: enforced at affiliation vertical gate and release gates.
@@ -60,7 +60,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - target method: set minimum percentage with complete requirement disposition.
 - likely measures: percentage with traceable standing; conflicting-record count;
   time to answer a standing inquiry; percentage of decisions with full lineage.
-- owner: Domain Policy Owner - Affiliation (TBD)
+- owner: Aubert Nungisa (Product Owner)
 - evidence source: affiliation decision and evidence records.
 - anti-gaming note: marking standing "current" without evidence is prohibited.
 - gate relationship: primary success measure for the affiliation vertical.
@@ -75,7 +75,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - likely measures: median elapsed draft-to-decision; staff handling time per
   application; manual follow-up count; avoidable-incompleteness return rate;
   eliminated duplicate fields; club satisfaction.
-- owner: Program Owner (TBD)
+- owner: Aubert Nungisa (Accountable Program Authority)
 - evidence source: workflow timing and support records.
 - anti-gaming note: speed MUST NOT be achieved by weakening required review.
 - gate relationship: measured through pilot and release gates.
@@ -89,7 +89,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - target method: confirm preserved PTSO authority in governed workflows.
 - likely measures: percentage of decisions routed to correct jurisdiction;
   disputed-authority incident count.
-- owner: Strategy Authority (TBD)
+- owner: Aubert Nungisa (Accountable Program Authority); strategy review with Rich
 - evidence source: workflow routing and audit records.
 - anti-gaming note: centralizing decisions to simplify metrics violates PR-003.
 - gate relationship: verified at affiliation vertical and release gates.
@@ -102,7 +102,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - baseline method: assess current continuity guarantees.
 - target method: define required continuity across season and club changes.
 - likely measures: continuity retention rate; orphaned-history incidents.
-- owner: Domain Policy Owner - Participant Identity (TBD)
+- owner: Aubert Nungisa (Data and Integration Authority)
 - evidence source: participant identity and membership records.
 - anti-gaming note: continuity MUST NOT be achieved by over-merging identities.
 - gate relationship: deferred beyond affiliation vertical; tracked as later wave.
@@ -115,7 +115,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - baseline method: inventory current manual transfer points.
 - target method: define governed-integration coverage targets.
 - likely measures: manual transfer count eliminated; reconciliation exception rate.
-- owner: Technology and Architecture Authority (TBD)
+- owner: Aubert Nungisa (Technology and Architecture Authority)
 - evidence source: integration and reconciliation logs.
 - anti-gaming note: hidden manual steps MUST NOT be relabeled as integration.
 - gate relationship: later wave; not a first-release success criterion.
@@ -128,7 +128,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - baseline method: audit current parity and WCAG conformance.
 - target method: require functional parity and WCAG 2.2 AA for release scope.
 - likely measures: parity defect count; WCAG conformance results.
-- owner: Accessibility and Official Language Authority (TBD)
+- owner: Aubert Nungisa (author); independent assurance (D9) before production
 - evidence source: accessibility audits and bilingual review records.
 - anti-gaming note: translated labels without equivalent workflow do not satisfy
   parity (see PR-010).
@@ -142,7 +142,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - baseline method: assess current audit lineage completeness.
 - target method: require complete lineage for governed decisions.
 - likely measures: percentage of governed decisions with full lineage.
-- owner: Compliance, Privacy, and Policy Authority (TBD)
+- owner: Aubert Nungisa (author); domain validation by Jen
 - evidence source: audit and evidence records.
 - anti-gaming note: audit records MUST NOT be editable to appear complete.
 - gate relationship: enforced at affiliation vertical and release gates.
@@ -155,7 +155,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - baseline method: define operability and cost baselines.
 - target method: set recovery, observability, and cost targets.
 - likely measures: recovery objectives met; incident MTTR; run cost per period.
-- owner: Technology and Operations Authority (TBD)
+- owner: Aubert Nungisa (Technology and Operations Authority)
 - evidence source: operational monitoring and cost reporting.
 - anti-gaming note: deferring operability to appear "done" violates PR-017.
 - gate relationship: release requirement.
@@ -170,7 +170,7 @@ marked TBD are unratified and MUST NOT be presented as established.
 - target method: design-review constraint verified during architecture reviews.
 - likely measures: architecture-review findings of curling-specific coupling that
   blocks future adaptation.
-- owner: Technology and Architecture Authority (TBD)
+- owner: Aubert Nungisa (Technology and Architecture Authority)
 - evidence source: architecture decision records.
 - anti-gaming note: multi-sport generality MUST NOT be built speculatively before
   the curling affiliation flow is proven (see PR-020).

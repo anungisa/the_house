@@ -3,9 +3,9 @@
 ## Volume 0 - Program Constitution and Control System
 
 Status: IN_REVIEW  
-Version: 0.1.0  
-Owner: Program Owner (TBD by ratification)  
-Approver: Executive Sponsor (TBD by ratification)
+Version: 0.2.0  
+Owner: Aubert Nungisa (Accountable Program Authority)  
+Approver: Nolan (Executive Acceptance Authority)
 
 Volume 0 is the constitutional control plane for the Central Registration Platform program.
 
@@ -28,11 +28,17 @@ A capability enters production only when its purpose, authority, policy, data, e
 Current package status:
 
 - Package 1: IN_REVIEW (constitutional hardening applied)
-- Package 2: DRAFT
+- Package 2: IN_PROGRESS (solo-led governance operating model in V0-07)
 - Package 3: DRAFT
 - Package 4: DRAFT
 
-Gate G0 disposition: HOLD - constitutional drafting underway.
+Gate G0 disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS (see V0-12 and
+evidence/G0/). The program operates under a solo-led, institutionally accountable
+delivery model: Aubert Nungisa is the Accountable Program Authority; Nolan is the
+Executive Sponsor Candidate and Executive Acceptance Authority; Rich, Helene, and
+Jen are named domain contributors. Executive acceptance, funding, domain
+validation, and independent assurance are time-bounded conditions, not blockers to
+controlled delivery.
 
 ## Contents
 

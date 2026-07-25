@@ -2,12 +2,19 @@
 
 Document ID: V0-B-INITIAL-DECISIONS
 Status: IN_REVIEW
-Version: 0.1.0
+Version: 0.2.0
 Associated Gate: G0
 
 These decisions are PROPOSED for ratification at Gate G0. Each is mirrored in
-REG-002 with a decision class and approver. None is approved until an approval
-record exists in REG-006.
+REG-002 with a decision class and approver. None is organizationally approved
+until an executive-acceptance record exists.
+
+Under the solo-led model (V0-07), program-authority decisions (D1-D6) are now
+accepted by the Accountable Program Authority (see REG-002 status
+`accepted_by_accountable_authority`) with executive acceptance pending; D0
+decisions remain proposed pending Nolan. REG-002 additionally records DEC-V0-016
+(adopt solo-led governance model) and DEC-V0-017 (Gate G0
+PASS_WITH_TIME_BOUNDED_CONDITIONS). REG-002 is the authoritative status source.
 
 | ID | Proposed decision | Class | Status |
 | --- | --- | --- | --- |

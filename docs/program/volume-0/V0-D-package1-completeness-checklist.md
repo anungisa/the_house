@@ -2,7 +2,7 @@
 
 Document ID: V0-D-PACKAGE1-CHECKLIST
 Status: IN_REVIEW
-Version: 0.1.0
+Version: 0.2.0
 Associated Gate: G0
 
 Package 1 is complete only when V0-01 through V0-05 are detailed enough to guide a
@@ -46,6 +46,6 @@ future team without relying on unstated project history.
 
 - [ ] Registers are machine-readable but not yet machine-governed (schema and CI
       checks belong to Package 3)
-- [ ] Executive sponsor, program owner, and funding remain TBD/PROPOSED
+- [~] Executive acceptance (Nolan) and funding remain time-bounded conditions
 - [ ] Outcome baselines and targets remain TBD pending discovery
-- [ ] Gate G0 disposition is HOLD - constitutional drafting underway
+- [x] Gate G0 disposition is PASS_WITH_TIME_BOUNDED_CONDITIONS (V0-12)

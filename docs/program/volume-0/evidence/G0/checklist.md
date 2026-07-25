@@ -2,51 +2,55 @@
 
 Status: IN_REVIEW
 
-Current disposition: HOLD - constitutional drafting underway.
+Current disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS.
+
+Legend: [x] satisfied now; [~] time-bounded condition at a later gate.
 
 ## Mandate
 
-- [ ] Executive sponsor named
-- [ ] Program owner named
-- [ ] Mandate approved
-- [ ] Funding and capacity assumptions documented
+- [x] Accountable Program Authority named (Aubert Nungisa)
+- [x] Executive acceptance authority named (Nolan, sponsor candidate)
+- [x] Mandate authorized by accountable authority (executive acceptance pending)
+- [x] Funding and capacity assumptions documented
+- [~] Funding authorization (before material external expenditure)
 
 ## Scope
 
-- [ ] Product boundary approved
-- [ ] First production flow ratified as club affiliation
-- [ ] Initial exclusions explicit
-- [ ] Base44 qualification rule defined
+- [x] Product boundary approved
+- [x] First production flow ratified as club affiliation
+- [x] Initial exclusions explicit
+- [x] Base44 qualification rule defined
 
 ## Authority
 
-- [ ] The House, The Button, Base44, external roles defined
-- [ ] Decision authorities assigned
-- [ ] Escalation paths documented
+- [x] The House, The Button, Base44, external roles defined
+- [x] Decision authorities assigned (V0-07 decision classes D0-D9)
+- [x] Escalation paths documented
 
 ## Principles
 
-- [ ] Program principles ratified
-- [ ] No-vibe-coding clause ratified
-- [ ] Concurrent-testing clause ratified
-- [ ] Bilingual, accessibility, privacy, security, operations principles ratified
+- [x] Program principles ratified (accountable authority)
+- [x] No-vibe-coding clause ratified
+- [x] Concurrent-testing clause ratified
+- [x] Bilingual, accessibility, privacy, security, operations principles ratified
+- [x] Solo-led accountability clause ratified
 
 ## Control system
 
-- [ ] Document hierarchy exists
-- [ ] Registers exist
-- [ ] Identifier scheme exists
-- [ ] Traceability rule exists
-- [ ] Change and exception procedures exist
+- [x] Document hierarchy exists
+- [x] Registers exist
+- [x] Identifier scheme exists
+- [x] Traceability rule exists
+- [x] Change and exception procedures exist
 
 ## Stakeholders
 
-- [ ] Stakeholder register exists
-- [ ] Missing authorities identified
-- [ ] Initial advisory cohort defined
+- [x] Stakeholder register exists (named authorities and contributors)
+- [x] Missing authorities identified
+- [~] Pilot/advisory cohort defined (PTSO/club, before pilot)
 
 ## Program risk
 
-- [ ] Initial RAID register exists
-- [ ] Foundational risks have owners
-- [ ] Unresolved blockers explicit
+- [x] Initial RAID register exists
+- [x] Foundational risks have named owners
+- [x] Unresolved blockers explicit (as time-bounded conditions)

@@ -4,26 +4,34 @@ Status: IN_REVIEW
 
 ## Disposition
 
-G0: HOLD - constitutional drafting underway.
+G0: PASS_WITH_TIME_BOUNDED_CONDITIONS.
 
-## Basis for HOLD
+## Basis for disposition
 
-Gate G0 cannot pass because:
+Under the solo-led, institutionally accountable delivery model (V0-07), the
+authorities previously treated as unknown are assigned and recorded in REG-001:
 
-- executive sponsor remains unnamed (Q-001);
-- program owner remains unnamed (Q-002);
-- authority structure is not ratified (V0-07 is DRAFT);
-- outcome baselines and targets are not yet established (REG-008 TBD);
-- funding and capacity figures remain assumptions (ASM-002 to ASM-004);
-- stakeholder validation cohort is undefined (Q-006);
-- foundational risks still have placeholder owners.
+- Accountable Program Authority / Program Owner / Product Owner / Technology and
+  Architecture Authority / Delivery Authority / Documentation Authority: Aubert
+  Nungisa (AUTHOR-VERIFIED).
+- Executive Sponsor Candidate and Executive Acceptance Authority: Nolan.
+- Named domain contributors: Rich (strategy), Helene (business/financial), Jen
+  (compliance/policy/privacy).
+
+The items previously cited as HOLD blockers are genuine future dependencies, now
+recorded as time-bounded conditions (conditions.md, REG-003), not reasons to
+withhold controlled delivery.
 
 ## Positive findings
 
 - Package 1 chapters (V0-01 to V0-05) are expanded to ratifiable detail.
+- Governance operating model (V0-07) defines authorities, decision classes
+  D0-D9, evidence labels, and evidence-based gate control.
 - Repository authority language corrected (The House is production-candidate).
 - Complete affiliation outcome defined (V0-04 4.5).
-- Principles PR-001 to PR-020 are full records with enforcing gates.
+- Principles PR-001 to PR-020 plus the solo-led accountability clause are full
+  records with enforcing gates.
 
-HOLD is not failure and not partial approval. It reflects that constitutional
-drafting is substantive but ratification inputs are not yet available.
+PASS_WITH_TIME_BOUNDED_CONDITIONS is not unconditional approval. Executive
+acceptance (D0), funding, domain validation, independent assurance (D9), outcome
+baselines, and pilot cohort remain conditional at their applicable later gates.

@@ -2,9 +2,9 @@
 
 Document ID: V0-05
 Status: IN_REVIEW
-Version: 0.2.0
-Owner: Program Owner (TBD)
-Approver: Executive Steering Authority (TBD)
+Version: 0.3.0
+Owner: Aubert Nungisa (Accountable Program Authority)
+Approver: Nolan (Executive Acceptance Authority)
 Associated Gate: G0
 
 This chapter is the constitutional core and is normative in full.
@@ -287,3 +287,30 @@ requirements, design review, test evidence, traceability, and accountable approv
 - Evidence required: for any production capability, linked requirement, design
   review, tests, traceability, and accountable approval MUST exist.
 - Enforcing gates: vertical gate, release gate.
+
+## Solo-led institutional accountability clause
+
+This clause is normative and MUST NOT be excepted.
+
+The Central Registration Platform is a solo-led, institutionally accountable
+delivery program. The Accountable Program Authority MAY perform multiple delivery
+and governance roles where organizational capacity requires it. Governance is
+achieved through explicit decisions, traceability, automated controls, evidence,
+targeted domain consultation, and proportionate independent assurance - not
+through unnecessary committee dependency.
+
+Companion control (also non-exceptable): combined authority MAY authorize
+progression but MUST NOT be represented as independent validation. Any claim
+requiring independent assurance MUST remain conditional until the appropriate
+review has occurred.
+
+- Required implications: every governed readiness claim carries a controlled
+  evidence label (V0-07 7.4); role combination never removes recorded obligation;
+  the four role states (V0-00 V0-FM-04) are maintained.
+- Prohibited interpretations: presenting `AUTHOR-VERIFIED` or `SELF-ATTESTED`
+  work as independent certification; using role combination to leave decisions,
+  assumptions, conflicts, or evidence unrecorded.
+- Evidence required: authority assignments (REG-001), decision records (REG-002),
+  and correctly labeled claims.
+- Enforcing gates: G0, vertical gate, release gate.
+- Exception authority: none. This clause MUST NOT be excepted.

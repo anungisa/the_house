@@ -1,19 +1,70 @@
 register_id: REG-001
 name: Stakeholder Register
-status: DRAFT
-version: 0.1.0
+status: IN_REVIEW
+version: 0.2.0
 records:
   - id: STK-001
-    stakeholder: Executive Sponsor
-    organization: Curling Canada
-    role: Program Mandate Authority
-    authority_level: decision_authority
+    stakeholder: Aubert Nungisa
+    organization: Central Registration Platform program
+    role: >-
+      Accountable Program Authority; Program Owner; Product Owner; Technology and
+      Architecture Authority; Data and Integration Authority; Delivery Authority;
+      Quality and Evidence Authority; Documentation and Traceability Authority
+    authority_level: accountable_authority
     engagement_level: accountable_owner
-    status: proposed
+    decision_classes: [D1, D2, D3, D4, D5, D6]
+    status: assigned
   - id: STK-002
-    stakeholder: Program Owner
+    stakeholder: Nolan
     organization: Curling Canada
-    role: End-to-end Program Coherence
-    authority_level: decision_authority
-    engagement_level: accountable_owner
-    status: proposed
+    role: Executive Sponsor Candidate and Executive Acceptance Authority
+    authority_level: executive_acceptance
+    engagement_level: executive_recipient
+    decision_classes: [D0]
+    surname: to_be_recorded
+    status: named_candidate
+  - id: STK-003
+    stakeholder: Rich
+    organization: Curling Canada
+    role: Strategy contributor and strategic challenge function
+    authority_level: domain_contributor
+    engagement_level: consulted
+    decision_classes: [D7]
+    surname: to_be_recorded
+    status: named_contributor
+  - id: STK-004
+    stakeholder: Helene
+    organization: Curling Canada
+    role: Business, financial, sustainability, and operating-model contributor
+    authority_level: domain_contributor
+    engagement_level: consulted
+    decision_classes: [D4]
+    surname: to_be_recorded
+    status: named_contributor
+  - id: STK-005
+    stakeholder: Jen
+    organization: Curling Canada
+    role: Club and individual compliance, policy, and privacy contributor
+    authority_level: domain_contributor
+    engagement_level: consulted
+    decision_classes: [D4]
+    surname: to_be_recorded
+    status: named_contributor
+  - id: STK-006
+    stakeholder: Club and PTSO representatives
+    organization: Provincial/territorial sport organizations and clubs
+    role: Operational discovery, journey validation, and pilot acceptance
+    authority_level: operational_acceptance
+    engagement_level: consulted_and_pilot
+    decision_classes: [D8]
+    status: to_be_identified
+  - id: STK-007
+    stakeholder: Specialist reviewers
+    organization: External/qualified specialists
+    role: >-
+      Independent assurance for security, privacy, accessibility, French-language,
+      legal, or financial-control validation
+    authority_level: independent_assurance
+    engagement_level: engaged_before_production
+    decision_classes: [D9]
+    status: to_be_engaged

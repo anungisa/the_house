@@ -2,7 +2,7 @@
 
 Document ID: V0-E-PACKAGE1-REVIEW
 Status: IN_REVIEW
-Version: 0.2.0
+Version: 0.3.0
 Associated Gate: G0
 
 ## Review context
@@ -39,8 +39,9 @@ incomplete. This record captures the resulting changes.
 ## Disposition
 
 - Package 1 status: IN_REVIEW (hardened)
-- Gate G0 disposition: HOLD - constitutional drafting underway
-- Package 2: MUST NOT begin until Package 1 is ratified
+- Gate G0 disposition at time of this review: HOLD (SUPERSEDED - see the
+  governance-model amendment below; G0 is now PASS_WITH_TIME_BOUNDED_CONDITIONS)
+- Package 2: authorized to proceed under the solo-led model (DEC-V0-016)
 
 ## Integrity statement
 
@@ -83,3 +84,19 @@ Gate G0 remains HOLD. Package 2 remains NOT AUTHORIZED.
 - V0-07 and V0-10 remain DRAFT stubs (Package 2 and Package 3 scope).
 - Registers are machine-readable but not machine-governed (Package 3).
 - Outcome baselines/targets remain TBD pending discovery.
+
+## Governance-model amendment (post-review)
+
+Following the review, the program adopted a solo-led, institutionally accountable
+delivery model (DEC-V0-016). V0-07 was authored in full (authorities, decision
+classes D0-D9, evidence labels, evidence-based gate control, authority matrix).
+Named authorities replaced artificial TBDs: Aubert Nungisa (Accountable Program
+Authority and combined roles); Nolan (Executive Sponsor Candidate and Executive
+Acceptance Authority); Rich, Helene, Jen (domain contributors). Gate G0 moved from
+HOLD to PASS_WITH_TIME_BOUNDED_CONDITIONS (DEC-V0-017). V0-07 and V0-10 remaining
+as stubs no longer applies to V0-07, which is now IN_REVIEW.
+
+No executive acceptance, funding, independent assurance, or outcome baseline has
+been fabricated; each remains a recorded time-bounded condition. Combined
+authority is labeled AUTHOR-VERIFIED / SELF-ATTESTED and is not represented as
+independent validation.

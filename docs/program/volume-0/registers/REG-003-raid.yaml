@@ -1,15 +1,17 @@
 register_id: REG-003
 name: RAID Register
-status: DRAFT
-version: 0.2.0
+status: IN_REVIEW
+version: 0.3.0
 records:
   - id: RISK-001
     type: risk
     title: Unratified authority boundaries may create conflicting decisions
-    owner: Program Owner (TBD)
-    likelihood: medium
+    owner: Aubert Nungisa (Accountable Program Authority)
+    likelihood: low
     impact: high
-    mitigation: Ratify V0-06 and DEC-V0-002/003/004 at G0
+    mitigation: >-
+      Authorities assigned under solo-led model (V0-07); ratify V0-06 and
+      DEC-V0-002/003/004 with executive acceptance
     target_resolution: TBD
     gate_impact: G0
     status: open
@@ -18,7 +20,7 @@ records:
     title: >-
       The House may be treated as established production truth before gaps are
       closed
-    owner: Technology Authority (TBD)
+    owner: Aubert Nungisa (Technology and Architecture Authority)
     likelihood: medium
     impact: high
     mitigation: >-
@@ -30,28 +32,30 @@ records:
   - id: ASM-001
     type: assumption
     title: Club affiliation remains the first production vertical
-    owner: Program Owner (TBD)
+    owner: Aubert Nungisa (Accountable Program Authority)
     validation_due: TBD
     consequence_if_false: Reset sequencing and dependencies
     status: open
   - id: ASM-002
     type: assumption
     title: Initial funding envelope and funding authority exist
-    owner: Executive Sponsor (TBD)
-    validation_due: TBD
-    consequence_if_false: Program cannot claim funded status; G0 remains HOLD
+    owner: Nolan (Executive Acceptance Authority)
+    validation_due: Before material external expenditure or production commitment
+    consequence_if_false: >-
+      Program cannot claim funded status; material external spend and production
+      commitment blocked (time-bounded G0 condition, not a delivery blocker)
     status: open
   - id: ASM-003
     type: assumption
     title: Delivery capacity and staffing model are available
-    owner: Program Owner (TBD)
+    owner: Aubert Nungisa (Accountable Program Authority)
     validation_due: TBD
     consequence_if_false: Delivery timeline and pilot scope must be revised
     status: open
   - id: ASM-004
     type: assumption
     title: Operating-cost sustainability assumptions hold
-    owner: Business and Financial Authority (TBD)
-    validation_due: TBD
+    owner: Helene (Business and Financial contributor)
+    validation_due: When review-ready
     consequence_if_false: Sustainability outcome (OUT-009) at risk
     status: open

@@ -1,23 +1,23 @@
 register_id: REG-008
 name: Measures Register
-status: DRAFT
-version: 0.1.0
+status: IN_REVIEW
+version: 0.2.0
 records:
   - id: OUT-001
     baseline: TBD
     target: TBD
-    owner: Strategy Authority (TBD)
+    owner: Aubert Nungisa (Data and Integration Authority)
     method: TBD
     evidence_source: TBD
   - id: OUT-007
     baseline: TBD
     target: TBD
-    owner: Accessibility and Official Language Authority (TBD)
+    owner: Aubert Nungisa (author); independent assurance (D9) before production
     method: TBD
     evidence_source: TBD
   - id: OUT-009
     baseline: TBD
     target: TBD
-    owner: Technology and Operations Authority (TBD)
+    owner: Aubert Nungisa (Technology and Operations Authority)
     method: TBD
     evidence_source: TBD

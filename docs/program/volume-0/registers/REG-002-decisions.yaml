@@ -1,16 +1,18 @@
 register_id: REG-002
 name: Decision Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 records:
   - id: DEC-V0-001
     class: D1
     question: What is the first production vertical slice?
     decision: Club affiliation is first production flow.
     evidence_refs: [V0-04]
-    approver: Executive Sponsor (TBD)
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-002
     class: D3
     question: What is the production system-of-record foundation?
@@ -19,41 +21,51 @@ records:
       current implementation truth (production-candidate baseline), not established
       production truth.
     evidence_refs: [V0-06]
-    approver: Technology and Architecture Authority (TBD)
+    approver: Aubert Nungisa (Technology and Architecture Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-003
     class: D1
     question: What is The Button authority role?
     decision: The Button is the intended client-facing operating experience.
     evidence_refs: [V0-06]
-    approver: Product Authority (TBD)
+    approver: Aubert Nungisa (Product Owner)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-004
     class: D1
     question: What is the Base44 authority role?
     decision: Base44 is discovery and reference corpus, not production authority.
     evidence_refs: [V0-06]
-    approver: Product Authority (TBD)
+    approver: Aubert Nungisa (Product Owner)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-005
     class: D3
     question: How are capabilities adopted?
     decision: Capabilities are qualified individually, not ported wholesale.
     evidence_refs: [V0-04]
-    approver: Technology and Architecture Authority (TBD)
+    approver: Aubert Nungisa (Technology and Architecture Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-006
     class: D1
     question: When is testing developed?
     decision: Testing is developed concurrently with requirements and implementation.
     evidence_refs: [V0-05]
-    approver: Program Owner (TBD)
+    approver: Aubert Nungisa (Quality and Evidence Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-007
     class: D4
     question: What are release requirements?
@@ -61,23 +73,31 @@ records:
       Security, privacy, accessibility, bilingual parity, and operability are
       release requirements.
     evidence_refs: [V0-03, V0-05]
-    approver: Compliance, Privacy, and Policy Authority (TBD)
+    approver: >-
+      Aubert Nungisa (author); domain validation by Jen; independent assurance
+      (D9) before production
+    evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-008
-    class: D1
+    class: D2
     question: How does production delivery proceed?
     decision: Production delivery proceeds through vertical slices and explicit gates.
     evidence_refs: [V0-04, V0-09]
-    approver: Program Owner (TBD)
+    approver: Aubert Nungisa (Delivery Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-009
     class: D0
     question: How is national rollout approached?
     decision: No national big-bang launch by default.
     evidence_refs: [V0-05]
-    approver: Executive Sponsor (TBD)
+    approver: Nolan (Executive Acceptance Authority)
+    evidence_label: null
+    executive_acceptance: required
     effective_date: TBD
     status: proposed
   - id: DEC-V0-010
@@ -85,17 +105,21 @@ records:
     question: What traceability is required?
     decision: Every production capability requires end-to-end traceability.
     evidence_refs: [V0-10]
-    approver: Program Owner (TBD)
+    approver: Aubert Nungisa (Documentation and Traceability Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-011
     class: D1
     question: How is AI-assisted development governed?
     decision: AI-assisted development is permitted only within approved scope and controls.
     evidence_refs: [V0-05]
-    approver: Program Owner (TBD)
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-012
     class: D4
     question: How is institutional continuity handled?
@@ -103,30 +127,65 @@ records:
       Historical affiliations and continuity must be preserved or explicitly
       dispositioned.
     evidence_refs: [V0-05]
-    approver: Compliance, Privacy, and Policy Authority (TBD)
+    approver: Aubert Nungisa (author); domain validation by Jen
+    evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-013
     class: D3
     question: What is the architectural posture?
     decision: The platform remains a modular monolith unless evidence justifies separation.
     evidence_refs: [V0-06]
-    approver: Technology and Architecture Authority (TBD)
+    approver: Aubert Nungisa (Technology and Architecture Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-014
     class: D3
     question: How do external providers integrate?
     decision: External providers integrate through governed contracts and reconciliation.
     evidence_refs: [V0-04, V0-06]
-    approver: Technology and Architecture Authority (TBD)
+    approver: Aubert Nungisa (Data and Integration Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
   - id: DEC-V0-015
     class: D1
     question: What is the evidence rule for claims?
     decision: No readiness or capability claim may exceed available evidence.
     evidence_refs: [V0-05]
-    approver: Program Owner (TBD)
+    approver: Aubert Nungisa (Quality and Evidence Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
-    status: proposed
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-016
+    class: D1
+    question: What is the program governance operating model?
+    decision: >-
+      Adopt a solo-led, institutionally accountable delivery model with combined
+      roles, targeted domain consultation, evidence-based gates, and proportionate
+      independent assurance, as defined in V0-07.
+    evidence_refs: [V0-07, V0-00, V0-05]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-017
+    class: D1
+    question: What is the Gate G0 disposition?
+    decision: >-
+      Gate G0 is PASS_WITH_TIME_BOUNDED_CONDITIONS; executive acceptance, funding,
+      domain validation, independent assurance, outcome baselines, and pilot cohort
+      are time-bounded conditions at their applicable later gates and do not block
+      controlled delivery of the affiliation slice.
+    evidence_refs: [V0-12, V0-07]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

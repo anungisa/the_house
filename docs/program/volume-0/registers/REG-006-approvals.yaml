@@ -1,17 +1,37 @@
 register_id: REG-006
 name: Approval Register
-status: DRAFT
-version: 0.1.0
+status: IN_REVIEW
+version: 0.2.0
 records:
   - id: APP-001
     artifact_id: V0-01
-    approver_role: Executive Sponsor
-    approval_state: pending
-    conditions: []
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    conditions:
+      - Executive acceptance (Nolan, D0) pending before organizational commitment
     approved_at: null
   - id: APP-002
     artifact_id: V0-05
-    approver_role: Executive Steering Authority
-    approval_state: pending
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
     conditions: []
+    approved_at: null
+  - id: APP-003
+    artifact_id: V0-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    conditions:
+      - Executive acceptance (Nolan, D0) pending for organizational ratification
+    approved_at: null
+  - id: APP-004
+    artifact_id: V0-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED
+    conditions:
+      - Gate G0 disposition PASS_WITH_TIME_BOUNDED_CONDITIONS
+      - Executive acceptance record (Nolan) pending at Package 4
     approved_at: null

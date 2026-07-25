@@ -2,9 +2,9 @@
 
 Document ID: V0-04
 Status: IN_REVIEW
-Version: 0.2.0
-Owner: Program Owner (TBD)
-Approver: Executive Sponsor (TBD)
+Version: 0.3.0
+Owner: Aubert Nungisa (Accountable Program Authority)
+Approver: Nolan (Executive Acceptance Authority)
 Associated Gate: G0
 
 This chapter is normative except where a subsection is marked explanatory.

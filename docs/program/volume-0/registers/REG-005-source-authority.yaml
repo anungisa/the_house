@@ -1,25 +1,25 @@
 register_id: REG-005
 name: Source and Authority Register
-status: DRAFT
-version: 0.1.0
+status: IN_REVIEW
+version: 0.2.0
 records:
   - id: SRC-001
     source_name: Ratified Curling Canada policy and executive decisions
     source_type: policy
     authority_level: 1
-    owner: Executive Sponsor (TBD)
+    owner: Nolan (Executive Acceptance Authority)
     applicable_scope: program_constitution
   - id: SRC-002
     source_name: Approved program and domain decisions
     source_type: governance_decision
     authority_level: 2
-    owner: Program Owner (TBD)
+    owner: Aubert Nungisa (Accountable Program Authority)
     applicable_scope: program_delivery
   - id: SRC-003
     source_name: The House implementation
     source_type: target_platform_current_implementation_truth
     authority_level: 5
-    owner: Technology Authority (TBD)
+    owner: Aubert Nungisa (Technology and Architecture Authority)
     applicable_scope: production_candidate_implementation_baseline
     note: >-
       Target-platform current implementation truth. Not established production
@@ -29,7 +29,7 @@ records:
     source_name: Base44 corpus
     source_type: reference_case_evidence
     authority_level: 6
-    owner: Product Authority (TBD)
+    owner: Aubert Nungisa (Product Owner)
     applicable_scope: discovery_reference
     note: >-
       Product-discovery and reference-case evidence only. Not authoritative for

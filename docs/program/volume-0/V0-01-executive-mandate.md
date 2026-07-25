@@ -2,11 +2,11 @@
 
 Document ID: V0-01
 Status: IN_REVIEW
-Version: 0.2.0
-Owner: Program Owner (TBD)
-Approver: Executive Sponsor (TBD)
+Version: 0.3.0
+Owner: Aubert Nungisa (Accountable Program Authority)
+Approver: Nolan (Executive Acceptance Authority; surname to be recorded in REG-001)
 Associated Gate: G0
-Related Decisions: DEC-V0-001, DEC-V0-002, DEC-V0-003, DEC-V0-004, DEC-V0-005
+Related Decisions: DEC-V0-001, DEC-V0-002, DEC-V0-003, DEC-V0-004, DEC-V0-005, DEC-V0-016
 
 This chapter is normative except where a subsection is marked explanatory.
 
@@ -49,37 +49,47 @@ Curling Canada MUST own the platform mandate because:
 Ownership of the mandate does NOT centralize every operational decision. Federated
 authority is preserved under PR-003 (see V0-05) and V0-07.
 
-## 1.3 Executive sponsorship and obligations
+## 1.3 Executive sponsorship and accountable authority
 
-The following named roles MUST exist and be recorded in REG-001 before Gate G0
-may reach any disposition other than HOLD:
+The program operates under a solo-led, institutionally accountable delivery model
+(V0-07). The following roles are assigned and recorded in REG-001:
 
-- Executive Sponsor
-- Accountable Program Owner
-- Executive Steering Authority
-- Funding Authority
-- Final Production Release Authority
+- Accountable Program Authority, Program Owner, Product Owner, Technology and
+  Architecture Authority, Delivery Authority, and Documentation and Traceability
+  Authority: Aubert Nungisa.
+- Executive Sponsor Candidate and Executive Acceptance Authority: Nolan.
 
-Current status: PROPOSED (names are TBD pending ratification).
+Under the combined-roles clause (V0-07 7.3), one individual MAY perform multiple
+program roles. Role combination does NOT remove the obligations attached to those
+roles; decisions, assumptions, evidence, tests, and conflicts MUST remain
+explicitly recorded, and combined authority MUST NOT be represented as independent
+validation.
 
-### 1.3.1 Executive Sponsor obligations
+Nolan's confirmation as Executive Sponsor and any material funding commitment are
+time-bounded Gate G0 conditions (V0-12). They MUST be honored before material
+external expenditure or production exposure but MUST NOT block controlled
+documentation, design, testing, or implementation of the affiliation slice.
 
-The Executive Sponsor MUST:
+### 1.3.1 Executive acceptance obligations
 
-- hold accountability for the mandate, funding, and strategic alignment;
-- authorize or withhold national production release;
-- serve as the final escalation authority;
-- ensure the program remains aligned to Curling Canada strategic objectives;
+The Executive Acceptance Authority (Nolan) MUST:
+
+- accept or withhold organizational commitment, material budget, pilot
+  authorization, national rollout, significant policy change, and formal Curling
+  Canada ownership;
+- serve as the final escalation authority (D0);
+- confirm strategic alignment to Curling Canada objectives;
 - confirm that reassessment or termination triggers are honored.
 
-### 1.3.2 Program Owner obligations
+### 1.3.2 Accountable Program Authority obligations
 
-The Program Owner MUST:
+The Accountable Program Authority (Aubert Nungisa) MUST:
 
 - hold accountability for end-to-end program coherence;
 - maintain the roadmap, dependencies, and gate progression;
 - ensure traceability from outcomes to release evidence is maintained;
 - report delivery status, risks, and unresolved blockers honestly;
+- label every readiness claim with a controlled evidence label (V0-07 7.4);
 - prevent uncontrolled scope expansion beyond ratified boundaries.
 
 ## 1.4 National operating responsibility
@@ -149,19 +159,22 @@ Requires separate, explicit approval (recorded in REG-002 and REG-006):
 
 ## 1.8 Financial and capacity assumptions
 
-This subsection is normative and currently unratified.
+This subsection is normative and currently conditional.
 
-The following MUST be documented and owned before Gate G0 leaves HOLD. They are
-recorded as assumptions in REG-003 and MUST NOT be treated as facts:
+The following are recorded as assumptions in REG-003 and MUST NOT be treated as
+facts. They are time-bounded Gate G0 conditions (V0-12): they MUST be resolved
+before material external expenditure or production commitment, but their absence
+does NOT block controlled documentation, design, testing, or implementation of
+the affiliation slice.
 
-- initial funding envelope and funding authority (ASM: TBD);
-- delivery capacity and staffing model (ASM: TBD);
+- initial funding envelope and funding authority (ASM: TBD, owner Nolan);
+- delivery capacity and staffing model (ASM: solo-led baseline; scale TBD);
 - operating-cost sustainability assumptions (ASM: TBD);
 - pilot-phase resourcing (ASM: TBD).
 
 The program MUST NOT claim funded status or committed capacity without an approval
-record. Absence of ratified figures is itself a Gate G0 blocker, not a detail to
-be resolved silently.
+record. Material external expenditure and production commitment remain gated on
+executive acceptance (D0).
 
 ## 1.9 Reassessment and termination triggers
 
@@ -205,5 +218,8 @@ governed decisions (V0-04, V0-06) with evidence, not assumed.
 ## Constitutional control
 
 No mandate claim in this chapter is valid without a corresponding decision record
-in REG-002 and, where approval is asserted, an approval record in REG-006. Until
-those records exist, the mandate is PROPOSED and Gate G0 remains HOLD.
+in REG-002 and, where organizational or independent acceptance is asserted, an
+approval record in REG-006. Authority now vests in the Accountable Program
+Authority (Aubert Nungisa) under the solo-led model (V0-07); executive acceptance
+(Nolan, D0), material funding, and independent assurance remain time-bounded Gate
+G0 conditions (V0-12) rather than blockers to controlled delivery.

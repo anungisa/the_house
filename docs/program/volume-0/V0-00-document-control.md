@@ -3,10 +3,10 @@
 Document ID: V0-00  
 Title: Volume 0 Document Control and Normative Usage  
 Status: IN_REVIEW  
-Version: 0.2.0  
+Version: 0.3.0  
 Classification: Internal - Program Governance  
-Owner: Program Owner (TBD)  
-Approver: Executive Sponsor (TBD)  
+Owner: Aubert Nungisa (Accountable Program Authority)  
+Approver: Nolan (Executive Acceptance Authority)  
 Effective Date: TBD (Gate G0)  
 Supersedes: None  
 Review Cycle: Monthly until ratified, then quarterly  
@@ -58,6 +58,42 @@ This section is normative.
 - MUST NOT: prohibited requirement
 - SHOULD: expected unless justified and approved
 - MAY: permitted option
+
+## V0-FM-04 Solo-led accountability and combined roles
+
+This section is normative.
+
+The program operates under a solo-led, institutionally accountable delivery model
+defined in V0-07. In this model, one individual (the Accountable Program
+Authority) MAY perform multiple program roles where organizational capacity
+requires it. Role combination does NOT remove the obligations attached to those
+roles. Decisions, assumptions, evidence, tests, and conflicts MUST remain
+explicitly recorded.
+
+The corpus MUST distinguish four role states, which are not equivalent:
+
+- role not performed;
+- role performed by the Accountable Program Authority;
+- role independently reviewed;
+- role organizationally approved.
+
+Combined authority MAY authorize progression but MUST NOT be represented as
+independent validation. Any claim requiring independent assurance MUST remain
+conditional until the appropriate review has occurred.
+
+## V0-FM-05 Evidence labels
+
+This section is normative.
+
+Every governed readiness or compliance claim MUST carry one of the controlled
+evidence labels defined in V0-07 7.4: `AUTHOR-VERIFIED`, `SELF-ATTESTED`,
+`AUTOMATED-EVIDENCE`, `PEER-REVIEWED`, `DOMAIN-VALIDATED`, `REVIEWED`,
+`EXECUTIVE-ACCEPTED`, `INDEPENDENTLY-ASSESSED`, or `PRODUCTION-PROVEN`.
+
+An authorization label MUST NOT be used as a substitute for `INDEPENDENTLY-ASSESSED`
+where independence is materially required (privacy, security, accessibility,
+French-language, legal, financial-control, disaster-recovery, or material
+compliance).
 - PROPOSED: not yet ratified
 - DEFERRED: explicitly postponed
 - SUPERSEDED: replaced and no longer authoritative
