@@ -1,7 +1,7 @@
 register_id: REG-000
 name: Corpus Index
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 records:
   - id: V0-00
     title: Document Control and Normative Usage
@@ -74,6 +74,30 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-0/V0-08-stakeholder-engagement-model.md
+    gate: G0
+  - id: V0-09
+    title: Delivery and Assurance Doctrine
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-09-delivery-and-assurance-doctrine.md
+    gate: G0
+  - id: V0-10
+    title: Documentation, Traceability, and Source Control
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-10-documentation-and-traceability.md
+    gate: G0
+  - id: V0-11
+    title: Risk, Assumptions, Dependencies, and Exceptions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-11-risk-assumption-dependency-governance.md
     gate: G0
   - id: V0-12
     title: Ratification and Gate G0

@@ -1,7 +1,7 @@
 register_id: REG-006
 name: Approval Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 records:
   - id: APP-001
     artifact_id: V0-01
@@ -57,6 +57,22 @@ records:
       - Executive organizational acceptance pending at applicable future gate
       - Gate G0 disposition preserved as PASS_WITH_TIME_BOUNDED_CONDITIONS
       - Package 1 frozen; changes only via constitutional amendment (V0-00 control)
+    closure_record: V0-E
+    base_commit: 346f9df
+    amendment_process: Constitutional amendment under V0-00 control (V0-10 10.11)
+    frozen: true
+    frozen_artifacts:
+      - { id: V0-00, version: 1.0.0 }
+      - { id: V0-01, version: 1.0.0 }
+      - { id: V0-02, version: 1.0.0 }
+      - { id: V0-03, version: 1.0.0 }
+      - { id: V0-04, version: 1.0.0 }
+      - { id: V0-05, version: 1.0.0 }
+      - { id: V0-A, version: 1.0.0 }
+      - { id: V0-B, version: 1.0.0 }
+      - { id: V0-C, version: 1.0.0 }
+      - { id: V0-D, version: 1.0.0 }
+      - { id: V0-E, version: 1.0.0 }
     approved_at: null
   - id: APP-006
     artifact_id: V0-06
@@ -86,6 +102,7 @@ records:
       - V0-06
       - V0-07
       - V0-08
+      - V0-F
     conditions:
       - Independent validation not claimed
       - Executive organizational acceptance pending at applicable future gate
@@ -94,4 +111,39 @@ records:
       - Independent production assurance pending before production exposure
       - Package 2 frozen; changes only via constitutional amendment (V0-00 control)
     closure_record: V0-F
+    base_commit: cdc8f80
+    amendment_process: Constitutional amendment under V0-00 control (V0-10 10.11)
+    frozen: true
+    frozen_artifacts:
+      - { id: V0-06, version: 1.0.0 }
+      - { id: V0-07, version: 1.0.0 }
+      - { id: V0-08, version: 1.0.0 }
+      - { id: V0-F, version: 1.0.0 }
+    approved_at: null
+  - id: APP-009
+    artifact_id: V0-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Independent validation not claimed
+      - Executive acceptance (Nolan, D0) pending for organizational ratification
+    approved_at: null
+  - id: APP-010
+    artifact_id: V0-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Independent validation not claimed
+      - Executive acceptance (Nolan, D0) pending for organizational ratification
+    approved_at: null
+  - id: APP-011
+    artifact_id: V0-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Independent validation not claimed
+      - Executive acceptance (Nolan, D0) pending for organizational ratification
     approved_at: null

@@ -3,7 +3,7 @@
 ## Volume 0 - Program Constitution and Control System
 
 Status: IN_REVIEW  
-Version: 0.3.0  
+Version: 0.4.0  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)
 
@@ -29,8 +29,8 @@ Current package status:
 
 - Package 1: RATIFIED (constitutional foundation baseline; frozen)
 - Package 2: RATIFIED (authority and governance: V0-06, V0-07, V0-08; frozen)
-- Package 3: DRAFT (not yet authorized)
-- Package 4: DRAFT
+- Package 3: RATIFIED (executable governance control system: V0-09, V0-10, V0-11); closure and freeze pending closure review
+- Package 4: DRAFT (not authorized)
 
 Package 1 is ratified and frozen as the constitutional foundation baseline
 (V0-00..V0-05 and annexes V0-A..V0-E, Status RATIFIED, Version 1.0.0). Ratification
@@ -74,6 +74,8 @@ controlled delivery.
 Companion controls:
 
 - registers/ (living governed registers)
+- schemas/ (JSON Schemas for REG-000..REG-008)
+- controls/ (executable governance controls; governance:check / governance:report)
 - templates/ (controlled templates)
 - evidence/G0/ (Gate G0 evidence package)
-- generated/ (executive formats generated from source)
+- generated/ (non-authoritative reports and executive formats generated from source)

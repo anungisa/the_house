@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "exceptions.schema.json",
+  "title": "REG-007 Exception Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-007" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "scope", "owner", "approving_authority", "risk", "start_date", "review_date", "expiry_date", "remediation", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^EXC-[0-9]{3}$" },
+          "scope": { "type": "string" },
+          "owner": { "type": "string" },
+          "approving_authority": { "type": "string" },
+          "risk": { "type": "string" },
+          "start_date": { "$ref": "common.schema.json#/definitions/isoDate" },
+          "review_date": { "$ref": "common.schema.json#/definitions/isoDate" },
+          "expiry_date": { "$ref": "common.schema.json#/definitions/isoDate" },
+          "remediation": { "type": "string" },
+          "affected_gates": { "type": "array", "items": { "type": "string" } },
+          "status": { "type": "string", "enum": ["active", "remediated", "expired", "retired"] }
+        }
+      }
+    },
+    "exception_requirements": { "type": "array", "items": { "type": "string" } }
+  }
+}

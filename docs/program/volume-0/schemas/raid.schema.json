@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "raid.schema.json",
+  "title": "REG-003 RAID Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-003" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "title", "owner", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(RISK|ASM|ISS|DEP|OPP)-[0-9]{3}$" },
+          "type": {
+            "type": "string",
+            "enum": ["risk", "assumption", "issue", "dependency", "opportunity"]
+          },
+          "title": { "type": "string" },
+          "owner": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["open", "mitigated", "accepted", "closed", "resolved", "realized"]
+          },
+          "likelihood": { "type": "string", "enum": ["low", "medium", "high"] },
+          "impact": { "type": "string", "enum": ["low", "medium", "high"] },
+          "mitigation": { "type": "string" },
+          "target_resolution": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+          "gate_impact": { "type": "string" },
+          "validation_due": { "type": "string" },
+          "consequence_if_false": { "type": "string" },
+          "depends_on": { "type": "string" },
+          "remediation": { "type": "string" },
+          "benefit": { "type": "string" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "type": { "const": "risk" } } },
+            "then": { "required": ["likelihood", "impact", "mitigation", "gate_impact"] }
+          },
+          {
+            "if": { "properties": { "type": { "const": "assumption" } } },
+            "then": { "required": ["validation_due", "consequence_if_false"] }
+          },
+          {
+            "if": { "properties": { "type": { "const": "dependency" } } },
+            "then": { "required": ["depends_on", "validation_due", "consequence_if_false"] }
+          }
+        ]
+      }
+    }
+  }
+}
