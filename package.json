@@ -48,6 +48,8 @@
     "governance:docs": "node docs/program/volume-0/controls/build-executive-formats.mjs",
     "governance:check:v1": "node docs/program/volume-1/controls/governance-check.mjs",
     "governance:report:v1": "node docs/program/volume-1/controls/generate-control-report.mjs",
+    "governance:check:v2": "node docs/program/volume-2/controls/governance-check.mjs",
+    "governance:report:v2": "node docs/program/volume-2/controls/generate-control-report.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

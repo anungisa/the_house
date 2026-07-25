@@ -1,0 +1,93 @@
+register_id: REG-204
+name: Volume 2 Governance Decision Register
+status: IN_REVIEW
+version: 1.0.0
+records:
+  - id: DEC-V2-001
+    class: D1
+    question: >-
+      What is the scope of Volume 2 Package 1, and what requirement architecture
+      governs it?
+    decision: >-
+      Adopt Volume 2 Package 1 as product and service definition only. Package 1
+      defines the affiliation product/service, its stakeholders, personas and
+      outcomes, the House/Button product boundary, the affiliation service blueprint,
+      and the requirements and acceptance architecture. It adopts the requirement
+      identifier chain OUT -> CAP -> BR -> FR -> NFR -> UC -> RULE -> WF -> UX ->
+      DATA -> API -> EVT -> CTRL -> TEST as the traceability spine. Package 1 does
+      not author runtime code, migrations, or APIs; does not authorize
+      implementation or procurement; and is not a master development plan. It
+      proceeds from the corrected Volume 1 v1.0.1 baseline under the conditional
+      authorization recorded in DEC-V1-029.
+    evidence_refs:
+      - V2-00
+      - V2-01
+      - V2-05
+      - REG-203
+      - DEC-V1-029
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-002
+    class: D1
+    question: >-
+      Where does the product boundary between The House and The Button lie for the
+      affiliation service?
+    decision: >-
+      The House is the authoritative governed platform and system of record; it owns
+      affiliation lifecycle state, authority, evidence, decisions, and audit, and all
+      governed transitions execute through the Governance Kernel. The Button is a
+      guided client-facing experience that presents required actions, status,
+      submission, and communication. The Button never independently owns or mutates
+      governed lifecycle state; it requests actions that the House adjudicates. This
+      boundary is binding for all Volume 2 requirements.
+    evidence_refs:
+      - V2-03
+      - V1-24
+      - V1-12
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-003
+    class: D1
+    question: >-
+      What service blueprint and acceptance architecture form the Package 1
+      foundation?
+    decision: >-
+      Adopt the affiliation service blueprint (V2-04) describing the end-to-end
+      affiliation journey across House and Button, and the requirements and
+      acceptance architecture (V2-05) that traces every requirement from outcome to
+      acceptance test. Acceptance criteria are defined at the TEST level and linked
+      to requirements; no requirement in Package 1 authorizes implementation.
+    evidence_refs:
+      - V2-04
+      - V2-05
+      - REG-203
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-004
+    class: D2
+    question: >-
+      Is the Product-Definition Foundation ready, and is Package 1 closed and frozen?
+    decision: >-
+      Record Gate V2-G1 (Product-Definition Foundation Ready) as PASS against its ten
+      conditions and close Volume 2 Package 1 with a freeze of V2-00 through V2-05 and
+      V2-A at version 1.0.0. Closure records product definition only. It authorizes no
+      implementation and no procurement, is not a master development plan, and leaves
+      executive organizational acceptance pending at a later material-commitment gate.
+    evidence_refs:
+      - V2-A
+      - GATE-V2-G1
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

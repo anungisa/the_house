@@ -1,0 +1,120 @@
+register_id: REG-202
+name: Volume 2 Stakeholder and Persona Register
+status: IN_REVIEW
+version: 1.0.0
+records:
+  - id: STK-V2-001
+    name: Curling Canada (National Sport Organization)
+    type: institutional
+    description: >-
+      The accountable national sport organization and system-of-record owner. Holds
+      authoritative governance over affiliation policy, lifecycle authority, and the
+      evidentiary record.
+    primary_product: House
+    personas:
+      - Program governance authority
+      - Membership and affiliation policy owner
+    governed_authority: true
+    validation_status: author_asserted
+    source_refs:
+      - V1-15
+      - V1-24
+  - id: STK-V2-002
+    name: Provincial and Territorial Association (Member Organization)
+    type: member_organization
+    description: >-
+      A regional member body with delegated responsibility for clubs in its
+      jurisdiction. Consumes and contributes to affiliation state; does not own the
+      authoritative lifecycle record.
+    primary_product: House
+    personas:
+      - Regional membership administrator
+      - Affiliation oversight reviewer
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-15
+      - V1-16
+  - id: STK-V2-003
+    name: Affiliated Club
+    type: club
+    description: >-
+      The entity whose affiliation is governed. Subject of the affiliation lifecycle;
+      interacts through guided experiences but does not adjudicate its own state.
+    primary_product: Both
+    personas:
+      - Club as governed entity
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-16
+  - id: STK-V2-004
+    name: Club Administrator
+    type: administrator
+    description: >-
+      The individual acting on behalf of a club to prepare, submit, and maintain an
+      affiliation application through the guided client experience.
+    primary_product: Button
+    personas:
+      - Affiliation applicant
+      - Required-action responder
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-16
+  - id: STK-V2-005
+    name: Participant and Member
+    type: participant
+    description: >-
+      A registered participant whose membership context depends on club affiliation
+      status. Receives status and communication through the guided experience.
+    primary_product: Button
+    personas:
+      - Status recipient
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-16
+  - id: STK-V2-006
+    name: NSO Membership and Governance Officer (Reviewer)
+    type: administrator
+    description: >-
+      The authorized reviewer who evaluates submitted affiliation applications against
+      policy and records governed decisions with evidence.
+    primary_product: House
+    personas:
+      - Affiliation reviewer
+      - Evidence custodian
+    governed_authority: true
+    validation_status: author_asserted
+    source_refs:
+      - V1-12
+      - V1-24
+  - id: STK-V2-007
+    name: Executive Accountable Authority
+    type: executive
+    description: >-
+      The executive authority accountable for material organizational commitment and
+      for accepting downstream implementation and procurement decisions.
+    primary_product: House
+    personas:
+      - Executive acceptance authority
+    governed_authority: true
+    validation_status: author_asserted
+    source_refs:
+      - V1-26
+  - id: STK-V2-008
+    name: External System of Authority
+    type: external_system
+    description: >-
+      An external system (for example registration, payment, or reference data) that
+      exchanges data with the NSO record but does not become the authoritative
+      affiliation system of record.
+    primary_product: Neither
+    personas:
+      - Reconciliation source
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-17
+      - V1-18

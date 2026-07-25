@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "requirements.schema.json",
+  "title": "REG-203 Volume 2 Requirement and Acceptance Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-203" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "level", "statement", "product", "traces_to", "authorizes_implementation"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/definitions/requirementId" },
+          "level": { "$ref": "common.schema.json#/definitions/requirementLevel" },
+          "statement": { "type": "string" },
+          "product": { "$ref": "common.schema.json#/definitions/product" },
+          "traces_to": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "acceptance_ref": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^TEST-V2-[0-9]{3}$" }
+          },
+          "governed_by_kernel": { "type": "boolean" },
+          "authorizes_implementation": { "type": "boolean" },
+          "validation_status": {
+            "type": "string",
+            "enum": ["author_asserted", "stakeholder_validation_pending", "stakeholder_validated"]
+          }
+        }
+      }
+    }
+  }
+}
