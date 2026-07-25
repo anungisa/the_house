@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T20:36:05.452Z
+Generated: 2026-07-25T20:53:02.340Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,15 +32,15 @@ Generated: 2026-07-25T20:36:05.452Z
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.4.0 | 18 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.5.0 | 18 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.4.0 | 15 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.4.0 | 34 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.4.0 | 30 |
 | REG-104 | Finding Register | IN_REVIEW | 0.4.0 | 33 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.4.0 | 11 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.4.0 | 30 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.5.0 | 19 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.5.0 | 23 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.6.0 | 20 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.6.0 | 24 |
 
 ## Findings by control
 
@@ -126,4 +126,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-023 (PACKAGE-3): Volume 0, Package 1, and Package 2 freezes preserved; no frozen artifact modified
 - APP-V1-023 (PACKAGE-3): No implementation and no master development plan authorized by Package 3
 - APP-V1-023 (PACKAGE-3): Gate V1-G3 disposed PASS (DEC-V1-017); Package 4 planning authorized to begin (DEC-V1-019)
+- APP-V1-023 (PACKAGE-3): Closure record V1-C amended to v1.1.0 (closure-evidence addendum) via DEC-V1-020; Gate V1-G3 disposition unchanged
 - APP-V1-023 (PACKAGE-3): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-024 (V1-C): Re-ratifies the Package 3 closure record V1-C at v1.1.0 following the controlled closure-evidence amendment (DEC-V1-020)
+- APP-V1-024 (V1-C): Adds the fourteen-item P0 disposition matrix (V1-C.7), the approved-execution vs organization-activation separation (V1-C.8), and unit-test execution evidence (V1-C.9)
+- APP-V1-024 (V1-C): No reopening of the Package 3 assessment; Gate V1-G3 remains PASS and no implementation is authorized
+- APP-V1-024 (V1-C): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

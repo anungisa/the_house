@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -291,7 +291,9 @@ records:
       a version increment, and re-ratification. The freeze-integrity control
       rejects unamended version drift. Package 3 registers (REG-101..REG-106) and
       the qualification tooling remain living machinery and are not frozen by this
-      approval.
+      approval. The closure record V1-C was amended to v1.1.0 via DEC-V1-020
+      (closure-evidence addendum V1-C.7-V1-C.9) and re-ratified by APP-V1-024; the
+      original v1.0.0 freeze (base_commit 605c798) is preserved in git history.
     frozen: true
     frozen_artifacts:
       - id: V1-10
@@ -305,7 +307,7 @@ records:
       - id: V1-14
         version: 1.0.0
       - id: V1-C
-        version: 1.0.0
+        version: 1.1.0
     scope:
       - V1-10
       - V1-11
@@ -318,5 +320,18 @@ records:
       - Volume 0, Package 1, and Package 2 freezes preserved; no frozen artifact modified
       - No implementation and no master development plan authorized by Package 3
       - Gate V1-G3 disposed PASS (DEC-V1-017); Package 4 planning authorized to begin (DEC-V1-019)
+      - Closure record V1-C amended to v1.1.0 (closure-evidence addendum) via DEC-V1-020; Gate V1-G3 disposition unchanged
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-024
+    artifact_id: V1-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-C
+    conditions:
+      - Re-ratifies the Package 3 closure record V1-C at v1.1.0 following the controlled closure-evidence amendment (DEC-V1-020)
+      - Adds the fourteen-item P0 disposition matrix (V1-C.7), the approved-execution vs organization-activation separation (V1-C.8), and unit-test execution evidence (V1-C.9)
+      - No reopening of the Package 3 assessment; Gate V1-G3 remains PASS and no implementation is authorized
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

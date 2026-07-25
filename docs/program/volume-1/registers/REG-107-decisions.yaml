@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -440,3 +440,46 @@ records:
     executive_acceptance: not_required
     effective_date: TBD
     status: accepted_by_accountable_authority
+  - id: DEC-V1-020
+    class: D1
+    question: >-
+      Does the Package 3 record explicitly disposition all fourteen mandatory P0
+      re-examination items, separate exactly-once approved execution from
+      authoritative organization activation, and record actual unit-test
+      execution evidence rather than test discovery?
+    decision: >-
+      Amend the Package 3 closure record V1-C to v1.1.0 by controlled amendment,
+      adding three normative sections without reopening the assessment. V1-C.7
+      records the fourteen-item P0 disposition matrix (one dispositioned row per
+      item, each with status, source paths, symbols/migrations, test evidence,
+      evidence rating, finding reference, qualification decision, and release
+      impact), grounding every row in existing Package 3 findings (FND-023..033),
+      qualification decisions (QD-019..030), and contradictions (CON-008..011).
+      V1-C.8 assesses authoritative organization activation separately from the
+      exactly-once approved-transition execution capability (CAP-024) against
+      seven criteria and determines it MODELED_OR_PARTIAL - UNPROVEN, grounded in
+      the reference-only Organization Registry contract that never activates an
+      organization as a substitute for a kernel-approved transition. V1-C.9
+      records that `npm run test:unit` was executed on 2026-07-25 with 99 files
+      and 1300 unit tests passing, while the 16 DB-gated integration suites remain
+      skipped and unproven (FND-028). This amendment does not change any finding
+      or capability disposition, does not alter the Gate V1-G3 PASS disposition,
+      and authorizes no implementation; the production-readiness (NOT ESTABLISHED)
+      and affiliation-readiness (NOT READY) determinations stand.
+    evidence_refs:
+      - V1-C
+      - GATE-V1-G3
+      - DEC-V1-018
+      - REG-104
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: V1-C
+    amendment_reason: >-
+      Closure-evidence completeness: make the fourteen-item P0 disposition matrix
+      explicit, separate approved execution from organization activation, and
+      record actual unit-test execution evidence. No reopening of the Package 3
+      assessment and no change to the Gate V1-G3 disposition.
