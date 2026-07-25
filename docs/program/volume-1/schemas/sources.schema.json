@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sources.schema.json",
+  "title": "REG-101 Source Inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-101" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "source_type",
+          "classification",
+          "custodian",
+          "controlled",
+          "qualification_status",
+          "evidence_rating"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^SRC-[0-9]{3}$" },
+          "name": { "type": "string" },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "base44_repository",
+              "house_repository",
+              "curling_canada_operating_reality",
+              "external_platform",
+              "external_data_source",
+              "policy_document",
+              "governance_baseline",
+              "other"
+            ]
+          },
+          "classification": { "$ref": "common.schema.json#/definitions/sourceClassification" },
+          "authority_note": { "type": "string" },
+          "custodian": { "type": "string" },
+          "location": { "type": "string" },
+          "controlled": { "type": "boolean" },
+          "qualification_status": {
+            "type": "string",
+            "enum": ["registered", "not_started", "in_assessment", "assessed"]
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

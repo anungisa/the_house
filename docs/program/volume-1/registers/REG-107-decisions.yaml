@@ -1,0 +1,104 @@
+register_id: REG-107
+name: Volume 1 Governance Decision Register
+status: IN_REVIEW
+version: 0.1.0
+# Governance decisions for Volume 1 itself (document ratifications, methodology
+# adoption, gate dispositions, package closure). Distinct from REG-106, which
+# records per-capability qualification dispositions.
+records:
+  - id: DEC-V1-001
+    class: D1
+    question: Does Volume 1 inherit and preserve the Volume 0 constitutional controls?
+    decision: >-
+      Volume 1 inherits all Volume 0 controls unchanged and must not weaken audit,
+      evidence, idempotency, tenancy, authority, or ratification controls. Volume 0
+      remains frozen at central-registration-volume-0-v1.0.0 (d897b13); Volume 1
+      work never modifies Volume 0 artifacts.
+    evidence_refs:
+      - V1-00
+      - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-002
+    class: D1
+    question: What methodology governs current-state qualification?
+    decision: >-
+      Adopt the V1-01 qualification methodology: source-classified, evidence-rated,
+      capability-oriented assessment that separates validated value from unsafe
+      assumptions and does not authorize implementation from findings alone.
+    evidence_refs:
+      - V1-01
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-003
+    class: D1
+    question: What source classifications and evidence-quality scale apply?
+    decision: >-
+      Adopt the V1-02 source-and-evidence model (eight source classifications) and
+      the V1-04 evidence-quality scale (E0-E4). A recent timestamp must not
+      automatically raise evidence quality.
+    evidence_refs:
+      - V1-02
+      - V1-04
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-004
+    class: D1
+    question: What disposition vocabulary governs capability qualification?
+    decision: >-
+      Adopt the V1-03 disposition standard with eight values: ADOPT, ADAPT,
+      CONSOLIDATE, RETAIN, REBUILD, DEFER, EXTERNALIZE, RETIRE. RETAIN and REBUILD
+      are added as implementation classifications for the production-candidate
+      foundation.
+    evidence_refs:
+      - V1-03
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-005
+    class: D1
+    question: How are the Base44 export and The House repository entered into Volume 1?
+    decision: >-
+      Register the Base44 export (SRC-001) and The House repository (SRC-002) as
+      controlled assessment sources only. Substantive capability qualification of
+      each is deferred to Volume 1 Packages 2 and 3 respectively and is not begun
+      in Package 1.
+    evidence_refs:
+      - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-006
+    class: D1
+    question: Is the Volume 1 qualification system ready (Gate V1-G1)?
+    decision: >-
+      Gate V1-G1 (Qualification System Ready) disposition PASS. Volume 0 controls
+      inherited; method, source classifications, disposition vocabulary, evidence
+      scale, and contradiction handling defined; registers schema-validated by the
+      governance toolchain; no implementation authorized by Volume 1 findings alone.
+      Executive organizational acceptance remains a time-bounded condition.
+    evidence_refs:
+      - V1-00
+      - V1-01
+      - V1-02
+      - V1-03
+      - V1-04
+      - GATE-V1-G1
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

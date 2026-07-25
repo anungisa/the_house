@@ -1,0 +1,54 @@
+register_id: REG-101
+name: Source Inventory
+status: IN_REVIEW
+version: 0.1.0
+# Controlled assessment sources for Volume 1 current-state qualification.
+# Package 1 registers the sources as controlled inputs only. Substantive
+# capability-by-capability qualification does not begin until Package 2+.
+records:
+  - id: SRC-001
+    name: Base44 export (product and experience prototype)
+    source_type: base44_repository
+    classification: observed_evidence
+    authority_note: >-
+      Product and experience evidence only, not production authority (V0-06).
+      Assessed as a prototype: reusable value is qualified, prototype behaviour
+      and hardcoded assumptions are rejected. Registered as a controlled source;
+      substantive qualification deferred to Volume 1 Package 2.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: Controlled Base44 export ZIP (to be attached to the assessment workspace)
+    controlled: true
+    qualification_status: registered
+    evidence_rating: E1
+    notes: Registration is E1 (indicative) until the export is inventoried and corroborated.
+  - id: SRC-002
+    name: The House v2 repository (production-candidate implementation)
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      Production-candidate implementation truth, not established production truth
+      (V0-06 DEC-V0-002). Assessed against the constitutional requirements for
+      retain/harden/rebuild dispositions. Registered as a controlled source;
+      substantive qualification deferred to Volume 1 Package 3.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: ccacurling/the_house (this repository)
+    controlled: true
+    qualification_status: registered
+    evidence_rating: E1
+    notes: >-
+      Existence of the codebase is directly demonstrable, but its qualified
+      current-state disposition is not yet assessed (E1 until Package 3).
+  - id: SRC-003
+    name: Volume 0 Program Constitution (ratified baseline)
+    source_type: governance_baseline
+    classification: policy_truth
+    authority_note: >-
+      Authoritative program constitution, ratified and frozen at
+      central-registration-volume-0-v1.0.0 (merge commit d897b13). Volume 1
+      inherits its controls and must not weaken them.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-0/ @ central-registration-volume-0-v1.0.0 (d897b13)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E4
+    notes: E4 (proven) by ratification; the authoritative policy baseline for qualification.

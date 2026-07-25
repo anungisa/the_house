@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "findings.schema.json",
+  "title": "REG-104 Finding Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-104" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "finding_type", "evidence_rating", "source_refs", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^FND-[0-9]{3}$" },
+          "statement": { "type": "string" },
+          "finding_type": {
+            "type": "string",
+            "enum": [
+              "capability_gap",
+              "duplicated_capability",
+              "prototype_debt",
+              "hardcoded_assumption",
+              "architectural_accident",
+              "production_readiness_gap",
+              "authority_conflict",
+              "reusable_value",
+              "constraint",
+              "other"
+            ]
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "source_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^(SRC|EV|CAP)-[0-9]{3}$" }
+          },
+          "capability_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^CAP-[0-9]{3}$" }
+          },
+          "production_risk": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical", "unknown"]
+          },
+          "recommended_disposition": {
+            "oneOf": [
+              { "type": "null" },
+              { "$ref": "common.schema.json#/definitions/disposition" }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "corroborated", "resolved", "superseded"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

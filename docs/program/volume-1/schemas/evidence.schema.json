@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "evidence.schema.json",
+  "title": "REG-102 Evidence Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-102" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source_ref", "summary", "artifact_type", "evidence_rating", "reviewable_location"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^EV-[0-9]{3}$" },
+          "source_ref": { "type": "string", "pattern": "^SRC-[0-9]{3}$" },
+          "summary": { "type": "string" },
+          "artifact_type": {
+            "type": "string",
+            "enum": [
+              "code",
+              "data",
+              "process",
+              "document",
+              "interface",
+              "configuration",
+              "test",
+              "observation",
+              "stakeholder_statement"
+            ]
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "reviewable_location": { "type": "string" },
+          "captured_at": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+          "capability_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^CAP-[0-9]{3}$" }
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

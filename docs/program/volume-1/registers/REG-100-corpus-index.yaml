@@ -1,0 +1,45 @@
+register_id: REG-100
+name: Volume 1 Corpus Index
+status: IN_REVIEW
+version: 0.1.0
+records:
+  - id: V1-00
+    title: Volume Control and Inheritance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-00-volume-control-and-inheritance.md
+    gate: V1-G1
+  - id: V1-01
+    title: Qualification Methodology
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-01-qualification-methodology.md
+    gate: V1-G1
+  - id: V1-02
+    title: Source and Evidence Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-02-source-and-evidence-model.md
+    gate: V1-G1
+  - id: V1-03
+    title: Capability Disposition Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-03-capability-disposition-standard.md
+    gate: V1-G1
+  - id: V1-04
+    title: Current-State Evidence Quality Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-04-current-state-evidence-quality-standard.md
+    gate: V1-G1

@@ -1,0 +1,10 @@
+register_id: REG-104
+name: Finding Register
+status: IN_REVIEW
+version: 0.1.0
+# Qualification findings (capability gaps, duplicated capability, prototype debt,
+# hardcoded assumptions, architectural accidents, production-readiness gaps,
+# reusable value, constraints). Empty in Package 1: findings are recorded during
+# substantive qualification (Packages 2-4). A finding does not authorize
+# implementation on its own (Volume 1 operating rule; Gate V1-G1).
+records: []

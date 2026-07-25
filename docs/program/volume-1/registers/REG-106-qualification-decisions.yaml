@@ -1,0 +1,10 @@
+register_id: REG-106
+name: Qualification Decision Register
+status: IN_REVIEW
+version: 0.1.0
+# Per-capability target dispositions (ADOPT, ADAPT, CONSOLIDATE, RETAIN, REBUILD,
+# DEFER, EXTERNALIZE, RETIRE). Empty in Package 1: dispositions are decided during
+# convergence (Package 5). No qualification decision may set
+# authorizes_implementation true unless it is executive_accepted and names an
+# authorizing gate — Volume 1 findings alone never authorize construction.
+records: []

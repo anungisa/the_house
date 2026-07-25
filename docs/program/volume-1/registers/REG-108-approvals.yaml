@@ -1,0 +1,62 @@
+register_id: REG-108
+name: Volume 1 Approval Register
+status: IN_REVIEW
+version: 0.1.0
+# Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
+# the RATIFIED framework chapters; the Gate V1-G1 authorization records the
+# qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
+# by the separate Package 1 closure and freeze commit.
+records:
+  - id: APP-V1-001
+    artifact_id: V1-00
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Volume 0 freeze preserved; Volume 1 inherits Volume 0 controls unchanged
+      - Executive organizational acceptance (Nolan, D0) pending
+    approved_at: null
+  - id: APP-V1-002
+    artifact_id: V1-01
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Independent validation not claimed
+    approved_at: null
+  - id: APP-V1-003
+    artifact_id: V1-02
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Source classifications and evidence-quality scale are normative for Volume 1
+    approved_at: null
+  - id: APP-V1-004
+    artifact_id: V1-03
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Disposition vocabulary is closed; new dispositions require amendment
+    approved_at: null
+  - id: APP-V1-005
+    artifact_id: V1-04
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - A recent timestamp must not automatically raise evidence quality
+    approved_at: null
+  - id: APP-V1-006
+    artifact_id: GATE-V1-G1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: QUALIFICATION_SYSTEM_READY
+    conditions:
+      - Internal-progression gate authorized by the Accountable Program Authority
+      - No implementation authorized by Volume 1 findings alone
+      - Executive organizational acceptance (Nolan, D0) pending before material commitment
+      - Independent assurance reserved for independence-requiring claims
+    approved_at: null

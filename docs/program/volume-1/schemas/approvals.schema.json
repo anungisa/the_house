@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "approvals.schema.json",
+  "title": "REG-108 Volume 1 Approval Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-108" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "artifact_id", "approver_role", "approval_state", "evidence_label", "conditions"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^APP-V1-[0-9]{3}$" },
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^(V1-([0-9]{2}|[A-Z])|PACKAGE-[0-9]|DEC-V1-[0-9]{3}|GATE-V1-G[0-9])$"
+          },
+          "approver_role": { "type": "string" },
+          "approval_state": {
+            "type": "string",
+            "enum": ["authorized", "ratified", "withdrawn", "expired", "executive_accepted"]
+          },
+          "evidence_label": { "$ref": "common.schema.json#/definitions/evidenceLabel" },
+          "finding": { "type": "string" },
+          "gate_disposition": { "type": "string" },
+          "scope": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/documentId" }
+          },
+          "conditions": { "type": "array", "items": { "type": "string" } },
+          "closure_record": { "type": "string", "pattern": "^V1-[A-Z]$" },
+          "base_commit": { "type": "string" },
+          "amendment_process": { "type": "string" },
+          "frozen": { "type": "boolean" },
+          "frozen_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "version"],
+              "properties": {
+                "id": { "$ref": "common.schema.json#/definitions/documentId" },
+                "version": { "$ref": "common.schema.json#/definitions/semver" }
+              }
+            }
+          },
+          "approved_at": {
+            "oneOf": [
+              { "type": "null" },
+              { "$ref": "common.schema.json#/definitions/isoDate" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

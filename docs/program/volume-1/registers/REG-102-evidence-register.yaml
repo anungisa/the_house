@@ -1,0 +1,9 @@
+register_id: REG-102
+name: Evidence Register
+status: IN_REVIEW
+version: 0.1.0
+# Reviewable evidence items supporting Volume 1 findings and dispositions.
+# Empty in Package 1: evidence is captured during substantive qualification
+# (Packages 2-4). Each entry must cite a controlled source (REG-101) and carry
+# an evidence rating (E0-E4) that a recent timestamp alone must not inflate.
+records: []

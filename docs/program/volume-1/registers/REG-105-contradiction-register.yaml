@@ -1,0 +1,10 @@
+register_id: REG-105
+name: Contradiction Register
+status: IN_REVIEW
+version: 0.1.0
+# Recorded contradictions between sources of differing classification (e.g.
+# policy truth vs operational truth vs vendor claim). Empty in Package 1:
+# contradictions are surfaced during substantive qualification (Packages 2-4).
+# Each contradiction records at least two conflicting positions and a status;
+# an unresolved contradiction is itself a first-class, reportable finding.
+records: []

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "contradictions.schema.json",
+  "title": "REG-105 Contradiction Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-105" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "positions", "status", "evidence_rating"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^CON-[0-9]{3}$" },
+          "statement": { "type": "string" },
+          "positions": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["source_ref", "classification", "assertion"],
+              "properties": {
+                "source_ref": { "type": "string", "pattern": "^SRC-[0-9]{3}$" },
+                "classification": { "$ref": "common.schema.json#/definitions/sourceClassification" },
+                "assertion": { "type": "string" }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "under_review", "resolved", "unresolvable"]
+          },
+          "resolution": { "type": "string" },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

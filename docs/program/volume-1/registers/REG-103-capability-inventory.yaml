@@ -1,0 +1,10 @@
+register_id: REG-103
+name: Capability Inventory
+status: IN_REVIEW
+version: 0.1.0
+# Business capabilities observed across the four realities (Curling Canada
+# operating reality, Base44 product intelligence, The House implementation,
+# external systems). Empty in Package 1: capabilities are inventoried during
+# substantive qualification (Packages 2-4). Each capability traces to its
+# sources, target House domain, target Button experience, and disposition.
+records: []
