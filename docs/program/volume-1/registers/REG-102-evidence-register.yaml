@@ -1,0 +1,869 @@
+register_id: REG-102
+name: Evidence Register
+status: IN_REVIEW
+version: 0.6.0
+# Reviewable evidence items supporting Volume 1 Package 2 (Base44) findings and
+# dispositions. Each entry cites a controlled source (REG-101), a reviewable
+# location, an artifact type, and an evidence rating (E0-E4). Structural items
+# are E3 (reproducible deterministic extraction); product-value and stakeholder
+# claims are capped lower pending independent evidence. Notes record extraction
+# method, reproducibility, and limitations.
+#
+# v0.3.0 (Package 2 corrective closure, DEC-V1-011): every evidence record was
+# reconciled to the program's DECLARED CURRENT Base44 export (SRC-001,
+# curl-link-hub (7)). EV-001..EV-016 now report current-export (7) counts and
+# cite the (7) extraction (legacy/curl-link-hub-7-extracted) and the
+# regenerated deterministic artifacts (generated/base44/*.json); the superseded
+# (5) equivalents are preserved at generated/base44/historical-5/*.json under
+# historical source SRC-009 (REG-101). EV-017..EV-022 add current-export
+# evidence for the source manifest/fingerprint, the (5)->(7) delta, the two
+# domains missed by the original (5) assessment (IEBOK -> CAP-017, Jobs board ->
+# CAP-018), the re-verified affiliation lifecycle, and the preserved historical
+# (5) baseline. The evidence lineage is therefore SRC-001 (current export) ->
+# generated extraction artifact -> EV current evidence record -> FND current
+# finding (REG-104) -> QD qualification decision (REG-106).
+records:
+  - id: EV-001
+    source_ref: SRC-008
+    summary: >-
+      App.jsx declares 155 routes with guard distribution none=46, RoleGate=83,
+      ProtectedRoute=23, FeatureGate=3. 46 authenticated routes carry no role
+      guard at all.
+    artifact_type: interface
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/App.jsx; generated/base44/route-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014, CAP-015]
+    notes: >-
+      Extraction method: analyze-base44-routes.mjs regex over Route nodes.
+      Reproducible via npm run qualification:base44 -- --source-id SRC-001.
+      Current export (7); historical (5) reported 148 routes (none=45,
+      RoleGate=82, ProtectedRoute=18) at generated/base44/historical-5/. The 7
+      net-new routes are /iebok/* and /jobs* (delta-5-to-7.json). Limitation:
+      dynamic/param routes counted by literal declaration only.
+  - id: EV-002
+    source_ref: SRC-004
+    summary: >-
+      95 entity schemas; 93 declare an app-layer rls block (Mongo-style, not a
+      database boundary); 53 declare a status/state enum.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/*.jsonc; generated/base44/entity-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-002, CAP-004]
+    notes: >-
+      Extraction via analyze-base44-entities.mjs (JSONC-tolerant parse).
+      Reproducible. Current export (7); historical (5) reported 87 entities
+      (85 rls, 49 status enum) at generated/base44/historical-5/. The 8 net-new
+      entities are the IEBOK and Jobs domains (delta-5-to-7.json).
+  - id: EV-003
+    source_ref: SRC-005
+    summary: >-
+      101 server functions (99 Deno.serve handlers). Only 2 reference any
+      permission check; 68 mutate entities with no server-side permission check;
+      80 use asServiceRole privilege escalation.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Extraction via analyze-base44-functions.mjs (markers Deno.serve,
+      enforce/checkPermission, entity mutation calls, asServiceRole).
+      Reproducible. Current export (7); historical (5) reported 99 functions
+      (2 checks, 66 mutating-without-check, 78 asServiceRole) at
+      generated/base44/historical-5/ - the missing-authorization posture is
+      confirmed and marginally worse in (7). Limitation: static markers may
+      under- or over-count semantically; corroborated by direct inspection of
+      enforcePermission.
+  - id: EV-004
+    source_ref: SRC-006
+    summary: >-
+      accessMatrix.js declares 132 entries against 155 routes; 23 routes have no
+      matrix entry; 83 routes carry App.jsx-hardcoded roles that diverge from
+      the matrix; canAccessPath defaults unknown paths to OPEN.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/lib/access/; generated/base44/access-matrix-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Extraction via analyze-base44-access.mjs comparing matrix to routes.
+      Reproducible. Current export (7); historical (5) reported 130 entries,
+      18 routes missing, 82 drift at generated/base44/historical-5/ - drift is
+      confirmed and marginally worse in (7). unknown_path_defaults_open remains
+      true.
+  - id: EV-005
+    source_ref: SRC-006
+    summary: >-
+      roleGroups.js documents TWO role vocabularies (23 fine role keys plus
+      coarse buckets admin/ptso/club/curler) reconciled at lookup time; routes
+      mix both directly.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/lib/access/roleGroups.js
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Direct inspection of the current export (7); corroborated by 23 distinct
+      route role tokens in route-inventory.json (dual_role_vocabulary=true in
+      access-matrix-analysis.json). Unchanged from historical (5).
+  - id: EV-006
+    source_ref: SRC-004
+    summary: >-
+      Application entity models club affiliation with status enum submitted,
+      ptso_review, ptso_approved, cc_review, approved, rejected, more_info_needed
+      (default submitted) and application_type new_affiliation/renewal/transfer.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/Application.jsonc
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-001]
+    notes: >-
+      Direct inspection of the affiliation entity schema in the current export
+      (7). Reproducible. The lifecycle enum is unchanged from historical (5);
+      see EV-022 for the re-verified current affiliation lifecycle evidence.
+  - id: EV-007
+    source_ref: SRC-005
+    summary: >-
+      enforcePermission/entry.ts is a template documenting that server-side
+      permission checks should be called in EVERY backend function and that
+      frontend checks are UX only - yet only 2 of 101 functions reference such a
+      check.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/functions/enforcePermission/entry.ts
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Documented intent vs measured adoption; both mechanically verifiable in
+      the current export (7). Historical (5) was 2 of 99.
+  - id: EV-008
+    source_ref: SRC-001
+    summary: >-
+      package.json depends on @stripe/stripe-js and @stripe/react-stripe-js; a
+      payments/fees capability was explored via Stripe.
+    artifact_type: configuration
+    evidence_rating: E2
+    reviewable_location: legacy/curl-link-hub-7-extracted/package.json; generated/base44/dependency-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-008]
+    notes: >-
+      Dependency presence corroborates intent (E2). It does NOT establish
+      correct payment-state handling or reconciliation, which remain unproven.
+      Current export (7): dependency set (65 deps, 17 dev, 27 Radix) is
+      identical to historical (5); Stripe remains present.
+  - id: EV-009
+    source_ref: SRC-008
+    summary: >-
+      Localization is a homegrown i18n (src/lib/i18n/useTranslation.js) plus an
+      admin Translations page and TranslationManager; not a standard i18n
+      framework. 5 i18n files present.
+    artifact_type: code
+    evidence_rating: E2
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/lib/i18n; generated/base44/localization-inventory.json
+    captured_at: '2026-07-25'
+    notes: >-
+      Presence is E2. Bilingual (English/French) coverage completeness and
+      quality are NOT established and remain an open evidence question. Current
+      export (7): 5 i18n files (identical framework to historical (5)); 46
+      files reference translation/French.
+  - id: EV-010
+    source_ref: SRC-001
+    summary: >-
+      No automated test suite and no CI configuration are present in the export
+      (no test directories, no CI workflows). Test/CI absence.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted (export root); generated/base44/tests-ci-inventory.json
+    captured_at: '2026-07-25'
+    notes: >-
+      Absence demonstrated by exhaustive file walk and the evidence-based
+      tests/CI detector in the current export (7): 0 test files, no CI config,
+      no runnable test script (tests-ci-inventory.json). Unchanged from
+      historical (5). Limitation: absence of tests in the export does not
+      preclude ad hoc manual testing on the platform.
+  - id: EV-011
+    source_ref: SRC-007
+    summary: >-
+      288 governance-style markdown documents are present in src/ describing
+      authority, continuity, decision governance, and access doctrine.
+    artifact_type: document
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src (*.md)
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-012]
+    notes: >-
+      Count is E3. The documents are design-intent narrative (SRC-007,
+      stakeholder statement); their assertions of implemented behaviour are NOT
+      thereby demonstrated. Current export (7): 288 documents; historical (5)
+      had 231. Volume growth (+57) tracks added IEBOK/Jobs narrative and is not
+      validation.
+  - id: EV-012
+    source_ref: SRC-004
+    summary: >-
+      Application.org_id description states org_id was backfilled 100% to Curling
+      Canada (Pass 2.6) and that the tenant rls branch no longer tolerates an
+      empty org_id - evidence of retrofitted, single-tenant-shaped tenancy.
+    artifact_type: data
+    evidence_rating: E2
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/Application.jsonc
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-002]
+    notes: >-
+      Self-described migration note; indicates tenancy was added late, not
+      designed in. Confirmed in the current export (7); unchanged from (5).
+  - id: EV-013
+    source_ref: SRC-008
+    summary: >-
+      Candidate capability-domain normalization shows heavy overlap: many routes,
+      pages, and dashboards map to multiple domains, signalling duplicated and
+      overlapping surfaces rather than one authoritative surface per capability.
+    artifact_type: process
+    evidence_rating: E2
+    reviewable_location: generated/base44/capability-domain-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-015]
+    notes: >-
+      Overlap is an indicative duplication signal (E2), not a precise duplicate
+      map; specific duplicates are named in findings by direct inspection.
+  - id: EV-014
+    source_ref: SRC-005
+    summary: >-
+      80 of 101 server functions invoke asServiceRole, executing with elevated
+      platform privilege; combined with 2/101 permission checks this broadens
+      the blast radius of missing authorization.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Mechanical marker count; reproducible. Current export (7): 80/101;
+      historical (5) was 78/99. Confirmed and worse.
+  - id: EV-015
+    source_ref: SRC-007
+    summary: >-
+      AFFILIATION_MIGRATION_DOCTRINE.md asserts a Goodwill Baseline: historical
+      affiliation is inherited (a known club is treated as affiliated) while
+      future affiliation is governed, positioning affiliation as the lowest-risk
+      migration spine.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/AFFILIATION_MIGRATION_DOCTRINE.md
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-001]
+    notes: >-
+      Design intent (E1). A useful hypothesis for the first release, but NOT
+      validated by Curling Canada policy or stakeholders in this package.
+      Present in the current export (7).
+  - id: EV-016
+    source_ref: SRC-006
+    summary: >-
+      ACCESS_MATRIX.md claims the matrix is the single source of truth and that
+      enforcement can never drift from what is displayed, while the derivation
+      helper canAccessPath treats unknown paths as open (default-allow).
+    artifact_type: document
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/ACCESS_MATRIX.md; legacy/curl-link-hub-7-extracted/src/lib/access/index.js
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Doctrine vs behaviour; both directly reviewable in the current export (7).
+      unknown_path_defaults_open remains true (access-matrix-analysis.json).
+  # --- CURRENT-EXPORT (7) EVIDENCE ADDED IN THE PACKAGE 2 CORRECTIVE CLOSURE ---
+  - id: EV-017
+    source_ref: SRC-001
+    summary: >-
+      Current declared Base44 export curl-link-hub (7).zip is fingerprinted
+      SHA-256 50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412
+      (3,336,492 bytes, 1,576 files) and extracts reproducibly to
+      legacy/curl-link-hub-7-extracted. Corrected current-state totals: 155
+      routes, 95 entities, 101 server functions, 151 pages, 604 components, 288
+      markdown documents.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: generated/base44/source-manifest.json; legacy/curl-link-hub-7-extracted
+    captured_at: '2026-07-25'
+    notes: >-
+      Immutable source fingerprint (REG-101 SRC-001) binding the corrected
+      Package 2 baseline to the program's declared current export. Extraction is
+      clean (1576 archived files == 1576 extracted files, node_modules
+      excluded). All corrected counts regenerate mechanically via
+      npm run qualification:base44 -- --source-id SRC-001.
+  - id: EV-018
+    source_ref: SRC-001
+    summary: >-
+      Deterministic (5)->(7) delta is strictly additive with zero removals:
+      routes 148->155 (+7), entities 87->95 (+8), functions 99->101 (+2), pages
+      144->151 (+7), components 589->604 (+15). No assessed route, entity, or
+      function was dropped between (5) and (7); the missing-authorization posture
+      is unchanged or marginally worse (mutating-without-check 66->68,
+      asServiceRole 78->80, route-role drift 82->83, routes missing from matrix
+      18->23).
+    artifact_type: process
+    evidence_rating: E3
+    reviewable_location: generated/base44/delta-5-to-7.json; generated/base44/delta-5-to-7.md
+    captured_at: '2026-07-25'
+    notes: >-
+      Establishes that every Package 2 finding raised against (5) surfaces
+      reproduces against (7), and that the original (5)-based assessment was
+      incomplete (it omitted the net-new IEBOK and Jobs domains) rather than
+      wrong on the safety findings. Generated by delta-base44.mjs.
+  - id: EV-019
+    source_ref: SRC-004
+    summary: >-
+      The current export (7) contains an IEBOK knowledge-body domain absent from
+      (5): entities IEBOKArtifact, IEBOKGlossaryTerm, IEBOKMechanic,
+      IEBOKProposal (status lifecycle), IEBOKRelationship, IEBOKWorkingGroup;
+      routes /iebok, /iebok/browse, /iebok/glossary, /iebok/mechanics,
+      /iebok/standards; pages IEBOKBrowser/Glossary/Home/Mechanics/Standards.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities; generated/base44/entity-inventory.json; generated/base44/delta-5-to-7.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-017]
+    notes: >-
+      New-in-current capability domain missed by the original (5) assessment
+      (FND-021). IEBOKProposal carries a status lifecycle and therefore inherits
+      the same direct-mutation production-risk posture as the rest of the corpus.
+      Dispositioned DEFER (QD-017); no as-is adoption.
+  - id: EV-020
+    source_ref: SRC-008
+    summary: >-
+      The current export (7) contains a Jobs-board domain absent from (5):
+      entities JobPosting (status lifecycle) and SavedJob; routes /jobs and
+      /jobs/review; functions expireJobPostings and notifyJobStatus; pages
+      JobBoard and JobReviewQueue; component RejectJobModal.
+    artifact_type: interface
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/pages; generated/base44/route-inventory.json; generated/base44/delta-5-to-7.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-018]
+    notes: >-
+      New-in-current capability domain missed by the original (5) assessment
+      (FND-022). JobPosting carries a status lifecycle advanced by direct
+      mutation (expireJobPostings/notifyJobStatus), inheriting the corpus-wide
+      production-risk posture. Dispositioned DEFER (QD-018); no as-is adoption.
+  - id: EV-021
+    source_ref: SRC-009
+    summary: >-
+      Superseded historical Base44 export curl-link-hub (5).zip is fingerprinted
+      SHA-256 a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95
+      (3,046,971 bytes, 1,485 files). Historical current-state totals: 148
+      routes, 87 entities, 99 server functions. Preserved for longitudinal
+      comparison.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted; generated/base44/historical-5/
+    captured_at: '2026-06-29'
+    notes: >-
+      Historical reference-case baseline (REG-101 SRC-009). This is the export
+      the original Package 2 assessment mistakenly treated as current; it is
+      retained immutably, not deleted, and verifies that no assessed surface was
+      silently dropped between (5) and (7). Regenerated via
+      npm run qualification:base44 -- --source-id SRC-009.
+  - id: EV-022
+    source_ref: SRC-004
+    summary: >-
+      Re-verified affiliation lifecycle in the current export (7): the
+      Application entity retains the submitted -> ptso_review -> ptso_approved ->
+      cc_review -> approved / rejected / more_info_needed status enum, the
+      annual_fee_paid boolean, and ptso_reviewer/cc_reviewer assignment fields;
+      the generic WorkflowStep entity and src/pages/WorkflowBuilder.jsx persist.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/Application.jsonc; legacy/curl-link-hub-7-extracted/base44/entities/WorkflowStep.jsonc; legacy/curl-link-hub-7-extracted/src/pages/WorkflowBuilder.jsx
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-001, CAP-016]
+    notes: >-
+      Confirms the reusable affiliation concept (FND-001) and the direct-mutation
+      lifecycle / generic-workflow-builder production risks (FND-010, FND-012)
+      persist in the current export. The concept is ADAPTED and the mechanism is
+      REBUILT/RETIRED on the Governance Kernel; no as-is adoption.
+  - id: EV-023
+    source_ref: SRC-002
+    summary: >-
+      Repository/runtime fingerprint of The House at the assessed baseline:
+      assessed commit 51795ca8; true runtime-tree last-change commit de6312f8
+      (src + db/migrations only, 2026-07-01); src tree digest 87b32f61 over 184
+      .ts files; migrations digest 884e0b2b over 11 migrations. Everything
+      committed after de6312f8 is documentation-program work, not runtime change.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: docs/program/volume-1/generated/house/source-manifest.json
+    captured_at: '2026-07-25'
+    notes: >-
+      Deterministic anchor for every Package 3 claim; regenerated via
+      npm run qualification:house. Establishes the runtime-vs-documentation
+      distinction the qualification requires.
+  - id: EV-024
+    source_ref: SRC-010
+    summary: >-
+      Persisted governance model: 5 schemas, 26 tables (17 governance), 20
+      tables with row-level security ENABLED and FORCED, 55 policies, 7
+      functions, 9 SECURITY DEFINER blocks (outbox-worker functions, migration
+      0004). Six tenant_id-nullable global-policy tables (state machine / guard
+      catalog) are global configuration and are intentionally not forced-RLS.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: db/migrations; docs/program/volume-1/generated/house/database-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-021]
+    notes: >-
+      Strongest current-state evidence class after executable tests: the schema
+      and RLS posture are demonstrable from committed migrations independent of a
+      running database.
+  - id: EV-025
+    source_ref: SRC-011
+    summary: >-
+      Governance Kernel transition() implements the full ordered algorithm
+      (input validation; idempotency pre-check outside txn; in-txn tenant
+      context; idempotency double-check; entity_state lock; transition
+      resolution with fail-closed on unknown; permission check; guard load with
+      fail-closed on unknown guard; guard evaluation and persistence;
+      approval-required branch that creates a transition_request with NO state
+      mutation; else state update, state_transition journal, audit_event,
+      evidence_object, outbox enqueue; deterministic result). Idempotency is
+      enforced across a kernel pre-check, an in-txn double-check, and a stable
+      outbox dedupe key.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: src/governance/kernel/GovernanceKernel.ts; src/governance/store/PgGovernanceStore.ts
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-019, CAP-028]
+    notes: >-
+      Verified by direct read of the kernel source. Exactly-once execution of
+      approved transitions is enforced by executeApprovedTransitionRequest
+      (idempotent replay, request/entity locks, state-drift fail-closed).
+  - id: EV-026
+    source_ref: SRC-011
+    summary: >-
+      Governed-transition authorization is ROLE-BASED, not resource-aware. The
+      DefaultPermissionChecker input carries no entity id and grants elevated
+      transitions to any actor holding a reviewer-class role; the production
+      DomainBackedAffiliationGuardRepository.actorHasReviewerScope returns
+      roles.some(r => REVIEWER_ROLES.has(r)) with no binding to the specific
+      applicant entity, jurisdiction, or region.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: src/governance/permissions/PermissionChecker.ts; src/domains/affiliation/DomainBackedAffiliationGuardRepository.ts; docs/program/volume-1/generated/house/authorization-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-025, CAP-026]
+    notes: >-
+      Confirms P0 finding FND-023 by direct read plus deterministic tooling.
+      Any reviewer-role actor can decide any application in a tenant context.
+  - id: EV-027
+    source_ref: SRC-011
+    summary: >-
+      The seeded AffiliationApplication state machine has 10 states and 12
+      transitions; high-risk transitions (approve/reject/suspend/reinstate/
+      revoke/close/archive) require evidence and (approve/reject/suspend/
+      reinstate/revoke) require approval. All 6 seeded guard codes map exactly to
+      6 implemented guard handlers (no unimplemented or orphan guards). There is
+      NO return-to-applicant / more-information transition and no resubmission
+      path.
+    artifact_type: process
+    evidence_rating: E3
+    reviewable_location: db/migrations/0002_affiliation_application_v1_seed.sql; src/governance/guards/handlers.ts; docs/program/volume-1/generated/house/workflow-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-022, CAP-024, CAP-026]
+    notes: >-
+      Grounds FND-027 (return-for-information/resubmission absent). Notably,
+      Base44's Application entity DOES carry a more_info_needed status (EV-022);
+      the House lifecycle does not model it.
+  - id: EV-028
+    source_ref: SRC-011
+    summary: >-
+      Transactional outbox: 8 outbox modules and 4 worker modules. A real Azure
+      Service Bus publisher exists but is config-gated; the DEFAULT publisher is
+      the Noop publisher. Claiming uses FOR UPDATE SKIP LOCKED with
+      locked_until/locked_by leasing; retry backoff is true full jitter. Service
+      Bus sessions are not enabled (V1_SERVICE_BUS_USES_SESSIONS false).
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: src/governance/outbox; src/workers/outbox; docs/program/volume-1/generated/house/integration-outbox-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-020]
+    notes: >-
+      Grounds FND-030: the outbox mechanism is production-shaped but publishes to
+      Noop by default; real delivery is unproven without a broker and a running
+      worker.
+  - id: EV-029
+    source_ref: SRC-011
+    summary: >-
+      Evidence subsystem: in-memory and Azure Blob storage providers; Noop and
+      signature malware scanners with a scan gate; quarantine service + RLS-
+      enforced Pg store. Evidence metadata and audit events are written INSIDE
+      the governance-store transition transaction; kernel-created evidence_object
+      rows carry the state_transition id. However, the HTTP evidence UPLOAD path
+      is independent of the governed transition; there is no end-to-end
+      create-application -> upload -> submit-with-evidence HTTP flow.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: src/governance/evidence; src/governance/kernel/GovernanceKernel.ts; docs/program/volume-1/generated/house/evidence-audit-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-023, CAP-026]
+    notes: >-
+      Grounds FND-025: metadata binding is modeled in the kernel but the upload
+      transport is not wired to the pending decision.
+  - id: EV-030
+    source_ref: SRC-012
+    summary: >-
+      HTTP surface: 28 distinct v1 route paths across 7 adapter groups
+      (affiliation 2, evidence 5, organizations 7, participants 5, facilities 5,
+      workflows 4). The single production composition root
+      createPgAffiliationHttpServer wires 12 dependencies (executor, resolver,
+      evidence, scanner, workflow decision/execution/read, organization read,
+      participant write, facility read/write, readiness) against PostgreSQL-
+      backed, RLS-enforced stores.
+    artifact_type: interface
+    evidence_rating: E3
+    reviewable_location: src/http/server.ts; src/http/composition.ts; docs/program/volume-1/generated/house/api-inventory.json; docs/program/volume-1/generated/house/composition-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-027]
+    notes: >-
+      The production dependency graph is present and centralized (P0 #4
+      satisfied). Declared stubs remain: Noop publisher, in-memory evidence
+      default, edge identity is not token/JWT validation.
+  - id: EV-031
+    source_ref: SRC-012
+    summary: >-
+      The affiliation domain store is READ-only: it exposes fact readers for
+      guards (required fields, documents, compliance flags, fees, season) but no
+      create or update methods, and there is no HTTP endpoint to CREATE an
+      affiliation application or update its facts. The only affiliation write
+      surface is POST /v1/affiliation/applications/:id/transitions/:action,
+      which assumes the application already exists in draft.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: src/domains/affiliation/PgAffiliationApplicationStore.ts; src/http/AffiliationHttpAdapter.ts; src/http/server.ts
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-026]
+    notes: >-
+      Grounds FND-026: without a bootstrap/create path an application must be
+      inserted out-of-band, so the end-to-end affiliation flow cannot complete
+      through the HTTP surface alone.
+  - id: EV-032
+    source_ref: SRC-013
+    summary: >-
+      Test estate: 99 unit test files (1326 cases) and 16 integration test files
+      (333 cases). All 16 integration suites require RUN_DB_TESTS=1 and a live
+      PostgreSQL database; the default hermetic npm test disables the DB path and
+      SKIPS them. vitest.config serializes file execution only under
+      RUN_DB_TESTS=1 to keep the shared-database suites deterministic.
+    artifact_type: test
+    evidence_rating: E3
+    reviewable_location: tests/unit; tests/integration; vitest.config.ts; docs/program/volume-1/generated/house/test-inventory.json
+    captured_at: '2026-07-25'
+    notes: >-
+      Grounds FND-028: the integration suites EXIST but were NOT executed under
+      this assessment. A passing hermetic unit run is not evidence of governed
+      database behaviour or production readiness.
+  - id: EV-033
+    source_ref: SRC-014
+    summary: >-
+      Operational/configuration posture: config fails closed (throws when
+      DATABASE_URL is missing in production-like environments and at API runtime
+      start); secret providers cover env and Azure Key Vault; telemetry has
+      console/in-memory/noop exporters; 11 deployment baseline validators and 6
+      CI workflows exist; infra is Azure Bicep (main + 7 modules + example
+      parameters). No provisioned, running House environment is evidenced.
+    artifact_type: configuration
+    evidence_rating: E2
+    reviewable_location: src/config/index.ts; src/secrets; src/deployment; infra/azure; .github/workflows; docs/program/volume-1/generated/house/operational-readiness.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-029, CAP-030]
+    notes: >-
+      Grounds FND-029: source-level operational controls are present (E2) but
+      runtime/deployment readiness is UNPROVEN because no environment is deployed.
+  - id: EV-034
+    source_ref: SRC-002
+    summary: >-
+      Consolidated non-authoritative automated observations derived from the
+      qualification:house inventories (RLS coverage, resource-aware
+      authorization gap, guard parity, outbox Noop default, evidence binding,
+      DB-gated tests skipped, no deployed environment).
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: docs/program/volume-1/generated/house/automated-observations.json; docs/program/volume-1/generated/house/house-qualification-report.md
+    captured_at: '2026-07-25'
+    notes: >-
+      Observations are evidence input, not decisions. Each is traced to a
+      specific generated inventory and, where it drives a finding, to REG-104.
+  # --- Package 4: current ecosystem and operating-reality evidence (EV-035..041) ---
+  - id: EV-035
+    source_ref: SRC-016
+    summary: >-
+      Structured authority matrix over the ecosystem: 12 systems classified
+      against their bounded authority (synchronization partner, transition
+      platform, execution plane, external system of record, replaceable
+      provider, reporting source, manual control). SYS-001..008 grounded in
+      ratified Volume 0 REG-005; SYS-009..012 are unvalidated and flagged.
+    artifact_type: data
+    evidence_rating: E2
+    reviewable_location: docs/program/volume-1/generated/ecosystem/authority-matrix.json; docs/program/volume-1/generated/ecosystem/system-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-031]
+    notes: >-
+      Deterministically structured by qualification:ecosystem from SRC-016 and
+      SRC-019. No system is automatically retained or retired; target
+      dispositions are UNPROVEN hypotheses.
+  - id: EV-036
+    source_ref: SRC-020
+    summary: >-
+      End-to-end structured trace of the current club-affiliation process (12
+      steps) with per-step actor, accountable authority, system, manual
+      artifact, decision, failure mode, authoritative source, and reconciliation
+      requirement; includes the historical/goodwill affiliation baseline.
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/process-inventory.json; docs/program/volume-1/generated/ecosystem/affiliation-current-state-report.md
+    captured_at: TBD
+    capability_refs: [CAP-032]
+    notes: >-
+      STAKEHOLDER_STATEMENT pending club/PTSO/Curling Canada validation. Current
+      practice is not treated as automatically desirable.
+  - id: EV-037
+    source_ref: SRC-019
+    summary: >-
+      Data-flow inventory of material data elements (organizations, identities,
+      membership, affiliation, payments, compliance, documents, support) with
+      current source, claimed authority, transfer mechanism, duplicate copies,
+      reconciliation method, quality concern, and privacy classification.
+    artifact_type: data
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/data-flow-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-033]
+    notes: >-
+      OPERATIONAL_TRUTH/ASSUMPTION pending validation. High-privacy elements
+      (identities, membership) flagged for Canadian privacy obligations.
+  - id: EV-038
+    source_ref: SRC-019
+    summary: >-
+      Reconciliation inventory: system- and data-scoped reconciliation points,
+      including the payment-processor-vs-accounting-ledger boundary and the
+      manual cross-system reconciliation currently performed in spreadsheets.
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/reconciliation-inventory.json; docs/program/volume-1/generated/ecosystem/integration-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-034]
+    notes: >-
+      Reconciliation boundaries for SYS-003/SYS-008 are grounded in ratified
+      Volume 0; current manual reconciliation is stakeholder-described pending
+      validation.
+  - id: EV-039
+    source_ref: SRC-018
+    summary: >-
+      Contractual and transition constraint inventory: incumbent
+      registration-provider data-export/transition terms and recorded migration
+      risk, payment economics, bilingual/accessibility and privacy obligations,
+      pilot/rollout dependencies, and external API availability.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/contract-constraint-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-035]
+    notes: >-
+      CONTRACTUAL_TRUTH/VENDOR_CLAIM pending vendor and financial (Helene)
+      validation; migration risk grounded in Volume 0 REG-003 (SRC-018).
+  - id: EV-040
+    source_ref: SRC-019
+    summary: >-
+      Operating-risk inventory: 7 current-state findings (continuity, manual
+      process, reconciliation, reviewer routing, migration, authority
+      preservation, identity roles) and 2 registered contradictions
+      (master-data authority, evidence binding).
+    artifact_type: observation
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/operating-risk-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-036]
+    notes: >-
+      Findings are evidence input, not decisions; each becomes a target
+      constraint in V1-20, not an implementation authorization.
+  - id: EV-041
+    source_ref: SRC-017
+    summary: >-
+      Authority-boundary mapping across national (Curling Canada), provincial
+      (Member Associations/PTSOs), club, and individual tiers, distinguishing
+      formal policy authority from current operational practice.
+    artifact_type: document
+    evidence_rating: E2
+    reviewable_location: docs/program/volume-1/generated/ecosystem/authority-matrix.json
+    captured_at: TBD
+    capability_refs: [CAP-031]
+    notes: >-
+      National/provincial authority tiers grounded in ratified Volume 0 V0-06;
+      individual role-multiplicity is OPERATIONAL_TRUTH pending validation.
+  # --- Package 5: convergence and target-disposition evidence (EV-042..053) ---
+  - id: EV-042
+    source_ref: SRC-022
+    summary: >-
+      Capability-layer disposition matrix: 12 unified target capabilities
+      (CAP-037..CAP-048) each dispositioned independently across the experience,
+      domain, data-authority, and integration layers (48 layer cells), with the
+      contributing source recorded per cell.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/capability-layer-matrix.json
+    captured_at: TBD
+    capability_refs: [CAP-037, CAP-038, CAP-039, CAP-040, CAP-041, CAP-042, CAP-043, CAP-044, CAP-045, CAP-046, CAP-047, CAP-048]
+    notes: >-
+      Structured from the controlled convergence input (SRC-022). Dispositions
+      are decisions recorded in the input, not invented by tooling; none
+      authorizes implementation.
+  - id: EV-043
+    source_ref: SRC-022
+    summary: >-
+      Base44 / The House / ecosystem / external-system contribution crosswalk:
+      per-capability mapping of what each evidence stream contributes to the
+      target, keeping Base44 as product evidence rather than production
+      authority.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/base44-house-ecosystem-crosswalk.json
+    captured_at: TBD
+    capability_refs: [CAP-037, CAP-038, CAP-039, CAP-040, CAP-041, CAP-042]
+    notes: >-
+      Newer or more polished evidence is not treated as automatically
+      authoritative; contribution is qualified per capability.
+  - id: EV-044
+    source_ref: SRC-022
+    summary: >-
+      Target system-authority matrix across 13 governed domains: authoritative
+      source, execution system, external dependency, transition authority, and
+      the unresolved condition (if any) for each domain.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/system-authority-matrix.json
+    captured_at: TBD
+    notes: >-
+      Externalized systems retain their authority; transitional authority is
+      recorded with an explicit unresolved condition where not yet validated.
+  - id: EV-045
+    source_ref: SRC-022
+    summary: >-
+      Target data-authority matrix across 13 governed domains: authoritative
+      source, read model, transition authority, and unresolved condition per
+      data domain.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/data-authority-matrix.json
+    captured_at: TBD
+    notes: >-
+      Curling Canada is the intended master-data authority (V0-06); unresolved
+      migration-era authority is recorded, not assumed resolved.
+  - id: EV-046
+    source_ref: SRC-022
+    summary: >-
+      Target reconciliation matrix across 13 governed domains: inbound and
+      outbound reconciliation obligations and external dependencies per domain.
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/reconciliation-matrix.json
+    captured_at: TBD
+    notes: >-
+      Reconciliation boundaries inherit the ratified Volume 0 authority model;
+      current manual reconciliation is stakeholder-described pending validation.
+  - id: EV-047
+    source_ref: SRC-022
+    summary: >-
+      Affiliation target operating model: a 15-step target flow with governed
+      transition ownership and three governed transition pathways (continuity
+      confirmation, renewal with remediation, new affiliation).
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/affiliation-target-flow.json
+    captured_at: TBD
+    capability_refs: [CAP-040]
+    notes: >-
+      The House owns governed lifecycle state; the experience layer presents it.
+      The historical/goodwill population is represented by the continuity
+      pathway.
+  - id: EV-048
+    source_ref: SRC-022
+    summary: >-
+      First-release affiliation boundary: the smallest legitimate first
+      affiliation release (15 included capabilities) with 6 explicit exclusions
+      deferred until the vertical is proven.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/first-release-boundary.json
+    captured_at: TBD
+    capability_refs: [CAP-040]
+    notes: >-
+      Scope-controlled boundary; exclusions are explicit and do not authorize
+      implementation of the included set.
+  - id: EV-049
+    source_ref: SRC-022
+    summary: >-
+      Contradiction disposition set: material unresolved contradictions
+      (master-data authority, evidence binding, registration-system transition
+      authority) each retained open with its controlling claim type.
+    artifact_type: observation
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/contradiction-disposition.json
+    captured_at: TBD
+    notes: >-
+      No contradiction is force-closed and none is resolved with the wrong
+      authority type; each remains open pending the correct evidence.
+  - id: EV-050
+    source_ref: SRC-022
+    summary: >-
+      Stakeholder validation backlog: the pending consultations (Jen, Helene,
+      Member Associations, vendors, Nolan) with the specific claim each blocks.
+    artifact_type: observation
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/stakeholder-validation-backlog.json
+    captured_at: TBD
+    notes: >-
+      Pending consultation blocks only the affected claim, not the package; no
+      stakeholder validation is fabricated.
+  - id: EV-051
+    source_ref: SRC-022
+    summary: >-
+      Transition-constraint inventory (TC-001..TC-015): evidence-backed
+      constraints on any future transition, each with owner, evidence required,
+      current confidence, affected decision, and future blocking gate.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/transition-constraint-inventory.json
+    captured_at: TBD
+    notes: >-
+      Constraints only; NOT the master development plan. A later plan must
+      respect these, not the reverse.
+  - id: EV-052
+    source_ref: SRC-023
+    summary: >-
+      House unit-test execution record reconciling the static Package 3 case
+      inventory (1326 lexical it/test tokens) against executed behaviour: 1300
+      passed, 0 skipped, 0 todo, 0 excluded, 99 files (npx vitest run
+      tests/unit, 2026-07-25).
+    artifact_type: test
+    evidence_rating: E3
+    reviewable_location: docs/program/volume-1/generated/convergence/test-reconciliation.json
+    captured_at: '2026-07-25'
+    notes: >-
+      The 26-case gap is a parser-semantics artifact (lexical token count vs
+      runtime case count; static count cannot expand it.each()). Controlling
+      figure: 1300 executed and passed. Narrow evidence correction; does not
+      modify the frozen Package 3 artifacts.
+  - id: EV-053
+    source_ref: SRC-022
+    summary: >-
+      Convergence source-baseline summary and report binding the three ratified
+      baselines (Base44 SRC-001, The House SRC-002, ecosystem SRC-019) with the
+      evidence-precedence rules that govern which stream controls each claim
+      type.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/source-baseline-summary.json; docs/program/volume-1/generated/convergence/convergence-report.md
+    captured_at: TBD
+    notes: >-
+      Precedence rules ensure implementation truth controls "does it work",
+      operating reality controls "how does the process run", and policy truth
+      controls authority. No new primary evidence is introduced.
+

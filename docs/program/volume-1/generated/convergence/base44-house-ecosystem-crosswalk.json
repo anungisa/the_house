@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "9c0f04f924f0fe799999d0cd960d3f2a2001f165",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total_capabilities": 12,
+    "note": "Base44 / The House / ecosystem / external-system contribution per capability. Base44 remains product evidence, not production authority."
+  },
+  "crosswalk": [
+    {
+      "capability_id": "CAP-037",
+      "capability": "Club recognition and establishment",
+      "base44": "Guided onboarding experience concept (V1-06, V1-09).",
+      "the_house": "Organization registry read/write; no create/bootstrap path (V1-11, V1-14.5).",
+      "ecosystem_current_process": "Manual club recognition via email/spreadsheet (V1-16).",
+      "external_system": "Incumbent registration provider (transitional) (SRC-018).",
+      "release_hypothesis": "Included in first release (recognition or establishment)."
+    },
+    {
+      "capability_id": "CAP-038",
+      "capability": "Jurisdiction resolution",
+      "base44": "None material (V1-07).",
+      "the_house": "No jurisdiction/assignment model today (V1-14.5).",
+      "ecosystem_current_process": "Jurisdiction known informally; no system routing (V1-16, FND-037).",
+      "external_system": "Provincial/PTSO authority (Volume 0 doctrine).",
+      "release_hypothesis": "Included in first release (jurisdiction resolution)."
+    },
+    {
+      "capability_id": "CAP-039",
+      "capability": "Seasonal affiliation lifecycle",
+      "base44": "Tiered affiliation concept (CAP-001, V1-07) — strongest reusable product asset.",
+      "the_house": "Governance Kernel + affiliation FSM, guards, idempotency (V1-12).",
+      "ecosystem_current_process": "Manual status tracking in email/spreadsheet (V1-16).",
+      "external_system": "None for state authority.",
+      "release_hypothesis": "Included in first release (seasonal affiliation creation + lifecycle)."
+    },
+    {
+      "capability_id": "CAP-040",
+      "capability": "Versioned affiliation requirements",
+      "base44": "Requirement presentation concept (V1-06).",
+      "the_house": "Policy versioning primitives; requirements not yet versioned (V1-14.3).",
+      "ecosystem_current_process": "Requirements applied by staff judgement (V1-16).",
+      "external_system": "None.",
+      "release_hypothesis": "Included in first release (versioned requirements)."
+    },
+    {
+      "capability_id": "CAP-041",
+      "capability": "Evidence capture and binding",
+      "base44": "Upload UX concept (V1-06).",
+      "the_house": "Evidence metadata, hashing, storage, malware scan/quarantine; upload path unwired (V1-12, V1-14.3).",
+      "ecosystem_current_process": "Documents emailed and filed manually (V1-16, DATA-DOCS).",
+      "external_system": "Evidence storage/scanning provider.",
+      "release_hypothesis": "Included in first release (evidence binding)."
+    },
+    {
+      "capability_id": "CAP-042",
+      "capability": "Fee determination",
+      "base44": "Fee presentation concept (V1-06).",
+      "the_house": "No fee-policy domain today; would be governed domain state (V1-11).",
+      "ecosystem_current_process": "Fees computed manually and invoiced (V1-16, DATA-PAYMENTS).",
+      "external_system": "Payment processor executes charges (SRC-007); accounting retains ledger truth (SRC-012).",
+      "release_hypothesis": "Included in first release (fee determination + payment-reconciliation boundary)."
+    },
+    {
+      "capability_id": "CAP-043",
+      "capability": "Reviewer routing and assignment",
+      "base44": "None material (V1-07).",
+      "the_house": "No reviewer routing; role-only authorization (V1-14.4).",
+      "ecosystem_current_process": "Reviewer chosen manually by staff (V1-16, FND-037).",
+      "external_system": "None.",
+      "release_hypothesis": "Included in first release (assigned reviewer routing)."
+    },
+    {
+      "capability_id": "CAP-044",
+      "capability": "Return-for-information and resubmission",
+      "base44": "Guided correction UX concept (V1-06).",
+      "the_house": "FSM lacks return-for-information transition (V1-14.3).",
+      "ecosystem_current_process": "Back-and-forth handled by email (V1-16).",
+      "external_system": "None.",
+      "release_hypothesis": "Included in first release (return and resubmission)."
+    },
+    {
+      "capability_id": "CAP-045",
+      "capability": "Governed decision and exactly-once activation",
+      "base44": "Status display concept (V1-06).",
+      "the_house": "Kernel transition + idempotency + outbox exactly-once (V1-12).",
+      "ecosystem_current_process": "Activation recorded manually (V1-16).",
+      "external_system": "None.",
+      "release_hypothesis": "Included in first release (governed decision + exactly-once activation)."
+    },
+    {
+      "capability_id": "CAP-046",
+      "capability": "Payment execution",
+      "base44": "Checkout hand-off UX concept (V1-06).",
+      "the_house": "None (not a payment processor).",
+      "ecosystem_current_process": "Payments taken via existing processors (V1-18, DATA-PAYMENTS).",
+      "external_system": "Payment processors (SRC-007) — execute transactions, do not define fee policy.",
+      "release_hypothesis": "Included at the payment-reconciliation boundary only (not full billing)."
+    },
+    {
+      "capability_id": "CAP-047",
+      "capability": "Accounting and ledger truth",
+      "base44": "None (V1-07).",
+      "the_house": "None (not an accounting system).",
+      "ecosystem_current_process": "Accounting system retains ledger authority (V1-18, SRC-012).",
+      "external_system": "Accounting system (SRC-012).",
+      "release_hypothesis": "Externalized; only the reconciliation boundary is in first release."
+    },
+    {
+      "capability_id": "CAP-048",
+      "capability": "Authoritative status projection",
+      "base44": "Client-facing guided experience (V1-06, V1-09) — Button role.",
+      "the_house": "Authoritative state + read model + outbox projection (V1-11, V1-12).",
+      "ecosystem_current_process": "Status communicated ad hoc (V1-16).",
+      "external_system": "The Button (experience layer), downstream integrations.",
+      "release_hypothesis": "Included in first release (Button status + required-action view + notifications + audit visibility)."
+    }
+  ]
+}

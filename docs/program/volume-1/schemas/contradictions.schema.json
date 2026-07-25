@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "contradictions.schema.json",
+  "title": "REG-105 Contradiction Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-105" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "positions", "status", "evidence_rating"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^CON-[0-9]{3}$" },
+          "statement": { "type": "string" },
+          "positions": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["source_ref", "classification", "assertion"],
+              "properties": {
+                "source_ref": { "type": "string", "pattern": "^SRC-[0-9]{3}$" },
+                "classification": { "$ref": "common.schema.json#/definitions/sourceClassification" },
+                "assertion": { "type": "string" }
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "under_review", "resolved", "unresolvable"]
+          },
+          "resolution": { "type": "string" },
+          "current_state_validation": {
+            "type": "string",
+            "description": "Package 2 corrective-closure revalidation of the contradiction against the current declared export (SRC-001, curl-link-hub (7)). Set during the source-baseline correction (DEC-V1-011).",
+            "enum": [
+              "CONFIRMED_IN_CURRENT",
+              "CHANGED_IN_CURRENT",
+              "RESOLVED_IN_CURRENT",
+              "NEW_IN_CURRENT",
+              "HISTORICAL_ONLY",
+              "NOT_REPRODUCED",
+              "REQUIRES_MANUAL_REVIEW"
+            ]
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1009 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_id": "SRC-001",
+    "source_label": "Base44 current declared export (7)",
+    "source_archive": "curl-link-hub (7).zip",
+    "source_sha256": "50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412",
+    "source_extract_dir": "legacy/curl-link-hub-7-extracted"
+  },
+  "summary": {
+    "matrix_entries": 132,
+    "declared_role_keys": 23,
+    "routes_missing_from_matrix": 23,
+    "matrix_entries_without_route": 4,
+    "route_role_drift": 83,
+    "unknown_path_defaults_open": true,
+    "dual_role_vocabulary": true
+  },
+  "routes_missing_from_matrix": [
+    {
+      "path": "/login",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/register",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/forgot-password",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/reset-password",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/unauthorized",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/m/feed",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/m/profile",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/m/games",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/m/standings",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/m/live-scores",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/m/results",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/club-success",
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ]
+    },
+    {
+      "path": "/season-reconciliation",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin"
+      ]
+    },
+    {
+      "path": "/bc-data-resolution",
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ]
+    },
+    {
+      "path": "/open-programs",
+      "guard": "none",
+      "roles": []
+    },
+    {
+      "path": "/institutional-readiness",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ]
+    },
+    {
+      "path": "/iebok",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ]
+    },
+    {
+      "path": "/iebok/browse",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ]
+    },
+    {
+      "path": "/iebok/mechanics",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ]
+    },
+    {
+      "path": "/iebok/standards",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ]
+    },
+    {
+      "path": "/iebok/glossary",
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ]
+    },
+    {
+      "path": "*",
+      "guard": "none",
+      "roles": []
+    }
+  ],
+  "matrix_entries_without_route": [
+    "/scorekeeper",
+    "/game",
+    "/event",
+    "/survey"
+  ],
+  "route_role_drift": [
+    {
+      "path": "/dashboard/staff",
+      "app_jsx_roles": [
+        "super_admin",
+        "cc_staff",
+        "ptso_admin",
+        "executive"
+      ],
+      "matrix_roles": [
+        "cc_staff",
+        "ptso_admin"
+      ]
+    },
+    {
+      "path": "/standings",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "matrix_roles": [
+        "curler"
+      ]
+    },
+    {
+      "path": "/results",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "matrix_roles": [
+        "curler"
+      ]
+    },
+    {
+      "path": "/live-scores",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "matrix_roles": [
+        "curler"
+      ]
+    },
+    {
+      "path": "/games",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "matrix_roles": [
+        "curler"
+      ]
+    },
+    {
+      "path": "/surveys",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/survey-analytics",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/capacity-planner",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/qa-personas",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/survey-density",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/applications",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/club-360",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/ptso-summary",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/clubs",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/data-spine-audit",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/workflow-builder",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": [
+        "governance"
+      ]
+    },
+    {
+      "path": "/compare",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/ptso-rules",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/directory",
+      "app_jsx_roles": [
+        "admin",
+        "curler"
+      ],
+      "matrix_roles": [
+        "curler"
+      ]
+    },
+    {
+      "path": "/bulk-approval",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/invoice-automation",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/reports",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/sport-canada-report",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/revenue-analytics",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/revenue-forecast",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/members",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/households",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/community-penetration",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/longitudinal",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/data-import",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "super_admin"
+      ]
+    },
+    {
+      "path": "/ptso-data-review",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/ptso-import-mapping",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/alias-manager",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/canonical-club-audit",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": [
+        "super_admin"
+      ]
+    },
+    {
+      "path": "/leagues",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/facilities",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/expenses",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/waivers",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/strategic-planning",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/platform/system-health",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/audit",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/audit-explorer",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/access-audit",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/sync-status",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/settings",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/maintenance",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/platform/webhook-failures",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/access-matrix",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/financial-reports",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/integration-bridge",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/learn-to-curl",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/operational-intelligence",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/integrations",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/analytics",
+      "app_jsx_roles": [
+        "admin",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/brand-customization",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": [
+        "communications"
+      ]
+    },
+    {
+      "path": "/data-privacy",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/gdpr-compliance",
+      "app_jsx_roles": [
+        "admin"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/investigation",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/event-command-center",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/finance-reconciliation",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/user-insights",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/event-operations",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "club"
+      ]
+    },
+    {
+      "path": "/events-ops",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "ptso"
+      ]
+    },
+    {
+      "path": "/national-operations",
+      "app_jsx_roles": [
+        "super_admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/knowledge-hub",
+      "app_jsx_roles": [
+        "super_admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/finance-operations",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "cc_staff",
+        "finance",
+        "ptso_admin"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "ptso_admin"
+      ]
+    },
+    {
+      "path": "/club-services",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "club_services"
+      ],
+      "matrix_roles": [
+        "club_services"
+      ]
+    },
+    {
+      "path": "/governance",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "governance"
+      ],
+      "matrix_roles": [
+        "cc_staff",
+        "governance"
+      ]
+    },
+    {
+      "path": "/governance-hub",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "governance"
+      ],
+      "matrix_roles": [
+        "cc_staff",
+        "governance"
+      ]
+    },
+    {
+      "path": "/governance-trust",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "governance",
+        "ptso"
+      ],
+      "matrix_roles": [
+        "cc_staff",
+        "governance",
+        "ptso"
+      ]
+    },
+    {
+      "path": "/revenue-partnerships",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "cc_staff",
+        "finance",
+        "partnerships"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "partnerships"
+      ]
+    },
+    {
+      "path": "/safe-sport",
+      "app_jsx_roles": [
+        "admin",
+        "safe_sport"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/communications",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "communications"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/sponsorships",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "partnerships"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/volunteers",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "volunteer_ops"
+      ],
+      "matrix_roles": [
+        "volunteer_ops"
+      ]
+    },
+    {
+      "path": "/translations",
+      "app_jsx_roles": [
+        "super_admin",
+        "cc_staff"
+      ],
+      "matrix_roles": [
+        "super_admin",
+        "cc_staff",
+        "communications"
+      ]
+    },
+    {
+      "path": "/high-performance",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/people-hr",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/philanthropy",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/spares",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/ice-bookings",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops"
+      ],
+      "matrix_roles": []
+    },
+    {
+      "path": "/attendance",
+      "app_jsx_roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso",
+        "coach",
+        "official"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "coach",
+        "official"
+      ]
+    },
+    {
+      "path": "/jobs/review",
+      "app_jsx_roles": [
+        "admin",
+        "ptso",
+        "cc_staff"
+      ],
+      "matrix_roles": [
+        "ptso",
+        "cc_staff"
+      ]
+    }
+  ]
+}

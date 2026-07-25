@@ -1,0 +1,170 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "9c0f04f924f0fe799999d0cd960d3f2a2001f165",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total": 15,
+    "by_confidence": {
+      "low": 13,
+      "medium": 2
+    },
+    "note": "Evidence-backed transition constraint set. NOT the master development plan; the later plan must respect these."
+  },
+  "transition_constraints": [
+    {
+      "id": "TC-001",
+      "topic": "Data migration hypotheses (incumbent registration provider)",
+      "owner": "Program (with vendor)",
+      "evidence_required": "Authoritative data export + field mapping",
+      "current_confidence": "low",
+      "affected_decision": "Registration domain cutover (CAP-037, governed_domains.registration)",
+      "future_blocking_gate": "Material-commitment gate (post Volume 1)",
+      "target_resolution_point": "Volume 2 / migration design"
+    },
+    {
+      "id": "TC-002",
+      "topic": "Historical-club continuity rules",
+      "owner": "Jen (operations)",
+      "evidence_required": "Validated eligibility criteria for the three pathways",
+      "current_confidence": "low",
+      "affected_decision": "Transition pathways (V1-24)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 operating-model definition"
+    },
+    {
+      "id": "TC-003",
+      "topic": "Source-system extraction needs",
+      "owner": "Program (with vendors)",
+      "evidence_required": "Extraction feasibility per external system",
+      "current_confidence": "low",
+      "affected_decision": "Reconciliation feeds (V1-23)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 integration design"
+    },
+    {
+      "id": "TC-004",
+      "topic": "Reconciliation requirements (payments/accounting)",
+      "owner": "Helene (finance)",
+      "evidence_required": "Reconciliation format, cadence, ledger boundary",
+      "current_confidence": "low",
+      "affected_decision": "CAP-046, CAP-047, payments/accounting domains",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 financial design"
+    },
+    {
+      "id": "TC-005",
+      "topic": "Contract and renewal dependencies",
+      "owner": "Program (commercial)",
+      "evidence_required": "Executed agreements / authoritative contract records",
+      "current_confidence": "low",
+      "affected_decision": "Commercial constraints (V1-19)",
+      "future_blocking_gate": "Material-commitment gate (executive acceptance)",
+      "target_resolution_point": "Volume 2 commercial validation"
+    },
+    {
+      "id": "TC-006",
+      "topic": "Vendor API uncertainty",
+      "owner": "Program (with vendors)",
+      "evidence_required": "Demonstrated vendor capability / API contracts",
+      "current_confidence": "low",
+      "affected_decision": "External integrations (V1-17, V1-23)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 integration design"
+    },
+    {
+      "id": "TC-007",
+      "topic": "Identity-matching concerns",
+      "owner": "Program (with operations)",
+      "evidence_required": "Identity-matching rules + duplicate handling",
+      "current_confidence": "low",
+      "affected_decision": "participants_and_identity domain (FND-053)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 identity design"
+    },
+    {
+      "id": "TC-008",
+      "topic": "Payment and accounting boundaries",
+      "owner": "Helene (finance)",
+      "evidence_required": "Confirmed fee-policy vs execution vs ledger split",
+      "current_confidence": "medium",
+      "affected_decision": "CAP-042, CAP-046, CAP-047",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 financial design"
+    },
+    {
+      "id": "TC-009",
+      "topic": "Pilot data requirements",
+      "owner": "Program (with operations)",
+      "evidence_required": "Pilot dataset + success criteria",
+      "current_confidence": "low",
+      "affected_decision": "First-release validation (V1-24)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 pilot definition"
+    },
+    {
+      "id": "TC-010",
+      "topic": "Privacy and consent impacts",
+      "owner": "Program (privacy)",
+      "evidence_required": "Privacy assessment for high-privacy data elements",
+      "current_confidence": "medium",
+      "affected_decision": "Data domains with high-privacy elements (V1-18)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 privacy design"
+    },
+    {
+      "id": "TC-011",
+      "topic": "Bilingual validation",
+      "owner": "Program (with operations)",
+      "evidence_required": "Bilingual (EN/FR) coverage validation",
+      "current_confidence": "low",
+      "affected_decision": "Experience layer (V1-22)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 experience definition"
+    },
+    {
+      "id": "TC-012",
+      "topic": "Accessibility validation",
+      "owner": "Program (with operations)",
+      "evidence_required": "Accessibility (WCAG) validation",
+      "current_confidence": "low",
+      "affected_decision": "Experience layer (V1-22)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 experience definition"
+    },
+    {
+      "id": "TC-013",
+      "topic": "Operational support needs",
+      "owner": "Program (operations)",
+      "evidence_required": "Support model + tooling assumptions validated",
+      "current_confidence": "low",
+      "affected_decision": "support domain (V1-23)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 operations definition"
+    },
+    {
+      "id": "TC-014",
+      "topic": "Unresolved policy decisions",
+      "owner": "Curling Canada (policy)",
+      "evidence_required": "Ratified policy for open requirement/fee/eligibility questions",
+      "current_confidence": "low",
+      "affected_decision": "CAP-040, CAP-042, transition pathways",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 policy validation"
+    },
+    {
+      "id": "TC-015",
+      "topic": "Stakeholder validation backlog",
+      "owner": "Program (with named stakeholders)",
+      "evidence_required": "Completion of the stakeholder-validation backlog",
+      "current_confidence": "low",
+      "affected_decision": "All stakeholder-described claims (V1-15..V1-20)",
+      "future_blocking_gate": "Material-commitment gate",
+      "target_resolution_point": "Volume 2 stakeholder validation"
+    }
+  ]
+}

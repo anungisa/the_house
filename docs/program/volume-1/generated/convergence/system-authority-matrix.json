@@ -1,0 +1,129 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "9c0f04f924f0fe799999d0cd960d3f2a2001f165",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total_domains": 13,
+    "boundaries": [
+      "The House owns governed lifecycle state where assigned by doctrine.",
+      "The Button presents guided experiences but does not independently own governed state.",
+      "Payment processors execute transactions but do not define fee policy or accounting truth.",
+      "Accounting systems retain ledger authority.",
+      "Analytics platforms are projections, not transactional systems of record.",
+      "Base44 remains product evidence, not production authority.",
+      "Transitional systems require explicit exit triggers."
+    ],
+    "note": "Target authority per governed domain. Externalized systems retain their authority; transitional systems require explicit exit triggers."
+  },
+  "system_authority": [
+    {
+      "domain": "organizations_and_clubs",
+      "authoritative_source": "The House (organization registry); Curling Canada master-data intent",
+      "execution_system": "The House",
+      "external_dependency": "Incumbent registration provider (transitional)",
+      "transition_authority": "The House (governed via Kernel)",
+      "unresolved_condition": "Master-data authority contradiction CON-012 remains open"
+    },
+    {
+      "domain": "participants_and_identity",
+      "authoritative_source": "The House (participant registry); Curling Canada identity master",
+      "execution_system": "The House",
+      "external_dependency": "Identity provider (M365) for authentication (SRC unvalidated)",
+      "transition_authority": "The House",
+      "unresolved_condition": "Concurrent-role model and identity matching pending validation (FND-053)"
+    },
+    {
+      "domain": "membership",
+      "authoritative_source": "The House / Curling Canada (pending validation)",
+      "execution_system": "The House",
+      "external_dependency": "Incumbent registration provider (transitional)",
+      "transition_authority": "The House",
+      "unresolved_condition": "Membership authority split pending operational validation"
+    },
+    {
+      "domain": "affiliation",
+      "authoritative_source": "The House (entity_state)",
+      "execution_system": "The House (Governance Kernel)",
+      "external_dependency": "None for state authority",
+      "transition_authority": "The House (sole authority)",
+      "unresolved_condition": "None material for state authority"
+    },
+    {
+      "domain": "registration",
+      "authoritative_source": "Transitional incumbent provider → The House (target)",
+      "execution_system": "Incumbent provider (transitional)",
+      "external_dependency": "Incumbent registration provider (SRC-018)",
+      "transition_authority": "Requires explicit exit trigger",
+      "unresolved_condition": "Migration approach/timing pending vendor + data-export validation (FND, CON open)"
+    },
+    {
+      "domain": "compliance",
+      "authoritative_source": "External systems of record (accreditation, education) preserved",
+      "execution_system": "The House gates on compliance signals",
+      "external_dependency": "Accreditation (SRC-009), Sideline Learning (SRC-008)",
+      "transition_authority": "The House gates; external SoR retains authority",
+      "unresolved_condition": "Gating/projection model pending compliance validation (Jen)"
+    },
+    {
+      "domain": "payments",
+      "authoritative_source": "The House (fee policy) + payment processor (transaction)",
+      "execution_system": "Payment processor",
+      "external_dependency": "Payment processors (SRC-007)",
+      "transition_authority": "The House owns fee policy; processor executes",
+      "unresolved_condition": "Processor terms/economics pending financial validation (Helene)"
+    },
+    {
+      "domain": "accounting",
+      "authoritative_source": "Accounting system (ledger truth)",
+      "execution_system": "Accounting system",
+      "external_dependency": "Accounting system (SRC-012)",
+      "transition_authority": "Accounting system retains ledger authority",
+      "unresolved_condition": "Reconciliation format/cadence pending financial validation (Helene)"
+    },
+    {
+      "domain": "accreditation",
+      "authoritative_source": "External accreditation system (SRC-009)",
+      "execution_system": "External accreditation system",
+      "external_dependency": "Accreditation provider",
+      "transition_authority": "External SoR retains authority",
+      "unresolved_condition": "Integration scope pending validation"
+    },
+    {
+      "domain": "learning",
+      "authoritative_source": "External learning system (Sideline Learning, SRC-008)",
+      "execution_system": "External learning system",
+      "external_dependency": "Sideline Learning",
+      "transition_authority": "External SoR retains authority",
+      "unresolved_condition": "Integration scope pending validation"
+    },
+    {
+      "domain": "evidence_and_documents",
+      "authoritative_source": "The House (evidence_object metadata)",
+      "execution_system": "The House",
+      "external_dependency": "Evidence storage/scanning provider",
+      "transition_authority": "The House",
+      "unresolved_condition": "Required-document matrix pending compliance validation"
+    },
+    {
+      "domain": "analytics",
+      "authoritative_source": "Projection only (not a system of record)",
+      "execution_system": "Analytics platform",
+      "external_dependency": "Analytics platform (Volume 0 L6)",
+      "transition_authority": "None (projection)",
+      "unresolved_condition": "Analytics is a projection, not transactional authority"
+    },
+    {
+      "domain": "support",
+      "authoritative_source": "External support system (Halo/Zendesk, unvalidated)",
+      "execution_system": "External support system",
+      "external_dependency": "Support platform (SRC-020, unvalidated)",
+      "transition_authority": "External",
+      "unresolved_condition": "Support tooling assumptions pending validation"
+    }
+  ]
+}

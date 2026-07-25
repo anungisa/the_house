@@ -1,0 +1,775 @@
+register_id: REG-107
+name: Volume 1 Governance Decision Register
+status: IN_REVIEW
+version: 0.11.0
+# Governance decisions for Volume 1 itself (document ratifications, methodology
+# adoption, gate dispositions, package closure). Distinct from REG-106, which
+# records per-capability qualification dispositions.
+records:
+  - id: DEC-V1-001
+    class: D1
+    question: Does Volume 1 inherit and preserve the Volume 0 constitutional controls?
+    decision: >-
+      Volume 1 inherits all Volume 0 controls unchanged and must not weaken audit,
+      evidence, idempotency, tenancy, authority, or ratification controls. Volume 0
+      remains frozen at central-registration-volume-0-v1.0.0 (d897b13); Volume 1
+      work never modifies Volume 0 artifacts.
+    evidence_refs:
+      - V1-00
+      - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-002
+    class: D1
+    question: What methodology governs current-state qualification?
+    decision: >-
+      Adopt the V1-01 qualification methodology: source-classified, evidence-rated,
+      capability-oriented assessment that separates validated value from unsafe
+      assumptions and does not authorize implementation from findings alone.
+    evidence_refs:
+      - V1-01
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-003
+    class: D1
+    question: What source classifications and evidence-quality scale apply?
+    decision: >-
+      Adopt the V1-02 source-and-evidence model (eight source classifications) and
+      the V1-04 evidence-quality scale (E0-E4). A recent timestamp must not
+      automatically raise evidence quality.
+    evidence_refs:
+      - V1-02
+      - V1-04
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-004
+    class: D1
+    question: What disposition vocabulary governs capability qualification?
+    decision: >-
+      Adopt the V1-03 disposition standard with eight values: ADOPT, ADAPT,
+      CONSOLIDATE, RETAIN, REBUILD, DEFER, EXTERNALIZE, RETIRE. RETAIN and REBUILD
+      are added as implementation classifications for the production-candidate
+      foundation.
+    evidence_refs:
+      - V1-03
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-007
+    class: D1
+    question: Is Volume 1 Package 1 reviewed, closed, and frozen?
+    decision: >-
+      Close and freeze Volume 1 Package 1. The qualification framework and source
+      control machinery are complete and validated by the governance toolchain
+      with zero errors. Chapters V1-00..V1-04 and this closure record V1-A are
+      frozen at v1.0.0; further change requires the recorded amendment process.
+    evidence_refs:
+      - V1-A
+      - GATE-V1-G1
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-005
+    class: D1
+    question: How are the Base44 export and The House repository entered into Volume 1?
+    decision: >-
+      Register the Base44 export (SRC-001) and The House repository (SRC-002) as
+      controlled assessment sources only. Substantive capability qualification of
+      each is deferred to Volume 1 Packages 2 and 3 respectively and is not begun
+      in Package 1.
+    evidence_refs:
+      - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-006
+    class: D1
+    question: Is the Volume 1 qualification system ready (Gate V1-G1)?
+    decision: >-
+      Gate V1-G1 (Qualification System Ready) disposition PASS. Volume 0 controls
+      inherited; method, source classifications, disposition vocabulary, evidence
+      scale, and contradiction handling defined; registers schema-validated by the
+      governance toolchain; no implementation authorized by Volume 1 findings alone.
+      Executive organizational acceptance remains a time-bounded condition.
+    evidence_refs:
+      - V1-00
+      - V1-01
+      - V1-02
+      - V1-03
+      - V1-04
+      - GATE-V1-G1
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-008
+    class: D1
+    question: How is the Base44 export substantively qualified in Package 2?
+    decision: >-
+      Apply the V1-01 methodology to the Base44 export (SRC-001). Fix the export by
+      cryptographic fingerprint; decompose it into controlled sub-sources
+      (SRC-004..008) separating implementation truth from design-intent narrative;
+      extract a reproducible technical inventory (npm run qualification:base44);
+      normalize 16 capabilities (REG-103) with evidence (REG-102) and findings
+      (REG-104); register contradictions (REG-105); and record per-capability
+      dispositions (REG-106). No Base44 capability is dispositioned ADOPT or RETAIN,
+      and every Package 2 qualification decision sets authorizes_implementation
+      false. Chapters V1-05..V1-09 record the result.
+    evidence_refs:
+      - V1-05
+      - V1-06
+      - V1-07
+      - V1-08
+      - V1-09
+      - REG-101
+      - REG-102
+      - REG-103
+      - REG-104
+      - REG-105
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-009
+    class: D1
+    question: Is Base44 qualification complete (Gate V1-G2)?
+    decision: >-
+      Gate V1-G2 (Base44 Qualification Complete) disposition PASS. The export is
+      cryptographically fingerprinted; the inventory is reproducible; material
+      routes, entities, and functions are inventoried; every normalized capability
+      has evidence and a disposition or an explicit unresolved state;
+      security/prototype debt is recorded separately from product value; the
+      affiliation journey is assessed at journey level; contradictions are
+      registered; no Base44 implementation is declared production-authoritative;
+      and no application development is authorized from Package 2 alone. Line-level
+      closure and freeze are recorded separately in V1-B. Executive organizational
+      acceptance remains a time-bounded condition.
+    evidence_refs:
+      - V1-05
+      - V1-06
+      - V1-07
+      - V1-08
+      - V1-09
+      - GATE-V1-G2
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: superseded
+  - id: DEC-V1-010
+    class: D1
+    question: Is Volume 1 Package 2 reviewed, closed, and frozen?
+    decision: >-
+      Close and freeze Volume 1 Package 2. Base44 qualification is complete and
+      validated by the governance toolchain with zero errors. Chapters V1-05..V1-09
+      and this closure record V1-B are frozen at v1.0.0; the Package 2 registers
+      remain living machinery. Further change to a frozen chapter requires the
+      recorded amendment process. No implementation and no master development plan
+      are authorized by Package 2.
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-011
+    class: D1
+    question: >-
+      The Package 2 assessment fixed SRC-001 to curl-link-hub (5).zip, but the
+      program's declared current Base44 export is curl-link-hub (7).zip. How is
+      this source-baseline defect corrected without discarding the completed
+      assessment?
+    decision: >-
+      Correct the Package 2 source baseline by controlled amendment, not rewrite.
+      Register the current declared export curl-link-hub (7).zip as SRC-001
+      (SHA-256 50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412;
+      3,336,492 bytes; 1,576 files) and re-point SRC-004..008 to its extraction;
+      preserve the historical curl-link-hub (5).zip immutably as SRC-009
+      (qualification_status superseded). Re-run the extraction on both sources and
+      record the reproducible (5) -> (7) delta
+      (generated/base44/delta-5-to-7.json). The methodology, sub-source model,
+      analyzers, and registers are retained; only the assessed baseline was
+      wrong. The delta is strictly additive (zero removals); every safety finding
+      is CONFIRMED_IN_CURRENT and none was resolved; the defect caused an
+      incomplete inventory that missed two domains (IEBOK, Jobs board), now added
+      as CAP-017/CAP-018 and FND-021/FND-022. Chapters V1-05..V1-09 and V1-B are
+      amended to v1.1.0 under the governed amendment process.
+    evidence_refs:
+      - V1-05
+      - REG-101
+      - REG-103
+      - REG-104
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: V1-05
+    amendment_reason: >-
+      Source-baseline defect: the assessed artifact (5) was not the current
+      declared export (7). Corrected by re-baselining SRC-001 to (7) and
+      preserving (5) as SRC-009.
+  - id: DEC-V1-012
+    class: D1
+    question: >-
+      Given that the original Gate V1-G2 PASS rested on an incomplete (5)-based
+      inventory, what is the corrected gate disposition?
+    decision: >-
+      Set Gate V1-G2 (Base44 Qualification Complete) to HOLD, superseding the
+      original PASS (DEC-V1-009). Package 3 is NOT authorized while the gate is on
+      HOLD. The prior PASS was authorized on the (5) baseline; because closure
+      relied on an incomplete inventory that missed the IEBOK and Jobs-board
+      domains, requalification on the corrected (7) baseline is required. Gate
+      V1-G2 returns to PASS only when the eleven corrected gate conditions in
+      V1-B.3 are met and re-authorized by the Accountable Program Authority.
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+      - DEC-V1-011
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: superseded
+  - id: DEC-V1-013
+    class: D1
+    question: >-
+      How is Package 2 re-closed and re-frozen after the source-baseline
+      correction?
+    decision: >-
+      Re-close and re-freeze Volume 1 Package 2 on the corrected (7) baseline.
+      Chapters V1-05..V1-09 and the closure record V1-B are amended to v1.1.0 and
+      re-frozen (REG-108 APP-V1-014 frozen-artifact snapshot updated to 1.1.0).
+      The original v1.0.0 freeze on the (5) baseline is preserved in git history
+      and in the retained historical chapter text; the historical (5) source is
+      preserved as SRC-009. This re-closure does not lift the Gate V1-G2 HOLD
+      (DEC-V1-012) and authorizes no implementation and no master development
+      plan.
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+      - DEC-V1-011
+      - DEC-V1-012
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: V1-B
+    amendment_reason: >-
+      Re-freeze Package 2 on the corrected (7) baseline at v1.1.0 following the
+      source-baseline correction (DEC-V1-011); original v1.0.0 (5)-baseline
+      freeze preserved in history.
+  - id: DEC-V1-014
+    class: D1
+    question: >-
+      After the source-baseline correction and the reconciliation of the
+      machine-readable evidence chain (REG-102, REG-105, REG-106) to the current
+      declared export (7), is Base44 qualification complete and what is the
+      corrected Gate V1-G2 disposition?
+    decision: >-
+      Gate V1-G2 (Base44 Qualification Complete) disposition PASS on the
+      corrected (7) baseline, superseding the interim HOLD (DEC-V1-012). The
+      corrective closure reconciled the evidence chain to the current export:
+      REG-102 refreshes every evidence record to (7) and adds current-export
+      records EV-017..EV-022 (source manifest, (5)->(7) delta, IEBOK, Jobs
+      board, the preserved historical (5) baseline, and the re-verified
+      affiliation lifecycle); REG-105 classifies every contradiction against (7)
+      (all CONFIRMED_IN_CURRENT); and REG-106 re-ratifies every capability
+      disposition on SRC-001 with current and delta evidence and adds
+      QD-017/QD-018 for the two domains missed by the original (5) assessment.
+      All eleven corrected gate conditions in V1-B.3 are satisfied, every finding
+      is revalidated against (7), no Base44 implementation is
+      production-authoritative, and no construction is authorized (REG-106, all
+      authorizes_implementation false). Gate V1-G2 is an internal qualification
+      gate owned by the Accountable Program Authority; executive organizational
+      acceptance (Nolan, D0) is a distinct, later material-commitment gate and is
+      NOT a precondition of Gate V1-G2. Package 2 remains re-frozen at v1.1.0
+      (DEC-V1-013).
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+      - REG-102
+      - REG-104
+      - REG-105
+      - REG-106
+      - DEC-V1-011
+      - DEC-V1-012
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-015
+    class: D1
+    question: >-
+      With Gate V1-G2 disposed PASS on the corrected (7) baseline, is Volume 1
+      Package 3 (The House production-candidate assessment) authorized to begin?
+    decision: >-
+      Authorize Volume 1 Package 3 to begin. Package 3 is a current-state
+      qualification of The House repository (SRC-002) under the same V1-01
+      methodology; it is an assessment package, not a material-commitment or
+      construction step. Package 3 authorization follows directly from the
+      completed Base44 qualification (Gate V1-G2 PASS, DEC-V1-014) and does not
+      require executive organizational acceptance, which remains reserved for a
+      later material-commitment gate before any build or master development plan.
+      No implementation and no master development plan are authorized by this
+      decision.
+    evidence_refs:
+      - GATE-V1-G2
+      - DEC-V1-014
+      - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-016
+    class: D1
+    question: >-
+      What method qualifies The House implementation truth in Package 3 without
+      rewarding architecture vocabulary or treating engineering discipline as
+      production readiness?
+    decision: >-
+      Adopt the deterministic `npm run qualification:house` tooling as the
+      canonical House inventory method (cryptographic repository/runtime
+      fingerprint plus 14 reproducible machine-readable inventories), together
+      with an explicit eight-rung assurance ladder (model exists ... integration
+      test proves ... production wires) and the evidence hierarchy (executable
+      test > runtime code > DB constraint > migration > service contract >
+      architecture document). The runtime-tree last-change commit (de6312f8) is
+      distinguished from documentation-program work, and skipped tests are never
+      counted as passing. This method governs all Package 3 chapters and
+      registers.
+    evidence_refs:
+      - REG-101
+      - V1-10
+      - V1-12
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-017
+    class: D1
+    question: >-
+      Is Gate V1-G3 (The House Qualification Complete) disposed PASS on the
+      assessed baseline?
+    decision: >-
+      Dispose Gate V1-G3 PASS. All twelve gate conditions are met (V1-C.4): the
+      baseline is fingerprinted, the inventory is reproducible, all material
+      implementation paths are assessed, the P0 questions are revalidated against
+      source, every House capability has a disposition, production value is
+      separated from production readiness, the affiliation journey and its
+      release-blocking gaps are enumerated, skipped and infrastructure-dependent
+      tests are disclosed, operational/deployment readiness is assessed and found
+      unproven, no implementation is authorized, contradictions are registered,
+      and V1-C provides line-level closure. The PASS records a completed
+      assessment, not a production-readiness or affiliation-readiness assertion.
+    evidence_refs:
+      - GATE-V1-G3
+      - V1-10
+      - V1-11
+      - V1-12
+      - V1-13
+      - V1-14
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-018
+    class: D1
+    question: >-
+      Is Volume 1 Package 3 closed and frozen?
+    decision: >-
+      Close and freeze Volume 1 Package 3 at v1.0.0. The frozen artifacts are
+      chapters V1-10, V1-11, V1-12, V1-13, V1-14, and the closure record V1-C,
+      each at v1.0.0, plus Gate V1-G3 (V1-C.5; REG-108 APP-V1-023). The Package 3
+      registers and the qualification tooling remain living machinery. Any change
+      to a frozen artifact requires an amendment decision here (with `amends` set)
+      and re-ratification. Volume 0, Package 1, and Package 2 freezes are
+      preserved and unmodified.
+    evidence_refs:
+      - V1-C
+      - GATE-V1-G3
+      - DEC-V1-017
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-019
+    class: D1
+    question: >-
+      With Gate V1-G3 disposed PASS, may Volume 1 Package 4 (master development
+      planning) begin?
+    decision: >-
+      Authorize Volume 1 Package 4 to begin as the next planning and assessment
+      step only. Package 4 authoring remains a planning activity; it does not
+      authorize implementation, construction, or any material commitment, which
+      remain reserved for a later executive-accepted material-commitment gate. No
+      master development plan is executed by this decision.
+    evidence_refs:
+      - GATE-V1-G3
+      - DEC-V1-017
+      - V1-14
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-020
+    class: D1
+    question: >-
+      Does the Package 3 record explicitly disposition all fourteen mandatory P0
+      re-examination items, separate exactly-once approved execution from
+      authoritative organization activation, and record actual unit-test
+      execution evidence rather than test discovery?
+    decision: >-
+      Amend the Package 3 closure record V1-C to v1.1.0 by controlled amendment,
+      adding three normative sections without reopening the assessment. V1-C.7
+      records the fourteen-item P0 disposition matrix (one dispositioned row per
+      item, each with status, source paths, symbols/migrations, test evidence,
+      evidence rating, finding reference, qualification decision, and release
+      impact), grounding every row in existing Package 3 findings (FND-023..033),
+      qualification decisions (QD-019..030), and contradictions (CON-008..011).
+      V1-C.8 assesses authoritative organization activation separately from the
+      exactly-once approved-transition execution capability (CAP-024) against
+      seven criteria and determines it MODELED_OR_PARTIAL - UNPROVEN, grounded in
+      the reference-only Organization Registry contract that never activates an
+      organization as a substitute for a kernel-approved transition. V1-C.9
+      records that `npm run test:unit` was executed on 2026-07-25 with 99 files
+      and 1300 unit tests passing, while the 16 DB-gated integration suites remain
+      skipped and unproven (FND-028). This amendment does not change any finding
+      or capability disposition, does not alter the Gate V1-G3 PASS disposition,
+      and authorizes no implementation; the production-readiness (NOT ESTABLISHED)
+      and affiliation-readiness (NOT READY) determinations stand.
+    evidence_refs:
+      - V1-C
+      - GATE-V1-G3
+      - DEC-V1-018
+      - REG-104
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: V1-C
+    amendment_reason: >-
+      Closure-evidence completeness: make the fourteen-item P0 disposition matrix
+      explicit, separate approved execution from organization activation, and
+      record actual unit-test execution evidence. No reopening of the Package 3
+      assessment and no change to the Gate V1-G3 disposition.
+  # --- Package 4: current ecosystem and operating-reality decisions (DEC-V1-021..022) ---
+  - id: DEC-V1-021
+    class: D2
+    question: >-
+      What method governs Volume 1 Package 4 (Current Ecosystem and Operating
+      Reality), and what is its scope?
+    decision: >-
+      Package 4 qualifies Curling Canada's current operating model, its supporting
+      systems and manual controls, where authority resides, and the constraints
+      the target platform must respect or replace. It is a qualification and
+      structuring activity only: it structures evidence already available in the
+      repository and controlled source files (chiefly ratified Volume 0 REG-005
+      and V0-06, plus the controlled current-state input) and generates no facts
+      from absence. Every current-state statement carries a truth classification
+      (POLICY_TRUTH, OPERATIONAL_TRUTH, IMPLEMENTATION_TRUTH, CONTRACTUAL_TRUTH,
+      VENDOR_CLAIM, OBSERVED_EVIDENCE, STAKEHOLDER_STATEMENT, ASSUMPTION,
+      UNRESOLVED_CONTRADICTION) and formal policy is distinguished from actual
+      practice. Package 4 corrects the DEC-V1-019 shorthand ("master development
+      planning"): the next package is ecosystem qualification, not master
+      development planning. Package 4 authorizes no implementation, retains or
+      retires no vendor or system, and treats current practice as not
+      automatically desirable. Chapters V1-15..V1-20 are the qualification;
+      REG-101..REG-106 carry the structured records; the deterministic tooling is
+      `npm run qualification:ecosystem`.
+    evidence_refs:
+      - V1-15
+      - V1-16
+      - V1-17
+      - V1-18
+      - V1-19
+      - V1-20
+      - DEC-V1-019
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-022
+    class: D1
+    question: >-
+      Is Volume 1 Gate V1-G4 (ecosystem qualification complete) disposed PASS?
+    decision: >-
+      Dispose Gate V1-G4 PASS. The twelve gate conditions are met: current
+      affiliation operations are documented end to end (V1-16); systems and manual
+      tools are inventoried (V1-17); authority classifications are recorded
+      (V1-15, V1-17); data flows and reconciliations are mapped (V1-18);
+      contractual/transition constraints are captured or explicitly unresolved
+      (V1-19); operational pain points are linked to evidence (V1-20, REG-104);
+      policy truth is distinguished from operational truth throughout; stakeholder
+      statements are not represented as approvals; material contradictions are
+      registered (REG-105 CON-012, CON-013); no vendor or system is automatically
+      retained or retired; no implementation is authorized (REG-106
+      authorizes_implementation false for all); and Package 4 receives line-level
+      closure review and freeze at V1-D. V1-G4 is an internal-progression gate;
+      executive organizational acceptance (Nolan, D0) remains reserved for a later
+      material-commitment gate.
+    evidence_refs:
+      - V1-20
+      - GATE-V1-G4
+      - REG-104
+      - REG-105
+      - REG-106
+      - DEC-V1-021
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-023
+    class: D2
+    question: >-
+      Is Volume 1 Package 4 (current ecosystem and operating reality) closed and
+      frozen?
+    decision: >-
+      Close and freeze Package 4. The closure record V1-D is ratified (APP-V1-032)
+      and, with Gate V1-G4 disposed PASS (DEC-V1-022), chapters V1-15..V1-20 and
+      the closure record V1-D are frozen at v1.0.0 under APP-V1-033 (base_commit
+      6178551). The Package 4 registers (REG-101..REG-106), the controlled
+      ecosystem input, and the qualification:ecosystem tooling remain living
+      machinery and are not frozen. Volume 0 and Packages 1, 2, and 3 freezes are
+      preserved and unmodified. No implementation, master development plan, vendor
+      retention, or vendor retirement is authorized by this closure.
+    evidence_refs:
+      - V1-D
+      - GATE-V1-G4
+      - DEC-V1-022
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-024
+    class: D2
+    question: >-
+      Is Volume 1 Package 5 (convergence) authorized to begin?
+    decision: >-
+      Authorize Package 5 (convergence) to begin as the next planning and
+      assessment step only. Package 5 converges the three factual inputs - Base44
+      product intelligence (Package 2), The House implementation truth
+      (Package 3), and the current Curling Canada operating and ecosystem truth
+      (Package 4) - into a target design. This authorization is for planning and
+      assessment authoring; it does not authorize implementation, construction, or
+      any material commitment, which remain reserved for a later executive-accepted
+      material-commitment gate.
+    evidence_refs:
+      - V1-D
+      - GATE-V1-G4
+      - DEC-V1-023
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  # --- Package 5 (convergence) decisions ---
+  - id: DEC-V1-025
+    class: D2
+    question: >-
+      What convergence methodology and evidence-precedence rules govern the
+      Volume 1 target disposition, and are they adopted?
+    decision: >-
+      Adopt the Package 5 convergence methodology recorded in V1-21 and the
+      controlled convergence input (REG-101 SRC-022): the three ratified
+      baselines (Base44 product intelligence, The House implementation truth, and
+      the Curling Canada operating and ecosystem reality) are converged under
+      explicit evidence-precedence rules in which claim type determines
+      controlling evidence. Newer, implemented, or more polished evidence is not
+      automatically authoritative; a source authoritative for one claim type is
+      non-authoritative for another; and material contradictions are retained
+      open. The convergence tooling is deterministic and structures decisions
+      already recorded in the controlled input and ratified registers; it invents
+      no target decision. This decision governs authoring and structuring only and
+      authorizes no implementation.
+    evidence_refs:
+      - V1-21
+      - REG-101
+      - REG-102
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-026
+    class: D2
+    question: >-
+      How is the Package 3 unit-test-count discrepancy (1326 static versus 1300
+      executed) reconciled?
+    decision: >-
+      Determine that the discrepancy is a parser-semantics artifact, not a
+      defect. The static Package 3 figure (1326) is a lexical it/test token count
+      that includes tokens appearing in comments and strings and cannot expand
+      it.each() blocks; the executed figure (1300 passed, 0 skipped, 0 todo, 0
+      excluded, 99 files, npx vitest run tests/unit, 2026-07-25) is the true
+      runtime case count. The controlling figure for Volume 1 is 1300 executed and
+      passed. This is a narrow evidence correction recorded in the Package 5 layer
+      (REG-101 SRC-023, REG-102 EV-052) and does NOT reopen or modify the frozen
+      Package 3 artifacts (V1-C, Package 3 chapters).
+    evidence_refs:
+      - V1-14
+      - REG-101
+      - REG-102
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-027
+    class: D1
+    question: Is convergence and target disposition complete (Gate V1-G5)?
+    decision: >-
+      Gate V1-G5 (Convergence Complete) disposition PASS. All twelve gate
+      conditions are disposed in V1-E.9: Package 2-4 baselines and the corrected
+      Base44 lineage are inherited unchanged with no frozen artifact modified; the
+      unit-test discrepancy is reconciled to a controlling 1300 executed and
+      passed; every material capability (CAP-037..CAP-048) is mapped across
+      Base44, The House, and the ecosystem and dispositioned per layer across 29
+      qualification decisions (QD-037..QD-065); target data and system authority
+      is defined or explicitly unresolved across thirteen governed domains; each
+      current manual control is preserved, adapted, automated, or retired with
+      rationale; the affiliation target operating model, historical/goodwill
+      transition pathway, and first-release boundary with exclusions are complete
+      and explicit; every material commercial, contractual, and stakeholder
+      unknown has an owner and a future blocking gate; no finding or convergence
+      decision authorizes implementation; and Volume 1 received a complete
+      line-level review and freeze. This is an internal qualification gate owned
+      by the Accountable Program Authority; executive organizational acceptance
+      (Nolan, D0) is a distinct later material-commitment gate and is not a
+      precondition of Gate V1-G5.
+    evidence_refs:
+      - V1-21
+      - V1-22
+      - V1-23
+      - V1-24
+      - V1-25
+      - V1-26
+      - V1-E
+      - GATE-V1-G5
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-028
+    class: D1
+    question: Is Package 5 closed and Volume 1 frozen?
+    decision: >-
+      Close Package 5 (Convergence and Target Disposition) and freeze Volume 1.
+      The closure record V1-E records the Gate V1-G5 PASS disposition, the
+      inherited baselines and amendments, the final capability dispositions, the
+      unresolved contradictions, the first-release boundary, the Volume 2
+      authorization status, and the freeze metadata. Package 5 is frozen at the
+      Commit A base commit; the frozen artifacts are V1-21..V1-26 and V1-E at
+      version 1.0.0 (REG-108 APP-V1-042). All prior freezes (Volume 0 and
+      Packages 1-4) are preserved and no frozen artifact is modified. Amendments
+      to a frozen Package 5 chapter require a REG-107 amendment decision, a
+      version increment, and re-ratification. This closure authorizes no
+      implementation, procurement, or master development plan.
+    evidence_refs:
+      - V1-E
+      - V1-26
+      - REG-100
+      - REG-108
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-029
+    class: D2
+    question: What is the downstream authorization status following Volume 1?
+    decision: >-
+      Authorize Volume 2 (Product and Service Definition) to begin as planning and
+      definition work only; it does not authorize construction. The master
+      development plan remains pending as a future, separately authorized artifact
+      that must respect the V1-25 transition-constraint set. Implementation remains
+      unauthorized. Material organizational commitment remains pending executive
+      acceptance (Nolan, D0) at a later material-commitment gate.
+    evidence_refs:
+      - V1-26
+      - V1-E
+      - V1-25
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-030
+    class: D1
+    question: Is the complete Volume 1 corpus closed and frozen as a whole-volume release baseline?
+    decision: >-
+      Close and freeze the entire Volume 1 corpus as release baseline v1.0.0. This
+      whole-volume closure is distinct from and additional to the per-package
+      freezes: it explicitly freezes Volume 1 as a unit at the Package 5 closure
+      baseline commit 677f10e, with V1-E as the closure record and V1-F as the
+      executive convergence brief. The frozen scope comprises Package 1 and its
+      artifacts, the corrected Package 2 (v1.1.0), Package 3 (V1-C v1.1.0),
+      Package 4 (v1.0.0), Package 5 (v1.0.0) and V1-E, V1-F, the registers REG-100
+      through REG-108, and the source-baseline lineage. The generated qualification
+      outputs (generated/base44, generated/house, generated/ecosystem,
+      generated/convergence) are identified as NON-AUTHORITATIVE evidence
+      projections, reproducible from controlled inputs and not themselves a source
+      of authority. Once frozen, any post-freeze change to a ratified Volume 1
+      artifact requires the Volume 1 amendment process: a REG-107 amendment
+      decision (amends set to the artifact id with a stated amendment_reason), a
+      version increment, and re-ratification; the freeze-integrity control rejects
+      unamended version drift. All prior freezes (Volume 0 and Packages 1-4) are
+      preserved and no frozen artifact is modified. This closure authorizes no
+      implementation, no procurement, and no master development plan. Gate V1-G5
+      remains PASS; Volume 2 is authorized for product and service definition;
+      the master development plan remains pending; implementation and procurement
+      remain unauthorized; and material organizational commitment remains pending
+      executive acceptance (Nolan, D0) at a later material-commitment gate.
+    evidence_refs:
+      - V1-E
+      - V1-F
+      - REG-100
+      - REG-101
+      - REG-102
+      - REG-103
+      - REG-104
+      - REG-105
+      - REG-106
+      - REG-107
+      - REG-108
+      - APP-V1-043
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

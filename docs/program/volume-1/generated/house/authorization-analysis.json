@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "edge_action_count": 16,
+    "edge_role_count": 15,
+    "platform_admin_wildcard": true,
+    "edge_fails_closed_on_unknown_action": true,
+    "governed_permission_model": "role-based",
+    "governed_permission_resource_aware": false,
+    "reviewer_scope_guard_resource_aware": false,
+    "affiliation_edge_actions": [],
+    "resource_aware_authorization_gap": "CONFIRMED: governed affiliation authorization is role-only; neither the permission checker nor the reviewer-scope guard binds the actor to the specific applicant entity, jurisdiction, or region."
+  },
+  "edge_actions": [
+    "evidence.download",
+    "evidence.quarantine.disposition",
+    "evidence.quarantine.read",
+    "evidence.read",
+    "evidence.upload",
+    "facility.read",
+    "facility.status.write",
+    "facility.write",
+    "organization.read",
+    "participant.organization_link.write",
+    "participant.read",
+    "participant.status.write",
+    "participant.write",
+    "workflow.decide",
+    "workflow.execute",
+    "workflow.read"
+  ],
+  "edge_roles": [
+    "approver",
+    "evidence_admin",
+    "facility_admin",
+    "facility_reader",
+    "national_reviewer",
+    "organization_admin",
+    "organization_reader",
+    "participant_admin",
+    "participant_reader",
+    "regional_reviewer",
+    "reviewer",
+    "security_admin",
+    "security_reviewer",
+    "workflow_admin",
+    "workflow_reader"
+  ],
+  "governed_permission": {
+    "model": "role-based",
+    "reviewer_roles": [
+      "admin",
+      "approver",
+      "reviewer"
+    ],
+    "input_includes_entity_id": false,
+    "reviewer_scope_guard_role_only": true
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-ecosystem.mjs (Package 4 ecosystem qualification tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled current-state evidence; not a qualification decision and not an authorization. No facts are generated from absence.",
+    "repository_commit": "cd6e73d19de7161f03c54254c5a5a9f9232e4664",
+    "branch": "docs/volume-1-ecosystem-qualification",
+    "working_tree_state": "dirty",
+    "ecosystem_input_sha256": "27133dc0bdb2ce61c4bf2daacabd59dfd7f41103fcfaae2073268388df5842fb",
+    "reg005_sha256": "8030f02bf56fbaf1f26f822e18d078c6a1dd43ea7a5fcb0b0776559fbefa8895"
+  },
+  "summary": {
+    "total_findings": 7,
+    "high_risk_findings": 5,
+    "total_contradictions": 2,
+    "by_finding_type": {
+      "capability_gap": 1,
+      "constraint": 5,
+      "prototype_debt": 1
+    }
+  },
+  "operating_findings": [
+    {
+      "id": "OF-CONTINUITY",
+      "finding_type": "constraint",
+      "statement": "Existing clubs recognized by historical/goodwill affiliation must transition under a governed continuity policy, not as brand-new applicants.",
+      "production_risk": "high",
+      "truth_classification": "STAKEHOLDER_STATEMENT",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "OF-MANUAL",
+      "finding_type": "prototype_debt",
+      "statement": "Core affiliation steps run on email and spreadsheets; decisions and evidence live outside a governed store. This weakness must not be recreated.",
+      "production_risk": "high",
+      "truth_classification": "STAKEHOLDER_STATEMENT",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "OF-RECONCILE",
+      "finding_type": "constraint",
+      "statement": "Processor-vs-ledger and cross-system reconciliation is manual; the target must implement explicit reconciliation boundaries (SYS-003/SYS-008).",
+      "production_risk": "high",
+      "truth_classification": "OPERATIONAL_TRUTH",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "OF-ROUTING",
+      "finding_type": "capability_gap",
+      "statement": "Reviewer assignment is ad hoc with no jurisdiction-aware routing; the target must route by PTSO/CC jurisdiction (aligns with House FND-024).",
+      "production_risk": "high",
+      "truth_classification": "OPERATIONAL_TRUTH",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "OF-MIGRATION",
+      "finding_type": "constraint",
+      "statement": "Migration off the incumbent registration provider is a high-risk data transition governed by data-export rights and a recorded cutover trigger.",
+      "production_risk": "high",
+      "truth_classification": "CONTRACTUAL_TRUTH",
+      "validation_status": "pending_vendor_validation"
+    },
+    {
+      "id": "OF-AUTHORITY-PRESERVE",
+      "finding_type": "constraint",
+      "statement": "PTSO provincial jurisdiction and external systems-of-record authority (Sideline, accreditation, accounting) must be preserved, not absorbed.",
+      "production_risk": "medium",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "OF-IDENTITY-ROLES",
+      "finding_type": "constraint",
+      "statement": "Individuals hold multiple concurrent roles; the target identity model must not collapse role multiplicity into a single coarse permission bucket.",
+      "production_risk": "medium",
+      "truth_classification": "OPERATIONAL_TRUTH",
+      "validation_status": "pending_stakeholder_validation"
+    }
+  ],
+  "operating_contradictions": [
+    {
+      "id": "OC-MASTERDATA",
+      "statement": "Master-data authority for clubs/participants is claimed by Curling Canada (target) but operationally held by the incumbent registration provider and partly mirrored in Curling I/O.",
+      "positions": [
+        {
+          "source": "policy_truth",
+          "assertion": "Curling Canada is the intended master-data authority (V0-06)."
+        },
+        {
+          "source": "operational_truth",
+          "assertion": "The incumbent provider currently holds authoritative registration/membership data."
+        }
+      ],
+      "status": "open",
+      "resolution": "Resolved by transition policy: incumbent is authoritative only until a recorded cutover; not a target-state authority.",
+      "truth_classification": "UNRESOLVED_CONTRADICTION",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "OC-EVIDENCE",
+      "statement": "Affiliation decisions are governed in intent but evidenced in email/shared files in practice.",
+      "positions": [
+        {
+          "source": "policy_truth",
+          "assertion": "Decisions and evidence must be bound to a governed transition."
+        },
+        {
+          "source": "operational_truth",
+          "assertion": "Decisions and evidence currently live in email and spreadsheets."
+        }
+      ],
+      "status": "open",
+      "resolution": "Target must wire governed evidence binding; current practice is not the desired target.",
+      "truth_classification": "UNRESOLVED_CONTRADICTION",
+      "validation_status": "pending_stakeholder_validation"
+    }
+  ]
+}

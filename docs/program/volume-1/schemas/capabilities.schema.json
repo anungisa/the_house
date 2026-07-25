@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "capabilities.schema.json",
+  "title": "REG-103 Capability Inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-103" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "evidence_rating", "source_refs"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^CAP-[0-9]{3}$" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "stakeholder": { "type": "string" },
+          "business_capability": { "type": "string" },
+          "observed_value": { "type": "string" },
+          "target_house_domain": { "type": "string" },
+          "target_button_experience": { "type": "string" },
+          "disposition": {
+            "oneOf": [
+              { "type": "null" },
+              { "$ref": "common.schema.json#/definitions/disposition" }
+            ]
+          },
+          "production_risk": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical", "unknown"]
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "source_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^SRC-[0-9]{3}$" }
+          },
+          "finding_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^FND-[0-9]{3}$" }
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

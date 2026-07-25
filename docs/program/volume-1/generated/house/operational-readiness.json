@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "observability_exporters": [
+      "ConsoleTelemetryExporter",
+      "InMemoryTelemetry",
+      "NoopTelemetry",
+      "Telemetry",
+      "TelemetryEvents",
+      "TelemetryFactory",
+      "index"
+    ],
+    "deployment_validators": 11,
+    "infra_bicep_main_present": true,
+    "infra_bicep_modules": [
+      "container-apps",
+      "key-vault-access",
+      "key-vault",
+      "observability",
+      "postgres",
+      "service-bus",
+      "storage"
+    ],
+    "ci_workflows": [
+      "ci.yml",
+      "container-build.yml",
+      "deployment-baseline.yml",
+      "governance.yml",
+      "production-deploy-template.yml",
+      "provenance-template.yml"
+    ],
+    "http_readiness_probe": true,
+    "deployed_house_environment_evidence": false,
+    "operational_note": "Infrastructure is Azure Bicep source (skeleton + parameter examples) and deployment baseline validators are static checks. The repository provides no evidence of a provisioned, running House v2 environment; deployment/operational readiness is therefore unproven at runtime."
+  },
+  "deployment_validators": [
+    "validateAzureSmokeBaseline",
+    "validateContainerBaseline",
+    "validateDeploymentBaseline",
+    "validateFacilityRegistryBaseline",
+    "validateMigrationBaseline",
+    "validateOrganizationRegistryBaseline",
+    "validateParticipantRegistryBaseline",
+    "validateProvenanceBaseline",
+    "validateReleaseRunbookBaseline",
+    "validateSupplyChainBaseline",
+    "validateSyntheticLifecycleBaseline"
+  ],
+  "infra_modules": [
+    "container-apps",
+    "key-vault-access",
+    "key-vault",
+    "observability",
+    "postgres",
+    "service-bus",
+    "storage"
+  ],
+  "ci_workflows": [
+    "ci.yml",
+    "container-build.yml",
+    "deployment-baseline.yml",
+    "governance.yml",
+    "production-deploy-template.yml",
+    "provenance-template.yml"
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-ecosystem.mjs (Package 4 ecosystem qualification tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled current-state evidence; not a qualification decision and not an authorization. No facts are generated from absence.",
+    "repository_commit": "cd6e73d19de7161f03c54254c5a5a9f9232e4664",
+    "branch": "docs/volume-1-ecosystem-qualification",
+    "working_tree_state": "dirty",
+    "ecosystem_input_sha256": "27133dc0bdb2ce61c4bf2daacabd59dfd7f41103fcfaae2073268388df5842fb",
+    "reg005_sha256": "8030f02bf56fbaf1f26f822e18d078c6a1dd43ea7a5fcb0b0776559fbefa8895"
+  },
+  "summary": {
+    "authority_tiers": 4,
+    "systems_classified": 12,
+    "note": "No system is automatically retained or retired; all target dispositions are UNPROVEN hypotheses."
+  },
+  "authority_boundaries": [
+    {
+      "id": "AUTH-NATIONAL",
+      "tier": "national",
+      "body": "Curling Canada",
+      "holds": "National policy, national program standards, national fee framework, system-of-record intent for club/affiliation/participant master data under the target platform, executive acceptance authority.",
+      "does_not_hold": "Provincial/territorial internal governance; club internal operations.",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "V0-06"
+    },
+    {
+      "id": "AUTH-PROVINCIAL",
+      "tier": "provincial_territorial",
+      "body": "Member Associations / PTSOs",
+      "holds": "Provincial/territorial jurisdiction over member clubs, provincial requirements and fees, provincial review of club affiliation, appropriate retained jurisdiction under the target platform.",
+      "does_not_hold": "National master-data authority; ability to override national governed decisions.",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "V0-06"
+    },
+    {
+      "id": "AUTH-CLUB",
+      "tier": "club",
+      "body": "Clubs / curling centres",
+      "holds": "Club-level operations, local membership administration, submission of affiliation and renewal, local facility and roster reality.",
+      "does_not_hold": "Provincial or national policy authority.",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "V0-05"
+    },
+    {
+      "id": "AUTH-INDIVIDUAL",
+      "tier": "individual",
+      "body": "Individuals with multiple organizational roles",
+      "holds": "Personal identity and participation; may hold several roles (member, volunteer, coach, official, administrator) across clubs/PTSOs concurrently.",
+      "does_not_hold": "Any governed authority beyond assigned roles; role multiplicity must not collapse into a single coarse permission bucket.",
+      "truth_classification": "OPERATIONAL_TRUTH",
+      "validation_status": "pending_stakeholder_validation",
+      "source_ref": "V0-04"
+    }
+  ],
+  "system_authority_matrix": [
+    {
+      "id": "SYS-001",
+      "name": "Curling I/O",
+      "authority_classification": "synchronization_partner (authority_level 4)",
+      "reconciliation": "The House is master-data authority for club, affiliation, and participant records; competition/league standing never overrides governed master data.",
+      "target_disposition_hypothesis": "RETAIN as bounded synchronization partner (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-005"
+    },
+    {
+      "id": "SYS-002",
+      "name": "Current registration provider (incumbent)",
+      "authority_classification": "temporary_transition_platform (authority_level 4)",
+      "reconciliation": "Authoritative for legacy data only during transition; authority expires on an explicit recorded migration-completion (cutover) trigger.",
+      "target_disposition_hypothesis": "RETIRE after governed migration (unproven; risk-bearing)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-006"
+    },
+    {
+      "id": "SYS-003",
+      "name": "Payment processors",
+      "authority_classification": "execution_plane (authority_level 4)",
+      "reconciliation": "Governed decision to charge, fee policy, and resulting record remain in The House; explicit reconciliation boundary with accounting (SYS-008).",
+      "target_disposition_hypothesis": "RETAIN as execution plane (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-007"
+    },
+    {
+      "id": "SYS-004",
+      "name": "Sideline Learning",
+      "authority_classification": "authoritative_source_external (authority_level 4)",
+      "reconciliation": "The House projects status and governs its use, not the underlying record",
+      "target_disposition_hypothesis": "RETAIN as external system of record (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-008"
+    },
+    {
+      "id": "SYS-005",
+      "name": "Accreditation platforms",
+      "authority_classification": "authoritative_source_external (authority_level 4)",
+      "reconciliation": "The House projects status and governs its use, not the record",
+      "target_disposition_hypothesis": "RETAIN as external system of record (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-009"
+    },
+    {
+      "id": "SYS-006",
+      "name": "Document360",
+      "authority_classification": "replaceable_provider (authority_level 6)",
+      "reconciliation": "Substitutable without changing governed truth",
+      "target_disposition_hypothesis": "RETAIN or EXTERNALIZE; substitutable (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-010"
+    },
+    {
+      "id": "SYS-007",
+      "name": "Analytics platforms",
+      "authority_classification": "reporting_source (authority_level 6)",
+      "reconciliation": "Consumes projected data only; MUST NOT become a system of record",
+      "target_disposition_hypothesis": "RETAIN as downstream reporting only (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-011"
+    },
+    {
+      "id": "SYS-008",
+      "name": "Accounting systems",
+      "authority_classification": "authoritative_source_external (authority_level 4)",
+      "reconciliation": "The House synchronizes and does not overwrite the ledger; explicit boundary with payment processors (SYS-003).",
+      "target_disposition_hypothesis": "RETAIN as financial system of record (unproven)",
+      "truth_classification": "POLICY_TRUTH",
+      "validation_status": "grounded_in_ratified_v0",
+      "source_ref": "REG-005-SRC-012"
+    },
+    {
+      "id": "SYS-009",
+      "name": "Support systems (Halo / Zendesk where relevant)",
+      "authority_classification": "reporting_source / operational_tool (unclassified in V0)",
+      "reconciliation": "Support cases reference but do not own governed records",
+      "target_disposition_hypothesis": "RETAIN as support tooling (unvalidated)",
+      "truth_classification": "ASSUMPTION",
+      "validation_status": "pending_stakeholder_validation",
+      "source_ref": null
+    },
+    {
+      "id": "SYS-010",
+      "name": "Identity and Microsoft 365 services",
+      "authority_classification": "identity_and_productivity (unclassified in V0)",
+      "reconciliation": "Email/shared-file processes are manual controls, not governed systems of record; risk of shadow authority.",
+      "target_disposition_hypothesis": "RETAIN for identity/productivity; do not treat as SoR (unvalidated)",
+      "truth_classification": "ASSUMPTION",
+      "validation_status": "pending_stakeholder_validation",
+      "source_ref": null
+    },
+    {
+      "id": "SYS-011",
+      "name": "Manual spreadsheets and shared files",
+      "authority_classification": "manual_control (shadow data)",
+      "reconciliation": "A recurring reconciliation and data-quality risk; duplicate copies without a single authoritative source.",
+      "target_disposition_hypothesis": "RETIRE / automate into governed records (unvalidated)",
+      "truth_classification": "STAKEHOLDER_STATEMENT",
+      "validation_status": "pending_stakeholder_validation",
+      "source_ref": null
+    },
+    {
+      "id": "SYS-012",
+      "name": "Email-mediated processes",
+      "authority_classification": "manual_control (evidence outside governed store)",
+      "reconciliation": "Decisions and evidence live outside a governed store; audit and evidence binding are weak.",
+      "target_disposition_hypothesis": "RETIRE / replace with governed evidence binding (unvalidated)",
+      "truth_classification": "STAKEHOLDER_STATEMENT",
+      "validation_status": "pending_stakeholder_validation",
+      "source_ref": null
+    }
+  ]
+}

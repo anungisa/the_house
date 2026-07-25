@@ -9,8 +9,8 @@ export default [
   },
   js.configs.recommended,
   {
-    // Volume 0 governance controls (plain Node ESM tooling; not the TS backend).
-    files: ['docs/program/volume-0/controls/**/*.mjs'],
+    // Program governance controls (plain Node ESM tooling; not the TS backend).
+    files: ['docs/program/**/controls/**/*.mjs'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',

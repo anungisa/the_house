@@ -1,0 +1,270 @@
+register_id: REG-100
+name: Volume 1 Corpus Index
+status: IN_REVIEW
+version: 0.10.0
+records:
+  - id: V1-00
+    title: Volume Control and Inheritance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-00-volume-control-and-inheritance.md
+    gate: V1-G1
+  - id: V1-01
+    title: Qualification Methodology
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-01-qualification-methodology.md
+    gate: V1-G1
+  - id: V1-02
+    title: Source and Evidence Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-02-source-and-evidence-model.md
+    gate: V1-G1
+  - id: V1-03
+    title: Capability Disposition Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-03-capability-disposition-standard.md
+    gate: V1-G1
+  - id: V1-04
+    title: Current-State Evidence Quality Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-04-current-state-evidence-quality-standard.md
+    gate: V1-G1
+  - id: V1-A
+    title: Package 1 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-A-package-1-closure-record.md
+    gate: V1-G1
+  - id: V1-05
+    title: Base44 Source Baseline and Technical Inventory
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-05-base44-source-baseline-and-technical-inventory.md
+    gate: V1-G2
+  - id: V1-06
+    title: Base44 Product and Experience Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-06-base44-product-and-experience-architecture.md
+    gate: V1-G2
+  - id: V1-07
+    title: Base44 Capability Qualification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-07-base44-capability-qualification.md
+    gate: V1-G2
+  - id: V1-08
+    title: Base44 Security, Authority, and Prototype-Debt Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-08-base44-security-authority-and-prototype-debt-assessment.md
+    gate: V1-G2
+  - id: V1-09
+    title: Base44-to-Target Experience Translation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-09-base44-to-target-experience-translation.md
+    gate: V1-G2
+  - id: V1-B
+    title: Package 2 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-B-package-2-closure-record.md
+    gate: V1-G2
+  - id: V1-10
+    title: The House Source Baseline and Implementation Inventory
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-10-house-source-baseline-and-implementation-inventory.md
+    gate: V1-G3
+  - id: V1-11
+    title: The House Domain, Data, API, and Integration Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-11-house-domain-data-api-and-integration-architecture.md
+    gate: V1-G3
+  - id: V1-12
+    title: The House Governance Kernel, Authorization, Workflow, and Evidence Qualification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-12-house-governance-kernel-authorization-workflow-and-evidence-qualification.md
+    gate: V1-G3
+  - id: V1-13
+    title: The House Test, Operational, Security, and Production-Readiness Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-13-house-test-operational-security-and-production-readiness-assessment.md
+    gate: V1-G3
+  - id: V1-14
+    title: The House to Target - Hardening, Convergence, and First-Release Path
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-14-house-to-target-hardening-convergence-and-first-release-path.md
+    gate: V1-G3
+  - id: V1-C
+    title: Package 3 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.1.0
+    path: docs/program/volume-1/V1-C-package-3-closure-record.md
+    gate: V1-G3
+  - id: V1-15
+    title: Curling Canada Current Operating Model and Institutional Landscape
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-15-curling-canada-current-operating-model-and-institutional-landscape.md
+    gate: V1-G4
+  - id: V1-16
+    title: Current Club-Affiliation Process End to End
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-16-current-club-affiliation-process-end-to-end.md
+    gate: V1-G4
+  - id: V1-17
+    title: External Systems and Their Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-17-external-systems-and-their-authority.md
+    gate: V1-G4
+  - id: V1-18
+    title: Data Flow, Authority, and Reconciliation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-18-data-flow-authority-and-reconciliation.md
+    gate: V1-G4
+  - id: V1-19
+    title: Commercial, Contractual, Transition, and Sustainability Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-19-commercial-contractual-transition-and-sustainability-constraints.md
+    gate: V1-G4
+  - id: V1-20
+    title: Current-State Findings and Target Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-20-current-state-findings-and-target-constraints.md
+    gate: V1-G4
+  - id: V1-D
+    title: Package 4 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-D-package-4-closure-record.md
+    gate: V1-G4
+  # --- Package 5: Convergence and Target Disposition (V1-21..V1-26) ---
+  - id: V1-21
+    title: Convergence Methodology and Evidence Precedence
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-21-convergence-methodology-and-evidence-precedence.md
+    gate: V1-G5
+  - id: V1-22
+    title: Unified Capability and Layer Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-22-unified-capability-and-layer-disposition.md
+    gate: V1-G5
+  - id: V1-23
+    title: System, Data-Authority, and Reconciliation Convergence
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-23-system-data-authority-and-reconciliation-convergence.md
+    gate: V1-G5
+  - id: V1-24
+    title: Affiliation Target Operating Model and First-Release Boundary
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-24-affiliation-target-operating-model-and-first-release-boundary.md
+    gate: V1-G5
+  - id: V1-25
+    title: Transition, Dependency, and Validation Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-25-transition-dependency-and-validation-plan.md
+    gate: V1-G5
+  - id: V1-26
+    title: Volume 1 Conclusion and Downstream Readiness
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-26-volume-1-conclusion-and-downstream-readiness.md
+    gate: V1-G5
+  - id: V1-E
+    title: Volume 1 Completion and Package 5 Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-E-volume-1-completion-and-package-5-freeze-record.md
+    gate: V1-G5
+  - id: V1-F
+    title: Volume 1 Executive Convergence Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-F-volume-1-executive-convergence-brief.md
+    gate: V1-G5

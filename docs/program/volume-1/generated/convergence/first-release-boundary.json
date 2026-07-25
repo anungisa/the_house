@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "9c0f04f924f0fe799999d0cd960d3f2a2001f165",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "included_count": 15,
+    "excluded_count": 6,
+    "note": "Smallest legitimate first affiliation release. Everything outside is explicitly excluded until the vertical is proven."
+  },
+  "included": [
+    "club recognition or establishment",
+    "jurisdiction resolution",
+    "seasonal affiliation creation",
+    "versioned requirements",
+    "evidence binding",
+    "submission",
+    "resource-aware authorization",
+    "assigned reviewer routing",
+    "return and resubmission",
+    "governed decision",
+    "payment-reconciliation boundary",
+    "exactly-once activation",
+    "Button status and required-action view",
+    "notifications",
+    "audit and operational visibility"
+  ],
+  "excluded": [
+    "unrelated horizontal expansion until this vertical is proven",
+    "full billing / invoicing beyond the payment-reconciliation boundary",
+    "accreditation/learning authoring (external systems of record retained)",
+    "analytics/reporting platform build (projection only)",
+    "support tooling replacement",
+    "additional domain modules outside the affiliation vertical"
+  ]
+}

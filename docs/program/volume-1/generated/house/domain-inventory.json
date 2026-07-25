@@ -1,0 +1,219 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "domain_contexts": 4,
+    "governance_contexts": 8,
+    "governed_domains": [
+      "affiliation",
+      "organization-registry",
+      "participant-registry"
+    ],
+    "reference_data_domains": [
+      "facility-registry"
+    ],
+    "domains_owning_outbox": [
+      "affiliation",
+      "facility-registry",
+      "organization-registry",
+      "participant-registry"
+    ]
+  },
+  "domains": [
+    {
+      "name": "affiliation",
+      "path": "src/domains/affiliation",
+      "kind": "domain",
+      "files": 11,
+      "lines": 1008,
+      "invokes_kernel": true,
+      "kernel_reference_count": 7,
+      "owns_outbox_enqueue": true,
+      "services": [
+        "AffiliationApplicationService"
+      ],
+      "stores": [
+        "InMemoryAffiliationApplicationStore",
+        "PgAffiliationApplicationStore"
+      ]
+    },
+    {
+      "name": "facility-registry",
+      "path": "src/domains/facility-registry",
+      "kind": "domain",
+      "files": 7,
+      "lines": 1473,
+      "invokes_kernel": false,
+      "kernel_reference_count": 0,
+      "owns_outbox_enqueue": true,
+      "services": [
+        "FacilityRegistryService"
+      ],
+      "stores": [
+        "InMemoryFacilityRegistryStore",
+        "PgFacilityRegistryStore"
+      ]
+    },
+    {
+      "name": "organization-registry",
+      "path": "src/domains/organization-registry",
+      "kind": "domain",
+      "files": 7,
+      "lines": 1258,
+      "invokes_kernel": true,
+      "kernel_reference_count": 2,
+      "owns_outbox_enqueue": true,
+      "services": [
+        "OrganizationRegistryService"
+      ],
+      "stores": [
+        "InMemoryOrganizationRegistryStore",
+        "PgOrganizationRegistryStore"
+      ]
+    },
+    {
+      "name": "participant-registry",
+      "path": "src/domains/participant-registry",
+      "kind": "domain",
+      "files": 7,
+      "lines": 1895,
+      "invokes_kernel": true,
+      "kernel_reference_count": 2,
+      "owns_outbox_enqueue": true,
+      "services": [
+        "ParticipantRegistryService"
+      ],
+      "stores": [
+        "InMemoryParticipantRegistryStore",
+        "PgParticipantRegistryStore"
+      ]
+    }
+  ],
+  "governance_contexts": [
+    {
+      "name": "evidence",
+      "path": "src/governance/evidence",
+      "kind": "governance-context",
+      "files": 23,
+      "lines": 2321,
+      "invokes_kernel": true,
+      "kernel_reference_count": 3,
+      "owns_outbox_enqueue": true,
+      "services": [
+        "EvidenceQuarantineService",
+        "EvidenceStorageService",
+        "GovernanceEvidenceService"
+      ],
+      "stores": [
+        "InMemoryEvidenceQuarantineStore",
+        "PgEvidenceQuarantineStore"
+      ]
+    },
+    {
+      "name": "guards",
+      "path": "src/governance/guards",
+      "kind": "governance-context",
+      "files": 2,
+      "lines": 217,
+      "invokes_kernel": false,
+      "kernel_reference_count": 0,
+      "owns_outbox_enqueue": false,
+      "services": [],
+      "stores": []
+    },
+    {
+      "name": "kernel",
+      "path": "src/governance/kernel",
+      "kind": "governance-context",
+      "files": 2,
+      "lines": 1143,
+      "invokes_kernel": true,
+      "kernel_reference_count": 6,
+      "owns_outbox_enqueue": true,
+      "services": [],
+      "stores": []
+    },
+    {
+      "name": "outbox",
+      "path": "src/governance/outbox",
+      "kind": "governance-context",
+      "files": 8,
+      "lines": 703,
+      "invokes_kernel": false,
+      "kernel_reference_count": 0,
+      "owns_outbox_enqueue": true,
+      "services": [],
+      "stores": [
+        "InMemoryOutboxStore",
+        "PgOutboxStore"
+      ]
+    },
+    {
+      "name": "permissions",
+      "path": "src/governance/permissions",
+      "kind": "governance-context",
+      "files": 1,
+      "lines": 42,
+      "invokes_kernel": false,
+      "kernel_reference_count": 0,
+      "owns_outbox_enqueue": false,
+      "services": [],
+      "stores": []
+    },
+    {
+      "name": "store",
+      "path": "src/governance/store",
+      "kind": "governance-context",
+      "files": 3,
+      "lines": 1061,
+      "invokes_kernel": false,
+      "kernel_reference_count": 0,
+      "owns_outbox_enqueue": true,
+      "services": [],
+      "stores": [
+        "InMemoryGovernanceStore",
+        "PgGovernanceStore"
+      ]
+    },
+    {
+      "name": "types",
+      "path": "src/governance/types",
+      "kind": "governance-context",
+      "files": 1,
+      "lines": 268,
+      "invokes_kernel": true,
+      "kernel_reference_count": 2,
+      "owns_outbox_enqueue": true,
+      "services": [],
+      "stores": []
+    },
+    {
+      "name": "workflow",
+      "path": "src/governance/workflow",
+      "kind": "governance-context",
+      "files": 10,
+      "lines": 1245,
+      "invokes_kernel": true,
+      "kernel_reference_count": 5,
+      "owns_outbox_enqueue": true,
+      "services": [
+        "ApprovedWorkflowExecutionService",
+        "WorkflowDecisionService"
+      ],
+      "stores": [
+        "InMemoryWorkflowStore",
+        "PgWorkflowStore"
+      ]
+    }
+  ]
+}

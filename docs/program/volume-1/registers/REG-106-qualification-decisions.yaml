@@ -1,0 +1,983 @@
+register_id: REG-106
+name: Qualification Decision Register
+status: IN_REVIEW
+version: 0.6.0
+# Per-capability target dispositions for the Base44 corpus. These are decisions
+# by the Accountable Program Authority about how each capability should be
+# treated by the program; they are NOT construction authorization. Every Package
+# 2 decision therefore sets authorizes_implementation=false and authorizing_gate=
+# null. No Base44 capability is dispositioned ADOPT or RETAIN: the prototype's
+# architecture disqualifies as-is adoption, and RETAIN (production-candidate)
+# applies to The House assessment (Package 3), not to Base44.
+#
+# v0.3.0 (Package 2 corrective closure, DEC-V1-011): every disposition was
+# re-ratified against the program's DECLARED CURRENT Base44 export (SRC-001,
+# curl-link-hub (7)). The (5)->(7) delta is strictly additive
+# (generated/base44/delta-5-to-7.json, EV-018), so no prior disposition is
+# reversed by the corrected baseline; each record now cites current-export
+# evidence (REG-102 EV-001..EV-022) alongside its original findings. Two
+# capability domains present in (7) but missed by the original (5) assessment
+# are added as QD-017 (IEBOK, CAP-017) and QD-018 (Jobs board, CAP-018), both
+# DEFER. All decisions remain authorizes_implementation=false: this closure
+# re-ratifies dispositions, it does not authorize construction.
+records:
+  - id: QD-001
+    capability_ref: CAP-001
+    disposition: ADAPT
+    rationale: >-
+      The tiered affiliation concept is the strongest reusable product asset, but
+      the direct-mutation lifecycle must be rebuilt on the Governance Kernel.
+    evidence_rating: E2
+    evidence_refs: [CAP-001, FND-001, FND-010, EV-006, EV-022, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Concept adapted; mechanism rejected. Implementation awaits later authorization.
+  - id: QD-002
+    capability_ref: CAP-002
+    disposition: ADAPT
+    rationale: >-
+      The national organization hierarchy and tenancy concept are reusable, but
+      app-layer rls and retrofitted org_id must be rebuilt on DB-enforced tenancy.
+    evidence_rating: E2
+    evidence_refs: [CAP-002, FND-002, FND-013, EV-012, EV-002, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-003
+    capability_ref: CAP-003
+    disposition: DEFER
+    rationale: Club 360 evidence is too thin to qualify; defer until the spine exists.
+    evidence_rating: E1
+    evidence_refs: [CAP-003, FND-018, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-004
+    capability_ref: CAP-004
+    disposition: ADAPT
+    rationale: Membership/household modelling is reusable but sequenced after affiliation.
+    evidence_rating: E2
+    evidence_refs: [CAP-004, FND-002, EV-002, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-005
+    capability_ref: CAP-005
+    disposition: ADAPT
+    rationale: Participant identity and numbering concepts are reusable; localization coverage unverified.
+    evidence_rating: E2
+    evidence_refs: [CAP-005, FND-015, EV-009, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-006
+    capability_ref: CAP-006
+    disposition: ADAPT
+    rationale: Compliance/consent/safe-sport concepts are reusable; enforcement must become governed and audited.
+    evidence_rating: E2
+    evidence_refs: [CAP-006, FND-003, EV-002, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-007
+    capability_ref: CAP-007
+    disposition: DEFER
+    rationale: Registration overlaps membership and events; defer until those scopes are qualified.
+    evidence_rating: E1
+    evidence_refs: [CAP-007, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-008
+    capability_ref: CAP-008
+    disposition: EXTERNALIZE
+    rationale: >-
+      Payment execution belongs on a PCI-scoped external processor; the House
+      governs and reconciles fee state rather than asserting it via flags.
+    evidence_rating: E2
+    evidence_refs: [CAP-008, FND-004, FND-014, EV-008, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-009
+    capability_ref: CAP-009
+    disposition: EXTERNALIZE
+    rationale: Support/ticketing is non-core and better served by an external platform.
+    evidence_rating: E1
+    evidence_refs: [CAP-009, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-010
+    capability_ref: CAP-010
+    disposition: EXTERNALIZE
+    rationale: Knowledge/documents already lean on an external tool; retain only governed evidence documents in House.
+    evidence_rating: E1
+    evidence_refs: [CAP-010, EV-011, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-011
+    capability_ref: CAP-011
+    disposition: DEFER
+    rationale: Analytics value is unproven and duplicated; governed reporting should derive from the House system-of-record.
+    evidence_rating: E1
+    evidence_refs: [CAP-011, FND-016, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-012
+    capability_ref: CAP-012
+    disposition: REBUILD
+    rationale: >-
+      Decision-governance concepts are valuable, but the ad hoc mechanism must be
+      rebuilt in the Governance Kernel; documentation is not implementation.
+    evidence_rating: E2
+    evidence_refs: [CAP-012, FND-017, FND-020, FND-019, EV-022, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-013
+    capability_ref: CAP-013
+    disposition: DEFER
+    rationale: Event operations are peripheral to the affiliation mission; defer past the first release.
+    evidence_rating: E1
+    evidence_refs: [CAP-013, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-014
+    capability_ref: CAP-014
+    disposition: REBUILD
+    rationale: >-
+      Authorization is client-side, default-open, and largely unenforced
+      server-side; it must be rebuilt on server-enforced, fail-closed controls
+      with Postgres RLS. This is the highest-priority production-risk capability.
+    evidence_rating: E3
+    evidence_refs: [CAP-014, FND-005, FND-006, FND-007, FND-008, FND-013, EV-003, EV-004, EV-014, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-015
+    capability_ref: CAP-015
+    disposition: CONSOLIDATE
+    rationale: Overlapping dashboards and surfaces should be consolidated into a small set of governed workspaces in The Button.
+    evidence_rating: E2
+    evidence_refs: [CAP-015, FND-011, FND-015, EV-013, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-016
+    capability_ref: CAP-016
+    disposition: RETIRE
+    rationale: A generic workflow builder conflicts with the governed-kernel doctrine and must not exist in the target.
+    evidence_rating: E2
+    evidence_refs: [CAP-016, FND-012, EV-022, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+  - id: QD-017
+    capability_ref: CAP-017
+    disposition: DEFER
+    rationale: >-
+      The IEBOK knowledge-body domain present in the current export (7) was
+      never assessed by the original (5)-based Package 2. It is un-qualified and
+      inherits the corpus-wide missing-authorization posture; it is deferred
+      pending a dedicated assessment and is not authorized for implementation.
+    evidence_rating: E2
+    evidence_refs: [CAP-017, FND-021, EV-019, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      New in current export (7); added by the Package 2 corrective closure
+      (DEC-V1-011). No as-is adoption; DEFER only.
+  - id: QD-018
+    capability_ref: CAP-018
+    disposition: DEFER
+    rationale: >-
+      The Jobs-board domain present in the current export (7) was never assessed
+      by the original (5)-based Package 2. Its review/approval surface advances
+      state by direct mutation, matching the corpus-wide governed-transition
+      defect; it is deferred pending a dedicated assessment and is not
+      authorized for implementation.
+    evidence_rating: E2
+    evidence_refs: [CAP-018, FND-022, EV-020, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      New in current export (7); added by the Package 2 corrective closure
+      (DEC-V1-011). No as-is adoption; DEFER only.
+  - id: QD-019
+    capability_ref: CAP-019
+    disposition: ADOPT
+    rationale: >-
+      The Governance Kernel implements the constitutional transition algorithm,
+      four-layer idempotency, and atomic state/journal/audit/evidence/outbox
+      writes in source. It is the platform's core production value and the reason
+      The House is the production candidate. Adopt as the governed-transition
+      authority; harden by proving behaviour against production-equivalent
+      PostgreSQL (FND-028).
+    evidence_rating: E3
+    evidence_refs: [CAP-019, FND-032, EV-025, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. Retain-and-harden posture; structural
+      value (E3) is not production readiness. No implementation authorized.
+  - id: QD-020
+    capability_ref: CAP-020
+    disposition: RETAIN
+    rationale: >-
+      The transactional outbox has correct shape (in-txn enqueue, lease-based
+      claim, true full jitter, no sessions). Retain the mechanism; the default
+      Noop publisher and the unproven broker path are production-readiness gaps
+      to close before release (FND-030), not design defects.
+    evidence_rating: E3
+    evidence_refs: [CAP-020, FND-030, EV-028, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-021
+    capability_ref: CAP-021
+    disposition: RETAIN
+    rationale: >-
+      Forced row-level security on tenant_id across 20 of 26 tables with
+      in-transaction tenant context is a strong, database-enforced isolation
+      posture. Retain. The intentional omission of cross-schema foreign keys is
+      registered (CON-011), not corrected.
+    evidence_rating: E3
+    evidence_refs: [CAP-021, EV-024, SRC-010]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-022
+    capability_ref: CAP-022
+    disposition: RETAIN
+    rationale: >-
+      The named guard registry with fail-closed unknown-guard handling and exact
+      seed-to-handler parity is the correct policy-as-code mechanism. Retain. The
+      reviewer-scope guard's role-only logic is dispositioned under CAP-025.
+    evidence_rating: E3
+    evidence_refs: [CAP-022, EV-027, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-023
+    capability_ref: CAP-023
+    disposition: ADAPT
+    rationale: >-
+      The evidence storage/scanning/quarantine subsystem is complete and binds
+      metadata to transitions in-transaction. Adapt to wire the HTTP upload
+      transport to the pending governed decision so a decision is always
+      accompanied by its evidence (FND-025).
+    evidence_rating: E3
+    evidence_refs: [CAP-023, FND-025, EV-029, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-024
+    capability_ref: CAP-024
+    disposition: RETAIN
+    rationale: >-
+      Deferred-mutation approval requests and exactly-once approved execution are
+      correct. Retain the execution engine. The missing reviewer-routing
+      dispatcher is dispositioned separately (CAP-025/CAP-026, FND-024).
+    evidence_rating: E3
+    evidence_refs: [CAP-024, FND-024, EV-027, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-025
+    capability_ref: CAP-025
+    disposition: ADAPT
+    rationale: >-
+      The fail-closed edge action catalog is a sound first gate, but governed
+      affiliation authority is role-based only and not resource-aware; a
+      reviewer-role actor can decide any application in a tenant. Adapt to add
+      resource-/jurisdiction-scoped authorization before an affiliation release
+      (FND-023, FND-033).
+    evidence_rating: E3
+    evidence_refs: [CAP-025, FND-023, FND-033, EV-026, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. Release-blocking gap; no implementation
+      authorized.
+  - id: QD-026
+    capability_ref: CAP-026
+    disposition: ADAPT
+    rationale: >-
+      The governed AffiliationApplication lifecycle is the strongest first-
+      release candidate, but cannot complete an end-to-end release as-is. Adapt
+      to close the release-blocking gaps: create/bootstrap path (FND-026),
+      resource-aware authorization (FND-023), reviewer routing (FND-024),
+      evidence-to-transition wiring (FND-025), return-for-information/resubmission
+      (FND-027), and versioned requirements (FND-031).
+    evidence_rating: E3
+    evidence_refs: [CAP-026, FND-023, FND-024, FND-025, FND-026, FND-027, FND-031, SRC-012]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. The specific gaps are identified but
+      their remediation is NOT authorized here; authorization is reserved to the
+      material-commitment gate.
+  - id: QD-027
+    capability_ref: CAP-027
+    disposition: RETAIN
+    rationale: >-
+      The organization, participant, and facility registries are RLS-enforced
+      and wired into the production composition, supplying the facts affiliation
+      guards depend on. Retain. Cross-registry references are RLS-scoped, not
+      FK-enforced (CON-011).
+    evidence_rating: E3
+    evidence_refs: [CAP-027, EV-030, SRC-012]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-028
+    capability_ref: CAP-028
+    disposition: RETAIN
+    rationale: >-
+      Multi-layer idempotency (kernel pre-check, in-txn double-check, stable
+      outbox dedupe key) prevents duplicate transitions, audit, evidence, and
+      messages. Retain. Runtime proof depends on the DB-gated suites (FND-028).
+    evidence_rating: E3
+    evidence_refs: [CAP-028, EV-025, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-029
+    capability_ref: CAP-029
+    disposition: RETAIN
+    rationale: >-
+      Fail-closed configuration and env/Key Vault secret providers are the
+      correct posture. Retain. Behaviour is verified from source (E2); runtime
+      behaviour in a deployed environment is unproven (FND-029).
+    evidence_rating: E2
+    evidence_refs: [CAP-029, FND-029, EV-033, SRC-014]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-030
+    capability_ref: CAP-030
+    disposition: RETAIN
+    rationale: >-
+      The deployment baseline validators, CI workflows, Bicep skeleton, and
+      reproducible qualification tooling make releases verifiable. Retain. They
+      verify baselines, not a deployed environment; no running House instance is
+      evidenced (FND-029).
+    evidence_rating: E2
+    evidence_refs: [CAP-030, FND-029, EV-023, EV-033, SRC-014]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  # --- Package 4: current ecosystem and operating-reality qualification decisions (QD-031..036) ---
+  - id: QD-031
+    capability_ref: CAP-031
+    disposition: DEFER
+    rationale: >-
+      External-system authority and boundary mapping is qualified as
+      current-state evidence: SYS-001..008 authority classifications are grounded
+      in ratified Volume 0, SYS-009..012 are unvalidated. Disposition of each
+      system is DEFERRED to convergence (Package 5); no system is retained or
+      retired by this package.
+    evidence_rating: E2
+    evidence_refs: [CAP-031, FND-039, EV-035, SRC-016]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. No system automatically retained or
+      retired; no implementation authorized.
+  - id: QD-032
+    capability_ref: CAP-032
+    disposition: DEFER
+    rationale: >-
+      The current club-affiliation operating process is qualified as a
+      stakeholder-described current state pending validation. Its target design
+      is DEFERRED to convergence; current practice is not treated as
+      automatically desirable and becomes target constraints, not a design.
+    evidence_rating: E1
+    evidence_refs: [CAP-032, FND-034, FND-037, EV-036, SRC-020]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Pending stakeholder validation; no
+      implementation authorized.
+  - id: QD-033
+    capability_ref: CAP-033
+    disposition: DEFER
+    rationale: >-
+      The cross-system participant and organization data model is qualified as
+      current-state evidence with high data-quality and privacy risk. Master-data
+      authority and role model are DEFERRED to convergence; Curling Canada is the
+      intended master-data authority (Volume 0), pending migration and validation.
+    evidence_rating: E1
+    evidence_refs: [CAP-033, FND-038, FND-040, EV-037, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Registered contradiction CON-012; no
+      implementation authorized.
+  - id: QD-034
+    capability_ref: CAP-034
+    disposition: DEFER
+    rationale: >-
+      Payment, fee, and reconciliation handling is qualified as current-state
+      evidence with a manual reconciliation gap. The reconciliation boundary is
+      grounded in ratified Volume 0; economics and target design are DEFERRED to
+      convergence pending Helene's financial validation.
+    evidence_rating: E1
+    evidence_refs: [CAP-034, FND-035, EV-038, SRC-016]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Pending financial validation; no
+      implementation authorized.
+  - id: QD-035
+    capability_ref: CAP-035
+    disposition: DEFER
+    rationale: >-
+      Registration-provider migration and transition is qualified as a high-risk
+      current-state constraint grounded in ratified Volume 0 migration risk. The
+      migration approach and timing are DEFERRED to convergence pending vendor
+      and data-export validation.
+    evidence_rating: E1
+    evidence_refs: [CAP-035, FND-036, EV-039, SRC-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Pending vendor validation; no
+      implementation authorized.
+  - id: QD-036
+    capability_ref: CAP-036
+    disposition: DEFER
+    rationale: >-
+      Compliance, education, and accreditation projection is qualified as
+      current-state evidence with a gating gap. External systems of record are
+      preserved; the projection/gating model is DEFERRED to convergence pending
+      compliance validation (Jen).
+    evidence_rating: E1
+    evidence_refs: [CAP-036, FND-041, EV-040, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. External SoR authority preserved; no
+      implementation authorized.
+  # --- Package 5: layer-specific target dispositions (QD-037..QD-065) ---
+  # Each capability is dispositioned independently per layer; QDs group layers
+  # that share a disposition. ALL are target-definition decisions and authorize
+  # NO implementation (authorizes_implementation: false, authorizing_gate: null).
+  - id: QD-037
+    capability_ref: CAP-037
+    disposition: ADAPT
+    rationale: >-
+      Club recognition/establishment: adapt the Base44 guided-onboarding concept
+      at the experience layer and adapt the incumbent-provider import at the
+      integration layer (with an explicit exit trigger) during transition.
+    target_layer: [experience, integration]
+    source_contributions: [Base44, external system]
+    evidence_rating: E2
+    evidence_refs: [CAP-037, FND-042, EV-042, SRC-022]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-038
+    capability_ref: CAP-037
+    disposition: REBUILD
+    rationale: >-
+      Club recognition/establishment domain must be rebuilt on the Governance
+      Kernel: no create/bootstrap path exists in The House today.
+    target_layer: [domain]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-037, FND-042, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-039
+    capability_ref: CAP-037
+    disposition: RETAIN
+    rationale: >-
+      Club recognition/establishment data authority is retained in the House
+      organization registry; Curling Canada remains the master-data authority
+      (CON-012 open).
+    target_layer: [data_authority]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-037, FND-042, EV-044, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Master-data authority contradiction remains open.
+  - id: QD-040
+    capability_ref: CAP-038
+    disposition: ADAPT
+    rationale: >-
+      Jurisdiction resolution: adapt a Base44-style guided jurisdiction
+      confirmation at the experience layer.
+    target_layer: [experience]
+    source_contributions: [Base44]
+    evidence_rating: E2
+    evidence_refs: [CAP-038, FND-043, EV-042, SRC-022]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-041
+    capability_ref: CAP-038
+    disposition: REBUILD
+    rationale: >-
+      Jurisdiction resolution has no equivalent model: rebuild the jurisdiction
+      model (domain) and the routing that feeds reviewer assignment (integration).
+    target_layer: [domain, integration]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-038, FND-043, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-042
+    capability_ref: CAP-038
+    disposition: RETAIN
+    rationale: >-
+      Jurisdiction mapping is held by The House while provincial/PTSO authority
+      is preserved at the data-authority layer.
+    target_layer: [data_authority]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-038, FND-043, EV-044, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Provincial authority preserved.
+  - id: QD-043
+    capability_ref: CAP-039
+    disposition: ADAPT
+    rationale: >-
+      Seasonal affiliation lifecycle: adapt the Base44 tiered-affiliation concept
+      into a guided Button flow at the experience layer.
+    target_layer: [experience]
+    source_contributions: [Base44]
+    evidence_rating: E3
+    evidence_refs: [CAP-039, FND-044, EV-042, SRC-001]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Strongest reusable Base44 asset.
+  - id: QD-044
+    capability_ref: CAP-039
+    disposition: RETAIN
+    rationale: >-
+      Seasonal affiliation lifecycle: retain the Governance Kernel as the sole
+      authority for lifecycle transitions (domain), entity_state as authoritative
+      state (data authority), and the transactional outbox projection
+      (integration).
+    target_layer: [domain, data_authority, integration]
+    source_contributions: [The House]
+    evidence_rating: E3
+    evidence_refs: [CAP-039, FND-044, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Kernel retained fail-closed.
+  - id: QD-045
+    capability_ref: CAP-040
+    disposition: ADAPT
+    rationale: >-
+      Versioned affiliation requirements: adapt requirement presentation
+      (experience) and add versioned requirement resolution to the affiliation
+      domain.
+    target_layer: [experience, domain]
+    source_contributions: [Base44, The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-040, FND-045, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-046
+    capability_ref: CAP-040
+    disposition: RETAIN
+    rationale: >-
+      Versioned affiliation requirements: retain policy_version as the anchor for
+      requirement versions at the data-authority layer.
+    target_layer: [data_authority]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-040, FND-045, EV-044, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-047
+    capability_ref: CAP-040
+    disposition: DEFER
+    rationale: >-
+      Versioned affiliation requirements: external requirement feeds are deferred
+      at the integration layer to a convergence follow-on.
+    target_layer: [integration]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-040, FND-045, EV-042, SRC-022]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Deferred, not authorized.
+  - id: QD-048
+    capability_ref: CAP-041
+    disposition: ADAPT
+    rationale: >-
+      Evidence capture and binding: adapt guided upload/return-for-information UX
+      (experience), wire evidence upload into the affiliation flow (domain), and
+      extend the existing scan/quarantine pipeline (integration).
+    target_layer: [experience, domain, integration]
+    source_contributions: [Base44, The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-041, FND-046, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-049
+    capability_ref: CAP-041
+    disposition: RETAIN
+    rationale: >-
+      Evidence capture and binding: retain evidence_object metadata as
+      authoritative and immutable at the data-authority layer.
+    target_layer: [data_authority]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-041, FND-046, EV-044, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-050
+    capability_ref: CAP-042
+    disposition: ADAPT
+    rationale: >-
+      Fee determination: adapt fee presentation (experience) and add fee POLICY
+      as governed House domain state (domain) — fee policy is not processor logic.
+    target_layer: [experience, domain]
+    source_contributions: [Base44, The House]
+    evidence_rating: E1
+    evidence_refs: [CAP-042, FND-047, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Pending financial validation (Helene).
+  - id: QD-051
+    capability_ref: CAP-042
+    disposition: RETAIN
+    rationale: >-
+      Fee determination: The House retains authority over amounts owed at the
+      data-authority layer; the processor does not define fee policy.
+    target_layer: [data_authority]
+    source_contributions: [The House]
+    evidence_rating: E1
+    evidence_refs: [CAP-042, FND-047, EV-045, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Pending financial validation (Helene).
+  - id: QD-052
+    capability_ref: CAP-042
+    disposition: EXTERNALIZE
+    rationale: >-
+      Fee determination: charge execution is externalized to the payment
+      processor at the integration layer.
+    target_layer: [integration]
+    source_contributions: [external system]
+    evidence_rating: E1
+    evidence_refs: [CAP-042, FND-047, EV-046, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Externalized charge execution.
+  - id: QD-053
+    capability_ref: CAP-043
+    disposition: ADAPT
+    rationale: >-
+      Reviewer routing and assignment: adapt a reviewer worklist/queue experience
+      at the experience layer.
+    target_layer: [experience]
+    source_contributions: [Base44]
+    evidence_rating: E2
+    evidence_refs: [CAP-043, FND-048, EV-042, SRC-022]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-054
+    capability_ref: CAP-043
+    disposition: REBUILD
+    rationale: >-
+      Reviewer routing and assignment: rebuild routing (domain) and the routing
+      integration that consumes jurisdiction resolution (integration); none
+      exists today.
+    target_layer: [domain, integration]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-043, FND-048, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Explicit rebuild.
+  - id: QD-055
+    capability_ref: CAP-043
+    disposition: RETAIN
+    rationale: >-
+      Reviewer routing and assignment: assignment state is owned by The House at
+      the data-authority layer.
+    target_layer: [data_authority]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-043, FND-048, EV-044, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-056
+    capability_ref: CAP-044
+    disposition: ADAPT
+    rationale: >-
+      Return-for-information and resubmission: adapt a guided required-action view
+      (experience) and add return-for-information + resubmit transitions to the
+      FSM (domain).
+    target_layer: [experience, domain]
+    source_contributions: [Base44, The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-044, FND-049, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-057
+    capability_ref: CAP-044
+    disposition: RETAIN
+    rationale: >-
+      Return-for-information and resubmission: governed transitions are recorded
+      in state history (data authority) and notifications flow via the outbox
+      (integration).
+    target_layer: [data_authority, integration]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-044, FND-049, EV-046, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-058
+    capability_ref: CAP-045
+    disposition: ADAPT
+    rationale: >-
+      Governed decision and exactly-once activation: adapt decision/status
+      presentation at the experience layer.
+    target_layer: [experience]
+    source_contributions: [Base44]
+    evidence_rating: E3
+    evidence_refs: [CAP-045, FND-050, EV-042, SRC-001]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-059
+    capability_ref: CAP-045
+    disposition: RETAIN
+    rationale: >-
+      Governed decision and exactly-once activation: retain kernel-enforced
+      exactly-once via idempotency keys (domain), authoritative entity_state
+      activation (data authority), and outbox dedupe (integration).
+    target_layer: [domain, data_authority, integration]
+    source_contributions: [The House]
+    evidence_rating: E3
+    evidence_refs: [CAP-045, FND-050, EV-042, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Governed DB behaviour unproven without a deployed environment.
+  - id: QD-060
+    capability_ref: CAP-046
+    disposition: ADAPT
+    rationale: >-
+      Payment execution: adapt a guided checkout hand-off at the experience layer.
+    target_layer: [experience]
+    source_contributions: [Base44]
+    evidence_rating: E1
+    evidence_refs: [CAP-046, FND-047, EV-042, SRC-022]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. No implementation authorized.
+  - id: QD-061
+    capability_ref: CAP-046
+    disposition: EXTERNALIZE
+    rationale: >-
+      Payment execution: externalize charge execution to the payment processor
+      across domain, data-authority, and integration layers; The House records a
+      payment-reconciliation boundary, not the ledger.
+    target_layer: [domain, data_authority, integration]
+    source_contributions: [external system]
+    evidence_rating: E1
+    evidence_refs: [CAP-046, FND-047, EV-046, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Processor terms pending financial validation (Helene).
+  - id: QD-062
+    capability_ref: CAP-047
+    disposition: DEFER
+    rationale: >-
+      Accounting and ledger truth: no first-release experience surface; the
+      experience layer is deferred.
+    target_layer: [experience]
+    source_contributions: [external system]
+    evidence_rating: E2
+    evidence_refs: [CAP-047, FND-051, EV-042, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Deferred, not authorized.
+  - id: QD-063
+    capability_ref: CAP-047
+    disposition: EXTERNALIZE
+    rationale: >-
+      Accounting and ledger truth: ledger authority stays in the accounting
+      system across domain, data-authority, and integration layers; The House
+      consumes a reconciliation feed only.
+    target_layer: [domain, data_authority, integration]
+    source_contributions: [external system]
+    evidence_rating: E2
+    evidence_refs: [CAP-047, FND-051, EV-046, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Reconciliation format/cadence pending financial validation (Helene).
+  - id: QD-064
+    capability_ref: CAP-048
+    disposition: ADAPT
+    rationale: >-
+      Authoritative status projection: The Button presents guided
+      status/required-action views (experience) and consumes a read
+      projection/API (integration); it does not own governed state.
+    target_layer: [experience, integration]
+    source_contributions: [Base44, The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-048, FND-052, EV-042, SRC-001]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. Button surface scope pending experience validation.
+  - id: QD-065
+    capability_ref: CAP-048
+    disposition: RETAIN
+    rationale: >-
+      Authoritative status projection: The House retains ownership of lifecycle
+      state (domain) and is the authoritative source consumed via a read model
+      (data authority).
+    target_layer: [domain, data_authority]
+    source_contributions: [The House]
+    evidence_rating: E2
+    evidence_refs: [CAP-048, FND-052, EV-044, SRC-002]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: Package 5 convergence decision. House authoritative; Button presents.

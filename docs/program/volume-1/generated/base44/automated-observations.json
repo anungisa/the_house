@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_id": "SRC-001",
+    "source_label": "Base44 current declared export (7)",
+    "source_archive": "curl-link-hub (7).zip",
+    "source_sha256": "50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412",
+    "source_extract_dir": "legacy/curl-link-hub-7-extracted"
+  },
+  "note": "Deterministic observations are EVIDENCE INPUTS, not qualification decisions.",
+  "observations": [
+    {
+      "code": "OBS-COUNT-ROUTES",
+      "kind": "inventory",
+      "statement": "App.jsx declares 155 routes across guard types {\"none\":46,\"FeatureGate\":3,\"ProtectedRoute\":23,\"RoleGate\":83}.",
+      "evidence": [
+        "src/App.jsx"
+      ]
+    },
+    {
+      "code": "OBS-COUNT-ENTITIES",
+      "kind": "inventory",
+      "statement": "95 entity schemas; 93 declare an app-layer rls block; 53 declare a status enum.",
+      "evidence": [
+        "base44/entities/*.jsonc"
+      ]
+    },
+    {
+      "code": "OBS-COUNT-FUNCTIONS",
+      "kind": "inventory",
+      "statement": "101 server functions; 99 are Deno.serve handlers.",
+      "evidence": [
+        "base44/functions/*/entry.ts"
+      ]
+    },
+    {
+      "code": "OBS-BACKEND-ENFORCEMENT",
+      "kind": "production_risk",
+      "statement": "Only 2 of 101 server functions reference any permission check, yet 68 functions mutate entities with no server-side permission check. Frontend guards are UX-only.",
+      "evidence": [
+        "base44/functions/enforcePermission/entry.ts"
+      ]
+    },
+    {
+      "code": "OBS-SERVICE-ROLE",
+      "kind": "production_risk",
+      "statement": "80 functions use asServiceRole (privilege escalation), amplifying the impact of missing server-side authorization.",
+      "evidence": [
+        "base44/functions/*/entry.ts"
+      ]
+    },
+    {
+      "code": "OBS-ACCESS-DRIFT",
+      "kind": "production_risk",
+      "statement": "23 routes have no access-matrix entry; unknown_path_defaults_open=true. Access can drift from the declared single-source-of-truth matrix.",
+      "evidence": [
+        "src/lib/access/accessMatrix.js",
+        "src/ACCESS_MATRIX.md"
+      ]
+    },
+    {
+      "code": "OBS-DUAL-ROLE-VOCAB",
+      "kind": "production_risk",
+      "statement": "Dual role vocabulary present (fine keys + coarse buckets); 23 distinct role tokens are hardcoded directly in App.jsx routes despite the doctrine that roles live only in accessMatrix.js.",
+      "evidence": [
+        "src/lib/access/roleGroups.js",
+        "src/App.jsx",
+        "src/ACCESS_MATRIX.md"
+      ]
+    },
+    {
+      "code": "OBS-PAYMENTS",
+      "kind": "product_value",
+      "statement": "Stripe integration present (true); a payments/fees capability was explored.",
+      "evidence": [
+        "package.json"
+      ]
+    },
+    {
+      "code": "OBS-LOCALIZATION",
+      "kind": "unknown",
+      "statement": "Localization is a homegrown i18n (5 files) with an admin Translations page (true); completeness and bilingual coverage require evidence.",
+      "evidence": [
+        "src/lib/i18n/en.js",
+        "src/lib/i18n/fr.js",
+        "src/lib/i18n/useTranslation.js"
+      ]
+    },
+    {
+      "code": "OBS-TEST-CI",
+      "kind": "production_risk",
+      "statement": "Automated tests detected: false (test files: 0, test dirs: []); CI config detected: false ([]); runnable test script: false.",
+      "evidence": [
+        "(export root: test dirs / CI config / package.json scripts.test)"
+      ]
+    },
+    {
+      "code": "OBS-DOC-VOLUME",
+      "kind": "unknown",
+      "statement": "288 governance-style markdown documents are present in src/. Volume of documentation is not evidence of implemented or validated behaviour.",
+      "evidence": [
+        "src/*.md"
+      ]
+    }
+  ]
+}

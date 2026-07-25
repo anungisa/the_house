@@ -1,0 +1,1132 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_id": "SRC-001",
+    "source_label": "Base44 current declared export (7)",
+    "source_archive": "curl-link-hub (7).zip",
+    "source_sha256": "50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412",
+    "source_extract_dir": "legacy/curl-link-hub-7-extracted"
+  },
+  "summary": {
+    "total_functions": 101,
+    "http_handlers": 99,
+    "enforce_permission": 2,
+    "mutate_entities": 68,
+    "mutating_without_permission_check": 68,
+    "use_service_role": 80
+  },
+  "functions": [
+    {
+      "name": "assignCurlerNumbers",
+      "files": [
+        "base44/functions/assignCurlerNumbers/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 119
+    },
+    {
+      "name": "auditCanonicalClubs",
+      "files": [
+        "base44/functions/auditCanonicalClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 81
+    },
+    {
+      "name": "auditPermissionChange",
+      "files": [
+        "base44/functions/auditPermissionChange/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 27
+    },
+    {
+      "name": "auditRelationshipChange",
+      "files": [
+        "base44/functions/auditRelationshipChange/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 29
+    },
+    {
+      "name": "auditRoleChange",
+      "files": [
+        "base44/functions/auditRoleChange/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 28
+    },
+    {
+      "name": "backfillBCClubIds",
+      "files": [
+        "base44/functions/backfillBCClubIds/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 452
+    },
+    {
+      "name": "backfillDedupHash",
+      "files": [
+        "base44/functions/backfillDedupHash/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 120
+    },
+    {
+      "name": "backfillOrgId",
+      "files": [
+        "base44/functions/backfillOrgId/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 110
+    },
+    {
+      "name": "backfillOrgIdDriver",
+      "files": [
+        "base44/functions/backfillOrgIdDriver/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 81
+    },
+    {
+      "name": "bcCleanClubs",
+      "files": [
+        "base44/functions/bcCleanClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 163
+    },
+    {
+      "name": "bcFinalizeOrchestrator",
+      "files": [
+        "base44/functions/bcFinalizeOrchestrator/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 133
+    },
+    {
+      "name": "bcMethodologySummaryPdf",
+      "files": [
+        "base44/functions/bcMethodologySummaryPdf/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 79
+    },
+    {
+      "name": "bcNormalize",
+      "files": [
+        "base44/functions/bcNormalize/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 306
+    },
+    {
+      "name": "bcNormalizeSeasons",
+      "files": [
+        "base44/functions/bcNormalizeSeasons/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 88
+    },
+    {
+      "name": "bcResolveClubs",
+      "files": [
+        "base44/functions/bcResolveClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 179
+    },
+    {
+      "name": "checkAccess",
+      "files": [
+        "base44/functions/checkAccess/entry.ts"
+      ],
+      "is_http_handler": false,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 84
+    },
+    {
+      "name": "checkDocumentExpiry",
+      "files": [
+        "base44/functions/checkDocumentExpiry/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 139
+    },
+    {
+      "name": "completeGame",
+      "files": [
+        "base44/functions/completeGame/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 140
+    },
+    {
+      "name": "complianceExpirySweep",
+      "files": [
+        "base44/functions/complianceExpirySweep/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 109
+    },
+    {
+      "name": "complianceWebhook",
+      "files": [
+        "base44/functions/complianceWebhook/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 224
+    },
+    {
+      "name": "confirmRelationship",
+      "files": [
+        "base44/functions/confirmRelationship/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 45
+    },
+    {
+      "name": "createCheckout",
+      "files": [
+        "base44/functions/createCheckout/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 111
+    },
+    {
+      "name": "createPaymentPlan",
+      "files": [
+        "base44/functions/createPaymentPlan/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 66
+    },
+    {
+      "name": "curlingIOAggregate",
+      "files": [
+        "base44/functions/curlingIOAggregate/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 126
+    },
+    {
+      "name": "curlingIOGames",
+      "files": [
+        "base44/functions/curlingIOGames/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 157
+    },
+    {
+      "name": "deriveMemberAges",
+      "files": [
+        "base44/functions/deriveMemberAges/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 133
+    },
+    {
+      "name": "discoverCurlingIOSubdomains",
+      "files": [
+        "base44/functions/discoverCurlingIOSubdomains/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 113
+    },
+    {
+      "name": "enforcePermission",
+      "files": [
+        "base44/functions/enforcePermission/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": true,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 157
+    },
+    {
+      "name": "enrichClubDemographics",
+      "files": [
+        "base44/functions/enrichClubDemographics/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 137
+    },
+    {
+      "name": "enrichClubPopulation",
+      "files": [
+        "base44/functions/enrichClubPopulation/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 155
+    },
+    {
+      "name": "enrichClubPublicData",
+      "files": [
+        "base44/functions/enrichClubPublicData/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 138
+    },
+    {
+      "name": "expireJobPostings",
+      "files": [
+        "base44/functions/expireJobPostings/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 26
+    },
+    {
+      "name": "exportTenantBundle",
+      "files": [
+        "base44/functions/exportTenantBundle/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 175
+    },
+    {
+      "name": "fetchCurlingIO",
+      "files": [
+        "base44/functions/fetchCurlingIO/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 63
+    },
+    {
+      "name": "generateBenchmarkBrief",
+      "files": [
+        "base44/functions/generateBenchmarkBrief/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 104
+    },
+    {
+      "name": "generateClubInvoices",
+      "files": [
+        "base44/functions/generateClubInvoices/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 79
+    },
+    {
+      "name": "generateLeagueSchedule",
+      "files": [
+        "base44/functions/generateLeagueSchedule/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 230
+    },
+    {
+      "name": "generatePdfForm",
+      "files": [
+        "base44/functions/generatePdfForm/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 225
+    },
+    {
+      "name": "geocodeClubs",
+      "files": [
+        "base44/functions/geocodeClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 112
+    },
+    {
+      "name": "getAccessibleClubs",
+      "files": [
+        "base44/functions/getAccessibleClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 56
+    },
+    {
+      "name": "getAccessibleEvents",
+      "files": [
+        "base44/functions/getAccessibleEvents/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 69
+    },
+    {
+      "name": "getAccessibleMembers",
+      "files": [
+        "base44/functions/getAccessibleMembers/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 81
+    },
+    {
+      "name": "governanceEngineValidation",
+      "files": [
+        "base44/functions/governanceEngineValidation/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 197
+    },
+    {
+      "name": "grantSuperAdmin",
+      "files": [
+        "base44/functions/grantSuperAdmin/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 140
+    },
+    {
+      "name": "importCurlersPerSheet",
+      "files": [
+        "base44/functions/importCurlersPerSheet/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 110
+    },
+    {
+      "name": "importHistoricalSeasons",
+      "files": [
+        "base44/functions/importHistoricalSeasons/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 721
+    },
+    {
+      "name": "importManitobaDemographics",
+      "files": [
+        "base44/functions/importManitobaDemographics/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 219
+    },
+    {
+      "name": "importNovaScotiaAthletes",
+      "files": [
+        "base44/functions/importNovaScotiaAthletes/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 209
+    },
+    {
+      "name": "importOntarioMembers",
+      "files": [
+        "base44/functions/importOntarioMembers/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 370
+    },
+    {
+      "name": "importPeiAthletes",
+      "files": [
+        "base44/functions/importPeiAthletes/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 222
+    },
+    {
+      "name": "importPtsoMembers",
+      "files": [
+        "base44/functions/importPtsoMembers/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 274
+    },
+    {
+      "name": "inspectImportWorkbook",
+      "files": [
+        "base44/functions/inspectImportWorkbook/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 51
+    },
+    {
+      "name": "integrationProxy",
+      "files": [
+        "base44/functions/integrationProxy/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 59
+    },
+    {
+      "name": "inviteDependent",
+      "files": [
+        "base44/functions/inviteDependent/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 34
+    },
+    {
+      "name": "manageClubService",
+      "files": [
+        "base44/functions/manageClubService/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 134
+    },
+    {
+      "name": "manageGame",
+      "files": [
+        "base44/functions/manageGame/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 76
+    },
+    {
+      "name": "manageTeamRoster",
+      "files": [
+        "base44/functions/manageTeamRoster/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 71
+    },
+    {
+      "name": "manageTenantLifecycle",
+      "files": [
+        "base44/functions/manageTenantLifecycle/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 196
+    },
+    {
+      "name": "manageTicket",
+      "files": [
+        "base44/functions/manageTicket/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 252
+    },
+    {
+      "name": "mapManitobaClubs",
+      "files": [
+        "base44/functions/mapManitobaClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 215
+    },
+    {
+      "name": "memberDedup",
+      "files": [
+        "base44/functions/memberDedup/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 359
+    },
+    {
+      "name": "mergeDuplicateClubs",
+      "files": [
+        "base44/functions/mergeDuplicateClubs/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 74
+    },
+    {
+      "name": "monthlyClubFinancialReports",
+      "files": [
+        "base44/functions/monthlyClubFinancialReports/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 126
+    },
+    {
+      "name": "normalizeClubProvinces",
+      "files": [
+        "base44/functions/normalizeClubProvinces/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 126
+    },
+    {
+      "name": "normalizePtsoNames",
+      "files": [
+        "base44/functions/normalizePtsoNames/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 72
+    },
+    {
+      "name": "notifyApplicationStatus",
+      "files": [
+        "base44/functions/notifyApplicationStatus/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 82
+    },
+    {
+      "name": "notifyDocumentReview",
+      "files": [
+        "base44/functions/notifyDocumentReview/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 58
+    },
+    {
+      "name": "notifyDocumentUpload",
+      "files": [
+        "base44/functions/notifyDocumentUpload/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 46
+    },
+    {
+      "name": "notifyJobStatus",
+      "files": [
+        "base44/functions/notifyJobStatus/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 107
+    },
+    {
+      "name": "notifyProgramOpen",
+      "files": [
+        "base44/functions/notifyProgramOpen/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 73
+    },
+    {
+      "name": "onSurveySubmit",
+      "files": [
+        "base44/functions/onSurveySubmit/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 63
+    },
+    {
+      "name": "parseClubSurvey",
+      "files": [
+        "base44/functions/parseClubSurvey/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 233
+    },
+    {
+      "name": "processRefund",
+      "files": [
+        "base44/functions/processRefund/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 69
+    },
+    {
+      "name": "projectMembersToRollups",
+      "files": [
+        "base44/functions/projectMembersToRollups/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 266
+    },
+    {
+      "name": "provisionNSOTenant",
+      "files": [
+        "base44/functions/provisionNSOTenant/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 372
+    },
+    {
+      "name": "purgeSeasonRecords",
+      "files": [
+        "base44/functions/purgeSeasonRecords/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 59
+    },
+    {
+      "name": "rebuildSeasonRollups",
+      "files": [
+        "base44/functions/rebuildSeasonRollups/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 125
+    },
+    {
+      "name": "recomputeClubRollups",
+      "files": [
+        "base44/functions/recomputeClubRollups/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 115
+    },
+    {
+      "name": "recomputeSeasonRollups",
+      "files": [
+        "base44/functions/recomputeSeasonRollups/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 333
+    },
+    {
+      "name": "reconcilePayments",
+      "files": [
+        "base44/functions/reconcilePayments/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 99
+    },
+    {
+      "name": "recordEndScore",
+      "files": [
+        "base44/functions/recordEndScore/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 84
+    },
+    {
+      "name": "recordShot",
+      "files": [
+        "base44/functions/recordShot/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 62
+    },
+    {
+      "name": "refreshBenchmarks",
+      "files": [
+        "base44/functions/refreshBenchmarks/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 61
+    },
+    {
+      "name": "refreshPenetrationData",
+      "files": [
+        "base44/functions/refreshPenetrationData/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 91
+    },
+    {
+      "name": "renewalReminders",
+      "files": [
+        "base44/functions/renewalReminders/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 192
+    },
+    {
+      "name": "requirePermission",
+      "files": [
+        "base44/functions/requirePermission/entry.ts"
+      ],
+      "is_http_handler": false,
+      "enforces_permission": true,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 141
+    },
+    {
+      "name": "resetUserPassword",
+      "files": [
+        "base44/functions/resetUserPassword/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 42
+    },
+    {
+      "name": "resolveBCIdentities",
+      "files": [
+        "base44/functions/resolveBCIdentities/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 394
+    },
+    {
+      "name": "resolveTenantContext",
+      "files": [
+        "base44/functions/resolveTenantContext/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 161
+    },
+    {
+      "name": "reviewPtsoMemberData",
+      "files": [
+        "base44/functions/reviewPtsoMemberData/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 253
+    },
+    {
+      "name": "securityAudit",
+      "files": [
+        "base44/functions/securityAudit/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": false,
+      "loc": 89
+    },
+    {
+      "name": "sendNotification",
+      "files": [
+        "base44/functions/sendNotification/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 87
+    },
+    {
+      "name": "sendPaymentReminders",
+      "files": [
+        "base44/functions/sendPaymentReminders/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 66
+    },
+    {
+      "name": "slackAlert",
+      "files": [
+        "base44/functions/slackAlert/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 45
+    },
+    {
+      "name": "smartNotifications",
+      "files": [
+        "base44/functions/smartNotifications/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 217
+    },
+    {
+      "name": "sportIntelExport",
+      "files": [
+        "base44/functions/sportIntelExport/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 229
+    },
+    {
+      "name": "stripeWebhookHandler",
+      "files": [
+        "base44/functions/stripeWebhookHandler/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": true,
+      "uses_service_role": true,
+      "loc": 211
+    },
+    {
+      "name": "suggestClubAliases",
+      "files": [
+        "base44/functions/suggestClubAliases/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 132
+    },
+    {
+      "name": "trackAnalytics",
+      "files": [
+        "base44/functions/trackAnalytics/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": false,
+      "loc": 40
+    },
+    {
+      "name": "validateBCIngestion",
+      "files": [
+        "base44/functions/validateBCIngestion/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 63
+    },
+    {
+      "name": "verifyTenantDataIsolation",
+      "files": [
+        "base44/functions/verifyTenantDataIsolation/entry.ts"
+      ],
+      "is_http_handler": true,
+      "enforces_permission": false,
+      "mutates_entities": false,
+      "uses_service_role": true,
+      "loc": 163
+    }
+  ]
+}

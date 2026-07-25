@@ -1,0 +1,501 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/delta-base44.mjs",
+    "authority": "NON-AUTHORITATIVE. Deterministic (5)->(7) delta; evidence input to the Package 2 corrective amendment, not a decision.",
+    "historical_source": {
+      "id": "SRC-009",
+      "archive": "curl-link-hub (5).zip",
+      "extract_dir": "legacy/curl-link-hub-extracted"
+    },
+    "current_source": {
+      "id": "SRC-001",
+      "archive": "curl-link-hub (7).zip",
+      "extract_dir": "legacy/curl-link-hub-7-extracted"
+    }
+  },
+  "totals": {
+    "routes": [
+      148,
+      155
+    ],
+    "entities": [
+      87,
+      95
+    ],
+    "functions": [
+      99,
+      101
+    ],
+    "pages": [
+      144,
+      151
+    ],
+    "components": [
+      589,
+      604
+    ]
+  },
+  "routes": {
+    "by_guard": {
+      "historical": {
+        "none": 45,
+        "FeatureGate": 3,
+        "ProtectedRoute": 18,
+        "RoleGate": 82
+      },
+      "current": {
+        "none": 46,
+        "FeatureGate": 3,
+        "ProtectedRoute": 23,
+        "RoleGate": 83
+      }
+    },
+    "ungated_authenticated": [
+      41,
+      42
+    ],
+    "diff": {
+      "added": [
+        "/iebok",
+        "/iebok/browse",
+        "/iebok/glossary",
+        "/iebok/mechanics",
+        "/iebok/standards",
+        "/jobs",
+        "/jobs/review"
+      ],
+      "removed": [],
+      "unchanged_count": 148
+    }
+  },
+  "entities": {
+    "with_rls_block": [
+      85,
+      93
+    ],
+    "with_status_enum": [
+      49,
+      53
+    ],
+    "declared_properties": [
+      1414,
+      1516
+    ],
+    "diff": {
+      "added": [
+        "IEBOKArtifact",
+        "IEBOKGlossaryTerm",
+        "IEBOKMechanic",
+        "IEBOKProposal",
+        "IEBOKRelationship",
+        "IEBOKWorkingGroup",
+        "JobPosting",
+        "SavedJob"
+      ],
+      "removed": [],
+      "unchanged_count": 87
+    }
+  },
+  "functions": {
+    "posture": {
+      "enforce_permission": [
+        2,
+        2
+      ],
+      "mutate_entities": [
+        66,
+        68
+      ],
+      "mutating_without_permission_check": [
+        66,
+        68
+      ],
+      "use_service_role": [
+        78,
+        80
+      ]
+    },
+    "diff": {
+      "added": [
+        "expireJobPostings",
+        "notifyJobStatus"
+      ],
+      "removed": [],
+      "unchanged_count": 99
+    }
+  },
+  "pages_diff": {
+    "added": [
+      "IEBOKBrowser",
+      "IEBOKGlossary",
+      "IEBOKHome",
+      "IEBOKMechanics",
+      "IEBOKStandards",
+      "JobBoard",
+      "JobReviewQueue"
+    ],
+    "removed": [],
+    "unchanged_count": 143
+  },
+  "components_diff": {
+    "added": [
+      "ArtifactCard",
+      "ArtifactDetail",
+      "IEBOKNav",
+      "JobCard",
+      "JobDetailModal",
+      "JobFilters",
+      "LifecycleBadge",
+      "MechanicCard",
+      "MechanicDetail",
+      "MyPostings",
+      "ProposalCard",
+      "RejectJobModal",
+      "SaveJobButton",
+      "SubmitJobModal",
+      "WorkingGroupCard"
+    ],
+    "removed": [],
+    "unchanged_count": 574
+  },
+  "access_matrix": {
+    "matrix_entries": [
+      130,
+      132
+    ],
+    "routes_missing_from_matrix": [
+      18,
+      23
+    ],
+    "matrix_entries_without_route": [
+      4,
+      4
+    ],
+    "route_role_drift": [
+      82,
+      83
+    ],
+    "unknown_path_defaults_open": [
+      true,
+      true
+    ]
+  },
+  "integrations": {
+    "dependencies": [
+      65,
+      65
+    ],
+    "dependency_diff": {
+      "added": [],
+      "removed": [],
+      "unchanged_count": 65
+    },
+    "stripe_payments": [
+      true,
+      true
+    ],
+    "base44_sdk": [
+      true,
+      true
+    ]
+  },
+  "tests_ci": {
+    "historical": {
+      "test_file_count": 0,
+      "has_ci_config": false,
+      "has_test_script": false
+    },
+    "current": {
+      "test_file_count": 0,
+      "has_ci_config": false,
+      "has_test_script": false
+    }
+  },
+  "capability_domains": [
+    {
+      "domain": "analytics",
+      "routes": [
+        16,
+        16
+      ],
+      "entities": [
+        0,
+        0
+      ],
+      "functions": [
+        3,
+        3
+      ],
+      "pages": [
+        18,
+        18
+      ]
+    },
+    {
+      "domain": "club_360",
+      "routes": [
+        2,
+        2
+      ],
+      "entities": [
+        0,
+        0
+      ],
+      "functions": [
+        0,
+        0
+      ],
+      "pages": [
+        2,
+        2
+      ]
+    },
+    {
+      "domain": "club_affiliation",
+      "routes": [
+        3,
+        3
+      ],
+      "entities": [
+        2,
+        2
+      ],
+      "functions": [
+        1,
+        1
+      ],
+      "pages": [
+        3,
+        3
+      ]
+    },
+    {
+      "domain": "compliance",
+      "routes": [
+        7,
+        7
+      ],
+      "entities": [
+        7,
+        7
+      ],
+      "functions": [
+        2,
+        2
+      ],
+      "pages": [
+        7,
+        7
+      ]
+    },
+    {
+      "domain": "event_operations",
+      "routes": [
+        19,
+        19
+      ],
+      "entities": [
+        8,
+        8
+      ],
+      "functions": [
+        6,
+        6
+      ],
+      "pages": [
+        15,
+        15
+      ]
+    },
+    {
+      "domain": "governance_administration",
+      "routes": [
+        12,
+        12
+      ],
+      "entities": [
+        7,
+        7
+      ],
+      "functions": [
+        8,
+        8
+      ],
+      "pages": [
+        11,
+        11
+      ]
+    },
+    {
+      "domain": "knowledge",
+      "routes": [
+        5,
+        5
+      ],
+      "entities": [
+        2,
+        2
+      ],
+      "functions": [
+        3,
+        3
+      ],
+      "pages": [
+        5,
+        5
+      ]
+    },
+    {
+      "domain": "membership",
+      "routes": [
+        8,
+        8
+      ],
+      "entities": [
+        3,
+        3
+      ],
+      "functions": [
+        9,
+        9
+      ],
+      "pages": [
+        9,
+        9
+      ]
+    },
+    {
+      "domain": "national_operations",
+      "routes": [
+        15,
+        16
+      ],
+      "entities": [
+        3,
+        3
+      ],
+      "functions": [
+        1,
+        1
+      ],
+      "pages": [
+        16,
+        17
+      ]
+    },
+    {
+      "domain": "organization_registry",
+      "routes": [
+        15,
+        15
+      ],
+      "entities": [
+        5,
+        5
+      ],
+      "functions": [
+        10,
+        10
+      ],
+      "pages": [
+        8,
+        8
+      ]
+    },
+    {
+      "domain": "participant_identity",
+      "routes": [
+        5,
+        5
+      ],
+      "entities": [
+        4,
+        4
+      ],
+      "functions": [
+        0,
+        0
+      ],
+      "pages": [
+        5,
+        5
+      ]
+    },
+    {
+      "domain": "payments",
+      "routes": [
+        11,
+        11
+      ],
+      "entities": [
+        4,
+        4
+      ],
+      "functions": [
+        5,
+        5
+      ],
+      "pages": [
+        10,
+        10
+      ]
+    },
+    {
+      "domain": "registration",
+      "routes": [
+        3,
+        3
+      ],
+      "entities": [
+        1,
+        1
+      ],
+      "functions": [
+        0,
+        0
+      ],
+      "pages": [
+        3,
+        3
+      ]
+    },
+    {
+      "domain": "support",
+      "routes": [
+        2,
+        2
+      ],
+      "entities": [
+        1,
+        1
+      ],
+      "functions": [
+        1,
+        1
+      ],
+      "pages": [
+        2,
+        2
+      ]
+    },
+    {
+      "domain": "unclassified",
+      "routes": [
+        44,
+        50
+      ],
+      "entities": [
+        44,
+        52
+      ],
+      "functions": [
+        53,
+        55
+      ],
+      "pages": [
+        51,
+        57
+      ]
+    }
+  ]
+}

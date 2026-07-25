@@ -1,0 +1,649 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "9c0f04f924f0fe799999d0cd960d3f2a2001f165",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total_capabilities": 12,
+    "total_layer_cells": 48,
+    "by_disposition": {
+      "ADAPT": 18,
+      "DEFER": 2,
+      "EXTERNALIZE": 7,
+      "REBUILD": 5,
+      "RETAIN": 16
+    },
+    "by_layer": {
+      "data_authority": 12,
+      "domain": 12,
+      "experience": 12,
+      "integration": 12
+    },
+    "by_source_contribution": {
+      "Base44": 11,
+      "external system": 9,
+      "The House": 28
+    },
+    "note": "Each capability is dispositioned independently at four layers; a single capability may differ by layer. No implementation is authorized."
+  },
+  "capability_layer_matrix": [
+    {
+      "capability_id": "CAP-037",
+      "capability": "Club recognition and establishment",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Button-guided recognition/establishment.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-037",
+      "capability": "Club recognition and establishment",
+      "layer": "domain",
+      "disposition": "REBUILD",
+      "source_contribution": "The House",
+      "note": "No create/bootstrap path exists; build on the Governance Kernel.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-037",
+      "capability": "Club recognition and establishment",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "House organization registry; Curling Canada is master-data authority.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-037",
+      "capability": "Club recognition and establishment",
+      "layer": "integration",
+      "disposition": "ADAPT",
+      "source_contribution": "external system",
+      "note": "Incumbent-provider import during transition",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-038",
+      "capability": "Jurisdiction resolution",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Guided jurisdiction confirmation.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-038",
+      "capability": "Jurisdiction resolution",
+      "layer": "domain",
+      "disposition": "REBUILD",
+      "source_contribution": "The House",
+      "note": "New jurisdiction model; no equivalent exists.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-038",
+      "capability": "Jurisdiction resolution",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "House holds mapping; provincial authority preserved.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-038",
+      "capability": "Jurisdiction resolution",
+      "layer": "integration",
+      "disposition": "REBUILD",
+      "source_contribution": "The House",
+      "note": "Routing feeds reviewer assignment.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-039",
+      "capability": "Seasonal affiliation lifecycle",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Adapt the tiered-affiliation concept into a guided Button flow.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-039",
+      "capability": "Seasonal affiliation lifecycle",
+      "layer": "domain",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Governance Kernel owns lifecycle transitions; fail-closed.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-039",
+      "capability": "Seasonal affiliation lifecycle",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "entity_state is the authoritative lifecycle state.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-039",
+      "capability": "Seasonal affiliation lifecycle",
+      "layer": "integration",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Transactional outbox projects state changes.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-040",
+      "capability": "Versioned affiliation requirements",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Present applicable requirements in the guided flow.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-040",
+      "capability": "Versioned affiliation requirements",
+      "layer": "domain",
+      "disposition": "ADAPT",
+      "source_contribution": "The House",
+      "note": "Add versioned requirement resolution to the affiliation domain.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-040",
+      "capability": "Versioned affiliation requirements",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "policy_version anchors requirement versions.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-040",
+      "capability": "Versioned affiliation requirements",
+      "layer": "integration",
+      "disposition": "DEFER",
+      "source_contribution": "The House",
+      "note": "External requirement feeds deferred to convergence follow-on.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-041",
+      "capability": "Evidence capture and binding",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Guided upload/return-for-information UX.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-041",
+      "capability": "Evidence capture and binding",
+      "layer": "domain",
+      "disposition": "ADAPT",
+      "source_contribution": "The House",
+      "note": "Wire evidence upload into the affiliation flow.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-041",
+      "capability": "Evidence capture and binding",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "evidence_object metadata is authoritative and immutable.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-041",
+      "capability": "Evidence capture and binding",
+      "layer": "integration",
+      "disposition": "ADAPT",
+      "source_contribution": "The House",
+      "note": "Existing scan/quarantine pipeline extended to affiliation.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-042",
+      "capability": "Fee determination",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Present fee determination in the guided flow.",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-042",
+      "capability": "Fee determination",
+      "layer": "domain",
+      "disposition": "ADAPT",
+      "source_contribution": "The House",
+      "note": "Fee POLICY is governed House domain state",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-042",
+      "capability": "Fee determination",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "House owns amounts owed; processor does not define fee policy.",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-042",
+      "capability": "Fee determination",
+      "layer": "integration",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "Charge execution is externalized to the payment processor.",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-043",
+      "capability": "Reviewer routing and assignment",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Reviewer worklist/queue experience.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-043",
+      "capability": "Reviewer routing and assignment",
+      "layer": "domain",
+      "disposition": "REBUILD",
+      "source_contribution": "The House",
+      "note": "Explicit rebuild; no routing exists (V1-14.4).",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-043",
+      "capability": "Reviewer routing and assignment",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Assignment state owned by The House.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-043",
+      "capability": "Reviewer routing and assignment",
+      "layer": "integration",
+      "disposition": "REBUILD",
+      "source_contribution": "The House",
+      "note": "Consumes jurisdiction resolution (CAP-038).",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-044",
+      "capability": "Return-for-information and resubmission",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Guided required-action view.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-044",
+      "capability": "Return-for-information and resubmission",
+      "layer": "domain",
+      "disposition": "ADAPT",
+      "source_contribution": "The House",
+      "note": "Add return-for-information + resubmit transitions to the FSM.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-044",
+      "capability": "Return-for-information and resubmission",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Governed transitions recorded in state history.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-044",
+      "capability": "Return-for-information and resubmission",
+      "layer": "integration",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Notifications via outbox.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-045",
+      "capability": "Governed decision and exactly-once activation",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Decision/status presentation.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-045",
+      "capability": "Governed decision and exactly-once activation",
+      "layer": "domain",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Kernel enforces exactly-once via idempotency keys.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-045",
+      "capability": "Governed decision and exactly-once activation",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "entity_state activation is authoritative.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-045",
+      "capability": "Governed decision and exactly-once activation",
+      "layer": "integration",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "Outbox dedupe ensures exactly-once downstream.",
+      "evidence_rating": "E3"
+    },
+    {
+      "capability_id": "CAP-046",
+      "capability": "Payment execution",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "Guided checkout hand-off.",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-046",
+      "capability": "Payment execution",
+      "layer": "domain",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "Processor executes the charge.",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-046",
+      "capability": "Payment execution",
+      "layer": "data_authority",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "Processor owns the transaction record; House owns fee policy.",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-046",
+      "capability": "Payment execution",
+      "layer": "integration",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "House records a payment-reconciliation boundary",
+      "evidence_rating": "E1"
+    },
+    {
+      "capability_id": "CAP-047",
+      "capability": "Accounting and ledger truth",
+      "layer": "experience",
+      "disposition": "DEFER",
+      "source_contribution": "external system",
+      "note": "No first-release experience surface.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-047",
+      "capability": "Accounting and ledger truth",
+      "layer": "domain",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "Ledger truth stays in the accounting system.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-047",
+      "capability": "Accounting and ledger truth",
+      "layer": "data_authority",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "Accounting retains ledger authority.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-047",
+      "capability": "Accounting and ledger truth",
+      "layer": "integration",
+      "disposition": "EXTERNALIZE",
+      "source_contribution": "external system",
+      "note": "Reconciliation feed only; House is not the ledger.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-048",
+      "capability": "Authoritative status projection",
+      "layer": "experience",
+      "disposition": "ADAPT",
+      "source_contribution": "Base44",
+      "note": "The Button presents guided status/required-action views; it does not own governed state.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-048",
+      "capability": "Authoritative status projection",
+      "layer": "domain",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "The House owns lifecycle state; the Button presents it.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-048",
+      "capability": "Authoritative status projection",
+      "layer": "data_authority",
+      "disposition": "RETAIN",
+      "source_contribution": "The House",
+      "note": "House is authoritative; Button consumes a read model.",
+      "evidence_rating": "E2"
+    },
+    {
+      "capability_id": "CAP-048",
+      "capability": "Authoritative status projection",
+      "layer": "integration",
+      "disposition": "ADAPT",
+      "source_contribution": "The House",
+      "note": "Read projection/API for Button and integrations.",
+      "evidence_rating": "E2"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-037",
+      "name": "Club recognition and establishment",
+      "summary": "Recognize an existing club or establish a new organization record.",
+      "base44_contribution": "Guided onboarding experience concept (V1-06, V1-09).",
+      "house_contribution": "Organization registry read/write; no create/bootstrap path (V1-11, V1-14.5).",
+      "current_process_contribution": "Manual club recognition via email/spreadsheet (V1-16).",
+      "external_dependency": "Incumbent registration provider (transitional) (SRC-018).",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-042"
+      ],
+      "unresolved_validation": "Historical-club eligibility rules pending operational validation (Jen).",
+      "release_hypothesis": "Included in first release (recognition or establishment)."
+    },
+    {
+      "id": "CAP-038",
+      "name": "Jurisdiction resolution",
+      "summary": "Resolve the province/PTSO jurisdiction that governs an organization.",
+      "base44_contribution": "None material (V1-07).",
+      "house_contribution": "No jurisdiction/assignment model today (V1-14.5).",
+      "current_process_contribution": "Jurisdiction known informally; no system routing (V1-16, FND-037).",
+      "external_dependency": "Provincial/PTSO authority (Volume 0 doctrine).",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-043"
+      ],
+      "unresolved_validation": "Provincial jurisdiction boundaries pending Member-Association validation.",
+      "release_hypothesis": "Included in first release (jurisdiction resolution)."
+    },
+    {
+      "id": "CAP-039",
+      "name": "Seasonal affiliation lifecycle",
+      "summary": "The governed affiliation state machine for a season.",
+      "base44_contribution": "Tiered affiliation concept (CAP-001, V1-07) — strongest reusable product asset.",
+      "house_contribution": "Governance Kernel + affiliation FSM, guards, idempotency (V1-12).",
+      "current_process_contribution": "Manual status tracking in email/spreadsheet (V1-16).",
+      "external_dependency": "None for state authority.",
+      "evidence_rating": "E3",
+      "finding_refs": [
+        "FND-044"
+      ],
+      "unresolved_validation": "None material for state authority; seasonal boundary rules pending operational validation.",
+      "release_hypothesis": "Included in first release (seasonal affiliation creation + lifecycle)."
+    },
+    {
+      "id": "CAP-040",
+      "name": "Versioned affiliation requirements",
+      "summary": "Determine the applicable, versioned requirement set for an affiliation.",
+      "base44_contribution": "Requirement presentation concept (V1-06).",
+      "house_contribution": "Policy versioning primitives; requirements not yet versioned (V1-14.3).",
+      "current_process_contribution": "Requirements applied by staff judgement (V1-16).",
+      "external_dependency": "None.",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-045"
+      ],
+      "unresolved_validation": "Requirement content and versioning cadence pending policy validation.",
+      "release_hypothesis": "Included in first release (versioned requirements)."
+    },
+    {
+      "id": "CAP-041",
+      "name": "Evidence capture and binding",
+      "summary": "Upload and bind evidence artifacts to a governed affiliation.",
+      "base44_contribution": "Upload UX concept (V1-06).",
+      "house_contribution": "Evidence metadata, hashing, storage, malware scan/quarantine; upload path unwired (V1-12, V1-14.3).",
+      "current_process_contribution": "Documents emailed and filed manually (V1-16, DATA-DOCS).",
+      "external_dependency": "Evidence storage/scanning provider.",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-046"
+      ],
+      "unresolved_validation": "Required-document matrix pending compliance validation (Jen).",
+      "release_hypothesis": "Included in first release (evidence binding)."
+    },
+    {
+      "id": "CAP-042",
+      "name": "Fee determination",
+      "summary": "Determine fees owed for an affiliation.",
+      "base44_contribution": "Fee presentation concept (V1-06).",
+      "house_contribution": "No fee-policy domain today; would be governed domain state (V1-11).",
+      "current_process_contribution": "Fees computed manually and invoiced (V1-16, DATA-PAYMENTS).",
+      "external_dependency": "Payment processor executes charges (SRC-007); accounting retains ledger truth (SRC-012).",
+      "evidence_rating": "E1",
+      "finding_refs": [
+        "FND-047"
+      ],
+      "unresolved_validation": "Fee schedule and economics pending financial validation (Helene).",
+      "release_hypothesis": "Included in first release (fee determination + payment-reconciliation boundary)."
+    },
+    {
+      "id": "CAP-043",
+      "name": "Reviewer routing and assignment",
+      "summary": "Route a submitted affiliation to the correct reviewer.",
+      "base44_contribution": "None material (V1-07).",
+      "house_contribution": "No reviewer routing; role-only authorization (V1-14.4).",
+      "current_process_contribution": "Reviewer chosen manually by staff (V1-16, FND-037).",
+      "external_dependency": "None.",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-048"
+      ],
+      "unresolved_validation": "Reviewer assignment rules pending operational validation.",
+      "release_hypothesis": "Included in first release (assigned reviewer routing)."
+    },
+    {
+      "id": "CAP-044",
+      "name": "Return-for-information and resubmission",
+      "summary": "Return an application for more information and accept a resubmission.",
+      "base44_contribution": "Guided correction UX concept (V1-06).",
+      "house_contribution": "FSM lacks return-for-information transition (V1-14.3).",
+      "current_process_contribution": "Back-and-forth handled by email (V1-16).",
+      "external_dependency": "None.",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-049"
+      ],
+      "unresolved_validation": "None material.",
+      "release_hypothesis": "Included in first release (return and resubmission)."
+    },
+    {
+      "id": "CAP-045",
+      "name": "Governed decision and exactly-once activation",
+      "summary": "Record the governed decision and activate the affiliation exactly once.",
+      "base44_contribution": "Status display concept (V1-06).",
+      "house_contribution": "Kernel transition + idempotency + outbox exactly-once (V1-12).",
+      "current_process_contribution": "Activation recorded manually (V1-16).",
+      "external_dependency": "None.",
+      "evidence_rating": "E3",
+      "finding_refs": [
+        "FND-050"
+      ],
+      "unresolved_validation": "Governed database behaviour unproven without a deployed environment (V1-14.5).",
+      "release_hypothesis": "Included in first release (governed decision + exactly-once activation)."
+    },
+    {
+      "id": "CAP-046",
+      "name": "Payment execution",
+      "summary": "Execute the payment transaction for an affiliation fee.",
+      "base44_contribution": "Checkout hand-off UX concept (V1-06).",
+      "house_contribution": "None (not a payment processor).",
+      "current_process_contribution": "Payments taken via existing processors (V1-18, DATA-PAYMENTS).",
+      "external_dependency": "Payment processors (SRC-007) — execute transactions, do not define fee policy.",
+      "evidence_rating": "E1",
+      "finding_refs": [
+        "FND-047"
+      ],
+      "unresolved_validation": "Processor selection and terms pending financial validation (Helene).",
+      "release_hypothesis": "Included at the payment-reconciliation boundary only (not full billing)."
+    },
+    {
+      "id": "CAP-047",
+      "name": "Accounting and ledger truth",
+      "summary": "Maintain the authoritative financial ledger.",
+      "base44_contribution": "None (V1-07).",
+      "house_contribution": "None (not an accounting system).",
+      "current_process_contribution": "Accounting system retains ledger authority (V1-18, SRC-012).",
+      "external_dependency": "Accounting system (SRC-012).",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-051"
+      ],
+      "unresolved_validation": "Reconciliation format and cadence pending financial validation (Helene).",
+      "release_hypothesis": "Externalized; only the reconciliation boundary is in first release."
+    },
+    {
+      "id": "CAP-048",
+      "name": "Authoritative status projection",
+      "summary": "Expose authoritative affiliation status to The Button and integrations.",
+      "base44_contribution": "Client-facing guided experience (V1-06, V1-09) — Button role.",
+      "house_contribution": "Authoritative state + read model + outbox projection (V1-11, V1-12).",
+      "current_process_contribution": "Status communicated ad hoc (V1-16).",
+      "external_dependency": "The Button (experience layer), downstream integrations.",
+      "evidence_rating": "E2",
+      "finding_refs": [
+        "FND-052"
+      ],
+      "unresolved_validation": "Button surface scope pending experience validation.",
+      "release_hypothesis": "Included in first release (Button status + required-action view + notifications + audit visibility)."
+    }
+  ]
+}

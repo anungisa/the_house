@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "qualification-decisions.schema.json",
+  "title": "REG-106 Qualification Decision Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-106" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "capability_ref",
+          "disposition",
+          "rationale",
+          "evidence_rating",
+          "evidence_refs",
+          "decided_by",
+          "decision_status",
+          "authorizes_implementation"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^QD-[0-9]{3}$" },
+          "capability_ref": { "type": "string", "pattern": "^CAP-[0-9]{3}$" },
+          "disposition": { "$ref": "common.schema.json#/definitions/disposition" },
+          "rationale": { "type": "string" },
+          "target_layer": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/targetLayer" }
+          },
+          "source_contributions": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/sourceContribution" }
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "evidence_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^(SRC|EV|FND|CAP)-[0-9]{3}$" }
+          },
+          "decided_by": { "type": "string" },
+          "decision_status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "accepted_by_accountable_authority",
+              "executive_accepted",
+              "superseded",
+              "withdrawn"
+            ]
+          },
+          "authorizes_implementation": { "type": "boolean" },
+          "authorizing_gate": {
+            "oneOf": [
+              { "type": "null" },
+              { "type": "string" }
+            ]
+          },
+          "effective_date": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

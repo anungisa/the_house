@@ -1,0 +1,222 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "migration_count": 11,
+    "first": "db/migrations/0001_governance_schema.sql",
+    "last": "db/migrations/0011_facility_registry.sql",
+    "total_lines": 1554,
+    "security_definer_migrations": [
+      "db/migrations/0004_outbox_worker_functions.sql"
+    ]
+  },
+  "migrations": [
+    {
+      "file": "db/migrations/0001_governance_schema.sql",
+      "sha256": "2940ecaa21e4a1cc795de2d3b06a84fdd6f47157c80dcd85ffbcba1f1018313f",
+      "lines": 396,
+      "schemas": [
+        "governance"
+      ],
+      "tables_created": [
+        "governance.policy_version",
+        "governance.state_machine",
+        "governance.state_node",
+        "governance.transition_definition",
+        "governance.guard_definition",
+        "governance.transition_guard",
+        "governance.entity_state",
+        "governance.transition_request",
+        "governance.state_transition",
+        "governance.transition_guard_result",
+        "governance.audit_event",
+        "governance.evidence_object",
+        "governance.outbox_message"
+      ],
+      "rls_enabled": 7,
+      "rls_forced": 7,
+      "policies_created": 17,
+      "functions_created": 1,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": true
+    },
+    {
+      "file": "db/migrations/0002_affiliation_application_v1_seed.sql",
+      "sha256": "ae6766c855d86f52d0eb10cb9a2e9e7f684ed49552b00eba3c37c7b3dcb93b8a",
+      "lines": 110,
+      "schemas": [],
+      "tables_created": [],
+      "rls_enabled": 0,
+      "rls_forced": 0,
+      "policies_created": 0,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0003_affiliation_domain_schema.sql",
+      "sha256": "f6f8a3dea1b463d3c76175defdca08729e1d4177e85196c2678898180b5166ff",
+      "lines": 194,
+      "schemas": [
+        "affiliation"
+      ],
+      "tables_created": [
+        "affiliation.affiliation_application",
+        "affiliation.application_document",
+        "affiliation.compliance_flag",
+        "affiliation.payment_obligation",
+        "affiliation.season"
+      ],
+      "rls_enabled": 5,
+      "rls_forced": 5,
+      "policies_created": 15,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0004_outbox_worker_functions.sql",
+      "sha256": "330be57c3ecf6318ac98352b3127787f1c7e52c744ff3403fcaba336e11f2986",
+      "lines": 207,
+      "schemas": [],
+      "tables_created": [],
+      "rls_enabled": 0,
+      "rls_forced": 0,
+      "policies_created": 0,
+      "functions_created": 6,
+      "security_definer_blocks": 9,
+      "references_tenant_id": false,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0005_workflow_metadata.sql",
+      "sha256": "d3fabdf8dd6c30342e55b1734a6f6c7f8c710003b9135568d3e1e66305e46ea2",
+      "lines": 149,
+      "schemas": [],
+      "tables_created": [
+        "governance.workflow_instance",
+        "governance.workflow_step",
+        "governance.workflow_decision"
+      ],
+      "rls_enabled": 3,
+      "rls_forced": 3,
+      "policies_created": 8,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0006_workflow_execution_status.sql",
+      "sha256": "3d97e468e368b8b6d921adf29e8aad5f0cde8efea0bc17dbc420ce68fe51f0a8",
+      "lines": 30,
+      "schemas": [],
+      "tables_created": [],
+      "rls_enabled": 0,
+      "rls_forced": 0,
+      "policies_created": 0,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": false,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0007_evidence_quarantine.sql",
+      "sha256": "76507be2115cfb6e2f02a646e9cee6b12868c703d96b7396158f071494163f5d",
+      "lines": 96,
+      "schemas": [],
+      "tables_created": [
+        "governance.evidence_quarantine_event"
+      ],
+      "rls_enabled": 1,
+      "rls_forced": 1,
+      "policies_created": 3,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0008_evidence_quarantine_disposition.sql",
+      "sha256": "1a134af4d37588d428c6efda1c365d0256be947727e36e6a8265cfad29807983",
+      "lines": 41,
+      "schemas": [],
+      "tables_created": [],
+      "rls_enabled": 0,
+      "rls_forced": 0,
+      "policies_created": 0,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0009_organization_registry.sql",
+      "sha256": "d34d5ce78b1fd28823ab6778ff36078d7adb63104c328e05cc3e97043d5afc06",
+      "lines": 89,
+      "schemas": [
+        "organization_registry"
+      ],
+      "tables_created": [
+        "organization_registry.organization"
+      ],
+      "rls_enabled": 1,
+      "rls_forced": 1,
+      "policies_created": 3,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0010_participant_registry.sql",
+      "sha256": "4b3390bd126ba4059b17fc4e398b43f7644f5ebb3be2bfe40b9a6ae89ddbbca6",
+      "lines": 142,
+      "schemas": [
+        "participant_registry"
+      ],
+      "tables_created": [
+        "participant_registry.participant",
+        "participant_registry.organization_participant"
+      ],
+      "rls_enabled": 2,
+      "rls_forced": 2,
+      "policies_created": 6,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    },
+    {
+      "file": "db/migrations/0011_facility_registry.sql",
+      "sha256": "ee5c21243939f6aac80691167d08dfa83cd2c972188a0bc16589c82dc5175f07",
+      "lines": 100,
+      "schemas": [
+        "facility_registry"
+      ],
+      "tables_created": [
+        "facility_registry.facility"
+      ],
+      "rls_enabled": 1,
+      "rls_forced": 1,
+      "policies_created": 3,
+      "functions_created": 0,
+      "security_definer_blocks": 0,
+      "references_tenant_id": true,
+      "references_idempotency_key": false
+    }
+  ]
+}

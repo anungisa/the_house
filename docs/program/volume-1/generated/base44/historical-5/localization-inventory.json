@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_id": "SRC-009",
+    "source_label": "Base44 historical export (5) - superseded, reference-case",
+    "source_archive": "curl-link-hub (5).zip",
+    "source_sha256": "a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95",
+    "source_extract_dir": "legacy/curl-link-hub-extracted"
+  },
+  "summary": {
+    "i18n_files": 5,
+    "has_translations_admin_page": true,
+    "files_referencing_translation_or_french": 46,
+    "framework": "Homegrown i18n (src/lib/i18n/useTranslation.js); not a standard i18n library"
+  },
+  "i18n_files": [
+    "src/lib/i18n/en.js",
+    "src/lib/i18n/fr.js",
+    "src/lib/i18n/useTranslation.js",
+    "src/components/i18n/LanguageSwitcher.jsx",
+    "src/components/i18n/TranslationManager.jsx"
+  ]
+}

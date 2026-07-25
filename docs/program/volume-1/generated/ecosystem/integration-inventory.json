@@ -1,0 +1,112 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-ecosystem.mjs (Package 4 ecosystem qualification tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled current-state evidence; not a qualification decision and not an authorization. No facts are generated from absence.",
+    "repository_commit": "cd6e73d19de7161f03c54254c5a5a9f9232e4664",
+    "branch": "docs/volume-1-ecosystem-qualification",
+    "working_tree_state": "dirty",
+    "ecosystem_input_sha256": "27133dc0bdb2ce61c4bf2daacabd59dfd7f41103fcfaae2073268388df5842fb",
+    "reg005_sha256": "8030f02bf56fbaf1f26f822e18d078c6a1dd43ea7a5fcb0b0776559fbefa8895"
+  },
+  "summary": {
+    "total_integrations": 12
+  },
+  "integrations": [
+    {
+      "id": "SYS-001",
+      "name": "Curling I/O",
+      "inbound_flows": "League/competition operational data into projections",
+      "outbound_flows": "Governed reference data as permitted within bounded domain",
+      "contract_dependency": "Bidirectional operational exchange; terms not captured here",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-002",
+      "name": "Current registration provider (incumbent)",
+      "inbound_flows": "Legacy registration/membership records for migration",
+      "outbound_flows": "Migration export to the target platform",
+      "contract_dependency": "Incumbent agreement; data-export rights and termination/transition conditions must be captured and validated.",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-003",
+      "name": "Payment processors",
+      "inbound_flows": "Governed charge instructions from The House",
+      "outbound_flows": "Payment confirmations/evidence back to The House",
+      "contract_dependency": "Processor agreement and fee economics (per-transaction cost) require Helene's financial validation.",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-004",
+      "name": "Sideline Learning",
+      "inbound_flows": "Certification-completion status into governed projections",
+      "outbound_flows": "None governed; The House holds a projection only",
+      "contract_dependency": "External SoR agreement; API availability to be validated",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-005",
+      "name": "Accreditation platforms",
+      "inbound_flows": "Accreditation status into governed projections",
+      "outbound_flows": "None governed; projection only",
+      "contract_dependency": "External SoR agreement; integration availability to be validated",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-006",
+      "name": "Document360",
+      "inbound_flows": "Authored documentation",
+      "outbound_flows": "Published documentation",
+      "contract_dependency": "Commodity hosting subscription",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-007",
+      "name": "Analytics platforms",
+      "inbound_flows": "Projected data from governed systems",
+      "outbound_flows": "Reports and dashboards",
+      "contract_dependency": "BI tooling subscription",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-008",
+      "name": "Accounting systems",
+      "inbound_flows": "Governed charge/payment records synchronized from The House",
+      "outbound_flows": "Ledger truth for reconciliation",
+      "contract_dependency": "Accounting platform agreement; requires Helene's validation",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "id": "SYS-009",
+      "name": "Support systems (Halo / Zendesk where relevant)",
+      "inbound_flows": "Support requests from clubs/individuals",
+      "outbound_flows": "Case resolution; no governed state",
+      "contract_dependency": "Support-tooling subscription (to be captured)",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "SYS-010",
+      "name": "Identity and Microsoft 365 services",
+      "inbound_flows": "Staff authentication and collaboration",
+      "outbound_flows": "Email-mediated processes and shared documents",
+      "contract_dependency": "Microsoft 365 licensing (to be captured)",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "SYS-011",
+      "name": "Manual spreadsheets and shared files",
+      "inbound_flows": "Manual entry from multiple systems",
+      "outbound_flows": "Manual re-keying into systems; email attachments",
+      "contract_dependency": "None",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "id": "SYS-012",
+      "name": "Email-mediated processes",
+      "inbound_flows": "Correction requests, supporting documents",
+      "outbound_flows": "Approvals/decisions communicated by email",
+      "contract_dependency": "None",
+      "validation_status": "pending_stakeholder_validation"
+    }
+  ]
+}

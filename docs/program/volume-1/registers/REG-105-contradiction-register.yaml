@@ -1,0 +1,367 @@
+register_id: REG-105
+name: Contradiction Register
+status: IN_REVIEW
+version: 0.6.0
+# Contradictions surfaced during Base44 qualification. Positions reference
+# controlled sources (REG-101) with their classification. Contradictions are NOT
+# resolved by preferring the newest artifact; they are resolved only by evidence
+# or by classification authority (e.g. policy truth governs implementation truth).
+# An unresolved contradiction is itself a first-class, reportable finding.
+#
+# v0.3.0 (Package 2 corrective closure, DEC-V1-011): every contradiction was
+# revalidated against the program's DECLARED CURRENT Base44 export (SRC-001,
+# curl-link-hub (7)) and carries a current_state_validation tag. The (5)->(7)
+# delta is strictly additive (generated/base44/delta-5-to-7.json), so every
+# contradiction raised against (5) surfaces reproduces against (7); none was
+# resolved by the newer export. The original historical positions and evidence
+# are preserved, not rewritten. Current-export evidence is recorded in REG-102
+# (EV-001..EV-022).
+records:
+  - id: CON-001
+    statement: >-
+      The access matrix is declared the single source of truth ("enforcement can
+      never drift from what is displayed"), yet route enforcement diverges from
+      it.
+    positions:
+      - source_ref: SRC-006
+        classification: implementation_truth
+        assertion: >-
+          ACCESS_MATRIX.md and accessMatrix.js declare one canonical matrix and
+          state that enforcement can never drift from what is displayed.
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: >-
+          App.jsx declares 148 routes; 18 have no matrix entry, 82 hardcode role
+          lists that diverge from the matrix, and unknown paths default to open.
+    status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
+    evidence_rating: E3
+    notes: >-
+      Displayed access and actual reachability diverge; see FND-007, FND-008.
+      Confirmed and worse in current export (7): 132 matrix entries, 23 routes
+      missing from the matrix, 83 route-role drift entries, unknown paths still
+      default open (EV-004, EV-016). Historical (5) was 130/18/82.
+  - id: CON-002
+    statement: >-
+      The authorization model uses two role vocabularies simultaneously, so a
+      single canonical role set does not in fact govern access.
+    positions:
+      - source_ref: SRC-006
+        classification: implementation_truth
+        assertion: roleGroups.js presents 23 fine role keys as the canonical vocabulary.
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: >-
+          Routes gate on coarse buckets (admin/ptso/club/curler) and hardcoded
+          fine keys interchangeably, using two vocabularies in enforcement.
+    status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
+    evidence_rating: E3
+    notes: >-
+      Dual vocabulary reconciled only at lookup time; see FND-008. Confirmed in
+      current export (7): dual_role_vocabulary=true, 23 distinct route role
+      tokens (EV-005, access-matrix-analysis.json).
+  - id: CON-003
+    statement: >-
+      UI-driven workflow order and the entity status lifecycle can diverge because
+      status is mutated directly without a governed transition boundary.
+    positions:
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: Page flows advance affiliation by writing status directly from UI-triggered functions.
+      - source_ref: SRC-004
+        classification: implementation_truth
+        assertion: >-
+          The Application entity defines a fixed status enum with no transition
+          guard mechanism, so UI order and entity lifecycle are not reconciled.
+    status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
+    evidence_rating: E2
+    notes: >-
+      Motivates the governed-kernel rebuild (FND-010). Confirmed in current
+      export (7): the Application status enum and direct-mutation advance path
+      persist, and the net-new IEBOKProposal and JobPosting lifecycles repeat
+      the same pattern (EV-019, EV-020, EV-022).
+  - id: CON-004
+    statement: >-
+      Affiliation payment readiness is asserted by a boolean flag while payment
+      state lives in an external processor, leaving the two unreconciled.
+    positions:
+      - source_ref: SRC-004
+        classification: implementation_truth
+        assertion: Readiness is represented by boolean flags such as annual_fee_paid on the Application entity.
+      - source_ref: SRC-001
+        classification: implementation_truth
+        assertion: >-
+          Stripe integration implies an external payment-state authority; the flag
+          and the processor state are not reconciled in the code.
+    status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
+    evidence_rating: E2
+    notes: >-
+      See FND-014; fee state must be reconciled, not asserted. Confirmed in
+      current export (7): the annual_fee_paid boolean is retained on the
+      Application entity and the Stripe dependency remains present (EV-008,
+      EV-022).
+  - id: CON-005
+    statement: >-
+      Multiple authoritative-looking surfaces exist for the same capability,
+      contradicting the assumption of one authoritative surface per capability.
+    positions:
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: >-
+          Multiple dashboards (staff/club/member/volunteer/fan) and multiple club
+          views coexist as distinct surfaces.
+      - source_ref: SRC-006
+        classification: implementation_truth
+        assertion: The access/nav doctrine assumes one authoritative surface per capability per role.
+    status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
+    evidence_rating: E2
+    notes: >-
+      See FND-011 (duplicated surfaces). Confirmed in current export (7): the
+      overlapping dashboard/club surfaces persist and the page count grew
+      144->151 between (5) and (7) (EV-013, delta-5-to-7.json).
+  - id: CON-006
+    statement: >-
+      The entity model and the governance narrative describe overlapping but
+      non-identical definitions of club, organization, member, and participant.
+    positions:
+      - source_ref: SRC-004
+        classification: implementation_truth
+        assertion: >-
+          Entities encode overlapping notions of Club, Organization/OrgNode,
+          Member, and participant/curler with differing keys.
+      - source_ref: SRC-007
+        classification: stakeholder_statement
+        assertion: The governance narrative asserts a single canonical club/organization model.
+    status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
+    evidence_rating: E2
+    notes: >-
+      Canonical definitions must be established before adoption; open. Confirmed
+      in current export (7): the overlapping Club/Organization/Member/participant
+      entity definitions persist (EV-002), and the +57 growth in governance
+      narrative does not reconcile them (EV-011).
+  - id: CON-007
+    statement: >-
+      Base44 advances governed lifecycle by direct status mutation and client-side
+      authorization, contradicting the House requirement that all governed
+      transitions pass through the Governance Kernel.
+    positions:
+      - source_ref: SRC-001
+        classification: implementation_truth
+        assertion: >-
+          Base44 advances governed lifecycle by direct status mutation across
+          functions and pages, with client-side authorization.
+      - source_ref: SRC-003
+        classification: policy_truth
+        assertion: >-
+          The Program Constitution requires all governed lifecycle transitions to
+          pass through the Governance Kernel; domains must not mutate governed
+          state directly.
+    status: resolved
+    resolution: >-
+      Resolved by classification authority: policy truth (SRC-003) governs
+      implementation truth (SRC-001). The Base44 direct-mutation mechanism is
+      dispositioned REBUILD (QD-001, QD-012, QD-014); the product concept is
+      retained via ADAPT while the mechanism is rejected. This is resolved by the
+      House authority hierarchy, not by preferring a newer artifact.
+    evidence_rating: E3
+    notes: >-
+      See FND-019. Confirmed in current export (7): the direct-mutation
+      mechanism persists (EV-003, EV-022); the resolution by classification
+      authority is unchanged.
+    current_state_validation: CONFIRMED_IN_CURRENT
+  - id: CON-008
+    statement: >-
+      The House design narrative implies reviewer authority is scoped to a
+      jurisdiction/entity, but the implemented permission and guard logic grant
+      elevated affiliation authority by role alone.
+    positions:
+      - source_ref: SRC-015
+        classification: stakeholder_statement
+        assertion: >-
+          Reviewer/approver authority over an affiliation application is scoped
+          to the relevant jurisdiction and the specific applicant.
+      - source_ref: SRC-011
+        classification: implementation_truth
+        assertion: >-
+          DefaultPermissionChecker and DomainBackedAffiliationGuardRepository
+          authorize elevated transitions by reviewer-class ROLE only, with no
+          binding to the specific applicant, jurisdiction, or region.
+    status: resolved
+    resolution: >-
+      Resolved by classification authority: demonstrated implementation truth
+      (SRC-011) governs design-intent narrative (SRC-015) as to what CURRENTLY
+      exists. The current control is role-only; the scoped-authority statement
+      describes a REQUIRED target state, registered as FND-023/FND-033 with
+      disposition ADAPT. No implementation is authorized in Package 3.
+    evidence_rating: E3
+    notes: >-
+      See FND-023, FND-033, EV-026. The narrative is not evidence of an
+      implemented control.
+  - id: CON-009
+    statement: >-
+      The House is described as tested and production-candidate, yet the default
+      hermetic test run skips every database-backed integration suite, so
+      governed database behaviour is unproven by default.
+    positions:
+      - source_ref: SRC-015
+        classification: stakeholder_statement
+        assertion: >-
+          The House has a strong, comprehensive automated test estate
+          demonstrating governed behaviour.
+      - source_ref: SRC-013
+        classification: implementation_truth
+        assertion: >-
+          All 16 integration suites (333 cases) require RUN_DB_TESTS=1 and a live
+          PostgreSQL database and are SKIPPED by the default npm test; only unit
+          suites with test doubles run by default.
+    status: resolved
+    resolution: >-
+      Resolved by the evidence hierarchy: skipped tests are not passing tests. A
+      passing unit suite is not production readiness. The existence of the DB
+      suites (E3) is credited, but governed database behaviour remains UNPROVEN
+      until they are executed against production-equivalent PostgreSQL.
+    evidence_rating: E3
+    notes: >-
+      See FND-028, EV-032.
+  - id: CON-010
+    statement: >-
+      The House outbox doctrine describes reliable post-commit publication of
+      external side effects, but the default composition publishes to a Noop
+      publisher and delivers nothing.
+    positions:
+      - source_ref: SRC-015
+        classification: stakeholder_statement
+        assertion: >-
+          The transactional outbox reliably publishes governed side effects
+          after commit.
+      - source_ref: SRC-011
+        classification: implementation_truth
+        assertion: >-
+          The default outbox publisher is a Noop; the real Azure Service Bus
+          publisher exists but is config-gated and unproven against a broker.
+    status: resolved
+    resolution: >-
+      Resolved by implementation truth: the outbox MECHANISM (leasing, full
+      jitter, dedupe) is correct and retained (CAP-020), but default delivery is
+      Noop. Real at-least-once delivery is a production-readiness gap (FND-030),
+      not a demonstrated capability.
+    evidence_rating: E3
+    notes: >-
+      See FND-030, EV-028.
+  - id: CON-011
+    statement: >-
+      The House asserts strong tenant data integrity, yet cross-schema parent
+      references (organization parent, facility organization, affiliation
+      linkages) are not enforced by database foreign keys.
+    positions:
+      - source_ref: SRC-015
+        classification: stakeholder_statement
+        assertion: >-
+          Tenant-owned data has strong referential and isolation guarantees.
+      - source_ref: SRC-010
+        classification: implementation_truth
+        assertion: >-
+          Cross-schema parent references are not declared as database foreign
+          keys; isolation is enforced solely by forced row-level security on
+          tenant_id.
+    status: resolved
+    resolution: >-
+      Resolved by design authority: RLS is deliberately the single tenant
+      isolation mechanism, and cross-schema FKs are intentionally omitted to
+      avoid coupling isolation to referential constraints. This is an intentional
+      design posture, registered for transparency, not a defect. Referential
+      integrity of cross-entity links is enforced in application/guard logic.
+    evidence_rating: E3
+    notes: >-
+      See EV-024, CAP-021, CAP-027. Registered so the trade-off is explicit;
+      no implementation change is directed.
+  # --- Package 4: current ecosystem and operating-reality contradictions (CON-012..013) ---
+  - id: CON-012
+    statement: >-
+      Master-data authority for clubs and participants is claimed by Curling
+      Canada in ratified policy, but is operationally held today by the incumbent
+      registration provider and partly mirrored in Curling I/O.
+    positions:
+      - source_ref: SRC-017
+        classification: policy_truth
+        assertion: >-
+          Curling Canada is the intended master-data authority for club,
+          affiliation, and participant records (Volume 0 V0-06).
+      - source_ref: SRC-020
+        classification: stakeholder_statement
+        assertion: >-
+          The incumbent registration provider currently holds the authoritative
+          registration and membership records in day-to-day operation.
+    status: open
+    resolution: >-
+      Reconciled in principle by transition policy: the incumbent is
+      authoritative only until a recorded cutover trigger (Volume 0 REG-003), not
+      a target-state authority. Full resolution depends on migration completion
+      and stakeholder validation; registered as UNRESOLVED_CONTRADICTION.
+    evidence_rating: E1
+    notes: >-
+      See FND-036, FND-038, CAP-035. Pending stakeholder validation; current
+      operational holder is not the intended target authority.
+  - id: CON-013
+    statement: >-
+      Affiliation decisions are governed in intent (must be bound to a governed
+      transition with evidence), but in current practice they are evidenced and
+      communicated through email and shared files outside any governed store.
+    positions:
+      - source_ref: SRC-017
+        classification: policy_truth
+        assertion: >-
+          Governed decisions and their evidence must be bound to a governed
+          lifecycle transition (governance doctrine).
+      - source_ref: SRC-020
+        classification: stakeholder_statement
+        assertion: >-
+          Affiliation decisions and supporting evidence currently live in email
+          threads and spreadsheets, unbound to a governed transition.
+    status: open
+    resolution: >-
+      The target must wire governed evidence binding; current practice is a
+      weakness to replace, not the desired target. Registered as
+      UNRESOLVED_CONTRADICTION pending stakeholder validation.
+    evidence_rating: E1
+    notes: >-
+      See FND-034, CAP-032. Current practice is not treated as automatically
+      desirable.
+  # --- Package 5: convergence contradiction (CON-014) ---
+  - id: CON-014
+    statement: >-
+      During the transition, registration-system authority is contested: the
+      target intends The House (via the Governance Kernel) to hold authoritative
+      affiliation and registration lifecycle state, but the incumbent
+      registration provider continues to hold operative registration data until
+      migration completes, so authority is split with no validated exit trigger.
+    positions:
+      - source_ref: SRC-017
+        classification: policy_truth
+        assertion: >-
+          The House is the intended authority for affiliation and registration
+          lifecycle state; no external platform holds governing authority over
+          the domain model (V0-06 doctrine).
+      - source_ref: SRC-018
+        classification: operational_truth
+        assertion: >-
+          The incumbent registration provider retains operative registration
+          data during the transition, and the migration is a recorded program
+          risk with no validated cut-over trigger.
+    status: open
+    resolution: >-
+      Retained OPEN. The split is a transition-era condition; the target
+      authority is The House, but the cut-over trigger and data-migration
+      completion are unvalidated. Not resolved using vendor or operational
+      evidence alone; requires an authoritative migration decision.
+    evidence_rating: E2
+    notes: >-
+      See FND-042, TC-001/TC-002 (transition constraints), CAP-037/CAP-039.
+      Newer/incumbent operative data does not confer target authority; the
+      contradiction remains open pending an authorized migration decision.
+

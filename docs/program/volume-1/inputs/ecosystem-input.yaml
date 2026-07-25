@@ -1,0 +1,796 @@
+# Package 4 controlled ecosystem input (current-state qualification evidence).
+#
+# This is a CONTROLLED SOURCE FILE. The `qualification:ecosystem` tooling structures
+# these records deterministically into generated/ecosystem/*; it derives nothing from
+# absence. Every current-state statement carries a truth classification and a
+# validation_status. Records grounded in ratified Volume 0 authority doctrine
+# (REG-005, V0-06) are POLICY_TRUTH; records not yet stakeholder- or vendor-validated
+# are ASSUMPTION or STAKEHOLDER_STATEMENT pending validation, and MUST NOT be read as
+# ratified policy or proven operational fact.
+#
+# Truth classifications (V1-02 + Package 4 extension):
+#   POLICY_TRUTH OPERATIONAL_TRUTH IMPLEMENTATION_TRUTH CONTRACTUAL_TRUTH
+#   VENDOR_CLAIM OBSERVED_EVIDENCE STAKEHOLDER_STATEMENT ASSUMPTION UNRESOLVED_CONTRADICTION
+meta:
+  package: Volume 1 Package 4 - Current Ecosystem and Operating Reality
+  authority_baseline: docs/program/volume-0 (frozen constitutional baseline)
+  primary_grounding:
+    - REG-005 Source and Authority Register (Volume 0)
+    - V0-06 Product and Authority Doctrine (Volume 0)
+    - REG-003 RAID (Volume 0)
+    - V0-02 Problem and Opportunity (Volume 0)
+    - docs/sport-profiles/curling-canada-reference-profile.md
+  disclaimer: >-
+    No implementation is authorized by this input. Stakeholder and vendor
+    validation are pending; pending validation blocks only the affected claim,
+    not the package.
+
+authority_boundaries:
+  - id: AUTH-NATIONAL
+    tier: national
+    body: Curling Canada
+    holds: >-
+      National policy, national program standards, national fee framework,
+      system-of-record intent for club/affiliation/participant master data under
+      the target platform, executive acceptance authority.
+    does_not_hold: >-
+      Provincial/territorial internal governance; club internal operations.
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: V0-06
+  - id: AUTH-PROVINCIAL
+    tier: provincial_territorial
+    body: Member Associations / PTSOs
+    holds: >-
+      Provincial/territorial jurisdiction over member clubs, provincial
+      requirements and fees, provincial review of club affiliation, appropriate
+      retained jurisdiction under the target platform.
+    does_not_hold: >-
+      National master-data authority; ability to override national governed
+      decisions.
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: V0-06
+  - id: AUTH-CLUB
+    tier: club
+    body: Clubs / curling centres
+    holds: >-
+      Club-level operations, local membership administration, submission of
+      affiliation and renewal, local facility and roster reality.
+    does_not_hold: >-
+      Provincial or national policy authority.
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: V0-05
+  - id: AUTH-INDIVIDUAL
+    tier: individual
+    body: Individuals with multiple organizational roles
+    holds: >-
+      Personal identity and participation; may hold several roles (member,
+      volunteer, coach, official, administrator) across clubs/PTSOs concurrently.
+    does_not_hold: >-
+      Any governed authority beyond assigned roles; role multiplicity must not
+      collapse into a single coarse permission bucket.
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+    source_ref: V0-04
+
+# V1-17 / V1-18: external systems and manual tools. Authority classifications for
+# SYS-001..008 are grounded in ratified Volume 0 REG-005/V0-06 (POLICY_TRUTH).
+# SYS-009..012 are not addressed by Volume 0 and are ASSUMPTION/STAKEHOLDER_STATEMENT
+# pending validation.
+systems:
+  - id: SYS-001
+    name: Curling I/O
+    business_function: League and competition operational data exchange
+    users: Clubs, leagues, competition administrators
+    data_owned: League and competition operational data (bounded domain)
+    authority_classification: synchronization_partner (authority_level 4)
+    inbound_flows: League/competition operational data into projections
+    outbound_flows: Governed reference data as permitted within bounded domain
+    reconciliation: >-
+      The House is master-data authority for club, affiliation, and participant
+      records; competition/league standing never overrides governed master data.
+    contract_dependency: Bidirectional operational exchange; terms not captured here
+    known_limitation: >-
+      Holds no club or participant master-data authority; bounded to
+      league/competition operational data.
+    target_disposition_hypothesis: RETAIN as bounded synchronization partner (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-005
+  - id: SYS-002
+    name: Current registration provider (incumbent)
+    business_function: Incumbent registration and membership records
+    users: Clubs, PTSOs, Curling Canada, individuals
+    data_owned: Legacy registration and membership data (transition-only authority)
+    authority_classification: temporary_transition_platform (authority_level 4)
+    inbound_flows: Legacy registration/membership records for migration
+    outbound_flows: Migration export to the target platform
+    reconciliation: >-
+      Authoritative for legacy data only during transition; authority expires on
+      an explicit recorded migration-completion (cutover) trigger.
+    contract_dependency: >-
+      Incumbent agreement; data-export rights and termination/transition
+      conditions must be captured and validated.
+    known_limitation: >-
+      Not authoritative for the future target state; migration off the incumbent
+      is a recorded program risk (REG-003).
+    target_disposition_hypothesis: RETIRE after governed migration (unproven; risk-bearing)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-006
+  - id: SYS-003
+    name: Payment processors
+    business_function: Payment authorization and capture on instruction
+    users: Curling Canada finance, clubs, individuals paying fees
+    data_owned: Payment authorization/capture transactions (execution plane)
+    authority_classification: execution_plane (authority_level 4)
+    inbound_flows: Governed charge instructions from The House
+    outbound_flows: Payment confirmations/evidence back to The House
+    reconciliation: >-
+      Governed decision to charge, fee policy, and resulting record remain in The
+      House; explicit reconciliation boundary with accounting (SYS-008).
+    contract_dependency: >-
+      Processor agreement and fee economics (per-transaction cost) require
+      Helene's financial validation.
+    known_limitation: Does not own fee policy and is not the accounting truth.
+    target_disposition_hypothesis: RETAIN as execution plane (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-007
+  - id: SYS-004
+    name: Sideline Learning
+    business_function: Learning and certification completion records
+    users: Coaches, officials, Curling Canada compliance
+    data_owned: Learning/certification completion records (external system of record)
+    authority_classification: authoritative_source_external (authority_level 4)
+    inbound_flows: Certification-completion status into governed projections
+    outbound_flows: None governed; The House holds a projection only
+    reconciliation: The House projects status and governs its use, not the underlying record
+    contract_dependency: External SoR agreement; API availability to be validated
+    known_limitation: The House does not own the underlying learning record
+    target_disposition_hypothesis: RETAIN as external system of record (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-008
+  - id: SYS-005
+    name: Accreditation platforms
+    business_function: Accreditation status and standing
+    users: Curling Canada compliance, clubs, individuals
+    data_owned: Accreditation status (external system of record)
+    authority_classification: authoritative_source_external (authority_level 4)
+    inbound_flows: Accreditation status into governed projections
+    outbound_flows: None governed; projection only
+    reconciliation: The House projects status and governs its use, not the record
+    contract_dependency: External SoR agreement; integration availability to be validated
+    known_limitation: The House does not own the underlying accreditation record
+    target_disposition_hypothesis: RETAIN as external system of record (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-009
+  - id: SYS-006
+    name: Document360
+    business_function: Documentation and knowledge-base hosting
+    users: Curling Canada staff, clubs, PTSOs
+    data_owned: Documentation/knowledge-base content (commodity)
+    authority_classification: replaceable_provider (authority_level 6)
+    inbound_flows: Authored documentation
+    outbound_flows: Published documentation
+    reconciliation: Substitutable without changing governed truth
+    contract_dependency: Commodity hosting subscription
+    known_limitation: Holds no governed authority
+    target_disposition_hypothesis: RETAIN or EXTERNALIZE; substitutable (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-010
+  - id: SYS-007
+    name: Analytics platforms
+    business_function: Reporting and business intelligence over projected data
+    users: Curling Canada staff, executives
+    data_owned: Reporting projections only (no governed state)
+    authority_classification: reporting_source (authority_level 6)
+    inbound_flows: Projected data from governed systems
+    outbound_flows: Reports and dashboards
+    reconciliation: Consumes projected data only; MUST NOT become a system of record
+    contract_dependency: BI tooling subscription
+    known_limitation: Writes no governed state; no authority over underlying records
+    target_disposition_hypothesis: RETAIN as downstream reporting only (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-011
+  - id: SYS-008
+    name: Accounting systems
+    business_function: Financial ledger and accounting system of record
+    users: Curling Canada finance
+    data_owned: Financial ledger (external system of record)
+    authority_classification: authoritative_source_external (authority_level 4)
+    inbound_flows: Governed charge/payment records synchronized from The House
+    outbound_flows: Ledger truth for reconciliation
+    reconciliation: >-
+      The House synchronizes and does not overwrite the ledger; explicit boundary
+      with payment processors (SYS-003).
+    contract_dependency: Accounting platform agreement; requires Helene's validation
+    known_limitation: The House is not the accounting truth
+    target_disposition_hypothesis: RETAIN as financial system of record (unproven)
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+    source_ref: REG-005-SRC-012
+  - id: SYS-009
+    name: Support systems (Halo / Zendesk where relevant)
+    business_function: Support case management and service desk
+    users: Curling Canada support staff, clubs, individuals
+    data_owned: Support cases and interaction history
+    authority_classification: reporting_source / operational_tool (unclassified in V0)
+    inbound_flows: Support requests from clubs/individuals
+    outbound_flows: Case resolution; no governed state
+    reconciliation: Support cases reference but do not own governed records
+    contract_dependency: Support-tooling subscription (to be captured)
+    known_limitation: Not addressed by ratified Volume 0 authority doctrine
+    target_disposition_hypothesis: RETAIN as support tooling (unvalidated)
+    truth_classification: ASSUMPTION
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+  - id: SYS-010
+    name: Identity and Microsoft 365 services
+    business_function: Staff identity, email, collaboration, file storage
+    users: Curling Canada staff
+    data_owned: Staff identities, mailboxes, shared files
+    authority_classification: identity_and_productivity (unclassified in V0)
+    inbound_flows: Staff authentication and collaboration
+    outbound_flows: Email-mediated processes and shared documents
+    reconciliation: >-
+      Email/shared-file processes are manual controls, not governed systems of
+      record; risk of shadow authority.
+    contract_dependency: Microsoft 365 licensing (to be captured)
+    known_limitation: Not addressed by ratified Volume 0 authority doctrine
+    target_disposition_hypothesis: RETAIN for identity/productivity; do not treat as SoR (unvalidated)
+    truth_classification: ASSUMPTION
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+  - id: SYS-011
+    name: Manual spreadsheets and shared files
+    business_function: Ad hoc tracking of affiliation, fees, rosters, reconciliation
+    users: Curling Canada staff, PTSO staff
+    data_owned: Working copies and manual reconciliation data
+    authority_classification: manual_control (shadow data)
+    inbound_flows: Manual entry from multiple systems
+    outbound_flows: Manual re-keying into systems; email attachments
+    reconciliation: >-
+      A recurring reconciliation and data-quality risk; duplicate copies without
+      a single authoritative source.
+    contract_dependency: None
+    known_limitation: >-
+      Untracked authority; a current weakness that must not be recreated in the
+      target platform.
+    target_disposition_hypothesis: RETIRE / automate into governed records (unvalidated)
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+  - id: SYS-012
+    name: Email-mediated processes
+    business_function: Corrections, follow-ups, approvals conducted over email
+    users: Curling Canada staff, PTSO staff, clubs
+    data_owned: Decision correspondence and evidence attachments
+    authority_classification: manual_control (evidence outside governed store)
+    inbound_flows: Correction requests, supporting documents
+    outbound_flows: Approvals/decisions communicated by email
+    reconciliation: >-
+      Decisions and evidence live outside a governed store; audit and evidence
+      binding are weak.
+    contract_dependency: None
+    known_limitation: >-
+      Evidence and decisions are not bound to a governed transition; must not be
+      recreated.
+    target_disposition_hypothesis: RETIRE / replace with governed evidence binding (unvalidated)
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+
+# V1-16: current club-affiliation process, traced end to end. Each step is
+# STAKEHOLDER_STATEMENT/ASSUMPTION pending club/PTSO validation unless it restates a
+# ratified Volume 0 authority boundary.
+affiliation_process:
+  - step: 1
+    name: Club identification or creation
+    actor: Club administrator
+    accountable_authority: Curling Canada (master-data intent), PTSO (jurisdiction)
+    system_used: Incumbent registration provider / manual
+    manual_artifact: Email, spreadsheet
+    data_created: Prospective club record
+    evidence_retained: Correspondence
+    decision: Whether the club exists or must be created
+    handoff: To prior-affiliation/continuity review
+    service_delay: Manual identity matching
+    known_exception: Historical/goodwill clubs already recognized
+    failure_mode: Duplicate or mismatched club identity
+    authoritative_source: Incumbent registration provider (transition-only)
+    reconciliation_requirement: Match to any existing master record
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 2
+    name: Prior affiliation and continuity review
+    actor: PTSO / Curling Canada staff
+    accountable_authority: PTSO (provincial), Curling Canada (national)
+    system_used: Incumbent provider / spreadsheets
+    manual_artifact: Prior-season records
+    data_created: Continuity determination
+    evidence_retained: Prior affiliation history
+    decision: Returning vs new applicant
+    handoff: To seasonal requirements
+    service_delay: Locating prior-season records
+    known_exception: Goodwill/continuity clubs without a full new application
+    failure_mode: Treating a continuing club as a brand-new applicant
+    authoritative_source: Historical affiliation baseline
+    reconciliation_requirement: Governed transition policy for existing clubs
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 3
+    name: Seasonal requirements determination
+    actor: Curling Canada / PTSO staff
+    accountable_authority: Curling Canada (national), PTSO (provincial)
+    system_used: Policy documents / manual
+    manual_artifact: Season requirement checklists
+    data_created: Applicable requirement set for the season
+    evidence_retained: Requirement checklist
+    decision: Which requirements apply this season
+    handoff: To fee determination
+    service_delay: Ambiguity between national and provincial requirements
+    known_exception: Mid-season rule changes
+    failure_mode: Applying the wrong season's ruleset
+    authoritative_source: Ratified seasonal policy
+    reconciliation_requirement: Version the requirement set to the season
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 4
+    name: Fee determination
+    actor: Curling Canada finance / PTSO
+    accountable_authority: Curling Canada + PTSO (combined fee framework)
+    system_used: Spreadsheets / incumbent provider
+    manual_artifact: Fee schedule
+    data_created: Fee obligation for the club
+    evidence_retained: Fee calculation
+    decision: Amount owed (national + provincial components)
+    handoff: To supporting evidence and payment
+    service_delay: Manual fee computation and splits
+    known_exception: Discounts, waivers, multi-tier fees
+    failure_mode: Incorrect fee or split
+    authoritative_source: Curling Canada fee policy
+    reconciliation_requirement: Fee policy owned by The House; processors execute only
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 5
+    name: Supporting evidence submission
+    actor: Club administrator
+    accountable_authority: PTSO / Curling Canada reviewers
+    system_used: Email / incumbent provider uploads
+    manual_artifact: Documents attached to email
+    data_created: Evidence set
+    evidence_retained: Documents (often in email/shared files)
+    decision: Whether evidence is sufficient
+    handoff: To PTSO interaction
+    service_delay: Back-and-forth on missing documents
+    known_exception: Late or partial documents
+    failure_mode: Evidence not bound to the decision; lost in email
+    authoritative_source: Governed evidence store (target)
+    reconciliation_requirement: Bind evidence to the governed transition
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 6
+    name: PTSO interaction and review
+    actor: PTSO reviewer
+    accountable_authority: PTSO (provincial jurisdiction)
+    system_used: Email / incumbent provider
+    manual_artifact: Review notes
+    data_created: PTSO review outcome
+    evidence_retained: Review correspondence
+    decision: PTSO endorsement / return for information
+    handoff: To Curling Canada review
+    service_delay: Reviewer availability; no routing
+    known_exception: Provincial-specific requirements
+    failure_mode: No assigned reviewer; ad hoc assignment
+    authoritative_source: PTSO jurisdiction
+    reconciliation_requirement: Jurisdiction-aware reviewer routing (target)
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 7
+    name: Curling Canada review
+    actor: Curling Canada staff reviewer
+    accountable_authority: Curling Canada (national)
+    system_used: Email / incumbent provider / spreadsheets
+    manual_artifact: Review notes
+    data_created: National review outcome
+    evidence_retained: Review correspondence
+    decision: Approve / reject / return for information
+    handoff: To corrections or payment/reconciliation
+    service_delay: Manual coordination across PTSO and CC
+    known_exception: Escalations
+    failure_mode: Coarse role authority; any reviewer can act on any file
+    authoritative_source: Curling Canada national authority
+    reconciliation_requirement: Resource/jurisdiction-scoped authority (target)
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 8
+    name: Corrections and follow-up
+    actor: Club administrator / reviewers
+    accountable_authority: PTSO / Curling Canada
+    system_used: Email
+    manual_artifact: Correction correspondence
+    data_created: Updated application data / evidence
+    evidence_retained: Email threads
+    decision: Whether corrections satisfy requirements
+    handoff: Back to review or to payment
+    service_delay: Round trips over email
+    known_exception: Repeated correction cycles
+    failure_mode: No governed return-for-information/resubmission loop
+    authoritative_source: Governed lifecycle (target)
+    reconciliation_requirement: Return-for-information + resubmission transition (target)
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 9
+    name: Payment and reconciliation
+    actor: Club / Curling Canada finance
+    accountable_authority: Helene (business/financial), Curling Canada
+    system_used: Payment processor / accounting system / spreadsheets
+    manual_artifact: Reconciliation spreadsheet
+    data_created: Payment record; reconciliation entry
+    evidence_retained: Payment confirmation
+    decision: Whether payment clears and reconciles
+    handoff: To approval
+    service_delay: Manual reconciliation across processor and ledger
+    known_exception: Partial payments, refunds, chargebacks
+    failure_mode: Reconciliation gaps between processor and ledger
+    authoritative_source: Accounting system (ledger), The House (charge decision)
+    reconciliation_requirement: Explicit processor-vs-ledger reconciliation boundary
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 10
+    name: Approval
+    actor: Curling Canada authority
+    accountable_authority: Curling Canada (national)
+    system_used: Incumbent provider / manual
+    manual_artifact: Approval notice
+    data_created: Approved affiliation
+    evidence_retained: Approval record
+    decision: Affiliation approved
+    handoff: To club status and downstream recognition
+    service_delay: Manual status updates
+    known_exception: Conditional approvals
+    failure_mode: Approval not atomically tied to fee/evidence state
+    authoritative_source: Governed approval transition (target)
+    reconciliation_requirement: Atomic approval with evidence + fee state
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 11
+    name: Club status and downstream recognition
+    actor: Curling Canada / PTSO / downstream systems
+    accountable_authority: Curling Canada (national)
+    system_used: Incumbent provider / Curling I/O / analytics
+    manual_artifact: Status notifications
+    data_created: Active club status; downstream projections
+    evidence_retained: Status change record
+    decision: Recognize the club as affiliated/active
+    handoff: To ongoing compliance
+    service_delay: Propagation to downstream systems
+    known_exception: Delayed downstream recognition
+    failure_mode: Inconsistent status across systems
+    authoritative_source: The House (master data, target)
+    reconciliation_requirement: Single master status projected outward
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - step: 12
+    name: Ongoing compliance
+    actor: Curling Canada compliance / PTSO
+    accountable_authority: Jen (compliance/policy), Curling Canada, PTSO
+    system_used: Sideline Learning / accreditation / manual
+    manual_artifact: Compliance tracking
+    data_created: Ongoing compliance status
+    evidence_retained: Certification/accreditation projections
+    decision: Whether the club remains compliant
+    handoff: Renewal cycle
+    service_delay: Manual compliance tracking
+    known_exception: Lapsed certifications mid-season
+    failure_mode: Compliance flags not enforced at governed transitions
+    authoritative_source: External SoRs (Sideline, accreditation) projected into The House
+    reconciliation_requirement: Compliance projections gate governed transitions
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+
+historical_affiliation_baseline:
+  statement: >-
+    A population of clubs is already recognized through historical or goodwill
+    affiliation and continuity. The target platform must not force every existing
+    club to behave as a brand-new applicant; a governed transition policy for
+    existing/continuing clubs is required.
+  truth_classification: STAKEHOLDER_STATEMENT
+  validation_status: pending_stakeholder_validation
+  target_constraint: >-
+    Provide a governed continuity/transition transition for existing clubs
+    (distinct from new-applicant bootstrap).
+
+# V1-18: material data elements. Each carries current source, owner, claimed
+# authority, transfer mechanism, reconciliation, quality concern, privacy class,
+# and a future-authority question.
+data_elements:
+  - id: DATA-ORG
+    element: Organizations and clubs
+    current_source: Incumbent registration provider + manual
+    operational_owner: Curling Canada / PTSO
+    claimed_authority: Curling Canada (target master data)
+    transfer_mechanism: Manual + migration export
+    frequency: Seasonal + ad hoc
+    transformation: Manual normalization
+    duplicate_copies: Incumbent, spreadsheets, Curling I/O
+    reconciliation_method: Manual
+    quality_concern: Duplicate/mismatched club identities
+    privacy_classification: Low (organizational)
+    future_authority_question: Confirm The House as club master-data authority
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-IDENTITY
+    element: Participants and identities
+    current_source: Incumbent provider + Curling I/O + manual
+    operational_owner: Clubs / PTSO / Curling Canada
+    claimed_authority: Curling Canada (target master data)
+    transfer_mechanism: Manual + sync
+    frequency: Ongoing
+    transformation: Role flattening
+    duplicate_copies: Multiple systems
+    reconciliation_method: Manual matching
+    quality_concern: Multi-role individuals collapsed into coarse buckets
+    privacy_classification: High (personal data)
+    future_authority_question: Confirm identity master-data authority and role model
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-MEMBERSHIP
+    element: Membership
+    current_source: Incumbent registration provider
+    operational_owner: Clubs / PTSO
+    claimed_authority: Incumbent (transition) -> The House (target)
+    transfer_mechanism: Migration export
+    frequency: Seasonal
+    transformation: Mapping to target model
+    duplicate_copies: Incumbent + spreadsheets
+    reconciliation_method: Manual
+    quality_concern: Legacy membership data quality
+    privacy_classification: High (personal data)
+    future_authority_question: Confirm membership master-data authority post-migration
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-AFFILIATION
+    element: Affiliation
+    current_source: Incumbent + email + spreadsheets
+    operational_owner: Curling Canada / PTSO
+    claimed_authority: Curling Canada (target governed lifecycle)
+    transfer_mechanism: Manual + migration
+    frequency: Seasonal
+    transformation: Manual
+    duplicate_copies: Email, spreadsheets, incumbent
+    reconciliation_method: Manual
+    quality_concern: Decisions/evidence outside a governed store
+    privacy_classification: Low-medium
+    future_authority_question: Confirm governed affiliation lifecycle authority
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-PAYMENTS
+    element: Payments and fees
+    current_source: Payment processor + spreadsheets
+    operational_owner: Curling Canada finance
+    claimed_authority: The House (charge decision + fee policy)
+    transfer_mechanism: Processor API + manual
+    frequency: Seasonal + ad hoc
+    transformation: Fee computation and splits
+    duplicate_copies: Processor + accounting + spreadsheets
+    reconciliation_method: Manual reconciliation
+    quality_concern: Processor-vs-ledger reconciliation gaps
+    privacy_classification: Medium (financial)
+    future_authority_question: Confirm fee-policy authority and reconciliation boundary
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-COMPLIANCE
+    element: Compliance, accreditation, education
+    current_source: Sideline Learning + accreditation platforms
+    operational_owner: Curling Canada compliance
+    claimed_authority: External SoRs (projection into The House)
+    transfer_mechanism: Integration / manual
+    frequency: Ongoing
+    transformation: Projection
+    duplicate_copies: External SoRs + manual trackers
+    reconciliation_method: Manual
+    quality_concern: Lapsed certifications not reflected at decision time
+    privacy_classification: Medium (personal)
+    future_authority_question: Confirm projection model and gating at transitions
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-DOCS
+    element: Documents and evidence
+    current_source: Email + shared files + Document360
+    operational_owner: Curling Canada / PTSO
+    claimed_authority: Governed evidence store (target)
+    transfer_mechanism: Manual attachment
+    frequency: Ad hoc
+    transformation: None
+    duplicate_copies: Email, shared files
+    reconciliation_method: None
+    quality_concern: Evidence not bound to governed decisions
+    privacy_classification: Medium
+    future_authority_question: Confirm governed evidence binding
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: DATA-SUPPORT
+    element: Support cases
+    current_source: Support tooling (Halo/Zendesk where relevant)
+    operational_owner: Curling Canada support
+    claimed_authority: Support tooling (no governed authority)
+    transfer_mechanism: Support platform
+    frequency: Ongoing
+    transformation: None
+    duplicate_copies: Support platform + email
+    reconciliation_method: None
+    quality_concern: Support context detached from governed records
+    privacy_classification: Medium
+    future_authority_question: Confirm support-to-governed-record linkage
+    truth_classification: ASSUMPTION
+    validation_status: pending_stakeholder_validation
+
+# V1-19: commercial, contractual, transition, and sustainability constraints.
+contract_constraints:
+  - id: CST-REGPROVIDER
+    area: Incumbent registration provider
+    constraint: >-
+      Data-export rights, termination/transition conditions, and renewal windows
+      govern the migration timeline; migration off the incumbent is a recorded
+      program risk (REG-003).
+    owner: Aubert Nungisa / Helene
+    truth_classification: CONTRACTUAL_TRUTH
+    validation_status: pending_vendor_validation
+    source_ref: REG-003
+  - id: CST-PAYMENTS
+    area: Payment economics
+    constraint: >-
+      Per-transaction processor economics and settlement timing affect fee policy
+      and sustainability; require Helene's financial validation.
+    owner: Helene
+    truth_classification: CONTRACTUAL_TRUTH
+    validation_status: pending_vendor_validation
+    source_ref: null
+  - id: CST-AZURE
+    area: Azure and infrastructure cost drivers
+    constraint: >-
+      Azure/infrastructure operating costs and implementation costs are
+      sustainability drivers to be modeled; not yet validated.
+    owner: Aubert Nungisa / Helene
+    truth_classification: ASSUMPTION
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+  - id: CST-BILINGUAL
+    area: Bilingual and accessibility obligations
+    constraint: >-
+      Bilingual (EN/FR) and accessibility obligations are mandatory for a national
+      Canadian NSO and constrain every stakeholder-facing surface.
+    owner: Curling Canada
+    truth_classification: POLICY_TRUTH
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+  - id: CST-PRIVACY
+    area: Privacy and security requirements
+    constraint: >-
+      Canadian privacy obligations govern personal data (participants,
+      identities); security and data-residency requirements constrain hosting and
+      integration.
+    owner: Jen / Aubert Nungisa
+    truth_classification: POLICY_TRUTH
+    validation_status: pending_stakeholder_validation
+    source_ref: null
+  - id: CST-PILOT
+    area: Pilot and national rollout dependencies
+    constraint: >-
+      A named pilot PTSO/club cohort is a Volume 0 condition; national rollout
+      depends on pilot acceptance and migration readiness.
+    owner: Curling Canada / Rich
+    truth_classification: POLICY_TRUTH
+    validation_status: pending_stakeholder_validation
+    source_ref: V0-12
+  - id: CST-VENDORAPI
+    area: External API availability
+    constraint: >-
+      Curling I/O, Sideline Learning, accreditation, accounting, and payment APIs
+      must provide the flows the target depends on; availability is a VENDOR_CLAIM
+      until confirmed.
+    owner: Aubert Nungisa
+    truth_classification: VENDOR_CLAIM
+    validation_status: pending_vendor_validation
+    source_ref: null
+
+# V1-20: current-state operating findings that become convergence constraints.
+operating_findings:
+  - id: OF-CONTINUITY
+    finding_type: constraint
+    statement: >-
+      Existing clubs recognized by historical/goodwill affiliation must transition
+      under a governed continuity policy, not as brand-new applicants.
+    production_risk: high
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - id: OF-MANUAL
+    finding_type: prototype_debt
+    statement: >-
+      Core affiliation steps run on email and spreadsheets; decisions and evidence
+      live outside a governed store. This weakness must not be recreated.
+    production_risk: high
+    truth_classification: STAKEHOLDER_STATEMENT
+    validation_status: pending_stakeholder_validation
+  - id: OF-RECONCILE
+    finding_type: constraint
+    statement: >-
+      Processor-vs-ledger and cross-system reconciliation is manual; the target
+      must implement explicit reconciliation boundaries (SYS-003/SYS-008).
+    production_risk: high
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: OF-ROUTING
+    finding_type: capability_gap
+    statement: >-
+      Reviewer assignment is ad hoc with no jurisdiction-aware routing; the target
+      must route by PTSO/CC jurisdiction (aligns with House FND-024).
+    production_risk: high
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+  - id: OF-MIGRATION
+    finding_type: constraint
+    statement: >-
+      Migration off the incumbent registration provider is a high-risk data
+      transition governed by data-export rights and a recorded cutover trigger.
+    production_risk: high
+    truth_classification: CONTRACTUAL_TRUTH
+    validation_status: pending_vendor_validation
+  - id: OF-AUTHORITY-PRESERVE
+    finding_type: constraint
+    statement: >-
+      PTSO provincial jurisdiction and external systems-of-record authority
+      (Sideline, accreditation, accounting) must be preserved, not absorbed.
+    production_risk: medium
+    truth_classification: POLICY_TRUTH
+    validation_status: grounded_in_ratified_v0
+  - id: OF-IDENTITY-ROLES
+    finding_type: constraint
+    statement: >-
+      Individuals hold multiple concurrent roles; the target identity model must
+      not collapse role multiplicity into a single coarse permission bucket.
+    production_risk: medium
+    truth_classification: OPERATIONAL_TRUTH
+    validation_status: pending_stakeholder_validation
+
+# Current-state contradictions to register.
+operating_contradictions:
+  - id: OC-MASTERDATA
+    statement: >-
+      Master-data authority for clubs/participants is claimed by Curling Canada
+      (target) but operationally held by the incumbent registration provider and
+      partly mirrored in Curling I/O.
+    positions:
+      - source: policy_truth
+        assertion: Curling Canada is the intended master-data authority (V0-06).
+      - source: operational_truth
+        assertion: The incumbent provider currently holds authoritative registration/membership data.
+    status: open
+    resolution: >-
+      Resolved by transition policy: incumbent is authoritative only until a
+      recorded cutover; not a target-state authority.
+    truth_classification: UNRESOLVED_CONTRADICTION
+    validation_status: pending_stakeholder_validation
+  - id: OC-EVIDENCE
+    statement: >-
+      Affiliation decisions are governed in intent but evidenced in email/shared
+      files in practice.
+    positions:
+      - source: policy_truth
+        assertion: Decisions and evidence must be bound to a governed transition.
+      - source: operational_truth
+        assertion: Decisions and evidence currently live in email and spreadsheets.
+    status: open
+    resolution: >-
+      Target must wire governed evidence binding; current practice is not the
+      desired target.
+    truth_classification: UNRESOLVED_CONTRADICTION
+    validation_status: pending_stakeholder_validation

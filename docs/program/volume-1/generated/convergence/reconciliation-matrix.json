@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "9c0f04f924f0fe799999d0cd960d3f2a2001f165",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total_domains": 13,
+    "note": "Inbound/outbound reconciliation per governed domain."
+  },
+  "reconciliation": [
+    {
+      "domain": "organizations_and_clubs",
+      "inbound_reconciliation": "Import from incumbent provider during migration",
+      "outbound_reconciliation": "Projection to Button/integrations via outbox",
+      "external_dependency": "Incumbent registration provider (transitional)",
+      "unresolved_condition": "Master-data authority contradiction CON-012 remains open"
+    },
+    {
+      "domain": "participants_and_identity",
+      "inbound_reconciliation": "Identity matching on migration",
+      "outbound_reconciliation": "Role/identity projection",
+      "external_dependency": "Identity provider (M365) for authentication (SRC unvalidated)",
+      "unresolved_condition": "Concurrent-role model and identity matching pending validation (FND-053)"
+    },
+    {
+      "domain": "membership",
+      "inbound_reconciliation": "Membership import on migration",
+      "outbound_reconciliation": "Membership status projection",
+      "external_dependency": "Incumbent registration provider (transitional)",
+      "unresolved_condition": "Membership authority split pending operational validation"
+    },
+    {
+      "domain": "affiliation",
+      "inbound_reconciliation": "Historical-club continuity import",
+      "outbound_reconciliation": "Affiliation status projection (exactly-once)",
+      "external_dependency": "None for state authority",
+      "unresolved_condition": "None material for state authority"
+    },
+    {
+      "domain": "registration",
+      "inbound_reconciliation": "Registration data extraction",
+      "outbound_reconciliation": "n/a until cutover",
+      "external_dependency": "Incumbent registration provider (SRC-018)",
+      "unresolved_condition": "Migration approach/timing pending vendor + data-export validation (FND, CON open)"
+    },
+    {
+      "domain": "compliance",
+      "inbound_reconciliation": "Compliance signal ingestion",
+      "outbound_reconciliation": "Gating outcomes recorded as governed state",
+      "external_dependency": "Accreditation (SRC-009), Sideline Learning (SRC-008)",
+      "unresolved_condition": "Gating/projection model pending compliance validation (Jen)"
+    },
+    {
+      "domain": "payments",
+      "inbound_reconciliation": "Payment confirmation ingestion",
+      "outbound_reconciliation": "Charge requests",
+      "external_dependency": "Payment processors (SRC-007)",
+      "unresolved_condition": "Processor terms/economics pending financial validation (Helene)"
+    },
+    {
+      "domain": "accounting",
+      "inbound_reconciliation": "Ledger reconciliation",
+      "outbound_reconciliation": "Payment/fee events",
+      "external_dependency": "Accounting system (SRC-012)",
+      "unresolved_condition": "Reconciliation format/cadence pending financial validation (Helene)"
+    },
+    {
+      "domain": "accreditation",
+      "inbound_reconciliation": "Accreditation status ingestion",
+      "outbound_reconciliation": "n/a",
+      "external_dependency": "Accreditation provider",
+      "unresolved_condition": "Integration scope pending validation"
+    },
+    {
+      "domain": "learning",
+      "inbound_reconciliation": "Course/completion ingestion",
+      "outbound_reconciliation": "n/a",
+      "external_dependency": "Sideline Learning",
+      "unresolved_condition": "Integration scope pending validation"
+    },
+    {
+      "domain": "evidence_and_documents",
+      "inbound_reconciliation": "Document migration (optional)",
+      "outbound_reconciliation": "Evidence references",
+      "external_dependency": "Evidence storage/scanning provider",
+      "unresolved_condition": "Required-document matrix pending compliance validation"
+    },
+    {
+      "domain": "analytics",
+      "inbound_reconciliation": "Event/state projections",
+      "outbound_reconciliation": "n/a",
+      "external_dependency": "Analytics platform (Volume 0 L6)",
+      "unresolved_condition": "Analytics is a projection, not transactional authority"
+    },
+    {
+      "domain": "support",
+      "inbound_reconciliation": "n/a",
+      "outbound_reconciliation": "n/a",
+      "external_dependency": "Support platform (SRC-020, unvalidated)",
+      "unresolved_condition": "Support tooling assumptions pending validation"
+    }
+  ]
+}

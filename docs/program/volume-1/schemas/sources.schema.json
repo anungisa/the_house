@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sources.schema.json",
+  "title": "REG-101 Source Inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-101" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "source_type",
+          "classification",
+          "custodian",
+          "controlled",
+          "qualification_status",
+          "evidence_rating"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^SRC-[0-9]{3}$" },
+          "name": { "type": "string" },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "base44_repository",
+              "house_repository",
+              "curling_canada_operating_reality",
+              "external_platform",
+              "external_data_source",
+              "policy_document",
+              "governance_baseline",
+              "other"
+            ]
+          },
+          "classification": { "$ref": "common.schema.json#/definitions/sourceClassification" },
+          "authority_note": { "type": "string" },
+          "custodian": { "type": "string" },
+          "location": { "type": "string" },
+          "controlled": { "type": "boolean" },
+          "fingerprint": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Immutable source baseline. Archive-style fields for exports; repository-style fields for source repos. Prevents a later export/commit from silently replacing the evidence baseline under the same source id.",
+            "properties": {
+              "filename": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "size_bytes": { "type": "integer", "minimum": 0 },
+              "ingestion_date": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+              "extraction_location": { "type": "string" },
+              "export_type": { "type": "string" },
+              "generation_date": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+              "prior_export_relationship": { "type": "string" },
+              "includes_generated_assets": { "type": "boolean" },
+              "includes_dependencies": { "type": "boolean" },
+              "excluded_material": { "type": "array", "items": { "type": "string" } },
+              "reproducibility_note": { "type": "string" },
+              "baseline_commit": { "type": "string" },
+              "assessed_commit": { "type": "string" },
+              "runtime_commit": { "type": "string" },
+              "runtime_commit_date": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+              "runtime_commit_scope": { "type": "string" },
+              "src_tree_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "src_ts_file_count": { "type": "integer", "minimum": 0 },
+              "migrations_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "migration_file_count": { "type": "integer", "minimum": 0 },
+              "package_json_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "package_lock_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "branch": { "type": "string" },
+              "repository_remote": { "type": "string" },
+              "working_tree_state": { "type": "string", "enum": ["clean", "dirty", "unknown"] },
+              "assessment_date": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+              "dependency_install_status": { "type": "string" },
+              "validation_limitations": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "qualification_status": {
+            "type": "string",
+            "enum": ["registered", "not_started", "in_assessment", "assessed", "superseded"]
+          },
+          "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}
