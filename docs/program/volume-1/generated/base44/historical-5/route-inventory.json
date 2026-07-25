@@ -2,19 +2,19 @@
   "_meta": {
     "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
     "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
-    "source_id": "SRC-001",
-    "source_label": "Base44 current declared export (7)",
-    "source_archive": "curl-link-hub (7).zip",
-    "source_sha256": "50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412",
-    "source_extract_dir": "legacy/curl-link-hub-7-extracted"
+    "source_id": "SRC-009",
+    "source_label": "Base44 historical export (5) - superseded, reference-case",
+    "source_archive": "curl-link-hub (5).zip",
+    "source_sha256": "a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95",
+    "source_extract_dir": "legacy/curl-link-hub-extracted"
   },
   "summary": {
-    "total_routes": 155,
+    "total_routes": 148,
     "by_guard": {
-      "none": 46,
+      "none": 45,
       "FeatureGate": 3,
-      "ProtectedRoute": 23,
-      "RoleGate": 83
+      "ProtectedRoute": 18,
+      "RoleGate": 82
     },
     "distinct_route_roles": 23,
     "role_vocabulary": [
@@ -42,7 +42,7 @@
       "volunteer",
       "volunteer_ops"
     ],
-    "ungated_authenticated_routes": 42
+    "ungated_authenticated_routes": 41
   },
   "routes": [
     {
@@ -1544,86 +1544,6 @@
       ],
       "client_side_only": true,
       "attrs": "element={<ProtectedRoute allowedRoles={[\"club_admin\"]}"
-    },
-    {
-      "path": "/iebok",
-      "component": null,
-      "guard": "ProtectedRoute",
-      "roles": [
-        "super_admin",
-        "cc_staff",
-        "executive"
-      ],
-      "client_side_only": true,
-      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
-    },
-    {
-      "path": "/iebok/browse",
-      "component": null,
-      "guard": "ProtectedRoute",
-      "roles": [
-        "super_admin",
-        "cc_staff",
-        "executive"
-      ],
-      "client_side_only": true,
-      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
-    },
-    {
-      "path": "/iebok/mechanics",
-      "component": null,
-      "guard": "ProtectedRoute",
-      "roles": [
-        "super_admin",
-        "cc_staff",
-        "executive"
-      ],
-      "client_side_only": true,
-      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
-    },
-    {
-      "path": "/iebok/standards",
-      "component": null,
-      "guard": "ProtectedRoute",
-      "roles": [
-        "super_admin",
-        "cc_staff",
-        "executive"
-      ],
-      "client_side_only": true,
-      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
-    },
-    {
-      "path": "/iebok/glossary",
-      "component": null,
-      "guard": "ProtectedRoute",
-      "roles": [
-        "super_admin",
-        "cc_staff",
-        "executive"
-      ],
-      "client_side_only": true,
-      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
-    },
-    {
-      "path": "/jobs",
-      "component": "JobBoard",
-      "guard": "none",
-      "roles": [],
-      "client_side_only": false,
-      "attrs": "element={<JobBoard"
-    },
-    {
-      "path": "/jobs/review",
-      "component": null,
-      "guard": "RoleGate",
-      "roles": [
-        "admin",
-        "ptso",
-        "cc_staff"
-      ],
-      "client_side_only": true,
-      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'cc_staff']}"
     },
     {
       "path": "/game/:gameId",

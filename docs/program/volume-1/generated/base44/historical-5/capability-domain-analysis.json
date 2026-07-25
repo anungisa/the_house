@@ -2,20 +2,20 @@
   "_meta": {
     "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
     "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
-    "source_id": "SRC-001",
-    "source_label": "Base44 current declared export (7)",
-    "source_archive": "curl-link-hub (7).zip",
-    "source_sha256": "50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412",
-    "source_extract_dir": "legacy/curl-link-hub-7-extracted"
+    "source_id": "SRC-009",
+    "source_label": "Base44 historical export (5) - superseded, reference-case",
+    "source_archive": "curl-link-hub (5).zip",
+    "source_sha256": "a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95",
+    "source_extract_dir": "legacy/curl-link-hub-extracted"
   },
   "note": "Candidate search domains only. Overlaps are expected and are themselves evidence of surface duplication. No domain here is a qualified capability or an approved conclusion.",
   "summary": [
     {
       "domain": "unclassified",
-      "routes": 50,
-      "entities": 52,
-      "functions": 55,
-      "pages": 57
+      "routes": 44,
+      "entities": 44,
+      "functions": 53,
+      "pages": 51
     },
     {
       "domain": "event_operations",
@@ -40,10 +40,10 @@
     },
     {
       "domain": "national_operations",
-      "routes": 16,
+      "routes": 15,
       "entities": 3,
       "functions": 1,
-      "pages": 17
+      "pages": 16
     },
     {
       "domain": "analytics",
@@ -162,12 +162,6 @@
         "/ice-bookings",
         "/team-assembly",
         "/calendar",
-        "/iebok",
-        "/iebok/browse",
-        "/iebok/mechanics",
-        "/iebok/standards",
-        "/iebok/glossary",
-        "/jobs/review",
         "*"
       ],
       "entities": [
@@ -190,16 +184,9 @@
         "FanFollowing",
         "FeatureGateConfig",
         "IceBooking",
-        "IEBOKArtifact",
-        "IEBOKGlossaryTerm",
-        "IEBOKMechanic",
-        "IEBOKProposal",
-        "IEBOKRelationship",
-        "IEBOKWorkingGroup",
         "ImportMapping",
         "Incident",
         "IntegrationSync",
-        "JobPosting",
         "LearnToCurlProgram",
         "LearnToCurlRegistrant",
         "MemoryOutcome",
@@ -209,7 +196,6 @@
         "RateLimitEntry",
         "RedemptionLog",
         "Reward",
-        "SavedJob",
         "SeasonRollup",
         "ShotLog",
         "SparePlayer",
@@ -241,7 +227,6 @@
         "enrichClubDemographics",
         "enrichClubPopulation",
         "enrichClubPublicData",
-        "expireJobPostings",
         "exportTenantBundle",
         "fetchCurlingIO",
         "generateBenchmarkBrief",
@@ -257,7 +242,6 @@
         "manageClubService",
         "manageTenantLifecycle",
         "normalizeClubProvinces",
-        "notifyJobStatus",
         "notifyProgramOpen",
         "onSurveySubmit",
         "parseClubSurvey",
@@ -302,7 +286,6 @@
         "InstitutionalReadiness",
         "IntegrationBridge",
         "Integrations",
-        "JobReviewQueue",
         "LearnToCurl",
         "LinkHubInvestigation",
         "Login",
@@ -332,11 +315,6 @@
         "AccessMatrix",
         "SyncStatus",
         "WebhookFailures",
-        "IEBOKBrowser",
-        "IEBOKGlossary",
-        "IEBOKHome",
-        "IEBOKMechanics",
-        "IEBOKStandards",
         "FanHome",
         "ParentHome"
       ]
@@ -636,8 +614,7 @@
         "/governance",
         "/governance-hub",
         "/governance-trust",
-        "/my-fan-dashboard",
-        "/jobs"
+        "/my-fan-dashboard"
       ],
       "entities": [
         "BoardMeeting",
@@ -655,7 +632,6 @@
         "FanDashboard",
         "GovernanceHub",
         "GovernanceTrust",
-        "JobBoard",
         "NationalOperations",
         "OperationalIntelligence",
         "SafeSportDashboard",

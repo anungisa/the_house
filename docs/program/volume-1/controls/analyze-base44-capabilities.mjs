@@ -5,7 +5,7 @@
 // capability conclusions. NON-AUTHORITATIVE evidence input.
 
 import { join, basename } from 'node:path';
-import { SOURCE_ROOT, walk, writeJson } from './base44-lib.mjs';
+import { createContext, walk } from './base44-lib.mjs';
 import { analyze as analyzeRoutes } from './analyze-base44-routes.mjs';
 import { analyze as analyzeEntities } from './analyze-base44-entities.mjs';
 import { analyze as analyzeFunctions } from './analyze-base44-functions.mjs';
@@ -36,11 +36,11 @@ function classify(label) {
   return hits.length ? hits : ['unclassified'];
 }
 
-export function analyze() {
-  const routes = analyzeRoutes().routes;
-  const entities = analyzeEntities().entities;
-  const functions = analyzeFunctions().functions;
-  const pages = walk(join(SOURCE_ROOT, 'src', 'pages'), (f) => f.endsWith('.jsx')).map((f) => basename(f, '.jsx'));
+export function analyze(ctx) {
+  const routes = analyzeRoutes(ctx).routes;
+  const entities = analyzeEntities(ctx).entities;
+  const functions = analyzeFunctions(ctx).functions;
+  const pages = walk(join(ctx.SOURCE_ROOT, 'src', 'pages'), (f) => f.endsWith('.jsx')).map((f) => basename(f, '.jsx'));
 
   const domains = {};
   const ensure = (id) => {
@@ -80,7 +80,8 @@ export function analyze() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const data = analyze();
-  writeJson('capability-domain-analysis.json', data);
+  const ctx = createContext(process.argv.slice(2));
+  const data = analyze(ctx);
+  ctx.writeJson('capability-domain-analysis.json', data);
   console.log(`capability-domain-analysis.json: ${data.summary.length} candidate domains`);
 }

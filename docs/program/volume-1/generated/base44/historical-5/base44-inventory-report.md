@@ -6,12 +6,12 @@
 
 ## Assessed source
 
-- Source ID: `SRC-001`
-- Source label: Base44 current declared export (7)
-- Archive: `curl-link-hub (7).zip`
-- SHA-256: `50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412`
-- Size: 3336492 bytes
-- Extraction: `legacy/curl-link-hub-7-extracted`
+- Source ID: `SRC-009`
+- Source label: Base44 historical export (5) - superseded, reference-case
+- Archive: `curl-link-hub (5).zip`
+- SHA-256: `a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95`
+- Size: 3046971 bytes
+- Extraction: `legacy/curl-link-hub-extracted`
 - Application: TheHouse v2
 - Framework: Base44 low-code (React 18 + Vite + Tailwind + Radix/shadcn; Deno serverless functions)
 
@@ -19,40 +19,40 @@
 
 | Artifact | Count |
 | --- | --- |
-| total_files_excl_node_modules | 1576 |
-| entities | 95 |
-| functions | 101 |
+| total_files_excl_node_modules | 1485 |
+| entities | 87 |
+| functions | 99 |
 | agents | 1 |
-| pages_jsx | 151 |
-| components_jsx | 604 |
-| lib_files | 198 |
-| governance_md_docs | 288 |
-| routes (App.jsx) | 155 |
+| pages_jsx | 144 |
+| components_jsx | 589 |
+| lib_files | 196 |
+| governance_md_docs | 231 |
+| routes (App.jsx) | 148 |
 
 ## Route guard distribution
 
 | Guard | Routes |
 | --- | --- |
-| none | 46 |
+| none | 45 |
 | FeatureGate | 3 |
-| ProtectedRoute | 23 |
-| RoleGate | 83 |
+| ProtectedRoute | 18 |
+| RoleGate | 82 |
 
 ## Server-function enforcement posture
 
-- Functions: 101 (HTTP handlers: 99)
+- Functions: 99 (HTTP handlers: 97)
 - Reference a permission check: 2 (2%)
-- Mutate entities: 68
-- Mutate entities WITHOUT a permission check: 68
-- Use service-role escalation: 80
+- Mutate entities: 66
+- Mutate entities WITHOUT a permission check: 66
+- Use service-role escalation: 78
 
 ## Access-matrix drift
 
-- Matrix entries: 132
+- Matrix entries: 130
 - Declared role keys: 23
-- Routes missing from matrix: 23
+- Routes missing from matrix: 18
 - Matrix entries without a route: 4
-- Route/matrix role drift: 83
+- Route/matrix role drift: 82
 - Unknown path defaults open: true
 
 ## Automated tests & CI
@@ -66,11 +66,11 @@
 
 | Domain | Routes | Entities | Functions | Pages |
 | --- | --- | --- | --- | --- |
-| unclassified | 50 | 52 | 55 | 57 |
+| unclassified | 44 | 44 | 53 | 51 |
 | event_operations | 19 | 8 | 6 | 15 |
 | organization_registry | 15 | 5 | 10 | 8 |
 | governance_administration | 12 | 7 | 8 | 11 |
-| national_operations | 16 | 3 | 1 | 17 |
+| national_operations | 15 | 3 | 1 | 16 |
 | analytics | 16 | 0 | 3 | 18 |
 | payments | 11 | 4 | 5 | 10 |
 | compliance | 7 | 7 | 2 | 7 |
@@ -90,15 +90,15 @@
 
 ## Automated observations
 
-- **OBS-COUNT-ROUTES** (inventory): App.jsx declares 155 routes across guard types {"none":46,"FeatureGate":3,"ProtectedRoute":23,"RoleGate":83}.
-- **OBS-COUNT-ENTITIES** (inventory): 95 entity schemas; 93 declare an app-layer rls block; 53 declare a status enum.
-- **OBS-COUNT-FUNCTIONS** (inventory): 101 server functions; 99 are Deno.serve handlers.
-- **OBS-BACKEND-ENFORCEMENT** (production_risk): Only 2 of 101 server functions reference any permission check, yet 68 functions mutate entities with no server-side permission check. Frontend guards are UX-only.
-- **OBS-SERVICE-ROLE** (production_risk): 80 functions use asServiceRole (privilege escalation), amplifying the impact of missing server-side authorization.
-- **OBS-ACCESS-DRIFT** (production_risk): 23 routes have no access-matrix entry; unknown_path_defaults_open=true. Access can drift from the declared single-source-of-truth matrix.
+- **OBS-COUNT-ROUTES** (inventory): App.jsx declares 148 routes across guard types {"none":45,"FeatureGate":3,"ProtectedRoute":18,"RoleGate":82}.
+- **OBS-COUNT-ENTITIES** (inventory): 87 entity schemas; 85 declare an app-layer rls block; 49 declare a status enum.
+- **OBS-COUNT-FUNCTIONS** (inventory): 99 server functions; 97 are Deno.serve handlers.
+- **OBS-BACKEND-ENFORCEMENT** (production_risk): Only 2 of 99 server functions reference any permission check, yet 66 functions mutate entities with no server-side permission check. Frontend guards are UX-only.
+- **OBS-SERVICE-ROLE** (production_risk): 78 functions use asServiceRole (privilege escalation), amplifying the impact of missing server-side authorization.
+- **OBS-ACCESS-DRIFT** (production_risk): 18 routes have no access-matrix entry; unknown_path_defaults_open=true. Access can drift from the declared single-source-of-truth matrix.
 - **OBS-DUAL-ROLE-VOCAB** (production_risk): Dual role vocabulary present (fine keys + coarse buckets); 23 distinct role tokens are hardcoded directly in App.jsx routes despite the doctrine that roles live only in accessMatrix.js.
 - **OBS-PAYMENTS** (product_value): Stripe integration present (true); a payments/fees capability was explored.
 - **OBS-LOCALIZATION** (unknown): Localization is a homegrown i18n (5 files) with an admin Translations page (true); completeness and bilingual coverage require evidence.
 - **OBS-TEST-CI** (production_risk): Automated tests detected: false (test files: 0, test dirs: []); CI config detected: false ([]); runnable test script: false.
-- **OBS-DOC-VOLUME** (unknown): 288 governance-style markdown documents are present in src/. Volume of documentation is not evidence of implemented or validated behaviour.
+- **OBS-DOC-VOLUME** (unknown): 231 governance-style markdown documents are present in src/. Volume of documentation is not evidence of implemented or validated behaviour.
 

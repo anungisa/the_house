@@ -5,9 +5,7 @@
 // FeatureGate, or none). NON-AUTHORITATIVE evidence input.
 
 import { join } from 'node:path';
-import { SOURCE_ROOT, readText, writeJson } from './base44-lib.mjs';
-
-const APP_JSX = join(SOURCE_ROOT, 'src', 'App.jsx');
+import { createContext, readText } from './base44-lib.mjs';
 
 function extractRoles(segment, attr) {
   // attr e.g. 'allowedRoles' or 'allowed'; matches ={[ ... ]}
@@ -17,7 +15,8 @@ function extractRoles(segment, attr) {
   return [...m[1].matchAll(/["']([^"']+)["']/g)].map((x) => x[1]);
 }
 
-export function analyze() {
+export function analyze(ctx) {
+  const APP_JSX = join(ctx.SOURCE_ROOT, 'src', 'App.jsx');
   const text = readText(APP_JSX);
   const routes = [];
   // Match each <Route ... path="..." ... /> or <Route ... path="..." ...>
@@ -74,7 +73,8 @@ export function analyze() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const data = analyze();
-  writeJson('route-inventory.json', data);
+  const ctx = createContext(process.argv.slice(2));
+  const data = analyze(ctx);
+  ctx.writeJson('route-inventory.json', data);
   console.log(`route-inventory.json: ${data.summary.total_routes} routes`);
 }

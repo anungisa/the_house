@@ -74,7 +74,7 @@
           },
           "qualification_status": {
             "type": "string",
-            "enum": ["registered", "not_started", "in_assessment", "assessed"]
+            "enum": ["registered", "not_started", "in_assessment", "assessed", "superseded"]
           },
           "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
           "notes": { "type": "string" }

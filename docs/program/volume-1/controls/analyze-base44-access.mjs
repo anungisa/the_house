@@ -7,12 +7,8 @@
 // NON-AUTHORITATIVE evidence input.
 
 import { join } from 'node:path';
-import { SOURCE_ROOT, readText, writeJson } from './base44-lib.mjs';
+import { createContext, readText } from './base44-lib.mjs';
 import { analyze as analyzeRoutes } from './analyze-base44-routes.mjs';
-
-const MATRIX_JS = join(SOURCE_ROOT, 'src', 'lib', 'access', 'accessMatrix.js');
-const ROLE_GROUPS_JS = join(SOURCE_ROOT, 'src', 'lib', 'access', 'roleGroups.js');
-const INDEX_JS = join(SOURCE_ROOT, 'src', 'lib', 'access', 'index.js');
 
 function parseMatrix(text) {
   const entries = [];
@@ -37,14 +33,17 @@ function countRoleKeys(text, arrayName) {
   return [...m[1].matchAll(/["']([^"']+)["']/g)].length;
 }
 
-export function analyze() {
+export function analyze(ctx) {
+  const MATRIX_JS = join(ctx.SOURCE_ROOT, 'src', 'lib', 'access', 'accessMatrix.js');
+  const ROLE_GROUPS_JS = join(ctx.SOURCE_ROOT, 'src', 'lib', 'access', 'roleGroups.js');
+  const INDEX_JS = join(ctx.SOURCE_ROOT, 'src', 'lib', 'access', 'index.js');
   const matrixText = readText(MATRIX_JS);
   const roleGroupsText = readText(ROLE_GROUPS_JS);
   const indexText = readText(INDEX_JS);
   const matrix = parseMatrix(matrixText);
   const matrixPaths = new Set(matrix.map((e) => e.path));
 
-  const routes = analyzeRoutes().routes;
+  const routes = analyzeRoutes(ctx).routes;
   const routePaths = routes.filter((r) => !r.path.includes(':')); // ignore params for set compare
 
   const routesMissingFromMatrix = routePaths
@@ -88,8 +87,9 @@ export function analyze() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const data = analyze();
-  writeJson('access-matrix-analysis.json', data);
+  const ctx = createContext(process.argv.slice(2));
+  const data = analyze(ctx);
+  ctx.writeJson('access-matrix-analysis.json', data);
   console.log(
     `access-matrix-analysis.json: ${data.summary.routes_missing_from_matrix} routes missing from matrix`
   );

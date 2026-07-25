@@ -8,17 +8,11 @@
     "source_sha256": "50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412",
     "source_extract_dir": "legacy/curl-link-hub-7-extracted"
   },
-  "summary": {
-    "i18n_files": 5,
-    "has_translations_admin_page": true,
-    "files_referencing_translation_or_french": 46,
-    "framework": "Homegrown i18n (src/lib/i18n/useTranslation.js); not a standard i18n library"
-  },
-  "i18n_files": [
-    "src/lib/i18n/en.js",
-    "src/lib/i18n/fr.js",
-    "src/lib/i18n/useTranslation.js",
-    "src/components/i18n/LanguageSwitcher.jsx",
-    "src/components/i18n/TranslationManager.jsx"
-  ]
+  "has_test_dir": false,
+  "test_dirs": [],
+  "test_file_count": 0,
+  "has_ci_config": false,
+  "ci_configs": [],
+  "has_test_script": false,
+  "test_script": null
 }

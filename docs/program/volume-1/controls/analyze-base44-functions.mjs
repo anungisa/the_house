@@ -5,15 +5,14 @@
 // escalation. NON-AUTHORITATIVE evidence input.
 
 import { join, basename } from 'node:path';
-import { SOURCE_ROOT, listDirs, walk, readText, writeJson } from './base44-lib.mjs';
-
-const FUNCTIONS_DIR = join(SOURCE_ROOT, 'base44', 'functions');
+import { createContext, listDirs, walk, readText } from './base44-lib.mjs';
 
 const MUTATION_RE = /\.(create|update|delete|bulkCreate|bulkUpdate|bulkDelete)\s*\(/;
 const PERMISSION_RE = /(enforcePermission|checkPermission|requirePermission|assertPermission)/;
 const SERVICE_ROLE_RE = /asServiceRole/;
 
-export function analyze() {
+export function analyze(ctx) {
+  const FUNCTIONS_DIR = join(ctx.SOURCE_ROOT, 'base44', 'functions');
   const dirs = listDirs(FUNCTIONS_DIR);
   const functions = [];
   for (const dir of dirs) {
@@ -52,7 +51,8 @@ export function analyze() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const data = analyze();
-  writeJson('function-inventory.json', data);
+  const ctx = createContext(process.argv.slice(2));
+  const data = analyze(ctx);
+  ctx.writeJson('function-inventory.json', data);
   console.log(`function-inventory.json: ${data.summary.total_functions} functions`);
 }

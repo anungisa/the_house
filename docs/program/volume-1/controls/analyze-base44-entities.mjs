@@ -5,11 +5,10 @@
 // NON-AUTHORITATIVE evidence input.
 
 import { join, basename } from 'node:path';
-import { SOURCE_ROOT, walk, readText, parseJsonc, writeJson } from './base44-lib.mjs';
+import { createContext, walk, readText, parseJsonc } from './base44-lib.mjs';
 
-const ENTITIES_DIR = join(SOURCE_ROOT, 'base44', 'entities');
-
-export function analyze() {
+export function analyze(ctx) {
+  const ENTITIES_DIR = join(ctx.SOURCE_ROOT, 'base44', 'entities');
   const files = walk(ENTITIES_DIR, (f) => f.endsWith('.jsonc'));
   const entities = [];
   const parseErrors = [];
@@ -52,7 +51,8 @@ export function analyze() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const data = analyze();
-  writeJson('entity-inventory.json', data);
+  const ctx = createContext(process.argv.slice(2));
+  const data = analyze(ctx);
+  ctx.writeJson('entity-inventory.json', data);
   console.log(`entity-inventory.json: ${data.summary.total_entities} entities`);
 }

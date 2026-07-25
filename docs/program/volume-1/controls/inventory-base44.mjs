@@ -5,14 +5,12 @@
 // observations, and writes a NON-AUTHORITATIVE markdown report. Generated
 // output is evidence INPUT to qualification, never a qualification decision.
 //
-// Usage: npm run qualification:base44
+// Usage: npm run qualification:base44 [-- --source-id SRC-001|SRC-009 | --archive <zip> --extract-dir <dir> --gen-subdir <dir>]
 
 import { join, basename } from 'node:path';
 import { existsSync, writeFileSync } from 'node:fs';
 import {
-  SOURCE_ROOT,
-  ARCHIVE_PATH,
-  GEN_DIR,
+  createContext,
   REPO_ROOT,
   sha256File,
   fileSize,
@@ -20,7 +18,9 @@ import {
   listDirs,
   readText,
   parseJsonc,
-  writeJson,
+  buildDependencyInventory,
+  buildLocalizationInventory,
+  detectTestsAndCi,
   pct,
 } from './base44-lib.mjs';
 import { analyze as analyzeRoutes } from './analyze-base44-routes.mjs';
@@ -29,25 +29,30 @@ import { analyze as analyzeFunctions } from './analyze-base44-functions.mjs';
 import { analyze as analyzeAccess } from './analyze-base44-access.mjs';
 import { analyze as analyzeCapabilities } from './analyze-base44-capabilities.mjs';
 
-function countFiles(subdir, ext) {
-  return walk(join(SOURCE_ROOT, subdir), (f) => f.endsWith(ext)).length;
+function countFiles(ctx, subdir, ext) {
+  return walk(join(ctx.SOURCE_ROOT, subdir), (f) => f.endsWith(ext)).length;
 }
 
-function buildSourceManifest() {
-  const allFiles = walk(SOURCE_ROOT);
-  const archiveExists = existsSync(ARCHIVE_PATH);
+function buildSourceManifest(ctx) {
+  const allFiles = walk(ctx.SOURCE_ROOT);
+  const archiveExists = ctx.ARCHIVE_PATH && existsSync(ctx.ARCHIVE_PATH);
   let config = {};
   try {
-    config = parseJsonc(readText(join(SOURCE_ROOT, 'base44', 'config.jsonc')));
+    config = parseJsonc(readText(join(ctx.SOURCE_ROOT, 'base44', 'config.jsonc')));
   } catch {
     config = {};
   }
   return {
+    source: {
+      id: ctx.id,
+      label: ctx.label,
+      extract_dir: ctx.SOURCE_ROOT.replace(`${REPO_ROOT}/`, ''),
+    },
     archive: {
-      filename: 'curl-link-hub (5).zip',
-      present: archiveExists,
-      sha256: archiveExists ? sha256File(ARCHIVE_PATH) : null,
-      size_bytes: archiveExists ? fileSize(ARCHIVE_PATH) : null,
+      filename: ctx.filename,
+      present: Boolean(archiveExists),
+      sha256: archiveExists ? sha256File(ctx.ARCHIVE_PATH) : null,
+      size_bytes: archiveExists ? fileSize(ctx.ARCHIVE_PATH) : null,
     },
     application: {
       name: config.name ?? 'TheHouse v2 (Base44)',
@@ -56,68 +61,21 @@ function buildSourceManifest() {
     },
     counts: {
       total_files_excl_node_modules: allFiles.length,
-      entities: listDirs(join(SOURCE_ROOT, 'base44', 'entities')).length + countFiles('base44/entities', '.jsonc'),
-      functions: listDirs(join(SOURCE_ROOT, 'base44', 'functions')).length,
-      agents: countFiles('base44/agents', '.jsonc'),
-      pages_jsx: countFiles('src/pages', '.jsx'),
-      components_jsx: countFiles('src/components', '.jsx'),
-      lib_files: walk(join(SOURCE_ROOT, 'src', 'lib')).length,
-      governance_md_docs: walk(join(SOURCE_ROOT, 'src'), (f) => f.endsWith('.md')).length,
+      entities: listDirs(join(ctx.SOURCE_ROOT, 'base44', 'entities')).length + countFiles(ctx, 'base44/entities', '.jsonc'),
+      functions: listDirs(join(ctx.SOURCE_ROOT, 'base44', 'functions')).length,
+      agents: countFiles(ctx, 'base44/agents', '.jsonc'),
+      pages_jsx: countFiles(ctx, 'src/pages', '.jsx'),
+      components_jsx: countFiles(ctx, 'src/components', '.jsx'),
+      lib_files: walk(join(ctx.SOURCE_ROOT, 'src', 'lib')).length,
+      governance_md_docs: walk(join(ctx.SOURCE_ROOT, 'src'), (f) => f.endsWith('.md')).length,
     },
-    top_level: listDirs(SOURCE_ROOT)
+    top_level: listDirs(ctx.SOURCE_ROOT)
       .map((d) => basename(d))
       .sort(),
   };
 }
 
-function buildDependencyInventory() {
-  const pkg = JSON.parse(readText(join(SOURCE_ROOT, 'package.json')));
-  const deps = pkg.dependencies ?? {};
-  const dev = pkg.devDependencies ?? {};
-  const names = Object.keys(deps);
-  const integrations = {
-    payments_stripe: names.some((n) => n.includes('stripe')),
-    base44_sdk: names.some((n) => n.includes('@base44')),
-    data_fetching_react_query: names.some((n) => n.includes('react-query')),
-    routing_react_router: names.some((n) => n.includes('react-router')),
-    ui_radix: names.filter((n) => n.startsWith('@radix-ui')).length,
-    forms_react_hook_form: names.some((n) => n.includes('react-hook-form')),
-    knowledge_document360: existsSync(join(SOURCE_ROOT, 'src', 'components', 'Document360Widget.jsx')),
-  };
-  return {
-    summary: {
-      dependencies: names.length,
-      dev_dependencies: Object.keys(dev).length,
-      radix_ui_packages: integrations.ui_radix,
-    },
-    integrations,
-    dependencies: names.sort(),
-  };
-}
-
-function buildLocalizationInventory() {
-  const i18nFiles = [
-    ...walk(join(SOURCE_ROOT, 'src', 'lib', 'i18n')),
-    ...walk(join(SOURCE_ROOT, 'src', 'components', 'i18n')),
-  ].map((f) => f.replace(`${SOURCE_ROOT}/`, ''));
-  const translationsPage = existsSync(join(SOURCE_ROOT, 'src', 'pages', 'Translations.jsx'));
-  let frenchMarkers = 0;
-  for (const f of walk(join(SOURCE_ROOT, 'src'), (x) => x.endsWith('.js') || x.endsWith('.jsx'))) {
-    const t = readText(f);
-    if (/fr[-_]CA|français|bilingual|useTranslation/.test(t)) frenchMarkers += 1;
-  }
-  return {
-    summary: {
-      i18n_files: i18nFiles.length,
-      has_translations_admin_page: translationsPage,
-      files_referencing_translation_or_french: frenchMarkers,
-      framework: 'Homegrown i18n (src/lib/i18n/useTranslation.js); not a standard i18n library',
-    },
-    i18n_files: i18nFiles,
-  };
-}
-
-function deriveObservations(manifest, routes, entities, functions, access, deps, loc) {
+function deriveObservations(manifest, routes, entities, functions, access, deps, loc, testCi) {
   const obs = [];
   const add = (code, kind, statement, refs) => obs.push({ code, kind, statement, evidence: refs });
 
@@ -133,13 +91,13 @@ function deriveObservations(manifest, routes, entities, functions, access, deps,
 
   add('OBS-PAYMENTS', 'product_value', `Stripe integration present (${deps.integrations.payments_stripe}); a payments/fees capability was explored.`, ['package.json']);
   add('OBS-LOCALIZATION', 'unknown', `Localization is a homegrown i18n (${loc.summary.i18n_files} files) with an admin Translations page (${loc.summary.has_translations_admin_page}); completeness and bilingual coverage require evidence.`, loc.i18n_files.slice(0, 3));
-  add('OBS-TEST-CI', 'production_risk', `No test suite or CI configuration detected in the export (test/CI absence).`, ['(export root: no test/ or .github/workflows)']);
+  add('OBS-TEST-CI', 'production_risk', `Automated tests detected: ${testCi.has_test_dir || testCi.test_file_count > 0} (test files: ${testCi.test_file_count}, test dirs: ${JSON.stringify(testCi.test_dirs)}); CI config detected: ${testCi.has_ci_config} (${JSON.stringify(testCi.ci_configs)}); runnable test script: ${testCi.has_test_script}.`, ['(export root: test dirs / CI config / package.json scripts.test)']);
   add('OBS-DOC-VOLUME', 'unknown', `${manifest.counts.governance_md_docs} governance-style markdown documents are present in src/. Volume of documentation is not evidence of implemented or validated behaviour.`, ['src/*.md']);
 
   return { note: 'Deterministic observations are EVIDENCE INPUTS, not qualification decisions.', observations: obs };
 }
 
-function buildReport(manifest, routes, entities, functions, access, capabilities, deps, loc, observations) {
+function buildReport(manifest, routes, entities, functions, access, capabilities, deps, loc, testCi, observations) {
   const lines = [];
   lines.push('# Base44 Inventory Report (NON-AUTHORITATIVE)');
   lines.push('');
@@ -149,9 +107,12 @@ function buildReport(manifest, routes, entities, functions, access, capabilities
   lines.push('');
   lines.push('## Assessed source');
   lines.push('');
+  lines.push(`- Source ID: \`${manifest.source.id}\``);
+  lines.push(`- Source label: ${manifest.source.label}`);
   lines.push(`- Archive: \`${manifest.archive.filename}\``);
   lines.push(`- SHA-256: \`${manifest.archive.sha256}\``);
   lines.push(`- Size: ${manifest.archive.size_bytes} bytes`);
+  lines.push(`- Extraction: \`${manifest.source.extract_dir}\``);
   lines.push(`- Application: ${manifest.application.name}`);
   lines.push(`- Framework: ${manifest.application.framework}`);
   lines.push('');
@@ -185,6 +146,13 @@ function buildReport(manifest, routes, entities, functions, access, capabilities
   lines.push(`- Route/matrix role drift: ${access.summary.route_role_drift}`);
   lines.push(`- Unknown path defaults open: ${access.summary.unknown_path_defaults_open}`);
   lines.push('');
+  lines.push('## Automated tests & CI');
+  lines.push('');
+  lines.push(`- Test directories: ${JSON.stringify(testCi.test_dirs)}`);
+  lines.push(`- Test files (*.test/*.spec): ${testCi.test_file_count}`);
+  lines.push(`- CI configuration: ${JSON.stringify(testCi.ci_configs)}`);
+  lines.push(`- Runnable test script: ${testCi.has_test_script} (${testCi.test_script ?? 'none'})`);
+  lines.push('');
   lines.push('## Candidate capability domains (search domains, not conclusions)');
   lines.push('');
   lines.push('| Domain | Routes | Entities | Functions | Pages |');
@@ -205,34 +173,37 @@ function buildReport(manifest, routes, entities, functions, access, capabilities
 }
 
 function main() {
-  const manifest = buildSourceManifest();
-  const routes = analyzeRoutes();
-  const entities = analyzeEntities();
-  const functions = analyzeFunctions();
-  const access = analyzeAccess();
-  const capabilities = analyzeCapabilities();
-  const deps = buildDependencyInventory();
-  const loc = buildLocalizationInventory();
-  const observations = deriveObservations(manifest, routes, entities, functions, access, deps, loc);
+  const ctx = createContext(process.argv.slice(2));
+  const manifest = buildSourceManifest(ctx);
+  const routes = analyzeRoutes(ctx);
+  const entities = analyzeEntities(ctx);
+  const functions = analyzeFunctions(ctx);
+  const access = analyzeAccess(ctx);
+  const capabilities = analyzeCapabilities(ctx);
+  const deps = buildDependencyInventory(ctx.SOURCE_ROOT);
+  const loc = buildLocalizationInventory(ctx.SOURCE_ROOT);
+  const testCi = detectTestsAndCi(ctx.SOURCE_ROOT);
+  const observations = deriveObservations(manifest, routes, entities, functions, access, deps, loc, testCi);
 
-  writeJson('source-manifest.json', manifest);
-  writeJson('route-inventory.json', routes);
-  writeJson('entity-inventory.json', entities);
-  writeJson('function-inventory.json', functions);
-  writeJson('access-matrix-analysis.json', access);
-  writeJson('capability-domain-analysis.json', capabilities);
-  writeJson('dependency-inventory.json', deps);
-  writeJson('localization-inventory.json', loc);
-  writeJson('automated-observations.json', observations);
+  ctx.writeJson('source-manifest.json', manifest);
+  ctx.writeJson('route-inventory.json', routes);
+  ctx.writeJson('entity-inventory.json', entities);
+  ctx.writeJson('function-inventory.json', functions);
+  ctx.writeJson('access-matrix-analysis.json', access);
+  ctx.writeJson('capability-domain-analysis.json', capabilities);
+  ctx.writeJson('dependency-inventory.json', deps);
+  ctx.writeJson('localization-inventory.json', loc);
+  ctx.writeJson('tests-ci-inventory.json', testCi);
+  ctx.writeJson('automated-observations.json', observations);
 
-  const report = buildReport(manifest, routes, entities, functions, access, capabilities, deps, loc, observations);
-  writeFileSync(join(GEN_DIR, 'base44-inventory-report.md'), report, 'utf8');
+  const report = buildReport(manifest, routes, entities, functions, access, capabilities, deps, loc, testCi, observations);
+  writeFileSync(join(ctx.GEN_DIR, 'base44-inventory-report.md'), report, 'utf8');
 
   console.log('Base44 deterministic inventory complete.');
-  console.log(`  Source: ${manifest.archive.filename} sha256=${manifest.archive.sha256?.slice(0, 16)}...`);
+  console.log(`  Source: ${manifest.source.id} (${manifest.archive.filename}) sha256=${manifest.archive.sha256?.slice(0, 16)}...`);
   console.log(`  Routes ${routes.summary.total_routes} | Entities ${entities.summary.total_entities} | Functions ${functions.summary.total_functions}`);
   console.log(`  Enforcement: ${functions.summary.enforce_permission}/${functions.summary.total_functions} functions reference a permission check`);
-  console.log(`  Output: ${GEN_DIR.replace(REPO_ROOT + '/', '')}`);
+  console.log(`  Output: ${ctx.GEN_DIR.replace(`${REPO_ROOT}/`, '')}`);
 }
 
 main();

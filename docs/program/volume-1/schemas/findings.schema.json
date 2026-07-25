@@ -57,6 +57,19 @@
             "type": "string",
             "enum": ["open", "corroborated", "resolved", "superseded"]
           },
+          "current_state_validation": {
+            "type": "string",
+            "description": "Package 2 corrective-amendment revalidation of the finding against the current declared export (SRC-001, curl-link-hub (7)). Set during the source-baseline correction (DEC-V1-011).",
+            "enum": [
+              "CONFIRMED_IN_CURRENT",
+              "CHANGED_IN_CURRENT",
+              "RESOLVED_IN_CURRENT",
+              "NEW_IN_CURRENT",
+              "HISTORICAL_ONLY",
+              "NOT_REPRODUCED",
+              "REQUIRES_MANUAL_REVIEW"
+            ]
+          },
           "notes": { "type": "string" }
         }
       }
