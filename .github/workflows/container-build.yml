@@ -55,7 +55,11 @@ jobs:
       # Vulnerability scan, reporting-only (exit-code 0). continue-on-error keeps a
       # transient vulnerability-database outage from failing the build.
       - name: Vulnerability scan (reporting-only) for ${{ matrix.target }} image
-        uses: aquasecurity/trivy-action@0.24.0
+        # Pinned to an immutable commit SHA (v0.36.0). The previous unprefixed
+        # tag reference (@0.24.0) stopped resolving after upstream removed the
+        # unprefixed tag series, breaking this required check. SHA pinning avoids
+        # a recurrence and is the stronger supply-chain posture.
+        uses: aquasecurity/trivy-action@a9c7b0f06e461e9d4b4d1711f154ee024b8d7ab8 # v0.36.0
         continue-on-error: true
         with:
           image-ref: the-house-${{ matrix.target }}:ci
