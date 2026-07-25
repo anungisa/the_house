@@ -1,0 +1,392 @@
+register_id: REG-203
+name: Volume 2 Requirement and Acceptance Register
+status: IN_REVIEW
+version: 1.0.0
+records:
+  # --- CAP: capabilities ---
+  - id: CAP-V2-001
+    level: CAP
+    statement: Affiliation lifecycle management as a governed system-of-record capability.
+    product: House
+    traces_to:
+      - OUT-V2-002
+      - OUT-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-002
+    level: CAP
+    statement: Guided affiliation submission and status experience for clubs.
+    product: Button
+    traces_to:
+      - OUT-V2-001
+      - OUT-V2-006
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-003
+    level: CAP
+    statement: Affiliation review and decisioning capability for authorized reviewers.
+    product: House
+    traces_to:
+      - OUT-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-004
+    level: CAP
+    statement: Membership visibility and reporting across member organizations.
+    product: House
+    traces_to:
+      - OUT-V2-004
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-005
+    level: CAP
+    statement: External authority reconciliation without ceding system-of-record status.
+    product: House
+    traces_to:
+      - OUT-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- BR: business rules/requirements ---
+  - id: BR-V2-001
+    level: BR
+    statement: An affiliation must be scoped to a defined season.
+    product: House
+    traces_to:
+      - CAP-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-002
+    level: BR
+    statement: Only an authorized reviewer may approve or reject an affiliation application.
+    product: House
+    traces_to:
+      - CAP-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-003
+    level: BR
+    statement: A club may hold at most one active affiliation per season.
+    product: House
+    traces_to:
+      - CAP-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- FR: functional requirements ---
+  - id: FR-V2-001
+    level: FR
+    statement: >-
+      The system shall allow a club administrator to create and submit an affiliation
+      application for the current season through the guided experience.
+    product: Button
+    traces_to:
+      - BR-V2-001
+      - CAP-V2-002
+    acceptance_ref:
+      - TEST-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-002
+    level: FR
+    statement: The system shall route a submitted affiliation application to review.
+    product: House
+    traces_to:
+      - CAP-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-003
+    level: FR
+    statement: >-
+      The system shall allow an authorized reviewer to approve or reject a submitted
+      application with a recorded rationale and evidence.
+    product: House
+    traces_to:
+      - BR-V2-002
+    acceptance_ref:
+      - TEST-V2-002
+      - TEST-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-004
+    level: FR
+    statement: The system shall transition an approved affiliation to active for the season.
+    product: House
+    traces_to:
+      - BR-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- NFR: non-functional requirements ---
+  - id: NFR-V2-001
+    level: NFR
+    statement: >-
+      All affiliation state transitions shall be executed only through the Governance
+      Kernel; no domain path may mutate governed state directly.
+    product: House
+    traces_to:
+      - FR-V2-002
+      - FR-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V2-002
+    level: NFR
+    statement: >-
+      Every affiliation state change shall be tenant-isolated and produce an
+      append-only audit record.
+    product: House
+    traces_to:
+      - FR-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V2-003
+    level: NFR
+    statement: >-
+      The guided submission experience shall present required actions and current
+      status unambiguously.
+    product: Button
+    traces_to:
+      - FR-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UC: use cases ---
+  - id: UC-V2-001
+    level: UC
+    statement: Club administrator submits an affiliation application for the current season.
+    product: Both
+    traces_to:
+      - FR-V2-001
+    acceptance_ref:
+      - TEST-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-002
+    level: UC
+    statement: Authorized reviewer reviews and decides a submitted application.
+    product: House
+    traces_to:
+      - FR-V2-003
+    acceptance_ref:
+      - TEST-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-003
+    level: UC
+    statement: System activates an approved affiliation for the season.
+    product: House
+    traces_to:
+      - FR-V2-004
+    acceptance_ref:
+      - TEST-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- RULE: guard-level business rules ---
+  - id: RULE-V2-001
+    level: RULE
+    statement: >-
+      Required affiliation fields must be complete before an application may be
+      submitted (guard concept AFFILIATION_REQUIRED_FIELDS_COMPLETE).
+    product: House
+    traces_to:
+      - UC-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: RULE-V2-002
+    level: RULE
+    statement: >-
+      The acting reviewer must hold reviewer scope before a decision may be recorded
+      (guard concept ACTOR_HAS_REVIEWER_SCOPE).
+    product: House
+    traces_to:
+      - UC-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: RULE-V2-003
+    level: RULE
+    statement: >-
+      The season must be current before an approved affiliation may be activated
+      (guard concept SEASON_IS_CURRENT).
+    product: House
+    traces_to:
+      - UC-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- WF: workflows ---
+  - id: WF-V2-001
+    level: WF
+    statement: >-
+      Affiliation lifecycle workflow: draft -> submitted -> under_review ->
+      approved -> active, governed end to end by the kernel.
+    product: House
+    traces_to:
+      - RULE-V2-001
+      - RULE-V2-002
+      - RULE-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- UX: experience surfaces ---
+  - id: UX-V2-001
+    level: UX
+    statement: Guided affiliation submission screen flow with status and required actions.
+    product: Button
+    traces_to:
+      - WF-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-002
+    level: UX
+    statement: Reviewer decision worklist and evidence view.
+    product: House
+    traces_to:
+      - WF-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- DATA: data concepts ---
+  - id: DATA-V2-001
+    level: DATA
+    statement: AffiliationApplication concept (club, season, governed state, tenant).
+    product: House
+    traces_to:
+      - WF-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-002
+    level: DATA
+    statement: Affiliation decision and evidence concept.
+    product: House
+    traces_to:
+      - WF-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- API: interface concepts ---
+  - id: API-V2-001
+    level: API
+    statement: Submit-affiliation interface (Button request into House authority).
+    product: Both
+    traces_to:
+      - UX-V2-001
+      - DATA-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-002
+    level: API
+    statement: Reviewer-decision interface within House.
+    product: House
+    traces_to:
+      - UX-V2-002
+      - DATA-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- EVT: domain events ---
+  - id: EVT-V2-001
+    level: EVT
+    statement: AffiliationSubmitted event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-002
+    level: EVT
+    statement: AffiliationApproved event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-003
+    level: EVT
+    statement: AffiliationActivated event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- CTRL: governance controls ---
+  - id: CTRL-V2-001
+    level: CTRL
+    statement: >-
+      Governed-transition control: state changes occur only through the kernel with
+      atomic state, journal, audit, evidence, and outbox writes.
+    product: House
+    traces_to:
+      - NFR-V2-001
+      - EVT-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-002
+    level: CTRL
+    statement: Audit-and-evidence control on every affiliation decision.
+    product: House
+    traces_to:
+      - NFR-V2-002
+      - EVT-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- TEST: acceptance criteria ---
+  - id: TEST-V2-001
+    level: TEST
+    statement: >-
+      Acceptance: submitting a complete application creates an AffiliationApplication
+      in the submitted state through the kernel, with audit recorded.
+    product: House
+    traces_to:
+      - CTRL-V2-001
+      - UC-V2-001
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-002
+    level: TEST
+    statement: >-
+      Acceptance: a reviewer without reviewer scope cannot record an affiliation
+      decision (transition denied, no state mutation).
+    product: House
+    traces_to:
+      - RULE-V2-002
+      - CTRL-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-003
+    level: TEST
+    statement: >-
+      Acceptance: approval activates the affiliation for the season with evidence and
+      audit recorded, only through governed transitions.
+    product: House
+    traces_to:
+      - CTRL-V2-002
+      - UC-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted

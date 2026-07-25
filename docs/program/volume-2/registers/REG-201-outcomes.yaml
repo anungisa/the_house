@@ -1,0 +1,106 @@
+register_id: REG-201
+name: Volume 2 Outcome Register
+status: IN_REVIEW
+version: 1.0.0
+records:
+  - id: OUT-V2-001
+    statement: >-
+      A club can complete affiliation for a season through a guided experience without
+      ambiguity about required actions or current status.
+    stakeholder_refs:
+      - STK-V2-003
+      - STK-V2-004
+    product: Button
+    success_signal: >-
+      A club administrator can submit a complete affiliation application unaided and
+      always knows the next required action.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-16
+      - V1-24
+  - id: OUT-V2-002
+    statement: >-
+      The NSO holds a single authoritative, audited record of each club's affiliation
+      lifecycle state.
+    stakeholder_refs:
+      - STK-V2-001
+    product: House
+    success_signal: >-
+      Every club's affiliation state is retrievable from one authoritative record with
+      complete transition history.
+    validation_status: author_asserted
+    source_refs:
+      - V1-18
+      - V1-24
+  - id: OUT-V2-003
+    statement: >-
+      Reviewers can make consistent, evidence-backed affiliation decisions within
+      policy.
+    stakeholder_refs:
+      - STK-V2-006
+    product: House
+    success_signal: >-
+      Every affiliation decision is attributable to an authorized reviewer and carries
+      the evidence on which it was based.
+    validation_status: author_asserted
+    source_refs:
+      - V1-12
+      - V1-24
+  - id: OUT-V2-004
+    statement: >-
+      Member organizations have visibility into affiliation status across the clubs in
+      their jurisdiction.
+    stakeholder_refs:
+      - STK-V2-002
+    product: House
+    success_signal: >-
+      A member organization can see current and historical affiliation status for its
+      clubs without ad hoc requests.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-15
+      - V1-16
+  - id: OUT-V2-005
+    statement: >-
+      Every affiliation state change is attributable, reversible only through governed
+      transitions, and produces evidence.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-006
+    product: House
+    success_signal: >-
+      No affiliation state changes except through a governed transition that records
+      audit and evidence.
+    validation_status: author_asserted
+    source_refs:
+      - V1-12
+      - V1-24
+  - id: OUT-V2-006
+    statement: >-
+      Participants and administrators receive clear status and required-action
+      communication.
+    stakeholder_refs:
+      - STK-V2-004
+      - STK-V2-005
+    product: Button
+    success_signal: >-
+      Affected parties are notified of status changes and outstanding required actions
+      through the guided experience.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-16
+  - id: OUT-V2-007
+    statement: >-
+      External systems of authority reconcile with the NSO record without becoming the
+      system of record.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-008
+    product: House
+    success_signal: >-
+      External data is reconciled into the NSO record and the NSO record remains the
+      single authoritative source of affiliation state.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V1-17
+      - V1-18

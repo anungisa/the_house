@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "stakeholders.schema.json",
+  "title": "REG-202 Volume 2 Stakeholder and Persona Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-202" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "type", "description", "primary_product", "validation_status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^STK-V2-[0-9]{3}$" },
+          "name": { "type": "string" },
+          "type": { "$ref": "common.schema.json#/definitions/stakeholderType" },
+          "description": { "type": "string" },
+          "primary_product": { "$ref": "common.schema.json#/definitions/product" },
+          "personas": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "governed_authority": { "type": "boolean" },
+          "validation_status": {
+            "type": "string",
+            "enum": ["author_asserted", "stakeholder_validation_pending", "stakeholder_validated"]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

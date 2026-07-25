@@ -1,0 +1,61 @@
+register_id: REG-200
+name: Volume 2 Corpus Index
+status: IN_REVIEW
+version: 1.0.0
+records:
+  - id: V2-00
+    title: Volume Control and Inheritance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-00-volume-control-and-inheritance.md
+    gate: V2-G1
+  - id: V2-01
+    title: Product and Service Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-01-product-and-service-definition.md
+    gate: V2-G1
+  - id: V2-02
+    title: Stakeholder, Persona and Outcome Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-02-stakeholder-persona-and-outcome-model.md
+    gate: V2-G1
+  - id: V2-03
+    title: House and Button Product Boundary
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-03-house-and-button-product-boundary.md
+    gate: V2-G1
+  - id: V2-04
+    title: Affiliation Service Blueprint
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-04-affiliation-service-blueprint.md
+    gate: V2-G1
+  - id: V2-05
+    title: Requirements and Acceptance Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-05-requirements-and-acceptance-architecture.md
+    gate: V2-G1
+  - id: V2-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-A-package-1-closure-record.md
+    gate: V2-G1
