@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.10.0
+version: 0.11.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -724,6 +724,50 @@ records:
       - V1-26
       - V1-E
       - V1-25
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-030
+    class: D1
+    question: Is the complete Volume 1 corpus closed and frozen as a whole-volume release baseline?
+    decision: >-
+      Close and freeze the entire Volume 1 corpus as release baseline v1.0.0. This
+      whole-volume closure is distinct from and additional to the per-package
+      freezes: it explicitly freezes Volume 1 as a unit at the Package 5 closure
+      baseline commit 677f10e, with V1-E as the closure record and V1-F as the
+      executive convergence brief. The frozen scope comprises Package 1 and its
+      artifacts, the corrected Package 2 (v1.1.0), Package 3 (V1-C v1.1.0),
+      Package 4 (v1.0.0), Package 5 (v1.0.0) and V1-E, V1-F, the registers REG-100
+      through REG-108, and the source-baseline lineage. The generated qualification
+      outputs (generated/base44, generated/house, generated/ecosystem,
+      generated/convergence) are identified as NON-AUTHORITATIVE evidence
+      projections, reproducible from controlled inputs and not themselves a source
+      of authority. Once frozen, any post-freeze change to a ratified Volume 1
+      artifact requires the Volume 1 amendment process: a REG-107 amendment
+      decision (amends set to the artifact id with a stated amendment_reason), a
+      version increment, and re-ratification; the freeze-integrity control rejects
+      unamended version drift. All prior freezes (Volume 0 and Packages 1-4) are
+      preserved and no frozen artifact is modified. This closure authorizes no
+      implementation, no procurement, and no master development plan. Gate V1-G5
+      remains PASS; Volume 2 is authorized for product and service definition;
+      the master development plan remains pending; implementation and procurement
+      remain unauthorized; and material organizational commitment remains pending
+      executive acceptance (Nolan, D0) at a later material-commitment gate.
+    evidence_refs:
+      - V1-E
+      - V1-F
+      - REG-100
+      - REG-101
+      - REG-102
+      - REG-103
+      - REG-104
+      - REG-105
+      - REG-106
+      - REG-107
+      - REG-108
+      - APP-V1-043
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending

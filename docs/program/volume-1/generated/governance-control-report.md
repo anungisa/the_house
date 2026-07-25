@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T22:53:25.310Z
+Generated: 2026-07-25T22:54:47.543Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -39,8 +39,8 @@ Generated: 2026-07-25T22:53:25.310Z
 | REG-104 | Finding Register | IN_REVIEW | 0.6.0 | 53 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.6.0 | 14 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.6.0 | 65 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.10.0 | 29 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.11.0 | 43 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.11.0 | 30 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.11.0 | 44 |
 
 ## Findings by control
 
@@ -206,3 +206,13 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-044 (V1-F): Introduces no new target decision and no new source of authority
 - APP-V1-044 (V1-F): Consistent with V1-E: Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
 - APP-V1-044 (V1-F): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-043 (VOLUME-1): Whole-volume closure disposition VOLUME_1_COMPLETE (DEC-V1-030); distinct from and additional to the per-package freezes
+- APP-V1-043 (VOLUME-1): Volume 1 release baseline v1.0.0 at Package 5 closure commit 677f10e; closure record V1-E; executive brief V1-F
+- APP-V1-043 (VOLUME-1): Frozen scope; Package 1 closure and artifacts; corrected Package 2 v1.1.0; Package 3 V1-C v1.1.0; Package 4 v1.0.0; Package 5 v1.0.0; V1-E; V1-F
+- APP-V1-043 (VOLUME-1): Frozen scope; registers REG-100 through REG-108 and the source-baseline lineage
+- APP-V1-043 (VOLUME-1): Generated qualification outputs (base44, house, ecosystem, convergence) identified as non-authoritative evidence projections
+- APP-V1-043 (VOLUME-1): Volume 0 and Packages 1, 2, 3, 4, and 5 freezes preserved; no frozen artifact modified
+- APP-V1-043 (VOLUME-1): Post-freeze changes require the Volume 1 amendment process (REG-107 amendment decision, version increment, re-ratification)
+- APP-V1-043 (VOLUME-1): No implementation, procurement, or master development plan authorized by the Volume 1 freeze
+- APP-V1-043 (VOLUME-1): Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
+- APP-V1-043 (VOLUME-1): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

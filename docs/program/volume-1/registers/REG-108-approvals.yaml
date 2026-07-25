@@ -614,3 +614,54 @@ records:
       - "Consistent with V1-E: Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized"
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null
+  # --- Whole-volume closure and freeze (Volume 1 release baseline) ---
+  - id: APP-V1-043
+    artifact_id: VOLUME-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: VOLUME_1_COMPLETE
+    closure_record: V1-E
+    base_commit: "677f10e"
+    amendment_process: >-
+      Volume 1 is closed and frozen as release baseline v1.0.0. Any post-freeze
+      change to a ratified Volume 1 artifact requires the Volume 1 amendment
+      process: a REG-107 amendment decision (amends set to the artifact id with a
+      stated amendment_reason), a version increment, and re-ratification. The
+      freeze-integrity control rejects unamended version drift. The registers
+      REG-100..REG-108 and the deterministic qualification tooling remain living
+      machinery; the generated qualification outputs are non-authoritative
+      evidence projections reproducible from controlled inputs.
+    frozen: true
+    frozen_artifacts:
+      - id: V1-A
+        version: 1.0.0
+      - id: V1-B
+        version: 1.1.0
+      - id: V1-C
+        version: 1.1.0
+      - id: V1-D
+        version: 1.0.0
+      - id: V1-E
+        version: 1.0.0
+      - id: V1-F
+        version: 1.0.0
+    scope:
+      - V1-A
+      - V1-B
+      - V1-C
+      - V1-D
+      - V1-E
+      - V1-F
+    conditions:
+      - Whole-volume closure disposition VOLUME_1_COMPLETE (DEC-V1-030); distinct from and additional to the per-package freezes
+      - Volume 1 release baseline v1.0.0 at Package 5 closure commit 677f10e; closure record V1-E; executive brief V1-F
+      - Frozen scope; Package 1 closure and artifacts; corrected Package 2 v1.1.0; Package 3 V1-C v1.1.0; Package 4 v1.0.0; Package 5 v1.0.0; V1-E; V1-F
+      - Frozen scope; registers REG-100 through REG-108 and the source-baseline lineage
+      - Generated qualification outputs (base44, house, ecosystem, convergence) identified as non-authoritative evidence projections
+      - Volume 0 and Packages 1, 2, 3, 4, and 5 freezes preserved; no frozen artifact modified
+      - Post-freeze changes require the Volume 1 amendment process (REG-107 amendment decision, version increment, re-ratification)
+      - No implementation, procurement, or master development plan authorized by the Volume 1 freeze
+      - Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null

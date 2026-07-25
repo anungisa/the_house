@@ -154,8 +154,9 @@ export function run(ctx) {
   for (const app of records(ctx, 'REG-108')) {
     const art = app.artifact_id;
     const isPackage = /^PACKAGE-[0-9]$/.test(art);
+    const isVolume = /^VOLUME-1$/.test(art);
     const isGate = /^GATE-V1-G[0-9]$/.test(art);
-    if (!isPackage && !isGate && !chapterById.has(art) && !decisionIds.has(art)) {
+    if (!isPackage && !isVolume && !isGate && !chapterById.has(art) && !decisionIds.has(art)) {
       findings.push(makeFinding(Severity.ERROR, 'BROKEN_REFERENCE', `${app.id}: artifact_id ${art} does not resolve`, app.id));
     }
     for (const s of app.scope ?? []) {
