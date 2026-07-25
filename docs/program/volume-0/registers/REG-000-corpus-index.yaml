@@ -63,8 +63,8 @@ records:
     title: Governance and Decision Rights
     owner: Aubert Nungisa (Accountable Program Authority)
     approver: Nolan (Executive Acceptance Authority)
-    status: IN_REVIEW
-    version: 0.2.0
+    status: RATIFIED
+    version: 1.0.0
     path: docs/program/volume-0/V0-07-governance-and-decision-rights.md
     gate: G0
   - id: V0-08

@@ -1,12 +1,13 @@
 # V0-07 - Governance and Decision Rights
 
 Document ID: V0-07
-Status: IN_REVIEW
-Version: 0.2.0
+Status: RATIFIED
+Version: 1.0.0
 Owner: Aubert Nungisa (Accountable Program Authority)
 Approver: Nolan (Executive Acceptance Authority; surname to be recorded in REG-001)
 Associated Gate: G0
-Ratification target: Package 2
+Ratification: Package 2; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at applicable future gate (REG-006 APP-003)
+Related Documents: V0-06 (authority doctrine over systems), V0-08 (engagement model and consultation thresholds)
 
 This chapter is normative except where a subsection is marked explanatory. It
 defines the program operating model, authorities, decision classes, gate control,
@@ -216,3 +217,9 @@ No authority assignment or decision-class assertion in this chapter is valid
 without a corresponding record in REG-001, REG-002, and REG-006. Executive
 acceptance (D0) and independent assurance (D9) claims MUST NOT be asserted until
 the corresponding record exists.
+
+This chapter is consistent with V0-06 (which assigns authority over systems and
+external platforms) and V0-08 (which defines named engagement, consultation
+triggers, the non-blocking consultation rule, and when independent expertise is
+mandatory). Decision classes D0-D9 defined here are the authoritative reference for
+both chapters.

@@ -1,7 +1,7 @@
 register_id: REG-002
 name: Decision Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 records:
   - id: DEC-V0-001
     class: D1
@@ -186,6 +186,78 @@ records:
     evidence_refs: [V0-12, V0-07]
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-018
+    class: D1
+    question: How is authority over systems and external platforms assigned?
+    decision: >-
+      Adopt the authority doctrine in V0-06: each system holds exactly one primary
+      authority type; The House is system-of-record foundation (production-candidate,
+      not final production truth); The Button owns experience only; Base44 is
+      evidence only; external platforms are classified in REG-005 SRC-005..SRC-012.
+    evidence_refs: [V0-06, REG-005]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-019
+    class: D1
+    question: What precedence resolves authority conflicts?
+    decision: >-
+      Authority precedence (V0-06 6.7), highest first: ratified policy and executive
+      decisions; approved program and domain decisions; approved target designs;
+      external authoritative sources within their domain; The House implementation
+      truth (production-candidate); Base44 reference evidence. Being implemented does
+      not confer authority; unassigned authority is denied by default.
+    evidence_refs: [V0-06, REG-005]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-020
+    class: D1
+    question: What is the stakeholder and engagement model?
+    decision: >-
+      Adopt V0-08: named contributors (Aubert, Nolan, Rich, Helene, Jen, club/PTSO
+      representatives, independent reviewers) engaged in defined modes, with material
+      consultation triggers mapped to decision classes D0/D4/D7/D8/D9.
+    evidence_refs: [V0-08, V0-07, REG-001]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-021
+    class: D1
+    question: How is consultation bounded and when is independence mandatory?
+    decision: >-
+      Adopt V0-08 non-blocking consultation rule (a pending consultation blocks only
+      the affected decision or claim, not unrelated work) and the mandatory-
+      independence list (security, privacy/legal compliance, accessibility, French-
+      language parity, and independence-dependent production-readiness claims remain
+      time-bounded conditions until independently assessed).
+    evidence_refs: [V0-08, V0-07]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-022
+    class: D1
+    question: What is the status of Package 1 at the start of Package 2?
+    decision: >-
+      Package 1 (V0-00..V0-05 and annexes V0-A..V0-E) is ratified as the
+      constitutional foundation baseline (Status RATIFIED, Version 1.0.0) and frozen;
+      changes require a documented constitutional amendment under V0-00 control. Gate
+      G0 disposition PASS_WITH_TIME_BOUNDED_CONDITIONS is preserved. Registers and
+      Gate G0 evidence remain living instruments.
+    evidence_refs: [V0-00, V0-E, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

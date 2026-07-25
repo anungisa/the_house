@@ -1,7 +1,7 @@
 register_id: REG-005
 name: Source and Authority Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 records:
   - id: SRC-001
     source_name: Ratified Curling Canada policy and executive decisions
@@ -36,3 +36,77 @@ records:
       security, authorization, state transitions, data integrity, production
       architecture, final business rules, test completeness, or system-of-record
       decisions.
+  - id: SRC-005
+    source_name: Curling I/O
+    source_type: synchronization_partner
+    authority_level: 4
+    owner: Aubert Nungisa (Accountable Program Authority)
+    applicable_scope: club_league_competition_operational_data
+    note: >-
+      Bidirectional operational data exchange within its bounded domain. The House
+      remains authoritative for governed affiliation and participant state derived
+      from it.
+  - id: SRC-006
+    source_name: Current registration provider (incumbent)
+    source_type: temporary_transition_platform
+    authority_level: 4
+    owner: Aubert Nungisa (Accountable Program Authority)
+    applicable_scope: incumbent_registration_and_membership_records
+    note: >-
+      Authoritative for legacy registration and membership data only during
+      transition. Retired after migration. Not authoritative for the future target
+      state.
+  - id: SRC-007
+    source_name: Payment processors
+    source_type: execution_plane
+    authority_level: 4
+    owner: Helene (Business and Financial Authority)
+    applicable_scope: payment_authorization_and_capture
+    note: >-
+      Executes payment instructions. The governed decision to charge, the evidence,
+      and the resulting governed record remain in The House.
+  - id: SRC-008
+    source_name: Sideline Learning
+    source_type: authoritative_source_external
+    authority_level: 4
+    owner: Jen (Compliance and Policy Authority)
+    applicable_scope: learning_and_certification_completion_records
+    note: >-
+      External system of record for learning and certification completion. The House
+      holds a projection and governs how that status is used, not the underlying
+      record.
+  - id: SRC-009
+    source_name: Accreditation platforms
+    source_type: authoritative_source_external
+    authority_level: 4
+    owner: Jen (Compliance and Policy Authority)
+    applicable_scope: accreditation_status_and_standing
+    note: >-
+      External system of record for accreditation status. The House holds a
+      projection and governs how that status is used.
+  - id: SRC-010
+    source_name: Document360
+    source_type: replaceable_provider
+    authority_level: 6
+    owner: Aubert Nungisa (Accountable Program Authority)
+    applicable_scope: documentation_and_knowledge_base_hosting
+    note: >-
+      Commodity documentation hosting. Substitutable without changing governed truth.
+  - id: SRC-011
+    source_name: Analytics platforms
+    source_type: reporting_source
+    authority_level: 6
+    owner: Aubert Nungisa (Accountable Program Authority)
+    applicable_scope: reporting_and_business_intelligence
+    note: >-
+      Consumes projected data only. Holds no authority over underlying records and
+      writes no governed state.
+  - id: SRC-012
+    source_name: Accounting systems
+    source_type: authoritative_source_external
+    authority_level: 4
+    owner: Helene (Business and Financial Authority)
+    applicable_scope: financial_ledger_and_accounting_system_of_record
+    note: >-
+      External financial system of record. The House synchronizes to it and does not
+      overwrite the accounting ledger.

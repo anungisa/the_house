@@ -1,7 +1,7 @@
 register_id: REG-001
 name: Stakeholder Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 records:
   - id: STK-001
     stakeholder: Aubert Nungisa
@@ -12,6 +12,7 @@ records:
       Quality and Evidence Authority; Documentation and Traceability Authority
     authority_level: accountable_authority
     engagement_level: accountable_owner
+    engagement_modes: [consulted, domain_reviewer, operational_validator]
     decision_classes: [D1, D2, D3, D4, D5, D6]
     status: assigned
   - id: STK-002
@@ -20,6 +21,7 @@ records:
     role: Executive Sponsor Candidate and Executive Acceptance Authority
     authority_level: executive_acceptance
     engagement_level: executive_recipient
+    engagement_modes: [executive_acceptance_authority, informed]
     decision_classes: [D0]
     surname: to_be_recorded
     status: named_candidate
@@ -29,6 +31,7 @@ records:
     role: Strategy contributor and strategic challenge function
     authority_level: domain_contributor
     engagement_level: consulted
+    engagement_modes: [consulted]
     decision_classes: [D7]
     surname: to_be_recorded
     status: named_contributor
@@ -38,6 +41,7 @@ records:
     role: Business, financial, sustainability, and operating-model contributor
     authority_level: domain_contributor
     engagement_level: consulted
+    engagement_modes: [consulted, domain_reviewer]
     decision_classes: [D4]
     surname: to_be_recorded
     status: named_contributor
@@ -47,6 +51,7 @@ records:
     role: Club and individual compliance, policy, and privacy contributor
     authority_level: domain_contributor
     engagement_level: consulted
+    engagement_modes: [consulted, domain_reviewer]
     decision_classes: [D4]
     surname: to_be_recorded
     status: named_contributor
@@ -56,6 +61,7 @@ records:
     role: Operational discovery, journey validation, and pilot acceptance
     authority_level: operational_acceptance
     engagement_level: consulted_and_pilot
+    engagement_modes: [consulted, pilot_participant, operational_validator]
     decision_classes: [D8]
     status: to_be_identified
   - id: STK-007
@@ -66,5 +72,6 @@ records:
       legal, or financial-control validation
     authority_level: independent_assurance
     engagement_level: engaged_before_production
+    engagement_modes: [independent_assessor]
     decision_classes: [D9]
     status: to_be_engaged
