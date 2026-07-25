@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T22:54:47.543Z
+Generated: 2026-07-25T23:07:09.865Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T22:54:47.543Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 33 |
+| RATIFIED | 34 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.10.0 | 33 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.11.0 | 34 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.6.0 | 23 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.6.0 | 53 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.6.0 | 48 |
 | REG-104 | Finding Register | IN_REVIEW | 0.6.0 | 53 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.6.0 | 14 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.6.0 | 65 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.11.0 | 30 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.11.0 | 44 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.12.0 | 31 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.12.0 | 45 |
 
 ## Findings by control
 
@@ -216,3 +216,11 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-043 (VOLUME-1): No implementation, procurement, or master development plan authorized by the Volume 1 freeze
 - APP-V1-043 (VOLUME-1): Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
 - APP-V1-043 (VOLUME-1): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-045 (V1-G): Release-provenance amendment (V1-G) ratified; narrow governance-metadata correction (DEC-V1-031)
+- APP-V1-045 (V1-G): Supersedes ONLY the base_commit 677f10e whole-volume-source interpretation in APP-V1-043 and DEC-V1-030
+- APP-V1-045 (V1-G): Correct four-commit model; Package 5 closure 677f10e; source snapshot 9c0f04f; freeze commit 32d9cd5; merged release 3d1e481; tag central-registration-volume-1-v1.0.0
+- APP-V1-045 (V1-G): 677f10e preserved as the valid Package 5 closure commit; no substantive finding, disposition, contradiction, or qualification decision changed
+- APP-V1-045 (V1-G): V1-E, V1-F, and all qualification decisions unchanged; published v1.0.0 tag not moved or overwritten
+- APP-V1-045 (V1-G): Gate V1-G5 remains PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
+- APP-V1-045 (V1-G): Published as patch release v1.0.1; Volume 2 authoring proceeds from the corrected v1.0.1 baseline
+- APP-V1-045 (V1-G): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

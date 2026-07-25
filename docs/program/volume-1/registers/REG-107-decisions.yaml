@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.11.0
+version: 0.12.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -773,3 +773,45 @@ records:
     executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority
+  - id: DEC-V1-031
+    class: D2
+    question: >-
+      Does the whole-volume freeze record the release provenance of the complete
+      Volume 1 corpus correctly?
+    decision: >-
+      Amend the release-provenance metadata of the whole-volume freeze. The single
+      base_commit 677f10e recorded in DEC-V1-030 and APP-V1-043 is a temporal
+      provenance defect: 677f10e is the Package 5 closure commit and predates both
+      the V1-F executive brief and the whole-volume freeze records themselves, so
+      it cannot be the complete-volume source snapshot. Record instead the correct
+      four-commit model documented in V1-G and captured in machine-readable form in
+      APP-V1-045 release_provenance; Package 5 closure commit 677f10e; complete
+      pre-freeze source snapshot 9c0f04f; whole-volume freeze commit 32d9cd5;
+      merged release commit 3d1e481; published release tag
+      central-registration-volume-1-v1.0.0. This amendment supersedes ONLY the
+      base_commit 677f10e whole-volume-source interpretation. It preserves 677f10e
+      as the valid Package 5 closure commit; changes no substantive Volume 1
+      finding, disposition, contradiction, or qualification decision; leaves V1-E,
+      V1-F, and all qualification decisions unchanged; does not move or overwrite
+      the immutable v1.0.0 tag; and keeps Gate V1-G5 PASS, Volume 2 authorization,
+      and the implementation/procurement restrictions unchanged. It is published as
+      patch release v1.0.1.
+    evidence_refs:
+      - V1-G
+      - V1-E
+      - V1-F
+      - DEC-V1-030
+      - APP-V1-043
+      - APP-V1-045
+      - REG-108
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: DEC-V1-030
+    amendment_reason: >-
+      Corrects the temporal release-provenance defect in the DEC-V1-030 /
+      APP-V1-043 whole-volume freeze (single base_commit 677f10e) by recording the
+      correct four-commit provenance model. Narrow governance-metadata correction
+      only; no substantive finding, disposition, or authorization changes.
