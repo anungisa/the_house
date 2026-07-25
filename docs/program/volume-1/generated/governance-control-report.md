@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T17:11:17.782Z
+Generated: 2026-07-25T17:13:22.173Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T17:11:17.782Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 5 |
+| RATIFIED | 6 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.1.0 | 5 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.1.0 | 6 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.1.0 | 3 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.1.0 | 0 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.1.0 | 0 |
 | REG-104 | Finding Register | IN_REVIEW | 0.1.0 | 0 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.1.0 | 0 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.1.0 | 0 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.1.0 | 6 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.1.0 | 6 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.1.0 | 7 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.1.0 | 7 |
 
 ## Findings by control
 
@@ -80,3 +80,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-006 (GATE-V1-G1): No implementation authorized by Volume 1 findings alone
 - APP-V1-006 (GATE-V1-G1): Executive organizational acceptance (Nolan, D0) pending before material commitment
 - APP-V1-006 (GATE-V1-G1): Independent assurance reserved for independence-requiring claims
+- APP-V1-007 (PACKAGE-1): Package 1 reviewed and closed separately from authoring
+- APP-V1-007 (PACKAGE-1): Volume 0 freeze preserved; no Volume 0 artifact modified
+- APP-V1-007 (PACKAGE-1): Executive organizational acceptance (Nolan, D0) pending

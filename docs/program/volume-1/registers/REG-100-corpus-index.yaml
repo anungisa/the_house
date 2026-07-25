@@ -43,3 +43,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-1/V1-04-current-state-evidence-quality-standard.md
     gate: V1-G1
+  - id: V1-A
+    title: Package 1 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-A-package-1-closure-record.md
+    gate: V1-G1

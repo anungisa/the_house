@@ -60,3 +60,41 @@ records:
       - Executive organizational acceptance (Nolan, D0) pending before material commitment
       - Independent assurance reserved for independence-requiring claims
     approved_at: null
+  - id: APP-V1-007
+    artifact_id: PACKAGE-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-A
+    base_commit: 20c3187
+    amendment_process: >-
+      Any change to a frozen Package 1 artifact requires an amendment decision in
+      REG-107 (with amends set to the artifact id and a stated amendment_reason),
+      a version increment, and re-ratification. The freeze-integrity control
+      rejects unamended version drift.
+    frozen: true
+    frozen_artifacts:
+      - id: V1-00
+        version: 1.0.0
+      - id: V1-01
+        version: 1.0.0
+      - id: V1-02
+        version: 1.0.0
+      - id: V1-03
+        version: 1.0.0
+      - id: V1-04
+        version: 1.0.0
+      - id: V1-A
+        version: 1.0.0
+    scope:
+      - V1-00
+      - V1-01
+      - V1-02
+      - V1-03
+      - V1-04
+      - V1-A
+    conditions:
+      - Package 1 reviewed and closed separately from authoring
+      - Volume 0 freeze preserved; no Volume 0 artifact modified
+      - Executive organizational acceptance (Nolan, D0) pending
+    approved_at: null
