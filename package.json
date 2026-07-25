@@ -49,6 +49,7 @@
     "governance:check:v1": "node docs/program/volume-1/controls/governance-check.mjs",
     "governance:report:v1": "node docs/program/volume-1/controls/generate-control-report.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
+    "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check && npm run smoke:check && npm run release:check && npm run synthetic:check && npm run organization:check && npm run participant:check && npm run facility:check"
   },
   "dependencies": {

@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "observation_count": 8
+  },
+  "observations": [
+    {
+      "code": "OBS-DB-RLS",
+      "observation": "20/26 tenant-owned tables use FORCE row-level security; 6 tenant-owned table(s) lack forced RLS.",
+      "evidence": "database-inventory.json"
+    },
+    {
+      "code": "OBS-AUTHZ-RESOURCE",
+      "observation": "Governed affiliation authorization is role-only; it is NOT resource/jurisdiction-aware.",
+      "evidence": "authorization-analysis.json"
+    },
+    {
+      "code": "OBS-AUTHZ-EDGE",
+      "observation": "Edge authorization exposes 16 actions across 15 roles with a single platform-admin wildcard; there is no affiliation.* edge action (affiliation authority is the kernel).",
+      "evidence": "authorization-analysis.json"
+    },
+    {
+      "code": "OBS-WF-GUARDS",
+      "observation": "The seeded state machine has 10 states and 12 transitions; 6 seeded guards vs 6 implemented handlers (unimplemented: none).",
+      "evidence": "workflow-analysis.json"
+    },
+    {
+      "code": "OBS-OUTBOX",
+      "observation": "Outbox default publisher is the Noop publisher; a real Azure Service Bus publisher is present but config-gated; lease-based claim: true; full-jitter backoff detected: true.",
+      "evidence": "integration-outbox-analysis.json"
+    },
+    {
+      "code": "OBS-EVIDENCE",
+      "observation": "Evidence storage providers: in_memory, azure_blob; malware scanning: noop_scanner, signature_scanner, scan_gate; evidence metadata + audit are written inside the governance store transaction (true/true).",
+      "evidence": "evidence-audit-analysis.json"
+    },
+    {
+      "code": "OBS-TESTS",
+      "observation": "99 unit test files (1326 cases) and 16 integration files (333 cases). All 16 integration suites are DB-gated (RUN_DB_TESTS=1) and skipped by default hermetic `npm test`.",
+      "evidence": "test-inventory.json"
+    },
+    {
+      "code": "OBS-OPS",
+      "observation": "11 deployment baseline validators and 6 CI workflows exist; infra is Bicep source (7 modules). No evidence of a provisioned, running House environment.",
+      "evidence": "operational-readiness.json"
+    }
+  ]
+}

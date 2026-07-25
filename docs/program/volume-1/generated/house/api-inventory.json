@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "route_constants": 14,
+    "distinct_route_paths": 28,
+    "method_bound_routes": 11,
+    "adapter_groups": 7,
+    "top_level_http_modules": 6,
+    "routes_by_resource": {
+      "affiliation": 2,
+      "evidence": 5,
+      "facilities": 5,
+      "organizations": 7,
+      "participants": 5,
+      "workflows": 4
+    }
+  },
+  "route_constants": [
+    "FACILITY_DETAIL_ROUTE",
+    "FACILITY_STATUS_TRANSITIONS_ROUTE",
+    "ORGANIZATION_DETAIL_ROUTE",
+    "ORGANIZATION_FACILITIES_ROUTE",
+    "ORGANIZATION_PARTICIPANTS_ROUTE",
+    "ORGANIZATION_PARTICIPANT_STATUS_TRANSITIONS_ROUTE",
+    "PARTICIPANT_DETAIL_ROUTE",
+    "PARTICIPANT_STATUS_TRANSITIONS_ROUTE",
+    "QUARANTINE_DETAIL_ROUTE",
+    "QUARANTINE_DISPOSITION_ROUTE",
+    "TRANSITION_ROUTE",
+    "WORKFLOW_DECISION_ROUTE",
+    "WORKFLOW_DETAIL_ROUTE",
+    "WORKFLOW_EXECUTE_ROUTE"
+  ],
+  "route_paths": [
+    "/v1/affiliation/applications/:applicationId/transitions/:action",
+    "/v1/affiliation/applications/:id/transitions/:action",
+    "/v1/evidence/objects",
+    "/v1/evidence/objects/read",
+    "/v1/evidence/quarantine",
+    "/v1/evidence/quarantine/:id",
+    "/v1/evidence/quarantine/:id/disposition",
+    "/v1/facilities",
+    "/v1/facilities/:facilityId",
+    "/v1/facilities/:facilityId/status-transitions",
+    "/v1/facilities/:id",
+    "/v1/facilities/:id/status-transitions",
+    "/v1/organizations",
+    "/v1/organizations/:id",
+    "/v1/organizations/:id/facilities",
+    "/v1/organizations/:id/participants",
+    "/v1/organizations/:id/participants/:id/status-transitions",
+    "/v1/organizations/:organizationId/participants",
+    "/v1/organizations/:organizationId/participants/:relationshipId/status-transitions",
+    "/v1/participants",
+    "/v1/participants/:id",
+    "/v1/participants/:id/status-transitions",
+    "/v1/participants/:participantId",
+    "/v1/participants/:participantId/status-transitions",
+    "/v1/workflows",
+    "/v1/workflows/:id",
+    "/v1/workflows/:id/execute",
+    "/v1/workflows/:id/steps/:code/decision"
+  ],
+  "method_routes": [
+    "GET /v1/evidence/quarantine",
+    "GET /v1/evidence/quarantine/:id",
+    "PATCH /v1/facilities/:facilityId",
+    "PATCH /v1/participants/:participantId",
+    "POST /v1/affiliation/applications/:applicationId/transitions/:action",
+    "POST /v1/facilities",
+    "POST /v1/facilities/:facilityId/status-transitions",
+    "POST /v1/organizations/:organizationId/participants",
+    "POST /v1/organizations/:organizationId/participants/:relationshipId/status-transitions",
+    "POST /v1/participants",
+    "POST /v1/participants/:participantId/status-transitions"
+  ],
+  "adapters": [
+    {
+      "name": "auth",
+      "path": "src/http/auth",
+      "files": 11,
+      "lines": 559
+    },
+    {
+      "name": "demo",
+      "path": "src/http/demo",
+      "files": 1,
+      "lines": 150
+    },
+    {
+      "name": "evidence",
+      "path": "src/http/evidence",
+      "files": 6,
+      "lines": 1050
+    },
+    {
+      "name": "facility",
+      "path": "src/http/facility",
+      "files": 6,
+      "lines": 1193
+    },
+    {
+      "name": "organization",
+      "path": "src/http/organization",
+      "files": 4,
+      "lines": 439
+    },
+    {
+      "name": "participant",
+      "path": "src/http/participant",
+      "files": 6,
+      "lines": 1541
+    },
+    {
+      "name": "workflow",
+      "path": "src/http/workflow",
+      "files": 8,
+      "lines": 1067
+    }
+  ],
+  "top_level_modules": [
+    "src/http/AffiliationHttpAdapter.ts",
+    "src/http/composition.ts",
+    "src/http/index.ts",
+    "src/http/readiness.ts",
+    "src/http/runtime.ts",
+    "src/http/server.ts"
+  ]
+}

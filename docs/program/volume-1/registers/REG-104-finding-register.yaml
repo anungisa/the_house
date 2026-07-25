@@ -1,7 +1,7 @@
 register_id: REG-104
 name: Finding Register
 status: IN_REVIEW
-version: 0.3.1
+version: 0.4.0
 # Qualification findings from Package 2 (Base44). Findings are grouped by
 # character: PRODUCT VALUE (reusable intelligence), PRODUCTION RISK (why the
 # prototype must not become production authority), and UNKNOWN/CONSTRAINT (open
@@ -370,3 +370,200 @@ records:
       governed transition in the House; deferred pending a dedicated assessment.
       Not authorized for implementation. Current evidence: EV-020 (Jobs board)
       and EV-018 (delta).
+  - id: FND-023
+    statement: >-
+      Governed affiliation authorization is ROLE-BASED, not resource-aware. The
+      DefaultPermissionChecker input carries no entity id and grants elevated
+      transitions to any actor holding a reviewer-class role, and the production
+      DomainBackedAffiliationGuardRepository.actorHasReviewerScope is role-only
+      with no binding to the specific applicant, jurisdiction, or region. Any
+      reviewer-role actor can therefore decide any application within a tenant.
+    finding_type: production_readiness_gap
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, EV-026, CAP-025, CAP-026]
+    capability_refs: [CAP-025, CAP-026]
+    production_risk: high
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      P0 revalidation #1, CONFIRMED by direct read of PermissionChecker.ts and
+      DomainBackedAffiliationGuardRepository.ts plus authorization-analysis.json.
+      Release-blocking for affiliation. Remediation NOT authorized in Package 3.
+  - id: FND-024
+    statement: >-
+      There is no assigned-reviewer or jurisdiction/region routing. The approval
+      workflow can execute an approved request exactly once but nothing selects
+      or constrains WHICH reviewer may act on a given application; reviewer
+      assignment/dispatch is absent.
+    finding_type: capability_gap
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, EV-026, EV-027, CAP-024]
+    capability_refs: [CAP-024, CAP-026]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: >-
+      P0 revalidation #2, ABSENT. Compounds FND-023: without routing, authority
+      cannot be scoped to the correct jurisdiction. Not authorized for
+      implementation.
+  - id: FND-025
+    statement: >-
+      Evidence upload is not wired end to end to the governed decision. The
+      kernel writes evidence metadata bound to the state transition inside the
+      transaction, but the HTTP evidence-upload transport is independent; there
+      is no create-application -> upload-evidence -> submit-with-evidence flow
+      that guarantees a decision is accompanied by its evidence.
+    finding_type: production_readiness_gap
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, SRC-012, EV-029, CAP-023]
+    capability_refs: [CAP-023, CAP-026]
+    production_risk: high
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      P0 revalidation #3, PARTIAL (modeled but unwired). The metadata binding is
+      real; the upload-to-transition wiring is the gap. Not authorized for
+      implementation.
+  - id: FND-026
+    statement: >-
+      The affiliation application has no create/bootstrap capability. The domain
+      store is READ-only (fact readers for guards; no create/update), and the
+      only affiliation write endpoint is the transition endpoint, which assumes a
+      draft application already exists. The end-to-end affiliation flow cannot be
+      completed through the HTTP surface alone.
+    finding_type: capability_gap
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-012, EV-031, CAP-026]
+    capability_refs: [CAP-026]
+    production_risk: high
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      P0 revalidation #6, CONFIRMED by read of PgAffiliationApplicationStore.ts
+      and server.ts. Release-blocking: an application must currently be inserted
+      out-of-band. Not authorized for implementation.
+  - id: FND-027
+    statement: >-
+      There is no return-for-information or resubmission path. The seeded
+      lifecycle has no under_review -> (draft|more_information) transition and no
+      way for an applicant to correct and resubmit; a review can only approve or
+      reject. Notably, the legacy Base44 Application entity DOES carry a
+      more_info_needed status, so the House lifecycle is narrower than the
+      product it is meant to supersede.
+    finding_type: capability_gap
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, EV-027, EV-022, CAP-026]
+    capability_refs: [CAP-026]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      P0 revalidation #8, ABSENT. A realistic affiliation cycle needs a
+      return-and-resubmit loop. Not authorized for implementation.
+  - id: FND-028
+    statement: >-
+      Governed database behaviour is UNPROVEN under the default run. All 16
+      integration test suites (333 cases) require RUN_DB_TESTS=1 and a live
+      PostgreSQL database and are SKIPPED by the default hermetic npm test. The
+      passing evidence available by default is the 99 unit suites, which exercise
+      logic with test doubles, not the kernel against real RLS/constraints.
+    finding_type: constraint
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-013, EV-032]
+    production_risk: medium
+    recommended_disposition: RETAIN
+    status: corroborated
+    notes: >-
+      P0 revalidation #12, PARTIAL/UNPROVEN by default. A passing unit suite must
+      not be represented as production readiness. The DB suites must be executed
+      against a production-equivalent PostgreSQL before an affiliation release.
+  - id: FND-029
+    statement: >-
+      No House environment is deployed. Configuration, secrets, deployment
+      validators, CI workflows, and Azure Bicep exist as source, but there is no
+      evidence of a provisioned, running House instance. Runtime, database,
+      deployment, and operational behaviour are therefore not observed.
+    finding_type: production_readiness_gap
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-014, EV-033, CAP-029, CAP-030]
+    capability_refs: [CAP-029, CAP-030]
+    production_risk: high
+    recommended_disposition: DEFER
+    status: corroborated
+    notes: >-
+      P0 revalidation #13, source present but runtime UNPROVEN. Operational and
+      deployment-path readiness cannot be asserted from a static repository. Not
+      authorized for implementation.
+  - id: FND-030
+    statement: >-
+      The outbox publishes to a Noop publisher by default. A real Azure Service
+      Bus publisher exists but is config-gated; the default composition delivers
+      no external message. Leasing and true full jitter are correct, but real
+      at-least-once delivery is unproven without a broker and a running worker.
+    finding_type: prototype_debt
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, EV-028, CAP-020]
+    capability_refs: [CAP-020]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      P0 revalidation #11, PARTIAL. The mechanism is production-shaped; the
+      default publisher and the absence of a proven broker path are the gap. Not
+      authorized for implementation.
+  - id: FND-031
+    statement: >-
+      Affiliation requirements are not versioned. Season currency is a single
+      is_current boolean and required-field/document rules are fixed guard logic;
+      there is no versioned requirement set tying an application to the ruleset
+      in force for its season. Additionally, AFFILIATION_FEES_PAID is checked at
+      approve time and is not re-checked at activation.
+    finding_type: hardcoded_assumption
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, EV-027, CAP-026]
+    capability_refs: [CAP-026]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      P0 revalidation #7, PARTIAL. Governed policy is versioned at the
+      state-machine level but affiliation REQUIREMENTS are not; the fees
+      re-check gap at activation is a related hardcoded assumption. Not
+      authorized for implementation.
+  - id: FND-032
+    statement: >-
+      The Governance Kernel is high-value, reusable implementation truth. The
+      transition() algorithm, four-layer idempotency, forced-RLS tenant
+      isolation, transactional outbox with leasing and full jitter, named guard
+      registry, and in-transaction audit/evidence writes together implement the
+      constitutional kernel requirements in source and constitute the platform's
+      core production value.
+    finding_type: reusable_value
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, SRC-010, EV-025, EV-024, CAP-019]
+    capability_refs: [CAP-019, CAP-020, CAP-021, CAP-022, CAP-028]
+    production_risk: low
+    recommended_disposition: RETAIN
+    status: corroborated
+    notes: >-
+      The kernel is the reason The House is the production candidate. RETAIN and
+      HARDEN. Structural value (E3) must not be conflated with production
+      readiness, which remains gated by FND-028 and FND-029.
+  - id: FND-033
+    statement: >-
+      Affiliation authority conflict at the boundary: the architecture narrative
+      implies reviewer authority is scoped to a jurisdiction/entity, but the
+      implemented permission and guard logic grant it by role alone. Where the
+      narrative and the code disagree, the code governs and the control is
+      role-only.
+    finding_type: authority_conflict
+    evidence_rating: E3
+    source_refs: [SRC-011, SRC-015, EV-026]
+    capability_refs: [CAP-025]
+    production_risk: high
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: >-
+      Registered as contradiction CON-008. The demonstrated (role-only) behaviour
+      governs the design-intent narrative; resolved in favour of the evidence.
+      Not authorized for implementation.

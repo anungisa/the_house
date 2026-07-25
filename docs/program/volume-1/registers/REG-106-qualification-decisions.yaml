@@ -1,7 +1,7 @@
 register_id: REG-106
 name: Qualification Decision Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 # Per-capability target dispositions for the Base44 corpus. These are decisions
 # by the Accountable Program Authority about how each capability should be
 # treated by the program; they are NOT construction authorization. Every Package
@@ -228,3 +228,200 @@ records:
     notes: >-
       New in current export (7); added by the Package 2 corrective closure
       (DEC-V1-011). No as-is adoption; DEFER only.
+  - id: QD-019
+    capability_ref: CAP-019
+    disposition: ADOPT
+    rationale: >-
+      The Governance Kernel implements the constitutional transition algorithm,
+      four-layer idempotency, and atomic state/journal/audit/evidence/outbox
+      writes in source. It is the platform's core production value and the reason
+      The House is the production candidate. Adopt as the governed-transition
+      authority; harden by proving behaviour against production-equivalent
+      PostgreSQL (FND-028).
+    evidence_rating: E3
+    evidence_refs: [CAP-019, FND-032, EV-025, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. Retain-and-harden posture; structural
+      value (E3) is not production readiness. No implementation authorized.
+  - id: QD-020
+    capability_ref: CAP-020
+    disposition: RETAIN
+    rationale: >-
+      The transactional outbox has correct shape (in-txn enqueue, lease-based
+      claim, true full jitter, no sessions). Retain the mechanism; the default
+      Noop publisher and the unproven broker path are production-readiness gaps
+      to close before release (FND-030), not design defects.
+    evidence_rating: E3
+    evidence_refs: [CAP-020, FND-030, EV-028, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-021
+    capability_ref: CAP-021
+    disposition: RETAIN
+    rationale: >-
+      Forced row-level security on tenant_id across 20 of 26 tables with
+      in-transaction tenant context is a strong, database-enforced isolation
+      posture. Retain. The intentional omission of cross-schema foreign keys is
+      registered (CON-011), not corrected.
+    evidence_rating: E3
+    evidence_refs: [CAP-021, EV-024, SRC-010]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-022
+    capability_ref: CAP-022
+    disposition: RETAIN
+    rationale: >-
+      The named guard registry with fail-closed unknown-guard handling and exact
+      seed-to-handler parity is the correct policy-as-code mechanism. Retain. The
+      reviewer-scope guard's role-only logic is dispositioned under CAP-025.
+    evidence_rating: E3
+    evidence_refs: [CAP-022, EV-027, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-023
+    capability_ref: CAP-023
+    disposition: ADAPT
+    rationale: >-
+      The evidence storage/scanning/quarantine subsystem is complete and binds
+      metadata to transitions in-transaction. Adapt to wire the HTTP upload
+      transport to the pending governed decision so a decision is always
+      accompanied by its evidence (FND-025).
+    evidence_rating: E3
+    evidence_refs: [CAP-023, FND-025, EV-029, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-024
+    capability_ref: CAP-024
+    disposition: RETAIN
+    rationale: >-
+      Deferred-mutation approval requests and exactly-once approved execution are
+      correct. Retain the execution engine. The missing reviewer-routing
+      dispatcher is dispositioned separately (CAP-025/CAP-026, FND-024).
+    evidence_rating: E3
+    evidence_refs: [CAP-024, FND-024, EV-027, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-025
+    capability_ref: CAP-025
+    disposition: ADAPT
+    rationale: >-
+      The fail-closed edge action catalog is a sound first gate, but governed
+      affiliation authority is role-based only and not resource-aware; a
+      reviewer-role actor can decide any application in a tenant. Adapt to add
+      resource-/jurisdiction-scoped authorization before an affiliation release
+      (FND-023, FND-033).
+    evidence_rating: E3
+    evidence_refs: [CAP-025, FND-023, FND-033, EV-026, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. Release-blocking gap; no implementation
+      authorized.
+  - id: QD-026
+    capability_ref: CAP-026
+    disposition: ADAPT
+    rationale: >-
+      The governed AffiliationApplication lifecycle is the strongest first-
+      release candidate, but cannot complete an end-to-end release as-is. Adapt
+      to close the release-blocking gaps: create/bootstrap path (FND-026),
+      resource-aware authorization (FND-023), reviewer routing (FND-024),
+      evidence-to-transition wiring (FND-025), return-for-information/resubmission
+      (FND-027), and versioned requirements (FND-031).
+    evidence_rating: E3
+    evidence_refs: [CAP-026, FND-023, FND-024, FND-025, FND-026, FND-027, FND-031, SRC-012]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. The specific gaps are identified but
+      their remediation is NOT authorized here; authorization is reserved to the
+      material-commitment gate.
+  - id: QD-027
+    capability_ref: CAP-027
+    disposition: RETAIN
+    rationale: >-
+      The organization, participant, and facility registries are RLS-enforced
+      and wired into the production composition, supplying the facts affiliation
+      guards depend on. Retain. Cross-registry references are RLS-scoped, not
+      FK-enforced (CON-011).
+    evidence_rating: E3
+    evidence_refs: [CAP-027, EV-030, SRC-012]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-028
+    capability_ref: CAP-028
+    disposition: RETAIN
+    rationale: >-
+      Multi-layer idempotency (kernel pre-check, in-txn double-check, stable
+      outbox dedupe key) prevents duplicate transitions, audit, evidence, and
+      messages. Retain. Runtime proof depends on the DB-gated suites (FND-028).
+    evidence_rating: E3
+    evidence_refs: [CAP-028, EV-025, SRC-011]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-029
+    capability_ref: CAP-029
+    disposition: RETAIN
+    rationale: >-
+      Fail-closed configuration and env/Key Vault secret providers are the
+      correct posture. Retain. Behaviour is verified from source (E2); runtime
+      behaviour in a deployed environment is unproven (FND-029).
+    evidence_rating: E2
+    evidence_refs: [CAP-029, FND-029, EV-033, SRC-014]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.
+  - id: QD-030
+    capability_ref: CAP-030
+    disposition: RETAIN
+    rationale: >-
+      The deployment baseline validators, CI workflows, Bicep skeleton, and
+      reproducible qualification tooling make releases verifiable. Retain. They
+      verify baselines, not a deployed environment; no running House instance is
+      evidenced (FND-029).
+    evidence_rating: E2
+    evidence_refs: [CAP-030, FND-029, EV-023, EV-033, SRC-014]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 3 qualification decision. No implementation authorized.

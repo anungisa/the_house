@@ -1,7 +1,7 @@
 register_id: REG-103
 name: Capability Inventory
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 # Normalized capabilities observed in the Base44 export (SRC-001). ONE record per
 # real capability, not one per route. Dispositions here are the proposed target
 # treatment; the governed decision (with rationale and evidence) is recorded in
@@ -321,3 +321,269 @@ records:
       NEW in current export (7); discovered by the source-baseline correction.
       Its review/approval surface advances state by direct mutation, matching
       the defect found elsewhere. Deferred pending a dedicated assessment.
+  - id: CAP-019
+    name: Governance Kernel lifecycle state machine
+    description: >-
+      A single authority for governed lifecycle transitions implementing the
+      full ordered transition() algorithm: fail-closed transition/guard/
+      permission resolution, entity-state locking, guard evaluation and
+      persistence, approval-branch without premature mutation, and atomic write
+      of state, transition journal, audit event, evidence metadata, and outbox
+      row in one transaction.
+    stakeholder: Curling Canada, PTSOs
+    business_capability: Governed state management
+    observed_value: >-
+      Implements the constitutional kernel requirement in source (EV-025). This
+      is the platform's central production VALUE and the reason The House is the
+      production candidate.
+    target_house_domain: Governance Kernel (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: ADOPT
+    production_risk: low
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    finding_refs: [FND-032]
+    notes: >-
+      Retain and harden. Structural implementation is E3; end-to-end governed
+      behaviour against a database is unproven under the default hermetic run
+      (FND-028).
+  - id: CAP-020
+    name: Transactional outbox and lease-based worker
+    description: >-
+      Outbox rows enqueued inside the transition transaction; a leased worker
+      claims rows via FOR UPDATE SKIP LOCKED with locked_until/locked_by,
+      publishes after commit, and retries transient failures with true full
+      jitter. Real Azure Service Bus publisher present but config-gated; default
+      is a Noop publisher. Sessions are not enabled in v1.
+    stakeholder: Platform / integrations
+    business_capability: Reliable at-least-once side-effect delivery
+    observed_value: >-
+      Correct transactional-outbox shape with leasing and jitter (EV-028); the
+      right mechanism for deferring external side effects out of the governance
+      transaction.
+    target_house_domain: Governance Kernel / workers (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: medium
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    finding_refs: [FND-030]
+    notes: >-
+      Retain the mechanism; harden by config-defaulting a real publisher for
+      release environments and proving delivery against a broker. Default Noop is
+      a production-readiness gap, not a design defect.
+  - id: CAP-021
+    name: Tenant isolation via forced row-level security
+    description: >-
+      Tenant-owned governance and registry tables carry tenant_id with RLS
+      ENABLED and FORCED; application code sets app.tenant_id inside the
+      transaction before governed access; global-policy catalog tables are
+      intentionally tenant-nullable global configuration.
+    stakeholder: All tenants (PTSOs, Curling Canada)
+    business_capability: Multi-tenant data isolation
+    observed_value: >-
+      20 of 26 tables forced-RLS with tenant context set in-transaction
+      (EV-024); a strong, database-enforced isolation posture.
+    target_house_domain: Data layer (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: low
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-010]
+    notes: >-
+      Retain. Cross-schema parent references are not DB foreign keys by design
+      (single RLS isolation mechanism); this is registered as CON-011, not a
+      defect.
+  - id: CAP-022
+    name: Named guard registry
+    description: >-
+      Governed transitions are gated by named, read-only TypeScript guard
+      handlers registered in a registry; unknown guard codes fail closed. The
+      six seeded affiliation guard codes map exactly to six implemented handlers.
+    stakeholder: Program governance
+    business_capability: Policy-as-code preconditions
+    observed_value: >-
+      Deterministic, testable guard model with perfect seed-to-handler parity
+      (EV-027); no dynamic JSON expression engine.
+    target_house_domain: Governance Kernel (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: low
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    notes: >-
+      Retain. The reviewer-scope guard is role-only (see CAP-025/FND-023); the
+      registry mechanism itself is sound.
+  - id: CAP-023
+    name: Evidence capture, scanning, and quarantine subsystem
+    description: >-
+      Pluggable evidence storage (in-memory / Azure Blob), signature malware
+      scanning with a scan gate, quarantine service, and an RLS-enforced
+      evidence store; kernel-created evidence metadata is written in the
+      transition transaction and references the state transition.
+    stakeholder: Program governance, auditors
+    business_capability: Immutable evidence metadata
+    observed_value: >-
+      A complete evidence-handling subsystem with metadata bound to transitions
+      in-transaction (EV-029).
+    target_house_domain: Governance Kernel / evidence (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: ADAPT
+    production_risk: medium
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    finding_refs: [FND-025]
+    notes: >-
+      Retain the subsystem; adapt to wire the HTTP upload transport to the
+      pending governed decision so evidence is captured as part of the flow.
+  - id: CAP-024
+    name: Approval workflow with exactly-once execution
+    description: >-
+      Approval-required transitions create a transition_request and workflow
+      placeholder without mutating state; an ApprovedWorkflowExecutionService
+      applies the approved transition exactly once via idempotent replay,
+      request/entity locks, and state-drift fail-closed.
+    stakeholder: Reviewers, approvers
+    business_capability: Multi-step governed approval
+    observed_value: >-
+      Correct deferred-mutation and exactly-once activation semantics (EV-025,
+      EV-027).
+    target_house_domain: Governance Kernel / workflow (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: medium
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    finding_refs: [FND-024]
+    notes: >-
+      Retain the execution engine; it lacks a reviewer-routing/assignment
+      dispatcher (FND-024) to select WHO may execute a given request.
+  - id: CAP-025
+    name: Edge authorization action catalog
+    description: >-
+      A fail-closed catalog of edge actions and roles (platform_admin wildcard;
+      unknown actions denied) guarding HTTP entry points, distinct from the
+      kernel's governed-transition permission check.
+    stakeholder: Platform security
+    business_capability: Coarse-grained access control
+    observed_value: >-
+      A clean fail-closed edge authorization surface (EV-026); appropriate as a
+      first gate.
+    target_house_domain: Authorization (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: ADAPT
+    production_risk: high
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    finding_refs: [FND-023]
+    notes: >-
+      Adapt: governed affiliation authority is role-based only and NOT
+      resource-aware; a reviewer-role actor can decide any application in a
+      tenant. Resource-/jurisdiction-scoped authorization must be added before
+      an affiliation release.
+  - id: CAP-026
+    name: Affiliation application governed lifecycle
+    description: >-
+      The first vertical slice: a 10-state / 12-transition AffiliationApplication
+      lifecycle on the Governance Kernel with six guards, evidence/approval
+      requirements, and a transition HTTP endpoint.
+    stakeholder: Clubs, PTSOs, Curling Canada
+    business_capability: Affiliation lifecycle management
+    observed_value: >-
+      The governed transition backbone exists and is wired to PostgreSQL
+      (EV-027, EV-030); the strongest candidate for the first complete release.
+    target_house_domain: Affiliation domain
+    target_button_experience: Affiliation application experience (The Button)
+    disposition: ADAPT
+    production_risk: high
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011, SRC-012]
+    finding_refs: [FND-023, FND-024, FND-025, FND-026, FND-027, FND-031]
+    notes: >-
+      Retain the governed lifecycle; adapt to close the release-blocking gaps:
+      no create/bootstrap path (FND-026), role-only authorization (FND-023), no
+      reviewer routing (FND-024), evidence upload not wired (FND-025), no
+      return-for-information/resubmission (FND-027), no versioned requirements
+      (FND-031).
+  - id: CAP-027
+    name: Reference-data registries (organization, participant, facility)
+    description: >-
+      Organization, participant, and facility registries backed by RLS-enforced
+      PostgreSQL stores with HTTP read/write adapters, supplying the reference
+      data affiliation guards depend on.
+    stakeholder: All tenants
+    business_capability: Master/reference data
+    observed_value: >-
+      Registries are wired into the production composition (EV-030) and provide
+      the facts guards evaluate.
+    target_house_domain: Registry domains
+    target_button_experience: Directory / registry surfaces (candidate)
+    disposition: RETAIN
+    production_risk: medium
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-012]
+    notes: >-
+      Retain. Cross-registry parent references are RLS-scoped, not FK-enforced
+      (CON-011).
+  - id: CAP-028
+    name: Idempotency enforcement
+    description: >-
+      Every transition request carries an idempotency key enforced across a
+      kernel pre-check, an in-transaction double-check, and a stable outbox
+      dedupe key, so retries do not duplicate transitions, audit events,
+      evidence, or outbox messages.
+    stakeholder: Platform / integrations
+    business_capability: Safe retries
+    observed_value: >-
+      Multi-layer idempotency implemented in the kernel and outbox (EV-025,
+      EV-028).
+    target_house_domain: Governance Kernel (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: low
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-011]
+    notes: >-
+      Retain. Database-level uniqueness and dedupe are present in source; runtime
+      proof depends on the DB-gated suites (FND-028).
+  - id: CAP-029
+    name: Fail-closed configuration and secret providers
+    description: >-
+      Configuration fails closed (throws when required settings such as
+      DATABASE_URL are missing in production-like environments and at API start);
+      secret retrieval supports environment and Azure Key Vault providers.
+    stakeholder: Platform operations
+    business_capability: Safe configuration
+    observed_value: >-
+      Fail-closed config and pluggable secret providers implemented in source
+      (EV-033).
+    target_house_domain: Configuration / secrets (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: low
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-014]
+    notes: >-
+      Retain. Behaviour is verified from source; runtime behaviour in a deployed
+      environment is unproven (FND-029).
+  - id: CAP-030
+    name: Deterministic deployment and qualification validators
+    description: >-
+      Eleven deployment baseline validators, six CI workflows, an Azure Bicep
+      infrastructure skeleton, and reproducible qualification tooling that
+      fingerprints and inventories the codebase mechanically.
+    stakeholder: Platform operations, program governance
+    business_capability: Repeatable release verification
+    observed_value: >-
+      A mechanical, reproducible verification harness (EV-023, EV-033) that makes
+      the current-state assessment auditable.
+    target_house_domain: Deployment / tooling (platform core)
+    target_button_experience: N/A (platform core)
+    disposition: RETAIN
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-014]
+    finding_refs: [FND-029]
+    notes: >-
+      Retain the validators; they verify baselines, not a deployed environment.
+      No running House environment is evidenced (FND-029).

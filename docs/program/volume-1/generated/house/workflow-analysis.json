@@ -1,0 +1,239 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "states": 10,
+    "terminal_states": [
+      "archived"
+    ],
+    "transitions": 12,
+    "high_risk_transitions": [
+      "approve",
+      "reject",
+      "suspend",
+      "reinstate",
+      "revoke",
+      "revoke",
+      "close",
+      "close",
+      "archive"
+    ],
+    "evidence_required_transitions": [
+      "approve",
+      "reject",
+      "suspend",
+      "reinstate",
+      "revoke",
+      "revoke",
+      "close",
+      "close",
+      "archive"
+    ],
+    "approval_required_transitions": [
+      "approve",
+      "reject",
+      "suspend",
+      "reinstate",
+      "revoke",
+      "revoke"
+    ],
+    "seeded_guards": 6,
+    "implemented_guards": 6,
+    "guards_seeded_not_implemented": [],
+    "guards_implemented_not_seeded": [],
+    "has_approved_execution_service": true
+  },
+  "states": [
+    {
+      "name": "draft",
+      "is_initial": true,
+      "is_terminal": false,
+      "sort_order": 0
+    },
+    {
+      "name": "submitted",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 1
+    },
+    {
+      "name": "under_review",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 2
+    },
+    {
+      "name": "approved",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 3
+    },
+    {
+      "name": "rejected",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 4
+    },
+    {
+      "name": "active",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 5
+    },
+    {
+      "name": "suspended",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 6
+    },
+    {
+      "name": "revoked",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 7
+    },
+    {
+      "name": "closed",
+      "is_initial": false,
+      "is_terminal": false,
+      "sort_order": 8
+    },
+    {
+      "name": "archived",
+      "is_initial": false,
+      "is_terminal": true,
+      "sort_order": 9
+    }
+  ],
+  "transitions": [
+    {
+      "trigger": "submit",
+      "from": "draft",
+      "to": "submitted",
+      "risk": "low",
+      "evidence_required": false,
+      "approval_required": false
+    },
+    {
+      "trigger": "review_start",
+      "from": "submitted",
+      "to": "under_review",
+      "risk": "low",
+      "evidence_required": false,
+      "approval_required": false
+    },
+    {
+      "trigger": "approve",
+      "from": "under_review",
+      "to": "approved",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": true
+    },
+    {
+      "trigger": "reject",
+      "from": "under_review",
+      "to": "rejected",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": true
+    },
+    {
+      "trigger": "activate",
+      "from": "approved",
+      "to": "active",
+      "risk": "low",
+      "evidence_required": false,
+      "approval_required": false
+    },
+    {
+      "trigger": "suspend",
+      "from": "active",
+      "to": "suspended",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": true
+    },
+    {
+      "trigger": "reinstate",
+      "from": "suspended",
+      "to": "active",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": true
+    },
+    {
+      "trigger": "revoke",
+      "from": "active",
+      "to": "revoked",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": true
+    },
+    {
+      "trigger": "revoke",
+      "from": "suspended",
+      "to": "revoked",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": true
+    },
+    {
+      "trigger": "close",
+      "from": "revoked",
+      "to": "closed",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": false
+    },
+    {
+      "trigger": "close",
+      "from": "rejected",
+      "to": "closed",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": false
+    },
+    {
+      "trigger": "archive",
+      "from": "closed",
+      "to": "archived",
+      "risk": "high",
+      "evidence_required": true,
+      "approval_required": false
+    }
+  ],
+  "seeded_guards": [
+    "ACTOR_HAS_REVIEWER_SCOPE",
+    "AFFILIATION_FEES_PAID",
+    "AFFILIATION_NO_OPEN_COMPLIANCE_FLAGS",
+    "AFFILIATION_REQUIRED_DOCS_PRESENT",
+    "AFFILIATION_REQUIRED_FIELDS_COMPLETE",
+    "SEASON_IS_CURRENT"
+  ],
+  "implemented_guards": [
+    "ACTOR_HAS_REVIEWER_SCOPE",
+    "AFFILIATION_FEES_PAID",
+    "AFFILIATION_NO_OPEN_COMPLIANCE_FLAGS",
+    "AFFILIATION_REQUIRED_DOCS_PRESENT",
+    "AFFILIATION_REQUIRED_FIELDS_COMPLETE",
+    "SEASON_IS_CURRENT"
+  ],
+  "workflow_services": [
+    "src/governance/workflow/AffiliationWorkflowPlanner.ts",
+    "src/governance/workflow/ApprovedWorkflowExecutionService.ts",
+    "src/governance/workflow/WorkflowDecisionService.ts",
+    "src/governance/workflow/WorkflowExecutionReadiness.ts",
+    "src/governance/workflow/WorkflowPlanner.ts"
+  ]
+}

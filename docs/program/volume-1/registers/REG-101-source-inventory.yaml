@@ -1,7 +1,7 @@
 register_id: REG-101
 name: Source Inventory
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 # Controlled assessment sources for Volume 1 current-state qualification.
 # Package 2 hardens SRC-001 with an immutable source fingerprint (SHA-256) so a
 # later Base44 export cannot silently replace the evidence baseline under the
@@ -17,6 +17,16 @@ version: 0.3.0
 # comparison. The (5) fingerprint and its evidence trail are preserved, not
 # deleted. Source ids follow the schema pattern ^SRC-[0-9]{3}$; the historical
 # export therefore takes a distinct numeric id rather than a SRC-001 suffix.
+#
+# v0.4.0 (Package 3, House implementation qualification): HARDEN SRC-002 with an
+# immutable repository/runtime fingerprint (assessed commit 51795ca; true
+# runtime-tree last-change commit de6312f8 over src + db/migrations only; src and
+# migration tree digests) so a later House commit cannot silently replace the
+# assessed baseline under the same source id. Registers the material House
+# implementation sub-corpora discovered by the deterministic qualification:house
+# tooling (SRC-010..SRC-015). The runtime-vs-documentation distinction is
+# explicit: everything committed after de6312f8 is documentation-program work,
+# not application-runtime change.
 records:
   - id: SRC-001
     name: Base44 export (current declared product and experience prototype)
@@ -74,31 +84,61 @@ records:
     classification: implementation_truth
     authority_note: >-
       Production-candidate implementation truth, not established production truth
-      (V0-06 DEC-V0-002). Assessed against the constitutional requirements for
-      retain/harden/rebuild dispositions. Registered as a controlled source;
-      substantive qualification deferred to Volume 1 Package 3.
+      (V0-06 DEC-V0-002). Package 3 assesses it against the constitutional
+      requirements and the affiliation-release question, separating demonstrated
+      production VALUE from unproven production READINESS. Stronger engineering
+      discipline than SRC-001 does not by itself confer production readiness.
     custodian: Aubert Nungisa (Accountable Program Authority)
     location: ccacurling/the_house (this repository)
     controlled: true
     fingerprint:
-      baseline_commit: 33c4d440112f43e0b7b7a2544c08f8b6cd0408e5
-      branch: docs/volume-1-base44-qualification
+      assessed_commit: 51795ca9a702328766a80660d641f820dfc4d976
+      runtime_commit: de6312f89f86ce5ae7bca5babbe165fdcf4f2861
+      runtime_commit_date: '2026-07-01'
+      runtime_commit_scope: >-
+        Last commit that changed application-runtime paths (src + db/migrations)
+        only. Every commit after this one (through the assessed commit) is
+        Volume-1 documentation-program work and does NOT change the assessed
+        runtime. Derived by: git log -1 --format=%H -- src db/migrations.
+      branch: docs/volume-1-house-qualification
       repository_remote: https://github.com/ccacurling/the_house.git
-      working_tree_state: clean
-      assessment_date: '2026-07-25'
+      src_tree_digest: 87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c
+      src_ts_file_count: 184
+      migrations_digest: 884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65
+      migration_file_count: 11
+      package_json_sha256: d55f0ea467f8ec2cb1cbcb651eacf3debb2f6ff2b5a4ce9913d27b9e6c7cd6a6
+      package_lock_sha256: 10b0091ac4b707c25067620b460bee55177b604e6c631fa63cfe27a9b6c67d87
       dependency_install_status: node_modules installed at assessment time
+      reproducibility_note: >-
+        The src and migration tree digests are computed over sorted
+        "relpath:sha256" lines by the deterministic qualification:house tooling
+        and are independent of documentation changes elsewhere in the tree. All
+        Package 3 House inventories are regenerated mechanically by
+        npm run qualification:house into generated/house/.
       validation_limitations:
         - >-
-          Package 2 fingerprints The House baseline for provenance only;
-          substantive House qualification is deferred to Package 3.
+          Static assessment of the committed repository. No live House v2
+          environment is provisioned; runtime, database, and deployment behaviour
+          are not observed. Deployment/operational readiness is therefore
+          UNPROVEN (recorded in REG-104).
         - >-
-          The recorded commit is the Package 1 closure commit; House runtime,
-          database, and deployment state are not assessed in Package 2.
-    qualification_status: registered
-    evidence_rating: E1
+          All 16 integration suites are DB-gated (RUN_DB_TESTS=1) and are SKIPPED
+          by the default hermetic npm test; they were not executed under this
+          assessment. A passing hermetic unit run is not evidence of governed
+          database behaviour.
+    qualification_status: assessed
+    evidence_rating: E3
     notes: >-
-      Existence of the codebase is directly demonstrable, but its qualified
-      current-state disposition is not yet assessed (E1 until Package 3).
+      Structural implementation truth (schema, migrations, kernel algorithm,
+      guard registry, HTTP surface, composition root, authorization posture,
+      outbox/evidence subsystems, test estate) is E3 DEMONSTRATED via the
+      cryptographic repository/runtime fingerprint and the reproducible
+      qualification:house tooling. Production-readiness and end-to-end
+      affiliation-flow claims remain capped (E1/E2) and are rated per item in
+      REG-102 and adjudicated in REG-104. Corrected current-state counts: 5 DB
+      schemas, 26 tables (20 RLS enabled+forced), 11 migrations, 28 route paths,
+      12 wired production dependencies, 10 lifecycle states / 12 transitions, 6
+      guards, 99 unit + 16 (gated) integration test files.
   - id: SRC-003
     name: Volume 0 Program Constitution (ratified baseline)
     source_type: governance_baseline
@@ -254,4 +294,131 @@ records:
       entities, 99 server functions. The delta to SRC-001 (7) is strictly
       additive (zero removed routes/entities/functions), so all Package 2
       findings raised against (5) surfaces remain reproducible against (7).
+  - id: SRC-010
+    name: House database and migration corpus
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-002: the 11 ordered SQL migrations
+      (db/migrations) defining 5 schemas and 26 tables with row-level security,
+      tenant columns, policies, and SECURITY DEFINER outbox-worker functions.
+      Implementation truth of the persisted governance model and the strongest
+      current-state evidence class after executable tests.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: db/migrations (@ runtime commit de6312f8)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Derived from SRC-002; inventoried mechanically
+      (generated/house/database-inventory.json, migration-inventory.json): 26
+      tables, 20 with RLS enabled+forced, 55 policies, 7 functions, 9 SECURITY
+      DEFINER blocks (migration 0004). The 6 tenant_id-nullable global policy
+      tables (state machine/guard catalog) are global configuration by design
+      and are intentionally not forced-RLS.
+  - id: SRC-011
+    name: House governance kernel, guards, and workflow corpus
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-002: the Governance Kernel state
+      machine (src/governance/kernel), guard registry and handlers
+      (src/governance/guards), permission checker (src/governance/permissions),
+      workflow services (src/governance/workflow), evidence and outbox
+      subsystems. The sole authority for governed lifecycle transitions.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: src/governance (@ runtime commit de6312f8)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Derived from SRC-002; inventoried mechanically
+      (generated/house/workflow-analysis.json, authorization-analysis.json,
+      integration-outbox-analysis.json, evidence-audit-analysis.json). Kernel
+      transition() algorithm and 4-layer idempotency are present in source; the
+      permission model is role-based and NOT resource-aware (REG-104 FND-023).
+  - id: SRC-012
+    name: House domain, HTTP, and composition-root corpus
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-002: the domain modules
+      (src/domains/*), the native-Node HTTP surface (src/http), and the single
+      production composition root (src/http/composition.ts). Implementation
+      truth of the request-to-kernel path and the wired production dependency
+      graph.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: src/domains, src/http (@ runtime commit de6312f8)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Derived from SRC-002; inventoried mechanically
+      (generated/house/domain-inventory.json, api-inventory.json,
+      composition-inventory.json): 28 route paths, 7 adapter groups, a production
+      server assembly wiring 12 dependencies. The affiliation domain store is
+      READ-only (no create/update; no bootstrap HTTP endpoint) — REG-104
+      FND-026.
+  - id: SRC-013
+    name: House automated test estate
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-002: the Vitest suites (tests/unit,
+      tests/integration). EXISTENCE and structure are implementation truth;
+      a passing RESULT is a separate, conditional claim. All integration suites
+      are DB-gated and are not executed by the default hermetic run.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: tests (@ runtime commit de6312f8)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Derived from SRC-002; inventoried mechanically
+      (generated/house/test-inventory.json): 99 unit files (1326 cases) and 16
+      integration files (333 cases). All 16 integration suites require
+      RUN_DB_TESTS=1 and a live PostgreSQL database and are SKIPPED by default
+      npm test. Governed-database behaviour is therefore UNPROVEN under the
+      hermetic run (REG-104 FND-028).
+  - id: SRC-014
+    name: House operational, deployment, and configuration corpus
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-002: fail-closed configuration and
+      secret providers (src/config, src/secrets), telemetry (src/observability),
+      deployment baseline validators (src/deployment), Azure Bicep skeleton
+      (infra/azure), and CI workflows (.github/workflows). Source exists; a
+      provisioned, running environment does not.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: src/config, src/secrets, src/observability, src/deployment, infra/azure, .github/workflows
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E2
+    notes: >-
+      Derived from SRC-002; inventoried mechanically
+      (generated/house/configuration-analysis.json, operational-readiness.json):
+      fail-closed config, env + Azure Key Vault secret providers, 11 deployment
+      validators, 6 CI workflows, Bicep main + 7 modules. E2 CORROBORATED as
+      source; there is NO evidence of a deployed House environment, so runtime
+      operational readiness is UNPROVEN (REG-104 FND-029).
+  - id: SRC-015
+    name: House architecture and design-intent narrative corpus
+    source_type: house_repository
+    classification: stakeholder_statement
+    authority_note: >-
+      Material internal sub-corpus of SRC-002: architecture documentation, ADRs,
+      module READMEs, and inline design commentary. These record the builder's
+      design intent and are stakeholder statements, not demonstrated behaviour.
+      Volume of governance vocabulary is not evidence of implemented behaviour.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/architecture, docs/adr, src/**/README.md, module doc comments
+    controlled: true
+    qualification_status: in_assessment
+    evidence_rating: E1
+    notes: >-
+      Derived from SRC-002; design-intent narrative, unvalidated (E1
+      INDICATIVE). Where narrative asserts a control that source/tests do not
+      demonstrate, the demonstrated evidence governs and the gap is registered
+      in REG-104/REG-105.
 

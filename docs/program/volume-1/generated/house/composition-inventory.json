@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls house-implementation qualification tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to Package 3 qualification; not a qualification decision.",
+    "source_id": "SRC-002",
+    "source_label": "The House v2 repository (production-candidate implementation)",
+    "repository_commit": "51795ca9a702328766a80660d641f820dfc4d976",
+    "runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "branch": "docs/volume-1-house-qualification",
+    "working_tree_state": "dirty",
+    "src_tree_digest": "87b32f615be88300c039f6e711c5952a6f2ed5a8bc0b93e136b2a4d03e3aac5c",
+    "migrations_digest": "884e0b2b905358016caf3e6b0a8351fcb39b0c8d33c1ea5921160575c570fa65"
+  },
+  "summary": {
+    "factory_functions": 13,
+    "production_server_assembly": true,
+    "wired_dependencies": [
+      "evidence",
+      "executor",
+      "facilityRead",
+      "facilityWrite",
+      "organizationRead",
+      "participantWrite",
+      "readiness",
+      "resolver",
+      "scanner",
+      "workflow",
+      "workflowExecution",
+      "workflowRead"
+    ],
+    "declared_stub_markers": [
+      "Noop",
+      "in-memory",
+      "stub",
+      "future pass"
+    ],
+    "runnable_scripts": 23,
+    "server_host_modules": 2
+  },
+  "factory_functions": [
+    "createEvidenceHttpDeps",
+    "createEvidenceQuarantineHttpDeps",
+    "createFacilityReadHttpDeps",
+    "createFacilityWriteHttpDeps",
+    "createOrganizationReadHttpDeps",
+    "createParticipantWriteHttpDeps",
+    "createPgAffiliationApplicationService",
+    "createPgAffiliationHttpServer",
+    "createPgGovernanceKernel",
+    "createPgTelemetry",
+    "createWorkflowExecutionHttpDeps",
+    "createWorkflowHttpDeps",
+    "createWorkflowReadHttpDeps"
+  ],
+  "server_host_modules": [
+    "src/server/api.ts",
+    "src/server/worker.ts"
+  ],
+  "scripts": [
+    "scripts/api-dev.ts",
+    "scripts/attest-sbom.ts",
+    "scripts/azure-smoke-test.ts",
+    "scripts/config-check.ts",
+    "scripts/db-migrate.ts",
+    "scripts/db-seed.ts",
+    "scripts/demo-seed-affiliation.ts",
+    "scripts/generate-sbom.ts",
+    "scripts/migrate-db.ts",
+    "scripts/outbox-worker.ts",
+    "scripts/scan-image.ts",
+    "scripts/sign-image.ts",
+    "scripts/validate-azure-smoke-baseline.ts",
+    "scripts/validate-container-baseline.ts",
+    "scripts/validate-deployment-baseline.ts",
+    "scripts/validate-facility-registry-baseline.ts",
+    "scripts/validate-migrations.ts",
+    "scripts/validate-organization-registry-baseline.ts",
+    "scripts/validate-participant-registry-baseline.ts",
+    "scripts/validate-provenance-baseline.ts",
+    "scripts/validate-release-runbook-baseline.ts",
+    "scripts/validate-supply-chain-baseline.ts",
+    "scripts/validate-synthetic-lifecycle-baseline.ts"
+  ]
+}
