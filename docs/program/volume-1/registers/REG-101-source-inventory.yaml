@@ -1,10 +1,12 @@
 register_id: REG-101
 name: Source Inventory
 status: IN_REVIEW
-version: 0.1.0
+version: 0.2.0
 # Controlled assessment sources for Volume 1 current-state qualification.
-# Package 1 registers the sources as controlled inputs only. Substantive
-# capability-by-capability qualification does not begin until Package 2+.
+# Package 2 hardens SRC-001 with an immutable source fingerprint (SHA-256) so a
+# later Base44 export cannot silently replace the evidence baseline under the
+# same source id, and records the material internal sub-corpora discovered in
+# the export (SRC-004..SRC-008).
 records:
   - id: SRC-001
     name: Base44 export (product and experience prototype)
@@ -16,11 +18,38 @@ records:
       and hardcoded assumptions are rejected. Registered as a controlled source;
       substantive qualification deferred to Volume 1 Package 2.
     custodian: Aubert Nungisa (Accountable Program Authority)
-    location: Controlled Base44 export ZIP (to be attached to the assessment workspace)
+    location: legacy/curl-link-hub-extracted (extracted from legacy/curl-link-hub (5).zip)
     controlled: true
-    qualification_status: registered
-    evidence_rating: E1
-    notes: Registration is E1 (indicative) until the export is inventoried and corroborated.
+    fingerprint:
+      filename: curl-link-hub (5).zip
+      sha256: a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95
+      size_bytes: 3046971
+      ingestion_date: '2025-06-29'
+      extraction_location: legacy/curl-link-hub-extracted
+      export_type: Base44 application export (frontend source + entity schemas + Deno serverless functions)
+      generation_date: '2025-06-28'
+      prior_export_relationship: >-
+        Fifth captured export in the curl-link-hub series (archive suffix "(5)").
+        Earlier exports are superseded and are not the assessed baseline; only
+        this fingerprint is authoritative for Package 2.
+      includes_generated_assets: true
+      includes_dependencies: false
+      excluded_material:
+        - node_modules (dependencies not vendored in the archive; reinstall required to run)
+        - Base44 platform runtime and hosted database state (not exportable)
+        - Live secrets and environment configuration (not present in export)
+      reproducibility_note: >-
+        Archive lists 1485 files; extraction (excluding node_modules) yields
+        exactly 1485 files. Extraction is clean and reproducible. All Package 2
+        counts are regenerated mechanically by npm run qualification:base44.
+    qualification_status: in_assessment
+    evidence_rating: E3
+    notes: >-
+      Structural evidence (routes, entities, functions, access model) is E3
+      DEMONSTRATED via cryptographic fingerprint and reproducible deterministic
+      extraction. Product-value and stakeholder-acceptance claims about those
+      surfaces remain capped at E1 pending independent stakeholder evidence and
+      are rated per item in REG-102.
   - id: SRC-002
     name: The House v2 repository (production-candidate implementation)
     source_type: house_repository
@@ -33,6 +62,20 @@ records:
     custodian: Aubert Nungisa (Accountable Program Authority)
     location: ccacurling/the_house (this repository)
     controlled: true
+    fingerprint:
+      baseline_commit: 33c4d440112f43e0b7b7a2544c08f8b6cd0408e5
+      branch: docs/volume-1-base44-qualification
+      repository_remote: https://github.com/ccacurling/the_house.git
+      working_tree_state: clean
+      assessment_date: '2026-07-25'
+      dependency_install_status: node_modules installed at assessment time
+      validation_limitations:
+        - >-
+          Package 2 fingerprints The House baseline for provenance only;
+          substantive House qualification is deferred to Package 3.
+        - >-
+          The recorded commit is the Package 1 closure commit; House runtime,
+          database, and deployment state are not assessed in Package 2.
     qualification_status: registered
     evidence_rating: E1
     notes: >-
@@ -52,3 +95,75 @@ records:
     qualification_status: assessed
     evidence_rating: E4
     notes: E4 (proven) by ratification; the authoritative policy baseline for qualification.
+  - id: SRC-004
+    name: Base44 entity schema corpus
+    source_type: base44_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-001: 87 Base44 entity JSON-schema
+      definitions (base44/entities/*.jsonc), including app-layer rls blocks.
+      Implementation truth of the prototype data model, not production authority.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: legacy/curl-link-hub-extracted/base44/entities
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: Derived from SRC-001; 87 entities inventoried mechanically (entity-inventory.json).
+  - id: SRC-005
+    name: Base44 server-function corpus
+    source_type: base44_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-001: 99 Deno serverless functions
+      (base44/functions/*/entry.ts). Implementation truth of prototype backend
+      behaviour, not production authority.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: legacy/curl-link-hub-extracted/base44/functions
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: Derived from SRC-001; enforcement posture inventoried mechanically (function-inventory.json).
+  - id: SRC-006
+    name: Base44 access-control model
+    source_type: base44_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-001: the client-side access model
+      (src/lib/access/accessMatrix.js, roleGroups.js, index.js) and its stated
+      doctrine (src/ACCESS_MATRIX.md). Implementation truth of prototype
+      authorization, which is UX-only and not a production authority boundary.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: legacy/curl-link-hub-extracted/src/lib/access
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: Derived from SRC-001; drift inventoried mechanically (access-matrix-analysis.json).
+  - id: SRC-007
+    name: Base44 governance narrative corpus
+    source_type: base44_repository
+    classification: stakeholder_statement
+    authority_note: >-
+      Material internal sub-corpus of SRC-001: 231 governance-style markdown
+      documents in src/. These record the builder's design intent and are
+      stakeholder statements, not demonstrated implementation and not policy
+      truth. Volume of narrative is not evidence of implemented behaviour.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: legacy/curl-link-hub-extracted/src (*.md)
+    controlled: true
+    qualification_status: in_assessment
+    evidence_rating: E1
+    notes: Derived from SRC-001; design-intent narrative, unvalidated (E1 INDICATIVE).
+  - id: SRC-008
+    name: Base44 frontend route and experience corpus
+    source_type: base44_repository
+    classification: implementation_truth
+    authority_note: >-
+      Material internal sub-corpus of SRC-001: the routing surface
+      (src/App.jsx, 148 routes) and 144 page components (src/pages). Implementation
+      truth of the prototype experience, not production authority.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: legacy/curl-link-hub-extracted/src (App.jsx, pages)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: Derived from SRC-001; routes/guards inventoried mechanically (route-inventory.json).

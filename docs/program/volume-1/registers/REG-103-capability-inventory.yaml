@@ -1,10 +1,248 @@
 register_id: REG-103
 name: Capability Inventory
 status: IN_REVIEW
-version: 0.1.0
-# Business capabilities observed across the four realities (Curling Canada
-# operating reality, Base44 product intelligence, The House implementation,
-# external systems). Empty in Package 1: capabilities are inventoried during
-# substantive qualification (Packages 2-4). Each capability traces to its
-# sources, target House domain, target Button experience, and disposition.
-records: []
+version: 0.2.0
+# Normalized capabilities observed in the Base44 export (SRC-001). ONE record per
+# real capability, not one per route. Dispositions here are the proposed target
+# treatment; the governed decision (with rationale and evidence) is recorded in
+# REG-106 and authorizes no implementation. No Base44 capability is dispositioned
+# ADOPT or RETAIN: the prototype's architecture disqualifies as-is adoption, and
+# RETAIN (production-candidate) applies to The House (Package 3), not Base44.
+records:
+  - id: CAP-001
+    name: Club Affiliation
+    description: >-
+      Club affiliation and renewal lifecycle: applicant journey, PTSO review, CC
+      review, more-information loop, approval and activation. First production
+      vertical.
+    stakeholder: Clubs, PTSOs, Curling Canada
+    business_capability: Governed club affiliation lifecycle
+    observed_value: >-
+      Coherent tiered review concept (club submission -> PTSO -> CC) with an
+      explicit status lifecycle and a documented goodwill-baseline migration
+      hypothesis.
+    target_house_domain: AffiliationApplication (Governance Kernel)
+    target_button_experience: Affiliation applicant and reviewer workspaces
+    disposition: ADAPT
+    production_risk: high
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-004]
+    finding_refs: [FND-001, FND-005, FND-009, FND-010, FND-014, FND-019]
+    notes: Concept ADAPTED into the House kernel; the direct-mutation mechanism is rejected.
+  - id: CAP-002
+    name: Organization Registry
+    description: >-
+      Curling Canada -> PTSO -> Club -> Member hierarchy with org_id-scoped
+      tenancy and canonical club identity.
+    stakeholder: Curling Canada, PTSOs, Clubs
+    business_capability: Authoritative organization and tenancy registry
+    observed_value: A valid national hierarchy and tenancy concept.
+    target_house_domain: Organization registry / tenancy
+    target_button_experience: Organization administration surfaces
+    disposition: ADAPT
+    production_risk: high
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-004]
+    finding_refs: [FND-002, FND-013]
+    notes: Concept sound; app-layer rls and retrofitted org_id must be rebuilt on DB-enforced tenancy.
+  - id: CAP-003
+    name: Club 360 / Club Success
+    description: Consolidated club health, profile, and success view.
+    stakeholder: Clubs, PTSOs
+    business_capability: Club health and success intelligence
+    observed_value: Attractive concept; evidence of implemented substance is thin.
+    target_house_domain: Deferred
+    target_button_experience: Club 360 workspace (candidate)
+    disposition: DEFER
+    production_risk: unknown
+    evidence_rating: E1
+    source_refs: [SRC-001]
+    finding_refs: [FND-018]
+    notes: Insufficient evidence to qualify; revisit after affiliation and registry are established.
+  - id: CAP-004
+    name: Membership and Households
+    description: Member and household records, rosters, and relationships.
+    stakeholder: Clubs, Members
+    business_capability: Membership management
+    observed_value: Established membership/household modelling concept.
+    target_house_domain: Membership (post-affiliation)
+    target_button_experience: Membership surfaces
+    disposition: ADAPT
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-004]
+    notes: Sequenced after the affiliation spine; concept reusable.
+  - id: CAP-005
+    name: Participant Identity
+    description: Curler identity, curler numbers, and participant profiles.
+    stakeholder: Members, Athletes, Coaches, Officials
+    business_capability: Participant identity and numbering
+    observed_value: Identity and numbering concept present.
+    target_house_domain: Participant identity
+    target_button_experience: Profile surfaces
+    disposition: ADAPT
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-004]
+    finding_refs: [FND-015]
+    notes: Bilingual/localization coverage of identity surfaces is unverified.
+  - id: CAP-006
+    name: Compliance and Consent
+    description: GDPR/privacy, waivers, consent logging, and safe-sport handling.
+    stakeholder: Curling Canada, PTSOs, Members
+    business_capability: Compliance, consent, and safe sport
+    observed_value: Relevant compliance/consent/safe-sport concepts present.
+    target_house_domain: Compliance and consent (governed evidence)
+    target_button_experience: Consent and compliance surfaces
+    disposition: ADAPT
+    production_risk: high
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-004]
+    finding_refs: [FND-003]
+    notes: Concepts reusable; enforcement must move to governed, audited controls.
+  - id: CAP-007
+    name: Registration
+    description: Curler/event registration and intake flows.
+    stakeholder: Members, Clubs, Event operators
+    business_capability: Registration and intake
+    observed_value: Registration concept present; scope overlaps membership and events.
+    target_house_domain: Deferred
+    target_button_experience: Registration surfaces
+    disposition: DEFER
+    production_risk: medium
+    evidence_rating: E1
+    source_refs: [SRC-001]
+    notes: Defer until membership and event scope are qualified.
+  - id: CAP-008
+    name: Payments and Fees
+    description: Affiliation/membership fees and payment handling via Stripe.
+    stakeholder: Curling Canada, PTSOs, Clubs
+    business_capability: Fee assessment and payment
+    observed_value: Real payment capability explored via a recognized processor.
+    target_house_domain: Fee governance (House) with externalized payment rails
+    target_button_experience: Payment surfaces
+    disposition: EXTERNALIZE
+    production_risk: critical
+    evidence_rating: E2
+    source_refs: [SRC-001]
+    finding_refs: [FND-004, FND-014]
+    notes: Payment execution externalized to a PCI-scoped processor; fee state governed and reconciled in House.
+  - id: CAP-009
+    name: Support and Ticketing
+    description: Help, support tickets, and assisted support surfaces.
+    stakeholder: Clubs, Members
+    business_capability: Support and ticketing
+    observed_value: Standard support capability, not core to the governed spine.
+    target_house_domain: Not House-owned
+    target_button_experience: Support entry points
+    disposition: EXTERNALIZE
+    production_risk: low
+    evidence_rating: E1
+    source_refs: [SRC-001]
+    notes: Better served by an external support platform.
+  - id: CAP-010
+    name: Knowledge and Documents
+    description: Knowledge base and document surfaces (Document360 widget present).
+    stakeholder: Clubs, PTSOs, Members
+    business_capability: Knowledge management
+    observed_value: Knowledge capability already leans on an external tool.
+    target_house_domain: Not House-owned
+    target_button_experience: Knowledge entry points
+    disposition: EXTERNALIZE
+    production_risk: low
+    evidence_rating: E1
+    source_refs: [SRC-001]
+    notes: Externalize to a dedicated knowledge platform; House retains only governed evidence documents.
+  - id: CAP-011
+    name: Analytics and Reporting
+    description: Dashboards, revenue analytics/forecast, operational intelligence, reports.
+    stakeholder: Curling Canada, PTSOs
+    business_capability: Analytics and reporting
+    observed_value: Broad analytics surface; value unproven and duplicated.
+    target_house_domain: Deferred (governed reporting on system-of-record)
+    target_button_experience: Analytics surfaces
+    disposition: DEFER
+    production_risk: medium
+    evidence_rating: E1
+    source_refs: [SRC-001]
+    finding_refs: [FND-016]
+    notes: Defer; governed analytics should derive from the House system-of-record, not prototype data.
+  - id: CAP-012
+    name: National Operations and Decision Governance
+    description: >-
+      Decision instances, approval tiers, workflow steps, authority registries,
+      and national operations surfaces.
+    stakeholder: Curling Canada
+    business_capability: National governance operations
+    observed_value: >-
+      Genuine governance intelligence (decision lifecycle, approval tiers) worth
+      mining, but implemented as an ad hoc prototype mechanism.
+    target_house_domain: Governance Kernel (supersedes ad hoc mechanism)
+    target_button_experience: Governance administration workspaces
+    disposition: REBUILD
+    production_risk: high
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-007]
+    finding_refs: [FND-017, FND-019, FND-020]
+    notes: Concepts inform the kernel; the prototype mechanism is rebuilt, not carried forward.
+  - id: CAP-013
+    name: Event Operations
+    description: Games, leagues, standings, scoring, facilities, attendance.
+    stakeholder: Clubs, Event operators, Members
+    business_capability: Event and competition operations
+    observed_value: Substantial event surface, peripheral to the affiliation mission.
+    target_house_domain: Deferred
+    target_button_experience: Event surfaces
+    disposition: DEFER
+    production_risk: low
+    evidence_rating: E1
+    source_refs: [SRC-001]
+    notes: A potential distraction from the national operating mission; defer past the first release.
+  - id: CAP-014
+    name: Access and Authorization Model
+    description: >-
+      Roles, permissions, the access matrix, and route/function authorization
+      across the prototype.
+    stakeholder: All
+    business_capability: Authorization and access control
+    observed_value: >-
+      A rich role vocabulary and access-matrix concept, but authorization is
+      client-side, default-open, and largely unenforced server-side.
+    target_house_domain: Governance Kernel authorization + Postgres RLS
+    target_button_experience: N/A (enforcement belongs in House)
+    disposition: REBUILD
+    production_risk: critical
+    evidence_rating: E3
+    source_refs: [SRC-001, SRC-006]
+    finding_refs: [FND-005, FND-006, FND-007, FND-008, FND-013]
+    notes: The single most important production-risk capability; must be rebuilt on server-enforced, DB-level controls.
+  - id: CAP-015
+    name: Dashboards and Navigation Surfaces
+    description: Role dashboards, navigation, command palette, and landing surfaces.
+    stakeholder: All roles
+    business_capability: Experience navigation
+    observed_value: Multiple overlapping dashboards and surfaces for similar needs.
+    target_house_domain: N/A (experience layer)
+    target_button_experience: Consolidated role workspaces
+    disposition: CONSOLIDATE
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-008]
+    finding_refs: [FND-011, FND-015]
+    notes: Consolidate into a small set of governed workspaces in The Button; not a House responsibility.
+  - id: CAP-016
+    name: Generic Workflow Builder
+    description: A configurable/generic workflow builder surface.
+    stakeholder: Administrators
+    business_capability: Ad hoc workflow configuration
+    observed_value: >-
+      Superficially flexible, but conflicts with the governed-kernel doctrine
+      that forbids arbitrary workflow/rule builders.
+    target_house_domain: None (prohibited pattern)
+    target_button_experience: None
+    disposition: RETIRE
+    production_risk: high
+    evidence_rating: E2
+    source_refs: [SRC-001]
+    finding_refs: [FND-012]
+    notes: Should not exist in the target; the Governance Kernel provides versioned, typed transitions instead.

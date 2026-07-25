@@ -1,7 +1,7 @@
 register_id: REG-100
 name: Volume 1 Corpus Index
 status: IN_REVIEW
-version: 0.1.0
+version: 0.2.0
 records:
   - id: V1-00
     title: Volume Control and Inheritance
@@ -51,3 +51,43 @@ records:
     version: 1.0.0
     path: docs/program/volume-1/V1-A-package-1-closure-record.md
     gate: V1-G1
+  - id: V1-05
+    title: Base44 Source Baseline and Technical Inventory
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-05-base44-source-baseline-and-technical-inventory.md
+    gate: V1-G2
+  - id: V1-06
+    title: Base44 Product and Experience Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-06-base44-product-and-experience-architecture.md
+    gate: V1-G2
+  - id: V1-07
+    title: Base44 Capability Qualification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-07-base44-capability-qualification.md
+    gate: V1-G2
+  - id: V1-08
+    title: Base44 Security, Authority, and Prototype-Debt Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-08-base44-security-authority-and-prototype-debt-assessment.md
+    gate: V1-G2
+  - id: V1-09
+    title: Base44-to-Target Experience Translation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-09-base44-to-target-experience-translation.md
+    gate: V1-G2

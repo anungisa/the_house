@@ -1,10 +1,266 @@
 register_id: REG-104
 name: Finding Register
 status: IN_REVIEW
-version: 0.1.0
-# Qualification findings (capability gaps, duplicated capability, prototype debt,
-# hardcoded assumptions, architectural accidents, production-readiness gaps,
-# reusable value, constraints). Empty in Package 1: findings are recorded during
-# substantive qualification (Packages 2-4). A finding does not authorize
-# implementation on its own (Volume 1 operating rule; Gate V1-G1).
-records: []
+version: 0.2.0
+# Qualification findings from Package 2 (Base44). Findings are grouped by
+# character: PRODUCT VALUE (reusable intelligence), PRODUCTION RISK (why the
+# prototype must not become production authority), and UNKNOWN/CONSTRAINT (open
+# evidence questions). A finding does not authorize implementation on its own
+# (Volume 1 operating rule; Gate V1-G1).
+records:
+  # --- PRODUCT VALUE ---
+  - id: FND-001
+    statement: >-
+      Base44's tiered affiliation review (club submission -> PTSO review -> CC
+      review, with a more-information loop) is a coherent, reusable product
+      concept for the first governed vertical.
+    finding_type: reusable_value
+    evidence_rating: E2
+    source_refs: [EV-006, EV-015, CAP-001]
+    capability_refs: [CAP-001]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: The concept is valuable; the direct-mutation implementation is not.
+  - id: FND-002
+    statement: >-
+      The Curling Canada -> PTSO -> Club -> Member hierarchy and an org_id-scoped
+      tenancy concept form a valid, reusable organizational model.
+    finding_type: reusable_value
+    evidence_rating: E2
+    source_refs: [EV-002, EV-012, CAP-002]
+    capability_refs: [CAP-002]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: corroborated
+    notes: Reuse the model; rebuild the enforcement on DB-level tenancy.
+  - id: FND-003
+    statement: >-
+      Compliance, consent, waiver, and safe-sport concepts are present and
+      relevant to Curling Canada's obligations.
+    finding_type: reusable_value
+    evidence_rating: E2
+    source_refs: [EV-002, CAP-006]
+    capability_refs: [CAP-006]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: open
+    notes: Concepts reusable; audited enforcement must be built in the House.
+  - id: FND-004
+    statement: >-
+      A payments/fees capability was explored with a recognized processor
+      (Stripe), establishing fee handling as a real product need.
+    finding_type: reusable_value
+    evidence_rating: E2
+    source_refs: [EV-008, CAP-008]
+    capability_refs: [CAP-008]
+    production_risk: high
+    recommended_disposition: EXTERNALIZE
+    status: open
+    notes: The need is real; payment execution should be externalized and reconciled.
+  - id: FND-020
+    statement: >-
+      The national decision-governance surfaces (decision instances, approval
+      tiers, workflow steps) contain reusable governance intelligence about how
+      Curling Canada makes authoritative decisions.
+    finding_type: reusable_value
+    evidence_rating: E2
+    source_refs: [EV-011, CAP-012]
+    capability_refs: [CAP-012]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: open
+    notes: Mine the concepts; rebuild the mechanism in the Governance Kernel.
+  # --- PRODUCTION RISK ---
+  - id: FND-005
+    statement: >-
+      66 of 99 server functions mutate entities with no server-side permission
+      check (only 2 of 99 reference any permission check), so authorization is
+      effectively absent on the write path.
+    finding_type: production_readiness_gap
+    evidence_rating: E3
+    source_refs: [EV-003, EV-007, CAP-014]
+    capability_refs: [CAP-014, CAP-001]
+    production_risk: critical
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: Disqualifies the server layer as production authority as-is.
+  - id: FND-006
+    statement: >-
+      78 of 99 server functions execute with elevated privilege via asServiceRole,
+      amplifying the impact of the missing authorization checks.
+    finding_type: production_readiness_gap
+    evidence_rating: E3
+    source_refs: [EV-014, CAP-014]
+    capability_refs: [CAP-014]
+    production_risk: critical
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: Service-role breadth turns any missing check into a privilege-escalation path.
+  - id: FND-007
+    statement: >-
+      Authorization is client-side (RoleGate) and default-open: canAccessPath
+      treats unknown paths as accessible, so access control fails open rather than
+      closed.
+    finding_type: architectural_accident
+    evidence_rating: E3
+    source_refs: [EV-004, EV-016, CAP-014]
+    capability_refs: [CAP-014]
+    production_risk: critical
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: Fails the House fail-closed doctrine; must be rebuilt server-side.
+  - id: FND-008
+    statement: >-
+      82 routes hardcode role lists directly in App.jsx while the access matrix is
+      declared the single source of truth, so displayed and enforced access can
+      and do drift.
+    finding_type: hardcoded_assumption
+    evidence_rating: E3
+    source_refs: [EV-001, EV-004, CAP-014]
+    capability_refs: [CAP-014]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: The single-source-of-truth claim is contradicted by the code (see CON-001).
+  - id: FND-009
+    statement: >-
+      The export contains no automated tests and no CI configuration, so no
+      behaviour is regression-protected or independently verifiable from the code.
+    finding_type: prototype_debt
+    evidence_rating: E3
+    source_refs: [EV-010]
+    capability_refs: [CAP-014, CAP-001]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: Absence in the export; corroborated by exhaustive file walk.
+  - id: FND-010
+    statement: >-
+      Affiliation lifecycle is advanced by direct status mutation from functions
+      and UI, with no transition guard, approval gate, or audit boundary in the
+      code path.
+    finding_type: hardcoded_assumption
+    evidence_rating: E3
+    source_refs: [EV-003, EV-006, CAP-001]
+    capability_refs: [CAP-001]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: Concept ADAPTED; mechanism REBUILT through the Governance Kernel.
+  - id: FND-012
+    statement: >-
+      A generic workflow-builder surface exists, which conflicts directly with the
+      House doctrine forbidding arbitrary JSON/expression workflow and rule
+      builders.
+    finding_type: architectural_accident
+    evidence_rating: E2
+    source_refs: [EV-001, EV-011, CAP-016]
+    capability_refs: [CAP-016]
+    production_risk: high
+    recommended_disposition: RETIRE
+    status: open
+    notes: The kernel provides versioned, typed transitions instead.
+  - id: FND-013
+    statement: >-
+      Tenancy/isolation is an app-layer construct: 85 of 87 entities carry
+      Mongo-style rls blocks (not a database boundary) and org_id was retrofitted
+      via a 100% backfill to Curling Canada.
+    finding_type: production_readiness_gap
+    evidence_rating: E3
+    source_refs: [EV-002, EV-012, CAP-002]
+    capability_refs: [CAP-002, CAP-014]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: Must be rebuilt on Postgres row-level security; app-layer rls is not an isolation guarantee.
+  - id: FND-014
+    statement: >-
+      Payment readiness is represented by boolean flags (e.g. annual_fee_paid) on
+      the Application entity rather than a reconciled external payment authority,
+      risking state divergence from the processor.
+    finding_type: hardcoded_assumption
+    evidence_rating: E2
+    source_refs: [EV-006, EV-008, CAP-008]
+    capability_refs: [CAP-008, CAP-001]
+    production_risk: critical
+    recommended_disposition: EXTERNALIZE
+    status: open
+    notes: Fee state must be reconciled against the processor, not asserted by a flag (see CON-004).
+  - id: FND-019
+    statement: >-
+      Base44's direct-mutation and client-side authorization model conflicts with
+      the House Program Constitution requiring all governed transitions to pass
+      through the Governance Kernel; the prototype cannot be production authority.
+    finding_type: authority_conflict
+    evidence_rating: E2
+    source_refs: [EV-003, EV-007, CAP-014]
+    capability_refs: [CAP-001, CAP-012, CAP-014]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: corroborated
+    notes: See CON-007; resolved by policy authority in favour of the governed kernel.
+  # --- UNKNOWN / CONSTRAINT ---
+  - id: FND-011
+    statement: >-
+      Multiple overlapping dashboards and club surfaces address similar needs,
+      indicating duplicated experience surfaces rather than one authoritative
+      surface per capability.
+    finding_type: duplicated_capability
+    evidence_rating: E2
+    source_refs: [EV-013, EV-001, CAP-015]
+    capability_refs: [CAP-015]
+    production_risk: medium
+    recommended_disposition: CONSOLIDATE
+    status: open
+    notes: Overlap is indicative; specific duplicates named by inspection in V1-06.
+  - id: FND-015
+    statement: >-
+      Localization is homegrown and its bilingual (English/French) coverage
+      completeness and quality are not established by the export.
+    finding_type: constraint
+    evidence_rating: E1
+    source_refs: [EV-009, CAP-015]
+    capability_refs: [CAP-005, CAP-015]
+    production_risk: unknown
+    recommended_disposition: DEFER
+    status: open
+    notes: Open evidence question; official-language obligations require verification.
+  - id: FND-016
+    statement: >-
+      There is no evidence that Base44's surfaces were validated by clubs, PTSOs,
+      or Curling Canada stakeholders; interface polish is not stakeholder
+      endorsement.
+    finding_type: constraint
+    evidence_rating: E1
+    source_refs: [EV-011, EV-013]
+    capability_refs: [CAP-011]
+    production_risk: unknown
+    recommended_disposition: DEFER
+    status: open
+    notes: Guards against treating prototype breadth as validated requirements.
+  - id: FND-017
+    statement: >-
+      231 governance markdown documents assert design intent and doctrine, but
+      documentation volume does not demonstrate that the described behaviour is
+      implemented or enforced.
+    finding_type: constraint
+    evidence_rating: E2
+    source_refs: [EV-011, CAP-012]
+    capability_refs: [CAP-012]
+    production_risk: unknown
+    recommended_disposition: DEFER
+    status: open
+    notes: Narrative is stakeholder statement (SRC-007), not implementation truth.
+  - id: FND-018
+    statement: >-
+      The Club 360 / Club Success concept is thin in the export; evidence is
+      insufficient to qualify its implemented substance.
+    finding_type: capability_gap
+    evidence_rating: E1
+    source_refs: [EV-013, CAP-003]
+    capability_refs: [CAP-003]
+    production_risk: unknown
+    recommended_disposition: DEFER
+    status: open
+    notes: Revisit after the affiliation and registry spine is established.

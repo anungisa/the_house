@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.1.0
+version: 0.2.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -113,6 +113,62 @@ records:
       - V1-03
       - V1-04
       - GATE-V1-G1
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-008
+    class: D1
+    question: How is the Base44 export substantively qualified in Package 2?
+    decision: >-
+      Apply the V1-01 methodology to the Base44 export (SRC-001). Fix the export by
+      cryptographic fingerprint; decompose it into controlled sub-sources
+      (SRC-004..008) separating implementation truth from design-intent narrative;
+      extract a reproducible technical inventory (npm run qualification:base44);
+      normalize 16 capabilities (REG-103) with evidence (REG-102) and findings
+      (REG-104); register contradictions (REG-105); and record per-capability
+      dispositions (REG-106). No Base44 capability is dispositioned ADOPT or RETAIN,
+      and every Package 2 qualification decision sets authorizes_implementation
+      false. Chapters V1-05..V1-09 record the result.
+    evidence_refs:
+      - V1-05
+      - V1-06
+      - V1-07
+      - V1-08
+      - V1-09
+      - REG-101
+      - REG-102
+      - REG-103
+      - REG-104
+      - REG-105
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-009
+    class: D1
+    question: Is Base44 qualification complete (Gate V1-G2)?
+    decision: >-
+      Gate V1-G2 (Base44 Qualification Complete) disposition PASS. The export is
+      cryptographically fingerprinted; the inventory is reproducible; material
+      routes, entities, and functions are inventoried; every normalized capability
+      has evidence and a disposition or an explicit unresolved state;
+      security/prototype debt is recorded separately from product value; the
+      affiliation journey is assessed at journey level; contradictions are
+      registered; no Base44 implementation is declared production-authoritative;
+      and no application development is authorized from Package 2 alone. Line-level
+      closure and freeze are recorded separately in V1-B. Executive organizational
+      acceptance remains a time-bounded condition.
+    evidence_refs:
+      - V1-05
+      - V1-06
+      - V1-07
+      - V1-08
+      - V1-09
+      - GATE-V1-G2
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending

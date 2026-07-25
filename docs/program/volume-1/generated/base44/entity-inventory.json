@@ -1,0 +1,1053 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_archive": "legacy/curl-link-hub (5).zip",
+    "generated_from_commit_baseline": "see REG-101 SRC-001 / SRC-002"
+  },
+  "summary": {
+    "total_entities": 87,
+    "parse_errors": 0,
+    "entities_with_rls_block": 85,
+    "entities_with_status_enum": 49,
+    "total_declared_properties": 1414
+  },
+  "parse_errors": [],
+  "entities": [
+    {
+      "name": "Announcement",
+      "file": "base44/entities/Announcement.jsonc",
+      "property_count": 9,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "published",
+        "archived"
+      ]
+    },
+    {
+      "name": "Application",
+      "file": "base44/entities/Application.jsonc",
+      "property_count": 21,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "submitted",
+        "ptso_review",
+        "ptso_approved",
+        "cc_review",
+        "approved",
+        "rejected",
+        "more_info_needed"
+      ]
+    },
+    {
+      "name": "ApprovalTier",
+      "file": "base44/entities/ApprovalTier.jsonc",
+      "property_count": 9,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Attendance",
+      "file": "base44/entities/Attendance.jsonc",
+      "property_count": 16,
+      "required": 5,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "present",
+        "absent",
+        "late",
+        "excused"
+      ]
+    },
+    {
+      "name": "AuditLog",
+      "file": "base44/entities/AuditLog.jsonc",
+      "property_count": 18,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "BoardMeeting",
+      "file": "base44/entities/BoardMeeting.jsonc",
+      "property_count": 17,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "Bonspiel",
+      "file": "base44/entities/Bonspiel.jsonc",
+      "property_count": 27,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "registration_open",
+        "registration_closed",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "BonspielTeam",
+      "file": "base44/entities/BonspielTeam.jsonc",
+      "property_count": 17,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "registered",
+        "confirmed",
+        "waitlisted",
+        "withdrawn",
+        "eliminated",
+        "active"
+      ]
+    },
+    {
+      "name": "BrandConfig",
+      "file": "base44/entities/BrandConfig.jsonc",
+      "property_count": 17,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Budget",
+      "file": "base44/entities/Budget.jsonc",
+      "property_count": 12,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "planning",
+        "approved",
+        "active",
+        "closed"
+      ]
+    },
+    {
+      "name": "CensusProfile",
+      "file": "base44/entities/CensusProfile.jsonc",
+      "property_count": 13,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Club",
+      "file": "base44/entities/Club.jsonc",
+      "property_count": 69,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "ClubAlias",
+      "file": "base44/entities/ClubAlias.jsonc",
+      "property_count": 10,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "suggested",
+        "accepted",
+        "rejected"
+      ]
+    },
+    {
+      "name": "ClubOnboarding",
+      "file": "base44/entities/ClubOnboarding.jsonc",
+      "property_count": 11,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "ClubService",
+      "file": "base44/entities/ClubService.jsonc",
+      "property_count": 18,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "available",
+        "invited",
+        "registered",
+        "in_progress",
+        "attended",
+        "completed",
+        "declined"
+      ]
+    },
+    {
+      "name": "ClubSurvey",
+      "file": "base44/entities/ClubSurvey.jsonc",
+      "property_count": 19,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "submitted",
+        "reviewed"
+      ]
+    },
+    {
+      "name": "ComplianceAudit",
+      "file": "base44/entities/ComplianceAudit.jsonc",
+      "property_count": 17,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "ComplianceRecord",
+      "file": "base44/entities/ComplianceRecord.jsonc",
+      "property_count": 25,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "in_progress",
+        "cleared",
+        "expired",
+        "failed",
+        "revoked",
+        "not_started"
+      ]
+    },
+    {
+      "name": "ConsentLog",
+      "file": "base44/entities/ConsentLog.jsonc",
+      "property_count": 10,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "CurlerRegistration",
+      "file": "base44/entities/CurlerRegistration.jsonc",
+      "property_count": 31,
+      "required": 5,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "approved",
+        "rejected"
+      ]
+    },
+    {
+      "name": "DataImportReview",
+      "file": "base44/entities/DataImportReview.jsonc",
+      "property_count": 21,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "reviewed",
+        "approved",
+        "imported"
+      ]
+    },
+    {
+      "name": "DataPrivacyConfig",
+      "file": "base44/entities/DataPrivacyConfig.jsonc",
+      "property_count": 18,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "DataSharingAgreement",
+      "file": "base44/entities/DataSharingAgreement.jsonc",
+      "property_count": 12,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "active",
+        "suspended",
+        "expired",
+        "revoked"
+      ]
+    },
+    {
+      "name": "DataSourceConfig",
+      "file": "base44/entities/DataSourceConfig.jsonc",
+      "property_count": 12,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "paused",
+        "error"
+      ]
+    },
+    {
+      "name": "DecisionInstance",
+      "file": "base44/entities/DecisionInstance.jsonc",
+      "property_count": 25,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "identified",
+        "prepared",
+        "recommended",
+        "decided",
+        "executed",
+        "reviewed",
+        "closed_no_go"
+      ]
+    },
+    {
+      "name": "Document",
+      "file": "base44/entities/Document.jsonc",
+      "property_count": 18,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "approved",
+        "rejected"
+      ]
+    },
+    {
+      "name": "DrawTemplate",
+      "file": "base44/entities/DrawTemplate.jsonc",
+      "property_count": 14,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "EndScore",
+      "file": "base44/entities/EndScore.jsonc",
+      "property_count": 8,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "in_progress",
+        "completed"
+      ]
+    },
+    {
+      "name": "EngagementAction",
+      "file": "base44/entities/EngagementAction.jsonc",
+      "property_count": 10,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Expense",
+      "file": "base44/entities/Expense.jsonc",
+      "property_count": 18,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "approved",
+        "paid",
+        "rejected"
+      ]
+    },
+    {
+      "name": "Facility",
+      "file": "base44/entities/Facility.jsonc",
+      "property_count": 15,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "maintenance",
+        "inactive"
+      ]
+    },
+    {
+      "name": "FamilyGroup",
+      "file": "base44/entities/FamilyGroup.jsonc",
+      "property_count": 10,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "FanFollowing",
+      "file": "base44/entities/FanFollowing.jsonc",
+      "property_count": 8,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "FanProfile",
+      "file": "base44/entities/FanProfile.jsonc",
+      "property_count": 16,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "FeatureGateConfig",
+      "file": "base44/entities/FeatureGateConfig.jsonc",
+      "property_count": 2,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Game",
+      "file": "base44/entities/Game.jsonc",
+      "property_count": 23,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "scheduled",
+        "in_progress",
+        "complete",
+        "postponed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "IceBooking",
+      "file": "base44/entities/IceBooking.jsonc",
+      "property_count": 25,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "confirmed",
+        "cancelled",
+        "completed"
+      ]
+    },
+    {
+      "name": "ImportMapping",
+      "file": "base44/entities/ImportMapping.jsonc",
+      "property_count": 9,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Incident",
+      "file": "base44/entities/Incident.jsonc",
+      "property_count": 13,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "open",
+        "in_progress",
+        "resolved",
+        "closed"
+      ]
+    },
+    {
+      "name": "IntegrationSync",
+      "file": "base44/entities/IntegrationSync.jsonc",
+      "property_count": 14,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "completed",
+        "partial",
+        "failed"
+      ]
+    },
+    {
+      "name": "Invoice",
+      "file": "base44/entities/Invoice.jsonc",
+      "property_count": 32,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "League",
+      "file": "base44/entities/League.jsonc",
+      "property_count": 29,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "registration",
+        "active",
+        "playoffs",
+        "completed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "LeagueSchedule",
+      "file": "base44/entities/LeagueSchedule.jsonc",
+      "property_count": 15,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "scheduled",
+        "in_progress",
+        "completed"
+      ]
+    },
+    {
+      "name": "LearnToCurlProgram",
+      "file": "base44/entities/LearnToCurlProgram.jsonc",
+      "property_count": 12,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "open",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "LearnToCurlRegistrant",
+      "file": "base44/entities/LearnToCurlRegistrant.jsonc",
+      "property_count": 17,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "registered",
+        "attending",
+        "completed",
+        "converted",
+        "lapsed"
+      ]
+    },
+    {
+      "name": "LiveGame",
+      "file": "base44/entities/LiveGame.jsonc",
+      "property_count": 18,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "paused"
+      ]
+    },
+    {
+      "name": "Member",
+      "file": "base44/entities/Member.jsonc",
+      "property_count": 55,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "MembershipSeason",
+      "file": "base44/entities/MembershipSeason.jsonc",
+      "property_count": 26,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "MembershipTier",
+      "file": "base44/entities/MembershipTier.jsonc",
+      "property_count": 13,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "MemoryOutcome",
+      "file": "base44/entities/MemoryOutcome.jsonc",
+      "property_count": 17,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "MemoryRetrieval",
+      "file": "base44/entities/MemoryRetrieval.jsonc",
+      "property_count": 12,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Notification",
+      "file": "base44/entities/Notification.jsonc",
+      "property_count": 18,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Organization",
+      "file": "base44/entities/Organization.jsonc",
+      "property_count": 15,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "onboarding",
+        "suspended",
+        "reactivation_pending",
+        "archived"
+      ]
+    },
+    {
+      "name": "OrgLifecycleEvent",
+      "file": "base44/entities/OrgLifecycleEvent.jsonc",
+      "property_count": 11,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "OrgNode",
+      "file": "base44/entities/OrgNode.jsonc",
+      "property_count": 10,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "pending",
+        "suspended",
+        "archived"
+      ]
+    },
+    {
+      "name": "PaymentPlan",
+      "file": "base44/entities/PaymentPlan.jsonc",
+      "property_count": 17,
+      "required": 6,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "active",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "PaymentProcessorConfig",
+      "file": "base44/entities/PaymentProcessorConfig.jsonc",
+      "property_count": 14,
+      "required": 1,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Permission",
+      "file": "base44/entities/Permission.jsonc",
+      "property_count": 8,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "deprecated"
+      ]
+    },
+    {
+      "name": "PlayerStats",
+      "file": "base44/entities/PlayerStats.jsonc",
+      "property_count": 13,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Policy",
+      "file": "base44/entities/Policy.jsonc",
+      "property_count": 11,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "active",
+        "review",
+        "retired"
+      ]
+    },
+    {
+      "name": "PTSORule",
+      "file": "base44/entities/PTSORule.jsonc",
+      "property_count": 16,
+      "required": 2,
+      "has_rls": false,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "RateLimitEntry",
+      "file": "base44/entities/RateLimitEntry.jsonc",
+      "property_count": 5,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "RedemptionLog",
+      "file": "base44/entities/RedemptionLog.jsonc",
+      "property_count": 11,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "redeemed",
+        "delivered",
+        "expired"
+      ]
+    },
+    {
+      "name": "Reward",
+      "file": "base44/entities/Reward.jsonc",
+      "property_count": 12,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "inactive",
+        "coming_soon"
+      ]
+    },
+    {
+      "name": "Role",
+      "file": "base44/entities/Role.jsonc",
+      "property_count": 10,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "inactive",
+        "deprecated"
+      ]
+    },
+    {
+      "name": "RolePermission",
+      "file": "base44/entities/RolePermission.jsonc",
+      "property_count": 5,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "SafeSportCase",
+      "file": "base44/entities/SafeSportCase.jsonc",
+      "property_count": 14,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "open",
+        "under_review",
+        "resolved",
+        "closed"
+      ]
+    },
+    {
+      "name": "SeasonRollup",
+      "file": "base44/entities/SeasonRollup.jsonc",
+      "property_count": 18,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "ShotLog",
+      "file": "base44/entities/ShotLog.jsonc",
+      "property_count": 13,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "SparePlayer",
+      "file": "base44/entities/SparePlayer.jsonc",
+      "property_count": 17,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "available",
+        "unavailable",
+        "assigned"
+      ]
+    },
+    {
+      "name": "Sponsor",
+      "file": "base44/entities/Sponsor.jsonc",
+      "property_count": 11,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "prospect",
+        "active",
+        "inactive"
+      ]
+    },
+    {
+      "name": "Sponsorship",
+      "file": "base44/entities/Sponsorship.jsonc",
+      "property_count": 21,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "prospect",
+        "negotiating",
+        "active",
+        "expired",
+        "declined"
+      ]
+    },
+    {
+      "name": "SportProfile",
+      "file": "base44/entities/SportProfile.jsonc",
+      "property_count": 11,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "StrategicPlan",
+      "file": "base44/entities/StrategicPlan.jsonc",
+      "property_count": 15,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "draft",
+        "active",
+        "completed",
+        "archived"
+      ]
+    },
+    {
+      "name": "SupportTicket",
+      "file": "base44/entities/SupportTicket.jsonc",
+      "property_count": 24,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "open",
+        "in_progress",
+        "waiting_on_requester",
+        "resolved",
+        "closed",
+        "reopened"
+      ]
+    },
+    {
+      "name": "SystemSignal",
+      "file": "base44/entities/SystemSignal.jsonc",
+      "property_count": 11,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "Team",
+      "file": "base44/entities/Team.jsonc",
+      "property_count": 32,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "TriviaQuestion",
+      "file": "base44/entities/TriviaQuestion.jsonc",
+      "property_count": 12,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "inactive"
+      ]
+    },
+    {
+      "name": "TriviParticipation",
+      "file": "base44/entities/TriviParticipation.jsonc",
+      "property_count": 9,
+      "required": 2,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "UnifiedTransaction",
+      "file": "base44/entities/UnifiedTransaction.jsonc",
+      "property_count": 29,
+      "required": 5,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded",
+        "disputed",
+        "cancelled"
+      ]
+    },
+    {
+      "name": "User",
+      "file": "base44/entities/User.jsonc",
+      "property_count": 5,
+      "required": 3,
+      "has_rls": false,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "UserRelationship",
+      "file": "base44/entities/UserRelationship.jsonc",
+      "property_count": 10,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "pending",
+        "revoked"
+      ]
+    },
+    {
+      "name": "UserRole",
+      "file": "base44/entities/UserRole.jsonc",
+      "property_count": 10,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "pending",
+        "suspended",
+        "revoked"
+      ]
+    },
+    {
+      "name": "Volunteer",
+      "file": "base44/entities/Volunteer.jsonc",
+      "property_count": 13,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "active",
+        "inactive",
+        "suspended"
+      ]
+    },
+    {
+      "name": "WaiverSignature",
+      "file": "base44/entities/WaiverSignature.jsonc",
+      "property_count": 16,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": true,
+      "status_values": [
+        "valid",
+        "expired",
+        "revoked"
+      ]
+    },
+    {
+      "name": "WaiverTemplate",
+      "file": "base44/entities/WaiverTemplate.jsonc",
+      "property_count": 12,
+      "required": 3,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    },
+    {
+      "name": "WorkflowStep",
+      "file": "base44/entities/WorkflowStep.jsonc",
+      "property_count": 12,
+      "required": 4,
+      "has_rls": true,
+      "has_status_enum": false,
+      "status_values": []
+    }
+  ]
+}

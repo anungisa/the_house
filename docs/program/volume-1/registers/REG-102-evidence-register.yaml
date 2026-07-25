@@ -1,9 +1,219 @@
 register_id: REG-102
 name: Evidence Register
 status: IN_REVIEW
-version: 0.1.0
-# Reviewable evidence items supporting Volume 1 findings and dispositions.
-# Empty in Package 1: evidence is captured during substantive qualification
-# (Packages 2-4). Each entry must cite a controlled source (REG-101) and carry
-# an evidence rating (E0-E4) that a recent timestamp alone must not inflate.
-records: []
+version: 0.2.0
+# Reviewable evidence items supporting Volume 1 Package 2 (Base44) findings and
+# dispositions. Each entry cites a controlled source (REG-101), a reviewable
+# location, an artifact type, and an evidence rating (E0-E4). Structural items
+# are E3 (reproducible deterministic extraction); product-value and stakeholder
+# claims are capped lower pending independent evidence. Notes record extraction
+# method, reproducibility, and limitations.
+records:
+  - id: EV-001
+    source_ref: SRC-008
+    summary: >-
+      App.jsx declares 148 routes with guard distribution none=45, RoleGate=82,
+      ProtectedRoute=18, FeatureGate=3. 45 authenticated routes carry no role
+      guard at all.
+    artifact_type: interface
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/src/App.jsx; generated/base44/route-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014, CAP-015]
+    notes: >-
+      Extraction method: analyze-base44-routes.mjs regex over Route nodes.
+      Reproducible via npm run qualification:base44. Limitation: dynamic/param
+      routes counted by literal declaration only.
+  - id: EV-002
+    source_ref: SRC-004
+    summary: >-
+      87 entity schemas; 85 declare an app-layer rls block (Mongo-style, not a
+      database boundary); 49 declare a status/state enum.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/base44/entities/*.jsonc; generated/base44/entity-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-002, CAP-004]
+    notes: Extraction via analyze-base44-entities.mjs (JSONC-tolerant parse). Reproducible.
+  - id: EV-003
+    source_ref: SRC-005
+    summary: >-
+      99 server functions (97 Deno.serve handlers). Only 2 reference any
+      permission check; 66 mutate entities with no server-side permission check;
+      78 use asServiceRole privilege escalation.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: >-
+      Extraction via analyze-base44-functions.mjs (markers Deno.serve,
+      enforce/checkPermission, entity mutation calls, asServiceRole).
+      Reproducible. Limitation: static markers may under- or over-count
+      semantically; corroborated by direct inspection of enforcePermission.
+  - id: EV-004
+    source_ref: SRC-006
+    summary: >-
+      accessMatrix.js declares 130 entries against 148 routes; 18 routes have no
+      matrix entry; 82 routes carry App.jsx-hardcoded roles that diverge from
+      the matrix; canAccessPath defaults unknown paths to OPEN.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/src/lib/access/; generated/base44/access-matrix-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: Extraction via analyze-base44-access.mjs comparing matrix to routes. Reproducible.
+  - id: EV-005
+    source_ref: SRC-006
+    summary: >-
+      roleGroups.js documents TWO role vocabularies (23 fine role keys plus
+      coarse buckets admin/ptso/club/curler) reconciled at lookup time; routes
+      mix both directly.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/src/lib/access/roleGroups.js
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: Direct inspection; corroborated by route role tokens in route-inventory.json.
+  - id: EV-006
+    source_ref: SRC-004
+    summary: >-
+      Application entity models club affiliation with status enum submitted,
+      ptso_review, ptso_approved, cc_review, approved, rejected, more_info_needed
+      (default submitted) and application_type new_affiliation/renewal/transfer.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/base44/entities/Application.jsonc
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-001]
+    notes: Direct inspection of the affiliation entity schema. Reproducible.
+  - id: EV-007
+    source_ref: SRC-005
+    summary: >-
+      enforcePermission/entry.ts is a template documenting that server-side
+      permission checks should be called in EVERY backend function and that
+      frontend checks are UX only - yet only 2 of 99 functions reference such a
+      check.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/base44/functions/enforcePermission/entry.ts
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: Documented intent vs measured adoption; both mechanically verifiable.
+  - id: EV-008
+    source_ref: SRC-001
+    summary: >-
+      package.json depends on @stripe/stripe-js and @stripe/react-stripe-js; a
+      payments/fees capability was explored via Stripe.
+    artifact_type: configuration
+    evidence_rating: E2
+    reviewable_location: legacy/curl-link-hub-extracted/package.json; generated/base44/dependency-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-008]
+    notes: >-
+      Dependency presence corroborates intent (E2). It does NOT establish
+      correct payment-state handling or reconciliation, which remain unproven.
+  - id: EV-009
+    source_ref: SRC-008
+    summary: >-
+      Localization is a homegrown i18n (src/lib/i18n/useTranslation.js) plus an
+      admin Translations page and TranslationManager; not a standard i18n
+      framework. 5 i18n files present.
+    artifact_type: code
+    evidence_rating: E2
+    reviewable_location: legacy/curl-link-hub-extracted/src/lib/i18n; generated/base44/localization-inventory.json
+    captured_at: '2026-07-25'
+    notes: >-
+      Presence is E2. Bilingual (English/French) coverage completeness and
+      quality are NOT established and remain an open evidence question.
+  - id: EV-010
+    source_ref: SRC-001
+    summary: >-
+      No automated test suite and no CI configuration are present in the export
+      (no test directories, no CI workflows). Test/CI absence.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted (export root)
+    captured_at: '2026-07-25'
+    notes: >-
+      Absence demonstrated by exhaustive file walk. Limitation: absence of tests
+      in the export does not preclude ad hoc manual testing on the platform.
+  - id: EV-011
+    source_ref: SRC-007
+    summary: >-
+      231 governance-style markdown documents are present in src/ describing
+      authority, continuity, decision governance, and access doctrine.
+    artifact_type: document
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/src (*.md)
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-012]
+    notes: >-
+      Count is E3. The documents are design-intent narrative (SRC-007,
+      stakeholder statement); their assertions of implemented behaviour are NOT
+      thereby demonstrated.
+  - id: EV-012
+    source_ref: SRC-004
+    summary: >-
+      Application.org_id description states org_id was backfilled 100% to Curling
+      Canada (Pass 2.6) and that the tenant rls branch no longer tolerates an
+      empty org_id - evidence of retrofitted, single-tenant-shaped tenancy.
+    artifact_type: data
+    evidence_rating: E2
+    reviewable_location: legacy/curl-link-hub-extracted/base44/entities/Application.jsonc
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-002]
+    notes: Self-described migration note; indicates tenancy was added late, not designed in.
+  - id: EV-013
+    source_ref: SRC-008
+    summary: >-
+      Candidate capability-domain normalization shows heavy overlap: many routes,
+      pages, and dashboards map to multiple domains, signalling duplicated and
+      overlapping surfaces rather than one authoritative surface per capability.
+    artifact_type: process
+    evidence_rating: E2
+    reviewable_location: generated/base44/capability-domain-analysis.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-015]
+    notes: >-
+      Overlap is an indicative duplication signal (E2), not a precise duplicate
+      map; specific duplicates are named in findings by direct inspection.
+  - id: EV-014
+    source_ref: SRC-005
+    summary: >-
+      78 of 99 server functions invoke asServiceRole, executing with elevated
+      platform privilege; combined with 2/99 permission checks this broadens the
+      blast radius of missing authorization.
+    artifact_type: code
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: Mechanical marker count; reproducible.
+  - id: EV-015
+    source_ref: SRC-007
+    summary: >-
+      AFFILIATION_MIGRATION_DOCTRINE.md asserts a Goodwill Baseline: historical
+      affiliation is inherited (a known club is treated as affiliated) while
+      future affiliation is governed, positioning affiliation as the lowest-risk
+      migration spine.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: legacy/curl-link-hub-extracted/src/AFFILIATION_MIGRATION_DOCTRINE.md
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-001]
+    notes: >-
+      Design intent (E1). A useful hypothesis for the first release, but NOT
+      validated by Curling Canada policy or stakeholders in this package.
+  - id: EV-016
+    source_ref: SRC-006
+    summary: >-
+      ACCESS_MATRIX.md claims the matrix is the single source of truth and that
+      enforcement can never drift from what is displayed, while the derivation
+      helper canAccessPath treats unknown paths as open (default-allow).
+    artifact_type: document
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted/src/ACCESS_MATRIX.md; src/lib/access/index.js
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-014]
+    notes: Doctrine vs behaviour; both directly reviewable.

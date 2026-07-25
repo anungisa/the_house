@@ -1,10 +1,135 @@
 register_id: REG-105
 name: Contradiction Register
 status: IN_REVIEW
-version: 0.1.0
-# Recorded contradictions between sources of differing classification (e.g.
-# policy truth vs operational truth vs vendor claim). Empty in Package 1:
-# contradictions are surfaced during substantive qualification (Packages 2-4).
-# Each contradiction records at least two conflicting positions and a status;
-# an unresolved contradiction is itself a first-class, reportable finding.
-records: []
+version: 0.2.0
+# Contradictions surfaced during Base44 qualification. Positions reference
+# controlled sources (REG-101) with their classification. Contradictions are NOT
+# resolved by preferring the newest artifact; they are resolved only by evidence
+# or by classification authority (e.g. policy truth governs implementation truth).
+# An unresolved contradiction is itself a first-class, reportable finding.
+records:
+  - id: CON-001
+    statement: >-
+      The access matrix is declared the single source of truth ("enforcement can
+      never drift from what is displayed"), yet route enforcement diverges from
+      it.
+    positions:
+      - source_ref: SRC-006
+        classification: implementation_truth
+        assertion: >-
+          ACCESS_MATRIX.md and accessMatrix.js declare one canonical matrix and
+          state that enforcement can never drift from what is displayed.
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: >-
+          App.jsx declares 148 routes; 18 have no matrix entry, 82 hardcode role
+          lists that diverge from the matrix, and unknown paths default to open.
+    status: open
+    evidence_rating: E3
+    notes: Displayed access and actual reachability diverge; see FND-007, FND-008.
+  - id: CON-002
+    statement: >-
+      The authorization model uses two role vocabularies simultaneously, so a
+      single canonical role set does not in fact govern access.
+    positions:
+      - source_ref: SRC-006
+        classification: implementation_truth
+        assertion: roleGroups.js presents 23 fine role keys as the canonical vocabulary.
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: >-
+          Routes gate on coarse buckets (admin/ptso/club/curler) and hardcoded
+          fine keys interchangeably, using two vocabularies in enforcement.
+    status: open
+    evidence_rating: E3
+    notes: Dual vocabulary reconciled only at lookup time; see FND-008.
+  - id: CON-003
+    statement: >-
+      UI-driven workflow order and the entity status lifecycle can diverge because
+      status is mutated directly without a governed transition boundary.
+    positions:
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: Page flows advance affiliation by writing status directly from UI-triggered functions.
+      - source_ref: SRC-004
+        classification: implementation_truth
+        assertion: >-
+          The Application entity defines a fixed status enum with no transition
+          guard mechanism, so UI order and entity lifecycle are not reconciled.
+    status: open
+    evidence_rating: E2
+    notes: Motivates the governed-kernel rebuild (FND-010).
+  - id: CON-004
+    statement: >-
+      Affiliation payment readiness is asserted by a boolean flag while payment
+      state lives in an external processor, leaving the two unreconciled.
+    positions:
+      - source_ref: SRC-004
+        classification: implementation_truth
+        assertion: Readiness is represented by boolean flags such as annual_fee_paid on the Application entity.
+      - source_ref: SRC-001
+        classification: implementation_truth
+        assertion: >-
+          Stripe integration implies an external payment-state authority; the flag
+          and the processor state are not reconciled in the code.
+    status: open
+    evidence_rating: E2
+    notes: See FND-014; fee state must be reconciled, not asserted.
+  - id: CON-005
+    statement: >-
+      Multiple authoritative-looking surfaces exist for the same capability,
+      contradicting the assumption of one authoritative surface per capability.
+    positions:
+      - source_ref: SRC-008
+        classification: implementation_truth
+        assertion: >-
+          Multiple dashboards (staff/club/member/volunteer/fan) and multiple club
+          views coexist as distinct surfaces.
+      - source_ref: SRC-006
+        classification: implementation_truth
+        assertion: The access/nav doctrine assumes one authoritative surface per capability per role.
+    status: open
+    evidence_rating: E2
+    notes: See FND-011 (duplicated surfaces).
+  - id: CON-006
+    statement: >-
+      The entity model and the governance narrative describe overlapping but
+      non-identical definitions of club, organization, member, and participant.
+    positions:
+      - source_ref: SRC-004
+        classification: implementation_truth
+        assertion: >-
+          Entities encode overlapping notions of Club, Organization/OrgNode,
+          Member, and participant/curler with differing keys.
+      - source_ref: SRC-007
+        classification: stakeholder_statement
+        assertion: The governance narrative asserts a single canonical club/organization model.
+    status: open
+    evidence_rating: E2
+    notes: Canonical definitions must be established before adoption; open.
+  - id: CON-007
+    statement: >-
+      Base44 advances governed lifecycle by direct status mutation and client-side
+      authorization, contradicting the House requirement that all governed
+      transitions pass through the Governance Kernel.
+    positions:
+      - source_ref: SRC-001
+        classification: implementation_truth
+        assertion: >-
+          Base44 advances governed lifecycle by direct status mutation across
+          functions and pages, with client-side authorization.
+      - source_ref: SRC-003
+        classification: policy_truth
+        assertion: >-
+          The Program Constitution requires all governed lifecycle transitions to
+          pass through the Governance Kernel; domains must not mutate governed
+          state directly.
+    status: resolved
+    resolution: >-
+      Resolved by classification authority: policy truth (SRC-003) governs
+      implementation truth (SRC-001). The Base44 direct-mutation mechanism is
+      dispositioned REBUILD (QD-001, QD-012, QD-014); the product concept is
+      retained via ADAPT while the mechanism is rejected. This is resolved by the
+      House authority hierarchy, not by preferring a newer artifact.
+    evidence_rating: E3
+    notes: See FND-019.

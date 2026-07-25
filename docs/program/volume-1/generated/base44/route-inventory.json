@@ -1,0 +1,1570 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_archive": "legacy/curl-link-hub (5).zip",
+    "generated_from_commit_baseline": "see REG-101 SRC-001 / SRC-002"
+  },
+  "summary": {
+    "total_routes": 148,
+    "by_guard": {
+      "none": 45,
+      "FeatureGate": 3,
+      "ProtectedRoute": 18,
+      "RoleGate": 82
+    },
+    "distinct_route_roles": 23,
+    "role_vocabulary": [
+      "admin",
+      "athlete",
+      "cc_staff",
+      "club",
+      "club_admin",
+      "club_services",
+      "coach",
+      "communications",
+      "curler",
+      "event_ops",
+      "executive",
+      "finance",
+      "governance",
+      "member",
+      "official",
+      "partner",
+      "partnerships",
+      "ptso",
+      "ptso_admin",
+      "safe_sport",
+      "super_admin",
+      "volunteer",
+      "volunteer_ops"
+    ],
+    "ungated_authenticated_routes": 41
+  },
+  "routes": [
+    {
+      "path": "/login",
+      "component": "Login",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Login"
+    },
+    {
+      "path": "/register",
+      "component": "Register",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Register"
+    },
+    {
+      "path": "/forgot-password",
+      "component": "ForgotPassword",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ForgotPassword"
+    },
+    {
+      "path": "/reset-password",
+      "component": "ResetPassword",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ResetPassword"
+    },
+    {
+      "path": "/signage",
+      "component": "FeatureGate",
+      "guard": "FeatureGate",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<FeatureGate"
+    },
+    {
+      "path": "/club-site",
+      "component": "FeatureGate",
+      "guard": "FeatureGate",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<FeatureGate"
+    },
+    {
+      "path": "/",
+      "component": "RoleRedirect",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<RoleRedirect"
+    },
+    {
+      "path": "/scorekeeper/:gameId",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "club_admin",
+        "event_ops"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"club_admin\", \"event_ops\"]}"
+    },
+    {
+      "path": "/curler-registration",
+      "component": "FeatureGate",
+      "guard": "FeatureGate",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<FeatureGate"
+    },
+    {
+      "path": "/unauthorized",
+      "component": "Unauthorized",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Unauthorized"
+    },
+    {
+      "path": "/m/feed",
+      "component": "Feed",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Feed"
+    },
+    {
+      "path": "/m/profile",
+      "component": "Profile",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Profile"
+    },
+    {
+      "path": "/m/games",
+      "component": "Games",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Games"
+    },
+    {
+      "path": "/m/standings",
+      "component": "Standings",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Standings"
+    },
+    {
+      "path": "/m/live-scores",
+      "component": "LiveScores",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<LiveScores"
+    },
+    {
+      "path": "/m/results",
+      "component": "Results",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Results"
+    },
+    {
+      "path": "/dashboard/staff",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "ptso_admin",
+        "executive"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\",\"cc_staff\",\"ptso_admin\",\"executive\"]}"
+    },
+    {
+      "path": "/dashboard/club",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "club_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"club_admin\"]}"
+    },
+    {
+      "path": "/dashboard/member",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "member",
+        "athlete",
+        "coach",
+        "partner"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"member\",\"athlete\",\"coach\",\"partner\"]}"
+    },
+    {
+      "path": "/dashboard/volunteer",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "volunteer"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"volunteer\"]}"
+    },
+    {
+      "path": "/feed",
+      "component": "Feed",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Feed"
+    },
+    {
+      "path": "/profile",
+      "component": "Profile",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Profile"
+    },
+    {
+      "path": "/standings",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'curler']}"
+    },
+    {
+      "path": "/results",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'curler']}"
+    },
+    {
+      "path": "/live-scores",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'curler']}"
+    },
+    {
+      "path": "/games",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "curler"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'curler']}"
+    },
+    {
+      "path": "/parent/home",
+      "component": "ParentHome",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ParentHome"
+    },
+    {
+      "path": "/member-portal",
+      "component": "MemberPortal",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<MemberPortal"
+    },
+    {
+      "path": "/my-documents",
+      "component": "MemberDocuments",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<MemberDocuments"
+    },
+    {
+      "path": "/surveys",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/survey-intake",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['club']}"
+    },
+    {
+      "path": "/survey-analytics",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/capacity-planner",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/qa-personas",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/survey-density",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/survey/:surveyId",
+      "component": "SurveyDetail",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<SurveyDetail"
+    },
+    {
+      "path": "/dashboard",
+      "component": "RateLimitBoundary",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<RateLimitBoundary"
+    },
+    {
+      "path": "/process-flow",
+      "component": "ProcessFlow",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ProcessFlow"
+    },
+    {
+      "path": "/applications",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/club-360",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/club-success",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/ptso-summary",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/clubs",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/data-spine-audit",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/season-reconciliation",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\"]}"
+    },
+    {
+      "path": "/documents",
+      "component": "RateLimitBoundary",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<RateLimitBoundary"
+    },
+    {
+      "path": "/data-regulations",
+      "component": "DataRegulations",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<DataRegulations"
+    },
+    {
+      "path": "/compliance",
+      "component": "RateLimitBoundary",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<RateLimitBoundary"
+    },
+    {
+      "path": "/workflow-builder",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/compare",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/doc-hub",
+      "component": "DocumentHub",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<DocumentHub"
+    },
+    {
+      "path": "/member-upload",
+      "component": "MemberUpload",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<MemberUpload"
+    },
+    {
+      "path": "/ptso-rules",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/affiliation-timeline",
+      "component": "AffiliationTimeline",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<AffiliationTimeline"
+    },
+    {
+      "path": "/club-affiliation",
+      "component": "ClubAffiliation",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ClubAffiliation"
+    },
+    {
+      "path": "/directory",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "curler"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'curler']}"
+    },
+    {
+      "path": "/help",
+      "component": "HelpSupport",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<HelpSupport"
+    },
+    {
+      "path": "/support-tickets",
+      "component": "SupportTickets",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<SupportTickets"
+    },
+    {
+      "path": "/club-view",
+      "component": "ClubView",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ClubView"
+    },
+    {
+      "path": "/bulk-approval",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/payments",
+      "component": "Payments",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Payments"
+    },
+    {
+      "path": "/invoice-automation",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/reports",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/sport-canada-report",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/revenue-analytics",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/revenue-forecast",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/personalization",
+      "component": "Personalization",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<Personalization"
+    },
+    {
+      "path": "/members",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/households",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/community-penetration",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/longitudinal",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/bc-data-resolution",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/data-import",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/member-dedup",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\"]}"
+    },
+    {
+      "path": "/ptso-data-review",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/ptso-import-mapping",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/alias-manager",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/canonical-club-audit",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/leagues",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'ptso']}"
+    },
+    {
+      "path": "/facilities",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'ptso']}"
+    },
+    {
+      "path": "/expenses",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/waivers",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops']}"
+    },
+    {
+      "path": "/strategic-planning",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/board-governance",
+      "component": "BoardGovernance",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<BoardGovernance"
+    },
+    {
+      "path": "/platform/system-health",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/audit",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/audit-explorer",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/access-audit",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/sync-status",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/settings",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/maintenance",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/platform/webhook-failures",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/access-matrix",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/financial-reports",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/integration-bridge",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/learn-to-curl",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "club"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'club']}"
+    },
+    {
+      "path": "/open-programs",
+      "component": "OpenPrograms",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<OpenPrograms"
+    },
+    {
+      "path": "/renewal",
+      "component": "RenewalPortal",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<RenewalPortal"
+    },
+    {
+      "path": "/operational-intelligence",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/integrations",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/analytics",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso']}"
+    },
+    {
+      "path": "/brand-customization",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/data-privacy",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/gdpr-compliance",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin']}"
+    },
+    {
+      "path": "/investigation",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff']}"
+    },
+    {
+      "path": "/event-command-center",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'ptso']}"
+    },
+    {
+      "path": "/finance-reconciliation",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff']}"
+    },
+    {
+      "path": "/user-insights",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff']}"
+    },
+    {
+      "path": "/event-operations",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'ptso']}"
+    },
+    {
+      "path": "/events-ops",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'ptso']}"
+    },
+    {
+      "path": "/national-operations",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\"]}"
+    },
+    {
+      "path": "/knowledge-hub",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\"]}"
+    },
+    {
+      "path": "/institutional-readiness",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
+    },
+    {
+      "path": "/command-center",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "executive"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"executive\"]}"
+    },
+    {
+      "path": "/finance-operations",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "cc_staff",
+        "finance",
+        "ptso_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'cc_staff', 'finance', 'ptso_admin']}"
+    },
+    {
+      "path": "/club-services",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "club_services"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'club_services']}"
+    },
+    {
+      "path": "/governance",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "governance"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'governance']}"
+    },
+    {
+      "path": "/governance-hub",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "governance"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'governance']}"
+    },
+    {
+      "path": "/governance-trust",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "governance",
+        "ptso"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'governance', 'ptso']}"
+    },
+    {
+      "path": "/revenue-partnerships",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "cc_staff",
+        "finance",
+        "partnerships"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'cc_staff', 'finance', 'partnerships']}"
+    },
+    {
+      "path": "/safe-sport",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "safe_sport"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'safe_sport']}"
+    },
+    {
+      "path": "/communications",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "communications"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'communications']}"
+    },
+    {
+      "path": "/sponsorships",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "partnerships"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'partnerships']}"
+    },
+    {
+      "path": "/volunteers",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "volunteer_ops"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'volunteer_ops']}"
+    },
+    {
+      "path": "/my-fan-dashboard",
+      "component": "FanDashboard",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<FanDashboard"
+    },
+    {
+      "path": "/trivia",
+      "component": "TriviaHub",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<TriviaHub"
+    },
+    {
+      "path": "/rewards",
+      "component": "RewardsCenter",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<RewardsCenter"
+    },
+    {
+      "path": "/translations",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\"]}"
+    },
+    {
+      "path": "/team-roster",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "club_admin",
+        "event_ops",
+        "coach"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"club_admin\", \"event_ops\", \"coach\"]}"
+    },
+    {
+      "path": "/league-scheduler",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "club_admin",
+        "event_ops"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"club_admin\", \"event_ops\"]}"
+    },
+    {
+      "path": "/events-fan",
+      "component": "EventsFan",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<EventsFan"
+    },
+    {
+      "path": "/clubs-fan",
+      "component": "ClubsFan",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ClubsFan"
+    },
+    {
+      "path": "/user-management",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\"]}"
+    },
+    {
+      "path": "/nso-management",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\"]}"
+    },
+    {
+      "path": "/high-performance",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff']}"
+    },
+    {
+      "path": "/people-hr",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff']}"
+    },
+    {
+      "path": "/philanthropy",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff']}"
+    },
+    {
+      "path": "/bonspiels",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "ptso",
+        "curler"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'ptso', 'curler']}"
+    },
+    {
+      "path": "/spares",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops']}"
+    },
+    {
+      "path": "/ice-bookings",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops']}"
+    },
+    {
+      "path": "/team-assembly",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "super_admin",
+        "cc_staff",
+        "club_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"super_admin\", \"cc_staff\", \"club_admin\"]}"
+    },
+    {
+      "path": "/attendance",
+      "component": null,
+      "guard": "RoleGate",
+      "roles": [
+        "admin",
+        "cc_staff",
+        "event_ops",
+        "ptso",
+        "coach",
+        "official"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<RoleGate allowed={['admin', 'cc_staff', 'event_ops', 'ptso', 'coach', 'official']}"
+    },
+    {
+      "path": "/compliance-tracker",
+      "component": "ComplianceTracker",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<ComplianceTracker"
+    },
+    {
+      "path": "/calendar",
+      "component": "PublicCalendar",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<PublicCalendar"
+    },
+    {
+      "path": "/club-management",
+      "component": null,
+      "guard": "ProtectedRoute",
+      "roles": [
+        "club_admin"
+      ],
+      "client_side_only": true,
+      "attrs": "element={<ProtectedRoute allowedRoles={[\"club_admin\"]}"
+    },
+    {
+      "path": "/game/:gameId",
+      "component": "GameDetail",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<GameDetail"
+    },
+    {
+      "path": "/event/:eventId",
+      "component": "EventDetail",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<EventDetail"
+    },
+    {
+      "path": "*",
+      "component": "PageNotFound",
+      "guard": "none",
+      "roles": [],
+      "client_side_only": false,
+      "attrs": "element={<PageNotFound"
+    }
+  ]
+}

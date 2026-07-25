@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.1.0
+version: 0.2.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -97,4 +97,59 @@ records:
       - Package 1 reviewed and closed separately from authoring
       - Volume 0 freeze preserved; no Volume 0 artifact modified
       - Executive organizational acceptance (Nolan, D0) pending
+    approved_at: null
+  - id: APP-V1-008
+    artifact_id: V1-05
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Source fingerprint fixes the assessed artifact; a new export is a new source
+      - Inventory counts are reproducible via npm run qualification:base44
+    approved_at: null
+  - id: APP-V1-009
+    artifact_id: V1-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product intelligence is E2 at best and not stakeholder-validated
+    approved_at: null
+  - id: APP-V1-010
+    artifact_id: V1-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - No Base44 capability is dispositioned ADOPT or RETAIN
+      - No disposition authorizes construction (REG-106 authorizes_implementation false)
+    approved_at: null
+  - id: APP-V1-011
+    artifact_id: V1-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product value, production risk, and unknowns are recorded separately
+      - The authority conflict is resolved by policy, not by preferring a newer artifact
+    approved_at: null
+  - id: APP-V1-012
+    artifact_id: V1-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Translation of intent only; no design or build authorization
+    approved_at: null
+  - id: APP-V1-013
+    artifact_id: GATE-V1-G2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: BASE44_QUALIFICATION_COMPLETE
+    conditions:
+      - Internal-progression gate authorized by the Accountable Program Authority
+      - No Base44 implementation declared production-authoritative
+      - No application development authorized from Package 2 alone
+      - Executive organizational acceptance (Nolan, D0) pending before material commitment
     approved_at: null

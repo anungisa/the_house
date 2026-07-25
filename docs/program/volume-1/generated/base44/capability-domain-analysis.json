@@ -1,0 +1,788 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_archive": "legacy/curl-link-hub (5).zip",
+    "generated_from_commit_baseline": "see REG-101 SRC-001 / SRC-002"
+  },
+  "note": "Candidate search domains only. Overlaps are expected and are themselves evidence of surface duplication. No domain here is a qualified capability or an approved conclusion.",
+  "summary": [
+    {
+      "domain": "unclassified",
+      "routes": 44,
+      "entities": 44,
+      "functions": 53,
+      "pages": 51
+    },
+    {
+      "domain": "event_operations",
+      "routes": 19,
+      "entities": 8,
+      "functions": 6,
+      "pages": 15
+    },
+    {
+      "domain": "organization_registry",
+      "routes": 15,
+      "entities": 5,
+      "functions": 10,
+      "pages": 8
+    },
+    {
+      "domain": "governance_administration",
+      "routes": 12,
+      "entities": 7,
+      "functions": 8,
+      "pages": 11
+    },
+    {
+      "domain": "national_operations",
+      "routes": 15,
+      "entities": 3,
+      "functions": 1,
+      "pages": 16
+    },
+    {
+      "domain": "analytics",
+      "routes": 16,
+      "entities": 0,
+      "functions": 3,
+      "pages": 18
+    },
+    {
+      "domain": "payments",
+      "routes": 11,
+      "entities": 4,
+      "functions": 5,
+      "pages": 10
+    },
+    {
+      "domain": "compliance",
+      "routes": 7,
+      "entities": 7,
+      "functions": 2,
+      "pages": 7
+    },
+    {
+      "domain": "membership",
+      "routes": 8,
+      "entities": 3,
+      "functions": 9,
+      "pages": 9
+    },
+    {
+      "domain": "participant_identity",
+      "routes": 5,
+      "entities": 4,
+      "functions": 0,
+      "pages": 5
+    },
+    {
+      "domain": "knowledge",
+      "routes": 5,
+      "entities": 2,
+      "functions": 3,
+      "pages": 5
+    },
+    {
+      "domain": "club_affiliation",
+      "routes": 3,
+      "entities": 2,
+      "functions": 1,
+      "pages": 3
+    },
+    {
+      "domain": "registration",
+      "routes": 3,
+      "entities": 1,
+      "functions": 0,
+      "pages": 3
+    },
+    {
+      "domain": "support",
+      "routes": 2,
+      "entities": 1,
+      "functions": 1,
+      "pages": 2
+    },
+    {
+      "domain": "club_360",
+      "routes": 2,
+      "entities": 0,
+      "functions": 0,
+      "pages": 2
+    }
+  ],
+  "domains": {
+    "unclassified": {
+      "routes": [
+        "/login",
+        "/forgot-password",
+        "/reset-password",
+        "/signage",
+        "/unauthorized",
+        "/parent/home",
+        "/surveys",
+        "/capacity-planner",
+        "/survey-density",
+        "/survey/:surveyId",
+        "/process-flow",
+        "/compare",
+        "/directory",
+        "/bulk-approval",
+        "/longitudinal",
+        "/bc-data-resolution",
+        "/data-import",
+        "/alias-manager",
+        "/access-matrix",
+        "/integration-bridge",
+        "/learn-to-curl",
+        "/open-programs",
+        "/renewal",
+        "/integrations",
+        "/brand-customization",
+        "/investigation",
+        "/institutional-readiness",
+        "/communications",
+        "/sponsorships",
+        "/volunteers",
+        "/trivia",
+        "/rewards",
+        "/translations",
+        "/user-management",
+        "/nso-management",
+        "/high-performance",
+        "/people-hr",
+        "/philanthropy",
+        "/bonspiels",
+        "/spares",
+        "/ice-bookings",
+        "/team-assembly",
+        "/calendar",
+        "*"
+      ],
+      "entities": [
+        "Announcement",
+        "ApprovalTier",
+        "Bonspiel",
+        "BonspielTeam",
+        "BrandConfig",
+        "Budget",
+        "ClubAlias",
+        "ClubService",
+        "ClubSurvey",
+        "DataImportReview",
+        "DataSharingAgreement",
+        "DataSourceConfig",
+        "DecisionInstance",
+        "DrawTemplate",
+        "EngagementAction",
+        "FamilyGroup",
+        "FanFollowing",
+        "FeatureGateConfig",
+        "IceBooking",
+        "ImportMapping",
+        "Incident",
+        "IntegrationSync",
+        "LearnToCurlProgram",
+        "LearnToCurlRegistrant",
+        "MemoryOutcome",
+        "MemoryRetrieval",
+        "Notification",
+        "PlayerStats",
+        "RateLimitEntry",
+        "RedemptionLog",
+        "Reward",
+        "SeasonRollup",
+        "ShotLog",
+        "SparePlayer",
+        "Sponsor",
+        "Sponsorship",
+        "SystemSignal",
+        "Team",
+        "TriviaQuestion",
+        "TriviParticipation",
+        "UnifiedTransaction",
+        "User",
+        "UserRelationship",
+        "Volunteer"
+      ],
+      "functions": [
+        "backfillBCClubIds",
+        "backfillDedupHash",
+        "backfillOrgId",
+        "backfillOrgIdDriver",
+        "bcFinalizeOrchestrator",
+        "bcMethodologySummaryPdf",
+        "bcNormalize",
+        "bcNormalizeSeasons",
+        "checkAccess",
+        "confirmRelationship",
+        "createCheckout",
+        "curlingIOAggregate",
+        "discoverCurlingIOSubdomains",
+        "enrichClubDemographics",
+        "enrichClubPopulation",
+        "enrichClubPublicData",
+        "exportTenantBundle",
+        "fetchCurlingIO",
+        "generateBenchmarkBrief",
+        "generatePdfForm",
+        "importCurlersPerSheet",
+        "importHistoricalSeasons",
+        "importManitobaDemographics",
+        "importNovaScotiaAthletes",
+        "importPeiAthletes",
+        "inspectImportWorkbook",
+        "integrationProxy",
+        "inviteDependent",
+        "manageClubService",
+        "manageTenantLifecycle",
+        "normalizeClubProvinces",
+        "notifyProgramOpen",
+        "onSurveySubmit",
+        "parseClubSurvey",
+        "processRefund",
+        "provisionNSOTenant",
+        "purgeSeasonRecords",
+        "rebuildSeasonRollups",
+        "recomputeClubRollups",
+        "recomputeSeasonRollups",
+        "recordShot",
+        "refreshBenchmarks",
+        "renewalReminders",
+        "resetUserPassword",
+        "resolveBCIdentities",
+        "resolveTenantContext",
+        "sendNotification",
+        "slackAlert",
+        "smartNotifications",
+        "sportIntelExport",
+        "suggestClubAliases",
+        "validateBCIngestion",
+        "verifyTenantDataIsolation"
+      ],
+      "pages": [
+        "AliasManager",
+        "BCDataResolution",
+        "Bonspiels",
+        "BrandCustomization",
+        "BulkApproval",
+        "CapacityPlanner",
+        "ClubManagement",
+        "ClubMicrosite",
+        "ClubServices",
+        "ClubsFan",
+        "CommunicationsHub",
+        "DataImport",
+        "DigitalSignage",
+        "ForgotPassword",
+        "HighPerformance",
+        "Home",
+        "IceBookings",
+        "InstitutionalReadiness",
+        "IntegrationBridge",
+        "Integrations",
+        "LearnToCurl",
+        "LinkHubInvestigation",
+        "Login",
+        "Longitudinal",
+        "NSOManagement",
+        "OpenPrograms",
+        "ParentHome",
+        "PeopleHR",
+        "Philanthropy",
+        "ProcessFlow",
+        "PublicCalendar",
+        "PublicDirectory",
+        "RenewalPortal",
+        "ResetPassword",
+        "RewardsCenter",
+        "SparesEngine",
+        "SponsorshipHub",
+        "SurveyDensity",
+        "SurveyDetail",
+        "SurveyHub",
+        "TeamAssembly",
+        "Translations",
+        "TriviaHub",
+        "Unauthorized",
+        "UserManagement",
+        "VolunteerHub",
+        "AccessMatrix",
+        "SyncStatus",
+        "WebhookFailures",
+        "FanHome",
+        "ParentHome"
+      ]
+    },
+    "registration": {
+      "routes": [
+        "/register",
+        "/curler-registration",
+        "/survey-intake"
+      ],
+      "entities": [
+        "CurlerRegistration"
+      ],
+      "functions": [],
+      "pages": [
+        "CurlerRegistration",
+        "Register",
+        "SurveyIntake"
+      ]
+    },
+    "organization_registry": {
+      "routes": [
+        "/club-site",
+        "/dashboard/club",
+        "/club-360",
+        "/club-success",
+        "/ptso-summary",
+        "/clubs",
+        "/ptso-rules",
+        "/club-affiliation",
+        "/club-view",
+        "/ptso-data-review",
+        "/ptso-import-mapping",
+        "/canonical-club-audit",
+        "/club-services",
+        "/clubs-fan",
+        "/club-management"
+      ],
+      "entities": [
+        "Club",
+        "Organization",
+        "OrgLifecycleEvent",
+        "OrgNode",
+        "PTSORule"
+      ],
+      "functions": [
+        "auditCanonicalClubs",
+        "bcCleanClubs",
+        "bcResolveClubs",
+        "geocodeClubs",
+        "getAccessibleClubs",
+        "importPtsoMembers",
+        "mapManitobaClubs",
+        "mergeDuplicateClubs",
+        "normalizePtsoNames",
+        "reviewPtsoMemberData"
+      ],
+      "pages": [
+        "CanonicalClubAudit",
+        "ClubComparison",
+        "ClubView",
+        "Clubs",
+        "PTSODataReview",
+        "PTSOImportMapping",
+        "PTSOOperationsSummary",
+        "PTSORules"
+      ]
+    },
+    "governance_administration": {
+      "routes": [
+        "/",
+        "/data-spine-audit",
+        "/workflow-builder",
+        "/canonical-club-audit",
+        "/platform/system-health",
+        "/platform/audit",
+        "/platform/audit-explorer",
+        "/platform/access-audit",
+        "/platform/sync-status",
+        "/platform/settings",
+        "/platform/maintenance",
+        "/platform/webhook-failures"
+      ],
+      "entities": [
+        "AuditLog",
+        "ComplianceAudit",
+        "Permission",
+        "Role",
+        "RolePermission",
+        "UserRole",
+        "WorkflowStep"
+      ],
+      "functions": [
+        "auditCanonicalClubs",
+        "auditPermissionChange",
+        "auditRelationshipChange",
+        "auditRoleChange",
+        "enforcePermission",
+        "grantSuperAdmin",
+        "requirePermission",
+        "securityAudit"
+      ],
+      "pages": [
+        "CanonicalClubAudit",
+        "ComplianceAudit",
+        "DataSpineAudit",
+        "WorkflowBuilder",
+        "AccessAudit",
+        "AuditExplorer",
+        "AuditLog",
+        "Maintenance",
+        "PlatformSettings",
+        "SystemHealth",
+        "ClubAdminHome"
+      ]
+    },
+    "event_operations": {
+      "routes": [
+        "/scorekeeper/:gameId",
+        "/m/games",
+        "/m/standings",
+        "/m/live-scores",
+        "/m/results",
+        "/standings",
+        "/results",
+        "/live-scores",
+        "/games",
+        "/leagues",
+        "/facilities",
+        "/event-command-center",
+        "/event-operations",
+        "/events-ops",
+        "/league-scheduler",
+        "/events-fan",
+        "/attendance",
+        "/game/:gameId",
+        "/event/:eventId"
+      ],
+      "entities": [
+        "Attendance",
+        "EndScore",
+        "Facility",
+        "Game",
+        "League",
+        "LeagueSchedule",
+        "LiveGame",
+        "OrgLifecycleEvent"
+      ],
+      "functions": [
+        "completeGame",
+        "curlingIOGames",
+        "generateLeagueSchedule",
+        "getAccessibleEvents",
+        "manageGame",
+        "recordEndScore"
+      ],
+      "pages": [
+        "AttendancePage",
+        "EventCommandCenter",
+        "EventDetail",
+        "EventOperations",
+        "EventsFan",
+        "EventsOps",
+        "Facilities",
+        "GameDetail",
+        "Games",
+        "LeagueScheduler",
+        "Leagues",
+        "LiveScores",
+        "Results",
+        "Scorekeeper",
+        "Standings"
+      ]
+    },
+    "participant_identity": {
+      "routes": [
+        "/curler-registration",
+        "/m/profile",
+        "/profile",
+        "/qa-personas",
+        "/personalization"
+      ],
+      "entities": [
+        "CensusProfile",
+        "CurlerRegistration",
+        "FanProfile",
+        "SportProfile"
+      ],
+      "functions": [],
+      "pages": [
+        "CurlerRegistration",
+        "PersonaQA",
+        "Personalization",
+        "Profile",
+        "MemberPersonalDashboard"
+      ]
+    },
+    "payments": {
+      "routes": [
+        "/m/feed",
+        "/feed",
+        "/season-reconciliation",
+        "/payments",
+        "/invoice-automation",
+        "/revenue-analytics",
+        "/revenue-forecast",
+        "/expenses",
+        "/finance-reconciliation",
+        "/finance-operations",
+        "/revenue-partnerships"
+      ],
+      "entities": [
+        "Expense",
+        "Invoice",
+        "PaymentPlan",
+        "PaymentProcessorConfig"
+      ],
+      "functions": [
+        "createPaymentPlan",
+        "generateClubInvoices",
+        "reconcilePayments",
+        "sendPaymentReminders",
+        "stripeWebhookHandler"
+      ],
+      "pages": [
+        "Expenses",
+        "Feed",
+        "FinanceOperations",
+        "FinanceReconciliation",
+        "InvoiceAutomation",
+        "Payments",
+        "RevenueAnalytics",
+        "RevenueForecast",
+        "RevenuePartnerships",
+        "SeasonReconciliation"
+      ]
+    },
+    "analytics": {
+      "routes": [
+        "/dashboard/staff",
+        "/dashboard/club",
+        "/dashboard/member",
+        "/dashboard/volunteer",
+        "/survey-analytics",
+        "/dashboard",
+        "/reports",
+        "/sport-canada-report",
+        "/revenue-analytics",
+        "/revenue-forecast",
+        "/community-penetration",
+        "/financial-reports",
+        "/operational-intelligence",
+        "/analytics",
+        "/user-insights",
+        "/my-fan-dashboard"
+      ],
+      "entities": [],
+      "functions": [
+        "monthlyClubFinancialReports",
+        "refreshPenetrationData",
+        "trackAnalytics"
+      ],
+      "pages": [
+        "Analytics",
+        "CommunityPenetration",
+        "Dashboard",
+        "FanDashboard",
+        "OperationalIntelligence",
+        "Reports",
+        "RevenueAnalytics",
+        "RevenueForecast",
+        "SafeSportDashboard",
+        "SportCanadaReport",
+        "SurveyAnalytics",
+        "UserInsights",
+        "ClubFinancialReports",
+        "ClubDashboard",
+        "MemberDashboard",
+        "MemberPersonalDashboard",
+        "StaffDashboard",
+        "VolunteerDashboard"
+      ]
+    },
+    "national_operations": {
+      "routes": [
+        "/dashboard/staff",
+        "/dashboard/club",
+        "/dashboard/member",
+        "/dashboard/volunteer",
+        "/dashboard",
+        "/strategic-planning",
+        "/board-governance",
+        "/operational-intelligence",
+        "/event-command-center",
+        "/national-operations",
+        "/command-center",
+        "/governance",
+        "/governance-hub",
+        "/governance-trust",
+        "/my-fan-dashboard"
+      ],
+      "entities": [
+        "BoardMeeting",
+        "ClubOnboarding",
+        "StrategicPlan"
+      ],
+      "functions": [
+        "governanceEngineValidation"
+      ],
+      "pages": [
+        "BoardGovernance",
+        "CommandCenter",
+        "Dashboard",
+        "EventCommandCenter",
+        "FanDashboard",
+        "GovernanceHub",
+        "GovernanceTrust",
+        "NationalOperations",
+        "OperationalIntelligence",
+        "SafeSportDashboard",
+        "StrategicPlanning",
+        "ClubDashboard",
+        "MemberDashboard",
+        "MemberPersonalDashboard",
+        "StaffDashboard",
+        "VolunteerDashboard"
+      ]
+    },
+    "membership": {
+      "routes": [
+        "/dashboard/member",
+        "/member-portal",
+        "/my-documents",
+        "/member-upload",
+        "/members",
+        "/households",
+        "/member-dedup",
+        "/team-roster"
+      ],
+      "entities": [
+        "Member",
+        "MembershipSeason",
+        "MembershipTier"
+      ],
+      "functions": [
+        "assignCurlerNumbers",
+        "deriveMemberAges",
+        "getAccessibleMembers",
+        "importOntarioMembers",
+        "importPtsoMembers",
+        "manageTeamRoster",
+        "memberDedup",
+        "projectMembersToRollups",
+        "reviewPtsoMemberData"
+      ],
+      "pages": [
+        "Households",
+        "IntelligentMemberDedup",
+        "MemberDocuments",
+        "MemberPortal",
+        "MemberUpload",
+        "Members",
+        "TeamRoster",
+        "MemberDashboard",
+        "MemberPersonalDashboard"
+      ]
+    },
+    "knowledge": {
+      "routes": [
+        "/my-documents",
+        "/documents",
+        "/doc-hub",
+        "/ptso-rules",
+        "/knowledge-hub"
+      ],
+      "entities": [
+        "Document",
+        "Policy"
+      ],
+      "functions": [
+        "checkDocumentExpiry",
+        "notifyDocumentReview",
+        "notifyDocumentUpload"
+      ],
+      "pages": [
+        "DocumentHub",
+        "Documents",
+        "KnowledgeHub",
+        "MemberDocuments",
+        "PTSORules"
+      ]
+    },
+    "club_affiliation": {
+      "routes": [
+        "/applications",
+        "/affiliation-timeline",
+        "/club-affiliation"
+      ],
+      "entities": [
+        "Application",
+        "ClubOnboarding"
+      ],
+      "functions": [
+        "notifyApplicationStatus"
+      ],
+      "pages": [
+        "AffiliationTimeline",
+        "Applications",
+        "ClubAffiliation"
+      ]
+    },
+    "club_360": {
+      "routes": [
+        "/club-360",
+        "/club-success"
+      ],
+      "entities": [],
+      "functions": [],
+      "pages": [
+        "Club360",
+        "ClubSuccess"
+      ]
+    },
+    "compliance": {
+      "routes": [
+        "/data-regulations",
+        "/compliance",
+        "/waivers",
+        "/data-privacy",
+        "/gdpr-compliance",
+        "/safe-sport",
+        "/compliance-tracker"
+      ],
+      "entities": [
+        "ComplianceAudit",
+        "ComplianceRecord",
+        "ConsentLog",
+        "DataPrivacyConfig",
+        "SafeSportCase",
+        "WaiverSignature",
+        "WaiverTemplate"
+      ],
+      "functions": [
+        "complianceExpirySweep",
+        "complianceWebhook"
+      ],
+      "pages": [
+        "ComplianceAudit",
+        "ComplianceTracker",
+        "DataPrivacy",
+        "DataRegulations",
+        "GDPRCompliance",
+        "SafeSportDashboard",
+        "Waivers"
+      ]
+    },
+    "support": {
+      "routes": [
+        "/help",
+        "/support-tickets"
+      ],
+      "entities": [
+        "SupportTicket"
+      ],
+      "functions": [
+        "manageTicket"
+      ],
+      "pages": [
+        "HelpSupport",
+        "SupportTickets"
+      ]
+    }
+  }
+}

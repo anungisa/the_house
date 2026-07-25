@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/base44 extraction tooling",
+    "authority": "NON-AUTHORITATIVE. Deterministic evidence input to qualification; not a qualification decision.",
+    "source_archive": "legacy/curl-link-hub (5).zip",
+    "generated_from_commit_baseline": "see REG-101 SRC-001 / SRC-002"
+  },
+  "archive": {
+    "filename": "curl-link-hub (5).zip",
+    "present": true,
+    "sha256": "a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95",
+    "size_bytes": 3046971
+  },
+  "application": {
+    "name": "TheHouse v2",
+    "framework": "Base44 low-code (React 18 + Vite + Tailwind + Radix/shadcn; Deno serverless functions)",
+    "export_type": "Base44 application export (frontend source + entity schemas + serverless functions)"
+  },
+  "counts": {
+    "total_files_excl_node_modules": 1485,
+    "entities": 87,
+    "functions": 99,
+    "agents": 1,
+    "pages_jsx": 144,
+    "components_jsx": 589,
+    "lib_files": 196,
+    "governance_md_docs": 231
+  },
+  "top_level": [
+    "base44",
+    "public",
+    "src"
+  ]
+}
