@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T21:11:52.167Z
+Generated: 2026-07-25T21:15:15.021Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T21:11:52.167Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 24 |
+| RATIFIED | 25 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.6.0 | 24 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.7.0 | 25 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.5.0 | 21 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.5.0 | 41 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.5.0 | 36 |
 | REG-104 | Finding Register | IN_REVIEW | 0.5.0 | 41 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.5.0 | 13 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.5.0 | 36 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.7.0 | 22 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.7.0 | 31 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.8.0 | 24 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.8.0 | 33 |
 
 ## Findings by control
 
@@ -157,3 +157,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-031 (GATE-V1-G4): No vendor/system automatically retained or retired; no implementation authorized
 - APP-V1-031 (GATE-V1-G4): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
 - APP-V1-031 (GATE-V1-G4): Independent assurance reserved for independence-requiring claims
+- APP-V1-032 (V1-D): Package 4 closure record ratified; Gate V1-G4 disposed PASS (DEC-V1-022)
+- APP-V1-032 (V1-D): Authored and committed separately from Package 4 authoring work
+- APP-V1-032 (V1-D): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-033 (PACKAGE-4): Package 4 reviewed and closed separately from authoring
+- APP-V1-033 (PACKAGE-4): Volume 0 and Packages 1, 2, and 3 freezes preserved; no frozen artifact modified
+- APP-V1-033 (PACKAGE-4): No implementation and no master development plan authorized by Package 4
+- APP-V1-033 (PACKAGE-4): No vendor or system automatically retained or retired; target dispositions deferred to Package 5
+- APP-V1-033 (PACKAGE-4): Gate V1-G4 disposed PASS (DEC-V1-022); Package 5 convergence authorized to begin as planning only (DEC-V1-024)
+- APP-V1-033 (PACKAGE-4): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.7.0
+version: 0.8.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -549,5 +549,50 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-023
+    class: D2
+    question: >-
+      Is Volume 1 Package 4 (current ecosystem and operating reality) closed and
+      frozen?
+    decision: >-
+      Close and freeze Package 4. The closure record V1-D is ratified (APP-V1-032)
+      and, with Gate V1-G4 disposed PASS (DEC-V1-022), chapters V1-15..V1-20 and
+      the closure record V1-D are frozen at v1.0.0 under APP-V1-033 (base_commit
+      6178551). The Package 4 registers (REG-101..REG-106), the controlled
+      ecosystem input, and the qualification:ecosystem tooling remain living
+      machinery and are not frozen. Volume 0 and Packages 1, 2, and 3 freezes are
+      preserved and unmodified. No implementation, master development plan, vendor
+      retention, or vendor retirement is authorized by this closure.
+    evidence_refs:
+      - V1-D
+      - GATE-V1-G4
+      - DEC-V1-022
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-024
+    class: D2
+    question: >-
+      Is Volume 1 Package 5 (convergence) authorized to begin?
+    decision: >-
+      Authorize Package 5 (convergence) to begin as the next planning and
+      assessment step only. Package 5 converges the three factual inputs - Base44
+      product intelligence (Package 2), The House implementation truth
+      (Package 3), and the current Curling Canada operating and ecosystem truth
+      (Package 4) - into a target design. This authorization is for planning and
+      assessment authoring; it does not authorize implementation, construction, or
+      any material commitment, which remain reserved for a later executive-accepted
+      material-commitment gate.
+    evidence_refs:
+      - V1-D
+      - GATE-V1-G4
+      - DEC-V1-023
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
     effective_date: TBD
     status: accepted_by_accountable_authority

@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.7.0
+version: 0.8.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -410,4 +410,61 @@ records:
       - No vendor/system automatically retained or retired; no implementation authorized
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
       - Independent assurance reserved for independence-requiring claims
+    approved_at: null
+  - id: APP-V1-032
+    artifact_id: V1-D
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-D
+    conditions:
+      - Package 4 closure record ratified; Gate V1-G4 disposed PASS (DEC-V1-022)
+      - Authored and committed separately from Package 4 authoring work
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-033
+    artifact_id: PACKAGE-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-D
+    base_commit: "6178551"
+    amendment_process: >-
+      Any change to a frozen Package 4 chapter requires an amendment decision in
+      REG-107 (with amends set to the artifact id and a stated amendment_reason),
+      a version increment, and re-ratification. The freeze-integrity control
+      rejects unamended version drift. Package 4 registers (REG-101..REG-106), the
+      controlled ecosystem input, and the qualification:ecosystem tooling remain
+      living machinery and are not frozen by this approval.
+    frozen: true
+    frozen_artifacts:
+      - id: V1-15
+        version: 1.0.0
+      - id: V1-16
+        version: 1.0.0
+      - id: V1-17
+        version: 1.0.0
+      - id: V1-18
+        version: 1.0.0
+      - id: V1-19
+        version: 1.0.0
+      - id: V1-20
+        version: 1.0.0
+      - id: V1-D
+        version: 1.0.0
+    scope:
+      - V1-15
+      - V1-16
+      - V1-17
+      - V1-18
+      - V1-19
+      - V1-20
+      - V1-D
+    conditions:
+      - Package 4 reviewed and closed separately from authoring
+      - Volume 0 and Packages 1, 2, and 3 freezes preserved; no frozen artifact modified
+      - No implementation and no master development plan authorized by Package 4
+      - No vendor or system automatically retained or retired; target dispositions deferred to Package 5
+      - Gate V1-G4 disposed PASS (DEC-V1-022); Package 5 convergence authorized to begin as planning only (DEC-V1-024)
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null
