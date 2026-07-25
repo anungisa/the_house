@@ -1,7 +1,7 @@
 register_id: REG-102
 name: Evidence Register
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Reviewable evidence items supporting Volume 1 Package 2 (Base44) findings and
 # dispositions. Each entry cites a controlled source (REG-101), a reviewable
 # location, an artifact type, and an evidence rating (E0-E4). Structural items
@@ -698,4 +698,172 @@ records:
     notes: >-
       National/provincial authority tiers grounded in ratified Volume 0 V0-06;
       individual role-multiplicity is OPERATIONAL_TRUTH pending validation.
+  # --- Package 5: convergence and target-disposition evidence (EV-042..053) ---
+  - id: EV-042
+    source_ref: SRC-022
+    summary: >-
+      Capability-layer disposition matrix: 12 unified target capabilities
+      (CAP-037..CAP-048) each dispositioned independently across the experience,
+      domain, data-authority, and integration layers (48 layer cells), with the
+      contributing source recorded per cell.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/capability-layer-matrix.json
+    captured_at: TBD
+    capability_refs: [CAP-037, CAP-038, CAP-039, CAP-040, CAP-041, CAP-042, CAP-043, CAP-044, CAP-045, CAP-046, CAP-047, CAP-048]
+    notes: >-
+      Structured from the controlled convergence input (SRC-022). Dispositions
+      are decisions recorded in the input, not invented by tooling; none
+      authorizes implementation.
+  - id: EV-043
+    source_ref: SRC-022
+    summary: >-
+      Base44 / The House / ecosystem / external-system contribution crosswalk:
+      per-capability mapping of what each evidence stream contributes to the
+      target, keeping Base44 as product evidence rather than production
+      authority.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/base44-house-ecosystem-crosswalk.json
+    captured_at: TBD
+    capability_refs: [CAP-037, CAP-038, CAP-039, CAP-040, CAP-041, CAP-042]
+    notes: >-
+      Newer or more polished evidence is not treated as automatically
+      authoritative; contribution is qualified per capability.
+  - id: EV-044
+    source_ref: SRC-022
+    summary: >-
+      Target system-authority matrix across 13 governed domains: authoritative
+      source, execution system, external dependency, transition authority, and
+      the unresolved condition (if any) for each domain.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/system-authority-matrix.json
+    captured_at: TBD
+    notes: >-
+      Externalized systems retain their authority; transitional authority is
+      recorded with an explicit unresolved condition where not yet validated.
+  - id: EV-045
+    source_ref: SRC-022
+    summary: >-
+      Target data-authority matrix across 13 governed domains: authoritative
+      source, read model, transition authority, and unresolved condition per
+      data domain.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/data-authority-matrix.json
+    captured_at: TBD
+    notes: >-
+      Curling Canada is the intended master-data authority (V0-06); unresolved
+      migration-era authority is recorded, not assumed resolved.
+  - id: EV-046
+    source_ref: SRC-022
+    summary: >-
+      Target reconciliation matrix across 13 governed domains: inbound and
+      outbound reconciliation obligations and external dependencies per domain.
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/reconciliation-matrix.json
+    captured_at: TBD
+    notes: >-
+      Reconciliation boundaries inherit the ratified Volume 0 authority model;
+      current manual reconciliation is stakeholder-described pending validation.
+  - id: EV-047
+    source_ref: SRC-022
+    summary: >-
+      Affiliation target operating model: a 15-step target flow with governed
+      transition ownership and three governed transition pathways (continuity
+      confirmation, renewal with remediation, new affiliation).
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/affiliation-target-flow.json
+    captured_at: TBD
+    capability_refs: [CAP-040]
+    notes: >-
+      The House owns governed lifecycle state; the experience layer presents it.
+      The historical/goodwill population is represented by the continuity
+      pathway.
+  - id: EV-048
+    source_ref: SRC-022
+    summary: >-
+      First-release affiliation boundary: the smallest legitimate first
+      affiliation release (15 included capabilities) with 6 explicit exclusions
+      deferred until the vertical is proven.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/first-release-boundary.json
+    captured_at: TBD
+    capability_refs: [CAP-040]
+    notes: >-
+      Scope-controlled boundary; exclusions are explicit and do not authorize
+      implementation of the included set.
+  - id: EV-049
+    source_ref: SRC-022
+    summary: >-
+      Contradiction disposition set: material unresolved contradictions
+      (master-data authority, evidence binding, registration-system transition
+      authority) each retained open with its controlling claim type.
+    artifact_type: observation
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/contradiction-disposition.json
+    captured_at: TBD
+    notes: >-
+      No contradiction is force-closed and none is resolved with the wrong
+      authority type; each remains open pending the correct evidence.
+  - id: EV-050
+    source_ref: SRC-022
+    summary: >-
+      Stakeholder validation backlog: the pending consultations (Jen, Helene,
+      Member Associations, vendors, Nolan) with the specific claim each blocks.
+    artifact_type: observation
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/stakeholder-validation-backlog.json
+    captured_at: TBD
+    notes: >-
+      Pending consultation blocks only the affected claim, not the package; no
+      stakeholder validation is fabricated.
+  - id: EV-051
+    source_ref: SRC-022
+    summary: >-
+      Transition-constraint inventory (TC-001..TC-015): evidence-backed
+      constraints on any future transition, each with owner, evidence required,
+      current confidence, affected decision, and future blocking gate.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/transition-constraint-inventory.json
+    captured_at: TBD
+    notes: >-
+      Constraints only; NOT the master development plan. A later plan must
+      respect these, not the reverse.
+  - id: EV-052
+    source_ref: SRC-023
+    summary: >-
+      House unit-test execution record reconciling the static Package 3 case
+      inventory (1326 lexical it/test tokens) against executed behaviour: 1300
+      passed, 0 skipped, 0 todo, 0 excluded, 99 files (npx vitest run
+      tests/unit, 2026-07-25).
+    artifact_type: test
+    evidence_rating: E3
+    reviewable_location: docs/program/volume-1/generated/convergence/test-reconciliation.json
+    captured_at: '2026-07-25'
+    notes: >-
+      The 26-case gap is a parser-semantics artifact (lexical token count vs
+      runtime case count; static count cannot expand it.each()). Controlling
+      figure: 1300 executed and passed. Narrow evidence correction; does not
+      modify the frozen Package 3 artifacts.
+  - id: EV-053
+    source_ref: SRC-022
+    summary: >-
+      Convergence source-baseline summary and report binding the three ratified
+      baselines (Base44 SRC-001, The House SRC-002, ecosystem SRC-019) with the
+      evidence-precedence rules that govern which stream controls each claim
+      type.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/convergence/source-baseline-summary.json; docs/program/volume-1/generated/convergence/convergence-report.md
+    captured_at: TBD
+    notes: >-
+      Precedence rules ensure implementation truth controls "does it work",
+      operating reality controls "how does the process run", and policy truth
+      controls authority. No new primary evidence is introduced.
 

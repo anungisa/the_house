@@ -1,7 +1,7 @@
 register_id: REG-104
 name: Finding Register
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Qualification findings from Package 2 (Base44). Findings are grouped by
 # character: PRODUCT VALUE (reusable intelligence), PRODUCTION RISK (why the
 # prototype must not become production authority), and UNKNOWN/CONSTRAINT (open
@@ -703,4 +703,190 @@ records:
     notes: >-
       External SoR authority preserved; projection/gating model pending
       validation (Jen, compliance).
+  # --- Package 5: convergence target-disposition findings (FND-042..053) ---
+  - id: FND-042
+    statement: >-
+      Club recognition and establishment has no target-ready create/bootstrap
+      path: the House organization registry is read-only with no create endpoint,
+      so the domain layer must be rebuilt on the Governance Kernel while
+      preserving Curling Canada master-data authority.
+    finding_type: capability_gap
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, EV-042, CAP-037]
+    capability_refs: [CAP-037]
+    production_risk: high
+    recommended_disposition: REBUILD
+    status: open
+    notes: >-
+      Domain rebuild; experience adapted from Base44. Master-data authority
+      contradiction CON-012 remains open. Constraint, not an authorization.
+  - id: FND-043
+    statement: >-
+      Jurisdiction resolution has no implementation in either Base44 or The House
+      and is performed informally today; a new jurisdiction model must be built to
+      route affiliations to the correct province/PTSO.
+    finding_type: capability_gap
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, EV-042, CAP-038]
+    capability_refs: [CAP-038]
+    production_risk: medium
+    recommended_disposition: REBUILD
+    status: open
+    notes: >-
+      Provincial/PTSO authority preserved; boundaries pending Member-Association
+      validation.
+  - id: FND-044
+    statement: >-
+      The seasonal affiliation lifecycle is the strongest convergence asset: the
+      House Governance Kernel and affiliation FSM already own lifecycle state
+      fail-closed and are reusable target value; the Base44 tiered-affiliation
+      concept is a reusable experience input.
+    finding_type: reusable_value
+    evidence_rating: E3
+    source_refs: [SRC-001, SRC-002, EV-042, CAP-039]
+    capability_refs: [CAP-039]
+    production_risk: low
+    recommended_disposition: RETAIN
+    status: corroborated
+    notes: >-
+      Kernel retained at domain/data/integration layers; experience adapted from
+      Base44. State authority has no material unresolved condition.
+  - id: FND-045
+    statement: >-
+      Affiliation requirements are not versioned: the House has policy-versioning
+      primitives but does not yet resolve a versioned requirement set, and
+      requirements are currently applied by staff judgement.
+    finding_type: capability_gap
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, EV-042, CAP-040]
+    capability_refs: [CAP-040]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: open
+    notes: >-
+      Adapt the affiliation domain to resolve versioned requirements anchored on
+      policy_version; content/cadence pending policy validation.
+  - id: FND-046
+    statement: >-
+      Evidence capture is not production-ready for affiliation: the House has
+      evidence metadata, hashing, storage and malware scan/quarantine, but the
+      upload path is unwired and documents are emailed and filed manually today.
+    finding_type: production_readiness_gap
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, EV-042, CAP-041]
+    capability_refs: [CAP-041]
+    production_risk: medium
+    recommended_disposition: ADAPT
+    status: open
+    notes: >-
+      Wire evidence upload into the affiliation flow; evidence_object metadata is
+      authoritative and immutable. Required-document matrix pending compliance
+      validation.
+  - id: FND-047
+    statement: >-
+      Fee policy and payment execution must be split by authority: the House has
+      no fee-policy domain and is not a payment processor, so fee policy is
+      governed House domain state while charge execution is externalized to the
+      processor, which does not define fee policy.
+    finding_type: authority_conflict
+    evidence_rating: E1
+    source_refs: [SRC-002, SRC-019, EV-042, CAP-042]
+    capability_refs: [CAP-042, CAP-046]
+    production_risk: high
+    recommended_disposition: EXTERNALIZE
+    status: open
+    notes: >-
+      House owns amounts owed; processor executes charges. Fee schedule and
+      processor terms pending financial validation (Helene).
+  - id: FND-048
+    statement: >-
+      Reviewer routing and assignment does not exist: neither Base44 nor The
+      House provides routing (House authorization is role-only), and reviewers are
+      chosen manually by staff, so routing must be rebuilt and fed by jurisdiction
+      resolution.
+    finding_type: capability_gap
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, EV-042, CAP-043]
+    capability_refs: [CAP-043, CAP-038]
+    production_risk: medium
+    recommended_disposition: REBUILD
+    status: open
+    notes: >-
+      Explicit rebuild; assignment rules pending operational validation.
+  - id: FND-049
+    statement: >-
+      Return-for-information and resubmission is missing from the affiliation
+      FSM: the correction back-and-forth is handled by email today and must be
+      added as governed transitions.
+    finding_type: capability_gap
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, EV-042, CAP-044]
+    capability_refs: [CAP-044]
+    production_risk: low
+    recommended_disposition: ADAPT
+    status: open
+    notes: >-
+      Add return-for-information + resubmit transitions; governed transitions
+      recorded in state history.
+  - id: FND-050
+    statement: >-
+      Governed decision and exactly-once activation is reusable target value: the
+      House kernel provides transition + idempotency + outbox exactly-once
+      semantics; activation is currently recorded manually.
+    finding_type: reusable_value
+    evidence_rating: E3
+    source_refs: [SRC-002, EV-042, CAP-045]
+    capability_refs: [CAP-045]
+    production_risk: medium
+    recommended_disposition: RETAIN
+    status: corroborated
+    notes: >-
+      Exactly-once enforced via idempotency keys and outbox dedupe. Governed
+      database behaviour remains unproven without a deployed environment.
+  - id: FND-051
+    statement: >-
+      Accounting and ledger truth must remain externalized: neither Base44 nor
+      The House is an accounting system, and the accounting system retains ledger
+      authority, so The House consumes a reconciliation feed only.
+    finding_type: authority_conflict
+    evidence_rating: E2
+    source_refs: [SRC-019, EV-042, CAP-047]
+    capability_refs: [CAP-047]
+    production_risk: medium
+    recommended_disposition: EXTERNALIZE
+    status: open
+    notes: >-
+      Ledger authority preserved in the accounting system; reconciliation
+      format/cadence pending financial validation (Helene).
+  - id: FND-052
+    statement: >-
+      Authoritative status projection belongs to The House with The Button as
+      presenter: the House owns authoritative state, read model and outbox
+      projection, while The Button is the experience layer and must not own
+      governed state.
+    finding_type: reusable_value
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, EV-042, CAP-048]
+    capability_refs: [CAP-048]
+    production_risk: medium
+    recommended_disposition: RETAIN
+    status: corroborated
+    notes: >-
+      House authoritative; Button consumes a read model. Button surface scope
+      pending experience validation.
+  - id: FND-053
+    statement: >-
+      Participant identity has an unresolved concurrent-role and identity-matching
+      model: the target must reconcile identities on migration and represent
+      individuals holding multiple concurrent roles, which is not yet validated.
+    finding_type: capability_gap
+    evidence_rating: E1
+    source_refs: [SRC-002, SRC-019, EV-044]
+    production_risk: medium
+    recommended_disposition: null
+    status: open
+    notes: >-
+      Concurrent-role model and identity matching pending validation; identity
+      provider (M365) dependency unvalidated. Blocks the participants/identity
+      domain claim only.
 

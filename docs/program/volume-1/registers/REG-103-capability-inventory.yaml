@@ -1,7 +1,7 @@
 register_id: REG-103
 name: Capability Inventory
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Normalized capabilities observed in the Base44 export (SRC-001). ONE record per
 # real capability, not one per route. Dispositions here are the proposed target
 # treatment; the governed decision (with rationale and evidence) is recorded in
@@ -714,4 +714,220 @@ records:
     notes: >-
       External SoR authority (Sideline, accreditation) must be preserved, not
       absorbed. Projection/gating model pending validation.
+  # --- Package 5: unified target capabilities (CAP-037..048) ---
+  # Target dispositions are recorded per layer in REG-106 (QD-037..), not as a
+  # single capability-level disposition; disposition is null here by design.
+  - id: CAP-037
+    name: Club recognition and establishment
+    description: >-
+      Recognize an existing club or establish a new organization record. Base44
+      contributes a guided onboarding concept; The House organization registry
+      has read/write but no create/bootstrap path; the current process is manual
+      recognition via email/spreadsheet; the incumbent registration provider is a
+      transitional external dependency.
+    business_capability: Organization onboarding and recognition
+    target_house_domain: Organizations and clubs (platform core)
+    target_button_experience: Guided club recognition/establishment
+    disposition: null
+    production_risk: high
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, SRC-019, SRC-018, SRC-022]
+    finding_refs: [FND-042]
+    notes: >-
+      Domain path must be rebuilt on the Governance Kernel; Curling Canada is the
+      intended master-data authority (CON-012 open). Included in the first
+      release.
+  - id: CAP-038
+    name: Jurisdiction resolution
+    description: >-
+      Resolve the province/PTSO jurisdiction that governs an organization. No
+      material Base44 contribution and no House jurisdiction/assignment model
+      exist today; jurisdiction is known informally with no system routing.
+    business_capability: Jurisdiction and provincial routing
+    target_house_domain: Organizations and clubs (jurisdiction model)
+    target_button_experience: Guided jurisdiction confirmation
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-043]
+    notes: >-
+      New jurisdiction model; provincial/PTSO authority preserved. Provincial
+      boundaries pending Member-Association validation.
+  - id: CAP-039
+    name: Seasonal affiliation lifecycle
+    description: >-
+      The governed affiliation state machine for a season. Base44 contributes the
+      tiered-affiliation concept (strongest reusable product asset); The House
+      Governance Kernel + affiliation FSM, guards and idempotency own lifecycle
+      state; the current process tracks status manually.
+    business_capability: Affiliation lifecycle governance
+    target_house_domain: Affiliation (Governance Kernel)
+    target_button_experience: Guided affiliation lifecycle
+    disposition: null
+    production_risk: low
+    evidence_rating: E3
+    source_refs: [SRC-001, SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-044]
+    notes: >-
+      Kernel owns transitions fail-closed; entity_state is authoritative. State
+      authority has no material unresolved condition.
+  - id: CAP-040
+    name: Versioned affiliation requirements
+    description: >-
+      Determine the applicable, versioned requirement set for an affiliation. The
+      House has policy-versioning primitives but requirements are not yet
+      versioned; requirements are currently applied by staff judgement.
+    business_capability: Requirement policy management
+    target_house_domain: Affiliation (requirement resolution)
+    target_button_experience: Present applicable requirements in guided flow
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-045]
+    notes: >-
+      policy_version anchors requirement versions; external requirement feeds
+      deferred. Requirement content/cadence pending policy validation.
+  - id: CAP-041
+    name: Evidence capture and binding
+    description: >-
+      Upload and bind evidence artifacts to a governed affiliation. Base44
+      contributes an upload UX concept; The House has evidence metadata, hashing,
+      storage and malware scan/quarantine but the upload path is unwired;
+      documents are currently emailed and filed manually.
+    business_capability: Evidence and document governance
+    target_house_domain: Evidence and documents (platform core)
+    target_button_experience: Guided upload / return-for-information
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-046]
+    notes: >-
+      evidence_object metadata is authoritative and immutable; required-document
+      matrix pending compliance validation (Jen).
+  - id: CAP-042
+    name: Fee determination
+    description: >-
+      Determine fees owed for an affiliation. No House fee-policy domain exists
+      today; fees are computed manually and invoiced; the payment processor
+      executes charges and the accounting system retains ledger truth.
+    business_capability: Fee policy determination
+    target_house_domain: Payments / fee policy (platform core)
+    target_button_experience: Present fee determination in guided flow
+    disposition: null
+    production_risk: high
+    evidence_rating: E1
+    source_refs: [SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-047]
+    notes: >-
+      Fee POLICY is governed House domain state; charge execution is externalized
+      to the processor. Fee schedule/economics pending financial validation
+      (Helene).
+  - id: CAP-043
+    name: Reviewer routing and assignment
+    description: >-
+      Route a submitted affiliation to the correct reviewer. No material Base44
+      contribution and no House reviewer routing exist (role-only authorization);
+      reviewers are currently chosen manually by staff.
+    business_capability: Review workflow routing
+    target_house_domain: Affiliation (reviewer assignment)
+    target_button_experience: Reviewer worklist / queue
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-048]
+    notes: >-
+      Explicit rebuild; consumes jurisdiction resolution (CAP-038). Assignment
+      rules pending operational validation.
+  - id: CAP-044
+    name: Return-for-information and resubmission
+    description: >-
+      Return an application for more information and accept a resubmission. Base44
+      contributes a guided correction UX concept; the House FSM lacks a
+      return-for-information transition; the back-and-forth is handled by email
+      today.
+    business_capability: Application correction workflow
+    target_house_domain: Affiliation (FSM transitions)
+    target_button_experience: Guided required-action view
+    disposition: null
+    production_risk: low
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, SRC-022]
+    finding_refs: [FND-049]
+    notes: >-
+      Add return-for-information + resubmit transitions to the FSM; governed
+      transitions recorded in state history.
+  - id: CAP-045
+    name: Governed decision and exactly-once activation
+    description: >-
+      Record the governed decision and activate the affiliation exactly once. The
+      House kernel provides transition + idempotency + outbox exactly-once
+      semantics; activation is currently recorded manually.
+    business_capability: Governed decision and activation
+    target_house_domain: Affiliation (Governance Kernel)
+    target_button_experience: Decision / status presentation
+    disposition: null
+    production_risk: medium
+    evidence_rating: E3
+    source_refs: [SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-050]
+    notes: >-
+      Kernel enforces exactly-once via idempotency keys and outbox dedupe.
+      Governed database behaviour unproven without a deployed environment.
+  - id: CAP-046
+    name: Payment execution
+    description: >-
+      Execute the payment transaction for an affiliation fee. The House is not a
+      payment processor; payments are taken via existing processors. Processors
+      execute transactions but do not define fee policy.
+    business_capability: Payment processing (externalized)
+    target_house_domain: Payment-reconciliation boundary only
+    target_button_experience: Guided checkout hand-off
+    disposition: null
+    production_risk: high
+    evidence_rating: E1
+    source_refs: [SRC-019, SRC-022]
+    finding_refs: [FND-047]
+    notes: >-
+      Externalized to the payment processor; House records a
+      payment-reconciliation boundary, not the ledger. Processor terms pending
+      financial validation (Helene).
+  - id: CAP-047
+    name: Accounting and ledger truth
+    description: >-
+      Maintain the authoritative financial ledger. Neither Base44 nor The House
+      is an accounting system; the accounting system retains ledger authority.
+    business_capability: Financial ledger (externalized)
+    target_house_domain: Reconciliation boundary only
+    target_button_experience: None in first release
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-019, SRC-022]
+    finding_refs: [FND-051]
+    notes: >-
+      Ledger truth stays in the accounting system; House consumes a
+      reconciliation feed only. Format/cadence pending financial validation
+      (Helene).
+  - id: CAP-048
+    name: Authoritative status projection
+    description: >-
+      Expose authoritative affiliation status to The Button and integrations. The
+      House owns authoritative state + read model + outbox projection; The Button
+      is the client-facing experience layer; status is currently communicated ad
+      hoc.
+    business_capability: Status projection and read model
+    target_house_domain: Analytics / read model (platform core)
+    target_button_experience: Guided status / required-action view
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-001, SRC-002, SRC-019, SRC-022]
+    finding_refs: [FND-052]
+    notes: >-
+      The House owns lifecycle state; the Button presents it via a read model.
+      Button surface scope pending experience validation.
 

@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "21b3f7e8739c26d83c13ebba54c2668bf7422a80",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total": 3,
+    "retained_open": 3,
+    "note": "Unresolved material contradictions are retained open; none are force-closed, and none are resolved using the wrong authority type."
+  },
+  "contradiction_dispositions": [
+    {
+      "id": "CON-012",
+      "subject": "Master-data authority (policy truth vs stakeholder statement)",
+      "disposition": "RETAIN_OPEN",
+      "controlling_claim_type": "national_policy_or_decision_authority",
+      "note": "Policy truth (SRC-017) indicates Curling Canada master-data intent; stakeholder statement (SRC-020) describes duplicated authoritative data. Retained open; target model records Curling Canada master-data intent pending migration/validation."
+    },
+    {
+      "id": "CON-013",
+      "subject": "Evidence binding (policy vs stakeholder)",
+      "disposition": "RETAIN_OPEN",
+      "controlling_claim_type": "national_policy_or_decision_authority",
+      "note": "Retained open; governed evidence binding is the target, pending operational validation. Not resolved using the wrong authority type."
+    },
+    {
+      "id": "CON-014",
+      "subject": "Registration system authority during transition",
+      "disposition": "RETAIN_OPEN",
+      "controlling_claim_type": "contractual_obligation",
+      "note": "Incumbent provider is authoritative during transition; The House is the target. Resolution requires an executed exit trigger and validated migration; retained open."
+    }
+  ]
+}

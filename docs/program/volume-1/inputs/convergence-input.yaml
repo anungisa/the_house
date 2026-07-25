@@ -1,0 +1,727 @@
+# Controlled convergence input — Volume 1 Package 5 (Convergence and Target Disposition).
+#
+# This file is a CONTROLLED source. It structures the convergence of three already-
+# ratified factual inputs into an evidence-backed target disposition:
+#   - Base44 product and interaction intelligence (Package 2, V1-05..V1-09)
+#   - The House implementation truth (Package 3, V1-10..V1-14)
+#   - Curling Canada operating and ecosystem reality (Package 4, V1-15..V1-20)
+#
+# It records target-definition decisions of the Accountable Program Authority. It does
+# NOT authorize implementation, procurement, or a master development plan. The
+# qualification:convergence tooling structures this file (plus the ratified registers
+# and the generated Package 2-4 inventories) into NON-AUTHORITATIVE views. No target
+# decision is invented by tooling; every decision originates here or in the ratified
+# chapters/registers. Contradictions are retained open, not force-closed. A source that
+# is authoritative for one claim type is not automatically authoritative for another.
+
+meta:
+  package: Volume 1 Package 5 — Convergence and Target Disposition
+  central_question: >-
+    What should the target platform retain, adapt, rebuild, externalize, defer,
+    consolidate, or retire — and what is the smallest legitimate first affiliation
+    release?
+  authority: >-
+    NON-AUTHORITATIVE structuring input. Target-definition decisions only; no
+    implementation, procurement, or master development plan is authorized.
+  primary_grounding:
+    - package: Package 2 (Base44 product intelligence)
+      chapters: [V1-05, V1-06, V1-07, V1-08, V1-09]
+      generated: docs/program/volume-1/generated/base44/
+      note: Product and experience evidence only; NOT production authority.
+    - package: Package 3 (The House implementation truth)
+      chapters: [V1-10, V1-11, V1-12, V1-13, V1-14]
+      generated: docs/program/volume-1/generated/house/
+      note: Runtime code, persistence constraints, executable tests; production-candidate.
+    - package: Package 4 (Curling Canada operating and ecosystem reality)
+      chapters: [V1-15, V1-16, V1-17, V1-18, V1-19, V1-20]
+      generated: docs/program/volume-1/generated/ecosystem/
+      note: Policy truth vs stakeholder-described operations; contractual questions open.
+
+# ---------------------------------------------------------------------------------
+# V1-21 — Evidence precedence: claim type determines controlling evidence.
+# ---------------------------------------------------------------------------------
+evidence_precedence:
+  - claim_type: national_policy_or_decision_authority
+    controlling_evidence: ratified policy and authorized decision
+    example_sources: [Volume 0 REG-005, SRC-016, SRC-017]
+  - claim_type: actual_current_operating_practice
+    controlling_evidence: corroborated operational evidence and stakeholder validation
+    example_sources: [SRC-019, SRC-020]
+  - claim_type: implemented_system_behaviour
+    controlling_evidence: runtime code, persistence constraints and executable tests
+    example_sources: [SRC-002, SRC-023]
+  - claim_type: contractual_obligation
+    controlling_evidence: executed agreement or authoritative contract record
+    example_sources: [SRC-019]
+  - claim_type: vendor_capability
+    controlling_evidence: demonstrated capability or authoritative vendor evidence
+    example_sources: [SRC-020]
+  - claim_type: user_experience_value
+    controlling_evidence: observed journey, validated stakeholder need and usability evidence
+    example_sources: [SRC-001]
+  - claim_type: financial_truth
+    controlling_evidence: accounting, contract and validated business evidence
+    example_sources: [SRC-019]
+
+precedence_rules:
+  - newer does not automatically mean more authoritative
+  - implemented does not automatically mean desirable
+  - polished UX does not establish business validity
+  - current practice does not automatically become the target
+  - documentation does not override contradictory executable evidence
+  - unresolved material contradictions must remain open
+  - E0/E1 evidence alone cannot support an irreversible target decision
+  - a source authoritative for one claim type is non-authoritative for another
+
+# ---------------------------------------------------------------------------------
+# V1-22 — Unified capability and layer disposition.
+# Each capability is evaluated independently at four layers:
+#   experience | domain | data_authority | integration
+# A single capability may receive different dispositions by layer.
+# Dispositions: ADOPT ADAPT CONSOLIDATE RETAIN REBUILD DEFER EXTERNALIZE RETIRE
+# ---------------------------------------------------------------------------------
+capabilities:
+  - id: CAP-037
+    name: Club recognition and establishment
+    summary: Recognize an existing club or establish a new organization record.
+    base44_contribution: Guided onboarding experience concept (V1-06, V1-09).
+    house_contribution: Organization registry read/write; no create/bootstrap path (V1-11, V1-14.5).
+    current_process_contribution: Manual club recognition via email/spreadsheet (V1-16).
+    external_dependency: Incumbent registration provider (transitional) (SRC-018).
+    evidence_rating: E2
+    finding_refs: [FND-042]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Button-guided recognition/establishment. }
+      domain: { disposition: REBUILD, contribution: The House, note: No create/bootstrap path exists; build on the Governance Kernel. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: House organization registry; Curling Canada is master-data authority. }
+      integration: { disposition: ADAPT, contribution: external system, note: Incumbent-provider import during transition, with an explicit exit trigger. }
+    unresolved_validation: Historical-club eligibility rules pending operational validation (Jen).
+    release_hypothesis: Included in first release (recognition or establishment).
+
+  - id: CAP-038
+    name: Jurisdiction resolution
+    summary: Resolve the province/PTSO jurisdiction that governs an organization.
+    base44_contribution: None material (V1-07).
+    house_contribution: No jurisdiction/assignment model today (V1-14.5).
+    current_process_contribution: Jurisdiction known informally; no system routing (V1-16, FND-037).
+    external_dependency: Provincial/PTSO authority (Volume 0 doctrine).
+    evidence_rating: E2
+    finding_refs: [FND-043]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Guided jurisdiction confirmation. }
+      domain: { disposition: REBUILD, contribution: The House, note: New jurisdiction model; no equivalent exists. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: House holds mapping; provincial authority preserved. }
+      integration: { disposition: REBUILD, contribution: The House, note: Routing feeds reviewer assignment. }
+    unresolved_validation: Provincial jurisdiction boundaries pending Member-Association validation.
+    release_hypothesis: Included in first release (jurisdiction resolution).
+
+  - id: CAP-039
+    name: Seasonal affiliation lifecycle
+    summary: The governed affiliation state machine for a season.
+    base44_contribution: Tiered affiliation concept (CAP-001, V1-07) — strongest reusable product asset.
+    house_contribution: Governance Kernel + affiliation FSM, guards, idempotency (V1-12).
+    current_process_contribution: Manual status tracking in email/spreadsheet (V1-16).
+    external_dependency: None for state authority.
+    evidence_rating: E3
+    finding_refs: [FND-044]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Adapt the tiered-affiliation concept into a guided Button flow. }
+      domain: { disposition: RETAIN, contribution: The House, note: Governance Kernel owns lifecycle transitions; fail-closed. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: entity_state is the authoritative lifecycle state. }
+      integration: { disposition: RETAIN, contribution: The House, note: Transactional outbox projects state changes. }
+    unresolved_validation: None material for state authority; seasonal boundary rules pending operational validation.
+    release_hypothesis: Included in first release (seasonal affiliation creation + lifecycle).
+
+  - id: CAP-040
+    name: Versioned affiliation requirements
+    summary: Determine the applicable, versioned requirement set for an affiliation.
+    base44_contribution: Requirement presentation concept (V1-06).
+    house_contribution: Policy versioning primitives; requirements not yet versioned (V1-14.3).
+    current_process_contribution: Requirements applied by staff judgement (V1-16).
+    external_dependency: None.
+    evidence_rating: E2
+    finding_refs: [FND-045]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Present applicable requirements in the guided flow. }
+      domain: { disposition: ADAPT, contribution: The House, note: Add versioned requirement resolution to the affiliation domain. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: policy_version anchors requirement versions. }
+      integration: { disposition: DEFER, contribution: The House, note: External requirement feeds deferred to convergence follow-on. }
+    unresolved_validation: Requirement content and versioning cadence pending policy validation.
+    release_hypothesis: Included in first release (versioned requirements).
+
+  - id: CAP-041
+    name: Evidence capture and binding
+    summary: Upload and bind evidence artifacts to a governed affiliation.
+    base44_contribution: Upload UX concept (V1-06).
+    house_contribution: Evidence metadata, hashing, storage, malware scan/quarantine; upload path unwired (V1-12, V1-14.3).
+    current_process_contribution: Documents emailed and filed manually (V1-16, DATA-DOCS).
+    external_dependency: Evidence storage/scanning provider.
+    evidence_rating: E2
+    finding_refs: [FND-046]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Guided upload/return-for-information UX. }
+      domain: { disposition: ADAPT, contribution: The House, note: Wire evidence upload into the affiliation flow. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: evidence_object metadata is authoritative and immutable. }
+      integration: { disposition: ADAPT, contribution: The House, note: Existing scan/quarantine pipeline extended to affiliation. }
+    unresolved_validation: Required-document matrix pending compliance validation (Jen).
+    release_hypothesis: Included in first release (evidence binding).
+
+  - id: CAP-042
+    name: Fee determination
+    summary: Determine fees owed for an affiliation.
+    base44_contribution: Fee presentation concept (V1-06).
+    house_contribution: No fee-policy domain today; would be governed domain state (V1-11).
+    current_process_contribution: Fees computed manually and invoiced (V1-16, DATA-PAYMENTS).
+    external_dependency: Payment processor executes charges (SRC-007); accounting retains ledger truth (SRC-012).
+    evidence_rating: E1
+    finding_refs: [FND-047]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Present fee determination in the guided flow. }
+      domain: { disposition: ADAPT, contribution: The House, note: Fee POLICY is governed House domain state, not processor logic. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: House owns amounts owed; processor does not define fee policy. }
+      integration: { disposition: EXTERNALIZE, contribution: external system, note: Charge execution is externalized to the payment processor. }
+    unresolved_validation: Fee schedule and economics pending financial validation (Helene).
+    release_hypothesis: Included in first release (fee determination + payment-reconciliation boundary).
+
+  - id: CAP-043
+    name: Reviewer routing and assignment
+    summary: Route a submitted affiliation to the correct reviewer.
+    base44_contribution: None material (V1-07).
+    house_contribution: No reviewer routing; role-only authorization (V1-14.4).
+    current_process_contribution: Reviewer chosen manually by staff (V1-16, FND-037).
+    external_dependency: None.
+    evidence_rating: E2
+    finding_refs: [FND-048]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Reviewer worklist/queue experience. }
+      domain: { disposition: REBUILD, contribution: The House, note: Explicit rebuild; no routing exists (V1-14.4). }
+      data_authority: { disposition: RETAIN, contribution: The House, note: Assignment state owned by The House. }
+      integration: { disposition: REBUILD, contribution: The House, note: Consumes jurisdiction resolution (CAP-038). }
+    unresolved_validation: Reviewer assignment rules pending operational validation.
+    release_hypothesis: Included in first release (assigned reviewer routing).
+
+  - id: CAP-044
+    name: Return-for-information and resubmission
+    summary: Return an application for more information and accept a resubmission.
+    base44_contribution: Guided correction UX concept (V1-06).
+    house_contribution: FSM lacks return-for-information transition (V1-14.3).
+    current_process_contribution: Back-and-forth handled by email (V1-16).
+    external_dependency: None.
+    evidence_rating: E2
+    finding_refs: [FND-049]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Guided required-action view. }
+      domain: { disposition: ADAPT, contribution: The House, note: Add return-for-information + resubmit transitions to the FSM. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: Governed transitions recorded in state history. }
+      integration: { disposition: RETAIN, contribution: The House, note: Notifications via outbox. }
+    unresolved_validation: None material.
+    release_hypothesis: Included in first release (return and resubmission).
+
+  - id: CAP-045
+    name: Governed decision and exactly-once activation
+    summary: Record the governed decision and activate the affiliation exactly once.
+    base44_contribution: Status display concept (V1-06).
+    house_contribution: Kernel transition + idempotency + outbox exactly-once (V1-12).
+    current_process_contribution: Activation recorded manually (V1-16).
+    external_dependency: None.
+    evidence_rating: E3
+    finding_refs: [FND-050]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Decision/status presentation. }
+      domain: { disposition: RETAIN, contribution: The House, note: Kernel enforces exactly-once via idempotency keys. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: entity_state activation is authoritative. }
+      integration: { disposition: RETAIN, contribution: The House, note: Outbox dedupe ensures exactly-once downstream. }
+    unresolved_validation: Governed database behaviour unproven without a deployed environment (V1-14.5).
+    release_hypothesis: Included in first release (governed decision + exactly-once activation).
+
+  - id: CAP-046
+    name: Payment execution
+    summary: Execute the payment transaction for an affiliation fee.
+    base44_contribution: Checkout hand-off UX concept (V1-06).
+    house_contribution: None (not a payment processor).
+    current_process_contribution: Payments taken via existing processors (V1-18, DATA-PAYMENTS).
+    external_dependency: Payment processors (SRC-007) — execute transactions, do not define fee policy.
+    evidence_rating: E1
+    finding_refs: [FND-047]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: Guided checkout hand-off. }
+      domain: { disposition: EXTERNALIZE, contribution: external system, note: Processor executes the charge. }
+      data_authority: { disposition: EXTERNALIZE, contribution: external system, note: Processor owns the transaction record; House owns fee policy. }
+      integration: { disposition: EXTERNALIZE, contribution: external system, note: House records a payment-reconciliation boundary, not the ledger. }
+    unresolved_validation: Processor selection and terms pending financial validation (Helene).
+    release_hypothesis: Included at the payment-reconciliation boundary only (not full billing).
+
+  - id: CAP-047
+    name: Accounting and ledger truth
+    summary: Maintain the authoritative financial ledger.
+    base44_contribution: None (V1-07).
+    house_contribution: None (not an accounting system).
+    current_process_contribution: Accounting system retains ledger authority (V1-18, SRC-012).
+    external_dependency: Accounting system (SRC-012).
+    evidence_rating: E2
+    finding_refs: [FND-051]
+    layers:
+      experience: { disposition: DEFER, contribution: external system, note: No first-release experience surface. }
+      domain: { disposition: EXTERNALIZE, contribution: external system, note: Ledger truth stays in the accounting system. }
+      data_authority: { disposition: EXTERNALIZE, contribution: external system, note: Accounting retains ledger authority. }
+      integration: { disposition: EXTERNALIZE, contribution: external system, note: Reconciliation feed only; House is not the ledger. }
+    unresolved_validation: Reconciliation format and cadence pending financial validation (Helene).
+    release_hypothesis: Externalized; only the reconciliation boundary is in first release.
+
+  - id: CAP-048
+    name: Authoritative status projection
+    summary: Expose authoritative affiliation status to The Button and integrations.
+    base44_contribution: Client-facing guided experience (V1-06, V1-09) — Button role.
+    house_contribution: Authoritative state + read model + outbox projection (V1-11, V1-12).
+    current_process_contribution: Status communicated ad hoc (V1-16).
+    external_dependency: The Button (experience layer), downstream integrations.
+    evidence_rating: E2
+    finding_refs: [FND-052]
+    layers:
+      experience: { disposition: ADAPT, contribution: Base44, note: The Button presents guided status/required-action views; it does not own governed state. }
+      domain: { disposition: RETAIN, contribution: The House, note: The House owns lifecycle state; the Button presents it. }
+      data_authority: { disposition: RETAIN, contribution: The House, note: House is authoritative; Button consumes a read model. }
+      integration: { disposition: ADAPT, contribution: The House, note: Read projection/API for Button and integrations. }
+    unresolved_validation: Button surface scope pending experience validation.
+    release_hypothesis: Included in first release (Button status + required-action view + notifications + audit visibility).
+
+# ---------------------------------------------------------------------------------
+# V1-23 — Target system, data-authority and reconciliation convergence.
+# For each governed data domain: authoritative source, execution system, read model,
+# external dependency, inbound/outbound reconciliation, transition authority,
+# unresolved condition.
+# ---------------------------------------------------------------------------------
+governed_domains:
+  - domain: organizations_and_clubs
+    authoritative_source: The House (organization registry); Curling Canada master-data intent
+    execution_system: The House
+    read_model: The Button / integrations
+    external_dependency: Incumbent registration provider (transitional)
+    inbound_reconciliation: Import from incumbent provider during migration
+    outbound_reconciliation: Projection to Button/integrations via outbox
+    transition_authority: The House (governed via Kernel)
+    unresolved_condition: Master-data authority contradiction CON-012 remains open
+  - domain: participants_and_identity
+    authoritative_source: The House (participant registry); Curling Canada identity master
+    execution_system: The House
+    read_model: The Button
+    external_dependency: Identity provider (M365) for authentication (SRC unvalidated)
+    inbound_reconciliation: Identity matching on migration
+    outbound_reconciliation: Role/identity projection
+    transition_authority: The House
+    unresolved_condition: Concurrent-role model and identity matching pending validation (FND-053)
+  - domain: membership
+    authoritative_source: The House / Curling Canada (pending validation)
+    execution_system: The House
+    read_model: The Button
+    external_dependency: Incumbent registration provider (transitional)
+    inbound_reconciliation: Membership import on migration
+    outbound_reconciliation: Membership status projection
+    transition_authority: The House
+    unresolved_condition: Membership authority split pending operational validation
+  - domain: affiliation
+    authoritative_source: The House (entity_state)
+    execution_system: The House (Governance Kernel)
+    read_model: The Button
+    external_dependency: None for state authority
+    inbound_reconciliation: Historical-club continuity import
+    outbound_reconciliation: Affiliation status projection (exactly-once)
+    transition_authority: The House (sole authority)
+    unresolved_condition: None material for state authority
+  - domain: registration
+    authoritative_source: Transitional incumbent provider → The House (target)
+    execution_system: Incumbent provider (transitional)
+    read_model: The House / Button
+    external_dependency: Incumbent registration provider (SRC-018)
+    inbound_reconciliation: Registration data extraction
+    outbound_reconciliation: n/a until cutover
+    transition_authority: Requires explicit exit trigger
+    unresolved_condition: Migration approach/timing pending vendor + data-export validation (FND, CON open)
+  - domain: compliance
+    authoritative_source: External systems of record (accreditation, education) preserved
+    execution_system: The House gates on compliance signals
+    read_model: The Button
+    external_dependency: Accreditation (SRC-009), Sideline Learning (SRC-008)
+    inbound_reconciliation: Compliance signal ingestion
+    outbound_reconciliation: Gating outcomes recorded as governed state
+    transition_authority: The House gates; external SoR retains authority
+    unresolved_condition: Gating/projection model pending compliance validation (Jen)
+  - domain: payments
+    authoritative_source: The House (fee policy) + payment processor (transaction)
+    execution_system: Payment processor
+    read_model: The House reconciliation boundary
+    external_dependency: Payment processors (SRC-007)
+    inbound_reconciliation: Payment confirmation ingestion
+    outbound_reconciliation: Charge requests
+    transition_authority: The House owns fee policy; processor executes
+    unresolved_condition: Processor terms/economics pending financial validation (Helene)
+  - domain: accounting
+    authoritative_source: Accounting system (ledger truth)
+    execution_system: Accounting system
+    read_model: The House reconciliation boundary
+    external_dependency: Accounting system (SRC-012)
+    inbound_reconciliation: Ledger reconciliation
+    outbound_reconciliation: Payment/fee events
+    transition_authority: Accounting system retains ledger authority
+    unresolved_condition: Reconciliation format/cadence pending financial validation (Helene)
+  - domain: accreditation
+    authoritative_source: External accreditation system (SRC-009)
+    execution_system: External accreditation system
+    read_model: The House / Button
+    external_dependency: Accreditation provider
+    inbound_reconciliation: Accreditation status ingestion
+    outbound_reconciliation: n/a
+    transition_authority: External SoR retains authority
+    unresolved_condition: Integration scope pending validation
+  - domain: learning
+    authoritative_source: External learning system (Sideline Learning, SRC-008)
+    execution_system: External learning system
+    read_model: The House / Button
+    external_dependency: Sideline Learning
+    inbound_reconciliation: Course/completion ingestion
+    outbound_reconciliation: n/a
+    transition_authority: External SoR retains authority
+    unresolved_condition: Integration scope pending validation
+  - domain: evidence_and_documents
+    authoritative_source: The House (evidence_object metadata)
+    execution_system: The House
+    read_model: The Button
+    external_dependency: Evidence storage/scanning provider
+    inbound_reconciliation: Document migration (optional)
+    outbound_reconciliation: Evidence references
+    transition_authority: The House
+    unresolved_condition: Required-document matrix pending compliance validation
+  - domain: analytics
+    authoritative_source: Projection only (not a system of record)
+    execution_system: Analytics platform
+    read_model: Analytics platform
+    external_dependency: Analytics platform (Volume 0 L6)
+    inbound_reconciliation: Event/state projections
+    outbound_reconciliation: n/a
+    transition_authority: None (projection)
+    unresolved_condition: Analytics is a projection, not transactional authority
+  - domain: support
+    authoritative_source: External support system (Halo/Zendesk, unvalidated)
+    execution_system: External support system
+    read_model: n/a
+    external_dependency: Support platform (SRC-020, unvalidated)
+    inbound_reconciliation: n/a
+    outbound_reconciliation: n/a
+    transition_authority: External
+    unresolved_condition: Support tooling assumptions pending validation
+
+controlling_boundaries:
+  - The House owns governed lifecycle state where assigned by doctrine.
+  - The Button presents guided experiences but does not independently own governed state.
+  - Payment processors execute transactions but do not define fee policy or accounting truth.
+  - Accounting systems retain ledger authority.
+  - Analytics platforms are projections, not transactional systems of record.
+  - Base44 remains product evidence, not production authority.
+  - Transitional systems require explicit exit triggers.
+
+# ---------------------------------------------------------------------------------
+# V1-24 — Affiliation target operating model and first-release boundary.
+# ---------------------------------------------------------------------------------
+affiliation_target_flow:
+  - step: 1
+    name: Recognize existing club and historical continuity
+    owner_layer: domain
+    house_role: Continuity confirmation pathway
+  - step: 2
+    name: Confirm organization and jurisdiction
+    owner_layer: domain
+    house_role: Organization registry + jurisdiction resolution
+  - step: 3
+    name: Open seasonal affiliation
+    owner_layer: domain
+    house_role: Governance Kernel creates affiliation entity_state
+  - step: 4
+    name: Determine applicable versioned requirements
+    owner_layer: domain
+    house_role: policy_version-anchored requirement resolution
+  - step: 5
+    name: Complete required information
+    owner_layer: experience
+    house_role: Guided data capture; governed persistence
+  - step: 6
+    name: Upload and bind evidence
+    owner_layer: domain
+    house_role: evidence_object metadata + scan/quarantine
+  - step: 7
+    name: Determine fees
+    owner_layer: domain
+    house_role: Fee policy (House) computes amounts owed
+  - step: 8
+    name: Submit
+    owner_layer: domain
+    house_role: Governed submit transition (idempotent)
+  - step: 9
+    name: Route to the correct reviewer
+    owner_layer: domain
+    house_role: Reviewer routing (rebuild) from jurisdiction
+  - step: 10
+    name: Review and return for information where necessary
+    owner_layer: domain
+    house_role: Return-for-information transition
+  - step: 11
+    name: Resubmit
+    owner_layer: domain
+    house_role: Resubmit transition
+  - step: 12
+    name: Record governed decision
+    owner_layer: domain
+    house_role: Kernel decision transition + audit + evidence
+  - step: 13
+    name: Reconcile payment and accounting
+    owner_layer: integration
+    house_role: Payment-reconciliation boundary (processor executes; accounting is ledger)
+  - step: 14
+    name: Activate affiliation exactly once
+    owner_layer: domain
+    house_role: Idempotent activation; outbox exactly-once
+  - step: 15
+    name: Expose authoritative status in The Button and integrations
+    owner_layer: integration
+    house_role: Read projection; Button presents, House owns
+
+transition_pathways:
+  - pathway: Continuity confirmation
+    intended_population: Existing recognized club with satisfactory historical standing
+    governed_treatment: Confirm continuity; do not force through new-applicant process
+    unresolved: Eligibility rules pending Jen/operational validation
+  - pathway: Renewal with remediation
+    intended_population: Existing club with missing, outdated or conflicting evidence
+    governed_treatment: Renew with targeted remediation (return-for-information)
+    unresolved: Remediation thresholds pending operational validation
+  - pathway: New affiliation
+    intended_population: New or materially reconstituted organization
+    governed_treatment: Full governed affiliation process
+    unresolved: Reconstitution criteria pending operational validation
+
+first_release_boundary:
+  included:
+    - club recognition or establishment
+    - jurisdiction resolution
+    - seasonal affiliation creation
+    - versioned requirements
+    - evidence binding
+    - submission
+    - resource-aware authorization
+    - assigned reviewer routing
+    - return and resubmission
+    - governed decision
+    - payment-reconciliation boundary
+    - exactly-once activation
+    - Button status and required-action view
+    - notifications
+    - audit and operational visibility
+  excluded:
+    - unrelated horizontal expansion until this vertical is proven
+    - full billing / invoicing beyond the payment-reconciliation boundary
+    - accreditation/learning authoring (external systems of record retained)
+    - analytics/reporting platform build (projection only)
+    - support tooling replacement
+    - additional domain modules outside the affiliation vertical
+
+# ---------------------------------------------------------------------------------
+# V1-25 — Transition, dependency and validation plan (constraint set, NOT the plan).
+# Each unresolved item: owner, evidence_required, current_confidence, affected_decision,
+# future_blocking_gate, target_resolution_point.
+# ---------------------------------------------------------------------------------
+transition_constraints:
+  - id: TC-001
+    topic: Data migration hypotheses (incumbent registration provider)
+    owner: Program (with vendor)
+    evidence_required: Authoritative data export + field mapping
+    current_confidence: low
+    affected_decision: Registration domain cutover (CAP-037, governed_domains.registration)
+    future_blocking_gate: Material-commitment gate (post Volume 1)
+    target_resolution_point: Volume 2 / migration design
+  - id: TC-002
+    topic: Historical-club continuity rules
+    owner: Jen (operations)
+    evidence_required: Validated eligibility criteria for the three pathways
+    current_confidence: low
+    affected_decision: Transition pathways (V1-24)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 operating-model definition
+  - id: TC-003
+    topic: Source-system extraction needs
+    owner: Program (with vendors)
+    evidence_required: Extraction feasibility per external system
+    current_confidence: low
+    affected_decision: Reconciliation feeds (V1-23)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 integration design
+  - id: TC-004
+    topic: Reconciliation requirements (payments/accounting)
+    owner: Helene (finance)
+    evidence_required: Reconciliation format, cadence, ledger boundary
+    current_confidence: low
+    affected_decision: CAP-046, CAP-047, payments/accounting domains
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 financial design
+  - id: TC-005
+    topic: Contract and renewal dependencies
+    owner: Program (commercial)
+    evidence_required: Executed agreements / authoritative contract records
+    current_confidence: low
+    affected_decision: Commercial constraints (V1-19)
+    future_blocking_gate: Material-commitment gate (executive acceptance)
+    target_resolution_point: Volume 2 commercial validation
+  - id: TC-006
+    topic: Vendor API uncertainty
+    owner: Program (with vendors)
+    evidence_required: Demonstrated vendor capability / API contracts
+    current_confidence: low
+    affected_decision: External integrations (V1-17, V1-23)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 integration design
+  - id: TC-007
+    topic: Identity-matching concerns
+    owner: Program (with operations)
+    evidence_required: Identity-matching rules + duplicate handling
+    current_confidence: low
+    affected_decision: participants_and_identity domain (FND-053)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 identity design
+  - id: TC-008
+    topic: Payment and accounting boundaries
+    owner: Helene (finance)
+    evidence_required: Confirmed fee-policy vs execution vs ledger split
+    current_confidence: medium
+    affected_decision: CAP-042, CAP-046, CAP-047
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 financial design
+  - id: TC-009
+    topic: Pilot data requirements
+    owner: Program (with operations)
+    evidence_required: Pilot dataset + success criteria
+    current_confidence: low
+    affected_decision: First-release validation (V1-24)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 pilot definition
+  - id: TC-010
+    topic: Privacy and consent impacts
+    owner: Program (privacy)
+    evidence_required: Privacy assessment for high-privacy data elements
+    current_confidence: medium
+    affected_decision: Data domains with high-privacy elements (V1-18)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 privacy design
+  - id: TC-011
+    topic: Bilingual validation
+    owner: Program (with operations)
+    evidence_required: Bilingual (EN/FR) coverage validation
+    current_confidence: low
+    affected_decision: Experience layer (V1-22)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 experience definition
+  - id: TC-012
+    topic: Accessibility validation
+    owner: Program (with operations)
+    evidence_required: Accessibility (WCAG) validation
+    current_confidence: low
+    affected_decision: Experience layer (V1-22)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 experience definition
+  - id: TC-013
+    topic: Operational support needs
+    owner: Program (operations)
+    evidence_required: Support model + tooling assumptions validated
+    current_confidence: low
+    affected_decision: support domain (V1-23)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 operations definition
+  - id: TC-014
+    topic: Unresolved policy decisions
+    owner: Curling Canada (policy)
+    evidence_required: Ratified policy for open requirement/fee/eligibility questions
+    current_confidence: low
+    affected_decision: CAP-040, CAP-042, transition pathways
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 policy validation
+  - id: TC-015
+    topic: Stakeholder validation backlog
+    owner: Program (with named stakeholders)
+    evidence_required: Completion of the stakeholder-validation backlog
+    current_confidence: low
+    affected_decision: All stakeholder-described claims (V1-15..V1-20)
+    future_blocking_gate: Material-commitment gate
+    target_resolution_point: Volume 2 stakeholder validation
+
+stakeholder_validation_backlog:
+  - item: Historical-club eligibility and transition pathways
+    stakeholder: Jen (operations)
+    blocks: Transition pathways (V1-24), CAP-037/CAP-040
+  - item: Compliance/accreditation gating and required documents
+    stakeholder: Jen (compliance)
+    blocks: CAP-041, compliance domain
+  - item: Fee schedule, processor terms, reconciliation
+    stakeholder: Helene (finance)
+    blocks: CAP-042, CAP-046, CAP-047, payments/accounting domains
+  - item: Provincial jurisdiction boundaries
+    stakeholder: Member Associations / PTSOs
+    blocks: CAP-038, jurisdiction routing
+  - item: Vendor API and migration feasibility
+    stakeholder: Program + vendors
+    blocks: Registration migration, external integrations
+  - item: Executive organizational acceptance
+    stakeholder: Nolan (executive)
+    blocks: Material commitment (post Volume 1)
+
+# ---------------------------------------------------------------------------------
+# Contradiction dispositions — retain open; do not force artificial closure.
+# ---------------------------------------------------------------------------------
+contradiction_dispositions:
+  - id: CON-012
+    subject: Master-data authority (policy truth vs stakeholder statement)
+    disposition: RETAIN_OPEN
+    controlling_claim_type: national_policy_or_decision_authority
+    note: >-
+      Policy truth (SRC-017) indicates Curling Canada master-data intent; stakeholder
+      statement (SRC-020) describes duplicated authoritative data. Retained open;
+      target model records Curling Canada master-data intent pending migration/validation.
+  - id: CON-013
+    subject: Evidence binding (policy vs stakeholder)
+    disposition: RETAIN_OPEN
+    controlling_claim_type: national_policy_or_decision_authority
+    note: >-
+      Retained open; governed evidence binding is the target, pending operational
+      validation. Not resolved using the wrong authority type.
+  - id: CON-014
+    subject: Registration system authority during transition
+    disposition: RETAIN_OPEN
+    controlling_claim_type: contractual_obligation
+    note: >-
+      Incumbent provider is authoritative during transition; The House is the target.
+      Resolution requires an executed exit trigger and validated migration; retained open.
+
+# ---------------------------------------------------------------------------------
+# Package 3 test-accounting reconciliation (narrow evidence correction; does NOT
+# reopen Package 3 or modify the frozen V1-C/Package 3 artifacts).
+# ---------------------------------------------------------------------------------
+test_reconciliation:
+  automated_inventory_count: 1326
+  executed_count: 1300
+  passed_count: 1300
+  skipped_count: 0
+  todo_count: 0
+  excluded_count: 0
+  test_files: 99
+  measurement_command: npx vitest run tests/unit
+  measurement_date: 2026-07-25
+  determination: >-
+    The 1,326 automated-inventory figure is a static lexical token count of the regex
+    \b(it|test)\s*\( ; the 1,300 figure is the runtime executed-and-passed case count.
+    They measure different things. There are zero skipped, todo, or excluded tests. The
+    controlling figure for Volume 1 is 1,300 executed and passed.
+  overcount_root_cause: >-
+    Automated inventory overcounted because the static counter matched \b(it|test)\s*\(
+    tokens that are not executed test registrations: 13 regex .test() method calls (word
+    boundary after '.') and 24 it(/test( substrings inside comments and string/template
+    literals (assertion messages and expected-output fixtures) — 37 non-registration
+    tokens against 1,289 literal code it(/test( tokens. Runtime additionally expands two
+    parameterized it.each() blocks (6 cases) that the static regex never counts. Net
+    static-vs-executed difference of 26 is entirely a parser-semantics artifact.
+  controlling_evidence_type: implemented_system_behaviour

@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "21b3f7e8739c26d83c13ebba54c2668bf7422a80",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total_steps": 15,
+    "total_pathways": 3,
+    "by_owner_layer": {
+      "domain": 12,
+      "experience": 1,
+      "integration": 2
+    },
+    "note": "Target affiliation operating model. Exactly-once activation; The House owns governed state, The Button presents it."
+  },
+  "steps": [
+    {
+      "step": 1,
+      "name": "Recognize existing club and historical continuity",
+      "owner_layer": "domain",
+      "house_role": "Continuity confirmation pathway"
+    },
+    {
+      "step": 2,
+      "name": "Confirm organization and jurisdiction",
+      "owner_layer": "domain",
+      "house_role": "Organization registry + jurisdiction resolution"
+    },
+    {
+      "step": 3,
+      "name": "Open seasonal affiliation",
+      "owner_layer": "domain",
+      "house_role": "Governance Kernel creates affiliation entity_state"
+    },
+    {
+      "step": 4,
+      "name": "Determine applicable versioned requirements",
+      "owner_layer": "domain",
+      "house_role": "policy_version-anchored requirement resolution"
+    },
+    {
+      "step": 5,
+      "name": "Complete required information",
+      "owner_layer": "experience",
+      "house_role": "Guided data capture; governed persistence"
+    },
+    {
+      "step": 6,
+      "name": "Upload and bind evidence",
+      "owner_layer": "domain",
+      "house_role": "evidence_object metadata + scan/quarantine"
+    },
+    {
+      "step": 7,
+      "name": "Determine fees",
+      "owner_layer": "domain",
+      "house_role": "Fee policy (House) computes amounts owed"
+    },
+    {
+      "step": 8,
+      "name": "Submit",
+      "owner_layer": "domain",
+      "house_role": "Governed submit transition (idempotent)"
+    },
+    {
+      "step": 9,
+      "name": "Route to the correct reviewer",
+      "owner_layer": "domain",
+      "house_role": "Reviewer routing (rebuild) from jurisdiction"
+    },
+    {
+      "step": 10,
+      "name": "Review and return for information where necessary",
+      "owner_layer": "domain",
+      "house_role": "Return-for-information transition"
+    },
+    {
+      "step": 11,
+      "name": "Resubmit",
+      "owner_layer": "domain",
+      "house_role": "Resubmit transition"
+    },
+    {
+      "step": 12,
+      "name": "Record governed decision",
+      "owner_layer": "domain",
+      "house_role": "Kernel decision transition + audit + evidence"
+    },
+    {
+      "step": 13,
+      "name": "Reconcile payment and accounting",
+      "owner_layer": "integration",
+      "house_role": "Payment-reconciliation boundary (processor executes; accounting is ledger)"
+    },
+    {
+      "step": 14,
+      "name": "Activate affiliation exactly once",
+      "owner_layer": "domain",
+      "house_role": "Idempotent activation; outbox exactly-once"
+    },
+    {
+      "step": 15,
+      "name": "Expose authoritative status in The Button and integrations",
+      "owner_layer": "integration",
+      "house_role": "Read projection; Button presents, House owns"
+    }
+  ],
+  "transition_pathways": [
+    {
+      "pathway": "Continuity confirmation",
+      "intended_population": "Existing recognized club with satisfactory historical standing",
+      "governed_treatment": "Confirm continuity; do not force through new-applicant process",
+      "unresolved": "Eligibility rules pending Jen/operational validation"
+    },
+    {
+      "pathway": "Renewal with remediation",
+      "intended_population": "Existing club with missing, outdated or conflicting evidence",
+      "governed_treatment": "Renew with targeted remediation (return-for-information)",
+      "unresolved": "Remediation thresholds pending operational validation"
+    },
+    {
+      "pathway": "New affiliation",
+      "intended_population": "New or materially reconstituted organization",
+      "governed_treatment": "Full governed affiliation process",
+      "unresolved": "Reconstitution criteria pending operational validation"
+    }
+  ]
+}

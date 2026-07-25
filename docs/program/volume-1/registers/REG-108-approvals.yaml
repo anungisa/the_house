@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.8.0
+version: 0.9.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -466,5 +466,82 @@ records:
       - No implementation and no master development plan authorized by Package 4
       - No vendor or system automatically retained or retired; target dispositions deferred to Package 5
       - Gate V1-G4 disposed PASS (DEC-V1-022); Package 5 convergence authorized to begin as planning only (DEC-V1-024)
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 5 (convergence) chapter ratifications and gate authorization ---
+  - id: APP-V1-034
+    artifact_id: V1-21
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Convergence methodology and evidence-precedence rules adopted (DEC-V1-025)
+      - Claim type determines controlling evidence; newer/implemented/polished is not automatically authoritative
+      - Deterministic tooling structures decisions already recorded; it invents no target decision
+    approved_at: null
+  - id: APP-V1-035
+    artifact_id: V1-22
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Every material capability mapped across Base44, The House, and the ecosystem (CAP-037..048)
+      - Each capability dispositioned independently at four layers (QD-037..065)
+      - No finding or convergence decision authorizes implementation
+    approved_at: null
+  - id: APP-V1-036
+    artifact_id: V1-23
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Target system and data authority defined or explicitly unresolved per governed domain
+      - Current manual controls preserved, adapted, automated, or retired with rationale
+      - Master-data (CON-012), evidence-binding (CON-013), and registration-transition (CON-014) contradictions retained open
+    approved_at: null
+  - id: APP-V1-037
+    artifact_id: V1-24
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Affiliation target operating model complete (15-step flow, 3 governed transition pathways)
+      - Historical/goodwill transition pathway represented (continuity confirmation)
+      - First-release affiliation boundary and exclusions explicit; no implementation authorized
+    approved_at: null
+  - id: APP-V1-038
+    artifact_id: V1-25
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Material commercial/contractual/stakeholder unknowns have owners and future blocking gates (TC-001..015)
+      - Transition-constraint set constrains a later plan; it is NOT the master development plan
+      - Stakeholder validation backlog recorded; pending consultation blocks only the affected claim
+    approved_at: null
+  - id: APP-V1-039
+    artifact_id: V1-26
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Volume 1 conclusion and downstream readiness recorded
+      - Volume 2 authorization status stated; master development plan remains pending; implementation remains unauthorized
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-040
+    artifact_id: GATE-V1-G5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: CONVERGENCE_COMPLETE
+    conditions:
+      - Internal-progression gate authorized by the Accountable Program Authority (DEC-V1-027)
+      - Package 2-4 baselines and amendments inherited correctly; unit-test discrepancy reconciled (DEC-V1-026)
+      - Every material capability mapped across the three streams with layer-specific target dispositions
+      - Target data and system authority defined or explicitly unresolved; manual controls dispositioned with rationale
+      - Affiliation target operating model complete; historical/goodwill pathway represented; first-release boundary and exclusions explicit
+      - Material commercial/contractual/stakeholder unknowns have owners and future blocking gates
+      - No finding or convergence decision authorizes implementation; Volume 1 receives a complete line-level review and freeze
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

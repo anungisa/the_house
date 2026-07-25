@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "21b3f7e8739c26d83c13ebba54c2668bf7422a80",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "controlled_input": "docs/program/volume-1/inputs/convergence-input.yaml",
+    "controlled_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057",
+    "base44_baseline": "SRC-001",
+    "house_baseline": "SRC-002",
+    "house_runtime_commit": "de6312f89f86ce5ae7bca5babbe165fdcf4f2861",
+    "ecosystem_input_sha256": "27133dc0bdb2ce61c4bf2daacabd59dfd7f41103fcfaae2073268388df5842fb",
+    "note": "Convergence consumes the three ratified baselines; it introduces no new primary evidence."
+  },
+  "primary_grounding": [
+    {
+      "package": "Package 2 (Base44 product intelligence)",
+      "chapters": [
+        "V1-05",
+        "V1-06",
+        "V1-07",
+        "V1-08",
+        "V1-09"
+      ],
+      "generated": "docs/program/volume-1/generated/base44/",
+      "note": "Product and experience evidence only; NOT production authority."
+    },
+    {
+      "package": "Package 3 (The House implementation truth)",
+      "chapters": [
+        "V1-10",
+        "V1-11",
+        "V1-12",
+        "V1-13",
+        "V1-14"
+      ],
+      "generated": "docs/program/volume-1/generated/house/",
+      "note": "Runtime code, persistence constraints, executable tests; production-candidate."
+    },
+    {
+      "package": "Package 4 (Curling Canada operating and ecosystem reality)",
+      "chapters": [
+        "V1-15",
+        "V1-16",
+        "V1-17",
+        "V1-18",
+        "V1-19",
+        "V1-20"
+      ],
+      "generated": "docs/program/volume-1/generated/ecosystem/",
+      "note": "Policy truth vs stakeholder-described operations; contractual questions open."
+    }
+  ],
+  "evidence_precedence": [
+    {
+      "claim_type": "national_policy_or_decision_authority",
+      "controlling_evidence": "ratified policy and authorized decision",
+      "example_sources": [
+        "Volume 0 REG-005",
+        "SRC-016",
+        "SRC-017"
+      ]
+    },
+    {
+      "claim_type": "actual_current_operating_practice",
+      "controlling_evidence": "corroborated operational evidence and stakeholder validation",
+      "example_sources": [
+        "SRC-019",
+        "SRC-020"
+      ]
+    },
+    {
+      "claim_type": "implemented_system_behaviour",
+      "controlling_evidence": "runtime code, persistence constraints and executable tests",
+      "example_sources": [
+        "SRC-002",
+        "SRC-023"
+      ]
+    },
+    {
+      "claim_type": "contractual_obligation",
+      "controlling_evidence": "executed agreement or authoritative contract record",
+      "example_sources": [
+        "SRC-019"
+      ]
+    },
+    {
+      "claim_type": "vendor_capability",
+      "controlling_evidence": "demonstrated capability or authoritative vendor evidence",
+      "example_sources": [
+        "SRC-020"
+      ]
+    },
+    {
+      "claim_type": "user_experience_value",
+      "controlling_evidence": "observed journey, validated stakeholder need and usability evidence",
+      "example_sources": [
+        "SRC-001"
+      ]
+    },
+    {
+      "claim_type": "financial_truth",
+      "controlling_evidence": "accounting, contract and validated business evidence",
+      "example_sources": [
+        "SRC-019"
+      ]
+    }
+  ],
+  "precedence_rules": [
+    "newer does not automatically mean more authoritative",
+    "implemented does not automatically mean desirable",
+    "polished UX does not establish business validity",
+    "current practice does not automatically become the target",
+    "documentation does not override contradictory executable evidence",
+    "unresolved material contradictions must remain open",
+    "E0/E1 evidence alone cannot support an irreversible target decision",
+    "a source authoritative for one claim type is non-authoritative for another"
+  ]
+}

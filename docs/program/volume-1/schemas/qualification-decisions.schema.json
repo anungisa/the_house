@@ -31,6 +31,14 @@
           "capability_ref": { "type": "string", "pattern": "^CAP-[0-9]{3}$" },
           "disposition": { "$ref": "common.schema.json#/definitions/disposition" },
           "rationale": { "type": "string" },
+          "target_layer": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/targetLayer" }
+          },
+          "source_contributions": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/sourceContribution" }
+          },
           "evidence_rating": { "$ref": "common.schema.json#/definitions/evidenceRating" },
           "evidence_refs": {
             "type": "array",

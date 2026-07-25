@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T21:15:15.021Z
+Generated: 2026-07-25T21:52:16.491Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T21:15:15.021Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 25 |
+| RATIFIED | 31 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.7.0 | 25 |
-| REG-101 | Source Inventory | IN_REVIEW | 0.5.0 | 21 |
-| REG-102 | Evidence Register | IN_REVIEW | 0.5.0 | 41 |
-| REG-103 | Capability Inventory | IN_REVIEW | 0.5.0 | 36 |
-| REG-104 | Finding Register | IN_REVIEW | 0.5.0 | 41 |
-| REG-105 | Contradiction Register | IN_REVIEW | 0.5.0 | 13 |
-| REG-106 | Qualification Decision Register | IN_REVIEW | 0.5.0 | 36 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.8.0 | 24 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.8.0 | 33 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.8.0 | 31 |
+| REG-101 | Source Inventory | IN_REVIEW | 0.6.0 | 23 |
+| REG-102 | Evidence Register | IN_REVIEW | 0.6.0 | 53 |
+| REG-103 | Capability Inventory | IN_REVIEW | 0.6.0 | 48 |
+| REG-104 | Finding Register | IN_REVIEW | 0.6.0 | 53 |
+| REG-105 | Contradiction Register | IN_REVIEW | 0.6.0 | 14 |
+| REG-106 | Qualification Decision Register | IN_REVIEW | 0.6.0 | 65 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.9.0 | 26 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.9.0 | 40 |
 
 ## Findings by control
 
@@ -166,3 +166,29 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-033 (PACKAGE-4): No vendor or system automatically retained or retired; target dispositions deferred to Package 5
 - APP-V1-033 (PACKAGE-4): Gate V1-G4 disposed PASS (DEC-V1-022); Package 5 convergence authorized to begin as planning only (DEC-V1-024)
 - APP-V1-033 (PACKAGE-4): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-034 (V1-21): Convergence methodology and evidence-precedence rules adopted (DEC-V1-025)
+- APP-V1-034 (V1-21): Claim type determines controlling evidence; newer/implemented/polished is not automatically authoritative
+- APP-V1-034 (V1-21): Deterministic tooling structures decisions already recorded; it invents no target decision
+- APP-V1-035 (V1-22): Every material capability mapped across Base44, The House, and the ecosystem (CAP-037..048)
+- APP-V1-035 (V1-22): Each capability dispositioned independently at four layers (QD-037..065)
+- APP-V1-035 (V1-22): No finding or convergence decision authorizes implementation
+- APP-V1-036 (V1-23): Target system and data authority defined or explicitly unresolved per governed domain
+- APP-V1-036 (V1-23): Current manual controls preserved, adapted, automated, or retired with rationale
+- APP-V1-036 (V1-23): Master-data (CON-012), evidence-binding (CON-013), and registration-transition (CON-014) contradictions retained open
+- APP-V1-037 (V1-24): Affiliation target operating model complete (15-step flow, 3 governed transition pathways)
+- APP-V1-037 (V1-24): Historical/goodwill transition pathway represented (continuity confirmation)
+- APP-V1-037 (V1-24): First-release affiliation boundary and exclusions explicit; no implementation authorized
+- APP-V1-038 (V1-25): Material commercial/contractual/stakeholder unknowns have owners and future blocking gates (TC-001..015)
+- APP-V1-038 (V1-25): Transition-constraint set constrains a later plan; it is NOT the master development plan
+- APP-V1-038 (V1-25): Stakeholder validation backlog recorded; pending consultation blocks only the affected claim
+- APP-V1-039 (V1-26): Volume 1 conclusion and downstream readiness recorded
+- APP-V1-039 (V1-26): Volume 2 authorization status stated; master development plan remains pending; implementation remains unauthorized
+- APP-V1-039 (V1-26): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-040 (GATE-V1-G5): Internal-progression gate authorized by the Accountable Program Authority (DEC-V1-027)
+- APP-V1-040 (GATE-V1-G5): Package 2-4 baselines and amendments inherited correctly; unit-test discrepancy reconciled (DEC-V1-026)
+- APP-V1-040 (GATE-V1-G5): Every material capability mapped across the three streams with layer-specific target dispositions
+- APP-V1-040 (GATE-V1-G5): Target data and system authority defined or explicitly unresolved; manual controls dispositioned with rationale
+- APP-V1-040 (GATE-V1-G5): Affiliation target operating model complete; historical/goodwill pathway represented; first-release boundary and exclusions explicit
+- APP-V1-040 (GATE-V1-G5): Material commercial/contractual/stakeholder unknowns have owners and future blocking gates
+- APP-V1-040 (GATE-V1-G5): No finding or convergence decision authorizes implementation; Volume 1 receives a complete line-level review and freeze
+- APP-V1-040 (GATE-V1-G5): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

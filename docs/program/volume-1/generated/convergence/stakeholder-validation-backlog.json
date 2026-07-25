@@ -1,0 +1,46 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "21b3f7e8739c26d83c13ebba54c2668bf7422a80",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total": 6,
+    "note": "Pending consultation blocks only the affected claim."
+  },
+  "stakeholder_validation_backlog": [
+    {
+      "item": "Historical-club eligibility and transition pathways",
+      "stakeholder": "Jen (operations)",
+      "blocks": "Transition pathways (V1-24), CAP-037/CAP-040"
+    },
+    {
+      "item": "Compliance/accreditation gating and required documents",
+      "stakeholder": "Jen (compliance)",
+      "blocks": "CAP-041, compliance domain"
+    },
+    {
+      "item": "Fee schedule, processor terms, reconciliation",
+      "stakeholder": "Helene (finance)",
+      "blocks": "CAP-042, CAP-046, CAP-047, payments/accounting domains"
+    },
+    {
+      "item": "Provincial jurisdiction boundaries",
+      "stakeholder": "Member Associations / PTSOs",
+      "blocks": "CAP-038, jurisdiction routing"
+    },
+    {
+      "item": "Vendor API and migration feasibility",
+      "stakeholder": "Program + vendors",
+      "blocks": "Registration migration, external integrations"
+    },
+    {
+      "item": "Executive organizational acceptance",
+      "stakeholder": "Nolan (executive)",
+      "blocks": "Material commitment (post Volume 1)"
+    }
+  ]
+}

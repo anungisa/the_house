@@ -1,7 +1,7 @@
 register_id: REG-105
 name: Contradiction Register
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Contradictions surfaced during Base44 qualification. Positions reference
 # controlled sources (REG-101) with their classification. Contradictions are NOT
 # resolved by preferring the newest artifact; they are resolved only by evidence
@@ -332,4 +332,36 @@ records:
     notes: >-
       See FND-034, CAP-032. Current practice is not treated as automatically
       desirable.
+  # --- Package 5: convergence contradiction (CON-014) ---
+  - id: CON-014
+    statement: >-
+      During the transition, registration-system authority is contested: the
+      target intends The House (via the Governance Kernel) to hold authoritative
+      affiliation and registration lifecycle state, but the incumbent
+      registration provider continues to hold operative registration data until
+      migration completes, so authority is split with no validated exit trigger.
+    positions:
+      - source_ref: SRC-017
+        classification: policy_truth
+        assertion: >-
+          The House is the intended authority for affiliation and registration
+          lifecycle state; no external platform holds governing authority over
+          the domain model (V0-06 doctrine).
+      - source_ref: SRC-018
+        classification: operational_truth
+        assertion: >-
+          The incumbent registration provider retains operative registration
+          data during the transition, and the migration is a recorded program
+          risk with no validated cut-over trigger.
+    status: open
+    resolution: >-
+      Retained OPEN. The split is a transition-era condition; the target
+      authority is The House, but the cut-over trigger and data-migration
+      completion are unvalidated. Not resolved using vendor or operational
+      evidence alone; requires an authoritative migration decision.
+    evidence_rating: E2
+    notes: >-
+      See FND-042, TC-001/TC-002 (transition constraints), CAP-037/CAP-039.
+      Newer/incumbent operative data does not confer target authority; the
+      contradiction remains open pending an authorized migration decision.
 

@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "21b3f7e8739c26d83c13ebba54c2668bf7422a80",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "automated_inventory_count": 1326,
+    "executed_count": 1300,
+    "skipped_count": 0,
+    "todo_count": 0,
+    "excluded_count": 0,
+    "controlling_figure": 1300,
+    "note": "Narrow Package 3 evidence correction; does not reopen or modify the frozen Package 3 artifacts."
+  },
+  "automated_inventory_count": 1326,
+  "executed_count": 1300,
+  "passed_count": 1300,
+  "skipped_count": 0,
+  "todo_count": 0,
+  "excluded_count": 0,
+  "test_files": 99,
+  "measurement_command": "npx vitest run tests/unit",
+  "measurement_date": "2026-07-25T00:00:00.000Z",
+  "determination": "The 1,326 automated-inventory figure is a static lexical token count of the regex \\b(it|test)\\s*\\( ; the 1,300 figure is the runtime executed-and-passed case count. They measure different things. There are zero skipped, todo, or excluded tests. The controlling figure for Volume 1 is 1,300 executed and passed.",
+  "overcount_root_cause": "Automated inventory overcounted because the static counter matched \\b(it|test)\\s*\\( tokens that are not executed test registrations: 13 regex .test() method calls (word boundary after '.') and 24 it(/test( substrings inside comments and string/template literals (assertion messages and expected-output fixtures) — 37 non-registration tokens against 1,289 literal code it(/test( tokens. Runtime additionally expands two parameterized it.each() blocks (6 cases) that the static regex never counts. Net static-vs-executed difference of 26 is entirely a parser-semantics artifact.",
+  "controlling_evidence_type": "implemented_system_behaviour"
+}

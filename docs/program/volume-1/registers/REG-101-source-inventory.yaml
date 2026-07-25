@@ -1,7 +1,7 @@
 register_id: REG-101
 name: Source Inventory
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 # Controlled assessment sources for Volume 1 current-state qualification.
 # Package 2 hardens SRC-001 with an immutable source fingerprint (SHA-256) so a
 # later Base44 export cannot silently replace the evidence baseline under the
@@ -539,4 +539,67 @@ records:
     notes: >-
       Institutional-landscape grounding for V1-15; not a substitute for
       stakeholder validation of the current process.
-
+  # --- Package 5: controlled convergence and reconciliation sources (SRC-022..023) ---
+  - id: SRC-022
+    name: Package 5 controlled convergence input (target-disposition synthesis evidence)
+    source_type: curling_canada_operating_reality
+    classification: operational_truth
+    authority_note: >-
+      Controlled convergence source file structuring the target disposition: the
+      central convergence question, evidence-precedence rules, twelve unified
+      target capabilities with per-layer dispositions and source contributions,
+      thirteen governed target domains with authority/read-model/reconciliation,
+      controlling boundaries, the affiliation target operating model and three
+      transition pathways, the first-release boundary and exclusions, the
+      transition-constraint set, the stakeholder-validation backlog, the
+      contradiction dispositions, and the Package 3 test-accounting
+      reconciliation. It synthesises decisions from the ratified Package 2-4
+      baselines; it introduces no new primary evidence and generates no facts
+      from absence. Records grounded in ratified Volume 0/Volume 1 artifacts are
+      POLICY_TRUTH or IMPLEMENTATION_TRUTH; records not yet stakeholder- or
+      vendor-validated remain ASSUMPTION / STAKEHOLDER_STATEMENT / VENDOR_CLAIM
+      pending validation.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-1/inputs/convergence-input.yaml
+    controlled: true
+    fingerprint:
+      filename: convergence-input.yaml
+      sha256: 65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057
+      reproducibility_note: >-
+        Structured deterministically by the qualification:convergence tooling
+        into docs/program/volume-1/generated/convergence/*. Regenerating from the
+        same input sha256 reproduces the inventories byte-for-byte. The tooling
+        invents no target decision; it structures decisions already recorded in
+        this controlled input and the ratified registers.
+    qualification_status: in_assessment
+    evidence_rating: E1
+    notes: >-
+      Author-verified target-disposition synthesis, not independently validated.
+      Stakeholder (Jen, Helene, Member Associations, Nolan) and vendor validation
+      are pending; pending validation blocks the affected claim, not the package.
+      Newer or more polished evidence is not treated as automatically
+      authoritative; contradictions are retained open.
+  - id: SRC-023
+    name: House unit-test execution record (Package 3 reconciliation)
+    source_type: house_repository
+    classification: implementation_truth
+    authority_note: >-
+      The observed runtime execution of the House unit-test estate
+      (npx vitest run tests/unit) captured to reconcile the Package 3 static
+      test-case inventory (1326 lexical tokens) against executed behaviour (1300
+      cases passed). Implementation truth of executed behaviour; the controlling
+      figure for the reconciliation is the executed-and-passed count. This
+      records a narrow evidence correction only and does not reopen or modify the
+      frozen Package 3 artifacts.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: tests/unit (executed at Package 5 assessment; command npx vitest run tests/unit)
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Executed 2026-07-25: 1300 passed, 0 skipped, 0 todo, 99 files. The 26-case
+      gap to the static inventory (1326) is a parser-semantics artifact: the
+      static count is a lexical it(/test( token count that includes tokens in
+      comments and strings and cannot expand it.each() blocks, whereas the
+      executed count is the true runtime case count. Zero skipped, todo, or
+      excluded tests. Controlling figure: 1300 executed and passed.

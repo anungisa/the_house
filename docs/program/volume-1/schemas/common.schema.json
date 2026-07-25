@@ -63,6 +63,19 @@
         "RETIRE"
       ]
     },
+    "targetLayer": {
+      "type": "string",
+      "enum": ["experience", "domain", "data_authority", "integration"]
+    },
+    "sourceContribution": {
+      "type": "string",
+      "enum": [
+        "Base44",
+        "The House",
+        "ecosystem/current process",
+        "external system"
+      ]
+    },
     "evidenceRating": {
       "type": "string",
       "enum": ["E0", "E1", "E2", "E3", "E4"]

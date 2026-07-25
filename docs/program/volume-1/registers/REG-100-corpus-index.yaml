@@ -1,7 +1,7 @@
 register_id: REG-100
 name: Volume 1 Corpus Index
 status: IN_REVIEW
-version: 0.7.0
+version: 0.8.0
 records:
   - id: V1-00
     title: Volume Control and Inheritance
@@ -203,3 +203,52 @@ records:
     version: 1.0.0
     path: docs/program/volume-1/V1-D-package-4-closure-record.md
     gate: V1-G4
+  # --- Package 5: Convergence and Target Disposition (V1-21..V1-26) ---
+  - id: V1-21
+    title: Convergence Methodology and Evidence Precedence
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-21-convergence-methodology-and-evidence-precedence.md
+    gate: V1-G5
+  - id: V1-22
+    title: Unified Capability and Layer Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-22-unified-capability-and-layer-disposition.md
+    gate: V1-G5
+  - id: V1-23
+    title: System, Data-Authority, and Reconciliation Convergence
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-23-system-data-authority-and-reconciliation-convergence.md
+    gate: V1-G5
+  - id: V1-24
+    title: Affiliation Target Operating Model and First-Release Boundary
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-24-affiliation-target-operating-model-and-first-release-boundary.md
+    gate: V1-G5
+  - id: V1-25
+    title: Transition, Dependency, and Validation Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-25-transition-dependency-and-validation-plan.md
+    gate: V1-G5
+  - id: V1-26
+    title: Volume 1 Conclusion and Downstream Readiness
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-26-volume-1-conclusion-and-downstream-readiness.md
+    gate: V1-G5

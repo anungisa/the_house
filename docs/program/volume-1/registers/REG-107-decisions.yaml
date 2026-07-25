@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.8.0
+version: 0.9.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -591,6 +591,59 @@ records:
       - V1-D
       - GATE-V1-G4
       - DEC-V1-023
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  # --- Package 5 (convergence) decisions ---
+  - id: DEC-V1-025
+    class: D2
+    question: >-
+      What convergence methodology and evidence-precedence rules govern the
+      Volume 1 target disposition, and are they adopted?
+    decision: >-
+      Adopt the Package 5 convergence methodology recorded in V1-21 and the
+      controlled convergence input (REG-101 SRC-022): the three ratified
+      baselines (Base44 product intelligence, The House implementation truth, and
+      the Curling Canada operating and ecosystem reality) are converged under
+      explicit evidence-precedence rules in which claim type determines
+      controlling evidence. Newer, implemented, or more polished evidence is not
+      automatically authoritative; a source authoritative for one claim type is
+      non-authoritative for another; and material contradictions are retained
+      open. The convergence tooling is deterministic and structures decisions
+      already recorded in the controlled input and ratified registers; it invents
+      no target decision. This decision governs authoring and structuring only and
+      authorizes no implementation.
+    evidence_refs:
+      - V1-21
+      - REG-101
+      - REG-102
+      - REG-106
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-026
+    class: D2
+    question: >-
+      How is the Package 3 unit-test-count discrepancy (1326 static versus 1300
+      executed) reconciled?
+    decision: >-
+      Determine that the discrepancy is a parser-semantics artifact, not a
+      defect. The static Package 3 figure (1326) is a lexical it/test token count
+      that includes tokens appearing in comments and strings and cannot expand
+      it.each() blocks; the executed figure (1300 passed, 0 skipped, 0 todo, 0
+      excluded, 99 files, npx vitest run tests/unit, 2026-07-25) is the true
+      runtime case count. The controlling figure for Volume 1 is 1300 executed and
+      passed. This is a narrow evidence correction recorded in the Package 5 layer
+      (REG-101 SRC-023, REG-102 EV-052) and does NOT reopen or modify the frozen
+      Package 3 artifacts (V1-C, Package 3 chapters).
+    evidence_refs:
+      - V1-14
+      - REG-101
+      - REG-102
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: not_required

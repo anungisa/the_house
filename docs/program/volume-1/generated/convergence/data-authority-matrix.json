@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-convergence.mjs (Package 5 convergence tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled convergence input and ratified registers; not a target decision and not an authorization. No target decision is invented from tooling.",
+    "repository_commit": "21b3f7e8739c26d83c13ebba54c2668bf7422a80",
+    "branch": "docs/volume-1-convergence",
+    "working_tree_state": "dirty",
+    "convergence_input_sha256": "65f1fa3333fe90025d0c81af6c2aebee9761162fc174b02e7f8eeff52efde057"
+  },
+  "summary": {
+    "total_domains": 13,
+    "note": "Read-model and authority split per governed data domain."
+  },
+  "data_authority": [
+    {
+      "domain": "organizations_and_clubs",
+      "authoritative_source": "The House (organization registry); Curling Canada master-data intent",
+      "read_model": "The Button / integrations",
+      "transition_authority": "The House (governed via Kernel)",
+      "unresolved_condition": "Master-data authority contradiction CON-012 remains open"
+    },
+    {
+      "domain": "participants_and_identity",
+      "authoritative_source": "The House (participant registry); Curling Canada identity master",
+      "read_model": "The Button",
+      "transition_authority": "The House",
+      "unresolved_condition": "Concurrent-role model and identity matching pending validation (FND-053)"
+    },
+    {
+      "domain": "membership",
+      "authoritative_source": "The House / Curling Canada (pending validation)",
+      "read_model": "The Button",
+      "transition_authority": "The House",
+      "unresolved_condition": "Membership authority split pending operational validation"
+    },
+    {
+      "domain": "affiliation",
+      "authoritative_source": "The House (entity_state)",
+      "read_model": "The Button",
+      "transition_authority": "The House (sole authority)",
+      "unresolved_condition": "None material for state authority"
+    },
+    {
+      "domain": "registration",
+      "authoritative_source": "Transitional incumbent provider → The House (target)",
+      "read_model": "The House / Button",
+      "transition_authority": "Requires explicit exit trigger",
+      "unresolved_condition": "Migration approach/timing pending vendor + data-export validation (FND, CON open)"
+    },
+    {
+      "domain": "compliance",
+      "authoritative_source": "External systems of record (accreditation, education) preserved",
+      "read_model": "The Button",
+      "transition_authority": "The House gates; external SoR retains authority",
+      "unresolved_condition": "Gating/projection model pending compliance validation (Jen)"
+    },
+    {
+      "domain": "payments",
+      "authoritative_source": "The House (fee policy) + payment processor (transaction)",
+      "read_model": "The House reconciliation boundary",
+      "transition_authority": "The House owns fee policy; processor executes",
+      "unresolved_condition": "Processor terms/economics pending financial validation (Helene)"
+    },
+    {
+      "domain": "accounting",
+      "authoritative_source": "Accounting system (ledger truth)",
+      "read_model": "The House reconciliation boundary",
+      "transition_authority": "Accounting system retains ledger authority",
+      "unresolved_condition": "Reconciliation format/cadence pending financial validation (Helene)"
+    },
+    {
+      "domain": "accreditation",
+      "authoritative_source": "External accreditation system (SRC-009)",
+      "read_model": "The House / Button",
+      "transition_authority": "External SoR retains authority",
+      "unresolved_condition": "Integration scope pending validation"
+    },
+    {
+      "domain": "learning",
+      "authoritative_source": "External learning system (Sideline Learning, SRC-008)",
+      "read_model": "The House / Button",
+      "transition_authority": "External SoR retains authority",
+      "unresolved_condition": "Integration scope pending validation"
+    },
+    {
+      "domain": "evidence_and_documents",
+      "authoritative_source": "The House (evidence_object metadata)",
+      "read_model": "The Button",
+      "transition_authority": "The House",
+      "unresolved_condition": "Required-document matrix pending compliance validation"
+    },
+    {
+      "domain": "analytics",
+      "authoritative_source": "Projection only (not a system of record)",
+      "read_model": "Analytics platform",
+      "transition_authority": "None (projection)",
+      "unresolved_condition": "Analytics is a projection, not transactional authority"
+    },
+    {
+      "domain": "support",
+      "authoritative_source": "External support system (Halo/Zendesk, unvalidated)",
+      "read_model": "n/a",
+      "transition_authority": "External",
+      "unresolved_condition": "Support tooling assumptions pending validation"
+    }
+  ]
+}
