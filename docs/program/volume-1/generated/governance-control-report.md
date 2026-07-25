@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T21:52:16.491Z
+Generated: 2026-07-25T21:55:48.733Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T21:52:16.491Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 31 |
+| RATIFIED | 32 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.8.0 | 31 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.9.0 | 32 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.6.0 | 23 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.6.0 | 53 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.6.0 | 48 |
 | REG-104 | Finding Register | IN_REVIEW | 0.6.0 | 53 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.6.0 | 14 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.6.0 | 65 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.9.0 | 26 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.9.0 | 40 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.10.0 | 29 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.10.0 | 42 |
 
 ## Findings by control
 
@@ -192,3 +192,13 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-040 (GATE-V1-G5): Material commercial/contractual/stakeholder unknowns have owners and future blocking gates
 - APP-V1-040 (GATE-V1-G5): No finding or convergence decision authorizes implementation; Volume 1 receives a complete line-level review and freeze
 - APP-V1-040 (GATE-V1-G5): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-041 (V1-E): Volume 1 completion and Package 5 freeze record ratified; Gate V1-G5 disposed PASS (DEC-V1-027)
+- APP-V1-041 (V1-E): All twelve Gate V1-G5 conditions disposed in V1-E.9
+- APP-V1-041 (V1-E): Authored and committed separately from Package 5 authoring work
+- APP-V1-041 (V1-E): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-042 (PACKAGE-5): Package 5 and Volume 1 reviewed line by line and closed separately from authoring (DEC-V1-028)
+- APP-V1-042 (PACKAGE-5): Volume 0 and Packages 1, 2, 3, and 4 freezes preserved; no frozen artifact modified
+- APP-V1-042 (PACKAGE-5): No implementation, procurement, or master development plan authorized by Package 5
+- APP-V1-042 (PACKAGE-5): No source retained or retired merely for being newer or more polished; material contradictions retained open
+- APP-V1-042 (PACKAGE-5): Gate V1-G5 disposed PASS (DEC-V1-027); Volume 2 authorized to begin as planning only (DEC-V1-029)
+- APP-V1-042 (PACKAGE-5): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

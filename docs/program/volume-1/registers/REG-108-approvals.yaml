@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.9.0
+version: 0.10.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -543,5 +543,63 @@ records:
       - Affiliation target operating model complete; historical/goodwill pathway represented; first-release boundary and exclusions explicit
       - Material commercial/contractual/stakeholder unknowns have owners and future blocking gates
       - No finding or convergence decision authorizes implementation; Volume 1 receives a complete line-level review and freeze
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-041
+    artifact_id: V1-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-E
+    conditions:
+      - Volume 1 completion and Package 5 freeze record ratified; Gate V1-G5 disposed PASS (DEC-V1-027)
+      - All twelve Gate V1-G5 conditions disposed in V1-E.9
+      - Authored and committed separately from Package 5 authoring work
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-042
+    artifact_id: PACKAGE-5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-E
+    base_commit: "507e506"
+    amendment_process: >-
+      Any change to a frozen Package 5 chapter requires an amendment decision in
+      REG-107 (with amends set to the artifact id and a stated amendment_reason),
+      a version increment, and re-ratification. The freeze-integrity control
+      rejects unamended version drift. Package 5 registers (REG-100..REG-108), the
+      controlled convergence input, and the qualification:convergence tooling
+      remain living machinery and are not frozen by this approval.
+    frozen: true
+    frozen_artifacts:
+      - id: V1-21
+        version: 1.0.0
+      - id: V1-22
+        version: 1.0.0
+      - id: V1-23
+        version: 1.0.0
+      - id: V1-24
+        version: 1.0.0
+      - id: V1-25
+        version: 1.0.0
+      - id: V1-26
+        version: 1.0.0
+      - id: V1-E
+        version: 1.0.0
+    scope:
+      - V1-21
+      - V1-22
+      - V1-23
+      - V1-24
+      - V1-25
+      - V1-26
+      - V1-E
+    conditions:
+      - Package 5 and Volume 1 reviewed line by line and closed separately from authoring (DEC-V1-028)
+      - Volume 0 and Packages 1, 2, 3, and 4 freezes preserved; no frozen artifact modified
+      - No implementation, procurement, or master development plan authorized by Package 5
+      - No source retained or retired merely for being newer or more polished; material contradictions retained open
+      - Gate V1-G5 disposed PASS (DEC-V1-027); Volume 2 authorized to begin as planning only (DEC-V1-029)
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

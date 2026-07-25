@@ -1,7 +1,7 @@
 register_id: REG-100
 name: Volume 1 Corpus Index
 status: IN_REVIEW
-version: 0.8.0
+version: 0.9.0
 records:
   - id: V1-00
     title: Volume Control and Inheritance
@@ -251,4 +251,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-1/V1-26-volume-1-conclusion-and-downstream-readiness.md
+    gate: V1-G5
+  - id: V1-E
+    title: Volume 1 Completion and Package 5 Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-E-volume-1-completion-and-package-5-freeze-record.md
     gate: V1-G5

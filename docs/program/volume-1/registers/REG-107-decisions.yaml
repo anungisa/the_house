@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.9.0
+version: 0.10.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -647,5 +647,85 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-027
+    class: D1
+    question: Is convergence and target disposition complete (Gate V1-G5)?
+    decision: >-
+      Gate V1-G5 (Convergence Complete) disposition PASS. All twelve gate
+      conditions are disposed in V1-E.9: Package 2-4 baselines and the corrected
+      Base44 lineage are inherited unchanged with no frozen artifact modified; the
+      unit-test discrepancy is reconciled to a controlling 1300 executed and
+      passed; every material capability (CAP-037..CAP-048) is mapped across
+      Base44, The House, and the ecosystem and dispositioned per layer across 29
+      qualification decisions (QD-037..QD-065); target data and system authority
+      is defined or explicitly unresolved across thirteen governed domains; each
+      current manual control is preserved, adapted, automated, or retired with
+      rationale; the affiliation target operating model, historical/goodwill
+      transition pathway, and first-release boundary with exclusions are complete
+      and explicit; every material commercial, contractual, and stakeholder
+      unknown has an owner and a future blocking gate; no finding or convergence
+      decision authorizes implementation; and Volume 1 received a complete
+      line-level review and freeze. This is an internal qualification gate owned
+      by the Accountable Program Authority; executive organizational acceptance
+      (Nolan, D0) is a distinct later material-commitment gate and is not a
+      precondition of Gate V1-G5.
+    evidence_refs:
+      - V1-21
+      - V1-22
+      - V1-23
+      - V1-24
+      - V1-25
+      - V1-26
+      - V1-E
+      - GATE-V1-G5
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-028
+    class: D1
+    question: Is Package 5 closed and Volume 1 frozen?
+    decision: >-
+      Close Package 5 (Convergence and Target Disposition) and freeze Volume 1.
+      The closure record V1-E records the Gate V1-G5 PASS disposition, the
+      inherited baselines and amendments, the final capability dispositions, the
+      unresolved contradictions, the first-release boundary, the Volume 2
+      authorization status, and the freeze metadata. Package 5 is frozen at the
+      Commit A base commit; the frozen artifacts are V1-21..V1-26 and V1-E at
+      version 1.0.0 (REG-108 APP-V1-042). All prior freezes (Volume 0 and
+      Packages 1-4) are preserved and no frozen artifact is modified. Amendments
+      to a frozen Package 5 chapter require a REG-107 amendment decision, a
+      version increment, and re-ratification. This closure authorizes no
+      implementation, procurement, or master development plan.
+    evidence_refs:
+      - V1-E
+      - V1-26
+      - REG-100
+      - REG-108
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-029
+    class: D2
+    question: What is the downstream authorization status following Volume 1?
+    decision: >-
+      Authorize Volume 2 (Product and Service Definition) to begin as planning and
+      definition work only; it does not authorize construction. The master
+      development plan remains pending as a future, separately authorized artifact
+      that must respect the V1-25 transition-constraint set. Implementation remains
+      unauthorized. Material organizational commitment remains pending executive
+      acceptance (Nolan, D0) at a later material-commitment gate.
+    evidence_refs:
+      - V1-26
+      - V1-E
+      - V1-25
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority
