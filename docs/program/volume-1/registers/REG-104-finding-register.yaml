@@ -1,12 +1,22 @@
 register_id: REG-104
 name: Finding Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Qualification findings from Package 2 (Base44). Findings are grouped by
 # character: PRODUCT VALUE (reusable intelligence), PRODUCTION RISK (why the
 # prototype must not become production authority), and UNKNOWN/CONSTRAINT (open
 # evidence questions). A finding does not authorize implementation on its own
 # (Volume 1 operating rule; Gate V1-G1).
+#
+# v0.3.0 (Package 2 corrective amendment, DEC-V1-011): every finding was
+# revalidated against the current declared export (SRC-001, curl-link-hub (7))
+# after the source-baseline defect was discovered. Each record carries a
+# current_state_validation tag. Findings are NOT auto-carried: the (5)->(7)
+# delta (generated/base44/delta-5-to-7.json) is strictly additive (zero removed
+# routes/entities/functions), so every prior finding reproduces against (7);
+# count-bearing statements were refreshed to (7) evidence. Two capability
+# domains present in (7) but absent from (5) (IEBOK, Jobs board) were missed by
+# the original assessment and are recorded as NEW_IN_CURRENT (FND-021, FND-022).
 records:
   # --- PRODUCT VALUE ---
   - id: FND-001
@@ -21,7 +31,11 @@ records:
     production_risk: medium
     recommended_disposition: ADAPT
     status: corroborated
-    notes: The concept is valuable; the direct-mutation implementation is not.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      The concept is valuable; the direct-mutation implementation is not.
+      Confirmed in current export (7): Application entity retains the
+      submitted/ptso_review/cc_review/more_info_needed lifecycle.
   - id: FND-002
     statement: >-
       The Curling Canada -> PTSO -> Club -> Member hierarchy and an org_id-scoped
@@ -33,6 +47,7 @@ records:
     production_risk: medium
     recommended_disposition: ADAPT
     status: corroborated
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Reuse the model; rebuild the enforcement on DB-level tenancy.
   - id: FND-003
     statement: >-
@@ -45,6 +60,7 @@ records:
     production_risk: medium
     recommended_disposition: ADAPT
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Concepts reusable; audited enforcement must be built in the House.
   - id: FND-004
     statement: >-
@@ -57,7 +73,11 @@ records:
     production_risk: high
     recommended_disposition: EXTERNALIZE
     status: open
-    notes: The need is real; payment execution should be externalized and reconciled.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      The need is real; payment execution should be externalized and
+      reconciled. Stripe dependency present in (7) (dependency set identical to
+      (5)).
   - id: FND-020
     statement: >-
       The national decision-governance surfaces (decision instances, approval
@@ -70,12 +90,13 @@ records:
     production_risk: high
     recommended_disposition: REBUILD
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Mine the concepts; rebuild the mechanism in the Governance Kernel.
   # --- PRODUCTION RISK ---
   - id: FND-005
     statement: >-
-      66 of 99 server functions mutate entities with no server-side permission
-      check (only 2 of 99 reference any permission check), so authorization is
+      68 of 101 server functions mutate entities with no server-side permission
+      check (only 2 of 101 reference any permission check), so authorization is
       effectively absent on the write path.
     finding_type: production_readiness_gap
     evidence_rating: E3
@@ -84,10 +105,14 @@ records:
     production_risk: critical
     recommended_disposition: REBUILD
     status: corroborated
-    notes: Disqualifies the server layer as production authority as-is.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Disqualifies the server layer as production authority as-is. Confirmed and
+      marginally worse in current export (7): 68/101 mutate without a check vs
+      66/99 in historical (5); permission-check coverage remains 2.
   - id: FND-006
     statement: >-
-      78 of 99 server functions execute with elevated privilege via asServiceRole,
+      80 of 101 server functions execute with elevated privilege via asServiceRole,
       amplifying the impact of the missing authorization checks.
     finding_type: production_readiness_gap
     evidence_rating: E3
@@ -96,7 +121,10 @@ records:
     production_risk: critical
     recommended_disposition: REBUILD
     status: corroborated
-    notes: Service-role breadth turns any missing check into a privilege-escalation path.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Service-role breadth turns any missing check into a privilege-escalation
+      path. Confirmed and worse in (7): 80/101 use asServiceRole vs 78/99 in (5).
   - id: FND-007
     statement: >-
       Authorization is client-side (RoleGate) and default-open: canAccessPath
@@ -109,10 +137,13 @@ records:
     production_risk: critical
     recommended_disposition: REBUILD
     status: corroborated
-    notes: Fails the House fail-closed doctrine; must be rebuilt server-side.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Fails the House fail-closed doctrine; must be rebuilt server-side.
+      Confirmed in (7): unknown_path_defaults_open remains true.
   - id: FND-008
     statement: >-
-      82 routes hardcode role lists directly in App.jsx while the access matrix is
+      83 routes hardcode role lists directly in App.jsx while the access matrix is
       declared the single source of truth, so displayed and enforced access can
       and do drift.
     finding_type: hardcoded_assumption
@@ -122,7 +153,11 @@ records:
     production_risk: high
     recommended_disposition: REBUILD
     status: corroborated
-    notes: The single-source-of-truth claim is contradicted by the code (see CON-001).
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      The single-source-of-truth claim is contradicted by the code (see
+      CON-001). Confirmed and worse in (7): 83 route-role drift entries and 23
+      routes missing from the matrix vs 82 and 18 in (5).
   - id: FND-009
     statement: >-
       The export contains no automated tests and no CI configuration, so no
@@ -134,7 +169,11 @@ records:
     production_risk: high
     recommended_disposition: REBUILD
     status: corroborated
-    notes: Absence in the export; corroborated by exhaustive file walk.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Absence in the export; corroborated by exhaustive file walk. Re-verified
+      against (7) by the evidence-based tests/CI detector: 0 test files, no CI
+      configuration, no runnable test script (tests-ci-inventory.json).
   - id: FND-010
     statement: >-
       Affiliation lifecycle is advanced by direct status mutation from functions
@@ -147,6 +186,7 @@ records:
     production_risk: high
     recommended_disposition: REBUILD
     status: corroborated
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Concept ADAPTED; mechanism REBUILT through the Governance Kernel.
   - id: FND-012
     statement: >-
@@ -160,10 +200,13 @@ records:
     production_risk: high
     recommended_disposition: RETIRE
     status: open
-    notes: The kernel provides versioned, typed transitions instead.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      The kernel provides versioned, typed transitions instead. Confirmed in
+      (7): WorkflowStep.jsonc entity and src/pages/WorkflowBuilder.jsx persist.
   - id: FND-013
     statement: >-
-      Tenancy/isolation is an app-layer construct: 85 of 87 entities carry
+      Tenancy/isolation is an app-layer construct: 93 of 95 entities carry
       Mongo-style rls blocks (not a database boundary) and org_id was retrofitted
       via a 100% backfill to Curling Canada.
     finding_type: production_readiness_gap
@@ -173,7 +216,11 @@ records:
     production_risk: high
     recommended_disposition: REBUILD
     status: corroborated
-    notes: Must be rebuilt on Postgres row-level security; app-layer rls is not an isolation guarantee.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Must be rebuilt on Postgres row-level security; app-layer rls is not an
+      isolation guarantee. Confirmed in (7): 93/95 entities carry rls blocks vs
+      85/87 in (5).
   - id: FND-014
     statement: >-
       Payment readiness is represented by boolean flags (e.g. annual_fee_paid) on
@@ -186,7 +233,11 @@ records:
     production_risk: critical
     recommended_disposition: EXTERNALIZE
     status: open
-    notes: Fee state must be reconciled against the processor, not asserted by a flag (see CON-004).
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Fee state must be reconciled against the processor, not asserted by a flag
+      (see CON-004). Confirmed in (7): Application entity retains the
+      annual_fee_paid boolean.
   - id: FND-019
     statement: >-
       Base44's direct-mutation and client-side authorization model conflicts with
@@ -199,6 +250,7 @@ records:
     production_risk: high
     recommended_disposition: REBUILD
     status: corroborated
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: See CON-007; resolved by policy authority in favour of the governed kernel.
   # --- UNKNOWN / CONSTRAINT ---
   - id: FND-011
@@ -213,6 +265,7 @@ records:
     production_risk: medium
     recommended_disposition: CONSOLIDATE
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Overlap is indicative; specific duplicates named by inspection in V1-06.
   - id: FND-015
     statement: >-
@@ -225,6 +278,7 @@ records:
     production_risk: unknown
     recommended_disposition: DEFER
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Open evidence question; official-language obligations require verification.
   - id: FND-016
     statement: >-
@@ -238,10 +292,11 @@ records:
     production_risk: unknown
     recommended_disposition: DEFER
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Guards against treating prototype breadth as validated requirements.
   - id: FND-017
     statement: >-
-      231 governance markdown documents assert design intent and doctrine, but
+      288 governance markdown documents assert design intent and doctrine, but
       documentation volume does not demonstrate that the described behaviour is
       implemented or enforced.
     finding_type: constraint
@@ -251,7 +306,11 @@ records:
     production_risk: unknown
     recommended_disposition: DEFER
     status: open
-    notes: Narrative is stakeholder statement (SRC-007), not implementation truth.
+    current_state_validation: CONFIRMED_IN_CURRENT
+    notes: >-
+      Narrative is stakeholder statement (SRC-007), not implementation truth.
+      Document count grew 231 -> 288 between (5) and (7); volume growth is not
+      validation.
   - id: FND-018
     statement: >-
       The Club 360 / Club Success concept is thin in the export; evidence is
@@ -263,4 +322,49 @@ records:
     production_risk: unknown
     recommended_disposition: DEFER
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     notes: Revisit after the affiliation and registry spine is established.
+  # --- NEW IN CURRENT EXPORT (7); missed by the original (5)-based assessment ---
+  - id: FND-021
+    statement: >-
+      The current export (7) contains an entire IEBOK knowledge/body-of-knowledge
+      module (6 entities including IEBOKArtifact, IEBOKProposal with its own
+      status lifecycle, and IEBOKWorkingGroup; 5 pages; /iebok/* routes) that is
+      absent from the historical export (5) and was therefore never assessed by
+      the original Package 2. It inherits the same missing-server-side-authorization
+      posture as the rest of the export (its functions are not among the two that
+      reference a permission check).
+    finding_type: capability_gap
+    evidence_rating: E3
+    source_refs: [SRC-001, SRC-004, SRC-008]
+    capability_refs: [CAP-017]
+    production_risk: unknown
+    recommended_disposition: DEFER
+    status: open
+    current_state_validation: NEW_IN_CURRENT
+    notes: >-
+      Discovered only by the source-baseline correction (delta-5-to-7.json).
+      Un-qualified new capability domain; deferred pending a dedicated
+      assessment. Not authorized for implementation.
+  - id: FND-022
+    statement: >-
+      The current export (7) contains a Jobs board (entities JobPosting and
+      SavedJob with status lifecycles; routes /jobs and /jobs/review; a
+      JobReviewQueue with a reject-job modal; server functions expireJobPostings
+      and notifyJobStatus) that is absent from the historical export (5) and was
+      never assessed by the original Package 2. Its review/approval surface
+      advances state without a governed transition boundary, matching the
+      direct-mutation defect found elsewhere.
+    finding_type: capability_gap
+    evidence_rating: E3
+    source_refs: [SRC-001, SRC-005, SRC-008]
+    capability_refs: [CAP-018]
+    production_risk: unknown
+    recommended_disposition: DEFER
+    status: open
+    current_state_validation: NEW_IN_CURRENT
+    notes: >-
+      Discovered only by the source-baseline correction (delta-5-to-7.json).
+      Un-qualified new capability domain with a review lifecycle that would be a
+      governed transition in the House; deferred pending a dedicated assessment.
+      Not authorized for implementation.

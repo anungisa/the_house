@@ -1,13 +1,22 @@
 register_id: REG-103
 name: Capability Inventory
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Normalized capabilities observed in the Base44 export (SRC-001). ONE record per
 # real capability, not one per route. Dispositions here are the proposed target
 # treatment; the governed decision (with rationale and evidence) is recorded in
 # REG-106 and authorizes no implementation. No Base44 capability is dispositioned
 # ADOPT or RETAIN: the prototype's architecture disqualifies as-is adoption, and
 # RETAIN (production-candidate) applies to The House (Package 3), not Base44.
+#
+# v0.3.0 (Package 2 corrective amendment, DEC-V1-011): all dispositions were
+# reassessed against the current declared export (SRC-001, curl-link-hub (7)).
+# Because the (5)->(7) delta is strictly additive and every underlying finding
+# is CONFIRMED_IN_CURRENT (REG-104), the sixteen original dispositions are
+# REAFFIRMED unchanged on current evidence. Two capability domains present in
+# (7) but absent from (5) (IEBOK, Jobs board), missed by the original
+# assessment, are added as CAP-017 and CAP-018 with disposition DEFER pending a
+# dedicated assessment.
 records:
   - id: CAP-001
     name: Club Affiliation
@@ -58,7 +67,10 @@ records:
     evidence_rating: E1
     source_refs: [SRC-001]
     finding_refs: [FND-018]
-    notes: Insufficient evidence to qualify; revisit after affiliation and registry are established.
+    notes: >-
+      Insufficient evidence to qualify; revisit after affiliation and registry
+      are established. DEFER reaffirmed against export (7): still thin, no new
+      qualifying evidence.
   - id: CAP-004
     name: Membership and Households
     description: Member and household records, rosters, and relationships.
@@ -112,7 +124,9 @@ records:
     production_risk: medium
     evidence_rating: E1
     source_refs: [SRC-001]
-    notes: Defer until membership and event scope are qualified.
+    notes: >-
+      Defer until membership and event scope are qualified. DEFER reaffirmed
+      against export (7).
   - id: CAP-008
     name: Payments and Fees
     description: Affiliation/membership fees and payment handling via Stripe.
@@ -166,7 +180,9 @@ records:
     evidence_rating: E1
     source_refs: [SRC-001]
     finding_refs: [FND-016]
-    notes: Defer; governed analytics should derive from the House system-of-record, not prototype data.
+    notes: >-
+      Defer; governed analytics should derive from the House system-of-record,
+      not prototype data. DEFER reaffirmed against export (7).
   - id: CAP-012
     name: National Operations and Decision Governance
     description: >-
@@ -184,7 +200,10 @@ records:
     evidence_rating: E2
     source_refs: [SRC-001, SRC-007]
     finding_refs: [FND-017, FND-019, FND-020]
-    notes: Concepts inform the kernel; the prototype mechanism is rebuilt, not carried forward.
+    notes: >-
+      Concepts inform the kernel; the prototype mechanism is rebuilt, not
+      carried forward. REBUILD reaffirmed against export (7): the ad hoc
+      decision/approval mechanism persists unchanged.
   - id: CAP-013
     name: Event Operations
     description: Games, leagues, standings, scoring, facilities, attendance.
@@ -197,7 +216,9 @@ records:
     production_risk: low
     evidence_rating: E1
     source_refs: [SRC-001]
-    notes: A potential distraction from the national operating mission; defer past the first release.
+    notes: >-
+      A potential distraction from the national operating mission; defer past
+      the first release. DEFER reaffirmed against export (7).
   - id: CAP-014
     name: Access and Authorization Model
     description: >-
@@ -215,7 +236,11 @@ records:
     evidence_rating: E3
     source_refs: [SRC-001, SRC-006]
     finding_refs: [FND-005, FND-006, FND-007, FND-008, FND-013]
-    notes: The single most important production-risk capability; must be rebuilt on server-enforced, DB-level controls.
+    notes: >-
+      The single most important production-risk capability; must be rebuilt on
+      server-enforced, DB-level controls. REBUILD reaffirmed against export (7):
+      enforcement is 2/101 functions, 80 use asServiceRole, unknown paths still
+      default open - marginally worse than (5).
   - id: CAP-015
     name: Dashboards and Navigation Surfaces
     description: Role dashboards, navigation, command palette, and landing surfaces.
@@ -245,4 +270,54 @@ records:
     evidence_rating: E2
     source_refs: [SRC-001]
     finding_refs: [FND-012]
-    notes: Should not exist in the target; the Governance Kernel provides versioned, typed transitions instead.
+    notes: >-
+      Should not exist in the target; the Governance Kernel provides versioned,
+      typed transitions instead. RETIRE reaffirmed against export (7):
+      WorkflowStep entity and WorkflowBuilder page persist.
+  - id: CAP-017
+    name: IEBOK Knowledge Body
+    description: >-
+      Integrated engineering/curling body-of-knowledge module: artifacts,
+      glossary terms, mechanics, standards, working groups, and a proposal
+      lifecycle (IEBOKArtifact, IEBOKGlossaryTerm, IEBOKMechanic, IEBOKProposal,
+      IEBOKRelationship, IEBOKWorkingGroup; /iebok/* routes and pages).
+    stakeholder: Curling Canada, technical/working groups
+    business_capability: Structured body-of-knowledge management
+    observed_value: >-
+      A structured knowledge domain with a governed-looking proposal/working-group
+      lifecycle. Present only in the current export (7); never assessed by the
+      original Package 2.
+    target_house_domain: Deferred
+    target_button_experience: IEBOK knowledge surfaces (candidate)
+    disposition: DEFER
+    production_risk: unknown
+    evidence_rating: E1
+    source_refs: [SRC-001, SRC-004, SRC-008]
+    finding_refs: [FND-021]
+    notes: >-
+      NEW in current export (7); discovered by the source-baseline correction.
+      Un-qualified; deferred pending a dedicated assessment. Inherits the
+      missing-server-side-authorization posture.
+  - id: CAP-018
+    name: Jobs Board
+    description: >-
+      Job postings and saved jobs with a review/approval queue (entities
+      JobPosting, SavedJob; routes /jobs, /jobs/review; JobReviewQueue with a
+      reject-job modal; functions expireJobPostings, notifyJobStatus).
+    stakeholder: Clubs, Members, Curling Canada
+    business_capability: Job posting and review
+    observed_value: >-
+      A posting lifecycle with a review/approval step that would be a governed
+      transition in the House. Present only in the current export (7); never
+      assessed by the original Package 2.
+    target_house_domain: Deferred
+    target_button_experience: Jobs surfaces (candidate)
+    disposition: DEFER
+    production_risk: unknown
+    evidence_rating: E1
+    source_refs: [SRC-001, SRC-005, SRC-008]
+    finding_refs: [FND-022]
+    notes: >-
+      NEW in current export (7); discovered by the source-baseline correction.
+      Its review/approval surface advances state by direct mutation, matching
+      the defect found elsewhere. Deferred pending a dedicated assessment.
