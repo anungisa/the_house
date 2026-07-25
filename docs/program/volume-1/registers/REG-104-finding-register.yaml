@@ -1,7 +1,7 @@
 register_id: REG-104
 name: Finding Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.3.1
 # Qualification findings from Package 2 (Base44). Findings are grouped by
 # character: PRODUCT VALUE (reusable intelligence), PRODUCTION RISK (why the
 # prototype must not become production authority), and UNKNOWN/CONSTRAINT (open
@@ -336,7 +336,7 @@ records:
       reference a permission check).
     finding_type: capability_gap
     evidence_rating: E3
-    source_refs: [SRC-001, SRC-004, SRC-008]
+    source_refs: [SRC-001, SRC-004, SRC-008, EV-018, EV-019]
     capability_refs: [CAP-017]
     production_risk: unknown
     recommended_disposition: DEFER
@@ -345,7 +345,8 @@ records:
     notes: >-
       Discovered only by the source-baseline correction (delta-5-to-7.json).
       Un-qualified new capability domain; deferred pending a dedicated
-      assessment. Not authorized for implementation.
+      assessment. Not authorized for implementation. Current evidence: EV-019
+      (IEBOK domain) and EV-018 (delta).
   - id: FND-022
     statement: >-
       The current export (7) contains a Jobs board (entities JobPosting and
@@ -357,7 +358,7 @@ records:
       direct-mutation defect found elsewhere.
     finding_type: capability_gap
     evidence_rating: E3
-    source_refs: [SRC-001, SRC-005, SRC-008]
+    source_refs: [SRC-001, SRC-005, SRC-008, EV-018, EV-020]
     capability_refs: [CAP-018]
     production_risk: unknown
     recommended_disposition: DEFER
@@ -367,4 +368,5 @@ records:
       Discovered only by the source-baseline correction (delta-5-to-7.json).
       Un-qualified new capability domain with a review lifecycle that would be a
       governed transition in the House; deferred pending a dedicated assessment.
-      Not authorized for implementation.
+      Not authorized for implementation. Current evidence: EV-020 (Jobs board)
+      and EV-018 (delta).

@@ -1,7 +1,7 @@
 register_id: REG-106
 name: Qualification Decision Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Per-capability target dispositions for the Base44 corpus. These are decisions
 # by the Accountable Program Authority about how each capability should be
 # treated by the program; they are NOT construction authorization. Every Package
@@ -9,6 +9,17 @@ version: 0.2.0
 # null. No Base44 capability is dispositioned ADOPT or RETAIN: the prototype's
 # architecture disqualifies as-is adoption, and RETAIN (production-candidate)
 # applies to The House assessment (Package 3), not to Base44.
+#
+# v0.3.0 (Package 2 corrective closure, DEC-V1-011): every disposition was
+# re-ratified against the program's DECLARED CURRENT Base44 export (SRC-001,
+# curl-link-hub (7)). The (5)->(7) delta is strictly additive
+# (generated/base44/delta-5-to-7.json, EV-018), so no prior disposition is
+# reversed by the corrected baseline; each record now cites current-export
+# evidence (REG-102 EV-001..EV-022) alongside its original findings. Two
+# capability domains present in (7) but missed by the original (5) assessment
+# are added as QD-017 (IEBOK, CAP-017) and QD-018 (Jobs board, CAP-018), both
+# DEFER. All decisions remain authorizes_implementation=false: this closure
+# re-ratifies dispositions, it does not authorize construction.
 records:
   - id: QD-001
     capability_ref: CAP-001
@@ -17,7 +28,7 @@ records:
       The tiered affiliation concept is the strongest reusable product asset, but
       the direct-mutation lifecycle must be rebuilt on the Governance Kernel.
     evidence_rating: E2
-    evidence_refs: [CAP-001, FND-001, FND-010, EV-006]
+    evidence_refs: [CAP-001, FND-001, FND-010, EV-006, EV-022, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -30,7 +41,7 @@ records:
       The national organization hierarchy and tenancy concept are reusable, but
       app-layer rls and retrofitted org_id must be rebuilt on DB-enforced tenancy.
     evidence_rating: E2
-    evidence_refs: [CAP-002, FND-002, FND-013, EV-012]
+    evidence_refs: [CAP-002, FND-002, FND-013, EV-012, EV-002, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -40,7 +51,7 @@ records:
     disposition: DEFER
     rationale: Club 360 evidence is too thin to qualify; defer until the spine exists.
     evidence_rating: E1
-    evidence_refs: [CAP-003, FND-018]
+    evidence_refs: [CAP-003, FND-018, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -50,7 +61,7 @@ records:
     disposition: ADAPT
     rationale: Membership/household modelling is reusable but sequenced after affiliation.
     evidence_rating: E2
-    evidence_refs: [CAP-004, FND-002]
+    evidence_refs: [CAP-004, FND-002, EV-002, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -60,7 +71,7 @@ records:
     disposition: ADAPT
     rationale: Participant identity and numbering concepts are reusable; localization coverage unverified.
     evidence_rating: E2
-    evidence_refs: [CAP-005, FND-015]
+    evidence_refs: [CAP-005, FND-015, EV-009, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -70,7 +81,7 @@ records:
     disposition: ADAPT
     rationale: Compliance/consent/safe-sport concepts are reusable; enforcement must become governed and audited.
     evidence_rating: E2
-    evidence_refs: [CAP-006, FND-003]
+    evidence_refs: [CAP-006, FND-003, EV-002, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -80,7 +91,7 @@ records:
     disposition: DEFER
     rationale: Registration overlaps membership and events; defer until those scopes are qualified.
     evidence_rating: E1
-    evidence_refs: [CAP-007]
+    evidence_refs: [CAP-007, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -92,7 +103,7 @@ records:
       Payment execution belongs on a PCI-scoped external processor; the House
       governs and reconciles fee state rather than asserting it via flags.
     evidence_rating: E2
-    evidence_refs: [CAP-008, FND-004, FND-014]
+    evidence_refs: [CAP-008, FND-004, FND-014, EV-008, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -102,7 +113,7 @@ records:
     disposition: EXTERNALIZE
     rationale: Support/ticketing is non-core and better served by an external platform.
     evidence_rating: E1
-    evidence_refs: [CAP-009]
+    evidence_refs: [CAP-009, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -112,7 +123,7 @@ records:
     disposition: EXTERNALIZE
     rationale: Knowledge/documents already lean on an external tool; retain only governed evidence documents in House.
     evidence_rating: E1
-    evidence_refs: [CAP-010]
+    evidence_refs: [CAP-010, EV-011, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -122,7 +133,7 @@ records:
     disposition: DEFER
     rationale: Analytics value is unproven and duplicated; governed reporting should derive from the House system-of-record.
     evidence_rating: E1
-    evidence_refs: [CAP-011, FND-016]
+    evidence_refs: [CAP-011, FND-016, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -134,7 +145,7 @@ records:
       Decision-governance concepts are valuable, but the ad hoc mechanism must be
       rebuilt in the Governance Kernel; documentation is not implementation.
     evidence_rating: E2
-    evidence_refs: [CAP-012, FND-017, FND-020, FND-019]
+    evidence_refs: [CAP-012, FND-017, FND-020, FND-019, EV-022, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -144,7 +155,7 @@ records:
     disposition: DEFER
     rationale: Event operations are peripheral to the affiliation mission; defer past the first release.
     evidence_rating: E1
-    evidence_refs: [CAP-013]
+    evidence_refs: [CAP-013, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -157,7 +168,7 @@ records:
       server-side; it must be rebuilt on server-enforced, fail-closed controls
       with Postgres RLS. This is the highest-priority production-risk capability.
     evidence_rating: E3
-    evidence_refs: [CAP-014, FND-005, FND-006, FND-007, FND-008, FND-013]
+    evidence_refs: [CAP-014, FND-005, FND-006, FND-007, FND-008, FND-013, EV-003, EV-004, EV-014, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -167,7 +178,7 @@ records:
     disposition: CONSOLIDATE
     rationale: Overlapping dashboards and surfaces should be consolidated into a small set of governed workspaces in The Button.
     evidence_rating: E2
-    evidence_refs: [CAP-015, FND-011, FND-015]
+    evidence_refs: [CAP-015, FND-011, FND-015, EV-013, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
@@ -177,8 +188,43 @@ records:
     disposition: RETIRE
     rationale: A generic workflow builder conflicts with the governed-kernel doctrine and must not exist in the target.
     evidence_rating: E2
-    evidence_refs: [CAP-016, FND-012]
+    evidence_refs: [CAP-016, FND-012, EV-022, EV-018]
     decided_by: Aubert Nungisa (Accountable Program Authority)
     decision_status: accepted_by_accountable_authority
     authorizes_implementation: false
     authorizing_gate: null
+  - id: QD-017
+    capability_ref: CAP-017
+    disposition: DEFER
+    rationale: >-
+      The IEBOK knowledge-body domain present in the current export (7) was
+      never assessed by the original (5)-based Package 2. It is un-qualified and
+      inherits the corpus-wide missing-authorization posture; it is deferred
+      pending a dedicated assessment and is not authorized for implementation.
+    evidence_rating: E2
+    evidence_refs: [CAP-017, FND-021, EV-019, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      New in current export (7); added by the Package 2 corrective closure
+      (DEC-V1-011). No as-is adoption; DEFER only.
+  - id: QD-018
+    capability_ref: CAP-018
+    disposition: DEFER
+    rationale: >-
+      The Jobs-board domain present in the current export (7) was never assessed
+      by the original (5)-based Package 2. Its review/approval surface advances
+      state by direct mutation, matching the corpus-wide governed-transition
+      defect; it is deferred pending a dedicated assessment and is not
+      authorized for implementation.
+    evidence_rating: E2
+    evidence_refs: [CAP-018, FND-022, EV-020, EV-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      New in current export (7); added by the Package 2 corrective closure
+      (DEC-V1-011). No as-is adoption; DEFER only.

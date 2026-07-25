@@ -1,12 +1,21 @@
 register_id: REG-105
 name: Contradiction Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Contradictions surfaced during Base44 qualification. Positions reference
 # controlled sources (REG-101) with their classification. Contradictions are NOT
 # resolved by preferring the newest artifact; they are resolved only by evidence
 # or by classification authority (e.g. policy truth governs implementation truth).
 # An unresolved contradiction is itself a first-class, reportable finding.
+#
+# v0.3.0 (Package 2 corrective closure, DEC-V1-011): every contradiction was
+# revalidated against the program's DECLARED CURRENT Base44 export (SRC-001,
+# curl-link-hub (7)) and carries a current_state_validation tag. The (5)->(7)
+# delta is strictly additive (generated/base44/delta-5-to-7.json), so every
+# contradiction raised against (5) surfaces reproduces against (7); none was
+# resolved by the newer export. The original historical positions and evidence
+# are preserved, not rewritten. Current-export evidence is recorded in REG-102
+# (EV-001..EV-022).
 records:
   - id: CON-001
     statement: >-
@@ -25,8 +34,13 @@ records:
           App.jsx declares 148 routes; 18 have no matrix entry, 82 hardcode role
           lists that diverge from the matrix, and unknown paths default to open.
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     evidence_rating: E3
-    notes: Displayed access and actual reachability diverge; see FND-007, FND-008.
+    notes: >-
+      Displayed access and actual reachability diverge; see FND-007, FND-008.
+      Confirmed and worse in current export (7): 132 matrix entries, 23 routes
+      missing from the matrix, 83 route-role drift entries, unknown paths still
+      default open (EV-004, EV-016). Historical (5) was 130/18/82.
   - id: CON-002
     statement: >-
       The authorization model uses two role vocabularies simultaneously, so a
@@ -41,8 +55,12 @@ records:
           Routes gate on coarse buckets (admin/ptso/club/curler) and hardcoded
           fine keys interchangeably, using two vocabularies in enforcement.
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     evidence_rating: E3
-    notes: Dual vocabulary reconciled only at lookup time; see FND-008.
+    notes: >-
+      Dual vocabulary reconciled only at lookup time; see FND-008. Confirmed in
+      current export (7): dual_role_vocabulary=true, 23 distinct route role
+      tokens (EV-005, access-matrix-analysis.json).
   - id: CON-003
     statement: >-
       UI-driven workflow order and the entity status lifecycle can diverge because
@@ -57,8 +75,13 @@ records:
           The Application entity defines a fixed status enum with no transition
           guard mechanism, so UI order and entity lifecycle are not reconciled.
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     evidence_rating: E2
-    notes: Motivates the governed-kernel rebuild (FND-010).
+    notes: >-
+      Motivates the governed-kernel rebuild (FND-010). Confirmed in current
+      export (7): the Application status enum and direct-mutation advance path
+      persist, and the net-new IEBOKProposal and JobPosting lifecycles repeat
+      the same pattern (EV-019, EV-020, EV-022).
   - id: CON-004
     statement: >-
       Affiliation payment readiness is asserted by a boolean flag while payment
@@ -73,8 +96,13 @@ records:
           Stripe integration implies an external payment-state authority; the flag
           and the processor state are not reconciled in the code.
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     evidence_rating: E2
-    notes: See FND-014; fee state must be reconciled, not asserted.
+    notes: >-
+      See FND-014; fee state must be reconciled, not asserted. Confirmed in
+      current export (7): the annual_fee_paid boolean is retained on the
+      Application entity and the Stripe dependency remains present (EV-008,
+      EV-022).
   - id: CON-005
     statement: >-
       Multiple authoritative-looking surfaces exist for the same capability,
@@ -89,8 +117,12 @@ records:
         classification: implementation_truth
         assertion: The access/nav doctrine assumes one authoritative surface per capability per role.
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     evidence_rating: E2
-    notes: See FND-011 (duplicated surfaces).
+    notes: >-
+      See FND-011 (duplicated surfaces). Confirmed in current export (7): the
+      overlapping dashboard/club surfaces persist and the page count grew
+      144->151 between (5) and (7) (EV-013, delta-5-to-7.json).
   - id: CON-006
     statement: >-
       The entity model and the governance narrative describe overlapping but
@@ -105,8 +137,13 @@ records:
         classification: stakeholder_statement
         assertion: The governance narrative asserts a single canonical club/organization model.
     status: open
+    current_state_validation: CONFIRMED_IN_CURRENT
     evidence_rating: E2
-    notes: Canonical definitions must be established before adoption; open.
+    notes: >-
+      Canonical definitions must be established before adoption; open. Confirmed
+      in current export (7): the overlapping Club/Organization/Member/participant
+      entity definitions persist (EV-002), and the +57 growth in governance
+      narrative does not reconcile them (EV-011).
   - id: CON-007
     statement: >-
       Base44 advances governed lifecycle by direct status mutation and client-side
@@ -132,4 +169,8 @@ records:
       retained via ADAPT while the mechanism is rejected. This is resolved by the
       House authority hierarchy, not by preferring a newer artifact.
     evidence_rating: E3
-    notes: See FND-019.
+    notes: >-
+      See FND-019. Confirmed in current export (7): the direct-mutation
+      mechanism persists (EV-003, EV-022); the resolution by classification
+      authority is unchanged.
+    current_state_validation: CONFIRMED_IN_CURRENT

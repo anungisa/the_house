@@ -1,68 +1,98 @@
 register_id: REG-102
 name: Evidence Register
 status: IN_REVIEW
-version: 0.2.0
+version: 0.3.0
 # Reviewable evidence items supporting Volume 1 Package 2 (Base44) findings and
 # dispositions. Each entry cites a controlled source (REG-101), a reviewable
 # location, an artifact type, and an evidence rating (E0-E4). Structural items
 # are E3 (reproducible deterministic extraction); product-value and stakeholder
 # claims are capped lower pending independent evidence. Notes record extraction
 # method, reproducibility, and limitations.
+#
+# v0.3.0 (Package 2 corrective closure, DEC-V1-011): every evidence record was
+# reconciled to the program's DECLARED CURRENT Base44 export (SRC-001,
+# curl-link-hub (7)). EV-001..EV-016 now report current-export (7) counts and
+# cite the (7) extraction (legacy/curl-link-hub-7-extracted) and the
+# regenerated deterministic artifacts (generated/base44/*.json); the superseded
+# (5) equivalents are preserved at generated/base44/historical-5/*.json under
+# historical source SRC-009 (REG-101). EV-017..EV-022 add current-export
+# evidence for the source manifest/fingerprint, the (5)->(7) delta, the two
+# domains missed by the original (5) assessment (IEBOK -> CAP-017, Jobs board ->
+# CAP-018), the re-verified affiliation lifecycle, and the preserved historical
+# (5) baseline. The evidence lineage is therefore SRC-001 (current export) ->
+# generated extraction artifact -> EV current evidence record -> FND current
+# finding (REG-104) -> QD qualification decision (REG-106).
 records:
   - id: EV-001
     source_ref: SRC-008
     summary: >-
-      App.jsx declares 148 routes with guard distribution none=45, RoleGate=82,
-      ProtectedRoute=18, FeatureGate=3. 45 authenticated routes carry no role
+      App.jsx declares 155 routes with guard distribution none=46, RoleGate=83,
+      ProtectedRoute=23, FeatureGate=3. 46 authenticated routes carry no role
       guard at all.
     artifact_type: interface
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/src/App.jsx; generated/base44/route-inventory.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/App.jsx; generated/base44/route-inventory.json
     captured_at: '2026-07-25'
     capability_refs: [CAP-014, CAP-015]
     notes: >-
       Extraction method: analyze-base44-routes.mjs regex over Route nodes.
-      Reproducible via npm run qualification:base44. Limitation: dynamic/param
-      routes counted by literal declaration only.
+      Reproducible via npm run qualification:base44 -- --source-id SRC-001.
+      Current export (7); historical (5) reported 148 routes (none=45,
+      RoleGate=82, ProtectedRoute=18) at generated/base44/historical-5/. The 7
+      net-new routes are /iebok/* and /jobs* (delta-5-to-7.json). Limitation:
+      dynamic/param routes counted by literal declaration only.
   - id: EV-002
     source_ref: SRC-004
     summary: >-
-      87 entity schemas; 85 declare an app-layer rls block (Mongo-style, not a
-      database boundary); 49 declare a status/state enum.
+      95 entity schemas; 93 declare an app-layer rls block (Mongo-style, not a
+      database boundary); 53 declare a status/state enum.
     artifact_type: data
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/base44/entities/*.jsonc; generated/base44/entity-inventory.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/*.jsonc; generated/base44/entity-inventory.json
     captured_at: '2026-07-25'
     capability_refs: [CAP-002, CAP-004]
-    notes: Extraction via analyze-base44-entities.mjs (JSONC-tolerant parse). Reproducible.
+    notes: >-
+      Extraction via analyze-base44-entities.mjs (JSONC-tolerant parse).
+      Reproducible. Current export (7); historical (5) reported 87 entities
+      (85 rls, 49 status enum) at generated/base44/historical-5/. The 8 net-new
+      entities are the IEBOK and Jobs domains (delta-5-to-7.json).
   - id: EV-003
     source_ref: SRC-005
     summary: >-
-      99 server functions (97 Deno.serve handlers). Only 2 reference any
-      permission check; 66 mutate entities with no server-side permission check;
-      78 use asServiceRole privilege escalation.
+      101 server functions (99 Deno.serve handlers). Only 2 reference any
+      permission check; 68 mutate entities with no server-side permission check;
+      80 use asServiceRole privilege escalation.
     artifact_type: code
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
     captured_at: '2026-07-25'
     capability_refs: [CAP-014]
     notes: >-
       Extraction via analyze-base44-functions.mjs (markers Deno.serve,
       enforce/checkPermission, entity mutation calls, asServiceRole).
-      Reproducible. Limitation: static markers may under- or over-count
-      semantically; corroborated by direct inspection of enforcePermission.
+      Reproducible. Current export (7); historical (5) reported 99 functions
+      (2 checks, 66 mutating-without-check, 78 asServiceRole) at
+      generated/base44/historical-5/ - the missing-authorization posture is
+      confirmed and marginally worse in (7). Limitation: static markers may
+      under- or over-count semantically; corroborated by direct inspection of
+      enforcePermission.
   - id: EV-004
     source_ref: SRC-006
     summary: >-
-      accessMatrix.js declares 130 entries against 148 routes; 18 routes have no
-      matrix entry; 82 routes carry App.jsx-hardcoded roles that diverge from
+      accessMatrix.js declares 132 entries against 155 routes; 23 routes have no
+      matrix entry; 83 routes carry App.jsx-hardcoded roles that diverge from
       the matrix; canAccessPath defaults unknown paths to OPEN.
     artifact_type: code
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/src/lib/access/; generated/base44/access-matrix-analysis.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/lib/access/; generated/base44/access-matrix-analysis.json
     captured_at: '2026-07-25'
     capability_refs: [CAP-014]
-    notes: Extraction via analyze-base44-access.mjs comparing matrix to routes. Reproducible.
+    notes: >-
+      Extraction via analyze-base44-access.mjs comparing matrix to routes.
+      Reproducible. Current export (7); historical (5) reported 130 entries,
+      18 routes missing, 82 drift at generated/base44/historical-5/ - drift is
+      confirmed and marginally worse in (7). unknown_path_defaults_open remains
+      true.
   - id: EV-005
     source_ref: SRC-006
     summary: >-
@@ -71,10 +101,13 @@ records:
       mix both directly.
     artifact_type: code
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/src/lib/access/roleGroups.js
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/lib/access/roleGroups.js
     captured_at: '2026-07-25'
     capability_refs: [CAP-014]
-    notes: Direct inspection; corroborated by route role tokens in route-inventory.json.
+    notes: >-
+      Direct inspection of the current export (7); corroborated by 23 distinct
+      route role tokens in route-inventory.json (dual_role_vocabulary=true in
+      access-matrix-analysis.json). Unchanged from historical (5).
   - id: EV-006
     source_ref: SRC-004
     summary: >-
@@ -83,23 +116,28 @@ records:
       (default submitted) and application_type new_affiliation/renewal/transfer.
     artifact_type: data
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/base44/entities/Application.jsonc
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/Application.jsonc
     captured_at: '2026-07-25'
     capability_refs: [CAP-001]
-    notes: Direct inspection of the affiliation entity schema. Reproducible.
+    notes: >-
+      Direct inspection of the affiliation entity schema in the current export
+      (7). Reproducible. The lifecycle enum is unchanged from historical (5);
+      see EV-022 for the re-verified current affiliation lifecycle evidence.
   - id: EV-007
     source_ref: SRC-005
     summary: >-
       enforcePermission/entry.ts is a template documenting that server-side
       permission checks should be called in EVERY backend function and that
-      frontend checks are UX only - yet only 2 of 99 functions reference such a
+      frontend checks are UX only - yet only 2 of 101 functions reference such a
       check.
     artifact_type: code
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/base44/functions/enforcePermission/entry.ts
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/functions/enforcePermission/entry.ts
     captured_at: '2026-07-25'
     capability_refs: [CAP-014]
-    notes: Documented intent vs measured adoption; both mechanically verifiable.
+    notes: >-
+      Documented intent vs measured adoption; both mechanically verifiable in
+      the current export (7). Historical (5) was 2 of 99.
   - id: EV-008
     source_ref: SRC-001
     summary: >-
@@ -107,12 +145,14 @@ records:
       payments/fees capability was explored via Stripe.
     artifact_type: configuration
     evidence_rating: E2
-    reviewable_location: legacy/curl-link-hub-extracted/package.json; generated/base44/dependency-inventory.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/package.json; generated/base44/dependency-inventory.json
     captured_at: '2026-07-25'
     capability_refs: [CAP-008]
     notes: >-
       Dependency presence corroborates intent (E2). It does NOT establish
       correct payment-state handling or reconciliation, which remain unproven.
+      Current export (7): dependency set (65 deps, 17 dev, 27 Radix) is
+      identical to historical (5); Stripe remains present.
   - id: EV-009
     source_ref: SRC-008
     summary: >-
@@ -121,11 +161,13 @@ records:
       framework. 5 i18n files present.
     artifact_type: code
     evidence_rating: E2
-    reviewable_location: legacy/curl-link-hub-extracted/src/lib/i18n; generated/base44/localization-inventory.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/lib/i18n; generated/base44/localization-inventory.json
     captured_at: '2026-07-25'
     notes: >-
       Presence is E2. Bilingual (English/French) coverage completeness and
-      quality are NOT established and remain an open evidence question.
+      quality are NOT established and remain an open evidence question. Current
+      export (7): 5 i18n files (identical framework to historical (5)); 46
+      files reference translation/French.
   - id: EV-010
     source_ref: SRC-001
     summary: >-
@@ -133,25 +175,30 @@ records:
       (no test directories, no CI workflows). Test/CI absence.
     artifact_type: observation
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted (export root)
+    reviewable_location: legacy/curl-link-hub-7-extracted (export root); generated/base44/tests-ci-inventory.json
     captured_at: '2026-07-25'
     notes: >-
-      Absence demonstrated by exhaustive file walk. Limitation: absence of tests
-      in the export does not preclude ad hoc manual testing on the platform.
+      Absence demonstrated by exhaustive file walk and the evidence-based
+      tests/CI detector in the current export (7): 0 test files, no CI config,
+      no runnable test script (tests-ci-inventory.json). Unchanged from
+      historical (5). Limitation: absence of tests in the export does not
+      preclude ad hoc manual testing on the platform.
   - id: EV-011
     source_ref: SRC-007
     summary: >-
-      231 governance-style markdown documents are present in src/ describing
+      288 governance-style markdown documents are present in src/ describing
       authority, continuity, decision governance, and access doctrine.
     artifact_type: document
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/src (*.md)
+    reviewable_location: legacy/curl-link-hub-7-extracted/src (*.md)
     captured_at: '2026-07-25'
     capability_refs: [CAP-012]
     notes: >-
       Count is E3. The documents are design-intent narrative (SRC-007,
       stakeholder statement); their assertions of implemented behaviour are NOT
-      thereby demonstrated.
+      thereby demonstrated. Current export (7): 288 documents; historical (5)
+      had 231. Volume growth (+57) tracks added IEBOK/Jobs narrative and is not
+      validation.
   - id: EV-012
     source_ref: SRC-004
     summary: >-
@@ -160,10 +207,12 @@ records:
       empty org_id - evidence of retrofitted, single-tenant-shaped tenancy.
     artifact_type: data
     evidence_rating: E2
-    reviewable_location: legacy/curl-link-hub-extracted/base44/entities/Application.jsonc
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/Application.jsonc
     captured_at: '2026-07-25'
     capability_refs: [CAP-002]
-    notes: Self-described migration note; indicates tenancy was added late, not designed in.
+    notes: >-
+      Self-described migration note; indicates tenancy was added late, not
+      designed in. Confirmed in the current export (7); unchanged from (5).
   - id: EV-013
     source_ref: SRC-008
     summary: >-
@@ -181,15 +230,17 @@ records:
   - id: EV-014
     source_ref: SRC-005
     summary: >-
-      78 of 99 server functions invoke asServiceRole, executing with elevated
-      platform privilege; combined with 2/99 permission checks this broadens the
-      blast radius of missing authorization.
+      80 of 101 server functions invoke asServiceRole, executing with elevated
+      platform privilege; combined with 2/101 permission checks this broadens
+      the blast radius of missing authorization.
     artifact_type: code
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/functions/*/entry.ts; generated/base44/function-inventory.json
     captured_at: '2026-07-25'
     capability_refs: [CAP-014]
-    notes: Mechanical marker count; reproducible.
+    notes: >-
+      Mechanical marker count; reproducible. Current export (7): 80/101;
+      historical (5) was 78/99. Confirmed and worse.
   - id: EV-015
     source_ref: SRC-007
     summary: >-
@@ -199,12 +250,13 @@ records:
       migration spine.
     artifact_type: document
     evidence_rating: E1
-    reviewable_location: legacy/curl-link-hub-extracted/src/AFFILIATION_MIGRATION_DOCTRINE.md
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/AFFILIATION_MIGRATION_DOCTRINE.md
     captured_at: '2026-07-25'
     capability_refs: [CAP-001]
     notes: >-
       Design intent (E1). A useful hypothesis for the first release, but NOT
       validated by Curling Canada policy or stakeholders in this package.
+      Present in the current export (7).
   - id: EV-016
     source_ref: SRC-006
     summary: >-
@@ -213,7 +265,119 @@ records:
       helper canAccessPath treats unknown paths as open (default-allow).
     artifact_type: document
     evidence_rating: E3
-    reviewable_location: legacy/curl-link-hub-extracted/src/ACCESS_MATRIX.md; src/lib/access/index.js
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/ACCESS_MATRIX.md; legacy/curl-link-hub-7-extracted/src/lib/access/index.js
     captured_at: '2026-07-25'
     capability_refs: [CAP-014]
-    notes: Doctrine vs behaviour; both directly reviewable.
+    notes: >-
+      Doctrine vs behaviour; both directly reviewable in the current export (7).
+      unknown_path_defaults_open remains true (access-matrix-analysis.json).
+  # --- CURRENT-EXPORT (7) EVIDENCE ADDED IN THE PACKAGE 2 CORRECTIVE CLOSURE ---
+  - id: EV-017
+    source_ref: SRC-001
+    summary: >-
+      Current declared Base44 export curl-link-hub (7).zip is fingerprinted
+      SHA-256 50d94c56a40caf853bffa3ede8183a9b424dd2874ceccd5fa8cc1247ca1d0412
+      (3,336,492 bytes, 1,576 files) and extracts reproducibly to
+      legacy/curl-link-hub-7-extracted. Corrected current-state totals: 155
+      routes, 95 entities, 101 server functions, 151 pages, 604 components, 288
+      markdown documents.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: generated/base44/source-manifest.json; legacy/curl-link-hub-7-extracted
+    captured_at: '2026-07-25'
+    notes: >-
+      Immutable source fingerprint (REG-101 SRC-001) binding the corrected
+      Package 2 baseline to the program's declared current export. Extraction is
+      clean (1576 archived files == 1576 extracted files, node_modules
+      excluded). All corrected counts regenerate mechanically via
+      npm run qualification:base44 -- --source-id SRC-001.
+  - id: EV-018
+    source_ref: SRC-001
+    summary: >-
+      Deterministic (5)->(7) delta is strictly additive with zero removals:
+      routes 148->155 (+7), entities 87->95 (+8), functions 99->101 (+2), pages
+      144->151 (+7), components 589->604 (+15). No assessed route, entity, or
+      function was dropped between (5) and (7); the missing-authorization posture
+      is unchanged or marginally worse (mutating-without-check 66->68,
+      asServiceRole 78->80, route-role drift 82->83, routes missing from matrix
+      18->23).
+    artifact_type: process
+    evidence_rating: E3
+    reviewable_location: generated/base44/delta-5-to-7.json; generated/base44/delta-5-to-7.md
+    captured_at: '2026-07-25'
+    notes: >-
+      Establishes that every Package 2 finding raised against (5) surfaces
+      reproduces against (7), and that the original (5)-based assessment was
+      incomplete (it omitted the net-new IEBOK and Jobs domains) rather than
+      wrong on the safety findings. Generated by delta-base44.mjs.
+  - id: EV-019
+    source_ref: SRC-004
+    summary: >-
+      The current export (7) contains an IEBOK knowledge-body domain absent from
+      (5): entities IEBOKArtifact, IEBOKGlossaryTerm, IEBOKMechanic,
+      IEBOKProposal (status lifecycle), IEBOKRelationship, IEBOKWorkingGroup;
+      routes /iebok, /iebok/browse, /iebok/glossary, /iebok/mechanics,
+      /iebok/standards; pages IEBOKBrowser/Glossary/Home/Mechanics/Standards.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities; generated/base44/entity-inventory.json; generated/base44/delta-5-to-7.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-017]
+    notes: >-
+      New-in-current capability domain missed by the original (5) assessment
+      (FND-021). IEBOKProposal carries a status lifecycle and therefore inherits
+      the same direct-mutation production-risk posture as the rest of the corpus.
+      Dispositioned DEFER (QD-017); no as-is adoption.
+  - id: EV-020
+    source_ref: SRC-008
+    summary: >-
+      The current export (7) contains a Jobs-board domain absent from (5):
+      entities JobPosting (status lifecycle) and SavedJob; routes /jobs and
+      /jobs/review; functions expireJobPostings and notifyJobStatus; pages
+      JobBoard and JobReviewQueue; component RejectJobModal.
+    artifact_type: interface
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/src/pages; generated/base44/route-inventory.json; generated/base44/delta-5-to-7.json
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-018]
+    notes: >-
+      New-in-current capability domain missed by the original (5) assessment
+      (FND-022). JobPosting carries a status lifecycle advanced by direct
+      mutation (expireJobPostings/notifyJobStatus), inheriting the corpus-wide
+      production-risk posture. Dispositioned DEFER (QD-018); no as-is adoption.
+  - id: EV-021
+    source_ref: SRC-009
+    summary: >-
+      Superseded historical Base44 export curl-link-hub (5).zip is fingerprinted
+      SHA-256 a627d60e8aeebd7a47099af4681eb8427da0ba2647da1ab8f537712394850c95
+      (3,046,971 bytes, 1,485 files). Historical current-state totals: 148
+      routes, 87 entities, 99 server functions. Preserved for longitudinal
+      comparison.
+    artifact_type: observation
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-extracted; generated/base44/historical-5/
+    captured_at: '2026-06-29'
+    notes: >-
+      Historical reference-case baseline (REG-101 SRC-009). This is the export
+      the original Package 2 assessment mistakenly treated as current; it is
+      retained immutably, not deleted, and verifies that no assessed surface was
+      silently dropped between (5) and (7). Regenerated via
+      npm run qualification:base44 -- --source-id SRC-009.
+  - id: EV-022
+    source_ref: SRC-004
+    summary: >-
+      Re-verified affiliation lifecycle in the current export (7): the
+      Application entity retains the submitted -> ptso_review -> ptso_approved ->
+      cc_review -> approved / rejected / more_info_needed status enum, the
+      annual_fee_paid boolean, and ptso_reviewer/cc_reviewer assignment fields;
+      the generic WorkflowStep entity and src/pages/WorkflowBuilder.jsx persist.
+    artifact_type: data
+    evidence_rating: E3
+    reviewable_location: legacy/curl-link-hub-7-extracted/base44/entities/Application.jsonc; legacy/curl-link-hub-7-extracted/base44/entities/WorkflowStep.jsonc; legacy/curl-link-hub-7-extracted/src/pages/WorkflowBuilder.jsx
+    captured_at: '2026-07-25'
+    capability_refs: [CAP-001, CAP-016]
+    notes: >-
+      Confirms the reusable affiliation concept (FND-001) and the direct-mutation
+      lifecycle / generic-workflow-builder production risks (FND-010, FND-012)
+      persist in the current export. The concept is ADAPTED and the mechanism is
+      REBUILT/RETIRED on the Governance Kernel; no as-is adoption.
