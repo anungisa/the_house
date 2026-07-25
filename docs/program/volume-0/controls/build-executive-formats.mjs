@@ -8,16 +8,20 @@
 // The authoritative source of record remains the Markdown chapters and the
 // governed registers under docs/program/volume-0/. Generated files are
 // explicitly marked as non-authoritative projections and carry the source
-// commit id. Regenerating from the same commit reproduces the same content.
+// commit id. The visible document date is derived from the source commit date
+// (not wall-clock time), so regenerating from the same commit reproduces the
+// same visible content. (DOCX package metadata written by html-to-docx may
+// still embed a build timestamp; the rendered content is deterministic.)
 //
-// Dependencies (not part of the application runtime; install without touching
-// package.json / package-lock):
-//   npm install --no-save --no-package-lock marked html-to-docx
+// Dependencies are pinned in devDependencies (marked, html-to-docx, js-yaml)
+// so a clean checkout or CI runner can reproduce the artifacts:
+//   npm ci && npm run governance:docs
 //
 // PDF generation uses local headless Google Chrome (no LaTeX / pandoc).
 //
 // Usage:
-//   node docs/program/volume-0/controls/build-executive-formats.mjs
+//   npm run governance:docs
+//   (or: node docs/program/volume-0/controls/build-executive-formats.mjs)
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -49,6 +53,22 @@ function sourceCommit() {
   }
 }
 
+// Deterministic document date: the committer date of the source commit
+// (calendar date, UTC), so the same commit always yields the same visible
+// document rather than a volatile wall-clock timestamp.
+function sourceDate() {
+  try {
+    const iso = execFileSync(
+      'git',
+      ['show', '-s', '--format=%cd', '--date=format-local:%Y-%m-%d', 'HEAD'],
+      { cwd: REPO_ROOT, encoding: 'utf8', env: { ...process.env, TZ: 'UTC' } },
+    ).trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso : 'UNKNOWN';
+  } catch {
+    return 'UNKNOWN';
+  }
+}
+
 function loadCorpusOrder() {
   const raw = readFileSync(
     resolve(VOLUME_DIR, 'registers', 'REG-000-corpus-index.yaml'),
@@ -65,42 +85,80 @@ function loadCorpusOrder() {
 }
 
 // Strip the plain-text document-control header block that precedes the first
-// Markdown H1 so the rendered document leads with the chapter heading.
+// Markdown H1, and render the metadata block that follows the H1 (a run of
+// "Label: value" lines) as discrete lines instead of a run-on paragraph.
 function chapterMarkdown(absPath) {
   const raw = readFileSync(absPath, 'utf8');
   const lines = raw.split('\n');
   const h1 = lines.findIndex((l) => /^#\s+/.test(l));
-  return h1 > 0 ? lines.slice(h1).join('\n') : raw;
+  const body = h1 >= 0 ? lines.slice(h1) : lines.slice();
+
+  let i = 1;
+  while (i < body.length && body[i].trim() === '') i++;
+  const meta = [];
+  while (i < body.length && /^[A-Za-z][\w /-]*:\s+\S/.test(body[i])) {
+    meta.push(body[i]);
+    i++;
+  }
+  if (meta.length >= 2) {
+    const block =
+      '<div class="docmeta">' +
+      meta
+        .map((l) => {
+          const idx = l.indexOf(':');
+          const k = l.slice(0, idx).trim();
+          const v = l.slice(idx + 1).trim();
+          return `<div><b>${k}:</b> ${v}</div>`;
+        })
+        .join('') +
+      '</div>';
+    return [body[0], '', block, '', ...body.slice(i)].join('\n');
+  }
+  return body.join('\n');
 }
 
 const STYLE = `
   :root { --cc-red: #C8102E; --cc-ink: #1a1a1a; --cc-muted: #5a5a5a; }
+  @page { size: Letter; margin: 20mm 18mm; }
   * { box-sizing: border-box; }
   body {
     font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     color: var(--cc-ink); line-height: 1.5; font-size: 11pt; margin: 0;
   }
   h1 { color: var(--cc-red); font-size: 20pt; border-bottom: 3px solid var(--cc-red);
-       padding-bottom: 6px; margin-top: 0; page-break-after: avoid; }
-  h2 { color: var(--cc-ink); font-size: 15pt; margin-top: 18px; page-break-after: avoid; }
-  h3 { color: var(--cc-ink); font-size: 12.5pt; page-break-after: avoid; }
-  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 10pt; }
-  th, td { border: 1px solid #cfcfcf; padding: 5px 8px; text-align: left; vertical-align: top; }
+       padding-bottom: 6px; margin-top: 0; page-break-after: avoid; break-after: avoid; }
+  h2 { color: var(--cc-ink); font-size: 15pt; margin-top: 18px; page-break-after: avoid;
+       break-after: avoid; page-break-inside: avoid; }
+  h3 { color: var(--cc-ink); font-size: 12.5pt; page-break-after: avoid; break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 10pt;
+    table-layout: fixed; page-break-inside: auto; }
+  th, td { border: 1px solid #cfcfcf; padding: 5px 8px; text-align: left; vertical-align: top;
+    word-break: break-word; overflow-wrap: anywhere; }
   th { background: #f4f4f4; }
-  code { background: #f2f2f2; padding: 1px 4px; border-radius: 3px; font-size: 9.5pt; }
-  pre { background: #f7f7f7; border: 1px solid #e0e0e0; padding: 10px; overflow-x: auto; font-size: 9pt; }
+  tr { page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  code { background: #f2f2f2; padding: 1px 4px; border-radius: 3px; font-size: 9.5pt;
+    overflow-wrap: anywhere; }
+  pre { background: #f7f7f7; border: 1px solid #e0e0e0; padding: 10px; font-size: 9pt;
+    white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; page-break-inside: avoid; }
+  img { max-width: 100%; }
   a { color: var(--cc-red); text-decoration: none; }
-  .cover { text-align: center; padding-top: 140px; }
+  .docmeta { color: var(--cc-muted); font-size: 9.5pt; line-height: 1.65;
+    margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid #e6e6e6; }
+  .docmeta b { color: var(--cc-ink); font-weight: 600; }
+  .cover { text-align: center; padding-top: 40px; }
   .cover .kicker { color: var(--cc-red); font-weight: 700; letter-spacing: 3px;
     text-transform: uppercase; font-size: 12pt; }
-  .cover h1 { border: none; color: var(--cc-ink); font-size: 30pt; margin: 18px 40px; }
-  .cover .subtitle { font-size: 15pt; color: var(--cc-muted); margin-bottom: 60px; }
-  .control-box { margin: 40px auto; width: 78%; border: 1px solid #d0d0d0;
-    border-top: 4px solid var(--cc-red); padding: 18px 22px; text-align: left; font-size: 10pt; }
+  .cover h1 { border: none; color: var(--cc-ink); font-size: 28pt; margin: 14px 40px; }
+  .cover .subtitle { font-size: 14pt; color: var(--cc-muted); margin-bottom: 34px; }
+  .control-box { margin: 22px auto; width: 78%; border: 1px solid #d0d0d0;
+    border-top: 4px solid var(--cc-red); padding: 16px 22px; text-align: left; font-size: 10pt; }
   .control-box dt { font-weight: 700; color: var(--cc-red); }
-  .control-box dd { margin: 0 0 8px 0; }
-  .projection { margin: 24px auto; width: 78%; background: #fff6f6;
-    border: 1px solid var(--cc-red); padding: 12px 16px; text-align: left; font-size: 9.5pt; }
+  .control-box dd { margin: 0 0 6px 0; }
+  .projection { margin: 18px auto 0; width: 78%; background: #fff6f6;
+    border: 1px solid var(--cc-red); padding: 12px 16px; text-align: left; font-size: 9.5pt;
+    page-break-inside: avoid; }
   .chapter { page-break-before: always; }
   .toc { page-break-before: always; }
   .toc h2 { color: var(--cc-red); border-bottom: 2px solid var(--cc-red); padding-bottom: 4px; }
@@ -120,7 +178,7 @@ function coverHtml({ title, subtitle, commit, generatedAt, scope }) {
       <dt>Executive acceptance authority</dt><dd>Nolan</dd>
       <dt>Associated gate</dt><dd>G0</dd>
       <dt>Source commit</dt><dd><code>${commit}</code></dd>
-      <dt>Generated</dt><dd>${generatedAt}</dd>
+      <dt>Document date</dt><dd>${generatedAt} (source commit date, UTC)</dd>
     </dl>
     <div class="projection">
       <strong>Non-authoritative projection.</strong> This file is a formatted
@@ -137,7 +195,7 @@ function coverHtml({ title, subtitle, commit, generatedAt, scope }) {
 
 function tocHtml(chapters) {
   const items = chapters
-    .map((c) => `<li>${c.id} &mdash; ${c.title}</li>`)
+    .map((c) => `<li><a href="#chap-${c.id}">${c.id} &mdash; ${c.title}</a></li>`)
     .join('\n');
   return `<section class="toc"><h2>Contents</h2><ol>${items}</ol></section>`;
 }
@@ -182,14 +240,14 @@ async function main() {
   mkdirSync(GENERATED_DIR, { recursive: true });
 
   const commit = sourceCommit();
-  const generatedAt = new Date().toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
+  const generatedAt = sourceDate();
   const corpus = loadCorpusOrder();
 
   // ---- Complete Volume 0 ----
   const chapterBodies = corpus
     .map(
       (c) =>
-        `<section class="chapter">${marked.parse(chapterMarkdown(c.path))}</section>`,
+        `<section class="chapter" id="chap-${c.id}">${marked.parse(chapterMarkdown(c.path))}</section>`,
     )
     .join('\n');
 

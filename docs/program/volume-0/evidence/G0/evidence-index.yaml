@@ -71,7 +71,29 @@ validation_evidence:
     - REG-008 OUT-007 baseline TBD
     - REG-008 OUT-009 baseline TBD
   report: docs/program/volume-0/generated/governance-control-report.md
-  remote_ci: pending verification (governance workflow runs on push)
+  remote_ci: PASS (governance workflow, PR to main, run 30165079888)
+
+generated_artifact_qa:
+  status: PASS
+  method: Page-by-page rasterization (PyMuPDF) and rendered-image review; DOCX OOXML integrity check
+  reviewed_at_commit: 4fc5b1c
+  reproducibility: marked and html-to-docx pinned to exact versions in devDependencies; npm run governance:docs; document date derived from source commit (deterministic visible content)
+  artifacts:
+    - Central-Registration-Platform-Volume-0-v1.0.0.pdf (93 pages)
+    - Central-Registration-Platform-Volume-0-v1.0.0.docx
+    - Central-Registration-Platform-Volume-0-Executive-Brief.pdf (5 pages)
+    - Central-Registration-Platform-Volume-0-Executive-Brief.docx
+  checks:
+    cover_and_document_control: PASS
+    contents_navigation: PASS (22 internal named-destination links resolve to chapter pages)
+    table_layout: PASS (borders, shaded headers, wrapping; no overflow)
+    heading_orphaning: PASS (page-break-after avoid on headings)
+    page_breaks: PASS (per-chapter; no blank or near-empty pages)
+    french_characters: PASS (accented characters render correctly; no mojibake)
+    docx_opens_cleanly: PASS (all OOXML parts present; every XML part well-formed; styles and numbering included)
+    executive_brief_suitability: PASS (plain-language, numbered executive Q&A)
+    curling_canada_styling: PASS (brand red, typography, controlled cover)
+  caveat: DOCX package metadata may embed a build timestamp; rendered content is deterministic per source commit
 
 unresolved_conditions:
   - condition: Executive organizational acceptance

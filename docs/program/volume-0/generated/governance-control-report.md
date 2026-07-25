@@ -1,6 +1,6 @@
 # Volume 0 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T16:08:36.487Z
+Generated: 2026-07-25T16:44:55.343Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 0 corpus (see V0-10 10.12). It is not a source of truth, does not confer
