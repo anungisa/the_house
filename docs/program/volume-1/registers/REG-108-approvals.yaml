@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.10.0
+version: 0.11.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -601,5 +601,16 @@ records:
       - No implementation, procurement, or master development plan authorized by Package 5
       - No source retained or retired merely for being newer or more polished; material contradictions retained open
       - Gate V1-G5 disposed PASS (DEC-V1-027); Volume 2 authorized to begin as planning only (DEC-V1-029)
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-044
+    artifact_id: V1-F
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Executive convergence brief ratified as a summary of ratified Volume 1 findings
+      - Introduces no new target decision and no new source of authority
+      - "Consistent with V1-E: Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized"
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

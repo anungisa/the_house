@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T21:55:48.733Z
+Generated: 2026-07-25T22:53:25.310Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,13 +26,13 @@ Generated: 2026-07-25T21:55:48.733Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 32 |
+| RATIFIED | 33 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.9.0 | 32 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.10.0 | 33 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.6.0 | 23 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.6.0 | 53 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.6.0 | 48 |
@@ -40,7 +40,7 @@ Generated: 2026-07-25T21:55:48.733Z
 | REG-105 | Contradiction Register | IN_REVIEW | 0.6.0 | 14 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.6.0 | 65 |
 | REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.10.0 | 29 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.10.0 | 42 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.11.0 | 43 |
 
 ## Findings by control
 
@@ -202,3 +202,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-042 (PACKAGE-5): No source retained or retired merely for being newer or more polished; material contradictions retained open
 - APP-V1-042 (PACKAGE-5): Gate V1-G5 disposed PASS (DEC-V1-027); Volume 2 authorized to begin as planning only (DEC-V1-029)
 - APP-V1-042 (PACKAGE-5): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-044 (V1-F): Executive convergence brief ratified as a summary of ratified Volume 1 findings
+- APP-V1-044 (V1-F): Introduces no new target decision and no new source of authority
+- APP-V1-044 (V1-F): Consistent with V1-E: Gate V1-G5 PASS; Volume 2 authorized for product/service definition; master development plan pending; implementation and procurement unauthorized
+- APP-V1-044 (V1-F): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
