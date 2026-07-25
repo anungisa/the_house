@@ -153,3 +153,43 @@ records:
       - No application development authorized from Package 2 alone
       - Executive organizational acceptance (Nolan, D0) pending before material commitment
     approved_at: null
+  - id: APP-V1-014
+    artifact_id: PACKAGE-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V1-B
+    base_commit: 3a75690
+    amendment_process: >-
+      Any change to a frozen Package 2 chapter requires an amendment decision in
+      REG-107 (with amends set to the artifact id and a stated amendment_reason),
+      a version increment, and re-ratification. The freeze-integrity control
+      rejects unamended version drift. Package 2 registers remain living machinery
+      and are not frozen by this approval.
+    frozen: true
+    frozen_artifacts:
+      - id: V1-05
+        version: 1.0.0
+      - id: V1-06
+        version: 1.0.0
+      - id: V1-07
+        version: 1.0.0
+      - id: V1-08
+        version: 1.0.0
+      - id: V1-09
+        version: 1.0.0
+      - id: V1-B
+        version: 1.0.0
+    scope:
+      - V1-05
+      - V1-06
+      - V1-07
+      - V1-08
+      - V1-09
+      - V1-B
+    conditions:
+      - Package 2 reviewed and closed separately from authoring
+      - Volume 0 and Package 1 freezes preserved; no frozen artifact modified
+      - No implementation and no master development plan authorized by Package 2
+      - Executive organizational acceptance (Nolan, D0) pending
+    approved_at: null

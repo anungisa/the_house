@@ -174,3 +174,21 @@ records:
     executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority
+  - id: DEC-V1-010
+    class: D1
+    question: Is Volume 1 Package 2 reviewed, closed, and frozen?
+    decision: >-
+      Close and freeze Volume 1 Package 2. Base44 qualification is complete and
+      validated by the governance toolchain with zero errors. Chapters V1-05..V1-09
+      and this closure record V1-B are frozen at v1.0.0; the Package 2 registers
+      remain living machinery. Further change to a frozen chapter requires the
+      recorded amendment process. No implementation and no master development plan
+      are authorized by Package 2.
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

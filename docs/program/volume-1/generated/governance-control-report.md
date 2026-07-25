@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T17:40:36.702Z
+Generated: 2026-07-25T17:42:25.453Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T17:40:36.702Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.2.0 | 11 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.2.0 | 12 |
 | REG-101 | Source Inventory | IN_REVIEW | 0.2.0 | 8 |
 | REG-102 | Evidence Register | IN_REVIEW | 0.2.0 | 16 |
 | REG-103 | Capability Inventory | IN_REVIEW | 0.2.0 | 16 |
 | REG-104 | Finding Register | IN_REVIEW | 0.2.0 | 20 |
 | REG-105 | Contradiction Register | IN_REVIEW | 0.2.0 | 7 |
 | REG-106 | Qualification Decision Register | IN_REVIEW | 0.2.0 | 16 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.2.0 | 9 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.2.0 | 13 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.2.0 | 10 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.2.0 | 14 |
 
 ## Findings by control
 
@@ -95,3 +95,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-013 (GATE-V1-G2): No Base44 implementation declared production-authoritative
 - APP-V1-013 (GATE-V1-G2): No application development authorized from Package 2 alone
 - APP-V1-013 (GATE-V1-G2): Executive organizational acceptance (Nolan, D0) pending before material commitment
+- APP-V1-014 (PACKAGE-2): Package 2 reviewed and closed separately from authoring
+- APP-V1-014 (PACKAGE-2): Volume 0 and Package 1 freezes preserved; no frozen artifact modified
+- APP-V1-014 (PACKAGE-2): No implementation and no master development plan authorized by Package 2
+- APP-V1-014 (PACKAGE-2): Executive organizational acceptance (Nolan, D0) pending

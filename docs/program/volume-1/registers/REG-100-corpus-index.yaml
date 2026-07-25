@@ -91,3 +91,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-1/V1-09-base44-to-target-experience-translation.md
     gate: V1-G2
+  - id: V1-B
+    title: Package 2 Closure and Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-B-package-2-closure-record.md
+    gate: V1-G2
