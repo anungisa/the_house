@@ -1,7 +1,7 @@
 register_id: REG-000
 name: Corpus Index
 status: IN_REVIEW
-version: 0.6.0
+version: 0.7.0
 records:
   - id: V0-00
     title: Document Control and Normative Usage
@@ -154,4 +154,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-0/V0-F-package2-closure-record.md
+    gate: G0
+  - id: V0-G
+    title: Annex G - Package 3 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-0/V0-G-package3-closure-record.md
     gate: G0

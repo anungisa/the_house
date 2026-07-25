@@ -1,7 +1,7 @@
 register_id: REG-006
 name: Approval Register
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 records:
   - id: APP-001
     artifact_id: V0-01
@@ -146,4 +146,32 @@ records:
     conditions:
       - Independent validation not claimed
       - Executive acceptance (Nolan, D0) pending for organizational ratification
+    approved_at: null
+  - id: APP-012
+    artifact_id: PACKAGE-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    finding: ACCEPTED
+    scope:
+      - V0-09
+      - V0-10
+      - V0-11
+      - V0-G
+    conditions:
+      - Independent validation not claimed
+      - Executive organizational acceptance pending at applicable future gate
+      - Funding pending as time-bounded Gate G0 condition
+      - Domain validation pending when review-ready
+      - Independent production assurance pending before production exposure
+      - Package 3 frozen; changes only via constitutional amendment (V0-00 control)
+    closure_record: V0-G
+    base_commit: cdc8f80
+    amendment_process: Constitutional amendment under V0-00 control (V0-10 10.11)
+    frozen: true
+    frozen_artifacts:
+      - { id: V0-09, version: 1.0.0 }
+      - { id: V0-10, version: 1.0.0 }
+      - { id: V0-11, version: 1.0.0 }
+      - { id: V0-G, version: 1.0.0 }
     approved_at: null

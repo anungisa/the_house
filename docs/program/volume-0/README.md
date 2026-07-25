@@ -3,7 +3,7 @@
 ## Volume 0 - Program Constitution and Control System
 
 Status: IN_REVIEW  
-Version: 0.4.0  
+Version: 0.5.0  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)
 
@@ -29,7 +29,7 @@ Current package status:
 
 - Package 1: RATIFIED (constitutional foundation baseline; frozen)
 - Package 2: RATIFIED (authority and governance: V0-06, V0-07, V0-08; frozen)
-- Package 3: RATIFIED (executable governance control system: V0-09, V0-10, V0-11); closure and freeze pending closure review
+- Package 3: RATIFIED (executable governance control system: V0-09, V0-10, V0-11; frozen)
 - Package 4: DRAFT (not authorized)
 
 Package 1 is ratified and frozen as the constitutional foundation baseline
@@ -45,7 +45,18 @@ Package 2 is ratified and frozen as the authority and governance baseline (V0-06
 V0-07, V0-08, Status RATIFIED, Version 1.0.0), following a line-level constitutional
 closure review with finding ACCEPTED WITH CORRECTIONS (V0-F closure record; REG-006
 APP-006, APP-007, APP-008; REG-002 DEC-V0-023). Same ratification basis and evidence
-labels as Package 1. Package 3 is not authorized until this closure is committed.
+labels as Package 1.
+
+Package 3 is ratified and frozen as the executable governance control system baseline
+(V0-09, V0-10, V0-11, Status RATIFIED, Version 1.0.0), following a line-level and
+control-system closure review with finding ACCEPTED (V0-G closure record; REG-006
+APP-009, APP-010, APP-011, APP-012; REG-002 DEC-V0-024, DEC-V0-025). Package 3 makes
+Volume 0 governance executable: JSON Schemas for REG-000..REG-008 and Node controls
+execute via npm run governance:check with zero errors, enforcing schema conformance,
+identifier uniqueness, cross-reference integrity, ratification integrity, authority
+integrity, exception expiry, and frozen-package amendment integrity. Generated control
+reports are non-authoritative projections. Same ratification basis and evidence labels
+as Packages 1 and 2. Package 4 is not authorized.
 
 Gate G0 disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS (see V0-12 and
 evidence/G0/). The program operates under a solo-led, institutionally accountable

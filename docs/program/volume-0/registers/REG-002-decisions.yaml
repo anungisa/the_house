@@ -1,7 +1,7 @@
 register_id: REG-002
 name: Decision Register
 status: IN_REVIEW
-version: 0.6.0
+version: 0.7.0
 records:
   - id: DEC-V0-001
     class: D1
@@ -294,6 +294,23 @@ records:
       enforce documentation governance in CI. Generated control reports are
       non-authoritative projections.
     evidence_refs: [V0-09, V0-10, V0-11, REG-000, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-025
+    class: D1
+    question: Is Package 3 closed and frozen?
+    decision: >-
+      Package 3 (Executable Governance Control System) passed a line-level and
+      control-system closure review with finding ACCEPTED. V0-09, V0-10, and V0-11
+      are RATIFIED (v1.0.0); the JSON Schemas and Node controls execute cleanly via
+      npm run governance:check with zero errors; and the closure record V0-G records
+      the exit-criteria dispositions. Package 3 is frozen; changes require a
+      constitutional amendment under V0-00 control. Registers and Gate G0 evidence
+      remain living instruments.
+    evidence_refs: [V0-G, V0-09, V0-10, V0-11, REG-006]
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending

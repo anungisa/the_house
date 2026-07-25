@@ -1,6 +1,6 @@
 # Volume 0 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T15:42:52.182Z
+Generated: 2026-07-25T15:45:05.619Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 0 corpus (see V0-10 10.12). It is not a source of truth, does not confer
@@ -19,20 +19,20 @@ Generated: 2026-07-25T15:42:52.182Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 18 |
+| RATIFIED | 19 |
 | IN_REVIEW | 1 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-000 | Corpus Index | IN_REVIEW | 0.6.0 | 19 |
+| REG-000 | Corpus Index | IN_REVIEW | 0.7.0 | 20 |
 | REG-001 | Stakeholder Register | IN_REVIEW | 0.3.0 | 7 |
-| REG-002 | Decision Register | IN_REVIEW | 0.6.0 | 24 |
+| REG-002 | Decision Register | IN_REVIEW | 0.7.0 | 25 |
 | REG-003 | RAID Register | IN_REVIEW | 0.4.0 | 10 |
 | REG-004 | Glossary | DRAFT | 0.1.0 | 5 |
 | REG-005 | Source and Authority Register | IN_REVIEW | 0.4.0 | 12 |
-| REG-006 | Approval Register | IN_REVIEW | 0.5.0 | 11 |
+| REG-006 | Approval Register | IN_REVIEW | 0.6.0 | 12 |
 | REG-007 | Exception Register | DRAFT | 0.1.0 | 0 |
 | REG-008 | Measures Register | IN_REVIEW | 0.2.0 | 3 |
 
@@ -90,3 +90,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-010 (V0-10): Executive acceptance (Nolan, D0) pending for organizational ratification
 - APP-011 (V0-11): Independent validation not claimed
 - APP-011 (V0-11): Executive acceptance (Nolan, D0) pending for organizational ratification
+- APP-012 (PACKAGE-3): Independent validation not claimed
+- APP-012 (PACKAGE-3): Executive organizational acceptance pending at applicable future gate
+- APP-012 (PACKAGE-3): Funding pending as time-bounded Gate G0 condition
+- APP-012 (PACKAGE-3): Domain validation pending when review-ready
+- APP-012 (PACKAGE-3): Independent production assurance pending before production exposure
+- APP-012 (PACKAGE-3): Package 3 frozen; changes only via constitutional amendment (V0-00 control)
