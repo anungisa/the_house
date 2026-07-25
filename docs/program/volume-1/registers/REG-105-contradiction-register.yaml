@@ -1,7 +1,7 @@
 register_id: REG-105
 name: Contradiction Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Contradictions surfaced during Base44 qualification. Positions reference
 # controlled sources (REG-101) with their classification. Contradictions are NOT
 # resolved by preferring the newest artifact; they are resolved only by evidence
@@ -280,3 +280,56 @@ records:
     notes: >-
       See EV-024, CAP-021, CAP-027. Registered so the trade-off is explicit;
       no implementation change is directed.
+  # --- Package 4: current ecosystem and operating-reality contradictions (CON-012..013) ---
+  - id: CON-012
+    statement: >-
+      Master-data authority for clubs and participants is claimed by Curling
+      Canada in ratified policy, but is operationally held today by the incumbent
+      registration provider and partly mirrored in Curling I/O.
+    positions:
+      - source_ref: SRC-017
+        classification: policy_truth
+        assertion: >-
+          Curling Canada is the intended master-data authority for club,
+          affiliation, and participant records (Volume 0 V0-06).
+      - source_ref: SRC-020
+        classification: stakeholder_statement
+        assertion: >-
+          The incumbent registration provider currently holds the authoritative
+          registration and membership records in day-to-day operation.
+    status: open
+    resolution: >-
+      Reconciled in principle by transition policy: the incumbent is
+      authoritative only until a recorded cutover trigger (Volume 0 REG-003), not
+      a target-state authority. Full resolution depends on migration completion
+      and stakeholder validation; registered as UNRESOLVED_CONTRADICTION.
+    evidence_rating: E1
+    notes: >-
+      See FND-036, FND-038, CAP-035. Pending stakeholder validation; current
+      operational holder is not the intended target authority.
+  - id: CON-013
+    statement: >-
+      Affiliation decisions are governed in intent (must be bound to a governed
+      transition with evidence), but in current practice they are evidenced and
+      communicated through email and shared files outside any governed store.
+    positions:
+      - source_ref: SRC-017
+        classification: policy_truth
+        assertion: >-
+          Governed decisions and their evidence must be bound to a governed
+          lifecycle transition (governance doctrine).
+      - source_ref: SRC-020
+        classification: stakeholder_statement
+        assertion: >-
+          Affiliation decisions and supporting evidence currently live in email
+          threads and spreadsheets, unbound to a governed transition.
+    status: open
+    resolution: >-
+      The target must wire governed evidence binding; current practice is a
+      weakness to replace, not the desired target. Registered as
+      UNRESOLVED_CONTRADICTION pending stakeholder validation.
+    evidence_rating: E1
+    notes: >-
+      See FND-034, CAP-032. Current practice is not treated as automatically
+      desirable.
+

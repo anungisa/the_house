@@ -1,7 +1,7 @@
 register_id: REG-100
 name: Volume 1 Corpus Index
 status: IN_REVIEW
-version: 0.5.0
+version: 0.6.0
 records:
   - id: V1-00
     title: Volume Control and Inheritance
@@ -147,3 +147,51 @@ records:
     version: 1.1.0
     path: docs/program/volume-1/V1-C-package-3-closure-record.md
     gate: V1-G3
+  - id: V1-15
+    title: Curling Canada Current Operating Model and Institutional Landscape
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-15-curling-canada-current-operating-model-and-institutional-landscape.md
+    gate: V1-G4
+  - id: V1-16
+    title: Current Club-Affiliation Process End to End
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-16-current-club-affiliation-process-end-to-end.md
+    gate: V1-G4
+  - id: V1-17
+    title: External Systems and Their Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-17-external-systems-and-their-authority.md
+    gate: V1-G4
+  - id: V1-18
+    title: Data Flow, Authority, and Reconciliation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-18-data-flow-authority-and-reconciliation.md
+    gate: V1-G4
+  - id: V1-19
+    title: Commercial, Contractual, Transition, and Sustainability Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-19-commercial-contractual-transition-and-sustainability-constraints.md
+    gate: V1-G4
+  - id: V1-20
+    title: Current-State Findings and Target Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-1/V1-20-current-state-findings-and-target-constraints.md
+    gate: V1-G4

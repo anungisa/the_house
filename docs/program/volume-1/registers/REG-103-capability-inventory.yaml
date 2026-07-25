@@ -1,7 +1,7 @@
 register_id: REG-103
 name: Capability Inventory
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Normalized capabilities observed in the Base44 export (SRC-001). ONE record per
 # real capability, not one per route. Dispositions here are the proposed target
 # treatment; the governed decision (with rationale and evidence) is recorded in
@@ -587,3 +587,131 @@ records:
     notes: >-
       Retain the validators; they verify baselines, not a deployed environment.
       No running House environment is evidenced (FND-029).
+  # --- Package 4: current ecosystem and operating-reality capabilities (CAP-031..036) ---
+  - id: CAP-031
+    name: External-system authority and boundary mapping
+    description: >-
+      A structured authority matrix over the ecosystem: each external system and
+      manual control is mapped to a bounded authority (synchronization partner,
+      transition platform, execution plane, external system of record,
+      replaceable provider, reporting source, manual control) with explicit
+      reconciliation boundaries and authority tiers (national/provincial/club/
+      individual).
+    stakeholder: Curling Canada, Member Associations/PTSOs
+    business_capability: Ecosystem authority governance
+    observed_value: >-
+      SYS-001..008 authority classifications are grounded in ratified Volume 0
+      (REG-005/V0-06); SYS-009..012 are unvalidated and flagged.
+    target_house_domain: Identity/authority context (platform core)
+    disposition: null
+    production_risk: medium
+    evidence_rating: E2
+    source_refs: [SRC-016, SRC-017]
+    finding_refs: [FND-039]
+    notes: >-
+      No system is automatically retained or retired; target dispositions are
+      UNPROVEN hypotheses recorded in the input, not decisions.
+  - id: CAP-032
+    name: Current club-affiliation operating process
+    description: >-
+      The end-to-end current process by which a club is affiliated: identity,
+      continuity review, seasonal requirements, fee determination, evidence
+      submission, PTSO and Curling Canada review, corrections, payment and
+      reconciliation, approval, downstream recognition, and ongoing compliance.
+    stakeholder: Clubs, PTSOs, Curling Canada
+    business_capability: Club affiliation lifecycle (current state)
+    observed_value: >-
+      Traced end to end (12 steps); core steps run on email/spreadsheets with ad
+      hoc reviewer assignment and manual reconciliation.
+    target_house_domain: Governed affiliation lifecycle (kernel)
+    disposition: null
+    production_risk: high
+    evidence_rating: E1
+    source_refs: [SRC-019, SRC-020]
+    finding_refs: [FND-034, FND-035, FND-037]
+    notes: >-
+      STAKEHOLDER_STATEMENT pending validation. Current practice is not treated
+      as automatically desirable; it becomes target constraints, not a design.
+  - id: CAP-033
+    name: Cross-system participant and organization data model
+    description: >-
+      The current spread of organization, identity, membership, affiliation,
+      payment, compliance, and document data across the incumbent registration
+      provider, Curling I/O, external systems of record, and manual files, with
+      claimed master-data authority resting with Curling Canada in the target.
+    stakeholder: Curling Canada, PTSOs, clubs
+    business_capability: Master-data management
+    observed_value: >-
+      Duplicate copies and manual matching create data-quality risk; multi-role
+      individuals are collapsed into coarse buckets today.
+    target_house_domain: Master data (club/participant/affiliation)
+    disposition: null
+    production_risk: high
+    evidence_rating: E1
+    source_refs: [SRC-019]
+    finding_refs: [FND-038, FND-040]
+    notes: >-
+      High-privacy elements (identities, membership) require Canadian privacy
+      handling. Authority classifications pending confirmation.
+  - id: CAP-034
+    name: Payment, fee, and reconciliation handling
+    description: >-
+      The current fee determination, payment execution, and reconciliation flow
+      across payment processors and the accounting system of record, with the
+      governed charge decision and fee policy intended to remain in The House.
+    stakeholder: Curling Canada finance (Helene)
+    business_capability: Fees, payments, financial reconciliation
+    observed_value: >-
+      Processor-vs-ledger reconciliation is manual; explicit reconciliation
+      boundaries (SYS-003/SYS-008) are grounded in ratified Volume 0.
+    target_house_domain: Fees/payments (platform core)
+    disposition: null
+    production_risk: high
+    evidence_rating: E1
+    source_refs: [SRC-016, SRC-019]
+    finding_refs: [FND-035]
+    notes: >-
+      CONTRACTUAL_TRUTH/economics pending Helene's financial validation.
+  - id: CAP-035
+    name: Registration-provider migration and transition
+    description: >-
+      The migration of incumbent registration and membership records off the
+      current provider onto the target platform, governed by data-export rights
+      and a recorded cutover trigger, with the incumbent authoritative only
+      during transition.
+    stakeholder: Curling Canada, PTSOs
+    business_capability: Data migration and platform transition
+    observed_value: >-
+      Migration off the incumbent is a recorded Volume 0 program risk (REG-003);
+      transition authority expires on an explicit cutover decision.
+    target_house_domain: Migration/onboarding (platform core)
+    disposition: null
+    production_risk: high
+    evidence_rating: E1
+    source_refs: [SRC-016, SRC-018]
+    finding_refs: [FND-036]
+    notes: >-
+      CONTRACTUAL_TRUTH pending vendor validation. Not authorized for
+      implementation by this package.
+  - id: CAP-036
+    name: Compliance, education, and accreditation projection
+    description: >-
+      The current use of external systems of record (Sideline Learning,
+      accreditation platforms) for certification and accreditation status,
+      projected into governed decisions, with The House governing use rather than
+      owning the underlying record.
+    stakeholder: Curling Canada compliance (Jen)
+    business_capability: Compliance and certification governance
+    observed_value: >-
+      Lapsed certifications are not consistently reflected at decision time;
+      projections do not gate governed transitions today.
+    target_house_domain: Compliance projections (platform core)
+    disposition: null
+    production_risk: medium
+    evidence_rating: E1
+    source_refs: [SRC-016, SRC-019]
+    finding_refs: [FND-041]
+    notes: >-
+      External SoR authority (Sideline, accreditation) must be preserved, not
+      absorbed. Projection/gating model pending validation.
+

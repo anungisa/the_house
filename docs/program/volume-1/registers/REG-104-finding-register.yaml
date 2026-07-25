@@ -1,7 +1,7 @@
 register_id: REG-104
 name: Finding Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Qualification findings from Package 2 (Base44). Findings are grouped by
 # character: PRODUCT VALUE (reusable intelligence), PRODUCTION RISK (why the
 # prototype must not become production authority), and UNKNOWN/CONSTRAINT (open
@@ -567,3 +567,140 @@ records:
       Registered as contradiction CON-008. The demonstrated (role-only) behaviour
       governs the design-intent narrative; resolved in favour of the evidence.
       Not authorized for implementation.
+  # --- Package 4: current ecosystem and operating-reality findings (FND-034..041) ---
+  - id: FND-034
+    statement: >-
+      Core club-affiliation steps run on email and spreadsheets; review
+      decisions and supporting evidence live outside a governed store. This is a
+      current-state operating weakness and a target constraint: the target must
+      bind evidence and decisions to governed transitions and must not recreate
+      email/spreadsheet-mediated governance.
+    finding_type: prototype_debt
+    evidence_rating: E1
+    source_refs: [SRC-020, EV-036, CAP-032]
+    capability_refs: [CAP-032]
+    production_risk: high
+    recommended_disposition: null
+    status: open
+    notes: >-
+      STAKEHOLDER_STATEMENT pending club/PTSO/Curling Canada validation.
+      Becomes a target constraint in V1-20; not an implementation authorization.
+  - id: FND-035
+    statement: >-
+      Fee determination and payment reconciliation are manual across payment
+      processors and the accounting system of record. The target must implement
+      explicit processor-vs-ledger reconciliation boundaries (SYS-003/SYS-008,
+      grounded in ratified Volume 0), with the governed charge decision and fee
+      policy retained in The House.
+    finding_type: constraint
+    evidence_rating: E1
+    source_refs: [SRC-019, EV-038, CAP-034]
+    capability_refs: [CAP-034]
+    production_risk: high
+    recommended_disposition: null
+    status: open
+    notes: >-
+      Economics/CONTRACTUAL_TRUTH pending Helene's financial validation.
+      Reconciliation boundary itself is grounded in ratified Volume 0.
+  - id: FND-036
+    statement: >-
+      Migration off the incumbent registration provider is a high-risk data
+      transition governed by data-export rights and a recorded cutover trigger;
+      the incumbent is authoritative only during transition (Volume 0 REG-003).
+      The target must treat this as a governed migration constraint, not a
+      silent inheritance of legacy authority.
+    finding_type: constraint
+    evidence_rating: E1
+    source_refs: [SRC-018, EV-039, CAP-035]
+    capability_refs: [CAP-035]
+    production_risk: high
+    recommended_disposition: null
+    status: open
+    notes: >-
+      CONTRACTUAL_TRUTH pending vendor validation. Grounded in ratified Volume 0
+      migration risk (SRC-018). Not authorized for implementation.
+  - id: FND-037
+    statement: >-
+      Reviewer assignment in the current affiliation process is ad hoc with no
+      jurisdiction-aware routing; any available reviewer may act on any file.
+      The target must route review by PTSO/Curling Canada jurisdiction. This
+      current-state finding aligns with House implementation finding FND-024
+      (governed authorization is not resource/jurisdiction-aware).
+    finding_type: capability_gap
+    evidence_rating: E1
+    source_refs: [SRC-020, EV-036, CAP-032]
+    capability_refs: [CAP-032]
+    production_risk: high
+    recommended_disposition: null
+    status: open
+    notes: >-
+      Cross-references REG-104 FND-024 (House). Operating reality and
+      implementation truth converge on the same jurisdiction-routing constraint.
+  - id: FND-038
+    statement: >-
+      Organization, identity, membership, and affiliation data are duplicated
+      across the incumbent provider, Curling I/O, external systems of record,
+      and manual files, reconciled by manual matching. The target must establish
+      a single master-data authority (Curling Canada, per Volume 0 V0-06) and
+      retire duplicate authoritative copies.
+    finding_type: constraint
+    evidence_rating: E1
+    source_refs: [SRC-019, EV-037, CAP-033]
+    capability_refs: [CAP-033]
+    production_risk: high
+    recommended_disposition: null
+    status: open
+    notes: >-
+      Registered as contradiction CON-012 (master-data authority). Master-data
+      authority intent is POLICY_TRUTH; current operational holder differs.
+  - id: FND-039
+    statement: >-
+      External-system authority must be preserved and bounded, not absorbed:
+      Curling I/O (synchronization partner), Sideline Learning and accreditation
+      platforms and accounting systems (external systems of record), and payment
+      processors (execution plane) retain their bounded authority under ratified
+      Volume 0. The target must respect these boundaries.
+    finding_type: constraint
+    evidence_rating: E2
+    source_refs: [SRC-016, EV-035, CAP-031]
+    capability_refs: [CAP-031]
+    production_risk: medium
+    recommended_disposition: null
+    status: corroborated
+    notes: >-
+      POLICY_TRUTH grounded in ratified Volume 0 REG-005/V0-06. No external
+      system is automatically retained or retired by this package.
+  - id: FND-040
+    statement: >-
+      Individuals hold multiple concurrent roles (member, volunteer, coach,
+      official, administrator) across clubs and PTSOs; the current data model
+      collapses role multiplicity into coarse buckets. The target identity model
+      must represent concurrent, jurisdiction-scoped roles without flattening.
+    finding_type: constraint
+    evidence_rating: E1
+    source_refs: [SRC-019, EV-037, CAP-033]
+    capability_refs: [CAP-033]
+    production_risk: medium
+    recommended_disposition: null
+    status: open
+    notes: >-
+      OPERATIONAL_TRUTH pending validation. Reinforces the resource/role-aware
+      authorization constraint (House FND-023/FND-024).
+  - id: FND-041
+    statement: >-
+      Compliance and accreditation status (Sideline Learning, accreditation
+      platforms) is tracked manually and does not consistently gate governed
+      decisions; lapsed certifications are not reliably reflected at decision
+      time. The target must project external compliance status and gate governed
+      transitions on it.
+    finding_type: capability_gap
+    evidence_rating: E1
+    source_refs: [SRC-019, EV-040, CAP-036]
+    capability_refs: [CAP-036]
+    production_risk: medium
+    recommended_disposition: null
+    status: open
+    notes: >-
+      External SoR authority preserved; projection/gating model pending
+      validation (Jen, compliance).
+

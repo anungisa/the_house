@@ -1,6 +1,6 @@
 # Volume 1 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T20:53:02.340Z
+Generated: 2026-07-25T21:11:52.167Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 1 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,21 +26,21 @@ Generated: 2026-07-25T20:53:02.340Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 18 |
+| RATIFIED | 24 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.5.0 | 18 |
-| REG-101 | Source Inventory | IN_REVIEW | 0.4.0 | 15 |
-| REG-102 | Evidence Register | IN_REVIEW | 0.4.0 | 34 |
-| REG-103 | Capability Inventory | IN_REVIEW | 0.4.0 | 30 |
-| REG-104 | Finding Register | IN_REVIEW | 0.4.0 | 33 |
-| REG-105 | Contradiction Register | IN_REVIEW | 0.4.0 | 11 |
-| REG-106 | Qualification Decision Register | IN_REVIEW | 0.4.0 | 30 |
-| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.6.0 | 20 |
-| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.6.0 | 24 |
+| REG-100 | Volume 1 Corpus Index | IN_REVIEW | 0.6.0 | 24 |
+| REG-101 | Source Inventory | IN_REVIEW | 0.5.0 | 21 |
+| REG-102 | Evidence Register | IN_REVIEW | 0.5.0 | 41 |
+| REG-103 | Capability Inventory | IN_REVIEW | 0.5.0 | 36 |
+| REG-104 | Finding Register | IN_REVIEW | 0.5.0 | 41 |
+| REG-105 | Contradiction Register | IN_REVIEW | 0.5.0 | 13 |
+| REG-106 | Qualification Decision Register | IN_REVIEW | 0.5.0 | 36 |
+| REG-107 | Volume 1 Governance Decision Register | IN_REVIEW | 0.7.0 | 22 |
+| REG-108 | Volume 1 Approval Register | IN_REVIEW | 0.7.0 | 31 |
 
 ## Findings by control
 
@@ -132,3 +132,28 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V1-024 (V1-C): Adds the fourteen-item P0 disposition matrix (V1-C.7), the approved-execution vs organization-activation separation (V1-C.8), and unit-test execution evidence (V1-C.9)
 - APP-V1-024 (V1-C): No reopening of the Package 3 assessment; Gate V1-G3 remains PASS and no implementation is authorized
 - APP-V1-024 (V1-C): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-025 (V1-15): Current operating model and authority tiers; formal policy distinguished from actual practice
+- APP-V1-025 (V1-15): National/provincial authority tiers grounded in ratified Volume 0; individual role multiplicity pending validation
+- APP-V1-025 (V1-15): Stakeholder statements are not represented as approvals; independent validation not claimed
+- APP-V1-026 (V1-16): Current affiliation process traced end to end (12 steps); STAKEHOLDER_STATEMENT pending validation
+- APP-V1-026 (V1-16): Historical/goodwill affiliation baseline recorded as a target continuity constraint
+- APP-V1-026 (V1-16): Current practice not treated as automatically desirable
+- APP-V1-027 (V1-17): External-system authority classifications for SYS-001..008 grounded in ratified Volume 0 (REG-005/V0-06)
+- APP-V1-027 (V1-17): SYS-009..012 flagged unvalidated (ASSUMPTION/STAKEHOLDER_STATEMENT)
+- APP-V1-027 (V1-17): No system automatically retained or retired; dispositions deferred to convergence
+- APP-V1-028 (V1-18): Data flows, authority, and reconciliation boundaries mapped
+- APP-V1-028 (V1-18): High-privacy elements flagged for Canadian privacy obligations
+- APP-V1-028 (V1-18): Master-data authority contradiction (CON-012) registered, not silently resolved
+- APP-V1-029 (V1-19): Contractual/transition/sustainability constraints captured or explicitly unresolved
+- APP-V1-029 (V1-19): Commercial terms are CONTRACTUAL_TRUTH/VENDOR_CLAIM pending vendor and financial (Helene) validation
+- APP-V1-029 (V1-19): No commercial figure asserted as confirmed
+- APP-V1-030 (V1-20): Current-state findings converted to target constraints; each linked to registered evidence
+- APP-V1-030 (V1-20): Convergence reserved for Package 5; this chapter constrains it, does not perform it
+- APP-V1-030 (V1-20): No vendor/system retained or retired; no implementation authorized
+- APP-V1-031 (GATE-V1-G4): Internal-progression gate authorized by the Accountable Program Authority (DEC-V1-022)
+- APP-V1-031 (GATE-V1-G4): Current affiliation operations documented end to end; systems and manual tools inventoried
+- APP-V1-031 (GATE-V1-G4): Authority classifications, data flows, and reconciliations recorded; policy vs operational truth distinguished
+- APP-V1-031 (GATE-V1-G4): Contractual/transition constraints captured or explicitly unresolved; material contradictions registered
+- APP-V1-031 (GATE-V1-G4): No vendor/system automatically retained or retired; no implementation authorized
+- APP-V1-031 (GATE-V1-G4): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V1-031 (GATE-V1-G4): Independent assurance reserved for independence-requiring claims

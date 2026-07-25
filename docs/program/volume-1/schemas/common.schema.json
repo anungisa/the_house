@@ -73,6 +73,7 @@
         "policy_truth",
         "operational_truth",
         "implementation_truth",
+        "contractual_truth",
         "vendor_claim",
         "observed_evidence",
         "stakeholder_statement",

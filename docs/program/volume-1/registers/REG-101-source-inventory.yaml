@@ -1,7 +1,7 @@
 register_id: REG-101
 name: Source Inventory
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Controlled assessment sources for Volume 1 current-state qualification.
 # Package 2 hardens SRC-001 with an immutable source fingerprint (SHA-256) so a
 # later Base44 export cannot silently replace the evidence baseline under the
@@ -421,4 +421,122 @@ records:
       INDICATIVE). Where narrative asserts a control that source/tests do not
       demonstrate, the demonstrated evidence governs and the gap is registered
       in REG-104/REG-105.
+  # --- Package 4: current ecosystem and operating-reality sources (SRC-016..021) ---
+  - id: SRC-016
+    name: Volume 0 Source and Authority Register (REG-005)
+    source_type: governance_baseline
+    classification: policy_truth
+    authority_note: >-
+      Ratified, frozen Volume 0 authority register mapping the external ecosystem
+      (SRC-005..SRC-012: Curling I/O, incumbent registration provider, payment
+      processors, Sideline Learning, accreditation platforms, Document360,
+      analytics, accounting systems) with authority levels and reconciliation
+      boundaries. Governing policy truth for external-system authority; Package 4
+      structures the current operating reality against this baseline.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-0/registers/REG-005-source-authority.yaml
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Frozen Volume 0 constitutional baseline. Provides the authoritative
+      external-platform authority classifications used in REG-103/REG-104 and the
+      generated/ecosystem/authority-matrix.json.
+  - id: SRC-017
+    name: Volume 0 Product and Authority Doctrine (V0-06)
+    source_type: policy_document
+    classification: policy_truth
+    authority_note: >-
+      Ratified Volume 0 doctrine establishing that no external platform holds
+      governing authority over The House domain models, server-side
+      authorization, or release readiness; Curling Canada is the intended
+      master-data authority for club, affiliation, and participant records.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-0/V0-06-product-and-authority-doctrine.md
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E3
+    notes: >-
+      Governing authority doctrine. Used to distinguish POLICY_TRUTH from
+      OPERATIONAL_TRUTH in the current-state qualification and to bound target
+      authority in REG-104 findings.
+  - id: SRC-018
+    name: Volume 0 RAID register (REG-003) — registration-provider migration
+    source_type: governance_baseline
+    classification: operational_truth
+    authority_note: >-
+      Ratified Volume 0 RAID register recording the incumbent registration
+      provider migration as a program risk. Grounds the transition and
+      data-migration constraints registered in Package 4.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-0/registers/REG-003-raid.yaml
+    controlled: true
+    qualification_status: assessed
+    evidence_rating: E2
+    notes: >-
+      Provides the recorded migration risk underpinning CST-REGPROVIDER and
+      finding FND-036 (incumbent migration).
+  - id: SRC-019
+    name: Package 4 controlled ecosystem input (current-state qualification evidence)
+    source_type: curling_canada_operating_reality
+    classification: operational_truth
+    authority_note: >-
+      Controlled current-state evidence file structuring the current operating
+      model, systems, manual controls, affiliation process, data flows,
+      reconciliation points, contractual constraints, operating findings, and
+      contradictions. Records grounded in ratified Volume 0 are POLICY_TRUTH;
+      records not yet stakeholder- or vendor-validated are ASSUMPTION /
+      STAKEHOLDER_STATEMENT / VENDOR_CLAIM pending validation. Structures
+      evidence only; generates no facts from absence.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-1/inputs/ecosystem-input.yaml
+    controlled: true
+    fingerprint:
+      filename: ecosystem-input.yaml
+      sha256: 27133dc0bdb2ce61c4bf2daacabd59dfd7f41103fcfaae2073268388df5842fb
+      reproducibility_note: >-
+        Structured deterministically by the qualification:ecosystem tooling into
+        docs/program/volume-1/generated/ecosystem/*. Regenerating from the same
+        input sha256 reproduces the inventories byte-for-byte.
+    qualification_status: in_assessment
+    evidence_rating: E1
+    notes: >-
+      Author-verified current-state description, not independently validated.
+      Stakeholder (club/PTSO/Curling Canada) and vendor validation are pending;
+      pending validation blocks the affected claim, not the package.
+  - id: SRC-020
+    name: Curling Canada current operating reality (stakeholder-described)
+    source_type: curling_canada_operating_reality
+    classification: stakeholder_statement
+    authority_note: >-
+      The current, largely manual operating reality of club affiliation as
+      described by program stakeholders: email- and spreadsheet-mediated review,
+      ad hoc reviewer assignment, manual reconciliation, and a population of
+      clubs recognized through historical/goodwill affiliation. Stakeholder
+      statement, not demonstrated behaviour or ratified policy.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/program/volume-1/inputs/ecosystem-input.yaml (affiliation_process, historical_affiliation_baseline)
+    controlled: true
+    qualification_status: in_assessment
+    evidence_rating: E1
+    notes: >-
+      Requires stakeholder validation before any step is treated as confirmed
+      operational fact. Current practice is not treated as automatically
+      desirable for the target platform.
+  - id: SRC-021
+    name: Curling Canada reference sport profile
+    source_type: policy_document
+    classification: operational_truth
+    authority_note: >-
+      Reference profile describing Curling Canada's institutional landscape
+      (Curling Canada, Member Associations/PTSOs, clubs, roles) used to ground
+      the current operating model and authority boundaries.
+    custodian: Aubert Nungisa (Accountable Program Authority)
+    location: docs/sport-profiles/curling-canada-reference-profile.md
+    controlled: true
+    qualification_status: in_assessment
+    evidence_rating: E1
+    notes: >-
+      Institutional-landscape grounding for V1-15; not a substitute for
+      stakeholder validation of the current process.
 

@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.6.0
+version: 0.7.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -483,3 +483,71 @@ records:
       explicit, separate approved execution from organization activation, and
       record actual unit-test execution evidence. No reopening of the Package 3
       assessment and no change to the Gate V1-G3 disposition.
+  # --- Package 4: current ecosystem and operating-reality decisions (DEC-V1-021..022) ---
+  - id: DEC-V1-021
+    class: D2
+    question: >-
+      What method governs Volume 1 Package 4 (Current Ecosystem and Operating
+      Reality), and what is its scope?
+    decision: >-
+      Package 4 qualifies Curling Canada's current operating model, its supporting
+      systems and manual controls, where authority resides, and the constraints
+      the target platform must respect or replace. It is a qualification and
+      structuring activity only: it structures evidence already available in the
+      repository and controlled source files (chiefly ratified Volume 0 REG-005
+      and V0-06, plus the controlled current-state input) and generates no facts
+      from absence. Every current-state statement carries a truth classification
+      (POLICY_TRUTH, OPERATIONAL_TRUTH, IMPLEMENTATION_TRUTH, CONTRACTUAL_TRUTH,
+      VENDOR_CLAIM, OBSERVED_EVIDENCE, STAKEHOLDER_STATEMENT, ASSUMPTION,
+      UNRESOLVED_CONTRADICTION) and formal policy is distinguished from actual
+      practice. Package 4 corrects the DEC-V1-019 shorthand ("master development
+      planning"): the next package is ecosystem qualification, not master
+      development planning. Package 4 authorizes no implementation, retains or
+      retires no vendor or system, and treats current practice as not
+      automatically desirable. Chapters V1-15..V1-20 are the qualification;
+      REG-101..REG-106 carry the structured records; the deterministic tooling is
+      `npm run qualification:ecosystem`.
+    evidence_refs:
+      - V1-15
+      - V1-16
+      - V1-17
+      - V1-18
+      - V1-19
+      - V1-20
+      - DEC-V1-019
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-022
+    class: D1
+    question: >-
+      Is Volume 1 Gate V1-G4 (ecosystem qualification complete) disposed PASS?
+    decision: >-
+      Dispose Gate V1-G4 PASS. The twelve gate conditions are met: current
+      affiliation operations are documented end to end (V1-16); systems and manual
+      tools are inventoried (V1-17); authority classifications are recorded
+      (V1-15, V1-17); data flows and reconciliations are mapped (V1-18);
+      contractual/transition constraints are captured or explicitly unresolved
+      (V1-19); operational pain points are linked to evidence (V1-20, REG-104);
+      policy truth is distinguished from operational truth throughout; stakeholder
+      statements are not represented as approvals; material contradictions are
+      registered (REG-105 CON-012, CON-013); no vendor or system is automatically
+      retained or retired; no implementation is authorized (REG-106
+      authorizes_implementation false for all); and Package 4 receives line-level
+      closure review and freeze at V1-D. V1-G4 is an internal-progression gate;
+      executive organizational acceptance (Nolan, D0) remains reserved for a later
+      material-commitment gate.
+    evidence_refs:
+      - V1-20
+      - GATE-V1-G4
+      - REG-104
+      - REG-105
+      - REG-106
+      - DEC-V1-021
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

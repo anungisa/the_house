@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.6.0
+version: 0.7.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -334,4 +334,80 @@ records:
       - Adds the fourteen-item P0 disposition matrix (V1-C.7), the approved-execution vs organization-activation separation (V1-C.8), and unit-test execution evidence (V1-C.9)
       - No reopening of the Package 3 assessment; Gate V1-G3 remains PASS and no implementation is authorized
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 4: current ecosystem and operating-reality chapter ratifications (APP-V1-025..030) ---
+  - id: APP-V1-025
+    artifact_id: V1-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Current operating model and authority tiers; formal policy distinguished from actual practice
+      - National/provincial authority tiers grounded in ratified Volume 0; individual role multiplicity pending validation
+      - Stakeholder statements are not represented as approvals; independent validation not claimed
+    approved_at: null
+  - id: APP-V1-026
+    artifact_id: V1-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Current affiliation process traced end to end (12 steps); STAKEHOLDER_STATEMENT pending validation
+      - Historical/goodwill affiliation baseline recorded as a target continuity constraint
+      - Current practice not treated as automatically desirable
+    approved_at: null
+  - id: APP-V1-027
+    artifact_id: V1-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - External-system authority classifications for SYS-001..008 grounded in ratified Volume 0 (REG-005/V0-06)
+      - SYS-009..012 flagged unvalidated (ASSUMPTION/STAKEHOLDER_STATEMENT)
+      - No system automatically retained or retired; dispositions deferred to convergence
+    approved_at: null
+  - id: APP-V1-028
+    artifact_id: V1-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Data flows, authority, and reconciliation boundaries mapped
+      - High-privacy elements flagged for Canadian privacy obligations
+      - Master-data authority contradiction (CON-012) registered, not silently resolved
+    approved_at: null
+  - id: APP-V1-029
+    artifact_id: V1-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Contractual/transition/sustainability constraints captured or explicitly unresolved
+      - Commercial terms are CONTRACTUAL_TRUTH/VENDOR_CLAIM pending vendor and financial (Helene) validation
+      - No commercial figure asserted as confirmed
+    approved_at: null
+  - id: APP-V1-030
+    artifact_id: V1-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Current-state findings converted to target constraints; each linked to registered evidence
+      - Convergence reserved for Package 5; this chapter constrains it, does not perform it
+      - No vendor/system retained or retired; no implementation authorized
+    approved_at: null
+  - id: APP-V1-031
+    artifact_id: GATE-V1-G4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: ECOSYSTEM_QUALIFICATION_COMPLETE
+    conditions:
+      - Internal-progression gate authorized by the Accountable Program Authority (DEC-V1-022)
+      - Current affiliation operations documented end to end; systems and manual tools inventoried
+      - Authority classifications, data flows, and reconciliations recorded; policy vs operational truth distinguished
+      - Contractual/transition constraints captured or explicitly unresolved; material contradictions registered
+      - No vendor/system automatically retained or retired; no implementation authorized
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+      - Independent assurance reserved for independence-requiring claims
     approved_at: null

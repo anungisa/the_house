@@ -1,7 +1,7 @@
 register_id: REG-106
 name: Qualification Decision Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Per-capability target dispositions for the Base44 corpus. These are decisions
 # by the Accountable Program Authority about how each capability should be
 # treated by the program; they are NOT construction authorization. Every Package
@@ -425,3 +425,107 @@ records:
     authorizing_gate: null
     notes: >-
       Package 3 qualification decision. No implementation authorized.
+  # --- Package 4: current ecosystem and operating-reality qualification decisions (QD-031..036) ---
+  - id: QD-031
+    capability_ref: CAP-031
+    disposition: DEFER
+    rationale: >-
+      External-system authority and boundary mapping is qualified as
+      current-state evidence: SYS-001..008 authority classifications are grounded
+      in ratified Volume 0, SYS-009..012 are unvalidated. Disposition of each
+      system is DEFERRED to convergence (Package 5); no system is retained or
+      retired by this package.
+    evidence_rating: E2
+    evidence_refs: [CAP-031, FND-039, EV-035, SRC-016]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. No system automatically retained or
+      retired; no implementation authorized.
+  - id: QD-032
+    capability_ref: CAP-032
+    disposition: DEFER
+    rationale: >-
+      The current club-affiliation operating process is qualified as a
+      stakeholder-described current state pending validation. Its target design
+      is DEFERRED to convergence; current practice is not treated as
+      automatically desirable and becomes target constraints, not a design.
+    evidence_rating: E1
+    evidence_refs: [CAP-032, FND-034, FND-037, EV-036, SRC-020]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Pending stakeholder validation; no
+      implementation authorized.
+  - id: QD-033
+    capability_ref: CAP-033
+    disposition: DEFER
+    rationale: >-
+      The cross-system participant and organization data model is qualified as
+      current-state evidence with high data-quality and privacy risk. Master-data
+      authority and role model are DEFERRED to convergence; Curling Canada is the
+      intended master-data authority (Volume 0), pending migration and validation.
+    evidence_rating: E1
+    evidence_refs: [CAP-033, FND-038, FND-040, EV-037, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Registered contradiction CON-012; no
+      implementation authorized.
+  - id: QD-034
+    capability_ref: CAP-034
+    disposition: DEFER
+    rationale: >-
+      Payment, fee, and reconciliation handling is qualified as current-state
+      evidence with a manual reconciliation gap. The reconciliation boundary is
+      grounded in ratified Volume 0; economics and target design are DEFERRED to
+      convergence pending Helene's financial validation.
+    evidence_rating: E1
+    evidence_refs: [CAP-034, FND-035, EV-038, SRC-016]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Pending financial validation; no
+      implementation authorized.
+  - id: QD-035
+    capability_ref: CAP-035
+    disposition: DEFER
+    rationale: >-
+      Registration-provider migration and transition is qualified as a high-risk
+      current-state constraint grounded in ratified Volume 0 migration risk. The
+      migration approach and timing are DEFERRED to convergence pending vendor
+      and data-export validation.
+    evidence_rating: E1
+    evidence_refs: [CAP-035, FND-036, EV-039, SRC-018]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. Pending vendor validation; no
+      implementation authorized.
+  - id: QD-036
+    capability_ref: CAP-036
+    disposition: DEFER
+    rationale: >-
+      Compliance, education, and accreditation projection is qualified as
+      current-state evidence with a gating gap. External systems of record are
+      preserved; the projection/gating model is DEFERRED to convergence pending
+      compliance validation (Jen).
+    evidence_rating: E1
+    evidence_refs: [CAP-036, FND-041, EV-040, SRC-019]
+    decided_by: Aubert Nungisa (Accountable Program Authority)
+    decision_status: accepted_by_accountable_authority
+    authorizes_implementation: false
+    authorizing_gate: null
+    notes: >-
+      Package 4 qualification decision. External SoR authority preserved; no
+      implementation authorized.

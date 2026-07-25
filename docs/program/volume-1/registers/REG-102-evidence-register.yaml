@@ -1,7 +1,7 @@
 register_id: REG-102
 name: Evidence Register
 status: IN_REVIEW
-version: 0.4.0
+version: 0.5.0
 # Reviewable evidence items supporting Volume 1 Package 2 (Base44) findings and
 # dispositions. Each entry cites a controlled source (REG-101), a reviewable
 # location, an artifact type, and an evidence rating (E0-E4). Structural items
@@ -591,3 +591,111 @@ records:
     notes: >-
       Observations are evidence input, not decisions. Each is traced to a
       specific generated inventory and, where it drives a finding, to REG-104.
+  # --- Package 4: current ecosystem and operating-reality evidence (EV-035..041) ---
+  - id: EV-035
+    source_ref: SRC-016
+    summary: >-
+      Structured authority matrix over the ecosystem: 12 systems classified
+      against their bounded authority (synchronization partner, transition
+      platform, execution plane, external system of record, replaceable
+      provider, reporting source, manual control). SYS-001..008 grounded in
+      ratified Volume 0 REG-005; SYS-009..012 are unvalidated and flagged.
+    artifact_type: data
+    evidence_rating: E2
+    reviewable_location: docs/program/volume-1/generated/ecosystem/authority-matrix.json; docs/program/volume-1/generated/ecosystem/system-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-031]
+    notes: >-
+      Deterministically structured by qualification:ecosystem from SRC-016 and
+      SRC-019. No system is automatically retained or retired; target
+      dispositions are UNPROVEN hypotheses.
+  - id: EV-036
+    source_ref: SRC-020
+    summary: >-
+      End-to-end structured trace of the current club-affiliation process (12
+      steps) with per-step actor, accountable authority, system, manual
+      artifact, decision, failure mode, authoritative source, and reconciliation
+      requirement; includes the historical/goodwill affiliation baseline.
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/process-inventory.json; docs/program/volume-1/generated/ecosystem/affiliation-current-state-report.md
+    captured_at: TBD
+    capability_refs: [CAP-032]
+    notes: >-
+      STAKEHOLDER_STATEMENT pending club/PTSO/Curling Canada validation. Current
+      practice is not treated as automatically desirable.
+  - id: EV-037
+    source_ref: SRC-019
+    summary: >-
+      Data-flow inventory of material data elements (organizations, identities,
+      membership, affiliation, payments, compliance, documents, support) with
+      current source, claimed authority, transfer mechanism, duplicate copies,
+      reconciliation method, quality concern, and privacy classification.
+    artifact_type: data
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/data-flow-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-033]
+    notes: >-
+      OPERATIONAL_TRUTH/ASSUMPTION pending validation. High-privacy elements
+      (identities, membership) flagged for Canadian privacy obligations.
+  - id: EV-038
+    source_ref: SRC-019
+    summary: >-
+      Reconciliation inventory: system- and data-scoped reconciliation points,
+      including the payment-processor-vs-accounting-ledger boundary and the
+      manual cross-system reconciliation currently performed in spreadsheets.
+    artifact_type: process
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/reconciliation-inventory.json; docs/program/volume-1/generated/ecosystem/integration-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-034]
+    notes: >-
+      Reconciliation boundaries for SYS-003/SYS-008 are grounded in ratified
+      Volume 0; current manual reconciliation is stakeholder-described pending
+      validation.
+  - id: EV-039
+    source_ref: SRC-018
+    summary: >-
+      Contractual and transition constraint inventory: incumbent
+      registration-provider data-export/transition terms and recorded migration
+      risk, payment economics, bilingual/accessibility and privacy obligations,
+      pilot/rollout dependencies, and external API availability.
+    artifact_type: document
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/contract-constraint-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-035]
+    notes: >-
+      CONTRACTUAL_TRUTH/VENDOR_CLAIM pending vendor and financial (Helene)
+      validation; migration risk grounded in Volume 0 REG-003 (SRC-018).
+  - id: EV-040
+    source_ref: SRC-019
+    summary: >-
+      Operating-risk inventory: 7 current-state findings (continuity, manual
+      process, reconciliation, reviewer routing, migration, authority
+      preservation, identity roles) and 2 registered contradictions
+      (master-data authority, evidence binding).
+    artifact_type: observation
+    evidence_rating: E1
+    reviewable_location: docs/program/volume-1/generated/ecosystem/operating-risk-inventory.json
+    captured_at: TBD
+    capability_refs: [CAP-036]
+    notes: >-
+      Findings are evidence input, not decisions; each becomes a target
+      constraint in V1-20, not an implementation authorization.
+  - id: EV-041
+    source_ref: SRC-017
+    summary: >-
+      Authority-boundary mapping across national (Curling Canada), provincial
+      (Member Associations/PTSOs), club, and individual tiers, distinguishing
+      formal policy authority from current operational practice.
+    artifact_type: document
+    evidence_rating: E2
+    reviewable_location: docs/program/volume-1/generated/ecosystem/authority-matrix.json
+    captured_at: TBD
+    capability_refs: [CAP-031]
+    notes: >-
+      National/provincial authority tiers grounded in ratified Volume 0 V0-06;
+      individual role-multiplicity is OPERATIONAL_TRUTH pending validation.
+

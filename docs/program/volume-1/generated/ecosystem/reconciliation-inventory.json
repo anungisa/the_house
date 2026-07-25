@@ -1,0 +1,164 @@
+{
+  "_meta": {
+    "generated_by": "docs/program/volume-1/controls/inventory-ecosystem.mjs (Package 4 ecosystem qualification tooling)",
+    "authority": "NON-AUTHORITATIVE. Deterministic structuring of controlled current-state evidence; not a qualification decision and not an authorization. No facts are generated from absence.",
+    "repository_commit": "cd6e73d19de7161f03c54254c5a5a9f9232e4664",
+    "branch": "docs/volume-1-ecosystem-qualification",
+    "working_tree_state": "dirty",
+    "ecosystem_input_sha256": "27133dc0bdb2ce61c4bf2daacabd59dfd7f41103fcfaae2073268388df5842fb",
+    "reg005_sha256": "8030f02bf56fbaf1f26f822e18d078c6a1dd43ea7a5fcb0b0776559fbefa8895"
+  },
+  "summary": {
+    "total_reconciliation_points": 20
+  },
+  "reconciliation_points": [
+    {
+      "scope": "system",
+      "id": "SYS-001",
+      "name": "Curling I/O",
+      "reconciliation": "The House is master-data authority for club, affiliation, and participant records; competition/league standing never overrides governed master data.",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-002",
+      "name": "Current registration provider (incumbent)",
+      "reconciliation": "Authoritative for legacy data only during transition; authority expires on an explicit recorded migration-completion (cutover) trigger.",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-003",
+      "name": "Payment processors",
+      "reconciliation": "Governed decision to charge, fee policy, and resulting record remain in The House; explicit reconciliation boundary with accounting (SYS-008).",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-004",
+      "name": "Sideline Learning",
+      "reconciliation": "The House projects status and governs its use, not the underlying record",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-005",
+      "name": "Accreditation platforms",
+      "reconciliation": "The House projects status and governs its use, not the record",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-006",
+      "name": "Document360",
+      "reconciliation": "Substitutable without changing governed truth",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-007",
+      "name": "Analytics platforms",
+      "reconciliation": "Consumes projected data only; MUST NOT become a system of record",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-008",
+      "name": "Accounting systems",
+      "reconciliation": "The House synchronizes and does not overwrite the ledger; explicit boundary with payment processors (SYS-003).",
+      "validation_status": "grounded_in_ratified_v0"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-009",
+      "name": "Support systems (Halo / Zendesk where relevant)",
+      "reconciliation": "Support cases reference but do not own governed records",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-010",
+      "name": "Identity and Microsoft 365 services",
+      "reconciliation": "Email/shared-file processes are manual controls, not governed systems of record; risk of shadow authority.",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-011",
+      "name": "Manual spreadsheets and shared files",
+      "reconciliation": "A recurring reconciliation and data-quality risk; duplicate copies without a single authoritative source.",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "system",
+      "id": "SYS-012",
+      "name": "Email-mediated processes",
+      "reconciliation": "Decisions and evidence live outside a governed store; audit and evidence binding are weak.",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-ORG",
+      "name": "Organizations and clubs",
+      "reconciliation": "Manual",
+      "quality_concern": "Duplicate/mismatched club identities",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-IDENTITY",
+      "name": "Participants and identities",
+      "reconciliation": "Manual matching",
+      "quality_concern": "Multi-role individuals collapsed into coarse buckets",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-MEMBERSHIP",
+      "name": "Membership",
+      "reconciliation": "Manual",
+      "quality_concern": "Legacy membership data quality",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-AFFILIATION",
+      "name": "Affiliation",
+      "reconciliation": "Manual",
+      "quality_concern": "Decisions/evidence outside a governed store",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-PAYMENTS",
+      "name": "Payments and fees",
+      "reconciliation": "Manual reconciliation",
+      "quality_concern": "Processor-vs-ledger reconciliation gaps",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-COMPLIANCE",
+      "name": "Compliance, accreditation, education",
+      "reconciliation": "Manual",
+      "quality_concern": "Lapsed certifications not reflected at decision time",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-DOCS",
+      "name": "Documents and evidence",
+      "reconciliation": "None",
+      "quality_concern": "Evidence not bound to governed decisions",
+      "validation_status": "pending_stakeholder_validation"
+    },
+    {
+      "scope": "data",
+      "id": "DATA-SUPPORT",
+      "name": "Support cases",
+      "reconciliation": "None",
+      "quality_concern": "Support context detached from governed records",
+      "validation_status": "pending_stakeholder_validation"
+    }
+  ]
+}
