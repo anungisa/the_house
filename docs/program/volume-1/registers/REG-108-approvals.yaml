@@ -1,7 +1,7 @@
 register_id: REG-108
 name: Volume 1 Approval Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 # Approvals for Volume 1 artifacts and gates. Per-chapter ratified approvals cover
 # the RATIFIED framework chapters; the Gate V1-G1 authorization records the
 # qualification-system-ready disposition. The PACKAGE-1 freeze approval is added
@@ -144,15 +144,15 @@ records:
   - id: APP-V1-013
     artifact_id: GATE-V1-G2
     approver_role: Accountable Program Authority (Aubert Nungisa)
-    approval_state: withdrawn
+    approval_state: authorized
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
-    gate_disposition: BASE44_QUALIFICATION_ON_HOLD
+    gate_disposition: BASE44_QUALIFICATION_COMPLETE
     conditions:
-      - Original PASS authorization (BASE44_QUALIFICATION_COMPLETE) withdrawn per DEC-V1-012
-      - Source-baseline defect - original disposition rested on curl-link-hub (5), not the current declared export (7)
-      - Requalification required on the corrected (7) baseline per the eleven conditions in V1-B.3
-      - Package 3 is NOT authorized while Gate V1-G2 is on HOLD
-      - Returns to PASS only on Accountable Program Authority re-authorization; executive acceptance (Nolan, D0) still pending
+      - Re-authorized on the corrected (7) baseline per DEC-V1-014, superseding the interim HOLD (DEC-V1-012)
+      - Base44 qualification complete against the current declared export (7); the machine-readable evidence chain (REG-102, REG-105, REG-106) is reconciled to (7)
+      - All eleven corrected gate conditions in V1-B.3 are satisfied and every finding is revalidated against (7)
+      - Internal qualification gate owned by the Accountable Program Authority; executive acceptance (Nolan, D0) is a distinct later material-commitment gate and is not a precondition of Gate V1-G2
+      - No implementation and no master development plan authorized by Package 2 (REG-106 all authorizes_implementation false)
     approved_at: null
   - id: APP-V1-014
     artifact_id: PACKAGE-2
@@ -195,6 +195,18 @@ records:
       - Package 2 reviewed and closed separately from authoring
       - Volume 0 and Package 1 freezes preserved; no frozen artifact modified
       - No implementation and no master development plan authorized by Package 2
-      - Re-frozen at v1.1.0 on the corrected (7) baseline per DEC-V1-013; Gate V1-G2 on HOLD (DEC-V1-012)
-      - Executive organizational acceptance (Nolan, D0) pending
+      - Re-frozen at v1.1.0 on the corrected (7) baseline per DEC-V1-013; Gate V1-G2 disposed PASS on the corrected baseline (DEC-V1-014)
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  - id: APP-V1-015
+    artifact_id: PACKAGE-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: PACKAGE-3-AUTHORIZED
+    conditions:
+      - Authorized to begin following Gate V1-G2 PASS on the corrected (7) baseline (DEC-V1-014, DEC-V1-015)
+      - Package 3 is a current-state assessment of The House (SRC-002), not a material-commitment or construction step
+      - Executive organizational acceptance (Nolan, D0) reserved for a later material-commitment gate; not required to begin Package 3
+      - No implementation and no master development plan authorized by this approval
     approved_at: null

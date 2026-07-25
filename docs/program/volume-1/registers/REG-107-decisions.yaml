@@ -1,7 +1,7 @@
 register_id: REG-107
 name: Volume 1 Governance Decision Register
 status: IN_REVIEW
-version: 0.3.0
+version: 0.4.0
 # Governance decisions for Volume 1 itself (document ratifications, methodology
 # adoption, gate dispositions, package closure). Distinct from REG-106, which
 # records per-capability qualification dispositions.
@@ -250,7 +250,7 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
     effective_date: TBD
-    status: accepted_by_accountable_authority
+    status: superseded
   - id: DEC-V1-013
     class: D1
     question: >-
@@ -280,3 +280,67 @@ records:
       Re-freeze Package 2 on the corrected (7) baseline at v1.1.0 following the
       source-baseline correction (DEC-V1-011); original v1.0.0 (5)-baseline
       freeze preserved in history.
+  - id: DEC-V1-014
+    class: D1
+    question: >-
+      After the source-baseline correction and the reconciliation of the
+      machine-readable evidence chain (REG-102, REG-105, REG-106) to the current
+      declared export (7), is Base44 qualification complete and what is the
+      corrected Gate V1-G2 disposition?
+    decision: >-
+      Gate V1-G2 (Base44 Qualification Complete) disposition PASS on the
+      corrected (7) baseline, superseding the interim HOLD (DEC-V1-012). The
+      corrective closure reconciled the evidence chain to the current export:
+      REG-102 refreshes every evidence record to (7) and adds current-export
+      records EV-017..EV-022 (source manifest, (5)->(7) delta, IEBOK, Jobs
+      board, the preserved historical (5) baseline, and the re-verified
+      affiliation lifecycle); REG-105 classifies every contradiction against (7)
+      (all CONFIRMED_IN_CURRENT); and REG-106 re-ratifies every capability
+      disposition on SRC-001 with current and delta evidence and adds
+      QD-017/QD-018 for the two domains missed by the original (5) assessment.
+      All eleven corrected gate conditions in V1-B.3 are satisfied, every finding
+      is revalidated against (7), no Base44 implementation is
+      production-authoritative, and no construction is authorized (REG-106, all
+      authorizes_implementation false). Gate V1-G2 is an internal qualification
+      gate owned by the Accountable Program Authority; executive organizational
+      acceptance (Nolan, D0) is a distinct, later material-commitment gate and is
+      NOT a precondition of Gate V1-G2. Package 2 remains re-frozen at v1.1.0
+      (DEC-V1-013).
+    evidence_refs:
+      - V1-B
+      - GATE-V1-G2
+      - REG-102
+      - REG-104
+      - REG-105
+      - REG-106
+      - DEC-V1-011
+      - DEC-V1-012
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V1-015
+    class: D1
+    question: >-
+      With Gate V1-G2 disposed PASS on the corrected (7) baseline, is Volume 1
+      Package 3 (The House production-candidate assessment) authorized to begin?
+    decision: >-
+      Authorize Volume 1 Package 3 to begin. Package 3 is a current-state
+      qualification of The House repository (SRC-002) under the same V1-01
+      methodology; it is an assessment package, not a material-commitment or
+      construction step. Package 3 authorization follows directly from the
+      completed Base44 qualification (Gate V1-G2 PASS, DEC-V1-014) and does not
+      require executive organizational acceptance, which remains reserved for a
+      later material-commitment gate before any build or master development plan.
+      No implementation and no master development plan are authorized by this
+      decision.
+    evidence_refs:
+      - GATE-V1-G2
+      - DEC-V1-014
+      - REG-101
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
