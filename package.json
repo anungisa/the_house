@@ -43,6 +43,9 @@
     "organization:check": "tsx scripts/validate-organization-registry-baseline.ts",
     "participant:check": "tsx scripts/validate-participant-registry-baseline.ts",
     "facility:check": "tsx scripts/validate-facility-registry-baseline.ts",
+    "governance:check": "node docs/program/volume-0/controls/governance-check.mjs",
+    "governance:report": "node docs/program/volume-0/controls/generate-control-report.mjs",
+    "governance:docs": "node docs/program/volume-0/controls/build-executive-formats.mjs",
     "ci:check": "npm run typecheck && npm run lint && npm test && npm run build && npm run deploy:check && npm run container:check && npm run migrations:check && npm run supply-chain:check && npm run provenance:check && npm run smoke:check && npm run release:check && npm run synthetic:check && npm run organization:check && npm run participant:check && npm run facility:check"
   },
   "dependencies": {
@@ -60,7 +63,11 @@
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "@vitest/coverage-v8": "^2.1.9",
+    "ajv": "^8.20.0",
     "eslint": "^9.17.0",
+    "html-to-docx": "1.8.0",
+    "js-yaml": "^4.3.0",
+    "marked": "18.0.7",
     "prettier": "^3.4.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",

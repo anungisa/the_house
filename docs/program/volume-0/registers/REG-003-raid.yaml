@@ -1,0 +1,103 @@
+register_id: REG-003
+name: RAID Register
+status: IN_REVIEW
+version: 0.5.0
+records:
+  - id: RISK-001
+    type: risk
+    title: Unratified authority boundaries may create conflicting decisions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    likelihood: low
+    impact: high
+    mitigation: >-
+      Authorities assigned under solo-led model (V0-07, ratified); authority doctrine
+      ratified in V0-06 (DEC-V0-018/019); executive acceptance pending as G0 condition
+    target_resolution: TBD
+    gate_impact: G0
+    status: open
+  - id: RISK-002
+    type: risk
+    title: >-
+      The House may be treated as established production truth before gaps are
+      closed
+    owner: Aubert Nungisa (Technology and Architecture Authority)
+    likelihood: medium
+    impact: high
+    mitigation: >-
+      Enforce target-platform current implementation truth wording in V0-06 and
+      REG-005; require gap closure before production-truth claims
+    target_resolution: TBD
+    gate_impact: G0
+    status: open
+  - id: ASM-001
+    type: assumption
+    title: Club affiliation remains the first production vertical
+    owner: Aubert Nungisa (Accountable Program Authority)
+    validation_due: TBD
+    consequence_if_false: Reset sequencing and dependencies
+    status: open
+  - id: ASM-002
+    type: assumption
+    title: Initial funding envelope and funding authority exist
+    owner: Nolan (Executive Acceptance Authority)
+    validation_due: Before material external expenditure or production commitment
+    blocking_gate: External expenditure or funded delivery commitment
+    consequence_if_false: >-
+      Program cannot claim funded status; material external spend and production
+      commitment blocked (time-bounded G0 condition, not a delivery blocker)
+    status: open
+  - id: ASM-003
+    type: assumption
+    title: Delivery capacity and staffing model are available
+    owner: Aubert Nungisa (Accountable Program Authority)
+    validation_due: TBD
+    consequence_if_false: Delivery timeline and pilot scope must be revised
+    status: open
+  - id: ASM-004
+    type: assumption
+    title: Operating-cost sustainability assumptions hold
+    owner: Helene (Business and Financial contributor)
+    validation_due: When review-ready
+    blocking_gate: Financial model, fees, payments, or sustainability decisions
+    consequence_if_false: >-
+      Sustainability outcome (OUT-009) at risk
+    status: open
+  - id: DEP-001
+    type: dependency
+    title: Migration off the incumbent registration provider
+    owner: Aubert Nungisa (Data and Integration Authority)
+    depends_on: Current registration provider (REG-005 SRC-006, temporary transition platform)
+    validation_due: Before The House claims system-of-record authority for registration
+    blocking_gate: The House claims system-of-record authority for registration
+    consequence_if_false: >-
+      Legacy registration/membership truth cannot be retired; The House cannot assume
+      authoritative status for that domain
+    status: open
+  - id: DEP-002
+    type: dependency
+    title: Payment execution via external processors
+    owner: Helene (Business and Financial Authority)
+    depends_on: Payment processors (REG-005 SRC-007, execution plane)
+    validation_due: Before production payment flows
+    blocking_gate: Production payment flows
+    consequence_if_false: Governed charge decisions cannot be executed
+    status: open
+  - id: DEP-003
+    type: dependency
+    title: External authoritative sources for learning, certification, and accreditation
+    owner: Jen (Compliance and Policy Authority)
+    depends_on: Sideline Learning (SRC-008) and accreditation platforms (SRC-009)
+    validation_due: Before governed use of learning/accreditation status
+    blocking_gate: Governed use of learning or accreditation status
+    consequence_if_false: >-
+      Certification and accreditation status cannot be projected or governed reliably
+    status: open
+  - id: DEP-004
+    type: dependency
+    title: Financial system-of-record synchronization
+    owner: Helene (Business and Financial Authority)
+    depends_on: Accounting systems (REG-005 SRC-012, external authoritative source)
+    validation_due: Before financial reconciliation is relied upon
+    blocking_gate: Financial reconciliation is relied upon
+    consequence_if_false: Financial ledger reconciliation cannot be assured
+    status: open

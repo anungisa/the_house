@@ -1,0 +1,13 @@
+register_id: REG-007
+name: Exception Register
+status: DRAFT
+version: 0.1.0
+records: []
+
+exception_requirements:
+  - explicit_scope
+  - approved_authority
+  - time_limit
+  - risk_assessment
+  - owner
+  - remediation_date

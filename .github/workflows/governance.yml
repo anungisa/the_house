@@ -1,0 +1,59 @@
+# Documentation governance gate for the Volume 0 corpus.
+#
+# This workflow runs ONLY when the governance corpus or its toolchain changes
+# (docs/program/** or the package manifest/lockfile). It NEVER deploys, requires
+# NO secrets, and contacts NO external services. It runs the executable governance
+# controls (schema conformance, identifier uniqueness, cross-reference integrity,
+# ratification integrity, authority integrity, exception expiry, and frozen-package
+# amendment integrity) and publishes the NON-AUTHORITATIVE control report.
+#
+# It does not require any named-person approval, does not infer independent
+# assurance, and does not block unrelated runtime work (path-scoped).
+name: governance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/program/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/governance.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/program/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/governance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Volume 0 governance controls
+        run: npm run governance:check
+
+      - name: Upload non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report
+          path: docs/program/volume-0/generated/governance-control-report.md
+          if-no-files-found: warn

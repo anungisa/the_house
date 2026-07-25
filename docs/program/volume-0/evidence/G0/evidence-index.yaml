@@ -1,0 +1,128 @@
+# Gate G0 Evidence Index
+#
+# Non-authoritative machine-readable index of the Gate G0 evidence package.
+# The source Markdown chapters and registers remain the authoritative record.
+# This index links package closures, decisions, approvals, validation evidence,
+# baselines, and unresolved conditions for Volume 0 constitutional closure.
+
+index_id: EVIDENCE-G0
+volume: Volume 0 - Program Constitution and Control System
+gate: G0
+disposition: PASS_WITH_TIME_BOUNDED_CONDITIONS
+authority: Aubert Nungisa (Accountable Program Authority)
+evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+independent_certification: NOT_CLAIMED
+executive_organizational_acceptance: REQUIRED_AT_MATERIAL_COMMITMENT_GATE
+generated_status: non-authoritative
+
+package_closures:
+  - package: Package 1 - Constitutional foundation
+    status: RATIFIED_AND_FROZEN
+    closure_record: V0-E
+    approval: APP-005
+    decision: DEC-V0-022
+    base_commit: 346f9df
+    branch: docs/volume-0-package-1
+  - package: Package 2 - Authority and governance
+    status: RATIFIED_AND_FROZEN
+    closure_record: V0-F
+    approval: APP-008
+    decision: DEC-V0-023
+    base_commit: cdc8f80
+    branch: docs/volume-0-package-2
+  - package: Package 3 - Executable governance control system
+    status: RATIFIED_AND_FROZEN
+    closure_record: V0-G
+    approval: APP-012
+    decision: DEC-V0-025
+    base_commit: 8cd6ee8
+    branch: docs/volume-0-package-3
+  - package: Package 4 - Volume 0 constitutional closure
+    status: RATIFIED_AND_FROZEN
+    closure_record: V0-I
+    approval: APP-014
+    decision: DEC-V0-027
+    base_commit: 8cd6ee8
+    branch: docs/volume-0-package-4
+
+gate_record:
+  chapter: V0-12
+  version: 1.0.0
+  status: RATIFIED
+  approval: APP-013
+  decision: DEC-V0-026
+
+executive_artifacts:
+  - id: V0-H
+    title: Executive Constitutional Brief
+    audience: Executive Acceptance Authority (Nolan)
+  - id: V0-I
+    title: Volume 0 Completion Record
+
+validation_evidence:
+  governance_check: PASS
+  governance_errors: 0
+  expired_exceptions: 0
+  false_ratifications: 0
+  broken_references: 0
+  authority_conflicts: 0
+  permitted_informational_conditions:
+    - REG-008 OUT-001 baseline TBD
+    - REG-008 OUT-007 baseline TBD
+    - REG-008 OUT-009 baseline TBD
+  report: docs/program/volume-0/generated/governance-control-report.md
+  remote_ci: PASS (governance workflow, PR to main, run 30165079888)
+
+generated_artifact_qa:
+  status: PASS
+  method: Page-by-page rasterization (PyMuPDF) and rendered-image review; DOCX OOXML integrity check
+  reviewed_at_commit: 4fc5b1c
+  reproducibility: marked and html-to-docx pinned to exact versions in devDependencies; npm run governance:docs; document date derived from source commit (deterministic visible content)
+  artifacts:
+    - Central-Registration-Platform-Volume-0-v1.0.0.pdf (93 pages)
+    - Central-Registration-Platform-Volume-0-v1.0.0.docx
+    - Central-Registration-Platform-Volume-0-Executive-Brief.pdf (5 pages)
+    - Central-Registration-Platform-Volume-0-Executive-Brief.docx
+  checks:
+    cover_and_document_control: PASS
+    contents_navigation: PASS (22 internal named-destination links resolve to chapter pages)
+    table_layout: PASS (borders, shaded headers, wrapping; no overflow)
+    heading_orphaning: PASS (page-break-after avoid on headings)
+    page_breaks: PASS (per-chapter; no blank or near-empty pages)
+    french_characters: PASS (accented characters render correctly; no mojibake)
+    docx_opens_cleanly: PASS (all OOXML parts present; every XML part well-formed; styles and numbering included)
+    executive_brief_suitability: PASS (plain-language, numbered executive Q&A)
+    curling_canada_styling: PASS (brand red, typography, controlled cover)
+  caveat: DOCX package metadata may embed a build timestamp; rendered content is deterministic per source commit
+
+unresolved_conditions:
+  - condition: Executive organizational acceptance
+    owner: Nolan (Executive Acceptance Authority, D0)
+    blocking_point: Material organizational commitment or pilot authorization
+  - condition: Funding approval
+    owner: Nolan (Executive Acceptance Authority, D0)
+    blocking_point: External expenditure or funded delivery commitment
+  - condition: Strategy validation
+    owner: Rich (Strategy contributor, D7)
+    blocking_point: Executive strategy presentation
+  - condition: Business and financial validation
+    owner: Helene (Business and Financial contributor, D4)
+    blocking_point: Financial model, fees, payments, or sustainability decisions
+  - condition: Policy and compliance validation
+    owner: Jen (Compliance and Policy contributor, D4)
+    blocking_point: Ratification of affiliation requirements and compliance rules
+  - condition: Club/PTSO operational validation
+    owner: Named pilot PTSO/club (D8)
+    blocking_point: Pilot workflow acceptance
+  - condition: French-language validation
+    owner: Independent assurance (D9)
+    blocking_point: Any bilingual release claim
+  - condition: Accessibility validation
+    owner: Independent assurance (D9)
+    blocking_point: Any WCAG release claim
+  - condition: Independent security and privacy assurance
+    owner: Independent assurance (D9)
+    blocking_point: Production personal-data exposure
+  - condition: Backup, recovery, and operational proof
+    owner: Aubert Nungisa (Technology and Operations Authority)
+    blocking_point: Production launch

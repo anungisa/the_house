@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decisions.schema.json",
+  "title": "REG-002 Decision Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-002" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "class", "question", "decision", "evidence_refs", "approver", "evidence_label", "executive_acceptance", "effective_date", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^DEC-V0-[0-9]{3}$" },
+          "class": { "$ref": "common.schema.json#/definitions/decisionClass" },
+          "question": { "type": "string" },
+          "decision": { "type": "string" },
+          "evidence_refs": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^(V0-([0-9]{2}|[A-Z])|REG-[0-9]{3}|DEC-V0-[0-9]{3}|APP-[0-9]{3})$" }
+          },
+          "approver": { "type": "string" },
+          "evidence_label": { "$ref": "common.schema.json#/definitions/evidenceLabel" },
+          "executive_acceptance": {
+            "type": "string",
+            "enum": ["pending", "required", "accepted", "not_required"]
+          },
+          "effective_date": { "$ref": "common.schema.json#/definitions/isoDateOrTbd" },
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "accepted_by_accountable_authority",
+              "executive_accepted",
+              "superseded",
+              "withdrawn"
+            ]
+          },
+          "amends": { "type": "string" },
+          "amendment_reason": { "type": "string" }
+        }
+      }
+    }
+  }
+}

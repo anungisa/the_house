@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "stakeholders.schema.json",
+  "title": "REG-001 Stakeholder Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-001" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "stakeholder", "role", "authority_level", "engagement_level", "decision_classes", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^STK-[0-9]{3}$" },
+          "stakeholder": { "type": "string" },
+          "organization": { "type": "string" },
+          "role": { "type": "string" },
+          "authority_level": {
+            "type": "string",
+            "enum": [
+              "accountable_authority",
+              "executive_acceptance",
+              "domain_contributor",
+              "operational_acceptance",
+              "independent_assurance"
+            ]
+          },
+          "engagement_level": { "type": "string" },
+          "engagement_modes": { "type": "array", "items": { "type": "string" } },
+          "decision_classes": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/decisionClass" }
+          },
+          "surname": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": [
+              "assigned",
+              "named_candidate",
+              "named_contributor",
+              "to_be_identified",
+              "to_be_engaged"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

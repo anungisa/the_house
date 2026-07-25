@@ -1,0 +1,353 @@
+register_id: REG-002
+name: Decision Register
+status: IN_REVIEW
+version: 0.8.0
+records:
+  - id: DEC-V0-001
+    class: D1
+    question: What is the first production vertical slice?
+    decision: Club affiliation is first production flow.
+    evidence_refs: [V0-04]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-002
+    class: D3
+    question: What is the production system-of-record foundation?
+    decision: >-
+      The House is the governed production foundation, treated as target-platform
+      current implementation truth (production-candidate baseline), not established
+      production truth.
+    evidence_refs: [V0-06]
+    approver: Aubert Nungisa (Technology and Architecture Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-003
+    class: D1
+    question: What is The Button authority role?
+    decision: The Button is the intended client-facing operating experience.
+    evidence_refs: [V0-06]
+    approver: Aubert Nungisa (Product Owner)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-004
+    class: D1
+    question: What is the Base44 authority role?
+    decision: Base44 is discovery and reference corpus, not production authority.
+    evidence_refs: [V0-06]
+    approver: Aubert Nungisa (Product Owner)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-005
+    class: D3
+    question: How are capabilities adopted?
+    decision: Capabilities are qualified individually, not ported wholesale.
+    evidence_refs: [V0-04]
+    approver: Aubert Nungisa (Technology and Architecture Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-006
+    class: D1
+    question: When is testing developed?
+    decision: Testing is developed concurrently with requirements and implementation.
+    evidence_refs: [V0-05]
+    approver: Aubert Nungisa (Quality and Evidence Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-007
+    class: D4
+    question: What are release requirements?
+    decision: >-
+      Security, privacy, accessibility, bilingual parity, and operability are
+      release requirements.
+    evidence_refs: [V0-03, V0-05]
+    approver: >-
+      Aubert Nungisa (author); domain validation by Jen; independent assurance
+      (D9) before production
+    evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-008
+    class: D2
+    question: How does production delivery proceed?
+    decision: Production delivery proceeds through vertical slices and explicit gates.
+    evidence_refs: [V0-04, V0-09]
+    approver: Aubert Nungisa (Delivery Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-009
+    class: D0
+    question: How is national rollout approached?
+    decision: No national big-bang launch by default.
+    evidence_refs: [V0-05]
+    approver: Nolan (Executive Acceptance Authority)
+    evidence_label: null
+    executive_acceptance: required
+    effective_date: TBD
+    status: proposed
+  - id: DEC-V0-010
+    class: D1
+    question: What traceability is required?
+    decision: Every production capability requires end-to-end traceability.
+    evidence_refs: [V0-10]
+    approver: Aubert Nungisa (Documentation and Traceability Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-011
+    class: D1
+    question: How is AI-assisted development governed?
+    decision: AI-assisted development is permitted only within approved scope and controls.
+    evidence_refs: [V0-05]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-012
+    class: D4
+    question: How is institutional continuity handled?
+    decision: >-
+      Historical affiliations and continuity must be preserved or explicitly
+      dispositioned.
+    evidence_refs: [V0-05]
+    approver: Aubert Nungisa (author); domain validation by Jen
+    evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-013
+    class: D3
+    question: What is the architectural posture?
+    decision: The platform remains a modular monolith unless evidence justifies separation.
+    evidence_refs: [V0-06]
+    approver: Aubert Nungisa (Technology and Architecture Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-014
+    class: D3
+    question: How do external providers integrate?
+    decision: External providers integrate through governed contracts and reconciliation.
+    evidence_refs: [V0-04, V0-06]
+    approver: Aubert Nungisa (Data and Integration Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-015
+    class: D1
+    question: What is the evidence rule for claims?
+    decision: No readiness or capability claim may exceed available evidence.
+    evidence_refs: [V0-05]
+    approver: Aubert Nungisa (Quality and Evidence Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-016
+    class: D1
+    question: What is the program governance operating model?
+    decision: >-
+      Adopt a solo-led, institutionally accountable delivery model with combined
+      roles, targeted domain consultation, evidence-based gates, and proportionate
+      independent assurance, as defined in V0-07.
+    evidence_refs: [V0-07, V0-00, V0-05]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-017
+    class: D1
+    question: What is the Gate G0 disposition?
+    decision: >-
+      Gate G0 is PASS_WITH_TIME_BOUNDED_CONDITIONS; executive acceptance, funding,
+      domain validation, independent assurance, outcome baselines, and pilot cohort
+      are time-bounded conditions at their applicable later gates and do not block
+      controlled delivery of the affiliation slice.
+    evidence_refs: [V0-12, V0-07]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-018
+    class: D1
+    question: How is authority over systems and external platforms assigned?
+    decision: >-
+      Adopt the authority doctrine in V0-06: each system holds exactly one primary
+      authority type; The House is system-of-record foundation (production-candidate,
+      not final production truth); The Button owns experience only; Base44 is
+      evidence only; external platforms are classified in REG-005 SRC-005..SRC-012.
+    evidence_refs: [V0-06, REG-005]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-019
+    class: D1
+    question: What precedence resolves authority conflicts?
+    decision: >-
+      Authority precedence (V0-06 6.7), highest first: ratified policy and executive
+      decisions; approved program and domain decisions; approved target designs;
+      external authoritative sources within their domain; The House implementation
+      truth (production-candidate); Base44 reference evidence. Being implemented does
+      not confer authority; unassigned authority is denied by default.
+    evidence_refs: [V0-06, REG-005]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-020
+    class: D1
+    question: What is the stakeholder and engagement model?
+    decision: >-
+      Adopt V0-08: named contributors (Aubert, Nolan, Rich, Helene, Jen, club/PTSO
+      representatives, independent reviewers) engaged in defined modes, with material
+      consultation triggers mapped to decision classes D0/D4/D7/D8/D9.
+    evidence_refs: [V0-08, V0-07, REG-001]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-021
+    class: D1
+    question: How is consultation bounded and when is independence mandatory?
+    decision: >-
+      Adopt V0-08 non-blocking consultation rule (a pending consultation blocks only
+      the affected decision or claim, not unrelated work) and the mandatory-
+      independence list (security, privacy/legal compliance, accessibility, French-
+      language parity, and independence-dependent production-readiness claims remain
+      time-bounded conditions until independently assessed).
+    evidence_refs: [V0-08, V0-07]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-022
+    class: D1
+    question: What is the status of Package 1 at the start of Package 2?
+    decision: >-
+      Package 1 (V0-00..V0-05 and annexes V0-A..V0-E) is ratified as the
+      constitutional foundation baseline (Status RATIFIED, Version 1.0.0) and frozen;
+      changes require a documented constitutional amendment under V0-00 control. Gate
+      G0 disposition PASS_WITH_TIME_BOUNDED_CONDITIONS is preserved. Registers and
+      Gate G0 evidence remain living instruments.
+    evidence_refs: [V0-00, V0-E, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-023
+    class: D1
+    question: What is the closure status of Volume 0 Package 2?
+    decision: >-
+      Package 2 (Authority and Governance) passed a line-level constitutional closure
+      review with finding ACCEPTED_WITH_SPECIFIC_CORRECTIONS. Targeted corrections
+      were applied to V0-06 (Curling I/O master-data separation, payment/fee-policy
+      and accounting boundary, analytics not a system of record, explicit
+      transition-expiry trigger, reconciliation boundary) and V0-08 (club/PTSO do not
+      set national policy, consulted is not endorsement, name consistency). V0-06,
+      V0-07, and V0-08 are RATIFIED (v1.0.0) and Package 2 is frozen; changes require
+      a constitutional amendment under V0-00 control. Registers and Gate G0 evidence
+      remain living instruments.
+    evidence_refs: [V0-F, V0-06, V0-07, V0-08, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-024
+    class: D1
+    question: How is Volume 0 governance made executable and machine-validated?
+    decision: >-
+      Adopt the executable governance control system in Package 3: ratify V0-09
+      (Delivery and Assurance Doctrine), V0-10 (Documentation, Traceability, and
+      Source Control), and V0-11 (Risk, Assumptions, Dependencies, and Exceptions);
+      add JSON Schemas for REG-000..REG-008; add Node controls for schema
+      conformance, identifier uniqueness, cross-reference integrity, ratification
+      integrity, authority integrity, exception expiry, and frozen-package amendment
+      integrity; expose npm run governance:check and npm run governance:report; and
+      enforce documentation governance in CI. Generated control reports are
+      non-authoritative projections.
+    evidence_refs: [V0-09, V0-10, V0-11, REG-000, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-025
+    class: D1
+    question: Is Package 3 closed and frozen?
+    decision: >-
+      Package 3 (Executable Governance Control System) passed a line-level and
+      control-system closure review with finding ACCEPTED. V0-09, V0-10, and V0-11
+      are RATIFIED (v1.0.0); the JSON Schemas and Node controls execute cleanly via
+      npm run governance:check with zero errors; and the closure record V0-G records
+      the exit-criteria dispositions. Package 3 is frozen; changes require a
+      constitutional amendment under V0-00 control. Registers and Gate G0 evidence
+      remain living instruments.
+    evidence_refs: [V0-G, V0-09, V0-10, V0-11, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-026
+    class: D1
+    question: Is V0-12 ratified as the authoritative Gate G0 record?
+    decision: >-
+      V0-12 is RATIFIED (v1.0.0) as the authoritative Gate G0 record. The Gate G0
+      disposition is PASS_WITH_TIME_BOUNDED_CONDITIONS, authorized by the
+      Accountable Program Authority (Aubert Nungisa), evidence SELF-ATTESTED /
+      AUTHOR-VERIFIED, independent certification not claimed, executive
+      organizational acceptance required at the material commitment gate. Remaining
+      conditions are mapped to named owners and future blocking gates (V0-12 12.6).
+    evidence_refs: [V0-12, REG-003, REG-006, REG-008]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V0-027
+    class: D1
+    question: Is Volume 0 complete, frozen at v1.0.0, and is Volume 1 authorized?
+    decision: >-
+      Package 4 (Volume 0 constitutional closure) passed a line-level and
+      control-system closure review with finding ACCEPTED. V0-12, V0-H, and V0-I
+      are RATIFIED (v1.0.0); the Gate G0 evidence package is reconciled with a
+      machine-readable evidence-index.yaml; npm run governance:check passes with
+      zero errors (permitted informational conditions only). The complete Volume 0
+      corpus is frozen at v1.0.0; changes require a constitutional amendment under
+      V0-00 control. Volume 1 (Current-State Qualification and Repository
+      Convergence) is formally authorized; no Volume 1 content is created within
+      Package 4. Registers and Gate G0 evidence remain living instruments.
+    evidence_refs: [V0-I, V0-12, V0-H, REG-000, REG-006]
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
