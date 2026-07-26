@@ -1,0 +1,19 @@
+{
+  "by_business_authority": {
+    "House": 20,
+    "CurlingCanada": 5
+  },
+  "by_system_of_record_authority": {
+    "House": 22,
+    "External": 3
+  },
+  "by_classification": {
+    "INTERNAL": 14,
+    "PERSONAL": 2,
+    "RESTRICTED_EVIDENCE": 2,
+    "FINANCIAL_STATUS": 4,
+    "PRIVILEGED_ADMIN": 1,
+    "SECURITY_AUDIT": 1,
+    "ANALYTICS_AGGREGATE": 1
+  }
+}

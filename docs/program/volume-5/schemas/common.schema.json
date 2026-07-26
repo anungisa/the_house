@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "Volume 5 common definitions",
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registerStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentId": {
+      "type": "string",
+      "pattern": "^V5-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?$"
+    },
+    "v5GateId": {
+      "type": "string",
+      "pattern": "^V5-G[0-9]$"
+    },
+    "evidenceLabel": {
+      "type": ["string", "null"],
+      "enum": [
+        "AUTHOR-VERIFIED",
+        "SELF-ATTESTED",
+        "SELF-ATTESTED / AUTHOR-VERIFIED",
+        "DOMAIN-VALIDATED",
+        "PEER-REVIEWED",
+        "AUTOMATED-EVIDENCE",
+        "INDEPENDENTLY-ASSESSED",
+        "EXECUTIVE-ACCEPTED",
+        "PRODUCTION-PROVEN",
+        null
+      ]
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ].*)?$"
+    },
+    "authorityDomain": {
+      "type": "string",
+      "enum": ["House", "CurlingCanada", "Button", "External", "Staff", "Shared", "Neither"]
+    },
+    "catalogueKind": {
+      "type": "string",
+      "enum": [
+        "INFORMATION_DOMAIN",
+        "CONCEPTUAL_ENTITY",
+        "CONCEPTUAL_RELATIONSHIP",
+        "DATA_PRODUCT",
+        "CLASSIFICATION"
+      ]
+    },
+    "ruleKind": {
+      "type": "string",
+      "enum": ["RULE", "QUALITY", "LINEAGE", "CTRL"]
+    },
+    "backlogKind": {
+      "type": "string",
+      "enum": ["ASM", "RISK", "EXC", "VALIDATION"]
+    },
+    "classificationCategory": {
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "PERSONAL",
+        "RESTRICTED_EVIDENCE",
+        "FINANCIAL_STATUS",
+        "PRIVILEGED_ADMIN",
+        "SECURITY_AUDIT",
+        "ANALYTICS_AGGREGATE"
+      ]
+    },
+    "qualityDimension": {
+      "type": "string",
+      "enum": [
+        "VALIDITY",
+        "COMPLETENESS",
+        "CONSISTENCY",
+        "UNIQUENESS",
+        "TIMELINESS",
+        "ACCURACY",
+        "TRACEABILITY",
+        "AUTHORITY_ALIGNMENT",
+        "JURISDICTION_ALIGNMENT",
+        "TEMPORAL_CORRECTNESS"
+      ]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": [
+        "DEFINED",
+        "CONSTRAINED",
+        "ASSUMED",
+        "PENDING_VALIDATION",
+        "DEFERRED"
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "total": 25,
+  "with_business_authority": 25,
+  "with_system_of_record": 25,
+  "with_steward": 25,
+  "with_classification": 25,
+  "without_owner": []
+}

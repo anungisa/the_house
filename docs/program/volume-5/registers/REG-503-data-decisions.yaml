@@ -1,0 +1,74 @@
+register_id: REG-503
+name: Volume 5 Data Decisions
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V5-001
+    title: Data governance is defined before logical or physical design
+    decision: Volume 5 Package 1 defines conceptual data governance and semantics before any logical or physical data design begins.
+    status: ACCEPTED
+    context: Volume 4 architecture is complete; data authority must precede design.
+    consequence: Logical and physical design are deferred to later volumes and gates.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-00
+    evidence_refs:
+      - V4-I
+      - V5-00
+  - id: ADR-V5-002
+    title: Single explicit authoritative owner per information domain
+    decision: Each information domain has exactly one explicit authoritative business owner and one system-of-record authority.
+    status: ACCEPTED
+    context: Ambiguous ownership undermines governed truth.
+    consequence: Domains without owners fail the authority-ownership control.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-02
+    evidence_refs:
+      - RULE-V5-002
+  - id: ADR-V5-003
+    title: Person, account, membership, and representative authority are distinct
+    decision: Person, authenticated identity, organization membership, and representative authority are modelled as distinct conceptual facts.
+    status: ACCEPTED
+    context: Conflating identity concepts creates authorization and privacy risk.
+    consequence: Downstream design must preserve these distinctions.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-03
+    evidence_refs:
+      - REL-V5-003
+      - REL-V5-004
+  - id: ADR-V5-004
+    title: Projections are non-authoritative and rebuildable
+    decision: All projections, reports, analytics, and exports are non-authoritative and rebuildable from authoritative sources.
+    status: ACCEPTED
+    context: Derived data must never become a competing source of truth.
+    consequence: Derived products must name authoritative sources.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-09
+    evidence_refs:
+      - RULE-V5-005
+  - id: ADR-V5-005
+    title: Corrections preserve governed history via supersession
+    decision: Corrections are applied through governed supersession that preserves prior history.
+    status: ACCEPTED
+    context: Governed decisions and audit require preserved history.
+    consequence: Correction rules require named authority and preserved lineage.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-08
+    evidence_refs:
+      - RULE-V5-008
+      - LINEAGE-V5-008
+  - id: ADR-V5-006
+    title: Retention and deletion depend on external records-policy authority
+    decision: Retention schedules and deletion rules are deferred to an approved records-policy authority and are not set in Package 1.
+    status: ACCEPTED
+    context: This package must not set unsupported retention or deletion rules.
+    consequence: Retention-policy status is recorded as pending across domains and classifications.
+    authorizes_implementation: false
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V5-07
+    evidence_refs:
+      - RULE-V5-011

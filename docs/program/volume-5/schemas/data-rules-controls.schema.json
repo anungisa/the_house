@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "data-rules-controls.schema.json",
+  "title": "REG-502 Volume 5 Data Rules and Controls",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-502" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "validation_status", "authorizes_implementation", "chapter_ref"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(RULE|QUALITY|LINEAGE|CTRL)-V5-[0-9]{3}$"
+          },
+          "kind": { "$ref": "common.schema.json#/definitions/ruleKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "chapter_ref": { "$ref": "common.schema.json#/definitions/documentId" },
+          "affected_domains": { "type": "array", "items": { "type": "string" } },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "authority_owner": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "stewardship_implication": { "type": "string" },
+          "control_implication": { "type": "string" },
+          "downstream_constraint": { "type": "string" },
+
+          "quality_dimension": { "$ref": "common.schema.json#/definitions/qualityDimension" },
+          "detection_concept": { "type": "string" },
+          "correction_authority": { "type": "string" },
+          "correction_type": { "type": "string" },
+          "reconciliation_source": { "type": "string" },
+          "evidence_retained": { "type": "string" },
+          "downstream_impact": { "type": "string" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/v5GateId" },
+
+          "authoritative_fact": { "type": "string" },
+          "source": { "type": "string" },
+          "transformation_lineage": { "type": "string" },
+          "retention_dependency": { "type": "string" },
+          "audit_expectation": { "type": "string" }
+        }
+      }
+    }
+  }
+}

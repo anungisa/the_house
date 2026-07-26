@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "data-catalogue.schema.json",
+  "title": "REG-501 Volume 5 Data Catalogue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-501" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "purpose", "validation_status", "authorizes_implementation", "chapter_ref"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS)-V5-[0-9]{3}$"
+          },
+          "kind": { "$ref": "common.schema.json#/definitions/catalogueKind" },
+          "title": { "type": "string" },
+          "purpose": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "chapter_ref": { "$ref": "common.schema.json#/definitions/documentId" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+
+          "business_authority": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "system_of_record_authority": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "data_steward": { "type": "string" },
+          "technical_custody": { "type": "string" },
+          "permitted_writers": { "type": "array", "items": { "type": "string" } },
+          "permitted_readers": { "type": "array", "items": { "type": "string" } },
+          "jurisdiction_scope": { "type": "string" },
+          "classification": { "$ref": "common.schema.json#/definitions/classificationCategory" },
+          "correction_authority": { "type": "string" },
+          "reconciliation_dependency": { "type": "string" },
+          "retention_policy_status": { "type": "string" },
+          "projection_relationship": { "type": "string" },
+
+          "meaning": { "type": "string" },
+          "natural_identity": { "type": "string" },
+          "governed_identity": { "type": "string" },
+          "owning_domain": { "type": "string" },
+          "lifecycle": { "type": "string" },
+          "authority": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "cardinality": { "type": "string" },
+          "temporal_posture": { "type": "string" },
+          "correction_posture": { "type": "string" },
+          "merge_split_posture": { "type": "string" },
+          "audit_expectation": { "type": "string" },
+
+          "endpoints": { "type": "array", "items": { "type": "string" } },
+          "relationship_invariant": { "type": "string" },
+
+          "authoritative_source": { "type": "string" },
+          "derivation": { "type": "string" },
+          "consumer": { "type": "string" },
+          "refresh_posture": { "type": "string" },
+          "staleness_representation": { "type": "string" },
+          "security_scope": { "type": "string" },
+          "privacy_minimization": { "type": "string" },
+          "rebuild_source": { "type": "string" },
+          "export_authority": { "type": "string" },
+          "retention_dependency": { "type": "string" },
+
+          "permitted_purpose": { "type": "string" },
+          "minimum_necessary": { "type": "string" },
+          "permitted_audiences": { "type": "array", "items": { "type": "string" } },
+          "export_restrictions": { "type": "string" },
+          "logging_restrictions": { "type": "string" },
+          "analytics_restrictions": { "type": "string" },
+          "deletion_authority_dependency": { "type": "string" },
+          "incident_implication": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "by_kind": {
+    "RULE": 12,
+    "QUALITY": 10,
+    "LINEAGE": 8,
+    "CTRL": 6
+  },
+  "by_quality_dimension": {
+    "VALIDITY": 1,
+    "COMPLETENESS": 1,
+    "CONSISTENCY": 1,
+    "UNIQUENESS": 1,
+    "TIMELINESS": 1,
+    "ACCURACY": 1,
+    "TRACEABILITY": 1,
+    "AUTHORITY_ALIGNMENT": 1,
+    "JURISDICTION_ALIGNMENT": 1,
+    "TEMPORAL_CORRECTNESS": 1
+  }
+}
