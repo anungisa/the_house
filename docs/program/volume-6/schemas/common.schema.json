@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "Volume 6 common definitions",
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registerStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentId": {
+      "type": "string",
+      "pattern": "^V6-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?$"
+    },
+    "v6GateId": {
+      "type": "string",
+      "pattern": "^V6-G[0-9]$"
+    },
+    "futureGateId": {
+      "type": "string",
+      "pattern": "^(V6-G[0-9]|V([7-9]|1[01])-G[0-9]|EXEC-MCG)$"
+    },
+    "evidenceLabel": {
+      "type": ["string", "null"],
+      "enum": [
+        "AUTHOR-VERIFIED",
+        "SELF-ATTESTED",
+        "SELF-ATTESTED / AUTHOR-VERIFIED",
+        "DOMAIN-VALIDATED",
+        "PEER-REVIEWED",
+        "AUTOMATED-EVIDENCE",
+        "INDEPENDENTLY-ASSESSED",
+        "EXECUTIVE-ACCEPTED",
+        "PRODUCTION-PROVEN",
+        null
+      ]
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ].*)?$"
+    },
+    "implementationStatus": {
+      "type": "string",
+      "enum": ["NOT_IMPLEMENTED_OR_NOT_PROVEN"]
+    },
+    "authorityDomain": {
+      "type": "string",
+      "enum": ["House", "CurlingCanada", "Button", "External", "Staff", "Shared", "Neither"]
+    },
+    "protectionKind": {
+      "type": "string",
+      "enum": ["ASSET", "ACTOR", "TRUST_BOUNDARY", "THREAT", "ABUSE_CASE", "RIGHT"]
+    },
+    "controlKind": {
+      "type": "string",
+      "enum": [
+        "PROCESSING_PURPOSE",
+        "OBLIGATION",
+        "COMPLIANCE_OBLIGATION",
+        "CONTROL_OBJECTIVE",
+        "ACCESSIBILITY_OBLIGATION",
+        "BILINGUAL_OBLIGATION",
+        "INCIDENT_FAMILY",
+        "ASSURANCE_REQUIREMENT"
+      ]
+    },
+    "backlogKind": {
+      "type": "string",
+      "enum": ["ASM", "RISK", "EXC", "TEST"]
+    },
+    "classificationCategory": {
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "PERSONAL",
+        "RESTRICTED_EVIDENCE",
+        "FINANCIAL_STATUS",
+        "PRIVILEGED_ADMIN",
+        "SECURITY_AUDIT",
+        "ANALYTICS_AGGREGATE"
+      ]
+    },
+    "sensitivityLevel": {
+      "type": "string",
+      "enum": ["LOW", "MODERATE", "HIGH", "RESTRICTED"]
+    },
+    "failurePosture": {
+      "type": "string",
+      "enum": ["FAIL_CLOSED", "FAIL_SAFE", "DEGRADE_VISIBLE", "MANUAL_ESCALATION"]
+    },
+    "controlFamily": {
+      "type": "string",
+      "enum": [
+        "AUTHENTICATION",
+        "AUTHORIZATION",
+        "DELEGATION",
+        "PRIVILEGED_ACCESS",
+        "PRIVACY",
+        "DATA_PROTECTION",
+        "LOGGING_AND_AUDIT",
+        "INTEGRITY",
+        "SECRETS_AND_KEYS",
+        "PROVIDER_ASSURANCE",
+        "MONITORING_AND_DETECTION",
+        "INCIDENT_RESPONSE",
+        "CONTINUITY_AND_RECOVERY",
+        "ACCESSIBILITY",
+        "BILINGUAL_EQUIVALENCE",
+        "GOVERNANCE_APPROVAL"
+      ]
+    },
+    "applicabilityStatus": {
+      "type": "string",
+      "enum": [
+        "APPLICABLE_CONFIRMED",
+        "APPLICABILITY_VALIDATION_PENDING",
+        "POLICY_VALIDATION_PENDING",
+        "LEGAL_VALIDATION_PENDING",
+        "CONTRACT_VALIDATION_PENDING",
+        "NOT_APPLICABLE_WITH_EVIDENCE"
+      ]
+    },
+    "assuranceClassification": {
+      "type": "string",
+      "enum": [
+        "CONTROL_DEFINED",
+        "IMPLEMENTATION_EVIDENCE_REQUIRED",
+        "SECURITY_VALIDATION_PENDING",
+        "PRIVACY_VALIDATION_PENDING",
+        "ACCESSIBILITY_VALIDATION_PENDING",
+        "BILINGUAL_VALIDATION_PENDING",
+        "POLICY_VALIDATION_PENDING",
+        "LEGAL_VALIDATION_PENDING",
+        "CONTRACT_VALIDATION_PENDING",
+        "OPERATIONAL_PROOF_REQUIRED",
+        "INDEPENDENT_ASSURANCE_REQUIRED",
+        "MATERIAL_COMMITMENT_PENDING"
+      ]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": [
+        "DEFINED",
+        "CONSTRAINED",
+        "ASSUMED",
+        "PENDING_VALIDATION",
+        "DEFERRED"
+      ]
+    }
+  }
+}

@@ -1,0 +1,592 @@
+register_id: REG-602
+name: Volume 6 Obligations, Controls, Accessibility, and Assurance
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Control objectives (V6-04, V6-08, V6-09) ====
+  - id: CTRL-V6-001
+    kind: CONTROL_OBJECTIVE
+    title: Authentication control objective
+    statement: Every governed action must be attributable to a strongly authenticated actor identity.
+    control_family: AUTHENTICATION
+    owner: Identity and Authorization Steward
+    required_evidence: PENDING (authentication design, implementation, and independent validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-003
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-002
+  - id: CTRL-V6-002
+    kind: CONTROL_OBJECTIVE
+    title: Authorization control objective
+    statement: Authorization must be resource-aware and fail closed, evaluating far more than actor role.
+    control_family: AUTHORIZATION
+    owner: Identity and Authorization Steward
+    required_evidence: PENDING (authorization design, implementation, and independent validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-001
+    authorization_inputs:
+      - Target resource and its classification
+      - Owning organization
+      - Jurisdiction and tenant scope
+      - Reviewer or actor assignment
+      - Requested action
+      - Lifecycle state of the target entity
+      - Sensitivity of the affected data
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-001
+      - ABUSE-V6-001
+  - id: CTRL-V6-003
+    kind: CONTROL_OBJECTIVE
+    title: Privileged-access control objective
+    statement: Privileged capability must be least privilege, approved, time-bound, and fully audited.
+    control_family: PRIVILEGED_ACCESS
+    owner: Security and Trust Steward
+    required_evidence: PENDING (privileged-access design, implementation, and validation)
+    failure_posture: MANUAL_ESCALATION
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-007
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-004
+  - id: CTRL-V6-004
+    kind: CONTROL_OBJECTIVE
+    title: Data-protection control objective
+    statement: Governed data must be protected in transit and at rest according to its classification.
+    control_family: DATA_PROTECTION
+    owner: Security and Trust Steward
+    required_evidence: PENDING (data-protection design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-005
+  - id: CTRL-V6-005
+    kind: CONTROL_OBJECTIVE
+    title: Logging and audit control objective
+    statement: Security-relevant and governed events must be logged to an integrity-protected, append-only audit journal.
+    control_family: LOGGING_AND_AUDIT
+    owner: Data Governance Steward
+    required_evidence: PENDING (logging and audit design, implementation, and validation)
+    failure_posture: FAIL_SAFE
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-003
+  - id: CTRL-V6-006
+    kind: CONTROL_OBJECTIVE
+    title: Integrity control objective
+    statement: Evidence, audit, and governed records must be integrity-protected against undetected alteration.
+    control_family: INTEGRITY
+    owner: Data Governance Steward
+    required_evidence: PENDING (integrity design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-004
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-003
+  - id: CTRL-V6-007
+    kind: CONTROL_OBJECTIVE
+    title: Secrets and key-management control objective
+    statement: Secrets and keys must be centrally managed, rotated, and never embedded in source or configuration.
+    control_family: SECRETS_AND_KEYS
+    owner: Security and Trust Steward
+    required_evidence: PENDING (secrets and key-management design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-003
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - THREAT-V6-002
+  - id: CTRL-V6-008
+    kind: CONTROL_OBJECTIVE
+    title: Privacy and minimization control objective
+    statement: Personal data must be collected and used for a stated purpose under the minimum-necessary principle.
+    control_family: PRIVACY
+    owner: Privacy Steward
+    required_evidence: PENDING (privacy design, DPIA, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ privacy design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - RIGHT-V6-001
+  - id: CTRL-V6-009
+    kind: CONTROL_OBJECTIVE
+    title: Provider-assurance control objective
+    statement: External providers must present verified assurance and contractual data-protection obligations before reliance.
+    control_family: PROVIDER_ASSURANCE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (provider assurance evidence and contractual validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ provider assessment)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - THREAT-V6-005
+  - id: CTRL-V6-010
+    kind: CONTROL_OBJECTIVE
+    title: Monitoring and detection control objective
+    statement: Security-relevant conditions must be monitored so that misuse and compromise are detectable.
+    control_family: MONITORING_AND_DETECTION
+    owner: Security and Trust Steward
+    required_evidence: PENDING (monitoring and detection design, implementation, and validation)
+    failure_posture: DEGRADE_VISIBLE
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-08
+    traces_to:
+      - THREAT-V6-001
+  - id: CTRL-V6-011
+    kind: CONTROL_OBJECTIVE
+    title: Governance-approval control objective
+    statement: Protection, privacy, and assurance obligations must be dispositioned through the governed gate sequence before reliance.
+    control_family: GOVERNANCE_APPROVAL
+    owner: Accountable Program Authority (Aubert Nungisa)
+    required_evidence: PENDING (gate disposition records and approval evidence)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (governance gate sequence)
+    future_blocking_gate: EXEC-MCG
+    protected_asset_or_right: ASSET-V6-001
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+
+  # ==== Processing purposes (V6-05) ====
+  - id: PRIV-V6-001
+    kind: PROCESSING_PURPOSE
+    title: Affiliation administration processing
+    statement: Personal and organizational data is processed to administer governed affiliation cases.
+    purpose: Administer affiliation applications, review, decisions, and activation.
+    information_domains:
+      - DOMAIN-V5-001
+      - DOMAIN-V5-006
+      - DOMAIN-V5-014
+    authority_basis_status: PENDING (legal-basis validation)
+    minimum_necessary: Only data necessary to administer affiliation is processed.
+    data_subject: Organizations and their representatives
+    disclosure_authority: Affiliation administration authority
+    notice_requirement_status: PENDING (notice validation)
+    rights_dependency: RIGHT-V6-001
+    privacy_validation_status: PENDING (privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - CTRL-V6-008
+  - id: PRIV-V6-002
+    kind: PROCESSING_PURPOSE
+    title: Identity and representative processing
+    statement: Personal identity and representative-authority data is processed to authenticate and authorize actors.
+    purpose: Establish and verify representative authority for governed actions.
+    information_domains:
+      - DOMAIN-V5-003
+    authority_basis_status: PENDING (legal-basis validation)
+    minimum_necessary: Only identity data necessary for authentication and authorization is processed.
+    data_subject: Persons and representatives
+    disclosure_authority: Identity governance authority
+    notice_requirement_status: PENDING (notice validation)
+    rights_dependency: RIGHT-V6-002
+    privacy_validation_status: PENDING (privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - CTRL-V6-008
+  - id: PRIV-V6-003
+    kind: PROCESSING_PURPOSE
+    title: Financial-status processing
+    statement: Financial-status data is processed to record fee obligations and payment acknowledgement.
+    purpose: Record and reconcile affiliation financial status.
+    information_domains:
+      - DOMAIN-V5-015
+      - DOMAIN-V5-016
+    authority_basis_status: PENDING (legal-basis validation)
+    minimum_necessary: Only financial-status data necessary for affiliation is processed.
+    data_subject: Organizations
+    disclosure_authority: Finance authority
+    notice_requirement_status: PENDING (notice validation)
+    privacy_validation_status: PENDING (privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - CTRL-V6-008
+  - id: PRIV-V6-004
+    kind: PROCESSING_PURPOSE
+    title: Communications and support processing
+    statement: Personal data is processed to communicate with and support representatives.
+    purpose: Communicate governed outcomes and provide support.
+    information_domains:
+      - DOMAIN-V5-020
+      - DOMAIN-V5-021
+    authority_basis_status: PENDING (legal-basis validation)
+    minimum_necessary: Only data necessary to communicate and support is processed.
+    data_subject: Representatives
+    disclosure_authority: Support and communications authority
+    notice_requirement_status: PENDING (notice validation)
+    rights_dependency: RIGHT-V6-004
+    privacy_validation_status: PENDING (privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - CTRL-V6-008
+  - id: PRIV-V6-005
+    kind: PROCESSING_PURPOSE
+    title: Audit and accountability processing
+    statement: Personal data may appear in audit records processed for accountability and investigation.
+    purpose: Maintain accountability for governed actions.
+    information_domains:
+      - DOMAIN-V5-023
+    authority_basis_status: PENDING (legal-basis validation)
+    minimum_necessary: Only data necessary for accountability is retained in audit records.
+    data_subject: All actors
+    disclosure_authority: Audit and accountability authority
+    notice_requirement_status: PENDING (notice validation)
+    retention_dependency: PENDING (records-retention authority)
+    records_dependency: Records and retention authority (Volume 5 records dependency)
+    privacy_validation_status: PENDING (privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - CTRL-V6-005
+
+  # ==== Obligations and compliance obligations (V6-06) ====
+  - id: OBL-V6-001
+    kind: OBLIGATION
+    title: Personal-data protection obligation
+    statement: The platform must protect personal data against unauthorized access, disclosure, and loss.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Privacy Steward
+    control_objective_ref: CTRL-V6-008
+    required_evidence: PENDING (privacy control implementation and validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - RIGHT-V6-001
+  - id: OBL-V6-002
+    kind: OBLIGATION
+    title: Access-control obligation
+    statement: Access to governed data must be authorized on a fail-closed, least-privilege basis.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Identity and Authorization Steward
+    control_objective_ref: CTRL-V6-002
+    required_evidence: PENDING (authorization control implementation and validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V7-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - THREAT-V6-001
+  - id: COMP-V6-001
+    kind: COMPLIANCE_OBLIGATION
+    title: Canadian privacy-law obligation
+    statement: Processing of personal data must satisfy applicable Canadian federal and provincial privacy law.
+    source_type: Statutory (privacy law)
+    applicability_status: LEGAL_VALIDATION_PENDING
+    authority_owner: Privacy Steward
+    control_objective_ref: CTRL-V6-008
+    required_evidence: PENDING (legal applicability assessment and privacy validation)
+    independent_validation_requirement: Independent privacy/legal review required.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - RIGHT-V6-001
+  - id: COMP-V6-002
+    kind: COMPLIANCE_OBLIGATION
+    title: Records and retention obligation
+    statement: Governed records must be retained and disposed of according to a validated records-retention authority.
+    source_type: Policy and statutory (records)
+    applicability_status: POLICY_VALIDATION_PENDING
+    authority_owner: Data Governance Steward
+    control_objective_ref: CTRL-V6-005
+    required_evidence: PENDING (records-retention schedule authority and validation)
+    independent_validation_requirement: Records authority approval required; no retention period is set in Volume 6.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - PRIV-V6-005
+  - id: COMP-V6-003
+    kind: COMPLIANCE_OBLIGATION
+    title: Accessibility-law obligation
+    statement: Digital services must meet applicable accessibility legislation and standards.
+    source_type: Statutory (accessibility)
+    applicability_status: LEGAL_VALIDATION_PENDING
+    authority_owner: Accessibility Steward
+    control_objective_ref: CTRL-V6-011
+    required_evidence: PENDING (accessibility conformance assessment and validation)
+    independent_validation_requirement: Independent accessibility conformance validation required.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - RIGHT-V6-005
+
+  # ==== Accessibility obligations (V6-07) ====
+  - id: A11Y-V6-001
+    kind: ACCESSIBILITY_OBLIGATION
+    title: Perceivable and operable service obligation
+    statement: User-facing governed service must be perceivable and operable by users with disabilities.
+    user_need: Users with disabilities can perceive and operate the service.
+    affected_workflow: All user-facing governed workflows
+    required_behaviour: Meet applicable accessibility success criteria.
+    verification_method: PENDING (independent accessibility conformance testing)
+    accessibility_evidence: PENDING (conformance evidence)
+    operational_proof_dependency: PENDING (Volume 11+ delivery)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-07
+    traces_to:
+      - RIGHT-V6-005
+  - id: A11Y-V6-002
+    kind: ACCESSIBILITY_OBLIGATION
+    title: Assistive-technology compatibility obligation
+    statement: Governed service must be compatible with common assistive technologies.
+    user_need: Users relying on assistive technology can complete governed workflows.
+    affected_workflow: All user-facing governed workflows
+    required_behaviour: Provide compatible semantics and alternatives for assistive technology.
+    verification_method: PENDING (assistive-technology compatibility testing)
+    accessibility_evidence: PENDING (conformance evidence)
+    operational_proof_dependency: PENDING (Volume 11+ delivery)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-07
+    traces_to:
+      - RIGHT-V6-005
+
+  # ==== Bilingual obligations (V6-07) ====
+  - id: BIL-V6-001
+    kind: BILINGUAL_OBLIGATION
+    title: Bilingual interface equivalence obligation
+    statement: Governed service must be available with semantic equivalence in both official languages.
+    affected_content: User-facing governed interface content
+    equivalent_concept: Both official-language interfaces convey the same governed meaning.
+    semantic_equivalence: Content is functionally and semantically equivalent across languages, not merely translated.
+    verification_method: PENDING (bilingual equivalence review)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-07
+    traces_to:
+      - RIGHT-V6-005
+  - id: BIL-V6-002
+    kind: BILINGUAL_OBLIGATION
+    title: Bilingual notice and evidence equivalence obligation
+    statement: Notices, decisions, and evidence-facing content must be semantically equivalent in both official languages.
+    affected_content: Notices, decisions, and evidence-facing content
+    equivalent_concept: Governed notices convey identical meaning in both official languages.
+    semantic_equivalence: Legal and governed meaning is preserved equivalently across languages.
+    verification_method: PENDING (bilingual equivalence review)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-07
+    traces_to:
+      - RIGHT-V6-001
+
+  # ==== Incident families (V6-08) ====
+  - id: INC-V6-001
+    kind: INCIDENT_FAMILY
+    title: Data breach and unauthorized disclosure
+    statement: Incidents involving unauthorized access to or disclosure of governed personal data.
+    trigger: Detected or suspected unauthorized access to or disclosure of governed data.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve logs, audit records, and forensic evidence with integrity.
+    privacy_considerations: Assess data-subject notification obligations.
+    notification_dependency: PENDING (breach-notification obligation validation)
+    containment_objective: Contain exposure and revoke compromised access.
+    recovery_objective: Restore protection and confirm no ongoing exposure.
+    decision_authority: Security and Trust Steward
+    operational_owner_status: PENDING (Volume 7+ operations)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Incident-response validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-08
+    traces_to:
+      - THREAT-V6-001
+      - THREAT-V6-005
+  - id: INC-V6-002
+    kind: INCIDENT_FAMILY
+    title: Integrity and tampering incident
+    statement: Incidents involving alteration or destruction of evidence, audit, or governed records.
+    trigger: Detected integrity violation of governed, evidence, or audit records.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve original and altered state with integrity verification.
+    containment_objective: Halt further alteration and isolate affected records.
+    recovery_objective: Restore verified state and confirm integrity.
+    decision_authority: Data Governance Steward
+    operational_owner_status: PENDING (Volume 7+ operations)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Integrity-incident validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-08
+    traces_to:
+      - THREAT-V6-003
+  - id: INC-V6-003
+    kind: INCIDENT_FAMILY
+    title: Availability and continuity incident
+    statement: Incidents involving loss of availability of governed services or data.
+    trigger: Detected loss or degradation of governed service availability.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve operational logs and timeline for review.
+    containment_objective: Restore essential governed service safely.
+    recovery_objective: Recover to a verified, consistent state.
+    decision_authority: Security and Trust Steward
+    operational_owner_status: PENDING (Volume 7+ operations)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Continuity validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-08
+
+  # ==== Assurance requirements (V6-09) ====
+  - id: ASSR-V6-001
+    kind: ASSURANCE_REQUIREMENT
+    title: Independent security validation
+    statement: Security controls must be independently validated before reliance is claimed.
+    owner: Security and Trust Steward
+    required_evidence: PENDING (independent security assessment report)
+    assurance_classification: INDEPENDENT_ASSURANCE_REQUIRED
+    independent_validation_requirement: Independent security assessment required.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - CTRL-V6-002
+  - id: ASSR-V6-002
+    kind: ASSURANCE_REQUIREMENT
+    title: Privacy impact assessment
+    statement: A privacy impact assessment must be completed before processing personal data at scale.
+    owner: Privacy Steward
+    required_evidence: PENDING (completed DPIA)
+    assurance_classification: PRIVACY_VALIDATION_PENDING
+    independent_validation_requirement: Privacy/legal review required.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - CTRL-V6-008
+  - id: ASSR-V6-003
+    kind: ASSURANCE_REQUIREMENT
+    title: Accessibility conformance validation
+    statement: Accessibility conformance must be independently validated before reliance is claimed.
+    owner: Accessibility Steward
+    required_evidence: PENDING (accessibility conformance report)
+    assurance_classification: ACCESSIBILITY_VALIDATION_PENDING
+    independent_validation_requirement: Independent accessibility conformance validation required.
+    confidence: LOW
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - A11Y-V6-001
+  - id: ASSR-V6-004
+    kind: ASSURANCE_REQUIREMENT
+    title: Provider-assurance evidence
+    statement: External providers must present validated assurance evidence before governed data is entrusted to them.
+    owner: Security and Trust Steward
+    required_evidence: PENDING (provider assurance attestation and contractual evidence)
+    assurance_classification: INDEPENDENT_ASSURANCE_REQUIRED
+    independent_validation_requirement: Third-party assurance evidence required.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - CTRL-V6-009

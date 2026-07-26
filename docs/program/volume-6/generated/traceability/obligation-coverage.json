@@ -1,0 +1,20 @@
+{
+  "by_applicability_status": {
+    "APPLICABLE_CONFIRMED": 2,
+    "LEGAL_VALIDATION_PENDING": 2,
+    "POLICY_VALIDATION_PENDING": 1
+  },
+  "by_control_family": {
+    "AUTHENTICATION": 1,
+    "AUTHORIZATION": 1,
+    "PRIVILEGED_ACCESS": 1,
+    "DATA_PROTECTION": 1,
+    "LOGGING_AND_AUDIT": 1,
+    "INTEGRITY": 1,
+    "SECRETS_AND_KEYS": 1,
+    "PRIVACY": 1,
+    "PROVIDER_ASSURANCE": 1,
+    "MONITORING_AND_DETECTION": 1,
+    "GOVERNANCE_APPROVAL": 1
+  }
+}

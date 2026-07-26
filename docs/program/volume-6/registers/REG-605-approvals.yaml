@@ -1,0 +1,192 @@
+register_id: REG-605
+name: Volume 6 Approval Register
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Package 1: chapter ratifications ====
+  - id: APP-V6-001
+    artifact_id: V6-00
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume control, inheritance, and protection-definition authority defined.
+      - Authorizes no implementation, executable policy, IAM, infrastructure, procurement, or plan.
+    approved_at: null
+  - id: APP-V6-002
+    artifact_id: V6-01
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Protection doctrine, trust principles, and governance model defined.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-003
+    artifact_id: V6-02
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Assets, actors, trust boundaries, and data classification defined with explicit authority and classification.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-004
+    artifact_id: V6-03
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Threats, misuse, abuse cases, and rights risk defined with preventive, detective, and corrective objectives.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-005
+    artifact_id: V6-04
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity, authentication, and authorization baseline defined as resource-aware and fail-closed obligations.
+      - Authorizes no implementation, IAM role, permission, or policy.
+    approved_at: null
+  - id: APP-V6-006
+    artifact_id: V6-05
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Privacy, personal data, and records dependencies defined without setting a retention period or destruction schedule.
+      - Claims no privacy compliance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-007
+    artifact_id: V6-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Compliance-obligation framework defined with applicability, authority, control reference, evidence, and future gates.
+      - Claims no legal conformance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-008
+    artifact_id: V6-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Accessibility and bilingual-equivalence baseline defined with verification methods and semantic equivalence.
+      - Claims no accessibility conformance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-009
+    artifact_id: V6-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Incident, evidence-preservation, and response posture defined with preserved evidence and containment and recovery objectives.
+      - Authorizes no implementation of monitoring or incident response.
+    approved_at: null
+  - id: APP-V6-010
+    artifact_id: V6-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Assurance, validation, and provider-assurance backlog defined with owners, evidence, classification, and future gates.
+      - Claims no independent assurance or operational proof; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-011
+    artifact_id: V6-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Trust-foundation assessment and deterministic controls defined as non-authoritative tooling over the governed corpus.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-012
+    artifact_id: V6-A
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-A
+    conditions:
+      - Package 1 closure record consolidates the security, privacy, compliance, accessibility, and trust foundation.
+      - Records Gate V6-G1 disposition and Package 2 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-013
+    artifact_id: GATE-V6-G1
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: TRUST_AND_PROTECTION_FOUNDATION_READY
+    closure_record: V6-A
+    conditions:
+      - The released Volume 5 governed-data baseline is inherited.
+      - Protection-definition authority and amendment rules are controlled.
+      - Protection doctrine and trust principles are defined.
+      - Assets, actors, trust boundaries, and classification carry explicit authority owners.
+      - Every trust boundary is named by a threat or abuse scenario.
+      - Every threat resolves preventive, detective, and corrective intent with an owner.
+      - The authorization baseline is resource-aware and fails closed.
+      - Privacy purposes map to inherited information domains and disclosure authority without setting a retention period.
+      - Compliance obligations carry applicability, authority, control reference, evidence, and future gates.
+      - Accessibility and bilingual obligations carry verification methods and semantic equivalence.
+      - Incident families preserve evidence and name containment and recovery objectives.
+      - Assurance requirements and the validation backlog carry owners, evidence, classification, and future gates.
+      - No record authorizes implementation and every record is not-implemented or not-proven.
+      - No executable protection, identity, access, cryptographic, infrastructure, monitoring, incident-response, privacy-workflow, accessibility-remediation, retention-schedule, procurement, delivery-sequence, or master development plan artifact is created.
+      - No legal, security, privacy, or accessibility conformance, operational proof, or independent assurance is claimed.
+      - Package 1 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V6-014
+    artifact_id: PACKAGE-6-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-A
+    frozen: true
+    frozen_artifacts:
+      - id: V6-00
+        version: 1.0.0
+      - id: V6-01
+        version: 1.0.0
+      - id: V6-02
+        version: 1.0.0
+      - id: V6-03
+        version: 1.0.0
+      - id: V6-04
+        version: 1.0.0
+      - id: V6-05
+        version: 1.0.0
+      - id: V6-06
+        version: 1.0.0
+      - id: V6-07
+        version: 1.0.0
+      - id: V6-08
+        version: 1.0.0
+      - id: V6-09
+        version: 1.0.0
+      - id: V6-10
+        version: 1.0.0
+      - id: V6-A
+        version: 1.0.0
+    conditions:
+      - Package 1 (PACKAGE-6-1) is frozen at version 1.0.0 across all deliverables.
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null

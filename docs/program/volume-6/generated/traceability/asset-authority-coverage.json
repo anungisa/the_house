@@ -1,0 +1,20 @@
+{
+  "by_authority_owner": {
+    "House": 6,
+    "Staff": 1,
+    "Shared": 1
+  },
+  "by_classification": {
+    "RESTRICTED_EVIDENCE": 2,
+    "PERSONAL": 1,
+    "PRIVILEGED_ADMIN": 2,
+    "SECURITY_AUDIT": 1,
+    "FINANCIAL_STATUS": 1,
+    "ANALYTICS_AGGREGATE": 1
+  },
+  "by_sensitivity": {
+    "HIGH": 4,
+    "RESTRICTED": 2,
+    "MODERATE": 2
+  }
+}

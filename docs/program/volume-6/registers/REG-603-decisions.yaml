@@ -1,0 +1,54 @@
+register_id: REG-603
+name: Volume 6 Decision Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V6-001
+    title: Volume 6 defines protection obligations only and authorizes no implementation
+    decision: Volume 6 Package 1 defines security, privacy, compliance, accessibility, and trust obligations as governed doctrine; it authorizes no control implementation, executable policy, infrastructure, procurement, delivery sequencing, staffing, or cost.
+    status: ACCEPTED
+    context: The House must define what protection and trust obligations govern its data before controls can be designed, so obligations are separated from implementation.
+    consequence: All protection controls are recorded as future-gated objectives with pending evidence; construction is authorized only downstream through the governed gate sequence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-00
+    traces_to:
+      - V5-00
+  - id: ADR-V6-002
+    title: Authorization is resource-aware and fails closed
+    decision: Authorization control objectives must evaluate resource, organization, jurisdiction, assignment, action, lifecycle state, and sensitivity, not actor role alone, and must fail closed.
+    status: ACCEPTED
+    context: Role-only authorization cannot enforce tenant isolation or least privilege for governed data.
+    consequence: The authorization control objective records a full set of resource-aware inputs as a future obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - CTRL-V6-002
+      - THREAT-V6-001
+  - id: ADR-V6-003
+    title: No retention period or destruction schedule is set in Volume 6
+    decision: Volume 6 records records-and-retention as a pending obligation dependent on a validated records authority; it sets no retention period or destruction schedule.
+    status: ACCEPTED
+    context: Retention periods require records and legal authority not established in this package.
+    consequence: The records-and-retention obligation is future-gated pending records authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - COMP-V6-002
+  - id: ADR-V6-004
+    title: No compliance, security, privacy, or accessibility conformance is claimed
+    decision: Volume 6 claims no legal, security, privacy, or accessibility conformance, operational proof, or independent assurance; all such states are recorded as pending validation.
+    status: ACCEPTED
+    context: Conformance claims require evidence and independent assurance that do not exist at this stage.
+    consequence: Every assurance requirement is recorded with a pending validation status and a future assurance gate.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - ASSR-V6-001

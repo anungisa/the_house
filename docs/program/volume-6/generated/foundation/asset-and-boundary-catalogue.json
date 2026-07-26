@@ -1,0 +1,20 @@
+{
+  "assets": 8,
+  "actors": 8,
+  "trust_boundaries": 5,
+  "rights": 5,
+  "assets_without_authority": [],
+  "assets_without_classification": [],
+  "assets_by_classification": {
+    "RESTRICTED_EVIDENCE": 2,
+    "PERSONAL": 1,
+    "PRIVILEGED_ADMIN": 2,
+    "SECURITY_AUDIT": 1,
+    "FINANCIAL_STATUS": 1,
+    "ANALYTICS_AGGREGATE": 1
+  },
+  "boundaries_by_failure_posture": {
+    "FAIL_CLOSED": 4,
+    "MANUAL_ESCALATION": 1
+  }
+}

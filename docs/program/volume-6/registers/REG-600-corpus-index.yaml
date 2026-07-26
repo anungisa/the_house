@@ -1,0 +1,101 @@
+register_id: REG-600
+name: Volume 6 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V6-00
+    title: Volume Control, Inheritance, and Protection-Definition Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-00-volume-control-inheritance-and-protection-definition-authority.md
+    gate: V6-G1
+  - id: V6-01
+    title: Protection Doctrine, Trust Principles, and Governance Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-01-protection-doctrine-trust-principles-and-governance-model.md
+    gate: V6-G1
+  - id: V6-02
+    title: Assets, Actors, Trust Boundaries, and Data Classification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-02-assets-actors-trust-boundaries-and-data-classification.md
+    gate: V6-G1
+  - id: V6-03
+    title: Threats, Misuse, Abuse Cases, and Rights Risk
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-03-threats-misuse-abuse-cases-and-rights-risk.md
+    gate: V6-G1
+  - id: V6-04
+    title: Identity, Authentication, and Authorization Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-04-identity-authentication-and-authorization-baseline.md
+    gate: V6-G1
+  - id: V6-05
+    title: Privacy, Personal Data, and Records Dependencies
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-05-privacy-personal-data-and-records-dependencies.md
+    gate: V6-G1
+  - id: V6-06
+    title: Compliance-Obligation Framework
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-06-compliance-obligation-framework.md
+    gate: V6-G1
+  - id: V6-07
+    title: Accessibility and Bilingual-Equivalence Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-07-accessibility-and-bilingual-equivalence-baseline.md
+    gate: V6-G1
+  - id: V6-08
+    title: Incident, Evidence-Preservation, and Response Posture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-08-incident-evidence-preservation-and-response-posture.md
+    gate: V6-G1
+  - id: V6-09
+    title: Assurance, Validation, and Provider-Assurance Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-09-assurance-validation-and-provider-assurance-backlog.md
+    gate: V6-G1
+  - id: V6-10
+    title: Trust-Foundation Assessment and Deterministic Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-10-trust-foundation-assessment-and-deterministic-controls.md
+    gate: V6-G1
+  - id: V6-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-A-package-1-closure-record.md
+    gate: V6-G1

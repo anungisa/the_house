@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "control-catalogue.schema.json",
+  "title": "REG-602 Volume 6 Obligations, Controls, Accessibility, and Assurance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-602" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "validation_status", "authorizes_implementation", "implementation_status", "chapter_ref"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(PRIV|OBL|COMP|CTRL|A11Y|BIL|INC|ASSR)-V6-[0-9]{3}$"
+          },
+          "kind": { "$ref": "common.schema.json#/definitions/controlKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean" },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "chapter_ref": { "$ref": "common.schema.json#/definitions/documentId" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "owner": { "type": "string" },
+          "authority_owner": { "type": "string" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "superseded_future_blocking_gate": {
+            "oneOf": [
+              { "$ref": "common.schema.json#/definitions/v6GateId" },
+              { "type": "array", "items": { "$ref": "common.schema.json#/definitions/v6GateId" } }
+            ]
+          },
+          "gate_reassignment_ref": { "type": "string" },
+          "downstream_volume": { "type": "string" },
+
+          "purpose": { "type": "string" },
+          "information_domains": { "type": "array", "items": { "type": "string" } },
+          "authority_basis_status": { "type": "string" },
+          "minimum_necessary": { "type": "string" },
+          "data_subject": { "type": "string" },
+          "permitted_audiences": { "type": "array", "items": { "type": "string" } },
+          "jurisdiction": { "type": "string" },
+          "collection_source": { "type": "string" },
+          "notice_requirement_status": { "type": "string" },
+          "rights_dependency": { "type": "string" },
+          "disclosure_authority": { "type": "string" },
+          "retention_dependency": { "type": "string" },
+          "records_dependency": { "type": "string" },
+          "privacy_validation_status": { "type": "string" },
+
+          "source_type": { "type": "string" },
+          "applicability_status": { "$ref": "common.schema.json#/definitions/applicabilityStatus" },
+          "affected_service_or_asset": { "type": "string" },
+          "control_objective_ref": { "type": "string" },
+          "required_evidence": { "type": "string" },
+          "exception_authority": { "type": "string" },
+          "review_frequency_status": { "type": "string" },
+          "independent_validation_requirement": { "type": "string" },
+
+          "control_family": { "$ref": "common.schema.json#/definitions/controlFamily" },
+          "control_operator_status": { "type": "string" },
+          "current_evidence": { "type": "string" },
+          "authorization_inputs": { "type": "array", "items": { "type": "string" } },
+          "failure_posture": { "$ref": "common.schema.json#/definitions/failurePosture" },
+          "future_test_class": { "type": "string" },
+          "protected_asset_or_right": { "type": "string" },
+
+          "user_need": { "type": "string" },
+          "affected_workflow": { "type": "string" },
+          "required_behaviour": { "type": "string" },
+          "semantic_dependency": { "type": "string" },
+          "accessibility_evidence": { "type": "string" },
+          "verification_method": { "type": "string" },
+          "operational_proof_dependency": { "type": "string" },
+
+          "affected_content": { "type": "string" },
+          "equivalent_concept": { "type": "string" },
+          "semantic_equivalence": { "type": "string" },
+
+          "trigger": { "type": "string" },
+          "severity_classification_status": { "type": "string" },
+          "evidence_preservation": { "type": "string" },
+          "privacy_considerations": { "type": "string" },
+          "notification_dependency": { "type": "string" },
+          "containment_objective": { "type": "string" },
+          "recovery_objective": { "type": "string" },
+          "decision_authority": { "type": "string" },
+          "operational_owner_status": { "type": "string" },
+          "closure_evidence": { "type": "string" },
+          "post_incident_review": { "type": "string" },
+
+          "confidence": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH"]
+          },
+          "assurance_classification": { "$ref": "common.schema.json#/definitions/assuranceClassification" },
+          "exception_posture": { "type": "string" },
+          "operational_proof_requirement": { "type": "string" }
+        }
+      }
+    }
+  }
+}
