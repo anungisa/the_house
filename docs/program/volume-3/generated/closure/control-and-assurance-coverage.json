@@ -1,0 +1,21 @@
+{
+  "generated_at": null,
+  "control_total": 51,
+  "controls_without_tests": [],
+  "controls_without_evidence": [
+    "CTRL-V3-001",
+    "CTRL-V3-002",
+    "CTRL-V3-003",
+    "CTRL-V3-004",
+    "CTRL-V3-005",
+    "CTRL-V3-006",
+    "CTRL-V3-007",
+    "CTRL-V3-014",
+    "CTRL-V3-018",
+    "CTRL-V3-022",
+    "CTRL-V3-023",
+    "CTRL-V3-026",
+    "CTRL-V3-027",
+    "CTRL-V3-028"
+  ]
+}

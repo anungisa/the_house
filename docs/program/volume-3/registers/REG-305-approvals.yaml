@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.9.0
+version: 1.10.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -817,5 +817,87 @@ records:
     conditions:
       - Package 4 freeze provenance completed post-merge; source snapshot e9fae6f, closure/freeze 125a49b, merged 10179bf.
       - Gate V3-G4 and V3-D are preserved; no substantive Package 4 content is reopened.
+    approved_at: null
+  # ---- Package 5 chapter ratifications ----
+  - id: APP-V3-052
+    artifact_id: V3-35
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated business operating-model baseline defined; no implementation, staffing, or commitment authorized.
+    approved_at: null
+  - id: APP-V3-053
+    artifact_id: V3-36
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Operating service catalogue and accountability matrix defined; no staffing or headcount committed.
+    approved_at: null
+  - id: APP-V3-054
+    artifact_id: V3-37
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated authority, delegation, and segregation-of-duties baseline defined; no authority is delegated by this record.
+    approved_at: null
+  - id: APP-V3-055
+    artifact_id: V3-38
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Capacity, sourcing, economics, and sustainability synthesis defined; no amount, fee, budget, or vendor committed.
+    approved_at: null
+  - id: APP-V3-056
+    artifact_id: V3-39
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Operating measures and assurance baseline defined; no numerical target or threshold fabricated.
+    approved_at: null
+  - id: APP-V3-057
+    artifact_id: V3-40
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Operating-model validation backlog and decision register defined; every unresolved item has an owner and future gate.
+    approved_at: null
+  - id: APP-V3-058
+    artifact_id: V3-41
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Downstream business constraints for architecture and engineering defined; no technical architecture is defined.
+    approved_at: null
+  - id: APP-V3-059
+    artifact_id: V3-42
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Executive business operating-model brief summarizes ratified content and introduces no new authority.
+    approved_at: null
+  - id: APP-V3-060
+    artifact_id: V3-43
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated operating traceability and closure assessment defined; the deterministic closure outputs remain non-authoritative.
     approved_at: null
 

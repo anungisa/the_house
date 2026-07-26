@@ -1,7 +1,7 @@
 register_id: REG-300
 name: Volume 3 Corpus Index
 status: RATIFIED
-version: 1.5.0
+version: 1.6.0
 records:
   - id: V3-00
     title: Volume Control and Inheritance
@@ -315,3 +315,75 @@ records:
     version: 1.0.0
     path: docs/program/volume-3/V3-D-package-4-closure-record.md
     gate: V3-G4
+  - id: V3-35
+    title: Integrated Business Operating-Model Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-35-integrated-business-operating-model-baseline.md
+    gate: V3-G5
+  - id: V3-36
+    title: Operating Service Catalogue and Accountability Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-36-operating-service-catalogue-and-accountability-matrix.md
+    gate: V3-G5
+  - id: V3-37
+    title: Integrated Authority, Delegation, and Segregation-of-Duties Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-37-integrated-authority-delegation-and-segregation-of-duties-baseline.md
+    gate: V3-G5
+  - id: V3-38
+    title: Capacity, Sourcing, Economics, and Sustainability Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-38-capacity-sourcing-economics-and-sustainability-synthesis.md
+    gate: V3-G5
+  - id: V3-39
+    title: Operating Measures, Management Evidence, and Assurance Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-39-operating-measures-management-evidence-and-assurance-baseline.md
+    gate: V3-G5
+  - id: V3-40
+    title: Operating-Model Validation Backlog and Decision Register
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-40-operating-model-validation-backlog-and-decision-register.md
+    gate: V3-G5
+  - id: V3-41
+    title: Downstream Business Constraints for Architecture and Engineering
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-41-downstream-business-constraints-for-architecture-and-engineering.md
+    gate: V3-G5
+  - id: V3-42
+    title: Executive Business Operating-Model Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-42-executive-business-operating-model-brief.md
+    gate: V3-G5
+  - id: V3-43
+    title: Integrated Operating Traceability and Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-43-integrated-operating-traceability-and-closure-assessment.md
+    gate: V3-G5

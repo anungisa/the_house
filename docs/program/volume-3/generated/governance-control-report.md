@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T13:16:21.431Z
+Generated: 2026-07-26T13:44:15.812Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T13:16:21.431Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 39 |
+| RATIFIED | 48 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.5.0 | 39 |
-| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.3.0 | 34 |
-| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.2.0 | 20 |
-| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.3.0 | 287 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.6.0 | 48 |
+| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.4.0 | 43 |
+| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.3.0 | 21 |
+| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.4.0 | 358 |
 | REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.7.0 | 13 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.9.0 | 51 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.10.0 | 60 |
 
 ## Findings by control
 
@@ -170,3 +170,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-050 (PACKAGE-3-4): Freeze provenance is completed post-merge without reopening Package 4 content.
 - APP-V3-051 (PACKAGE-3-4): Package 4 freeze provenance completed post-merge; source snapshot e9fae6f, closure/freeze 125a49b, merged 10179bf.
 - APP-V3-051 (PACKAGE-3-4): Gate V3-G4 and V3-D are preserved; no substantive Package 4 content is reopened.
+- APP-V3-052 (V3-35): Integrated business operating-model baseline defined; no implementation, staffing, or commitment authorized.
+- APP-V3-053 (V3-36): Operating service catalogue and accountability matrix defined; no staffing or headcount committed.
+- APP-V3-054 (V3-37): Integrated authority, delegation, and segregation-of-duties baseline defined; no authority is delegated by this record.
+- APP-V3-055 (V3-38): Capacity, sourcing, economics, and sustainability synthesis defined; no amount, fee, budget, or vendor committed.
+- APP-V3-056 (V3-39): Operating measures and assurance baseline defined; no numerical target or threshold fabricated.
+- APP-V3-057 (V3-40): Operating-model validation backlog and decision register defined; every unresolved item has an owner and future gate.
+- APP-V3-058 (V3-41): Downstream business constraints for architecture and engineering defined; no technical architecture is defined.
+- APP-V3-059 (V3-42): Executive business operating-model brief summarizes ratified content and introduces no new authority.
+- APP-V3-060 (V3-43): Integrated operating traceability and closure assessment defined; the deterministic closure outputs remain non-authoritative.

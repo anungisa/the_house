@@ -1,0 +1,14 @@
+{
+  "generated_at": null,
+  "dependency_records": [
+    "BR-V3-020",
+    "CTRL-V3-025",
+    "FR-V3-016",
+    "FR-V3-021",
+    "RULE-V3-017",
+    "UC-V3-018"
+  ],
+  "dependency_records_without_owner": [
+    "FR-V3-016"
+  ]
+}

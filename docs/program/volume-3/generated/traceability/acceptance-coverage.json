@@ -25,7 +25,12 @@
     "RULE-V3-022",
     "RULE-V3-023",
     "RULE-V3-024",
-    "RULE-V3-028"
+    "RULE-V3-028",
+    "RULE-V3-030",
+    "RULE-V3-031",
+    "RULE-V3-032",
+    "RULE-V3-033",
+    "RULE-V3-035"
   ],
   "workflows_without_experience": [
     "WF-V3-003",
@@ -34,7 +39,9 @@
     "WF-V3-010",
     "WF-V3-011",
     "WF-V3-013",
-    "WF-V3-014"
+    "WF-V3-014",
+    "WF-V3-015",
+    "WF-V3-017"
   ],
   "controls_without_tests": [],
   "tests_without_outcome_lineage": []

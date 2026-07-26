@@ -1,7 +1,7 @@
 register_id: REG-301
 name: Volume 3 Outcome Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: OUT-V3-001
     statement: >-
@@ -660,3 +660,157 @@ records:
       - V3-34
       - V3-00
       - V2-33
+  # ---- Package 5 outcomes (integrated business operating model and Volume 3 closure) ----
+  - id: OUT-V3-035
+    statement: >-
+      Curling Canada holds one authoritative, integrated business-operating baseline that
+      consolidates the institutional, seasonal, governance, and capacity models of Packages 1
+      through 4 without introducing unsupported operating decisions.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-017
+    product: House
+    success_signal: >-
+      Every material operating capability is recorded once with its accountable and performing
+      functions, controls, evidence, dependencies, and validation status.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-35
+      - V3-00
+      - V2-00
+  - id: OUT-V3-036
+    statement: >-
+      The affiliation service has a controlled operating service catalogue with functional
+      accountability for each service family, without assigning named employees or approved
+      organizational positions.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-002
+      - STK-V3-003
+    product: House
+    success_signal: >-
+      Each operating service records its accountable function, responsible performer, consulted
+      and informed parties, decision rights, entry and exit conditions, evidence, and control.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-36
+      - V3-01
+      - V2-11
+  - id: OUT-V3-037
+    statement: >-
+      The affiliation operating model enforces an integrated authority, delegation, and
+      segregation-of-duties baseline that prevents conflicting combinations of governed authority.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      Each authority domain records its accountable function, permitted delegation, prohibited
+      combinations, conflict controls, correction authority, and future validation.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-37
+      - V3-02
+      - V2-12
+  - id: OUT-V3-038
+    statement: >-
+      Curling Canada has a consolidated capacity, sourcing, economics, and sustainability
+      synthesis that classifies every material conclusion by validation state without asserting
+      quantities, amounts, fees, budgets, vendors, or commitments.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-008
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      Every capacity, sourcing, cost, and funding conclusion carries a synthesis classification
+      and the evidence required before quantitative planning.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-38
+      - V3-27
+      - V2-33
+  - id: OUT-V3-039
+    statement: >-
+      The affiliation service has a consolidated operating-measure, management-evidence, and
+      assurance baseline with an accountable owner for every measure, without inventing numerical
+      targets or thresholds.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      Every operating measure records its definition, calculation concept, evidence source,
+      accountable owner, baseline status, and validation authority.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-39
+      - V3-06
+      - V2-30
+  - id: OUT-V3-040
+    statement: >-
+      Volume 3 has one final unresolved-validation register that separates a defined operating
+      model from pending policy, financial, contractual, architecture, delivery-planning, and
+      executive decisions.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-016
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      Every unresolved item records its classification, owner, affected service and outcome, risk
+      if unresolved, required resolution evidence, and future blocking gate.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-40
+      - V3-07
+      - V2-34
+  - id: OUT-V3-041
+    statement: >-
+      Volume 4 receives explicit downstream business constraints that architecture and engineering
+      must respect, and an explicit list of what Volume 4 must not infer.
+    stakeholder_refs:
+      - STK-V3-021
+      - STK-V3-001
+    product: House
+    success_signal: >-
+      Architecture inputs and prohibited inferences are recorded as constraints without defining
+      any technical architecture, staffing, budget, provider, or deployment authorization.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-41
+      - V3-00
+      - V2-00
+  - id: OUT-V3-042
+    statement: >-
+      The executive audience has a concise business operating-model brief that summarizes ratified
+      Volume 3 content and introduces no new authority.
+    stakeholder_refs:
+      - STK-V3-016
+      - STK-V3-001
+    product: House
+    success_signal: >-
+      The brief explains what Volume 3 defined, what remains unauthorized, and the decision the
+      executive authority is not yet being asked to make.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-42
+      - V3-33
+      - V2-00
+  - id: OUT-V3-043
+    statement: >-
+      Volume 3 has a deterministic integrated traceability and closure assessment that reports
+      integrity across identifiers, coverage, authority, controls, dependencies, measures, and the
+      validation backlog as non-authoritative projections.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      The closure tooling emits deterministic coverage outputs and a closure report without
+      becoming a source of truth.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-43
+      - V3-07
+      - V2-34
