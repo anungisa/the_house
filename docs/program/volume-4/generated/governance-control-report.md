@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T16:35:05.327Z
+Generated: 2026-07-26T16:35:24.904Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T16:35:05.327Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 58 |
+| RATIFIED | 59 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.11.0 | 58 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.11.0 | 59 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.4.0 | 212 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.4.0 | 46 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.4.0 | 70 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.4.0 | 69 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.11.0 | 66 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.11.0 | 70 |
 
 ## Findings by control
 
@@ -331,3 +331,34 @@ Errors: 0 | Warnings: 34 | Info: 30
 - APP-V4-065 (V4-48): Introduces no new authority; records decisions the executive is not yet asked to make.
 - APP-V4-066 (V4-49): Integrated architecture traceability and closure assessment ratified.
 - APP-V4-066 (V4-49): Deterministic closure projections are non-authoritative; authorization invariants must be zero and no record disappears.
+- APP-V4-067 (V4-I): Volume 4 completion and release-freeze record ratified as architecture definition only.
+- APP-V4-067 (V4-I): Closes Package 5, dispositions Gate V4-G5, freezes Package 5 and the whole volume, and authorizes Volume 5 only.
+- APP-V4-068 (GATE-V4-G5): Package 4 provenance is unambiguous.
+- APP-V4-068 (GATE-V4-G5): Packages 1 through 4 are inherited without modifying frozen substantive content.
+- APP-V4-068 (GATE-V4-G5): One integrated target-architecture baseline exists.
+- APP-V4-068 (GATE-V4-G5): System, module, authority, trust, persistence, integration, and runtime boundaries are defined.
+- APP-V4-068 (GATE-V4-G5): Architecture dependency direction is controlled.
+- APP-V4-068 (GATE-V4-G5): The complete affiliation lifecycle is architecturally covered.
+- APP-V4-068 (GATE-V4-G5): Resource, jurisdiction, assignment, state, and evidence-sensitive authorization are represented.
+- APP-V4-068 (GATE-V4-G5): Evidence, decisions, reconciliation, activation, audit, and correction preserve institutional authority.
+- APP-V4-068 (GATE-V4-G5): Data, integration, security, runtime, resilience, and recovery architecture are defined.
+- APP-V4-068 (GATE-V4-G5): Engineering standards, secure-development controls, test architecture, migration constraints, and evolution rules are defined.
+- APP-V4-068 (GATE-V4-G5): Technology-selection criteria remain vendor-neutral.
+- APP-V4-068 (GATE-V4-G5): Architecture exceptions and debt are governed.
+- APP-V4-068 (GATE-V4-G5): House P0 findings have target architecture and future evidence mappings.
+- APP-V4-068 (GATE-V4-G5): Fitness functions remain unimplemented and no architecture record authorizes implementation.
+- APP-V4-068 (GATE-V4-G5): Assumptions, risks, and readiness gaps have owners and future gates.
+- APP-V4-068 (GATE-V4-G5): Downstream-volume constraints are explicit.
+- APP-V4-068 (GATE-V4-G5): The executive brief introduces no new authority.
+- APP-V4-068 (GATE-V4-G5): No artifact claims implementation, operational proof, accreditation, or independent assurance without evidence.
+- APP-V4-068 (GATE-V4-G5): No implementation, physical schema, migration, executable contract, infrastructure, procurement, delivery sequence, staffing, cost plan, pilot, rollout, or master development plan is created.
+- APP-V4-068 (GATE-V4-G5): Volume 4 receives complete line-level and deterministic traceability review.
+- APP-V4-068 (GATE-V4-G5): Package 5 and the whole Volume 4 corpus receive explicit freeze records.
+- APP-V4-069 (PACKAGE-4-5): Volume 4 Package 5 frozen at closure following Gate V4-G5 disposition.
+- APP-V4-069 (PACKAGE-4-5): Authorizes commencement of Volume 5 as an architecture-definition volume only.
+- APP-V4-069 (PACKAGE-4-5): Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-069 (PACKAGE-4-5): Changes to frozen Package 5 content require the recorded amendment process.
+- APP-V4-070 (VOLUME-4): The whole Volume 4 corpus is frozen at closure following Gate V4-G5 disposition.
+- APP-V4-070 (VOLUME-4): Covers chapters V4-00 through V4-49 and closure and amendment records V4-A through V4-I.
+- APP-V4-070 (VOLUME-4): Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-070 (VOLUME-4): Changes to any frozen Volume 4 content require the recorded amendment process.

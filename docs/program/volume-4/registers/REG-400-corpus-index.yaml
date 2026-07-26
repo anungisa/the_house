@@ -467,3 +467,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-4/V4-49-integrated-architecture-traceability-and-closure-assessment.md
     gate: V4-G5
+  - id: V4-I
+    title: Volume 4 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-I-volume-4-completion-and-release-freeze-record.md
+    gate: V4-G5
