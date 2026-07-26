@@ -1,7 +1,7 @@
 register_id: REG-500
 name: Volume 5 Corpus Index
 status: RATIFIED
-version: 1.6.0
+version: 1.7.0
 records:
   - id: V5-00
     title: Volume Control, Inheritance, and Data-Definition Authority
@@ -291,6 +291,94 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-31-package-3-traceability-validation-backlog-and-downstream-constraints.md
     gate: V5-G3
+  - id: V5-32
+    title: Physical Data-Design Doctrine and PostgreSQL Mapping Conventions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-32-physical-data-design-doctrine-and-postgresql-mapping-conventions.md
+    gate: V5-G4
+  - id: V5-33
+    title: Organization, Jurisdiction, Season, and Affiliation Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-33-organization-jurisdiction-season-and-affiliation-physical-model.md
+    gate: V5-G4
+  - id: V5-34
+    title: Party, Identity, Membership, Representative Authority, and Assignment Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-34-party-identity-membership-representative-authority-and-assignment-physical-model.md
+    gate: V5-G4
+  - id: V5-35
+    title: Requirement, Response, Evidence, Submission, Review, and Decision Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-35-requirement-response-evidence-submission-review-and-decision-physical-model.md
+    gate: V5-G4
+  - id: V5-36
+    title: Financial Obligation, Reconciliation, Activation, and Recovery Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-36-financial-obligation-reconciliation-activation-and-recovery-physical-model.md
+    gate: V5-G4
+  - id: V5-37
+    title: Temporal, Audit, Correction, Provenance, Outbox, and Idempotency Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-37-temporal-audit-correction-provenance-outbox-and-idempotency-physical-model.md
+    gate: V5-G4
+  - id: V5-38
+    title: Reference Data, Code Sets, Bilingual Labels, and Governed Configuration Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-38-reference-data-code-sets-bilingual-labels-and-governed-configuration-physical-model.md
+    gate: V5-G4
+  - id: V5-39
+    title: Projection, Search, Reporting, Analytics, and Export Physical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-39-projection-search-reporting-analytics-and-export-physical-model.md
+    gate: V5-G4
+  - id: V5-40
+    title: Migration Staging, Quarantine, Identity Resolution, and Reconciliation Data Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-40-migration-staging-quarantine-identity-resolution-and-reconciliation-data-model.md
+    gate: V5-G4
+  - id: V5-41
+    title: Integrity, Indexing, Partitioning, Retention, Archival, and Performance Requirements
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-41-integrity-indexing-partitioning-retention-archival-and-performance-requirements.md
+    gate: V5-G4
+  - id: V5-42
+    title: Physical-Model Verification, Implementation Handoff, and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-42-physical-model-verification-implementation-handoff-and-downstream-constraints.md
+    gate: V5-G4
   - id: V5-E
     title: Package 3 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)

@@ -1,7 +1,7 @@
 register_id: REG-504
 name: Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   # ==== Assumptions ====
   - id: ASM-V5-001
@@ -16,11 +16,12 @@ records:
     required_decision: None (baseline confirmed)
     required_evidence: Release lineage in REG-405 APP-V4-072
     target_package_or_volume: Volume 5 Package 1
-    future_blocking_gate: V5-G4
+    future_blocking_gate: V5-G5
     superseded_future_blocking_gate:
       - V5-G1
       - V5-G3
-    gate_reassignment_ref: ADR-V5-028
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: DEFINED
     authorizes_implementation: false
@@ -172,12 +173,13 @@ records:
     confidence: MEDIUM
     required_decision: Ownership confirmation
     required_evidence: Business-authority sign-off
-    target_package_or_volume: Volume 5 Package 4
-    future_blocking_gate: V5-G4
+    target_package_or_volume: Volume 5 Package 5
+    future_blocking_gate: V5-G5
     superseded_future_blocking_gate:
       - V5-G1
       - V5-G3
-    gate_reassignment_ref: ADR-V5-028
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -250,12 +252,13 @@ records:
     confidence: MEDIUM
     required_decision: Jurisdiction variant confirmation
     required_evidence: PTSO validation
-    target_package_or_volume: Volume 5 Package 4
-    future_blocking_gate: V5-G4
+    target_package_or_volume: Volume 5 Package 5
+    future_blocking_gate: V5-G5
     superseded_future_blocking_gate:
       - V5-G1
       - V5-G3
-    gate_reassignment_ref: ADR-V5-028
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -271,12 +274,13 @@ records:
     confidence: MEDIUM
     required_decision: Season rules confirmation
     required_evidence: Season data validation
-    target_package_or_volume: Volume 5 Package 4
-    future_blocking_gate: V5-G4
+    target_package_or_volume: Volume 5 Package 5
+    future_blocking_gate: V5-G5
     superseded_future_blocking_gate:
       - V5-G1
       - V5-G3
-    gate_reassignment_ref: ADR-V5-028
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -292,12 +296,13 @@ records:
     confidence: MEDIUM
     required_decision: Versioning confirmation
     required_evidence: Policy authority validation
-    target_package_or_volume: Volume 5 Package 4
-    future_blocking_gate: V5-G4
+    target_package_or_volume: Volume 5 Package 5
+    future_blocking_gate: V5-G5
     superseded_future_blocking_gate:
       - V5-G1
       - V5-G3
-    gate_reassignment_ref: ADR-V5-028
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -632,8 +637,10 @@ records:
     confidence: MEDIUM
     required_decision: Classification confirmation
     required_evidence: Data-domain classification review
-    target_package_or_volume: Volume 5 Package 4
-    future_blocking_gate: V5-G4
+    target_package_or_volume: Volume 5 Package 5
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate: V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -649,8 +656,10 @@ records:
     confidence: MEDIUM
     required_decision: Bilingual coverage confirmation
     required_evidence: Bilingual label review
-    target_package_or_volume: Volume 5 Package 4
-    future_blocking_gate: V5-G4
+    target_package_or_volume: Volume 5 Package 5
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate: V5-G4
+    gate_reassignment_ref: ADR-V5-043
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -740,3 +749,333 @@ records:
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     chapter_ref: V5-30
+
+  # ==== Package 4: physical data model assumptions ====
+  - id: ASM-V5-006
+    kind: ASM
+    title: PostgreSQL is the target persistence platform
+    statement: The physical model assumes PostgreSQL as the target relational platform for the governed system of record; no other engine is assumed or authorized.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: PostgreSQL-oriented physical catalogue and constraints defined
+    confidence: HIGH
+    required_decision: None (platform confirmed)
+    required_evidence: Platform confirmation at implementation authorization
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Implementation must target PostgreSQL semantics
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-32
+  - id: ASM-V5-007
+    kind: ASM
+    title: Organization and party data volumes are within single-cluster capacity
+    statement: The physical model assumes organization, party, and membership volumes are within the capacity of a single managed PostgreSQL cluster for the initial governed scope.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-003
+    classification: INTERNAL
+    current_evidence: Expected access patterns and index requirements described
+    confidence: MEDIUM
+    required_decision: Capacity confirmation
+    required_evidence: Volume estimates from operational data
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Capacity planning must confirm single-cluster fit
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+  - id: ASM-V5-008
+    kind: ASM
+    title: Evidence binary content is stored via external object reference
+    statement: The physical model assumes evidence binary content is stored in an external object store and referenced from evidence metadata, not embedded in relations.
+    owner: Evidence and Records Steward
+    affected_domain: DOMAIN-V5-016
+    classification: RESTRICTED_EVIDENCE
+    current_evidence: Evidence metadata relation and external-reference posture defined
+    confidence: HIGH
+    required_decision: Object-store selection at implementation
+    required_evidence: Object-store integration design
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Evidence storage must externalize binary content
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-35
+  - id: ASM-V5-009
+    kind: ASM
+    title: Transaction and outbox volumes fit a single-writer model
+    statement: The physical model assumes governed transition and outbox message volumes are within a single-writer transactional model for the initial scope.
+    owner: Governance Kernel Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Transactional-outbox and idempotency posture defined
+    confidence: MEDIUM
+    required_decision: Throughput confirmation
+    required_evidence: Transaction-rate estimates
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Concurrency design must confirm write throughput
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-37
+  - id: ASM-V5-010
+    kind: ASM
+    title: Migration source access will be granted under governed authority
+    statement: The physical model assumes read access to legacy source systems will be granted under governed authority to populate migration staging.
+    owner: Migration Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Migration staging and quarantine relations defined
+    confidence: MEDIUM
+    required_decision: Source-access authorization
+    required_evidence: Source-system access grants
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V10-G1
+    implementation_implication: Migration depends on authorized source access
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-40
+
+  # ==== Package 4: physical data model risks ====
+  - id: RISK-V5-007
+    kind: RISK
+    title: Physical naming collides with reserved identifiers
+    statement: Documentary physical names could collide with PostgreSQL reserved words or case-folding rules if not validated at implementation.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: Physical naming conventions described in prose
+    confidence: MEDIUM
+    required_decision: Naming validation policy
+    required_evidence: Reserved-word and case-fold validation
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Names must be validated before schema authoring
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-32
+  - id: RISK-V5-008
+    kind: RISK
+    title: Premature index selection harms performance
+    statement: Index requirements described without measured workloads could be over- or under-specified relative to real query patterns.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Index requirements framed as expected query families
+    confidence: MEDIUM
+    required_decision: Index validation against measured workloads
+    required_evidence: Query-pattern measurement
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Index design must be validated against real workloads
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+  - id: RISK-V5-009
+    kind: RISK
+    title: Partitioning key chosen without volume evidence
+    statement: Partitioning requirements described without volume evidence could select a suboptimal partition key.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Partitioning considerations described for history and audit relations
+    confidence: LOW
+    required_decision: Partition-strategy validation
+    required_evidence: Growth and access measurement
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Partition keys must be validated before adoption
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+  - id: RISK-V5-010
+    kind: RISK
+    title: Source data quality blocks clean migration
+    statement: Poor legacy source-data quality could stall governed load and inflate quarantine volumes.
+    owner: Migration Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Quarantine relation and advisory-match posture defined
+    confidence: MEDIUM
+    required_decision: Source-quality remediation plan
+    required_evidence: Source-data profiling
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V10-G1
+    implementation_implication: Migration must plan for source-quality remediation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-40
+  - id: RISK-V5-011
+    kind: RISK
+    title: Large migration rollback is infeasible in place
+    statement: A large governed migration may be difficult to roll back in place if a defect is discovered late.
+    owner: Migration Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Provenance-preserving staging and separate governed load defined
+    confidence: MEDIUM
+    required_decision: Rollback and cutover strategy
+    required_evidence: Rollback feasibility analysis
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V10-G1
+    implementation_implication: Cutover design must include a rollback strategy
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-40
+  - id: RISK-V5-012
+    kind: RISK
+    title: Performance baselines are unknown at design time
+    statement: Without operational baselines, physical performance requirements cannot yet be proven adequate.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Access-or-integrity objectives described per relation
+    confidence: LOW
+    required_decision: Performance baseline plan
+    required_evidence: Operational performance measurement
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Performance requirements must be validated operationally
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+
+  # ==== Package 4: physical data model validation backlog ====
+  - id: TEST-V5-026
+    kind: VALIDATION
+    title: Physical naming validation
+    statement: Validate every documentary physical name against PostgreSQL reserved words, length, and case-folding rules before schema authoring.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: Physical naming conventions described
+    confidence: MEDIUM
+    required_decision: Naming validation policy
+    required_evidence: Automated name validation
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Naming dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-32
+  - id: TEST-V5-027
+    kind: VALIDATION
+    title: PostgreSQL data-type mapping validation
+    statement: Validate each logical attribute's intended PostgreSQL data type, precision, and nullability before implementation.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: Attribute-set descriptions provided
+    confidence: MEDIUM
+    required_decision: Data-type mapping confirmation
+    required_evidence: Type-mapping review
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Data-type dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-32
+  - id: TEST-V5-028
+    kind: VALIDATION
+    title: Concurrency and locking validation
+    statement: Validate that the transactional model holds under expected concurrency for governed transitions and outbox processing.
+    owner: Governance Kernel Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Single-transaction atomicity posture defined
+    confidence: MEDIUM
+    required_decision: Concurrency validation plan
+    required_evidence: Concurrency testing
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Concurrency dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-37
+  - id: TEST-V5-029
+    kind: VALIDATION
+    title: Index selection validation
+    statement: Validate index requirements against measured query workloads before adopting them in implementation.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Index requirements described as query families
+    confidence: LOW
+    required_decision: Index validation against workloads
+    required_evidence: Workload measurement
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Index dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+  - id: TEST-V5-030
+    kind: VALIDATION
+    title: Partitioning validation
+    statement: Validate partition strategies against measured growth and access before adoption.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Partitioning considerations described
+    confidence: LOW
+    required_decision: Partition-strategy validation
+    required_evidence: Growth measurement
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Partitioning dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+  - id: TEST-V5-031
+    kind: VALIDATION
+    title: Archival and retention policy validation
+    statement: Validate archival and retention structures once a future records-policy authority approves retention periods; none are approved here.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Retention-dependency posture defined without periods
+    confidence: LOW
+    required_decision: Retention-policy authority decision
+    required_evidence: Approved retention schedule
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V6-G1
+    implementation_implication: Retention dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+  - id: TEST-V5-032
+    kind: VALIDATION
+    title: Migration rollback feasibility validation
+    statement: Validate a rollback and cutover strategy for governed migration before executing a production load.
+    owner: Migration Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Provenance-preserving staging defined
+    confidence: LOW
+    required_decision: Rollback and cutover strategy
+    required_evidence: Rollback feasibility analysis
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V10-G1
+    implementation_implication: Migration dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-40
+  - id: TEST-V5-033
+    kind: VALIDATION
+    title: Performance baseline validation
+    statement: Validate physical performance objectives against operational baselines once measurable workloads exist.
+    owner: Data Architecture Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Access-or-integrity objectives described
+    confidence: LOW
+    required_decision: Performance baseline plan
+    required_evidence: Operational performance measurement
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Performance dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-41
+

@@ -1,12 +1,12 @@
 {
-  "chapters": 38,
+  "chapters": 49,
   "information_domains": 25,
   "conceptual_entities": 14,
   "conceptual_relationships": 8,
   "data_products": 11,
   "classifications": 8,
-  "rules_and_controls": 69,
-  "decisions": 28,
-  "backlog_items": 39,
-  "approvals": 44
+  "rules_and_controls": 84,
+  "decisions": 43,
+  "backlog_items": 58,
+  "approvals": 55
 }

@@ -1,0 +1,238 @@
+{
+  "relations": [
+    {
+      "id": "PREL-V5-001",
+      "kind": "PHYSICAL_RELATION",
+      "title": "organization relation",
+      "physical_name": "organization"
+    },
+    {
+      "id": "PREL-V5-002",
+      "kind": "PHYSICAL_RELATION",
+      "title": "club relation",
+      "physical_name": "club"
+    },
+    {
+      "id": "PREL-V5-003",
+      "kind": "PHYSICAL_RELATION",
+      "title": "member association relation",
+      "physical_name": "member_association"
+    },
+    {
+      "id": "PREL-V5-004",
+      "kind": "PHYSICAL_RELATION",
+      "title": "jurisdiction relation",
+      "physical_name": "jurisdiction"
+    },
+    {
+      "id": "PREL-V5-005",
+      "kind": "PHYSICAL_RELATION",
+      "title": "season relation",
+      "physical_name": "season"
+    },
+    {
+      "id": "PREL-V5-006",
+      "kind": "PHYSICAL_RELATION",
+      "title": "affiliation case relation",
+      "physical_name": "affiliation_case"
+    },
+    {
+      "id": "PREL-V5-007",
+      "kind": "PHYSICAL_RELATION",
+      "title": "person relation",
+      "physical_name": "person"
+    },
+    {
+      "id": "PREL-V5-008",
+      "kind": "PHYSICAL_RELATION",
+      "title": "account identity relation",
+      "physical_name": "account_identity"
+    },
+    {
+      "id": "PREL-V5-009",
+      "kind": "PHYSICAL_RELATION",
+      "title": "organization membership relation",
+      "physical_name": "organization_membership"
+    },
+    {
+      "id": "PREL-V5-010",
+      "kind": "PHYSICAL_RELATION",
+      "title": "representative authority relation",
+      "physical_name": "representative_authority"
+    },
+    {
+      "id": "PREL-V5-011",
+      "kind": "PHYSICAL_RELATION",
+      "title": "reviewer assignment relation",
+      "physical_name": "reviewer_assignment"
+    },
+    {
+      "id": "PREL-V5-012",
+      "kind": "PHYSICAL_RELATION",
+      "title": "policy version relation",
+      "physical_name": "policy_version"
+    },
+    {
+      "id": "PREL-V5-013",
+      "kind": "PHYSICAL_RELATION",
+      "title": "requirement version relation",
+      "physical_name": "requirement_version"
+    },
+    {
+      "id": "PREL-V5-014",
+      "kind": "PHYSICAL_RELATION",
+      "title": "response relation",
+      "physical_name": "response"
+    },
+    {
+      "id": "PREL-V5-015",
+      "kind": "PHYSICAL_RELATION",
+      "title": "evidence metadata relation",
+      "physical_name": "evidence_metadata"
+    },
+    {
+      "id": "PREL-V5-016",
+      "kind": "PHYSICAL_RELATION",
+      "title": "evidence binary reference relation",
+      "physical_name": "evidence_binary_reference"
+    },
+    {
+      "id": "PREL-V5-017",
+      "kind": "PHYSICAL_RELATION",
+      "title": "submission snapshot relation",
+      "physical_name": "submission_snapshot"
+    },
+    {
+      "id": "PREL-V5-018",
+      "kind": "PHYSICAL_RELATION",
+      "title": "decision record relation",
+      "physical_name": "decision_record"
+    },
+    {
+      "id": "PREL-V5-019",
+      "kind": "PHYSICAL_RELATION",
+      "title": "fee obligation relation",
+      "physical_name": "fee_obligation"
+    },
+    {
+      "id": "PREL-V5-020",
+      "kind": "PHYSICAL_RELATION",
+      "title": "payment acknowledgement relation",
+      "physical_name": "payment_acknowledgement"
+    },
+    {
+      "id": "PREL-V5-021",
+      "kind": "PHYSICAL_RELATION",
+      "title": "accounting confirmation relation",
+      "physical_name": "accounting_confirmation"
+    },
+    {
+      "id": "PREL-V5-022",
+      "kind": "PHYSICAL_RELATION",
+      "title": "reconciliation record relation",
+      "physical_name": "reconciliation_record"
+    },
+    {
+      "id": "PREL-V5-023",
+      "kind": "PHYSICAL_RELATION",
+      "title": "activation record relation",
+      "physical_name": "activation_record"
+    },
+    {
+      "id": "PREL-V5-024",
+      "kind": "PHYSICAL_RELATION",
+      "title": "entity state relation",
+      "physical_name": "entity_state"
+    },
+    {
+      "id": "PREL-V5-025",
+      "kind": "PHYSICAL_RELATION",
+      "title": "state transition journal relation",
+      "physical_name": "state_transition"
+    },
+    {
+      "id": "PREL-V5-026",
+      "kind": "PHYSICAL_RELATION",
+      "title": "correction record relation",
+      "physical_name": "correction_record"
+    },
+    {
+      "id": "PREL-V5-027",
+      "kind": "PHYSICAL_RELATION",
+      "title": "transition request and idempotency relation",
+      "physical_name": "transition_request"
+    },
+    {
+      "id": "AUDR-V5-001",
+      "kind": "AUDIT_RELATION",
+      "title": "audit event relation",
+      "physical_name": "audit_event"
+    },
+    {
+      "id": "OBX-V5-001",
+      "kind": "OUTBOX_RELATION",
+      "title": "outbox message relation",
+      "physical_name": "outbox_message"
+    },
+    {
+      "id": "PREL-V5-028",
+      "kind": "PHYSICAL_RELATION",
+      "title": "reference code set relation",
+      "physical_name": "reference_code"
+    },
+    {
+      "id": "PREL-V5-029",
+      "kind": "PHYSICAL_RELATION",
+      "title": "bilingual label relation",
+      "physical_name": "code_label"
+    },
+    {
+      "id": "STG-V5-001",
+      "kind": "STAGING_RELATION",
+      "title": "organization migration staging relation",
+      "physical_name": "stg_organization"
+    },
+    {
+      "id": "STG-V5-002",
+      "kind": "STAGING_RELATION",
+      "title": "person migration staging relation",
+      "physical_name": "stg_person"
+    },
+    {
+      "id": "QRN-V5-001",
+      "kind": "QUARANTINE_RELATION",
+      "title": "identity resolution quarantine relation",
+      "physical_name": "qrn_identity_resolution"
+    }
+  ],
+  "attributes": [
+    {
+      "id": "PATTR-V5-001",
+      "title": "person name attribute",
+      "physical_name": "person.display_name",
+      "classification": "PERSONAL"
+    }
+  ],
+  "relations_without_logical_source": [],
+  "attributes_without_classification": [],
+  "by_owning_domain": {
+    "DOMAIN-V5-001": 3,
+    "DOMAIN-V5-004": 1,
+    "DOMAIN-V5-005": 1,
+    "DOMAIN-V5-006": 4,
+    "DOMAIN-V5-003": 4,
+    "DOMAIN-V5-013": 1,
+    "DOMAIN-V5-008": 4,
+    "DOMAIN-V5-009": 1,
+    "DOMAIN-V5-010": 1,
+    "DOMAIN-V5-011": 1,
+    "DOMAIN-V5-012": 1,
+    "DOMAIN-V5-014": 1,
+    "DOMAIN-V5-015": 1,
+    "DOMAIN-V5-016": 1,
+    "DOMAIN-V5-017": 1,
+    "DOMAIN-V5-018": 1,
+    "DOMAIN-V5-019": 1,
+    "DOMAIN-V5-022": 1
+  }
+}

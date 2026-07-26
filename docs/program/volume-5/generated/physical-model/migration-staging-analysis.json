@@ -1,0 +1,10 @@
+{
+  "staging_and_quarantine_relations": 3,
+  "without_source_provenance": [],
+  "quarantine_confers_no_authority": true,
+  "uncertain_matches_no_governed_merge": true,
+  "by_kind": {
+    "STAGING_RELATION": 2,
+    "QUARANTINE_RELATION": 1
+  }
+}

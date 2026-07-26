@@ -65,6 +65,7 @@
     "governance:closure:v5": "node docs/program/volume-5/controls/closure-volume-5.mjs",
     "governance:logical:v5": "node docs/program/volume-5/controls/logical-model-analysis.mjs",
     "governance:lifecycle:v5": "node docs/program/volume-5/controls/data-lifecycle-analysis.mjs",
+    "governance:physical:v5": "node docs/program/volume-5/controls/physical-model-analysis.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

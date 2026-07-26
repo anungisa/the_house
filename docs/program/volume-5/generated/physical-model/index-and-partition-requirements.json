@@ -1,0 +1,13 @@
+{
+  "index_requirements": 3,
+  "partition_requirements": 1,
+  "index_without_requirement": [],
+  "partition_without_strategy": [],
+  "baseline_pending": [
+    "IDX-V5-001",
+    "IDX-V5-002",
+    "IDX-V5-003",
+    "PART-V5-001"
+  ],
+  "no_fabricated_quantities": true
+}

@@ -2,9 +2,9 @@
   "by_kind": {
     "RULE": 15,
     "QUALITY": 14,
-    "LINEAGE": 10,
-    "CTRL": 12,
-    "INTEGRITY": 18
+    "LINEAGE": 11,
+    "CTRL": 16,
+    "INTEGRITY": 28
   },
   "by_quality_dimension": {
     "VALIDITY": 2,

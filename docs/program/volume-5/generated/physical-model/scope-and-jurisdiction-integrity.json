@@ -1,0 +1,9 @@
+{
+  "composite_scope_keys": 2,
+  "scope_keys_without_strategy": [],
+  "by_scope_strategy": {
+    "Organization rows carry jurisdiction and optional parent-organization references; child scope is a subset of parent scope.": 1,
+    "Affiliation case rows carry organization, jurisdiction, and season references forming the governed scope tuple.": 1
+  },
+  "parent_child_scope_is_composite": true
+}

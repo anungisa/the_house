@@ -1108,5 +1108,585 @@
     "traces_to_local": [
       "DISS-V5-003"
     ]
+  },
+  {
+    "id": "PREL-V5-001",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-001",
+      "DOMAIN-V5-001"
+    ]
+  },
+  {
+    "id": "PREL-V5-002",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-002",
+      "DOMAIN-V5-001"
+    ]
+  },
+  {
+    "id": "PREL-V5-003",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-003",
+      "DOMAIN-V5-004"
+    ]
+  },
+  {
+    "id": "PREL-V5-004",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-009",
+      "DOMAIN-V5-004"
+    ]
+  },
+  {
+    "id": "PREL-V5-005",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-010",
+      "DOMAIN-V5-005"
+    ]
+  },
+  {
+    "id": "PREL-V5-006",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-013",
+      "DOMAIN-V5-006"
+    ]
+  },
+  {
+    "id": "CSK-V5-001",
+    "kind": "COMPOSITE_SCOPE_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-001",
+      "PREL-V5-004"
+    ]
+  },
+  {
+    "id": "CSK-V5-002",
+    "kind": "COMPOSITE_SCOPE_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-006"
+    ]
+  },
+  {
+    "id": "AK-V5-001",
+    "kind": "ALTERNATE_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-001"
+    ]
+  },
+  {
+    "id": "UNQ-V5-001",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-006",
+      "INTEG-V5-002"
+    ]
+  },
+  {
+    "id": "UNQ-V5-002",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-005",
+      "INTEG-V5-003"
+    ]
+  },
+  {
+    "id": "FK-V5-001",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-006",
+      "PREL-V5-001"
+    ]
+  },
+  {
+    "id": "FK-V5-002",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-006",
+      "PREL-V5-005"
+    ]
+  },
+  {
+    "id": "PREL-V5-007",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-004",
+      "DOMAIN-V5-003"
+    ]
+  },
+  {
+    "id": "PREL-V5-008",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-005",
+      "DOMAIN-V5-003"
+    ]
+  },
+  {
+    "id": "PREL-V5-009",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-006",
+      "DOMAIN-V5-003"
+    ]
+  },
+  {
+    "id": "PREL-V5-010",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-007",
+      "DOMAIN-V5-003"
+    ]
+  },
+  {
+    "id": "PREL-V5-011",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-008",
+      "DOMAIN-V5-013"
+    ]
+  },
+  {
+    "id": "FK-V5-003",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-008",
+      "PREL-V5-007"
+    ]
+  },
+  {
+    "id": "UNQ-V5-003",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-009"
+    ]
+  },
+  {
+    "id": "PATTR-V5-001",
+    "kind": "PHYSICAL_ATTRIBUTE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-007"
+    ]
+  },
+  {
+    "id": "PREL-V5-012",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-011",
+      "DOMAIN-V5-008"
+    ]
+  },
+  {
+    "id": "PREL-V5-013",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-012",
+      "DOMAIN-V5-008"
+    ]
+  },
+  {
+    "id": "PREL-V5-014",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-015",
+      "DOMAIN-V5-009"
+    ]
+  },
+  {
+    "id": "PREL-V5-015",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-016",
+      "DOMAIN-V5-010"
+    ]
+  },
+  {
+    "id": "PREL-V5-016",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-016",
+      "DOMAIN-V5-011"
+    ]
+  },
+  {
+    "id": "PREL-V5-017",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "SNAP-V5-001",
+      "DOMAIN-V5-012"
+    ]
+  },
+  {
+    "id": "PREL-V5-018",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-018",
+      "DOMAIN-V5-014"
+    ]
+  },
+  {
+    "id": "FK-V5-004",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-014",
+      "PREL-V5-013",
+      "INTEG-V5-004"
+    ]
+  },
+  {
+    "id": "FK-V5-005",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-015",
+      "PREL-V5-014",
+      "INTEG-V5-005"
+    ]
+  },
+  {
+    "id": "FK-V5-006",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-016",
+      "PREL-V5-015"
+    ]
+  },
+  {
+    "id": "UNQ-V5-004",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-018",
+      "INTEG-V5-007"
+    ]
+  },
+  {
+    "id": "CHK-V5-001",
+    "kind": "CHECK_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-017",
+      "INTEG-V5-006"
+    ]
+  },
+  {
+    "id": "PREL-V5-019",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-019",
+      "DOMAIN-V5-015"
+    ]
+  },
+  {
+    "id": "PREL-V5-020",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-020",
+      "DOMAIN-V5-016"
+    ]
+  },
+  {
+    "id": "PREL-V5-021",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-021",
+      "DOMAIN-V5-017"
+    ]
+  },
+  {
+    "id": "PREL-V5-022",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-022",
+      "DOMAIN-V5-018"
+    ]
+  },
+  {
+    "id": "PREL-V5-023",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-023",
+      "DOMAIN-V5-019"
+    ]
+  },
+  {
+    "id": "UNQ-V5-005",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-023",
+      "INTEG-V5-011"
+    ]
+  },
+  {
+    "id": "CHK-V5-002",
+    "kind": "CHECK_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-022",
+      "INTEG-V5-009"
+    ]
+  },
+  {
+    "id": "FK-V5-007",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-023",
+      "PREL-V5-006",
+      "INTEG-V5-010"
+    ]
+  },
+  {
+    "id": "PREL-V5-024",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "STATE-V5-001",
+      "DOMAIN-V5-006"
+    ]
+  },
+  {
+    "id": "PREL-V5-025",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "STATE-V5-001",
+      "DOMAIN-V5-006"
+    ]
+  },
+  {
+    "id": "PREL-V5-026",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CORR-V5-001",
+      "DOMAIN-V5-022"
+    ]
+  },
+  {
+    "id": "PREL-V5-027",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PROV-V5-001",
+      "DOMAIN-V5-006"
+    ]
+  },
+  {
+    "id": "AUDR-V5-001",
+    "kind": "AUDIT_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PROV-V5-002",
+      "DOMAIN-V5-023"
+    ]
+  },
+  {
+    "id": "OBX-V5-001",
+    "kind": "OUTBOX_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PROV-V5-002",
+      "DOMAIN-V5-023"
+    ]
+  },
+  {
+    "id": "UNQ-V5-006",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-027"
+    ]
+  },
+  {
+    "id": "UNQ-V5-007",
+    "kind": "UNIQUE_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "OBX-V5-001"
+    ]
+  },
+  {
+    "id": "CHK-V5-003",
+    "kind": "CHECK_CONSTRAINT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-024",
+      "INTEG-V5-012"
+    ]
+  },
+  {
+    "id": "FK-V5-008",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-026",
+      "PREL-V5-024",
+      "INTEG-V5-013"
+    ]
+  },
+  {
+    "id": "PART-V5-001",
+    "kind": "PARTITION_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "AUDR-V5-001",
+      "OBX-V5-001"
+    ]
+  },
+  {
+    "id": "PREL-V5-028",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RDS-V5-001",
+      "DOMAIN-V5-008"
+    ]
+  },
+  {
+    "id": "PREL-V5-029",
+    "kind": "PHYSICAL_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTERM-V5-001",
+      "DOMAIN-V5-008"
+    ]
+  },
+  {
+    "id": "FK-V5-009",
+    "kind": "FOREIGN_KEY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-029",
+      "PREL-V5-028"
+    ]
+  },
+  {
+    "id": "VIEW-V5-001",
+    "kind": "DATABASE_VIEW",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-006",
+      "DOMAIN-V5-024"
+    ]
+  },
+  {
+    "id": "MPROJ-V5-001",
+    "kind": "MATERIALIZED_PROJECTION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DERV-V5-001",
+      "DOMAIN-V5-024"
+    ]
+  },
+  {
+    "id": "MPROJ-V5-002",
+    "kind": "MATERIALIZED_PROJECTION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DERV-V5-001",
+      "DOMAIN-V5-025"
+    ]
+  },
+  {
+    "id": "STG-V5-001",
+    "kind": "STAGING_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-001",
+      "DOMAIN-V5-002"
+    ]
+  },
+  {
+    "id": "STG-V5-002",
+    "kind": "STAGING_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-004",
+      "DOMAIN-V5-002"
+    ]
+  },
+  {
+    "id": "QRN-V5-001",
+    "kind": "QUARANTINE_RELATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-004",
+      "DOMAIN-V5-002"
+    ]
+  },
+  {
+    "id": "IDX-V5-001",
+    "kind": "INDEX_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-006"
+    ]
+  },
+  {
+    "id": "IDX-V5-002",
+    "kind": "INDEX_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PREL-V5-015"
+    ]
+  },
+  {
+    "id": "IDX-V5-003",
+    "kind": "INDEX_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "OBX-V5-001"
+    ]
+  },
+  {
+    "id": "RETD-V5-003",
+    "kind": "RETENTION_DEPENDENCY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-023",
+      "RETD-V5-001"
+    ]
   }
 ]

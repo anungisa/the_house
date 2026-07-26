@@ -1,7 +1,7 @@
 register_id: REG-505
 name: Volume 5 Approval Register
 status: RATIFIED
-version: 1.6.0
+version: 1.7.0
 records:
   # ==== Package 1: chapter ratifications ====
   - id: APP-V5-001
@@ -634,3 +634,127 @@ records:
       - Preserves the Gate V5-G3 disposition and the PACKAGE-5-3 freeze.
       - Reopens no substantive Package 3 content and authorizes no implementation.
     approved_at: null
+
+  # ==== Package 4: chapter ratifications ====
+  - id: APP-V5-045
+    artifact_id: V5-32
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Physical data-design doctrine and PostgreSQL mapping conventions defined.
+      - Physical model is documentary and contains no executable schema or migration.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-046
+    artifact_id: V5-33
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Organization, jurisdiction, season, and affiliation physical model defined.
+      - Composite parent-child scope integrity and season uniqueness preserved.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-047
+    artifact_id: V5-34
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Party, identity, membership, representative authority, and assignment physical model defined.
+      - Identity namespace separation preserved.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-048
+    artifact_id: V5-35
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Requirement, response, evidence, submission, review, and decision physical model defined.
+      - Evidence binary externality and submission-snapshot immutability preserved.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-049
+    artifact_id: V5-36
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Financial obligation, reconciliation, activation, and recovery physical model defined.
+      - Financial-fact authority separation and activation uniqueness preserved.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-050
+    artifact_id: V5-37
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Temporal, audit, correction, provenance, outbox, and idempotency physical model defined.
+      - State, audit, and outbox atomicity and idempotency uniqueness preserved.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-051
+    artifact_id: V5-38
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Reference data, code sets, bilingual labels, and governed configuration physical model defined.
+      - Language-neutral identifiers with separable bilingual labels preserved.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-052
+    artifact_id: V5-39
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Projection, search, reporting, analytics, and export physical model defined.
+      - Projections are non-authoritative, read-only, and rebuildable.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-053
+    artifact_id: V5-40
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Migration staging, quarantine, identity resolution, and reconciliation data model defined.
+      - Provenance preserved; uncertain matches never auto-merged.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-054
+    artifact_id: V5-41
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrity, indexing, partitioning, retention, archival, and performance requirements defined.
+      - No retention period, index, or partition is approved or created.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-055
+    artifact_id: V5-42
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Physical-model verification, implementation handoff, and downstream constraints defined.
+      - Records the validation-gate reassignment away from the passing Gate V5-G4.
+      - Authorizes no implementation.
+    approved_at: null
+

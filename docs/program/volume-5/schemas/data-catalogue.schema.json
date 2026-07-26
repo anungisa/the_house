@@ -19,7 +19,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS|LENT|LREL|VOBJ|REFD|CODE|STATE|SNAP|PROV|CORR|DERV|MDS|RDS|CTERM|DLC|DISS|RCON|EXCH|DUSE|SMEA|RETD)-V5-[0-9]{3}$"
+            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS|LENT|LREL|VOBJ|REFD|CODE|STATE|SNAP|PROV|CORR|DERV|MDS|RDS|CTERM|DLC|DISS|RCON|EXCH|DUSE|SMEA|RETD|PREL|PATTR|PK|AK|FK|CSK|UNQ|CHK|IDX|PART|VIEW|MPROJ|STG|QRN|AUDR|OBX)-V5-[0-9]{3}$"
           },
           "kind": { "$ref": "common.schema.json#/definitions/catalogueKind" },
           "title": { "type": "string" },
@@ -152,7 +152,42 @@
           "escalation_posture": { "type": "string" },
           "assurance_relationship": { "type": "string" },
           "operational_proof_requirement": { "type": "string" },
-          "future_verification": { "type": "string" }
+          "future_verification": { "type": "string" },
+
+          "logical_source": { "type": "string" },
+          "owning_module": { "type": "string" },
+          "physical_name": { "type": "string" },
+          "attribute_set": { "type": "array", "items": { "type": "string" } },
+          "identity_strategy": { "type": "string" },
+          "scope_strategy": { "type": "string" },
+          "temporal_strategy": { "type": "string" },
+          "integrity_responsibility": { "type": "string" },
+          "expected_access_pattern": { "type": "string" },
+          "verification_class": { "type": "string" },
+          "implementation_status": { "type": "string" },
+          "key_columns": { "type": "array", "items": { "type": "string" } },
+          "referenced_relation": { "type": "string" },
+          "uniqueness_posture": { "type": "string" },
+          "check_condition": { "type": "string" },
+          "partition_strategy": { "type": "string" },
+          "index_columns": { "type": "array", "items": { "type": "string" } },
+          "index_type_posture": { "type": "string" },
+          "physical_projection_form": { "type": "string" },
+          "refresh_trigger": { "type": "string" },
+          "consistency_posture": { "type": "string" },
+          "staleness_indicator": { "type": "string" },
+          "reconciliation_rule": { "type": "string" },
+          "export_lineage": { "type": "string" },
+          "operational_ownership_status": { "type": "string" },
+          "access_or_integrity_objective": { "type": "string" },
+          "affected_relations": { "type": "array", "items": { "type": "string" } },
+          "constraint_requirement": { "type": "string" },
+          "index_requirement": { "type": "string" },
+          "partitioning_consideration": { "type": "string" },
+          "expected_query_family": { "type": "string" },
+          "write_impact": { "type": "string" },
+          "verification_method": { "type": "string" },
+          "target_status_posture": { "type": "string" }
         }
       }
     }

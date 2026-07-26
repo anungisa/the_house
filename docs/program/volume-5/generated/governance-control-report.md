@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:52:22.199Z
+Generated: 2026-07-26T19:29:07.540Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T18:52:22.199Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 38 |
+| RATIFIED | 49 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.6.0 | 38 |
-| REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.2.0 | 163 |
-| REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.2.0 | 69 |
-| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.2.0 | 28 |
-| REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.2.0 | 39 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.6.0 | 44 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.7.0 | 49 |
+| REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.3.0 | 228 |
+| REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.3.0 | 84 |
+| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.3.0 | 43 |
+| REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.3.0 | 58 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.7.0 | 55 |
 
 ## Findings by control
 
@@ -219,3 +219,36 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-044 (V5-F): Completes machine-readable Package 3 provenance after mainline merge.
 - APP-V5-044 (V5-F): Preserves the Gate V5-G3 disposition and the PACKAGE-5-3 freeze.
 - APP-V5-044 (V5-F): Reopens no substantive Package 3 content and authorizes no implementation.
+- APP-V5-045 (V5-32): Physical data-design doctrine and PostgreSQL mapping conventions defined.
+- APP-V5-045 (V5-32): Physical model is documentary and contains no executable schema or migration.
+- APP-V5-045 (V5-32): Authorizes no implementation.
+- APP-V5-046 (V5-33): Organization, jurisdiction, season, and affiliation physical model defined.
+- APP-V5-046 (V5-33): Composite parent-child scope integrity and season uniqueness preserved.
+- APP-V5-046 (V5-33): Authorizes no implementation.
+- APP-V5-047 (V5-34): Party, identity, membership, representative authority, and assignment physical model defined.
+- APP-V5-047 (V5-34): Identity namespace separation preserved.
+- APP-V5-047 (V5-34): Authorizes no implementation.
+- APP-V5-048 (V5-35): Requirement, response, evidence, submission, review, and decision physical model defined.
+- APP-V5-048 (V5-35): Evidence binary externality and submission-snapshot immutability preserved.
+- APP-V5-048 (V5-35): Authorizes no implementation.
+- APP-V5-049 (V5-36): Financial obligation, reconciliation, activation, and recovery physical model defined.
+- APP-V5-049 (V5-36): Financial-fact authority separation and activation uniqueness preserved.
+- APP-V5-049 (V5-36): Authorizes no implementation.
+- APP-V5-050 (V5-37): Temporal, audit, correction, provenance, outbox, and idempotency physical model defined.
+- APP-V5-050 (V5-37): State, audit, and outbox atomicity and idempotency uniqueness preserved.
+- APP-V5-050 (V5-37): Authorizes no implementation.
+- APP-V5-051 (V5-38): Reference data, code sets, bilingual labels, and governed configuration physical model defined.
+- APP-V5-051 (V5-38): Language-neutral identifiers with separable bilingual labels preserved.
+- APP-V5-051 (V5-38): Authorizes no implementation.
+- APP-V5-052 (V5-39): Projection, search, reporting, analytics, and export physical model defined.
+- APP-V5-052 (V5-39): Projections are non-authoritative, read-only, and rebuildable.
+- APP-V5-052 (V5-39): Authorizes no implementation.
+- APP-V5-053 (V5-40): Migration staging, quarantine, identity resolution, and reconciliation data model defined.
+- APP-V5-053 (V5-40): Provenance preserved; uncertain matches never auto-merged.
+- APP-V5-053 (V5-40): Authorizes no implementation.
+- APP-V5-054 (V5-41): Integrity, indexing, partitioning, retention, archival, and performance requirements defined.
+- APP-V5-054 (V5-41): No retention period, index, or partition is approved or created.
+- APP-V5-054 (V5-41): Authorizes no implementation.
+- APP-V5-055 (V5-42): Physical-model verification, implementation handoff, and downstream constraints defined.
+- APP-V5-055 (V5-42): Records the validation-gate reassignment away from the passing Gate V5-G4.
+- APP-V5-055 (V5-42): Authorizes no implementation.

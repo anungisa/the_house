@@ -1,0 +1,14 @@
+{
+  "evidence_relations": [
+    {
+      "id": "PREL-V5-015",
+      "title": "evidence metadata relation"
+    },
+    {
+      "id": "PREL-V5-016",
+      "title": "evidence binary reference relation"
+    }
+  ],
+  "binary_content_never_in_authoritative_relation": true,
+  "evidence_metadata_binds_case_requirement_actor_provenance_version": true
+}

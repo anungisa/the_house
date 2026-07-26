@@ -1,6 +1,6 @@
 # Volume 5 Package 3 Data-Lifecycle Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:52:57.273Z
+Generated: 2026-07-26T19:29:31.687Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 3 defines DATA-LIFECYCLE
@@ -23,7 +23,7 @@ Generated: 2026-07-26T18:52:57.273Z
 | Exchange records | 5 |
 | Data use records | 5 |
 | Stewardship measures | 4 |
-| Validation/assumption/risk/exception backlog | 39 |
+| Validation/assumption/risk/exception backlog | 58 |
 
 ## Stewardship and authority coverage
 

@@ -21,6 +21,11 @@
       "id": "RETD-V5-002",
       "title": "Legal-hold supersedes disposition dependency",
       "deletion_authority": "Blocked while legal hold is active."
+    },
+    {
+      "id": "RETD-V5-003",
+      "title": "physical retention and archival dependency",
+      "deletion_authority": "Deletion and disposition remain reserved to a future records-policy authority."
     }
   ],
   "no_approved_retention_period": true

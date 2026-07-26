@@ -1,6 +1,6 @@
 # Volume 5 Package 2 Logical-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:52:22.203Z
+Generated: 2026-07-26T19:29:31.497Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 2 defines LOGICAL data
@@ -16,8 +16,8 @@ Generated: 2026-07-26T18:52:22.203Z
 | Logical entities and records | 36 |
 | Logical relationships | 17 |
 | Derived data products | 5 |
-| Integrity rules | 18 |
-| Validation/assumption/risk/exception backlog | 39 |
+| Integrity rules | 28 |
+| Validation/assumption/risk/exception backlog | 58 |
 
 ## Identity and authority separation
 
@@ -33,7 +33,7 @@ Generated: 2026-07-26T18:52:22.203Z
 
 - Completed (passed) gates: V5-G1, V5-G2, V5-G3
 - Backlog items pointing at a completed gate (must be 0): 0
-- Obligations reassigned away from the passed Gate V5-G1: 26
+- Obligations reassigned away from the passed Gate V5-G1: 28
 
 ## Derived-data posture
 

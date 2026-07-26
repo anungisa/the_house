@@ -1,7 +1,7 @@
 register_id: REG-502
 name: Volume 5 Data Rules and Controls
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   # ==== Data doctrine rules (V5-01) ====
   - id: RULE-V5-001
@@ -530,9 +530,11 @@ records:
     failure_meaning: Duplicate cases undermine governed affiliation truth.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -547,9 +549,11 @@ records:
     failure_meaning: Overlapping seasons corrupt temporal scope.
     correction_authority: Governance and jurisdiction authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -567,9 +571,11 @@ records:
     failure_meaning: Applying the wrong version invalidates completeness.
     correction_authority: Policy and requirements authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -603,9 +609,11 @@ records:
     failure_meaning: Mutable snapshots destroy submission truth.
     correction_authority: Records governance authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -620,9 +628,11 @@ records:
     failure_meaning: Competing decisions corrupt case truth.
     correction_authority: Governed-decision correction authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -671,9 +681,11 @@ records:
     failure_meaning: Conflating approval and activation grants status prematurely.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -688,9 +700,11 @@ records:
     failure_meaning: Multiple active activations corrupt status.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -721,9 +735,11 @@ records:
     failure_meaning: Silent overwrite destroys governed history.
     correction_authority: Records governance authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G4
-    superseded_future_blocking_gate: V5-G3
-    gate_reassignment_ref: ADR-V5-028
+    future_blocking_gate: V5-G5
+    superseded_future_blocking_gate:
+      - V5-G3
+      - V5-G4
+    gate_reassignment_ref: ADR-V5-043
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -1036,4 +1052,248 @@ records:
     chapter_ref: V5-28
     traces_to:
       - ADR-V5-025
+
+  # ==== Package 4: physical data model rules and controls (V5-32 .. V5-42) ====
+  - id: INTEG-V5-019
+    kind: INTEGRITY
+    title: Logical-to-physical traceability
+    statement: Every physical relation traces to a governed logical source and an owning information domain.
+    affected_entities:
+      - PREL-V5-006
+      - LENT-V5-013
+    logical_condition: Each physical relation names a resolvable logical source and owning domain.
+    failure_meaning: An untraceable physical relation breaks governed provenance.
+    correction_authority: Data architecture authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-32
+    traces_to:
+      - ADR-V5-030
+  - id: INTEG-V5-020
+    kind: INTEGRITY
+    title: Organization and jurisdiction scope integrity
+    statement: Organization and affiliation-case scope is physically represented by explicit jurisdiction and organization references, never implied.
+    affected_entities:
+      - PREL-V5-001
+      - PREL-V5-004
+      - PREL-V5-006
+    logical_condition: Scope references are present and resolvable for every scoped row.
+    failure_meaning: Implicit scope enables cross-tenant leakage.
+    correction_authority: Governance and jurisdiction authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - CSK-V5-002
+  - id: INTEG-V5-021
+    kind: INTEGRITY
+    title: Composite parent-child scope integrity
+    statement: A child organization's governed scope is a subset of its parent's scope, enforced by composite scope keys.
+    affected_entities:
+      - PREL-V5-001
+      - CSK-V5-001
+    logical_condition: Child scope references resolve within the parent's jurisdiction and organization scope.
+    failure_meaning: Broken parent-child scope corrupts tenancy.
+    correction_authority: Organization registry authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - CSK-V5-001
+  - id: INTEG-V5-022
+    kind: INTEGRITY
+    title: Identity namespace separation
+    statement: Person, account, membership, representative authority, and reviewer assignment are physically distinct relations and are never conflated.
+    affected_entities:
+      - PREL-V5-007
+      - PREL-V5-008
+      - PREL-V5-009
+      - PREL-V5-010
+      - PREL-V5-011
+    logical_condition: Each concept has its own relation and identity; bindings are explicit references.
+    failure_meaning: Structural conflation destroys authorization and privacy boundaries.
+    correction_authority: Identity and Authorization authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - FK-V5-003
+  - id: INTEG-V5-023
+    kind: INTEGRITY
+    title: Evidence binding and binary externality
+    statement: Evidence metadata binds a case, requirement version, submitting actor, and provenance, and evidence binary content is never held in an authoritative relational record.
+    affected_entities:
+      - PREL-V5-015
+      - PREL-V5-016
+    logical_condition: Evidence metadata references its response and requirement version; binary content is held only by external reference.
+    failure_meaning: Internalized or unbound evidence breaks the custody boundary.
+    correction_authority: Evidence and records authority
+    future_verification_class: Trust and privacy validation
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - FK-V5-006
+  - id: INTEG-V5-024
+    kind: INTEGRITY
+    title: Immutable submission snapshot integrity
+    statement: A submission snapshot is physically immutable after capture; resubmission creates a new snapshot.
+    affected_entities:
+      - PREL-V5-017
+      - CHK-V5-001
+    logical_condition: Snapshot payload and captured-at time are never updated after write.
+    failure_meaning: Mutable snapshots destroy submission truth.
+    correction_authority: Records governance authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - CHK-V5-001
+  - id: INTEG-V5-025
+    kind: INTEGRITY
+    title: Financial fact and authority separation
+    statement: Payment acknowledgement, accounting confirmation, reconciliation, approval, and activation are physically distinct facts under separated authorities.
+    affected_entities:
+      - PREL-V5-020
+      - PREL-V5-021
+      - PREL-V5-022
+      - PREL-V5-023
+    logical_condition: Each financial fact is a distinct relation; no relation conflates acknowledgement with confirmation or approval with activation.
+    failure_meaning: Conflated financial facts misstate settlement and grant status prematurely.
+    correction_authority: Finance authority
+    future_verification_class: Financial reconciliation validation
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - CHK-V5-002
+  - id: INTEG-V5-026
+    kind: INTEGRITY
+    title: Authoritative activation uniqueness
+    statement: Exactly one authoritative activation effect exists per affiliation case and season, enforced by a uniqueness constraint.
+    affected_entities:
+      - PREL-V5-023
+      - UNQ-V5-005
+    logical_condition: At most one active activation per case and season; superseded activations preserved.
+    failure_meaning: Multiple active activations corrupt status.
+    correction_authority: Affiliation administration
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - UNQ-V5-005
+  - id: INTEG-V5-027
+    kind: INTEGRITY
+    title: State, audit, and outbox atomicity
+    statement: A governed transition writes state, audit, and outbox rows in one transaction, and an outbox publish failure never erases the committed transition.
+    affected_entities:
+      - PREL-V5-024
+      - AUDR-V5-001
+      - OBX-V5-001
+    logical_condition: State update, audit event, and outbox enqueue share one transaction; publication occurs only after commit.
+    failure_meaning: Split writes break governed truth and message reliability.
+    correction_authority: Governance kernel authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - UNQ-V5-007
+  - id: INTEG-V5-028
+    kind: INTEGRITY
+    title: Command idempotency integrity
+    statement: A duplicate governed command produces no duplicate effect, enforced by a unique idempotency key.
+    affected_entities:
+      - PREL-V5-027
+      - UNQ-V5-006
+    logical_condition: Each idempotency key is unique within tenant scope; retries resolve to the prior result.
+    failure_meaning: Duplicate effects corrupt governed state and downstream messages.
+    correction_authority: Governance kernel authority
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - UNQ-V5-006
+  - id: CTRL-V5-013
+    kind: CTRL
+    title: Projection write prohibition
+    statement: Views, materialized projections, search, analytics, and export structures never accept governed writes and are always rebuildable from authoritative sources.
+    control_implication: Projections are read-only and non-authoritative; governed writes target only authoritative relations.
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-39
+    traces_to:
+      - MPROJ-V5-001
+      - VIEW-V5-001
+  - id: CTRL-V5-014
+    kind: CTRL
+    title: Migration provenance and quarantine control
+    statement: Migration staging and quarantine relations preserve source values and provenance, confer no governed authority, and never auto-merge uncertain matches.
+    control_implication: Governed load is a separate, authority-recorded step; similarity is advisory only.
+    future_verification_class: Migration validation
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-40
+    traces_to:
+      - STG-V5-001
+      - QRN-V5-001
+  - id: CTRL-V5-015
+    kind: CTRL
+    title: Retention authority dependency control
+    statement: The physical model approves no retention period, archival schedule, or deletion; these remain reserved to a future records-policy authority, and legal hold supersedes disposition.
+    control_implication: Retention and archival structures are described only; no schedule is authorized.
+    future_verification_class: Records governance validation
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-41
+    traces_to:
+      - RETD-V5-003
+  - id: CTRL-V5-016
+    kind: CTRL
+    title: Physical-model leakage control
+    statement: The physical model defines relations, attributes, keys, constraints, indexes, and partitioning requirements only, and contains no executable schema, migration, ORM mapping, pipeline, API, or event.
+    control_implication: All physical records remain documentary and authorize no implementation.
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-42
+    traces_to:
+      - ADR-V5-042
+  - id: LINEAGE-V5-011
+    kind: LINEAGE
+    title: Logical-to-physical lineage preservation
+    statement: Physical relations and projections preserve lineage to their governed logical sources.
+    authoritative_fact: Governed logical entities and derived products
+    source: REG-501 logical and physical catalogue
+    transformation_lineage: Logical entity to physical relation to non-authoritative projection.
+    audit_expectation: Lineage is recoverable from the catalogue trace graph.
+    future_verification_class: Physical model validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-39
+    traces_to:
+      - MPROJ-V5-001
 

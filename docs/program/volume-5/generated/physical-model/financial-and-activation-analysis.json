@@ -1,0 +1,18 @@
+{
+  "activation_uniqueness_per_affiliation_season": true,
+  "financial_facts_distinct": true,
+  "relevant_relations": [
+    {
+      "id": "PREL-V5-020",
+      "title": "payment acknowledgement relation"
+    },
+    {
+      "id": "PREL-V5-022",
+      "title": "reconciliation record relation"
+    },
+    {
+      "id": "PREL-V5-023",
+      "title": "activation record relation"
+    }
+  ]
+}
