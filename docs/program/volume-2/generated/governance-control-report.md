@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T04:15:52.516Z
+Generated: 2026-07-26T04:20:34.341Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -37,8 +37,8 @@ Generated: 2026-07-26T04:15:52.516Z
 | REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.4.0 | 26 |
 | REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.4.0 | 24 |
 | REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.4.0 | 415 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.10.0 | 29 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.10.0 | 50 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.10.1 | 30 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.10.1 | 50 |
 
 ## Findings by control
 
@@ -195,11 +195,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-048 (GATE-V2-G5): Condition 14: Volume 2 has received complete line-level review
 - APP-V2-048 (GATE-V2-G5): Condition 15: Package 5 and the complete Volume 2 corpus receive explicit freeze records (APP-V2-049, APP-V2-050)
 - APP-V2-049 (PACKAGE-2-5): Freeze source snapshot commit: 60f652a (contains V2-27..V2-33, the traceability tooling, and the expanded registers)
-- APP-V2-049 (PACKAGE-2-5): Closure/freeze commit and merged commit: PENDING_POST_MERGE (completed by narrow post-merge amendment)
+- APP-V2-049 (PACKAGE-2-5): Package 5 closure/freeze commit: 4219c33 (adds V2-E, Gate V2-G5 disposition, and freeze records)
+- APP-V2-049 (PACKAGE-2-5): Package 5 merged commit: f4c6c55 (merge of the Package 5 branch into main via PR #13)
 - APP-V2-049 (PACKAGE-2-5): Gate V2-G5 PASS; Volume 2 Package 5 closed and frozen; V2-27..V2-33 and V2-E at 1.0.0
 - APP-V2-049 (PACKAGE-2-5): Product-and-service definition only; implementation, procurement, architecture, delivery plan, staffing plan, and cost plan unauthorized; not a master development plan
 - APP-V2-049 (PACKAGE-2-5): Executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
-- APP-V2-050 (VOLUME-2): Whole-volume freeze base commit: 60f652a; closure/freeze and merged commits PENDING_POST_MERGE (completed by narrow post-merge amendment)
+- APP-V2-050 (VOLUME-2): Whole-volume freeze base commit: 60f652a; closure/freeze commit 4219c33; merged commit f4c6c55 (recorded by narrow post-merge amendment)
 - APP-V2-050 (VOLUME-2): Frozen: V2-00 through V2-33; V2-A through V2-E; REG-200 through REG-205; schemas and governance controls
 - APP-V2-050 (VOLUME-2): Generated traceability outputs are frozen as non-authoritative projections; registers and chapters remain authoritative
 - APP-V2-050 (VOLUME-2): Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.0) is preserved unchanged
