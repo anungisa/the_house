@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T16:35:24.904Z
+Generated: 2026-07-26T16:39:43.787Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T16:35:24.904Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 59 |
+| RATIFIED | 60 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.11.0 | 59 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.12.0 | 60 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.4.0 | 212 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.4.0 | 46 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.4.0 | 70 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.4.0 | 69 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.11.0 | 70 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.12.0 | 71 |
 
 ## Findings by control
 
@@ -362,3 +362,7 @@ Errors: 0 | Warnings: 34 | Info: 30
 - APP-V4-070 (VOLUME-4): Covers chapters V4-00 through V4-49 and closure and amendment records V4-A through V4-I.
 - APP-V4-070 (VOLUME-4): Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
 - APP-V4-070 (VOLUME-4): Changes to any frozen Volume 4 content require the recorded amendment process.
+- APP-V4-071 (V4-J): Narrow post-merge provenance-metadata amendment only.
+- APP-V4-071 (V4-J): Preserves Gate V4-G5 and its ARCHITECTURE_AND_ENGINEERING_DEFINITION_COMPLETE disposition.
+- APP-V4-071 (V4-J): Does not reopen or modify frozen Package 5 artifacts V4-39..V4-49 or V4-I, or the Package 5 and whole-volume freezes.
+- APP-V4-071 (V4-J): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
