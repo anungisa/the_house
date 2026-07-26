@@ -1,7 +1,7 @@
 register_id: REG-503
 name: Volume 5 Data Decisions
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: ADR-V5-001
     title: Data governance is defined before logical or physical design
@@ -335,6 +335,188 @@ records:
     authorizes_implementation: false
     validation_status: DEFINED
     chapter_ref: V5-31
+    evidence_refs:
+      - INTEG-V5-013
+      - ASM-V5-001
+
+  # ==== Package 4: physical data model decisions (V5-32 .. V5-42) ====
+  - id: ADR-V5-029
+    title: The Volume 5 physical model is a documentary PostgreSQL data model that authorizes no implementation
+    decision: Package 4 defines a documentary physical data model expressed for PostgreSQL as the target platform, describing relations, attributes, keys, constraints, indexes, and partitioning requirements in prose; it contains no executable schema, migration, ORM mapping, pipeline, API, or event and authorizes no implementation.
+    status: ACCEPTED
+    context: The governed logical model requires a faithful physical expression, but the program governs design intent, not code; conflating the two would fabricate implementation authority.
+    consequence: Downstream implementation volumes inherit a precise physical design contract without any executable artifact being sanctioned here.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-32
+    evidence_refs:
+      - PREL-V5-001
+      - CTRL-V5-016
+  - id: ADR-V5-030
+    title: Physical relations are owned by information domains and trace to logical sources
+    decision: Every physical relation is owned by exactly one information domain and traces to a resolvable governed logical source, so that no relation exists without domain ownership and logical provenance.
+    status: ACCEPTED
+    context: Untraceable or unowned physical structures break governed provenance and stewardship.
+    consequence: The catalogue trace graph resolves every physical relation to a logical source and owning domain.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-32
+    evidence_refs:
+      - PREL-V5-006
+      - INTEG-V5-019
+  - id: ADR-V5-031
+    title: Organization scope is enforced by explicit composite scope keys
+    decision: Jurisdiction and organization scope is represented physically by explicit composite scope keys, and a child organization's scope is a subset of its parent's; scope is never implied.
+    status: ACCEPTED
+    context: Implicit or ambiguous scope enables cross-tenant leakage and corrupts tenancy.
+    consequence: Scope integrity is verifiable from explicit references rather than inferred from context.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-33
+    evidence_refs:
+      - CSK-V5-001
+      - INTEG-V5-021
+  - id: ADR-V5-032
+    title: Identity, account, membership, and authority are separate relations
+    decision: Person, authenticated identity, organization membership, representative authority, and reviewer assignment are physically distinct relations bound by explicit references, never conflated into a single structure.
+    status: ACCEPTED
+    context: Structural conflation of identity and authority destroys authorization and privacy boundaries.
+    consequence: Authorization and privacy boundaries are structurally enforced by relation separation.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-34
+    evidence_refs:
+      - PREL-V5-007
+      - INTEG-V5-022
+  - id: ADR-V5-033
+    title: Evidence metadata is relational and evidence binary content is external
+    decision: Evidence metadata is held in a governed relation that binds case, requirement version, submitting actor, and provenance, while evidence binary content is referenced externally and never stored inside an authoritative relational record.
+    status: ACCEPTED
+    context: Internalizing binary evidence or leaving metadata unbound breaks the custody and integrity boundary.
+    consequence: Evidence custody is preserved as metadata-plus-reference rather than inline content.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-35
+    evidence_refs:
+      - PREL-V5-016
+      - INTEG-V5-023
+  - id: ADR-V5-034
+    title: Submission snapshots are physically immutable
+    decision: A submission snapshot is immutable after capture; resubmission creates a new snapshot rather than mutating an existing one.
+    status: ACCEPTED
+    context: Mutable submission records destroy the evidentiary truth of what was submitted and when.
+    consequence: Submission history is append-only and each snapshot is a fixed record.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-35
+    evidence_refs:
+      - CHK-V5-001
+      - INTEG-V5-024
+  - id: ADR-V5-035
+    title: Corrections are append-preserving and reference the corrected record
+    decision: Corrections are recorded as new rows that reference the corrected record; prior values are preserved and never overwritten in place.
+    status: ACCEPTED
+    context: Destructive correction erases governed history and provenance.
+    consequence: Correction lineage is fully recoverable from append-preserving references.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-37
+    evidence_refs:
+      - PREL-V5-026
+      - FK-V5-008
+  - id: ADR-V5-036
+    title: Financial facts are separated by authority
+    decision: Payment acknowledgement, accounting confirmation, reconciliation, decision, and activation are physically distinct facts recorded under separated authorities.
+    status: ACCEPTED
+    context: Conflating financial facts misstates settlement and risks granting status before authoritative confirmation.
+    consequence: Financial settlement and status are provable from distinct, authority-separated facts.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-36
+    evidence_refs:
+      - PREL-V5-020
+      - INTEG-V5-025
+  - id: ADR-V5-037
+    title: Authoritative activation is unique per case and season
+    decision: Exactly one authoritative activation effect exists per affiliation case and season, enforced by a uniqueness constraint, with superseded activations preserved.
+    status: ACCEPTED
+    context: Multiple concurrent active activations corrupt affiliation status.
+    consequence: Activation status is unambiguous and historically complete.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-36
+    evidence_refs:
+      - UNQ-V5-005
+      - INTEG-V5-026
+  - id: ADR-V5-038
+    title: State, audit, and outbox share one transaction with a transactional outbox
+    decision: A governed transition writes state, audit, and outbox rows in a single transaction, and external effects are published only after commit through a transactional outbox; a publish failure never erases the committed transition.
+    status: ACCEPTED
+    context: Split writes or pre-commit side effects break governed truth and message reliability.
+    consequence: Governed truth and downstream messaging are atomic and reliable by construction.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-37
+    evidence_refs:
+      - OBX-V5-001
+      - INTEG-V5-027
+  - id: ADR-V5-039
+    title: Code identifiers are language-neutral with bilingual labels held separately
+    decision: Reference and code values use stable language-neutral identifiers, and bilingual human labels are held as separate governed attributes rather than as the code key itself.
+    status: ACCEPTED
+    context: Using human-language labels as keys breaks bilingual governance and stable referencing.
+    consequence: Referencing is stable and language-neutral while bilingual labels remain governed and separable.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-38
+    evidence_refs:
+      - CODE-V5-001
+      - RDS-V5-001
+  - id: ADR-V5-040
+    title: Projections are non-authoritative and rebuildable
+    decision: Views, materialized projections, search, analytics, and export structures are non-authoritative, read-only, and always rebuildable from authoritative sources; governed writes never target them.
+    status: ACCEPTED
+    context: Treating a projection as authoritative or writable corrupts governed truth.
+    consequence: Reporting and analytics remain derivable views that can be reconstructed at any time.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-39
+    evidence_refs:
+      - MPROJ-V5-001
+      - CTRL-V5-013
+  - id: ADR-V5-041
+    title: Migration staging and quarantine preserve provenance and confer no authority
+    decision: Migration staging and quarantine relations preserve source values and provenance, confer no governed authority, and never auto-merge uncertain matches; governed load is a separate authority-recorded step and similarity is advisory only.
+    status: ACCEPTED
+    context: Auto-merging or authority-bearing staging would silently corrupt governed truth during migration.
+    consequence: Migration is provenance-preserving and every governed load is a deliberate, recorded decision.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-40
+    evidence_refs:
+      - STG-V5-001
+      - CTRL-V5-014
+  - id: ADR-V5-042
+    title: No executable DDL, migration, or ORM mapping is inferred from the physical model
+    decision: The physical model expresses integrity, indexing, and partitioning requirements as design obligations only; no executable data-definition, migration, or object-relational mapping is inferred or authorized from these records.
+    status: ACCEPTED
+    context: Inferring executable artifacts from documentary design would fabricate implementation authority and bypass gated authorization.
+    consequence: Implementation remains a separately authorized activity in a downstream volume.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-42
+    evidence_refs:
+      - CTRL-V5-016
+      - IDX-V5-001
+  - id: ADR-V5-043
+    title: Validation obligations are reassigned away from the passed Gate V5-G4
+    decision: Every rule, assumption, and validation-backlog obligation that named the now-passing Gate V5-G4 as its future blocking gate is additively reassigned to the next Volume 5 gate V5-G5 (or the appropriate downstream gate); the prior V5-G4 assignment is preserved on each record as a superseded future blocking gate alongside any earlier superseded gate.
+    status: ACCEPTED
+    context: Gate V5-G4 passes at Package 4 closure, so no unresolved obligation may retain V5-G4 as a future blocking gate; frozen chapters record the historical assignment while operative registers reflect the corrected gate.
+    consequence: The next Volume 5 gate carries the reassigned obligations; the reassignment is additive and preserves history.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-42
     evidence_refs:
       - INTEG-V5-013
       - ASM-V5-001

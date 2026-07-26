@@ -53,7 +53,23 @@ export function run(ctx) {
       r.kind === 'EXCHANGE_RECORD' ||
       r.kind === 'DATA_USE' ||
       r.kind === 'STEWARDSHIP_MEASURE' ||
-      r.kind === 'RETENTION_DEPENDENCY'
+      r.kind === 'RETENTION_DEPENDENCY' ||
+      r.kind === 'PHYSICAL_RELATION' ||
+      r.kind === 'PHYSICAL_ATTRIBUTE' ||
+      r.kind === 'PRIMARY_KEY' ||
+      r.kind === 'ALTERNATE_KEY' ||
+      r.kind === 'FOREIGN_KEY' ||
+      r.kind === 'COMPOSITE_SCOPE_KEY' ||
+      r.kind === 'UNIQUE_CONSTRAINT' ||
+      r.kind === 'CHECK_CONSTRAINT' ||
+      r.kind === 'INDEX_REQUIREMENT' ||
+      r.kind === 'PARTITION_REQUIREMENT' ||
+      r.kind === 'DATABASE_VIEW' ||
+      r.kind === 'MATERIALIZED_PROJECTION' ||
+      r.kind === 'STAGING_RELATION' ||
+      r.kind === 'QUARANTINE_RELATION' ||
+      r.kind === 'AUDIT_RELATION' ||
+      r.kind === 'OUTBOX_RELATION'
   );
   const ruleIds = idSet(ctx, 'REG-502');
   const decisionIds = idSet(ctx, 'REG-503');

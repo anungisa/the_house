@@ -1,7 +1,7 @@
 register_id: REG-501
 name: Volume 5 Data Catalogue
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   # ==== Information domains (V5-02) ====
   - id: DOMAIN-V5-001
@@ -2780,4 +2780,1358 @@ records:
     chapter_ref: V5-30
     traces_to:
       - DISS-V5-003
+
+  # --- Package 4 physical data model (documentary; PostgreSQL mapping) ---
+
+  # V5-33 Organization, jurisdiction, season, and affiliation physical relations
+  - id: PREL-V5-001
+    kind: PHYSICAL_RELATION
+    title: organization relation
+    purpose: Documentary physical relation persisting governed organizations and clubs.
+    physical_name: organization
+    logical_source: LENT-V5-001
+    owning_domain: DOMAIN-V5-001
+    owning_module: organization-registry
+    authority: House
+    identity_strategy: Surrogate governed identifier with a natural-identity alternate key.
+    scope_strategy: Organization carries its jurisdiction and optional parent organization as scope references.
+    temporal_strategy: Effective time and recorded time preserved; no destructive update.
+    correction_posture: Correction by supersession; prior state preserved.
+    expected_access_pattern: Lookup by governed identifier and by natural identity within jurisdiction.
+    integrity_responsibility: Organization registry module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - LENT-V5-001
+      - DOMAIN-V5-001
+  - id: PREL-V5-002
+    kind: PHYSICAL_RELATION
+    title: club relation
+    purpose: Documentary physical relation persisting clubs as a specialization of organization.
+    physical_name: club
+    logical_source: LENT-V5-002
+    owning_domain: DOMAIN-V5-001
+    owning_module: organization-registry
+    authority: House
+    identity_strategy: Shares organization identity; club-specific attributes only.
+    scope_strategy: Club inherits organization scope references.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Lookup by organization identifier.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - LENT-V5-002
+      - DOMAIN-V5-001
+  - id: PREL-V5-003
+    kind: PHYSICAL_RELATION
+    title: member association relation
+    purpose: Documentary physical relation persisting PTSO or member associations.
+    physical_name: member_association
+    logical_source: LENT-V5-003
+    owning_domain: DOMAIN-V5-001
+    owning_module: organization-registry
+    authority: House
+    identity_strategy: Surrogate governed identifier.
+    scope_strategy: Member association is a jurisdiction-scoped organization.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Lookup by jurisdiction.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - LENT-V5-003
+      - DOMAIN-V5-004
+  - id: PREL-V5-004
+    kind: PHYSICAL_RELATION
+    title: jurisdiction relation
+    purpose: Documentary physical relation persisting governed jurisdictions.
+    physical_name: jurisdiction
+    logical_source: LENT-V5-009
+    owning_domain: DOMAIN-V5-004
+    owning_module: organization-registry
+    authority: House
+    identity_strategy: Surrogate governed identifier with a natural-code alternate key.
+    scope_strategy: Jurisdiction is the top-level scope root for organizations and seasons.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Lookup by jurisdiction code.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - LENT-V5-009
+      - DOMAIN-V5-004
+  - id: PREL-V5-005
+    kind: PHYSICAL_RELATION
+    title: season relation
+    purpose: Documentary physical relation persisting governed seasons per jurisdiction.
+    physical_name: season
+    logical_source: LENT-V5-010
+    owning_domain: DOMAIN-V5-005
+    owning_module: organization-registry
+    authority: House
+    identity_strategy: Surrogate governed identifier; unique within jurisdiction.
+    scope_strategy: Season is scoped to a jurisdiction and carries an effective boundary.
+    temporal_strategy: Season boundaries are effective-dated and non-overlapping within a jurisdiction.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Lookup by jurisdiction and current-season predicate.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - LENT-V5-010
+      - DOMAIN-V5-005
+  - id: PREL-V5-006
+    kind: PHYSICAL_RELATION
+    title: affiliation case relation
+    purpose: Documentary physical relation persisting the governed affiliation case per organization and season.
+    physical_name: affiliation_case
+    logical_source: LENT-V5-013
+    owning_domain: DOMAIN-V5-006
+    owning_module: affiliation-case
+    authority: House
+    identity_strategy: Surrogate governed identifier; case is unique per organization and season.
+    scope_strategy: Case references organization, jurisdiction, and season as a composite governed scope.
+    temporal_strategy: Effective and recorded time preserved; governed state held by the kernel.
+    correction_posture: Governed transitions only; correction by supersession.
+    expected_access_pattern: Lookup by organization and season; list by season and state.
+    integrity_responsibility: Governance kernel and affiliation-case module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - LENT-V5-013
+      - DOMAIN-V5-006
+  - id: CSK-V5-001
+    kind: COMPOSITE_SCOPE_KEY
+    title: organization parent-and-jurisdiction scope key
+    purpose: Documentary composite scope requirement binding an organization to its jurisdiction and optional parent organization so tenancy is never implicit.
+    scope_strategy: Organization rows carry jurisdiction and optional parent-organization references; child scope is a subset of parent scope.
+    key_columns:
+      - organization.jurisdiction_ref
+      - organization.parent_organization_ref
+    integrity_responsibility: Organization registry module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-001
+      - PREL-V5-004
+  - id: CSK-V5-002
+    kind: COMPOSITE_SCOPE_KEY
+    title: affiliation case organization-jurisdiction-season scope key
+    purpose: Documentary composite scope requirement binding an affiliation case to organization, jurisdiction, and season.
+    scope_strategy: Affiliation case rows carry organization, jurisdiction, and season references forming the governed scope tuple.
+    key_columns:
+      - affiliation_case.organization_ref
+      - affiliation_case.jurisdiction_ref
+      - affiliation_case.season_ref
+    integrity_responsibility: Affiliation-case module and governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-006
+  - id: AK-V5-001
+    kind: ALTERNATE_KEY
+    title: organization natural identity alternate key
+    purpose: Documentary alternate-key requirement for organization natural identity within a jurisdiction.
+    key_columns:
+      - organization.jurisdiction_ref
+      - organization.natural_identity
+    uniqueness_posture: Natural identity is unique within a jurisdiction; surrogate identity remains primary.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-001
+  - id: UNQ-V5-001
+    kind: UNIQUE_CONSTRAINT
+    title: affiliation case uniqueness per organization and season
+    purpose: Documentary uniqueness requirement enforcing one affiliation case per organization per season (INTEG-V5-002).
+    key_columns:
+      - affiliation_case.organization_ref
+      - affiliation_case.season_ref
+    uniqueness_posture: At most one case per organization per season.
+    integrity_responsibility: Affiliation-case module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-006
+      - INTEG-V5-002
+  - id: UNQ-V5-002
+    kind: UNIQUE_CONSTRAINT
+    title: season uniqueness and non-overlap per jurisdiction
+    purpose: Documentary uniqueness requirement enforcing unique, non-overlapping seasons within a jurisdiction (INTEG-V5-003).
+    key_columns:
+      - season.jurisdiction_ref
+      - season.season_identifier
+    uniqueness_posture: Season identifier is unique per jurisdiction; effective boundaries do not overlap.
+    integrity_responsibility: Organization registry module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-005
+      - INTEG-V5-003
+  - id: FK-V5-001
+    kind: FOREIGN_KEY
+    title: affiliation case to organization foreign key
+    purpose: Documentary referential requirement binding an affiliation case to its organization.
+    referenced_relation: PREL-V5-001
+    key_columns:
+      - affiliation_case.organization_ref
+    integrity_responsibility: Affiliation-case module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-006
+      - PREL-V5-001
+  - id: FK-V5-002
+    kind: FOREIGN_KEY
+    title: affiliation case to season foreign key
+    purpose: Documentary referential requirement binding an affiliation case to its season.
+    referenced_relation: PREL-V5-005
+    key_columns:
+      - affiliation_case.season_ref
+    integrity_responsibility: Affiliation-case module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-33
+    traces_to:
+      - PREL-V5-006
+      - PREL-V5-005
+
+  # V5-34 Party, identity, membership, representative authority, and assignment
+  - id: PREL-V5-007
+    kind: PHYSICAL_RELATION
+    title: person relation
+    purpose: Documentary physical relation persisting natural persons, distinct from accounts and memberships.
+    physical_name: person
+    logical_source: LENT-V5-004
+    owning_domain: DOMAIN-V5-003
+    owning_module: party-identity
+    authority: House
+    identity_strategy: Surrogate governed person identifier; personal identifiers minimized.
+    scope_strategy: Person is a party record referenced by memberships and authorities; not itself org-scoped.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession; identity resolution never silently merges.
+    expected_access_pattern: Lookup by governed person identifier.
+    classification: PERSONAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - LENT-V5-004
+      - DOMAIN-V5-003
+  - id: PREL-V5-008
+    kind: PHYSICAL_RELATION
+    title: account identity relation
+    purpose: Documentary physical relation persisting authenticated accounts, distinct from the person they bind to.
+    physical_name: account_identity
+    logical_source: LENT-V5-005
+    owning_domain: DOMAIN-V5-003
+    owning_module: party-identity
+    authority: House
+    identity_strategy: Surrogate account identifier bound to at most one person by an explicit binding.
+    scope_strategy: Account is not org-scoped; authorization scope derives from representative authority.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Lookup by account identifier and by bound person.
+    classification: PERSONAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - LENT-V5-005
+      - DOMAIN-V5-003
+  - id: PREL-V5-009
+    kind: PHYSICAL_RELATION
+    title: organization membership relation
+    purpose: Documentary physical relation persisting a person's membership in an organization, distinct from representative authority.
+    physical_name: organization_membership
+    logical_source: LENT-V5-006
+    owning_domain: DOMAIN-V5-003
+    owning_module: party-identity
+    authority: House
+    identity_strategy: Surrogate identifier over person and organization within a season.
+    scope_strategy: Membership is scoped to organization and season.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: List memberships by organization and season.
+    classification: PERSONAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - LENT-V5-006
+      - DOMAIN-V5-003
+  - id: PREL-V5-010
+    kind: PHYSICAL_RELATION
+    title: representative authority relation
+    purpose: Documentary physical relation persisting a person's authority to act for an organization, distinct from membership and finance authority.
+    physical_name: representative_authority
+    logical_source: LENT-V5-007
+    owning_domain: DOMAIN-V5-003
+    owning_module: party-identity
+    authority: House
+    identity_strategy: Surrogate identifier over person, organization, and authority scope.
+    scope_strategy: Authority is scoped to organization and season and carries an explicit authority type.
+    temporal_strategy: Effective and recorded time preserved; grants and revocations preserved.
+    correction_posture: Correction by supersession; revocation preserves history.
+    expected_access_pattern: Resolve acting authority for a person and organization at a time.
+    classification: PERSONAL
+    integrity_responsibility: Party-identity and authorization modules.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - LENT-V5-007
+      - DOMAIN-V5-003
+  - id: PREL-V5-011
+    kind: PHYSICAL_RELATION
+    title: reviewer assignment relation
+    purpose: Documentary physical relation persisting reviewer assignment to a case, distinct from reviewer eligibility.
+    physical_name: reviewer_assignment
+    logical_source: LENT-V5-008
+    owning_domain: DOMAIN-V5-013
+    owning_module: review-decision
+    authority: House
+    identity_strategy: Surrogate identifier over case and reviewer.
+    scope_strategy: Assignment is scoped to an affiliation case.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession; reassignment preserves history.
+    expected_access_pattern: List active assignments by case and by reviewer.
+    classification: INTERNAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - LENT-V5-008
+      - DOMAIN-V5-013
+  - id: FK-V5-003
+    kind: FOREIGN_KEY
+    title: account identity to person binding foreign key
+    purpose: Documentary referential requirement binding an account to at most one governed person.
+    referenced_relation: PREL-V5-007
+    key_columns:
+      - account_identity.person_ref
+    integrity_responsibility: Party-identity module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - PREL-V5-008
+      - PREL-V5-007
+  - id: UNQ-V5-003
+    kind: UNIQUE_CONSTRAINT
+    title: membership uniqueness per person, organization, and season
+    purpose: Documentary uniqueness requirement enforcing one active membership per person, organization, and season.
+    key_columns:
+      - organization_membership.person_ref
+      - organization_membership.organization_ref
+      - organization_membership.season_ref
+    uniqueness_posture: At most one active membership per person, organization, and season.
+    integrity_responsibility: Party-identity module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - PREL-V5-009
+  - id: PATTR-V5-001
+    kind: PHYSICAL_ATTRIBUTE
+    title: person name attribute
+    purpose: Documentary personal-data attribute on the person relation.
+    physical_name: person.display_name
+    classification: PERSONAL
+    integrity_responsibility: Party-identity module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-34
+    traces_to:
+      - PREL-V5-007
+
+  # V5-35 Requirement, response, evidence, submission, review, and decision
+  - id: PREL-V5-012
+    kind: PHYSICAL_RELATION
+    title: policy version relation
+    purpose: Documentary physical relation persisting immutable policy versions.
+    physical_name: policy_version
+    logical_source: LENT-V5-011
+    owning_domain: DOMAIN-V5-008
+    owning_module: policy-requirements
+    authority: House
+    identity_strategy: Surrogate identifier over policy and version number.
+    scope_strategy: Policy version is scoped to jurisdiction and effective period.
+    temporal_strategy: Versions are immutable and effective-dated; applicability resolved at case time.
+    correction_posture: New version supersedes; prior versions preserved.
+    expected_access_pattern: Resolve applicable policy version by jurisdiction and effective time.
+    classification: INTERNAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - LENT-V5-011
+      - DOMAIN-V5-008
+  - id: PREL-V5-013
+    kind: PHYSICAL_RELATION
+    title: requirement version relation
+    purpose: Documentary physical relation persisting immutable requirement versions under a policy version.
+    physical_name: requirement_version
+    logical_source: LENT-V5-012
+    owning_domain: DOMAIN-V5-008
+    owning_module: policy-requirements
+    authority: House
+    identity_strategy: Surrogate identifier over requirement and version, bound to a policy version.
+    scope_strategy: Requirement version inherits policy-version scope.
+    temporal_strategy: Immutable and effective-dated.
+    correction_posture: New version supersedes; prior versions preserved.
+    expected_access_pattern: Resolve applicable requirement versions for a case at its relevant time.
+    classification: INTERNAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - LENT-V5-012
+      - DOMAIN-V5-008
+  - id: PREL-V5-014
+    kind: PHYSICAL_RELATION
+    title: response relation
+    purpose: Documentary physical relation persisting responses to requirement versions within a case.
+    physical_name: response
+    logical_source: LENT-V5-015
+    owning_domain: DOMAIN-V5-009
+    owning_module: evidence-submission
+    authority: House
+    identity_strategy: Surrogate identifier over case and requirement version.
+    scope_strategy: Response is scoped to an affiliation case.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: List responses by case and requirement version.
+    classification: INTERNAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - LENT-V5-015
+      - DOMAIN-V5-009
+  - id: PREL-V5-015
+    kind: PHYSICAL_RELATION
+    title: evidence metadata relation
+    purpose: Documentary physical relation persisting evidence metadata that binds a case, requirement version, submitting actor, provenance, and evidence version, with the binary held externally.
+    physical_name: evidence_metadata
+    logical_source: LENT-V5-016
+    owning_domain: DOMAIN-V5-010
+    owning_module: evidence-submission
+    authority: House
+    identity_strategy: Surrogate identifier; binds response, requirement version, submitting actor, and provenance.
+    scope_strategy: Evidence metadata is scoped to an affiliation case and response.
+    temporal_strategy: Effective and recorded time preserved; evidence version tracked.
+    correction_posture: Correction by supersession; binary reference immutable.
+    expected_access_pattern: Resolve evidence for a response and requirement version.
+    classification: RESTRICTED_EVIDENCE
+    integrity_responsibility: Evidence and records authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - LENT-V5-016
+      - DOMAIN-V5-010
+  - id: PREL-V5-016
+    kind: PHYSICAL_RELATION
+    title: evidence binary reference relation
+    purpose: Documentary physical relation persisting a reference to externally stored evidence binary content; no binary is held in an authoritative relational record.
+    physical_name: evidence_binary_reference
+    logical_source: LENT-V5-016
+    owning_domain: DOMAIN-V5-011
+    owning_module: evidence-submission
+    authority: House
+    identity_strategy: Surrogate identifier holding an external content reference and integrity digest.
+    scope_strategy: Binary reference is bound to one evidence-metadata row.
+    temporal_strategy: Recorded time preserved; reference immutable once written.
+    correction_posture: Superseded by a new reference; prior reference preserved.
+    expected_access_pattern: Resolve external content location for evidence metadata.
+    classification: RESTRICTED_EVIDENCE
+    integrity_responsibility: Evidence and records authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - LENT-V5-016
+      - DOMAIN-V5-011
+  - id: PREL-V5-017
+    kind: PHYSICAL_RELATION
+    title: submission snapshot relation
+    purpose: Documentary physical relation persisting immutable submission snapshots; resubmission creates a new snapshot.
+    physical_name: submission_snapshot
+    logical_source: SNAP-V5-001
+    owning_domain: DOMAIN-V5-012
+    owning_module: evidence-submission
+    authority: House
+    identity_strategy: Surrogate identifier; append-only.
+    scope_strategy: Snapshot is scoped to an affiliation case.
+    temporal_strategy: Captured-at time preserved; snapshot never edited.
+    correction_posture: Immutable; a new snapshot supersedes.
+    expected_access_pattern: Retrieve the snapshot for a submission.
+    classification: RESTRICTED_EVIDENCE
+    integrity_responsibility: Records governance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - SNAP-V5-001
+      - DOMAIN-V5-012
+  - id: PREL-V5-018
+    kind: PHYSICAL_RELATION
+    title: decision record relation
+    purpose: Documentary physical relation persisting governed decision records; one active decision per review outcome, superseding decisions preserved.
+    physical_name: decision_record
+    logical_source: LENT-V5-018
+    owning_domain: DOMAIN-V5-014
+    owning_module: review-decision
+    authority: House
+    identity_strategy: Surrogate identifier over case and review outcome.
+    scope_strategy: Decision is scoped to an affiliation case.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Supersession preserves prior decisions.
+    expected_access_pattern: Resolve the active decision for a case review outcome.
+    classification: INTERNAL
+    integrity_responsibility: Governed-decision correction authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - LENT-V5-018
+      - DOMAIN-V5-014
+  - id: FK-V5-004
+    kind: FOREIGN_KEY
+    title: response to requirement version foreign key
+    purpose: Documentary referential requirement binding a response to the requirement version it satisfies.
+    referenced_relation: PREL-V5-013
+    key_columns:
+      - response.requirement_version_ref
+    integrity_responsibility: Evidence-submission module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - PREL-V5-014
+      - PREL-V5-013
+      - INTEG-V5-004
+  - id: FK-V5-005
+    kind: FOREIGN_KEY
+    title: evidence metadata to response foreign key
+    purpose: Documentary referential requirement binding evidence metadata to its response.
+    referenced_relation: PREL-V5-014
+    key_columns:
+      - evidence_metadata.response_ref
+    integrity_responsibility: Evidence-submission module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - PREL-V5-015
+      - PREL-V5-014
+      - INTEG-V5-005
+  - id: FK-V5-006
+    kind: FOREIGN_KEY
+    title: evidence binary reference to evidence metadata foreign key
+    purpose: Documentary referential requirement binding an external binary reference to exactly one evidence-metadata row.
+    referenced_relation: PREL-V5-015
+    key_columns:
+      - evidence_binary_reference.evidence_metadata_ref
+    integrity_responsibility: Evidence-submission module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - PREL-V5-016
+      - PREL-V5-015
+  - id: UNQ-V5-004
+    kind: UNIQUE_CONSTRAINT
+    title: single active decision per review outcome
+    purpose: Documentary uniqueness requirement enforcing one active decision per review outcome (INTEG-V5-007).
+    key_columns:
+      - decision_record.case_ref
+      - decision_record.review_outcome_ref
+      - decision_record.active
+    uniqueness_posture: At most one active decision per case review outcome; superseded decisions retained.
+    integrity_responsibility: Review-decision module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - PREL-V5-018
+      - INTEG-V5-007
+  - id: CHK-V5-001
+    kind: CHECK_CONSTRAINT
+    title: submission snapshot immutability check
+    purpose: Documentary check requirement asserting a submission snapshot is never edited after capture (INTEG-V5-006).
+    check_condition: captured_at is set once and the snapshot payload digest is immutable after write.
+    integrity_responsibility: Records governance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-35
+    traces_to:
+      - PREL-V5-017
+      - INTEG-V5-006
+
+  # V5-36 Financial obligation, reconciliation, activation, and recovery
+  - id: PREL-V5-019
+    kind: PHYSICAL_RELATION
+    title: fee obligation relation
+    purpose: Documentary physical relation persisting fee obligations for an affiliation case and season.
+    physical_name: fee_obligation
+    logical_source: LENT-V5-019
+    owning_domain: DOMAIN-V5-015
+    owning_module: finance-activation
+    authority: House
+    identity_strategy: Surrogate identifier over case and season.
+    scope_strategy: Obligation is scoped to an affiliation case and season.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Resolve outstanding obligations by case.
+    classification: FINANCIAL_STATUS
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - LENT-V5-019
+      - DOMAIN-V5-015
+  - id: PREL-V5-020
+    kind: PHYSICAL_RELATION
+    title: payment acknowledgement relation
+    purpose: Documentary physical relation persisting payment acknowledgements as a distinct financial fact.
+    physical_name: payment_acknowledgement
+    logical_source: LENT-V5-020
+    owning_domain: DOMAIN-V5-016
+    owning_module: finance-activation
+    authority: House
+    identity_strategy: Surrogate identifier; append-only fact.
+    scope_strategy: Acknowledgement is bound to a fee obligation.
+    temporal_strategy: Acknowledged-at time preserved.
+    correction_posture: Append-only; reversals recorded as new facts.
+    expected_access_pattern: List acknowledgements by obligation.
+    classification: FINANCIAL_STATUS
+    integrity_responsibility: Finance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - LENT-V5-020
+      - DOMAIN-V5-016
+  - id: PREL-V5-021
+    kind: PHYSICAL_RELATION
+    title: accounting confirmation relation
+    purpose: Documentary physical relation persisting accounting confirmations, distinct from acknowledgements.
+    physical_name: accounting_confirmation
+    logical_source: LENT-V5-021
+    owning_domain: DOMAIN-V5-017
+    owning_module: finance-activation
+    authority: House
+    identity_strategy: Surrogate identifier; append-only fact.
+    scope_strategy: Confirmation is bound to a fee obligation.
+    temporal_strategy: Confirmed-at time preserved.
+    correction_posture: Append-only; reversals recorded as new facts.
+    expected_access_pattern: List confirmations by obligation.
+    classification: FINANCIAL_STATUS
+    integrity_responsibility: Finance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - LENT-V5-021
+      - DOMAIN-V5-017
+  - id: PREL-V5-022
+    kind: PHYSICAL_RELATION
+    title: reconciliation record relation
+    purpose: Documentary physical relation persisting reconciliation records requiring both an acknowledgement and a confirmation.
+    physical_name: reconciliation_record
+    logical_source: LENT-V5-022
+    owning_domain: DOMAIN-V5-018
+    owning_module: finance-activation
+    authority: House
+    identity_strategy: Surrogate identifier over obligation, acknowledgement, and confirmation.
+    scope_strategy: Reconciliation is bound to a fee obligation.
+    temporal_strategy: Reconciled-at time preserved.
+    correction_posture: Correction by supersession.
+    expected_access_pattern: Resolve reconciliation state by obligation.
+    classification: FINANCIAL_STATUS
+    integrity_responsibility: Finance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - LENT-V5-022
+      - DOMAIN-V5-018
+  - id: PREL-V5-023
+    kind: PHYSICAL_RELATION
+    title: activation record relation
+    purpose: Documentary physical relation persisting the single authoritative activation effect per affiliation case and season.
+    physical_name: activation_record
+    logical_source: LENT-V5-023
+    owning_domain: DOMAIN-V5-019
+    owning_module: finance-activation
+    authority: House
+    identity_strategy: Surrogate identifier; unique active activation per case and season.
+    scope_strategy: Activation is scoped to an affiliation case and season.
+    temporal_strategy: Effective and recorded time preserved.
+    correction_posture: Supersession preserves prior activation records.
+    expected_access_pattern: Resolve the active activation for a case and season.
+    classification: INTERNAL
+    integrity_responsibility: Affiliation administration and governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - LENT-V5-023
+      - DOMAIN-V5-019
+  - id: UNQ-V5-005
+    kind: UNIQUE_CONSTRAINT
+    title: single active activation per affiliation and season
+    purpose: Documentary uniqueness requirement enforcing exactly one active activation per affiliation case and season (INTEG-V5-011).
+    key_columns:
+      - activation_record.case_ref
+      - activation_record.season_ref
+      - activation_record.active
+    uniqueness_posture: At most one active activation per case and season; superseded records retained.
+    integrity_responsibility: Finance-activation module and governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - PREL-V5-023
+      - INTEG-V5-011
+  - id: CHK-V5-002
+    kind: CHECK_CONSTRAINT
+    title: reconciliation completeness check
+    purpose: Documentary check requirement asserting a reconciliation names both an acknowledgement and a confirmation (INTEG-V5-009).
+    check_condition: reconciled state requires a non-null acknowledgement reference and a non-null confirmation reference.
+    integrity_responsibility: Finance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - PREL-V5-022
+      - INTEG-V5-009
+  - id: FK-V5-007
+    kind: FOREIGN_KEY
+    title: activation to affiliation case foreign key
+    purpose: Documentary referential requirement binding an activation record to its affiliation case.
+    referenced_relation: PREL-V5-006
+    key_columns:
+      - activation_record.case_ref
+    integrity_responsibility: Finance-activation module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-36
+    traces_to:
+      - PREL-V5-023
+      - PREL-V5-006
+      - INTEG-V5-010
+
+  # V5-37 Temporal, audit, correction, provenance, outbox, and idempotency
+  - id: PREL-V5-024
+    kind: PHYSICAL_RELATION
+    title: entity state relation
+    purpose: Documentary physical relation persisting governed entity state owned solely by the governance kernel.
+    physical_name: entity_state
+    logical_source: STATE-V5-001
+    owning_domain: DOMAIN-V5-006
+    owning_module: governance-kernel
+    authority: House
+    identity_strategy: One current state row per governed entity; transitions journalled separately.
+    scope_strategy: State is scoped to the governed entity and its tenant scope.
+    temporal_strategy: Effective and recorded time preserved; state updated only through the kernel.
+    correction_posture: Correction by supersession; no direct status mutation.
+    expected_access_pattern: Resolve current state; lock current state during a transition.
+    classification: INTERNAL
+    integrity_responsibility: Governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - STATE-V5-001
+      - DOMAIN-V5-006
+  - id: PREL-V5-025
+    kind: PHYSICAL_RELATION
+    title: state transition journal relation
+    purpose: Documentary physical relation persisting the append-only journal of governed state transitions.
+    physical_name: state_transition
+    logical_source: STATE-V5-001
+    owning_domain: DOMAIN-V5-006
+    owning_module: governance-kernel
+    authority: House
+    identity_strategy: Append-only surrogate identifier per transition.
+    scope_strategy: Transition rows carry the governed entity and tenant scope.
+    temporal_strategy: Recorded-at time preserved; append-only.
+    correction_posture: Append-only; corrections are new transitions.
+    expected_access_pattern: List transition history for an entity.
+    classification: INTERNAL
+    data_class: AUDIT_DATA
+    integrity_responsibility: Governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - STATE-V5-001
+      - DOMAIN-V5-006
+  - id: PREL-V5-026
+    kind: PHYSICAL_RELATION
+    title: correction record relation
+    purpose: Documentary physical relation persisting corrections that reference the corrected record and preserve prior state.
+    physical_name: correction_record
+    logical_source: CORR-V5-001
+    owning_domain: DOMAIN-V5-022
+    owning_module: governance-kernel
+    authority: House
+    identity_strategy: Surrogate identifier referencing the corrected record.
+    scope_strategy: Correction inherits the corrected record's scope.
+    temporal_strategy: Recorded-at time preserved; prior state never overwritten.
+    correction_posture: Supersession preserves prior history and names a correction authority.
+    expected_access_pattern: Resolve corrections for a corrected record.
+    classification: INTERNAL
+    data_class: AUDIT_DATA
+    integrity_responsibility: Records governance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - CORR-V5-001
+      - DOMAIN-V5-022
+  - id: PREL-V5-027
+    kind: PHYSICAL_RELATION
+    title: transition request and idempotency relation
+    purpose: Documentary physical relation persisting governed transition requests keyed by an idempotency key so duplicate commands produce no duplicate effect.
+    physical_name: transition_request
+    logical_source: PROV-V5-001
+    owning_domain: DOMAIN-V5-006
+    owning_module: governance-kernel
+    authority: House
+    identity_strategy: Surrogate identifier with a unique idempotency key per governed command.
+    scope_strategy: Request carries the governed entity and tenant scope.
+    temporal_strategy: Recorded-at time preserved; result retained for idempotent replay.
+    correction_posture: Append-only; retries resolve to the prior result.
+    expected_access_pattern: Look up a prior result by idempotency key before executing a transition.
+    classification: INTERNAL
+    integrity_responsibility: Governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - PROV-V5-001
+      - DOMAIN-V5-006
+  - id: AUDR-V5-001
+    kind: AUDIT_RELATION
+    title: audit event relation
+    purpose: Documentary append-only audit relation persisting immutable audit events written within the same transaction as the governed transition.
+    physical_name: audit_event
+    logical_source: PROV-V5-002
+    owning_domain: DOMAIN-V5-023
+    owning_module: governance-kernel
+    authority: House
+    identity_strategy: Append-only surrogate identifier.
+    scope_strategy: Audit rows carry the governed entity and tenant scope.
+    temporal_strategy: Recorded-at time preserved; append-only and never edited.
+    correction_posture: Append-only; corrections are new events.
+    expected_access_pattern: List audit events by entity and correlation.
+    classification: SECURITY_AUDIT
+    integrity_responsibility: Governance kernel; audit is written atomically with state and outbox.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - PROV-V5-002
+      - DOMAIN-V5-023
+  - id: OBX-V5-001
+    kind: OUTBOX_RELATION
+    title: outbox message relation
+    purpose: Documentary transactional-outbox relation persisting messages enqueued within the governed transaction and published only after commit.
+    physical_name: outbox_message
+    logical_source: PROV-V5-002
+    owning_domain: DOMAIN-V5-023
+    owning_module: governance-kernel
+    authority: House
+    identity_strategy: Surrogate identifier with a stable dedupe key, correlation, and causation references.
+    scope_strategy: Outbox rows carry the governed entity and tenant scope.
+    temporal_strategy: Recorded-at time preserved; status and lease fields track publication.
+    correction_posture: Append-only enqueue; publication status updated by the processor.
+    expected_access_pattern: Claim pending rows under a lease; a publish failure leaves a failed or pending row, never erasing the committed transition.
+    classification: INTERNAL
+    integrity_responsibility: Governance kernel enqueues; outbox processor publishes after commit.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - PROV-V5-002
+      - DOMAIN-V5-023
+  - id: UNQ-V5-006
+    kind: UNIQUE_CONSTRAINT
+    title: transition request idempotency-key uniqueness
+    purpose: Documentary uniqueness requirement enforcing one governed transition request per idempotency key.
+    key_columns:
+      - transition_request.tenant_ref
+      - transition_request.idempotency_key
+    uniqueness_posture: The idempotency key is unique within tenant scope; duplicate commands resolve to the prior result.
+    integrity_responsibility: Governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - PREL-V5-027
+  - id: UNQ-V5-007
+    kind: UNIQUE_CONSTRAINT
+    title: outbox dedupe-key uniqueness
+    purpose: Documentary uniqueness requirement enforcing a stable outbox dedupe key so a governed effect is enqueued at most once.
+    key_columns:
+      - outbox_message.dedupe_key
+    uniqueness_posture: The dedupe key is unique; the same key maps to a stable downstream message identity.
+    integrity_responsibility: Governance kernel.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - OBX-V5-001
+  - id: CHK-V5-003
+    kind: CHECK_CONSTRAINT
+    title: temporal correctness check
+    purpose: Documentary check requirement asserting effective time and recorded time are both preserved and never overwritten (INTEG-V5-012).
+    check_condition: effective_time and recorded_time are both present on governed facts and are never destructively updated.
+    integrity_responsibility: Records governance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - PREL-V5-024
+      - INTEG-V5-012
+  - id: FK-V5-008
+    kind: FOREIGN_KEY
+    title: correction record to corrected record foreign key
+    purpose: Documentary referential requirement binding a correction to the record it corrects (INTEG-V5-013).
+    referenced_relation: PREL-V5-024
+    key_columns:
+      - correction_record.corrected_record_ref
+    integrity_responsibility: Records governance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - PREL-V5-026
+      - PREL-V5-024
+      - INTEG-V5-013
+  - id: PART-V5-001
+    kind: PARTITION_REQUIREMENT
+    title: audit and outbox time partitioning requirement
+    purpose: Documentary partitioning requirement for high-volume append-only audit and outbox relations.
+    partition_strategy: Time-based partitioning of append-only audit and outbox relations; boundary interval is BASELINE_PENDING.
+    partitioning_consideration: Partition interval and retention window are not fixed here; they await volume and retention baselines.
+    affected_relations:
+      - AUDR-V5-001
+      - OBX-V5-001
+    integrity_responsibility: Governance kernel and operations.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-37
+    traces_to:
+      - AUDR-V5-001
+      - OBX-V5-001
+
+  # V5-38 Reference data, code sets, bilingual labels, and governed configuration
+  - id: PREL-V5-028
+    kind: PHYSICAL_RELATION
+    title: reference code set relation
+    purpose: Documentary physical relation persisting governed reference code sets with language-neutral code identifiers.
+    physical_name: reference_code
+    logical_source: RDS-V5-001
+    owning_domain: DOMAIN-V5-008
+    owning_module: reference-data
+    authority: House
+    identity_strategy: Language-neutral code identifier is the stable key; labels are attributes.
+    scope_strategy: Codes are governed configuration, effective-dated and versioned.
+    temporal_strategy: Effective period preserved; deprecated codes remain interpretable.
+    correction_posture: New version supersedes; deprecated values retained.
+    expected_access_pattern: Resolve a code by its language-neutral identifier.
+    classification: PUBLIC
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-38
+    traces_to:
+      - RDS-V5-001
+      - DOMAIN-V5-008
+  - id: PREL-V5-029
+    kind: PHYSICAL_RELATION
+    title: bilingual label relation
+    purpose: Documentary physical relation persisting English and French labels for one semantic concept referenced by a language-neutral code.
+    physical_name: code_label
+    logical_source: CTERM-V5-001
+    owning_domain: DOMAIN-V5-008
+    owning_module: reference-data
+    authority: House
+    identity_strategy: Composite of code identifier and language; English and French denote one concept.
+    scope_strategy: Labels are attributes of a governed code; no independent authority.
+    temporal_strategy: Effective period preserved.
+    correction_posture: New label version supersedes; prior labels retained.
+    expected_access_pattern: Resolve a label for a code in a requested language.
+    classification: PUBLIC
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-38
+    traces_to:
+      - CTERM-V5-001
+      - DOMAIN-V5-008
+  - id: FK-V5-009
+    kind: FOREIGN_KEY
+    title: bilingual label to reference code foreign key
+    purpose: Documentary referential requirement binding a bilingual label to its language-neutral code.
+    referenced_relation: PREL-V5-028
+    key_columns:
+      - code_label.code_ref
+    integrity_responsibility: Reference-data module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-38
+    traces_to:
+      - PREL-V5-029
+      - PREL-V5-028
+
+  # V5-39 Projection, search, reporting, analytics, and export
+  - id: VIEW-V5-001
+    kind: DATABASE_VIEW
+    title: affiliation case status view
+    purpose: Documentary non-authoritative view over governed affiliation case state for read access.
+    physical_name: v_affiliation_case_status
+    logical_source: PREL-V5-006
+    owning_domain: DOMAIN-V5-024
+    owning_module: projections
+    authority: House
+    physical_projection_form: A read-only relational view derived from governed relations.
+    consistency_posture: Reflects committed governed state at read time; never accepts governed writes.
+    staleness_indicator: None; synchronous over authoritative relations.
+    scope_strategy: View preserves the governed tenant scope of its source relations.
+    expected_access_pattern: Read affiliation status by organization and season.
+    classification: INTERNAL
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-39
+    traces_to:
+      - PREL-V5-006
+      - DOMAIN-V5-024
+  - id: MPROJ-V5-001
+    kind: MATERIALIZED_PROJECTION
+    title: affiliation reporting projection
+    purpose: Documentary non-authoritative materialized projection supporting reporting over governed affiliation data.
+    physical_name: mp_affiliation_reporting
+    logical_source: DERV-V5-001
+    authoritative_source: PREL-V5-006
+    owning_domain: DOMAIN-V5-024
+    owning_module: projections
+    authority: House
+    physical_projection_form: A rebuildable materialized projection derived from authoritative relations.
+    consistency_posture: Eventually consistent; non-authoritative and rebuildable from source.
+    refresh_trigger: Refreshed from governed relations; refresh cadence is BASELINE_PENDING.
+    staleness_indicator: Carries a last-refreshed marker; staleness is explicit.
+    rebuild_source: PREL-V5-006
+    export_lineage: Retains lineage to its authoritative source relations.
+    scope_strategy: Projection preserves the governed tenant scope of its source relations.
+    expected_access_pattern: Reporting reads only; never a source of truth.
+    classification: ANALYTICS_AGGREGATE
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-39
+    traces_to:
+      - DERV-V5-001
+      - DOMAIN-V5-024
+  - id: MPROJ-V5-002
+    kind: MATERIALIZED_PROJECTION
+    title: analytics and export projection
+    purpose: Documentary non-authoritative analytics and export projection retaining lineage to authoritative sources.
+    physical_name: mp_analytics_export
+    logical_source: DERV-V5-001
+    authoritative_source: PREL-V5-006
+    owning_domain: DOMAIN-V5-025
+    owning_module: projections
+    authority: House
+    physical_projection_form: A rebuildable analytical projection and export surface.
+    consistency_posture: Eventually consistent; non-authoritative; disposable and rebuildable.
+    refresh_trigger: Rebuilt from governed relations; cadence is BASELINE_PENDING.
+    staleness_indicator: Carries a last-refreshed marker.
+    export_lineage: Exports retain lineage and disclosure constraints to authoritative sources.
+    scope_strategy: Preserves governed scope; aggregate disclosure honours minimization.
+    expected_access_pattern: Analytics and export reads only.
+    classification: ANALYTICS_AGGREGATE
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-39
+    traces_to:
+      - DERV-V5-001
+      - DOMAIN-V5-025
+
+  # V5-40 Migration staging, quarantine, identity resolution, and reconciliation
+  - id: STG-V5-001
+    kind: STAGING_RELATION
+    title: organization migration staging relation
+    purpose: Documentary migration staging relation preserving source organization values and provenance before governed load.
+    physical_name: stg_organization
+    logical_source: LENT-V5-001
+    source_reference: External legacy organization records
+    owning_domain: DOMAIN-V5-002
+    owning_module: migration
+    authority: External
+    scope_strategy: Staging rows retain source scope hints but confer no governed scope.
+    temporal_strategy: Source-observed and staged-at times preserved.
+    correction_posture: Staging is transitional; governed load creates authoritative rows separately.
+    expected_access_pattern: Reconcile staged rows against governed organizations.
+    classification: INTERNAL
+    data_class: TRANSITIONAL_DATA
+    integrity_responsibility: Migration module; staging confers no authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-40
+    traces_to:
+      - LENT-V5-001
+      - DOMAIN-V5-002
+  - id: STG-V5-002
+    kind: STAGING_RELATION
+    title: person migration staging relation
+    purpose: Documentary migration staging relation preserving source person values and provenance before governed load.
+    physical_name: stg_person
+    logical_source: LENT-V5-004
+    source_reference: External legacy person records
+    owning_domain: DOMAIN-V5-002
+    owning_module: migration
+    authority: External
+    scope_strategy: Staging rows carry source provenance only.
+    temporal_strategy: Source-observed and staged-at times preserved.
+    correction_posture: Transitional; no silent merge into governed persons.
+    expected_access_pattern: Identity resolution against governed persons.
+    classification: INTERNAL
+    data_class: TRANSITIONAL_DATA
+    integrity_responsibility: Migration module.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-40
+    traces_to:
+      - LENT-V5-004
+      - DOMAIN-V5-002
+  - id: QRN-V5-001
+    kind: QUARANTINE_RELATION
+    title: identity resolution quarantine relation
+    purpose: Documentary quarantine relation holding uncertain identity matches that confer no authority and produce no governed merge.
+    physical_name: qrn_identity_resolution
+    logical_source: LENT-V5-004
+    source_reference: Staged records with uncertain identity matches
+    owning_domain: DOMAIN-V5-002
+    owning_module: migration
+    authority: External
+    scope_strategy: Quarantine confers no governed scope or authority.
+    temporal_strategy: Quarantined-at time preserved.
+    correction_posture: Uncertain matches remain quarantined until an authority resolves them; no automatic merge.
+    reconciliation_rule: Similarity is advisory; only a recorded resolution authority may promote a match.
+    expected_access_pattern: Steward review of quarantined matches.
+    classification: INTERNAL
+    data_class: TRANSITIONAL_DATA
+    integrity_responsibility: Records governance authority.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-40
+    traces_to:
+      - LENT-V5-004
+      - DOMAIN-V5-002
+
+  # V5-41 Integrity, indexing, partitioning, retention, archival, and performance
+  - id: IDX-V5-001
+    kind: INDEX_REQUIREMENT
+    title: affiliation case lookup index requirement
+    purpose: Documentary index requirement for resolving an affiliation case by organization and season.
+    index_requirement: Support lookup of affiliation cases by organization and season and listing by season and state.
+    index_columns:
+      - affiliation_case.organization_ref
+      - affiliation_case.season_ref
+    expected_query_family: Case resolution and season listings.
+    write_impact: Additional index maintenance on case writes; magnitude is BASELINE_PENDING.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-41
+    traces_to:
+      - PREL-V5-006
+  - id: IDX-V5-002
+    kind: INDEX_REQUIREMENT
+    title: evidence by response index requirement
+    purpose: Documentary index requirement for resolving evidence metadata by response.
+    index_requirement: Support resolution of evidence metadata for a response and requirement version.
+    index_columns:
+      - evidence_metadata.response_ref
+    expected_query_family: Evidence resolution during review.
+    write_impact: Index maintenance on evidence writes; magnitude is BASELINE_PENDING.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-41
+    traces_to:
+      - PREL-V5-015
+  - id: IDX-V5-003
+    kind: INDEX_REQUIREMENT
+    title: outbox pending-claim index requirement
+    purpose: Documentary index requirement supporting concurrency-safe claiming of pending outbox rows.
+    index_requirement: Support claiming pending outbox rows by status, next-attempt time, and lease expiry.
+    index_columns:
+      - outbox_message.status
+      - outbox_message.next_attempt_at
+      - outbox_message.locked_until
+    expected_query_family: Outbox processor claim scans.
+    write_impact: Index maintenance on outbox status updates; magnitude is BASELINE_PENDING.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-41
+    traces_to:
+      - OBX-V5-001
+  - id: RETD-V5-003
+    kind: RETENTION_DEPENDENCY
+    title: physical retention and archival dependency
+    purpose: Documentary retention dependency asserting no retention period, archival schedule, or deletion is approved by the physical model.
+    retention_policy_status: No retention period is approved; retention and archival await a records-policy authority.
+    deletion_authority: Deletion and disposition remain reserved to a future records-policy authority.
+    legal_hold_dependency: Legal hold supersedes any future disposition.
+    archival_expectation: Archival structures are described only; no schedule is set.
+    verification_class: BASELINE_PENDING
+    implementation_status: BASELINE_PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-41
+    traces_to:
+      - DOMAIN-V5-023
+      - RETD-V5-001
 

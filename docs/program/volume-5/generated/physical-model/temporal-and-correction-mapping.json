@@ -1,0 +1,181 @@
+{
+  "relations_with_temporal_strategy": [
+    {
+      "id": "PREL-V5-001",
+      "temporal_strategy": "Effective time and recorded time preserved; no destructive update."
+    },
+    {
+      "id": "PREL-V5-002",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-003",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-004",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-005",
+      "temporal_strategy": "Season boundaries are effective-dated and non-overlapping within a jurisdiction."
+    },
+    {
+      "id": "PREL-V5-006",
+      "temporal_strategy": "Effective and recorded time preserved; governed state held by the kernel."
+    },
+    {
+      "id": "PREL-V5-007",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-008",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-009",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-010",
+      "temporal_strategy": "Effective and recorded time preserved; grants and revocations preserved."
+    },
+    {
+      "id": "PREL-V5-011",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-012",
+      "temporal_strategy": "Versions are immutable and effective-dated; applicability resolved at case time."
+    },
+    {
+      "id": "PREL-V5-013",
+      "temporal_strategy": "Immutable and effective-dated."
+    },
+    {
+      "id": "PREL-V5-014",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-015",
+      "temporal_strategy": "Effective and recorded time preserved; evidence version tracked."
+    },
+    {
+      "id": "PREL-V5-016",
+      "temporal_strategy": "Recorded time preserved; reference immutable once written."
+    },
+    {
+      "id": "PREL-V5-017",
+      "temporal_strategy": "Captured-at time preserved; snapshot never edited."
+    },
+    {
+      "id": "PREL-V5-018",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-019",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-020",
+      "temporal_strategy": "Acknowledged-at time preserved."
+    },
+    {
+      "id": "PREL-V5-021",
+      "temporal_strategy": "Confirmed-at time preserved."
+    },
+    {
+      "id": "PREL-V5-022",
+      "temporal_strategy": "Reconciled-at time preserved."
+    },
+    {
+      "id": "PREL-V5-023",
+      "temporal_strategy": "Effective and recorded time preserved."
+    },
+    {
+      "id": "PREL-V5-024",
+      "temporal_strategy": "Effective and recorded time preserved; state updated only through the kernel."
+    },
+    {
+      "id": "PREL-V5-025",
+      "temporal_strategy": "Recorded-at time preserved; append-only."
+    },
+    {
+      "id": "PREL-V5-026",
+      "temporal_strategy": "Recorded-at time preserved; prior state never overwritten."
+    },
+    {
+      "id": "PREL-V5-027",
+      "temporal_strategy": "Recorded-at time preserved; result retained for idempotent replay."
+    },
+    {
+      "id": "AUDR-V5-001",
+      "temporal_strategy": "Recorded-at time preserved; append-only and never edited."
+    },
+    {
+      "id": "OBX-V5-001",
+      "temporal_strategy": "Recorded-at time preserved; status and lease fields track publication."
+    },
+    {
+      "id": "PREL-V5-028",
+      "temporal_strategy": "Effective period preserved; deprecated codes remain interpretable."
+    },
+    {
+      "id": "PREL-V5-029",
+      "temporal_strategy": "Effective period preserved."
+    },
+    {
+      "id": "STG-V5-001",
+      "temporal_strategy": "Source-observed and staged-at times preserved."
+    },
+    {
+      "id": "STG-V5-002",
+      "temporal_strategy": "Source-observed and staged-at times preserved."
+    },
+    {
+      "id": "QRN-V5-001",
+      "temporal_strategy": "Quarantined-at time preserved."
+    }
+  ],
+  "correction_posture": {
+    "Correction by supersession; prior state preserved.": 1,
+    "Correction by supersession.": 9,
+    "Governed transitions only; correction by supersession.": 1,
+    "Correction by supersession; identity resolution never silently merges.": 1,
+    "Correction by supersession; revocation preserves history.": 1,
+    "Correction by supersession; reassignment preserves history.": 1,
+    "New version supersedes; prior versions preserved.": 2,
+    "Correction by supersession; binary reference immutable.": 1,
+    "Superseded by a new reference; prior reference preserved.": 1,
+    "Immutable; a new snapshot supersedes.": 1,
+    "Supersession preserves prior decisions.": 1,
+    "Append-only; reversals recorded as new facts.": 2,
+    "Supersession preserves prior activation records.": 1,
+    "Correction by supersession; no direct status mutation.": 1,
+    "Append-only; corrections are new transitions.": 1,
+    "Supersession preserves prior history and names a correction authority.": 1,
+    "Append-only; retries resolve to the prior result.": 1,
+    "Append-only; corrections are new events.": 1,
+    "Append-only enqueue; publication status updated by the processor.": 1,
+    "New version supersedes; deprecated values retained.": 1,
+    "New label version supersedes; prior labels retained.": 1,
+    "Staging is transitional; governed load creates authoritative rows separately.": 1,
+    "Transitional; no silent merge into governed persons.": 1,
+    "Uncertain matches remain quarantined until an authority resolves them; no automatic merge.": 1
+  },
+  "audit_and_outbox_relations": [
+    {
+      "id": "AUDR-V5-001",
+      "kind": "AUDIT_RELATION",
+      "integrity_responsibility": "Governance kernel; audit is written atomically with state and outbox."
+    },
+    {
+      "id": "OBX-V5-001",
+      "kind": "OUTBOX_RELATION",
+      "integrity_responsibility": "Governance kernel enqueues; outbox processor publishes after commit."
+    }
+  ],
+  "audit_or_outbox_without_integrity_responsibility": [],
+  "state_audit_outbox_share_one_transaction": true,
+  "corrections_reference_corrected_record": true
+}

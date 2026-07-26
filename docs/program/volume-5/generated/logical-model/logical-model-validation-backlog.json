@@ -1,12 +1,12 @@
 {
-  "total": 39,
+  "total": 58,
   "by_future_blocking_gate": {
-    "V5-G4": 7,
+    "V5-G5": 7,
     "EXEC-MCG": 3,
     "V8-G1": 7,
-    "V10-G1": 6,
-    "V6-G1": 10,
-    "V9-G1": 3,
+    "V10-G1": 10,
+    "V6-G1": 11,
+    "V9-G1": 17,
     "V7-G1": 3
   },
   "pointing_at_completed_gate": [],
@@ -15,9 +15,10 @@
       "id": "ASM-V5-001",
       "from": [
         "V5-G1",
-        "V5-G3"
+        "V5-G3",
+        "V5-G4"
       ],
-      "to": "V5-G4"
+      "to": "V5-G5"
     },
     {
       "id": "ASM-V5-002",
@@ -58,9 +59,10 @@
       "id": "TEST-V5-001",
       "from": [
         "V5-G1",
-        "V5-G3"
+        "V5-G3",
+        "V5-G4"
       ],
-      "to": "V5-G4"
+      "to": "V5-G5"
     },
     {
       "id": "TEST-V5-002",
@@ -81,25 +83,28 @@
       "id": "TEST-V5-005",
       "from": [
         "V5-G1",
-        "V5-G3"
+        "V5-G3",
+        "V5-G4"
       ],
-      "to": "V5-G4"
+      "to": "V5-G5"
     },
     {
       "id": "TEST-V5-006",
       "from": [
         "V5-G1",
-        "V5-G3"
+        "V5-G3",
+        "V5-G4"
       ],
-      "to": "V5-G4"
+      "to": "V5-G5"
     },
     {
       "id": "TEST-V5-007",
       "from": [
         "V5-G1",
-        "V5-G3"
+        "V5-G3",
+        "V5-G4"
       ],
-      "to": "V5-G4"
+      "to": "V5-G5"
     },
     {
       "id": "TEST-V5-008",
@@ -155,11 +160,22 @@
       "id": "TEST-V5-018",
       "from": "V5-G1",
       "to": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-019",
+      "from": "V5-G4",
+      "to": "V5-G5"
+    },
+    {
+      "id": "TEST-V5-020",
+      "from": "V5-G4",
+      "to": "V5-G5"
     }
   ],
   "completed_gates": [
     "V5-G1",
     "V5-G2",
-    "V5-G3"
+    "V5-G3",
+    "V5-G4"
   ]
 }

@@ -1,18 +1,19 @@
 {
-  "total": 18,
+  "total": 28,
   "without_affected_entities": [],
   "without_logical_condition": [],
   "by_future_verification_class": {
     "Identity and trust validation": 1,
     "Logical model validation": 10,
-    "Trust and privacy validation": 2,
-    "Financial reconciliation validation": 3,
-    "Projection and analytics validation": 2
+    "Trust and privacy validation": 3,
+    "Financial reconciliation validation": 4,
+    "Projection and analytics validation": 2,
+    "Physical model validation": 8
   },
   "by_future_blocking_gate": {
-    "V6-G1": 3,
-    "V5-G4": 8,
-    "V8-G1": 5,
-    "V9-G1": 2
+    "V6-G1": 5,
+    "V5-G5": 8,
+    "V8-G1": 6,
+    "V9-G1": 9
   }
 }

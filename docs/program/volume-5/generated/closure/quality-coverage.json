@@ -1,7 +1,7 @@
 {
   "quality_rules": 14,
   "quality_rules_without_authority": [],
-  "lineage_rules": 10,
+  "lineage_rules": 11,
   "lineage_rules_without_source": [],
   "by_quality_dimension": {
     "VALIDITY": 2,

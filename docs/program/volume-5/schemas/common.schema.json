@@ -77,7 +77,23 @@
         "EXCHANGE_RECORD",
         "DATA_USE",
         "STEWARDSHIP_MEASURE",
-        "RETENTION_DEPENDENCY"
+        "RETENTION_DEPENDENCY",
+        "PHYSICAL_RELATION",
+        "PHYSICAL_ATTRIBUTE",
+        "PRIMARY_KEY",
+        "ALTERNATE_KEY",
+        "FOREIGN_KEY",
+        "COMPOSITE_SCOPE_KEY",
+        "UNIQUE_CONSTRAINT",
+        "CHECK_CONSTRAINT",
+        "INDEX_REQUIREMENT",
+        "PARTITION_REQUIREMENT",
+        "DATABASE_VIEW",
+        "MATERIALIZED_PROJECTION",
+        "STAGING_RELATION",
+        "QUARANTINE_RELATION",
+        "AUDIT_RELATION",
+        "OUTBOX_RELATION"
       ]
     },
     "dataClass": {

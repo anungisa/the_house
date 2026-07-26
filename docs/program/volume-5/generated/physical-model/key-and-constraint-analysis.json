@@ -1,0 +1,29 @@
+{
+  "total_keys": 19,
+  "by_kind": {
+    "COMPOSITE_SCOPE_KEY": 2,
+    "ALTERNATE_KEY": 1,
+    "UNIQUE_CONSTRAINT": 7,
+    "FOREIGN_KEY": 9
+  },
+  "keys_without_columns": [],
+  "foreign_keys_without_reference": [],
+  "checks_without_condition": [],
+  "check_constraints": [
+    {
+      "id": "CHK-V5-001",
+      "title": "submission snapshot immutability check",
+      "check_condition": "captured_at is set once and the snapshot payload digest is immutable after write."
+    },
+    {
+      "id": "CHK-V5-002",
+      "title": "reconciliation completeness check",
+      "check_condition": "reconciled state requires a non-null acknowledgement reference and a non-null confirmation reference."
+    },
+    {
+      "id": "CHK-V5-003",
+      "title": "temporal correctness check",
+      "check_condition": "effective_time and recorded_time are both present on governed facts and are never destructively updated."
+    }
+  ]
+}

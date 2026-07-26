@@ -1,0 +1,12 @@
+{
+  "projections": 3,
+  "projections_without_source": [],
+  "projections_without_consistency_posture": [],
+  "projections_are_non_authoritative": true,
+  "exports_retain_lineage": true,
+  "by_refresh_trigger": {
+    "UNSET": 1,
+    "Refreshed from governed relations; refresh cadence is BASELINE_PENDING.": 1,
+    "Rebuilt from governed relations; cadence is BASELINE_PENDING.": 1
+  }
+}

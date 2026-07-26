@@ -10,6 +10,7 @@ import { VOLUME_DIR, loadContext, printFindings } from './lib.mjs';
 import { collectFindings, buildReport } from './generate-control-report.mjs';
 import { generate as generateLogicalModel } from './logical-model-analysis.mjs';
 import { generate as generateDataLifecycle } from './data-lifecycle-analysis.mjs';
+import { generate as generatePhysicalModel } from './physical-model-analysis.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -35,6 +36,7 @@ writeFileSync(outPath, markdown, 'utf8');
 // with every check.
 generateLogicalModel(ctx);
 generateDataLifecycle(ctx);
+generatePhysicalModel(ctx);
 
 console.log('\n=== Volume 5 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

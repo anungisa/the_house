@@ -378,8 +378,98 @@ function validatePackage3Governance(ctx, findings) {
   }
 }
 
-// Physical-schema / migration leakage: no chapter or register value may contain
-// physical DDL, migration file references, or other implementation artifacts.
+// Package 4 physical-data-model guards (fail closed). Every physical construct
+// must preserve its governed logical provenance and integrity responsibility:
+// a PHYSICAL_RELATION must name a governed logical source, an owning module, and
+// an implementation status; a PHYSICAL_ATTRIBUTE must name a data classification;
+// PRIMARY_KEY / ALTERNATE_KEY / UNIQUE_CONSTRAINT records must name their key
+// columns; a FOREIGN_KEY must name the referenced relation; a COMPOSITE_SCOPE_KEY
+// must name a scope strategy; a CHECK_CONSTRAINT must name a check condition; an
+// INDEX_REQUIREMENT must name an index requirement or index columns; a
+// PARTITION_REQUIREMENT must name a partition strategy or partitioning
+// consideration; a DATABASE_VIEW / MATERIALIZED_PROJECTION must name a governed
+// logical source and a consistency posture (projections are never authoritative);
+// STAGING_RELATION / QUARANTINE_RELATION migration structures must name a source
+// provenance; and AUDIT_RELATION / OUTBOX_RELATION records must name an integrity
+// responsibility. These guards are keyed on the physical catalogue kinds first
+// introduced in Package 4; no frozen prior-package record carries them.
+function validatePackage4Governance(ctx, findings) {
+  for (const r of records(ctx, 'REG-501')) {
+    switch (r.kind) {
+      case 'PHYSICAL_RELATION':
+        if (!r.logical_source) {
+          findings.push(makeFinding(Severity.ERROR, 'RELATION_WITHOUT_LOGICAL_SOURCE', `${r.id}: physical relation names no logical_source`, r.id));
+        }
+        if (!r.owning_module) {
+          findings.push(makeFinding(Severity.ERROR, 'RELATION_WITHOUT_MODULE', `${r.id}: physical relation names no owning_module`, r.id));
+        }
+        if (!r.implementation_status) {
+          findings.push(makeFinding(Severity.ERROR, 'RELATION_WITHOUT_IMPLEMENTATION_STATUS', `${r.id}: physical relation names no implementation_status`, r.id));
+        }
+        break;
+      case 'PHYSICAL_ATTRIBUTE':
+        if (!r.classification) {
+          findings.push(makeFinding(Severity.ERROR, 'ATTRIBUTE_WITHOUT_CLASSIFICATION', `${r.id}: physical attribute names no classification`, r.id));
+        }
+        break;
+      case 'PRIMARY_KEY':
+      case 'ALTERNATE_KEY':
+      case 'UNIQUE_CONSTRAINT':
+        if (!(r.key_columns && r.key_columns.length > 0)) {
+          findings.push(makeFinding(Severity.ERROR, 'KEY_WITHOUT_COLUMNS', `${r.id}: ${r.kind} names no key_columns`, r.id));
+        }
+        break;
+      case 'FOREIGN_KEY':
+        if (!r.referenced_relation) {
+          findings.push(makeFinding(Severity.ERROR, 'FOREIGN_KEY_WITHOUT_REFERENCE', `${r.id}: foreign key names no referenced_relation`, r.id));
+        }
+        break;
+      case 'COMPOSITE_SCOPE_KEY':
+        if (!r.scope_strategy && !(r.key_columns && r.key_columns.length > 0)) {
+          findings.push(makeFinding(Severity.ERROR, 'SCOPE_KEY_WITHOUT_STRATEGY', `${r.id}: composite scope key names no scope_strategy or key_columns`, r.id));
+        }
+        break;
+      case 'CHECK_CONSTRAINT':
+        if (!r.check_condition) {
+          findings.push(makeFinding(Severity.ERROR, 'CHECK_WITHOUT_CONDITION', `${r.id}: check constraint names no check_condition`, r.id));
+        }
+        break;
+      case 'INDEX_REQUIREMENT':
+        if (!r.index_requirement && !(r.index_columns && r.index_columns.length > 0)) {
+          findings.push(makeFinding(Severity.ERROR, 'INDEX_WITHOUT_REQUIREMENT', `${r.id}: index requirement names no index_requirement or index_columns`, r.id));
+        }
+        break;
+      case 'PARTITION_REQUIREMENT':
+        if (!r.partition_strategy && !r.partitioning_consideration) {
+          findings.push(makeFinding(Severity.ERROR, 'PARTITION_WITHOUT_STRATEGY', `${r.id}: partition requirement names no partition_strategy or partitioning_consideration`, r.id));
+        }
+        break;
+      case 'DATABASE_VIEW':
+      case 'MATERIALIZED_PROJECTION':
+        if (!r.logical_source && !r.authoritative_source) {
+          findings.push(makeFinding(Severity.ERROR, 'PROJECTION_WITHOUT_SOURCE', `${r.id}: ${r.kind} names no logical_source or authoritative_source`, r.id));
+        }
+        if (!r.consistency_posture) {
+          findings.push(makeFinding(Severity.ERROR, 'PROJECTION_WITHOUT_CONSISTENCY', `${r.id}: ${r.kind} names no consistency_posture (projections are never authoritative)`, r.id));
+        }
+        break;
+      case 'STAGING_RELATION':
+      case 'QUARANTINE_RELATION':
+        if (!r.logical_source && !r.source_reference) {
+          findings.push(makeFinding(Severity.ERROR, 'MIGRATION_RELATION_WITHOUT_SOURCE', `${r.id}: ${r.kind} names no logical_source or source_reference provenance`, r.id));
+        }
+        break;
+      case 'AUDIT_RELATION':
+      case 'OUTBOX_RELATION':
+        if (!r.integrity_responsibility) {
+          findings.push(makeFinding(Severity.ERROR, 'CONTROL_RELATION_WITHOUT_INTEGRITY', `${r.id}: ${r.kind} names no integrity_responsibility`, r.id));
+        }
+        break;
+      default:
+        break;
+    }
+  }
+}
 function validateNoPhysicalLeakage(ctx, findings) {
   for (const ch of ctx.chapters) {
     for (const p of LEAKAGE_PATTERNS) {
@@ -413,6 +503,7 @@ export function run(ctx) {
   validateGateCorrectness(ctx, findings);
   validateLogicalModel(ctx, findings);
   validatePackage3Governance(ctx, findings);
+  validatePackage4Governance(ctx, findings);
   validateNoPhysicalLeakage(ctx, findings);
   return findings;
 }
