@@ -269,3 +269,83 @@ records:
     conditions:
       - Playbook consolidates the operating model and records downstream matters outside Package 2; no material commitment.
     approved_at: null
+  # ---- Package 2 closure, gate, and freeze ----
+  - id: APP-V3-022
+    artifact_id: V3-B
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 2 closure record ratified; definition-only, no material commitment.
+    approved_at: null
+  - id: APP-V3-023
+    artifact_id: GATE-V3-G2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: SEASONAL_OPERATIONS_FOUNDATION_READY
+    closure_record: V3-B
+    scope:
+      - V3-08
+      - V3-09
+      - V3-10
+      - V3-11
+      - V3-12
+      - V3-13
+      - V3-14
+      - V3-15
+      - V3-16
+    conditions:
+      - "Condition 1: Package 1 freeze provenance distinguishes source snapshot, closure/freeze commit, and merged commit"
+      - "Condition 2: A complete seasonal affiliation operating cycle is defined"
+      - "Condition 3: Recognition, jurisdiction, pathway triage, and case-opening are operationally defined"
+      - "Condition 4: Queue ownership, assignment, reassignment, and handoffs are defined with explicit authority disposition"
+      - "Condition 5: Remediation, exceptions, reconsideration, and corrections are distinguished as distinct categories"
+      - "Condition 6: Financial reconciliation and activation preserve authority boundaries and one-time activation"
+      - "Condition 7: Support and recovery acquire no governed affiliation decision authority"
+      - "Condition 8: Operational quality and assurance controls are defined"
+      - "Condition 9: Capacity and workload assumptions carry no staffing commitment"
+      - "Condition 10: All three affiliation pathways are covered through season closure"
+      - "Condition 11: Unresolved assumptions carry owners and future gates"
+      - "Condition 12: No requirement authorizes implementation or procurement"
+      - "Condition 13: No technical architecture, staffing plan, cost plan, delivery sequence, or master development plan is created"
+      - "Condition 14: Package 2 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit"
+    approved_at: null
+  - id: APP-V3-024
+    artifact_id: PACKAGE-3-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_2_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    amendment_process: >-
+      Changes to frozen Package 2 artifacts require a recorded Volume 3 amendment decision in
+      REG-304 and a superseding approval in REG-305; frozen artifacts are not edited in place.
+    frozen_artifacts:
+      - id: V3-08
+        version: 1.0.0
+      - id: V3-09
+        version: 1.0.0
+      - id: V3-10
+        version: 1.0.0
+      - id: V3-11
+        version: 1.0.0
+      - id: V3-12
+        version: 1.0.0
+      - id: V3-13
+        version: 1.0.0
+      - id: V3-14
+        version: 1.0.0
+      - id: V3-15
+        version: 1.0.0
+      - id: V3-16
+        version: 1.0.0
+      - id: V3-B
+        version: 1.0.0
+    conditions:
+      - Package 2 corpus frozen at version 1.0.0 through a separate freeze commit.
+      - Freeze provenance completed post-merge through the recorded amendment process.
+    approved_at: null
+

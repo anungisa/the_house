@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:14:53.316Z
+Generated: 2026-07-26T12:17:36.457Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T12:14:53.316Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 18 |
+| RATIFIED | 19 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.1.0 | 18 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.1.0 | 19 |
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.1.0 | 16 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.0.0 | 16 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.1.0 | 131 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.1.0 | 4 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.2.0 | 21 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.2.0 | 6 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.2.0 | 24 |
 
 ## Findings by control
 
@@ -92,3 +92,20 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-019 (V3-14): Each control records owner, performer, frequency, evidence, and validation status; no numerical thresholds are invented.
 - APP-V3-020 (V3-15): Capacity inputs and measures are classified; no staffing, headcount, or numeric target is committed.
 - APP-V3-021 (V3-16): Playbook consolidates the operating model and records downstream matters outside Package 2; no material commitment.
+- APP-V3-022 (V3-B): Package 2 closure record ratified; definition-only, no material commitment.
+- APP-V3-023 (GATE-V3-G2): Condition 1: Package 1 freeze provenance distinguishes source snapshot, closure/freeze commit, and merged commit
+- APP-V3-023 (GATE-V3-G2): Condition 2: A complete seasonal affiliation operating cycle is defined
+- APP-V3-023 (GATE-V3-G2): Condition 3: Recognition, jurisdiction, pathway triage, and case-opening are operationally defined
+- APP-V3-023 (GATE-V3-G2): Condition 4: Queue ownership, assignment, reassignment, and handoffs are defined with explicit authority disposition
+- APP-V3-023 (GATE-V3-G2): Condition 5: Remediation, exceptions, reconsideration, and corrections are distinguished as distinct categories
+- APP-V3-023 (GATE-V3-G2): Condition 6: Financial reconciliation and activation preserve authority boundaries and one-time activation
+- APP-V3-023 (GATE-V3-G2): Condition 7: Support and recovery acquire no governed affiliation decision authority
+- APP-V3-023 (GATE-V3-G2): Condition 8: Operational quality and assurance controls are defined
+- APP-V3-023 (GATE-V3-G2): Condition 9: Capacity and workload assumptions carry no staffing commitment
+- APP-V3-023 (GATE-V3-G2): Condition 10: All three affiliation pathways are covered through season closure
+- APP-V3-023 (GATE-V3-G2): Condition 11: Unresolved assumptions carry owners and future gates
+- APP-V3-023 (GATE-V3-G2): Condition 12: No requirement authorizes implementation or procurement
+- APP-V3-023 (GATE-V3-G2): Condition 13: No technical architecture, staffing plan, cost plan, delivery sequence, or master development plan is created
+- APP-V3-023 (GATE-V3-G2): Condition 14: Package 2 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit
+- APP-V3-024 (PACKAGE-3-2): Package 2 corpus frozen at version 1.0.0 through a separate freeze commit.
+- APP-V3-024 (PACKAGE-3-2): Freeze provenance completed post-merge through the recorded amendment process.

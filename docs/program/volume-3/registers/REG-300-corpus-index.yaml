@@ -147,3 +147,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-3/V3-16-seasonal-operating-playbook-and-downstream-constraints.md
     gate: V3-G2
+  - id: V3-B
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-B-package-2-closure-record.md
+    gate: V3-G2
