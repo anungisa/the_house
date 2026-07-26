@@ -314,3 +314,80 @@ records:
       - Records the validation-gate reassignment away from the passed Gate V5-G1.
       - Authorizes no implementation.
     approved_at: null
+  # ==== Package 2: closure, gate disposition, and freeze ====
+  - id: APP-V5-026
+    artifact_id: V5-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-C
+    conditions:
+      - Package 2 closure record consolidates the logical data model and canonical record semantics.
+      - Records Gate V5-G2 disposition and Package 3 authorization.
+      - Records the validation-gate reference correction away from the passed Gate V5-G1.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-027
+    artifact_id: GATE-V5-G2
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: LOGICAL_DATA_MODEL_READY
+    closure_record: V5-C
+    conditions:
+      - Package 1 provenance is unambiguous and preserved.
+      - Package 1 unresolved validations no longer name the completed Gate V5-G1.
+      - The logical model uses governed identity concepts, not physical keys.
+      - Every logical entity names one owning domain, an identity concept, and a lifecycle.
+      - Person, authenticated identity, membership, representative authority, reviewer assignment, and finance authority are distinct facts.
+      - Jurisdiction and season scope is explicit and fail-closed.
+      - Policy and requirement versions and applicability are defined.
+      - The affiliation case, pathway, review, and decision model preserves state as governed records.
+      - Responses, evidence metadata, submission snapshots, and decision records preserve the custody boundary.
+      - Payment acknowledgement and accounting confirmation are distinct and reconciliation requires both.
+      - Approval and activation are distinct governed facts.
+      - Temporal truth, correction by supersession, and audit are preserved.
+      - Logical integrity rules name affected entities, logical conditions, and future verification classes.
+      - Derived data products are non-authoritative and preserve lineage.
+      - No record authorizes implementation.
+      - No physical schema, table, column, index, key, DDL, ORM mapping, or migration is created.
+      - Package 2 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V5-028
+    artifact_id: PACKAGE-5-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-C
+    frozen: true
+    frozen_artifacts:
+      - id: V5-11
+        version: 1.0.0
+      - id: V5-12
+        version: 1.0.0
+      - id: V5-13
+        version: 1.0.0
+      - id: V5-14
+        version: 1.0.0
+      - id: V5-15
+        version: 1.0.0
+      - id: V5-16
+        version: 1.0.0
+      - id: V5-17
+        version: 1.0.0
+      - id: V5-18
+        version: 1.0.0
+      - id: V5-19
+        version: 1.0.0
+      - id: V5-20
+        version: 1.0.0
+      - id: V5-C
+        version: 1.0.0
+    conditions:
+      - Package 2 corpus frozen; changes require the recorded amendment process.
+      - Freeze committed separately from authoring per Gate V5-G2 condition.
+      - Authorizes no implementation.
+    approved_at: null

@@ -1,6 +1,6 @@
 # Volume 5 Package 2 Logical-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:06:56.268Z
+Generated: 2026-07-26T18:07:49.540Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 2 defines LOGICAL data
@@ -31,7 +31,7 @@ Generated: 2026-07-26T18:06:56.268Z
 
 ## Validation-gate correctness
 
-- Completed (passed) gates: V5-G1
+- Completed (passed) gates: V5-G1, V5-G2
 - Backlog items pointing at a completed gate (must be 0): 0
 - Obligations reassigned away from the passed Gate V5-G1: 26
 

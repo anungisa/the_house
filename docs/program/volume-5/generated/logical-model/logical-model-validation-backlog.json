@@ -143,6 +143,7 @@
     }
   ],
   "completed_gates": [
-    "V5-G1"
+    "V5-G1",
+    "V5-G2"
   ]
 }

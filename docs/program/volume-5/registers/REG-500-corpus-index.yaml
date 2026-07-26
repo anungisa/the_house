@@ -187,3 +187,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-20-logical-model-traceability-validation-backlog-and-downstream-constraints.md
     gate: V5-G2
+  - id: V5-C
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-C-package-2-closure-record.md
+    gate: V5-G2

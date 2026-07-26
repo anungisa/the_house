@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:06:56.264Z
+Generated: 2026-07-26T18:07:49.536Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T18:06:56.264Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 23 |
+| RATIFIED | 24 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.2.0 | 23 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.2.0 | 24 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.1.0 | 121 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.1.0 | 52 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.1.0 | 16 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.1.0 | 26 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.2.0 | 25 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.2.0 | 28 |
 
 ## Findings by control
 
@@ -130,3 +130,27 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-025 (V5-20): Logical-model traceability, validation backlog, and downstream constraints defined.
 - APP-V5-025 (V5-20): Records the validation-gate reassignment away from the passed Gate V5-G1.
 - APP-V5-025 (V5-20): Authorizes no implementation.
+- APP-V5-026 (V5-C): Package 2 closure record consolidates the logical data model and canonical record semantics.
+- APP-V5-026 (V5-C): Records Gate V5-G2 disposition and Package 3 authorization.
+- APP-V5-026 (V5-C): Records the validation-gate reference correction away from the passed Gate V5-G1.
+- APP-V5-026 (V5-C): Authorizes no implementation.
+- APP-V5-027 (GATE-V5-G2): Package 1 provenance is unambiguous and preserved.
+- APP-V5-027 (GATE-V5-G2): Package 1 unresolved validations no longer name the completed Gate V5-G1.
+- APP-V5-027 (GATE-V5-G2): The logical model uses governed identity concepts, not physical keys.
+- APP-V5-027 (GATE-V5-G2): Every logical entity names one owning domain, an identity concept, and a lifecycle.
+- APP-V5-027 (GATE-V5-G2): Person, authenticated identity, membership, representative authority, reviewer assignment, and finance authority are distinct facts.
+- APP-V5-027 (GATE-V5-G2): Jurisdiction and season scope is explicit and fail-closed.
+- APP-V5-027 (GATE-V5-G2): Policy and requirement versions and applicability are defined.
+- APP-V5-027 (GATE-V5-G2): The affiliation case, pathway, review, and decision model preserves state as governed records.
+- APP-V5-027 (GATE-V5-G2): Responses, evidence metadata, submission snapshots, and decision records preserve the custody boundary.
+- APP-V5-027 (GATE-V5-G2): Payment acknowledgement and accounting confirmation are distinct and reconciliation requires both.
+- APP-V5-027 (GATE-V5-G2): Approval and activation are distinct governed facts.
+- APP-V5-027 (GATE-V5-G2): Temporal truth, correction by supersession, and audit are preserved.
+- APP-V5-027 (GATE-V5-G2): Logical integrity rules name affected entities, logical conditions, and future verification classes.
+- APP-V5-027 (GATE-V5-G2): Derived data products are non-authoritative and preserve lineage.
+- APP-V5-027 (GATE-V5-G2): No record authorizes implementation.
+- APP-V5-027 (GATE-V5-G2): No physical schema, table, column, index, key, DDL, ORM mapping, or migration is created.
+- APP-V5-027 (GATE-V5-G2): Package 2 receives line-level review and a separate freeze commit.
+- APP-V5-028 (PACKAGE-5-2): Package 2 corpus frozen; changes require the recorded amendment process.
+- APP-V5-028 (PACKAGE-5-2): Freeze committed separately from authoring per Gate V5-G2 condition.
+- APP-V5-028 (PACKAGE-5-2): Authorizes no implementation.
