@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.10.1
+version: 1.10.2
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -829,8 +829,62 @@ records:
       - "Whole-volume freeze base commit: 60f652a; closure/freeze commit 4219c33; merged commit f4c6c55 (recorded by narrow post-merge amendment)"
       - "Frozen: V2-00 through V2-33; V2-A through V2-E; REG-200 through REG-205; schemas and governance controls"
       - "Generated traceability outputs are frozen as non-authoritative projections; registers and chapters remain authoritative"
-      - "Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.0) is preserved unchanged"
+      - "Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.1) is preserved unchanged; the immutable central-registration-volume-1-v1.0.0 tag remains the original, uncorrected Volume 1 release (release-provenance correction: DEC-V2-031, APP-V2-051)"
       - Two distinct freeze approvals recorded (PACKAGE-2-5 APP-V2-049 and VOLUME-2 APP-V2-050)
       - Product-and-service definition only; implementation, procurement, architecture, delivery, staffing, and cost plans unauthorized; not a master development plan
       - Volume 3 authorized as definition work only (DEC-V2-029); executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
+    approved_at: null
+  - id: APP-V2-051
+    artifact_id: VOLUME-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: PRODUCT_AND_SERVICE_DEFINITION_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    base_commit: "6e4908b"
+    supersedes: >-
+      APP-V2-050 release-provenance detail that (a) referenced the inherited Volume 1
+      baseline by the wrong tag (central-registration-volume-1-v1.0.0) instead of the
+      corrected v1.0.1 baseline tag (central-registration-volume-1-v1.0.1), and (b)
+      collapsed the original Package 5 merge and the final Volume 2 release merge into a
+      single merged_commit. This record distinguishes those provenance roles and corrects
+      the inherited-baseline tag. It preserves all substantive Volume 2 content, the frozen
+      artifact set of APP-V2-050, and Gate V2-G5 (PASS); see DEC-V2-031. The immutable
+      central-registration-volume-1-v1.0.0 and central-registration-volume-2-v1.0.0 tags are
+      not moved.
+    package_provenance:
+      source_snapshot_commit: "60f652a"
+      closure_freeze_commit: "4219c33"
+      original_package_merge_commit: "f4c6c55"
+      provenance_amendment_commit: "852ef29"
+      release_merge_commit: "6e4908b"
+      release_tag: "central-registration-volume-2-v1.0.1"
+      inherited_baseline_tag: "central-registration-volume-1-v1.0.1"
+      note: >-
+        Machine-readable release provenance for the Volume 2 baseline, distinguishing each
+        role: source snapshot 60f652a (Package 5 authoring); closure/freeze commit 4219c33
+        (Package 5 and Volume 2 closure and freeze records); original package merge f4c6c55
+        (merge of Package 5 into main via PR #13); provenance-amendment commit 852ef29 (the
+        freeze-provenance completion under DEC-V2-030); and final release merge 6e4908b (the
+        released repository state). The original release tag central-registration-volume-2-v1.0.0
+        remains immutable on 6e4908b; the corrected release tag central-registration-volume-2-v1.0.1
+        marks this release-provenance correction. The inherited Volume 1 baseline is the corrected
+        v1.0.1 release (tag central-registration-volume-1-v1.0.1); the immutable
+        central-registration-volume-1-v1.0.0 tag remains the original, uncorrected Volume 1
+        release and is not the baseline inherited by Volume 2. Recorded self-attested /
+        author-verified.
+    amendment_process: >-
+      Release-provenance metadata correction only. It records provenance roles and corrects an
+      inherited-baseline tag reference; it does not reopen, re-ratify, or alter any substantive
+      Volume 2 chapter, requirement, measure, decision, or gate disposition. Frozen Volume 2
+      artifacts remain unedited in place; the authoritative correction is recorded here in
+      REG-205 with decision DEC-V2-031.
+    conditions:
+      - "Inherited Volume 1 baseline corrected to tag central-registration-volume-1-v1.0.1 (v1.0.1); immutable v1.0.0 tag unchanged"
+      - "Provenance roles distinguished: source 60f652a; closure/freeze 4219c33; original package merge f4c6c55; provenance amendment 852ef29; final release merge 6e4908b"
+      - "Original release tag central-registration-volume-2-v1.0.0 preserved immutable; corrected release tag central-registration-volume-2-v1.0.1 published on the release-provenance-correction merge"
+      - Gate V2-G5 PASS preserved; all substantive Volume 2 findings, requirements, and the APP-V2-050 frozen artifact set preserved unchanged
+      - Metadata correction only; implementation, procurement, architecture, delivery, staffing, and cost plans remain unauthorized; not a master development plan
+      - Volume 3 authorization (DEC-V2-029) unchanged; executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
     approved_at: null
