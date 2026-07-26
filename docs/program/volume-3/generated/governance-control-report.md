@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:52:00.811Z
+Generated: 2026-07-26T13:12:33.766Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T12:52:00.811Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 29 |
+| RATIFIED | 39 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.3.0 | 29 |
-| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.2.0 | 25 |
-| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.1.0 | 19 |
-| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.2.0 | 211 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.5.0 | 10 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.6.0 | 38 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.5.0 | 39 |
+| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.3.0 | 34 |
+| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.2.0 | 20 |
+| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.3.0 | 287 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.6.0 | 12 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.8.0 | 50 |
 
 ## Findings by control
 
@@ -140,3 +140,31 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-037 (PACKAGE-3-3): Freeze provenance completed post-merge through the recorded amendment process.
 - APP-V3-038 (PACKAGE-3-3): Package 3 freeze provenance completed post-merge; source snapshot cfeda60, closure/freeze 3bdc6eb, merged 386b15c.
 - APP-V3-038 (PACKAGE-3-3): Gate V3-G3 and V3-C are preserved; no substantive Package 3 content is reopened.
+- APP-V3-039 (V3-26): Service-delivery coverage defined; no business hours, service levels, named employees, or headcount asserted.
+- APP-V3-040 (V3-27): Role archetypes and capacity model defined; no permanent staff, named individuals, or headcount assigned.
+- APP-V3-041 (V3-28): Sourcing model preserves retained authority; no vendor selection, procurement, or unverified provider capability.
+- APP-V3-042 (V3-29): Economic model records hypotheses only; no approved fee, charge, margin, revenue, or budget.
+- APP-V3-043 (V3-30): Training defined as enablement design; no final curriculum and no governed decision authority conferred.
+- APP-V3-044 (V3-31): Onboarding readiness defined with entry and exit criteria; no rollout dates, geographic sequence, or waves.
+- APP-V3-045 (V3-32): Pilot evidence and scale-decision criteria defined; no pilot, launch, rollout, or implementation authorized.
+- APP-V3-046 (V3-33): Material-commitment decision inputs defined; assembling the package does not constitute executive acceptance.
+- APP-V3-047 (V3-34): Playbook consolidates the capacity and readiness model and records explicit exclusions of material commitment.
+- APP-V3-048 (V3-D): Package 4 closure record ratified; records inherited baseline, gate, freeze, and Package 5 authorization only.
+- APP-V3-049 (GATE-V3-G4): Package 3 provenance is unambiguous.
+- APP-V3-049 (GATE-V3-G4): The service-delivery and operating-coverage model is defined.
+- APP-V3-049 (GATE-V3-G4): Role archetypes and competency requirements are defined without staffing commitments.
+- APP-V3-049 (GATE-V3-G4): Workload and capacity drivers are defined without headcount commitments.
+- APP-V3-049 (GATE-V3-G4): Sourcing classifications preserve retained Curling Canada authority.
+- APP-V3-049 (GATE-V3-G4): External-provider assumptions remain contractually unvalidated where appropriate.
+- APP-V3-049 (GATE-V3-G4): Cost and funding drivers are represented without fabricated amounts.
+- APP-V3-049 (GATE-V3-G4): Training, competency, and adoption responsibilities are defined.
+- APP-V3-049 (GATE-V3-G4): Jurisdictional and club onboarding-readiness conditions are defined.
+- APP-V3-049 (GATE-V3-G4): Pilot and operating-validation evidence requirements are defined without authorizing execution.
+- APP-V3-049 (GATE-V3-G4): Material-commitment decision inputs are defined without claiming executive acceptance.
+- APP-V3-049 (GATE-V3-G4): Unresolved capacity, financial, sourcing, and readiness assumptions have owners and future gates.
+- APP-V3-049 (GATE-V3-G4): No requirement authorizes implementation or procurement.
+- APP-V3-049 (GATE-V3-G4): No staffing plan, cost plan, vendor selection, rollout sequence, technical architecture, or master development plan is created.
+- APP-V3-049 (GATE-V3-G4): Package 4 receives line-level review and a separate freeze commit.
+- APP-V3-050 (PACKAGE-3-4): Package 4 is frozen at version 1.0.0 through a separate freeze commit.
+- APP-V3-050 (PACKAGE-3-4): Gate V3-G4 disposition is OPERATING_CAPACITY_AND_READINESS_DEFINED.
+- APP-V3-050 (PACKAGE-3-4): Freeze provenance is completed post-merge without reopening Package 4 content.
