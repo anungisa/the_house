@@ -511,4 +511,81 @@ records:
       - Records that no active protection-register record references a completed gate; closes no validation item and authorizes no implementation.
     approved_at: null
 
+  # ==== Package 3: closure, gate disposition, and freeze ====
+  - id: APP-V6-040
+    artifact_id: V6-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 3 closure record consolidates the compliance, accessibility, bilingual-equivalence, and inclusive-service control model.
+      - Records Gate V6-G3 disposition, the completed-gate reference review, the approval-count review result, and Package 4 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-041
+    artifact_id: GATE-V6-G3
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: COMPLIANCE_ACCESSIBILITY_AND_INCLUSIVE_SERVICE_CONTROL_MODEL_READY
+    closure_record: V6-E
+    conditions:
+      - The frozen Package 2 identity, authorization, privacy, and data-protection control model and its Gate V6-G2 disposition are inherited.
+      - The compliance applicability model is defined.
+      - The obligation-source families and authority model are defined and applicability requires evidence.
+      - Policy, control, evidence, exception, and assurance are mapped and no executable policy is written and no exception is granted.
+      - Records controls define a records authority with retention, legal-hold, archival, and disposition requirements and set no retention period.
+      - Legal hold supersedes disposition.
+      - Financial and affiliation authority are separated with segregation of duties and required approval and no funds are moved.
+      - Accessibility is defined by user need and workflow with a verification method and no interface is built.
+      - Accessible content, forms, documents, and evidence carry alternative representations and no content is authored.
+      - Bilingual equivalence is semantic and language-neutral with controlled terminology and no production translation is written.
+      - Inclusive-service accommodation and support preserve equivalent outcomes with governed exception paths and no accommodation is granted.
+      - Verification, defect classification, remediation, and retest are defined and no verification is run.
+      - Conformance claims require evidence and no conformance is claimed.
+      - Every control objective carries an owner, required evidence, and a future blocking gate.
+      - No record authorizes implementation and every record is not-implemented or not-proven.
+      - No executable compliance, records, retention, disposition, financial, accessibility, content, translation, accommodation, verification, or remediation artifact is created.
+      - No legal conclusion, conformance, operational proof, or independent assurance is claimed.
+      - Package 3 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V6-042
+    artifact_id: PACKAGE-6-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-E
+    frozen: true
+    frozen_artifacts:
+      - id: V6-21
+        version: 1.0.0
+      - id: V6-22
+        version: 1.0.0
+      - id: V6-23
+        version: 1.0.0
+      - id: V6-24
+        version: 1.0.0
+      - id: V6-25
+        version: 1.0.0
+      - id: V6-26
+        version: 1.0.0
+      - id: V6-27
+        version: 1.0.0
+      - id: V6-28
+        version: 1.0.0
+      - id: V6-29
+        version: 1.0.0
+      - id: V6-30
+        version: 1.0.0
+      - id: V6-E
+        version: 1.0.0
+    conditions:
+      - Package 3 (PACKAGE-6-3) is frozen at version 1.0.0 across all deliverables.
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null
+
 

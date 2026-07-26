@@ -283,3 +283,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-30-package-3-compliance-and-inclusive-service-traceability-assessment.md
     gate: V6-G3
+  - id: V6-E
+    title: Package 3 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-E-package-3-closure-record.md
+    gate: V6-G3
