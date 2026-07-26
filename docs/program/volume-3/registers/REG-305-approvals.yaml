@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.8.0
+version: 1.9.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -769,5 +769,53 @@ records:
       - Package 4 is frozen at version 1.0.0 through a separate freeze commit.
       - Gate V3-G4 disposition is OPERATING_CAPACITY_AND_READINESS_DEFINED.
       - Freeze provenance is completed post-merge without reopening Package 4 content.
+    approved_at: null
+  - id: APP-V3-051
+    artifact_id: PACKAGE-3-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_4_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    supersedes: >-
+      APP-V3-050 (post-merge freeze-provenance completion; the original freeze approval was
+      ratified at freeze time and could not record the merged commit; see REG-304 DEC-V3-013).
+      APP-V3-050 remains the original freeze record and is not reopened; Gate V3-G4 (APP-V3-049)
+      and V3-D are preserved.
+    package_provenance:
+      source_snapshot_commit: "e9fae6f"
+      closure_freeze_commit: "125a49b"
+      merged_commit: "10179bf"
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      note: >-
+        Package 4 authoring and register expansion were snapshotted at e9fae6f; the V3-D
+        closure, Gate V3-G4 disposition, and Package 4 freeze were recorded in the separate
+        freeze commit 125a49b; the branch merged to main as 10179bf. Evidence posture:
+        SELF_ATTESTED_AUTHOR_VERIFIED.
+    frozen_artifacts:
+      - id: V3-26
+        version: 1.0.0
+      - id: V3-27
+        version: 1.0.0
+      - id: V3-28
+        version: 1.0.0
+      - id: V3-29
+        version: 1.0.0
+      - id: V3-30
+        version: 1.0.0
+      - id: V3-31
+        version: 1.0.0
+      - id: V3-32
+        version: 1.0.0
+      - id: V3-33
+        version: 1.0.0
+      - id: V3-34
+        version: 1.0.0
+      - id: V3-D
+        version: 1.0.0
+    conditions:
+      - Package 4 freeze provenance completed post-merge; source snapshot e9fae6f, closure/freeze 125a49b, merged 10179bf.
+      - Gate V3-G4 and V3-D are preserved; no substantive Package 4 content is reopened.
     approved_at: null
 

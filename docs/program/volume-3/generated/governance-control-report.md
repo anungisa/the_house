@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T13:12:33.766Z
+Generated: 2026-07-26T13:16:21.431Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -38,8 +38,8 @@ Generated: 2026-07-26T13:12:33.766Z
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.3.0 | 34 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.2.0 | 20 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.3.0 | 287 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.6.0 | 12 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.8.0 | 50 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.7.0 | 13 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.9.0 | 51 |
 
 ## Findings by control
 
@@ -168,3 +168,5 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-050 (PACKAGE-3-4): Package 4 is frozen at version 1.0.0 through a separate freeze commit.
 - APP-V3-050 (PACKAGE-3-4): Gate V3-G4 disposition is OPERATING_CAPACITY_AND_READINESS_DEFINED.
 - APP-V3-050 (PACKAGE-3-4): Freeze provenance is completed post-merge without reopening Package 4 content.
+- APP-V3-051 (PACKAGE-3-4): Package 4 freeze provenance completed post-merge; source snapshot e9fae6f, closure/freeze 125a49b, merged 10179bf.
+- APP-V3-051 (PACKAGE-3-4): Gate V3-G4 and V3-D are preserved; no substantive Package 4 content is reopened.
