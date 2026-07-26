@@ -1,0 +1,33 @@
+{
+  "total": 4,
+  "controls": [
+    {
+      "id": "A11Y-V6-001",
+      "user_need": "Users with disabilities can perceive and operate the service.",
+      "affected_workflow": "All user-facing governed workflows",
+      "protected_asset_or_right": "RIGHT-V6-005"
+    },
+    {
+      "id": "A11Y-V6-002",
+      "user_need": "Users relying on assistive technology can complete governed workflows.",
+      "affected_workflow": "All user-facing governed workflows",
+      "protected_asset_or_right": "RIGHT-V6-005"
+    },
+    {
+      "id": "A11Y-V6-003",
+      "user_need": "Users with disabilities and users relying on assistive technology can complete governed workflows.",
+      "affected_workflow": "All governed user-facing workflows",
+      "protected_asset_or_right": "RIGHT-V6-006"
+    },
+    {
+      "id": "A11Y-V6-004",
+      "user_need": "Users can perceive and use forms, documents, and communications.",
+      "affected_workflow": "Content-bearing governed workflows",
+      "protected_asset_or_right": "RIGHT-V6-006"
+    }
+  ],
+  "without_verification_method": [],
+  "without_user_need": [],
+  "without_affected_workflow": [],
+  "with_unresolved_protected_ref": []
+}

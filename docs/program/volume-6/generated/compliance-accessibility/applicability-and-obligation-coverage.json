@@ -1,0 +1,21 @@
+{
+  "compliance_obligations": 7,
+  "by_source_type": {
+    "Statutory (privacy law)": 1,
+    "Policy and statutory (records)": 1,
+    "Statutory (accessibility)": 1,
+    "ORGANIZATIONAL_POLICY": 1,
+    "RECORDS_MANAGEMENT": 1,
+    "FINANCIAL_CONTROL": 1,
+    "OFFICIAL_LANGUAGE_OR_BILINGUAL_SERVICE": 1
+  },
+  "by_applicability_status": {
+    "LEGAL_VALIDATION_PENDING": 3,
+    "POLICY_VALIDATION_PENDING": 4
+  },
+  "obligations_without_authority_owner": [],
+  "obligations_without_applicability": [],
+  "obligations_with_unresolved_control_ref": [],
+  "obligations_without_required_evidence": [],
+  "obligations_without_gate": []
+}

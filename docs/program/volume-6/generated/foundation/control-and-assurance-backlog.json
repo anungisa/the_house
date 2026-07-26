@@ -1,17 +1,19 @@
 {
-  "control_objectives": 35,
-  "assurance_requirements": 4,
-  "validation_backlog": 9,
+  "control_objectives": 44,
+  "assurance_requirements": 8,
+  "validation_backlog": 13,
   "assurance_by_classification": {
     "INDEPENDENT_ASSURANCE_REQUIRED": 2,
     "PRIVACY_VALIDATION_PENDING": 1,
-    "ACCESSIBILITY_VALIDATION_PENDING": 1
+    "ACCESSIBILITY_VALIDATION_PENDING": 2,
+    "POLICY_VALIDATION_PENDING": 2,
+    "BILINGUAL_VALIDATION_PENDING": 1
   },
   "backlog_by_kind": {
-    "ASM": 4,
-    "RISK": 4,
+    "ASM": 6,
+    "RISK": 8,
     "EXC": 1,
-    "TEST": 9
+    "TEST": 13
   },
   "controls_without_owner": [],
   "controls_without_evidence": [],

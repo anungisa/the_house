@@ -275,3 +275,159 @@ records:
     traces_to:
       - CTRL-V6-027
       - CTRL-V6-028
+
+  # ==== Package 3 assumptions ====
+  - id: ASM-V6-005
+    kind: ASM
+    title: A validated records authority will be appointed
+    owner: Data Governance Steward
+    statement: Volume 6 assumes a validated records authority will be appointed to own retention, legal-hold, and disposition schedules in a later volume.
+    confidence: MEDIUM
+    target_package_or_volume: Volume 11+ records governance
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - CTRL-V6-037
+  - id: ASM-V6-006
+    kind: ASM
+    title: Accessibility and bilingual conformance are achievable in delivery
+    owner: Accessibility Steward
+    statement: Volume 6 assumes accessibility conformance and bilingual semantic equivalence can be achieved and independently verified in a later delivery volume.
+    confidence: LOW
+    target_package_or_volume: Volume 11+ delivery
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - A11Y-V6-003
+
+  # ==== Package 3 risks ====
+  - id: RISK-V6-005
+    kind: RISK
+    title: Compliance applicability unvalidated
+    owner: Compliance Steward
+    statement: The applicability of organizational-policy, records, financial-control, and official-language obligations is not yet validated by the accountable authority.
+    assurance_classification: POLICY_VALIDATION_PENDING
+    current_evidence: PENDING (applicability assessment)
+    required_evidence: PENDING (validated applicability determination)
+    implementation_implication: Reliance on compliance obligations is blocked until applicability is validated.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-21
+    traces_to:
+      - COMP-V6-004
+  - id: RISK-V6-006
+    kind: RISK
+    title: Records authority and retention schedule undefined
+    owner: Data Governance Steward
+    statement: No records authority, retention schedule, or disposition schedule has been validated, so records-management reliance remains unproven.
+    assurance_classification: POLICY_VALIDATION_PENDING
+    current_evidence: PENDING (records control defined only)
+    required_evidence: PENDING (records authority and validated schedules)
+    implementation_implication: Retention, archival, and disposition are blocked until the records authority and schedules are validated.
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - CTRL-V6-037
+  - id: RISK-V6-007
+    kind: RISK
+    title: Accessibility conformance unproven
+    owner: Accessibility Steward
+    statement: Accessibility conformance of governed workflows, content, and documents is defined but not implemented, tested, or independently verified.
+    assurance_classification: ACCESSIBILITY_VALIDATION_PENDING
+    current_evidence: PENDING (accessibility obligations defined only)
+    required_evidence: PENDING (independent accessibility conformance evidence)
+    implementation_implication: Accessibility reliance is blocked until conformance is verified.
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - A11Y-V6-003
+  - id: RISK-V6-008
+    kind: RISK
+    title: Bilingual equivalence unverified
+    owner: Bilingual-Service Steward
+    statement: Bilingual semantic equivalence of governed content and terminology is defined but not verified.
+    assurance_classification: BILINGUAL_VALIDATION_PENDING
+    current_evidence: PENDING (bilingual obligations defined only)
+    required_evidence: PENDING (independent bilingual-equivalence evidence)
+    implementation_implication: Bilingual-service reliance is blocked until equivalence is verified.
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - BIL-V6-003
+
+  # ==== Package 3 validation backlog ====
+  - id: TEST-V6-010
+    kind: TEST
+    title: Compliance applicability and records validation
+    owner: Compliance Steward
+    statement: Future validation must confirm compliance applicability and the records authority, retention, legal-hold, and disposition schedules.
+    future_test_class: Compliance validation
+    target_package_or_volume: Volume 11+ records and compliance
+    future_blocking_gate: V11-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - COMP-V6-004
+      - CTRL-V6-037
+  - id: TEST-V6-011
+    kind: TEST
+    title: Financial segregation-of-duties validation
+    owner: Finance Authority
+    statement: Future validation must prove financial and affiliation authority are segregated and that a required independent approval precedes financially relevant outcomes.
+    future_test_class: Financial-control validation
+    target_package_or_volume: Volume 9+ financial control
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - CTRL-V6-041
+  - id: TEST-V6-012
+    kind: TEST
+    title: Accessibility, content, and bilingual verification and remediation
+    owner: Accessibility Steward
+    statement: Future validation must prove accessibility conformance, content and document accessibility, and bilingual equivalence, with defect remediation and passing retest.
+    future_test_class: Accessibility and bilingual validation
+    target_package_or_volume: Volume 11+ delivery
+    future_blocking_gate: V11-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - A11Y-V6-003
+      - BIL-V6-003
+      - CTRL-V6-044
+  - id: TEST-V6-013
+    kind: TEST
+    title: Inclusive-service accommodation validation
+    owner: Inclusive-Service Steward
+    statement: Future validation must prove accommodations preserve equivalent governed outcomes and that support operates under minimum-necessary information without prohibited inference.
+    future_test_class: Inclusive-service validation
+    target_package_or_volume: Volume 11+ delivery
+    future_blocking_gate: V11-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - CTRL-V6-042
+      - CTRL-V6-043

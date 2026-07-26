@@ -126,6 +126,32 @@
         "EXCEPTION_AND_RECOVERY",
         "ACCESSIBILITY",
         "BILINGUAL_EQUIVALENCE",
+        "GOVERNANCE_APPROVAL",
+        "COMPLIANCE_APPLICABILITY",
+        "RECORDS_MANAGEMENT",
+        "RETENTION_AND_DISPOSITION",
+        "LEGAL_HOLD",
+        "FINANCIAL_CONTROL",
+        "SEGREGATION_OF_DUTIES",
+        "ACCOMMODATION",
+        "INCLUSIVE_SERVICE",
+        "VERIFICATION_AND_REMEDIATION"
+      ]
+    },
+    "obligationSourceType": {
+      "type": "string",
+      "enum": [
+        "ORGANIZATIONAL_POLICY",
+        "PRIVACY",
+        "INFORMATION_SECURITY",
+        "RECORDS_MANAGEMENT",
+        "FINANCIAL_CONTROL",
+        "ACCESSIBILITY",
+        "OFFICIAL_LANGUAGE_OR_BILINGUAL_SERVICE",
+        "CONTRACTUAL",
+        "AUDIT_AND_ASSURANCE",
+        "INCIDENT_AND_BREACH",
+        "CONTINUITY_AND_RECOVERY",
         "GOVERNANCE_APPROVAL"
       ]
     },

@@ -203,3 +203,83 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-D-package-2-provenance-amendment.md
     gate: V6-G2
+  - id: V6-21
+    title: Compliance Applicability, Obligation Sources, and Authority Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-21-compliance-applicability-obligation-sources-and-authority-model.md
+    gate: V6-G3
+  - id: V6-22
+    title: Policy, Control, Evidence, Exception, and Assurance Mapping
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-22-policy-control-evidence-exception-and-assurance-mapping.md
+    gate: V6-G3
+  - id: V6-23
+    title: Records, Retention, Legal-Hold, Archival, and Disposition Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-23-records-retention-legal-hold-archival-and-disposition-controls.md
+    gate: V6-G3
+  - id: V6-24
+    title: Financial, Decision, Auditability, and Segregation-of-Duties Compliance Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-24-financial-decision-auditability-and-segregation-of-duties-compliance-controls.md
+    gate: V6-G3
+  - id: V6-25
+    title: Accessibility Requirement, User-Need, and Workflow Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-25-accessibility-requirement-user-need-and-workflow-model.md
+    gate: V6-G3
+  - id: V6-26
+    title: Accessible Content, Forms, Documents, Evidence, and Communication Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-26-accessible-content-forms-documents-evidence-and-communication-controls.md
+    gate: V6-G3
+  - id: V6-27
+    title: Bilingual Equivalence, Controlled Terminology, and Language-Governance Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-27-bilingual-equivalence-controlled-terminology-and-language-governance-controls.md
+    gate: V6-G3
+  - id: V6-28
+    title: Inclusive Service, Accommodation, Support, and Exception-Path Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-28-inclusive-service-accommodation-support-and-exception-path-controls.md
+    gate: V6-G3
+  - id: V6-29
+    title: Compliance, Accessibility, and Bilingual Verification and Remediation Evidence
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-29-compliance-accessibility-and-bilingual-verification-and-remediation-evidence.md
+    gate: V6-G3
+  - id: V6-30
+    title: Package 3 Compliance and Inclusive-Service Traceability Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-30-package-3-compliance-and-inclusive-service-traceability-assessment.md
+    gate: V6-G3

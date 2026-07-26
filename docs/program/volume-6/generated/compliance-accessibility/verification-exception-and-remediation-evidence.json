@@ -1,0 +1,21 @@
+{
+  "verification_controls": 1,
+  "controls": [
+    {
+      "id": "CTRL-V6-044",
+      "control_family": "VERIFICATION_AND_REMEDIATION",
+      "protected_asset_or_right": "RIGHT-V6-006",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "verification_controls_without_retest": [],
+  "assurance_requirements": 8,
+  "by_assurance_classification": {
+    "INDEPENDENT_ASSURANCE_REQUIRED": 2,
+    "PRIVACY_VALIDATION_PENDING": 1,
+    "ACCESSIBILITY_VALIDATION_PENDING": 2,
+    "POLICY_VALIDATION_PENDING": 2,
+    "BILINGUAL_VALIDATION_PENDING": 1
+  },
+  "assurance_without_required_evidence": []
+}

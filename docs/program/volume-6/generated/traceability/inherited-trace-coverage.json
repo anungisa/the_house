@@ -326,6 +326,133 @@
     ]
   },
   {
+    "id": "ASSET-V6-011",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-023"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-012",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-015"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-013",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-020"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-014",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-020"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-015",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-010"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-016",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-020"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "RIGHT-V6-006",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "DOMAIN-V5-020"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "RIGHT-V6-007",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "DOMAIN-V5-020"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "THREAT-V6-009",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-006",
+      "BOUNDARY-V6-001"
+    ]
+  },
+  {
+    "id": "THREAT-V6-010",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-016",
+      "BOUNDARY-V6-001"
+    ]
+  },
+  {
+    "id": "THREAT-V6-011",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-015",
+      "BOUNDARY-V6-003"
+    ]
+  },
+  {
+    "id": "THREAT-V6-012",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-007",
+      "BOUNDARY-V6-001"
+    ]
+  },
+  {
+    "id": "THREAT-V6-013",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-013",
+      "BOUNDARY-V6-004"
+    ]
+  },
+  {
+    "id": "THREAT-V6-014",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-011",
+      "BOUNDARY-V6-002"
+    ]
+  },
+  {
+    "id": "THREAT-V6-015",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-012",
+      "BOUNDARY-V6-004"
+    ]
+  },
+  {
     "id": "CTRL-V6-001",
     "kind": "CONTROL_OBJECTIVE",
     "traces_to_inherited": [],
@@ -793,6 +920,190 @@
     "traces_to_inherited": [],
     "traces_to_local": [
       "THREAT-V6-004"
+    ]
+  },
+  {
+    "id": "CTRL-V6-036",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-001"
+    ]
+  },
+  {
+    "id": "CTRL-V6-037",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-011"
+    ]
+  },
+  {
+    "id": "CTRL-V6-038",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-011"
+    ]
+  },
+  {
+    "id": "CTRL-V6-039",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-011"
+    ]
+  },
+  {
+    "id": "CTRL-V6-040",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-012"
+    ]
+  },
+  {
+    "id": "CTRL-V6-041",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-012"
+    ]
+  },
+  {
+    "id": "CTRL-V6-042",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-007"
+    ]
+  },
+  {
+    "id": "CTRL-V6-043",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-007"
+    ]
+  },
+  {
+    "id": "CTRL-V6-044",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-006"
+    ]
+  },
+  {
+    "id": "COMP-V6-004",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-036"
+    ]
+  },
+  {
+    "id": "COMP-V6-005",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-037"
+    ]
+  },
+  {
+    "id": "COMP-V6-006",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-040"
+    ]
+  },
+  {
+    "id": "COMP-V6-007",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "OBL-V6-006",
+    "kind": "OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-014"
+    ]
+  },
+  {
+    "id": "OBL-V6-007",
+    "kind": "OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-014"
+    ]
+  },
+  {
+    "id": "A11Y-V6-003",
+    "kind": "ACCESSIBILITY_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-006"
+    ]
+  },
+  {
+    "id": "A11Y-V6-004",
+    "kind": "ACCESSIBILITY_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-006"
+    ]
+  },
+  {
+    "id": "BIL-V6-003",
+    "kind": "BILINGUAL_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "BIL-V6-004",
+    "kind": "BILINGUAL_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "ASSR-V6-005",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "COMP-V6-004"
+    ]
+  },
+  {
+    "id": "ASSR-V6-006",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-037"
+    ]
+  },
+  {
+    "id": "ASSR-V6-007",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "A11Y-V6-003"
+    ]
+  },
+  {
+    "id": "ASSR-V6-008",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "BIL-V6-003"
     ]
   }
 ]

@@ -1,0 +1,23 @@
+{
+  "total": 2,
+  "by_control_family": {
+    "ACCOMMODATION": 1,
+    "INCLUSIVE_SERVICE": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-042",
+      "control_family": "ACCOMMODATION",
+      "protected_asset_or_right": "RIGHT-V6-007",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "CTRL-V6-043",
+      "control_family": "INCLUSIVE_SERVICE",
+      "protected_asset_or_right": "RIGHT-V6-007",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "accommodation_controls_without_equivalent_outcome": [],
+  "controls_with_unresolved_protected_ref": []
+}
