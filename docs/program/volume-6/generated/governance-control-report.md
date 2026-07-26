@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:54:18.688Z
+Generated: 2026-07-26T21:59:19.128Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-26T21:54:18.688Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 24 |
+| RATIFIED | 25 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 24 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 25 |
 | REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 41 |
 | REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 59 |
 | REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 19 |
 | REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 18 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 28 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 29 |
 
 ## Findings by control
 
@@ -152,3 +152,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-028 (PACKAGE-6-2): Package 2 (PACKAGE-6-2) is frozen at version 1.0.0 across all deliverables.
 - APP-V6-028 (PACKAGE-6-2): After freeze, changes require the recorded amendment process (V6-00.5).
 - APP-V6-028 (PACKAGE-6-2): The freeze is committed separately from authoring.
+- APP-V6-029 (V6-D): Completes machine-readable Package 2 provenance after mainline merge.
+- APP-V6-029 (V6-D): Preserves the Gate V6-G2 disposition and the PACKAGE-6-2 freeze.
+- APP-V6-029 (V6-D): Reopens no substantive Package 2 content and authorizes no implementation.
