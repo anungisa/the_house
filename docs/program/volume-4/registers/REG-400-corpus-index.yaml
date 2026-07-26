@@ -1,7 +1,7 @@
 register_id: REG-400
 name: Volume 4 Corpus Index
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: V4-00
     title: Volume 4 Control, Inheritance, and Architecture Authority
@@ -170,4 +170,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-4/V4-18-architecture-verification-fitness-functions-and-implementation-readiness-criteria.md
+    gate: V4-G2
+  - id: V4-C
+    title: "Package 2 Closure Record - Affiliation Domain and Application Architecture"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-C-package-2-closure-record.md
     gate: V4-G2

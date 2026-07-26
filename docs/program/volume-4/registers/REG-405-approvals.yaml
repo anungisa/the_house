@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -286,4 +286,78 @@ records:
     conditions:
       - Architecture verification, fitness functions, and implementation-readiness criteria ratified.
       - House P0 findings mapped to defined verifications; all verifications remain DEFINED_NOT_IMPLEMENTED.
+    approved_at: null
+  - id: APP-V4-024
+    artifact_id: V4-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-C
+    conditions:
+      - Package 2 closure record ratified as architecture definition only.
+      - Consolidates V4-10..V4-18; claims no implemented architecture; authorizes no implementation.
+    approved_at: null
+  - id: APP-V4-025
+    artifact_id: GATE-V4-G2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: DOMAIN_AND_APPLICATION_ARCHITECTURE_READY
+    closure_record: V4-C
+    scope: [V4-10, V4-11, V4-12, V4-13, V4-14, V4-15, V4-16, V4-17, V4-18]
+    conditions:
+      - Package 1 provenance is unambiguous.
+      - Application layers and dependency directions are controlled.
+      - Core domain modules, ownership, and transaction responsibilities are defined.
+      - Organization, jurisdiction, season, and affiliation invariants are defined.
+      - Versioned requirements, evidence binding, derived completeness, submission, return, and resubmission are architecturally defined.
+      - Review, decision, reconciliation, activation, correction, expiry, and closure transitions are defined.
+      - Principal application services have authorization, transaction, idempotency, audit, and error semantics.
+      - Authorization incorporates identity, resource, jurisdiction, assignment, action, lifecycle, and evidence sensitivity.
+      - Transaction, outbox, projection, retry, and recovery boundaries are defined.
+      - Authoritative activation is protected against duplicate effects.
+      - Production composition and configuration fail closed.
+      - Required integrations cannot silently resolve to production no-ops.
+      - Architecture verification covers the known House P0 findings.
+      - Unresolved assumptions have owners and future gates.
+      - No artifact claims that the architecture is implemented.
+      - No runtime code, migration, executable contract, infrastructure, procurement, delivery sequence, or master development plan is created.
+      - Package 2 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V4-026
+    artifact_id: PACKAGE-4-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-C
+    frozen_artifacts:
+      - id: V4-10
+        version: 1.0.0
+      - id: V4-11
+        version: 1.0.0
+      - id: V4-12
+        version: 1.0.0
+      - id: V4-13
+        version: 1.0.0
+      - id: V4-14
+        version: 1.0.0
+      - id: V4-15
+        version: 1.0.0
+      - id: V4-16
+        version: 1.0.0
+      - id: V4-17
+        version: 1.0.0
+      - id: V4-18
+        version: 1.0.0
+      - id: V4-C
+        version: 1.0.0
+    conditions:
+      - Volume 4 Package 2 frozen at closure following Gate V4-G2 disposition.
+      - Authorizes commencement of Volume 4 Package 3 as an architecture package only.
+      - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to frozen Package 2 content require the recorded amendment process.
     approved_at: null

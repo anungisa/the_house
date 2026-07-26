@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T14:52:49.940Z
+Generated: 2026-07-26T14:56:29.857Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T14:52:49.940Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 21 |
+| RATIFIED | 22 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.3.0 | 21 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.4.0 | 22 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.1.0 | 137 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.1.0 | 18 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.1.0 | 33 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.1.0 | 22 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.3.0 | 23 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.4.0 | 26 |
 
 ## Findings by control
 
@@ -129,3 +129,26 @@ Errors: 0 | Warnings: 3 | Info: 3
 - APP-V4-022 (V4-17): Fail-closed composition defined; no infrastructure provisioning or deployment topology authorized.
 - APP-V4-023 (V4-18): Architecture verification, fitness functions, and implementation-readiness criteria ratified.
 - APP-V4-023 (V4-18): House P0 findings mapped to defined verifications; all verifications remain DEFINED_NOT_IMPLEMENTED.
+- APP-V4-024 (V4-C): Package 2 closure record ratified as architecture definition only.
+- APP-V4-024 (V4-C): Consolidates V4-10..V4-18; claims no implemented architecture; authorizes no implementation.
+- APP-V4-025 (GATE-V4-G2): Package 1 provenance is unambiguous.
+- APP-V4-025 (GATE-V4-G2): Application layers and dependency directions are controlled.
+- APP-V4-025 (GATE-V4-G2): Core domain modules, ownership, and transaction responsibilities are defined.
+- APP-V4-025 (GATE-V4-G2): Organization, jurisdiction, season, and affiliation invariants are defined.
+- APP-V4-025 (GATE-V4-G2): Versioned requirements, evidence binding, derived completeness, submission, return, and resubmission are architecturally defined.
+- APP-V4-025 (GATE-V4-G2): Review, decision, reconciliation, activation, correction, expiry, and closure transitions are defined.
+- APP-V4-025 (GATE-V4-G2): Principal application services have authorization, transaction, idempotency, audit, and error semantics.
+- APP-V4-025 (GATE-V4-G2): Authorization incorporates identity, resource, jurisdiction, assignment, action, lifecycle, and evidence sensitivity.
+- APP-V4-025 (GATE-V4-G2): Transaction, outbox, projection, retry, and recovery boundaries are defined.
+- APP-V4-025 (GATE-V4-G2): Authoritative activation is protected against duplicate effects.
+- APP-V4-025 (GATE-V4-G2): Production composition and configuration fail closed.
+- APP-V4-025 (GATE-V4-G2): Required integrations cannot silently resolve to production no-ops.
+- APP-V4-025 (GATE-V4-G2): Architecture verification covers the known House P0 findings.
+- APP-V4-025 (GATE-V4-G2): Unresolved assumptions have owners and future gates.
+- APP-V4-025 (GATE-V4-G2): No artifact claims that the architecture is implemented.
+- APP-V4-025 (GATE-V4-G2): No runtime code, migration, executable contract, infrastructure, procurement, delivery sequence, or master development plan is created.
+- APP-V4-025 (GATE-V4-G2): Package 2 receives line-level review and a separate freeze commit.
+- APP-V4-026 (PACKAGE-4-2): Volume 4 Package 2 frozen at closure following Gate V4-G2 disposition.
+- APP-V4-026 (PACKAGE-4-2): Authorizes commencement of Volume 4 Package 3 as an architecture package only.
+- APP-V4-026 (PACKAGE-4-2): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-026 (PACKAGE-4-2): Changes to frozen Package 2 content require the recorded amendment process.
