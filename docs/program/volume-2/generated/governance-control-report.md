@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T01:55:39.085Z
+Generated: 2026-07-26T02:26:04.444Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -27,18 +27,18 @@ Generated: 2026-07-26T01:55:39.085Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 22 |
+| RATIFIED | 30 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.5.0 | 22 |
-| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.2.0 | 16 |
-| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.2.0 | 15 |
-| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.2.0 | 280 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.6.1 | 17 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.6.1 | 28 |
+| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.6.0 | 30 |
+| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.3.0 | 21 |
+| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.3.0 | 18 |
+| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.3.0 | 361 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.7.0 | 20 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.7.0 | 36 |
 
 ## Findings by control
 
@@ -137,3 +137,11 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-028 (PACKAGE-2-3): Operating-rule definition only; implementation, procurement, and architecture unauthorized; not a master development plan
 - APP-V2-028 (PACKAGE-2-3): Volume 2 Package 4 authorized to commence as definition and governance work (DEC-V2-016)
 - APP-V2-028 (PACKAGE-2-3): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V2-029 (V2-19): Pathway-specific service blueprints defined with responsibility-layer separation; definition only
+- APP-V2-030 (V2-20): Role-based workspaces and task model defined; visibility does not grant authority; definition only
+- APP-V2-031 (V2-21): Governed state and user-visible status separated; vague labels prohibited without defined meaning and actor; definition only
+- APP-V2-032 (V2-22): Forms and evidence interaction defined with draft, correction, replacement, and recovery; no database or schema design; definition only
+- APP-V2-033 (V2-23): Communication matrix and support experience defined; support creates no unauthorized decision authority; no final templates; definition only
+- APP-V2-034 (V2-24): Bilingual, accessibility, inclusive, and privacy requirements defined; unapproved conformance remains validation pending; definition only
+- APP-V2-035 (V2-25): Acceptance scenarios trace to outcomes, rules, controls, and tests; acceptance definition only, not executable tests
+- APP-V2-036 (V2-26): Experience definition consolidated and downstream constraints listed; no architecture, delivery plan, or master development plan; definition only

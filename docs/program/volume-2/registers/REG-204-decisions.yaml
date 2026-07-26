@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.6.1
+version: 1.7.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -377,5 +377,75 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  # --- Package 4 adoption decisions ---
+  - id: DEC-V2-018
+    class: D1
+    question: >-
+      How is the affiliation service experience presented across pathways, roles, and
+      governed status?
+    decision: >-
+      Adopt the detailed pathway-specific service blueprints (V2-19); the role-based
+      workspace and task model (V2-20); and the separated status, state, required-action,
+      and service-information model (V2-21). Visibility never grants authority; the
+      Governance Kernel remains the sole authority for lifecycle state; and The Button
+      presents and requests but never mutates governed status. Definition only; no
+      implementation authorized.
+    evidence_refs:
+      - V2-19
+      - V2-20
+      - V2-21
+      - BR-V2-025
+      - RULE-V2-026
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-019
+    class: D1
+    question: >-
+      How are information capture, evidence interaction, communication, support, and
+      inclusive-service requirements defined?
+    decision: >-
+      Adopt the forms, information-capture, and evidence-interaction model (V2-22); the
+      communication, notification, and support experience (V2-23); and the bilingual,
+      accessible, inclusive, and privacy-aware service definition (V2-24). Correction,
+      replacement, and resubmission preserve history and provenance; communication asserts
+      only held authority; and conformance not yet formally approved remains validation
+      pending. Definition only; no implementation authorized.
+    evidence_refs:
+      - V2-22
+      - V2-23
+      - V2-24
+      - RULE-V2-028
+      - CTRL-V2-019
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-020
+    class: D1
+    question: >-
+      What acceptance scenarios and downstream constraints define and bound the affiliation
+      experience?
+    decision: >-
+      Adopt the operational acceptance scenarios and qualitative service-quality baseline
+      (V2-25) and the consolidated affiliation experience definition and downstream
+      constraints (V2-26). Acceptance scenarios are definitions, not executable tests;
+      detailed screen layouts, design system, component specifications, API contracts,
+      database design, event schemas, infrastructure, delivery sequencing, staffing, cost
+      plans, and the master development plan remain out of scope. Definition only; no
+      implementation authorized.
+    evidence_refs:
+      - V2-25
+      - V2-26
+      - TEST-V2-026
+      - TEST-V2-043
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

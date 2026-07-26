@@ -53,7 +53,33 @@
           "season_versioned": { "type": "boolean" },
           "jurisdiction_scoped": { "type": "boolean" },
           "exception_authority": { "type": "string" },
-          "future_blocking_gate": { "type": "string" }
+          "future_blocking_gate": { "type": "string" },
+          "service_stage": { "type": "string" },
+          "primary_persona": { "type": "string" },
+          "secondary_personas": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "channel_scope": { "type": "string" },
+          "user_visible": { "type": "boolean" },
+          "content_owner": { "type": "string" },
+          "language_status": { "type": "string" },
+          "accessibility_status": { "type": "string" },
+          "privacy_classification": { "type": "string" },
+          "support_dependency": { "type": "string" },
+          "acceptance_status": {
+            "type": "string",
+            "enum": [
+              "DEFINED",
+              "BASELINE_PENDING",
+              "POLICY_VALIDATION_PENDING",
+              "OPERATIONAL_VALIDATION_PENDING",
+              "ACCESSIBILITY_VALIDATION_PENDING",
+              "BILINGUAL_VALIDATION_PENDING",
+              "PRIVACY_VALIDATION_PENDING",
+              "STAKEHOLDER_VALIDATION_PENDING"
+            ]
+          }
         }
       }
     }

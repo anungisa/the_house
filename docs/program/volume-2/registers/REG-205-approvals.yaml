@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.6.1
+version: 1.7.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -407,4 +407,69 @@ records:
       - Operating-rule definition only; implementation, procurement, and architecture unauthorized; not a master development plan
       - Volume 2 Package 4 authorized to commence as definition and governance work (DEC-V2-016)
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 4 chapter ratifications ---
+  - id: APP-V2-029
+    artifact_id: V2-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Pathway-specific service blueprints defined with responsibility-layer separation; definition only
+    approved_at: null
+  - id: APP-V2-030
+    artifact_id: V2-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Role-based workspaces and task model defined; visibility does not grant authority; definition only
+    approved_at: null
+  - id: APP-V2-031
+    artifact_id: V2-21
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Governed state and user-visible status separated; vague labels prohibited without defined meaning and actor; definition only
+    approved_at: null
+  - id: APP-V2-032
+    artifact_id: V2-22
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Forms and evidence interaction defined with draft, correction, replacement, and recovery; no database or schema design; definition only
+    approved_at: null
+  - id: APP-V2-033
+    artifact_id: V2-23
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Communication matrix and support experience defined; support creates no unauthorized decision authority; no final templates; definition only
+    approved_at: null
+  - id: APP-V2-034
+    artifact_id: V2-24
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Bilingual, accessibility, inclusive, and privacy requirements defined; unapproved conformance remains validation pending; definition only
+    approved_at: null
+  - id: APP-V2-035
+    artifact_id: V2-25
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Acceptance scenarios trace to outcomes, rules, controls, and tests; acceptance definition only, not executable tests
+    approved_at: null
+  - id: APP-V2-036
+    artifact_id: V2-26
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Experience definition consolidated and downstream constraints listed; no architecture, delivery plan, or master development plan; definition only
     approved_at: null

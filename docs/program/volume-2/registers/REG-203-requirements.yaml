@@ -1,7 +1,7 @@
 register_id: REG-203
 name: Volume 2 Requirement and Acceptance Register
 status: IN_REVIEW
-version: 1.2.0
+version: 1.3.0
 records:
   # --- CAP: capabilities ---
   - id: CAP-V2-001
@@ -2991,6 +2991,973 @@ records:
     traces_to:
       - RULE-V2-024
       - CTRL-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # ============================================================================
+  # Package 4: affiliation service experience and operational specification
+  # ============================================================================
+  # --- CAP: service-experience capabilities ---
+  - id: CAP-V2-038
+    level: CAP
+    statement: Pathway-specific affiliation service blueprint across frontstage, backstage, governed state, staff action, and external execution.
+    product: Both
+    traces_to:
+      - OUT-V2-017
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-039
+    level: CAP
+    statement: Role-based operating workspaces for each affiliation actor without conflating visibility with authority.
+    product: Both
+    traces_to:
+      - OUT-V2-017
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-040
+    level: CAP
+    statement: Governed-state-to-user-visible-status translation and required-action model.
+    product: Both
+    traces_to:
+      - OUT-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-041
+    level: CAP
+    statement: Information capture and evidence interaction experience with drafts, correction, replacement, and resubmission.
+    product: Button
+    traces_to:
+      - OUT-V2-019
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-042
+    level: CAP
+    statement: Communication, notification, and support experience across the affiliation lifecycle.
+    product: Both
+    traces_to:
+      - OUT-V2-020
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-043
+    level: CAP
+    statement: Bilingual, accessible, inclusive, and privacy-aware affiliation service experience.
+    product: Both
+    traces_to:
+      - OUT-V2-020
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- BR: service-experience business rules ---
+  - id: BR-V2-024
+    level: BR
+    statement: Each service stage distinguishes what the user sees, what The Button does, what The House governs, what staff perform, what external systems execute, and what remains manual pending later authorization.
+    product: Both
+    traces_to:
+      - CAP-V2-038
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-025
+    level: BR
+    statement: A workspace grants no authority merely because information is visible; authority derives only from a governed role.
+    product: Both
+    traces_to:
+      - CAP-V2-039
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-026
+    level: BR
+    statement: Governed lifecycle state, operational processing status, payment and reconciliation status, evidence status, and user-visible status are distinct concepts, separately defined.
+    product: Both
+    traces_to:
+      - CAP-V2-040
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-027
+    level: BR
+    statement: The Button never invents or independently mutates governed lifecycle status; every user-visible status derives from a source governed state.
+    product: Both
+    traces_to:
+      - CAP-V2-040
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-028
+    level: BR
+    statement: Every user-visible status defines its meaning, audience, responsible party, whether the user can act, blocking effect, permitted next states, notification requirement, and bilingual status; vague labels without defined meaning and actor are not permitted.
+    product: Both
+    traces_to:
+      - CAP-V2-040
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-029
+    level: BR
+    statement: Information capture preserves drafts and history; correction, replacement, and resubmission never destroy the prior governed record or evidence provenance.
+    product: Both
+    traces_to:
+      - CAP-V2-041
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-030
+    level: BR
+    statement: Support intervention is bounded to permitted assistance and handoff and never creates or substitutes governed decision authority.
+    product: Both
+    traces_to:
+      - CAP-V2-042
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- FR: service-experience functional requirements ---
+  - id: FR-V2-036
+    level: FR
+    statement: >-
+      Pathway-specific service blueprints for continuity confirmation; renewal with
+      remediation; new affiliation; return and resubmission; approved awaiting reconciliation;
+      activation failure and recovery; and refusal, withdrawal, expiry, and administrative
+      correction; each stage recording user objective, frontstage experience, backstage
+      activity, accountable authority, governed state, information exchanged, evidence
+      required, external dependency, communication, support intervention, failure mode,
+      recovery path, and acceptance reference.
+    product: Both
+    traces_to:
+      - CAP-V2-038
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-037
+    level: FR
+    statement: >-
+      Role workspaces for the club representative, PTSO reviewer, Curling Canada reviewer or
+      administrator, finance and reconciliation staff, and support and operations staff, each
+      presenting the defined task set, governed status, required actions, and evidence
+      appropriate to the role.
+    product: Both
+    traces_to:
+      - CAP-V2-039
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-038
+    level: FR
+    statement: >-
+      A status, state, required-action, and service-information model that separates governed
+      lifecycle state, operational processing status, payment and reconciliation status,
+      evidence status, user-visible status, required action, and service-health condition, and
+      maps every user-visible status to source state, audience, meaning, required action,
+      responsible party, ability to act, blocking effect, permitted next states, notification,
+      and bilingual-content status.
+    product: Both
+    traces_to:
+      - CAP-V2-040
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-039
+    level: FR
+    statement: >-
+      Forms and evidence interaction for organization recognition and matching, representative
+      authority, seasonal confirmations, requirement responses, structured information, file
+      evidence, acknowledgement and attestation, drafts, save and resume, replacement evidence,
+      evidence expiry, rejected evidence, confidential evidence, submission confirmation,
+      resubmission, and administrative correction, each recorded at product level without
+      database fields or technical schemas.
+    product: Button
+    traces_to:
+      - CAP-V2-041
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-040
+    level: FR
+    statement: >-
+      A communication matrix across the affiliation lifecycle defining, for each material
+      event, the trigger, audience, authority source, purpose, required content, prohibited
+      content, channel hypothesis, urgency, acknowledgement requirement, escalation behaviour,
+      language obligation, accessibility obligation, and audit requirement, without final
+      templates or marketing copy.
+    product: Both
+    traces_to:
+      - CAP-V2-042
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-041
+    level: FR
+    statement: >-
+      English and French parity, language persistence, and equivalent status and error meaning
+      across the affiliation service experience.
+    product: Both
+    traces_to:
+      - CAP-V2-043
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-042
+    level: FR
+    statement: >-
+      Accessible interaction requirements including keyboard access, focus behaviour, semantic
+      structure, screen-reader interpretation, accessible evidence upload, accessible error
+      correction, colour-independent status communication, and timeout, session, low-bandwidth,
+      and interrupted-session recovery.
+    product: Both
+    traces_to:
+      - CAP-V2-043
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-043
+    level: FR
+    statement: >-
+      A privacy-aware experience including privacy notices, restricted evidence handling,
+      minimum-necessary disclosure, and representative and reviewer visibility boundaries.
+    product: House
+    traces_to:
+      - CAP-V2-043
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- NFR: service-experience quality attributes ---
+  - id: NFR-V2-017
+    level: NFR
+    statement: Experience consistency - status meaning and required actions are consistent across actors and channels.
+    product: Both
+    traces_to:
+      - FR-V2-038
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-018
+    level: NFR
+    statement: Bilingual equivalence - French and English convey equivalent status, action, and error meaning; conformance remains validation pending.
+    product: Both
+    traces_to:
+      - FR-V2-041
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    acceptance_status: BILINGUAL_VALIDATION_PENDING
+  - id: NFR-V2-019
+    level: NFR
+    statement: Accessibility conformance - the conformance level is classified as validation pending until formally approved rather than assumed.
+    product: Both
+    traces_to:
+      - FR-V2-042
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    acceptance_status: ACCESSIBILITY_VALIDATION_PENDING
+  - id: NFR-V2-020
+    level: NFR
+    statement: Privacy minimization - minimum-necessary disclosure and restricted-evidence protection across the experience.
+    product: House
+    traces_to:
+      - FR-V2-043
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    acceptance_status: PRIVACY_VALIDATION_PENDING
+  - id: NFR-V2-021
+    level: NFR
+    statement: Recoverability - timeout, session, low-bandwidth, and interrupted-submission recovery preserve user progress and governed record.
+    product: Both
+    traces_to:
+      - FR-V2-042
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UC: role and scenario use cases ---
+  - id: UC-V2-037
+    level: UC
+    statement: A club representative completes continuity confirmation through the guided workspace.
+    product: Both
+    traces_to:
+      - FR-V2-037
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-038
+    level: UC
+    statement: A club representative is routed to remediation and responds to returned requirements.
+    product: Both
+    traces_to:
+      - FR-V2-037
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-039
+    level: UC
+    statement: A PTSO reviewer works a jurisdiction-specific queue and returns multiple requirements.
+    product: House
+    traces_to:
+      - FR-V2-037
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-040
+    level: UC
+    statement: A Curling Canada administrator handles a cross-jurisdiction exception or escalation with policy-version visibility.
+    product: House
+    traces_to:
+      - FR-V2-037
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-041
+    level: UC
+    statement: Finance and reconciliation staff investigate a payment mismatch and resolve activation dependencies within financial boundaries.
+    product: House
+    traces_to:
+      - FR-V2-037
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-042
+    level: UC
+    statement: Support and operations staff assist an applicant or reviewer and hand off without changing governed authority.
+    product: Both
+    traces_to:
+      - FR-V2-037
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-043
+    level: UC
+    statement: A user reads a user-visible status and acts on the identified required action.
+    product: Both
+    traces_to:
+      - FR-V2-038
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-044
+    level: UC
+    statement: A representative saves a draft, replaces evidence, and resubmits without losing history.
+    product: Button
+    traces_to:
+      - FR-V2-039
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-045
+    level: UC
+    statement: A recipient receives bilingual and accessible communication and recovers from an interrupted session.
+    product: Both
+    traces_to:
+      - FR-V2-040
+      - FR-V2-042
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-046
+    level: UC
+    statement: An administrative correction is made after a decision, distinct from a governed decision change.
+    product: House
+    traces_to:
+      - FR-V2-038
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- RULE: service-experience rules ---
+  - id: RULE-V2-026
+    level: RULE
+    statement: >-
+      Status-translation rule: every user-visible status derives from exactly one source
+      governed lifecycle state together with its processing, evidence, and financial statuses,
+      and no user-visible status implies authority to change governed state.
+    product: Both
+    traces_to:
+      - UC-V2-043
+    acceptance_ref:
+      - TEST-V2-026
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All user-visible status
+    season_versioned: false
+    jurisdiction_scoped: false
+  - id: RULE-V2-027
+    level: RULE
+    statement: >-
+      Button-non-authority rule: The Button may request governed transitions and display
+      derived status but may not create or mutate governed lifecycle status; governed state
+      changes only through the Governance Kernel.
+    product: Both
+    traces_to:
+      - UC-V2-043
+    acceptance_ref:
+      - TEST-V2-041
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All Button-presented status
+    season_versioned: false
+    jurisdiction_scoped: false
+  - id: RULE-V2-028
+    level: RULE
+    statement: >-
+      History-preservation rule: correction, replacement, and resubmission preserve the prior
+      governed record and evidence provenance with audit, and never overwrite history.
+    product: Both
+    traces_to:
+      - UC-V2-044
+    acceptance_ref:
+      - TEST-V2-034
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All correction, replacement, and resubmission
+    season_versioned: false
+    jurisdiction_scoped: false
+  - id: RULE-V2-029
+    level: RULE
+    statement: >-
+      Support-authority-boundary rule: support and operations actions are limited to permitted
+      assistance, handoff, and recovery and never enact governed decisions or activation.
+    product: Both
+    traces_to:
+      - UC-V2-042
+    acceptance_ref:
+      - TEST-V2-041
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: Support Agent
+    effective_scope: All support and operations intervention
+    season_versioned: false
+    jurisdiction_scoped: false
+  # --- WF: service-experience workflows ---
+  - id: WF-V2-011
+    level: WF
+    statement: Role-based service operation workflow (encounter, understand, act, submit, and track).
+    product: Both
+    traces_to:
+      - RULE-V2-026
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-012
+    level: WF
+    statement: Information capture, evidence interaction, and resubmission workflow.
+    product: Button
+    traces_to:
+      - RULE-V2-028
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-013
+    level: WF
+    statement: Communication, notification, and support experience workflow.
+    product: Both
+    traces_to:
+      - RULE-V2-029
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UX: service-experience surfaces (product experience, not layouts) ---
+  - id: UX-V2-013
+    level: UX
+    statement: Pathway-specific service blueprint surface presenting frontstage and backstage per stage.
+    product: Both
+    traces_to:
+      - WF-V2-011
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: All pathway stages
+    primary_persona: Service designer
+    secondary_personas:
+      - Program governance authority
+    channel_scope: Both
+    user_visible: false
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: internal
+    support_dependency: Support and operations staff
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-014
+    level: UX
+    statement: Club representative workspace surface for recognition, pathway, requirements, evidence, fees, actions, and decisions.
+    product: Button
+    traces_to:
+      - WF-V2-011
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: Applicant journey
+    primary_persona: Club authorized representative
+    secondary_personas:
+      - Club administrator
+    channel_scope: Button
+    user_visible: true
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-015
+    level: UX
+    statement: PTSO reviewer queue and assignment workspace surface with pathway, standing, completeness, and evidence review.
+    product: House
+    traces_to:
+      - WF-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: Review journey
+    primary_persona: Affiliation reviewer
+    secondary_personas:
+      - Regional membership administrator
+    channel_scope: House
+    user_visible: true
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-016
+    level: UX
+    statement: National oversight and exception workspace surface for cross-jurisdiction escalation, corrections, and audit context.
+    product: House
+    traces_to:
+      - WF-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: National administration journey
+    primary_persona: Recognition and routing administrator
+    secondary_personas:
+      - Affiliation reviewer
+    channel_scope: House
+    user_visible: true
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-017
+    level: UX
+    statement: Finance and reconciliation workspace surface for fee obligation, payment result, mismatch investigation, and activation dependencies.
+    product: House
+    traces_to:
+      - WF-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: Financial reconciliation journey
+    primary_persona: Fee-signal reconciler
+    secondary_personas:
+      - Fee policy owner
+    channel_scope: House
+    user_visible: true
+    content_owner: Fee and Reconciliation Policy Authority (Helene)
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-018
+    level: UX
+    statement: Support and operations workspace surface for reported issues, permitted assistance, restricted evidence, handoff, and recovery.
+    product: Both
+    traces_to:
+      - WF-V2-013
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: Support and recovery journey
+    primary_persona: Applicant support
+    secondary_personas:
+      - Reviewer support
+    channel_scope: Both
+    user_visible: true
+    content_owner: Support Agent
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: UX-V2-019
+    level: UX
+    statement: User-visible status and required-action surface translating governed state into plain-language service information.
+    product: Both
+    traces_to:
+      - WF-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: All journeys
+    primary_persona: Status recipient
+    secondary_personas:
+      - Club authorized representative
+      - Affiliation reviewer
+    channel_scope: Both
+    user_visible: true
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-020
+    level: UX
+    statement: Forms and evidence interaction surface for capture, drafts, correction, replacement, and resubmission.
+    product: Button
+    traces_to:
+      - WF-V2-012
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: Applicant journey
+    primary_persona: Club authorized representative
+    secondary_personas:
+      - Club administrator
+    channel_scope: Button
+    user_visible: true
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-021
+    level: UX
+    statement: Communication and notification surface for lifecycle events with language and accessibility obligations.
+    product: Both
+    traces_to:
+      - WF-V2-013
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: All journeys
+    primary_persona: Status recipient
+    secondary_personas:
+      - Club authorized representative
+    channel_scope: Both
+    user_visible: true
+    content_owner: National Affiliation Administrator
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: UX-V2-022
+    level: UX
+    statement: Bilingual, accessible, and privacy-aware presentation surface applying equivalent meaning and minimum-necessary disclosure.
+    product: Both
+    traces_to:
+      - WF-V2-013
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    service_stage: All journeys
+    primary_persona: Status recipient
+    secondary_personas:
+      - Official-languages conformance owner
+      - Accessibility conformance owner
+    channel_scope: Both
+    user_visible: true
+    content_owner: Bilingual Experience and Official-Languages Authority
+    language_status: BILINGUAL_VALIDATION_PENDING
+    accessibility_status: ACCESSIBILITY_VALIDATION_PENDING
+    privacy_classification: restricted
+    support_dependency: Support Agent
+    acceptance_status: PRIVACY_VALIDATION_PENDING
+  # --- DATA: service-experience data concepts (conceptual, not schemas) ---
+  - id: DATA-V2-019
+    level: DATA
+    statement: User-visible status vocabulary and required-action catalogue concept.
+    product: Both
+    traces_to:
+      - UX-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-020
+    level: DATA
+    statement: Service blueprint stage descriptor concept.
+    product: Both
+    traces_to:
+      - UX-V2-013
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-021
+    level: DATA
+    statement: Information-set and evidence-interaction descriptor concept.
+    product: Button
+    traces_to:
+      - UX-V2-020
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-022
+    level: DATA
+    statement: Communication matrix entry concept.
+    product: Both
+    traces_to:
+      - UX-V2-021
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- CTRL: service-experience controls ---
+  - id: CTRL-V2-015
+    level: CTRL
+    statement: Status-derivation integrity control (user-visible status is always derivable from governed state and never authoritative on its own).
+    product: Both
+    traces_to:
+      - NFR-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-016
+    level: CTRL
+    statement: Button non-authority control (The Button cannot create or mutate governed lifecycle status).
+    product: Both
+    traces_to:
+      - NFR-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-017
+    level: CTRL
+    statement: Bilingual equivalence control (French and English convey equivalent status, action, and error meaning).
+    product: Both
+    traces_to:
+      - NFR-V2-018
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-018
+    level: CTRL
+    statement: Accessibility conformance control (conformance classified as validation pending until formally approved).
+    product: Both
+    traces_to:
+      - NFR-V2-019
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-019
+    level: CTRL
+    statement: Privacy minimization and restricted-visibility control (minimum-necessary disclosure and evidence confidentiality across the experience).
+    product: House
+    traces_to:
+      - NFR-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-020
+    level: CTRL
+    statement: History and audit preservation control for correction, replacement, resubmission, and audit reconstruction.
+    product: Both
+    traces_to:
+      - NFR-V2-021
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- TEST: operational acceptance scenarios ---
+  - id: TEST-V2-026
+    level: TEST
+    statement: "Acceptance scenario: an existing club completes continuity confirmation through the guided workspace and reaches active affiliation."
+    product: Both
+    traces_to:
+      - RULE-V2-026
+      - UC-V2-037
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-027
+    level: TEST
+    statement: "Acceptance scenario: an existing club is routed to remediation and completes the returned requirements."
+    product: Both
+    traces_to:
+      - UC-V2-038
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-028
+    level: TEST
+    statement: "Acceptance scenario: a new club completes full affiliation through the new-affiliation pathway experience."
+    product: Both
+    traces_to:
+      - UC-V2-037
+      - RULE-V2-013
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-029
+    level: TEST
+    statement: "Acceptance scenario: a duplicate organization match is detected and resolved through governed review without duplicate affiliation."
+    product: House
+    traces_to:
+      - UC-V2-040
+      - RULE-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-030
+    level: TEST
+    statement: "Acceptance scenario: representative authority cannot be established and the experience blocks submission with a clear required action."
+    product: Both
+    traces_to:
+      - UC-V2-044
+      - RULE-V2-017
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-031
+    level: TEST
+    statement: "Acceptance scenario: jurisdiction cannot be determined automatically and the file routes to national administration for determination."
+    product: House
+    traces_to:
+      - UC-V2-040
+      - RULE-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-032
+    level: TEST
+    statement: "Acceptance scenario: evidence expires before submission and the experience prompts replacement without losing other progress."
+    product: Both
+    traces_to:
+      - UC-V2-044
+      - RULE-V2-015
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-033
+    level: TEST
+    statement: "Acceptance scenario: a reviewer returns multiple requirements and the applicant sees each required action distinctly."
+    product: Both
+    traces_to:
+      - UC-V2-039
+      - RULE-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-034
+    level: TEST
+    statement: "Acceptance scenario: an application is resubmitted without losing history, preserving prior record and evidence provenance."
+    product: Both
+    traces_to:
+      - RULE-V2-028
+      - UC-V2-044
+      - CTRL-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-035
+    level: TEST
+    statement: "Acceptance scenario: a reviewer conflict requires reassignment and the work moves to an eligible reviewer without loss."
+    product: House
+    traces_to:
+      - UC-V2-039
+      - RULE-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-036
+    level: TEST
+    statement: "Acceptance scenario: approval awaits financial reconciliation and activation does not proceed until the boundary confirms."
+    product: House
+    traces_to:
+      - UC-V2-041
+      - RULE-V2-022
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-037
+    level: TEST
+    statement: "Acceptance scenario: activation executes exactly once and the experience reflects the single authoritative activation."
+    product: House
+    traces_to:
+      - RULE-V2-023
+      - CTRL-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-038
+    level: TEST
+    statement: "Acceptance scenario: activation fails and is safely recovered without duplicate activation or lost governed state."
+    product: House
+    traces_to:
+      - UC-V2-041
+      - RULE-V2-023
+      - CTRL-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-039
+    level: TEST
+    statement: "Acceptance scenario: notification delivery fails and the experience provides an alternate path to the required action with audit."
+    product: Both
+    traces_to:
+      - UC-V2-045
+      - CTRL-V2-020
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-040
+    level: TEST
+    statement: "Acceptance scenario: a user requires bilingual or accessible recovery and completes the required action with equivalent meaning."
+    product: Both
+    traces_to:
+      - UC-V2-045
+      - CTRL-V2-017
+      - CTRL-V2-018
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-041
+    level: TEST
+    statement: "Acceptance scenario: a support intervention assists and hands off without changing governed authority or lifecycle status."
+    product: Both
+    traces_to:
+      - RULE-V2-029
+      - CTRL-V2-016
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-042
+    level: TEST
+    statement: "Acceptance scenario: an administrative correction is required after a decision and is recorded distinctly from a governed decision change."
+    product: House
+    traces_to:
+      - UC-V2-046
+      - RULE-V2-020
+      - CTRL-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-043
+    level: TEST
+    statement: "Acceptance scenario: audit reconstruction is requested and the full governed history, evidence, and decisions are recoverable."
+    product: House
+    traces_to:
+      - CTRL-V2-020
     governed_by_kernel: true
     authorizes_implementation: false
     validation_status: stakeholder_validation_pending

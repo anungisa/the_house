@@ -1,7 +1,7 @@
 register_id: REG-200
 name: Volume 2 Corpus Index
 status: IN_REVIEW
-version: 1.5.0
+version: 1.6.0
 records:
   - id: V2-00
     title: Volume Control and Inheritance
@@ -155,6 +155,70 @@ records:
     version: 1.0.0
     path: docs/program/volume-2/V2-18-rule-coverage-and-acceptance-decision-tables.md
     gate: V2-G3
+  - id: V2-19
+    title: Detailed Affiliation Service Blueprint
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-19-detailed-affiliation-service-blueprint.md
+    gate: V2-G4
+  - id: V2-20
+    title: Role-Based Workspace and Task Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-20-role-based-workspace-and-task-model.md
+    gate: V2-G4
+  - id: V2-21
+    title: Status, State, Required-Action, and Service-Information Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-21-status-state-required-action-and-service-information-model.md
+    gate: V2-G4
+  - id: V2-22
+    title: Forms, Information Capture, and Evidence Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-22-forms-information-capture-and-evidence-interaction-model.md
+    gate: V2-G4
+  - id: V2-23
+    title: Communication, Notification, and Support Experience
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-23-communication-notification-and-support-experience.md
+    gate: V2-G4
+  - id: V2-24
+    title: Bilingual, Accessible, Inclusive, and Privacy-Aware Service Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-24-bilingual-accessible-inclusive-and-privacy-aware-service-definition.md
+    gate: V2-G4
+  - id: V2-25
+    title: Operational Acceptance Scenarios and Service-Quality Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-25-operational-acceptance-scenarios-and-service-quality-baseline.md
+    gate: V2-G4
+  - id: V2-26
+    title: Affiliation Experience Definition and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-26-affiliation-experience-definition-and-downstream-constraints.md
+    gate: V2-G4
   - id: V2-A
     title: Package 1 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)
