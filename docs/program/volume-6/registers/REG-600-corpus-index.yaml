@@ -291,3 +291,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-E-package-3-closure-record.md
     gate: V6-G3
+  - id: V6-F
+    title: Package 3 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-F-package-3-provenance-amendment.md
+    gate: V6-G3
