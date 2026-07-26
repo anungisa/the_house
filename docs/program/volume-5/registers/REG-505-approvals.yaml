@@ -1,7 +1,7 @@
 register_id: REG-505
 name: Volume 5 Approval Register
 status: RATIFIED
-version: 1.5.0
+version: 1.6.0
 records:
   # ==== Package 1: chapter ratifications ====
   - id: APP-V5-001
@@ -613,4 +613,24 @@ records:
       - Package 3 corpus frozen; changes require the recorded amendment process.
       - Freeze committed separately from authoring per Gate V5-G3 condition.
       - Authorizes no implementation.
+    approved_at: null
+  # ==== Package 3: provenance amendment ====
+  - id: APP-V5-044
+    artifact_id: V5-F
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    base_commit: 8ed2a4d
+    amendment_process: Narrow additive provenance amendment; preserves Gate V5-G3 and the Package 3 freeze; does not reopen substantive Package 3 content.
+    package_provenance:
+      source_snapshot_commit: 323b3f0
+      closure_freeze_commit: d763032
+      original_package_merge_commit: 8ed2a4d
+      inherited_baseline_tag: central-registration-volume-4-v1.0.1
+      note: 'Package 3 authoring commit 420817d; closure and freeze commit d763032; original package merge 8ed2a4d (PR #42). Provenance-amendment authoring and merge commits are recorded in the amendment history, mirroring the Package 1 and Package 2 and Volume 4 release-provenance discipline.'
+    conditions:
+      - Completes machine-readable Package 3 provenance after mainline merge.
+      - Preserves the Gate V5-G3 disposition and the PACKAGE-5-3 freeze.
+      - Reopens no substantive Package 3 content and authorizes no implementation.
     approved_at: null
