@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decisions.schema.json",
+  "title": "REG-402 Volume 4 Architecture Decision Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-402" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "class",
+          "title",
+          "decision",
+          "context",
+          "selected_posture",
+          "rationale",
+          "authorizes_implementation"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^ADR-V4-[0-9]{3}$" },
+          "class": { "$ref": "common.schema.json#/definitions/decisionClass" },
+          "title": { "type": "string" },
+          "decision": { "type": "string" },
+          "context": { "type": "string" },
+          "options": { "type": "array", "items": { "type": "string" } },
+          "selected_posture": { "type": "string" },
+          "rationale": { "type": "string" },
+          "constraints": { "type": "array", "items": { "type": "string" } },
+          "consequences": { "type": "array", "items": { "type": "string" } },
+          "risks": { "type": "array", "items": { "type": "string" } },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } },
+          "validation_status": { "$ref": "common.schema.json#/definitions/verificationStatus" },
+          "supersession_rule": { "type": "string" },
+          "evidence_label": { "$ref": "common.schema.json#/definitions/evidenceLabel" },
+          "chapter_ref": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean", "const": false }
+        }
+      }
+    }
+  }
+}

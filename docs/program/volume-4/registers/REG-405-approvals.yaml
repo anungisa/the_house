@@ -1,0 +1,105 @@
+register_id: REG-405
+name: Volume 4 Approval Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: APP-V4-001
+    artifact_id: V4-00
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume 4 control, inheritance, and architecture authority ratified as architecture definition only.
+      - Inherits corrected Volume 3 v1.0.1 baseline; authorizes no implementation.
+    approved_at: null
+  - id: APP-V4-002
+    artifact_id: V4-01
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture mandate, principles, and quality attributes ratified.
+      - No numeric quality-attribute targets fabricated; measurable targets are VALIDATION_PENDING.
+    approved_at: null
+  - id: APP-V4-003
+    artifact_id: V4-02
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - System context and authority boundaries ratified.
+      - External assigned authority preserved; no contract validated in Package 1.
+    approved_at: null
+  - id: APP-V4-004
+    artifact_id: V4-03
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Target logical architecture and bounded-context model ratified.
+      - Dependency directions defined; logical architecture only, no schema design.
+    approved_at: null
+  - id: APP-V4-005
+    artifact_id: V4-04
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Affiliation reference architecture ratified end to end.
+      - Exactly-once activation is an authoritative effect, not universal exactly-once delivery.
+    approved_at: null
+  - id: APP-V4-006
+    artifact_id: V4-05
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity, authorization, jurisdiction, and trust architecture ratified.
+      - Authorization defaults to deny and fails closed on missing inputs.
+    approved_at: null
+  - id: APP-V4-007
+    artifact_id: V4-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data, evidence, workflow, and transaction architecture ratified.
+      - Evidence binds to a specific requirement and affiliation; completeness is derived; conceptual only, no physical schema.
+    approved_at: null
+  - id: APP-V4-008
+    artifact_id: V4-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - API, event, integration, and idempotency architecture ratified as posture only.
+      - No executable API definitions or event schemas authored in Package 1.
+    approved_at: null
+  - id: APP-V4-009
+    artifact_id: V4-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Runtime, deployment, observability, resilience, and configuration architecture ratified.
+      - No Azure resource provisioned; production composition fails on missing required dependency; restore requires evidence.
+    approved_at: null
+  - id: APP-V4-010
+    artifact_id: V4-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture decisions, fitness functions, and verification model ratified.
+      - Fitness functions are specified, not implemented; no executing verification or implementation claimed.
+    approved_at: null

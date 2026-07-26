@@ -1,0 +1,85 @@
+register_id: REG-404
+name: Volume 4 Assumptions, Risks, and Exceptions Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V4-001
+    kind: ASM
+    title: Identity provider boundary available
+    statement: "An external identity provider will supply an authenticated subject for the House to consume."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Authentication boundary and default-deny authorization depend on this assumption."
+    disposition: "Assumed; to be confirmed with evidence at a later gate."
+    resolution_gate: V4-G2
+    traces_to: [DEP-V4-002, CTRL-V4-002]
+    chapter_ref: V4-05
+  - id: ASM-V4-002
+    kind: ASM
+    title: External finance systems retain authoritative ledger
+    statement: "Payment and accounting systems remain the authoritative financial record; the House records reconciliation status only."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Financial authority segregation depends on this assumption."
+    disposition: "Assumed per inherited operating model; to be confirmed with evidence."
+    resolution_gate: V4-G2
+    traces_to: [DEP-V4-003, DEP-V4-004, CTRL-V4-001]
+    chapter_ref: V4-02
+  - id: ASM-V4-003
+    kind: ASM
+    title: Evidence storage supports provenance and access control
+    statement: "Document and evidence storage will support provenance metadata and sensitivity-based access control."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Evidence binding and restricted-evidence access depend on this assumption."
+    disposition: "Assumed; to be confirmed with evidence at a later gate."
+    resolution_gate: V4-G2
+    traces_to: [DEP-V4-007, CTRL-V4-005]
+    chapter_ref: V4-06
+  - id: ASM-V4-004
+    kind: ASM
+    title: Transitional manual boundaries acceptable in early operation
+    statement: "Where an automated boundary is not yet available, a governed manual process is acceptable during transition."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Continuity posture depends on transitional manual boundaries."
+    disposition: "Assumed per inherited continuity model; to be confirmed."
+    resolution_gate: V4-G2
+    traces_to: [DEP-V4-008]
+    chapter_ref: V4-08
+  - id: RISK-V4-001
+    kind: RISK
+    title: Bounded-context erosion
+    statement: "Module boundaries may erode under delivery pressure, coupling contexts and weakening the modular monolith."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Maintainability and later extraction options degrade."
+    disposition: "Mitigated by the forbidden-dependency fitness function; monitored downstream."
+    resolution_gate: V4-G2
+    traces_to: [FIT-V4-001, ADR-V4-001]
+    chapter_ref: V4-03
+  - id: RISK-V4-002
+    kind: RISK
+    title: Exactly-once effect misinterpretation
+    statement: "The exactly-once activation effect may be misread as universal distributed exactly-once delivery."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Incorrect delivery guarantees could be assumed by integrators."
+    disposition: "Mitigated by explicit wording in V4-04 and ADR-V4-005."
+    resolution_gate: V4-G2
+    traces_to: [ADR-V4-005, CTRL-V4-010]
+    chapter_ref: V4-04
+  - id: RISK-V4-003
+    kind: RISK
+    title: Unvalidated quality-attribute targets
+    statement: "Numeric quality-attribute targets are deliberately unset in Package 1 and could be assumed prematurely."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Premature capacity, latency, or availability commitments would be unfounded."
+    disposition: "Tracked as VALIDATION_PENDING NFR elements; targets set with evidence downstream."
+    resolution_gate: V4-G2
+    traces_to: [NFR-V4-003, NFR-V4-006]
+    chapter_ref: V4-08
+  - id: EXC-V4-001
+    kind: EXC
+    title: No exceptions to architecture principles in Package 1
+    statement: "No exception to the architecture principles is granted in Package 1; the register entry exists to record that none is outstanding."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "None; establishes that principles are unmodified."
+    disposition: "No open exceptions."
+    resolution_gate: V4-G1
+    traces_to: [ARCH-V4-001]
+    chapter_ref: V4-01

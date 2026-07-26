@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "assumptions.schema.json",
+  "title": "REG-404 Volume 4 Assumptions, Risks, and Exceptions Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-404" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "owner", "resolution_gate"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(ASM|RISK|EXC)-V4-[0-9]{3}$" },
+          "kind": { "type": "string", "enum": ["ASM", "RISK", "EXC"] },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "owner": { "type": "string" },
+          "impact": { "type": "string" },
+          "disposition": { "type": "string" },
+          "resolution_gate": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "chapter_ref": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

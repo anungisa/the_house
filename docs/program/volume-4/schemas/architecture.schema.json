@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "architecture.schema.json",
+  "title": "REG-401 Volume 4 Architecture Elements Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-401" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "authority",
+          "architecture_status",
+          "authorizes_implementation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(ARCH|MOD|SVC|DATA|API|EVT|CTRL|NFR|DEP)-V4-[0-9]{3}$"
+          },
+          "kind": { "$ref": "common.schema.json#/definitions/architectureKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "authority": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "architecture_status": { "$ref": "common.schema.json#/definitions/architectureStatus" },
+          "quality_attributes": {
+            "type": "array",
+            "items": { "$ref": "common.schema.json#/definitions/qualityAttribute" }
+          },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "constrains": { "type": "array", "items": { "type": "string" } },
+          "verification_status": { "$ref": "common.schema.json#/definitions/verificationStatus" },
+          "chapter_ref": { "type": "string" },
+          "notes": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean", "const": false }
+        }
+      }
+    }
+  }
+}

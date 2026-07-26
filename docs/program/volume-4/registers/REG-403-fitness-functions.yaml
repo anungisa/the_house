@@ -1,0 +1,135 @@
+register_id: REG-403
+name: Volume 4 Fitness-Function Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: FIT-V4-001
+    title: Forbidden dependency direction
+    intent: "Prevent authority-core modules from depending on experience, reporting, or communications."
+    invariant: "No dependency flows from the authority core toward reporting, communications, or the Button."
+    evaluation_form: "Static dependency analysis over module boundaries (defined downstream)."
+    traces_to: [ARCH-V4-001, MOD-V4-005]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-002
+    title: House and Button authority separation
+    intent: "Ensure the Button never mutates governed state directly."
+    invariant: "Governed state changes originate only from House application services."
+    evaluation_form: "Boundary test asserting no governed mutation path from the Button (defined downstream)."
+    traces_to: [ARCH-V4-002, CTRL-V4-001]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-003
+    title: Default-deny authorization
+    intent: "Ensure authorization fails closed when inputs are missing."
+    invariant: "An authorization decision without resource, jurisdiction, assignment, or policy version denies."
+    evaluation_form: "Authorization test matrix over missing-input cases (defined downstream)."
+    traces_to: [ARCH-V4-004, CTRL-V4-002]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-004
+    title: Tenant and jurisdiction isolation
+    intent: "Prevent cross-tenant or cross-jurisdiction access."
+    invariant: "Governed data access is scoped to the acting tenant and jurisdiction."
+    evaluation_form: "Isolation test asserting no cross-scope read or write (defined downstream)."
+    traces_to: [CTRL-V4-003]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-005
+    title: Transaction and outbox consistency
+    intent: "Ensure state change, audit, and outbox commit atomically."
+    invariant: "A governed transition either commits state, audit, and outbox together or not at all."
+    evaluation_form: "Transactional test over commit and rollback paths (defined downstream)."
+    traces_to: [CTRL-V4-004, ARCH-V4-009]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-006
+    title: Evidence binding
+    intent: "Ensure evidence satisfies a requirement only when bound to a specific requirement and affiliation."
+    invariant: "Unbound evidence does not satisfy any requirement."
+    evaluation_form: "Evidence-binding test over bound and unbound cases (defined downstream)."
+    traces_to: [CTRL-V4-005, ARCH-V4-006]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-007
+    title: Versioned rules resolution
+    intent: "Ensure governed effects resolve to a specific policy and requirements version."
+    invariant: "Every governed decision records the policy and requirements version applied."
+    evaluation_form: "Decision-record assertion of policy version presence (defined downstream)."
+    traces_to: [CTRL-V4-006, ARCH-V4-007]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-008
+    title: No production no-op dependency
+    intent: "Ensure no no-op integration substitutes for a required governed effect in production."
+    invariant: "The production composition fails when a required dependency is absent."
+    evaluation_form: "Composition-root test asserting fail-on-missing (defined downstream)."
+    traces_to: [CTRL-V4-007, ARCH-V4-012]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-009
+    title: Configuration completeness
+    intent: "Ensure required configuration and secrets are consumed by production entry points."
+    invariant: "Production entry points fail when required configuration is missing."
+    evaluation_form: "Configuration-validation test over production entry points (defined downstream)."
+    traces_to: [CTRL-V4-008]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-010
+    title: API and event contract compatibility
+    intent: "Ensure contract versions evolve compatibly."
+    invariant: "A contract change preserves declared compatibility or bumps the version."
+    evaluation_form: "Contract-compatibility check over schema evolution (defined downstream)."
+    traces_to: [ARCH-V4-011, API-V4-001, EVT-V4-001]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-011
+    title: Control-to-test coverage
+    intent: "Ensure every governed control has a corresponding verifying test."
+    invariant: "No governed control lacks a verifying test."
+    evaluation_form: "Coverage check mapping controls to tests (defined downstream)."
+    traces_to: [ARCH-V4-010, NFR-V4-008]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-012
+    title: Accessibility and bilingual equivalence
+    intent: "Ensure experiences meet accessibility and bilingual-equivalence requirements."
+    invariant: "Experience surfaces satisfy accessibility and bilingual-equivalence checks."
+    evaluation_form: "Accessibility and bilingual-equivalence checks at the experience surface (defined downstream)."
+    traces_to: [NFR-V4-009, NFR-V4-010]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-013
+    title: Architecture-to-requirement traceability
+    intent: "Ensure every architecture element traces to an inherited requirement or a superior architecture element."
+    invariant: "No non-principle architecture element lacks an inherited or superior trace."
+    evaluation_form: "Traceability check over REG-401 traces_to (defined downstream; approximated by governance:trace:v4)."
+    traces_to: [ARCH-V4-007]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false

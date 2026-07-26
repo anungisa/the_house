@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "fitness.schema.json",
+  "title": "REG-403 Volume 4 Fitness-Function Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-403" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "intent",
+          "invariant",
+          "verification_status",
+          "implemented",
+          "authorizes_implementation"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^FIT-V4-[0-9]{3}$" },
+          "title": { "type": "string" },
+          "intent": { "type": "string" },
+          "invariant": { "type": "string" },
+          "evaluation_form": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "verification_status": { "$ref": "common.schema.json#/definitions/verificationStatus" },
+          "chapter_ref": { "type": "string" },
+          "notes": { "type": "string" },
+          "implemented": { "type": "boolean", "const": false },
+          "authorizes_implementation": { "type": "boolean", "const": false }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,898 @@
+register_id: REG-401
+name: Volume 4 Architecture Elements Register
+status: RATIFIED
+version: 1.0.0
+records:
+  # ---- ARCH: architecture principles (V4-01) ----
+  - id: ARCH-V4-001
+    kind: ARCH
+    title: Modular monolith by default
+    statement: "The platform is a modular monolith with explicit bounded contexts independent of deployment topology; microservices are not a default."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-01, V2-01]
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: ARCH-V4-002
+    kind: ARCH
+    title: House owns governed authority; Button is a projection surface
+    statement: "The House owns governed state and lifecycle; the Button requests actions and renders projections and owns no governed authority."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-02]
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: ARCH-V4-003
+    kind: ARCH
+    title: External systems retain only assigned authority
+    statement: "External systems retain only the authority assigned by the inherited operating model; the platform does not silently absorb it."
+    authority: External
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-02]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: ARCH-V4-004
+    kind: ARCH
+    title: Resource, role, and jurisdiction-aware default-deny authorization
+    statement: "Authorization is computed from resource, role, and jurisdiction and defaults to deny."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-02]
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: ARCH-V4-005
+    kind: ARCH
+    title: Defence in depth and fail-closed
+    statement: "The platform applies defence in depth and fails closed on missing authority, tenant, jurisdiction, or configuration."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-02]
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: ARCH-V4-006
+    kind: ARCH
+    title: Evidence provenance and governed decision binding
+    statement: "Evidence has provenance and governed decisions bind actor, authority, evidence, rationale, and policy version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-03]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: ARCH-V4-007
+    kind: ARCH
+    title: Versioned policy and requirements
+    statement: "Policy and requirements are versioned and governed effects resolve to a policy version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-03]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: ARCH-V4-008
+    kind: ARCH
+    title: Idempotent commands and exactly-once effect
+    statement: "Commands are idempotent and governed effects are exactly-once through transactional state control."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-04]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: ARCH-V4-009
+    kind: ARCH
+    title: Transactional outbox; side effects after commit
+    statement: "External side effects are dispatched through a transactional outbox only after commit."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-04]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: ARCH-V4-010
+    kind: ARCH
+    title: Auditable workflow; derived projections
+    statement: "Workflow is auditable and reconstructable and projections are derived, never authoritative."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-03]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: ARCH-V4-011
+    kind: ARCH
+    title: Explicit versioned integration contracts
+    statement: "Integration contracts are explicit, versioned, and owned."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-05]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: ARCH-V4-012
+    kind: ARCH
+    title: Observable and recoverable operations
+    statement: "Operations are observable and recoverable, including outbox publishing."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-06]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: ARCH-V4-013
+    kind: ARCH
+    title: Bilingual-equivalent and accessible experiences
+    statement: "Experiences are bilingual-equivalent and accessible."
+    authority: Button
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-07]
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: ARCH-V4-014
+    kind: ARCH
+    title: Privacy minimization and classification
+    statement: "Personal data is minimized and classified across governed concepts and contracts."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-07]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: ARCH-V4-015
+    kind: ARCH
+    title: Infrastructure as code and secure supply chain
+    statement: "Infrastructure is defined as code and the supply chain is secured."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [V3-06]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+
+  # ---- NFR: quality attributes (V4-01.4) ----
+  - id: NFR-V4-001
+    kind: NFR
+    title: Security posture
+    statement: "The architecture must satisfy security requirements; measurable targets are established with evidence downstream."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [SECURITY]
+    traces_to: [ARCH-V4-005]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: NFR-V4-002
+    kind: NFR
+    title: Privacy posture
+    statement: "The architecture must minimize and classify personal data; measurable targets are established downstream."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [PRIVACY]
+    traces_to: [ARCH-V4-014]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: NFR-V4-003
+    kind: NFR
+    title: Availability posture
+    statement: "The architecture must define an availability posture without fabricated numeric objectives."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [AVAILABILITY]
+    traces_to: [ARCH-V4-012]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: NFR-V4-004
+    kind: NFR
+    title: Resilience posture
+    statement: "The architecture must define resilience under failure without fabricated numeric objectives."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [RESILIENCE]
+    traces_to: [ARCH-V4-009]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: NFR-V4-005
+    kind: NFR
+    title: Recoverability posture
+    statement: "The architecture must define recoverability including backup and restore demonstrated with evidence."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [RECOVERABILITY]
+    traces_to: [ARCH-V4-012]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: NFR-V4-006
+    kind: NFR
+    title: Performance posture
+    statement: "The architecture must define a performance posture; latency and throughput budgets are set with evidence downstream."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [PERFORMANCE]
+    traces_to: [ARCH-V4-001]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: NFR-V4-007
+    kind: NFR
+    title: Scalability posture
+    statement: "The architecture must define a scalability posture without fabricated capacity figures."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [SCALABILITY]
+    traces_to: [ARCH-V4-001]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: NFR-V4-008
+    kind: NFR
+    title: Auditability posture
+    statement: "The architecture must make governed effects auditable and reconstructable."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [AUDITABILITY]
+    traces_to: [ARCH-V4-010]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: NFR-V4-009
+    kind: NFR
+    title: Accessibility posture
+    statement: "The architecture must satisfy accessibility requirements at the experience surface."
+    authority: Button
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [ACCESSIBILITY]
+    traces_to: [ARCH-V4-013]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: NFR-V4-010
+    kind: NFR
+    title: Bilingual equivalence posture
+    statement: "The architecture must provide bilingual-equivalent experiences and content."
+    authority: Button
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [BILINGUAL_EQUIVALENCE]
+    traces_to: [ARCH-V4-013]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: NFR-V4-011
+    kind: NFR
+    title: Operability posture
+    statement: "The architecture must be operable with observability and recovery mechanisms."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [OPERABILITY]
+    traces_to: [ARCH-V4-012]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: NFR-V4-012
+    kind: NFR
+    title: Maintainability posture
+    statement: "The architecture must be maintainable through explicit bounded contexts and contracts."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [MAINTAINABILITY]
+    traces_to: [ARCH-V4-001]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: NFR-V4-013
+    kind: NFR
+    title: Portability posture
+    statement: "The architecture must avoid unnecessary coupling to a single provider beyond assigned constraints."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [PORTABILITY]
+    traces_to: [ARCH-V4-015]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: NFR-V4-014
+    kind: NFR
+    title: Interoperability posture
+    statement: "The architecture must interoperate with assigned external systems through explicit contracts."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [INTEROPERABILITY]
+    traces_to: [ARCH-V4-011]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-07
+    authorizes_implementation: false
+
+  # ---- MOD: bounded contexts (V4-03.3) ----
+  - id: MOD-V4-001
+    kind: MOD
+    title: Organization registry
+    statement: "Owns organizational identity and hierarchy."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-002, NFR-V4-008]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-002
+    kind: MOD
+    title: Jurisdiction and affiliation authority
+    statement: "Owns which organizations may affiliate under which jurisdiction."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-002, ARCH-V4-004]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-003
+    kind: MOD
+    title: Season and policy versions
+    statement: "Owns seasonal policy and versioned rules."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-007]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-004
+    kind: MOD
+    title: Requirements catalogue
+    statement: "Owns versioned affiliation requirements and their applicability."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-007]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-005
+    kind: MOD
+    title: Affiliation case management
+    statement: "Owns the affiliation lifecycle state machine."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-008, ARCH-V4-010]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-006
+    kind: MOD
+    title: Evidence management
+    statement: "Owns evidence binding, provenance, and sensitivity."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-006]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-007
+    kind: MOD
+    title: Review and decision
+    statement: "Owns reviewer assignment, review, decision, and rationale."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-006, ARCH-V4-004]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-008
+    kind: MOD
+    title: Financial obligation and reconciliation status
+    statement: "Owns obligation state and reconciliation status; not the authoritative financial ledger."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-003]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-009
+    kind: MOD
+    title: Activation
+    statement: "Owns the authoritative activation effect."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-008]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-010
+    kind: MOD
+    title: Identity and resource authorization
+    statement: "Consumes the authentication boundary and computes authorization decisions."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-004, ARCH-V4-005]
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: MOD-V4-011
+    kind: MOD
+    title: Communications
+    statement: "Owns notifications and correspondence; holds no governed authority."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-009]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-012
+    kind: MOD
+    title: Support and operational recovery
+    statement: "Owns staff correction and recovery within governed authority."
+    authority: Staff
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-010]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-013
+    kind: MOD
+    title: Audit
+    statement: "Owns the append-only audit of governed effects."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-010, NFR-V4-008]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-014
+    kind: MOD
+    title: Reporting and projections
+    statement: "Owns derived, non-authoritative read models."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-010]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-015
+    kind: MOD
+    title: Integration and outbox
+    statement: "Owns the transactional outbox and external integration dispatch."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-009, ARCH-V4-011]
+    chapter_ref: V4-03
+    authorizes_implementation: false
+  - id: MOD-V4-016
+    kind: MOD
+    title: Configuration and feature control
+    statement: "Owns versioned configuration and feature gating."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-015]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+
+  # ---- SVC: affiliation reference-architecture scenarios (V4-04) ----
+  - id: SVC-V4-001
+    kind: SVC
+    title: Continuity confirmation
+    statement: "Confirms continuity of an existing affiliation through the governed lifecycle flow."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-005]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-002
+    kind: SVC
+    title: Renewal with remediation
+    statement: "Renews an affiliation requiring remediation of outstanding requirements."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-005, MOD-V4-004]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-003
+    kind: SVC
+    title: New affiliation
+    statement: "Creates a new affiliation case through the governed lifecycle flow."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-005]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-004
+    kind: SVC
+    title: Evidence submission
+    statement: "Binds submitted evidence to a specific requirement and affiliation."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-006]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-005
+    kind: SVC
+    title: Review
+    statement: "Assigns and conducts review within jurisdiction and assignment scope."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-007]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-006
+    kind: SVC
+    title: Return and resubmission
+    statement: "Returns a case for correction and accepts resubmission without mutating prior record."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-005, MOD-V4-006]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-007
+    kind: SVC
+    title: Decision
+    statement: "Records a decision binding actor, authority, evidence, rationale, and policy version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-007]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-008
+    kind: SVC
+    title: Approval awaiting reconciliation
+    statement: "Holds an approved case awaiting financial reconciliation without activating."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [MOD-V4-008]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-009
+    kind: SVC
+    title: Activation
+    statement: "Produces one authoritative activation effect through transactional, idempotent execution."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-009]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-010
+    kind: SVC
+    title: Activation recovery
+    statement: "Re-drives activation without producing a second authoritative effect."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-009, MOD-V4-015]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: SVC-V4-011
+    kind: SVC
+    title: Expiry and closure
+    statement: "Expires and closes affiliations through governed transitions."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-005]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+
+  # ---- DATA: governed concepts (V4-06.2) ----
+  - id: DATA-V4-001
+    kind: DATA
+    title: Organizational identity
+    statement: "Authoritative organizational identity and hierarchy."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-001]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-002
+    kind: DATA
+    title: Seasonal affiliation
+    statement: "Affiliation bound to a season and policy version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-003, MOD-V4-005]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-003
+    kind: DATA
+    title: Versioned requirements and applicability
+    statement: "Requirements with versioning and applicability rules."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-004]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-004
+    kind: DATA
+    title: Evidence binding and provenance
+    statement: "Evidence bound to a specific requirement and affiliation with provenance."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-006]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-005
+    kind: DATA
+    title: Derived completeness
+    statement: "Completeness derived from authoritative facts, never directly edited."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [MOD-V4-006, MOD-V4-004]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-006
+    kind: DATA
+    title: Decisions and rationale
+    statement: "Decisions recording actor, authority, evidence, rationale, and policy version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-007]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-007
+    kind: DATA
+    title: Reconciliation status
+    statement: "Financial reconciliation status; not the authoritative ledger."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [MOD-V4-008]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: DATA-V4-008
+    kind: DATA
+    title: Audit and projections
+    statement: "Append-only audit and reconstructable projections."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-013, MOD-V4-014]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+
+  # ---- API: contract classes (V4-07.2) ----
+  - id: API-V4-001
+    kind: API
+    title: Governed commands
+    statement: "State-changing commands carrying an idempotency key; posture only, not executable definitions."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [SVC-V4-009, DATA-V4-002]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: API-V4-002
+    kind: API
+    title: Governed queries
+    statement: "Read queries served from projections; posture only, not executable definitions."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [DATA-V4-008]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: API-V4-003
+    kind: API
+    title: Public and internal API surfaces
+    statement: "Distinct public and internal API surfaces with authentication and authorization; posture only."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [SVC-V4-003]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: API-V4-004
+    kind: API
+    title: Import and export contracts
+    statement: "Imports and exports with idempotency and schema governance; posture only."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [DATA-V4-001]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+
+  # ---- EVT: event classes (V4-07.2) ----
+  - id: EVT-V4-001
+    kind: EVT
+    title: Domain events
+    statement: "Governed domain events enqueued transactionally with the state change; posture only."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [API-V4-001, MOD-V4-015]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: EVT-V4-002
+    kind: EVT
+    title: Integration events
+    statement: "Outbound integration events dispatched after commit through the outbox; posture only."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-015]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: EVT-V4-003
+    kind: EVT
+    title: Webhook intake and outbound notifications
+    statement: "Inbound webhook intake and outbound notifications with idempotency and audit; posture only."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [MOD-V4-011]
+    chapter_ref: V4-07
+    authorizes_implementation: false
+
+  # ---- CTRL: architectural controls ----
+  - id: CTRL-V4-001
+    kind: CTRL
+    title: Authority segregation
+    statement: "External assigned authority is not absorbed and House authority is not delegated to the Button."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-008, EVT-V4-002]
+    traces_to: [ARCH-V4-002, ARCH-V4-003]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: CTRL-V4-002
+    kind: CTRL
+    title: Default-deny authorization
+    statement: "Authorization defaults to deny and fails closed on missing inputs."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-010]
+    traces_to: [ARCH-V4-004, ARCH-V4-005]
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: CTRL-V4-003
+    kind: CTRL
+    title: Tenant and jurisdiction isolation
+    statement: "Governed data access is isolated by tenant and jurisdiction."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-002]
+    traces_to: [ARCH-V4-004]
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: CTRL-V4-004
+    kind: CTRL
+    title: Transaction and outbox consistency
+    statement: "State change, audit append, and outbox enqueue commit atomically."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-005, MOD-V4-015]
+    traces_to: [ARCH-V4-008, ARCH-V4-009]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: CTRL-V4-005
+    kind: CTRL
+    title: Evidence binding
+    statement: "Evidence must bind to a specific requirement and affiliation to satisfy it."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-006]
+    traces_to: [ARCH-V4-006]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: CTRL-V4-006
+    kind: CTRL
+    title: Versioned rules resolution
+    statement: "Governed effects resolve to a specific policy and requirements version."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-003, MOD-V4-004]
+    traces_to: [ARCH-V4-007]
+    chapter_ref: V4-06
+    authorizes_implementation: false
+  - id: CTRL-V4-007
+    kind: CTRL
+    title: No production no-op dependency
+    statement: "The production composition fails when a required dependency is absent; no no-op stands in for a required effect."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-015]
+    traces_to: [ARCH-V4-012]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: CTRL-V4-008
+    kind: CTRL
+    title: Configuration completeness
+    statement: "Environment and secret configuration are consumed by actual production entry points."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-016]
+    traces_to: [ARCH-V4-015]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: CTRL-V4-009
+    kind: CTRL
+    title: Restore evidence required
+    statement: "Backup and restore capability is demonstrated with evidence, not configuration claims alone."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-016]
+    traces_to: [ARCH-V4-012]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: CTRL-V4-010
+    kind: CTRL
+    title: Idempotent exactly-once effect
+    statement: "State-changing commands are idempotent and produce one authoritative effect."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [MOD-V4-009, API-V4-001]
+    traces_to: [ARCH-V4-008]
+    chapter_ref: V4-04
+    authorizes_implementation: false
+
+  # ---- DEP: external and runtime dependencies (V4-02, V4-08) ----
+  - id: DEP-V4-001
+    kind: DEP
+    title: Button experience surface
+    statement: "Guided experience and projection surface; owns no governed authority."
+    authority: Button
+    architecture_status: TARGET_DEFINED
+    traces_to: [CTRL-V4-001]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-002
+    kind: DEP
+    title: Identity provider
+    statement: "External authentication boundary supplying an authenticated subject."
+    authority: External
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-002]
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: DEP-V4-003
+    kind: DEP
+    title: Payment processor
+    statement: "External payment authority; the House records reconciliation status only."
+    authority: External
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-001]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-004
+    kind: DEP
+    title: Accounting or ledger system
+    statement: "External financial system of record; authoritative ledger remains external."
+    authority: External
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-001]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-005
+    kind: DEP
+    title: Registration systems and Curling I/O
+    statement: "External registration data of record where assigned by the operating model."
+    authority: External
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-001]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-006
+    kind: DEP
+    title: Communication providers
+    statement: "External communication delivery for notifications and correspondence."
+    authority: External
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-007]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-007
+    kind: DEP
+    title: Document and evidence storage services
+    statement: "External or governed storage for evidence objects with provenance and access control."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-005]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-008
+    kind: DEP
+    title: Transitional manual boundary
+    statement: "Manual process where an automated boundary is not yet available."
+    authority: Staff
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-001]
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: DEP-V4-009
+    kind: DEP
+    title: PostgreSQL database
+    statement: "Governed state store; validated against PostgreSQL, not a substitute."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-004]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: DEP-V4-010
+    kind: DEP
+    title: Worker and outbox processor runtime
+    statement: "Worker execution path publishing the outbox with true full jitter; no Service Bus sessions in v1."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-007]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: DEP-V4-011
+    kind: DEP
+    title: Secret and configuration management
+    statement: "Secret management and versioned configuration consumed by production entry points."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-008]
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: DEP-V4-012
+    kind: DEP
+    title: Infrastructure as code and supply-chain controls
+    statement: "Infrastructure defined as code with dependency, build, and image controls; no resources provisioned in Package 1."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-008]
+    chapter_ref: V4-08
+    authorizes_implementation: false
