@@ -1,0 +1,559 @@
+register_id: REG-601
+name: Volume 6 Assets, Actors, Boundaries, Threats, and Rights
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Assets (V6-02) ====
+  - id: ASSET-V6-001
+    kind: ASSET
+    title: Governed affiliation records
+    purpose: The authoritative affiliation case records governed by Volume 5, whose confidentiality, integrity, and availability must be protected.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-006
+      - DOMAIN-V5-014
+    failure_impact: Loss of governed truth, unauthorized disclosure, or corruption of affiliation decisions.
+    evidence_required: PENDING (control implementation and independent assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - V5-06
+      - DOMAIN-V5-006
+  - id: ASSET-V6-002
+    kind: ASSET
+    title: Personal identity data
+    purpose: Personal data about representatives and persons whose privacy and confidentiality must be protected.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: PERSONAL
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-003
+    failure_impact: Privacy harm, unauthorized disclosure of personal data, loss of trust.
+    evidence_required: PENDING (privacy control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - V5-07
+      - DOMAIN-V5-003
+  - id: ASSET-V6-003
+    kind: ASSET
+    title: Authentication and secret material
+    purpose: Credentials, tokens, keys, and secrets that authenticate actors and protect governed data; their compromise defeats every downstream control.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: PRIVILEGED_ADMIN
+    sensitivity: RESTRICTED
+    information_domains:
+      - DOMAIN-V5-003
+    failure_impact: Impersonation, privilege escalation, and total loss of governed-data confidentiality.
+    evidence_required: PENDING (secrets and key management implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - V5-07
+  - id: ASSET-V6-004
+    kind: ASSET
+    title: Evidence artifacts and metadata
+    purpose: Immutable evidence metadata and binary references whose integrity and preservation underpin governed decisions.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-010
+      - DOMAIN-V5-011
+    failure_impact: Loss of evidentiary integrity, inability to substantiate governed decisions.
+    evidence_required: PENDING (integrity control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - V5-06
+      - DOMAIN-V5-010
+  - id: ASSET-V6-005
+    kind: ASSET
+    title: Audit journal
+    purpose: The append-only audit journal whose integrity and availability are required for accountability and investigation.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: SECURITY_AUDIT
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-023
+    failure_impact: Loss of accountability, inability to detect or investigate misuse.
+    evidence_required: PENDING (logging and audit control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-023
+  - id: ASSET-V6-006
+    kind: ASSET
+    title: Financial-status data
+    purpose: Fee obligation, payment acknowledgement, and accounting-confirmation status whose confidentiality and integrity must be protected.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: FINANCIAL_STATUS
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-015
+      - DOMAIN-V5-016
+    failure_impact: Financial misstatement, unauthorized disclosure of financial status.
+    evidence_required: PENDING (financial-data control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-015
+  - id: ASSET-V6-007
+    kind: ASSET
+    title: Privileged administrative capability
+    purpose: The elevated administrative and correction capabilities whose misuse would bypass governed controls.
+    authority_owner: Staff
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: PRIVILEGED_ADMIN
+    sensitivity: RESTRICTED
+    information_domains:
+      - DOMAIN-V5-022
+    failure_impact: Uncontrolled mutation of governed data, bypass of lifecycle controls.
+    evidence_required: PENDING (privileged access control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-022
+  - id: ASSET-V6-008
+    kind: ASSET
+    title: Projection and analytics data
+    purpose: Non-authoritative projection, reporting, and export data whose aggregation may still create disclosure or re-identification risk.
+    authority_owner: Shared
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: ANALYTICS_AGGREGATE
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-024
+      - DOMAIN-V5-025
+    failure_impact: Re-identification, unauthorized secondary use, disclosure through aggregation.
+    evidence_required: PENDING (privacy and disclosure control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-024
+
+  # ==== Actors (V6-02) ====
+  - id: ACTOR-V6-001
+    kind: ACTOR
+    title: Organization representative
+    purpose: An authenticated representative acting for a recognized organization within its own scope.
+    actor_type: Authenticated external principal
+    authority: House
+    custody_status: Self-service within organization scope
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-003
+  - id: ACTOR-V6-002
+    kind: ACTOR
+    title: Reviewer
+    purpose: A staff reviewer assigned to evaluate affiliation cases within a bounded assignment scope.
+    actor_type: Authenticated staff principal
+    authority: Staff
+    custody_status: Assignment-scoped review authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-013
+  - id: ACTOR-V6-003
+    kind: ACTOR
+    title: Governance administrator
+    purpose: A national or jurisdictional administrator with governance authority over reference and season data.
+    actor_type: Authenticated staff principal
+    authority: CurlingCanada
+    custody_status: Governance administration authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-004
+  - id: ACTOR-V6-004
+    kind: ACTOR
+    title: Finance actor
+    purpose: A staff actor confirming financial status and reconciliation for affiliation cases.
+    actor_type: Authenticated staff principal
+    authority: Staff
+    custody_status: Finance confirmation authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-017
+  - id: ACTOR-V6-005
+    kind: ACTOR
+    title: Support actor
+    purpose: A support staff actor assisting representatives without authority to mutate governed decisions.
+    actor_type: Authenticated staff principal
+    authority: Staff
+    custody_status: Read and assist scope only
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-021
+  - id: ACTOR-V6-006
+    kind: ACTOR
+    title: External service provider
+    purpose: A third-party provider (identity, payment, storage, or communications) that processes governed data under contract.
+    actor_type: External processor
+    authority: External
+    custody_status: Contractual processor; assurance PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - V5-07
+  - id: ACTOR-V6-007
+    kind: ACTOR
+    title: Automated system actor
+    purpose: An internal automated process (worker, projection builder, outbox processor) acting under a governed service identity.
+    actor_type: Automated service principal
+    authority: House
+    custody_status: Service identity; scope PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+    traces_to:
+      - DOMAIN-V5-024
+  - id: ACTOR-V6-008
+    kind: ACTOR
+    title: Public or anonymous actor
+    purpose: An unauthenticated actor with no governed authority, whose only permitted access is to public information.
+    actor_type: Anonymous principal
+    authority: External
+    custody_status: No governed authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+
+  # ==== Trust boundaries (V6-02) ====
+  - id: BOUNDARY-V6-001
+    kind: TRUST_BOUNDARY
+    title: Experience-to-platform boundary
+    purpose: The boundary where an experience layer (The Button) requests actions of The House platform core.
+    boundary_from: Experience layer (The Button)
+    boundary_to: The House platform core API
+    crossing_controls: PENDING (authentication, authorization, input validation, and rate control objectives)
+    failure_posture: FAIL_CLOSED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+  - id: BOUNDARY-V6-002
+    kind: TRUST_BOUNDARY
+    title: Platform-to-store boundary
+    purpose: The boundary between platform application logic and the governed data and evidence stores.
+    boundary_from: The House platform core
+    boundary_to: Governed data and evidence stores
+    crossing_controls: PENDING (data-access, integrity, and encryption control objectives)
+    failure_posture: FAIL_CLOSED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+  - id: BOUNDARY-V6-003
+    kind: TRUST_BOUNDARY
+    title: Platform-to-provider boundary
+    purpose: The boundary between the platform core and external service providers processing governed data.
+    boundary_from: The House platform core
+    boundary_to: External service providers
+    crossing_controls: PENDING (provider assurance, data-transfer, and contractual control objectives)
+    failure_posture: FAIL_CLOSED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+  - id: BOUNDARY-V6-004
+    kind: TRUST_BOUNDARY
+    title: Privileged-administration boundary
+    purpose: The boundary crossed when privileged staff exercise elevated administrative or correction capability.
+    boundary_from: Staff operator context
+    boundary_to: Privileged administrative capability
+    crossing_controls: PENDING (privileged-access, approval, and audit control objectives)
+    failure_posture: MANUAL_ESCALATION
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+  - id: BOUNDARY-V6-005
+    kind: TRUST_BOUNDARY
+    title: Tenant and jurisdiction isolation boundary
+    purpose: The logical boundary that isolates one tenant's and jurisdiction's governed data from another's.
+    boundary_from: Tenant or jurisdiction A context
+    boundary_to: Tenant or jurisdiction B governed data
+    crossing_controls: PENDING (tenant-scoping and fail-closed authorization control objectives)
+    failure_posture: FAIL_CLOSED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-02
+
+  # ==== Threats (V6-03) ====
+  - id: THREAT-V6-001
+    kind: THREAT
+    title: Cross-tenant governed-data access
+    purpose: An actor obtains governed affiliation data belonging to a tenant or jurisdiction outside their authorized scope.
+    trust_boundary: BOUNDARY-V6-005
+    affected_asset: ASSET-V6-001
+    threat_actor: Authenticated actor exceeding scope
+    precondition: Authorization does not fail closed on tenant or jurisdiction context.
+    misuse_path: A scoped request is served governed data from another tenant or jurisdiction.
+    potential_consequence: Unauthorized disclosure of governed affiliation data across tenants.
+    preventive_objective: Enforce fail-closed tenant and jurisdiction scoping on every governed-data access.
+    detective_objective: Log and alert on access that crosses tenant or jurisdiction scope.
+    corrective_objective: Contain, notify, and remediate cross-tenant exposure with preserved evidence.
+    owner: Identity and Authorization Steward
+    future_blocking_gate: V7-G1
+    evidence: PENDING (authorization control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-001
+      - BOUNDARY-V6-005
+  - id: THREAT-V6-002
+    kind: THREAT
+    title: Credential compromise and impersonation
+    purpose: An adversary obtains authentication or secret material and impersonates a governed actor.
+    trust_boundary: BOUNDARY-V6-001
+    affected_asset: ASSET-V6-003
+    threat_actor: External adversary or insider
+    precondition: Authentication or secret material is exposed, weak, or unrotated.
+    misuse_path: Stolen credentials are used to authenticate as a governed actor and act within their scope.
+    potential_consequence: Impersonation, unauthorized action, and downstream data compromise.
+    preventive_objective: Protect, rotate, and strongly verify authentication and secret material.
+    detective_objective: Detect anomalous authentication and credential-use patterns.
+    corrective_objective: Revoke, rotate, and contain compromised credentials with preserved evidence.
+    owner: Identity and Authorization Steward
+    future_blocking_gate: V7-G1
+    evidence: PENDING (authentication and secrets control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-003
+      - BOUNDARY-V6-001
+  - id: THREAT-V6-003
+    kind: THREAT
+    title: Evidence or audit tampering
+    purpose: An actor alters or destroys evidence artifacts or audit records to conceal or fabricate governed truth.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-004
+    threat_actor: Insider or compromised process
+    precondition: Evidence and audit stores are mutable or lack integrity verification.
+    misuse_path: Evidence or audit records are altered or deleted after the fact.
+    potential_consequence: Loss of evidentiary integrity and accountability.
+    preventive_objective: Enforce append-only, integrity-protected evidence and audit storage.
+    detective_objective: Detect integrity violations against evidence and audit records.
+    corrective_objective: Restore, investigate, and preserve evidence of tampering.
+    owner: Data Governance Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (integrity control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-004
+      - ASSET-V6-005
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-004
+    kind: THREAT
+    title: Privileged-access misuse
+    purpose: A privileged staff actor uses elevated capability to bypass governed controls or make unauthorized changes.
+    trust_boundary: BOUNDARY-V6-004
+    affected_asset: ASSET-V6-007
+    threat_actor: Privileged insider
+    precondition: Privileged capability lacks least-privilege scoping, approval, and audit.
+    misuse_path: Elevated capability is used outside an approved, audited purpose.
+    potential_consequence: Uncontrolled mutation of governed data and control bypass.
+    preventive_objective: Constrain privileged capability to least privilege with approval and just-in-time scope.
+    detective_objective: Audit and alert on all privileged actions.
+    corrective_objective: Revoke, review, and remediate privileged misuse with preserved evidence.
+    owner: Security and Trust Steward
+    future_blocking_gate: V7-G1
+    evidence: PENDING (privileged access control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-007
+      - BOUNDARY-V6-004
+  - id: THREAT-V6-005
+    kind: THREAT
+    title: Provider data exposure
+    purpose: An external provider exposes or mishandles governed personal data outside contractual and privacy obligations.
+    trust_boundary: BOUNDARY-V6-003
+    affected_asset: ASSET-V6-002
+    threat_actor: External processor or its subprocessor
+    precondition: Provider assurance, data-transfer, and contractual controls are unverified.
+    misuse_path: Governed personal data is disclosed, retained, or reused by a provider outside obligation.
+    potential_consequence: Privacy harm and breach of data-processing obligations.
+    preventive_objective: Require verified provider assurance and contractual data-protection obligations before reliance.
+    detective_objective: Monitor provider processing and obtain incident notification.
+    corrective_objective: Contain, notify, and remediate provider exposure with preserved evidence.
+    owner: Privacy Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (provider assurance implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-002
+      - BOUNDARY-V6-003
+
+  # ==== Abuse cases (V6-03) ====
+  - id: ABUSE-V6-001
+    kind: ABUSE_CASE
+    title: Reviewer over-access beyond assignment
+    purpose: An authorized reviewer accesses governed cases outside their assignment scope.
+    trust_boundary: BOUNDARY-V6-001
+    affected_asset: ASSET-V6-001
+    threat_actor: Authorized reviewer
+    precondition: Authorization does not constrain access to assigned cases.
+    misuse_path: A reviewer browses or acts on cases outside their assignment.
+    potential_consequence: Unauthorized access to governed cases by an otherwise-authorized actor.
+    preventive_objective: Constrain reviewer access to assignment scope with fail-closed authorization.
+    detective_objective: Log and review access outside assignment scope.
+    corrective_objective: Investigate and remediate over-access with preserved evidence.
+    owner: Identity and Authorization Steward
+    future_blocking_gate: V7-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-001
+      - BOUNDARY-V6-001
+  - id: ABUSE-V6-002
+    kind: ABUSE_CASE
+    title: Re-identification through projection or export
+    purpose: An actor combines projection, analytics, or export data to re-identify persons or infer restricted facts.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-008
+    threat_actor: Authorized analytics or export consumer
+    precondition: Projections and exports lack minimization and disclosure controls.
+    misuse_path: Aggregated non-authoritative data is correlated to re-identify persons.
+    potential_consequence: Privacy harm through re-identification or inference.
+    preventive_objective: Enforce minimization and disclosure controls on projection and export data.
+    detective_objective: Review export and analytics access for disclosure risk.
+    corrective_objective: Restrict, notify, and remediate re-identification exposure.
+    owner: Privacy Steward
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - ASSET-V6-008
+      - BOUNDARY-V6-002
+
+  # ==== Rights (V6-03) ====
+  - id: RIGHT-V6-001
+    kind: RIGHT
+    title: Right to notice and transparency
+    purpose: The right of data subjects to be informed of how their personal data is collected, used, and disclosed.
+    right_holder: Data subject (person or representative)
+    protected_outcome: Individuals understand the processing of their personal data.
+    control_implication: Requires a notice and transparency control objective and validated legal basis.
+    rights_dependency: Depends on the privacy purpose register and records authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - V5-07
+  - id: RIGHT-V6-002
+    kind: RIGHT
+    title: Right of access
+    purpose: The right of data subjects to obtain their personal data held by the platform, subject to lawful limits.
+    right_holder: Data subject (person or representative)
+    protected_outcome: Individuals can obtain their own personal data.
+    control_implication: Requires an access-request control objective and identity verification.
+    rights_dependency: Depends on privacy purposes and authorization control objectives.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - V5-07
+  - id: RIGHT-V6-003
+    kind: RIGHT
+    title: Right to correction
+    purpose: The right of data subjects to have inaccurate personal data corrected through governed correction authority.
+    right_holder: Data subject (person or representative)
+    protected_outcome: Inaccurate personal data can be corrected without altering governed truth improperly.
+    control_implication: Requires a correction control objective aligned to Volume 5 correction authority.
+    rights_dependency: Depends on administrative-correction governance.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - DOMAIN-V5-022
+  - id: RIGHT-V6-004
+    kind: RIGHT
+    title: Right to complaint and escalation
+    purpose: The right of data subjects to raise concerns and escalate about the handling of their personal data.
+    right_holder: Data subject (person or representative)
+    protected_outcome: Individuals can seek redress about data handling.
+    control_implication: Requires a complaint-handling control objective and incident linkage.
+    rights_dependency: Depends on incident and support governance.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - DOMAIN-V5-021
+  - id: RIGHT-V6-005
+    kind: RIGHT
+    title: Right to accessible and bilingual service
+    purpose: The right of users to equivalent, accessible service in both official languages.
+    right_holder: All users
+    protected_outcome: Users receive accessible, semantically equivalent bilingual service.
+    control_implication: Requires accessibility and bilingual-equivalence obligations with verification.
+    rights_dependency: Depends on accessibility and bilingual obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-03
+    traces_to:
+      - DOMAIN-V5-020

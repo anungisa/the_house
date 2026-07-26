@@ -1,0 +1,8 @@
+{
+  "threats": 5,
+  "abuse_cases": 2,
+  "boundaries_without_threat": [],
+  "threats_without_preventive": [],
+  "threats_without_detective": [],
+  "threats_without_corrective": []
+}

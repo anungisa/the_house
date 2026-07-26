@@ -1,0 +1,138 @@
+register_id: REG-604
+name: Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Assumptions ====
+  - id: ASM-V6-001
+    kind: ASM
+    title: Inherited Volume 5 governed-data model is authoritative
+    owner: Data Governance Steward
+    statement: Volume 6 assumes the released Volume 5 governed-data baseline (central-registration-volume-5-v1.0.0) is authoritative and unchanged.
+    confidence: HIGH
+    required_decision: None; inheritance confirmed by baseline tag.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-00
+    traces_to:
+      - V5-00
+  - id: ASM-V6-002
+    kind: ASM
+    title: Protection controls will be designed in later volumes
+    owner: Security and Trust Steward
+    statement: Volume 6 assumes security, privacy, and assurance controls will be designed and validated in later volumes under the governed gate sequence.
+    confidence: MEDIUM
+    target_package_or_volume: Volume 7+ security and Volume 9+ privacy
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-01
+    traces_to:
+      - CTRL-V6-002
+
+  # ==== Risks ====
+  - id: RISK-V6-001
+    kind: RISK
+    title: Privacy-law applicability unvalidated
+    owner: Privacy Steward
+    statement: The precise applicability of Canadian federal and provincial privacy law to governed processing is not yet validated.
+    assurance_classification: LEGAL_VALIDATION_PENDING
+    current_evidence: PENDING (legal applicability assessment)
+    required_evidence: PENDING (legal opinion and privacy validation)
+    implementation_implication: Privacy controls may need adjustment once applicability is validated.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-06
+    traces_to:
+      - COMP-V6-001
+  - id: RISK-V6-002
+    kind: RISK
+    title: Provider assurance unverified
+    owner: Security and Trust Steward
+    statement: External providers' security and privacy assurance is not yet verified.
+    assurance_classification: INDEPENDENT_ASSURANCE_REQUIRED
+    current_evidence: PENDING (provider assurance attestations)
+    required_evidence: PENDING (validated provider assurance evidence)
+    implementation_implication: Reliance on providers is blocked until assurance is verified.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-09
+    traces_to:
+      - CTRL-V6-009
+
+  # ==== Exceptions ====
+  - id: EXC-V6-001
+    kind: EXC
+    title: No protection exceptions granted in Package 1
+    owner: Accountable Program Authority (Aubert Nungisa)
+    statement: No exception to any Volume 6 protection obligation is granted in Package 1; this placeholder records the exception process and its authority.
+    exception_authority: Executive Acceptance Authority (Nolan)
+    exception_expiry: TBD (no active exception)
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-01
+
+  # ==== Validation backlog ====
+  - id: TEST-V6-001
+    kind: TEST
+    title: Authorization fail-closed validation
+    owner: Identity and Authorization Steward
+    statement: Future validation must prove authorization fails closed and enforces tenant and jurisdiction scope.
+    future_test_class: Security validation
+    target_package_or_volume: Volume 7+ security
+    future_blocking_gate: V7-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-04
+    traces_to:
+      - CTRL-V6-002
+  - id: TEST-V6-002
+    kind: TEST
+    title: Privacy minimization validation
+    owner: Privacy Steward
+    statement: Future validation must prove personal-data processing meets the minimum-necessary principle for each stated purpose.
+    future_test_class: Privacy validation
+    target_package_or_volume: Volume 9+ privacy
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-05
+    traces_to:
+      - CTRL-V6-008
+  - id: TEST-V6-003
+    kind: TEST
+    title: Accessibility and bilingual equivalence validation
+    owner: Accessibility Steward
+    statement: Future validation must prove accessibility conformance and bilingual semantic equivalence.
+    future_test_class: Accessibility validation
+    target_package_or_volume: Volume 11+ delivery
+    future_blocking_gate: V11-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-07
+    traces_to:
+      - A11Y-V6-001
+      - BIL-V6-001
+  - id: TEST-V6-004
+    kind: TEST
+    title: Incident-response and evidence-preservation validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove incident response preserves evidence and meets containment and recovery objectives.
+    future_test_class: Incident-response validation
+    target_package_or_volume: Volume 7+ operations
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-08
+    traces_to:
+      - INC-V6-001

@@ -1,0 +1,116 @@
+register_id: REG-605
+name: Volume 6 Approval Register
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Package 1: chapter ratifications ====
+  - id: APP-V6-001
+    artifact_id: V6-00
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume control, inheritance, and protection-definition authority defined.
+      - Authorizes no implementation, executable policy, IAM, infrastructure, procurement, or plan.
+    approved_at: null
+  - id: APP-V6-002
+    artifact_id: V6-01
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Protection doctrine, trust principles, and governance model defined.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-003
+    artifact_id: V6-02
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Assets, actors, trust boundaries, and data classification defined with explicit authority and classification.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-004
+    artifact_id: V6-03
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Threats, misuse, abuse cases, and rights risk defined with preventive, detective, and corrective objectives.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-005
+    artifact_id: V6-04
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity, authentication, and authorization baseline defined as resource-aware and fail-closed obligations.
+      - Authorizes no implementation, IAM role, permission, or policy.
+    approved_at: null
+  - id: APP-V6-006
+    artifact_id: V6-05
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Privacy, personal data, and records dependencies defined without setting a retention period or destruction schedule.
+      - Claims no privacy compliance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-007
+    artifact_id: V6-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Compliance-obligation framework defined with applicability, authority, control reference, evidence, and future gates.
+      - Claims no legal conformance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-008
+    artifact_id: V6-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Accessibility and bilingual-equivalence baseline defined with verification methods and semantic equivalence.
+      - Claims no accessibility conformance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-009
+    artifact_id: V6-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Incident, evidence-preservation, and response posture defined with preserved evidence and containment and recovery objectives.
+      - Authorizes no implementation of monitoring or incident response.
+    approved_at: null
+  - id: APP-V6-010
+    artifact_id: V6-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Assurance, validation, and provider-assurance backlog defined with owners, evidence, classification, and future gates.
+      - Claims no independent assurance or operational proof; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-011
+    artifact_id: V6-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Trust-foundation assessment and deterministic controls defined as non-authoritative tooling over the governed corpus.
+      - Authorizes no implementation.
+    approved_at: null

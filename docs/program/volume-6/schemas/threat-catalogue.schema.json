@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "threat-catalogue.schema.json",
+  "title": "REG-601 Volume 6 Assets, Actors, Boundaries, Threats, and Rights",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-601" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "purpose", "validation_status", "authorizes_implementation", "implementation_status", "chapter_ref"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(ASSET|ACTOR|BOUNDARY|THREAT|ABUSE|RIGHT)-V6-[0-9]{3}$"
+          },
+          "kind": { "$ref": "common.schema.json#/definitions/protectionKind" },
+          "title": { "type": "string" },
+          "purpose": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean" },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "chapter_ref": { "$ref": "common.schema.json#/definitions/documentId" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+
+          "authority_owner": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "custodian_status": { "type": "string" },
+          "classification": { "$ref": "common.schema.json#/definitions/classificationCategory" },
+          "sensitivity": { "$ref": "common.schema.json#/definitions/sensitivityLevel" },
+          "permitted_actors": { "type": "array", "items": { "type": "string" } },
+          "permitted_purposes": { "type": "array", "items": { "type": "string" } },
+          "trust_boundary": { "type": "string" },
+          "failure_impact": { "type": "string" },
+          "logging_restrictions": { "type": "string" },
+          "evidence_required": { "type": "string" },
+          "information_domains": { "type": "array", "items": { "type": "string" } },
+
+          "actor_type": { "type": "string" },
+          "authority": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "custody_status": { "type": "string" },
+
+          "boundary_from": { "type": "string" },
+          "boundary_to": { "type": "string" },
+          "crossing_controls": { "type": "string" },
+          "failure_posture": { "$ref": "common.schema.json#/definitions/failurePosture" },
+
+          "affected_asset": { "type": "string" },
+          "affected_right": { "type": "string" },
+          "threat_actor": { "type": "string" },
+          "failure_source": { "type": "string" },
+          "precondition": { "type": "string" },
+          "misuse_path": { "type": "string" },
+          "potential_consequence": { "type": "string" },
+          "preventive_objective": { "type": "string" },
+          "detective_objective": { "type": "string" },
+          "corrective_objective": { "type": "string" },
+          "evidence": { "type": "string" },
+          "owner": { "type": "string" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "superseded_future_blocking_gate": {
+            "oneOf": [
+              { "$ref": "common.schema.json#/definitions/v6GateId" },
+              { "type": "array", "items": { "$ref": "common.schema.json#/definitions/v6GateId" } }
+            ]
+          },
+          "gate_reassignment_ref": { "type": "string" },
+
+          "right_holder": { "type": "string" },
+          "protected_outcome": { "type": "string" },
+          "control_implication": { "type": "string" },
+          "rights_dependency": { "type": "string" }
+        }
+      }
+    }
+  }
+}

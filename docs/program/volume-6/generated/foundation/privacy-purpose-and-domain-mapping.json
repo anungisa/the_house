@@ -1,0 +1,42 @@
+{
+  "processing_purposes": 5,
+  "purposes_without_domain": [],
+  "purposes_without_disclosure_authority": [],
+  "retention_without_records_authority": [],
+  "domain_mappings": [
+    {
+      "id": "PRIV-V6-001",
+      "information_domains": [
+        "DOMAIN-V5-001",
+        "DOMAIN-V5-006",
+        "DOMAIN-V5-014"
+      ]
+    },
+    {
+      "id": "PRIV-V6-002",
+      "information_domains": [
+        "DOMAIN-V5-003"
+      ]
+    },
+    {
+      "id": "PRIV-V6-003",
+      "information_domains": [
+        "DOMAIN-V5-015",
+        "DOMAIN-V5-016"
+      ]
+    },
+    {
+      "id": "PRIV-V6-004",
+      "information_domains": [
+        "DOMAIN-V5-020",
+        "DOMAIN-V5-021"
+      ]
+    },
+    {
+      "id": "PRIV-V6-005",
+      "information_domains": [
+        "DOMAIN-V5-023"
+      ]
+    }
+  ]
+}

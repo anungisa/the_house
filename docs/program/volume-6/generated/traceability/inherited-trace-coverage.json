@@ -1,0 +1,519 @@
+[
+  {
+    "id": "ASSET-V6-001",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "V5-06",
+      "DOMAIN-V5-006"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-002",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "V5-07",
+      "DOMAIN-V5-003"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-003",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "V5-07"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-004",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "V5-06",
+      "DOMAIN-V5-010"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-005",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-023"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-006",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-015"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-007",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-022"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSET-V6-008",
+    "kind": "ASSET",
+    "traces_to_inherited": [
+      "DOMAIN-V5-024"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-001",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "DOMAIN-V5-003"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-002",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "DOMAIN-V5-013"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-003",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "DOMAIN-V5-004"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-004",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "DOMAIN-V5-017"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-005",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "DOMAIN-V5-021"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-006",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "V5-07"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-007",
+    "kind": "ACTOR",
+    "traces_to_inherited": [
+      "DOMAIN-V5-024"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "ACTOR-V6-008",
+    "kind": "ACTOR",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "BOUNDARY-V6-001",
+    "kind": "TRUST_BOUNDARY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "BOUNDARY-V6-002",
+    "kind": "TRUST_BOUNDARY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "BOUNDARY-V6-003",
+    "kind": "TRUST_BOUNDARY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "BOUNDARY-V6-004",
+    "kind": "TRUST_BOUNDARY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "BOUNDARY-V6-005",
+    "kind": "TRUST_BOUNDARY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "THREAT-V6-001",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-001",
+      "BOUNDARY-V6-005"
+    ]
+  },
+  {
+    "id": "THREAT-V6-002",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-003",
+      "BOUNDARY-V6-001"
+    ]
+  },
+  {
+    "id": "THREAT-V6-003",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-004",
+      "ASSET-V6-005",
+      "BOUNDARY-V6-002"
+    ]
+  },
+  {
+    "id": "THREAT-V6-004",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-007",
+      "BOUNDARY-V6-004"
+    ]
+  },
+  {
+    "id": "THREAT-V6-005",
+    "kind": "THREAT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-002",
+      "BOUNDARY-V6-003"
+    ]
+  },
+  {
+    "id": "ABUSE-V6-001",
+    "kind": "ABUSE_CASE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-001",
+      "BOUNDARY-V6-001"
+    ]
+  },
+  {
+    "id": "ABUSE-V6-002",
+    "kind": "ABUSE_CASE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ASSET-V6-008",
+      "BOUNDARY-V6-002"
+    ]
+  },
+  {
+    "id": "RIGHT-V6-001",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "V5-07"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "RIGHT-V6-002",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "V5-07"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "RIGHT-V6-003",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "DOMAIN-V5-022"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "RIGHT-V6-004",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "DOMAIN-V5-021"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "RIGHT-V6-005",
+    "kind": "RIGHT",
+    "traces_to_inherited": [
+      "DOMAIN-V5-020"
+    ],
+    "traces_to_local": []
+  },
+  {
+    "id": "CTRL-V6-001",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-002"
+    ]
+  },
+  {
+    "id": "CTRL-V6-002",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-001",
+      "ABUSE-V6-001"
+    ]
+  },
+  {
+    "id": "CTRL-V6-003",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-004"
+    ]
+  },
+  {
+    "id": "CTRL-V6-004",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-005"
+    ]
+  },
+  {
+    "id": "CTRL-V6-005",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-003"
+    ]
+  },
+  {
+    "id": "CTRL-V6-006",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-003"
+    ]
+  },
+  {
+    "id": "CTRL-V6-007",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-002"
+    ]
+  },
+  {
+    "id": "CTRL-V6-008",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-001"
+    ]
+  },
+  {
+    "id": "CTRL-V6-009",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-005"
+    ]
+  },
+  {
+    "id": "CTRL-V6-010",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-001"
+    ]
+  },
+  {
+    "id": "CTRL-V6-011",
+    "kind": "CONTROL_OBJECTIVE",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "PRIV-V6-001",
+    "kind": "PROCESSING_PURPOSE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-008"
+    ]
+  },
+  {
+    "id": "PRIV-V6-002",
+    "kind": "PROCESSING_PURPOSE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-008"
+    ]
+  },
+  {
+    "id": "PRIV-V6-003",
+    "kind": "PROCESSING_PURPOSE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-008"
+    ]
+  },
+  {
+    "id": "PRIV-V6-004",
+    "kind": "PROCESSING_PURPOSE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-008"
+    ]
+  },
+  {
+    "id": "PRIV-V6-005",
+    "kind": "PROCESSING_PURPOSE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-005"
+    ]
+  },
+  {
+    "id": "OBL-V6-001",
+    "kind": "OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-001"
+    ]
+  },
+  {
+    "id": "OBL-V6-002",
+    "kind": "OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-001"
+    ]
+  },
+  {
+    "id": "COMP-V6-001",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-001"
+    ]
+  },
+  {
+    "id": "COMP-V6-002",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "PRIV-V6-005"
+    ]
+  },
+  {
+    "id": "COMP-V6-003",
+    "kind": "COMPLIANCE_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "A11Y-V6-001",
+    "kind": "ACCESSIBILITY_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "A11Y-V6-002",
+    "kind": "ACCESSIBILITY_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "BIL-V6-001",
+    "kind": "BILINGUAL_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-005"
+    ]
+  },
+  {
+    "id": "BIL-V6-002",
+    "kind": "BILINGUAL_OBLIGATION",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RIGHT-V6-001"
+    ]
+  },
+  {
+    "id": "INC-V6-001",
+    "kind": "INCIDENT_FAMILY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-001",
+      "THREAT-V6-005"
+    ]
+  },
+  {
+    "id": "INC-V6-002",
+    "kind": "INCIDENT_FAMILY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "THREAT-V6-003"
+    ]
+  },
+  {
+    "id": "INC-V6-003",
+    "kind": "INCIDENT_FAMILY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ASSR-V6-001",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-002"
+    ]
+  },
+  {
+    "id": "ASSR-V6-002",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-008"
+    ]
+  },
+  {
+    "id": "ASSR-V6-003",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "A11Y-V6-001"
+    ]
+  },
+  {
+    "id": "ASSR-V6-004",
+    "kind": "ASSURANCE_REQUIREMENT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V6-009"
+    ]
+  }
+]

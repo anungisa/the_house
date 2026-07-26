@@ -1,0 +1,19 @@
+{
+  "control_objectives": 11,
+  "assurance_requirements": 4,
+  "validation_backlog": 4,
+  "assurance_by_classification": {
+    "INDEPENDENT_ASSURANCE_REQUIRED": 2,
+    "PRIVACY_VALIDATION_PENDING": 1,
+    "ACCESSIBILITY_VALIDATION_PENDING": 1
+  },
+  "backlog_by_kind": {
+    "ASM": 2,
+    "RISK": 2,
+    "EXC": 1,
+    "TEST": 4
+  },
+  "controls_without_owner": [],
+  "controls_without_evidence": [],
+  "controls_without_gate": []
+}

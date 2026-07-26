@@ -1,0 +1,22 @@
+{
+  "chapters": 11,
+  "assets": 8,
+  "actors": 8,
+  "trust_boundaries": 5,
+  "threats": 5,
+  "abuse_cases": 2,
+  "rights": 5,
+  "controls_by_kind": {
+    "CONTROL_OBJECTIVE": 11,
+    "PROCESSING_PURPOSE": 5,
+    "OBLIGATION": 2,
+    "COMPLIANCE_OBLIGATION": 3,
+    "ACCESSIBILITY_OBLIGATION": 2,
+    "BILINGUAL_OBLIGATION": 2,
+    "INCIDENT_FAMILY": 3,
+    "ASSURANCE_REQUIREMENT": 4
+  },
+  "decisions": 4,
+  "backlog_items": 9,
+  "approvals": 11
+}
