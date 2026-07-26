@@ -1,0 +1,93 @@
+register_id: REG-400
+name: Volume 4 Corpus Index
+status: RATIFIED
+version: 1.1.0
+records:
+  - id: V4-00
+    title: Volume 4 Control, Inheritance, and Architecture Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-00-volume-control-inheritance-and-architecture-authority.md
+    gate: V4-G1
+  - id: V4-01
+    title: Architecture Mandate, Principles, and Quality Attributes
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-01-architecture-mandate-principles-and-quality-attributes.md
+    gate: V4-G1
+  - id: V4-02
+    title: System Context and Authority-Boundary Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-02-system-context-and-authority-boundary-architecture.md
+    gate: V4-G1
+  - id: V4-03
+    title: Target Logical Architecture and Bounded-Context Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-03-target-logical-architecture-and-bounded-context-model.md
+    gate: V4-G1
+  - id: V4-04
+    title: Affiliation Reference Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-04-affiliation-reference-architecture.md
+    gate: V4-G1
+  - id: V4-05
+    title: Identity, Authorization, Jurisdiction, and Trust Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-05-identity-authorization-jurisdiction-and-trust-architecture.md
+    gate: V4-G1
+  - id: V4-06
+    title: Data, Evidence, Workflow, and Transaction Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-06-data-evidence-workflow-and-transaction-architecture.md
+    gate: V4-G1
+  - id: V4-07
+    title: API, Event, Integration, and Idempotency Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-07-api-event-integration-and-idempotency-architecture.md
+    gate: V4-G1
+  - id: V4-08
+    title: Runtime, Deployment, Observability, Resilience, and Configuration Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-08-runtime-deployment-observability-resilience-and-configuration-architecture.md
+    gate: V4-G1
+  - id: V4-09
+    title: Architecture Decisions, Fitness Functions, and Verification Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-09-architecture-decisions-fitness-functions-and-verification-model.md
+    gate: V4-G1
+  - id: V4-A
+    title: "Package 1 Closure Record - Architecture and Engineering Foundation"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-A-package-1-closure-record.md
+    gate: V4-G1

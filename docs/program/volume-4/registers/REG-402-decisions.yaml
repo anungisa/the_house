@@ -1,0 +1,141 @@
+register_id: REG-402
+name: Volume 4 Architecture Decision Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V4-001
+    class: D1
+    title: Modular monolith as the default deployment posture
+    decision: "Adopt a modular monolith with explicit bounded contexts as the default; permit later extraction only through a governed decision."
+    context: "The platform must preserve governed authority and transactional consistency while remaining maintainable; microservices add distributed-consistency cost without a justifying requirement."
+    options: ["Modular monolith", "Microservices from the outset", "Ungoverned monolith"]
+    selected_posture: "Modular monolith with independent bounded contexts and seams for later extraction."
+    rationale: "Transactional governed effects and outbox consistency are simplest and safest within a single deployment; bounded contexts keep the design modular."
+    constraints: ["No microservices without a governed decision", "Bounded contexts independent of deployment"]
+    consequences: ["Single composition root", "Cross-context consistency via events and outbox"]
+    risks: ["Module coupling if boundaries erode"]
+    evidence_refs: [ARCH-V4-001, V3-01]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-01
+    authorizes_implementation: false
+  - id: ADR-V4-002
+    class: D1
+    title: House and Button authority separation
+    decision: "The House owns governed authority and lifecycle; the Button is a guided experience and projection surface with no governed authority."
+    context: "Experience layers must not become a second source of governed truth."
+    options: ["House-owns-authority with Button projection", "Shared authority", "Button-owns-workflow"]
+    selected_posture: "House-owns-authority; Button requests and projects."
+    rationale: "A single governed authority preserves auditability and prevents divergent state."
+    constraints: ["Button never mutates governed state directly"]
+    consequences: ["All governed effects flow through House application services"]
+    risks: ["Experience latency if projections lag"]
+    evidence_refs: [ARCH-V4-002, V3-02]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-02
+    authorizes_implementation: false
+  - id: ADR-V4-003
+    class: D1
+    title: Default-deny, resource- and jurisdiction-aware authorization
+    decision: "Authorization is computed from identity, role, resource, jurisdiction, assignment, action, lifecycle state, evidence sensitivity, delegation, and policy version, and defaults to deny."
+    context: "Governed actions span jurisdictions and assignments; over-broad authorization risks cross-jurisdiction leakage."
+    options: ["Default-deny resource-aware", "Role-only authorization", "Coarse tenant checks"]
+    selected_posture: "Default-deny with full authorization input set."
+    rationale: "Fail-closed authorization protects governed authority and privacy."
+    constraints: ["Fail closed on missing inputs"]
+    consequences: ["Authorization requires resource and jurisdiction context"]
+    risks: ["Complexity of the authorization input set"]
+    evidence_refs: [ARCH-V4-004, CTRL-V4-002, V3-02]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-05
+    authorizes_implementation: false
+  - id: ADR-V4-004
+    class: D1
+    title: Transactional outbox for external side effects
+    decision: "External side effects are enqueued in a transactional outbox committed with the governed state change and dispatched only after commit."
+    context: "External effects inside governed transactions risk partial failure and duplicate effects."
+    options: ["Transactional outbox", "Direct synchronous calls", "Best-effort async"]
+    selected_posture: "Transactional outbox with post-commit dispatch and true full jitter retries."
+    rationale: "Atomic state-and-intent capture with retry-safe dispatch preserves consistency."
+    constraints: ["No external side effects inside governed transactions", "No Service Bus sessions in v1"]
+    consequences: ["Outbox processor is a required runtime component"]
+    risks: ["Outbox backlog under sustained publisher failure"]
+    evidence_refs: [ARCH-V4-009, CTRL-V4-004, CTRL-V4-007, V3-04]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-07
+    authorizes_implementation: false
+  - id: ADR-V4-005
+    class: D1
+    title: Idempotent, exactly-once activation effect
+    decision: "Activation produces one authoritative effect through transactional state control and an idempotency key; this is exactly-once effect, not exactly-once delivery."
+    context: "Retries and duplicate requests must not double-activate."
+    options: ["Idempotent transactional effect", "At-least-once with dedupe downstream", "Distributed exactly-once delivery"]
+    selected_posture: "Idempotent command plus transactional state transition."
+    rationale: "A single authoritative effect is achievable and verifiable without distributed delivery guarantees."
+    constraints: ["Idempotency key on state-changing commands"]
+    consequences: ["Activation recovery re-drives without duplicating the effect"]
+    risks: ["Misinterpretation as universal exactly-once delivery"]
+    evidence_refs: [ARCH-V4-008, CTRL-V4-010, V3-04]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-04
+    authorizes_implementation: false
+  - id: ADR-V4-006
+    class: D1
+    title: PostgreSQL as the governed state store
+    decision: "Governed state is stored in PostgreSQL and validated against PostgreSQL; no in-memory or alternate substitute stands in for governed persistence."
+    context: "Governed transactional consistency and RLS-style isolation require a real relational store validated as used."
+    options: ["PostgreSQL validated as used", "Abstract store with substitute validation", "Document store"]
+    selected_posture: "PostgreSQL, validated against PostgreSQL."
+    rationale: "Transactional outbox and tenant isolation depend on relational guarantees exercised in tests."
+    constraints: ["Deployment-path tests exercise PostgreSQL"]
+    consequences: ["Test harness requires a real PostgreSQL"]
+    risks: ["Provider lock beyond assigned constraints"]
+    evidence_refs: [DEP-V4-009, CTRL-V4-004, V3-06]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: ADR-V4-007
+    class: D2
+    title: Fail-on-missing production composition
+    decision: "The production composition root fails when a required dependency is absent; no production no-op integration substitutes for a required governed effect."
+    context: "Silent no-op integrations can mask unconfigured required effects in production."
+    options: ["Fail-on-missing composition", "No-op fallbacks", "Warn-and-continue"]
+    selected_posture: "Fail-closed composition with deployment-path tests over the real composition root."
+    rationale: "Required governed effects must never be silently skipped."
+    constraints: ["No no-op stand-ins for required effects"]
+    consequences: ["Configuration completeness is enforced at startup"]
+    risks: ["Startup failures when configuration is incomplete"]
+    evidence_refs: [CTRL-V4-007, CTRL-V4-008, V3-06]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-08
+    authorizes_implementation: false
+  - id: ADR-V4-008
+    class: D2
+    title: Fitness functions specified, not implemented, in Package 1
+    decision: "Package 1 specifies fitness functions and their invariants; it does not implement them and claims no executing verification."
+    context: "Architectural conformance will be verified continuously downstream; premature implementation claims would be fabricated evidence."
+    options: ["Specify-only in Package 1", "Implement in Package 1", "Defer specification"]
+    selected_posture: "Specify fitness functions and invariants; implementation authorized downstream."
+    rationale: "Specification is achievable now with author-verified evidence; implementation requires downstream authorization."
+    constraints: ["implemented: false for all fitness functions"]
+    consequences: ["Verification model distinguishes specification from implementation"]
+    risks: ["Specified invariants not yet enforced"]
+    evidence_refs: [V4-09, ARCH-V4-010]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-09
+    authorizes_implementation: false

@@ -1,0 +1,48 @@
+{
+  "assumptions": [
+    {
+      "id": "ASM-V4-001",
+      "title": "Identity provider boundary available",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "ASM-V4-002",
+      "title": "External finance systems retain authoritative ledger",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "ASM-V4-003",
+      "title": "Evidence storage supports provenance and access control",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "ASM-V4-004",
+      "title": "Transitional manual boundaries acceptable in early operation",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    }
+  ],
+  "risks": [
+    {
+      "id": "RISK-V4-001",
+      "title": "Bounded-context erosion",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "RISK-V4-002",
+      "title": "Exactly-once effect misinterpretation",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "RISK-V4-003",
+      "title": "Unvalidated quality-attribute targets",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G2"
+    }
+  ]
+}

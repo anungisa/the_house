@@ -1,0 +1,180 @@
+register_id: REG-405
+name: Volume 4 Approval Register
+status: RATIFIED
+version: 1.1.0
+records:
+  - id: APP-V4-001
+    artifact_id: V4-00
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume 4 control, inheritance, and architecture authority ratified as architecture definition only.
+      - Inherits corrected Volume 3 v1.0.1 baseline; authorizes no implementation.
+    approved_at: null
+  - id: APP-V4-002
+    artifact_id: V4-01
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture mandate, principles, and quality attributes ratified.
+      - No numeric quality-attribute targets fabricated; measurable targets are VALIDATION_PENDING.
+    approved_at: null
+  - id: APP-V4-003
+    artifact_id: V4-02
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - System context and authority boundaries ratified.
+      - External assigned authority preserved; no contract validated in Package 1.
+    approved_at: null
+  - id: APP-V4-004
+    artifact_id: V4-03
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Target logical architecture and bounded-context model ratified.
+      - Dependency directions defined; logical architecture only, no schema design.
+    approved_at: null
+  - id: APP-V4-005
+    artifact_id: V4-04
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Affiliation reference architecture ratified end to end.
+      - Exactly-once activation is an authoritative effect, not universal exactly-once delivery.
+    approved_at: null
+  - id: APP-V4-006
+    artifact_id: V4-05
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity, authorization, jurisdiction, and trust architecture ratified.
+      - Authorization defaults to deny and fails closed on missing inputs.
+    approved_at: null
+  - id: APP-V4-007
+    artifact_id: V4-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data, evidence, workflow, and transaction architecture ratified.
+      - Evidence binds to a specific requirement and affiliation; completeness is derived; conceptual only, no physical schema.
+    approved_at: null
+  - id: APP-V4-008
+    artifact_id: V4-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - API, event, integration, and idempotency architecture ratified as posture only.
+      - No executable API definitions or event schemas authored in Package 1.
+    approved_at: null
+  - id: APP-V4-009
+    artifact_id: V4-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Runtime, deployment, observability, resilience, and configuration architecture ratified.
+      - No Azure resource provisioned; production composition fails on missing required dependency; restore requires evidence.
+    approved_at: null
+  - id: APP-V4-010
+    artifact_id: V4-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture decisions, fitness functions, and verification model ratified.
+      - Fitness functions are specified, not implemented; no executing verification or implementation claimed.
+    approved_at: null
+  - id: APP-V4-011
+    artifact_id: V4-A
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-A
+    conditions:
+      - Package 1 closure record ratified as architecture definition only.
+      - Consolidates V4-00..V4-09; claims no implemented architecture; authorizes no implementation.
+    approved_at: null
+  - id: APP-V4-012
+    artifact_id: GATE-V4-G1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: ARCHITECTURE_FOUNDATION_READY
+    closure_record: V4-A
+    scope: [V4-00, V4-01, V4-02, V4-03, V4-04, V4-05, V4-06, V4-07, V4-08, V4-09]
+    conditions:
+      - Corrected Volume 3 release provenance is inherited (baseline central-registration-volume-3-v1.0.1).
+      - Architecture principles and quality attributes are controlled.
+      - House, Button, staff, and external-system authority boundaries are explicit.
+      - Target bounded contexts and dependency directions are defined.
+      - The affiliation lifecycle has an end-to-end reference architecture.
+      - Identity, resource, jurisdiction, and assignment authorization is represented.
+      - Evidence, workflow, decision, audit, and transaction constraints are defined.
+      - API, event, retry, and idempotency principles are defined.
+      - Financial and external-system authority is segregated.
+      - Runtime, configuration, observability, resilience, and deployment constraints are defined.
+      - Architecture decisions and fitness functions have controlled forms.
+      - Volume 3 operating and assurance constraints trace into the architecture.
+      - Unresolved architecture assumptions have owners and future gates.
+      - No document claims implemented architecture without evidence.
+      - No implementation, procurement, infrastructure provisioning, delivery sequencing, or master development plan is authorized.
+      - Package 1 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V4-013
+    artifact_id: PACKAGE-4-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-A
+    frozen_artifacts:
+      - id: V4-00
+        version: 1.0.0
+      - id: V4-01
+        version: 1.0.0
+      - id: V4-02
+        version: 1.0.0
+      - id: V4-03
+        version: 1.0.0
+      - id: V4-04
+        version: 1.0.0
+      - id: V4-05
+        version: 1.0.0
+      - id: V4-06
+        version: 1.0.0
+      - id: V4-07
+        version: 1.0.0
+      - id: V4-08
+        version: 1.0.0
+      - id: V4-09
+        version: 1.0.0
+      - id: V4-A
+        version: 1.0.0
+    conditions:
+      - Volume 4 Package 1 frozen at closure following Gate V4-G1 disposition.
+      - Authorizes commencement of Volume 4 Package 2 as an architecture package only.
+      - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to frozen Package 1 content require the recorded amendment process.
+    approved_at: null
