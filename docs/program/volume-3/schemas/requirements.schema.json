@@ -267,7 +267,70 @@
               "MATERIAL_COMMITMENT_REQUIRED"
             ]
           },
-          "material_commitment_input": { "type": "string" }
+          "material_commitment_input": { "type": "string" },
+          "operating_capability": { "type": "string" },
+          "business_outcome": { "type": "string" },
+          "required_inputs": { "type": "string" },
+          "outputs": { "type": "string" },
+          "dependencies": { "type": "string" },
+          "capacity_driver": { "type": "string" },
+          "sourcing_posture": { "type": "string" },
+          "service_identifier": { "type": "string" },
+          "service_purpose": { "type": "string" },
+          "primary_beneficiary": { "type": "string" },
+          "responsible_performer": { "type": "string" },
+          "informed_parties": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "decision_rights": { "type": "string" },
+          "entry_condition": { "type": "string" },
+          "exit_condition": { "type": "string" },
+          "escalation_path": { "type": "string" },
+          "continuity_posture": { "type": "string" },
+          "authority_domain": { "type": "string" },
+          "permitted_delegation": { "type": "string" },
+          "prohibited_combinations": { "type": "string" },
+          "conflict_controls": { "type": "string" },
+          "correction_authority": { "type": "string" },
+          "synthesis_classification": {
+            "type": "string",
+            "enum": [
+              "DEFINED",
+              "BASELINE_PENDING",
+              "OPERATIONAL_VALIDATION_PENDING",
+              "POLICY_VALIDATION_PENDING",
+              "FINANCIAL_VALIDATION_PENDING",
+              "CONTRACTUAL_VALIDATION_PENDING",
+              "STAKEHOLDER_VALIDATION_PENDING",
+              "MATERIAL_COMMITMENT_PENDING",
+              "PRODUCTION_PROOF_PENDING"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH"]
+          },
+          "affected_service": { "type": "string" },
+          "affected_outcome": { "type": "string" },
+          "risk_if_unresolved": { "type": "string" },
+          "required_resolution_evidence": { "type": "string" },
+          "target_resolution_volume": { "type": "string" },
+          "closure_separation": {
+            "type": "string",
+            "enum": [
+              "OPERATING_MODEL_DEFINED",
+              "OPERATING_MODEL_AWAITING_VALIDATION",
+              "POLICY_DECISION_PENDING",
+              "FINANCIAL_DECISION_PENDING",
+              "CONTRACTUAL_EVIDENCE_PENDING",
+              "ARCHITECTURE_INPUT",
+              "DELIVERY_PLANNING_INPUT",
+              "EXECUTIVE_DECISION_PENDING"
+            ]
+          },
+          "architecture_constraint": { "type": "string" },
+          "architecture_must_not_infer": { "type": "string" }
         }
       }
     }

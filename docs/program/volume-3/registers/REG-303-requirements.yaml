@@ -1,7 +1,7 @@
 register_id: REG-303
 name: Volume 3 Requirement and Acceptance Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   # ---- Capabilities (CAP -> OUT) ----
   - id: CAP-V3-001
@@ -3386,6 +3386,860 @@ records:
     product: House
     traces_to:
       - CTRL-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
+  # ================================================================
+  # Package 5 - Integrated Business Operating Model and Volume 3 Closure
+  # ================================================================
+  # ---- Capabilities (CAP -> OUT) ----
+  - id: CAP-V3-035
+    level: CAP
+    statement: >-
+      Provide one integrated business-operating-model baseline capability that consolidates
+      Packages 1 through 4 into a single authoritative record of material operating capabilities.
+    product: House
+    traces_to:
+      - OUT-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: integrated_operating_baseline
+  - id: CAP-V3-036
+    level: CAP
+    statement: >-
+      Provide a controlled operating service catalogue and functional accountability matrix
+      capability for the affiliation service.
+    product: House
+    traces_to:
+      - OUT-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: operating_service_catalogue
+  - id: CAP-V3-037
+    level: CAP
+    statement: >-
+      Provide an integrated authority, delegation, and segregation-of-duties baseline capability
+      across the whole affiliation operating model.
+    product: House
+    traces_to:
+      - OUT-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: authority_and_segregation_baseline
+  - id: CAP-V3-038
+    level: CAP
+    statement: >-
+      Provide a consolidated capacity, sourcing, economics, and sustainability synthesis
+      capability that classifies every material conclusion by validation state.
+    product: House
+    traces_to:
+      - OUT-V3-038
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: capacity_economics_synthesis
+  - id: CAP-V3-039
+    level: CAP
+    statement: >-
+      Provide a consolidated operating-measure, management-evidence, and assurance baseline
+      capability with an accountable owner for every measure.
+    product: House
+    traces_to:
+      - OUT-V3-039
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: operating_measure_baseline
+  - id: CAP-V3-040
+    level: CAP
+    statement: >-
+      Provide a final operating-model validation-backlog and decision-register capability that
+      separates the defined operating model from pending decisions.
+    product: House
+    traces_to:
+      - OUT-V3-040
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: validation_backlog_register
+  - id: CAP-V3-041
+    level: CAP
+    statement: >-
+      Provide a downstream business-constraints capability that records what Volume 4 architecture
+      and engineering must respect and must not infer.
+    product: House
+    traces_to:
+      - OUT-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: downstream_architecture_constraints
+  - id: CAP-V3-042
+    level: CAP
+    statement: >-
+      Provide an executive business operating-model brief capability that summarizes ratified
+      Volume 3 content and introduces no new authority.
+    product: House
+    traces_to:
+      - OUT-V3-042
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: executive_operating_brief
+  - id: CAP-V3-043
+    level: CAP
+    statement: >-
+      Provide a deterministic integrated traceability and closure-assessment capability for
+      Volume 3 as non-authoritative projections.
+    product: House
+    traces_to:
+      - OUT-V3-043
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_capability: integrated_closure_assessment
+  # ---- Business rules (BR -> CAP) ----
+  - id: BR-V3-037
+    level: BR
+    statement: >-
+      The integrated operating baseline consolidates only material operating capabilities already
+      ratified in Packages 1 through 4 and introduces no unsupported operating decision to
+      manufacture completeness.
+    product: House
+    traces_to:
+      - CAP-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    change_class: MATERIAL_OPERATING
+  - id: BR-V3-038
+    level: BR
+    statement: >-
+      Every operating service in the catalogue records an accountable function, a responsible
+      performer, consulted and informed parties, decision rights, entry and exit conditions,
+      evidence, and control, using functional accountability and assigning no named employees or
+      approved organizational positions.
+    product: House
+    traces_to:
+      - CAP-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+    accountable_function: affiliation_service_owner
+  - id: BR-V3-039
+    level: BR
+    statement: >-
+      Every authority domain records its accountable function, permitted delegation, prohibited
+      combinations, conflict controls, correction authority, and future validation, and no single
+      function holds a prohibited combination of governed authority.
+    product: House
+    traces_to:
+      - CAP-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+    authority_domain: integrated_authority_model
+    prohibited_combinations: no_single_function_holds_prohibited_authority
+    conflict_controls: segregation_of_duties_baseline
+    correction_authority: administrative_versus_governed_decision_correction
+  - id: BR-V3-040
+    level: BR
+    statement: >-
+      The authority baseline explicitly prevents support approving affiliation, reviewers
+      confirming their own financial reconciliation, finance changing affiliation decisions,
+      external providers receiving Curling Canada decision authority, and Button visibility or task
+      access being interpreted as governed authority.
+    product: House
+    traces_to:
+      - CAP-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+    prohibited_combinations: five_prohibited_authority_combinations
+  - id: BR-V3-041
+    level: BR
+    statement: >-
+      Every material capacity, sourcing, cost, and funding conclusion in the synthesis carries a
+      synthesis classification and introduces no staffing quantity, dollar amount, approved fee,
+      budget, vendor, or commercial commitment.
+    product: House
+    traces_to:
+      - CAP-V3-038
+    authorizes_implementation: false
+    validation_status: author_asserted
+    synthesis_classification: FINANCIAL_VALIDATION_PENDING
+  - id: BR-V3-042
+    level: BR
+    statement: >-
+      Every operating measure records an accountable owner and a baseline status and invents no
+      numerical target or escalation threshold.
+    product: House
+    traces_to:
+      - CAP-V3-039
+    authorizes_implementation: false
+    validation_status: author_asserted
+    change_class: MATERIAL_OPERATING
+  - id: BR-V3-043
+    level: BR
+    statement: >-
+      The final validation backlog separates operating-model-defined items from policy, financial,
+      contractual, architecture, delivery-planning, and executive decisions, and every item
+      records an owner, required resolution evidence, and a future blocking gate.
+    product: House
+    traces_to:
+      - CAP-V3-040
+    authorizes_implementation: false
+    validation_status: author_asserted
+    closure_separation: OPERATING_MODEL_AWAITING_VALIDATION
+  - id: BR-V3-044
+    level: BR
+    statement: >-
+      The downstream constraints record what Volume 4 must respect and must not infer, without
+      defining any technical architecture, and no constraint authorizes staffing, volumes, service
+      levels, budget, providers, deployment, sequencing, or executive commitment.
+    product: House
+    traces_to:
+      - CAP-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+    architecture_constraint: authority_and_boundary_constraints
+    architecture_must_not_infer: staffing_budget_providers_deployment
+  - id: BR-V3-045
+    level: BR
+    statement: >-
+      No Package 5 requirement or decision authorizes staffing, headcount, cost, a fee, a budget,
+      procurement, vendor selection, a pilot, a rollout, a launch, delivery sequencing, technical
+      architecture, or the master development plan, and the executive brief introduces no new
+      authority.
+    product: House
+    traces_to:
+      - CAP-V3-042
+    authorizes_implementation: false
+    validation_status: author_asserted
+    future_blocking_gate: V3-G5
+  # ---- Functional requirements (FR -> CAP) ----
+  - id: FR-V3-035
+    level: FR
+    statement: >-
+      Record each material operating capability once with its business outcome, accountable and
+      performing functions, decision authority, required inputs, outputs, controls, evidence,
+      dependencies, capacity driver, sourcing posture, validation status, and future blocking gate.
+    product: House
+    traces_to:
+      - CAP-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    required_inputs: package_1_to_4_ratified_records
+    outputs: integrated_operating_capability_index
+  - id: FR-V3-036
+    level: FR
+    statement: >-
+      Record each operating service with a service identifier, purpose, primary beneficiary,
+      accountable function, responsible performer, consulted and informed parties, decision rights,
+      entry and exit conditions, evidence, control, escalation, continuity posture, and validation
+      status.
+    product: House
+    traces_to:
+      - CAP-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_identifier: affiliation_operating_service_catalogue
+    accountable_function: affiliation_service_owner
+  - id: FR-V3-037
+    level: FR
+    statement: >-
+      Record separation among policy definition, pathway determination, evidence review,
+      affiliation decision, fee-policy authority, payment execution, accounting confirmation,
+      financial reconciliation, activation authorization, activation execution, administrative
+      correction, governed-decision correction, support, operational assurance, and executive
+      material commitment.
+    product: House
+    traces_to:
+      - CAP-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+    authority_domain: fifteen_authority_domains
+    prohibited_combinations: five_prohibited_authority_combinations
+    conflict_controls: segregation_of_duties_baseline
+  - id: FR-V3-038
+    level: FR
+    statement: >-
+      Record the operating workload model, peak-demand assumptions, critical-role concentration,
+      continuity dependencies, cross-training requirements, sourcing classifications, retained
+      authority, external dependency posture, cost-driver model, funding hypotheses, financial
+      sensitivities, and evidence required before quantitative planning.
+    product: House
+    traces_to:
+      - CAP-V3-038
+    authorizes_implementation: false
+    validation_status: author_asserted
+    synthesis_classification: BASELINE_PENDING
+  - id: FR-V3-039
+    level: FR
+    statement: >-
+      Record each operating measure with an identifier, operating outcome, definition, calculation
+      concept, evidence source, accountable owner, decision supported, baseline status, target
+      status, assurance relationship, validation authority, and future blocking gate.
+    product: House
+    traces_to:
+      - CAP-V3-039
+    authorizes_implementation: false
+    validation_status: author_asserted
+    outputs: consolidated_operating_measure_baseline
+  - id: FR-V3-040
+    level: FR
+    statement: >-
+      Record each unresolved validation item with an identifier, question or assumption,
+      classification, current evidence, confidence, accountable owner, consulted functions,
+      affected service, affected outcome, risk if unresolved, required resolution evidence, future
+      blocking gate, and target resolution volume.
+    product: House
+    traces_to:
+      - CAP-V3-040
+    authorizes_implementation: false
+    validation_status: author_asserted
+    closure_separation: OPERATING_MODEL_AWAITING_VALIDATION
+  - id: FR-V3-041
+    level: FR
+    statement: >-
+      Record the architecture inputs Volume 4 must respect and the inferences Volume 4 must not
+      make, as business constraints only.
+    product: House
+    traces_to:
+      - CAP-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+    architecture_constraint: house_button_separation_and_boundaries
+  - id: FR-V3-042
+    level: FR
+    statement: >-
+      Produce a concise executive brief that explains what Volume 3 defined, how the service would
+      operate, who holds which functional authority, how the parties interact, how risk and
+      assurance are governed, capacity and sourcing assumptions, economic knowns and unknowns,
+      training and adoption needs, evidence needed before commitment, what Volume 4 is authorized
+      to define, what remains unauthorized, and the decision not yet being asked.
+    product: House
+    traces_to:
+      - CAP-V3-042
+    authorizes_implementation: false
+    validation_status: author_asserted
+    primary_beneficiary: executive_material_commitment_authority
+  - id: FR-V3-043
+    level: FR
+    statement: >-
+      Produce deterministic closure outputs covering identifier counts, service and capability
+      coverage, accountability coverage, authority and segregation, controls and assurance,
+      dependencies, measures, and the validation backlog, as non-authoritative projections.
+    product: House
+    traces_to:
+      - CAP-V3-043
+    authorizes_implementation: false
+    validation_status: author_asserted
+    outputs: volume_3_closure_projections
+  # ---- Non-functional requirements (NFR -> CAP) ----
+  - id: NFR-V3-013
+    level: NFR
+    statement: >-
+      The closure assessment is deterministic and reproducible from the source-controlled corpus
+      and never mutates or ratifies the corpus.
+    product: House
+    traces_to:
+      - CAP-V3-043
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V3-014
+    level: NFR
+    statement: >-
+      All generated closure outputs are explicitly non-authoritative projections of the registers
+      and chapters.
+    product: House
+    traces_to:
+      - CAP-V3-043
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V3-015
+    level: NFR
+    statement: >-
+      The executive brief is concise, summarizes only ratified content, and confers no new
+      authority or approval.
+    product: House
+    traces_to:
+      - CAP-V3-042
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Use cases (UC -> FR) ----
+  - id: UC-V3-029
+    level: UC
+    statement: >-
+      An operating steward consults the integrated baseline to find the single authoritative record
+      of a material operating capability and its accountable function.
+    product: House
+    traces_to:
+      - FR-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V3-030
+    level: UC
+    statement: >-
+      An operating steward consults the service catalogue to determine the accountable function and
+      decision rights for an affiliation service family.
+    product: House
+    traces_to:
+      - FR-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V3-031
+    level: UC
+    statement: >-
+      An assurance reviewer verifies that no function holds a prohibited combination of governed
+      authority across the fifteen authority domains.
+    product: House
+    traces_to:
+      - FR-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V3-032
+    level: UC
+    statement: >-
+      A planner reviews the capacity and economics synthesis to identify which conclusions are
+      defined and which require validation before quantitative planning.
+    product: House
+    traces_to:
+      - FR-V3-038
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V3-033
+    level: UC
+    statement: >-
+      An assurance owner reviews the operating-measure baseline to confirm every measure has an
+      accountable owner and a baseline status.
+    product: House
+    traces_to:
+      - FR-V3-039
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V3-034
+    level: UC
+    statement: >-
+      A governance authority reviews the validation backlog to separate the defined operating model
+      from pending policy, financial, contractual, architecture, delivery, and executive decisions.
+    product: House
+    traces_to:
+      - FR-V3-040
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V3-035
+    level: UC
+    statement: >-
+      An architecture recipient reads the downstream constraints and the executive brief to
+      understand what Volume 4 may define and what remains unauthorized.
+    product: House
+    traces_to:
+      - FR-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Rules (RULE -> UC) ----
+  - id: RULE-V3-029
+    level: RULE
+    statement: >-
+      A record may enter the integrated baseline only if it consolidates a capability already
+      ratified in Packages 1 through 4; new operating decisions are rejected.
+    product: House
+    traces_to:
+      - UC-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  - id: RULE-V3-030
+    level: RULE
+    statement: >-
+      A catalogue service is complete only when its accountable function, responsible performer,
+      decision rights, entry and exit conditions, evidence, and control are all recorded.
+    product: House
+    traces_to:
+      - UC-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  - id: RULE-V3-031
+    level: RULE
+    statement: >-
+      An authority domain is valid only when its prohibited combinations and conflict controls are
+      recorded, and any prohibited combination blocks the arrangement.
+    product: House
+    traces_to:
+      - UC-V3-031
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  - id: RULE-V3-032
+    level: RULE
+    statement: >-
+      A synthesis conclusion is valid only when it carries a synthesis classification; a conclusion
+      lacking evidence is classified as pending rather than asserted as defined.
+    product: House
+    traces_to:
+      - UC-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: FINANCIAL_VALIDATION_PENDING
+  - id: RULE-V3-033
+    level: RULE
+    statement: >-
+      A measure is valid only when it records an accountable owner and a baseline status, and no
+      numerical target or threshold is invented.
+    product: House
+    traces_to:
+      - UC-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  - id: RULE-V3-034
+    level: RULE
+    statement: >-
+      A backlog item is valid only when it records an owner, required resolution evidence, a future
+      blocking gate, and a closure separation category.
+    product: House
+    traces_to:
+      - UC-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  - id: RULE-V3-035
+    level: RULE
+    statement: >-
+      A downstream constraint is valid only when it states a business boundary Volume 4 must
+      respect without defining technical architecture, and each prohibited inference is recorded
+      explicitly.
+    product: House
+    traces_to:
+      - UC-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  - id: RULE-V3-036
+    level: RULE
+    statement: >-
+      The executive brief may restate only ratified Volume 3 content and may not create, expand, or
+      imply any new authority, approval, or commitment.
+    product: House
+    traces_to:
+      - UC-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+  # ---- Workflows (WF -> RULE) ----
+  - id: WF-V3-015
+    level: WF
+    statement: >-
+      The closure-assessment workflow projects the corpus into deterministic coverage outputs and a
+      closure report without mutating or ratifying the corpus.
+    product: House
+    traces_to:
+      - RULE-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-016
+    level: WF
+    statement: >-
+      The executive-handoff workflow assembles the ratified operating model into a concise brief
+      that introduces no new authority.
+    product: House
+    traces_to:
+      - RULE-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-017
+    level: WF
+    statement: >-
+      The volume-closure workflow records the Gate V3-G5 disposition, the Package 5 freeze, and the
+      whole-volume freeze without reopening substantive content.
+    product: House
+    traces_to:
+      - RULE-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Experience (UX -> WF) ----
+  - id: UX-V3-009
+    level: UX
+    statement: >-
+      The executive brief presents the ratified operating model, authority boundaries, unresolved
+      validations, and the decision not yet being asked in a concise House-facing format.
+    product: House
+    traces_to:
+      - WF-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+    user_visible: true
+  # ---- Data (DATA -> UX) ----
+  - id: DATA-V3-012
+    level: DATA
+    statement: >-
+      The closure report data set records identifier counts and coverage projections derived from
+      the registers as a non-authoritative view.
+    product: House
+    traces_to:
+      - UX-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V3-013
+    level: DATA
+    statement: >-
+      The integrated capability index data set records each consolidated operating capability and
+      its accountable function as a non-authoritative view of the registers.
+    product: House
+    traces_to:
+      - UX-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Controls (CTRL -> BR/NFR) ----
+  - id: CTRL-V3-042
+    level: CTRL
+    statement: >-
+      A consolidation-integrity control confirms every integrated-baseline record consolidates a
+      capability ratified in Packages 1 through 4 and adds no unsupported operating decision.
+    product: House
+    traces_to:
+      - BR-V3-037
+    acceptance_ref:
+      - TEST-V3-042
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: consolidation_integrity_attestation
+  - id: CTRL-V3-043
+    level: CTRL
+    statement: >-
+      An accountability-completeness control confirms every catalogue service records an accountable
+      function and a responsible performer and assigns no named employee.
+    product: House
+    traces_to:
+      - BR-V3-038
+    acceptance_ref:
+      - TEST-V3-043
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: accountability_matrix_attestation
+  - id: CTRL-V3-044
+    level: CTRL
+    statement: >-
+      A segregation-of-duties control confirms every authority domain records prohibited
+      combinations and conflict controls.
+    product: House
+    traces_to:
+      - BR-V3-039
+    acceptance_ref:
+      - TEST-V3-044
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: CONTINUOUS
+    evidence_generated: segregation_of_duties_attestation
+  - id: CTRL-V3-045
+    level: CTRL
+    statement: >-
+      A prohibited-combination control confirms the five named prohibited authority combinations are
+      prevented in the baseline.
+    product: House
+    traces_to:
+      - BR-V3-040
+    acceptance_ref:
+      - TEST-V3-045
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: CONTINUOUS
+    evidence_generated: prohibited_combination_attestation
+  - id: CTRL-V3-046
+    level: CTRL
+    statement: >-
+      A synthesis-classification control confirms every material capacity, sourcing, cost, and
+      funding conclusion carries a synthesis classification and no fabricated amount.
+    product: House
+    traces_to:
+      - BR-V3-041
+    acceptance_ref:
+      - TEST-V3-046
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: synthesis_classification_attestation
+    measure_identifier: MEAS-V3-14
+    measure_baseline_status: FINANCIAL_VALIDATION_PENDING
+  - id: CTRL-V3-047
+    level: CTRL
+    statement: >-
+      A measure-ownership control confirms every operating measure records an accountable owner and
+      a baseline status and invents no numerical target.
+    product: House
+    traces_to:
+      - BR-V3-042
+    acceptance_ref:
+      - TEST-V3-047
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: measure_ownership_attestation
+    measure_identifier: MEAS-V3-15
+    measure_baseline_status: BASELINE_PENDING
+  - id: CTRL-V3-048
+    level: CTRL
+    statement: >-
+      A backlog-separation control confirms every unresolved item records an owner, required
+      resolution evidence, a future gate, and a closure-separation category.
+    product: House
+    traces_to:
+      - BR-V3-043
+    acceptance_ref:
+      - TEST-V3-048
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: validation_backlog_attestation
+  - id: CTRL-V3-049
+    level: CTRL
+    statement: >-
+      An architecture-constraint control confirms every downstream constraint states a business
+      boundary without defining architecture and records prohibited inferences.
+    product: House
+    traces_to:
+      - BR-V3-044
+    acceptance_ref:
+      - TEST-V3-049
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: architecture_constraint_attestation
+  - id: CTRL-V3-050
+    level: CTRL
+    statement: >-
+      A no-material-commitment control confirms no Package 5 requirement or decision authorizes
+      staffing, cost, a fee, a budget, procurement, vendor selection, a pilot, a rollout, a launch,
+      delivery sequencing, architecture, or the master development plan, and the executive brief
+      introduces no new authority.
+    product: House
+    traces_to:
+      - BR-V3-045
+    acceptance_ref:
+      - TEST-V3-050
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: scope_boundary_attestation
+    future_blocking_gate: V3-G5
+  - id: CTRL-V3-051
+    level: CTRL
+    statement: >-
+      A deterministic-closure control confirms the closure assessment reproduces from the corpus,
+      never mutates it, and emits only non-authoritative projections.
+    product: House
+    traces_to:
+      - NFR-V3-013
+    acceptance_ref:
+      - TEST-V3-051
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    evidence_generated: deterministic_closure_attestation
+    measure_identifier: MEAS-V3-16
+    measure_baseline_status: DEFINED
+  # ---- Acceptance (TEST -> CTRL) ----
+  - id: TEST-V3-042
+    level: TEST
+    statement: >-
+      Confirm every integrated-baseline record consolidates a Package 1 through 4 capability and
+      adds no unsupported operating decision.
+    product: House
+    traces_to:
+      - CTRL-V3-042
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-043
+    level: TEST
+    statement: >-
+      Confirm every catalogue service records an accountable function and a responsible performer
+      and assigns no named employee.
+    product: House
+    traces_to:
+      - CTRL-V3-043
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-044
+    level: TEST
+    statement: >-
+      Confirm every authority domain records prohibited combinations and conflict controls.
+    product: House
+    traces_to:
+      - CTRL-V3-044
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-045
+    level: TEST
+    statement: >-
+      Confirm the five named prohibited authority combinations are prevented in the baseline.
+    product: House
+    traces_to:
+      - CTRL-V3-045
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
+  - id: TEST-V3-046
+    level: TEST
+    statement: >-
+      Confirm every material synthesis conclusion carries a classification and asserts no fabricated
+      staffing quantity, amount, fee, budget, or vendor.
+    product: House
+    traces_to:
+      - CTRL-V3-046
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-047
+    level: TEST
+    statement: >-
+      Confirm every operating measure records an accountable owner and a baseline status and invents
+      no numerical target.
+    product: House
+    traces_to:
+      - CTRL-V3-047
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-048
+    level: TEST
+    statement: >-
+      Confirm every unresolved item records an owner, required resolution evidence, a future gate,
+      and a closure-separation category.
+    product: House
+    traces_to:
+      - CTRL-V3-048
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-049
+    level: TEST
+    statement: >-
+      Confirm every downstream constraint states a business boundary without defining architecture
+      and records its prohibited inferences.
+    product: House
+    traces_to:
+      - CTRL-V3-049
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
+  - id: TEST-V3-050
+    level: TEST
+    statement: >-
+      Confirm no Package 5 requirement or decision authorizes staffing, cost, a fee, a budget,
+      procurement, vendor selection, a pilot, a rollout, a launch, delivery sequencing,
+      architecture, or the master development plan, and the executive brief introduces no new
+      authority.
+    product: House
+    traces_to:
+      - CTRL-V3-050
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
+  - id: TEST-V3-051
+    level: TEST
+    statement: >-
+      Confirm the closure assessment reproduces deterministically from the corpus, never mutates it,
+      and emits only non-authoritative projections.
+    product: House
+    traces_to:
+      - CTRL-V3-051
     authorizes_implementation: false
     validation_status: author_asserted
     acceptance_status: DEFINED

@@ -1,0 +1,13 @@
+{
+  "generated_at": null,
+  "authority_domain_records": [
+    "BR-V3-039",
+    "FR-V3-037"
+  ],
+  "authority_records_without_segregation_controls": [],
+  "prohibited_combination_records": [
+    "BR-V3-039",
+    "BR-V3-040",
+    "FR-V3-037"
+  ]
+}

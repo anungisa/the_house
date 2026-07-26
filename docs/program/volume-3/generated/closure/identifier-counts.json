@@ -1,21 +1,5 @@
 {
   "generated_at": null,
-  "requirement_chain": [
-    "OUT",
-    "CAP",
-    "BR",
-    "FR",
-    "NFR",
-    "UC",
-    "RULE",
-    "WF",
-    "UX",
-    "DATA",
-    "API",
-    "EVT",
-    "CTRL",
-    "TEST"
-  ],
   "counts_by_level": {
     "OUT": 43,
     "CAP": 43,

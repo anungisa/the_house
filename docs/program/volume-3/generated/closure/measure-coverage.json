@@ -1,0 +1,152 @@
+{
+  "generated_at": null,
+  "measure_total": 16,
+  "measures": [
+    {
+      "id": "CTRL-V3-004",
+      "measure_identifier": "MEAS-V3-01",
+      "baseline_status": "OPERATIONAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V3-006",
+      "measure_identifier": "MEAS-V3-02",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "FR-V3-001",
+      "measure_identifier": "MEAS-V3-03",
+      "baseline_status": "OPERATIONAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "FR-V3-003",
+      "measure_identifier": "MEAS-V3-04",
+      "baseline_status": "FINANCIAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "NFR-V3-002",
+      "measure_identifier": "MEAS-V3-05",
+      "baseline_status": "BILINGUAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "FR-V3-016",
+      "measure_identifier": "MEAS-V3-06",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "NFR-V3-005",
+      "measure_identifier": "MEAS-V3-07",
+      "baseline_status": "ACCESSIBILITY_VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V3-014",
+      "measure_identifier": "MEAS-V3-08",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "CTRL-V3-018",
+      "measure_identifier": "MEAS-V3-09",
+      "baseline_status": "OPERATIONAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V3-029",
+      "measure_identifier": "MEAS-V3-10",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "CTRL-V3-022",
+      "measure_identifier": "MEAS-V3-11",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "CTRL-V3-034",
+      "measure_identifier": "MEAS-V3-12",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "CTRL-V3-036",
+      "measure_identifier": "MEAS-V3-13",
+      "baseline_status": "FINANCIAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V3-046",
+      "measure_identifier": "MEAS-V3-14",
+      "baseline_status": "FINANCIAL_VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V3-047",
+      "measure_identifier": "MEAS-V3-15",
+      "baseline_status": "BASELINE_PENDING"
+    },
+    {
+      "id": "CTRL-V3-051",
+      "measure_identifier": "MEAS-V3-16",
+      "baseline_status": "DEFINED"
+    }
+  ],
+  "measures_without_owner": [
+    {
+      "id": "CTRL-V3-004",
+      "measure_identifier": "MEAS-V3-01"
+    },
+    {
+      "id": "CTRL-V3-006",
+      "measure_identifier": "MEAS-V3-02"
+    },
+    {
+      "id": "CTRL-V3-014",
+      "measure_identifier": "MEAS-V3-08"
+    },
+    {
+      "id": "CTRL-V3-018",
+      "measure_identifier": "MEAS-V3-09"
+    },
+    {
+      "id": "CTRL-V3-022",
+      "measure_identifier": "MEAS-V3-11"
+    },
+    {
+      "id": "CTRL-V3-029",
+      "measure_identifier": "MEAS-V3-10"
+    },
+    {
+      "id": "CTRL-V3-034",
+      "measure_identifier": "MEAS-V3-12"
+    },
+    {
+      "id": "CTRL-V3-036",
+      "measure_identifier": "MEAS-V3-13"
+    },
+    {
+      "id": "CTRL-V3-046",
+      "measure_identifier": "MEAS-V3-14"
+    },
+    {
+      "id": "CTRL-V3-047",
+      "measure_identifier": "MEAS-V3-15"
+    },
+    {
+      "id": "CTRL-V3-051",
+      "measure_identifier": "MEAS-V3-16"
+    },
+    {
+      "id": "FR-V3-001",
+      "measure_identifier": "MEAS-V3-03"
+    },
+    {
+      "id": "FR-V3-003",
+      "measure_identifier": "MEAS-V3-04"
+    },
+    {
+      "id": "FR-V3-016",
+      "measure_identifier": "MEAS-V3-06"
+    },
+    {
+      "id": "NFR-V3-002",
+      "measure_identifier": "MEAS-V3-05"
+    },
+    {
+      "id": "NFR-V3-005",
+      "measure_identifier": "MEAS-V3-07"
+    }
+  ]
+}

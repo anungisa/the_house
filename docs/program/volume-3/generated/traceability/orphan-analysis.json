@@ -68,6 +68,14 @@
       "level": "DATA"
     },
     {
+      "id": "DATA-V3-012",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-013",
+      "level": "DATA"
+    },
+    {
       "id": "FR-V3-005",
       "level": "FR"
     },
@@ -100,6 +108,14 @@
       "level": "FR"
     },
     {
+      "id": "FR-V3-042",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V3-043",
+      "level": "FR"
+    },
+    {
       "id": "NFR-V3-006",
       "level": "NFR"
     },
@@ -113,6 +129,14 @@
     },
     {
       "id": "NFR-V3-012",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V3-014",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V3-015",
       "level": "NFR"
     },
     {
@@ -172,6 +196,26 @@
       "level": "RULE"
     },
     {
+      "id": "RULE-V3-030",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-031",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-032",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-033",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-035",
+      "level": "RULE"
+    },
+    {
       "id": "UC-V3-003",
       "level": "UC"
     },
@@ -213,6 +257,14 @@
     },
     {
       "id": "WF-V3-014",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-015",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-017",
       "level": "WF"
     }
   ]

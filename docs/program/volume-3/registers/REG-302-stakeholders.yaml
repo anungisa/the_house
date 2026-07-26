@@ -1,7 +1,7 @@
 register_id: REG-302
 name: Volume 3 Stakeholder and Persona Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: STK-V3-001
     name: Curling Canada National Operations
@@ -251,3 +251,18 @@ records:
     source_refs:
       - V3-30
       - V2-24
+  - id: STK-V3-021
+    name: Architecture and Engineering Function
+    type: institutional
+    description: >-
+      Function that will receive the ratified Volume 3 business operating model as authoritative
+      input to architecture and engineering definition in Volume 4; consumes operating
+      requirements, authority boundaries, controls, and constraints but holds no affiliation
+      lifecycle decision authority, defines no business policy, and receives no authorization for
+      implementation, procurement, staffing, or deployment from Volume 3.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-41
+      - V2-00

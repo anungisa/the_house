@@ -1,0 +1,35 @@
+{
+  "generated_at": null,
+  "records_with_accountability": 7,
+  "services_without_accountable_function": [],
+  "accountable_records": [
+    {
+      "id": "BR-V3-017",
+      "accountable_function": "affiliation_service_owner"
+    },
+    {
+      "id": "BR-V3-038",
+      "accountable_function": "affiliation_service_owner"
+    },
+    {
+      "id": "FR-V3-007",
+      "accountable_function": "Curling Canada National Operations"
+    },
+    {
+      "id": "FR-V3-013",
+      "accountable_function": "Finance and Reconciliation Operations"
+    },
+    {
+      "id": "FR-V3-014",
+      "accountable_function": "Support and Service Operations"
+    },
+    {
+      "id": "FR-V3-036",
+      "accountable_function": "affiliation_service_owner"
+    },
+    {
+      "id": "UC-V3-015",
+      "accountable_function": "affiliation_service_owner"
+    }
+  ]
+}

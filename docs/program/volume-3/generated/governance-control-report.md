@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T13:16:21.431Z
+Generated: 2026-07-26T13:48:31.759Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T13:16:21.431Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 39 |
+| RATIFIED | 49 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.5.0 | 39 |
-| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.3.0 | 34 |
-| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.2.0 | 20 |
-| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.3.0 | 287 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.7.0 | 13 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.9.0 | 51 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.7.0 | 49 |
+| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.4.0 | 43 |
+| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.3.0 | 21 |
+| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.4.0 | 358 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.8.0 | 15 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.11.0 | 64 |
 
 ## Findings by control
 
@@ -170,3 +170,38 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-050 (PACKAGE-3-4): Freeze provenance is completed post-merge without reopening Package 4 content.
 - APP-V3-051 (PACKAGE-3-4): Package 4 freeze provenance completed post-merge; source snapshot e9fae6f, closure/freeze 125a49b, merged 10179bf.
 - APP-V3-051 (PACKAGE-3-4): Gate V3-G4 and V3-D are preserved; no substantive Package 4 content is reopened.
+- APP-V3-052 (V3-35): Integrated business operating-model baseline defined; no implementation, staffing, or commitment authorized.
+- APP-V3-053 (V3-36): Operating service catalogue and accountability matrix defined; no staffing or headcount committed.
+- APP-V3-054 (V3-37): Integrated authority, delegation, and segregation-of-duties baseline defined; no authority is delegated by this record.
+- APP-V3-055 (V3-38): Capacity, sourcing, economics, and sustainability synthesis defined; no amount, fee, budget, or vendor committed.
+- APP-V3-056 (V3-39): Operating measures and assurance baseline defined; no numerical target or threshold fabricated.
+- APP-V3-057 (V3-40): Operating-model validation backlog and decision register defined; every unresolved item has an owner and future gate.
+- APP-V3-058 (V3-41): Downstream business constraints for architecture and engineering defined; no technical architecture is defined.
+- APP-V3-059 (V3-42): Executive business operating-model brief summarizes ratified content and introduces no new authority.
+- APP-V3-060 (V3-43): Integrated operating traceability and closure assessment defined; the deterministic closure outputs remain non-authoritative.
+- APP-V3-061 (V3-E): Volume 3 completion and release-freeze record defined; no implementation, procurement, staffing, cost, or master development plan authorized.
+- APP-V3-062 (GATE-V3-G5): Package 4 provenance is unambiguous; original merge, provenance-amendment authoring commit, and provenance-amendment merge are distinct.
+- APP-V3-062 (GATE-V3-G5): Packages 1 through 4 are inherited without modifying frozen substantive content.
+- APP-V3-062 (GATE-V3-G5): One integrated business-operating baseline exists.
+- APP-V3-062 (GATE-V3-G5): Operating services and accountable functions are defined.
+- APP-V3-062 (GATE-V3-G5): Authority, delegation, conflicts, and segregation of duties are explicit.
+- APP-V3-062 (GATE-V3-G5): Seasonal operations, exceptions, support, reconciliation, activation, and closure are covered.
+- APP-V3-062 (GATE-V3-G5): Governance, risk, controls, assurance, incidents, and continuous improvement are defined.
+- APP-V3-062 (GATE-V3-G5): Capacity, sourcing, economic, training, and readiness assumptions are defined or validation-pending.
+- APP-V3-062 (GATE-V3-G5): Measures and management evidence have accountable owners.
+- APP-V3-062 (GATE-V3-G5): External dependencies preserve retained Curling Canada authority.
+- APP-V3-062 (GATE-V3-G5): Unresolved validations have owners, evidence needs, and future gates.
+- APP-V3-062 (GATE-V3-G5): Architecture constraints are explicit without defining the architecture.
+- APP-V3-062 (GATE-V3-G5): The executive brief introduces no new authority.
+- APP-V3-062 (GATE-V3-G5): No requirement or decision authorizes staffing, procurement, implementation, pilot, rollout, or launch.
+- APP-V3-062 (GATE-V3-G5): No cost plan, technical architecture, delivery sequence, or master development plan is created.
+- APP-V3-062 (GATE-V3-G5): Volume 3 receives complete line-level and deterministic traceability review.
+- APP-V3-062 (GATE-V3-G5): Package 5 and the complete Volume 3 corpus receive explicit freeze records.
+- APP-V3-063 (PACKAGE-3-5): Package 5 is frozen at version 1.0.0 through a separate freeze commit.
+- APP-V3-063 (PACKAGE-3-5): Gate V3-G5 disposition is BUSINESS_OPERATING_MODEL_COMPLETE.
+- APP-V3-063 (PACKAGE-3-5): Freeze provenance is completed post-merge without reopening Package 5 content.
+- APP-V3-064 (VOLUME-3): The complete Volume 3 corpus is frozen at version 1.0.0.
+- APP-V3-064 (VOLUME-3): Gate V3-G5 disposition is VOLUME_3_COMPLETE.
+- APP-V3-064 (VOLUME-3): Volume 0, Volume 1, and Volume 2 remain frozen and are inherited without modification.
+- APP-V3-064 (VOLUME-3): Whole-volume freeze provenance is completed post-merge without reopening substantive Volume 3 content.
+- APP-V3-064 (VOLUME-3): No requirement or decision authorizes implementation, procurement, staffing, cost, fees, funding, pilot, rollout, launch, or delivery sequencing, and no master development plan is created.

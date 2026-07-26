@@ -1,0 +1,53 @@
+{
+  "generated_at": null,
+  "capability_total": 43,
+  "capabilities_without_rules_or_fr": [
+    "CAP-V3-001",
+    "CAP-V3-003",
+    "CAP-V3-007",
+    "CAP-V3-016"
+  ],
+  "capabilities_without_controls": [
+    "CAP-V3-001",
+    "CAP-V3-002",
+    "CAP-V3-015"
+  ],
+  "named_operating_capabilities": [
+    {
+      "id": "CAP-V3-035",
+      "operating_capability": "integrated_operating_baseline"
+    },
+    {
+      "id": "CAP-V3-036",
+      "operating_capability": "operating_service_catalogue"
+    },
+    {
+      "id": "CAP-V3-037",
+      "operating_capability": "authority_and_segregation_baseline"
+    },
+    {
+      "id": "CAP-V3-038",
+      "operating_capability": "capacity_economics_synthesis"
+    },
+    {
+      "id": "CAP-V3-039",
+      "operating_capability": "operating_measure_baseline"
+    },
+    {
+      "id": "CAP-V3-040",
+      "operating_capability": "validation_backlog_register"
+    },
+    {
+      "id": "CAP-V3-041",
+      "operating_capability": "downstream_architecture_constraints"
+    },
+    {
+      "id": "CAP-V3-042",
+      "operating_capability": "executive_operating_brief"
+    },
+    {
+      "id": "CAP-V3-043",
+      "operating_capability": "integrated_closure_assessment"
+    }
+  ]
+}
