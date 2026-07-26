@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T14:25:06.684Z
+Generated: 2026-07-26T14:29:55.146Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T14:25:06.684Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.1.0 | 11 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.2.0 | 12 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.0.0 | 93 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.0.0 | 8 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.0.0 | 13 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.0.0 | 8 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.1.0 | 13 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.2.0 | 14 |
 
 ## Findings by control
 
@@ -102,3 +102,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V4-013 (PACKAGE-4-1): Authorizes commencement of Volume 4 Package 2 as an architecture package only.
 - APP-V4-013 (PACKAGE-4-1): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
 - APP-V4-013 (PACKAGE-4-1): Changes to frozen Package 1 content require the recorded amendment process.
+- APP-V4-014 (V4-B): Narrow post-merge provenance-metadata amendment only.
+- APP-V4-014 (V4-B): Preserves Gate V4-G1 and its ARCHITECTURE_FOUNDATION_READY disposition.
+- APP-V4-014 (V4-B): Does not reopen or modify frozen Package 1 artifacts V4-00..V4-09 or V4-A.
+- APP-V4-014 (V4-B): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
