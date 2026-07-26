@@ -312,3 +312,79 @@ records:
       - Package 2 control traceability, validation backlog, and downstream constraints defined.
       - Closes no validation item and authorizes no implementation.
     approved_at: null
+
+  # ==== Package 2: closure, gate disposition, and freeze ====
+  - id: APP-V6-026
+    artifact_id: V6-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 2 closure record consolidates the identity, authorization, privacy, and data-protection control model.
+      - Records Gate V6-G2 disposition, the approval-count review result, and Package 3 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-027
+    artifact_id: GATE-V6-G2
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: IDENTITY_PRIVACY_AND_DATA_PROTECTION_CONTROL_MODEL_READY
+    closure_record: V6-C
+    conditions:
+      - The frozen Package 1 protection and trust foundation and its Gate V6-G1 disposition are inherited.
+      - The control model separates control definition, implementation evidence, operational proof, and independent assurance.
+      - Control families and evidence semantics are defined.
+      - The identity lifecycle and authentication-assurance model separates identity classes and selects no product or factor.
+      - The authorization model is resource-aware, fails closed, and creates no executable policy or permission.
+      - Delegation, privileged access, and emergency access are time-bound with post-use review and segregation of duties and grant no privilege.
+      - Data-protection, cryptography, secrets, and key-management requirements select no algorithm, provider, vault, certificate, key, or rotation period.
+      - Restricted-evidence access, sharing, disclosure, and export controls impose heightened access and complete recording and grant no access or disclosure.
+      - Privacy processing is purpose-bound and minimized with notice, rights, and correction and asserts no privacy compliance.
+      - Security logging, telemetry, monitoring, and detection are privacy-safe and configure no pipeline or rule and assert no detection capability.
+      - Service trust and provider assurance separate provider authority from decision authority, select no vendor, sign no contract, and are not system assurance.
+      - Every control objective carries an owner, required evidence, an implementation-evidence class, and a future blocking gate.
+      - No record authorizes implementation and every record is not-implemented or not-proven.
+      - No executable protection, identity, access, cryptographic, secrets, key, infrastructure, monitoring, privacy-workflow, disclosure, or procurement artifact is created.
+      - No legal, security, privacy, or accessibility conformance, operational proof, or independent assurance is claimed.
+      - Package 2 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V6-028
+    artifact_id: PACKAGE-6-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-C
+    frozen: true
+    frozen_artifacts:
+      - id: V6-11
+        version: 1.0.0
+      - id: V6-12
+        version: 1.0.0
+      - id: V6-13
+        version: 1.0.0
+      - id: V6-14
+        version: 1.0.0
+      - id: V6-15
+        version: 1.0.0
+      - id: V6-16
+        version: 1.0.0
+      - id: V6-17
+        version: 1.0.0
+      - id: V6-18
+        version: 1.0.0
+      - id: V6-19
+        version: 1.0.0
+      - id: V6-20
+        version: 1.0.0
+      - id: V6-C
+        version: 1.0.0
+    conditions:
+      - Package 2 (PACKAGE-6-2) is frozen at version 1.0.0 across all deliverables.
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null
+

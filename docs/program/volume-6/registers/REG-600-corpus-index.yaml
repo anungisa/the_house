@@ -187,3 +187,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-20-package-2-control-traceability-validation-backlog-and-downstream-constraints.md
     gate: V6-G2
+  - id: V6-C
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-C-package-2-closure-record.md
+    gate: V6-G2

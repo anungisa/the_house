@@ -1,6 +1,6 @@
 # Volume 6 Package 1 Trust-Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:50:54.091Z
+Generated: 2026-07-26T21:54:18.715Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 1 defines the security,

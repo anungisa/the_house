@@ -1,6 +1,6 @@
 # Volume 6 Package 1 Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:50:55.748Z
+Generated: 2026-07-26T21:54:19.965Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 1 authorizes no
@@ -10,7 +10,7 @@ Generated: 2026-07-26T21:50:55.748Z
 
 - Dispositioned: true
 - Disposition: TRUST_AND_PROTECTION_FOUNDATION_READY
-- Completed gates: V6-G1
+- Completed gates: V6-G1, V6-G2
 
 ## Package 1 freeze coverage
 
