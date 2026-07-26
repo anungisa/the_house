@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.11.0
+version: 1.12.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -1114,5 +1114,84 @@ records:
       - Volume 0, Volume 1, and Volume 2 remain frozen and are inherited without modification.
       - Whole-volume freeze provenance is completed post-merge without reopening substantive Volume 3 content.
       - No requirement or decision authorizes implementation, procurement, staffing, cost, fees, funding, pilot, rollout, launch, or delivery sequencing, and no master development plan is created.
+    approved_at: null
+  # ---- Post-merge freeze-provenance completion ----
+  - id: APP-V3-065
+    artifact_id: PACKAGE-3-5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_5_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    supersedes: >-
+      APP-V3-063 (post-merge freeze-provenance completion; the original freeze approval was
+      ratified at freeze time and could not record the merged commit; see REG-304 DEC-V3-016).
+      APP-V3-063 remains the original freeze record and is not reopened; Gate V3-G5 (APP-V3-062)
+      and V3-E are preserved.
+    package_provenance:
+      source_snapshot_commit: "6b1a1df"
+      closure_freeze_commit: "9f64667"
+      merged_commit: "8a1c6ae"
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      note: >-
+        Package 5 authoring, closure tooling, and register expansion were snapshotted at 6b1a1df;
+        the V3-E closure, Gate V3-G5 disposition, Package 5 freeze, and whole-volume freeze were
+        recorded in the separate freeze commit 9f64667; the branch merged to main as 8a1c6ae.
+        Evidence posture: SELF_ATTESTED_AUTHOR_VERIFIED.
+    frozen_artifacts:
+      - id: V3-35
+        version: 1.0.0
+      - id: V3-36
+        version: 1.0.0
+      - id: V3-37
+        version: 1.0.0
+      - id: V3-38
+        version: 1.0.0
+      - id: V3-39
+        version: 1.0.0
+      - id: V3-40
+        version: 1.0.0
+      - id: V3-41
+        version: 1.0.0
+      - id: V3-42
+        version: 1.0.0
+      - id: V3-43
+        version: 1.0.0
+      - id: V3-E
+        version: 1.0.0
+    conditions:
+      - Package 5 freeze provenance completed post-merge; source snapshot 6b1a1df, closure/freeze 9f64667, merged 8a1c6ae.
+      - Gate V3-G5 and V3-E are preserved; no substantive Package 5 content is reopened.
+    approved_at: null
+  - id: APP-V3-066
+    artifact_id: VOLUME-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: VOLUME_3_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    supersedes: >-
+      APP-V3-064 (post-merge whole-volume freeze-provenance completion; the original freeze
+      approval was ratified at freeze time and could not record the merged commit; see REG-304
+      DEC-V3-016). APP-V3-064 remains the original whole-volume freeze record and is not reopened;
+      Gate V3-G5 (APP-V3-062) and V3-E are preserved.
+    package_provenance:
+      source_snapshot_commit: "6b1a1df"
+      closure_freeze_commit: "9f64667"
+      merged_commit: "8a1c6ae"
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      release_tag: "central-registration-volume-3-v1.0.0"
+      note: >-
+        Whole-volume freeze over inherited Volume 2 v1.0.1. Package 5 authoring is snapshotted at
+        6b1a1df; the V3-E closure, Gate V3-G5 disposition, and freezes are recorded in the separate
+        freeze commit 9f64667; the branch merged to main as 8a1c6ae. On completion of this
+        provenance amendment, Volume 3 is released at tag central-registration-volume-3-v1.0.0.
+        Evidence posture: SELF_ATTESTED_AUTHOR_VERIFIED.
+    conditions:
+      - Whole-volume freeze provenance completed post-merge; source snapshot 6b1a1df, closure/freeze 9f64667, merged 8a1c6ae.
+      - Gate V3-G5 and V3-E are preserved; no substantive Volume 3 content is reopened.
+      - Volume 3 is released at tag central-registration-volume-3-v1.0.0.
     approved_at: null
 
