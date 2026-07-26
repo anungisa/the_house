@@ -1,7 +1,7 @@
 register_id: REG-304
 name: Volume 3 Governance Decision Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: DEC-V3-001
     class: D1
@@ -75,5 +75,27 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: AUTHOR-VERIFIED
     executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-004
+    class: D2
+    question: >-
+      Does the permanent PACKAGE-3-1 freeze record distinguish the source snapshot, the
+      closure/freeze commit, and the post-merge merged commit, and if not, how is the freeze
+      provenance completed without reopening Package 1 content or altering Gate V3-G1?
+    decision: >-
+      The original PACKAGE-3-1 freeze approval (APP-V3-011) was ratified at freeze time and
+      could not record the post-merge merged commit. This narrow post-merge amendment completes
+      the Package 1 freeze provenance through a superseding approval (APP-V3-012) that
+      distinguishes source snapshot commit 34eba63, closure/freeze commit ce41279, and merged
+      commit 8c4f4ff, with a self-attested / author-verified evidence posture. V3-A and Gate
+      V3-G1 are preserved and no substantive Package 1 content is reopened.
+    evidence_refs:
+      - GATE-V3-G1
+      - V3-A
+      - REG-305
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: not_required
     effective_date: TBD
     status: accepted_by_accountable_authority

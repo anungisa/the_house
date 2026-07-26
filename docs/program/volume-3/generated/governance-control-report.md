@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T11:39:14.876Z
+Generated: 2026-07-26T11:58:35.378Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -38,8 +38,8 @@ Generated: 2026-07-26T11:39:14.876Z
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.0.0 | 7 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.0.0 | 16 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.0.0 | 53 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.0.0 | 3 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.0.0 | 11 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.1.0 | 4 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.1.0 | 12 |
 
 ## Findings by control
 
@@ -81,3 +81,5 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-010 (GATE-V3-G1): Condition 13: No master development plan is created
 - APP-V3-010 (GATE-V3-G1): Condition 14: Package 1 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit
 - APP-V3-011 (PACKAGE-3-1): Package 1 corpus frozen at version 1.0.0 through a separate freeze commit.
+- APP-V3-012 (PACKAGE-3-1): Package 1 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
+- APP-V3-012 (PACKAGE-3-1): Source snapshot 34eba63; closure/freeze ce41279; merged 8c4f4ff.
