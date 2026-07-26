@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.5.0
+version: 1.6.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -379,4 +379,95 @@ records:
       - Preserves Gate V4-G2 and its DOMAIN_AND_APPLICATION_ARCHITECTURE_READY disposition.
       - Does not reopen or modify frozen Package 2 artifacts V4-10..V4-18 or V4-C.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  # ==== Package 3: chapter ratification approvals ====
+  - id: APP-V4-028
+    artifact_id: V4-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data authority, classification, and persistence boundaries ratified as architecture definition only.
+      - No physical schema, migration, storage vendor, or approved retention schedule is defined.
+    approved_at: null
+  - id: APP-V4-029
+    artifact_id: V4-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - PostgreSQL persistence, integrity, concurrency, and migration-boundary architecture ratified.
+      - No DDL, table or column names, indexes, ORM mapping, migration file, or database provisioning is defined.
+    approved_at: null
+  - id: APP-V4-030
+    artifact_id: V4-21
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Evidence metadata and binary-content separation and lifecycle boundaries ratified.
+      - No storage vendor or schema selected; no scanning, encryption, legal-hold, or retention control claimed as implemented.
+    approved_at: null
+  - id: APP-V4-031
+    artifact_id: V4-22
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Projections, search, analytics, and reporting ratified as non-authoritative and rebuildable.
+      - No executable query, index, materialized view, or report definition is authored.
+    approved_at: null
+  - id: APP-V4-032
+    artifact_id: V4-23
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integration, contract, messaging, and reconciliation architecture ratified with anti-corruption boundaries.
+      - No executable OpenAPI, AsyncAPI, webhook, or file schema is authored; external acknowledgements do not replace House authority.
+    approved_at: null
+  - id: APP-V4-033
+    artifact_id: V4-24
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security, privacy, cryptography, secrets, and trust-service boundaries ratified.
+      - Cryptographic claims remain validation-pending; no certification, compliance, or accreditation is claimed.
+    approved_at: null
+  - id: APP-V4-034
+    artifact_id: V4-25
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Platform runtime, environment, deployment, and software-supply-chain architecture ratified with production and test composition separated.
+      - No infrastructure provisioned, vendor or cloud service selected, or procurement authorized.
+    approved_at: null
+  - id: APP-V4-035
+    artifact_id: V4-26
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Observability, resilience, backup, restore, continuity, and recovery architecture ratified with evidence-gated recovery claims.
+      - No RTO, RPO, availability figure, or restore-proof evidence is fabricated.
+    approved_at: null
+  - id: APP-V4-036
+    artifact_id: V4-27
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Platform verification, architecture-evidence, and downstream-definition model ratified.
+      - Every verification is defined and none is implemented; no security accreditation, operational proof, or independent assurance is claimed.
     approved_at: null

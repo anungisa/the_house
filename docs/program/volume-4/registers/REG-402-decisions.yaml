@@ -1,7 +1,7 @@
 register_id: REG-402
 name: Volume 4 Architecture Decision Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: ADR-V4-001
     class: D1
@@ -309,4 +309,175 @@ records:
     supersession_rule: "Superseded only by a governed architecture decision at a later gate."
     evidence_label: AUTHOR-VERIFIED
     chapter_ref: V4-17
+    authorizes_implementation: false
+  # ==== Package 3: data, integration, security, and platform decisions ====
+  - id: ADR-V4-019
+    class: D1
+    title: PostgreSQL as authoritative relational persistence
+    decision: "Governed authoritative state is persisted in PostgreSQL; object and binary content resides in a separate evidence-storage service."
+    context: "Governed state requires transactional relational integrity distinct from binary content storage."
+    options: ["PostgreSQL relational persistence", "Document store", "Mixed authoritative stores"]
+    selected_posture: "PostgreSQL holds authoritative governed records; storage service holds content only."
+    rationale: "Relational integrity, transactions, and constraints support governed invariants."
+    constraints: ["No DDL, schema, or database provisioned in Package 3"]
+    consequences: ["PostgreSQL behavioural verification required"]
+    risks: ["Data volumes and isolation behaviour unresolved"]
+    evidence_refs: [ARCH-V4-020, DEP-V4-017, V4-20]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: ADR-V4-020
+    class: D1
+    title: Invariant allocation between database and domain logic
+    decision: "Each invariant is allocated to database enforcement, domain-logic enforcement, or both; structural invariants favour the database and governed lifecycle invariants remain in domain logic."
+    context: "Invariants must be enforced at the right layer to prevent silent corruption."
+    options: ["Database-only", "Domain-only", "Explicit allocation"]
+    selected_posture: "Explicit per-invariant allocation across database and domain logic."
+    rationale: "Layer-appropriate enforcement balances integrity and governed authority."
+    constraints: ["No constraints or migrations authored in Package 3"]
+    consequences: ["Concurrency and integrity verification required"]
+    risks: ["PostgreSQL isolation behaviour unresolved"]
+    evidence_refs: [CTRL-V4-020, CTRL-V4-021, V4-20]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: ADR-V4-021
+    class: D1
+    title: Evidence metadata and binary-content separation
+    decision: "Authoritative evidence metadata and binding are owned by the House while binary content resides in a controlled storage service that is not authoritative over binding or lifecycle."
+    context: "Metadata authority must remain in the House independent of storage."
+    options: ["Unified store", "Metadata and content separation", "Storage-owned metadata"]
+    selected_posture: "House owns metadata and binding; storage service owns content."
+    rationale: "Separation keeps governed authority independent of storage vendor."
+    constraints: ["No storage vendor or schema selected in Package 3"]
+    consequences: ["Metadata-to-object binding verification required"]
+    risks: ["Storage provider capabilities unresolved"]
+    evidence_refs: [ARCH-V4-021, DEP-V4-018, V4-21]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-21
+    authorizes_implementation: false
+  - id: ADR-V4-022
+    class: D1
+    title: Projections are non-authoritative and rebuildable
+    decision: "Read models, projections, search indexes, and reports are derived and rebuildable from authoritative state or retained events and never authoritative."
+    context: "Derived views must not become competing sources of governed truth."
+    options: ["Rebuildable projections", "Authoritative read models", "Uncontrolled indexes"]
+    selected_posture: "Projections rebuildable and non-authoritative with detectable staleness."
+    rationale: "Rebuildability preserves a single source of governed truth."
+    constraints: ["Projection failure does not change governed state"]
+    consequences: ["Projection rebuild verification required"]
+    risks: ["Search technology and staleness tolerance unresolved"]
+    evidence_refs: [ARCH-V4-022, CTRL-V4-023, V4-22]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-22
+    authorizes_implementation: false
+  - id: ADR-V4-023
+    class: D1
+    title: Anti-corruption integration boundaries preserve House authority
+    decision: "External integrations are mediated by anti-corruption boundaries; external acknowledgements yield reconciliation status recorded by the House and never replace governed House state."
+    context: "External semantics differ from House semantics and must not silently substitute authority."
+    options: ["Anti-corruption boundary", "Direct external coupling", "External authority absorption"]
+    selected_posture: "Anti-corruption boundaries with inbound validation before governed state changes."
+    rationale: "Boundaries preserve House authority and prevent silent corruption."
+    constraints: ["Inbound validated before governed state changes"]
+    consequences: ["Integration authentication and reconciliation verification required"]
+    risks: ["External contract semantics unresolved"]
+    evidence_refs: [ARCH-V4-023, CTRL-V4-024, V4-23]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  - id: ADR-V4-024
+    class: D1
+    title: Contract versioning and idempotency for integrations
+    decision: "Integration contracts define versioning and idempotency so retried or duplicated exchanges do not create duplicate governed effects; unsupported capability remains contract-validation-pending."
+    context: "Integrations must tolerate retries and duplicates without duplicating governed effects."
+    options: ["Versioned idempotent contracts", "Unversioned contracts", "At-least-once without dedup"]
+    selected_posture: "Versioned idempotent contract posture; no executable contract authored."
+    rationale: "Versioning and idempotency prevent duplicate governed effects."
+    constraints: ["No executable OpenAPI, AsyncAPI, or webhook schema authored"]
+    consequences: ["Webhook replay and deduplication verification required"]
+    risks: ["Provider capability and ordering semantics unresolved"]
+    evidence_refs: [API-V4-005, EVT-V4-004, V4-23]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  - id: ADR-V4-025
+    class: D1
+    title: Externalized secrets and least service trust
+    decision: "Secrets are externalized from source and artifacts, held in a controlled trust service, and consumed by actual entry points; service-to-service calls carry explicit scoped trust."
+    context: "Embedded secrets and unlimited service trust are security risks."
+    options: ["Externalized secrets", "Embedded secrets", "Implicit service trust"]
+    selected_posture: "Externalized secrets and explicit scoped service identity."
+    rationale: "Externalization and least trust reduce exposure and lateral movement."
+    constraints: ["No secret authored or provisioned in Package 3"]
+    consequences: ["Secrets-absent-from-source verification required"]
+    risks: ["Cryptographic and key-management service unresolved"]
+    evidence_refs: [ARCH-V4-024, CTRL-V4-025, V4-24]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-24
+    authorizes_implementation: false
+  - id: ADR-V4-026
+    class: D1
+    title: Production and test composition separation
+    decision: "Production composition is explicitly separated from test composition and production-required services cannot resolve to test doubles or no-ops."
+    context: "A production composition with test doubles or no-ops gives false readiness."
+    options: ["Explicit composition separation", "Shared composition", "Environment-conditional doubles"]
+    selected_posture: "Distinct production composition that fails closed on a missing required dependency."
+    rationale: "Separation prevents production reliance on test substitutes."
+    constraints: ["Production-required services cannot be no-ops or test doubles"]
+    consequences: ["Production composition verification required"]
+    risks: ["Deployment platform and topology unresolved"]
+    evidence_refs: [ARCH-V4-025, CTRL-V4-027, V4-25]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-25
+    authorizes_implementation: false
+  - id: ADR-V4-027
+    class: D1
+    title: Evidence-gated backup, restore, and recovery claims
+    decision: "Backup, restore, continuity, and recovery claims require evidence; only accepted business recovery supported by verified restore evidence supports a recovery claim."
+    context: "Configuration alone does not prove recoverability."
+    options: ["Evidence-gated recovery", "Configuration-claimed recovery", "Unverified backup claims"]
+    selected_posture: "Distinguish backup configured, restore verified, and business recovery accepted."
+    rationale: "Evidence gating prevents false recovery assurance."
+    constraints: ["No RTO, RPO, or availability figure asserted"]
+    consequences: ["Verified restore evidence required downstream"]
+    risks: ["RTO, RPO, and restore acceptance unresolved"]
+    evidence_refs: [ARCH-V4-027, CTRL-V4-029, V4-26]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-26
+    authorizes_implementation: false
+  - id: ADR-V4-028
+    class: D1
+    title: Software-supply-chain provenance and controlled infrastructure
+    decision: "Artifacts are reproducible and traceable to source with retained dependency and image provenance, infrastructure is expressed as controlled infrastructure-as-code, and promotion is not business authorization."
+    context: "Untraceable artifacts and ad hoc infrastructure undermine integrity and governance."
+    options: ["Provenance and IaC", "Ad hoc builds", "Manual infrastructure"]
+    selected_posture: "Reproducible artifacts, retained provenance, and reviewed infrastructure-as-code."
+    rationale: "Provenance and IaC support traceable, governed platform change."
+    constraints: ["No infrastructure provisioned or vendor selected in Package 3"]
+    consequences: ["Artifact and dependency provenance verification required"]
+    risks: ["Deployment platform and regional resilience unresolved"]
+    evidence_refs: [ARCH-V4-025, CTRL-V4-028, V4-25]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-25
     authorizes_implementation: false

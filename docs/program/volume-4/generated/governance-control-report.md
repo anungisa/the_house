@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:00:05.643Z
+Generated: 2026-07-26T15:21:41.760Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -13,10 +13,10 @@ Generated: 2026-07-26T15:00:05.643Z
 
 ## Summary
 
-- Total findings: 6
+- Total findings: 24
 - Errors: 0
-- Warnings: 3
-- Info: 3
+- Warnings: 12
+- Info: 12
 - Overall: PASS (no integrity errors)
 
 ## Architecture vocabularies (schema-enforced)
@@ -31,18 +31,18 @@ Generated: 2026-07-26T15:00:05.643Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 23 |
+| RATIFIED | 32 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.5.0 | 23 |
-| REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.1.0 | 137 |
-| REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.1.0 | 18 |
-| REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.1.0 | 33 |
-| REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.1.0 | 22 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.5.0 | 27 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.6.0 | 32 |
+| REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.2.0 | 177 |
+| REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.2.0 | 28 |
+| REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.2.0 | 48 |
+| REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.2.0 | 40 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.6.0 | 36 |
 
 ## Findings by control
 
@@ -54,7 +54,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Cross-reference & traceability integrity
 
-Errors: 0 | Warnings: 3 | Info: 3
+Errors: 0 | Warnings: 12 | Info: 12
 
 - WARNING CHAIN_ORDER_NOTE [ARCH-V4-016]: ARCH-V4-016 (ARCH) traces_to ARCH-V4-001 (ARCH); parent normally precedes child in ARCH->...->DEP
 - INFO CHAIN_NO_PARENT [ARCH-V4-016]: ARCH-V4-016: no traces_to target precedes its kind in the architecture order
@@ -62,6 +62,24 @@ Errors: 0 | Warnings: 3 | Info: 3
 - INFO CHAIN_NO_PARENT [ARCH-V4-017]: ARCH-V4-017: no traces_to target precedes its kind in the architecture order
 - WARNING CHAIN_ORDER_NOTE [ARCH-V4-018]: ARCH-V4-018 (ARCH) traces_to ARCH-V4-006 (ARCH); parent normally precedes child in ARCH->...->DEP
 - INFO CHAIN_NO_PARENT [ARCH-V4-018]: ARCH-V4-018: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-019]: ARCH-V4-019 (ARCH) traces_to ARCH-V4-002 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-019]: ARCH-V4-019: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-020]: ARCH-V4-020 (ARCH) traces_to ARCH-V4-008 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-020]: ARCH-V4-020: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-021]: ARCH-V4-021 (ARCH) traces_to ARCH-V4-006 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-021]: ARCH-V4-021: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-022]: ARCH-V4-022 (ARCH) traces_to ARCH-V4-010 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-022]: ARCH-V4-022: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-023]: ARCH-V4-023 (ARCH) traces_to ARCH-V4-003 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-023]: ARCH-V4-023: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-024]: ARCH-V4-024 (ARCH) traces_to ARCH-V4-005 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-024]: ARCH-V4-024: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-025]: ARCH-V4-025 (ARCH) traces_to ARCH-V4-005 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-025]: ARCH-V4-025: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-026]: ARCH-V4-026 (ARCH) traces_to ARCH-V4-012 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-026]: ARCH-V4-026: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-027]: ARCH-V4-027 (ARCH) traces_to ARCH-V4-010 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-027]: ARCH-V4-027: no traces_to target precedes its kind in the architecture order
 
 ## Recorded conditions (from REG-405 approvals)
 
@@ -156,3 +174,21 @@ Errors: 0 | Warnings: 3 | Info: 3
 - APP-V4-027 (V4-D): Preserves Gate V4-G2 and its DOMAIN_AND_APPLICATION_ARCHITECTURE_READY disposition.
 - APP-V4-027 (V4-D): Does not reopen or modify frozen Package 2 artifacts V4-10..V4-18 or V4-C.
 - APP-V4-027 (V4-D): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-028 (V4-19): Data authority, classification, and persistence boundaries ratified as architecture definition only.
+- APP-V4-028 (V4-19): No physical schema, migration, storage vendor, or approved retention schedule is defined.
+- APP-V4-029 (V4-20): PostgreSQL persistence, integrity, concurrency, and migration-boundary architecture ratified.
+- APP-V4-029 (V4-20): No DDL, table or column names, indexes, ORM mapping, migration file, or database provisioning is defined.
+- APP-V4-030 (V4-21): Evidence metadata and binary-content separation and lifecycle boundaries ratified.
+- APP-V4-030 (V4-21): No storage vendor or schema selected; no scanning, encryption, legal-hold, or retention control claimed as implemented.
+- APP-V4-031 (V4-22): Projections, search, analytics, and reporting ratified as non-authoritative and rebuildable.
+- APP-V4-031 (V4-22): No executable query, index, materialized view, or report definition is authored.
+- APP-V4-032 (V4-23): Integration, contract, messaging, and reconciliation architecture ratified with anti-corruption boundaries.
+- APP-V4-032 (V4-23): No executable OpenAPI, AsyncAPI, webhook, or file schema is authored; external acknowledgements do not replace House authority.
+- APP-V4-033 (V4-24): Security, privacy, cryptography, secrets, and trust-service boundaries ratified.
+- APP-V4-033 (V4-24): Cryptographic claims remain validation-pending; no certification, compliance, or accreditation is claimed.
+- APP-V4-034 (V4-25): Platform runtime, environment, deployment, and software-supply-chain architecture ratified with production and test composition separated.
+- APP-V4-034 (V4-25): No infrastructure provisioned, vendor or cloud service selected, or procurement authorized.
+- APP-V4-035 (V4-26): Observability, resilience, backup, restore, continuity, and recovery architecture ratified with evidence-gated recovery claims.
+- APP-V4-035 (V4-26): No RTO, RPO, availability figure, or restore-proof evidence is fabricated.
+- APP-V4-036 (V4-27): Platform verification, architecture-evidence, and downstream-definition model ratified.
+- APP-V4-036 (V4-27): Every verification is defined and none is implemented; no security accreditation, operational proof, or independent assurance is claimed.

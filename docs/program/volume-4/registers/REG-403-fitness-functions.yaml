@@ -1,7 +1,7 @@
 register_id: REG-403
 name: Volume 4 Fitness-Function Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: FIT-V4-001
     title: Forbidden dependency direction
@@ -367,5 +367,171 @@ records:
     verification_status: FITNESS_FUNCTION_DEFINED
     verification_class: STATIC_VERIFICATION_CANDIDATE
     chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  # ==== Package 3: data, integration, security, and platform fitness functions ====
+  - id: FIT-V4-034
+    title: Tenant and parent-child integrity
+    intent: "Ensure organization-scoped child records share the authoritative parent's tenant and organization context."
+    invariant: "A child record cannot bind to a parent in a different tenant or jurisdiction context."
+    evaluation_form: "PostgreSQL integration verification of tenant and parent-child integrity (defined downstream)."
+    traces_to: [CTRL-V4-020, V4-20]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-035
+    title: Jurisdiction isolation fail-closed
+    intent: "Ensure cross-jurisdiction access fails closed on missing or mismatched context."
+    invariant: "A read or write with missing, ambiguous, or mismatched jurisdiction context is denied."
+    evaluation_form: "PostgreSQL integration verification of jurisdiction isolation (defined downstream)."
+    traces_to: [CTRL-V4-019, V4-19]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-036
+    title: Season uniqueness
+    intent: "Ensure one active seasonal affiliation per recognized organization per season."
+    invariant: "A second active seasonal affiliation for the same organization and season is rejected."
+    evaluation_form: "PostgreSQL integration verification of season uniqueness (defined downstream)."
+    traces_to: [CTRL-V4-020, V4-20]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-037
+    title: PostgreSQL behavioural concurrency
+    intent: "Ensure concurrency, isolation, and atomicity are verified against PostgreSQL, not only in-memory doubles."
+    invariant: "Concurrent governed modification is detected and audit and outbox commit atomically with state."
+    evaluation_form: "PostgreSQL integration verification of concurrency and atomicity (defined downstream)."
+    traces_to: [CTRL-V4-021, V4-20]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-038
+    title: Evidence metadata-to-object binding
+    intent: "Ensure evidence metadata binds to case, requirement version, actor, provenance, and content integrity."
+    invariant: "Evidence is acceptable only when metadata and binding resolve to existing authoritative facts."
+    evaluation_form: "Unit and integration verification of evidence binding (defined downstream)."
+    traces_to: [CTRL-V4-013, V4-21]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-039
+    title: Restricted-evidence access isolation
+    intent: "Ensure restricted evidence requires resource and sensitivity authorization."
+    invariant: "Access to restricted evidence without sensitivity authorization is denied."
+    evaluation_form: "Unit verification of restricted-evidence access decisions (defined downstream)."
+    traces_to: [CTRL-V4-022, V4-21]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: SECURITY_VALIDATION_REQUIRED
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-040
+    title: Projection rebuild fidelity
+    intent: "Ensure projections rebuild from authoritative state without redefining authority."
+    invariant: "A rebuilt projection matches authoritative state and never becomes the source of authority."
+    evaluation_form: "PostgreSQL integration verification of projection rebuild (defined downstream)."
+    traces_to: [CTRL-V4-023, V4-22]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-041
+    title: Webhook authentication and replay protection
+    intent: "Ensure webhook intake is authenticated, replay-protected, and idempotent."
+    invariant: "An unauthenticated or replayed webhook does not create a duplicate governed effect."
+    evaluation_form: "Contract verification of webhook authentication and deduplication (defined downstream)."
+    traces_to: [CTRL-V4-024, V4-23]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: CONTRACT_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-042
+    title: Integration contract compatibility
+    intent: "Ensure integration contracts declare authority, versioning, and idempotency."
+    invariant: "A retried or duplicated exchange does not create a duplicate governed effect."
+    evaluation_form: "Contract verification of integration compatibility (defined downstream)."
+    traces_to: [API-V4-005, V4-23]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: CONTRACT_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-043
+    title: No secrets in source or artifacts
+    intent: "Ensure no secret value resides in source code or deployment artifacts."
+    invariant: "Source and artifacts contain no secret material."
+    evaluation_form: "Static verification for secrets in source and artifacts (defined downstream)."
+    traces_to: [CTRL-V4-025, V4-24]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-044
+    title: Production dependency completeness
+    intent: "Ensure the production composition contains every required real dependency."
+    invariant: "A production composition lacking a required dependency fails closed."
+    evaluation_form: "Composition verification of production dependency completeness (defined downstream)."
+    traces_to: [CTRL-V4-027, V4-25]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-045
+    title: No production no-op integrations
+    intent: "Ensure production-required services do not resolve to no-ops or test doubles."
+    invariant: "No production-required integration resolves to a no-op or test double."
+    evaluation_form: "Composition verification for production no-op integrations (defined downstream)."
+    traces_to: [CTRL-V4-027, V4-25]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-046
+    title: Actual entry-point configuration
+    intent: "Ensure secrets and configuration are consumed by actual production entry points."
+    invariant: "Declared but unconsumed configuration is not treated as present."
+    evaluation_form: "Composition verification of entry-point configuration consumption (defined downstream)."
+    traces_to: [CTRL-V4-025, V4-24]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-047
+    title: Artifact and dependency provenance
+    intent: "Ensure released artifacts are traceable to source with retained provenance."
+    invariant: "A released artifact without retained source and dependency provenance is rejected."
+    evaluation_form: "Deployment-path verification of artifact provenance (defined downstream)."
+    traces_to: [CTRL-V4-028, V4-25]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: DEPLOYMENT_PATH_VERIFICATION_CANDIDATE
+    chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-048
+    title: Telemetry correlation and verified restore
+    intent: "Ensure telemetry correlates authoritative effects and that recovery claims rest on verified restore evidence."
+    invariant: "A recovery claim without verified restore evidence and correlated telemetry is not accepted."
+    evaluation_form: "Operational proof of correlated telemetry and verified restore (required downstream)."
+    traces_to: [CTRL-V4-029, V4-26]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: OPERATIONAL_PROOF_REQUIRED
+    chapter_ref: V4-27
     implemented: false
     authorizes_implementation: false
