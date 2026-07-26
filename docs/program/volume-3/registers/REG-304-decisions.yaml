@@ -1,7 +1,7 @@
 register_id: REG-304
 name: Volume 3 Governance Decision Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: DEC-V3-001
     class: D1
@@ -169,5 +169,51 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-008
+    class: D1
+    question: >-
+      Is Volume 3 Package 3 (Operating Governance, Service Assurance, and Controlled Change)
+      complete and internally consistent, does it satisfy Gate V3-G3, and may the Package 3
+      corpus be frozen at version 1.0.0 without authorizing any implementation, procurement,
+      staffing, cost, or technical work?
+    decision: >-
+      Package 3 is complete and internally consistent to the extent of author assertion.
+      Chapters V3-17 through V3-25 and the closure record V3-C define the operating-governance,
+      service-assurance, and controlled-change model with all requirements recorded at
+      authorizes_implementation false. Gate V3-G3 disposition is
+      OPERATING_GOVERNANCE_AND_ASSURANCE_COMPLETE, and the Package 3 corpus is frozen at
+      version 1.0.0 through a separate freeze commit. No implementation, procurement, vendor
+      selection, staffing, cost, technical architecture, security implementation, monitoring
+      tooling, delivery sequencing, or master development plan is authorized, and executive
+      organizational acceptance remains pending at the material-commitment gate.
+    evidence_refs:
+      - GATE-V3-G3
+      - V3-C
+      - REG-303
+      - REG-305
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-009
+    class: D1
+    question: >-
+      Is Volume 3 Package 4 authorized to proceed, and under what scope constraints?
+    decision: >-
+      Package 4 is authorized as a definition-only continuation of the Volume 3 operating-model
+      work. It authorizes no implementation, procurement, vendor selection, architecture,
+      security implementation, monitoring tooling, delivery sequencing, staffing, or cost, and
+      creates no master development plan. Executive organizational acceptance remains pending at
+      the material-commitment gate, and Gate V3-G3 and the frozen Package 3 content are not
+      reopened.
+    evidence_refs:
+      - GATE-V3-G3
+      - V3-C
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.3.0
+version: 1.5.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -395,5 +395,166 @@ records:
     conditions:
       - Package 2 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
       - Source snapshot e2f1b0c; closure/freeze 6583d53; merged 877dba6.
+    approved_at: null
+  # ---- Package 3 chapter ratifications (V3-17 through V3-25) ----
+  - id: APP-V3-026
+    artifact_id: V3-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Governance forums are defined without asserting standing committees or cadences absent organizational approval.
+    approved_at: null
+  - id: APP-V3-027
+    artifact_id: V3-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Service ownership and reports are defined; reports are instruments, not governed truth; no staffing committed.
+    approved_at: null
+  - id: APP-V3-028
+    artifact_id: V3-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Business risk and assurance framework defined; no technical security architecture or monitoring implementation.
+    approved_at: null
+  - id: APP-V3-029
+    artifact_id: V3-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Operating-change governance defined with change classes; not software release management.
+    approved_at: null
+  - id: APP-V3-030
+    artifact_id: V3-21
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Dependency operating model defined; no vendor selection, procurement, or unverified contractual capability.
+    approved_at: null
+  - id: APP-V3-031
+    artifact_id: V3-22
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Information stewardship defined; no tables, schemas, storage technologies, or API payloads.
+    approved_at: null
+  - id: APP-V3-032
+    artifact_id: V3-23
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Incident, continuity, and recovery governance defined; no technical incident response or disaster-recovery design.
+    approved_at: null
+  - id: APP-V3-033
+    artifact_id: V3-24
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Continuous improvement governed; proposals route to gates and do not authorize implementation.
+    approved_at: null
+  - id: APP-V3-034
+    artifact_id: V3-25
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Playbook consolidates the governance model and records explicit exclusions of material commitment.
+    approved_at: null
+  - id: APP-V3-035
+    artifact_id: V3-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 3 closure record ratified; records inherited Package 2 baseline and Gate V3-G3 disposition.
+    approved_at: null
+  - id: APP-V3-036
+    artifact_id: GATE-V3-G3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: OPERATING_GOVERNANCE_AND_ASSURANCE_COMPLETE
+    closure_record: V3-C
+    scope:
+      - V3-17
+      - V3-18
+      - V3-19
+      - V3-20
+      - V3-21
+      - V3-22
+      - V3-23
+      - V3-24
+      - V3-25
+    conditions:
+      - "Condition 1: Package 2 freeze provenance distinguishes source snapshot, closure/freeze commit, and merged commit"
+      - "Condition 2: Operating-governance functions and decision forums are defined with a decision-rights model"
+      - "Condition 3: Service ownership and management-reporting responsibilities are defined"
+      - "Condition 4: Material business risks have owners and control objectives"
+      - "Condition 5: Preventive, detective, corrective, and assurance controls are represented"
+      - "Condition 6: Operating, policy, financial, privacy, bilingual, accessibility, and authority-boundary changes are classified"
+      - "Condition 7: External dependencies have owners, failure handling, reconciliation, and escalation"
+      - "Condition 8: Operational information has business stewards and correction authority"
+      - "Condition 9: Incidents, problems, continuity events, and support issues are distinguished"
+      - "Condition 10: Recovery and post-incident assurance preserve governed authority and evidence"
+      - "Condition 11: Continuous improvement is governed and does not authorize implementation"
+      - "Condition 12: Unresolved governance assumptions have accountable owners and future gates"
+      - "Condition 13: No requirement or decision authorizes implementation or procurement"
+      - "Condition 14: No technical architecture, staffing plan, cost plan, delivery sequence, or master development plan is created"
+      - "Condition 15: Package 3 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit"
+    approved_at: null
+  - id: APP-V3-037
+    artifact_id: PACKAGE-3-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_3_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    amendment_process: >-
+      Changes to frozen Package 3 artifacts require a recorded Volume 3 amendment decision in
+      REG-304 and a superseding approval in REG-305; frozen artifacts are not edited in place.
+    frozen_artifacts:
+      - id: V3-17
+        version: 1.0.0
+      - id: V3-18
+        version: 1.0.0
+      - id: V3-19
+        version: 1.0.0
+      - id: V3-20
+        version: 1.0.0
+      - id: V3-21
+        version: 1.0.0
+      - id: V3-22
+        version: 1.0.0
+      - id: V3-23
+        version: 1.0.0
+      - id: V3-24
+        version: 1.0.0
+      - id: V3-25
+        version: 1.0.0
+      - id: V3-C
+        version: 1.0.0
+    conditions:
+      - Package 3 corpus frozen at version 1.0.0 through a separate freeze commit.
+      - Freeze provenance completed post-merge through the recorded amendment process.
     approved_at: null
 

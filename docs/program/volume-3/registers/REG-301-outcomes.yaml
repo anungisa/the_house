@@ -1,7 +1,7 @@
 register_id: REG-301
 name: Volume 3 Outcome Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: OUT-V3-001
     statement: >-
@@ -309,5 +309,179 @@ records:
     validation_status: stakeholder_validation_pending
     source_refs:
       - V3-16
+      - V3-00
+      - V2-33
+  # ---- Package 3 outcomes (operating governance, service assurance, controlled change) ----
+  - id: OUT-V3-017
+    statement: >-
+      Operating governance is defined through decision forums and mechanisms covering
+      seasonal-readiness governance, affiliation-policy governance, operational service review,
+      financial and reconciliation review, exception and escalation review, privacy and
+      restricted-evidence oversight, bilingual and accessibility oversight, external-dependency
+      review, post-season assurance, and material organizational commitment.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-007
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      Each governance forum has a defined purpose, decision scope, accountable function, and
+      delegation limits, without asserting a standing committee or cadence absent organizational
+      approval.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-17
+      - V3-00
+      - V2-28
+  - id: OUT-V3-018
+    statement: >-
+      Functional service ownership and management reporting are defined so that the affiliation
+      service has an accountable owner and management views for queues, workload, pathway
+      distribution, aging, returns, financial exceptions, activation failures, support demand,
+      policy exceptions, and readiness and closure.
+    stakeholder_refs:
+      - STK-V3-017
+      - STK-V3-001
+      - STK-V3-010
+    product: House
+    success_signal: >-
+      Each management report identifies its purpose, audience, accountable owner, evidence
+      source, interpretation limits, and the decision it supports, and is treated as an
+      instrument rather than a source of governed truth.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-18
+      - V3-04
+      - V2-33
+  - id: OUT-V3-019
+    statement: >-
+      A business-level risk, control, and operating-assurance framework is defined across the
+      material risks of the affiliation service, each with an owner, control objective, and
+      preventive, detective, and corrective controls with an assurance method.
+    stakeholder_refs:
+      - STK-V3-018
+      - STK-V3-007
+      - STK-V3-001
+    product: House
+    success_signal: >-
+      Every material business risk has an owner, control objective, controls, assurance method,
+      and residual-risk status, without defining technical security architecture.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-19
+      - V3-04
+      - V2-24
+  - id: OUT-V3-020
+    statement: >-
+      Operating-change governance is defined so that operating rules and service practices are
+      changed after approval through classified change classes with approving authorities,
+      consultation, evidence, effective-date handling, and amendment records.
+    stakeholder_refs:
+      - STK-V3-007
+      - STK-V3-001
+      - STK-V3-010
+    product: House
+    success_signal: >-
+      Every operating change is classified with an approving authority and recorded as an
+      amendment, without becoming software release management.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-20
+      - V3-00
+      - V2-12
+  - id: OUT-V3-021
+    statement: >-
+      The external-provider and cross-organizational dependency operating model is defined for
+      payment, accounting, identity, registration, communications, analytics, learning, and
+      PTSO-operated services, with owners, failure handling, manual fallback, reconciliation,
+      and escalation.
+    stakeholder_refs:
+      - STK-V3-019
+      - STK-V3-014
+      - STK-V3-015
+    product: House
+    success_signal: >-
+      Every dependency has a business owner, failure mode, manual fallback, reconciliation, and
+      escalation, without selecting vendors or authorizing procurement.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-21
+      - V3-05
+      - V2-16
+  - id: OUT-V3-022
+    statement: >-
+      Operational data stewardship, records, and evidence accountability are defined across the
+      operational information domains of the affiliation service, each with a business steward,
+      correction authority, and privacy classification.
+    stakeholder_refs:
+      - STK-V3-011
+      - STK-V3-010
+      - STK-V3-001
+    product: House
+    success_signal: >-
+      Every operational information domain has a business steward, correction authority, and
+      privacy classification, without defining tables, schemas, storage technologies, or API
+      payloads.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-22
+      - V3-06
+      - V2-24
+  - id: OUT-V3-023
+    statement: >-
+      Incident, problem, continuity, and service-recovery governance are defined so that
+      operating disruptions are declared, triaged, contained, recovered, and closed with
+      governed authority and evidence preserved.
+    stakeholder_refs:
+      - STK-V3-009
+      - STK-V3-011
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      Incidents, problems, continuity events, and support issues are distinguished with
+      declaration and closure authority, without defining technical incident response or
+      disaster-recovery designs.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-23
+      - V3-06
+      - V2-17
+  - id: OUT-V3-024
+    statement: >-
+      Continuous improvement, seasonal review, and management assurance are defined as a
+      governed cycle from operational evidence through review, classification, validation, and
+      routing to future-volume or operating-change channels.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-018
+      - STK-V3-010
+    product: House
+    success_signal: >-
+      Improvement proposals are governed and routed to gates and do not authorize implementation
+      merely because they are operationally desirable.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-24
+      - V3-07
+      - V2-33
+  - id: OUT-V3-025
+    statement: >-
+      A consolidated governance, assurance, and controlled-change playbook is defined across
+      governance forums, decision rights, reporting, performance review, risk and assurance,
+      operating change, dependency oversight, information stewardship, incident and continuity
+      governance, and continuous improvement, and it explicitly excludes permanent organizational
+      design, staffing, cost, procurement, technical architecture, and the master development
+      plan.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-016
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      The playbook consolidates the governance model and explicitly records the material
+      commitments that Package 3 does not authorize.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-25
       - V3-00
       - V2-33

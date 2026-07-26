@@ -8,12 +8,13 @@
     "STK-V3-007",
     "STK-V3-008",
     "STK-V3-011",
-    "STK-V3-016"
+    "STK-V3-016",
+    "STK-V3-017"
   ],
   "button_primary_with_governed_authority_conflict": [],
   "requirement_product_distribution": {
-    "House": 129,
-    "Button": 2,
+    "House": 208,
+    "Button": 3,
     "Both": 0,
     "Neither": 0
   },
