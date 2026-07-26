@@ -1,0 +1,40 @@
+{
+  "total": 4,
+  "by_control_family": {
+    "PROVIDER_ASSURANCE": 2,
+    "SERVICE_TRUST": 2
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-009",
+      "control_family": "PROVIDER_ASSURANCE",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": null,
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-019",
+      "control_family": "SERVICE_TRUST",
+      "protected_asset_or_right": "ASSET-V6-009",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-034",
+      "control_family": "SERVICE_TRUST",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-035",
+      "control_family": "PROVIDER_ASSURANCE",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "independent_assurance_dependencies": [
+    "CTRL-V6-035"
+  ]
+}

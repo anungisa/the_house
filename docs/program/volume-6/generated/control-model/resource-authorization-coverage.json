@@ -1,0 +1,58 @@
+{
+  "authorization_controls": 3,
+  "isolation_and_service_controls": 3,
+  "controls": [
+    {
+      "id": "CTRL-V6-002",
+      "control_family": "AUTHORIZATION",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "implementation_evidence_class": null,
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-016",
+      "control_family": "AUTHORIZATION",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-018",
+      "control_family": "AUTHORIZATION",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-017",
+      "control_family": "RESOURCE_ISOLATION",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-019",
+      "control_family": "SERVICE_TRUST",
+      "protected_asset_or_right": "ASSET-V6-009",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-034",
+      "control_family": "SERVICE_TRUST",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "input_presence": {
+    "resource": 3,
+    "organization": 3,
+    "jurisdiction": 3,
+    "assignment": 3,
+    "action": 3,
+    "lifecycle": 3,
+    "sensitiv": 3
+  },
+  "controls_missing_inputs": []
+}

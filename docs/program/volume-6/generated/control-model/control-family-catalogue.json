@@ -1,9 +1,5 @@
 {
-  "by_applicability_status": {
-    "APPLICABLE_CONFIRMED": 5,
-    "LEGAL_VALIDATION_PENDING": 2,
-    "POLICY_VALIDATION_PENDING": 1
-  },
+  "control_objectives": 35,
   "by_control_family": {
     "AUTHENTICATION": 2,
     "AUTHORIZATION": 3,
@@ -29,5 +25,28 @@
     "PRIVACY_PURPOSE": 1,
     "MINIMIZATION": 1,
     "NOTICE_AND_RIGHTS": 1
-  }
+  },
+  "controls_without_family": [],
+  "by_evidence_class": {
+    "UNSET": 11,
+    "DESIGN_EVIDENCE_REQUIRED": 23,
+    "INDEPENDENT_ASSURANCE_REQUIRED": 1
+  },
+  "controls_without_evidence_class": [
+    "CTRL-V6-001",
+    "CTRL-V6-002",
+    "CTRL-V6-003",
+    "CTRL-V6-004",
+    "CTRL-V6-005",
+    "CTRL-V6-006",
+    "CTRL-V6-007",
+    "CTRL-V6-008",
+    "CTRL-V6-009",
+    "CTRL-V6-010",
+    "CTRL-V6-011"
+  ],
+  "controls_without_owner": [],
+  "controls_without_required_evidence": [],
+  "controls_without_gate": [],
+  "controls_with_unresolved_protected_ref": []
 }

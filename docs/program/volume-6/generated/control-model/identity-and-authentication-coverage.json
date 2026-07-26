@@ -1,0 +1,48 @@
+{
+  "total": 5,
+  "by_control_family": {
+    "AUTHENTICATION": 2,
+    "IDENTITY": 2,
+    "SESSION_AND_CREDENTIAL": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-001",
+      "control_family": "AUTHENTICATION",
+      "protected_asset_or_right": "ASSET-V6-003",
+      "implementation_evidence_class": null,
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-012",
+      "control_family": "IDENTITY",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-013",
+      "control_family": "AUTHENTICATION",
+      "protected_asset_or_right": "ASSET-V6-003",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-014",
+      "control_family": "SESSION_AND_CREDENTIAL",
+      "protected_asset_or_right": "ASSET-V6-003",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-015",
+      "control_family": "IDENTITY",
+      "protected_asset_or_right": "ASSET-V6-009",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    }
+  ],
+  "controls_without_threat_ref": [
+    "CTRL-V6-001"
+  ]
+}

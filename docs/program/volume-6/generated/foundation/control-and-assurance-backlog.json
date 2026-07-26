@@ -1,17 +1,17 @@
 {
-  "control_objectives": 11,
+  "control_objectives": 35,
   "assurance_requirements": 4,
-  "validation_backlog": 4,
+  "validation_backlog": 9,
   "assurance_by_classification": {
     "INDEPENDENT_ASSURANCE_REQUIRED": 2,
     "PRIVACY_VALIDATION_PENDING": 1,
     "ACCESSIBILITY_VALIDATION_PENDING": 1
   },
   "backlog_by_kind": {
-    "ASM": 2,
-    "RISK": 2,
+    "ASM": 4,
+    "RISK": 4,
     "EXC": 1,
-    "TEST": 4
+    "TEST": 9
   },
   "controls_without_owner": [],
   "controls_without_evidence": [],

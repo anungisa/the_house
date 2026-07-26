@@ -209,3 +209,182 @@ records:
       - Preserves the Gate V6-G1 disposition and the PACKAGE-6-1 freeze.
       - Reopens no substantive Package 1 content and authorizes no implementation.
     approved_at: null
+
+  # ==== Package 2: chapter ratifications ====
+  - id: APP-V6-016
+    artifact_id: V6-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Control model, control families, and evidence semantics defined for Package 2.
+      - Separates control definition, implementation evidence, operational proof, and independent assurance.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-017
+    artifact_id: V6-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity lifecycle and authentication-assurance model defined with identity-class separations.
+      - Selects no authentication product or factor; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-018
+    artifact_id: V6-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Resource-aware authorization and policy-decision control model defined with fail-closed rules.
+      - Creates no executable authorization policy or permission; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-019
+    artifact_id: V6-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Delegation, privileged access, emergency access, and segregation-of-duties controls defined with expiry and post-use review.
+      - Grants no privilege and creates no administrative role; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-020
+    artifact_id: V6-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data-classification, protection, cryptography, secrets, and key-management requirements defined.
+      - Selects no algorithm, provider, vault, certificate, key, or rotation period; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-021
+    artifact_id: V6-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Restricted-evidence, document access, sharing, disclosure, and export controls defined with heightened access and complete recording.
+      - Grants no evidence access and authorizes no disclosure or export; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-022
+    artifact_id: V6-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Privacy processing, notice, rights, correction, and minimization control model defined with purpose binding.
+      - Makes no per-activity privacy determination and asserts no privacy compliance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-023
+    artifact_id: V6-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security logging, audit, telemetry, monitoring, and detection control model defined as privacy-safe.
+      - Configures no logging pipeline or detection rule and asserts no detection capability; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-024
+    artifact_id: V6-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Service trust, external-provider security, and contractual-assurance model defined with provider-authority separation.
+      - Selects no vendor and signs no contract; provider assurance is not system assurance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-025
+    artifact_id: V6-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 2 control traceability, validation backlog, and downstream constraints defined.
+      - Closes no validation item and authorizes no implementation.
+    approved_at: null
+
+  # ==== Package 2: closure, gate disposition, and freeze ====
+  - id: APP-V6-026
+    artifact_id: V6-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 2 closure record consolidates the identity, authorization, privacy, and data-protection control model.
+      - Records Gate V6-G2 disposition, the approval-count review result, and Package 3 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-027
+    artifact_id: GATE-V6-G2
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: IDENTITY_PRIVACY_AND_DATA_PROTECTION_CONTROL_MODEL_READY
+    closure_record: V6-C
+    conditions:
+      - The frozen Package 1 protection and trust foundation and its Gate V6-G1 disposition are inherited.
+      - The control model separates control definition, implementation evidence, operational proof, and independent assurance.
+      - Control families and evidence semantics are defined.
+      - The identity lifecycle and authentication-assurance model separates identity classes and selects no product or factor.
+      - The authorization model is resource-aware, fails closed, and creates no executable policy or permission.
+      - Delegation, privileged access, and emergency access are time-bound with post-use review and segregation of duties and grant no privilege.
+      - Data-protection, cryptography, secrets, and key-management requirements select no algorithm, provider, vault, certificate, key, or rotation period.
+      - Restricted-evidence access, sharing, disclosure, and export controls impose heightened access and complete recording and grant no access or disclosure.
+      - Privacy processing is purpose-bound and minimized with notice, rights, and correction and asserts no privacy compliance.
+      - Security logging, telemetry, monitoring, and detection are privacy-safe and configure no pipeline or rule and assert no detection capability.
+      - Service trust and provider assurance separate provider authority from decision authority, select no vendor, sign no contract, and are not system assurance.
+      - Every control objective carries an owner, required evidence, an implementation-evidence class, and a future blocking gate.
+      - No record authorizes implementation and every record is not-implemented or not-proven.
+      - No executable protection, identity, access, cryptographic, secrets, key, infrastructure, monitoring, privacy-workflow, disclosure, or procurement artifact is created.
+      - No legal, security, privacy, or accessibility conformance, operational proof, or independent assurance is claimed.
+      - Package 2 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V6-028
+    artifact_id: PACKAGE-6-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-C
+    frozen: true
+    frozen_artifacts:
+      - id: V6-11
+        version: 1.0.0
+      - id: V6-12
+        version: 1.0.0
+      - id: V6-13
+        version: 1.0.0
+      - id: V6-14
+        version: 1.0.0
+      - id: V6-15
+        version: 1.0.0
+      - id: V6-16
+        version: 1.0.0
+      - id: V6-17
+        version: 1.0.0
+      - id: V6-18
+        version: 1.0.0
+      - id: V6-19
+        version: 1.0.0
+      - id: V6-20
+        version: 1.0.0
+      - id: V6-C
+        version: 1.0.0
+    conditions:
+      - Package 2 (PACKAGE-6-2) is frozen at version 1.0.0 across all deliverables.
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null
+

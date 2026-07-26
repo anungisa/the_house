@@ -1,22 +1,22 @@
 {
-  "chapters": 13,
-  "assets": 8,
-  "actors": 8,
-  "trust_boundaries": 5,
-  "threats": 5,
+  "chapters": 24,
+  "assets": 10,
+  "actors": 9,
+  "trust_boundaries": 7,
+  "threats": 8,
   "abuse_cases": 2,
   "rights": 5,
   "controls_by_kind": {
-    "CONTROL_OBJECTIVE": 11,
+    "CONTROL_OBJECTIVE": 35,
     "PROCESSING_PURPOSE": 5,
-    "OBLIGATION": 2,
+    "OBLIGATION": 5,
     "COMPLIANCE_OBLIGATION": 3,
     "ACCESSIBILITY_OBLIGATION": 2,
     "BILINGUAL_OBLIGATION": 2,
     "INCIDENT_FAMILY": 3,
     "ASSURANCE_REQUIREMENT": 4
   },
-  "decisions": 4,
-  "backlog_items": 9,
-  "approvals": 15
+  "decisions": 19,
+  "backlog_items": 18,
+  "approvals": 28
 }

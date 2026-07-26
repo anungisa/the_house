@@ -99,22 +99,45 @@
     "controlFamily": {
       "type": "string",
       "enum": [
+        "IDENTITY",
         "AUTHENTICATION",
         "AUTHORIZATION",
         "DELEGATION",
         "PRIVILEGED_ACCESS",
+        "SESSION_AND_CREDENTIAL",
+        "RESOURCE_ISOLATION",
+        "RESTRICTED_EVIDENCE",
         "PRIVACY",
+        "PRIVACY_PURPOSE",
+        "MINIMIZATION",
+        "NOTICE_AND_RIGHTS",
+        "DISCLOSURE_AND_EXPORT",
         "DATA_PROTECTION",
+        "CRYPTOGRAPHY",
         "LOGGING_AND_AUDIT",
         "INTEGRITY",
         "SECRETS_AND_KEYS",
+        "SERVICE_TRUST",
         "PROVIDER_ASSURANCE",
         "MONITORING_AND_DETECTION",
         "INCIDENT_RESPONSE",
         "CONTINUITY_AND_RECOVERY",
+        "CONFIGURATION",
+        "EXCEPTION_AND_RECOVERY",
         "ACCESSIBILITY",
         "BILINGUAL_EQUIVALENCE",
         "GOVERNANCE_APPROVAL"
+      ]
+    },
+    "controlEvidenceClass": {
+      "type": "string",
+      "enum": [
+        "CONTROL_DEFINED",
+        "DESIGN_EVIDENCE_REQUIRED",
+        "IMPLEMENTATION_EVIDENCE_REQUIRED",
+        "TEST_EVIDENCE_REQUIRED",
+        "OPERATIONAL_PROOF_REQUIRED",
+        "INDEPENDENT_ASSURANCE_REQUIRED"
       ]
     },
     "applicabilityStatus": {

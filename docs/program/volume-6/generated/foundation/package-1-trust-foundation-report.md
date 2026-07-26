@@ -1,6 +1,6 @@
 # Volume 6 Package 1 Trust-Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:21:34.250Z
+Generated: 2026-07-26T21:54:18.715Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 1 defines the security,
@@ -10,23 +10,23 @@ Generated: 2026-07-26T21:21:34.250Z
 
 ## Asset and boundary catalogue
 
-- Assets: 8
-- Actors: 8
-- Trust boundaries: 5
+- Assets: 10
+- Actors: 9
+- Trust boundaries: 7
 - Rights: 5
 - Assets without authority: 0
 - Assets without classification: 0
 
 ## Threat and abuse coverage
 
-- Threats: 5
+- Threats: 8
 - Abuse cases: 2
 - Boundaries without a threat scenario: 0
 - Threats missing a preventive/detective/corrective objective: 0 / 0 / 0
 
 ## Authorization-input coverage
 
-- Authorization control objectives: 1
+- Authorization control objectives: 3
 - Authorization controls missing a resource-aware input: 0
 
 ## Privacy purpose and domain mapping
@@ -38,7 +38,7 @@ Generated: 2026-07-26T21:21:34.250Z
 
 ## Compliance-obligation coverage
 
-- Obligations: 5
+- Obligations: 8
 - Without applicability status: 0
 - Without control objective: 0
 - Without required evidence: 0
@@ -58,9 +58,9 @@ Generated: 2026-07-26T21:21:34.250Z
 
 ## Control and assurance backlog
 
-- Control objectives: 11
+- Control objectives: 35
 - Assurance requirements: 4
-- Validation backlog items: 4
+- Validation backlog items: 9
 
 ## Foundation integrity
 

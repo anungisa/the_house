@@ -1,0 +1,37 @@
+{
+  "total": 3,
+  "by_control_family": {
+    "PRIVACY_PURPOSE": 1,
+    "MINIMIZATION": 1,
+    "NOTICE_AND_RIGHTS": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-029",
+      "control_family": "PRIVACY_PURPOSE",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-030",
+      "control_family": "MINIMIZATION",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-031",
+      "control_family": "NOTICE_AND_RIGHTS",
+      "protected_asset_or_right": "RIGHT-V6-001",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "rights_mapped": [
+    {
+      "id": "CTRL-V6-031",
+      "right": "RIGHT-V6-001"
+    }
+  ]
+}

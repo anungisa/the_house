@@ -3,6 +3,7 @@
   "dispositioned": true,
   "disposition": "TRUST_AND_PROTECTION_FOUNDATION_READY",
   "completed_gates": [
-    "V6-G1"
+    "V6-G1",
+    "V6-G2"
   ]
 }

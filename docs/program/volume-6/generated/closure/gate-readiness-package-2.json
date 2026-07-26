@@ -1,0 +1,10 @@
+{
+  "gate": "V6-G2",
+  "dispositioned": true,
+  "disposition": "IDENTITY_PRIVACY_AND_DATA_PROTECTION_CONTROL_MODEL_READY",
+  "closure_record": "V6-C",
+  "completed_gates": [
+    "V6-G1",
+    "V6-G2"
+  ]
+}

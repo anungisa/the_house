@@ -590,3 +590,663 @@ records:
     chapter_ref: V6-09
     traces_to:
       - CTRL-V6-009
+
+  # ==== Package 2 identity and authentication control objectives (V6-12) ====
+  - id: CTRL-V6-012
+    kind: CONTROL_OBJECTIVE
+    title: Identity lifecycle control objective
+    statement: Identity establishment, account lifecycle, and account-state transitions must be governed and fail closed on suspension or compromise.
+    control_family: IDENTITY
+    owner: Identity and Authorization Steward
+    control_owner: Identity and Authorization Steward
+    required_evidence: PENDING (identity lifecycle design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: THREAT-V6-002
+    preventive_intent: Establish and transition account identity only under governed authority.
+    detective_intent: Log identity establishment and account-state change.
+    corrective_intent: Suspend or revoke compromised accounts with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent identity assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - THREAT-V6-002
+  - id: CTRL-V6-013
+    kind: CONTROL_OBJECTIVE
+    title: Authentication-assurance control objective
+    statement: Authentication assurance, credential lifecycle, and recovery must verify the account holder and fail closed on federation failure.
+    control_family: AUTHENTICATION
+    owner: Identity and Authorization Steward
+    control_owner: Identity and Authorization Steward
+    required_evidence: PENDING (authentication-assurance design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-003
+    threat_or_abuse_ref: THREAT-V6-007
+    preventive_intent: Verify authentication assurance before granting an authenticated session.
+    detective_intent: Detect anomalous authentication and federation assertions.
+    corrective_intent: Suspend and re-establish authentication on compromise with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent authentication assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - THREAT-V6-007
+  - id: CTRL-V6-014
+    kind: CONTROL_OBJECTIVE
+    title: Session and credential lifecycle control objective
+    statement: Session establishment, expiration, and revocation must fail closed on expiry, revocation, or compromised-account response.
+    control_family: SESSION_AND_CREDENTIAL
+    owner: Identity and Authorization Steward
+    control_owner: Identity and Authorization Steward
+    required_evidence: PENDING (session and credential design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-003
+    threat_or_abuse_ref: THREAT-V6-002
+    preventive_intent: Bound session and credential validity and revoke on compromise.
+    detective_intent: Log session establishment, expiry, and revocation.
+    corrective_intent: Revoke and re-issue sessions and credentials on compromise.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent session-security assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - THREAT-V6-002
+  - id: CTRL-V6-015
+    kind: CONTROL_OBJECTIVE
+    title: Service and non-human identity control objective
+    statement: Service and non-human identities must be explicitly scoped and receive no implicit trust.
+    control_family: IDENTITY
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (service-identity design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-009
+    threat_or_abuse_ref: THREAT-V6-006
+    preventive_intent: Grant service identities only explicit, scoped permissions.
+    detective_intent: Log service-identity issuance and use.
+    corrective_intent: Revoke and re-scope abused service identities with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent service-identity assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - THREAT-V6-006
+
+  # ==== Package 2 authorization control objectives (V6-13) ====
+  - id: CTRL-V6-016
+    kind: CONTROL_OBJECTIVE
+    title: Resource-aware policy-decision control objective
+    statement: Every authorization decision must be resource-aware, purpose-bound, and fail closed, evaluating far more than actor role.
+    control_family: AUTHORIZATION
+    owner: Identity and Authorization Steward
+    control_owner: Identity and Authorization Steward
+    required_evidence: PENDING (policy-decision design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-001
+    threat_or_abuse_ref: THREAT-V6-001
+    authorization_inputs:
+      - Authenticated identity and account status
+      - Owning organization and representative authority
+      - Jurisdiction and tenant scope
+      - Reviewer or actor assignment
+      - Requested action
+      - Lifecycle state of the target resource
+      - Sensitivity of the affected data
+      - Target resource loaded before decision
+      - Delegation, policy version, and purpose
+    preventive_intent: Deny by default and load the target resource before deciding.
+    detective_intent: Log authorization decisions and denials with reason evidence.
+    corrective_intent: Investigate and remediate authorization bypass with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent authorization assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - THREAT-V6-001
+  - id: CTRL-V6-017
+    kind: CONTROL_OBJECTIVE
+    title: Organization and jurisdiction isolation control objective
+    statement: Organization, jurisdiction, and sensitivity must be resolved from the loaded resource, and isolation must fail closed.
+    control_family: RESOURCE_ISOLATION
+    owner: Identity and Authorization Steward
+    control_owner: Identity and Authorization Steward
+    required_evidence: PENDING (resource-isolation design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-001
+    threat_or_abuse_ref: THREAT-V6-001
+    preventive_intent: Resolve organization and jurisdiction from the resource, not from assumption.
+    detective_intent: Log and alert on access crossing organization or jurisdiction scope.
+    corrective_intent: Contain and remediate cross-scope exposure with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent isolation assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - THREAT-V6-001
+  - id: CTRL-V6-018
+    kind: CONTROL_OBJECTIVE
+    title: Assignment-enforcement control objective
+    statement: Reviewer eligibility and assignment must be enforced so that access does not exceed assignment scope.
+    control_family: AUTHORIZATION
+    owner: Identity and Authorization Steward
+    control_owner: Identity and Authorization Steward
+    required_evidence: PENDING (assignment-enforcement design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-001
+    threat_or_abuse_ref: ABUSE-V6-001
+    authorization_inputs:
+      - Reviewer or actor assignment
+      - Owning organization
+      - Jurisdiction and tenant scope
+      - Target resource and its classification
+      - Requested action
+      - Lifecycle state of the target entity
+      - Sensitivity of the affected data
+    preventive_intent: Constrain reviewer access to assigned cases and fail closed otherwise.
+    detective_intent: Log and review access outside assignment scope.
+    corrective_intent: Investigate and remediate over-access with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent authorization assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - ABUSE-V6-001
+  - id: CTRL-V6-019
+    kind: CONTROL_OBJECTIVE
+    title: Service-to-service authorization control objective
+    statement: Internal service-to-service calls must be explicitly authorized and cannot bypass authorization through direct data access.
+    control_family: SERVICE_TRUST
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (service-authorization design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-009
+    threat_or_abuse_ref: THREAT-V6-006
+    preventive_intent: Require explicit scoped authorization for every service-to-service call.
+    detective_intent: Log service-to-service calls outside expected scope.
+    corrective_intent: Revoke and re-scope service trust on abuse with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent service-trust assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - THREAT-V6-006
+
+  # ==== Package 2 delegation and privileged-access control objectives (V6-14) ====
+  - id: CTRL-V6-020
+    kind: CONTROL_OBJECTIVE
+    title: Delegated-authority control objective
+    statement: Delegated authority must carry scope, effective period, evidence, approval, expiry, revocation, and post-use review, and is never permanent.
+    control_family: DELEGATION
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (delegation design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-007
+    threat_or_abuse_ref: THREAT-V6-004
+    preventive_intent: Time-bound and scope every delegated capability with approval.
+    detective_intent: Log delegation grants, use, and expiry.
+    corrective_intent: Revoke and review delegated authority with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent privileged-access assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - THREAT-V6-004
+  - id: CTRL-V6-021
+    kind: CONTROL_OBJECTIVE
+    title: Privileged and emergency-access control objective
+    statement: Privileged and emergency access must be least privilege, approved, time-bound, monitored, and reviewed after use.
+    control_family: PRIVILEGED_ACCESS
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (privileged-access design, implementation, and validation)
+    failure_posture: MANUAL_ESCALATION
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-007
+    threat_or_abuse_ref: THREAT-V6-004
+    preventive_intent: Constrain privileged and emergency access to least privilege with approval.
+    detective_intent: Monitor and audit all privileged and emergency actions.
+    corrective_intent: Revoke and review privileged and emergency use with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent privileged-access assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - THREAT-V6-004
+  - id: CTRL-V6-022
+    kind: CONTROL_OBJECTIVE
+    title: Segregation-of-duties control objective
+    statement: Recommendation, decision, reconciliation, activation, support, and emergency roles must be separated so no single actor bypasses governed controls.
+    control_family: EXCEPTION_AND_RECOVERY
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (segregation design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-007
+    threat_or_abuse_ref: THREAT-V6-004
+    preventive_intent: Separate incompatible duties across distinct authorities.
+    detective_intent: Review actions that would combine incompatible duties.
+    corrective_intent: Remediate segregation violations with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent segregation assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - THREAT-V6-004
+
+  # ==== Package 2 data-protection, cryptography, secrets, and configuration control objectives (V6-15) ====
+  - id: CTRL-V6-023
+    kind: CONTROL_OBJECTIVE
+    title: Classification-based data-protection control objective
+    statement: Data must be protected in transit, at rest, and at field or object level according to its classification, with environment separation.
+    control_family: DATA_PROTECTION
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (data-protection design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: THREAT-V6-005
+    preventive_intent: Protect data by classification and separate environments.
+    detective_intent: Detect unprotected data flows and environment cross-contamination.
+    corrective_intent: Contain and remediate protection failures with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent data-protection assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - THREAT-V6-005
+  - id: CTRL-V6-024
+    kind: CONTROL_OBJECTIVE
+    title: Cryptographic-requirement control objective
+    statement: A cryptographic requirement is defined; algorithm or service selection is pending; key-management implementation and operational rotation are not proven.
+    control_family: CRYPTOGRAPHY
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (cryptographic design, algorithm selection, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: THREAT-V6-005
+    preventive_intent: Require cryptographic protection without selecting technology prematurely.
+    detective_intent: Detect cryptographic-requirement gaps in downstream design.
+    corrective_intent: Remediate cryptographic deficiencies before reliance.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent cryptographic assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - THREAT-V6-005
+  - id: CTRL-V6-025
+    kind: CONTROL_OBJECTIVE
+    title: Secrets and key-management control objective
+    statement: Secrets and keys must be externalized, owned, rotated, revocable, and never embedded in source or configuration.
+    control_family: SECRETS_AND_KEYS
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (secrets and key-management design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-003
+    threat_or_abuse_ref: THREAT-V6-002
+    preventive_intent: Externalize secrets and keys and enforce ownership and rotation.
+    detective_intent: Detect embedded secrets and missing rotation.
+    corrective_intent: Rotate and revoke exposed secrets and keys with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent key-management assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - THREAT-V6-002
+  - id: CTRL-V6-026
+    kind: CONTROL_OBJECTIVE
+    title: Configuration-integrity control objective
+    statement: Configuration integrity and environment separation must be enforced, and secrets or restricted content must never be copied into configuration or logs.
+    control_family: CONFIGURATION
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (configuration-integrity design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V7-G1
+    protected_asset_or_right: ASSET-V6-010
+    threat_or_abuse_ref: THREAT-V6-008
+    preventive_intent: Protect configuration integrity and keep secrets out of configuration.
+    detective_intent: Detect configuration change and secret leakage into configuration or logs.
+    corrective_intent: Restore configuration and rotate exposed secrets with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent configuration assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - THREAT-V6-008
+
+  # ==== Package 2 restricted-evidence and disclosure control objectives (V6-16) ====
+  - id: CTRL-V6-027
+    kind: CONTROL_OBJECTIVE
+    title: Restricted-evidence heightened-access control objective
+    statement: Restricted-evidence access must be need-to-know, purpose-bound, time-limited, decision-linked, and fully logged, above ordinary authorization.
+    control_family: RESTRICTED_EVIDENCE
+    owner: Data Governance Steward
+    control_owner: Data Governance Steward
+    required_evidence: PENDING (restricted-evidence design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-004
+    threat_or_abuse_ref: THREAT-V6-003
+    preventive_intent: Gate restricted-evidence access on need-to-know and purpose.
+    detective_intent: Log every restricted-evidence access with purpose and authority.
+    corrective_intent: Revoke and investigate improper restricted-evidence access with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent evidence-access assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-16
+    traces_to:
+      - THREAT-V6-003
+  - id: CTRL-V6-028
+    kind: CONTROL_OBJECTIVE
+    title: Disclosure and export control objective
+    statement: Every disclosure or export must have a lawful purpose, disclosure authority, recipient scope, expiry, and a complete access and disclosure record.
+    control_family: DISCLOSURE_AND_EXPORT
+    owner: Data Governance Steward
+    control_owner: Data Governance Steward
+    required_evidence: PENDING (disclosure and export design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ privacy design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-004
+    threat_or_abuse_ref: ABUSE-V6-002
+    preventive_intent: Authorize disclosure and export only under lawful purpose and scope.
+    detective_intent: Record every disclosure and export with recipient and authority.
+    corrective_intent: Restrict and remediate improper disclosure or export with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent disclosure assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-16
+    traces_to:
+      - ABUSE-V6-002
+
+  # ==== Package 2 privacy control objectives (V6-17) ====
+  - id: CTRL-V6-029
+    kind: CONTROL_OBJECTIVE
+    title: Privacy-purpose-binding control objective
+    statement: Every processing of personal information must be bound to an authorized purpose, and processing without a bound purpose fails closed.
+    control_family: PRIVACY_PURPOSE
+    owner: Privacy Steward
+    control_owner: Privacy Steward
+    required_evidence: PENDING (purpose-binding design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ privacy design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: THREAT-V6-005
+    preventive_intent: Bind processing to an authorized purpose and fail closed otherwise.
+    detective_intent: Detect processing without a bound purpose.
+    corrective_intent: Halt and remediate purpose-unbound processing with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-17
+    traces_to:
+      - THREAT-V6-005
+  - id: CTRL-V6-030
+    kind: CONTROL_OBJECTIVE
+    title: Minimization control objective
+    statement: Collection, retention, exposure, and export of personal information must be limited to what the bound purpose requires.
+    control_family: MINIMIZATION
+    owner: Privacy Steward
+    control_owner: Privacy Steward
+    required_evidence: PENDING (minimization design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ privacy design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: ABUSE-V6-002
+    preventive_intent: Limit collection, retention, and exposure to purpose necessity.
+    detective_intent: Detect over-collection and over-exposure.
+    corrective_intent: Reduce and remediate excess data with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-17
+    traces_to:
+      - ABUSE-V6-002
+  - id: CTRL-V6-031
+    kind: CONTROL_OBJECTIVE
+    title: Notice, access, and correction control objective
+    statement: Notice, access, and correction rights must be handled with requester verification, response authority, and evidence.
+    control_family: NOTICE_AND_RIGHTS
+    owner: Privacy Steward
+    control_owner: Privacy Steward
+    required_evidence: PENDING (rights-handling design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ privacy design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: RIGHT-V6-001
+    threat_or_abuse_ref: THREAT-V6-005
+    preventive_intent: Verify requesters and route rights requests to response authority.
+    detective_intent: Record rights requests, responses, and timelines.
+    corrective_intent: Remediate unmet rights obligations with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent privacy validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-17
+    traces_to:
+      - RIGHT-V6-001
+
+  # ==== Package 2 logging, monitoring, and detection control objectives (V6-18) ====
+  - id: CTRL-V6-032
+    kind: CONTROL_OBJECTIVE
+    title: Privacy-safe security-logging control objective
+    statement: Security-relevant events must be recorded in an integrity-protected, append-only journal without copying personal or restricted content beyond the bound purpose.
+    control_family: LOGGING_AND_AUDIT
+    owner: Data Governance Steward
+    control_owner: Data Governance Steward
+    required_evidence: PENDING (logging design, implementation, and validation)
+    failure_posture: FAIL_SAFE
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-005
+    threat_or_abuse_ref: THREAT-V6-003
+    preventive_intent: Record security events without leaking personal or restricted content.
+    detective_intent: Detect logging gaps and log-integrity violations.
+    corrective_intent: Restore log integrity and remediate leakage with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent logging assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-18
+    traces_to:
+      - THREAT-V6-003
+  - id: CTRL-V6-033
+    kind: CONTROL_OBJECTIVE
+    title: Monitoring and detection control objective
+    statement: Telemetry, monitoring, and detection must make misuse and compromise detectable, including cross-tenant or cross-jurisdiction attempts.
+    control_family: MONITORING_AND_DETECTION
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (monitoring and detection design, implementation, and validation)
+    failure_posture: DEGRADE_VISIBLE
+    control_operator_status: PENDING (Volume 7+ security design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-005
+    threat_or_abuse_ref: THREAT-V6-001
+    preventive_intent: Establish detection coverage for security-relevant conditions.
+    detective_intent: Correlate signals to detect misuse and compromise.
+    corrective_intent: Trigger response readiness on detection with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent detection assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-18
+    traces_to:
+      - THREAT-V6-001
+
+  # ==== Package 2 service-trust and provider-assurance control objectives (V6-19) ====
+  - id: CTRL-V6-034
+    kind: CONTROL_OBJECTIVE
+    title: External-provider security control objective
+    statement: External providers and federated services must receive only explicit, scoped trust and must not hold governed decision authority.
+    control_family: SERVICE_TRUST
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (provider-security design, implementation, and validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ provider assessment)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: THREAT-V6-005
+    preventive_intent: Grant providers only explicit, scoped trust with no decision authority.
+    detective_intent: Monitor provider processing and obtain incident notification.
+    corrective_intent: Contain and remediate provider exposure with preserved evidence.
+    implementation_evidence_class: DESIGN_EVIDENCE_REQUIRED
+    independent_assurance_dependency: PENDING (independent provider assurance)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-19
+    traces_to:
+      - THREAT-V6-005
+  - id: CTRL-V6-035
+    kind: CONTROL_OBJECTIVE
+    title: Provider contractual-assurance control objective
+    statement: Provider reliance requires data-handling, incident-notification, sub-processor-transparency, audit, and exit dependencies, and provider assurance is not system assurance.
+    control_family: PROVIDER_ASSURANCE
+    owner: Security and Trust Steward
+    control_owner: Security and Trust Steward
+    required_evidence: PENDING (provider contractual and operational assurance evidence)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ provider assessment)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    threat_or_abuse_ref: THREAT-V6-005
+    preventive_intent: Require contractual and operational assurance before provider reliance.
+    detective_intent: Track provider assurance, incident, and sub-processor dependencies.
+    corrective_intent: Invoke exit and data-return dependencies on provider failure with preserved evidence.
+    implementation_evidence_class: INDEPENDENT_ASSURANCE_REQUIRED
+    independent_assurance_dependency: PENDING (third-party provider assurance evidence)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-19
+    traces_to:
+      - THREAT-V6-005
+
+  # ==== Package 2 obligations (V6-14, V6-16) ====
+  - id: OBL-V6-003
+    kind: OBLIGATION
+    title: Restricted-evidence access obligation
+    statement: Access to restricted evidence must be heightened above ordinary authorization and fully recorded.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Data Governance Steward
+    control_objective_ref: CTRL-V6-027
+    required_evidence: PENDING (restricted-evidence control implementation and validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-16
+    traces_to:
+      - THREAT-V6-003
+  - id: OBL-V6-004
+    kind: OBLIGATION
+    title: Privileged-operation obligation
+    statement: Privileged and emergency operations must be approved, time-bound, monitored, and reviewed after use.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Security and Trust Steward
+    control_objective_ref: CTRL-V6-021
+    required_evidence: PENDING (privileged-access control implementation and validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V7-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - THREAT-V6-004
+  - id: OBL-V6-005
+    kind: OBLIGATION
+    title: Segregation-of-duties obligation
+    statement: Incompatible governed duties must be separated so no single actor can bypass governed controls.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Security and Trust Steward
+    control_objective_ref: CTRL-V6-022
+    required_evidence: PENDING (segregation control implementation and validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V7-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - THREAT-V6-004
