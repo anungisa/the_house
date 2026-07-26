@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.0.0
+version: 1.1.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -86,6 +86,19 @@ records:
     gate_disposition: PACKAGE_1_COMPLETE
     authorizes_implementation: false
     frozen: true
+    base_commit: "71c2be6"
+    supersedes: >-
+      APP-V2-009 prior condition that named the freeze baseline only as "the Package 1
+      closure commit on the volume-2 branch" (ambiguous; see DEC-V2-005)
+    package_provenance:
+      source_snapshot_commit: "71c2be6"
+      closure_freeze_commit: "71c2be6"
+      merged_commit: "8ee3a74"
+      note: >-
+        Package 1 content, Gate V2-G1 closure, and this freeze record were authored in a
+        single branch commit (71c2be6); the source snapshot commit and the
+        closure/freeze commit therefore coincide. That commit was merged to main as
+        8ee3a74. Recorded self-attested / author-verified.
     frozen_artifacts:
       - id: V2-00
         version: 1.0.0
@@ -100,14 +113,16 @@ records:
       - id: V2-05
         version: 1.0.0
       - id: V2-A
-        version: 1.0.0
+        version: 1.0.1
     amendment_process: >-
       Changes to frozen Package 1 artifacts require a recorded Volume 2 amendment
       decision in REG-204 and a superseding approval in REG-205; frozen artifacts are
       not edited in place.
     conditions:
-      - "Freeze baseline: the Package 1 closure commit on the volume-2 branch"
-      - Gate V2-G1 PASS; Volume 2 Package 1 closed and frozen at version 1.0.0
+      - "Freeze source snapshot commit: 71c2be6 (contains the full Package 1 corpus)"
+      - "Freeze closure/freeze commit: 71c2be6 (coincides with the source snapshot; single-commit authoring)"
+      - "Package 1 merged commit: 8ee3a74"
+      - Gate V2-G1 PASS; Volume 2 Package 1 closed and frozen; V2-00..V2-05 at 1.0.0 and V2-A at 1.0.1 (provenance amendment)
       - Product definition only; implementation and procurement unauthorized; not a master development plan
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null

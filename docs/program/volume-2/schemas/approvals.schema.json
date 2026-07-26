@@ -39,6 +39,16 @@
           "base_commit": { "type": "string" },
           "amendment_process": { "type": "string" },
           "supersedes": { "type": "string" },
+          "package_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source_snapshot_commit": { "type": "string" },
+              "closure_freeze_commit": { "type": "string" },
+              "merged_commit": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          },
           "authorizes_implementation": { "type": "boolean" },
           "frozen": { "type": "boolean" },
           "frozen_artifacts": {

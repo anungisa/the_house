@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-25T23:22:53.717Z
+Generated: 2026-07-26T01:09:43.180Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,12 +33,12 @@ Generated: 2026-07-25T23:22:53.717Z
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.0.0 | 7 |
+| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.1.0 | 7 |
 | REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.0.0 | 7 |
 | REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.0.0 | 8 |
 | REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.0.0 | 36 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.0.0 | 4 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.0.0 | 9 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.1.0 | 5 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.1.0 | 9 |
 
 ## Findings by control
 
@@ -74,7 +74,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-008 (GATE-V2-G1): Condition 8: Unresolved stakeholder validations are recorded, not fabricated
 - APP-V2-008 (GATE-V2-G1): Condition 9: No runtime implementation, migrations, APIs, or master development plan are authorized
 - APP-V2-008 (GATE-V2-G1): Condition 10: Package 1 has had line-level review and is frozen at version 1.0.0
-- APP-V2-009 (PACKAGE-2-1): Freeze baseline: the Package 1 closure commit on the volume-2 branch
-- APP-V2-009 (PACKAGE-2-1): Gate V2-G1 PASS; Volume 2 Package 1 closed and frozen at version 1.0.0
+- APP-V2-009 (PACKAGE-2-1): Freeze source snapshot commit: 71c2be6 (contains the full Package 1 corpus)
+- APP-V2-009 (PACKAGE-2-1): Freeze closure/freeze commit: 71c2be6 (coincides with the source snapshot; single-commit authoring)
+- APP-V2-009 (PACKAGE-2-1): Package 1 merged commit: 8ee3a74
+- APP-V2-009 (PACKAGE-2-1): Gate V2-G1 PASS; Volume 2 Package 1 closed and frozen; V2-00..V2-05 at 1.0.0 and V2-A at 1.0.1 (provenance amendment)
 - APP-V2-009 (PACKAGE-2-1): Product definition only; implementation and procurement unauthorized; not a master development plan
 - APP-V2-009 (PACKAGE-2-1): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
