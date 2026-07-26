@@ -20,6 +20,10 @@
       "level": "BR"
     },
     {
+      "id": "BR-V3-035",
+      "level": "BR"
+    },
+    {
       "id": "DATA-V3-001",
       "level": "DATA"
     },
@@ -52,6 +56,18 @@
       "level": "DATA"
     },
     {
+      "id": "DATA-V3-009",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-010",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-011",
+      "level": "DATA"
+    },
+    {
       "id": "FR-V3-005",
       "level": "FR"
     },
@@ -80,7 +96,23 @@
       "level": "FR"
     },
     {
+      "id": "FR-V3-034",
+      "level": "FR"
+    },
+    {
       "id": "NFR-V3-006",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V3-010",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V3-011",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V3-012",
       "level": "NFR"
     },
     {
@@ -120,6 +152,26 @@
       "level": "RULE"
     },
     {
+      "id": "RULE-V3-021",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-022",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-023",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-024",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-028",
+      "level": "RULE"
+    },
+    {
       "id": "UC-V3-003",
       "level": "UC"
     },
@@ -129,6 +181,10 @@
     },
     {
       "id": "UX-V3-006",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V3-008",
       "level": "UX"
     },
     {
@@ -149,6 +205,14 @@
     },
     {
       "id": "WF-V3-011",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-013",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-014",
       "level": "WF"
     }
   ]

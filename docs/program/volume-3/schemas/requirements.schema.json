@@ -202,7 +202,72 @@
               "CONTINUITY_EVENT",
               "MATERIAL_ORGANIZATIONAL_INCIDENT"
             ]
-          }
+          },
+          "service_function": { "type": "string" },
+          "service_delivery_class": {
+            "type": "string",
+            "enum": [
+              "NATIONALLY_CENTRALIZED",
+              "JURISDICTIONALLY_DISTRIBUTED",
+              "CLUB_PERFORMED",
+              "SHARED_SERVICE",
+              "EXTERNAL_EXECUTION",
+              "MANUAL_TRANSITIONAL",
+              "FUTURE_STATE_UNRESOLVED"
+            ]
+          },
+          "role_archetype": { "type": "string" },
+          "competency_requirement": { "type": "string" },
+          "workload_driver": { "type": "string" },
+          "capacity_unit": { "type": "string" },
+          "peak_demand_factor": { "type": "string" },
+          "sourcing_class": {
+            "type": "string",
+            "enum": [
+              "INTERNAL_NATIONAL",
+              "INTERNAL_JURISDICTIONAL",
+              "SHARED_SERVICE",
+              "CLUB_PERFORMED",
+              "EXTERNAL_PROVIDER",
+              "TRANSITIONAL_MANUAL",
+              "SOURCING_DECISION_PENDING"
+            ]
+          },
+          "retained_authority": { "type": "string" },
+          "cost_driver": { "type": "string" },
+          "cost_classification": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "VARIABLE_PER_CLUB",
+              "VARIABLE_PER_CASE",
+              "VARIABLE_PER_TRANSACTION",
+              "SEASONAL",
+              "TRANSITIONAL",
+              "EXTERNAL_CONTRACT",
+              "RISK_CONTINGENT",
+              "UNKNOWN_PENDING_EVIDENCE"
+            ]
+          },
+          "funding_hypothesis": { "type": "string" },
+          "training_audience": { "type": "string" },
+          "training_owner": { "type": "string" },
+          "readiness_dimension": { "type": "string" },
+          "readiness_condition": { "type": "string" },
+          "pilot_evidence": { "type": "string" },
+          "scale_decision_class": {
+            "type": "string",
+            "enum": [
+              "READY_FOR_VALIDATION",
+              "VALIDATION_IN_PROGRESS",
+              "EVIDENCE_INSUFFICIENT",
+              "OPERATING_MODEL_ADJUSTMENT_REQUIRED",
+              "POLICY_DECISION_REQUIRED",
+              "FINANCIAL_DECISION_REQUIRED",
+              "MATERIAL_COMMITMENT_REQUIRED"
+            ]
+          },
+          "material_commitment_input": { "type": "string" }
         }
       }
     }

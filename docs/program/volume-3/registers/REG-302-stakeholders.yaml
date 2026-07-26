@@ -1,7 +1,7 @@
 register_id: REG-302
 name: Volume 3 Stakeholder and Persona Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: STK-V3-001
     name: Curling Canada National Operations
@@ -237,3 +237,17 @@ records:
     source_refs:
       - V3-21
       - V2-16
+  - id: STK-V3-020
+    name: Training and Adoption Enablement Function
+    type: institutional
+    description: >-
+      Function accountable for operating enablement, competency development, training-content
+      ownership, knowledge-base stewardship, and adoption support across the affiliation service
+      audiences; prepares operators to perform governed activities but holds no affiliation
+      lifecycle decision authority and does not alter governed policy or evidence rules.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-30
+      - V2-24

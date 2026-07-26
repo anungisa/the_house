@@ -1,7 +1,7 @@
 register_id: REG-301
 name: Volume 3 Outcome Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: OUT-V3-001
     statement: >-
@@ -483,5 +483,180 @@ records:
     validation_status: stakeholder_validation_pending
     source_refs:
       - V3-25
+      - V3-00
+      - V2-33
+  - id: OUT-V3-026
+    statement: >-
+      A target service-delivery and operating-coverage model defines how each affiliation
+      service function is delivered across Curling Canada, PTSOs and member associations, clubs,
+      reviewers, finance, policy, support, product and technology stewardship, and external
+      providers, distinguishing nationally centralized, jurisdictionally distributed,
+      club-performed, shared-service, external-execution, manual-transitional, and future-state
+      delivery without asserting business hours, service levels, named employees, or headcount.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-002
+      - STK-V3-017
+    product: House
+    success_signal: >-
+      Every service function has an accountable and performing function, jurisdictional coverage,
+      and a delivery classification, with no fabricated staffing or service-level commitment.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-26
+      - V3-08
+      - V2-24
+  - id: OUT-V3-027
+    statement: >-
+      A role-archetype, competency, workload, and capacity model converts operating functions
+      into role archetypes with purpose, permitted and prohibited activities, competencies,
+      segregation-of-duty constraints, and workload drivers, and defines workload units and
+      capacity calculations without assigning permanent staff or headcount numbers.
+    stakeholder_refs:
+      - STK-V3-017
+      - STK-V3-001
+      - STK-V3-018
+    product: House
+    success_signal: >-
+      Role archetypes and a capacity model exist that can be resourced later, without committing
+      staffing quantities, named staff, or salaries.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-27
+      - V3-15
+      - V2-24
+  - id: OUT-V3-028
+    statement: >-
+      A sourcing, shared-service, and partner operating model classifies how each business
+      function may be delivered across internal, shared-service, club-performed, external-provider,
+      transitional-manual, and pending classifications, preserving retained Curling Canada
+      authority and defining failure handling, reconciliation, and assurance without selecting a
+      vendor, approving procurement, or transferring governed authority.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-019
+      - STK-V3-017
+    product: House
+    success_signal: >-
+      Each sourced function has a sourcing classification and retained authority, and no vendor
+      is selected and no procurement is approved.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-28
+      - V3-21
+      - V2-16
+  - id: OUT-V3-029
+    statement: >-
+      A service economics, funding, and financial-sustainability model classifies cost and
+      funding drivers by economic behaviour and records calculation concepts, evidence sources,
+      volume dependencies, and future blocking gates without asserting approved figures, fees,
+      margins, revenue, or budget.
+    stakeholder_refs:
+      - STK-V3-008
+      - STK-V3-017
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      An economic model exists with cost and funding hypotheses and validation authorities, and
+      no fee, charge, margin, revenue, or budget is approved.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-29
+      - V3-12
+      - V2-30
+  - id: OUT-V3-030
+    statement: >-
+      A training, competency, adoption, and change-enablement model defines required competencies,
+      learning objectives, readiness evidence, content ownership, language and accessibility
+      obligations, and adoption support across audiences, as enablement design rather than final
+      curriculum production.
+    stakeholder_refs:
+      - STK-V3-020
+      - STK-V3-004
+      - STK-V3-006
+    product: House
+    success_signal: >-
+      Each audience has defined competencies, readiness evidence, and enablement ownership, with
+      no final curriculum committed and no delivery dates fixed.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-30
+      - V3-13
+      - V2-24
+  - id: OUT-V3-031
+    statement: >-
+      A jurisdiction, club, and service-onboarding readiness model defines readiness conditions
+      across policy, pathway, requirement, data, mapping, authority, reviewer, financial, support,
+      bilingual, accessibility, privacy, external-provider, continuity, and assurance dimensions,
+      with entry and exit criteria and no rollout dates, geographic sequence, or deployment waves.
+    stakeholder_refs:
+      - STK-V3-002
+      - STK-V3-003
+      - STK-V3-017
+    product: House
+    success_signal: >-
+      Every readiness dimension has an accountable function, required evidence, and a blocking or
+      non-blocking status, with no implementation timeline created.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-31
+      - V3-08
+      - V2-24
+  - id: OUT-V3-032
+    statement: >-
+      A pilot evidence, operating-validation, and scale-decision framework defines the operating
+      evidence families and decision classifications required before broader organizational
+      commitment, defining evidence and decision criteria without authorizing a pilot, launch,
+      rollout, or implementation.
+    stakeholder_refs:
+      - STK-V3-017
+      - STK-V3-018
+      - STK-V3-001
+    product: House
+    success_signal: >-
+      Required operating-evidence families and scale-decision classes are defined, and no pilot
+      or launch is authorized.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-32
+      - V3-15
+      - V2-33
+  - id: OUT-V3-033
+    statement: >-
+      A material-commitment and executive-decision input model defines the business evidence
+      package eventually required for the executive material-commitment authority and the decision
+      outcomes it may reach, without constituting executive acceptance.
+    stakeholder_refs:
+      - STK-V3-016
+      - STK-V3-017
+      - STK-V3-001
+    product: House
+    success_signal: >-
+      A defined decision-input package and outcome set exist for a future executive decision, and
+      creating it does not constitute executive acceptance.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-33
+      - V3-00
+      - V2-33
+  - id: OUT-V3-034
+    statement: >-
+      A consolidated capacity, economics, adoption, and readiness playbook draws together service
+      delivery, role archetypes, competency, workload and capacity, sourcing, economics, training,
+      adoption, readiness, pilot evidence, scale-decision criteria, material-commitment inputs, and
+      unresolved validations, and explicitly excludes named staffing, headcount, salary, budget,
+      fees, vendor selection, procurement, technical architecture, delivery sequencing, and the
+      master development plan.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-017
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      The playbook consolidates the capacity and readiness model and explicitly records the
+      material commitments that Package 4 does not authorize.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-34
       - V3-00
       - V2-33

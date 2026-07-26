@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:52:00.811Z
+Generated: 2026-07-26T13:09:17.849Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T12:52:00.811Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 29 |
+| RATIFIED | 38 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.3.0 | 29 |
-| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.2.0 | 25 |
-| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.1.0 | 19 |
-| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.2.0 | 211 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.4.0 | 38 |
+| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.3.0 | 34 |
+| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.2.0 | 20 |
+| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.3.0 | 287 |
 | REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.5.0 | 10 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.6.0 | 38 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.7.0 | 47 |
 
 ## Findings by control
 
@@ -140,3 +140,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-037 (PACKAGE-3-3): Freeze provenance completed post-merge through the recorded amendment process.
 - APP-V3-038 (PACKAGE-3-3): Package 3 freeze provenance completed post-merge; source snapshot cfeda60, closure/freeze 3bdc6eb, merged 386b15c.
 - APP-V3-038 (PACKAGE-3-3): Gate V3-G3 and V3-C are preserved; no substantive Package 3 content is reopened.
+- APP-V3-039 (V3-26): Service-delivery coverage defined; no business hours, service levels, named employees, or headcount asserted.
+- APP-V3-040 (V3-27): Role archetypes and capacity model defined; no permanent staff, named individuals, or headcount assigned.
+- APP-V3-041 (V3-28): Sourcing model preserves retained authority; no vendor selection, procurement, or unverified provider capability.
+- APP-V3-042 (V3-29): Economic model records hypotheses only; no approved fee, charge, margin, revenue, or budget.
+- APP-V3-043 (V3-30): Training defined as enablement design; no final curriculum and no governed decision authority conferred.
+- APP-V3-044 (V3-31): Onboarding readiness defined with entry and exit criteria; no rollout dates, geographic sequence, or waves.
+- APP-V3-045 (V3-32): Pilot evidence and scale-decision criteria defined; no pilot, launch, rollout, or implementation authorized.
+- APP-V3-046 (V3-33): Material-commitment decision inputs defined; assembling the package does not constitute executive acceptance.
+- APP-V3-047 (V3-34): Playbook consolidates the capacity and readiness model and records explicit exclusions of material commitment.

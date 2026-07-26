@@ -1,7 +1,7 @@
 register_id: REG-303
 name: Volume 3 Requirement and Acceptance Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   # ---- Capabilities (CAP -> OUT) ----
   - id: CAP-V3-001
@@ -2455,3 +2455,938 @@ records:
     authorizes_implementation: false
     validation_status: author_asserted
     acceptance_status: DEFINED
+  # =====================================================================
+  # Package 4 - Service Capacity, Sourcing, Economics, Adoption Readiness
+  # =====================================================================
+  # ---- Capabilities (CAP -> OUT) ----
+  - id: CAP-V3-026
+    level: CAP
+    statement: >-
+      Provide a target service-delivery and operating-coverage capability that classifies how each
+      affiliation service function is delivered without asserting staffing or service levels.
+    product: House
+    traces_to:
+      - OUT-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_function: affiliation_service_delivery
+  - id: CAP-V3-027
+    level: CAP
+    statement: >-
+      Provide a role-archetype, competency, workload, and capacity capability that resources the
+      operating model conceptually without committing headcount.
+    product: House
+    traces_to:
+      - OUT-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    role_archetype: affiliation_operating_archetypes
+  - id: CAP-V3-028
+    level: CAP
+    statement: >-
+      Provide a sourcing, shared-service, and partner operating capability that preserves retained
+      Curling Canada authority without selecting a vendor or authorizing procurement.
+    product: House
+    traces_to:
+      - OUT-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    sourcing_class: SOURCING_DECISION_PENDING
+  - id: CAP-V3-029
+    level: CAP
+    statement: >-
+      Provide a service economics, funding, and financial-sustainability capability that models
+      cost and funding behaviour without approving figures.
+    product: House
+    traces_to:
+      - OUT-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    cost_driver: affiliation_service_operations
+  - id: CAP-V3-030
+    level: CAP
+    statement: >-
+      Provide a training, competency, adoption, and change-enablement capability as enablement
+      design rather than final curriculum production.
+    product: House
+    traces_to:
+      - OUT-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    training_audience: affiliation_service_operators
+  - id: CAP-V3-031
+    level: CAP
+    statement: >-
+      Provide a jurisdiction, club, and service-onboarding readiness capability with entry and
+      exit criteria and no rollout timeline.
+    product: House
+    traces_to:
+      - OUT-V3-031
+    authorizes_implementation: false
+    validation_status: author_asserted
+    readiness_dimension: service_onboarding_readiness
+  - id: CAP-V3-032
+    level: CAP
+    statement: >-
+      Provide a pilot-evidence, operating-validation, and scale-decision capability that defines
+      evidence and decision criteria without authorizing execution.
+    product: House
+    traces_to:
+      - OUT-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    scale_decision_class: EVIDENCE_INSUFFICIENT
+  - id: CAP-V3-033
+    level: CAP
+    statement: >-
+      Provide a material-commitment and executive-decision input capability that assembles the
+      future decision package without constituting executive acceptance.
+    product: House
+    traces_to:
+      - OUT-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    material_commitment_input: executive_decision_package
+  - id: CAP-V3-034
+    level: CAP
+    statement: >-
+      Provide a consolidated capacity, economics, adoption, and readiness playbook capability with
+      explicit exclusion of material commitments.
+    product: House
+    traces_to:
+      - OUT-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_function: affiliation_service_delivery
+  # ---- Business rules (BR -> CAP) ----
+  - id: BR-V3-026
+    level: BR
+    statement: >-
+      Every affiliation service function records an accountable function, a performing function, a
+      service-delivery classification, and jurisdictional coverage, and no business hours, service
+      levels, named employees, or headcount are asserted.
+    product: House
+    traces_to:
+      - CAP-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_delivery_class: FUTURE_STATE_UNRESOLVED
+  - id: BR-V3-027
+    level: BR
+    statement: >-
+      Every role archetype records purpose, permitted activities, prohibited activities, required
+      competencies, and segregation-of-duty constraints, and no permanent staff, named individual,
+      or headcount is assigned.
+    product: House
+    traces_to:
+      - CAP-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    role_archetype: affiliation_operating_archetypes
+  - id: BR-V3-028
+    level: BR
+    statement: >-
+      The capacity model records workload drivers, capacity units, and calculation concepts and
+      does not assert staffing numbers, headcount, or service-level guarantees.
+    product: House
+    traces_to:
+      - CAP-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    workload_driver: club_case_and_review_volume
+    capacity_unit: workload_unit
+  - id: BR-V3-029
+    level: BR
+    statement: >-
+      Every sourced business function records a sourcing classification and the retained Curling
+      Canada authority, and no vendor is selected, no procurement is approved, and no governed
+      authority is transferred to a provider.
+    product: House
+    traces_to:
+      - CAP-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    sourcing_class: SOURCING_DECISION_PENDING
+    retained_authority: curling_canada_governed_authority
+  - id: BR-V3-030
+    level: BR
+    statement: >-
+      Every cost or funding hypothesis records an economic classification, a calculation concept,
+      and an evidence source, and no fee, charge, margin, revenue, or budget is approved.
+    product: House
+    traces_to:
+      - CAP-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    cost_classification: UNKNOWN_PENDING_EVIDENCE
+    funding_hypothesis: recovery_mechanism_hypothesis
+  - id: BR-V3-031
+    level: BR
+    statement: >-
+      Every training audience records required competencies, readiness evidence, content
+      ownership, and language and accessibility obligations, and training design does not produce
+      final curriculum or confer governed decision authority.
+    product: House
+    traces_to:
+      - CAP-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    training_audience: affiliation_service_operators
+    training_owner: training_and_adoption_enablement_function
+  - id: BR-V3-032
+    level: BR
+    statement: >-
+      Every onboarding readiness dimension records an accountable function, required evidence, and
+      a blocking or non-blocking status with entry and exit criteria, and no rollout date,
+      geographic sequence, or deployment wave is established.
+    product: House
+    traces_to:
+      - CAP-V3-031
+    authorizes_implementation: false
+    validation_status: author_asserted
+    readiness_dimension: service_onboarding_readiness
+  - id: BR-V3-033
+    level: BR
+    statement: >-
+      Every operating-validation evidence family and scale-decision classification is defined as
+      criteria only, and no pilot, launch, rollout, or implementation is authorized.
+    product: House
+    traces_to:
+      - CAP-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    scale_decision_class: EVIDENCE_INSUFFICIENT
+    pilot_evidence: operating_evidence_families
+  - id: BR-V3-034
+    level: BR
+    statement: >-
+      The material-commitment decision-input package records product scope, operating model,
+      capacity, sourcing, economics, risk, readiness, and options, and assembling it does not
+      constitute executive acceptance.
+    product: House
+    traces_to:
+      - CAP-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    material_commitment_input: executive_decision_package
+  - id: BR-V3-035
+    level: BR
+    statement: >-
+      The Package 4 playbook consolidates the capacity and readiness model and explicitly excludes
+      named staffing, headcount, salary, budget, fees, vendor selection, procurement, technical
+      architecture, delivery sequencing, and the master development plan.
+    product: House
+    traces_to:
+      - CAP-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_function: affiliation_service_delivery
+  - id: BR-V3-036
+    level: BR
+    statement: >-
+      No Package 4 requirement or decision authorizes implementation, procurement, vendor
+      selection, staffing, cost, a fee, a pilot, a rollout, technical architecture, or the master
+      development plan.
+    product: House
+    traces_to:
+      - CAP-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    future_blocking_gate: V3-G4
+  # ---- Functional requirements (FR -> CAP) ----
+  - id: FR-V3-026
+    level: FR
+    statement: >-
+      The operating model defines a service-delivery coverage set, each function recording service
+      function, primary beneficiary, accountable function, performing function, jurisdictional
+      coverage, operating trigger, inputs, outputs, required competencies, dependency, exception
+      route, continuity requirement, delivery classification, and validation status.
+    product: House
+    traces_to:
+      - CAP-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_function: affiliation_service_delivery
+  - id: FR-V3-027
+    level: FR
+    statement: >-
+      The operating model defines role archetypes and a capacity model, each archetype recording
+      purpose, accountable outcomes, permitted and prohibited activities, competencies, delegation
+      conditions, segregation-of-duty constraints, workload drivers, peak-demand factors,
+      continuity dependency, cross-training requirement, and validation status.
+    product: House
+    traces_to:
+      - CAP-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    role_archetype: affiliation_operating_archetypes
+  - id: FR-V3-028
+    level: FR
+    statement: >-
+      The operating model defines sourcing records, each recording business function, sourcing
+      classification, accountable internal owner, provider responsibility, retained Curling Canada
+      authority, evidence exchanged, service dependency, failure handling, manual fallback,
+      reconciliation, assurance requirement, contractual question, exit consideration, and
+      validation status.
+    product: House
+    traces_to:
+      - CAP-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    sourcing_class: SOURCING_DECISION_PENDING
+  - id: FR-V3-029
+    level: FR
+    statement: >-
+      The operating model defines economic records, each recording cost or funding driver,
+      responsible function, calculation concept, evidence source, volume dependency, baseline
+      status, financial validation authority, commercial dependency, sensitivity, decision
+      supported, economic classification, and future blocking gate.
+    product: House
+    traces_to:
+      - CAP-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    cost_classification: UNKNOWN_PENDING_EVIDENCE
+  - id: FR-V3-030
+    level: FR
+    statement: >-
+      The operating model defines training and adoption records, each recording required
+      competency, operating task, learning objective, readiness evidence, training-content owner,
+      language obligation, accessibility obligation, delivery-channel hypothesis, refresher
+      requirement, support dependency, and validation status.
+    product: House
+    traces_to:
+      - CAP-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    training_audience: affiliation_service_operators
+  - id: FR-V3-031
+    level: FR
+    statement: >-
+      The operating model defines onboarding readiness records, each recording readiness
+      condition, accountable function, required evidence, blocking or non-blocking status,
+      dependency, exception authority, remediation route, acceptance status, and future gate, with
+      entry and exit criteria.
+    product: House
+    traces_to:
+      - CAP-V3-031
+    authorizes_implementation: false
+    validation_status: author_asserted
+    readiness_dimension: service_onboarding_readiness
+  - id: FR-V3-032
+    level: FR
+    statement: >-
+      The operating model defines operating-validation evidence families and scale-decision
+      classifications, recording required evidence, its purpose, and the decision class each
+      supports, without authorizing a pilot, launch, or rollout.
+    product: House
+    traces_to:
+      - CAP-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    pilot_evidence: operating_evidence_families
+  - id: FR-V3-033
+    level: FR
+    statement: >-
+      The operating model defines the material-commitment decision-input package and its decision
+      outcomes, recording each package element, its accountable contributor, and the decision it
+      informs, without constituting executive acceptance.
+    product: House
+    traces_to:
+      - CAP-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    material_commitment_input: executive_decision_package
+  - id: FR-V3-034
+    level: FR
+    statement: >-
+      The operating model consolidates the Package 4 capacity, economics, adoption, and readiness
+      playbook and records its explicit exclusions of material commitments.
+    product: House
+    traces_to:
+      - CAP-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_function: affiliation_service_delivery
+  # ---- Non-functional requirements (NFR -> CAP) ----
+  - id: NFR-V3-010
+    level: NFR
+    statement: >-
+      Capacity and economic assumptions are recorded with their evidence sources and baseline
+      status so that they are reconstructable and can be validated before any material commitment.
+    product: House
+    traces_to:
+      - CAP-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    cost_classification: UNKNOWN_PENDING_EVIDENCE
+  - id: NFR-V3-011
+    level: NFR
+    statement: >-
+      Retained Curling Canada authority is preserved across every sourcing classification, and no
+      sourcing arrangement silently transfers governed decision authority.
+    product: House
+    traces_to:
+      - CAP-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    retained_authority: curling_canada_governed_authority
+  - id: NFR-V3-012
+    level: NFR
+    statement: >-
+      Readiness and pilot evidence is recorded so that a scale decision can be reconstructed from
+      the evidence that supported it.
+    product: House
+    traces_to:
+      - CAP-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    pilot_evidence: operating_evidence_families
+  # ---- Use cases (UC -> FR) ----
+  - id: UC-V3-021
+    level: UC
+    statement: >-
+      A service function is classified by its delivery model and its accountable and performing
+      functions are recorded without asserting staffing.
+    product: House
+    traces_to:
+      - FR-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_delivery_class: FUTURE_STATE_UNRESOLVED
+  - id: UC-V3-022
+    level: UC
+    statement: >-
+      A role archetype and its workload drivers are recorded and a capacity concept is calculated
+      without assigning a headcount.
+    product: House
+    traces_to:
+      - FR-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    role_archetype: affiliation_operating_archetypes
+  - id: UC-V3-023
+    level: UC
+    statement: >-
+      A business function is given a sourcing classification and its retained Curling Canada
+      authority is recorded without selecting a vendor.
+    product: House
+    traces_to:
+      - FR-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    sourcing_class: SOURCING_DECISION_PENDING
+  - id: UC-V3-024
+    level: UC
+    statement: >-
+      A cost or funding hypothesis is recorded with its economic classification and evidence source
+      without approving a figure.
+    product: House
+    traces_to:
+      - FR-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    cost_classification: UNKNOWN_PENDING_EVIDENCE
+  - id: UC-V3-025
+    level: UC
+    statement: >-
+      A training audience is given its required competencies and readiness evidence without
+      conferring governed decision authority.
+    product: House
+    traces_to:
+      - FR-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    training_audience: affiliation_service_operators
+  - id: UC-V3-026
+    level: UC
+    statement: >-
+      A jurisdiction or club cohort is assessed against readiness conditions and given a readiness
+      disposition without setting a rollout date.
+    product: House
+    traces_to:
+      - FR-V3-031
+    authorizes_implementation: false
+    validation_status: author_asserted
+    readiness_dimension: service_onboarding_readiness
+  - id: UC-V3-027
+    level: UC
+    statement: >-
+      Operating evidence is assessed against a scale-decision classification without authorizing a
+      pilot or launch.
+    product: House
+    traces_to:
+      - FR-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    scale_decision_class: EVIDENCE_INSUFFICIENT
+  - id: UC-V3-028
+    level: UC
+    statement: >-
+      A material-commitment decision-input package is assembled for the executive decision
+      authority without constituting executive acceptance.
+    product: House
+    traces_to:
+      - FR-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    material_commitment_input: executive_decision_package
+  # ---- Operating rules (RULE -> UC) ----
+  - id: RULE-V3-021
+    level: RULE
+    statement: >-
+      A service-delivery classification is a recorded determination, and delivery coverage records
+      no business hours, service-level commitment, or headcount.
+    product: House
+    traces_to:
+      - UC-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    service_delivery_class: FUTURE_STATE_UNRESOLVED
+  - id: RULE-V3-022
+    level: RULE
+    statement: >-
+      A role archetype enforces its permitted, prohibited, and segregation-of-duty constraints,
+      and no archetype is populated with named staff or a headcount.
+    product: House
+    traces_to:
+      - UC-V3-022
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    role_archetype: affiliation_operating_archetypes
+  - id: RULE-V3-023
+    level: RULE
+    statement: >-
+      A sourcing classification preserves the retained Curling Canada authority, and no sourcing
+      arrangement selects a vendor, approves procurement, or transfers governed authority.
+    product: House
+    traces_to:
+      - UC-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    retained_authority: curling_canada_governed_authority
+  - id: RULE-V3-024
+    level: RULE
+    statement: >-
+      An economic record states a hypothesis only, and no fee, charge, margin, revenue, budget, or
+      approved figure is asserted.
+    product: House
+    traces_to:
+      - UC-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: FINANCIAL_VALIDATION_PENDING
+    cost_classification: UNKNOWN_PENDING_EVIDENCE
+  - id: RULE-V3-025
+    level: RULE
+    statement: >-
+      A blocking readiness condition must be satisfied with recorded evidence before a jurisdiction
+      or club cohort meets onboarding entry criteria, and no rollout date is set.
+    product: House
+    traces_to:
+      - UC-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    readiness_condition: blocking_readiness_condition
+  - id: RULE-V3-026
+    level: RULE
+    statement: >-
+      A scale decision requires sufficient operating evidence for its decision class, and
+      insufficient evidence blocks the decision rather than authorizing execution.
+    product: House
+    traces_to:
+      - UC-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    scale_decision_class: EVIDENCE_INSUFFICIENT
+  - id: RULE-V3-027
+    level: RULE
+    statement: >-
+      A material-commitment decision-input package informs a future executive decision and does not
+      itself constitute executive acceptance or authorize commitment.
+    product: House
+    traces_to:
+      - UC-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: STAKEHOLDER_VALIDATION_PENDING
+    material_commitment_input: executive_decision_package
+  - id: RULE-V3-028
+    level: RULE
+    statement: >-
+      Training and adoption enablement prepares operators to perform governed activities and does
+      not confer or alter governed decision authority, policy, or evidence rules.
+    product: House
+    traces_to:
+      - UC-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    training_owner: training_and_adoption_enablement_function
+  # ---- Workflows (WF -> RULE) ----
+  - id: WF-V3-012
+    level: WF
+    statement: >-
+      A service-onboarding readiness workflow assesses a jurisdiction or club cohort against its
+      readiness conditions and produces a readiness disposition with entry and exit criteria and no
+      rollout date.
+    product: House
+    traces_to:
+      - RULE-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    readiness_dimension: service_onboarding_readiness
+  - id: WF-V3-013
+    level: WF
+    statement: >-
+      An operating-validation and scale-decision workflow assembles operating evidence and produces
+      a scale-decision classification without authorizing a pilot or launch.
+    product: House
+    traces_to:
+      - RULE-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    scale_decision_class: EVIDENCE_INSUFFICIENT
+  - id: WF-V3-014
+    level: WF
+    statement: >-
+      A material-commitment input-assembly workflow gathers the decision-input package elements and
+      routes them to the executive decision authority without constituting acceptance.
+    product: House
+    traces_to:
+      - RULE-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    material_commitment_input: executive_decision_package
+  # ---- Experience surfaces (UX -> WF) ----
+  - id: UX-V3-007
+    level: UX
+    statement: >-
+      A House-side capacity and readiness view presents readiness dispositions, capacity concepts,
+      and scale-decision classifications with their evidence and validation status to accountable
+      owners.
+    product: House
+    traces_to:
+      - WF-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    primary_persona: affiliation_service_owner
+    user_visible: true
+  - id: UX-V3-008
+    level: UX
+    statement: >-
+      A Button-side onboarding-readiness view presents a club or jurisdiction its outstanding
+      readiness conditions without conferring governed decision authority.
+    product: Button
+    traces_to:
+      - WF-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    primary_persona: club_representative
+    user_visible: true
+  # ---- Operational data domains (DATA -> UX) ----
+  - id: DATA-V3-009
+    level: DATA
+    statement: >-
+      The capacity and workload record set of service-function coverage, role archetypes, and
+      workload assumptions is a business information domain with a steward.
+    product: House
+    traces_to:
+      - UX-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: affiliation_service_owner
+  - id: DATA-V3-010
+    level: DATA
+    statement: >-
+      The sourcing and economics record set of sourcing classifications, cost drivers, and funding
+      hypotheses is a business information domain with a steward.
+    product: House
+    traces_to:
+      - UX-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: finance_and_reconciliation_operations
+  - id: DATA-V3-011
+    level: DATA
+    statement: >-
+      The readiness and pilot-evidence record set of readiness conditions, operating evidence, and
+      scale-decision classifications is a business information domain with a steward.
+    product: House
+    traces_to:
+      - UX-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: affiliation_service_owner
+  # ---- Operating controls (CTRL -> BR / NFR) ----
+  - id: CTRL-V3-032
+    level: CTRL
+    statement: >-
+      A delivery-coverage control ensures every service function records an accountable function, a
+      performing function, and a delivery classification and asserts no staffing or service level.
+    product: House
+    traces_to:
+      - BR-V3-026
+    acceptance_ref:
+      - TEST-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: service_coverage_record
+    service_function: affiliation_service_delivery
+  - id: CTRL-V3-033
+    level: CTRL
+    statement: >-
+      A role-archetype control ensures every archetype records permitted, prohibited, and
+      segregation-of-duty constraints and assigns no named staff or headcount.
+    product: House
+    traces_to:
+      - BR-V3-027
+    acceptance_ref:
+      - TEST-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: role_archetype_record
+    role_archetype: affiliation_operating_archetypes
+  - id: CTRL-V3-034
+    level: CTRL
+    statement: >-
+      A capacity-model control ensures workload drivers and capacity units are recorded with their
+      evidence requirements and that no staffing number is asserted.
+    product: House
+    traces_to:
+      - BR-V3-028
+    acceptance_ref:
+      - TEST-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PERIODIC_BASELINE_PENDING
+    evidence_generated: capacity_model_record
+    measure_identifier: MEAS-V3-12
+    measure_baseline_status: BASELINE_PENDING
+  - id: CTRL-V3-035
+    level: CTRL
+    statement: >-
+      A sourcing retained-authority control ensures every sourcing classification records the
+      retained Curling Canada authority and selects no vendor and approves no procurement.
+    product: House
+    traces_to:
+      - BR-V3-029
+    acceptance_ref:
+      - TEST-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: sourcing_classification_record
+    retained_authority: curling_canada_governed_authority
+  - id: CTRL-V3-036
+    level: CTRL
+    statement: >-
+      A financial-hypothesis control ensures every economic record states a hypothesis with an
+      evidence source and asserts no approved fee, budget, margin, or revenue.
+    product: House
+    traces_to:
+      - BR-V3-030
+    acceptance_ref:
+      - TEST-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PERIODIC_BASELINE_PENDING
+    evidence_generated: economic_hypothesis_record
+    measure_identifier: MEAS-V3-13
+    measure_baseline_status: FINANCIAL_VALIDATION_PENDING
+  - id: CTRL-V3-037
+    level: CTRL
+    statement: >-
+      A training-enablement control ensures every training audience records competencies and
+      readiness evidence and that enablement confers no governed decision authority.
+    product: House
+    traces_to:
+      - BR-V3-031
+    acceptance_ref:
+      - TEST-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: training_readiness_record
+    training_owner: training_and_adoption_enablement_function
+  - id: CTRL-V3-038
+    level: CTRL
+    statement: >-
+      A readiness-gate control ensures every onboarding readiness condition records a blocking or
+      non-blocking status and its evidence and that no rollout date is set.
+    product: House
+    traces_to:
+      - BR-V3-032
+    acceptance_ref:
+      - TEST-V3-038
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    evidence_generated: readiness_disposition_record
+    readiness_dimension: service_onboarding_readiness
+  - id: CTRL-V3-039
+    level: CTRL
+    statement: >-
+      A pilot-evidence control ensures operating-validation evidence families and scale-decision
+      classifications are recorded as criteria and that no pilot or launch is authorized.
+    product: House
+    traces_to:
+      - BR-V3-033
+    acceptance_ref:
+      - TEST-V3-039
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PERIODIC_BASELINE_PENDING
+    evidence_generated: scale_decision_record
+    pilot_evidence: operating_evidence_families
+  - id: CTRL-V3-040
+    level: CTRL
+    statement: >-
+      A material-commitment control ensures the decision-input package is recorded as inputs only
+      and that assembling it does not constitute executive acceptance.
+    product: House
+    traces_to:
+      - BR-V3-034
+    acceptance_ref:
+      - TEST-V3-040
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: material_commitment_input_record
+    material_commitment_input: executive_decision_package
+  - id: CTRL-V3-041
+    level: CTRL
+    statement: >-
+      A no-material-commitment control ensures no Package 4 requirement or decision authorizes
+      staffing, cost, a fee, procurement, vendor selection, a pilot, a rollout, architecture, or
+      the master development plan.
+    product: House
+    traces_to:
+      - BR-V3-036
+    acceptance_ref:
+      - TEST-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: scope_boundary_attestation
+    future_blocking_gate: V3-G4
+  # ---- Acceptance (TEST -> CTRL) ----
+  - id: TEST-V3-032
+    level: TEST
+    statement: >-
+      Confirm that every service function records an accountable function, a performing function,
+      and a delivery classification and asserts no staffing or service level.
+    product: House
+    traces_to:
+      - CTRL-V3-032
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-033
+    level: TEST
+    statement: >-
+      Confirm that every role archetype records permitted, prohibited, and segregation-of-duty
+      constraints and assigns no named staff or headcount.
+    product: House
+    traces_to:
+      - CTRL-V3-033
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-034
+    level: TEST
+    statement: >-
+      Confirm that the capacity model records workload drivers and capacity units and asserts no
+      staffing number.
+    product: House
+    traces_to:
+      - CTRL-V3-034
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-035
+    level: TEST
+    statement: >-
+      Confirm that every sourcing classification records the retained Curling Canada authority and
+      selects no vendor and approves no procurement.
+    product: House
+    traces_to:
+      - CTRL-V3-035
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-036
+    level: TEST
+    statement: >-
+      Confirm that every economic record states a hypothesis with an evidence source and asserts no
+      approved fee, budget, margin, or revenue.
+    product: House
+    traces_to:
+      - CTRL-V3-036
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-037
+    level: TEST
+    statement: >-
+      Confirm that every training audience records competencies and readiness evidence and that
+      enablement confers no governed decision authority.
+    product: House
+    traces_to:
+      - CTRL-V3-037
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: TEST-V3-038
+    level: TEST
+    statement: >-
+      Confirm that every onboarding readiness condition records a blocking or non-blocking status
+      and its evidence and that no rollout date is set.
+    product: House
+    traces_to:
+      - CTRL-V3-038
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-039
+    level: TEST
+    statement: >-
+      Confirm that operating-validation evidence and scale-decision classifications are recorded as
+      criteria and that no pilot or launch is authorized.
+    product: House
+    traces_to:
+      - CTRL-V3-039
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-040
+    level: TEST
+    statement: >-
+      Confirm that the material-commitment decision-input package is recorded as inputs only and
+      does not constitute executive acceptance.
+    product: House
+    traces_to:
+      - CTRL-V3-040
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: TEST-V3-041
+    level: TEST
+    statement: >-
+      Confirm that no Package 4 requirement or decision authorizes staffing, cost, a fee,
+      procurement, vendor selection, a pilot, a rollout, architecture, or the master development
+      plan.
+    product: House
+    traces_to:
+      - CTRL-V3-041
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
+

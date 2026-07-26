@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.6.0
+version: 1.7.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -604,5 +604,87 @@ records:
     conditions:
       - Package 3 freeze provenance completed post-merge; source snapshot cfeda60, closure/freeze 3bdc6eb, merged 386b15c.
       - Gate V3-G3 and V3-C are preserved; no substantive Package 3 content is reopened.
+    approved_at: null
+  # ---- Package 4 chapter ratifications (V3-26 through V3-34) ----
+  - id: APP-V3-039
+    artifact_id: V3-26
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Service-delivery coverage defined; no business hours, service levels, named employees, or headcount asserted.
+    approved_at: null
+  - id: APP-V3-040
+    artifact_id: V3-27
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Role archetypes and capacity model defined; no permanent staff, named individuals, or headcount assigned.
+    approved_at: null
+  - id: APP-V3-041
+    artifact_id: V3-28
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Sourcing model preserves retained authority; no vendor selection, procurement, or unverified provider capability.
+    approved_at: null
+  - id: APP-V3-042
+    artifact_id: V3-29
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Economic model records hypotheses only; no approved fee, charge, margin, revenue, or budget.
+    approved_at: null
+  - id: APP-V3-043
+    artifact_id: V3-30
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Training defined as enablement design; no final curriculum and no governed decision authority conferred.
+    approved_at: null
+  - id: APP-V3-044
+    artifact_id: V3-31
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Onboarding readiness defined with entry and exit criteria; no rollout dates, geographic sequence, or waves.
+    approved_at: null
+  - id: APP-V3-045
+    artifact_id: V3-32
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Pilot evidence and scale-decision criteria defined; no pilot, launch, rollout, or implementation authorized.
+    approved_at: null
+  - id: APP-V3-046
+    artifact_id: V3-33
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Material-commitment decision inputs defined; assembling the package does not constitute executive acceptance.
+    approved_at: null
+  - id: APP-V3-047
+    artifact_id: V3-34
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Playbook consolidates the capacity and readiness model and records explicit exclusions of material commitment.
     approved_at: null
 
