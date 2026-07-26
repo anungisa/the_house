@@ -1,6 +1,6 @@
 # Volume 5 Data-Governance Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T17:25:03.756Z
+Generated: 2026-07-26T17:29:55.409Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 1 defines DATA
