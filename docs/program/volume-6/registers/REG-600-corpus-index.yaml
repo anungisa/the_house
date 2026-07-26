@@ -91,3 +91,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-10-trust-foundation-assessment-and-deterministic-controls.md
     gate: V6-G1
+  - id: V6-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-A-package-1-closure-record.md
+    gate: V6-G1

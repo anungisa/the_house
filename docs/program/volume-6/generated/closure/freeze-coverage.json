@@ -1,5 +1,18 @@
 {
-  "package_frozen": false,
-  "frozen_artifacts": [],
-  "frozen_count": 0
+  "package_frozen": true,
+  "frozen_artifacts": [
+    "V6-00",
+    "V6-01",
+    "V6-02",
+    "V6-03",
+    "V6-04",
+    "V6-05",
+    "V6-06",
+    "V6-07",
+    "V6-08",
+    "V6-09",
+    "V6-10",
+    "V6-A"
+  ],
+  "frozen_count": 12
 }

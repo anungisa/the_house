@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:13:46.175Z
+Generated: 2026-07-26T21:17:45.051Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-26T21:13:46.175Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 11 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 12 |
 | REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 33 |
 | REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 32 |
 | REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 4 |
 | REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 9 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 11 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 14 |
 
 ## Findings by control
 
@@ -84,3 +84,25 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-010 (V6-09): Claims no independent assurance or operational proof; authorizes no implementation.
 - APP-V6-011 (V6-10): Trust-foundation assessment and deterministic controls defined as non-authoritative tooling over the governed corpus.
 - APP-V6-011 (V6-10): Authorizes no implementation.
+- APP-V6-012 (V6-A): Package 1 closure record consolidates the security, privacy, compliance, accessibility, and trust foundation.
+- APP-V6-012 (V6-A): Records Gate V6-G1 disposition and Package 2 authorization.
+- APP-V6-012 (V6-A): Authorizes no implementation.
+- APP-V6-013 (GATE-V6-G1): The released Volume 5 governed-data baseline is inherited.
+- APP-V6-013 (GATE-V6-G1): Protection-definition authority and amendment rules are controlled.
+- APP-V6-013 (GATE-V6-G1): Protection doctrine and trust principles are defined.
+- APP-V6-013 (GATE-V6-G1): Assets, actors, trust boundaries, and classification carry explicit authority owners.
+- APP-V6-013 (GATE-V6-G1): Every trust boundary is named by a threat or abuse scenario.
+- APP-V6-013 (GATE-V6-G1): Every threat resolves preventive, detective, and corrective intent with an owner.
+- APP-V6-013 (GATE-V6-G1): The authorization baseline is resource-aware and fails closed.
+- APP-V6-013 (GATE-V6-G1): Privacy purposes map to inherited information domains and disclosure authority without setting a retention period.
+- APP-V6-013 (GATE-V6-G1): Compliance obligations carry applicability, authority, control reference, evidence, and future gates.
+- APP-V6-013 (GATE-V6-G1): Accessibility and bilingual obligations carry verification methods and semantic equivalence.
+- APP-V6-013 (GATE-V6-G1): Incident families preserve evidence and name containment and recovery objectives.
+- APP-V6-013 (GATE-V6-G1): Assurance requirements and the validation backlog carry owners, evidence, classification, and future gates.
+- APP-V6-013 (GATE-V6-G1): No record authorizes implementation and every record is not-implemented or not-proven.
+- APP-V6-013 (GATE-V6-G1): No executable protection, identity, access, cryptographic, infrastructure, monitoring, incident-response, privacy-workflow, accessibility-remediation, retention-schedule, procurement, delivery-sequence, or master development plan artifact is created.
+- APP-V6-013 (GATE-V6-G1): No legal, security, privacy, or accessibility conformance, operational proof, or independent assurance is claimed.
+- APP-V6-013 (GATE-V6-G1): Package 1 receives line-level review and a separate freeze commit.
+- APP-V6-014 (PACKAGE-6-1): Package 1 (PACKAGE-6-1) is frozen at version 1.0.0 across all deliverables.
+- APP-V6-014 (PACKAGE-6-1): After freeze, changes require the recorded amendment process (V6-00.5).
+- APP-V6-014 (PACKAGE-6-1): The freeze is committed separately from authoring.

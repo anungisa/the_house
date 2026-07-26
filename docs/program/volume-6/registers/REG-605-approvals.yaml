@@ -114,3 +114,79 @@ records:
       - Trust-foundation assessment and deterministic controls defined as non-authoritative tooling over the governed corpus.
       - Authorizes no implementation.
     approved_at: null
+  - id: APP-V6-012
+    artifact_id: V6-A
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-A
+    conditions:
+      - Package 1 closure record consolidates the security, privacy, compliance, accessibility, and trust foundation.
+      - Records Gate V6-G1 disposition and Package 2 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-013
+    artifact_id: GATE-V6-G1
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: TRUST_AND_PROTECTION_FOUNDATION_READY
+    closure_record: V6-A
+    conditions:
+      - The released Volume 5 governed-data baseline is inherited.
+      - Protection-definition authority and amendment rules are controlled.
+      - Protection doctrine and trust principles are defined.
+      - Assets, actors, trust boundaries, and classification carry explicit authority owners.
+      - Every trust boundary is named by a threat or abuse scenario.
+      - Every threat resolves preventive, detective, and corrective intent with an owner.
+      - The authorization baseline is resource-aware and fails closed.
+      - Privacy purposes map to inherited information domains and disclosure authority without setting a retention period.
+      - Compliance obligations carry applicability, authority, control reference, evidence, and future gates.
+      - Accessibility and bilingual obligations carry verification methods and semantic equivalence.
+      - Incident families preserve evidence and name containment and recovery objectives.
+      - Assurance requirements and the validation backlog carry owners, evidence, classification, and future gates.
+      - No record authorizes implementation and every record is not-implemented or not-proven.
+      - No executable protection, identity, access, cryptographic, infrastructure, monitoring, incident-response, privacy-workflow, accessibility-remediation, retention-schedule, procurement, delivery-sequence, or master development plan artifact is created.
+      - No legal, security, privacy, or accessibility conformance, operational proof, or independent assurance is claimed.
+      - Package 1 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V6-014
+    artifact_id: PACKAGE-6-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-A
+    frozen: true
+    frozen_artifacts:
+      - id: V6-00
+        version: 1.0.0
+      - id: V6-01
+        version: 1.0.0
+      - id: V6-02
+        version: 1.0.0
+      - id: V6-03
+        version: 1.0.0
+      - id: V6-04
+        version: 1.0.0
+      - id: V6-05
+        version: 1.0.0
+      - id: V6-06
+        version: 1.0.0
+      - id: V6-07
+        version: 1.0.0
+      - id: V6-08
+        version: 1.0.0
+      - id: V6-09
+        version: 1.0.0
+      - id: V6-10
+        version: 1.0.0
+      - id: V6-A
+        version: 1.0.0
+    conditions:
+      - Package 1 (PACKAGE-6-1) is frozen at version 1.0.0 across all deliverables.
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null
