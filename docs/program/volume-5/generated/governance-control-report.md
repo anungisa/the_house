@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T17:25:04.206Z
+Generated: 2026-07-26T17:29:55.887Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T17:25:04.206Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 12 |
+| RATIFIED | 13 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.0.0 | 12 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.1.0 | 13 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.0.0 | 66 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.0.0 | 36 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.0.0 | 6 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 26 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.0.0 | 14 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.1.0 | 15 |
 
 ## Findings by control
 
@@ -105,3 +105,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-014 (PACKAGE-5-1): Package 1 corpus frozen; changes require the recorded amendment process.
 - APP-V5-014 (PACKAGE-5-1): Freeze committed separately from authoring per Gate V5-G1 condition 16.
 - APP-V5-014 (PACKAGE-5-1): Authorizes no implementation.
+- APP-V5-015 (V5-B): Completes machine-readable Package 1 provenance after mainline merge.
+- APP-V5-015 (V5-B): Preserves the Gate V5-G1 disposition and the PACKAGE-5-1 freeze.
+- APP-V5-015 (V5-B): Reopens no substantive Package 1 content and authorizes no implementation.
