@@ -35,7 +35,25 @@
           "validation_status": {
             "type": "string",
             "enum": ["author_asserted", "stakeholder_validation_pending", "stakeholder_validated"]
-          }
+          },
+          "rule_classification": {
+            "type": "string",
+            "enum": [
+              "DEFINED_PRODUCT_RULE",
+              "POLICY_VALIDATION_PENDING",
+              "OPERATIONAL_VALIDATION_PENDING",
+              "FINANCIAL_VALIDATION_PENDING",
+              "PRIVACY_VALIDATION_PENDING",
+              "STAKEHOLDER_VALIDATION_PENDING"
+            ]
+          },
+          "policy_owner": { "type": "string" },
+          "operational_owner": { "type": "string" },
+          "effective_scope": { "type": "string" },
+          "season_versioned": { "type": "boolean" },
+          "jurisdiction_scoped": { "type": "boolean" },
+          "exception_authority": { "type": "string" },
+          "future_blocking_gate": { "type": "string" }
         }
       }
     }

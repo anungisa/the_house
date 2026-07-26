@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T01:36:50.243Z
+Generated: 2026-07-26T01:49:13.613Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -27,18 +27,18 @@ Generated: 2026-07-26T01:36:50.243Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 14 |
+| RATIFIED | 21 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.3.0 | 14 |
-| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.1.0 | 12 |
-| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.1.0 | 12 |
-| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.1.0 | 176 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.4.0 | 11 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.4.0 | 18 |
+| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.4.0 | 21 |
+| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.2.0 | 16 |
+| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.2.0 | 15 |
+| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.2.0 | 280 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.5.0 | 14 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.5.0 | 25 |
 
 ## Findings by control
 
@@ -107,3 +107,10 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-018 (PACKAGE-2-2): Product definition only; implementation and procurement unauthorized; not a master development plan
 - APP-V2-018 (PACKAGE-2-2): Volume 2 Package 3 authorized to commence as definition and governance work (DEC-V2-010)
 - APP-V2-018 (PACKAGE-2-2): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V2-019 (V2-12): Controlled affiliation terminology and six-category authority model defined; undefined terms not enforceable
+- APP-V2-020 (V2-13): Pathway determination and seasonal/jurisdictional/versioned applicability rules defined; eligibility thresholds pending policy validation
+- APP-V2-021 (V2-14): Evidence validity, carry-forward, derived-completeness, and submission-prerequisite rules defined; completeness never a manual boolean
+- APP-V2-022 (V2-15): Review, decision, exception, escalation, and reconsideration rules defined; administrative correction distinct from governed decision change
+- APP-V2-023 (V2-16): Fee, payment-boundary, reconciliation, and exactly-once activation rules defined; fee amounts not invented; financial validation pending
+- APP-V2-024 (V2-17): Service operations, support, recovery, and control model defined; service levels classified; no unsupported timing commitment
+- APP-V2-025 (V2-18): Pathway, applicability, and decision-eligibility tables plus RULE->WF->UC->CTRL->TEST acceptance coverage defined; acceptance definition only

@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.4.0
+version: 1.5.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -259,4 +259,61 @@ records:
       - Product definition only; implementation and procurement unauthorized; not a master development plan
       - Volume 2 Package 3 authorized to commence as definition and governance work (DEC-V2-010)
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 3 chapter ratifications ---
+  - id: APP-V2-019
+    artifact_id: V2-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Controlled affiliation terminology and six-category authority model defined; undefined terms not enforceable
+    approved_at: null
+  - id: APP-V2-020
+    artifact_id: V2-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Pathway determination and seasonal/jurisdictional/versioned applicability rules defined; eligibility thresholds pending policy validation"
+    approved_at: null
+  - id: APP-V2-021
+    artifact_id: V2-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Evidence validity, carry-forward, derived-completeness, and submission-prerequisite rules defined; completeness never a manual boolean
+    approved_at: null
+  - id: APP-V2-022
+    artifact_id: V2-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Review, decision, exception, escalation, and reconsideration rules defined; administrative correction distinct from governed decision change
+    approved_at: null
+  - id: APP-V2-023
+    artifact_id: V2-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Fee, payment-boundary, reconciliation, and exactly-once activation rules defined; fee amounts not invented; financial validation pending"
+    approved_at: null
+  - id: APP-V2-024
+    artifact_id: V2-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Service operations, support, recovery, and control model defined; service levels classified; no unsupported timing commitment
+    approved_at: null
+  - id: APP-V2-025
+    artifact_id: V2-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Pathway, applicability, and decision-eligibility tables plus RULE->WF->UC->CTRL->TEST acceptance coverage defined; acceptance definition only
     approved_at: null

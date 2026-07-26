@@ -1,7 +1,7 @@
 register_id: REG-202
 name: Volume 2 Stakeholder and Persona Register
 status: IN_REVIEW
-version: 1.1.0
+version: 1.2.0
 records:
   - id: STK-V2-001
     name: Curling Canada (National Sport Organization)
@@ -175,3 +175,50 @@ records:
     validation_status: stakeholder_validation_pending
     source_refs:
       - V2-07
+  # --- Package 3: policy and validation authorities ---
+  - id: STK-V2-013
+    name: Fee and Reconciliation Policy Authority
+    type: institutional
+    description: >-
+      The authority accountable for affiliation fee policy, exemptions, waivers, and the
+      reconciliation boundary between fee obligation and external accounting. Owns fee
+      policy; does not own payment execution or ledger authority. Validation lead: Helene.
+    primary_product: House
+    personas:
+      - Fee policy owner
+      - Reconciliation boundary authority
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-16
+  - id: STK-V2-014
+    name: National Operating Alignment Authority
+    type: institutional
+    description: >-
+      The authority accountable for national alignment of affiliation operating rules
+      across member organizations and seasons. Confirms operating-rule consistency;
+      does not own club-level discretion. Validation lead: Rich.
+    primary_product: House
+    personas:
+      - National operating-rule steward
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-12
+      - V2-13
+  - id: STK-V2-015
+    name: Pathway and Evidence Policy Authority
+    type: institutional
+    description: >-
+      The authority accountable for pathway eligibility, evidence validity, carry-forward,
+      and completeness policy. Owns eligibility and evidence rules; does not own financial
+      or activation authority. Validation lead: Jen.
+    primary_product: House
+    personas:
+      - Pathway eligibility policy owner
+      - Evidence policy owner
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-13
+      - V2-14
