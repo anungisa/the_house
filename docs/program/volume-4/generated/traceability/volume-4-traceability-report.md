@@ -1,6 +1,6 @@
 # Volume 4 Architecture Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:24:12.917Z
+Generated: 2026-07-26T15:28:06.214Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
@@ -10,12 +10,12 @@ Generated: 2026-07-26T15:24:12.917Z
 
 | Category | Count |
 | --- | --- |
-| Chapters | 33 |
+| Chapters | 34 |
 | Architecture elements | 177 |
 | Architecture decisions | 28 |
 | Fitness functions | 48 |
 | Assumptions / risks / exceptions | 40 |
-| Approvals | 39 |
+| Approvals | 40 |
 
 ## Architecture elements by kind
 

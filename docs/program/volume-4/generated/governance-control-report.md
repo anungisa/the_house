@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:24:13.539Z
+Generated: 2026-07-26T15:28:06.837Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T15:24:13.539Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 33 |
+| RATIFIED | 34 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.7.0 | 33 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.8.0 | 34 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.2.0 | 177 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.2.0 | 28 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.2.0 | 48 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.2.0 | 40 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.7.0 | 39 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.8.0 | 40 |
 
 ## Findings by control
 
@@ -216,3 +216,7 @@ Errors: 0 | Warnings: 12 | Info: 12
 - APP-V4-039 (PACKAGE-4-3): Authorizes commencement of Volume 4 Package 4 as an architecture package only.
 - APP-V4-039 (PACKAGE-4-3): Authorizes no implementation, physical schema, executable contract, infrastructure, procurement, provisioning, sequencing, staffing, cost, or master development plan.
 - APP-V4-039 (PACKAGE-4-3): Changes to frozen Package 3 content require the recorded amendment process.
+- APP-V4-040 (V4-F): Narrow post-merge provenance-metadata amendment only.
+- APP-V4-040 (V4-F): Preserves Gate V4-G3 and its DATA_INTEGRATION_SECURITY_AND_PLATFORM_ARCHITECTURE_READY disposition.
+- APP-V4-040 (V4-F): Does not reopen or modify frozen Package 3 artifacts V4-19..V4-27 or V4-E.
+- APP-V4-040 (V4-F): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
