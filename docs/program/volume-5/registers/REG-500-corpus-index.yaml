@@ -1,7 +1,7 @@
 register_id: REG-500
 name: Volume 5 Corpus Index
 status: RATIFIED
-version: 1.9.0
+version: 1.10.0
 records:
   - id: V5-00
     title: Volume Control, Inheritance, and Data-Definition Authority
@@ -379,6 +379,94 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-42-physical-model-verification-implementation-handoff-and-downstream-constraints.md
     gate: V5-G4
+  - id: V5-43
+    title: Integrated Governed-Data Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-43-integrated-governed-data-baseline.md
+    gate: V5-G5
+  - id: V5-44
+    title: Authoritative Information Catalogue and Accountability Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-44-authoritative-information-catalogue-and-accountability-matrix.md
+    gate: V5-G5
+  - id: V5-45
+    title: Canonical Identity, Relationship, Scope, Temporal, and Lineage Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-45-canonical-identity-relationship-scope-temporal-and-lineage-synthesis.md
+    gate: V5-G5
+  - id: V5-46
+    title: Affiliation, Evidence, Decision, Financial, and Activation Data Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-46-affiliation-evidence-decision-financial-and-activation-data-synthesis.md
+    gate: V5-G5
+  - id: V5-47
+    title: Reference Data, Quality, Lifecycle, Records, Privacy, and Stewardship Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-47-reference-data-quality-lifecycle-records-privacy-and-stewardship-synthesis.md
+    gate: V5-G5
+  - id: V5-48
+    title: PostgreSQL Persistence, Integrity, and Physical-Model Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-48-postgresql-persistence-integrity-and-physical-model-synthesis.md
+    gate: V5-G5
+  - id: V5-49
+    title: Migration, Reconciliation, Exchange, Projection, and Analytics Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-49-migration-reconciliation-exchange-projection-and-analytics-synthesis.md
+    gate: V5-G5
+  - id: V5-50
+    title: Data Verification and House P0 Implementation-Evidence Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-50-data-verification-and-house-p0-implementation-evidence-matrix.md
+    gate: V5-G5
+  - id: V5-51
+    title: Assumptions, Risks, Exceptions, Gate References, and Readiness Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-51-assumptions-risks-exceptions-gate-references-and-readiness-disposition.md
+    gate: V5-G5
+  - id: V5-52
+    title: Downstream-Volume Handoff and Executive Data Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-52-downstream-volume-handoff-and-executive-data-brief.md
+    gate: V5-G5
+  - id: V5-53
+    title: Integrated Data Traceability and Volume 5 Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-53-integrated-data-traceability-and-volume-5-closure-assessment.md
+    gate: V5-G5
   - id: V5-E
     title: Package 3 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)

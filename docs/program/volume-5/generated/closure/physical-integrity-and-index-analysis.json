@@ -1,0 +1,12 @@
+{
+  "physical_relations": 29,
+  "foreign_keys": 9,
+  "unique_constraints": 7,
+  "check_constraints": 3,
+  "alternate_keys": 1,
+  "index_requirements": 3,
+  "partition_requirements": 1,
+  "audit_relations": 1,
+  "outbox_relations": 1,
+  "integrity_rules": 28
+}

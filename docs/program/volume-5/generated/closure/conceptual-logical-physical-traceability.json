@@ -1,0 +1,10 @@
+{
+  "conceptual_entities": 14,
+  "conceptual_relationships": 8,
+  "logical_entities": 22,
+  "logical_relationships": 17,
+  "physical_relations": 29,
+  "physical_without_logical_source": [],
+  "physical_without_owning_domain": [],
+  "logical_without_conceptual_trace": []
+}

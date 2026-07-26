@@ -1,0 +1,20 @@
+{
+  "validation_items": 33,
+  "by_future_blocking_gate": {
+    "EXEC-MCG": 3,
+    "V10-G1": 5,
+    "V6-G1": 8,
+    "V9-G1": 12,
+    "V8-G1": 3,
+    "V7-G1": 2
+  },
+  "by_target": {
+    "Volume 11": 3,
+    "Volume 10": 5,
+    "Volume 6": 8,
+    "Volume 9": 12,
+    "Volume 8": 3,
+    "Volume 7": 2
+  },
+  "validation_items_naming_v5_g5": []
+}

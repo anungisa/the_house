@@ -1,6 +1,6 @@
 # Volume 5 Data-Governance Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T19:32:32.680Z
+Generated: 2026-07-26T20:06:26.879Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 1 defines DATA
@@ -11,16 +11,16 @@ Generated: 2026-07-26T19:32:32.680Z
 
 | Category | Count |
 | --- | --- |
-| Chapters | 50 |
+| Chapters | 62 |
 | Information domains | 25 |
 | Conceptual entities | 14 |
 | Conceptual relationships | 8 |
 | Data products | 11 |
 | Classifications | 8 |
 | Rules and controls | 84 |
-| Decisions | 43 |
+| Decisions | 51 |
 | Backlog items | 58 |
-| Approvals | 58 |
+| Approvals | 70 |
 
 ## Domain business-authority coverage
 

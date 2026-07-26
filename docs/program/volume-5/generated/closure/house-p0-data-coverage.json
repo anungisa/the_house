@@ -1,0 +1,11 @@
+{
+  "physical_relations": 29,
+  "by_implementation_status": {
+    "BASELINE_PENDING": 29
+  },
+  "by_verification_class": {
+    "BASELINE_PENDING": 29
+  },
+  "physical_relations_implemented_or_proven": [],
+  "integrity_rules_supporting_findings": 28
+}

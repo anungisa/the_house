@@ -1,7 +1,7 @@
 register_id: REG-505
 name: Volume 5 Approval Register
 status: RATIFIED
-version: 1.9.0
+version: 1.10.0
 records:
   # ==== Package 1: chapter ratifications ====
   - id: APP-V5-001
@@ -859,6 +859,130 @@ records:
       - Completes machine-readable Package 4 provenance after mainline merge.
       - Preserves the Gate V5-G4 disposition and the PACKAGE-5-4 freeze.
       - Reopens no substantive Package 4 content and authorizes no implementation.
+    approved_at: null
+
+  # ==== Package 5: chapter ratifications ====
+  - id: APP-V5-060
+    artifact_id: V5-43
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated governed-data baseline consolidates Packages 1 through 4 without re-deciding.
+      - Adds no unsupported data decision merely to manufacture completeness.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-061
+    artifact_id: V5-44
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Authoritative information catalogue and accountability matrix consolidated.
+      - Preserves the required separations of authority, stewardship, and custody.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-062
+    artifact_id: V5-45
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Canonical identity, relationship, scope, temporal, and lineage synthesis consolidated.
+      - Preserves the required identity distinctions across conceptual, logical, and physical layers.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-063
+    artifact_id: V5-46
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Affiliation, evidence, decision, financial, and activation data synthesis consolidated.
+      - Preserves evidence binding, financial-fact distinction, and activation uniqueness.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-064
+    artifact_id: V5-47
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Reference data, quality, lifecycle, records, privacy, and stewardship synthesis consolidated.
+      - Establishes no retention period, deletion schedule, or legal conclusion.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-065
+    artifact_id: V5-48
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - PostgreSQL persistence, integrity, and physical-model synthesis consolidated.
+      - Contains no executable data-definition and infers no schema, migration, or mapping.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-066
+    artifact_id: V5-49
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Migration, reconciliation, exchange, projection, and analytics synthesis consolidated.
+      - Preserves source provenance, quarantine non-authority, and projection rebuildability.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-067
+    artifact_id: V5-50
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data verification and House P0 implementation-evidence matrix consolidated.
+      - Records every finding as data-defined and not implemented and not proven.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-068
+    artifact_id: V5-51
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Assumptions, risks, exceptions, gate references, and readiness disposition consolidated.
+      - Records the validation-gate reassignment away from the passing Gate V5-G5.
+      - Records the Gate V5-G4 effective-date clarification and changes no frozen artifact.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-069
+    artifact_id: V5-52
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Downstream-volume handoff and executive data brief consolidated.
+      - Transfers no governed authority to any experience layer, custodian, or external system.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-070
+    artifact_id: V5-53
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated data traceability and Volume 5 closure assessment consolidated.
+      - Records that the deterministic closure projections are non-authoritative and rebuildable.
+      - Authorizes no implementation.
     approved_at: null
 
 

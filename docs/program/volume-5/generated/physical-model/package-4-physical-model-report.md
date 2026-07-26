@@ -1,6 +1,6 @@
 # Volume 5 Package 4 Physical-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T19:36:14.657Z
+Generated: 2026-07-26T20:06:27.762Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 4 defines a DOCUMENTARY

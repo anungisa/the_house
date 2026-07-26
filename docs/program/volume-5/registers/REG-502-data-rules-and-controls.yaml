@@ -530,11 +530,12 @@ records:
     failure_meaning: Duplicate cases undermine governed affiliation truth.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -549,11 +550,12 @@ records:
     failure_meaning: Overlapping seasons corrupt temporal scope.
     correction_authority: Governance and jurisdiction authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -571,11 +573,12 @@ records:
     failure_meaning: Applying the wrong version invalidates completeness.
     correction_authority: Policy and requirements authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -609,11 +612,12 @@ records:
     failure_meaning: Mutable snapshots destroy submission truth.
     correction_authority: Records governance authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -628,11 +632,12 @@ records:
     failure_meaning: Competing decisions corrupt case truth.
     correction_authority: Governed-decision correction authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -681,11 +686,12 @@ records:
     failure_meaning: Conflating approval and activation grants status prematurely.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -700,11 +706,12 @@ records:
     failure_meaning: Multiple active activations corrupt status.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -735,11 +742,12 @@ records:
     failure_meaning: Silent overwrite destroys governed history.
     correction_authority: Records governance authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G5
+    future_blocking_gate: V9-G1
     superseded_future_blocking_gate:
       - V5-G3
       - V5-G4
-    gate_reassignment_ref: ADR-V5-043
+      - V5-G5
+    gate_reassignment_ref: ADR-V5-044
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18

@@ -1,0 +1,11 @@
+{
+  "reference_data_sets": 3,
+  "code_sets": 5,
+  "controlled_terms": 4,
+  "quality_rules": 14,
+  "quality_rules_without_correction_authority": [],
+  "data_lifecycle_records": 5,
+  "retention_dependencies": 3,
+  "data_issues": 3,
+  "stewardship_measures": 4
+}

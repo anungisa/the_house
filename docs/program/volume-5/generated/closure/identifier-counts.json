@@ -1,0 +1,63 @@
+{
+  "registers": {
+    "catalogue": 228,
+    "rules_and_controls": 84,
+    "decisions": 51,
+    "backlog": 58
+  },
+  "catalogue_by_kind": {
+    "INFORMATION_DOMAIN": 25,
+    "CONCEPTUAL_ENTITY": 14,
+    "CONCEPTUAL_RELATIONSHIP": 8,
+    "DATA_PRODUCT": 11,
+    "CLASSIFICATION": 8,
+    "LOGICAL_ENTITY": 22,
+    "STATE_RECORD": 1,
+    "SNAPSHOT": 1,
+    "PROVENANCE_RECORD": 2,
+    "CORRECTION_RECORD": 1,
+    "VALUE_OBJECT": 3,
+    "REFERENCE_DATA": 1,
+    "CODE_SET": 5,
+    "LOGICAL_RELATIONSHIP": 17,
+    "DERIVED_DATA_PRODUCT": 5,
+    "MASTER_DATA_SET": 5,
+    "REFERENCE_DATA_SET": 3,
+    "CONTROLLED_TERM": 4,
+    "DATA_ISSUE": 3,
+    "DATA_LIFECYCLE": 5,
+    "RETENTION_DEPENDENCY": 3,
+    "RECONCILIATION_CONTEXT": 3,
+    "EXCHANGE_RECORD": 5,
+    "DATA_USE": 5,
+    "STEWARDSHIP_MEASURE": 4,
+    "PHYSICAL_RELATION": 29,
+    "COMPOSITE_SCOPE_KEY": 2,
+    "ALTERNATE_KEY": 1,
+    "UNIQUE_CONSTRAINT": 7,
+    "FOREIGN_KEY": 9,
+    "PHYSICAL_ATTRIBUTE": 1,
+    "CHECK_CONSTRAINT": 3,
+    "AUDIT_RELATION": 1,
+    "OUTBOX_RELATION": 1,
+    "PARTITION_REQUIREMENT": 1,
+    "DATABASE_VIEW": 1,
+    "MATERIALIZED_PROJECTION": 2,
+    "STAGING_RELATION": 2,
+    "QUARANTINE_RELATION": 1,
+    "INDEX_REQUIREMENT": 3
+  },
+  "rules_by_kind": {
+    "RULE": 15,
+    "QUALITY": 14,
+    "LINEAGE": 11,
+    "CTRL": 16,
+    "INTEGRITY": 28
+  },
+  "backlog_by_kind": {
+    "ASM": 10,
+    "RISK": 12,
+    "EXC": 3,
+    "VALIDATION": 33
+  }
+}

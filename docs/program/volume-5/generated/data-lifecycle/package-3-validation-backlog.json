@@ -1,12 +1,12 @@
 {
   "total": 58,
   "by_future_blocking_gate": {
-    "V5-G5": 7,
-    "EXEC-MCG": 3,
+    "UNSET": 1,
+    "EXEC-MCG": 4,
     "V8-G1": 7,
     "V10-G1": 10,
-    "V6-G1": 11,
-    "V9-G1": 17,
+    "V6-G1": 12,
+    "V9-G1": 21,
     "V7-G1": 3
   },
   "pointing_at_completed_gate": [],

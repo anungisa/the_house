@@ -1,7 +1,7 @@
 register_id: REG-503
 name: Volume 5 Data Decisions
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: ADR-V5-001
     title: Data governance is defined before logical or physical design
@@ -520,4 +520,99 @@ records:
     evidence_refs:
       - INTEG-V5-013
       - ASM-V5-001
+  # ==== Package 5: integrated governed-data baseline and Volume 5 closure ====
+  - id: ADR-V5-044
+    title: Final gate reassignment away from the passing Gate V5-G5
+    decision: Every rule, assumption, and validation-backlog obligation that named the now-passing Gate V5-G5 as its future blocking gate is dispositioned as CLOSED_WITH_EVIDENCE or additively reassigned to its proper downstream gate; the prior V5-G5 assignment is preserved on each record as a superseded future blocking gate alongside any earlier superseded gate.
+    status: ACCEPTED
+    context: Volume 5 closes at Gate V5-G5, so no unresolved obligation may retain V5-G5 (or any earlier completed Volume 5 gate) as a future blocking gate; documentary Volume 5 cannot produce the real-data, security, contract, or verification evidence these obligations require.
+    consequence: The eight logical-integrity obligations move to Volume 9 verification; jurisdiction, season, policy, and classification validations move to Volume 9; bilingual completeness moves to Volume 6; ownership sign-off moves to the executive material-commitment gate; the confirmed baseline assumption is closed with evidence. Superseded gate history is preserved on every record.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-51
+    evidence_refs:
+      - INTEG-V5-002
+      - ASM-V5-001
+      - TEST-V5-001
+  - id: ADR-V5-045
+    title: Gate V5-G4 ratified the documentary physical model but established no implementation effective date
+    decision: The literal "Effective Date TBD (Gate V5-G4)" wording in the frozen Package 4 artifacts records only that Gate V5-G4 ratified the documentary physical model; it establishes no production or implementation effective date. Any genuine implementation-effective-date decision is reassigned to Volume 10, Volume 11, or the executive material-commitment gate.
+    status: ACCEPTED
+    context: Gate V5-G4 has passed; the effective-date wording in the frozen Package 4 chapters must not be read as a scheduled production date, and the frozen artifacts are not modified.
+    consequence: A narrow clarification is recorded in Package 5 rather than editing frozen Package 4 artifacts; implementation effective dates remain a downstream material-commitment concern. This does not reopen Gate V5-G4.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-51
+    evidence_refs:
+      - ADR-V5-043
+      - V5-42
+  - id: ADR-V5-046
+    title: The integrated governed-data baseline is the authoritative Volume 5 consolidation
+    decision: The Volume 5 integrated governed-data baseline consolidates the conceptual, logical, and physical definitions of Packages 1 through 4 into a single authoritative, implementation-neutral reference; it adds no unsupported data decision merely to manufacture completeness.
+    status: ACCEPTED
+    context: Downstream volumes require one consolidated, traceable data definition rather than four separately framed package corpora.
+    consequence: The baseline governs security, privacy, experience, contracts, testing, delivery, migration, and operations definition in later volumes without authorizing implementation.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-43
+    evidence_refs:
+      - DOMAIN-V5-001
+      - LENT-V5-001
+  - id: ADR-V5-047
+    title: Stewardship, custody, and authority are distinct in the accountability matrix
+    decision: The authoritative information catalogue records business authority, data ownership, stewardship, system-of-record authority, and technical custody as distinct responsibilities; stewardship does not imply business decision authority, custody does not imply ownership, finance authority does not imply affiliation authority, and privacy authority does not imply records-disposition authority.
+    status: ACCEPTED
+    context: Conflating these responsibilities is the principal accountability risk in a governed data baseline.
+    consequence: Every information domain names each responsibility separately; external-system custody never silently transfers institutional authority.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-44
+    evidence_refs:
+      - DOMAIN-V5-006
+      - DOMAIN-V5-021
+  - id: ADR-V5-048
+    title: The Button remains a governed consumer, not an independent source of affiliation truth
+    decision: The Button and any other experience layer are governed consumers of the affiliation data baseline; they hold no independent system-of-record authority over affiliation, membership, evidence, decision, financial, or activation truth.
+    status: ACCEPTED
+    context: Experience layers may request governed actions but must not become competing sources of institutional truth.
+    consequence: All authoritative affiliation truth remains in the governed House system-of-record; projections consumed by experience layers are non-authoritative.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-44
+    evidence_refs:
+      - DOMAIN-V5-006
+  - id: ADR-V5-049
+    title: Deterministic closure projections are non-authoritative
+    decision: The deterministic Volume 5 closure projections generated under the closure directory are non-authoritative analyses of the source-controlled corpus; the corpus and its recorded approvals remain the source of truth.
+    status: ACCEPTED
+    context: Generated traceability and coverage projections support review but must never be treated as ratified artifacts or a basis for authorization.
+    consequence: Regenerating the projections changes no governed decision; approvals remain the authoritative record.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-53
+    evidence_refs:
+      - ADR-V5-040
+  - id: ADR-V5-050
+    title: House P0 findings are data-defined but not implemented or proven
+    decision: Every House P0 finding with a material data implication receives a data definition, logical record, physical structure, integrity control, and future test class; each carries data-definition status DEFINED and implementation status NOT_IMPLEMENTED_OR_NOT_PROVEN. Physical-model coverage is never represented as implemented remediation.
+    status: ACCEPTED
+    context: The documentary baseline defines what must exist to remediate P0 findings; it does not implement or prove any remediation.
+    consequence: Implementation evidence for each finding is required in a downstream verification volume; no finding is closed by documentary coverage.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-50
+    evidence_refs:
+      - INTEG-V5-011
+      - OBX-V5-001
+  - id: ADR-V5-051
+    title: Volume 5 closes at Gate V5-G5; downstream volumes inherit constraints without new authority
+    decision: Gate V5-G5 closes Volume 5 as the authoritative governed-data baseline; the downstream-volume handoffs and the executive brief transfer data constraints to Volumes 6 through 11 and introduce no new authority, approval, or implementation authorization.
+    status: ACCEPTED
+    context: Closure must transfer obligations without silently expanding scope or authority.
+    consequence: Volume 6 is authorized to define security, privacy, compliance, accessibility, and trust against the baseline; no implementation, procurement, or master development plan is authorized.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-52
+    evidence_refs:
+      - ASM-V5-002
 
