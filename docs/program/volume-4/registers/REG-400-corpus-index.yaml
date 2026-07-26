@@ -363,3 +363,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-4/V4-38-engineering-governance-and-transition-playbook.md
     gate: V4-G4
+  - id: V4-G
+    title: "Package 4 Closure Record - Engineering Governance, Verification, Transition, and Architecture Evolution"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-G-package-4-closure-record.md
+    gate: V4-G4

@@ -677,3 +677,82 @@ records:
       - Engineering governance and transition playbook ratified as a consolidation only.
       - Explicitly excludes source code, tests, schemas, migrations, executable contracts, infrastructure, vendor selection, sequencing, staffing, cost, procurement, rollout, and the master development plan.
     approved_at: null
+  # ==== Package 4: closure, gate, and freeze ====
+  - id: APP-V4-052
+    artifact_id: V4-G
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-G
+    conditions:
+      - Package 4 closure record ratified as architecture definition only.
+      - Consolidates engineering governance, verification, transition, and evolution architecture without claiming implementation.
+    approved_at: null
+  - id: APP-V4-053
+    artifact_id: GATE-V4-G4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: ENGINEERING_GOVERNANCE_AND_TRANSITION_ARCHITECTURE_READY
+    closure_record: V4-G
+    scope: [V4-28, V4-29, V4-30, V4-31, V4-32, V4-33, V4-34, V4-35, V4-36, V4-37, V4-38]
+    conditions:
+      - Package 3 provenance is unambiguous.
+      - Engineering layering and module-governance standards are defined.
+      - Quality-attribute scenarios are represented without fabricated targets.
+      - Secure-development and software-supply-chain controls are defined without claiming implementation.
+      - Test classes, environments, evidence, and proof limitations are defined.
+      - PostgreSQL, composition-root, and deployment-path verification are explicitly required.
+      - Coexistence, migration, reconciliation, cutover, and rollback boundaries are defined.
+      - Schema, contract, event, and configuration evolution rules are defined.
+      - Feature controls cannot bypass governed authority or invariants.
+      - Technology-selection criteria preserve portability and do not select vendors.
+      - Architecture exceptions, debt, and expiry are governed.
+      - Implementation-readiness gaps have owners, evidence requirements, and future gates.
+      - Downstream-volume constraints are explicit.
+      - No fitness function is represented as implemented.
+      - No artifact claims implementation readiness, operational proof, or independent assurance without evidence.
+      - No source code, executable tests, migration, physical schema, executable contract, infrastructure, vendor selection, procurement, delivery sequence, or master development plan is created.
+      - Package 4 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V4-054
+    artifact_id: PACKAGE-4-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-G
+    frozen_artifacts:
+      - id: V4-28
+        version: 1.0.0
+      - id: V4-29
+        version: 1.0.0
+      - id: V4-30
+        version: 1.0.0
+      - id: V4-31
+        version: 1.0.0
+      - id: V4-32
+        version: 1.0.0
+      - id: V4-33
+        version: 1.0.0
+      - id: V4-34
+        version: 1.0.0
+      - id: V4-35
+        version: 1.0.0
+      - id: V4-36
+        version: 1.0.0
+      - id: V4-37
+        version: 1.0.0
+      - id: V4-38
+        version: 1.0.0
+      - id: V4-G
+        version: 1.0.0
+    conditions:
+      - Volume 4 Package 4 frozen at closure following Gate V4-G4 disposition.
+      - Authorizes commencement of the next architecture package only.
+      - Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to frozen Package 4 content require the recorded amendment process.
+    approved_at: null
