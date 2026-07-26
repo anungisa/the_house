@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.1.0
+version: 1.2.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -124,3 +124,66 @@ records:
       source snapshot (71c2be6), closure/freeze (71c2be6), and merged (8ee3a74)
       commits. Narrow provenance-metadata correction only; no Package 1 content or gate
       disposition changes.
+  - id: DEC-V2-006
+    class: D1
+    question: >-
+      What is the product scope and what is explicitly excluded from the affiliation
+      service?
+    decision: >-
+      Adopt the affiliation product scope defined in V2-06: the governed capability by
+      which a club becomes and remains recognized and affiliated for a season, delivered
+      across The House (system of record) and The Button (guided experience). Explicitly
+      exclude membership registration, accreditation and certification, competition and
+      event entry, payment processing and accounting as a system of record, learning
+      management, and general-purpose compliance case management. These exclusions are
+      product-scope boundaries only.
+    evidence_refs:
+      - V2-06
+      - V2-01
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-007
+    class: D1
+    question: >-
+      What recognition and affiliation pathways does the product support?
+    decision: >-
+      Adopt the three governed pathways defined in V2-07 - continuity confirmation,
+      renewal with remediation, and new affiliation - inherited from the Volume 1 target
+      operating model (V1-24). The product must support the three pathways and apply
+      versioned season requirements. The detailed eligibility rules governing each
+      pathway remain subject to policy and operational validation and are not ratified
+      in this package.
+    evidence_refs:
+      - V2-07
+      - V1-24
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-008
+    class: D1
+    question: >-
+      How are the affiliation capabilities, use cases, requirements, and product
+      measures recorded?
+    decision: >-
+      Adopt the expanded capability and requirement catalogue (V2-09, REG-203) covering
+      thirty-one capability areas and the twenty-six controlled use cases (V2-08), the
+      experience, communication, and support model (V2-10), and the product-measure
+      classification (V2-11). No requirement authorizes implementation and no numerical
+      target is fabricated; measures requiring an approved baseline are recorded as
+      pending validation.
+    evidence_refs:
+      - V2-08
+      - V2-09
+      - V2-10
+      - V2-11
+      - REG-203
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

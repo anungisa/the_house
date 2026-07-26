@@ -1,7 +1,7 @@
 register_id: REG-201
 name: Volume 2 Outcome Register
 status: IN_REVIEW
-version: 1.0.0
+version: 1.1.0
 records:
   - id: OUT-V2-001
     statement: >-
@@ -104,3 +104,74 @@ records:
     source_refs:
       - V1-17
       - V1-18
+  - id: OUT-V2-008
+    statement: >-
+      Clubs are recognized and affiliated through governed pathways matched to their
+      situation (continuity, renewal with remediation, or new affiliation).
+    stakeholder_refs:
+      - STK-V2-002
+      - STK-V2-003
+    product: House
+    success_signal: >-
+      Every affiliating club is routed to the correct pathway and reaches an active
+      affiliation through governed transitions.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-07
+      - V1-24
+  - id: OUT-V2-009
+    statement: >-
+      Reviewers and administrators operate affiliation work through defined journeys
+      with clear authority, routing, and evidence.
+    stakeholder_refs:
+      - STK-V2-006
+      - STK-V2-009
+    product: House
+    success_signal: >-
+      Every review, return, decision, and correction follows a defined journey with
+      attributable authority and recorded evidence.
+    validation_status: author_asserted
+    source_refs:
+      - V2-08
+  - id: OUT-V2-010
+    statement: >-
+      Applicants and clubs receive timely, bilingual, and accessible communication
+      about status and required actions.
+    stakeholder_refs:
+      - STK-V2-004
+      - STK-V2-005
+    product: Button
+    success_signal: >-
+      Affected parties are notified in their chosen official language and can always
+      determine the next required action.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-10
+  - id: OUT-V2-011
+    statement: >-
+      Affiliation product measures are defined or explicitly recorded as pending
+      validation, each with an owner.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-007
+    product: House
+    success_signal: >-
+      Every candidate product measure is classified as defined or pending a named
+      validation, with no fabricated targets.
+    validation_status: author_asserted
+    source_refs:
+      - V2-11
+  - id: OUT-V2-012
+    statement: >-
+      Non-standard club scenarios (withdrawn, dormant, merged, reconstituted) are
+      handled through governed transitions rather than ad hoc process.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-002
+    product: House
+    success_signal: >-
+      Every non-standard club scenario resolves through a governed transition with audit
+      and evidence.
+    validation_status: author_asserted
+    source_refs:
+      - V2-08

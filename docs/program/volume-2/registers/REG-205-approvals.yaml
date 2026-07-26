@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.1.0
+version: 1.2.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -125,4 +125,53 @@ records:
       - Gate V2-G1 PASS; Volume 2 Package 1 closed and frozen; V2-00..V2-05 at 1.0.0 and V2-A at 1.0.1 (provenance amendment)
       - Product definition only; implementation and procurement unauthorized; not a master development plan
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 2 chapter ratifications ---
+  - id: APP-V2-010
+    artifact_id: V2-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Affiliation service scope, product offer, and exclusions defined; no implementation authorized
+    approved_at: null
+  - id: APP-V2-011
+    artifact_id: V2-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Three governed pathways (continuity, renewal with remediation, new) defined; eligibility rules remain subject to policy validation"
+    approved_at: null
+  - id: APP-V2-012
+    artifact_id: V2-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Twenty-six controlled use cases with alternate and exception flows defined; not reduced to happy-path stories"
+    approved_at: null
+  - id: APP-V2-013
+    artifact_id: V2-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Capability and requirement catalogue expanded across the OUT->...->TEST chain; no requirement authorizes implementation"
+    approved_at: null
+  - id: APP-V2-014
+    artifact_id: V2-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Experience, communication, and support model defined at product level; no templates or UI layouts fixed
+    approved_at: null
+  - id: APP-V2-015
+    artifact_id: V2-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product measures classified as defined or explicitly pending validation; no numerical targets fabricated
     approved_at: null
