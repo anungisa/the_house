@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.4.0
+version: 1.6.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -245,5 +245,117 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-012
+    class: D1
+    question: >-
+      What controlled terminology and authority framework governs the affiliation
+      operating rules?
+    decision: >-
+      Adopt the affiliation policy, terminology, and authority framework (V2-12): the
+      six-category authority model (Curling Canada authority, PTSO authority, club
+      responsibility, system enforcement, operational discretion, unresolved policy) and
+      the controlled terminology on which the Package 3 operating rules depend. Terms not
+      defined in the framework are not enforceable as governed rules. Definition only; no
+      implementation authorized.
+    evidence_refs:
+      - V2-12
+      - CAP-V2-032
+      - BR-V2-014
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-013
+    class: D1
+    question: >-
+      What governed rules determine pathway selection, requirement applicability,
+      evidence validity, and submission?
+    decision: >-
+      Adopt the pathway-selection and seasonal-applicability rules (V2-13) and the
+      evidence, completeness, and submission rules (V2-14). Pathway is determined by
+      governed inputs, not applicant self-selection; requirements are versioned by season,
+      jurisdiction, pathway, and classification; completeness is derived from traceable
+      facts and never a manual boolean. Detailed eligibility, evidence, and confidentiality
+      thresholds remain pending policy and privacy validation. Definition only; no
+      implementation authorized.
+    evidence_refs:
+      - V2-13
+      - V2-14
+      - RULE-V2-010
+      - RULE-V2-016
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-014
+    class: D1
+    question: >-
+      What governed rules determine review, decisions, fees, reconciliation, activation,
+      and service operations?
+    decision: >-
+      Adopt the review, decision, exception, and escalation model (V2-15); the fee,
+      payment, reconciliation, and activation rules (V2-16); the service operations,
+      support, and control model (V2-17); and the rule-coverage and acceptance-decision
+      tables (V2-18). Administrative correction is kept distinct from governed decision
+      change; fee policy, payment execution, and accounting remain separate authorities;
+      activation is exactly-once. Fee amounts and financial/operational thresholds remain
+      pending validation. Definition only; no implementation authorized.
+    evidence_refs:
+      - V2-15
+      - V2-16
+      - V2-17
+      - V2-18
+      - RULE-V2-020
+      - RULE-V2-023
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-015
+    class: D1
+    question: >-
+      Is Volume 2 Package 3 complete at Gate V2-G3, and should the Package 3 corpus be
+      frozen?
+    decision: >-
+      Record Gate V2-G3 as PASS with disposition AFFILIATION_OPERATING_RULES_COMPLETE and
+      freeze the Package 3 corpus (V2-12 through V2-18 and V2-C at version 1.0.0). All
+      fourteen gate conditions hold: Package 2 provenance unambiguous; terminology and
+      authority controlled; pathway-selection, applicability, evidence, review, decision,
+      fee, reconciliation, activation, operations, and decision-table rules defined;
+      administrative correction separated from governed decision change; unvalidated
+      policies classified and owned; no rule authorizes implementation; no architecture or
+      master development plan created; and Package 3 closed with a separate freeze commit.
+      The freeze source snapshot is commit 4287b63, distinct from the closure/freeze
+      commit.
+    evidence_refs:
+      - V2-C
+      - GATE-V2-G3
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-016
+    class: D1
+    question: >-
+      Is Volume 2 Package 4 authorized to commence?
+    decision: >-
+      Authorize Volume 2 Package 4 to commence as the next product-governance package.
+      Package 4 remains definition and governance work and authorizes no implementation,
+      procurement, technical architecture, or master development plan, all of which remain
+      pending executive organizational acceptance (Nolan, D0) at the material-commitment
+      gate.
+    evidence_refs:
+      - V2-C
+      - GATE-V2-G3
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

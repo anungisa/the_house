@@ -1,7 +1,7 @@
 register_id: REG-203
 name: Volume 2 Requirement and Acceptance Register
 status: IN_REVIEW
-version: 1.1.0
+version: 1.2.0
 records:
   # --- CAP: capabilities ---
   - id: CAP-V2-001
@@ -1769,3 +1769,1228 @@ records:
     governed_by_kernel: true
     authorizes_implementation: false
     validation_status: author_asserted
+  # ============================================================================
+  # Package 3: affiliation operating rules and service governance
+  # ============================================================================
+  # --- CAP: operating-rule capabilities ---
+  - id: CAP-V2-032
+    level: CAP
+    statement: Governed affiliation policy, terminology, and authority framework.
+    product: House
+    traces_to:
+      - OUT-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-033
+    level: CAP
+    statement: Pathway determination and seasonal, jurisdictional, versioned requirement applicability.
+    product: House
+    traces_to:
+      - OUT-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-034
+    level: CAP
+    statement: Evidence validity, carry-forward, and derived-completeness governance.
+    product: House
+    traces_to:
+      - OUT-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-035
+    level: CAP
+    statement: Review, decision, exception, and escalation governance with correction separation.
+    product: House
+    traces_to:
+      - OUT-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-036
+    level: CAP
+    statement: Fee, reconciliation, and exactly-once activation boundary governance.
+    product: House
+    traces_to:
+      - OUT-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-037
+    level: CAP
+    statement: Affiliation service operations, support, recovery, and control model.
+    product: Both
+    traces_to:
+      - OUT-V2-016
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- BR: governed business rules ---
+  - id: BR-V2-014
+    level: BR
+    statement: Affiliation terminology and authority are governed and versioned; undefined terms are not enforceable.
+    product: House
+    traces_to:
+      - CAP-V2-032
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-015
+    level: BR
+    statement: Pathway is determined by governed inputs, not by applicant self-selection.
+    product: House
+    traces_to:
+      - CAP-V2-033
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-016
+    level: BR
+    statement: Requirements are versioned by season, jurisdiction, pathway, and club classification, with effective and expiry dates.
+    product: House
+    traces_to:
+      - CAP-V2-033
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-017
+    level: BR
+    statement: Evidence has ownership, provenance, validity period, applicability, and confidentiality; expired or superseded evidence is not valid support.
+    product: House
+    traces_to:
+      - CAP-V2-034
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-018
+    level: BR
+    statement: Completeness is derived from traceable bound facts, never represented as a manually maintained boolean.
+    product: House
+    traces_to:
+      - CAP-V2-034
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-019
+    level: BR
+    statement: Decision authority is explicit, jurisdiction-scoped, and auditable; unknown authority fails closed.
+    product: House
+    traces_to:
+      - CAP-V2-035
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-020
+    level: BR
+    statement: An administrative correction is distinct from a governed decision change and is separately recorded.
+    product: House
+    traces_to:
+      - CAP-V2-035
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-021
+    level: BR
+    statement: Fee policy, payment execution, and accounting are separate authorities; the affiliation service holds fee obligation and reconciliation status only.
+    product: House
+    traces_to:
+      - CAP-V2-036
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-022
+    level: BR
+    statement: Activation is exactly-once and governed by approval and reconciliation conditions; it produces one authoritative result.
+    product: House
+    traces_to:
+      - CAP-V2-036
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-023
+    level: BR
+    statement: Every material operating rule is classified by validation state with a named policy and operational owner.
+    product: House
+    traces_to:
+      - CAP-V2-032
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- FR: functional requirements ---
+  - id: FR-V2-025
+    level: FR
+    statement: Determine the applicable affiliation pathway from governed inputs.
+    product: House
+    traces_to:
+      - BR-V2-015
+    acceptance_ref:
+      - TEST-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-026
+    level: FR
+    statement: Resolve the applicable requirement set by season, jurisdiction, pathway, and classification with recorded versions.
+    product: House
+    traces_to:
+      - BR-V2-016
+    acceptance_ref:
+      - TEST-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-027
+    level: FR
+    statement: Evaluate evidence validity and carry-forward eligibility against governed rules.
+    product: House
+    traces_to:
+      - BR-V2-017
+    acceptance_ref:
+      - TEST-V2-016
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-028
+    level: FR
+    statement: Compute completeness from bound evidence and mandatory information as a derived value.
+    product: House
+    traces_to:
+      - BR-V2-018
+    acceptance_ref:
+      - TEST-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-029
+    level: FR
+    statement: Enforce submission prerequisites before an application may be submitted.
+    product: House
+    traces_to:
+      - BR-V2-018
+    acceptance_ref:
+      - TEST-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-030
+    level: FR
+    statement: Route review by jurisdiction and reviewer eligibility, including reassignment and conflict handling.
+    product: House
+    traces_to:
+      - BR-V2-019
+    acceptance_ref:
+      - TEST-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-031
+    level: FR
+    statement: Record governed decisions with permitted actor, rationale, and evidence, and produce the governed state effect.
+    product: House
+    traces_to:
+      - BR-V2-019
+    acceptance_ref:
+      - TEST-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-032
+    level: FR
+    statement: Record administrative corrections distinctly from governed decision changes.
+    product: House
+    traces_to:
+      - BR-V2-020
+    acceptance_ref:
+      - TEST-V2-021
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-033
+    level: FR
+    statement: Determine fee obligation and reconciliation status without asserting payment or ledger authority.
+    product: House
+    traces_to:
+      - BR-V2-021
+    acceptance_ref:
+      - TEST-V2-022
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-034
+    level: FR
+    statement: Execute governed, idempotent activation yielding exactly one authoritative activation result.
+    product: House
+    traces_to:
+      - BR-V2-022
+    acceptance_ref:
+      - TEST-V2-023
+      - TEST-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-035
+    level: FR
+    statement: Manage exception, return, resubmission, escalation, and recovery states through governed transitions.
+    product: House
+    traces_to:
+      - BR-V2-020
+    acceptance_ref:
+      - TEST-V2-025
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- NFR: non-functional requirements ---
+  - id: NFR-V2-013
+    level: NFR
+    statement: Rule evaluation is deterministic and reproducible for identical governed inputs and versions.
+    product: House
+    traces_to:
+      - FR-V2-026
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V2-014
+    level: NFR
+    statement: Rule versions and effective dates are auditable, so any past decision can be evaluated against the rules then in force.
+    product: House
+    traces_to:
+      - FR-V2-026
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V2-015
+    level: NFR
+    statement: Financial boundary integrity is preserved; no lifecycle component asserts ledger or payment-execution authority.
+    product: House
+    traces_to:
+      - FR-V2-033
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-016
+    level: NFR
+    statement: Evidence confidentiality and restricted visibility are enforced by policy classification.
+    product: House
+    traces_to:
+      - FR-V2-027
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UC: operating and exception use cases ---
+  - id: UC-V2-027
+    level: UC
+    statement: A recognized club in good standing confirms continuity for the current season using carry-forward evidence.
+    product: Both
+    traces_to:
+      - FR-V2-025
+      - FR-V2-027
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-028
+    level: UC
+    statement: A club is forced into renewal with remediation because required evidence is expired or contradictory.
+    product: Both
+    traces_to:
+      - FR-V2-027
+      - FR-V2-028
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-029
+    level: UC
+    statement: A materially reconstituted organization is routed to new affiliation with a complete requirement application.
+    product: Both
+    traces_to:
+      - FR-V2-025
+      - FR-V2-026
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-030
+    level: UC
+    statement: A reviewer returns an application for information and the club resubmits within the governed cycle.
+    product: Both
+    traces_to:
+      - FR-V2-030
+      - FR-V2-035
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-031
+    level: UC
+    statement: A reviewer escalates and refuses an application, recording rationale and evidence.
+    product: House
+    traces_to:
+      - FR-V2-031
+      - FR-V2-035
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-032
+    level: UC
+    statement: An administrator issues an administrative correction after a decision without changing the governed decision.
+    product: House
+    traces_to:
+      - FR-V2-032
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-033
+    level: UC
+    statement: An approved application awaits reconciliation, then activates once fee and reconciliation conditions are satisfied.
+    product: House
+    traces_to:
+      - FR-V2-033
+      - FR-V2-034
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-034
+    level: UC
+    statement: An activation attempt fails and is recovered without producing a duplicate activation.
+    product: House
+    traces_to:
+      - FR-V2-034
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-035
+    level: UC
+    statement: A duplicate organization or identity-matching exception is detected and resolved through governed review.
+    product: House
+    traces_to:
+      - FR-V2-030
+      - FR-V2-035
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-036
+    level: UC
+    statement: A refused club requests reconsideration where policy permits, handled under governed authority.
+    product: Both
+    traces_to:
+      - FR-V2-031
+      - FR-V2-035
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- RULE: governed operating rules ---
+  - id: RULE-V2-010
+    level: RULE
+    statement: >-
+      Pathway determination rule: given historical recognition, organization continuity,
+      standing, evidence condition, jurisdiction, and material change, select continuity,
+      remediation, new affiliation, or manual policy determination.
+    product: House
+    traces_to:
+      - UC-V2-027
+      - FR-V2-025
+    acceptance_ref:
+      - TEST-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All affiliation seasons and jurisdictions
+    season_versioned: true
+    jurisdiction_scoped: true
+    exception_authority: National Affiliation Administrator
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-011
+    level: RULE
+    statement: >-
+      Continuity eligibility rule: continuity confirmation requires historical recognition,
+      satisfactory standing, unchanged organization identity, valid jurisdiction, authorized
+      representatives, and evidence eligible for carry-forward.
+    product: House
+    traces_to:
+      - UC-V2-027
+    acceptance_ref:
+      - TEST-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: Continuity pathway
+    season_versioned: true
+    jurisdiction_scoped: true
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-012
+    level: RULE
+    statement: >-
+      Remediation trigger rule: missing, expired, or contradictory evidence, changed
+      representatives or jurisdiction, outstanding fees, or open compliance exceptions force
+      renewal with remediation, with temporary continuation only where policy permits.
+    product: House
+    traces_to:
+      - UC-V2-028
+    acceptance_ref:
+      - TEST-V2-016
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: Renewal-with-remediation pathway
+    season_versioned: true
+    jurisdiction_scoped: true
+    exception_authority: National Affiliation Administrator
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-013
+    level: RULE
+    statement: >-
+      New-affiliation determination rule: absence of historical recognition, material
+      organizational change, or a new legal or operating identity routes to new affiliation
+      with jurisdiction determination and a complete requirement application.
+    product: House
+    traces_to:
+      - UC-V2-029
+    acceptance_ref:
+      - TEST-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: New-affiliation pathway
+    season_versioned: true
+    jurisdiction_scoped: true
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-014
+    level: RULE
+    statement: >-
+      Requirement applicability rule: the applicable requirement set, evidence rules, fee
+      rules, and reviewer authority are resolved from season, pathway, jurisdiction, club
+      classification, and policy version, with effective and expiry dates.
+    product: House
+    traces_to:
+      - FR-V2-026
+    acceptance_ref:
+      - TEST-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All pathways
+    season_versioned: true
+    jurisdiction_scoped: true
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-015
+    level: RULE
+    statement: >-
+      Evidence validity and carry-forward rule: evidence is valid only within its validity
+      period, bound to a requirement and affiliation, not superseded or withdrawn, and
+      eligible for carry-forward only where policy and provenance permit.
+    product: House
+    traces_to:
+      - FR-V2-027
+    acceptance_ref:
+      - TEST-V2-016
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All evidence
+    season_versioned: true
+    jurisdiction_scoped: true
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-016
+    level: RULE
+    statement: >-
+      Completeness derivation rule: completeness is computed from applicable requirements,
+      bound valid evidence, mandatory information, and acknowledgements; it is never a manual
+      boolean and always traces to the supporting facts.
+    product: House
+    traces_to:
+      - FR-V2-028
+    acceptance_ref:
+      - TEST-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All applications
+    season_versioned: true
+    jurisdiction_scoped: true
+  - id: RULE-V2-017
+    level: RULE
+    statement: >-
+      Submission prerequisite rule: submission requires applicable requirements determined,
+      mandatory information complete, required evidence bound, acknowledgements complete,
+      valid representative authority, and no unresolved blocking exception.
+    product: House
+    traces_to:
+      - FR-V2-029
+    acceptance_ref:
+      - TEST-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: Pathway and Evidence Policy Authority (Jen)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All applications
+    season_versioned: true
+    jurisdiction_scoped: true
+  - id: RULE-V2-018
+    level: RULE
+    statement: >-
+      Reviewer eligibility and routing rule: a review is routed by jurisdiction to an
+      eligible reviewer with no disqualifying conflict of interest, supporting assignment,
+      reassignment, and delegated authority.
+    product: House
+    traces_to:
+      - FR-V2-030
+    acceptance_ref:
+      - TEST-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All reviews
+    season_versioned: false
+    jurisdiction_scoped: true
+    exception_authority: National Affiliation Administrator
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-019
+    level: RULE
+    statement: >-
+      Decision eligibility rule: from completeness, evidence review, exception status,
+      reviewer authority, and fee/reconciliation status, permit return, escalate, approve,
+      refuse, await reconciliation, or activate.
+    product: House
+    traces_to:
+      - FR-V2-031
+      - UC-V2-031
+    acceptance_ref:
+      - TEST-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All decisions
+    season_versioned: false
+    jurisdiction_scoped: true
+    exception_authority: National Affiliation Administrator
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-020
+    level: RULE
+    statement: >-
+      Correction-versus-decision rule: an administrative correction adjusts non-governed
+      record data with its own audit entry and never substitutes for changing a governed
+      decision, which requires governed decision authority.
+    product: House
+    traces_to:
+      - UC-V2-032
+      - FR-V2-032
+    acceptance_ref:
+      - TEST-V2-021
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All post-decision corrections
+    season_versioned: false
+    jurisdiction_scoped: false
+  - id: RULE-V2-021
+    level: RULE
+    statement: >-
+      Fee determination rule: fee obligation is resolved from fee policy owner, season,
+      jurisdiction, pathway, exemptions, waivers, adjustments, and applicable taxes, with
+      versioning and auditability, and without inventing amounts.
+    product: House
+    traces_to:
+      - FR-V2-033
+    acceptance_ref:
+      - TEST-V2-022
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: FINANCIAL_VALIDATION_PENDING
+    policy_owner: Fee and Reconciliation Policy Authority (Helene)
+    operational_owner: Fee Reconciliation Steward
+    effective_scope: All fee-bearing pathways
+    season_versioned: true
+    jurisdiction_scoped: true
+    future_blocking_gate: Future affiliation fee and reconciliation validation gate
+  - id: RULE-V2-022
+    level: RULE
+    statement: >-
+      Reconciliation-before-activation rule: activation requires fee conditions satisfied or
+      explicitly waived and reconciliation status confirmed at the boundary; the affiliation
+      service consumes reconciliation status and does not perform accounting.
+    product: House
+    traces_to:
+      - UC-V2-033
+      - FR-V2-033
+    acceptance_ref:
+      - TEST-V2-023
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: FINANCIAL_VALIDATION_PENDING
+    policy_owner: Fee and Reconciliation Policy Authority (Helene)
+    operational_owner: Fee Reconciliation Steward
+    effective_scope: All activations with fee conditions
+    season_versioned: true
+    jurisdiction_scoped: true
+    future_blocking_gate: Future affiliation fee and reconciliation validation gate
+  - id: RULE-V2-023
+    level: RULE
+    statement: >-
+      Exactly-once activation rule: activation is idempotent and yields exactly one
+      authoritative activation result; retries do not duplicate activation, and reversal
+      occurs only under authorized correction.
+    product: House
+    traces_to:
+      - UC-V2-034
+      - FR-V2-034
+    acceptance_ref:
+      - TEST-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: DEFINED_PRODUCT_RULE
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All activations
+    season_versioned: false
+    jurisdiction_scoped: false
+  - id: RULE-V2-024
+    level: RULE
+    statement: >-
+      Exception and escalation rule: material exceptions raise governed exception states with
+      defined escalation thresholds, owners, and recovery paths, blocking only the affected
+      application step rather than the whole service.
+    product: House
+    traces_to:
+      - UC-V2-035
+      - FR-V2-035
+    acceptance_ref:
+      - TEST-V2-025
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: All exception scenarios
+    season_versioned: false
+    jurisdiction_scoped: true
+    exception_authority: National Affiliation Administrator
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  - id: RULE-V2-025
+    level: RULE
+    statement: >-
+      Reconsideration rule: where policy permits, a refused club may request reconsideration
+      under defined preconditions and governed authority, distinct from resubmission and
+      subject to decision finality where reconsideration is not permitted.
+    product: House
+    traces_to:
+      - UC-V2-036
+    acceptance_ref:
+      - TEST-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+    rule_classification: POLICY_VALIDATION_PENDING
+    policy_owner: National Operating Alignment Authority (Rich)
+    operational_owner: National Affiliation Administrator
+    effective_scope: Refused applications where policy permits reconsideration
+    season_versioned: false
+    jurisdiction_scoped: true
+    exception_authority: National Affiliation Administrator
+    future_blocking_gate: Future affiliation operating-rules validation gate
+  # --- WF: workflows ---
+  - id: WF-V2-006
+    level: WF
+    statement: Pathway determination and requirement resolution workflow.
+    product: House
+    traces_to:
+      - RULE-V2-010
+      - RULE-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-007
+    level: WF
+    statement: Evidence submission and completeness workflow.
+    product: House
+    traces_to:
+      - RULE-V2-016
+      - RULE-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V2-008
+    level: WF
+    statement: Review, decision, correction, and escalation workflow.
+    product: House
+    traces_to:
+      - RULE-V2-019
+      - RULE-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-009
+    level: WF
+    statement: Fee, reconciliation, and activation workflow.
+    product: House
+    traces_to:
+      - RULE-V2-022
+      - RULE-V2-023
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-010
+    level: WF
+    statement: Exception, escalation, and recovery workflow.
+    product: House
+    traces_to:
+      - RULE-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UX: experience surfaces ---
+  - id: UX-V2-009
+    level: UX
+    statement: Pathway and required-action clarity surface for clubs.
+    product: Button
+    traces_to:
+      - WF-V2-006
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-010
+    level: UX
+    statement: Evidence and completeness status surface for clubs.
+    product: Button
+    traces_to:
+      - WF-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-011
+    level: UX
+    statement: Reviewer decision, return, and escalation communication surface.
+    product: Button
+    traces_to:
+      - WF-V2-008
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-012
+    level: UX
+    statement: Fee obligation and activation status surface for clubs.
+    product: Button
+    traces_to:
+      - WF-V2-009
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- DATA: data concepts ---
+  - id: DATA-V2-011
+    level: DATA
+    statement: Policy, terminology, and authority model concept.
+    product: House
+    traces_to:
+      - WF-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-012
+    level: DATA
+    statement: Requirement version and applicability record concept.
+    product: House
+    traces_to:
+      - WF-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-013
+    level: DATA
+    statement: Evidence record with provenance, validity, and applicability concept.
+    product: House
+    traces_to:
+      - WF-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-014
+    level: DATA
+    statement: Derived-completeness record concept traceable to supporting facts.
+    product: House
+    traces_to:
+      - WF-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-015
+    level: DATA
+    statement: Decision and administrative-correction record concept.
+    product: House
+    traces_to:
+      - WF-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-016
+    level: DATA
+    statement: Fee obligation and reconciliation status record concept.
+    product: House
+    traces_to:
+      - WF-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-017
+    level: DATA
+    statement: Authoritative activation result record concept.
+    product: House
+    traces_to:
+      - WF-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-018
+    level: DATA
+    statement: Exception and escalation record concept.
+    product: House
+    traces_to:
+      - WF-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- API: interface concepts (conceptual, not implementation) ---
+  - id: API-V2-009
+    level: API
+    statement: Pathway and requirement-resolution interface concept.
+    product: House
+    traces_to:
+      - DATA-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-010
+    level: API
+    statement: Evidence submission and completeness interface concept.
+    product: House
+    traces_to:
+      - DATA-V2-013
+      - DATA-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-011
+    level: API
+    statement: Review, decision, and correction interface concept.
+    product: House
+    traces_to:
+      - DATA-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-012
+    level: API
+    statement: Fee, reconciliation, and activation interface concept.
+    product: House
+    traces_to:
+      - DATA-V2-016
+      - DATA-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- EVT: events ---
+  - id: EVT-V2-010
+    level: EVT
+    statement: Affiliation pathway determined event.
+    product: House
+    traces_to:
+      - API-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-011
+    level: EVT
+    statement: Applicable requirement set resolved event.
+    product: House
+    traces_to:
+      - API-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-012
+    level: EVT
+    statement: Evidence validated or carry-forward applied event.
+    product: House
+    traces_to:
+      - API-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-013
+    level: EVT
+    statement: Completeness achieved event.
+    product: House
+    traces_to:
+      - API-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-014
+    level: EVT
+    statement: Governed decision recorded event.
+    product: House
+    traces_to:
+      - API-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-015
+    level: EVT
+    statement: Reconciliation confirmed event.
+    product: House
+    traces_to:
+      - API-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: EVT-V2-016
+    level: EVT
+    statement: Affiliation activated event (exactly once).
+    product: House
+    traces_to:
+      - API-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-017
+    level: EVT
+    statement: Exception raised or escalated event.
+    product: House
+    traces_to:
+      - API-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- CTRL: controls ---
+  - id: CTRL-V2-009
+    level: CTRL
+    statement: Deterministic rule-evaluation control (same inputs and versions yield the same result).
+    product: House
+    traces_to:
+      - NFR-V2-013
+      - EVT-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-010
+    level: CTRL
+    statement: Rule-version and effective-date audit control.
+    product: House
+    traces_to:
+      - NFR-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-011
+    level: CTRL
+    statement: Financial-boundary segregation control (no ledger or payment-execution authority in lifecycle).
+    product: House
+    traces_to:
+      - NFR-V2-015
+      - EVT-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-012
+    level: CTRL
+    statement: Exactly-once activation idempotency control.
+    product: House
+    traces_to:
+      - EVT-V2-016
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-013
+    level: CTRL
+    statement: Administrative-correction audit-distinction control.
+    product: House
+    traces_to:
+      - EVT-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-014
+    level: CTRL
+    statement: Evidence confidentiality and restricted-visibility control.
+    product: House
+    traces_to:
+      - NFR-V2-016
+      - EVT-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- TEST: acceptance definitions ---
+  - id: TEST-V2-014
+    level: TEST
+    statement: >-
+      Acceptance: pathway determination selects continuity, remediation, new affiliation, or
+      manual determination correctly for governed input combinations.
+    product: House
+    traces_to:
+      - RULE-V2-010
+      - UC-V2-027
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-015
+    level: TEST
+    statement: >-
+      Acceptance: the applicable requirement set is resolved deterministically from season,
+      pathway, jurisdiction, classification, and policy version, with recorded versions.
+    product: House
+    traces_to:
+      - RULE-V2-014
+      - CTRL-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-016
+    level: TEST
+    statement: >-
+      Acceptance: expired, superseded, or withdrawn evidence is not valid support, and
+      carry-forward applies only where policy and provenance permit.
+    product: House
+    traces_to:
+      - RULE-V2-015
+      - CTRL-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-017
+    level: TEST
+    statement: >-
+      Acceptance: completeness is computed from bound valid evidence and mandatory
+      information and always traces to its supporting facts (never a manual boolean).
+    product: House
+    traces_to:
+      - RULE-V2-016
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-018
+    level: TEST
+    statement: >-
+      Acceptance: submission is blocked unless all submission prerequisites are satisfied.
+    product: House
+    traces_to:
+      - RULE-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-019
+    level: TEST
+    statement: >-
+      Acceptance: review is routed to an eligible, jurisdiction-appropriate reviewer with no
+      disqualifying conflict of interest.
+    product: House
+    traces_to:
+      - RULE-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-020
+    level: TEST
+    statement: >-
+      Acceptance: decision eligibility yields the correct permitted action (return, escalate,
+      approve, refuse, await reconciliation, activate) for governed inputs, including
+      reconsideration where policy permits.
+    product: House
+    traces_to:
+      - RULE-V2-019
+      - RULE-V2-025
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-021
+    level: TEST
+    statement: >-
+      Acceptance: an administrative correction is recorded distinctly from a governed decision
+      change and never substitutes for one.
+    product: House
+    traces_to:
+      - RULE-V2-020
+      - CTRL-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-022
+    level: TEST
+    statement: >-
+      Acceptance: fee obligation is determined from governed fee policy inputs without
+      inventing amounts and without asserting payment or ledger authority.
+    product: House
+    traces_to:
+      - RULE-V2-021
+      - CTRL-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-023
+    level: TEST
+    statement: >-
+      Acceptance: activation does not proceed until fee conditions are satisfied or waived and
+      reconciliation status is confirmed at the boundary.
+    product: House
+    traces_to:
+      - RULE-V2-022
+      - CTRL-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-024
+    level: TEST
+    statement: >-
+      Acceptance: activation is exactly-once; retries and recovery do not produce duplicate
+      activations, and reversal occurs only under authorized correction.
+    product: House
+    traces_to:
+      - RULE-V2-023
+      - CTRL-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-025
+    level: TEST
+    statement: >-
+      Acceptance: material exceptions raise governed exception states with defined escalation
+      and recovery, blocking only the affected step rather than the whole service.
+    product: House
+    traces_to:
+      - RULE-V2-024
+      - CTRL-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending

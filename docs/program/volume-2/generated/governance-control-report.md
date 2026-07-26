@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T01:36:50.243Z
+Generated: 2026-07-26T01:51:39.549Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -27,18 +27,18 @@ Generated: 2026-07-26T01:36:50.243Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 14 |
+| RATIFIED | 22 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.3.0 | 14 |
-| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.1.0 | 12 |
-| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.1.0 | 12 |
-| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.1.0 | 176 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.4.0 | 11 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.4.0 | 18 |
+| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.5.0 | 22 |
+| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.2.0 | 16 |
+| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.2.0 | 15 |
+| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.2.0 | 280 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.6.0 | 16 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.6.0 | 28 |
 
 ## Findings by control
 
@@ -107,3 +107,33 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-018 (PACKAGE-2-2): Product definition only; implementation and procurement unauthorized; not a master development plan
 - APP-V2-018 (PACKAGE-2-2): Volume 2 Package 3 authorized to commence as definition and governance work (DEC-V2-010)
 - APP-V2-018 (PACKAGE-2-2): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V2-019 (V2-12): Controlled affiliation terminology and six-category authority model defined; undefined terms not enforceable
+- APP-V2-020 (V2-13): Pathway determination and seasonal/jurisdictional/versioned applicability rules defined; eligibility thresholds pending policy validation
+- APP-V2-021 (V2-14): Evidence validity, carry-forward, derived-completeness, and submission-prerequisite rules defined; completeness never a manual boolean
+- APP-V2-022 (V2-15): Review, decision, exception, escalation, and reconsideration rules defined; administrative correction distinct from governed decision change
+- APP-V2-023 (V2-16): Fee, payment-boundary, reconciliation, and exactly-once activation rules defined; fee amounts not invented; financial validation pending
+- APP-V2-024 (V2-17): Service operations, support, recovery, and control model defined; service levels classified; no unsupported timing commitment
+- APP-V2-025 (V2-18): Pathway, applicability, and decision-eligibility tables plus RULE->WF->UC->CTRL->TEST acceptance coverage defined; acceptance definition only
+- APP-V2-026 (V2-C): Package 3 closure record ratified
+- APP-V2-026 (V2-C): Package 2 freeze-provenance result recorded (source 071921c; closure/freeze 03488ed; merged f7cf330)
+- APP-V2-027 (GATE-V2-G3): Condition 1: Package 2 freeze provenance is unambiguous (source 071921c; closure/freeze 03488ed; merged f7cf330)
+- APP-V2-027 (GATE-V2-G3): Condition 2: Affiliation operating terminology and authority are controlled (V2-12)
+- APP-V2-027 (GATE-V2-G3): Condition 3: Pathway-selection logic is defined (V2-13)
+- APP-V2-027 (GATE-V2-G3): Condition 4: Seasonal, jurisdictional, and versioned requirement applicability is defined (V2-13)
+- APP-V2-027 (GATE-V2-G3): Condition 5: Evidence validity, carry-forward, completeness, and submission rules are defined (V2-14)
+- APP-V2-027 (GATE-V2-G3): Condition 6: Reviewer assignment, authority, return, resubmission, escalation, and decision rules are defined (V2-15)
+- APP-V2-027 (GATE-V2-G3): Condition 7: Fee, payment, accounting, reconciliation, and activation boundaries are defined (V2-16)
+- APP-V2-027 (GATE-V2-G3): Condition 8: Administrative correction and governed-decision changes are separated (V2-15, V2-16)
+- APP-V2-027 (GATE-V2-G3): Condition 9: Material exception and recovery scenarios are covered (V2-15, V2-17)
+- APP-V2-027 (GATE-V2-G3): Condition 10: Decision tables and acceptance-rule traceability exist (V2-18, REG-203)
+- APP-V2-027 (GATE-V2-G3): Condition 11: Unvalidated policies are explicitly classified and owned (REG-203, V2-C)
+- APP-V2-027 (GATE-V2-G3): Condition 12: No rule or decision authorizes implementation (REG-203, REG-204)
+- APP-V2-027 (GATE-V2-G3): Condition 13: No technical architecture or master development plan is created
+- APP-V2-027 (GATE-V2-G3): Condition 14: Package 3 has had line-level review and is closed with a separate freeze commit
+- APP-V2-028 (PACKAGE-2-3): Freeze source snapshot commit: 4287b63 (contains V2-12..V2-18 and the expanded registers)
+- APP-V2-028 (PACKAGE-2-3): Closure/freeze commit adds V2-C, Gate V2-G3 disposition, and this freeze record; recorded by amendment
+- APP-V2-028 (PACKAGE-2-3): Merged commit is the merge of the Package 3 branch into main; recorded by amendment after merge
+- APP-V2-028 (PACKAGE-2-3): Gate V2-G3 PASS; Volume 2 Package 3 closed and frozen; V2-12..V2-18 and V2-C at 1.0.0
+- APP-V2-028 (PACKAGE-2-3): Operating-rule definition only; implementation, procurement, and architecture unauthorized; not a master development plan
+- APP-V2-028 (PACKAGE-2-3): Volume 2 Package 4 authorized to commence as definition and governance work (DEC-V2-016)
+- APP-V2-028 (PACKAGE-2-3): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate

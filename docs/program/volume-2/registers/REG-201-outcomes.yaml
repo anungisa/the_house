@@ -1,7 +1,7 @@
 register_id: REG-201
 name: Volume 2 Outcome Register
 status: IN_REVIEW
-version: 1.1.0
+version: 1.2.0
 records:
   - id: OUT-V2-001
     statement: >-
@@ -175,3 +175,61 @@ records:
     validation_status: author_asserted
     source_refs:
       - V2-08
+  # --- Package 3: operating-rule outcomes ---
+  - id: OUT-V2-013
+    statement: >-
+      Affiliation behaviour is determined by governed, versioned operating rules that are
+      consistent across seasons and jurisdictions rather than by ad hoc discretion.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-002
+    product: House
+    success_signal: >-
+      For a given season, jurisdiction, and pathway, the applicable rules and requirements
+      are resolvable from a single governed rule set with recorded versions.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-12
+      - V2-13
+  - id: OUT-V2-014
+    statement: >-
+      Fee policy, payment execution, accounting authority, and lifecycle activation are
+      explicitly bounded so financial authority is never conflated with lifecycle authority.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-013
+    product: House
+    success_signal: >-
+      Every activation records governed approval and reconciliation status without the
+      affiliation service asserting ledger or payment-execution authority.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-16
+  - id: OUT-V2-015
+    statement: >-
+      Reviewers and decision authorities operate under explicit, auditable rules, with
+      administrative correction kept distinct from governed decision change.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-005
+    product: House
+    success_signal: >-
+      Every decision and correction records a permitted actor, rationale, evidence, and
+      audit entry, and corrections are distinguishable from governed decision changes.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-15
+  - id: OUT-V2-016
+    statement: >-
+      The affiliation service is operated with defined support, recovery, and control
+      behaviour, with service levels defined or explicitly recorded as pending validation.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-010
+    product: Both
+    success_signal: >-
+      Material operational exceptions have a defined recovery path, and every service level
+      is classified as defined or pending a named validation with no unsupported commitment.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-17

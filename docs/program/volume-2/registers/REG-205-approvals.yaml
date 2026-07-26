@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.4.0
+version: 1.6.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -258,5 +258,148 @@ records:
       - Gate V2-G2 PASS; Volume 2 Package 2 closed and frozen; V2-06..V2-11 and V2-B at 1.0.0
       - Product definition only; implementation and procurement unauthorized; not a master development plan
       - Volume 2 Package 3 authorized to commence as definition and governance work (DEC-V2-010)
+      - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 3 chapter ratifications ---
+  - id: APP-V2-019
+    artifact_id: V2-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Controlled affiliation terminology and six-category authority model defined; undefined terms not enforceable
+    approved_at: null
+  - id: APP-V2-020
+    artifact_id: V2-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Pathway determination and seasonal/jurisdictional/versioned applicability rules defined; eligibility thresholds pending policy validation"
+    approved_at: null
+  - id: APP-V2-021
+    artifact_id: V2-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Evidence validity, carry-forward, derived-completeness, and submission-prerequisite rules defined; completeness never a manual boolean
+    approved_at: null
+  - id: APP-V2-022
+    artifact_id: V2-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Review, decision, exception, escalation, and reconsideration rules defined; administrative correction distinct from governed decision change
+    approved_at: null
+  - id: APP-V2-023
+    artifact_id: V2-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - "Fee, payment-boundary, reconciliation, and exactly-once activation rules defined; fee amounts not invented; financial validation pending"
+    approved_at: null
+  - id: APP-V2-024
+    artifact_id: V2-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Service operations, support, recovery, and control model defined; service levels classified; no unsupported timing commitment
+    approved_at: null
+  - id: APP-V2-025
+    artifact_id: V2-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Pathway, applicability, and decision-eligibility tables plus RULE->WF->UC->CTRL->TEST acceptance coverage defined; acceptance definition only
+    approved_at: null
+  # --- Package 3 closure, gate, and freeze ---
+  - id: APP-V2-026
+    artifact_id: V2-C
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Package 3 closure record ratified
+      - "Package 2 freeze-provenance result recorded (source 071921c; closure/freeze 03488ed; merged f7cf330)"
+    approved_at: null
+  - id: APP-V2-027
+    artifact_id: GATE-V2-G3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: AFFILIATION_OPERATING_RULES_COMPLETE
+    conditions:
+      - "Condition 1: Package 2 freeze provenance is unambiguous (source 071921c; closure/freeze 03488ed; merged f7cf330)"
+      - "Condition 2: Affiliation operating terminology and authority are controlled (V2-12)"
+      - "Condition 3: Pathway-selection logic is defined (V2-13)"
+      - "Condition 4: Seasonal, jurisdictional, and versioned requirement applicability is defined (V2-13)"
+      - "Condition 5: Evidence validity, carry-forward, completeness, and submission rules are defined (V2-14)"
+      - "Condition 6: Reviewer assignment, authority, return, resubmission, escalation, and decision rules are defined (V2-15)"
+      - "Condition 7: Fee, payment, accounting, reconciliation, and activation boundaries are defined (V2-16)"
+      - "Condition 8: Administrative correction and governed-decision changes are separated (V2-15, V2-16)"
+      - "Condition 9: Material exception and recovery scenarios are covered (V2-15, V2-17)"
+      - "Condition 10: Decision tables and acceptance-rule traceability exist (V2-18, REG-203)"
+      - "Condition 11: Unvalidated policies are explicitly classified and owned (REG-203, V2-C)"
+      - "Condition 12: No rule or decision authorizes implementation (REG-203, REG-204)"
+      - "Condition 13: No technical architecture or master development plan is created"
+      - "Condition 14: Package 3 has had line-level review and is closed with a separate freeze commit"
+    approved_at: null
+  - id: APP-V2-028
+    artifact_id: PACKAGE-2-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: AFFILIATION_OPERATING_RULES_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    base_commit: "4287b63"
+    package_provenance:
+      source_snapshot_commit: "4287b63"
+      closure_freeze_commit: TBD
+      merged_commit: TBD
+      note: >-
+        The Package 3 freeze is recorded against distinct commits: source snapshot 4287b63
+        (the authoring commit containing V2-12 through V2-18 and the expanded registers);
+        the closure/freeze commit (the Package 3 closure commit that adds V2-C, the Gate
+        V2-G3 disposition, and this freeze record on branch
+        docs/volume-2-affiliation-operating-rules); and the merged commit (the merge of
+        that branch into main). Unlike Package 1, the source snapshot (4287b63) is a
+        distinct, named commit separate from the closure/freeze commit, so the freeze
+        baseline is unambiguous by construction. The closure/freeze and merged commits are
+        recorded by narrow amendment after they exist. Recorded self-attested /
+        author-verified.
+    frozen_artifacts:
+      - id: V2-12
+        version: 1.0.0
+      - id: V2-13
+        version: 1.0.0
+      - id: V2-14
+        version: 1.0.0
+      - id: V2-15
+        version: 1.0.0
+      - id: V2-16
+        version: 1.0.0
+      - id: V2-17
+        version: 1.0.0
+      - id: V2-18
+        version: 1.0.0
+      - id: V2-C
+        version: 1.0.0
+    amendment_process: >-
+      Changes to frozen Package 3 artifacts require a recorded Volume 2 amendment
+      decision in REG-204 and a superseding approval in REG-205; frozen artifacts are
+      not edited in place.
+    conditions:
+      - "Freeze source snapshot commit: 4287b63 (contains V2-12..V2-18 and the expanded registers)"
+      - Closure/freeze commit adds V2-C, Gate V2-G3 disposition, and this freeze record; recorded by amendment
+      - Merged commit is the merge of the Package 3 branch into main; recorded by amendment after merge
+      - Gate V2-G3 PASS; Volume 2 Package 3 closed and frozen; V2-12..V2-18 and V2-C at 1.0.0
+      - Operating-rule definition only; implementation, procurement, and architecture unauthorized; not a master development plan
+      - Volume 2 Package 4 authorized to commence as definition and governance work (DEC-V2-016)
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
     approved_at: null
