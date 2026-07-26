@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.7.0
+version: 1.8.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -444,6 +444,56 @@ records:
       - V2-26
       - TEST-V2-026
       - TEST-V2-043
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  # --- Package 4 closure, gate, and freeze ---
+  - id: DEC-V2-021
+    class: D1
+    question: >-
+      Is Volume 2 Package 4 complete at Gate V2-G4, and should the Package 4 corpus be
+      frozen?
+    decision: >-
+      Record Gate V2-G4 as PASS with disposition AFFILIATION_SERVICE_EXPERIENCE_COMPLETE and
+      freeze the Package 4 corpus (V2-19 through V2-26 and V2-D at version 1.0.0). All
+      fifteen gate conditions hold: Package 3 provenance unambiguous; all three pathways
+      have detailed service blueprints; applicant, reviewer, administrator, finance,
+      operations, and support experiences defined; governed state and user-visible status
+      separated; required actions identify responsible actors and blocking effects; forms
+      and evidence interactions include draft, correction, replacement, and recovery;
+      material notification and communication triggers defined; support intervention creates
+      no unauthorized decision authority; bilingual, accessibility, privacy, and
+      restricted-evidence requirements represented; material failure and recovery scenarios
+      covered; acceptance scenarios trace to outcomes, rules, controls, and tests;
+      unvalidated experience requirements classified and owned; no requirement authorizes
+      implementation; no technical architecture, delivery plan, or master development plan
+      created; and Package 4 closed with a separate freeze commit. The freeze source
+      snapshot is commit dfe3ae0, distinct from the closure/freeze commit.
+    evidence_refs:
+      - V2-D
+      - GATE-V2-G4
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-022
+    class: D1
+    question: >-
+      Should Volume 2 Package 5 be authorized to commence?
+    decision: >-
+      Authorize Volume 2 Package 5 to commence as the next product-governance package,
+      remaining definition and governance work only. Package 5 does not authorize
+      implementation, procurement, technical architecture, delivery sequencing, staffing,
+      cost planning, or the master development plan, all of which remain pending executive
+      organizational acceptance (Nolan, D0) at a later material-commitment gate. This is a
+      hard stop after Package 4.
+    evidence_refs:
+      - V2-D
+      - GATE-V2-G4
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
