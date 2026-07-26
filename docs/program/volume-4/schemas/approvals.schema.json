@@ -50,6 +50,8 @@
               "provenance_amendment_commit": { "type": "string" },
               "release_merge_commit": { "type": "string" },
               "release_tag": { "type": "string" },
+              "release_tag_object": { "type": "string" },
+              "release_tag_target_commit": { "type": "string" },
               "inherited_baseline_tag": { "type": "string" },
               "note": { "type": "string" }
             }

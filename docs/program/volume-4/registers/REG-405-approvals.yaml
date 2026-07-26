@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.12.0
+version: 1.13.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -1121,4 +1121,32 @@ records:
       - Preserves Gate V4-G5 and its ARCHITECTURE_AND_ENGINEERING_DEFINITION_COMPLETE disposition.
       - Does not reopen or modify frozen Package 5 artifacts V4-39..V4-49 or V4-I, or the Package 5 and whole-volume freezes.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  # ==== Volume 4: release provenance amendment ====
+  - id: APP-V4-072
+    artifact_id: V4-K
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-I
+    supersedes: "APP-V4-071 (released-state interpretation only)"
+    package_provenance:
+      source_snapshot_commit: "ebdd6ce"
+      closure_freeze_commit: "d0af521"
+      original_package_merge_commit: "bab2ea0"
+      provenance_amendment_commit: "439114d"
+      release_merge_commit: "512d28e"
+      release_tag: central-registration-volume-4-v1.0.0
+      release_tag_object: "704eebf"
+      release_tag_target_commit: "512d28e"
+      inherited_baseline_tag: central-registration-volume-3-v1.0.1
+      note: "Completes and corrects the Volume 4 release-provenance record now that the final release merge and annotated tag exist. Distinguishes the Package 5 architecture snapshot (ebdd6ce), the Package 5 and Volume 4 closure-freeze (d0af521), the original Package 5 merge (bab2ea0, not the released state), the V4-J provenance-amendment authoring (439114d), the final Volume 4 release merge (512d28e), the original annotated tag central-registration-volume-4-v1.0.0, its tag object (704eebf), and its target commit (512d28e). Supersedes only the released-state interpretation in APP-V4-071, in which the original Package 5 merge bab2ea0 was recorded as release_merge_commit; APP-V4-071's ratification of V4-J is preserved. Does not move central-registration-volume-4-v1.0.0 and does not pre-record its own future merge or the v1.0.1 tag as established evidence."
+    conditions:
+      - Narrow post-release provenance-metadata amendment only.
+      - Preserves Gate V4-G5 PASS and its ARCHITECTURE_AND_ENGINEERING_DEFINITION_COMPLETE disposition.
+      - Preserves V4-I, the Package 5 freeze (PACKAGE-4-5), and the whole-volume freeze (VOLUME-4).
+      - Supersedes only the incomplete released-state interpretation in APP-V4-071; does not withdraw APP-V4-071's ratification of V4-J.
+      - Does not move the immutable central-registration-volume-4-v1.0.0 tag.
+      - Preserves Volume 5 authorization and every implementation, procurement, staffing, cost, pilot, rollout, launch, and master-development-plan restriction.
     approved_at: null
