@@ -1,0 +1,1245 @@
+register_id: REG-501
+name: Volume 5 Data Catalogue
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Information domains (V5-02) ====
+  - id: DOMAIN-V5-001
+    kind: INFORMATION_DOMAIN
+    title: Organization and Club
+    purpose: Recognized organizations, clubs, and their governed identity as parties to affiliation.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Membership and Affiliation Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Affiliation administration
+      - Governed correction authority
+    permitted_readers:
+      - Reviewers
+      - Finance
+      - Projections
+    jurisdiction_scope: Organization and its PTSO or Member Association
+    classification: INTERNAL
+    correction_authority: Affiliation administration
+    reconciliation_dependency: Organization recognition and continuity
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by Button-facing organization views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-002
+    kind: INFORMATION_DOMAIN
+    title: Organization Recognition and Continuity
+    purpose: Recognition status, continuity, succession, and historical standing of organizations.
+    business_authority: CurlingCanada
+    system_of_record_authority: House
+    data_steward: Membership and Affiliation Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Affiliation administration
+    permitted_readers:
+      - Reviewers
+      - Projections
+    jurisdiction_scope: National and PTSO recognition context
+    classification: INTERNAL
+    correction_authority: National recognition authority
+    reconciliation_dependency: Organization and club
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Non-authoritative continuity views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-003
+    kind: INFORMATION_DOMAIN
+    title: Representative Authority
+    purpose: Persons, authenticated identities, representatives, memberships, and delegated authority.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Identity and Authorization Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Organization administrators
+      - Governed correction authority
+    permitted_readers:
+      - Reviewers
+      - Support
+    jurisdiction_scope: Organization-scoped representative context
+    classification: PERSONAL
+    correction_authority: Identity governance authority
+    reconciliation_dependency: Organization and club
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Non-authoritative representative views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-004
+    kind: INFORMATION_DOMAIN
+    title: Jurisdiction
+    purpose: Jurisdictional structure and the authority boundaries that scope governed data.
+    business_authority: CurlingCanada
+    system_of_record_authority: House
+    data_steward: Governance and Jurisdiction Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - National governance administration
+    permitted_readers:
+      - Reviewers
+      - Projections
+    jurisdiction_scope: National and PTSO jurisdiction hierarchy
+    classification: INTERNAL
+    correction_authority: National governance authority
+    reconciliation_dependency: Organization recognition and continuity
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Reference data for scoped projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-005
+    kind: INFORMATION_DOMAIN
+    title: Season
+    purpose: Affiliation seasons and the temporal envelope for governed affiliation records.
+    business_authority: CurlingCanada
+    system_of_record_authority: House
+    data_steward: Governance and Jurisdiction Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - National governance administration
+    permitted_readers:
+      - Reviewers
+      - Finance
+      - Projections
+    jurisdiction_scope: National season definition
+    classification: INTERNAL
+    correction_authority: National governance authority
+    reconciliation_dependency: Jurisdiction
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Reference data for season-scoped projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-006
+    kind: INFORMATION_DOMAIN
+    title: Affiliation Case
+    purpose: The governed affiliation case that binds an organization to a season and pathway.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Membership and Affiliation Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Affiliation administration
+      - Governance Kernel transitions
+    permitted_readers:
+      - Reviewers
+      - Finance
+      - Projections
+    jurisdiction_scope: Organization and season scope
+    classification: INTERNAL
+    correction_authority: Affiliation administration
+    reconciliation_dependency: Decision and activation
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by Button-facing case status
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-007
+    kind: INFORMATION_DOMAIN
+    title: Pathway
+    purpose: Affiliation pathways that determine applicable requirements for a case.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Membership and Affiliation Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Affiliation administration
+    permitted_readers:
+      - Reviewers
+      - Projections
+    jurisdiction_scope: Organization and season scope
+    classification: INTERNAL
+    correction_authority: Affiliation administration
+    reconciliation_dependency: Policy and requirement versions
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Reference data for required-action projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-008
+    kind: INFORMATION_DOMAIN
+    title: Policy and Requirement Versions
+    purpose: Versioned policy and requirement definitions applicable to affiliation cases.
+    business_authority: CurlingCanada
+    system_of_record_authority: House
+    data_steward: Policy and Requirements Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Policy administration
+    permitted_readers:
+      - Reviewers
+      - Projections
+    jurisdiction_scope: National and PTSO policy context
+    classification: INTERNAL
+    correction_authority: Policy authority
+    reconciliation_dependency: Pathway
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Reference data for requirement projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-009
+    kind: INFORMATION_DOMAIN
+    title: Responses and Acknowledgements
+    purpose: Organization responses and acknowledgements against applicable requirement versions.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Policy and Requirements Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Organization representatives
+    permitted_readers:
+      - Reviewers
+    jurisdiction_scope: Case scope
+    classification: INTERNAL
+    correction_authority: Affiliation administration
+    reconciliation_dependency: Policy and requirement versions
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Inputs to completeness projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-010
+    kind: INFORMATION_DOMAIN
+    title: Evidence Metadata
+    purpose: Governed metadata describing submitted evidence and its provenance.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Evidence and Records Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Organization representatives
+      - Governed correction authority
+    permitted_readers:
+      - Reviewers
+    jurisdiction_scope: Case scope
+    classification: RESTRICTED_EVIDENCE
+    correction_authority: Evidence governance authority
+    reconciliation_dependency: Evidence binary references
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Not projected in public views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-011
+    kind: INFORMATION_DOMAIN
+    title: Evidence Binary References
+    purpose: References to evidence binary objects held in an external object store.
+    business_authority: House
+    system_of_record_authority: External
+    data_steward: Evidence and Records Steward
+    technical_custody: PENDING (external object-store custodian, Volume 8+)
+    permitted_writers:
+      - Governed evidence intake
+    permitted_readers:
+      - Reviewers
+    jurisdiction_scope: Case scope
+    classification: RESTRICTED_EVIDENCE
+    correction_authority: Evidence governance authority
+    reconciliation_dependency: Evidence metadata
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Not projected
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-012
+    kind: INFORMATION_DOMAIN
+    title: Submission Snapshots
+    purpose: Immutable snapshots of applicable versions and submitted facts at submission time.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Evidence and Records Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Governance Kernel transitions
+    permitted_readers:
+      - Reviewers
+    jurisdiction_scope: Case scope
+    classification: INTERNAL
+    correction_authority: Not correctable (append-only snapshot)
+    reconciliation_dependency: Responses and acknowledgements
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Not projected
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-013
+    kind: INFORMATION_DOMAIN
+    title: Review and Assignment
+    purpose: Reviewer assignments and review activity for affiliation cases.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Review Operations Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Review administration
+    permitted_readers:
+      - Reviewers
+    jurisdiction_scope: Case and reviewer scope
+    classification: INTERNAL
+    correction_authority: Review administration
+    reconciliation_dependency: Affiliation case
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by reviewer-queue projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-014
+    kind: INFORMATION_DOMAIN
+    title: Decision
+    purpose: Governed decisions rendered on affiliation cases.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Review Operations Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Governance Kernel transitions
+    permitted_readers:
+      - Reviewers
+      - Finance
+      - Projections
+    jurisdiction_scope: Case scope
+    classification: INTERNAL
+    correction_authority: Governed-decision correction authority
+    reconciliation_dependency: Activation
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by status projections
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-015
+    kind: INFORMATION_DOMAIN
+    title: Fee Obligation
+    purpose: Fee obligations arising from affiliation cases.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Finance Data Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Finance administration
+    permitted_readers:
+      - Finance
+      - Projections
+    jurisdiction_scope: Case and finance scope
+    classification: FINANCIAL_STATUS
+    correction_authority: Finance authority
+    reconciliation_dependency: Reconciliation
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by financial-status views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-016
+    kind: INFORMATION_DOMAIN
+    title: Payment Acknowledgement
+    purpose: Acknowledgements of payment received from an external payment function.
+    business_authority: House
+    system_of_record_authority: External
+    data_steward: Finance Data Steward
+    technical_custody: PENDING (external payment custodian, Volume 8+)
+    permitted_writers:
+      - Governed payment intake
+    permitted_readers:
+      - Finance
+    jurisdiction_scope: Finance scope
+    classification: FINANCIAL_STATUS
+    correction_authority: Finance authority
+    reconciliation_dependency: Reconciliation
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Inputs to financial-status views
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-017
+    kind: INFORMATION_DOMAIN
+    title: Accounting Confirmation
+    purpose: Accounting confirmations from a Curling Canada finance function.
+    business_authority: CurlingCanada
+    system_of_record_authority: External
+    data_steward: Finance Data Steward
+    technical_custody: PENDING (external accounting custodian, Volume 8+)
+    permitted_writers:
+      - Governed accounting intake
+    permitted_readers:
+      - Finance
+    jurisdiction_scope: Finance scope
+    classification: FINANCIAL_STATUS
+    correction_authority: Accounting authority
+    reconciliation_dependency: Reconciliation
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Inputs to financial-status views
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-018
+    kind: INFORMATION_DOMAIN
+    title: Reconciliation
+    purpose: Reconciliation of fee obligations, payment acknowledgements, and accounting confirmations.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Finance Data Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Finance administration
+    permitted_readers:
+      - Finance
+      - Projections
+    jurisdiction_scope: Finance scope
+    classification: FINANCIAL_STATUS
+    correction_authority: Finance authority
+    reconciliation_dependency: Fee obligation
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by financial-status views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-019
+    kind: INFORMATION_DOMAIN
+    title: Activation
+    purpose: Governed activation state distinct from the decision that authorized it.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Membership and Affiliation Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Governance Kernel transitions
+    permitted_readers:
+      - Reviewers
+      - Projections
+    jurisdiction_scope: Case scope
+    classification: INTERNAL
+    correction_authority: Affiliation administration
+    reconciliation_dependency: Decision
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by Button-facing status
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-020
+    kind: INFORMATION_DOMAIN
+    title: Communications
+    purpose: Governed communications and notifications related to affiliation activity.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Communications Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Communications administration
+    permitted_readers:
+      - Support
+    jurisdiction_scope: Case and organization scope
+    classification: INTERNAL
+    correction_authority: Communications administration
+    reconciliation_dependency: Affiliation case
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Not projected in public views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-021
+    kind: INFORMATION_DOMAIN
+    title: Support
+    purpose: Support interactions and context that assist but do not broaden decision authority.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Support Operations Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Support staff
+    permitted_readers:
+      - Support staff
+    jurisdiction_scope: Support-case scope
+    classification: PERSONAL
+    correction_authority: Support administration
+    reconciliation_dependency: Affiliation case
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Not projected
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-022
+    kind: INFORMATION_DOMAIN
+    title: Administrative Corrections
+    purpose: Governed administrative corrections that preserve prior history.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Records Governance Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Governed correction authority
+    permitted_readers:
+      - Reviewers
+      - Audit
+    jurisdiction_scope: Case scope
+    classification: PRIVILEGED_ADMIN
+    correction_authority: Records governance authority
+    reconciliation_dependency: Audit
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Not projected
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-023
+    kind: INFORMATION_DOMAIN
+    title: Audit
+    purpose: Append-only audit of governed activity across the affiliation service.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Records Governance Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Governance Kernel (append-only)
+    permitted_readers:
+      - Audit
+    jurisdiction_scope: Service scope
+    classification: SECURITY_AUDIT
+    correction_authority: Not correctable (append-only)
+    reconciliation_dependency: All governed domains
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Sourced by audit views
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-024
+    kind: INFORMATION_DOMAIN
+    title: Projections
+    purpose: Non-authoritative read models derived from authoritative domains.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Projection Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Projection rebuild processes
+    permitted_readers:
+      - Button
+      - Staff
+    jurisdiction_scope: Derived from source scope
+    classification: INTERNAL
+    correction_authority: Rebuild from authoritative sources
+    reconciliation_dependency: Source domains
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Is itself the projection tier
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: DOMAIN-V5-025
+    kind: INFORMATION_DOMAIN
+    title: Analytics and Exports
+    purpose: Analytics datasets and governed exports derived from authoritative data.
+    business_authority: House
+    system_of_record_authority: House
+    data_steward: Analytics Governance Steward
+    technical_custody: PENDING (Volume 8+ logical design)
+    permitted_writers:
+      - Analytics export processes
+    permitted_readers:
+      - Analytics consumers
+    jurisdiction_scope: Derived and aggregate scope
+    classification: ANALYTICS_AGGREGATE
+    correction_authority: Rebuild from authoritative sources
+    reconciliation_dependency: Source domains
+    retention_policy_status: PENDING (records-policy authority)
+    projection_relationship: Non-authoritative derived data
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  # ==== Conceptual entities (V5-03) ====
+  - id: ENTITY-V5-001
+    kind: CONCEPTUAL_ENTITY
+    title: Organization
+    purpose: A recognized organization that can be a party to affiliation.
+    owning_domain: DOMAIN-V5-001
+    meaning: An institutional party with governed identity, distinct from any affiliation it holds.
+    natural_identity: Legal or recognized organization name and jurisdiction
+    governed_identity: Governed organization identifier (assigned, non-physical)
+    lifecycle: Recognized, active, suspended, closed
+    authority: House
+    cardinality: One organization to many affiliation cases across seasons
+    temporal_posture: Continuity preserved across seasons
+    correction_posture: Governed correction preserves prior identity history
+    merge_split_posture: Merge or split is a governed operation, never silent
+    audit_expectation: All identity changes audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-002
+    kind: CONCEPTUAL_ENTITY
+    title: Club
+    purpose: A club as a specific kind of recognized organization.
+    owning_domain: DOMAIN-V5-001
+    meaning: A member-facing organization within a jurisdiction.
+    natural_identity: Club name within a PTSO jurisdiction
+    governed_identity: Governed organization identifier
+    lifecycle: Recognized, active, suspended, closed
+    authority: House
+    cardinality: Many clubs to one PTSO
+    temporal_posture: Continuity preserved across seasons
+    correction_posture: Governed correction preserves history
+    merge_split_posture: Governed operation only
+    audit_expectation: Recognition and continuity audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-003
+    kind: CONCEPTUAL_ENTITY
+    title: PTSO or Member Association
+    purpose: A provincial/territorial sport organization or member association.
+    owning_domain: DOMAIN-V5-001
+    meaning: A jurisdictional parent organization for clubs.
+    natural_identity: Association name and jurisdiction
+    governed_identity: Governed organization identifier
+    lifecycle: Recognized, active, closed
+    authority: CurlingCanada
+    cardinality: One PTSO to many clubs
+    temporal_posture: Continuity preserved
+    correction_posture: Governed correction preserves history
+    merge_split_posture: Governed operation only
+    audit_expectation: Jurisdictional changes audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-004
+    kind: CONCEPTUAL_ENTITY
+    title: National Organization
+    purpose: The national organization within the jurisdictional hierarchy.
+    owning_domain: DOMAIN-V5-002
+    meaning: The national recognition and escalation authority.
+    natural_identity: National organization designation
+    governed_identity: Governed organization identifier
+    lifecycle: Recognized, active
+    authority: CurlingCanada
+    cardinality: One national organization to many PTSOs
+    temporal_posture: Continuity preserved
+    correction_posture: Governed correction preserves history
+    merge_split_posture: Governed operation only
+    audit_expectation: Recognition changes audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-005
+    kind: CONCEPTUAL_ENTITY
+    title: Person
+    purpose: A natural person, distinct from any authenticated account.
+    owning_domain: DOMAIN-V5-003
+    meaning: A human party; not equal to an authenticated account.
+    natural_identity: Personal identity attributes (minimized)
+    governed_identity: Governed person reference (non-physical)
+    lifecycle: Referenced, active, historical
+    authority: House
+    cardinality: One person to many roles and accounts
+    temporal_posture: Historical references preserved
+    correction_posture: Identity resolution is a governed operation
+    merge_split_posture: Governed merge only; never silent
+    audit_expectation: Identity resolution audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-006
+    kind: CONCEPTUAL_ENTITY
+    title: Authenticated Identity
+    purpose: An authenticated account, distinct from the person who holds it.
+    owning_domain: DOMAIN-V5-003
+    meaning: A credentialed account; not equal to a person.
+    natural_identity: Authentication subject reference
+    governed_identity: Governed account reference
+    lifecycle: Provisioned, active, revoked
+    authority: External
+    cardinality: Many accounts may reference one person
+    temporal_posture: Account history preserved
+    correction_posture: Account-to-person binding is governed
+    merge_split_posture: Rebinding is a governed operation
+    audit_expectation: Binding changes audited
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-007
+    kind: CONCEPTUAL_ENTITY
+    title: Organization Representative
+    purpose: A person acting for an organization within a defined authority scope.
+    owning_domain: DOMAIN-V5-003
+    meaning: A governed relationship granting a person representative authority.
+    natural_identity: Person and organization pairing
+    governed_identity: Governed representative reference
+    lifecycle: Granted, active, revoked
+    authority: House
+    cardinality: Many representatives to one organization
+    temporal_posture: Authority history preserved
+    correction_posture: Governed revocation preserves history
+    merge_split_posture: Not applicable
+    audit_expectation: Grants and revocations audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-008
+    kind: CONCEPTUAL_ENTITY
+    title: Organization Membership
+    purpose: Membership of a person in an organization, distinct from representative authority.
+    owning_domain: DOMAIN-V5-003
+    meaning: Membership does not by itself confer representative or resource authority.
+    natural_identity: Person and organization membership pairing
+    governed_identity: Governed membership reference
+    lifecycle: Enrolled, active, lapsed
+    authority: House
+    cardinality: Many memberships to one organization
+    temporal_posture: Membership history preserved
+    correction_posture: Governed correction preserves history
+    merge_split_posture: Not applicable
+    audit_expectation: Membership changes audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-009
+    kind: CONCEPTUAL_ENTITY
+    title: Delegated Authority
+    purpose: A scoped delegation of authority to a representative.
+    owning_domain: DOMAIN-V5-003
+    meaning: A bounded grant that scopes what a representative may do.
+    natural_identity: Delegation grant reference
+    governed_identity: Governed delegation reference
+    lifecycle: Granted, active, expired, revoked
+    authority: House
+    cardinality: Many delegations to one representative
+    temporal_posture: Delegation history preserved
+    correction_posture: Governed revocation preserves history
+    merge_split_posture: Not applicable
+    audit_expectation: Delegations audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-010
+    kind: CONCEPTUAL_ENTITY
+    title: Reviewer Assignment
+    purpose: The assignment of a specific reviewer to a case, distinct from the reviewer role.
+    owning_domain: DOMAIN-V5-013
+    meaning: An assigned reviewer differs from any person holding the reviewer role.
+    natural_identity: Reviewer and case pairing
+    governed_identity: Governed assignment reference
+    lifecycle: Assigned, active, released
+    authority: House
+    cardinality: One case to one active reviewer assignment
+    temporal_posture: Assignment history preserved
+    correction_posture: Reassignment is governed
+    merge_split_posture: Not applicable
+    audit_expectation: Assignments audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-011
+    kind: CONCEPTUAL_ENTITY
+    title: Finance Authority
+    purpose: The authority that governs fee and reconciliation decisions.
+    owning_domain: DOMAIN-V5-015
+    meaning: A scoped authority over financial-status information.
+    natural_identity: Finance role and scope
+    governed_identity: Governed finance-authority reference
+    lifecycle: Granted, active, revoked
+    authority: House
+    cardinality: Many finance authorities to a finance scope
+    temporal_posture: Authority history preserved
+    correction_posture: Governed revocation preserves history
+    merge_split_posture: Not applicable
+    audit_expectation: Finance authority changes audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-012
+    kind: CONCEPTUAL_ENTITY
+    title: Support Relationship
+    purpose: A support relationship that assists a party without broadening decision authority.
+    owning_domain: DOMAIN-V5-021
+    meaning: Support context never widens governed authority.
+    natural_identity: Support agent and party pairing
+    governed_identity: Governed support-relationship reference
+    lifecycle: Opened, active, closed
+    authority: House
+    cardinality: Many support relationships to one party
+    temporal_posture: Support history preserved
+    correction_posture: Governed correction preserves history
+    merge_split_posture: Not applicable
+    audit_expectation: Support access audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-013
+    kind: CONCEPTUAL_ENTITY
+    title: External-System Identity
+    purpose: An identity reference originating in an external system.
+    owning_domain: DOMAIN-V5-016
+    meaning: An external identity retains its source provenance and is not a governed merge.
+    natural_identity: External system and external key reference
+    governed_identity: Governed external-identity reference
+    lifecycle: Imported, active, superseded
+    authority: External
+    cardinality: Many external identities to one governed party
+    temporal_posture: Source provenance preserved
+    correction_posture: Source-system correction is distinct from governed correction
+    merge_split_posture: Governed match only; never silent
+    audit_expectation: Imports and matches audited
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: ENTITY-V5-014
+    kind: CONCEPTUAL_ENTITY
+    title: Historical Identity Reference
+    purpose: A reference to a historical identity that is not current authority.
+    owning_domain: DOMAIN-V5-002
+    meaning: A historical record is not current authority.
+    natural_identity: Prior identity attributes at a point in time
+    governed_identity: Governed historical reference
+    lifecycle: Recorded, superseded
+    authority: House
+    cardinality: Many historical references to one current party
+    temporal_posture: Point-in-time truth preserved
+    correction_posture: Not correctable in place; superseded
+    merge_split_posture: Not applicable
+    audit_expectation: Supersession audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  # ==== Conceptual relationships (V5-03 / V5-04) ====
+  - id: REL-V5-001
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Organization holds affiliation case
+    purpose: Binds a recognized organization to a governed affiliation case.
+    endpoints:
+      - ENTITY-V5-001
+      - DOMAIN-V5-006
+    relationship_invariant: An affiliation case belongs to exactly one recognized organization.
+    cardinality: One organization to many cases across seasons
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-04
+  - id: REL-V5-002
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Representative acts for organization
+    purpose: A representative acts for an organization within a scoped authority.
+    endpoints:
+      - ENTITY-V5-007
+      - ENTITY-V5-001
+    relationship_invariant: Representative authority is explicit and scoped, never implied by membership.
+    cardinality: Many representatives to one organization
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: REL-V5-003
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Membership distinct from representative authority
+    purpose: Distinguishes organization membership from representative authority.
+    endpoints:
+      - ENTITY-V5-008
+      - ENTITY-V5-009
+    relationship_invariant: Membership does not confer representative or resource authority.
+    cardinality: Membership and delegated authority are separate governed facts
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: REL-V5-004
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Person holds authenticated identity
+    purpose: Binds a person to one or more authenticated accounts without conflation.
+    endpoints:
+      - ENTITY-V5-005
+      - ENTITY-V5-006
+    relationship_invariant: A person is not equal to an authenticated account.
+    cardinality: One person to many accounts
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: REL-V5-005
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Reviewer assignment binds reviewer to review
+    purpose: Binds an assigned reviewer to review activity on a case.
+    endpoints:
+      - ENTITY-V5-010
+      - DOMAIN-V5-013
+    relationship_invariant: A reviewer role is not the same as an assigned reviewer.
+    cardinality: One case to one active reviewer assignment
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-04
+  - id: REL-V5-006
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Finance authority scopes fee obligation
+    purpose: Scopes financial-status information to a finance authority.
+    endpoints:
+      - ENTITY-V5-011
+      - DOMAIN-V5-015
+    relationship_invariant: Financial-status information is scoped to explicit finance authority.
+    cardinality: Many finance authorities to a finance scope
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-04
+  - id: REL-V5-007
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Delegated authority scopes representative
+    purpose: A delegation bounds what a representative may do.
+    endpoints:
+      - ENTITY-V5-009
+      - ENTITY-V5-007
+    relationship_invariant: A role is not a resource authority; delegation is explicit.
+    cardinality: Many delegations to one representative
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  - id: REL-V5-008
+    kind: CONCEPTUAL_RELATIONSHIP
+    title: Historical identity references current party
+    purpose: Links a historical identity reference to the current party.
+    endpoints:
+      - ENTITY-V5-014
+      - ENTITY-V5-005
+    relationship_invariant: A historical record is not current authority.
+    cardinality: Many historical references to one current party
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  # ==== Data products (V5-09) ====
+  - id: DATA-V5-001
+    kind: DATA_PRODUCT
+    title: Button-facing status
+    purpose: Non-authoritative affiliation status presented to Button-facing consumers.
+    authoritative_source: DOMAIN-V5-019 DOMAIN-V5-014 DOMAIN-V5-006
+    derivation: Derived from governed decision and activation state.
+    consumer: Button
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit and detectable
+    security_scope: Organization-scoped
+    privacy_minimization: Minimum necessary status only
+    rebuild_source: Decision and activation domains
+    export_authority: Not exportable without authority
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-002
+    kind: DATA_PRODUCT
+    title: Required actions
+    purpose: Non-authoritative list of outstanding required actions for a case.
+    authoritative_source: DOMAIN-V5-006 DOMAIN-V5-008
+    derivation: Derived from applicable requirement versions and case completeness.
+    consumer: Button
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Organization-scoped
+    privacy_minimization: Minimum necessary action items
+    rebuild_source: Affiliation case and policy versions
+    export_authority: Not exportable without authority
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-003
+    kind: DATA_PRODUCT
+    title: Reviewer queues
+    purpose: Non-authoritative reviewer work queues.
+    authoritative_source: DOMAIN-V5-013
+    derivation: Derived from review and assignment state.
+    consumer: Staff
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Reviewer-scoped
+    privacy_minimization: Minimum necessary case references
+    rebuild_source: Review and assignment domain
+    export_authority: Not exportable without authority
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-004
+    kind: DATA_PRODUCT
+    title: Aging views
+    purpose: Non-authoritative aging analysis of open cases.
+    authoritative_source: DOMAIN-V5-006
+    derivation: Derived from case timestamps.
+    consumer: Staff
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Staff-scoped
+    privacy_minimization: Aggregate case references
+    rebuild_source: Affiliation case domain
+    export_authority: Not exportable without authority
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-005
+    kind: DATA_PRODUCT
+    title: Financial-status views
+    purpose: Non-authoritative financial-status projections.
+    authoritative_source: DOMAIN-V5-015 DOMAIN-V5-016 DOMAIN-V5-017 DOMAIN-V5-018
+    derivation: Derived from fee, payment, accounting, and reconciliation state.
+    consumer: Staff
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Finance-scoped
+    privacy_minimization: Financial-status minimum necessary
+    rebuild_source: Finance domains
+    export_authority: Finance authority required
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-006
+    kind: DATA_PRODUCT
+    title: Management reports
+    purpose: Non-authoritative management reporting.
+    authoritative_source: DOMAIN-V5-014 DOMAIN-V5-006
+    derivation: Derived from decision and case state.
+    consumer: Staff
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Management-scoped
+    privacy_minimization: Aggregate reporting only
+    rebuild_source: Decision and case domains
+    export_authority: Not exportable without authority
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-007
+    kind: DATA_PRODUCT
+    title: Operational assurance views
+    purpose: Non-authoritative operational assurance and monitoring views.
+    authoritative_source: DOMAIN-V5-023
+    derivation: Derived from audit and operational signals.
+    consumer: Staff
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Operations-scoped
+    privacy_minimization: Minimum necessary operational data
+    rebuild_source: Audit domain
+    export_authority: Not exportable without authority
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-008
+    kind: DATA_PRODUCT
+    title: Analytics datasets
+    purpose: Non-authoritative analytics datasets preserving governed semantics.
+    authoritative_source: DOMAIN-V5-025 DOMAIN-V5-006
+    derivation: Derived from authoritative domains with preserved semantics.
+    consumer: Analytics consumers
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Analytics-scoped
+    privacy_minimization: Minimized and aggregated
+    rebuild_source: Analytics and exports domain
+    export_authority: Export authority required
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-009
+    kind: DATA_PRODUCT
+    title: Research extracts
+    purpose: Non-authoritative research extracts under governed authority.
+    authoritative_source: DOMAIN-V5-025
+    derivation: Derived, minimized research datasets.
+    consumer: Research consumers
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Research-scoped
+    privacy_minimization: Strong minimization and de-identification dependency
+    rebuild_source: Analytics and exports domain
+    export_authority: Export authority required
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-010
+    kind: DATA_PRODUCT
+    title: Exports
+    purpose: Non-authoritative governed exports preserving source and transformation lineage.
+    authoritative_source: DOMAIN-V5-025
+    derivation: Derived exports with preserved lineage.
+    consumer: Authorized external consumers
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Export-scoped
+    privacy_minimization: Minimum necessary export fields
+    rebuild_source: Analytics and exports domain
+    export_authority: Export authority required
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  - id: DATA-V5-011
+    kind: DATA_PRODUCT
+    title: Audit views
+    purpose: Non-authoritative read views over the append-only audit record.
+    authoritative_source: DOMAIN-V5-023
+    derivation: Derived read model over audit.
+    consumer: Audit
+    refresh_posture: Rebuilt from authoritative sources
+    staleness_representation: Staleness is explicit
+    security_scope: Audit-scoped
+    privacy_minimization: Minimum necessary audit fields
+    rebuild_source: Audit domain
+    export_authority: Audit authority required
+    retention_dependency: PENDING (records-policy authority)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  # ==== Classifications (V5-07) ====
+  - id: CLASS-V5-001
+    kind: CLASSIFICATION
+    title: Public organizational information
+    purpose: Information appropriate for public visibility.
+    classification: PUBLIC
+    permitted_purpose: Public organizational reference
+    minimum_necessary: Public organization attributes only
+    permitted_audiences:
+      - Public
+    export_restrictions: No restricted fields
+    logging_restrictions: Standard logging
+    analytics_restrictions: Aggregate analytics permitted
+    correction_authority: Affiliation administration
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: Low
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-002
+    kind: CLASSIFICATION
+    title: Internal operational information
+    purpose: Operational information internal to governed operations.
+    classification: INTERNAL
+    permitted_purpose: Internal operations
+    minimum_necessary: Minimum necessary operational fields
+    permitted_audiences:
+      - Staff
+      - Reviewers
+    export_restrictions: Not exported without authority
+    logging_restrictions: Standard logging with minimization
+    analytics_restrictions: Governed analytics only
+    correction_authority: Affiliation administration
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: Medium
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-003
+    kind: CLASSIFICATION
+    title: Personal information
+    purpose: Personal information about identifiable persons.
+    classification: PERSONAL
+    permitted_purpose: Governed affiliation and identity operations
+    minimum_necessary: Strict data minimization
+    permitted_audiences:
+      - Authorized staff
+    export_restrictions: Export minimized and authorized
+    logging_restrictions: Personal data excluded from logs where possible
+    analytics_restrictions: De-identification dependency
+    correction_authority: Identity governance authority
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: High
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-004
+    kind: CLASSIFICATION
+    title: Restricted evidence
+    purpose: Evidence content and metadata with restricted access.
+    classification: RESTRICTED_EVIDENCE
+    permitted_purpose: Governed review and decision
+    minimum_necessary: Evidence minimum necessary to a requirement
+    permitted_audiences:
+      - Assigned reviewers
+    export_restrictions: Export prohibited without evidence authority
+    logging_restrictions: Evidence content excluded from logs
+    analytics_restrictions: Excluded from analytics
+    correction_authority: Evidence governance authority
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: High
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-005
+    kind: CLASSIFICATION
+    title: Financial-status information
+    purpose: Fee, payment, accounting, and reconciliation status.
+    classification: FINANCIAL_STATUS
+    permitted_purpose: Governed finance operations
+    minimum_necessary: Financial-status minimum necessary
+    permitted_audiences:
+      - Finance authority
+    export_restrictions: Finance authority required
+    logging_restrictions: Financial detail minimized in logs
+    analytics_restrictions: Aggregate finance analytics only
+    correction_authority: Finance authority
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: High
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-006
+    kind: CLASSIFICATION
+    title: Privileged administrative information
+    purpose: Privileged administrative and correction information.
+    classification: PRIVILEGED_ADMIN
+    permitted_purpose: Governed administration and correction
+    minimum_necessary: Minimum necessary administrative fields
+    permitted_audiences:
+      - Records governance authority
+    export_restrictions: Not exported
+    logging_restrictions: Access logged
+    analytics_restrictions: Excluded from analytics
+    correction_authority: Records governance authority
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: High
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-007
+    kind: CLASSIFICATION
+    title: Security and audit information
+    purpose: Security and append-only audit information.
+    classification: SECURITY_AUDIT
+    permitted_purpose: Governed audit and security operations
+    minimum_necessary: Minimum necessary audit fields
+    permitted_audiences:
+      - Audit
+    export_restrictions: Audit authority required
+    logging_restrictions: Integrity-protected
+    analytics_restrictions: Excluded from general analytics
+    correction_authority: Not correctable (append-only)
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: High
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: CLASS-V5-008
+    kind: CLASSIFICATION
+    title: Analytics and aggregate information
+    purpose: Derived analytics and aggregate information.
+    classification: ANALYTICS_AGGREGATE
+    permitted_purpose: Governed analytics
+    minimum_necessary: Aggregated and minimized
+    permitted_audiences:
+      - Analytics consumers
+    export_restrictions: Export authority required
+    logging_restrictions: Standard logging
+    analytics_restrictions: Preserves governed semantics
+    correction_authority: Rebuild from authoritative sources
+    retention_dependency: PENDING (records-policy authority)
+    deletion_authority_dependency: PENDING (deletion authority)
+    incident_implication: Medium
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-07

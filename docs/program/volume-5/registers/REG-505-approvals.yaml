@@ -1,0 +1,193 @@
+register_id: REG-505
+name: Volume 5 Approval Register
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Package 1: chapter ratifications ====
+  - id: APP-V5-001
+    artifact_id: V5-00
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume control, inheritance, and data-definition authority defined.
+      - Authorizes no implementation, physical schema, migration, procurement, or plan.
+    approved_at: null
+  - id: APP-V5-002
+    artifact_id: V5-01
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data doctrine, principles, and governance model defined.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-003
+    artifact_id: V5-02
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Information-domain catalogue and authority matrix defined with explicit ownership.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-004
+    artifact_id: V5-03
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Conceptual identity, organization, party, and relationship model defined without physical schema.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-005
+    artifact_id: V5-04
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Affiliation, season, policy, requirement, and evidence conceptual model defined.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-006
+    artifact_id: V5-05
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Tenant, jurisdiction, season, and information-scope model defined with fail-closed cross-scope rules.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-007
+    artifact_id: V5-06
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Temporal truth, versioning, provenance, and lineage model defined.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-008
+    artifact_id: V5-07
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Classification, minimization, access, and records dependencies defined.
+      - Establishes no unsupported retention schedule and claims no compliance implementation.
+    approved_at: null
+  - id: APP-V5-009
+    artifact_id: V5-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data quality, correction, reconciliation, and stewardship model defined with distinct correction types.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-010
+    artifact_id: V5-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Projection, reporting, analytics, export, and derived-data model defined as non-authoritative.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-011
+    artifact_id: V5-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data validation backlog and downstream constraints defined with owners and future gates.
+      - Authorizes no implementation.
+    approved_at: null
+  # ==== Package 1: closure, gate disposition, and freeze ====
+  - id: APP-V5-012
+    artifact_id: V5-A
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-A
+    conditions:
+      - Package 1 closure record consolidates the data-governance foundation.
+      - Records Gate V5-G1 disposition and Package 2 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-013
+    artifact_id: GATE-V5-G1
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: DATA_GOVERNANCE_FOUNDATION_READY
+    closure_record: V5-A
+    conditions:
+      - Corrected Volume 4 release provenance is inherited.
+      - Data-definition authority and amendment rules are controlled.
+      - Data principles and governance responsibilities are defined.
+      - Information domains have explicit business authority, stewardship, and system-of-record posture.
+      - Conceptual identities and relationships are defined without physical schema design.
+      - Organization, jurisdiction, season, and affiliation scope are explicit.
+      - Policy, requirement, evidence, submission, decision, reconciliation, and activation relationships are defined.
+      - Temporal truth, versioning, provenance, and lineage are represented.
+      - Classification, minimization, access, and records dependencies are defined.
+      - Data quality, correction, identity resolution, and reconciliation are distinguished.
+      - Projections, analytics, reports, and exports remain non-authoritative.
+      - Unresolved assumptions have owners, evidence requirements, and future gates.
+      - Volume 4 architecture constraints trace into Volume 5.
+      - No record authorizes implementation.
+      - No physical schema, table, column, index, DDL, ORM mapping, migration, pipeline, infrastructure, procurement, delivery sequence, or master development plan is created.
+      - Package 1 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V5-014
+    artifact_id: PACKAGE-5-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-A
+    frozen: true
+    frozen_artifacts:
+      - id: V5-00
+        version: 1.0.0
+      - id: V5-01
+        version: 1.0.0
+      - id: V5-02
+        version: 1.0.0
+      - id: V5-03
+        version: 1.0.0
+      - id: V5-04
+        version: 1.0.0
+      - id: V5-05
+        version: 1.0.0
+      - id: V5-06
+        version: 1.0.0
+      - id: V5-07
+        version: 1.0.0
+      - id: V5-08
+        version: 1.0.0
+      - id: V5-09
+        version: 1.0.0
+      - id: V5-10
+        version: 1.0.0
+      - id: V5-A
+        version: 1.0.0
+    conditions:
+      - Package 1 corpus frozen; changes require the recorded amendment process.
+      - Freeze committed separately from authoring per Gate V5-G1 condition 16.
+      - Authorizes no implementation.
+    approved_at: null

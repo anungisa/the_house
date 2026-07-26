@@ -1,0 +1,398 @@
+[
+  {
+    "id": "DOMAIN-V5-001",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-002",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-003",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-004",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-005",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-006",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-007",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-008",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-009",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-010",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-011",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-012",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-013",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-014",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-015",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-016",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-017",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-018",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-019",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-020",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-021",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-022",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-023",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-024",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DOMAIN-V5-025",
+    "kind": "INFORMATION_DOMAIN",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-001",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-002",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-003",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-004",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-005",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-006",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-007",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-008",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-009",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-010",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-011",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-012",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-013",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "ENTITY-V5-014",
+    "kind": "CONCEPTUAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-001",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-002",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-003",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-004",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-005",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-006",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-007",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REL-V5-008",
+    "kind": "CONCEPTUAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-001",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-002",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-003",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-004",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-005",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-006",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-007",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-008",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-009",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-010",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DATA-V5-011",
+    "kind": "DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-001",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-002",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-003",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-004",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-005",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-006",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-007",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CLASS-V5-008",
+    "kind": "CLASSIFICATION",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  }
+]

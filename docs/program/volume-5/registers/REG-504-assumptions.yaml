@@ -1,0 +1,451 @@
+register_id: REG-504
+name: Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Assumptions ====
+  - id: ASM-V5-001
+    kind: ASM
+    title: Corrected Volume 4 baseline is authoritative for Volume 5
+    statement: Volume 5 assumes the corrected Volume 4 v1.0.1 release baseline as its architecture inheritance.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    affected_domain: DOMAIN-V5-006
+    classification: INTERNAL
+    current_evidence: V4-K release-provenance amendment and v1.0.1 tag
+    confidence: HIGH
+    required_decision: None (baseline confirmed)
+    required_evidence: Release lineage in REG-405 APP-V4-072
+    target_package_or_volume: Volume 5 Package 1
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
+  - id: ASM-V5-002
+    kind: ASM
+    title: Records-policy authority will define retention and deletion
+    statement: An approved records-policy authority is assumed to later define retention schedules and deletion rules.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-010
+    classification: INTERNAL
+    current_evidence: Retention-policy status recorded as pending
+    confidence: MEDIUM
+    required_decision: Records-policy authority ratification
+    required_evidence: Approved records policy
+    target_package_or_volume: Volume 11
+    future_blocking_gate: V5-G1
+    implementation_implication: Retention not implementable until approved
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-07
+  - id: ASM-V5-003
+    kind: ASM
+    title: External finance and evidence systems remain systems of record for their data
+    statement: External payment, accounting, and object-store systems are assumed to remain systems of record for their held data.
+    owner: Finance Data Steward
+    affected_domain: DOMAIN-V5-016
+    classification: FINANCIAL_STATUS
+    current_evidence: External system-of-record authority recorded in catalogue
+    confidence: MEDIUM
+    required_decision: Integration semantics confirmation
+    required_evidence: Volume 8 contract schemas
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V5-G1
+    implementation_implication: None in Package 1
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  # ==== Risks ====
+  - id: RISK-V5-001
+    kind: RISK
+    title: Organization identity ambiguity
+    statement: Duplicate or ambiguous organization identities could undermine governed affiliation truth.
+    owner: Membership and Affiliation Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: Uniqueness quality dimension defined
+    confidence: MEDIUM
+    required_decision: Identity resolution policy
+    required_evidence: Identity resolution validation
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V5-G1
+    implementation_implication: Migration must resolve duplicates
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: RISK-V5-002
+    kind: RISK
+    title: Cross-jurisdiction data leakage
+    statement: Improper scoping could allow cross-jurisdiction access to governed data.
+    owner: Governance and Jurisdiction Steward
+    affected_domain: DOMAIN-V5-004
+    classification: INTERNAL
+    current_evidence: Jurisdiction-alignment quality dimension and scope rules defined
+    confidence: MEDIUM
+    required_decision: Scope isolation validation
+    required_evidence: Volume 6 trust and privacy validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V5-G1
+    implementation_implication: Scope must fail closed
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-05
+  - id: RISK-V5-003
+    kind: RISK
+    title: Projection divergence from authoritative state
+    statement: Projections could diverge from authoritative state and mislead consumers.
+    owner: Projection Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Staleness representation required for products
+    confidence: MEDIUM
+    required_decision: Rebuild and staleness policy
+    required_evidence: Volume 9 testing evidence
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V5-G1
+    implementation_implication: Staleness must be detectable
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-09
+  # ==== Exceptions ====
+  - id: EXC-V5-001
+    kind: EXC
+    title: Evidence binary system-of-record is external
+    statement: Evidence binary references are held in an external object store rather than a House system of record.
+    owner: Evidence and Records Steward
+    affected_domain: DOMAIN-V5-011
+    classification: RESTRICTED_EVIDENCE
+    current_evidence: External system-of-record authority recorded with House business authority
+    confidence: MEDIUM
+    required_decision: Object-store custody confirmation
+    required_evidence: Volume 8 storage semantics
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V5-G1
+    implementation_implication: Custody boundary preserved
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-02
+  - id: EXC-V5-002
+    kind: EXC
+    title: Authenticated identity authority is external
+    statement: Authenticated identity is governed by an external authentication authority, while person governance remains with The House.
+    owner: Identity and Authorization Steward
+    affected_domain: DOMAIN-V5-003
+    classification: PERSONAL
+    current_evidence: Authenticated identity authority recorded as External
+    confidence: MEDIUM
+    required_decision: Account-to-person binding policy
+    required_evidence: Volume 6 trust validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V5-G1
+    implementation_implication: Binding is a governed operation
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-03
+  # ==== Validation backlog (V5-10) ====
+  - id: TEST-V5-001
+    kind: VALIDATION
+    title: Authoritative ownership validation
+    statement: Confirm the authoritative owner of every information domain with the relevant business authority.
+    owner: Membership and Affiliation Steward
+    affected_domain: DOMAIN-V5-006
+    classification: INTERNAL
+    current_evidence: Authority matrix defined
+    confidence: MEDIUM
+    required_decision: Ownership confirmation
+    required_evidence: Business-authority sign-off
+    target_package_or_volume: Volume 5 Package 2
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-002
+    kind: VALIDATION
+    title: Organization identity validation
+    statement: Validate governed organization identity rules against real organization data.
+    owner: Membership and Affiliation Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: Conceptual identity model defined
+    confidence: MEDIUM
+    required_decision: Identity rules confirmation
+    required_evidence: Sample data validation
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V5-G1
+    implementation_implication: Migration dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-003
+    kind: VALIDATION
+    title: Historical duplicate resolution validation
+    statement: Validate the approach for resolving historical duplicate organizations and persons.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-002
+    classification: INTERNAL
+    current_evidence: Uniqueness and identity-resolution model defined
+    confidence: LOW
+    required_decision: Duplicate resolution policy
+    required_evidence: Historical data analysis
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V5-G1
+    implementation_implication: Migration dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-004
+    kind: VALIDATION
+    title: Person and account relationship validation
+    statement: Validate the distinction and binding between persons and authenticated accounts.
+    owner: Identity and Authorization Steward
+    affected_domain: DOMAIN-V5-003
+    classification: PERSONAL
+    current_evidence: Person and account entities distinguished
+    confidence: MEDIUM
+    required_decision: Binding policy
+    required_evidence: Volume 6 trust validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V5-G1
+    implementation_implication: Authorization dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-005
+    kind: VALIDATION
+    title: Jurisdictional variant validation
+    statement: Validate jurisdictional variants in scope and authority rules.
+    owner: Governance and Jurisdiction Steward
+    affected_domain: DOMAIN-V5-004
+    classification: INTERNAL
+    current_evidence: Scope model defined
+    confidence: MEDIUM
+    required_decision: Jurisdiction variant confirmation
+    required_evidence: PTSO validation
+    target_package_or_volume: Volume 5 Package 2
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-006
+    kind: VALIDATION
+    title: Season uniqueness validation
+    statement: Validate season uniqueness and boundary rules.
+    owner: Governance and Jurisdiction Steward
+    affected_domain: DOMAIN-V5-005
+    classification: INTERNAL
+    current_evidence: Season model defined
+    confidence: MEDIUM
+    required_decision: Season rules confirmation
+    required_evidence: Season data validation
+    target_package_or_volume: Volume 5 Package 2
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-007
+    kind: VALIDATION
+    title: Policy and requirement versioning validation
+    statement: Validate policy and requirement versioning and applicability rules.
+    owner: Policy and Requirements Steward
+    affected_domain: DOMAIN-V5-008
+    classification: INTERNAL
+    current_evidence: Versioning model defined
+    confidence: MEDIUM
+    required_decision: Versioning confirmation
+    required_evidence: Policy authority validation
+    target_package_or_volume: Volume 5 Package 2
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-008
+    kind: VALIDATION
+    title: Evidence classification validation
+    statement: Validate evidence classification and access rules.
+    owner: Evidence and Records Steward
+    affected_domain: DOMAIN-V5-010
+    classification: RESTRICTED_EVIDENCE
+    current_evidence: Classification model defined
+    confidence: MEDIUM
+    required_decision: Evidence access policy
+    required_evidence: Volume 6 privacy validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V5-G1
+    implementation_implication: Access-control dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-009
+    kind: VALIDATION
+    title: Retention validation
+    statement: Validate retention dependencies against approved records policy.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-023
+    classification: SECURITY_AUDIT
+    current_evidence: Retention recorded as pending
+    confidence: LOW
+    required_decision: Retention schedule approval
+    required_evidence: Approved records policy
+    target_package_or_volume: Volume 11
+    future_blocking_gate: V5-G1
+    implementation_implication: Retention blocked until approved
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-010
+    kind: VALIDATION
+    title: Deletion authority validation
+    statement: Validate deletion authority dependencies for each classification.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-022
+    classification: PRIVILEGED_ADMIN
+    current_evidence: Deletion authority recorded as pending
+    confidence: LOW
+    required_decision: Deletion authority approval
+    required_evidence: Approved deletion policy
+    target_package_or_volume: Volume 11
+    future_blocking_gate: V5-G1
+    implementation_implication: Deletion blocked until approved
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-011
+    kind: VALIDATION
+    title: Financial reconciliation validation
+    statement: Validate financial reconciliation semantics across fee, payment, and accounting.
+    owner: Finance Data Steward
+    affected_domain: DOMAIN-V5-018
+    classification: FINANCIAL_STATUS
+    current_evidence: Reconciliation model defined
+    confidence: MEDIUM
+    required_decision: Reconciliation policy
+    required_evidence: Finance authority validation
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V5-G1
+    implementation_implication: Integration dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-012
+    kind: VALIDATION
+    title: External-system semantics validation
+    statement: Validate external-system identity and import semantics.
+    owner: Finance Data Steward
+    affected_domain: DOMAIN-V5-016
+    classification: FINANCIAL_STATUS
+    current_evidence: External-system identity model defined
+    confidence: MEDIUM
+    required_decision: Integration semantics confirmation
+    required_evidence: Volume 8 contract schemas
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V5-G1
+    implementation_implication: Integration dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-013
+    kind: VALIDATION
+    title: Analytics purpose validation
+    statement: Validate permitted analytics purposes and minimization.
+    owner: Analytics Governance Steward
+    affected_domain: DOMAIN-V5-025
+    classification: ANALYTICS_AGGREGATE
+    current_evidence: Analytics model defined
+    confidence: MEDIUM
+    required_decision: Analytics purpose approval
+    required_evidence: Privacy validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-014
+    kind: VALIDATION
+    title: Data quality threshold validation
+    statement: Validate data-quality thresholds and future blocking gates.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-024
+    classification: INTERNAL
+    current_evidence: Quality dimensions defined
+    confidence: MEDIUM
+    required_decision: Threshold approval
+    required_evidence: Volume 9 testing
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-015
+    kind: VALIDATION
+    title: Bilingual governed terminology validation
+    statement: Validate bilingual equivalence of governed data terminology.
+    owner: Policy and Requirements Steward
+    affected_domain: DOMAIN-V5-008
+    classification: INTERNAL
+    current_evidence: Bilingual obligation recorded
+    confidence: LOW
+    required_decision: Terminology approval
+    required_evidence: Bilingual review
+    target_package_or_volume: Volume 7
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-016
+    kind: VALIDATION
+    title: Accessibility content-data validation
+    statement: Validate accessibility-related content data obligations.
+    owner: Communications Steward
+    affected_domain: DOMAIN-V5-020
+    classification: INTERNAL
+    current_evidence: Accessibility obligation recorded
+    confidence: LOW
+    required_decision: Accessibility approach approval
+    required_evidence: Volume 7 experience validation
+    target_package_or_volume: Volume 7
+    future_blocking_gate: V5-G1
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-017
+    kind: VALIDATION
+    title: Privacy validation
+    statement: Validate privacy minimization and access across classifications.
+    owner: Identity and Authorization Steward
+    affected_domain: DOMAIN-V5-003
+    classification: PERSONAL
+    current_evidence: Classification and minimization model defined
+    confidence: MEDIUM
+    required_decision: Privacy approach approval
+    required_evidence: Volume 6 privacy validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V5-G1
+    implementation_implication: Privacy dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10
+  - id: TEST-V5-018
+    kind: VALIDATION
+    title: Migration-source quality validation
+    statement: Validate the quality of migration-source data against governed semantics.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-002
+    classification: INTERNAL
+    current_evidence: Quality dimensions and identity model defined
+    confidence: LOW
+    required_decision: Migration-source quality plan
+    required_evidence: Volume 10 migration analysis
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V5-G1
+    implementation_implication: Migration dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-10

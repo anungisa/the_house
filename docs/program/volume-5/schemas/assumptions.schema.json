@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "assumptions.schema.json",
+  "title": "REG-504 Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-504" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "owner", "validation_status", "authorizes_implementation", "chapter_ref"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(ASM|RISK|EXC|TEST)-V5-[0-9]{3}$"
+          },
+          "kind": { "$ref": "common.schema.json#/definitions/backlogKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "owner": { "type": "string" },
+          "authorizes_implementation": { "type": "boolean" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "chapter_ref": { "$ref": "common.schema.json#/definitions/documentId" },
+          "affected_domain": { "type": "string" },
+          "classification": { "$ref": "common.schema.json#/definitions/classificationCategory" },
+          "current_evidence": { "type": "string" },
+          "confidence": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH"]
+          },
+          "required_decision": { "type": "string" },
+          "required_evidence": { "type": "string" },
+          "target_package_or_volume": { "type": "string" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/v5GateId" },
+          "implementation_implication": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

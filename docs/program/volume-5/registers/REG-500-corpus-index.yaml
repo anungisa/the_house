@@ -1,0 +1,101 @@
+register_id: REG-500
+name: Volume 5 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V5-00
+    title: Volume Control, Inheritance, and Data-Definition Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-00-volume-control-inheritance-and-data-definition-authority.md
+    gate: V5-G1
+  - id: V5-01
+    title: Data Doctrine, Principles, and Governance Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-01-data-doctrine-principles-and-governance-model.md
+    gate: V5-G1
+  - id: V5-02
+    title: Information-Domain Catalogue and Authority Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-02-information-domain-catalogue-and-authority-matrix.md
+    gate: V5-G1
+  - id: V5-03
+    title: Conceptual Identity, Organization, Party, and Relationship Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-03-conceptual-identity-organization-party-and-relationship-model.md
+    gate: V5-G1
+  - id: V5-04
+    title: Affiliation, Season, Policy, Requirement, and Evidence Conceptual Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-04-affiliation-season-policy-requirement-and-evidence-conceptual-model.md
+    gate: V5-G1
+  - id: V5-05
+    title: Tenant, Jurisdiction, Season, and Information-Scope Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-05-tenant-jurisdiction-season-and-information-scope-model.md
+    gate: V5-G1
+  - id: V5-06
+    title: Temporal Truth, Versioning, Provenance, and Lineage Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-06-temporal-truth-versioning-provenance-and-lineage-model.md
+    gate: V5-G1
+  - id: V5-07
+    title: Data Classification, Minimization, Access, and Records Dependencies
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-07-data-classification-minimization-access-and-records-dependencies.md
+    gate: V5-G1
+  - id: V5-08
+    title: Data Quality, Correction, Reconciliation, and Stewardship Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-08-data-quality-correction-reconciliation-and-stewardship-model.md
+    gate: V5-G1
+  - id: V5-09
+    title: Projection, Reporting, Analytics, Export, and Derived-Data Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-09-projection-reporting-analytics-export-and-derived-data-model.md
+    gate: V5-G1
+  - id: V5-10
+    title: Data Validation Backlog and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-10-data-validation-backlog-and-downstream-constraints.md
+    gate: V5-G1
+  - id: V5-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-A-package-1-closure-record.md
+    gate: V5-G1

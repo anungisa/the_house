@@ -1,0 +1,463 @@
+register_id: REG-502
+name: Volume 5 Data Rules and Controls
+status: RATIFIED
+version: 1.0.0
+records:
+  # ==== Data doctrine rules (V5-01) ====
+  - id: RULE-V5-001
+    kind: RULE
+    title: Institutional authority precedes storage location
+    statement: Authority over information is determined by institutional governance, not by where data is stored.
+    affected_domains:
+      - DOMAIN-V5-001
+      - DOMAIN-V5-006
+    authority_owner: House
+    stewardship_implication: Stewards act under institutional authority, not custody.
+    control_implication: Authority ownership control enforces named authorities.
+    downstream_constraint: Volume 8 logical design must not infer authority from storage.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-002
+    kind: RULE
+    title: Authoritative ownership is singular and explicit
+    statement: Each information domain has one explicit authoritative owner.
+    affected_domains:
+      - DOMAIN-V5-006
+      - DOMAIN-V5-014
+    authority_owner: House
+    stewardship_implication: Stewardship never implies co-ownership.
+    control_implication: Domains without owners are rejected.
+    downstream_constraint: No downstream volume may create ambiguous ownership.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-003
+    kind: RULE
+    title: Stewardship does not automatically confer decision authority
+    statement: A data steward manages data quality but does not by that role hold governed decision authority.
+    affected_domains:
+      - DOMAIN-V5-003
+      - DOMAIN-V5-013
+    authority_owner: House
+    stewardship_implication: Stewardship and decision authority are separate facts.
+    control_implication: Authority and stewardship are recorded distinctly.
+    downstream_constraint: Downstream roles must separate stewardship from decisions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-004
+    kind: RULE
+    title: Technical custody does not confer business ownership
+    statement: Holding or hosting data does not grant business ownership of it.
+    affected_domains:
+      - DOMAIN-V5-011
+      - DOMAIN-V5-016
+    authority_owner: House
+    stewardship_implication: Custodians act on behalf of business authority.
+    control_implication: System-of-record authority recorded separately from custody.
+    downstream_constraint: External custody must retain business authority with The House.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-005
+    kind: RULE
+    title: Projections remain non-authoritative
+    statement: Read models, reports, and analytics are never sources of governed truth.
+    affected_domains:
+      - DOMAIN-V5-024
+      - DOMAIN-V5-025
+    authority_owner: House
+    stewardship_implication: Projection stewards rebuild, never originate, truth.
+    control_implication: Derived products must name authoritative sources.
+    downstream_constraint: Downstream consumers must not treat projections as authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-006
+    kind: RULE
+    title: Externally sourced information retains provenance
+    statement: Imported information retains its source and transformation provenance.
+    affected_domains:
+      - DOMAIN-V5-016
+      - DOMAIN-V5-017
+    authority_owner: House
+    stewardship_implication: Stewards preserve provenance on import.
+    control_implication: Lineage rules must name sources.
+    downstream_constraint: Downstream imports must preserve lineage.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-007
+    kind: RULE
+    title: Uncertainty is represented rather than erased
+    statement: Unknown or ambiguous data is represented explicitly, not silently resolved.
+    affected_domains:
+      - DOMAIN-V5-003
+      - DOMAIN-V5-010
+    authority_owner: House
+    stewardship_implication: Stewards flag uncertainty for governed resolution.
+    control_implication: Quality rules detect ambiguity.
+    downstream_constraint: Downstream design must model uncertainty.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-008
+    kind: RULE
+    title: Corrections preserve governed history
+    statement: Corrections never erase prior governed history.
+    affected_domains:
+      - DOMAIN-V5-022
+      - DOMAIN-V5-014
+    authority_owner: House
+    stewardship_implication: Stewards apply corrections through governed supersession.
+    control_implication: Correction rules require named authority.
+    downstream_constraint: Downstream design must be append-preserving.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-009
+    kind: RULE
+    title: Data minimization applies at all boundaries
+    statement: Minimization applies at collection, query, export, logging, and analytics boundaries.
+    affected_domains:
+      - DOMAIN-V5-003
+      - DOMAIN-V5-025
+    authority_owner: House
+    stewardship_implication: Stewards enforce minimum necessary.
+    control_implication: Classification records name minimum necessary fields.
+    downstream_constraint: Downstream boundaries must minimize.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-010
+    kind: RULE
+    title: Bilingual and accessibility obligations apply to governed data
+    statement: Bilingual equivalence and accessibility apply to governed data definitions and supporting content.
+    affected_domains:
+      - DOMAIN-V5-008
+      - DOMAIN-V5-020
+    authority_owner: House
+    stewardship_implication: Stewards maintain bilingual governed terminology.
+    control_implication: Terminology validation is tracked in the backlog.
+    downstream_constraint: Downstream content must preserve bilingual equivalence.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-011
+    kind: RULE
+    title: Retention and destruction depend on approved policy
+    statement: Retention and destruction rules depend on approved records policy authority, not on this package.
+    affected_domains:
+      - DOMAIN-V5-010
+      - DOMAIN-V5-023
+    authority_owner: House
+    stewardship_implication: Stewards apply retention only under approved policy.
+    control_implication: Retention-policy status is recorded as pending.
+    downstream_constraint: Downstream retention requires records-policy authority.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  - id: RULE-V5-012
+    kind: RULE
+    title: Evidence of implementation precedes operational claims
+    statement: Controls are not described as operational until implementation evidence exists.
+    affected_domains:
+      - DOMAIN-V5-023
+      - DOMAIN-V5-024
+    authority_owner: House
+    stewardship_implication: Stewards do not claim unproven controls.
+    control_implication: All Volume 5 records assert authorizes_implementation false.
+    downstream_constraint: Downstream claims require evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-01
+  # ==== Data quality dimensions (V5-08) ====
+  - id: QUALITY-V5-001
+    kind: QUALITY
+    title: Validity
+    statement: Governed data conforms to its defined conceptual meaning and constraints.
+    quality_dimension: VALIDITY
+    detection_concept: Conceptual constraint checks
+    correction_authority: Affiliation administration
+    correction_type: Administrative correction
+    reconciliation_source: Authoritative domain
+    evidence_retained: Correction evidence retained
+    downstream_impact: Invalid data blocks completeness
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-002
+    kind: QUALITY
+    title: Completeness
+    statement: Required governed facts are present for the applicable requirement version.
+    quality_dimension: COMPLETENESS
+    detection_concept: Derived completeness evaluation
+    correction_authority: Affiliation administration
+    correction_type: Administrative correction
+    reconciliation_source: Responses and acknowledgements
+    evidence_retained: Completeness evidence retained
+    downstream_impact: Incompleteness blocks submission
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-003
+    kind: QUALITY
+    title: Consistency
+    statement: Related governed facts do not contradict one another.
+    quality_dimension: CONSISTENCY
+    detection_concept: Cross-domain consistency checks
+    correction_authority: Governed-decision correction authority
+    correction_type: Governed-decision correction
+    reconciliation_source: Decision and activation
+    evidence_retained: Consistency evidence retained
+    downstream_impact: Inconsistent decision and activation flagged
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-004
+    kind: QUALITY
+    title: Uniqueness
+    statement: Governed parties and cases are not duplicated.
+    quality_dimension: UNIQUENESS
+    detection_concept: Duplicate and ambiguity detection
+    correction_authority: Identity governance authority
+    correction_type: Identity resolution
+    reconciliation_source: Organization and party identity
+    evidence_retained: Resolution evidence retained
+    downstream_impact: Duplicates block reconciliation
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-005
+    kind: QUALITY
+    title: Timeliness
+    statement: Governed facts are recorded and available within governed expectations.
+    quality_dimension: TIMELINESS
+    detection_concept: Staleness detection
+    correction_authority: Projection steward
+    correction_type: Projection rebuild
+    reconciliation_source: Authoritative domain
+    evidence_retained: Rebuild evidence retained
+    downstream_impact: Stale projections flagged
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-006
+    kind: QUALITY
+    title: Accuracy
+    statement: Governed facts correctly represent the real-world state they describe.
+    quality_dimension: ACCURACY
+    detection_concept: Source reconciliation
+    correction_authority: Governed correction authority
+    correction_type: Administrative or source-system correction
+    reconciliation_source: Authoritative source
+    evidence_retained: Correction evidence retained
+    downstream_impact: Inaccurate data blocks decisions
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-007
+    kind: QUALITY
+    title: Traceability
+    statement: Governed facts trace to their authority, source, and lineage.
+    quality_dimension: TRACEABILITY
+    detection_concept: Lineage presence checks
+    correction_authority: Records governance authority
+    correction_type: Provenance correction
+    reconciliation_source: Lineage records
+    evidence_retained: Lineage evidence retained
+    downstream_impact: Missing provenance flagged
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-008
+    kind: QUALITY
+    title: Authority alignment
+    statement: Writes to a governed domain align with its authoritative owner.
+    quality_dimension: AUTHORITY_ALIGNMENT
+    detection_concept: Unauthorized-write detection
+    correction_authority: Records governance authority
+    correction_type: Governed correction
+    reconciliation_source: Authority matrix
+    evidence_retained: Authority evidence retained
+    downstream_impact: Unauthorized correction flagged
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-009
+    kind: QUALITY
+    title: Jurisdiction alignment
+    statement: Governed facts respect jurisdiction and scope boundaries.
+    quality_dimension: JURISDICTION_ALIGNMENT
+    detection_concept: Cross-jurisdiction mismatch detection
+    correction_authority: National governance authority
+    correction_type: Governed correction
+    reconciliation_source: Jurisdiction and scope
+    evidence_retained: Jurisdiction evidence retained
+    downstream_impact: Jurisdiction mismatch fails closed
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  - id: QUALITY-V5-010
+    kind: QUALITY
+    title: Temporal correctness
+    statement: Governed facts preserve what was known and applicable at the relevant time.
+    quality_dimension: TEMPORAL_CORRECTNESS
+    detection_concept: Effective and recorded time checks
+    correction_authority: Records governance authority
+    correction_type: Temporal correction via supersession
+    reconciliation_source: Temporal and version records
+    evidence_retained: Temporal evidence retained
+    downstream_impact: Temporal errors block trust
+    future_blocking_gate: V5-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-08
+  # ==== Temporal, provenance, and lineage rules (V5-06) ====
+  - id: LINEAGE-V5-001
+    kind: LINEAGE
+    title: Effective and recorded time are distinct
+    statement: Effective time and recorded time are represented separately for governed facts.
+    source: Authoritative domain records
+    authoritative_fact: Governed fact with dual timestamps
+    transformation_lineage: None (authoritative record)
+    audit_expectation: Timestamps audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-002
+    kind: LINEAGE
+    title: Policy and requirement versions are explicit
+    statement: The applicable policy and requirement versions are recorded with each governed response.
+    source: Policy and requirement versions
+    authoritative_fact: Versioned applicability
+    transformation_lineage: None
+    audit_expectation: Version applicability audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-003
+    kind: LINEAGE
+    title: Evidence provenance is preserved on replacement
+    statement: Replacing evidence preserves the provenance of prior evidence versions.
+    source: Evidence metadata
+    authoritative_fact: Evidence version chain
+    transformation_lineage: Version supersession lineage
+    audit_expectation: Evidence replacement audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-004
+    kind: LINEAGE
+    title: Submission snapshots are immutable
+    statement: A submission snapshot preserves applicable versions and submitted facts at submission time.
+    source: Submission snapshots
+    authoritative_fact: Immutable submission snapshot
+    transformation_lineage: None (append-only)
+    audit_expectation: Snapshots audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-005
+    kind: LINEAGE
+    title: Import provenance is retained
+    statement: Imported facts retain their source system and import lineage.
+    source: External-system identity and payment or accounting imports
+    authoritative_fact: Imported fact with source provenance
+    transformation_lineage: Import transformation lineage
+    audit_expectation: Imports audited
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-006
+    kind: LINEAGE
+    title: Export lineage is preserved
+    statement: Exports preserve source and transformation lineage.
+    source: Analytics and exports
+    authoritative_fact: Export with preserved lineage
+    transformation_lineage: Export transformation lineage
+    audit_expectation: Exports audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-007
+    kind: LINEAGE
+    title: Projection rebuild lineage is traceable
+    statement: Projections trace to the authoritative sources from which they are rebuilt.
+    source: Projections domain
+    authoritative_fact: Rebuildable projection
+    transformation_lineage: Rebuild lineage
+    audit_expectation: Rebuilds traceable
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  - id: LINEAGE-V5-008
+    kind: LINEAGE
+    title: Supersession preserves prior records
+    statement: Superseding a governed fact preserves the prior record and the supersession relationship.
+    source: Administrative corrections and decision
+    authoritative_fact: Superseded record chain
+    transformation_lineage: Supersession lineage
+    audit_expectation: Supersession audited
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-06
+  # ==== Governance controls (V5-00) ====
+  - id: CTRL-V5-001
+    kind: CTRL
+    title: Authority ownership control
+    statement: Every information domain must name business authority, system-of-record authority, and a data steward.
+    control_implication: Domains without owners are rejected.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
+  - id: CTRL-V5-002
+    kind: CTRL
+    title: Entity and relationship reference control
+    statement: Conceptual entities name owning domains and relationships name resolvable endpoints.
+    control_implication: Unresolved entity or relationship references are rejected.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
+  - id: CTRL-V5-003
+    kind: CTRL
+    title: Correction authority control
+    statement: Every quality or correction rule must name a correction authority.
+    control_implication: Correction rules without authority are rejected.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
+  - id: CTRL-V5-004
+    kind: CTRL
+    title: Derived-source and lineage control
+    statement: Every derived product names an authoritative source and every lineage rule names a source.
+    control_implication: Derived products or lineage without sources are rejected.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
+  - id: CTRL-V5-005
+    kind: CTRL
+    title: Implementation-authorization control
+    statement: No Volume 5 record may authorize implementation.
+    control_implication: Any record authorizing implementation fails closed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
+  - id: CTRL-V5-006
+    kind: CTRL
+    title: Physical-leakage control
+    statement: No chapter or register may contain physical schema, DDL, or migration artifacts.
+    control_implication: Physical or migration leakage fails closed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-00
