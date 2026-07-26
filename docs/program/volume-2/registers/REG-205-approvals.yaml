@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.8.1
+version: 1.10.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -566,4 +566,256 @@ records:
       - Service-experience definition only; implementation, procurement, architecture, and delivery plan unauthorized; not a master development plan
       - Volume 2 Package 5 authorized to commence as definition and governance work (DEC-V2-022)
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 5 chapter ratifications ---
+  - id: APP-V2-040
+    artifact_id: V2-27
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Integrated affiliation product-service definition baseline consolidates ratified content and introduces no new governed decision; definition only
+    approved_at: null
+  - id: APP-V2-041
+    artifact_id: V2-28
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product ownership and decision rights defined; authority derives from accountable function, not workspace visibility; named-role confirmation pending; definition only
+    approved_at: null
+  - id: APP-V2-042
+    artifact_id: V2-29
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Service commitments and measures defined and classified; no fabricated numeric target; unvalidated measures classified validation pending; definition only
+    approved_at: null
+  - id: APP-V2-043
+    artifact_id: V2-30
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product lifecycle and change governance defined; authority-boundary and breaking changes require executive acceptance; definition only
+    approved_at: null
+  - id: APP-V2-044
+    artifact_id: V2-31
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Integrated traceability and acceptance closed; every material gap dispositioned; no gap closed merely because schema validation passes; definition only
+    approved_at: null
+  - id: APP-V2-045
+    artifact_id: V2-32
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Validation backlog, product risks, and downstream constraints recorded; every unresolved validation has an accountable owner and future blocking gate; definition only
+    approved_at: null
+  - id: APP-V2-046
+    artifact_id: V2-33
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Executive product-and-service brief summarises ratified definition and introduces no new authority; definition only
+    approved_at: null
+  # --- Package 5 closure, gate, and freeze ---
+  - id: APP-V2-047
+    artifact_id: V2-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    closure_record: V2-E
+    conditions:
+      - Volume 2 completion and release-freeze record ratified
+      - "Package 5 provenance recorded (source snapshot 60f652a; closure/freeze and merged commits completed by post-merge amendment)"
+      - Inherited Volume 1 v1.0.1 baseline and Package 1-4 provenance and amendments recorded
+    approved_at: null
+  - id: APP-V2-048
+    artifact_id: GATE-V2-G5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: PRODUCT_AND_SERVICE_DEFINITION_COMPLETE
+    conditions:
+      - "Condition 1: Package 4 provenance is unambiguous (source dfe3ae0; closure/freeze b4ec2cb; merged 1b23753)"
+      - "Condition 2: Packages 1-4 are inherited without changing frozen substantive content"
+      - "Condition 3: One integrated affiliation product-service baseline exists (V2-27)"
+      - "Condition 4: House, Button, staff, and external-system responsibilities are explicit (V2-27, V2-33)"
+      - "Condition 5: Product ownership and decision rights are defined or explicitly pending confirmation (V2-28)"
+      - "Condition 6: Product measures and service commitments are defined or classified validation pending (V2-29)"
+      - "Condition 7: Product lifecycle and change governance are defined (V2-30)"
+      - "Condition 8: Every material capability has requirements, rules, experience, control, and acceptance coverage (V2-27, V2-31, REG-203)"
+      - "Condition 9: Traceability defects are resolved, classified, or intentionally deferred (V2-31)"
+      - "Condition 10: Unresolved validations have accountable owners and future blocking gates (V2-32)"
+      - "Condition 11: The executive product brief introduces no new authority (V2-33)"
+      - "Condition 12: No requirement or decision authorizes implementation or procurement (REG-203, REG-204)"
+      - "Condition 13: No technical architecture, delivery sequence, staffing plan, cost plan, or master development plan is created"
+      - "Condition 14: Volume 2 has received complete line-level review"
+      - "Condition 15: Package 5 and the complete Volume 2 corpus receive explicit freeze records (APP-V2-049, APP-V2-050)"
+    approved_at: null
+  - id: APP-V2-049
+    artifact_id: PACKAGE-2-5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: PRODUCT_AND_SERVICE_DEFINITION_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    base_commit: "60f652a"
+    package_provenance:
+      source_snapshot_commit: "60f652a"
+      closure_freeze_commit: "PENDING_POST_MERGE"
+      merged_commit: "PENDING_POST_MERGE"
+      note: >-
+        The Package 5 freeze is recorded against distinct commits: source snapshot 60f652a
+        (the authoring commit containing V2-27 through V2-33, the traceability tooling, and
+        the expanded registers). The closure/freeze commit (which adds V2-E, the Gate V2-G5
+        disposition, and this freeze record on branch docs/volume-2-product-service-closure)
+        and the merged commit only exist after Package 5 closure and PR merge, and are
+        therefore completed by a narrow post-merge amendment. Recorded self-attested /
+        author-verified.
+    frozen_artifacts:
+      - id: V2-27
+        version: 1.0.0
+      - id: V2-28
+        version: 1.0.0
+      - id: V2-29
+        version: 1.0.0
+      - id: V2-30
+        version: 1.0.0
+      - id: V2-31
+        version: 1.0.0
+      - id: V2-32
+        version: 1.0.0
+      - id: V2-33
+        version: 1.0.0
+      - id: V2-E
+        version: 1.0.0
+    amendment_process: >-
+      Changes to frozen Package 5 artifacts require a recorded Volume 2 amendment decision in
+      REG-204 and a superseding approval in REG-205; frozen artifacts are not edited in place.
+    conditions:
+      - "Freeze source snapshot commit: 60f652a (contains V2-27..V2-33, the traceability tooling, and the expanded registers)"
+      - "Closure/freeze commit and merged commit: PENDING_POST_MERGE (completed by narrow post-merge amendment)"
+      - Gate V2-G5 PASS; Volume 2 Package 5 closed and frozen; V2-27..V2-33 and V2-E at 1.0.0
+      - Product-and-service definition only; implementation, procurement, architecture, delivery plan, staffing plan, and cost plan unauthorized; not a master development plan
+      - Executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
+    approved_at: null
+  - id: APP-V2-050
+    artifact_id: VOLUME-2
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    gate_disposition: PRODUCT_AND_SERVICE_DEFINITION_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    base_commit: "60f652a"
+    package_provenance:
+      source_snapshot_commit: "60f652a"
+      closure_freeze_commit: "PENDING_POST_MERGE"
+      merged_commit: "PENDING_POST_MERGE"
+      note: >-
+        The whole-volume freeze is recorded against the Package 5 source snapshot 60f652a as
+        its base commit. The Volume 2 closure/freeze commit and the merged commit only exist
+        after closure and PR merge, and are completed by a narrow post-merge amendment. The
+        release is marked by the annotated tag central-registration-volume-2-v1.0.0 on the
+        merged commit. Recorded self-attested / author-verified.
+    frozen_artifacts:
+      - id: V2-00
+        version: 1.0.0
+      - id: V2-01
+        version: 1.0.0
+      - id: V2-02
+        version: 1.0.0
+      - id: V2-03
+        version: 1.0.0
+      - id: V2-04
+        version: 1.0.0
+      - id: V2-05
+        version: 1.0.0
+      - id: V2-06
+        version: 1.0.0
+      - id: V2-07
+        version: 1.0.0
+      - id: V2-08
+        version: 1.0.0
+      - id: V2-09
+        version: 1.0.0
+      - id: V2-10
+        version: 1.0.0
+      - id: V2-11
+        version: 1.0.0
+      - id: V2-12
+        version: 1.0.0
+      - id: V2-13
+        version: 1.0.0
+      - id: V2-14
+        version: 1.0.0
+      - id: V2-15
+        version: 1.0.0
+      - id: V2-16
+        version: 1.0.0
+      - id: V2-17
+        version: 1.0.0
+      - id: V2-18
+        version: 1.0.0
+      - id: V2-19
+        version: 1.0.0
+      - id: V2-20
+        version: 1.0.0
+      - id: V2-21
+        version: 1.0.0
+      - id: V2-22
+        version: 1.0.0
+      - id: V2-23
+        version: 1.0.0
+      - id: V2-24
+        version: 1.0.0
+      - id: V2-25
+        version: 1.0.0
+      - id: V2-26
+        version: 1.0.0
+      - id: V2-27
+        version: 1.0.0
+      - id: V2-28
+        version: 1.0.0
+      - id: V2-29
+        version: 1.0.0
+      - id: V2-30
+        version: 1.0.0
+      - id: V2-31
+        version: 1.0.0
+      - id: V2-32
+        version: 1.0.0
+      - id: V2-33
+        version: 1.0.0
+      - id: V2-A
+        version: 1.0.1
+      - id: V2-B
+        version: 1.0.0
+      - id: V2-C
+        version: 1.0.0
+      - id: V2-D
+        version: 1.0.0
+      - id: V2-E
+        version: 1.0.0
+    amendment_process: >-
+      Frozen Volume 2 artifacts are not edited in place. Any change requires a recorded
+      amendment decision in REG-204 and a superseding approval in REG-205, classified under
+      the change-governance model (V2-30); authority-boundary and breaking service changes
+      require executive-level acceptance.
+    conditions:
+      - "Whole-volume freeze base commit: 60f652a; closure/freeze and merged commits PENDING_POST_MERGE (completed by narrow post-merge amendment)"
+      - "Frozen: V2-00 through V2-33; V2-A through V2-E; REG-200 through REG-205; schemas and governance controls"
+      - "Generated traceability outputs are frozen as non-authoritative projections; registers and chapters remain authoritative"
+      - "Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.0) is preserved unchanged"
+      - Two distinct freeze approvals recorded (PACKAGE-2-5 APP-V2-049 and VOLUME-2 APP-V2-050)
+      - Product-and-service definition only; implementation, procurement, architecture, delivery, staffing, and cost plans unauthorized; not a master development plan
+      - Volume 3 authorized as definition work only (DEC-V2-029); executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
     approved_at: null

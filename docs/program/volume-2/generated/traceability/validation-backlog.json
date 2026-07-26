@@ -1,0 +1,250 @@
+{
+  "generated_at": null,
+  "pending_count": 26,
+  "by_classification": {
+    "POLICY_VALIDATION_PENDING": 9,
+    "FINANCIAL_VALIDATION_PENDING": 2,
+    "OPERATIONAL_VALIDATION_PENDING": 2,
+    "BILINGUAL_VALIDATION_PENDING": 1,
+    "ACCESSIBILITY_VALIDATION_PENDING": 1,
+    "PRIVACY_VALIDATION_PENDING": 2,
+    "STAKEHOLDER_VALIDATION_PENDING": 8,
+    "BASELINE_PENDING": 1
+  },
+  "items": [
+    {
+      "id": "CTRL-V2-023",
+      "level": "CTRL",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": "Service Operations Owner (STK-V2-021)",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "NFR-V2-018",
+      "level": "NFR",
+      "classifications": [
+        "BILINGUAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "NFR-V2-019",
+      "level": "NFR",
+      "classifications": [
+        "ACCESSIBILITY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "NFR-V2-020",
+      "level": "NFR",
+      "classifications": [
+        "PRIVACY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V2-010",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "Pathway and Evidence Policy Authority (Jen)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-011",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "Pathway and Evidence Policy Authority (Jen)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-012",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "Pathway and Evidence Policy Authority (Jen)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-013",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "Pathway and Evidence Policy Authority (Jen)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-014",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "National Operating Alignment Authority (Rich)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-015",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "Pathway and Evidence Policy Authority (Jen)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-018",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "National Operating Alignment Authority (Rich)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-019",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "National Operating Alignment Authority (Rich)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-021",
+      "level": "RULE",
+      "classifications": [
+        "FINANCIAL_VALIDATION_PENDING"
+      ],
+      "owner": "Fee and Reconciliation Policy Authority (Helene)",
+      "future_blocking_gate": "Future affiliation fee and reconciliation validation gate"
+    },
+    {
+      "id": "RULE-V2-022",
+      "level": "RULE",
+      "classifications": [
+        "FINANCIAL_VALIDATION_PENDING"
+      ],
+      "owner": "Fee and Reconciliation Policy Authority (Helene)",
+      "future_blocking_gate": "Future affiliation fee and reconciliation validation gate"
+    },
+    {
+      "id": "RULE-V2-024",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": "National Operating Alignment Authority (Rich)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "RULE-V2-025",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": "National Operating Alignment Authority (Rich)",
+      "future_blocking_gate": "Future affiliation operating-rules validation gate"
+    },
+    {
+      "id": "UX-V2-013",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-014",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-015",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-016",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-017",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "Fee and Reconciliation Policy Authority (Helene)",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-018",
+      "level": "UX",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": "Support Agent",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-019",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-020",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-021",
+      "level": "UX",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": "National Affiliation Administrator",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "UX-V2-022",
+      "level": "UX",
+      "classifications": [
+        "PRIVACY_VALIDATION_PENDING"
+      ],
+      "owner": "Bilingual Experience and Official-Languages Authority",
+      "future_blocking_gate": null
+    }
+  ]
+}

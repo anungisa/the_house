@@ -1,0 +1,78 @@
+{
+  "generated_at": null,
+  "chain": [
+    "OUT",
+    "CAP",
+    "BR",
+    "FR",
+    "NFR",
+    "UC",
+    "RULE",
+    "WF",
+    "UX",
+    "DATA",
+    "API",
+    "EVT",
+    "CTRL",
+    "TEST"
+  ],
+  "by_level": {
+    "OUT": {
+      "total": 26,
+      "with_parent": 26
+    },
+    "CAP": {
+      "total": 50,
+      "with_parent": 50
+    },
+    "BR": {
+      "total": 35,
+      "with_parent": 35
+    },
+    "FR": {
+      "total": 49,
+      "with_parent": 49
+    },
+    "NFR": {
+      "total": 23,
+      "with_parent": 23
+    },
+    "UC": {
+      "total": 51,
+      "with_parent": 51
+    },
+    "RULE": {
+      "total": 33,
+      "with_parent": 33
+    },
+    "WF": {
+      "total": 16,
+      "with_parent": 16
+    },
+    "UX": {
+      "total": 27,
+      "with_parent": 27
+    },
+    "DATA": {
+      "total": 27,
+      "with_parent": 27
+    },
+    "API": {
+      "total": 12,
+      "with_parent": 12
+    },
+    "EVT": {
+      "total": 17,
+      "with_parent": 17
+    },
+    "CTRL": {
+      "total": 26,
+      "with_parent": 26
+    },
+    "TEST": {
+      "total": 49,
+      "with_parent": 49
+    }
+  },
+  "reverse_or_same_order_references": []
+}

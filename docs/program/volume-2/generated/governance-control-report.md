@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T02:31:50.712Z
+Generated: 2026-07-26T04:15:52.516Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -27,18 +27,18 @@ Generated: 2026-07-26T02:31:50.712Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 31 |
+| RATIFIED | 39 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.7.0 | 31 |
-| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.3.0 | 21 |
-| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.3.0 | 18 |
-| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.3.0 | 361 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.8.1 | 23 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.8.1 | 39 |
+| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.9.0 | 39 |
+| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.4.0 | 26 |
+| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.4.0 | 24 |
+| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.4.0 | 415 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.10.0 | 29 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.10.0 | 50 |
 
 ## Findings by control
 
@@ -169,3 +169,40 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-039 (PACKAGE-2-4): Service-experience definition only; implementation, procurement, architecture, and delivery plan unauthorized; not a master development plan
 - APP-V2-039 (PACKAGE-2-4): Volume 2 Package 5 authorized to commence as definition and governance work (DEC-V2-022)
 - APP-V2-039 (PACKAGE-2-4): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V2-040 (V2-27): Integrated affiliation product-service definition baseline consolidates ratified content and introduces no new governed decision; definition only
+- APP-V2-041 (V2-28): Product ownership and decision rights defined; authority derives from accountable function, not workspace visibility; named-role confirmation pending; definition only
+- APP-V2-042 (V2-29): Service commitments and measures defined and classified; no fabricated numeric target; unvalidated measures classified validation pending; definition only
+- APP-V2-043 (V2-30): Product lifecycle and change governance defined; authority-boundary and breaking changes require executive acceptance; definition only
+- APP-V2-044 (V2-31): Integrated traceability and acceptance closed; every material gap dispositioned; no gap closed merely because schema validation passes; definition only
+- APP-V2-045 (V2-32): Validation backlog, product risks, and downstream constraints recorded; every unresolved validation has an accountable owner and future blocking gate; definition only
+- APP-V2-046 (V2-33): Executive product-and-service brief summarises ratified definition and introduces no new authority; definition only
+- APP-V2-047 (V2-E): Volume 2 completion and release-freeze record ratified
+- APP-V2-047 (V2-E): Package 5 provenance recorded (source snapshot 60f652a; closure/freeze and merged commits completed by post-merge amendment)
+- APP-V2-047 (V2-E): Inherited Volume 1 v1.0.1 baseline and Package 1-4 provenance and amendments recorded
+- APP-V2-048 (GATE-V2-G5): Condition 1: Package 4 provenance is unambiguous (source dfe3ae0; closure/freeze b4ec2cb; merged 1b23753)
+- APP-V2-048 (GATE-V2-G5): Condition 2: Packages 1-4 are inherited without changing frozen substantive content
+- APP-V2-048 (GATE-V2-G5): Condition 3: One integrated affiliation product-service baseline exists (V2-27)
+- APP-V2-048 (GATE-V2-G5): Condition 4: House, Button, staff, and external-system responsibilities are explicit (V2-27, V2-33)
+- APP-V2-048 (GATE-V2-G5): Condition 5: Product ownership and decision rights are defined or explicitly pending confirmation (V2-28)
+- APP-V2-048 (GATE-V2-G5): Condition 6: Product measures and service commitments are defined or classified validation pending (V2-29)
+- APP-V2-048 (GATE-V2-G5): Condition 7: Product lifecycle and change governance are defined (V2-30)
+- APP-V2-048 (GATE-V2-G5): Condition 8: Every material capability has requirements, rules, experience, control, and acceptance coverage (V2-27, V2-31, REG-203)
+- APP-V2-048 (GATE-V2-G5): Condition 9: Traceability defects are resolved, classified, or intentionally deferred (V2-31)
+- APP-V2-048 (GATE-V2-G5): Condition 10: Unresolved validations have accountable owners and future blocking gates (V2-32)
+- APP-V2-048 (GATE-V2-G5): Condition 11: The executive product brief introduces no new authority (V2-33)
+- APP-V2-048 (GATE-V2-G5): Condition 12: No requirement or decision authorizes implementation or procurement (REG-203, REG-204)
+- APP-V2-048 (GATE-V2-G5): Condition 13: No technical architecture, delivery sequence, staffing plan, cost plan, or master development plan is created
+- APP-V2-048 (GATE-V2-G5): Condition 14: Volume 2 has received complete line-level review
+- APP-V2-048 (GATE-V2-G5): Condition 15: Package 5 and the complete Volume 2 corpus receive explicit freeze records (APP-V2-049, APP-V2-050)
+- APP-V2-049 (PACKAGE-2-5): Freeze source snapshot commit: 60f652a (contains V2-27..V2-33, the traceability tooling, and the expanded registers)
+- APP-V2-049 (PACKAGE-2-5): Closure/freeze commit and merged commit: PENDING_POST_MERGE (completed by narrow post-merge amendment)
+- APP-V2-049 (PACKAGE-2-5): Gate V2-G5 PASS; Volume 2 Package 5 closed and frozen; V2-27..V2-33 and V2-E at 1.0.0
+- APP-V2-049 (PACKAGE-2-5): Product-and-service definition only; implementation, procurement, architecture, delivery plan, staffing plan, and cost plan unauthorized; not a master development plan
+- APP-V2-049 (PACKAGE-2-5): Executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
+- APP-V2-050 (VOLUME-2): Whole-volume freeze base commit: 60f652a; closure/freeze and merged commits PENDING_POST_MERGE (completed by narrow post-merge amendment)
+- APP-V2-050 (VOLUME-2): Frozen: V2-00 through V2-33; V2-A through V2-E; REG-200 through REG-205; schemas and governance controls
+- APP-V2-050 (VOLUME-2): Generated traceability outputs are frozen as non-authoritative projections; registers and chapters remain authoritative
+- APP-V2-050 (VOLUME-2): Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.0) is preserved unchanged
+- APP-V2-050 (VOLUME-2): Two distinct freeze approvals recorded (PACKAGE-2-5 APP-V2-049 and VOLUME-2 APP-V2-050)
+- APP-V2-050 (VOLUME-2): Product-and-service definition only; implementation, procurement, architecture, delivery, staffing, and cost plans unauthorized; not a master development plan
+- APP-V2-050 (VOLUME-2): Volume 3 authorized as definition work only (DEC-V2-029); executive organizational acceptance (Nolan, D0) pending at the material-commitment gate

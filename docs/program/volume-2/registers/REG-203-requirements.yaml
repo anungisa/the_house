@@ -1,7 +1,7 @@
 register_id: REG-203
 name: Volume 2 Requirement and Acceptance Register
 status: IN_REVIEW
-version: 1.3.0
+version: 1.4.0
 records:
   # --- CAP: capabilities ---
   - id: CAP-V2-001
@@ -3958,6 +3958,628 @@ records:
     product: House
     traces_to:
       - CTRL-V2-020
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # === Package 5: integrated product definition and Volume 2 closure ===
+  # --- CAP: consolidation capabilities ---
+  - id: CAP-V2-044
+    level: CAP
+    statement: >-
+      Provide one integrated affiliation product-service definition baseline that consolidates every
+      ratified package as the authoritative input to Volume 3, without introducing new governed decisions.
+    product: Both
+    traces_to:
+      - OUT-V2-022
+    acceptance_ref:
+      - TEST-V2-044
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-045
+    level: CAP
+    statement: >-
+      Define product ownership, decision rights, and service accountability so that authority derives from
+      an accountable function rather than from workspace visibility.
+    product: House
+    traces_to:
+      - OUT-V2-023
+    acceptance_ref:
+      - TEST-V2-045
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-046
+    level: CAP
+    statement: >-
+      Define a controlled, measurable service-commitment and measure baseline with owners and acceptance
+      relationships, without fabricated numeric targets.
+    product: Both
+    traces_to:
+      - OUT-V2-024
+    acceptance_ref:
+      - TEST-V2-046
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-047
+    level: CAP
+    statement: >-
+      Define the product lifecycle and change-governance model so that every product change is classified
+      and routed to the correct approving authority before it takes effect.
+    product: House
+    traces_to:
+      - OUT-V2-025
+    acceptance_ref:
+      - TEST-V2-047
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-048
+    level: CAP
+    statement: >-
+      Provide integrated requirement traceability and acceptance closure so that every material gap is
+      dispositioned and no gap closes merely because schema validation passes.
+    product: Both
+    traces_to:
+      - OUT-V2-026
+    acceptance_ref:
+      - TEST-V2-048
+    gap_disposition: CLOSED
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-049
+    level: CAP
+    statement: >-
+      Maintain a validation backlog and downstream-constraint register so that every unresolved validation
+      carries an accountable owner, a classification, and a future blocking gate.
+    product: Both
+    traces_to:
+      - OUT-V2-026
+    acceptance_ref:
+      - TEST-V2-048
+    gap_disposition: ACCEPTED_AS_FUTURE_VOLUME_INPUT
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-050
+    level: CAP
+    statement: >-
+      Provide an executive product-and-service definition brief that summarises the ratified definition and
+      introduces no new authority.
+    product: Both
+    traces_to:
+      - OUT-V2-022
+    acceptance_ref:
+      - TEST-V2-049
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- BR: business rules ---
+  - id: BR-V2-031
+    level: BR
+    statement: >-
+      The integrated product-service baseline may only restate ratified content; consolidation must not
+      introduce a new governed decision.
+    product: House
+    traces_to:
+      - CAP-V2-044
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-032
+    level: BR
+    statement: >-
+      Decision authority is exercised only by the accountable function; visibility in a workspace does not
+      confer decision authority, and no Button surface holds governed authority.
+    product: House
+    traces_to:
+      - CAP-V2-045
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-033
+    level: BR
+    statement: >-
+      No product measure asserts a fabricated numeric target; measures without a validated baseline remain
+      explicitly classified as validation pending.
+    product: House
+    traces_to:
+      - CAP-V2-046
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-034
+    level: BR
+    statement: >-
+      Every product change is classified before approval; authority-boundary and breaking service changes
+      require executive-level acceptance.
+    product: House
+    traces_to:
+      - CAP-V2-047
+    change_classification: AUTHORITY_BOUNDARY
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: BR-V2-035
+    level: BR
+    statement: >-
+      The executive product-and-service brief is a summary of ratified definition and must not become a new
+      source of authority.
+    product: House
+    traces_to:
+      - CAP-V2-050
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- FR: functional requirements ---
+  - id: FR-V2-044
+    level: FR
+    statement: >-
+      The definition shall present one integrated affiliation product-service baseline with a consolidation
+      record for each material capability covering outcome, personas, House and Button responsibility,
+      controlling rules, experience commitment, acceptance coverage, and unresolved conditions.
+    product: House
+    traces_to:
+      - BR-V2-031
+      - CAP-V2-044
+    acceptance_ref:
+      - TEST-V2-044
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-045
+    level: FR
+    statement: >-
+      The definition shall record, per decision domain, an accountable authority, consulted functions,
+      required evidence, delegation rules, escalation route, change classification, and approval status.
+    product: House
+    traces_to:
+      - BR-V2-032
+      - CAP-V2-045
+    acceptance_ref:
+      - TEST-V2-045
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-046
+    level: FR
+    statement: >-
+      The definition shall present a consolidated measure baseline listing each material service-measure
+      family with its outcome, definition, calculation concept, evidence source, accountable owner, baseline
+      and target status, validation authority, acceptance relationship, and future blocking gate.
+    product: House
+    traces_to:
+      - BR-V2-033
+      - CAP-V2-046
+    acceptance_ref:
+      - TEST-V2-046
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-047
+    level: FR
+    statement: >-
+      The definition shall define product change classes, each mapped to its approving authority, required
+      evidence, affected registers and acceptance coverage, effective-date handling, notice requirements,
+      transition consideration, and downstream design impact.
+    product: House
+    traces_to:
+      - BR-V2-034
+      - CAP-V2-047
+    acceptance_ref:
+      - TEST-V2-047
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-048
+    level: FR
+    statement: >-
+      The definition shall produce a deterministic traceability projection (identifier counts, orphan
+      analysis, chain coverage, acceptance coverage, authority-boundary analysis) and disposition every
+      material gap.
+    product: House
+    traces_to:
+      - CAP-V2-048
+    acceptance_ref:
+      - TEST-V2-048
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-049
+    level: FR
+    statement: >-
+      The definition shall maintain a validation backlog in which each item records its question or risk,
+      classification, current evidence and confidence, accountable owner, affected requirement and outcome,
+      required resolution evidence, future blocking gate, and target resolution volume.
+    product: House
+    traces_to:
+      - CAP-V2-049
+    acceptance_ref:
+      - TEST-V2-048
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- NFR: non-functional requirements ---
+  - id: NFR-V2-022
+    level: NFR
+    statement: >-
+      The product definition shall be measurable: every material capability is associated with a service
+      measure or an explicit validation-pending classification.
+    product: House
+    traces_to:
+      - CAP-V2-046
+    acceptance_ref:
+      - TEST-V2-046
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-023
+    level: NFR
+    statement: >-
+      The product definition shall be fully traceable across the requirement chain with no broken references
+      and no reverse-order references from outcome through acceptance test.
+    product: House
+    traces_to:
+      - CAP-V2-048
+    acceptance_ref:
+      - TEST-V2-048
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UC: use cases ---
+  - id: UC-V2-047
+    level: UC
+    statement: >-
+      The product authority consolidates the affiliation definition into the integrated baseline and confirms
+      it as the authoritative input to Volume 3.
+    product: House
+    traces_to:
+      - FR-V2-044
+    acceptance_ref:
+      - TEST-V2-044
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-048
+    level: UC
+    statement: >-
+      An accountable authority exercises a decision strictly within its defined decision rights, with the
+      required evidence and escalation route.
+    product: House
+    traces_to:
+      - FR-V2-045
+    acceptance_ref:
+      - TEST-V2-045
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-049
+    level: UC
+    statement: >-
+      A change authority classifies a proposed product change and routes it to the correct approving authority
+      before it takes effect.
+    product: House
+    traces_to:
+      - FR-V2-047
+    acceptance_ref:
+      - TEST-V2-047
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-050
+    level: UC
+    statement: >-
+      A governance analyst runs the traceability projection and dispositions each material gap into a controlled
+      disposition state.
+    product: House
+    traces_to:
+      - FR-V2-048
+    acceptance_ref:
+      - TEST-V2-048
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-051
+    level: UC
+    statement: >-
+      A downstream volume consumes the validation backlog and unresolved-decision register as defined inputs to
+      business-operating-model definition work.
+    product: House
+    traces_to:
+      - FR-V2-049
+    acceptance_ref:
+      - TEST-V2-048
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- RULE: product rules ---
+  - id: RULE-V2-030
+    level: RULE
+    statement: >-
+      Consolidation-integrity rule: the integrated baseline may only restate ratified content; creating a new
+      governed decision during consolidation is out of scope.
+    product: House
+    traces_to:
+      - UC-V2-047
+    rule_classification: DEFINED_PRODUCT_RULE
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: RULE-V2-031
+    level: RULE
+    statement: >-
+      Decision-rights rule: a governed decision is valid only when exercised by its accountable function;
+      visibility is not authority and Button surfaces never hold governed authority.
+    product: House
+    traces_to:
+      - UC-V2-048
+    rule_classification: DEFINED_PRODUCT_RULE
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: RULE-V2-032
+    level: RULE
+    statement: >-
+      Change-classification rule: each product change maps to an approving authority and required evidence;
+      authority-boundary and breaking service changes require executive-level acceptance.
+    product: House
+    traces_to:
+      - UC-V2-049
+    rule_classification: DEFINED_PRODUCT_RULE
+    change_classification: AUTHORITY_BOUNDARY
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: RULE-V2-033
+    level: RULE
+    statement: >-
+      Traceability-closure rule: every material gap is CLOSED, accepted as future-volume input, validation or
+      policy pending, intentionally excluded, or a defect requiring amendment; a passing schema check never
+      closes a gap.
+    product: House
+    traces_to:
+      - UC-V2-050
+    rule_classification: DEFINED_PRODUCT_RULE
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- WF: workflows ---
+  - id: WF-V2-014
+    level: WF
+    statement: >-
+      Product consolidation and Volume 2 closure workflow: assemble the integrated baseline, confirm scope, and
+      hand off to Volume 3 without new decisions.
+    product: House
+    traces_to:
+      - RULE-V2-030
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-015
+    level: WF
+    statement: >-
+      Change-governance workflow: classify a change, route it to the approving authority, capture evidence, and
+      record the outcome.
+    product: House
+    traces_to:
+      - RULE-V2-032
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: WF-V2-016
+    level: WF
+    statement: >-
+      Traceability-closure and validation-backlog workflow: run the projection, disposition each gap, and
+      maintain the backlog with owners and blocking gates.
+    product: House
+    traces_to:
+      - RULE-V2-033
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- UX: governance experience surfaces ---
+  - id: UX-V2-023
+    level: UX
+    statement: >-
+      Integrated product-definition baseline surface: a consolidation view presenting each capability's
+      responsibilities, controls, acceptance coverage, and unresolved conditions.
+    product: House
+    traces_to:
+      - WF-V2-014
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-024
+    level: UX
+    statement: >-
+      Decision-rights and accountability surface: a view of decision domains, accountable authorities,
+      delegation, escalation, and approval status.
+    product: House
+    traces_to:
+      - WF-V2-014
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-025
+    level: UX
+    statement: >-
+      Change-governance surface: a view of change classes, approving authorities, required evidence, and
+      downstream design impact.
+    product: House
+    traces_to:
+      - WF-V2-015
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-026
+    level: UX
+    statement: >-
+      Traceability and validation-backlog surface: a view of the traceability projection and each open backlog
+      item with owner and blocking gate.
+    product: House
+    traces_to:
+      - WF-V2-016
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-027
+    level: UX
+    statement: >-
+      Executive product-and-service brief surface: a concise summary view of the ratified definition that adds
+      no new authority.
+    product: House
+    traces_to:
+      - WF-V2-014
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- DATA: descriptors ---
+  - id: DATA-V2-023
+    level: DATA
+    statement: Integrated baseline record descriptor consolidating per-capability definition fields.
+    product: House
+    traces_to:
+      - UX-V2-023
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-024
+    level: DATA
+    statement: Decision-rights descriptor capturing domain, accountable authority, delegation, and escalation.
+    product: House
+    traces_to:
+      - UX-V2-024
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-025
+    level: DATA
+    statement: Measure-baseline descriptor capturing measure family, owner, baseline status, and acceptance relationship.
+    product: House
+    traces_to:
+      - UX-V2-023
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-026
+    level: DATA
+    statement: Change-classification descriptor capturing change class, approving authority, and downstream impact.
+    product: House
+    traces_to:
+      - UX-V2-025
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-027
+    level: DATA
+    statement: Validation-backlog item descriptor capturing classification, owner, blocking gate, and target volume.
+    product: House
+    traces_to:
+      - UX-V2-026
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- CTRL: controls ---
+  - id: CTRL-V2-021
+    level: CTRL
+    statement: >-
+      Consolidation-integrity control: verify the integrated baseline restates only ratified content and
+      introduces no new governed decision.
+    product: House
+    traces_to:
+      - NFR-V2-023
+      - BR-V2-031
+    acceptance_ref:
+      - TEST-V2-044
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-022
+    level: CTRL
+    statement: >-
+      Decision-rights integrity control: verify each governed decision is attributable to its accountable
+      function and that no Button surface holds governed authority.
+    product: House
+    traces_to:
+      - BR-V2-032
+    acceptance_ref:
+      - TEST-V2-045
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-023
+    level: CTRL
+    statement: >-
+      Measure-baseline integrity control: verify the measure baseline contains no fabricated numeric target and
+      classifies every unvalidated measure as validation pending.
+    product: House
+    traces_to:
+      - NFR-V2-022
+    acceptance_ref:
+      - TEST-V2-046
+    measure_identifier: MEAS-V2-16
+    measure_baseline_status: BASELINE_PENDING
+    validation_authority: Service Operations Owner (STK-V2-021)
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-024
+    level: CTRL
+    statement: >-
+      Change-governance control: verify each product change is classified before approval and routed to the
+      correct approving authority.
+    product: House
+    traces_to:
+      - BR-V2-034
+    acceptance_ref:
+      - TEST-V2-047
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-025
+    level: CTRL
+    statement: >-
+      Traceability-closure control: verify the traceability projection is deterministic and that every material
+      gap carries a controlled disposition.
+    product: House
+    traces_to:
+      - NFR-V2-023
+    acceptance_ref:
+      - TEST-V2-048
+    measure_identifier: MEAS-V2-18
+    measure_baseline_status: DEFINED
+    validation_authority: Product Authority (STK-V2-019)
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-026
+    level: CTRL
+    statement: >-
+      Authority-boundary control: verify no requirement authorizes implementation or procurement and that
+      governed authority never attaches to a Button-primary stakeholder.
+    product: House
+    traces_to:
+      - BR-V2-032
+    acceptance_ref:
+      - TEST-V2-049
+    measure_identifier: MEAS-V2-19
+    measure_baseline_status: DEFINED
+    validation_authority: Product Authority (STK-V2-019)
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- TEST: acceptance scenarios ---
+  - id: TEST-V2-044
+    level: TEST
+    statement: "Acceptance scenario: the integrated baseline consolidates every ratified package and introduces no new governed decision."
+    product: House
+    traces_to:
+      - CTRL-V2-021
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-045
+    level: TEST
+    statement: "Acceptance scenario: a decision attempted outside the accountable function is not accepted, and no Button surface is recorded with governed authority."
+    product: House
+    traces_to:
+      - CTRL-V2-022
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-046
+    level: TEST
+    statement: "Acceptance scenario: the measure baseline is reviewed and contains no fabricated numeric target; every unvalidated measure is classified validation pending."
+    product: House
+    traces_to:
+      - CTRL-V2-023
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-047
+    level: TEST
+    statement: "Acceptance scenario: a product change is classified before approval and an authority-boundary or breaking change is routed for executive acceptance."
+    product: House
+    traces_to:
+      - CTRL-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-048
+    level: TEST
+    statement: "Acceptance scenario: the traceability projection is regenerated deterministically and every material gap carries a controlled disposition."
+    product: House
+    traces_to:
+      - CTRL-V2-025
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-049
+    level: TEST
+    statement: "Acceptance scenario: the requirement corpus is reviewed and no requirement authorizes implementation or procurement and no Button-primary stakeholder holds governed authority."
+    product: House
+    traces_to:
+      - CTRL-V2-026
     governed_by_kernel: true
     authorizes_implementation: false
     validation_status: stakeholder_validation_pending

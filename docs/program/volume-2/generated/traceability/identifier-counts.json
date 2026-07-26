@@ -1,0 +1,41 @@
+{
+  "generated_at": null,
+  "requirement_chain": [
+    "OUT",
+    "CAP",
+    "BR",
+    "FR",
+    "NFR",
+    "UC",
+    "RULE",
+    "WF",
+    "UX",
+    "DATA",
+    "API",
+    "EVT",
+    "CTRL",
+    "TEST"
+  ],
+  "counts_by_level": {
+    "OUT": 26,
+    "CAP": 50,
+    "BR": 35,
+    "FR": 49,
+    "NFR": 23,
+    "UC": 51,
+    "RULE": 33,
+    "WF": 16,
+    "UX": 27,
+    "DATA": 27,
+    "API": 12,
+    "EVT": 17,
+    "CTRL": 26,
+    "TEST": 49
+  },
+  "requirement_total": 441,
+  "stakeholders": 24,
+  "decisions": 29,
+  "approvals": 50,
+  "chapters": 39,
+  "registers": 6
+}

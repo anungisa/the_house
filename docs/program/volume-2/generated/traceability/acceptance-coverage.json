@@ -1,0 +1,44 @@
+{
+  "generated_at": null,
+  "outcomes_without_acceptance": [
+    "OUT-V2-004",
+    "OUT-V2-011",
+    "OUT-V2-016",
+    "OUT-V2-021"
+  ],
+  "capabilities_without_rules_or_fr": [
+    "CAP-V2-004",
+    "CAP-V2-005",
+    "CAP-V2-018",
+    "CAP-V2-023",
+    "CAP-V2-025",
+    "CAP-V2-026",
+    "CAP-V2-027",
+    "CAP-V2-028",
+    "CAP-V2-029",
+    "CAP-V2-030",
+    "CAP-V2-032",
+    "CAP-V2-037",
+    "CAP-V2-050"
+  ],
+  "rules_without_workflows": [
+    "RULE-V2-006",
+    "RULE-V2-008",
+    "RULE-V2-011",
+    "RULE-V2-012",
+    "RULE-V2-013",
+    "RULE-V2-027",
+    "RULE-V2-031"
+  ],
+  "workflows_without_experience": [
+    "WF-V2-003",
+    "WF-V2-010"
+  ],
+  "controls_without_tests": [
+    "CTRL-V2-005",
+    "CTRL-V2-006",
+    "CTRL-V2-015",
+    "CTRL-V2-019"
+  ],
+  "tests_without_outcome_lineage": []
+}
