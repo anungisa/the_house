@@ -1,7 +1,7 @@
 register_id: REG-505
 name: Volume 5 Approval Register
 status: RATIFIED
-version: 1.7.0
+version: 1.8.0
 records:
   # ==== Package 1: chapter ratifications ====
   - id: APP-V5-001
@@ -757,4 +757,87 @@ records:
       - Records the validation-gate reassignment away from the passing Gate V5-G4.
       - Authorizes no implementation.
     approved_at: null
+
+  # ==== Package 4: closure, gate disposition, and freeze ====
+  - id: APP-V5-056
+    artifact_id: V5-G
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-G
+    conditions:
+      - Package 4 closure record consolidates the PostgreSQL physical data model, persistence, and migration design.
+      - Records Gate V5-G4 disposition and Package 5 authorization.
+      - Records the validation-gate reassignment away from the passing Gate V5-G4.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-057
+    artifact_id: GATE-V5-G4
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: PHYSICAL_DATA_MODEL_AND_PERSISTENCE_DESIGN_READY
+    closure_record: V5-G
+    conditions:
+      - Package 1, Package 2, and Package 3 provenance and freezes are preserved.
+      - Package 3 unresolved validations no longer name the completed Gate V5-G4.
+      - The physical data model is documentary, targets PostgreSQL, and authorizes no implementation.
+      - Every physical relation traces to a governed logical source and an owning information domain.
+      - Organization, jurisdiction, season, and affiliation scope is represented by explicit references and composite scope keys, with a child organization's scope a subset of its parent's.
+      - Affiliation applicability is unique per case and season.
+      - Person, authenticated identity, membership, representative authority, and reviewer assignment are physically distinct relations and never conflated.
+      - Evidence is held as metadata bound to case, requirement version, actor, and provenance, and evidence binary content is externalized, never held in an authoritative relation.
+      - Submission snapshots are immutable after capture; resubmission creates a new snapshot.
+      - Corrections are append-preserving and reference the corrected record.
+      - Payment acknowledgement, accounting confirmation, reconciliation, decision, and activation are physically distinct facts under separated authorities.
+      - Exactly one authoritative activation exists per affiliation case and season, with superseded activations preserved.
+      - Governed transitions write state, audit, and outbox rows in one transaction; external effects publish only after commit through a transactional outbox; and command idempotency is enforced by a unique key.
+      - Reference and code values use stable language-neutral identifiers with separable bilingual labels and are versioned and deprecated rather than deleted or silently reused.
+      - Views, materialized projections, search, analytics, and export structures are non-authoritative, read-only, and rebuildable, and never accept governed writes.
+      - Migration staging and quarantine relations preserve source provenance, confer no governed authority, and never auto-merge uncertain identity matches.
+      - Integrity, indexing, and partitioning requirements are expressed as design obligations; no retention period, archival schedule, or deletion is approved; and legal hold supersedes disposition.
+      - No executable schema, table, column, index, key, data-definition, object-relational mapping, migration, pipeline, interface, event, or file contract is created, and no inference of these is authorized.
+      - Package 4 receives line-level review with a separate freeze commit.
+    approved_at: null
+  - id: APP-V5-058
+    artifact_id: PACKAGE-5-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-G
+    frozen: true
+    frozen_artifacts:
+      - id: V5-32
+        version: 1.0.0
+      - id: V5-33
+        version: 1.0.0
+      - id: V5-34
+        version: 1.0.0
+      - id: V5-35
+        version: 1.0.0
+      - id: V5-36
+        version: 1.0.0
+      - id: V5-37
+        version: 1.0.0
+      - id: V5-38
+        version: 1.0.0
+      - id: V5-39
+        version: 1.0.0
+      - id: V5-40
+        version: 1.0.0
+      - id: V5-41
+        version: 1.0.0
+      - id: V5-42
+        version: 1.0.0
+      - id: V5-G
+        version: 1.0.0
+    conditions:
+      - Package 4 corpus frozen; changes require the recorded amendment process.
+      - Freeze committed separately from authoring per Gate V5-G4 condition.
+      - Authorizes no implementation.
+    approved_at: null
+
 

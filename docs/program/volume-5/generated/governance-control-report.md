@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T19:29:07.540Z
+Generated: 2026-07-26T19:32:23.817Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T19:29:07.540Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 49 |
+| RATIFIED | 50 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.7.0 | 49 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.8.0 | 50 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.3.0 | 228 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.3.0 | 84 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.3.0 | 43 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.3.0 | 58 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.7.0 | 55 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.8.0 | 58 |
 
 ## Findings by control
 
@@ -252,3 +252,29 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-055 (V5-42): Physical-model verification, implementation handoff, and downstream constraints defined.
 - APP-V5-055 (V5-42): Records the validation-gate reassignment away from the passing Gate V5-G4.
 - APP-V5-055 (V5-42): Authorizes no implementation.
+- APP-V5-056 (V5-G): Package 4 closure record consolidates the PostgreSQL physical data model, persistence, and migration design.
+- APP-V5-056 (V5-G): Records Gate V5-G4 disposition and Package 5 authorization.
+- APP-V5-056 (V5-G): Records the validation-gate reassignment away from the passing Gate V5-G4.
+- APP-V5-056 (V5-G): Authorizes no implementation.
+- APP-V5-057 (GATE-V5-G4): Package 1, Package 2, and Package 3 provenance and freezes are preserved.
+- APP-V5-057 (GATE-V5-G4): Package 3 unresolved validations no longer name the completed Gate V5-G4.
+- APP-V5-057 (GATE-V5-G4): The physical data model is documentary, targets PostgreSQL, and authorizes no implementation.
+- APP-V5-057 (GATE-V5-G4): Every physical relation traces to a governed logical source and an owning information domain.
+- APP-V5-057 (GATE-V5-G4): Organization, jurisdiction, season, and affiliation scope is represented by explicit references and composite scope keys, with a child organization's scope a subset of its parent's.
+- APP-V5-057 (GATE-V5-G4): Affiliation applicability is unique per case and season.
+- APP-V5-057 (GATE-V5-G4): Person, authenticated identity, membership, representative authority, and reviewer assignment are physically distinct relations and never conflated.
+- APP-V5-057 (GATE-V5-G4): Evidence is held as metadata bound to case, requirement version, actor, and provenance, and evidence binary content is externalized, never held in an authoritative relation.
+- APP-V5-057 (GATE-V5-G4): Submission snapshots are immutable after capture; resubmission creates a new snapshot.
+- APP-V5-057 (GATE-V5-G4): Corrections are append-preserving and reference the corrected record.
+- APP-V5-057 (GATE-V5-G4): Payment acknowledgement, accounting confirmation, reconciliation, decision, and activation are physically distinct facts under separated authorities.
+- APP-V5-057 (GATE-V5-G4): Exactly one authoritative activation exists per affiliation case and season, with superseded activations preserved.
+- APP-V5-057 (GATE-V5-G4): Governed transitions write state, audit, and outbox rows in one transaction; external effects publish only after commit through a transactional outbox; and command idempotency is enforced by a unique key.
+- APP-V5-057 (GATE-V5-G4): Reference and code values use stable language-neutral identifiers with separable bilingual labels and are versioned and deprecated rather than deleted or silently reused.
+- APP-V5-057 (GATE-V5-G4): Views, materialized projections, search, analytics, and export structures are non-authoritative, read-only, and rebuildable, and never accept governed writes.
+- APP-V5-057 (GATE-V5-G4): Migration staging and quarantine relations preserve source provenance, confer no governed authority, and never auto-merge uncertain identity matches.
+- APP-V5-057 (GATE-V5-G4): Integrity, indexing, and partitioning requirements are expressed as design obligations; no retention period, archival schedule, or deletion is approved; and legal hold supersedes disposition.
+- APP-V5-057 (GATE-V5-G4): No executable schema, table, column, index, key, data-definition, object-relational mapping, migration, pipeline, interface, event, or file contract is created, and no inference of these is authorized.
+- APP-V5-057 (GATE-V5-G4): Package 4 receives line-level review with a separate freeze commit.
+- APP-V5-058 (PACKAGE-5-4): Package 4 corpus frozen; changes require the recorded amendment process.
+- APP-V5-058 (PACKAGE-5-4): Freeze committed separately from authoring per Gate V5-G4 condition.
+- APP-V5-058 (PACKAGE-5-4): Authorizes no implementation.
