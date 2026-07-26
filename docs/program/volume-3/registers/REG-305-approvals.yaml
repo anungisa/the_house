@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -140,4 +140,50 @@ records:
         version: 1.0.0
     conditions:
       - Package 1 corpus frozen at version 1.0.0 through a separate freeze commit.
+    approved_at: null
+  - id: APP-V3-012
+    artifact_id: PACKAGE-3-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_1_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    supersedes: >-
+      APP-V3-011 (post-merge freeze-provenance completion; the original freeze approval was
+      ratified at freeze time and could not record the merged commit; see REG-304 DEC-V3-004).
+      APP-V3-011 remains the original freeze record and is not reopened; Gate V3-G1 (APP-V3-010)
+      and V3-A are preserved.
+    package_provenance:
+      source_snapshot_commit: "34eba63"
+      closure_freeze_commit: "ce41279"
+      merged_commit: "8c4f4ff"
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      note: >-
+        Package 1 authoring and register expansion were snapshotted at 34eba63; the V3-A
+        closure, Gate V3-G1 disposition, and Package 1 freeze were recorded in the separate
+        freeze commit ce41279; the branch merged to main as 8c4f4ff. Evidence posture:
+        SELF_ATTESTED_AUTHOR_VERIFIED.
+    frozen_artifacts:
+      - id: V3-00
+        version: 1.0.0
+      - id: V3-01
+        version: 1.0.0
+      - id: V3-02
+        version: 1.0.0
+      - id: V3-03
+        version: 1.0.0
+      - id: V3-04
+        version: 1.0.0
+      - id: V3-05
+        version: 1.0.0
+      - id: V3-06
+        version: 1.0.0
+      - id: V3-07
+        version: 1.0.0
+      - id: V3-A
+        version: 1.0.0
+    conditions:
+      - Package 1 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
+      - Source snapshot 34eba63; closure/freeze ce41279; merged 8c4f4ff.
     approved_at: null
