@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.8.1
+version: 1.9.0
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -566,4 +566,61 @@ records:
       - Service-experience definition only; implementation, procurement, architecture, and delivery plan unauthorized; not a master development plan
       - Volume 2 Package 5 authorized to commence as definition and governance work (DEC-V2-022)
       - Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+    approved_at: null
+  # --- Package 5 chapter ratifications ---
+  - id: APP-V2-040
+    artifact_id: V2-27
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Integrated affiliation product-service definition baseline consolidates ratified content and introduces no new governed decision; definition only
+    approved_at: null
+  - id: APP-V2-041
+    artifact_id: V2-28
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product ownership and decision rights defined; authority derives from accountable function, not workspace visibility; named-role confirmation pending; definition only
+    approved_at: null
+  - id: APP-V2-042
+    artifact_id: V2-29
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Service commitments and measures defined and classified; no fabricated numeric target; unvalidated measures classified validation pending; definition only
+    approved_at: null
+  - id: APP-V2-043
+    artifact_id: V2-30
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Product lifecycle and change governance defined; authority-boundary and breaking changes require executive acceptance; definition only
+    approved_at: null
+  - id: APP-V2-044
+    artifact_id: V2-31
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Integrated traceability and acceptance closed; every material gap dispositioned; no gap closed merely because schema validation passes; definition only
+    approved_at: null
+  - id: APP-V2-045
+    artifact_id: V2-32
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Validation backlog, product risks, and downstream constraints recorded; every unresolved validation has an accountable owner and future blocking gate; definition only
+    approved_at: null
+  - id: APP-V2-046
+    artifact_id: V2-33
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    conditions:
+      - Executive product-and-service brief summarises ratified definition and introduces no new authority; definition only
     approved_at: null

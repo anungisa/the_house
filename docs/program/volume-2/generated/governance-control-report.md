@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T02:31:50.712Z
+Generated: 2026-07-26T04:12:11.720Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -27,18 +27,18 @@ Generated: 2026-07-26T02:31:50.712Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 31 |
+| RATIFIED | 38 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.7.0 | 31 |
-| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.3.0 | 21 |
-| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.3.0 | 18 |
-| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.3.0 | 361 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.8.1 | 23 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.8.1 | 39 |
+| REG-200 | Volume 2 Corpus Index | IN_REVIEW | 1.8.0 | 38 |
+| REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.4.0 | 26 |
+| REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.4.0 | 24 |
+| REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.4.0 | 415 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.9.0 | 26 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.9.0 | 46 |
 
 ## Findings by control
 
@@ -169,3 +169,10 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-039 (PACKAGE-2-4): Service-experience definition only; implementation, procurement, architecture, and delivery plan unauthorized; not a master development plan
 - APP-V2-039 (PACKAGE-2-4): Volume 2 Package 5 authorized to commence as definition and governance work (DEC-V2-022)
 - APP-V2-039 (PACKAGE-2-4): Executive organizational acceptance (Nolan, D0) pending at a later material-commitment gate
+- APP-V2-040 (V2-27): Integrated affiliation product-service definition baseline consolidates ratified content and introduces no new governed decision; definition only
+- APP-V2-041 (V2-28): Product ownership and decision rights defined; authority derives from accountable function, not workspace visibility; named-role confirmation pending; definition only
+- APP-V2-042 (V2-29): Service commitments and measures defined and classified; no fabricated numeric target; unvalidated measures classified validation pending; definition only
+- APP-V2-043 (V2-30): Product lifecycle and change governance defined; authority-boundary and breaking changes require executive acceptance; definition only
+- APP-V2-044 (V2-31): Integrated traceability and acceptance closed; every material gap dispositioned; no gap closed merely because schema validation passes; definition only
+- APP-V2-045 (V2-32): Validation backlog, product risks, and downstream constraints recorded; every unresolved validation has an accountable owner and future blocking gate; definition only
+- APP-V2-046 (V2-33): Executive product-and-service brief summarises ratified definition and introduces no new authority; definition only

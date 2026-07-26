@@ -1,7 +1,7 @@
 register_id: REG-200
 name: Volume 2 Corpus Index
 status: IN_REVIEW
-version: 1.7.0
+version: 1.8.0
 records:
   - id: V2-00
     title: Volume Control and Inheritance
@@ -219,6 +219,62 @@ records:
     version: 1.0.0
     path: docs/program/volume-2/V2-26-affiliation-experience-definition-and-downstream-constraints.md
     gate: V2-G4
+  - id: V2-27
+    title: Integrated Affiliation Product-Service Definition Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-27-integrated-affiliation-product-service-definition-baseline.md
+    gate: V2-G5
+  - id: V2-28
+    title: Product Ownership, Decision Rights, and Service Accountability
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-28-product-ownership-decision-rights-and-service-accountability.md
+    gate: V2-G5
+  - id: V2-29
+    title: Service Commitments, Measures, and Acceptance Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-29-service-commitments-measures-and-acceptance-baseline.md
+    gate: V2-G5
+  - id: V2-30
+    title: Product Lifecycle, Version, and Change Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-30-product-lifecycle-version-and-change-governance.md
+    gate: V2-G5
+  - id: V2-31
+    title: Integrated Requirements, Traceability, and Acceptance Closure
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-31-integrated-requirements-traceability-and-acceptance-closure.md
+    gate: V2-G5
+  - id: V2-32
+    title: Validation Backlog, Product Risks, and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-32-validation-backlog-product-risks-and-downstream-constraints.md
+    gate: V2-G5
+  - id: V2-33
+    title: Executive Product and Service Definition Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-33-executive-product-and-service-definition-brief.md
+    gate: V2-G5
   - id: V2-A
     title: Package 1 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)

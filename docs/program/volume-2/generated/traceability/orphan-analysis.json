@@ -1,0 +1,319 @@
+{
+  "generated_at": null,
+  "broken_traces": [],
+  "records_without_parent": [],
+  "records_without_consumer": [
+    {
+      "id": "API-V2-005",
+      "level": "API"
+    },
+    {
+      "id": "BR-V2-011",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-014",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-023",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-024",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-025",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-026",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-027",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-028",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-029",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-030",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V2-035",
+      "level": "BR"
+    },
+    {
+      "id": "CAP-V2-004",
+      "level": "CAP"
+    },
+    {
+      "id": "CAP-V2-005",
+      "level": "CAP"
+    },
+    {
+      "id": "CAP-V2-037",
+      "level": "CAP"
+    },
+    {
+      "id": "CTRL-V2-005",
+      "level": "CTRL"
+    },
+    {
+      "id": "CTRL-V2-006",
+      "level": "CTRL"
+    },
+    {
+      "id": "CTRL-V2-015",
+      "level": "CTRL"
+    },
+    {
+      "id": "CTRL-V2-019",
+      "level": "CTRL"
+    },
+    {
+      "id": "DATA-V2-004",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-005",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-006",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-011",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-018",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-019",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-020",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-021",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-022",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-023",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-024",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-025",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-026",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V2-027",
+      "level": "DATA"
+    },
+    {
+      "id": "EVT-V2-003",
+      "level": "EVT"
+    },
+    {
+      "id": "EVT-V2-006",
+      "level": "EVT"
+    },
+    {
+      "id": "EVT-V2-007",
+      "level": "EVT"
+    },
+    {
+      "id": "EVT-V2-008",
+      "level": "EVT"
+    },
+    {
+      "id": "EVT-V2-010",
+      "level": "EVT"
+    },
+    {
+      "id": "EVT-V2-013",
+      "level": "EVT"
+    },
+    {
+      "id": "EVT-V2-017",
+      "level": "EVT"
+    },
+    {
+      "id": "FR-V2-014",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V2-036",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V2-046",
+      "level": "FR"
+    },
+    {
+      "id": "NFR-V2-003",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V2-008",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V2-009",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V2-010",
+      "level": "NFR"
+    },
+    {
+      "id": "NFR-V2-011",
+      "level": "NFR"
+    },
+    {
+      "id": "RULE-V2-006",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V2-011",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V2-012",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V2-027",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V2-031",
+      "level": "RULE"
+    },
+    {
+      "id": "UC-V2-005",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-006",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-007",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-011",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-012",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-016",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-018",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-021",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-024",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-025",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-026",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-030",
+      "level": "UC"
+    },
+    {
+      "id": "UC-V2-051",
+      "level": "UC"
+    },
+    {
+      "id": "UX-V2-008",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-009",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-010",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-011",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-012",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-014",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-015",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-016",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-017",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-018",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-022",
+      "level": "UX"
+    },
+    {
+      "id": "UX-V2-027",
+      "level": "UX"
+    }
+  ]
+}

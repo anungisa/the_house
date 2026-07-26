@@ -1,7 +1,7 @@
 register_id: REG-201
 name: Volume 2 Outcome Register
 status: IN_REVIEW
-version: 1.3.0
+version: 1.4.0
 records:
   - id: OUT-V2-001
     statement: >-
@@ -318,3 +318,84 @@ records:
     source_refs:
       - V2-25
       - V2-26
+  - id: OUT-V2-022
+    statement: >-
+      Volume 2 delivers one integrated affiliation product-service definition baseline that
+      consolidates every ratified package as the authoritative input to Volume 3, without
+      introducing new governed decisions.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-007
+    product: Both
+    success_signal: >-
+      A single integrated baseline restates every material capability with its outcome, personas,
+      House and Button responsibilities, controlling rules, experience commitment, acceptance
+      coverage, and unresolved conditions, and no consolidation record creates a new decision.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-27
+      - V2-33
+  - id: OUT-V2-023
+    statement: >-
+      Product ownership, decision rights, and service accountability are explicit, so that authority
+      derives from an accountable function rather than from workspace visibility.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-007
+      - STK-V2-008
+    product: House
+    success_signal: >-
+      Each governance domain names an accountable authority, consulted functions, required evidence,
+      delegation rules, escalation route, change classification, and approval status, and no Button
+      surface holds governed authority.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-28
+  - id: OUT-V2-024
+    statement: >-
+      Affiliation service commitments and measures form a controlled, measurable baseline with owners
+      and acceptance relationships, without fabricated numeric targets.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-007
+    product: Both
+    success_signal: >-
+      Every material service measure family is defined with an outcome, calculation concept, evidence
+      source, accountable owner, baseline and target status, validation authority, acceptance
+      relationship, and future blocking gate, and no measure invents a numeric service target.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-29
+  - id: OUT-V2-025
+    statement: >-
+      The affiliation product has a governed lifecycle and change-governance model, so that every
+      product change is classified and routed to the correct approving authority before it takes effect.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-003
+    product: House
+    success_signal: >-
+      Each change class defines its approving authority, required evidence, affected registers and
+      acceptance coverage, effective-date handling, notice requirements, transition consideration, and
+      downstream design impact, and authority-boundary and breaking changes require executive acceptance.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-30
+  - id: OUT-V2-026
+    statement: >-
+      Volume 2 closes with complete requirement traceability and a managed validation backlog, so that
+      every material gap is dispositioned and every unresolved validation carries an owner and a future
+      blocking gate before Volume 3 begins.
+    stakeholder_refs:
+      - STK-V2-001
+      - STK-V2-007
+    product: Both
+    success_signal: >-
+      A deterministic traceability projection reports identifier counts, orphan analysis, chain coverage,
+      acceptance coverage, and authority-boundary analysis; every material gap is CLOSED, deferred,
+      validation or policy pending, intentionally excluded, or flagged as a defect; and no gap closes
+      merely because schema validation passes.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V2-31
+      - V2-32

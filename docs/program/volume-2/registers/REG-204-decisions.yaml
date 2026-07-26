@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.8.1
+version: 1.9.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -517,5 +517,77 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-024
+    class: D1
+    question: >-
+      How is the affiliation product definition consolidated, owned, and made measurable for
+      Volume 2 closure?
+    decision: >-
+      Adopt the integrated affiliation product-service definition baseline (V2-27); the
+      product ownership, decision-rights, and service-accountability model (V2-28); and the
+      service-commitments, measures, and acceptance baseline (V2-29). Consolidation restates
+      ratified content only and introduces no new governed decision; authority derives from
+      an accountable function, not from workspace visibility; and no measure asserts a
+      fabricated numeric target. Definition only; no implementation authorized.
+    evidence_refs:
+      - V2-27
+      - V2-28
+      - V2-29
+      - CAP-V2-044
+      - CAP-V2-045
+      - CAP-V2-046
+      - RULE-V2-030
+      - RULE-V2-031
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-025
+    class: D1
+    question: >-
+      How are product lifecycle, change governance, integrated traceability, and the
+      validation backlog defined for Volume 2 closure?
+    decision: >-
+      Adopt the product lifecycle, version, and change-governance model (V2-30); the
+      integrated requirements, traceability, and acceptance closure (V2-31); and the
+      validation backlog, product risks, and downstream constraints (V2-32). Every product
+      change is classified before approval and routed to the correct authority; every
+      material gap is dispositioned and no gap closes because schema validation passes; and
+      every unresolved validation carries an accountable owner and a future blocking gate.
+      Definition only; no implementation authorized.
+    evidence_refs:
+      - V2-30
+      - V2-31
+      - V2-32
+      - CAP-V2-047
+      - CAP-V2-048
+      - CAP-V2-049
+      - RULE-V2-032
+      - RULE-V2-033
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-026
+    class: D1
+    question: >-
+      How is the ratified affiliation product definition summarised for executive audiences
+      without creating new authority?
+    decision: >-
+      Adopt the executive product-and-service definition brief (V2-33). The brief summarises
+      the ratified product definition, states what remains pending validation and what
+      Volume 3 is authorized to define, and adds no new source of authority. Definition only;
+      no implementation authorized.
+    evidence_refs:
+      - V2-33
+      - CAP-V2-050
+      - BR-V2-035
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

@@ -1,0 +1,26 @@
+{
+  "generated_at": null,
+  "stakeholders_with_governed_authority": [
+    "STK-V2-001",
+    "STK-V2-002",
+    "STK-V2-006",
+    "STK-V2-007",
+    "STK-V2-009",
+    "STK-V2-013",
+    "STK-V2-014",
+    "STK-V2-015",
+    "STK-V2-018",
+    "STK-V2-019",
+    "STK-V2-020",
+    "STK-V2-021",
+    "STK-V2-023"
+  ],
+  "button_primary_with_governed_authority_conflict": [],
+  "requirement_product_distribution": {
+    "House": 297,
+    "Button": 28,
+    "Both": 90,
+    "Neither": 0
+  },
+  "requirements_authorizing_implementation": []
+}
