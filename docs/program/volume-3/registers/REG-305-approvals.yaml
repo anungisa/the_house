@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.5.0
+version: 1.6.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -556,5 +556,53 @@ records:
     conditions:
       - Package 3 corpus frozen at version 1.0.0 through a separate freeze commit.
       - Freeze provenance completed post-merge through the recorded amendment process.
+    approved_at: null
+  - id: APP-V3-038
+    artifact_id: PACKAGE-3-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_3_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    supersedes: >-
+      APP-V3-037 (post-merge freeze-provenance completion; the original freeze approval was
+      ratified at freeze time and could not record the merged commit; see REG-304 DEC-V3-010).
+      APP-V3-037 remains the original freeze record and is not reopened; Gate V3-G3 (APP-V3-036)
+      and V3-C are preserved.
+    package_provenance:
+      source_snapshot_commit: "cfeda60"
+      closure_freeze_commit: "3bdc6eb"
+      merged_commit: "386b15c"
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      note: >-
+        Package 3 authoring and register expansion were snapshotted at cfeda60; the V3-C
+        closure, Gate V3-G3 disposition, and Package 3 freeze were recorded in the separate
+        freeze commit 3bdc6eb; the branch merged to main as 386b15c. Evidence posture:
+        SELF_ATTESTED_AUTHOR_VERIFIED.
+    frozen_artifacts:
+      - id: V3-17
+        version: 1.0.0
+      - id: V3-18
+        version: 1.0.0
+      - id: V3-19
+        version: 1.0.0
+      - id: V3-20
+        version: 1.0.0
+      - id: V3-21
+        version: 1.0.0
+      - id: V3-22
+        version: 1.0.0
+      - id: V3-23
+        version: 1.0.0
+      - id: V3-24
+        version: 1.0.0
+      - id: V3-25
+        version: 1.0.0
+      - id: V3-C
+        version: 1.0.0
+    conditions:
+      - Package 3 freeze provenance completed post-merge; source snapshot cfeda60, closure/freeze 3bdc6eb, merged 386b15c.
+      - Gate V3-G3 and V3-C are preserved; no substantive Package 3 content is reopened.
     approved_at: null
 
