@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:17:36.457Z
+Generated: 2026-07-26T12:21:22.903Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -38,8 +38,8 @@ Generated: 2026-07-26T12:17:36.457Z
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.1.0 | 16 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.0.0 | 16 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.1.0 | 131 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.2.0 | 6 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.2.0 | 24 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.3.0 | 7 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.3.0 | 25 |
 
 ## Findings by control
 
@@ -109,3 +109,5 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-023 (GATE-V3-G2): Condition 14: Package 2 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit
 - APP-V3-024 (PACKAGE-3-2): Package 2 corpus frozen at version 1.0.0 through a separate freeze commit.
 - APP-V3-024 (PACKAGE-3-2): Freeze provenance completed post-merge through the recorded amendment process.
+- APP-V3-025 (PACKAGE-3-2): Package 2 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
+- APP-V3-025 (PACKAGE-3-2): Source snapshot e2f1b0c; closure/freeze 6583d53; merged 877dba6.
