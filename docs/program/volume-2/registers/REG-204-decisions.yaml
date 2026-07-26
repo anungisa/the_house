@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.5.0
+version: 1.6.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -311,6 +311,49 @@ records:
       - V2-18
       - RULE-V2-020
       - RULE-V2-023
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-015
+    class: D1
+    question: >-
+      Is Volume 2 Package 3 complete at Gate V2-G3, and should the Package 3 corpus be
+      frozen?
+    decision: >-
+      Record Gate V2-G3 as PASS with disposition AFFILIATION_OPERATING_RULES_COMPLETE and
+      freeze the Package 3 corpus (V2-12 through V2-18 and V2-C at version 1.0.0). All
+      fourteen gate conditions hold: Package 2 provenance unambiguous; terminology and
+      authority controlled; pathway-selection, applicability, evidence, review, decision,
+      fee, reconciliation, activation, operations, and decision-table rules defined;
+      administrative correction separated from governed decision change; unvalidated
+      policies classified and owned; no rule authorizes implementation; no architecture or
+      master development plan created; and Package 3 closed with a separate freeze commit.
+      The freeze source snapshot is commit 4287b63, distinct from the closure/freeze
+      commit.
+    evidence_refs:
+      - V2-C
+      - GATE-V2-G3
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-016
+    class: D1
+    question: >-
+      Is Volume 2 Package 4 authorized to commence?
+    decision: >-
+      Authorize Volume 2 Package 4 to commence as the next product-governance package.
+      Package 4 remains definition and governance work and authorizes no implementation,
+      procurement, technical architecture, or master development plan, all of which remain
+      pending executive organizational acceptance (Nolan, D0) at the material-commitment
+      gate.
+    evidence_refs:
+      - V2-C
+      - GATE-V2-G3
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
