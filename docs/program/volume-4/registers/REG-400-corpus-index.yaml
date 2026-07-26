@@ -1,7 +1,7 @@
 register_id: REG-400
 name: Volume 4 Corpus Index
 status: RATIFIED
-version: 1.10.0
+version: 1.11.0
 records:
   - id: V4-00
     title: Volume 4 Control, Inheritance, and Architecture Authority
@@ -379,3 +379,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-4/V4-H-package-4-provenance-amendment.md
     gate: V4-G4
+  - id: V4-39
+    title: Integrated Target-Architecture Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-39-integrated-target-architecture-baseline.md
+    gate: V4-G5
+  - id: V4-40
+    title: Architecture-Element Catalogue and Boundary Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-40-architecture-element-catalogue-and-boundary-matrix.md
+    gate: V4-G5
+  - id: V4-41
+    title: "Authority, Security, Privacy, and Trust Synthesis"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-41-authority-security-privacy-and-trust-synthesis.md
+    gate: V4-G5
+  - id: V4-42
+    title: "Data, Integration, Runtime, and Resilience Synthesis"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-42-data-integration-runtime-and-resilience-synthesis.md
+    gate: V4-G5
+  - id: V4-43
+    title: "Quality Attributes, Engineering Controls, and Verification Baseline"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-43-quality-attributes-engineering-controls-and-verification-baseline.md
+    gate: V4-G5
+  - id: V4-44
+    title: "Architecture Decisions, Assumptions, Risks, Exceptions, and Debt Closure"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-44-architecture-decisions-assumptions-risks-exceptions-and-debt-closure.md
+    gate: V4-G5
+  - id: V4-45
+    title: House P0 Architecture Coverage and Implementation-Evidence Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-45-house-p0-architecture-coverage-and-implementation-evidence-matrix.md
+    gate: V4-G5
+  - id: V4-46
+    title: Architecture Readiness and Downstream-Decision Register
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-46-architecture-readiness-and-downstream-decision-register.md
+    gate: V4-G5
+  - id: V4-47
+    title: Downstream-Volume Handoff and Constraint Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-47-downstream-volume-handoff-and-constraint-matrix.md
+    gate: V4-G5
+  - id: V4-48
+    title: Executive Architecture and Engineering Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-48-executive-architecture-and-engineering-brief.md
+    gate: V4-G5
+  - id: V4-49
+    title: Integrated Architecture Traceability and Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-49-integrated-architecture-traceability-and-closure-assessment.md
+    gate: V4-G5

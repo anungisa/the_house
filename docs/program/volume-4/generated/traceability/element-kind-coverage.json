@@ -1,11 +1,11 @@
 {
-  "ARCH": 36,
+  "ARCH": 45,
   "NFR": 23,
   "MOD": 26,
   "SVC": 26,
   "DATA": 19,
   "API": 6,
   "EVT": 5,
-  "CTRL": 38,
+  "CTRL": 40,
   "DEP": 22
 }

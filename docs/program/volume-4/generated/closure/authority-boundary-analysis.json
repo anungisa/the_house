@@ -1,0 +1,10 @@
+{
+  "by_authority": {
+    "Shared": 36,
+    "House": 162,
+    "External": 8,
+    "Button": 4,
+    "Staff": 2
+  },
+  "elements_without_authority": []
+}

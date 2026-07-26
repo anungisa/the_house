@@ -1,0 +1,30 @@
+{
+  "by_kind": {
+    "ARCH": 45,
+    "NFR": 23,
+    "MOD": 26,
+    "SVC": 26,
+    "DATA": 19,
+    "API": 6,
+    "EVT": 5,
+    "CTRL": 40,
+    "DEP": 22
+  },
+  "by_architecture_status": {
+    "TARGET_DEFINED": 123,
+    "TARGET_CONSTRAINED": 73,
+    "TARGET_ASSUMED": 16
+  },
+  "by_authority": {
+    "Shared": 36,
+    "House": 162,
+    "External": 8,
+    "Button": 4,
+    "Staff": 2
+  },
+  "by_verification_status": {
+    "UNSET": 177,
+    "VALIDATION_PENDING": 24,
+    "SPECIFIED": 11
+  }
+}

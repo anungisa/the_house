@@ -2027,5 +2027,119 @@
       "CTRL-V4-032"
     ],
     "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-037",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-028",
+      "ARCH-V4-032",
+      "ARCH-V4-036"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-038",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-039",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-040",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-041",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037",
+      "ARCH-V4-031"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-042",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-043",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037",
+      "ARCH-V4-036"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-044",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-045",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-037"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-039",
+    "kind": "CTRL",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-045"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-040",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-044"
+    ],
+    "inherited_trace_present": false
   }
 ]

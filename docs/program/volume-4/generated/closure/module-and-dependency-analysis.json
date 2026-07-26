@@ -1,0 +1,254 @@
+{
+  "module_count": 26,
+  "service_count": 26,
+  "dependencies": [
+    {
+      "from": "MOD-V4-001",
+      "to": "ARCH-V4-002"
+    },
+    {
+      "from": "MOD-V4-001",
+      "to": "NFR-V4-008"
+    },
+    {
+      "from": "MOD-V4-002",
+      "to": "ARCH-V4-002"
+    },
+    {
+      "from": "MOD-V4-002",
+      "to": "ARCH-V4-004"
+    },
+    {
+      "from": "MOD-V4-003",
+      "to": "ARCH-V4-007"
+    },
+    {
+      "from": "MOD-V4-004",
+      "to": "ARCH-V4-007"
+    },
+    {
+      "from": "MOD-V4-005",
+      "to": "ARCH-V4-008"
+    },
+    {
+      "from": "MOD-V4-005",
+      "to": "ARCH-V4-010"
+    },
+    {
+      "from": "MOD-V4-006",
+      "to": "ARCH-V4-006"
+    },
+    {
+      "from": "MOD-V4-007",
+      "to": "ARCH-V4-006"
+    },
+    {
+      "from": "MOD-V4-007",
+      "to": "ARCH-V4-004"
+    },
+    {
+      "from": "MOD-V4-008",
+      "to": "ARCH-V4-003"
+    },
+    {
+      "from": "MOD-V4-009",
+      "to": "ARCH-V4-008"
+    },
+    {
+      "from": "MOD-V4-010",
+      "to": "ARCH-V4-004"
+    },
+    {
+      "from": "MOD-V4-010",
+      "to": "ARCH-V4-005"
+    },
+    {
+      "from": "MOD-V4-011",
+      "to": "ARCH-V4-009"
+    },
+    {
+      "from": "MOD-V4-012",
+      "to": "ARCH-V4-010"
+    },
+    {
+      "from": "MOD-V4-013",
+      "to": "ARCH-V4-010"
+    },
+    {
+      "from": "MOD-V4-013",
+      "to": "NFR-V4-008"
+    },
+    {
+      "from": "MOD-V4-014",
+      "to": "ARCH-V4-010"
+    },
+    {
+      "from": "MOD-V4-015",
+      "to": "ARCH-V4-009"
+    },
+    {
+      "from": "MOD-V4-015",
+      "to": "ARCH-V4-011"
+    },
+    {
+      "from": "MOD-V4-016",
+      "to": "ARCH-V4-015"
+    },
+    {
+      "from": "SVC-V4-001",
+      "to": "MOD-V4-005"
+    },
+    {
+      "from": "SVC-V4-002",
+      "to": "MOD-V4-005"
+    },
+    {
+      "from": "SVC-V4-002",
+      "to": "MOD-V4-004"
+    },
+    {
+      "from": "SVC-V4-003",
+      "to": "MOD-V4-005"
+    },
+    {
+      "from": "SVC-V4-004",
+      "to": "MOD-V4-006"
+    },
+    {
+      "from": "SVC-V4-005",
+      "to": "MOD-V4-007"
+    },
+    {
+      "from": "SVC-V4-006",
+      "to": "MOD-V4-005"
+    },
+    {
+      "from": "SVC-V4-006",
+      "to": "MOD-V4-006"
+    },
+    {
+      "from": "SVC-V4-007",
+      "to": "MOD-V4-007"
+    },
+    {
+      "from": "SVC-V4-008",
+      "to": "MOD-V4-008"
+    },
+    {
+      "from": "SVC-V4-009",
+      "to": "MOD-V4-009"
+    },
+    {
+      "from": "SVC-V4-010",
+      "to": "MOD-V4-009"
+    },
+    {
+      "from": "SVC-V4-010",
+      "to": "MOD-V4-015"
+    },
+    {
+      "from": "SVC-V4-011",
+      "to": "MOD-V4-005"
+    },
+    {
+      "from": "MOD-V4-017",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-018",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-019",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-020",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-021",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-022",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-023",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-024",
+      "to": "ARCH-V4-016"
+    },
+    {
+      "from": "MOD-V4-025",
+      "to": "ARCH-V4-004"
+    },
+    {
+      "from": "SVC-V4-012",
+      "to": "MOD-V4-017"
+    },
+    {
+      "from": "SVC-V4-013",
+      "to": "MOD-V4-017"
+    },
+    {
+      "from": "SVC-V4-014",
+      "to": "MOD-V4-018"
+    },
+    {
+      "from": "SVC-V4-015",
+      "to": "MOD-V4-019"
+    },
+    {
+      "from": "SVC-V4-016",
+      "to": "MOD-V4-020"
+    },
+    {
+      "from": "SVC-V4-017",
+      "to": "MOD-V4-021"
+    },
+    {
+      "from": "SVC-V4-018",
+      "to": "MOD-V4-022"
+    },
+    {
+      "from": "SVC-V4-019",
+      "to": "MOD-V4-022"
+    },
+    {
+      "from": "SVC-V4-020",
+      "to": "MOD-V4-023"
+    },
+    {
+      "from": "SVC-V4-021",
+      "to": "MOD-V4-024"
+    },
+    {
+      "from": "SVC-V4-022",
+      "to": "MOD-V4-022"
+    },
+    {
+      "from": "SVC-V4-023",
+      "to": "MOD-V4-018"
+    },
+    {
+      "from": "SVC-V4-024",
+      "to": "MOD-V4-014"
+    },
+    {
+      "from": "SVC-V4-025",
+      "to": "MOD-V4-015"
+    },
+    {
+      "from": "SVC-V4-026",
+      "to": "MOD-V4-012"
+    },
+    {
+      "from": "MOD-V4-026",
+      "to": "ARCH-V4-028"
+    }
+  ]
+}

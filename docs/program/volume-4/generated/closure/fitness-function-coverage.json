@@ -1,0 +1,33 @@
+{
+  "by_verification_class": {
+    "UNSET": 13,
+    "STATIC_VERIFICATION_CANDIDATE": 19,
+    "UNIT_VERIFICATION_CANDIDATE": 9,
+    "POSTGRES_INTEGRATION_CANDIDATE": 10,
+    "COMPOSITION_VERIFICATION_CANDIDATE": 9,
+    "DEPLOYMENT_PATH_VERIFICATION_CANDIDATE": 3,
+    "SECURITY_VALIDATION_REQUIRED": 1,
+    "CONTRACT_VERIFICATION_CANDIDATE": 5,
+    "OPERATIONAL_PROOF_REQUIRED": 1
+  },
+  "implemented": [],
+  "authorizing_implementation": [],
+  "with_house_p0_ref": [
+    "FIT-V4-017",
+    "FIT-V4-018",
+    "FIT-V4-019",
+    "FIT-V4-020",
+    "FIT-V4-021",
+    "FIT-V4-022",
+    "FIT-V4-023",
+    "FIT-V4-024",
+    "FIT-V4-025",
+    "FIT-V4-026",
+    "FIT-V4-027",
+    "FIT-V4-028",
+    "FIT-V4-029",
+    "FIT-V4-030",
+    "FIT-V4-032",
+    "FIT-V4-067"
+  ]
+}

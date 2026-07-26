@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.10.0
+version: 1.11.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -774,4 +774,115 @@ records:
       - Preserves Gate V4-G4 and its ENGINEERING_GOVERNANCE_AND_TRANSITION_ARCHITECTURE_READY disposition.
       - Does not reopen or modify frozen Package 4 artifacts V4-28..V4-38 or V4-G.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  # ==== Package 5: chapter ratifications ====
+  - id: APP-V4-056
+    artifact_id: V4-39
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated target-architecture baseline ratified as a consolidation of Packages 1-4 only.
+      - Consolidation is not implementation; no new architecture is asserted to appear complete.
+    approved_at: null
+  - id: APP-V4-057
+    artifact_id: V4-40
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture-element catalogue and boundary matrix ratified.
+      - Expresses dependency direction and authority ownership without prescribing source directories, frameworks, or topology.
+    approved_at: null
+  - id: APP-V4-058
+    artifact_id: V4-41
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Authority, security, privacy, and trust synthesis ratified.
+      - Security and privacy remain defined but unproven; no security or privacy validation is claimed.
+    approved_at: null
+  - id: APP-V4-059
+    artifact_id: V4-42
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data, integration, runtime, and resilience synthesis ratified.
+      - No cloud service, product, library, or topology is selected; restore and recovery remain unproven.
+    approved_at: null
+  - id: APP-V4-060
+    artifact_id: V4-43
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Quality attributes, engineering controls, and verification baseline ratified.
+      - Every fitness function remains unimplemented; no numeric target is fabricated.
+    approved_at: null
+  - id: APP-V4-061
+    artifact_id: V4-44
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Decision, assumption, risk, exception, and debt closure ratified.
+      - Every such record is dispositioned; none disappears because the validator passes and no exception or debt is fabricated.
+    approved_at: null
+  - id: APP-V4-062
+    artifact_id: V4-45
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - House P0 architecture-coverage and implementation-evidence matrix ratified.
+      - Architecture coverage is not implementation remediation; implementation status remains NOT_IMPLEMENTED_OR_NOT_PROVEN.
+    approved_at: null
+  - id: APP-V4-063
+    artifact_id: V4-46
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture-readiness and downstream-decision register ratified.
+      - Every readiness gap has an owner, target volume, and future gate; no confidence is inflated.
+    approved_at: null
+  - id: APP-V4-064
+    artifact_id: V4-47
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Downstream-volume handoff and constraint matrix ratified.
+      - Architecture order is not delivery order; every downstream constraint has a destination volume.
+    approved_at: null
+  - id: APP-V4-065
+    artifact_id: V4-48
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Executive architecture and engineering brief ratified.
+      - Introduces no new authority; records decisions the executive is not yet asked to make.
+    approved_at: null
+  - id: APP-V4-066
+    artifact_id: V4-49
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated architecture traceability and closure assessment ratified.
+      - Deterministic closure projections are non-authoritative; authorization invariants must be zero and no record disappears.
     approved_at: null

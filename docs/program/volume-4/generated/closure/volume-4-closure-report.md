@@ -1,6 +1,6 @@
 # Volume 4 Architecture-Foundation Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:58:09.444Z
+Generated: 2026-07-26T16:35:04.870Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
@@ -11,11 +11,11 @@ Generated: 2026-07-26T15:58:09.444Z
 
 | Category | Count |
 | --- | --- |
-| Architecture elements | 201 |
+| Architecture elements | 212 |
 | Quality-attribute (NFR) elements | 23 |
-| Architecture decisions | 40 |
-| Fitness functions | 63 |
-| Assumptions / risks / exceptions | 58 |
+| Architecture decisions | 46 |
+| Fitness functions | 70 |
+| Assumptions / risks / exceptions | 69 |
 
 ## Quality-attribute coverage
 
@@ -41,14 +41,14 @@ Generated: 2026-07-26T15:58:09.444Z
 | Status | Count |
 | --- | --- |
 | TARGET_ASSUMED | 16 |
-| TARGET_CONSTRAINED | 70 |
-| TARGET_DEFINED | 115 |
+| TARGET_CONSTRAINED | 73 |
+| TARGET_DEFINED | 123 |
 
 ## Decision verification status
 
 | Verification status | Count |
 | --- | --- |
-| SPECIFIED | 40 |
+| SPECIFIED | 46 |
 
 ## Authorization invariants (all must be 0)
 
@@ -99,6 +99,15 @@ Generated: 2026-07-26T15:58:09.444Z
 - ASM-V4-039 (Aubert Nungisa (Accountable Program Authority), V4-G5): Quality-attribute baselines unresolved
 - ASM-V4-040 (Aubert Nungisa (Accountable Program Authority), V4-G5): Implementation capacity unresolved
 - ASM-V4-041 (Aubert Nungisa (Accountable Program Authority), V4-G5): Independent assurance unresolved
+- ASM-V4-042 (Aubert Nungisa (Accountable Program Authority), Volume 5 gate): Data-governance and retention model defined in Volume 5
+- ASM-V4-043 (Aubert Nungisa (Accountable Program Authority), Volume 6 gate): Identity and access contract defined downstream
+- ASM-V4-044 (Aubert Nungisa (Accountable Program Authority), Volume 6 gate): Evidence-storage realization defined downstream
+- ASM-V4-045 (Aubert Nungisa (Accountable Program Authority), Volume 7 gate): Payment and accounting integration defined downstream
+- ASM-V4-046 (Aubert Nungisa (Accountable Program Authority), Volume 6 gate): PostgreSQL concurrency and integrity proven downstream
+- ASM-V4-047 (Aubert Nungisa (Accountable Program Authority), Volume 5 gate): Search and analytics capability defined downstream
+- ASM-V4-048 (Aubert Nungisa (Accountable Program Authority), Volume 9 gate): Environment topology, cryptography, and key management defined downstream
+- ASM-V4-049 (Aubert Nungisa (Accountable Program Authority), Volume 8 gate): Accessibility and bilingual obligations defined downstream
+- ASM-V4-050 (Aubert Nungisa (Accountable Program Authority), Volume 9 gate): Operational ownership and independent assurance defined downstream
 
 ## Open risks (owner and resolution gate)
 
@@ -118,3 +127,5 @@ Generated: 2026-07-26T15:58:09.444Z
 - RISK-V4-014 (Aubert Nungisa (Accountable Program Authority), V4-G5): Lower-fidelity verification mistaken for proof
 - RISK-V4-015 (Aubert Nungisa (Accountable Program Authority), V4-G5): Migration converts uncertain data into authoritative truth
 - RISK-V4-016 (Aubert Nungisa (Accountable Program Authority), V4-G5): Vendor lock-in erodes portability
+- RISK-V4-017 (Aubert Nungisa (Accountable Program Authority), V4-G5): Consolidation misrepresented as completeness or implementation
+- RISK-V4-018 (Aubert Nungisa (Accountable Program Authority), V4-G5): Closure projection mistaken for authoritative assurance

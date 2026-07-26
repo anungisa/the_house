@@ -1,7 +1,7 @@
 register_id: REG-401
 name: Volume 4 Architecture Elements Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   # ---- ARCH: architecture principles (V4-01) ----
   - id: ARCH-V4-001
@@ -1915,4 +1915,120 @@ records:
     architecture_status: TARGET_ASSUMED
     traces_to: [CTRL-V4-032]
     chapter_ref: V4-30
+    authorizes_implementation: false
+  # ==== Package 5: integrated target architecture and Volume 4 closure ====
+  - id: ARCH-V4-037
+    kind: ARCH
+    title: Integrated target-architecture baseline
+    statement: "Consolidates Packages 1-4 into one authoritative target-architecture baseline covering context, authority separation, bounded contexts, affiliation lifecycle, services, authorization, evidence, transactions, persistence, projections, integrations, security, runtime, resilience, engineering controls, verification, migration, and evolution; consolidation only, authorizing no implementation."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-028, ARCH-V4-032, ARCH-V4-036]
+    chapter_ref: V4-39
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-038
+    kind: ARCH
+    title: Architecture-element catalogue and boundary matrix
+    statement: "Authoritative catalogue of architecture elements and boundary matrix making dependency direction and authority ownership inspectable across element families, without prescribing physical source directories, frameworks, or topology."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [MAINTAINABILITY]
+    traces_to: [ARCH-V4-037]
+    chapter_ref: V4-40
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-039
+    kind: ARCH
+    title: Authority, security, privacy, and trust synthesis
+    statement: "Consolidates the controls protecting institutional authority and makes the authority invariants explicit; security and privacy remain defined but unproven until supported by evidence produced downstream."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [SECURITY, PRIVACY, AUDITABILITY]
+    traces_to: [ARCH-V4-037]
+    chapter_ref: V4-41
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-040
+    kind: ARCH
+    title: Data, integration, runtime, and resilience synthesis
+    statement: "Consolidates Packages 2 and 3 into one technical-platform baseline covering authoritative data, PostgreSQL integrity, evidence storage, projections, contracts, reconciliation, messaging and outbox, runtime, configuration, supply chain, telemetry, backup, restore, and continuity; no cloud service, product, library, or topology is selected and restore remains unproven."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [RESILIENCE, RECOVERABILITY]
+    traces_to: [ARCH-V4-037]
+    chapter_ref: V4-42
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-041
+    kind: ARCH
+    title: Quality attributes, engineering controls, and verification baseline
+    statement: "Consolidates quality-attribute scenarios, fitness functions, secure-development controls, test classes, environments, evidence classes, and proof limitations; invents no numeric target and reclassifies no fitness function as implemented."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [MAINTAINABILITY, AUDITABILITY]
+    traces_to: [ARCH-V4-037, ARCH-V4-031]
+    chapter_ref: V4-43
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-042
+    kind: ARCH
+    title: House P0 architecture-coverage and implementation-evidence matrix
+    statement: "Maps every known House P0 finding to target architecture and a future evidence path with required posture architecture-status DEFINED and implementation-status NOT_IMPLEMENTED_OR_NOT_PROVEN; architecture coverage is not implementation remediation."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-037]
+    chapter_ref: V4-45
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-043
+    kind: ARCH
+    title: Architecture-readiness and downstream-decision register
+    statement: "Records every architecture-readiness gap and downstream decision with an owner, target volume, and future blocking gate, without inflating confidence or pre-empting downstream authority."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-037, ARCH-V4-036]
+    chapter_ref: V4-46
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-044
+    kind: ARCH
+    title: Downstream-volume handoff and constraint matrix
+    statement: "Defines explicit architecture constraints handed to Volumes 5 through 11; architecture order is not delivery order and every downstream constraint has a destination volume."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-037]
+    chapter_ref: V4-47
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: ARCH-V4-045
+    kind: ARCH
+    title: Integrated architecture traceability and closure assessment
+    statement: "Defines the final Volume 4 integrity review and the non-authoritative deterministic closure projections that make architecture-element totals, references, dependency direction, ownership, coverage, and authorization invariants inspectable."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [AUDITABILITY]
+    traces_to: [ARCH-V4-037]
+    chapter_ref: V4-49
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: CTRL-V4-039
+    kind: CTRL
+    title: Integrated closure-traceability control
+    statement: "Ensures no unresolved decision, assumption, risk, exception, readiness gap, or House P0 finding disappears because the schema validator passes, and that no record authorizes implementation or claims implementation or proof without evidence; fails closed."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-045]
+    chapter_ref: V4-49
+    verification_status: SPECIFIED
+    authorizes_implementation: false
+  - id: CTRL-V4-040
+    kind: CTRL
+    title: Downstream-handoff constraint control
+    statement: "Ensures each downstream volume inherits explicit, non-weakenable architecture, security, privacy, and governance constraints, that architecture order is not treated as delivery order, and that every downstream constraint resolves to a destination volume."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-044]
+    chapter_ref: V4-47
+    verification_status: SPECIFIED
     authorizes_implementation: false

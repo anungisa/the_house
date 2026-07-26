@@ -1,7 +1,7 @@
 register_id: REG-403
 name: Volume 4 Fitness-Function Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: FIT-V4-001
     title: Forbidden dependency direction
@@ -699,5 +699,84 @@ records:
     verification_status: FITNESS_FUNCTION_DEFINED
     verification_class: STATIC_VERIFICATION_CANDIDATE
     chapter_ref: V4-35
+    implemented: false
+    authorizes_implementation: false
+  # ==== Package 5: integrated target architecture and Volume 4 closure ====
+  - id: FIT-V4-064
+    title: No integrated-baseline element authorizes implementation
+    intent: "Ensure the integrated target-architecture baseline authorizes no implementation."
+    invariant: "No architecture element, decision, or fitness function in the integrated baseline carries authorizes_implementation true."
+    evaluation_form: "Static verification that every record sets authorizes_implementation false (defined, not implemented)."
+    traces_to: [ARCH-V4-037, V4-39]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-39
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-065
+    title: Every catalogued element resolves an authority owner
+    intent: "Ensure every catalogued architecture element has an explicit authority owner."
+    invariant: "No catalogued element is missing or ambiguous about its authority owner."
+    evaluation_form: "Static verification that every REG-401 element has a resolvable authority value (defined downstream)."
+    traces_to: [ARCH-V4-038, V4-40]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-40
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-066
+    title: Dependency direction is inward and acyclic
+    intent: "Ensure architecture dependency direction remains inward and free of cycles."
+    invariant: "No catalogued dependency reverses the permitted inward direction or forms a cycle."
+    evaluation_form: "Static verification of dependency direction and acyclicity (defined downstream)."
+    traces_to: [ARCH-V4-038, V4-40]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-40
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-067
+    title: Every House P0 finding maps to element, future test class, and evidence
+    intent: "Ensure every House P0 finding maps to target architecture, a future verification class, and an evidence path."
+    invariant: "No House P0 finding lacks a target element, future test class, or evidence mapping."
+    evaluation_form: "Static verification of House P0 coverage completeness (defined downstream)."
+    traces_to: [ARCH-V4-042, V4-45]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    house_p0_ref: "House P0 coverage matrix (V4-45)"
+    chapter_ref: V4-45
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-068
+    title: No fitness function implemented volume-wide
+    intent: "Ensure no Volume 4 fitness function is represented as implemented."
+    invariant: "Every fitness function in REG-403 carries implemented false."
+    evaluation_form: "Static verification that every fitness function is implemented false (defined, not implemented)."
+    traces_to: [ARCH-V4-041, V4-43]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-43
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-069
+    title: Every downstream constraint has a destination volume
+    intent: "Ensure every downstream constraint resolves to a destination volume."
+    invariant: "No handed-off constraint lacks a destination volume."
+    evaluation_form: "Static verification of downstream-constraint destinations (defined downstream)."
+    traces_to: [ARCH-V4-044, V4-47]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-47
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-070
+    title: No record claims implementation, proof, or assurance without evidence
+    intent: "Ensure no Volume 4 record claims implementation, operational proof, accreditation, or independent assurance without evidence."
+    invariant: "No architecture, decision, fitness, approval, or closure record asserts an implemented, proven, accredited, or assured capability without an evidence label supporting it."
+    evaluation_form: "Static verification of unsupported implementation, proof, and assurance claims (defined downstream)."
+    traces_to: [ARCH-V4-045, V4-49]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-49
     implemented: false
     authorizes_implementation: false
