@@ -1,0 +1,180 @@
+{
+  "nfr_quality_attributes": {
+    "SECURITY": 4,
+    "PRIVACY": 2,
+    "AVAILABILITY": 1,
+    "RESILIENCE": 3,
+    "RECOVERABILITY": 1,
+    "PERFORMANCE": 1,
+    "SCALABILITY": 1,
+    "AUDITABILITY": 2,
+    "ACCESSIBILITY": 1,
+    "BILINGUAL_EQUIVALENCE": 1,
+    "OPERABILITY": 2,
+    "MAINTAINABILITY": 2,
+    "PORTABILITY": 2,
+    "INTEROPERABILITY": 2
+  },
+  "control_elements": [
+    {
+      "id": "CTRL-V4-001",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-002",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-003",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-004",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-005",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-006",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-007",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-008",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-009",
+      "verification_status": "VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V4-010",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-011",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-012",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-013",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-014",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-015",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-016",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-017",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-018",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-019",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-020",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-021",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-022",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-023",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-024",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-025",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-026",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-027",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-028",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-029",
+      "verification_status": "VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V4-030",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-031",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-032",
+      "verification_status": "VALIDATION_PENDING"
+    },
+    {
+      "id": "CTRL-V4-033",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-034",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-035",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-036",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-037",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-038",
+      "verification_status": "UNSET"
+    },
+    {
+      "id": "CTRL-V4-039",
+      "verification_status": "SPECIFIED"
+    },
+    {
+      "id": "CTRL-V4-040",
+      "verification_status": "SPECIFIED"
+    }
+  ]
+}

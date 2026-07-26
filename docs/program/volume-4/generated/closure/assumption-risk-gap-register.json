@@ -2,300 +2,350 @@
   "assumptions": [
     {
       "id": "ASM-V4-001",
+      "kind": "ASM",
       "title": "Identity provider boundary available",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "ASM-V4-002",
+      "kind": "ASM",
       "title": "External finance systems retain authoritative ledger",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "ASM-V4-003",
+      "kind": "ASM",
       "title": "Evidence storage supports provenance and access control",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "ASM-V4-004",
+      "kind": "ASM",
       "title": "Transitional manual boundaries acceptable in early operation",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "ASM-V4-005",
+      "kind": "ASM",
       "title": "Final domain-boundary validation pending",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-006",
+      "kind": "ASM",
       "title": "Policy and workflow variants deferred",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-007",
+      "kind": "ASM",
       "title": "Evidence-storage contract not yet fixed",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-008",
+      "kind": "ASM",
       "title": "PostgreSQL concurrency posture assumed",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-009",
+      "kind": "ASM",
       "title": "Identity-provider claim shape assumed",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-010",
+      "kind": "ASM",
       "title": "Payment and accounting acknowledgement semantics assumed",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-011",
+      "kind": "ASM",
       "title": "Projection recovery ownership assumed",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-012",
+      "kind": "ASM",
       "title": "Outbox operational ownership assumed",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-013",
+      "kind": "ASM",
       "title": "Deployment topology deferred",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-014",
+      "kind": "ASM",
       "title": "Numeric quality-attribute targets remain deferred",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "ASM-V4-015",
+      "kind": "ASM",
       "title": "Final records and retention schedule pending",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-016",
+      "kind": "ASM",
       "title": "Expected data and evidence volumes unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-017",
+      "kind": "ASM",
       "title": "Evidence-storage provider capabilities pending",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-018",
+      "kind": "ASM",
       "title": "Malware-scanning contract pending",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-019",
+      "kind": "ASM",
       "title": "Cryptographic and key-management service pending",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-020",
+      "kind": "ASM",
       "title": "Identity-provider claims and scopes pending",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-021",
+      "kind": "ASM",
       "title": "External contract semantics unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-022",
+      "kind": "ASM",
       "title": "Search technology unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-023",
+      "kind": "ASM",
       "title": "Analytics latency tolerance unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-024",
+      "kind": "ASM",
       "title": "PostgreSQL isolation behaviour to be verified",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-025",
+      "kind": "ASM",
       "title": "Environment topology unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-026",
+      "kind": "ASM",
       "title": "Deployment platform unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-027",
+      "kind": "ASM",
       "title": "Regional resilience posture unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-028",
+      "kind": "ASM",
       "title": "Recovery objectives and ownership unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "ASM-V4-029",
+      "kind": "ASM",
       "title": "Repository topology unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-030",
+      "kind": "ASM",
       "title": "Build and CI capabilities unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-031",
+      "kind": "ASM",
       "title": "Migration-source data quality unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-032",
+      "kind": "ASM",
       "title": "Legacy-system access unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-033",
+      "kind": "ASM",
       "title": "Coexistence duration unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-034",
+      "kind": "ASM",
       "title": "Rollback feasibility unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-035",
+      "kind": "ASM",
       "title": "Test-environment fidelity unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-036",
+      "kind": "ASM",
       "title": "Technology options unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-037",
+      "kind": "ASM",
       "title": "Dependency licensing unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-038",
+      "kind": "ASM",
       "title": "Operational ownership unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-039",
+      "kind": "ASM",
       "title": "Quality-attribute baselines unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-040",
+      "kind": "ASM",
       "title": "Implementation capacity unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-041",
+      "kind": "ASM",
       "title": "Independent assurance unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "ASM-V4-042",
+      "kind": "ASM",
       "title": "Data-governance and retention model defined in Volume 5",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 5 gate"
     },
     {
       "id": "ASM-V4-043",
+      "kind": "ASM",
       "title": "Identity and access contract defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 6 gate"
     },
     {
       "id": "ASM-V4-044",
+      "kind": "ASM",
       "title": "Evidence-storage realization defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 6 gate"
     },
     {
       "id": "ASM-V4-045",
+      "kind": "ASM",
       "title": "Payment and accounting integration defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 7 gate"
     },
     {
       "id": "ASM-V4-046",
+      "kind": "ASM",
       "title": "PostgreSQL concurrency and integrity proven downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 6 gate"
     },
     {
       "id": "ASM-V4-047",
+      "kind": "ASM",
       "title": "Search and analytics capability defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 5 gate"
     },
     {
       "id": "ASM-V4-048",
+      "kind": "ASM",
       "title": "Environment topology, cryptography, and key management defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 9 gate"
     },
     {
       "id": "ASM-V4-049",
+      "kind": "ASM",
       "title": "Accessibility and bilingual obligations defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 8 gate"
     },
     {
       "id": "ASM-V4-050",
+      "kind": "ASM",
       "title": "Operational ownership and independent assurance defined downstream",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "Volume 9 gate"
@@ -304,111 +354,138 @@
   "risks": [
     {
       "id": "RISK-V4-001",
+      "kind": "RISK",
       "title": "Bounded-context erosion",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "RISK-V4-002",
+      "kind": "RISK",
       "title": "Exactly-once effect misinterpretation",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "RISK-V4-003",
+      "kind": "RISK",
       "title": "Unvalidated quality-attribute targets",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
     },
     {
       "id": "RISK-V4-004",
+      "kind": "RISK",
       "title": "Application-layer boundary erosion",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "RISK-V4-005",
+      "kind": "RISK",
       "title": "Authorization scope-resolution gaps",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "RISK-V4-006",
+      "kind": "RISK",
       "title": "Silent no-op integration in production",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "RISK-V4-007",
+      "kind": "RISK",
       "title": "Completeness drift from derived to stored",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
     },
     {
       "id": "RISK-V4-008",
+      "kind": "RISK",
       "title": "External acknowledgement silently replaces House authority",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "RISK-V4-009",
+      "kind": "RISK",
       "title": "Projection treated as authoritative",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "RISK-V4-010",
+      "kind": "RISK",
       "title": "Production reliance on a test double or no-op",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "RISK-V4-011",
+      "kind": "RISK",
       "title": "Unverified recovery claim",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
     },
     {
       "id": "RISK-V4-012",
+      "kind": "RISK",
       "title": "Temporary no-op dependency becomes a production default",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "RISK-V4-013",
+      "kind": "RISK",
       "title": "Expired exception silently persists",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "RISK-V4-014",
+      "kind": "RISK",
       "title": "Lower-fidelity verification mistaken for proof",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "RISK-V4-015",
+      "kind": "RISK",
       "title": "Migration converts uncertain data into authoritative truth",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "RISK-V4-016",
+      "kind": "RISK",
       "title": "Vendor lock-in erodes portability",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "RISK-V4-017",
+      "kind": "RISK",
       "title": "Consolidation misrepresented as completeness or implementation",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
     },
     {
       "id": "RISK-V4-018",
+      "kind": "RISK",
       "title": "Closure projection mistaken for authoritative assurance",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G5"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-V4-001",
+      "kind": "EXC",
+      "title": "No exceptions to architecture principles in Package 1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G1"
     }
   ]
 }

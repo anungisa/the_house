@@ -1,7 +1,7 @@
 register_id: REG-402
 name: Volume 4 Architecture Decision Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: ADR-V4-001
     class: D1
@@ -685,4 +685,107 @@ records:
     supersession_rule: "Superseded only by a governed architecture decision at a later gate."
     evidence_label: AUTHOR-VERIFIED
     chapter_ref: V4-29
+    authorizes_implementation: false
+  # ==== Package 5: integrated target architecture and Volume 4 closure ====
+  - id: ADR-V4-041
+    class: D1
+    title: Single integrated target-architecture baseline as authoritative Volume 4 output
+    decision: "Volume 4 closes with one integrated target-architecture baseline that consolidates Packages 1-4 without introducing unsupported architectural choices to appear complete."
+    context: "A single authoritative baseline is required as the architectural input to Volume 5 and later volumes."
+    options: ["Single integrated baseline", "Multiple unconsolidated package outputs", "No consolidation"]
+    selected_posture: "One consolidation-only baseline that changes no substantive package content."
+    rationale: "Consolidation preserves traceability and avoids fabricated completeness."
+    constraints: ["Consolidation only", "No new architecture asserted"]
+    consequences: ["Volume 5 receives one authoritative architecture input"]
+    risks: ["Consolidation misread as implementation"]
+    evidence_refs: [ARCH-V4-037, V4-39]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-39
+    authorizes_implementation: false
+  - id: ADR-V4-042
+    class: D1
+    title: Element catalogue expresses dependency direction without physical directories
+    decision: "The architecture-element catalogue and boundary matrix make dependency direction and authority ownership inspectable without prescribing source directories, frameworks, or topology."
+    context: "Physical structure is a downstream concern; premature prescription would over-constrain implementation."
+    options: ["Logical catalogue with boundary matrix", "Physical directory prescription", "No catalogue"]
+    selected_posture: "Logical element catalogue with explicit permitted and forbidden dependencies."
+    rationale: "Inspectable dependency direction without physical coupling preserves portability."
+    constraints: ["No source-directory, framework, or topology prescription"]
+    consequences: ["Reverse or cyclic dependency direction is detectable"]
+    risks: ["Catalogue drift from realization"]
+    evidence_refs: [ARCH-V4-038, V4-40]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-40
+    authorizes_implementation: false
+  - id: ADR-V4-043
+    class: D1
+    title: House P0 findings mapped as architecture coverage, not implementation remediation
+    decision: "Each House P0 finding is mapped to target architecture and a future evidence path with implementation status NOT_IMPLEMENTED_OR_NOT_PROVEN; coverage is never represented as remediation."
+    context: "Representing architectural coverage as a fix would fabricate readiness."
+    options: ["Coverage-not-remediation matrix", "Remediation claim", "No P0 mapping"]
+    selected_posture: "Coverage matrix with explicit unproven implementation status."
+    rationale: "Preserves the distinction between architecture definition and implementation evidence."
+    constraints: ["No P0 finding represented as fixed"]
+    consequences: ["P0 remediation deferred to future evidence gates"]
+    risks: ["Coverage misread as remediation"]
+    evidence_refs: [ARCH-V4-042, V4-45]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-45
+    authorizes_implementation: false
+  - id: ADR-V4-044
+    class: D1
+    title: Deterministic closure projections are non-authoritative
+    decision: "The generated closure and traceability projections describe the corpus and are not a source of truth or a basis for ratification; the source-controlled corpus and its approvals remain authoritative."
+    context: "Generated artifacts must not be mistaken for governance authority."
+    options: ["Non-authoritative projections", "Authoritative generated outputs", "No projections"]
+    selected_posture: "Tracked, regenerated, explicitly non-authoritative projections."
+    rationale: "Inspectable integrity without conferring authority on generated files."
+    constraints: ["Projections confer no authority"]
+    consequences: ["Integrity properties are inspectable and reproducible"]
+    risks: ["Projection mistaken for assurance"]
+    evidence_refs: [ARCH-V4-045, V4-49]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-49
+    authorizes_implementation: false
+  - id: ADR-V4-045
+    class: D1
+    title: Downstream handoff constraints; architecture order is not delivery order
+    decision: "Volume 4 hands explicit constraints to Volumes 5-11 and states that the order in which architecture was defined is not a delivery sequence, dependency schedule, or release plan."
+    context: "Interpreting definition order as delivery order would fabricate a plan."
+    options: ["Explicit constraint handoff", "Implicit sequencing", "No handoff"]
+    selected_posture: "Explicit per-volume constraints with destination volumes and no sequencing."
+    rationale: "Preserves downstream authority and avoids an unauthorized delivery plan."
+    constraints: ["No delivery sequencing or scheduling"]
+    consequences: ["Downstream volumes inherit non-weakenable constraints"]
+    risks: ["Constraints misread as a schedule"]
+    evidence_refs: [ARCH-V4-044, V4-47]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-47
+    authorizes_implementation: false
+  - id: ADR-V4-046
+    class: D1
+    title: Whole-volume freeze and annotated release-tag provenance model
+    decision: "Volume 4 is frozen at Package 5 and volume scope and released under the annotated tag central-registration-volume-4-v1.0.0 as the canonical final-release pointer, with post-merge provenance completed by a narrow amendment that does not pre-record its own future merge."
+    context: "A freeze-time record cannot yet contain its own release-merge commit."
+    options: ["Annotated tag with post-merge amendment", "Move tag after merge", "Pre-record future merge"]
+    selected_posture: "Immutable annotated tag with separate post-release patch amendment when tag target is needed."
+    rationale: "Keeps the release pointer canonical and provenance honest."
+    constraints: ["Do not move v1.0.0", "Do not pre-record future merge as established evidence"]
+    consequences: ["Provenance is completed without fabricated evidence"]
+    risks: ["Provenance metadata incomplete until amendment"]
+    evidence_refs: [ARCH-V4-045, V4-49, V4-H]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-49
     authorizes_implementation: false

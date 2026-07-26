@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.10.0
+version: 1.11.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -774,4 +774,331 @@ records:
       - Preserves Gate V4-G4 and its ENGINEERING_GOVERNANCE_AND_TRANSITION_ARCHITECTURE_READY disposition.
       - Does not reopen or modify frozen Package 4 artifacts V4-28..V4-38 or V4-G.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  # ==== Package 5: chapter ratifications ====
+  - id: APP-V4-056
+    artifact_id: V4-39
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated target-architecture baseline ratified as a consolidation of Packages 1-4 only.
+      - Consolidation is not implementation; no new architecture is asserted to appear complete.
+    approved_at: null
+  - id: APP-V4-057
+    artifact_id: V4-40
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture-element catalogue and boundary matrix ratified.
+      - Expresses dependency direction and authority ownership without prescribing source directories, frameworks, or topology.
+    approved_at: null
+  - id: APP-V4-058
+    artifact_id: V4-41
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Authority, security, privacy, and trust synthesis ratified.
+      - Security and privacy remain defined but unproven; no security or privacy validation is claimed.
+    approved_at: null
+  - id: APP-V4-059
+    artifact_id: V4-42
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data, integration, runtime, and resilience synthesis ratified.
+      - No cloud service, product, library, or topology is selected; restore and recovery remain unproven.
+    approved_at: null
+  - id: APP-V4-060
+    artifact_id: V4-43
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Quality attributes, engineering controls, and verification baseline ratified.
+      - Every fitness function remains unimplemented; no numeric target is fabricated.
+    approved_at: null
+  - id: APP-V4-061
+    artifact_id: V4-44
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Decision, assumption, risk, exception, and debt closure ratified.
+      - Every such record is dispositioned; none disappears because the validator passes and no exception or debt is fabricated.
+    approved_at: null
+  - id: APP-V4-062
+    artifact_id: V4-45
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - House P0 architecture-coverage and implementation-evidence matrix ratified.
+      - Architecture coverage is not implementation remediation; implementation status remains NOT_IMPLEMENTED_OR_NOT_PROVEN.
+    approved_at: null
+  - id: APP-V4-063
+    artifact_id: V4-46
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture-readiness and downstream-decision register ratified.
+      - Every readiness gap has an owner, target volume, and future gate; no confidence is inflated.
+    approved_at: null
+  - id: APP-V4-064
+    artifact_id: V4-47
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Downstream-volume handoff and constraint matrix ratified.
+      - Architecture order is not delivery order; every downstream constraint has a destination volume.
+    approved_at: null
+  - id: APP-V4-065
+    artifact_id: V4-48
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Executive architecture and engineering brief ratified.
+      - Introduces no new authority; records decisions the executive is not yet asked to make.
+    approved_at: null
+  - id: APP-V4-066
+    artifact_id: V4-49
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated architecture traceability and closure assessment ratified.
+      - Deterministic closure projections are non-authoritative; authorization invariants must be zero and no record disappears.
+    approved_at: null
+  # ==== Package 5: closure, gate, and freezes ====
+  - id: APP-V4-067
+    artifact_id: V4-I
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-I
+    conditions:
+      - Volume 4 completion and release-freeze record ratified as architecture definition only.
+      - Closes Package 5, dispositions Gate V4-G5, freezes Package 5 and the whole volume, and authorizes Volume 5 only.
+    approved_at: null
+  - id: APP-V4-068
+    artifact_id: GATE-V4-G5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: ARCHITECTURE_AND_ENGINEERING_DEFINITION_COMPLETE
+    closure_record: V4-I
+    scope: [V4-39, V4-40, V4-41, V4-42, V4-43, V4-44, V4-45, V4-46, V4-47, V4-48, V4-49]
+    conditions:
+      - Package 4 provenance is unambiguous.
+      - Packages 1 through 4 are inherited without modifying frozen substantive content.
+      - One integrated target-architecture baseline exists.
+      - System, module, authority, trust, persistence, integration, and runtime boundaries are defined.
+      - Architecture dependency direction is controlled.
+      - The complete affiliation lifecycle is architecturally covered.
+      - Resource, jurisdiction, assignment, state, and evidence-sensitive authorization are represented.
+      - Evidence, decisions, reconciliation, activation, audit, and correction preserve institutional authority.
+      - Data, integration, security, runtime, resilience, and recovery architecture are defined.
+      - Engineering standards, secure-development controls, test architecture, migration constraints, and evolution rules are defined.
+      - Technology-selection criteria remain vendor-neutral.
+      - Architecture exceptions and debt are governed.
+      - House P0 findings have target architecture and future evidence mappings.
+      - Fitness functions remain unimplemented and no architecture record authorizes implementation.
+      - Assumptions, risks, and readiness gaps have owners and future gates.
+      - Downstream-volume constraints are explicit.
+      - The executive brief introduces no new authority.
+      - No artifact claims implementation, operational proof, accreditation, or independent assurance without evidence.
+      - No implementation, physical schema, migration, executable contract, infrastructure, procurement, delivery sequence, staffing, cost plan, pilot, rollout, or master development plan is created.
+      - Volume 4 receives complete line-level and deterministic traceability review.
+      - Package 5 and the whole Volume 4 corpus receive explicit freeze records.
+    approved_at: null
+  - id: APP-V4-069
+    artifact_id: PACKAGE-4-5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-I
+    frozen_artifacts:
+      - id: V4-39
+        version: 1.0.0
+      - id: V4-40
+        version: 1.0.0
+      - id: V4-41
+        version: 1.0.0
+      - id: V4-42
+        version: 1.0.0
+      - id: V4-43
+        version: 1.0.0
+      - id: V4-44
+        version: 1.0.0
+      - id: V4-45
+        version: 1.0.0
+      - id: V4-46
+        version: 1.0.0
+      - id: V4-47
+        version: 1.0.0
+      - id: V4-48
+        version: 1.0.0
+      - id: V4-49
+        version: 1.0.0
+      - id: V4-I
+        version: 1.0.0
+    conditions:
+      - Volume 4 Package 5 frozen at closure following Gate V4-G5 disposition.
+      - Authorizes commencement of Volume 5 as an architecture-definition volume only.
+      - Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to frozen Package 5 content require the recorded amendment process.
+    approved_at: null
+  - id: APP-V4-070
+    artifact_id: VOLUME-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-I
+    frozen_artifacts:
+      - id: V4-00
+        version: 1.0.0
+      - id: V4-01
+        version: 1.0.0
+      - id: V4-02
+        version: 1.0.0
+      - id: V4-03
+        version: 1.0.0
+      - id: V4-04
+        version: 1.0.0
+      - id: V4-05
+        version: 1.0.0
+      - id: V4-06
+        version: 1.0.0
+      - id: V4-07
+        version: 1.0.0
+      - id: V4-08
+        version: 1.0.0
+      - id: V4-09
+        version: 1.0.0
+      - id: V4-10
+        version: 1.0.0
+      - id: V4-11
+        version: 1.0.0
+      - id: V4-12
+        version: 1.0.0
+      - id: V4-13
+        version: 1.0.0
+      - id: V4-14
+        version: 1.0.0
+      - id: V4-15
+        version: 1.0.0
+      - id: V4-16
+        version: 1.0.0
+      - id: V4-17
+        version: 1.0.0
+      - id: V4-18
+        version: 1.0.0
+      - id: V4-19
+        version: 1.0.0
+      - id: V4-20
+        version: 1.0.0
+      - id: V4-21
+        version: 1.0.0
+      - id: V4-22
+        version: 1.0.0
+      - id: V4-23
+        version: 1.0.0
+      - id: V4-24
+        version: 1.0.0
+      - id: V4-25
+        version: 1.0.0
+      - id: V4-26
+        version: 1.0.0
+      - id: V4-27
+        version: 1.0.0
+      - id: V4-28
+        version: 1.0.0
+      - id: V4-29
+        version: 1.0.0
+      - id: V4-30
+        version: 1.0.0
+      - id: V4-31
+        version: 1.0.0
+      - id: V4-32
+        version: 1.0.0
+      - id: V4-33
+        version: 1.0.0
+      - id: V4-34
+        version: 1.0.0
+      - id: V4-35
+        version: 1.0.0
+      - id: V4-36
+        version: 1.0.0
+      - id: V4-37
+        version: 1.0.0
+      - id: V4-38
+        version: 1.0.0
+      - id: V4-39
+        version: 1.0.0
+      - id: V4-40
+        version: 1.0.0
+      - id: V4-41
+        version: 1.0.0
+      - id: V4-42
+        version: 1.0.0
+      - id: V4-43
+        version: 1.0.0
+      - id: V4-44
+        version: 1.0.0
+      - id: V4-45
+        version: 1.0.0
+      - id: V4-46
+        version: 1.0.0
+      - id: V4-47
+        version: 1.0.0
+      - id: V4-48
+        version: 1.0.0
+      - id: V4-49
+        version: 1.0.0
+      - id: V4-A
+        version: 1.0.0
+      - id: V4-B
+        version: 1.0.0
+      - id: V4-C
+        version: 1.0.0
+      - id: V4-D
+        version: 1.0.0
+      - id: V4-E
+        version: 1.0.0
+      - id: V4-F
+        version: 1.0.0
+      - id: V4-G
+        version: 1.0.0
+      - id: V4-H
+        version: 1.0.0
+      - id: V4-I
+        version: 1.0.0
+    conditions:
+      - The whole Volume 4 corpus is frozen at closure following Gate V4-G5 disposition.
+      - Covers chapters V4-00 through V4-49 and closure and amendment records V4-A through V4-I.
+      - Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to any frozen Volume 4 content require the recorded amendment process.
     approved_at: null

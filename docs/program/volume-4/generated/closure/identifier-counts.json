@@ -1,7 +1,7 @@
 {
-  "architecture_elements": 201,
+  "architecture_elements": 212,
   "nfr_elements": 23,
-  "decisions": 40,
-  "fitness_functions": 63,
-  "assumptions_risks_exceptions": 58
+  "decisions": 46,
+  "fitness_functions": 70,
+  "assumptions_risks_exceptions": 69
 }

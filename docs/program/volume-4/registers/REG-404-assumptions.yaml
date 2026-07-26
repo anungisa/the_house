@@ -1,7 +1,7 @@
 register_id: REG-404
 name: Volume 4 Assumptions, Risks, and Exceptions Register
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: ASM-V4-001
     kind: ASM
@@ -586,3 +586,114 @@ records:
     resolution_gate: V4-G5
     traces_to: [CTRL-V4-036, NFR-V4-023]
     chapter_ref: V4-34
+  # ==== Package 5: integrated target architecture and Volume 4 closure ====
+  - id: ASM-V4-042
+    kind: ASM
+    title: Data-governance and retention model defined in Volume 5
+    statement: "The authoritative data-governance, classification, and retention model is assumed to be defined in Volume 5 within the constraints handed forward by Volume 4."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Data-lifecycle design cannot be finalized until Volume 5."
+    disposition: "Deferred to Volume 5 with inherited constraints."
+    resolution_gate: Volume 5 gate
+    traces_to: [ARCH-V4-044]
+    chapter_ref: V4-47
+  - id: ASM-V4-043
+    kind: ASM
+    title: Identity and access contract defined downstream
+    statement: "The concrete identity, authentication, and access-token contract is assumed to be specified in a downstream volume consistent with the authority invariants."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Authorization realization depends on the downstream identity contract."
+    disposition: "Deferred to the identity and access volume."
+    resolution_gate: Volume 6 gate
+    traces_to: [ARCH-V4-039]
+    chapter_ref: V4-46
+  - id: ASM-V4-044
+    kind: ASM
+    title: Evidence-storage realization defined downstream
+    statement: "The concrete evidence-storage, immutability, and integrity mechanism is assumed to be selected downstream consistent with the evidence architecture."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Evidence durability cannot be proven until realized."
+    disposition: "Deferred to the platform-realization volume."
+    resolution_gate: Volume 6 gate
+    traces_to: [ARCH-V4-040]
+    chapter_ref: V4-46
+  - id: ASM-V4-045
+    kind: ASM
+    title: Payment and accounting integration defined downstream
+    statement: "Payment, reconciliation, and accounting integration is assumed to be defined downstream without granting finance authority over affiliation decisions."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Fee and reconciliation flows depend on downstream definition."
+    disposition: "Deferred to the integration volume."
+    resolution_gate: Volume 7 gate
+    traces_to: [ARCH-V4-039]
+    chapter_ref: V4-46
+  - id: ASM-V4-046
+    kind: ASM
+    title: PostgreSQL concurrency and integrity proven downstream
+    statement: "PostgreSQL transaction, concurrency, and integrity behavior under the target architecture is assumed to be validated by downstream integration testing."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Concurrency correctness is unproven until integration testing."
+    disposition: "Deferred to PostgreSQL integration verification."
+    resolution_gate: Volume 6 gate
+    traces_to: [ARCH-V4-040]
+    chapter_ref: V4-46
+  - id: ASM-V4-047
+    kind: ASM
+    title: Search and analytics capability defined downstream
+    statement: "Search, reporting, and analytics projections are assumed to be defined downstream from authoritative data without granting them authority."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Analytics design depends on downstream definition."
+    disposition: "Deferred to the data and analytics volumes."
+    resolution_gate: Volume 5 gate
+    traces_to: [ARCH-V4-040]
+    chapter_ref: V4-46
+  - id: ASM-V4-048
+    kind: ASM
+    title: Environment topology, cryptography, and key management defined downstream
+    statement: "Environment topology, cryptographic controls, and key management are assumed to be defined downstream consistent with the security synthesis."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Security realization depends on downstream environment definition."
+    disposition: "Deferred to the infrastructure and security volume."
+    resolution_gate: Volume 9 gate
+    traces_to: [ARCH-V4-039]
+    chapter_ref: V4-46
+  - id: ASM-V4-049
+    kind: ASM
+    title: Accessibility and bilingual obligations defined downstream
+    statement: "Accessibility and official-language obligations are assumed to be defined downstream, noting that Volume 4 is a House backend architecture and not an experience layer."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Experience-layer obligations depend on downstream definition."
+    disposition: "Deferred to the experience-layer volume."
+    resolution_gate: Volume 8 gate
+    traces_to: [ARCH-V4-044]
+    chapter_ref: V4-47
+  - id: ASM-V4-050
+    kind: ASM
+    title: Operational ownership and independent assurance defined downstream
+    statement: "Operational ownership, run-book responsibility, and independent assurance are assumed to be established downstream and are not claimed by Volume 4."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Operational and assurance accountability depends on downstream definition."
+    disposition: "Deferred to the operations and assurance volumes."
+    resolution_gate: Volume 9 gate
+    traces_to: [ARCH-V4-043]
+    chapter_ref: V4-46
+  - id: RISK-V4-017
+    kind: RISK
+    title: Consolidation misrepresented as completeness or implementation
+    statement: "The integrated target-architecture baseline could be misread as a completed, implemented, or proven system rather than architecture definition."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "False assurance could authorize premature implementation or procurement."
+    disposition: "Mitigated by explicit not-implemented posture, coverage-not-remediation framing, and authorization invariants."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-037, ARCH-V4-042]
+    chapter_ref: V4-44
+  - id: RISK-V4-018
+    kind: RISK
+    title: Closure projection mistaken for authoritative assurance
+    statement: "The deterministic closure and traceability projections could be mistaken for a source of truth or independent assurance."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Generated artifacts could be treated as governance authority or proof."
+    disposition: "Mitigated by explicit non-authoritative labelling and the closure-traceability control."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-045, CTRL-V4-039]
+    chapter_ref: V4-49
