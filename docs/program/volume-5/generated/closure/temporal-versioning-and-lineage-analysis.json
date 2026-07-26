@@ -1,0 +1,8 @@
+{
+  "state_records": 1,
+  "snapshots": 1,
+  "correction_records": 1,
+  "provenance_records": 2,
+  "lineage_rules": 11,
+  "lineage_rules_without_source": []
+}

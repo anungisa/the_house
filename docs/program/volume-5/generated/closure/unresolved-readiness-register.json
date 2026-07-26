@@ -1,0 +1,361 @@
+{
+  "total": 58,
+  "assumptions": [
+    {
+      "id": "ASM-V5-001",
+      "title": "Corrected Volume 4 baseline is authoritative for Volume 5",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": null
+    },
+    {
+      "id": "ASM-V5-002",
+      "title": "Records-policy authority will define retention and deletion",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "ASM-V5-003",
+      "title": "External finance and evidence systems remain systems of record for their data",
+      "owner": "Finance Data Steward",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "ASM-V5-004",
+      "title": "Records-policy authority will set retention and disposition",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "ASM-V5-005",
+      "title": "External authorities remain the source for external facts",
+      "owner": "Governance Policy Steward",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "ASM-V5-006",
+      "title": "PostgreSQL is the target persistence platform",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V5-007",
+      "title": "Organization and party data volumes are within single-cluster capacity",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V5-008",
+      "title": "Evidence binary content is stored via external object reference",
+      "owner": "Evidence and Records Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V5-009",
+      "title": "Transaction and outbox volumes fit a single-writer model",
+      "owner": "Governance Kernel Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V5-010",
+      "title": "Migration source access will be granted under governed authority",
+      "owner": "Migration Steward",
+      "future_blocking_gate": "V10-G1"
+    }
+  ],
+  "risks": [
+    {
+      "id": "RISK-V5-001",
+      "title": "Organization identity ambiguity",
+      "owner": "Membership and Affiliation Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "RISK-V5-002",
+      "title": "Cross-jurisdiction data leakage",
+      "owner": "Governance and Jurisdiction Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "RISK-V5-003",
+      "title": "Projection divergence from authoritative state",
+      "owner": "Projection Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V5-004",
+      "title": "Automated matching over-merges records",
+      "owner": "Identity and Authorization Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "RISK-V5-005",
+      "title": "Reference-data drift breaks historical interpretation",
+      "owner": "Governance Policy Steward",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "RISK-V5-006",
+      "title": "Disposition without records authority",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "RISK-V5-007",
+      "title": "Physical naming collides with reserved identifiers",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V5-008",
+      "title": "Premature index selection harms performance",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V5-009",
+      "title": "Partitioning key chosen without volume evidence",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V5-010",
+      "title": "Source data quality blocks clean migration",
+      "owner": "Migration Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "RISK-V5-011",
+      "title": "Large migration rollback is infeasible in place",
+      "owner": "Migration Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "RISK-V5-012",
+      "title": "Performance baselines are unknown at design time",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-V5-001",
+      "title": "Evidence binary system-of-record is external",
+      "owner": "Evidence and Records Steward",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "EXC-V5-002",
+      "title": "Authenticated identity authority is external",
+      "owner": "Identity and Authorization Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "EXC-V5-003",
+      "title": "Time-bounded data-quality exceptions",
+      "owner": "Data Quality Steward",
+      "future_blocking_gate": "V8-G1"
+    }
+  ],
+  "validations": [
+    {
+      "id": "TEST-V5-001",
+      "title": "Authoritative ownership validation",
+      "owner": "Membership and Affiliation Steward",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V5-002",
+      "title": "Organization identity validation",
+      "owner": "Membership and Affiliation Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-003",
+      "title": "Historical duplicate resolution validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-004",
+      "title": "Person and account relationship validation",
+      "owner": "Identity and Authorization Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-005",
+      "title": "Jurisdictional variant validation",
+      "owner": "Governance and Jurisdiction Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-006",
+      "title": "Season uniqueness validation",
+      "owner": "Governance and Jurisdiction Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-007",
+      "title": "Policy and requirement versioning validation",
+      "owner": "Policy and Requirements Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-008",
+      "title": "Evidence classification validation",
+      "owner": "Evidence and Records Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-009",
+      "title": "Retention validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V5-010",
+      "title": "Deletion authority validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V5-011",
+      "title": "Financial reconciliation validation",
+      "owner": "Finance Data Steward",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "TEST-V5-012",
+      "title": "External-system semantics validation",
+      "owner": "Finance Data Steward",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "TEST-V5-013",
+      "title": "Analytics purpose validation",
+      "owner": "Analytics Governance Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-014",
+      "title": "Data quality threshold validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-015",
+      "title": "Bilingual governed terminology validation",
+      "owner": "Policy and Requirements Steward",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "TEST-V5-016",
+      "title": "Accessibility content-data validation",
+      "owner": "Communications Steward",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "TEST-V5-017",
+      "title": "Privacy validation",
+      "owner": "Identity and Authorization Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-018",
+      "title": "Migration-source quality validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-019",
+      "title": "Master and reference data classification validation",
+      "owner": "Membership and Affiliation Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-020",
+      "title": "Bilingual reference-data completeness validation",
+      "owner": "Governance Policy Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-021",
+      "title": "Retention and disposition dependency validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-022",
+      "title": "Reconciliation authority-alignment validation",
+      "owner": "Finance Data Steward",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "TEST-V5-023",
+      "title": "Exchange lineage validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-024",
+      "title": "Purpose and minimization validation",
+      "owner": "Identity and Authorization Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-025",
+      "title": "Stewardship-measure operational-proof validation",
+      "owner": "Data Quality Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-026",
+      "title": "Physical naming validation",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-027",
+      "title": "PostgreSQL data-type mapping validation",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-028",
+      "title": "Concurrency and locking validation",
+      "owner": "Governance Kernel Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-029",
+      "title": "Index selection validation",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-030",
+      "title": "Partitioning validation",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-031",
+      "title": "Archival and retention policy validation",
+      "owner": "Records Governance Steward",
+      "future_blocking_gate": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-032",
+      "title": "Migration rollback feasibility validation",
+      "owner": "Migration Steward",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-033",
+      "title": "Performance baseline validation",
+      "owner": "Data Architecture Steward",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "validations_without_owner": [],
+  "validations_without_gate": []
+}

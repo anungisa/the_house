@@ -1,53 +1,51 @@
-# Volume 5 Data-Governance Closure Report (NON-AUTHORITATIVE)
+# Volume 5 Integrated Governed-Data Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T19:32:32.879Z
+Generated: 2026-07-26T20:07:27.651Z
 
-> Generated projection of the source-controlled Volume 5 corpus. Not a source of
-> truth and not a basis for ratification. Volume 5 Package 1 defines DATA
-> GOVERNANCE and CONCEPTUAL INFORMATION semantics only; it authorizes no
-> implementation, physical schema, migration, pipeline, infrastructure,
-> procurement, delivery sequence, staffing, or cost.
+> Generated projection of the source-controlled Volume 5 corpus consolidated from
+> Packages 1 through 4. Not a source of truth and not a basis for ratification.
+> Volume 5 defines governed DATA only; it authorizes no implementation, executable
+> schema, migration, pipeline, infrastructure, procurement, retention period, or
+> master development plan. These projections are rebuildable from the governed
+> registers.
 
 ## Identifier counts
 
-| Category | Count |
+| Register | Count |
 | --- | --- |
-| Information domains | 25 |
-| Conceptual entities | 14 |
-| Conceptual relationships | 8 |
-| Data products | 11 |
-| Classifications | 8 |
-| Rules and controls | 84 |
-| Decisions | 43 |
-| Backlog items | 58 |
+| Catalogue (REG-501) | 228 |
+| Rules and controls (REG-502) | 84 |
+| Decisions (REG-503) | 51 |
+| Backlog (REG-504) | 58 |
 
-## Information-domain ownership completeness
+## Domain authority and stewardship coverage
 
 - Domains total: 25
 - With business authority: 25
 - With system-of-record authority: 25
 - With data steward: 25
-- With classification: 25
-- Without an owner (must be empty): 0
+- Without business authority (must be 0): 0
+- Without system-of-record authority (must be 0): 0
+- Without data steward (must be 0): 0
 
-## Quality, correction, and lineage coverage
+## Conceptual-logical-physical traceability
 
-- Quality rules: 14
-- Quality rules without correction authority (must be 0): 0
-- Lineage rules: 11
-- Lineage rules without source (must be 0): 0
+- Conceptual entities: 14
+- Logical entities: 22
+- Physical relations: 29
+- Physical without a logical source (must be 0): 0
+- Physical without an owning domain (must be 0): 0
+- Logical without a conceptual trace (must be 0): 0
 
-## Projection posture
-
-- Data products: 11
-- Data products without an authoritative source (must be 0): 0
-- All products are non-authoritative projections: true
-
-## Validation backlog
+## Downstream handoff coverage
 
 - Validation items: 33
-- Without owner (must be 0): 0
-- Without future blocking gate (must be 0): 0
+- Validation items still naming Gate V5-G5 (must be 0): 0
+
+## House P0 data coverage
+
+- Physical relations: 29
+- Physical relations recorded as implemented or proven (must be 0): 0
 
 ## Authorization posture
 

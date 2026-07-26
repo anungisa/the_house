@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T19:36:14.648Z
+Generated: 2026-07-26T20:07:28.986Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T19:36:14.648Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 51 |
+| RATIFIED | 63 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.9.0 | 51 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.10.0 | 63 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.3.0 | 228 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.3.0 | 84 |
-| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.3.0 | 43 |
+| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.4.0 | 51 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.3.0 | 58 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.9.0 | 59 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.10.0 | 74 |
 
 ## Findings by control
 
@@ -281,3 +281,63 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-059 (V5-H): Completes machine-readable Package 4 provenance after mainline merge.
 - APP-V5-059 (V5-H): Preserves the Gate V5-G4 disposition and the PACKAGE-5-4 freeze.
 - APP-V5-059 (V5-H): Reopens no substantive Package 4 content and authorizes no implementation.
+- APP-V5-060 (V5-43): Integrated governed-data baseline consolidates Packages 1 through 4 without re-deciding.
+- APP-V5-060 (V5-43): Adds no unsupported data decision merely to manufacture completeness.
+- APP-V5-060 (V5-43): Authorizes no implementation.
+- APP-V5-061 (V5-44): Authoritative information catalogue and accountability matrix consolidated.
+- APP-V5-061 (V5-44): Preserves the required separations of authority, stewardship, and custody.
+- APP-V5-061 (V5-44): Authorizes no implementation.
+- APP-V5-062 (V5-45): Canonical identity, relationship, scope, temporal, and lineage synthesis consolidated.
+- APP-V5-062 (V5-45): Preserves the required identity distinctions across conceptual, logical, and physical layers.
+- APP-V5-062 (V5-45): Authorizes no implementation.
+- APP-V5-063 (V5-46): Affiliation, evidence, decision, financial, and activation data synthesis consolidated.
+- APP-V5-063 (V5-46): Preserves evidence binding, financial-fact distinction, and activation uniqueness.
+- APP-V5-063 (V5-46): Authorizes no implementation.
+- APP-V5-064 (V5-47): Reference data, quality, lifecycle, records, privacy, and stewardship synthesis consolidated.
+- APP-V5-064 (V5-47): Establishes no retention period, deletion schedule, or legal conclusion.
+- APP-V5-064 (V5-47): Authorizes no implementation.
+- APP-V5-065 (V5-48): PostgreSQL persistence, integrity, and physical-model synthesis consolidated.
+- APP-V5-065 (V5-48): Contains no executable data-definition and infers no schema, migration, or mapping.
+- APP-V5-065 (V5-48): Authorizes no implementation.
+- APP-V5-066 (V5-49): Migration, reconciliation, exchange, projection, and analytics synthesis consolidated.
+- APP-V5-066 (V5-49): Preserves source provenance, quarantine non-authority, and projection rebuildability.
+- APP-V5-066 (V5-49): Authorizes no implementation.
+- APP-V5-067 (V5-50): Data verification and House P0 implementation-evidence matrix consolidated.
+- APP-V5-067 (V5-50): Records every finding as data-defined and not implemented and not proven.
+- APP-V5-067 (V5-50): Authorizes no implementation.
+- APP-V5-068 (V5-51): Assumptions, risks, exceptions, gate references, and readiness disposition consolidated.
+- APP-V5-068 (V5-51): Records the validation-gate reassignment away from the passing Gate V5-G5.
+- APP-V5-068 (V5-51): Records the Gate V5-G4 effective-date clarification and changes no frozen artifact.
+- APP-V5-068 (V5-51): Authorizes no implementation.
+- APP-V5-069 (V5-52): Downstream-volume handoff and executive data brief consolidated.
+- APP-V5-069 (V5-52): Transfers no governed authority to any experience layer, custodian, or external system.
+- APP-V5-069 (V5-52): Authorizes no implementation.
+- APP-V5-070 (V5-53): Integrated data traceability and Volume 5 closure assessment consolidated.
+- APP-V5-070 (V5-53): Records that the deterministic closure projections are non-authoritative and rebuildable.
+- APP-V5-070 (V5-53): Authorizes no implementation.
+- APP-V5-071 (V5-I): Volume 5 completion record consolidates the integrated governed-data baseline and closes Volume 5.
+- APP-V5-071 (V5-I): Records the Gate V5-G5 disposition, the Package 5 freeze, the Volume 5 freeze, and Volume 6 authorization.
+- APP-V5-071 (V5-I): Records the validation-gate reassignment away from the passing Gate V5-G5.
+- APP-V5-071 (V5-I): Authorizes no implementation.
+- APP-V5-072 (GATE-V5-G5): Package 1 through Package 4 provenance and freezes are preserved.
+- APP-V5-072 (GATE-V5-G5): No unresolved obligation names the completed Gate V5-G5.
+- APP-V5-072 (GATE-V5-G5): The integrated data definition is documentary and authorizes no implementation.
+- APP-V5-072 (GATE-V5-G5): Every information domain names a business authority, a system-of-record authority, and a data steward, with stewardship, custody, ownership, finance, privacy, and records authority held distinctly.
+- APP-V5-072 (GATE-V5-G5): The Button is recorded as a governed consumer and never an independent source of affiliation truth.
+- APP-V5-072 (GATE-V5-G5): Person, authenticated identity, membership, representative authority, reviewer assignment, and finance authority are distinct and never conflated.
+- APP-V5-072 (GATE-V5-G5): The organization-to-activation record chain is complete, with evidence binding, financial-fact distinction, approval-versus-activation distinction, and activation uniqueness preserved.
+- APP-V5-072 (GATE-V5-G5): Reference data, quality, lifecycle, records, privacy, and stewardship are defined, with retention periods and disposition schedules recorded as pending a records-policy authority and no retention period, deletion schedule, or legal conclusion established.
+- APP-V5-072 (GATE-V5-G5): The documentary PostgreSQL physical model contains no executable data-definition and traces every physical structure to a logical source and owning domain.
+- APP-V5-072 (GATE-V5-G5): Migration, reconciliation, exchange, projection, and analytics definitions preserve source provenance, keep quarantine non-authoritative, and keep projections rebuildable.
+- APP-V5-072 (GATE-V5-G5): Every House P0 finding with a material data implication is data-defined and recorded as not implemented and not proven, with implementation evidence required downstream.
+- APP-V5-072 (GATE-V5-G5): Every remaining assumption, risk, exception, and validation obligation names an owner and a downstream blocking gate.
+- APP-V5-072 (GATE-V5-G5): Conceptual-to-logical-to-physical traceability holds across the corpus, and the closure projections are non-authoritative.
+- APP-V5-072 (GATE-V5-G5): No executable schema, migration, object-relational mapping, infrastructure, procurement, retention period, or master development plan is created or authorized.
+- APP-V5-072 (GATE-V5-G5): Package 5 receives review with a separate freeze commit.
+- APP-V5-073 (PACKAGE-5-5): Package 5 corpus frozen; changes require the recorded amendment process.
+- APP-V5-073 (PACKAGE-5-5): Freeze committed separately from authoring per Gate V5-G5 condition.
+- APP-V5-073 (PACKAGE-5-5): Authorizes no implementation.
+- APP-V5-074 (VOLUME-5): The whole of Volume 5 is frozen at version 1.0.0 across all packages and deliverables.
+- APP-V5-074 (VOLUME-5): Package 1 through Package 5 freezes and provenance are preserved.
+- APP-V5-074 (VOLUME-5): Volume 6 is authorized to proceed on the governed-data baseline.
+- APP-V5-074 (VOLUME-5): Authorizes no implementation, procurement, retention period, or master development plan.

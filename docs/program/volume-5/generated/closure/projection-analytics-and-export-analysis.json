@@ -1,0 +1,9 @@
+{
+  "data_products": 11,
+  "derived_data_products": 5,
+  "materialized_projections": 2,
+  "database_views": 1,
+  "data_products_without_source": [],
+  "derived_products_without_source": [],
+  "all_non_authoritative": true
+}
