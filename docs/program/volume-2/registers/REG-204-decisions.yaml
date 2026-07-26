@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.10.0
+version: 1.10.1
 records:
   - id: DEC-V2-001
     class: D1
@@ -652,5 +652,26 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-030
+    class: D2
+    question: >-
+      Do the permanent Package 5 and whole-volume freeze-provenance records distinguish all
+      three commits?
+    decision: >-
+      Complete the Package 5 freeze-provenance record (REG-205 APP-V2-049) and the whole-volume
+      freeze-provenance record (REG-205 APP-V2-050) so that each distinguishes all three
+      commits: source snapshot 60f652a, closure/freeze commit 4219c33, and merged commit
+      f4c6c55. The closure/freeze and merged commits only existed after Package 5 closure and
+      PR #13 merge, and are therefore recorded by this narrow post-merge amendment. This does
+      not reopen Package 5 or Volume 2 content and does not alter Gate V2-G5, whose disposition
+      remains PASS.
+    evidence_refs:
+      - GATE-V2-G5
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
     effective_date: TBD
     status: accepted_by_accountable_authority

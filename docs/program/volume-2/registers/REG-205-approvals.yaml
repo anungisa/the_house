@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.10.0
+version: 1.10.1
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -668,18 +668,25 @@ records:
     authorizes_implementation: false
     frozen: true
     base_commit: "60f652a"
+    supersedes: >-
+      APP-V2-049 prior package_provenance that recorded the source snapshot commit
+      (60f652a) and left the closure/freeze commit and merged commit as PENDING_POST_MERGE
+      at closure time; completed post-merge by narrow amendment (see DEC-V2-030). Gate
+      V2-G5 unchanged (PASS); frozen artifact set unchanged.
     package_provenance:
       source_snapshot_commit: "60f652a"
-      closure_freeze_commit: "PENDING_POST_MERGE"
-      merged_commit: "PENDING_POST_MERGE"
+      closure_freeze_commit: "4219c33"
+      merged_commit: "f4c6c55"
       note: >-
         The Package 5 freeze is recorded against distinct commits: source snapshot 60f652a
         (the authoring commit containing V2-27 through V2-33, the traceability tooling, and
-        the expanded registers). The closure/freeze commit (which adds V2-E, the Gate V2-G5
-        disposition, and this freeze record on branch docs/volume-2-product-service-closure)
-        and the merged commit only exist after Package 5 closure and PR merge, and are
-        therefore completed by a narrow post-merge amendment. Recorded self-attested /
-        author-verified.
+        the expanded registers); closure/freeze commit 4219c33 (which adds V2-E, the Gate
+        V2-G5 disposition, and this freeze record on branch
+        docs/volume-2-product-service-closure); and merged commit f4c6c55 (the merge of the
+        Package 5 branch into main via PR #13). The closure/freeze and merged commits only
+        existed after Package 5 closure and PR merge, so the freeze baseline is unambiguous
+        by construction. They were recorded by narrow post-merge amendment (see DEC-V2-030,
+        APP-V2-051). Recorded self-attested / author-verified.
     frozen_artifacts:
       - id: V2-27
         version: 1.0.0
@@ -702,7 +709,8 @@ records:
       REG-204 and a superseding approval in REG-205; frozen artifacts are not edited in place.
     conditions:
       - "Freeze source snapshot commit: 60f652a (contains V2-27..V2-33, the traceability tooling, and the expanded registers)"
-      - "Closure/freeze commit and merged commit: PENDING_POST_MERGE (completed by narrow post-merge amendment)"
+      - "Package 5 closure/freeze commit: 4219c33 (adds V2-E, Gate V2-G5 disposition, and freeze records)"
+      - "Package 5 merged commit: f4c6c55 (merge of the Package 5 branch into main via PR #13)"
       - Gate V2-G5 PASS; Volume 2 Package 5 closed and frozen; V2-27..V2-33 and V2-E at 1.0.0
       - Product-and-service definition only; implementation, procurement, architecture, delivery plan, staffing plan, and cost plan unauthorized; not a master development plan
       - Executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
@@ -716,16 +724,23 @@ records:
     authorizes_implementation: false
     frozen: true
     base_commit: "60f652a"
+    supersedes: >-
+      APP-V2-050 prior package_provenance that recorded the source snapshot commit
+      (60f652a) and left the closure/freeze commit and merged commit as PENDING_POST_MERGE
+      at closure time; completed post-merge by narrow amendment (see DEC-V2-030). Gate
+      V2-G5 unchanged (PASS); frozen artifact set unchanged.
     package_provenance:
       source_snapshot_commit: "60f652a"
-      closure_freeze_commit: "PENDING_POST_MERGE"
-      merged_commit: "PENDING_POST_MERGE"
+      closure_freeze_commit: "4219c33"
+      merged_commit: "f4c6c55"
       note: >-
         The whole-volume freeze is recorded against the Package 5 source snapshot 60f652a as
-        its base commit. The Volume 2 closure/freeze commit and the merged commit only exist
-        after closure and PR merge, and are completed by a narrow post-merge amendment. The
-        release is marked by the annotated tag central-registration-volume-2-v1.0.0 on the
-        merged commit. Recorded self-attested / author-verified.
+        its base commit, closure/freeze commit 4219c33 (Volume 2 closure), and merged commit
+        f4c6c55 (merge into main via PR #13). The closure/freeze and merged commits only
+        existed after closure and PR merge; they were completed by narrow post-merge
+        amendment (see DEC-V2-030, APP-V2-051). The release is marked by the annotated tag
+        central-registration-volume-2-v1.0.0 on the merged commit. Recorded self-attested /
+        author-verified.
     frozen_artifacts:
       - id: V2-00
         version: 1.0.0
@@ -811,7 +826,7 @@ records:
       the change-governance model (V2-30); authority-boundary and breaking service changes
       require executive-level acceptance.
     conditions:
-      - "Whole-volume freeze base commit: 60f652a; closure/freeze and merged commits PENDING_POST_MERGE (completed by narrow post-merge amendment)"
+      - "Whole-volume freeze base commit: 60f652a; closure/freeze commit 4219c33; merged commit f4c6c55 (recorded by narrow post-merge amendment)"
       - "Frozen: V2-00 through V2-33; V2-A through V2-E; REG-200 through REG-205; schemas and governance controls"
       - "Generated traceability outputs are frozen as non-authoritative projections; registers and chapters remain authoritative"
       - "Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.0) is preserved unchanged"
