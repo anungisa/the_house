@@ -1,6 +1,6 @@
 # Volume 3 Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T11:58:34.930Z
+Generated: 2026-07-26T12:17:36.019Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus produced by `npm run governance:trace:v3`. It is not a source of
@@ -9,32 +9,32 @@ Generated: 2026-07-26T11:58:34.930Z
 
 ## Identifier counts
 
-- Requirement total: 60
-- Stakeholders: 16 | Decisions: 4 | Approvals: 12
-- Chapters: 9 | Registers: 6
+- Requirement total: 147
+- Stakeholders: 16 | Decisions: 6 | Approvals: 24
+- Chapters: 19 | Registers: 6
 
 | Level | Count |
 | --- | --- |
-| OUT | 7 |
-| CAP | 7 |
-| BR | 6 |
-| FR | 6 |
-| NFR | 3 |
-| UC | 6 |
-| RULE | 4 |
-| WF | 3 |
-| UX | 2 |
-| DATA | 2 |
+| OUT | 16 |
+| CAP | 16 |
+| BR | 14 |
+| FR | 16 |
+| NFR | 6 |
+| UC | 13 |
+| RULE | 12 |
+| WF | 7 |
+| UX | 4 |
+| DATA | 5 |
 | API | 0 |
 | EVT | 0 |
-| CTRL | 7 |
-| TEST | 7 |
+| CTRL | 19 |
+| TEST | 19 |
 
 ## Orphan analysis
 
 - Broken traces: 0
 - Records without a resolving parent: 0
-- Non-leaf records without a consumer: 10
+- Non-leaf records without a consumer: 23
 
 ## Chain coverage
 
@@ -42,10 +42,10 @@ Generated: 2026-07-26T11:58:34.930Z
 
 ## Acceptance coverage
 
-- Outcomes without acceptance lineage: 2
-- Capabilities without rules or functional requirements: 3
-- Rules without workflows: 1
-- Workflows without experience requirements: 1
+- Outcomes without acceptance lineage: 3
+- Capabilities without rules or functional requirements: 4
+- Rules without workflows: 5
+- Workflows without experience requirements: 3
 - Controls without tests: 0
 - Tests without outcome lineage: 0
 
@@ -54,16 +54,18 @@ Generated: 2026-07-26T11:58:34.930Z
 - Stakeholders with governed authority: 8
 - Button-primary governed-authority conflicts: 0
 - Requirements authorizing implementation (must be 0): 0
-- Requirement product distribution: House 52, Button 1, Both 0, Neither 0
+- Requirement product distribution: House 129, Button 2, Both 0, Neither 0
 
 ## Validation backlog
 
-- Pending requirement records: 16
+- Pending requirement records: 39
 
 | Classification | Count |
 | --- | --- |
-| BASELINE_PENDING | 3 |
+| ACCESSIBILITY_VALIDATION_PENDING | 2 |
+| BASELINE_PENDING | 7 |
 | BILINGUAL_VALIDATION_PENDING | 2 |
-| FINANCIAL_VALIDATION_PENDING | 2 |
-| OPERATIONAL_VALIDATION_PENDING | 8 |
-| POLICY_VALIDATION_PENDING | 1 |
+| FINANCIAL_VALIDATION_PENDING | 3 |
+| OPERATIONAL_VALIDATION_PENDING | 18 |
+| POLICY_VALIDATION_PENDING | 6 |
+| PRIVACY_VALIDATION_PENDING | 1 |

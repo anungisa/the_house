@@ -1,7 +1,7 @@
 register_id: REG-304
 name: Volume 3 Governance Decision Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: DEC-V3-001
     class: D1
@@ -97,5 +97,55 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-005
+    class: D1
+    question: >-
+      Is Gate V3-G2 (Seasonal Operations Foundation Ready) satisfied, and should the Volume 3
+      Package 2 corpus be frozen at version 1.0.0 through a separate freeze commit?
+    decision: >-
+      Gate V3-G2 is dispositioned SEASONAL_OPERATIONS_FOUNDATION_READY (PASS). All fourteen
+      gate conditions are satisfied to the extent of author assertion: the Package 1 freeze
+      provenance is unambiguous; a complete seasonal operating cycle is defined; recognition,
+      jurisdiction, pathway triage, and case-opening are operationally defined with
+      determination classes and authorities; queue ownership, assignment, reassignment, and
+      handoffs are defined with explicit authority disposition; remediation, exceptions,
+      reconsideration, and corrections are distinguished as distinct categories; financial
+      reconciliation and activation preserve the authority boundaries and one-time activation;
+      support and recovery acquire no governed decision authority; operational quality and
+      assurance controls are defined; capacity and workload assumptions carry no staffing
+      commitment; all three pathways are covered through season closure; unresolved assumptions
+      carry owners and future gates; no requirement authorizes implementation or procurement;
+      no technical architecture, staffing plan, cost plan, delivery sequence, or master
+      development plan is created; and Package 2 receives a separate freeze commit. The Package
+      2 corpus (V3-08..V3-16, V3-B) is frozen at version 1.0.0.
+    evidence_refs:
+      - GATE-V3-G2
+      - V3-B
+      - REG-305
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-006
+    class: D1
+    question: >-
+      Should Volume 3 Package 3 be authorized as a definition-only continuation of the
+      operating-model work, without authorizing any material commitment?
+    decision: >-
+      Authorize Volume 3 Package 3 as a definition-only continuation of the Volume 3
+      operating-model work. Package 3 authorizes no implementation, procurement, technical
+      architecture, delivery sequencing, staffing, or cost, and does not create a master
+      development plan. Executive organizational acceptance remains pending at the
+      material-commitment gate.
+    evidence_refs:
+      - V3-B
+      - GATE-V3-G2
+      - DEC-V3-005
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

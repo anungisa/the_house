@@ -1,7 +1,7 @@
 register_id: REG-301
 name: Volume 3 Outcome Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: OUT-V3-001
     statement: >-
@@ -129,3 +129,185 @@ records:
       - V3-07
       - V2-29
       - V2-32
+  - id: OUT-V3-008
+    statement: >-
+      A complete seasonal affiliation operating cycle is defined from prior-season review
+      through readiness preparation, affiliation opening, active processing, escalation and
+      remediation, expiry and closure, and post-season assurance, with each phase carrying an
+      objective, accountable function, participating functions, inputs, readiness conditions,
+      outputs, operating controls, escalation, and evidence of completion.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-002
+      - STK-V3-005
+    product: House
+    success_signal: >-
+      Each operating-cycle phase has a documented objective, accountable function, readiness
+      conditions, and completion evidence, with no invented calendar dates or lead times.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-08
+      - V3-02
+      - V2-19
+  - id: OUT-V3-009
+    statement: >-
+      Organization recognition, jurisdiction determination, pathway triage, and seasonal
+      case-opening are defined as operational activities that distinguish deterministic
+      operational determination, policy-authority decision, applicant-supplied information,
+      system-derived information, and manual exception review, so that pathway selection is not
+      informal reviewer discretion.
+    stakeholder_refs:
+      - STK-V3-002
+      - STK-V3-003
+      - STK-V3-007
+    product: House
+    success_signal: >-
+      Recognition, jurisdiction, pathway triage, and case-opening determinations each carry an
+      explicit determination class and a defined authority, with no informal pathway discretion.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-09
+      - V3-02
+      - V2-07
+  - id: OUT-V3-010
+    statement: >-
+      Queue creation and ownership, jurisdictional assignment, reviewer eligibility, assignment
+      and reassignment, conflict and absence handling, work aging, review, return for
+      information, resubmission, and inter-function handoffs are defined so that every handoff
+      records sending and receiving functions, trigger, information transferred, and retained
+      versus transferred authority.
+    stakeholder_refs:
+      - STK-V3-005
+      - STK-V3-006
+      - STK-V3-009
+    product: House
+    success_signal: >-
+      Every defined handoff records its sending and receiving functions, trigger, transferred
+      information, and authority disposition, and no handoff silently changes decision authority.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-10
+      - V3-04
+      - V2-15
+  - id: OUT-V3-011
+    statement: >-
+      Remediation, operational exceptions, policy exceptions, administrative corrections,
+      decision reconsideration, data-quality corrections, and incident recovery are defined as
+      distinct categories, each with its own authority, evidence, audit expectation, and
+      escalation route.
+    stakeholder_refs:
+      - STK-V3-003
+      - STK-V3-005
+      - STK-V3-007
+    product: House
+    success_signal: >-
+      Each exception and correction category is separated with its own authority, evidence, and
+      escalation, and no category substitutes for a governed lifecycle decision.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-11
+      - V3-03
+      - V2-12
+  - id: OUT-V3-012
+    statement: >-
+      Financial reconciliation and activation operations are defined across fee-obligation
+      creation, fee-policy reference, exemption and waiver handling, processor results,
+      accounting confirmation, payment mismatch and reversal boundaries, manual reconciliation,
+      and one-time activation execution, preserving the authority boundaries among policy, the
+      House, the payment provider, the accounting system, finance operations, and the
+      affiliation authority.
+    stakeholder_refs:
+      - STK-V3-008
+      - STK-V3-014
+      - STK-V3-015
+    product: House
+    success_signal: >-
+      Fee, reconciliation, and activation operations preserve each financial authority boundary
+      and activation executes an approved lifecycle effect exactly once, with no fabricated
+      amounts or accounting policy.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-12
+      - V3-05
+      - V2-16
+  - id: OUT-V3-013
+    statement: >-
+      Support, communication, notification, and service-recovery operations are defined across
+      intake, classification, case correlation, access and notification failures, bilingual and
+      accessibility problems, continuity-mode operation, and recovery confirmation, with support
+      holding no authority to change pathway, approve evidence, record decisions, waive fees, or
+      activate affiliations.
+    stakeholder_refs:
+      - STK-V3-009
+      - STK-V3-012
+      - STK-V3-013
+    product: House
+    success_signal: >-
+      Support and recovery paths are defined and no support action changes pathway, approves
+      evidence, records a decision, waives a fee, or activates an affiliation.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-13
+      - V3-06
+      - V2-17
+  - id: OUT-V3-014
+    statement: >-
+      Operational quality, assurance, audit, and management controls are defined across
+      pathway-selection quality, routing accuracy, review consistency, decision-authority
+      compliance, segregation of duties, financial reconciliation, activation idempotency,
+      corrections, restricted-evidence access, queue aging, unresolved exceptions, audit
+      reconstruction, and season-close review, each with an owner, performer, frequency
+      classification, evidence, and validation status.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-007
+      - STK-V3-008
+    product: House
+    success_signal: >-
+      Each operational control records its objective, owner, performer, frequency
+      classification, evidence, and validation status, with no invented numerical thresholds.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-14
+      - V3-04
+      - V2-15
+  - id: OUT-V3-015
+    statement: >-
+      A capacity, workload, and service-measure model is defined that records workload
+      assumptions, capacity and queue risks, peak-period and concentration risks, cross-training
+      and continuity dependencies, measures requiring baseline collection, and decisions that
+      cannot be made before pilot evidence, without asserting staffing levels or headcount.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-005
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      Every capacity input and service measure is classified, and each measure requiring
+      baseline or validation is surfaced with an owner, with no staffing or headcount commitment.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-15
+      - V3-07
+      - V2-29
+  - id: OUT-V3-016
+    statement: >-
+      A consolidated seasonal operating playbook is defined across readiness, daily and weekly
+      operating functions, case processing, exception handling, reconciliation, support,
+      assurance, season closure, and post-season review, and it explicitly identifies the
+      downstream matters outside Package 2, including staffing, cost, procurement, technical
+      architecture, implementation, migration, deployment, and operating-service-level
+      commitments.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-010
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      The playbook consolidates the seasonal operating model and explicitly records the
+      downstream matters that Package 2 does not authorize.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-16
+      - V3-00
+      - V2-33

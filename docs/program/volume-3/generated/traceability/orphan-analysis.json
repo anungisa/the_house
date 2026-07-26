@@ -20,6 +20,18 @@
       "level": "DATA"
     },
     {
+      "id": "DATA-V3-003",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-004",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-005",
+      "level": "DATA"
+    },
+    {
       "id": "FR-V3-005",
       "level": "FR"
     },
@@ -28,7 +40,39 @@
       "level": "FR"
     },
     {
+      "id": "FR-V3-009",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V3-015",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V3-016",
+      "level": "FR"
+    },
+    {
+      "id": "NFR-V3-006",
+      "level": "NFR"
+    },
+    {
       "id": "RULE-V3-004",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-007",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-009",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-011",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-012",
       "level": "RULE"
     },
     {
@@ -41,6 +85,14 @@
     },
     {
       "id": "WF-V3-003",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-004",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-007",
       "level": "WF"
     }
   ]
