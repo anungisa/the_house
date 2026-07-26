@@ -1,6 +1,6 @@
 # Volume 2 Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T04:12:11.258Z
+Generated: 2026-07-26T04:15:27.888Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus produced by `npm run governance:trace:v2`. It is not a source of
@@ -10,8 +10,8 @@ Generated: 2026-07-26T04:12:11.258Z
 ## Identifier counts
 
 - Requirement total: 441
-- Stakeholders: 24 | Decisions: 26 | Approvals: 46
-- Chapters: 38 | Registers: 6
+- Stakeholders: 24 | Decisions: 29 | Approvals: 50
+- Chapters: 39 | Registers: 6
 
 | Level | Count |
 | --- | --- |

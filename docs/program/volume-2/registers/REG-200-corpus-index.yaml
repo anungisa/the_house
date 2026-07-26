@@ -1,7 +1,7 @@
 register_id: REG-200
 name: Volume 2 Corpus Index
 status: IN_REVIEW
-version: 1.8.0
+version: 1.9.0
 records:
   - id: V2-00
     title: Volume Control and Inheritance
@@ -307,3 +307,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-2/V2-D-package-4-closure-record.md
     gate: V2-G4
+  - id: V2-E
+    title: Volume 2 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-E-volume-2-completion-and-release-freeze-record.md
+    gate: V2-G5

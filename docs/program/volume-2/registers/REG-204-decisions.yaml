@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.9.0
+version: 1.10.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -586,6 +586,69 @@ records:
       - V2-33
       - CAP-V2-050
       - BR-V2-035
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  # --- Package 5 closure, gate, and freeze ---
+  - id: DEC-V2-027
+    class: D1
+    question: >-
+      Is the affiliation product defined completely enough to pass Gate V2-G5 and to freeze
+      Volume 2 Package 5?
+    decision: >-
+      Disposition Gate V2-G5 as PASS (PRODUCT_AND_SERVICE_DEFINITION_COMPLETE) and freeze the
+      Package 5 corpus (V2-27 through V2-33 and V2-E). The affiliation product is defined
+      completely enough across scope, users, rules, experience, responsibilities, measures,
+      acceptance, change governance, and unresolved validations to become the authoritative
+      input to Volume 3. Definition only; no implementation, procurement, architecture,
+      delivery plan, staffing plan, cost plan, or master development plan authorized.
+    evidence_refs:
+      - V2-E
+      - GATE-V2-G5
+      - V2-27
+      - V2-31
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-028
+    class: D1
+    question: >-
+      Should the complete Volume 2 corpus be frozen as a governed release baseline?
+    decision: >-
+      Freeze the complete Volume 2 corpus under approval VOLUME-2 (REG-205 APP-V2-050): V2-00
+      through V2-33; V2-A through V2-E; the Package 1 through 4 amendments; REG-200 through
+      REG-205; the schemas and governance controls; the generated traceability outputs as
+      non-authoritative projections; and the inherited Volume 1 release baseline. Frozen
+      artifacts are not edited in place; changes require a recorded amendment under the
+      change-governance model (V2-30). Definition only; no implementation authorized.
+    evidence_refs:
+      - V2-E
+      - V2-00
+      - V2-33
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-029
+    class: D1
+    question: >-
+      What is Volume 3 authorized to define once Volume 2 is frozen?
+    decision: >-
+      Authorize Volume 3 (docs/volume-3-business-operating-model) as definition work only: it
+      may define the affiliation business operating model and the resolution paths for the
+      validation backlog (V2-32). Volume 3 authorizes no implementation, no procurement, no
+      technical architecture, no delivery sequencing, no staffing plan, no cost plan, and no
+      master development plan, which remains PENDING. Executive organizational acceptance
+      remains pending at the material-commitment gate.
+    evidence_refs:
+      - V2-E
+      - V2-32
+      - V2-33
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
