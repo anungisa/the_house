@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T19:32:23.817Z
+Generated: 2026-07-26T19:36:14.648Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T19:32:23.817Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 50 |
+| RATIFIED | 51 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.8.0 | 50 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.9.0 | 51 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.3.0 | 228 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.3.0 | 84 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.3.0 | 43 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.3.0 | 58 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.8.0 | 58 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.9.0 | 59 |
 
 ## Findings by control
 
@@ -278,3 +278,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-058 (PACKAGE-5-4): Package 4 corpus frozen; changes require the recorded amendment process.
 - APP-V5-058 (PACKAGE-5-4): Freeze committed separately from authoring per Gate V5-G4 condition.
 - APP-V5-058 (PACKAGE-5-4): Authorizes no implementation.
+- APP-V5-059 (V5-H): Completes machine-readable Package 4 provenance after mainline merge.
+- APP-V5-059 (V5-H): Preserves the Gate V5-G4 disposition and the PACKAGE-5-4 freeze.
+- APP-V5-059 (V5-H): Reopens no substantive Package 4 content and authorizes no implementation.
