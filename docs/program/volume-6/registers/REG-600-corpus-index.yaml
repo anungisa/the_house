@@ -195,3 +195,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-C-package-2-closure-record.md
     gate: V6-G2
+  - id: V6-D
+    title: Package 2 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-D-package-2-provenance-amendment.md
+    gate: V6-G2
