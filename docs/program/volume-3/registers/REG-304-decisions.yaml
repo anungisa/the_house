@@ -1,0 +1,33 @@
+register_id: REG-304
+name: Volume 3 Governance Decision Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: DEC-V3-001
+    class: D1
+    question: >-
+      Should the Volume 3 Package 1 business operating-model foundation (V3-00 through V3-07) be
+      adopted as the definitional institutional and service operating model for the affiliation
+      service, without authorizing staffing, cost, procurement, architecture, delivery
+      sequencing, or implementation?
+    decision: >-
+      Adopt V3-00 through V3-07 as the ratified Volume 3 Package 1 operating-model foundation.
+      The chapters define the target institutional operating model, the affiliation service
+      operating model across all three pathways, roles and segregation of duties, work
+      management and service controls, the financial and reconciliation operating boundary,
+      support/privacy/continuity assurance, and operating measures with a validation backlog.
+      Adoption is definition-only and authorizes no construction or commitment.
+    evidence_refs:
+      - V3-00
+      - V3-01
+      - V3-02
+      - V3-03
+      - V3-04
+      - V3-05
+      - V3-06
+      - V3-07
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority

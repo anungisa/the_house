@@ -1,0 +1,131 @@
+register_id: REG-301
+name: Volume 3 Outcome Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: OUT-V3-001
+    statement: >-
+      A target institutional operating model is defined across Curling Canada, PTSOs, clubs,
+      reviewers, compliance, finance, support, technology stewardship, and external providers,
+      with purpose, accountability, authority, and controls recorded per function.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-002
+      - STK-V3-003
+    product: House
+    success_signal: >-
+      Each institutional function has a documented operating definition distinguishing decision
+      authority from operational execution.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-01
+      - V2-27
+      - V2-28
+  - id: OUT-V3-002
+    statement: >-
+      The three affiliation product pathways (continuity confirmation, renewal with
+      remediation, new affiliation) are translated into operating practice across the full
+      service lifecycle from opening to expiry and closure.
+    stakeholder_refs:
+      - STK-V3-003
+      - STK-V3-004
+      - STK-V3-005
+    product: House
+    success_signal: >-
+      Each pathway has a defined operating model separating normal operation from exceptional
+      and escalated handling.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-02
+      - V2-07
+      - V2-19
+  - id: OUT-V3-003
+    statement: >-
+      Functional roles, accountable decisions, delegation, conflict restrictions, and
+      segregation-of-duty controls are defined without committing to permanent named staffing
+      or headcount.
+    stakeholder_refs:
+      - STK-V3-005
+      - STK-V3-007
+      - STK-V3-008
+    product: House
+    success_signal: >-
+      Every operating role has accountable decisions, prohibited actions, delegation, and
+      segregation-of-duty controls recorded.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-03
+      - V2-28
+  - id: OUT-V3-004
+    statement: >-
+      Work management is defined for queue ownership, assignment, aging, handoffs, exceptions,
+      escalation, recovery, and audit review without introducing unsupported service-level
+      targets.
+    stakeholder_refs:
+      - STK-V3-005
+      - STK-V3-006
+      - STK-V3-009
+    product: House
+    success_signal: >-
+      Queues, handoffs, exceptions, and recovery paths are defined with owners and escalation
+      routes and no fabricated service-level commitments.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-04
+      - V2-15
+      - V2-17
+  - id: OUT-V3-005
+    statement: >-
+      A financial and reconciliation operating boundary is defined among fee-policy authority,
+      the House fee obligation, processor execution, ledger authority, reconciliation
+      operations, and the activation dependency, without fabricating amounts or commercial
+      commitments.
+    stakeholder_refs:
+      - STK-V3-008
+      - STK-V3-014
+      - STK-V3-015
+    product: House
+    success_signal: >-
+      Financial roles and the activation-reconciliation dependency are defined with no
+      fabricated amounts, costs, or commercial commitments.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-05
+      - V2-16
+  - id: OUT-V3-006
+    statement: >-
+      A support, privacy, continuity, and operational-assurance operating model is defined,
+      including restricted-evidence access, privacy incidents, accessibility and bilingual
+      defects, service interruption, and recovery, with support holding no affiliation decision
+      authority.
+    stakeholder_refs:
+      - STK-V3-009
+      - STK-V3-011
+      - STK-V3-013
+    product: House
+    success_signal: >-
+      Support, privacy, continuity, and assurance operating paths are defined and support
+      intervention creates no affiliation decision authority.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-06
+      - V2-17
+      - V2-24
+  - id: OUT-V3-007
+    statement: >-
+      Product measures are carried forward and converted into operating-accountability measures
+      with an explicit classification, and unresolved operating assumptions are captured in a
+      validation backlog with owners and future gates.
+    stakeholder_refs:
+      - STK-V3-001
+      - STK-V3-008
+      - STK-V3-016
+    product: House
+    success_signal: >-
+      Every operating-measure category is classified DEFINED or explicitly validation-pending,
+      and each unresolved assumption has an owner and a future gate.
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-07
+      - V2-29
+      - V2-32

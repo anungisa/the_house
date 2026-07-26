@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "requirements.schema.json",
+  "title": "REG-303 Volume 3 Requirement and Acceptance Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-303" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "level", "statement", "product", "traces_to", "authorizes_implementation"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/definitions/requirementId" },
+          "level": { "$ref": "common.schema.json#/definitions/requirementLevel" },
+          "statement": { "type": "string" },
+          "product": { "$ref": "common.schema.json#/definitions/product" },
+          "traces_to": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "acceptance_ref": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^TEST-V3-[0-9]{3}$" }
+          },
+          "governed_by_kernel": { "type": "boolean" },
+          "authorizes_implementation": { "type": "boolean" },
+          "validation_status": {
+            "type": "string",
+            "enum": ["author_asserted", "stakeholder_validation_pending", "stakeholder_validated"]
+          },
+          "rule_classification": {
+            "type": "string",
+            "enum": [
+              "DEFINED_PRODUCT_RULE",
+              "POLICY_VALIDATION_PENDING",
+              "OPERATIONAL_VALIDATION_PENDING",
+              "FINANCIAL_VALIDATION_PENDING",
+              "PRIVACY_VALIDATION_PENDING",
+              "STAKEHOLDER_VALIDATION_PENDING"
+            ]
+          },
+          "policy_owner": { "type": "string" },
+          "operational_owner": { "type": "string" },
+          "effective_scope": { "type": "string" },
+          "season_versioned": { "type": "boolean" },
+          "jurisdiction_scoped": { "type": "boolean" },
+          "exception_authority": { "type": "string" },
+          "future_blocking_gate": { "type": "string" },
+          "service_stage": { "type": "string" },
+          "primary_persona": { "type": "string" },
+          "secondary_personas": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "channel_scope": { "type": "string" },
+          "user_visible": { "type": "boolean" },
+          "content_owner": { "type": "string" },
+          "language_status": { "type": "string" },
+          "accessibility_status": { "type": "string" },
+          "privacy_classification": { "type": "string" },
+          "support_dependency": { "type": "string" },
+          "acceptance_status": {
+            "type": "string",
+            "enum": [
+              "DEFINED",
+              "BASELINE_PENDING",
+              "POLICY_VALIDATION_PENDING",
+              "OPERATIONAL_VALIDATION_PENDING",
+              "ACCESSIBILITY_VALIDATION_PENDING",
+              "BILINGUAL_VALIDATION_PENDING",
+              "PRIVACY_VALIDATION_PENDING",
+              "STAKEHOLDER_VALIDATION_PENDING"
+            ]
+          },
+          "measure_identifier": { "type": "string", "pattern": "^MEAS-V3-[0-9]{2}$" },
+          "measure_baseline_status": {
+            "type": "string",
+            "enum": [
+              "DEFINED",
+              "BASELINE_PENDING",
+              "POLICY_VALIDATION_PENDING",
+              "FINANCIAL_VALIDATION_PENDING",
+              "OPERATIONAL_VALIDATION_PENDING",
+              "ACCESSIBILITY_VALIDATION_PENDING",
+              "BILINGUAL_VALIDATION_PENDING",
+              "PRIVACY_VALIDATION_PENDING",
+              "STAKEHOLDER_VALIDATION_PENDING",
+              "PRODUCTION_PROOF_PENDING"
+            ]
+          },
+          "measure_target_status": { "type": "string" },
+          "validation_authority": { "type": "string" },
+          "change_classification": {
+            "type": "string",
+            "enum": [
+              "EDITORIAL",
+              "NON_MATERIAL_PRODUCT",
+              "MATERIAL_PRODUCT",
+              "POLICY",
+              "FINANCIAL",
+              "PRIVACY",
+              "ACCESSIBILITY",
+              "BILINGUAL",
+              "AUTHORITY_BOUNDARY",
+              "BREAKING_SERVICE_CHANGE"
+            ]
+          },
+          "gap_disposition": {
+            "type": "string",
+            "enum": [
+              "CLOSED",
+              "ACCEPTED_AS_FUTURE_VOLUME_INPUT",
+              "VALIDATION_PENDING",
+              "POLICY_PENDING",
+              "INTENTIONALLY_EXCLUDED",
+              "DEFECT_REQUIRING_AMENDMENT"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

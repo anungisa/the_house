@@ -1,0 +1,69 @@
+register_id: REG-305
+name: Volume 3 Approval Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: APP-V3-001
+    artifact_id: V3-00
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Definition-only; inherits frozen Volume 0, Volume 1 v1.0.1, and corrected Volume 2 v1.0.1.
+  - id: APP-V3-002
+    artifact_id: V3-01
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Institutional operating model is definition-only; no staffing or headcount is committed.
+  - id: APP-V3-003
+    artifact_id: V3-02
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Service operating model covers all three pathways; no architecture or delivery is authorized.
+  - id: APP-V3-004
+    artifact_id: V3-03
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Roles are functional; no permanent named staffing or headcount is committed.
+  - id: APP-V3-005
+    artifact_id: V3-04
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Work-management model asserts no unsupported service-level commitments.
+  - id: APP-V3-006
+    artifact_id: V3-05
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Financial operating boundary fabricates no amounts, costs, or commercial commitments.
+  - id: APP-V3-007
+    artifact_id: V3-06
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Support holds no affiliation decision authority.
+  - id: APP-V3-008
+    artifact_id: V3-07
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Operating measures are classified DEFINED or explicitly validation-pending; no targets are fabricated.
