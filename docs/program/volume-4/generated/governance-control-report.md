@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T14:22:09.212Z
+Generated: 2026-07-26T14:25:06.684Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T14:22:09.212Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 10 |
+| RATIFIED | 11 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.0.0 | 10 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.1.0 | 11 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.0.0 | 93 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.0.0 | 8 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.0.0 | 13 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.0.0 | 8 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.0.0 | 10 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.1.0 | 13 |
 
 ## Findings by control
 
@@ -80,3 +80,25 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V4-009 (V4-08): No Azure resource provisioned; production composition fails on missing required dependency; restore requires evidence.
 - APP-V4-010 (V4-09): Architecture decisions, fitness functions, and verification model ratified.
 - APP-V4-010 (V4-09): Fitness functions are specified, not implemented; no executing verification or implementation claimed.
+- APP-V4-011 (V4-A): Package 1 closure record ratified as architecture definition only.
+- APP-V4-011 (V4-A): Consolidates V4-00..V4-09; claims no implemented architecture; authorizes no implementation.
+- APP-V4-012 (GATE-V4-G1): Corrected Volume 3 release provenance is inherited (baseline central-registration-volume-3-v1.0.1).
+- APP-V4-012 (GATE-V4-G1): Architecture principles and quality attributes are controlled.
+- APP-V4-012 (GATE-V4-G1): House, Button, staff, and external-system authority boundaries are explicit.
+- APP-V4-012 (GATE-V4-G1): Target bounded contexts and dependency directions are defined.
+- APP-V4-012 (GATE-V4-G1): The affiliation lifecycle has an end-to-end reference architecture.
+- APP-V4-012 (GATE-V4-G1): Identity, resource, jurisdiction, and assignment authorization is represented.
+- APP-V4-012 (GATE-V4-G1): Evidence, workflow, decision, audit, and transaction constraints are defined.
+- APP-V4-012 (GATE-V4-G1): API, event, retry, and idempotency principles are defined.
+- APP-V4-012 (GATE-V4-G1): Financial and external-system authority is segregated.
+- APP-V4-012 (GATE-V4-G1): Runtime, configuration, observability, resilience, and deployment constraints are defined.
+- APP-V4-012 (GATE-V4-G1): Architecture decisions and fitness functions have controlled forms.
+- APP-V4-012 (GATE-V4-G1): Volume 3 operating and assurance constraints trace into the architecture.
+- APP-V4-012 (GATE-V4-G1): Unresolved architecture assumptions have owners and future gates.
+- APP-V4-012 (GATE-V4-G1): No document claims implemented architecture without evidence.
+- APP-V4-012 (GATE-V4-G1): No implementation, procurement, infrastructure provisioning, delivery sequencing, or master development plan is authorized.
+- APP-V4-012 (GATE-V4-G1): Package 1 receives line-level review and a separate freeze commit.
+- APP-V4-013 (PACKAGE-4-1): Volume 4 Package 1 frozen at closure following Gate V4-G1 disposition.
+- APP-V4-013 (PACKAGE-4-1): Authorizes commencement of Volume 4 Package 2 as an architecture package only.
+- APP-V4-013 (PACKAGE-4-1): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-013 (PACKAGE-4-1): Changes to frozen Package 1 content require the recorded amendment process.

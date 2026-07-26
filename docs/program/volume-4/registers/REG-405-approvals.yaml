@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -102,4 +102,79 @@ records:
     conditions:
       - Architecture decisions, fitness functions, and verification model ratified.
       - Fitness functions are specified, not implemented; no executing verification or implementation claimed.
+    approved_at: null
+  - id: APP-V4-011
+    artifact_id: V4-A
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-A
+    conditions:
+      - Package 1 closure record ratified as architecture definition only.
+      - Consolidates V4-00..V4-09; claims no implemented architecture; authorizes no implementation.
+    approved_at: null
+  - id: APP-V4-012
+    artifact_id: GATE-V4-G1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: ARCHITECTURE_FOUNDATION_READY
+    closure_record: V4-A
+    scope: [V4-00, V4-01, V4-02, V4-03, V4-04, V4-05, V4-06, V4-07, V4-08, V4-09]
+    conditions:
+      - Corrected Volume 3 release provenance is inherited (baseline central-registration-volume-3-v1.0.1).
+      - Architecture principles and quality attributes are controlled.
+      - House, Button, staff, and external-system authority boundaries are explicit.
+      - Target bounded contexts and dependency directions are defined.
+      - The affiliation lifecycle has an end-to-end reference architecture.
+      - Identity, resource, jurisdiction, and assignment authorization is represented.
+      - Evidence, workflow, decision, audit, and transaction constraints are defined.
+      - API, event, retry, and idempotency principles are defined.
+      - Financial and external-system authority is segregated.
+      - Runtime, configuration, observability, resilience, and deployment constraints are defined.
+      - Architecture decisions and fitness functions have controlled forms.
+      - Volume 3 operating and assurance constraints trace into the architecture.
+      - Unresolved architecture assumptions have owners and future gates.
+      - No document claims implemented architecture without evidence.
+      - No implementation, procurement, infrastructure provisioning, delivery sequencing, or master development plan is authorized.
+      - Package 1 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V4-013
+    artifact_id: PACKAGE-4-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-A
+    frozen_artifacts:
+      - id: V4-00
+        version: 1.0.0
+      - id: V4-01
+        version: 1.0.0
+      - id: V4-02
+        version: 1.0.0
+      - id: V4-03
+        version: 1.0.0
+      - id: V4-04
+        version: 1.0.0
+      - id: V4-05
+        version: 1.0.0
+      - id: V4-06
+        version: 1.0.0
+      - id: V4-07
+        version: 1.0.0
+      - id: V4-08
+        version: 1.0.0
+      - id: V4-09
+        version: 1.0.0
+      - id: V4-A
+        version: 1.0.0
+    conditions:
+      - Volume 4 Package 1 frozen at closure following Gate V4-G1 disposition.
+      - Authorizes commencement of Volume 4 Package 2 as an architecture package only.
+      - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to frozen Package 1 content require the recorded amendment process.
     approved_at: null
