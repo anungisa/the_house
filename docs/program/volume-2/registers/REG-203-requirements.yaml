@@ -1,7 +1,7 @@
 register_id: REG-203
 name: Volume 2 Requirement and Acceptance Register
 status: IN_REVIEW
-version: 1.0.0
+version: 1.1.0
 records:
   # --- CAP: capabilities ---
   - id: CAP-V2-001
@@ -387,6 +387,1385 @@ records:
     traces_to:
       - CTRL-V2-002
       - UC-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ===================================================================
+  # Package 2 - Affiliation Product Definition catalogue expansion
+  # ===================================================================
+  # --- CAP: capability areas ---
+  - id: CAP-V2-006
+    level: CAP
+    statement: Organization recognition as a governed capability.
+    product: House
+    traces_to:
+      - OUT-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-007
+    level: CAP
+    statement: Representative authority confirmation for a club.
+    product: House
+    traces_to:
+      - OUT-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-008
+    level: CAP
+    statement: Jurisdiction resolution and assignment.
+    product: House
+    traces_to:
+      - OUT-V2-004
+      - OUT-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-009
+    level: CAP
+    statement: Seasonal affiliation opening for a defined season.
+    product: House
+    traces_to:
+      - OUT-V2-002
+      - OUT-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-010
+    level: CAP
+    statement: Affiliation pathway determination (continuity, renewal, new).
+    product: House
+    traces_to:
+      - OUT-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-011
+    level: CAP
+    statement: Versioned requirement application per season.
+    product: House
+    traces_to:
+      - OUT-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-012
+    level: CAP
+    statement: Evidence collection and binding to an application.
+    product: Both
+    traces_to:
+      - OUT-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-013
+    level: CAP
+    statement: Application completeness checking before submission.
+    product: Both
+    traces_to:
+      - OUT-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-014
+    level: CAP
+    statement: Reviewer routing and jurisdictional review queues.
+    product: House
+    traces_to:
+      - OUT-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-015
+    level: CAP
+    statement: Return for information and resubmission handling.
+    product: Both
+    traces_to:
+      - OUT-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-016
+    level: CAP
+    statement: Affiliation decision recording with evidence.
+    product: House
+    traces_to:
+      - OUT-V2-003
+      - OUT-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-017
+    level: CAP
+    statement: Fee-paid reconciliation boundary (signal, not accounting authority).
+    product: House
+    traces_to:
+      - OUT-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-018
+    level: CAP
+    statement: Affiliation activation exactly once per club per season.
+    product: House
+    traces_to:
+      - OUT-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-019
+    level: CAP
+    statement: Notification of status changes and required actions.
+    product: Button
+    traces_to:
+      - OUT-V2-006
+      - OUT-V2-010
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-020
+    level: CAP
+    statement: Status and required-action exposure to clubs and administrators.
+    product: Button
+    traces_to:
+      - OUT-V2-001
+      - OUT-V2-010
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-021
+    level: CAP
+    statement: Governed administrative correction of records.
+    product: House
+    traces_to:
+      - OUT-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-022
+    level: CAP
+    statement: Audit and operational reporting of affiliation activity.
+    product: House
+    traces_to:
+      - OUT-V2-005
+      - OUT-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-023
+    level: CAP
+    statement: Privacy and personal-data protection across the service.
+    product: House
+    traces_to:
+      - OUT-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-024
+    level: CAP
+    statement: Bilingual (English and French) service delivery.
+    product: Both
+    traces_to:
+      - OUT-V2-010
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-025
+    level: CAP
+    statement: Accessibility of client-facing experiences.
+    product: Button
+    traces_to:
+      - OUT-V2-010
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-026
+    level: CAP
+    statement: Security and least-privilege access to affiliation data and actions.
+    product: House
+    traces_to:
+      - OUT-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V2-027
+    level: CAP
+    statement: Availability and resilience of the affiliation record and service.
+    product: House
+    traces_to:
+      - OUT-V2-002
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-028
+    level: CAP
+    statement: Performance and responsiveness of the guided experience.
+    product: Both
+    traces_to:
+      - OUT-V2-001
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-029
+    level: CAP
+    statement: Supportability and assisted resolution of affiliation issues.
+    product: Both
+    traces_to:
+      - OUT-V2-009
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-030
+    level: CAP
+    statement: Data portability and export of affiliation records.
+    product: House
+    traces_to:
+      - OUT-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CAP-V2-031
+    level: CAP
+    statement: Governed handling of non-standard club lifecycle scenarios.
+    product: House
+    traces_to:
+      - OUT-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- BR: business rules ---
+  - id: BR-V2-004
+    level: BR
+    statement: A club must be recognized before it may be affiliated.
+    product: House
+    traces_to:
+      - CAP-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-005
+    level: BR
+    statement: A representative must be authorized to act on behalf of a club.
+    product: House
+    traces_to:
+      - CAP-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-006
+    level: BR
+    statement: Every affiliation is scoped to exactly one resolved jurisdiction.
+    product: House
+    traces_to:
+      - CAP-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-007
+    level: BR
+    statement: The requirements applied are those versioned for the affiliation season.
+    product: House
+    traces_to:
+      - CAP-V2-011
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-008
+    level: BR
+    statement: An application must be complete before it may be submitted.
+    product: House
+    traces_to:
+      - CAP-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-009
+    level: BR
+    statement: Only a routed, authorized reviewer may decide an application.
+    product: House
+    traces_to:
+      - CAP-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-010
+    level: BR
+    statement: A returned application must state the specific information required.
+    product: House
+    traces_to:
+      - CAP-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-011
+    level: BR
+    statement: Activation occurs at most once per club per season.
+    product: House
+    traces_to:
+      - CAP-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-012
+    level: BR
+    statement: Administrative correction must not bypass a governed decision.
+    product: House
+    traces_to:
+      - CAP-V2-021
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V2-013
+    level: BR
+    statement: Fee reconciliation is a boundary signal and confers no accounting authority.
+    product: House
+    traces_to:
+      - CAP-V2-017
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- FR: functional requirements ---
+  - id: FR-V2-005
+    level: FR
+    statement: The system shall recognize an existing club as a governed entity.
+    product: House
+    traces_to:
+      - BR-V2-004
+      - CAP-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-006
+    level: FR
+    statement: The system shall establish recognition of a new club.
+    product: House
+    traces_to:
+      - BR-V2-004
+      - CAP-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-007
+    level: FR
+    statement: The system shall confirm a club's authorized representatives.
+    product: Both
+    traces_to:
+      - BR-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-008
+    level: FR
+    statement: The system shall resolve or assign a club's jurisdiction.
+    product: House
+    traces_to:
+      - BR-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-009
+    level: FR
+    statement: The system shall open a seasonal affiliation for a defined season.
+    product: House
+    traces_to:
+      - CAP-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-010
+    level: FR
+    statement: The system shall determine the applicable affiliation pathway.
+    product: House
+    traces_to:
+      - CAP-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-011
+    level: FR
+    statement: The system shall apply the season's versioned requirements to an application.
+    product: House
+    traces_to:
+      - BR-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-012
+    level: FR
+    statement: The system shall allow collection and binding of required evidence.
+    product: Both
+    traces_to:
+      - CAP-V2-012
+    acceptance_ref:
+      - TEST-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-013
+    level: FR
+    statement: The system shall allow replacement or superseding of previously bound evidence.
+    product: Both
+    traces_to:
+      - CAP-V2-012
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-014
+    level: FR
+    statement: The system shall check application completeness before submission.
+    product: House
+    traces_to:
+      - BR-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-015
+    level: FR
+    statement: The system shall route a submitted application to a jurisdictional reviewer.
+    product: House
+    traces_to:
+      - BR-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-016
+    level: FR
+    statement: The system shall allow a reviewer to return an application for information.
+    product: House
+    traces_to:
+      - BR-V2-010
+    acceptance_ref:
+      - TEST-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-017
+    level: FR
+    statement: The system shall allow an applicant to resubmit a returned application.
+    product: Both
+    traces_to:
+      - CAP-V2-015
+    acceptance_ref:
+      - TEST-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-018
+    level: FR
+    statement: The system shall allow escalation or reassignment of a review.
+    product: House
+    traces_to:
+      - CAP-V2-014
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-019
+    level: FR
+    statement: >-
+      The system shall allow an authorized reviewer to record an approval or a refusal
+      with rationale and evidence.
+    product: House
+    traces_to:
+      - CAP-V2-016
+    acceptance_ref:
+      - TEST-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-020
+    level: FR
+    statement: The system shall reconcile an external fee-paid signal at the boundary.
+    product: House
+    traces_to:
+      - BR-V2-013
+    acceptance_ref:
+      - TEST-V2-009
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-021
+    level: FR
+    statement: The system shall allow a governed administrative correction of a record.
+    product: House
+    traces_to:
+      - BR-V2-012
+    acceptance_ref:
+      - TEST-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V2-022
+    level: FR
+    statement: The system shall expose current status and required actions to the club.
+    product: Button
+    traces_to:
+      - CAP-V2-020
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-023
+    level: FR
+    statement: The system shall notify affected parties of status changes and required actions.
+    product: Button
+    traces_to:
+      - CAP-V2-019
+    acceptance_ref:
+      - TEST-V2-011
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: FR-V2-024
+    level: FR
+    statement: >-
+      The system shall handle non-standard club scenarios (withdrawn, dormant, merged,
+      reconstituted) through governed transitions.
+    product: House
+    traces_to:
+      - CAP-V2-031
+    acceptance_ref:
+      - TEST-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- NFR: non-functional requirements ---
+  - id: NFR-V2-004
+    level: NFR
+    statement: >-
+      The service shall minimize collected personal data to what each affiliation
+      decision requires.
+    product: House
+    traces_to:
+      - CAP-V2-023
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-005
+    level: NFR
+    statement: The service shall be available in English and French.
+    product: Both
+    traces_to:
+      - CAP-V2-024
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-006
+    level: NFR
+    statement: >-
+      Client-facing experiences shall meet an accessibility standard to be confirmed with
+      stakeholders.
+    product: Button
+    traces_to:
+      - CAP-V2-025
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-007
+    level: NFR
+    statement: >-
+      Access to affiliation data and actions shall follow least-privilege and be
+      attributable.
+    product: House
+    traces_to:
+      - CAP-V2-026
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V2-008
+    level: NFR
+    statement: >-
+      The affiliation record shall meet availability and resilience targets to be
+      confirmed with stakeholders.
+    product: House
+    traces_to:
+      - CAP-V2-027
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-009
+    level: NFR
+    statement: >-
+      The guided experience shall meet responsiveness targets to be confirmed with
+      stakeholders.
+    product: Both
+    traces_to:
+      - CAP-V2-028
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-010
+    level: NFR
+    statement: The service shall be supportable and diagnosable by support agents.
+    product: Both
+    traces_to:
+      - CAP-V2-029
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-011
+    level: NFR
+    statement: Affiliation records shall be exportable in a portable form.
+    product: House
+    traces_to:
+      - CAP-V2-030
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: NFR-V2-012
+    level: NFR
+    statement: Every affiliation decision and correction shall be auditable.
+    product: House
+    traces_to:
+      - CAP-V2-022
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- UC: use cases ---
+  - id: UC-V2-004
+    level: UC
+    statement: Recognize an existing club as a governed entity.
+    product: House
+    traces_to:
+      - FR-V2-005
+    acceptance_ref:
+      - TEST-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-005
+    level: UC
+    statement: Establish a new club through first-time recognition.
+    product: House
+    traces_to:
+      - FR-V2-006
+    acceptance_ref:
+      - TEST-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-006
+    level: UC
+    statement: Open a seasonal affiliation for the current season.
+    product: House
+    traces_to:
+      - FR-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-007
+    level: UC
+    statement: Determine the applicable affiliation pathway for a club.
+    product: House
+    traces_to:
+      - FR-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-008
+    level: UC
+    statement: Confirm a club's authorized representatives.
+    product: Both
+    traces_to:
+      - FR-V2-007
+    acceptance_ref:
+      - TEST-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-009
+    level: UC
+    statement: Complete the season's requirements for an application.
+    product: Both
+    traces_to:
+      - FR-V2-011
+    acceptance_ref:
+      - TEST-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-010
+    level: UC
+    statement: Upload or replace evidence bound to an application.
+    product: Both
+    traces_to:
+      - FR-V2-012
+      - FR-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-011
+    level: UC
+    statement: Resolve or assign a club's jurisdiction.
+    product: House
+    traces_to:
+      - FR-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-012
+    level: UC
+    statement: Assign or route an application to a jurisdictional reviewer.
+    product: House
+    traces_to:
+      - FR-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-013
+    level: UC
+    statement: Review the evidence bound to a submitted application.
+    product: House
+    traces_to:
+      - FR-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-014
+    level: UC
+    statement: Return an application for further information.
+    product: House
+    traces_to:
+      - FR-V2-016
+    acceptance_ref:
+      - TEST-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-015
+    level: UC
+    statement: Resubmit a returned application.
+    product: Both
+    traces_to:
+      - FR-V2-017
+    acceptance_ref:
+      - TEST-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-016
+    level: UC
+    statement: Escalate or reassign a review.
+    product: House
+    traces_to:
+      - FR-V2-018
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-017
+    level: UC
+    statement: Record an approval for an affiliation application.
+    product: House
+    traces_to:
+      - FR-V2-019
+    acceptance_ref:
+      - TEST-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-018
+    level: UC
+    statement: Record a refusal for an affiliation application.
+    product: House
+    traces_to:
+      - FR-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-019
+    level: UC
+    statement: Reconcile an external fee-paid signal for an application.
+    product: House
+    traces_to:
+      - FR-V2-020
+    acceptance_ref:
+      - TEST-V2-009
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-020
+    level: UC
+    statement: Notify affected parties of a status change or required action.
+    product: Button
+    traces_to:
+      - FR-V2-023
+    acceptance_ref:
+      - TEST-V2-011
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-021
+    level: UC
+    statement: Expose current status and required actions to a club.
+    product: Button
+    traces_to:
+      - FR-V2-022
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UC-V2-022
+    level: UC
+    statement: Correct an administrative error on an affiliation record.
+    product: House
+    traces_to:
+      - FR-V2-021
+    acceptance_ref:
+      - TEST-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-023
+    level: UC
+    statement: Handle a withdrawn club.
+    product: House
+    traces_to:
+      - FR-V2-024
+    acceptance_ref:
+      - TEST-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-024
+    level: UC
+    statement: Handle a dormant club.
+    product: House
+    traces_to:
+      - FR-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-025
+    level: UC
+    statement: Handle a merged club.
+    product: House
+    traces_to:
+      - FR-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UC-V2-026
+    level: UC
+    statement: Handle a reconstituted club.
+    product: House
+    traces_to:
+      - FR-V2-024
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- RULE: guard-level business rules ---
+  - id: RULE-V2-004
+    level: RULE
+    statement: >-
+      Required affiliation documents must be present before submission (guard concept
+      AFFILIATION_REQUIRED_DOCS_PRESENT).
+    product: House
+    traces_to:
+      - UC-V2-010
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: RULE-V2-005
+    level: RULE
+    statement: >-
+      No open compliance flags may block an approval (guard concept
+      AFFILIATION_NO_OPEN_COMPLIANCE_FLAGS).
+    product: House
+    traces_to:
+      - UC-V2-013
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: RULE-V2-006
+    level: RULE
+    statement: >-
+      Applicable fees must be reconciled as paid before activation (guard concept
+      AFFILIATION_FEES_PAID).
+    product: House
+    traces_to:
+      - UC-V2-019
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: RULE-V2-007
+    level: RULE
+    statement: Recognition must be established before affiliation may proceed.
+    product: House
+    traces_to:
+      - UC-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: RULE-V2-008
+    level: RULE
+    statement: A representative must be authorized before acting for a club.
+    product: House
+    traces_to:
+      - UC-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: RULE-V2-009
+    level: RULE
+    statement: A single active affiliation per club per season is enforced at activation.
+    product: House
+    traces_to:
+      - UC-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- WF: workflows ---
+  - id: WF-V2-002
+    level: WF
+    statement: Continuity confirmation pathway workflow.
+    product: House
+    traces_to:
+      - RULE-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V2-003
+    level: WF
+    statement: Renewal with remediation pathway workflow.
+    product: House
+    traces_to:
+      - RULE-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V2-004
+    level: WF
+    statement: New affiliation pathway workflow.
+    product: House
+    traces_to:
+      - RULE-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V2-005
+    level: WF
+    statement: Review, return, and resubmission workflow.
+    product: House
+    traces_to:
+      - RULE-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- UX: experience surfaces ---
+  - id: UX-V2-003
+    level: UX
+    statement: Pathway-aware guided application flow.
+    product: Button
+    traces_to:
+      - WF-V2-002
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-004
+    level: UX
+    statement: Evidence upload and replacement surface.
+    product: Button
+    traces_to:
+      - WF-V2-004
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-005
+    level: UX
+    statement: Status and required-actions view for clubs.
+    product: Button
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: UX-V2-006
+    level: UX
+    statement: Reviewer queue and return surface.
+    product: House
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UX-V2-007
+    level: UX
+    statement: Administrative correction surface.
+    product: House
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UX-V2-008
+    level: UX
+    statement: Bilingual notification presentation.
+    product: Button
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- DATA: data concepts ---
+  - id: DATA-V2-003
+    level: DATA
+    statement: Club recognition concept (identity, recognized state, tenant).
+    product: House
+    traces_to:
+      - WF-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-004
+    level: DATA
+    statement: Representative authority concept.
+    product: House
+    traces_to:
+      - WF-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-005
+    level: DATA
+    statement: Jurisdiction concept and club-to-jurisdiction relationship.
+    product: House
+    traces_to:
+      - WF-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-006
+    level: DATA
+    statement: Season and requirement-version concept.
+    product: House
+    traces_to:
+      - WF-V2-002
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-007
+    level: DATA
+    statement: Evidence binding concept (evidence to application and requirement).
+    product: House
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-008
+    level: DATA
+    statement: Review queue and routing concept.
+    product: House
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V2-009
+    level: DATA
+    statement: Fee-reconciliation signal concept.
+    product: House
+    traces_to:
+      - WF-V2-003
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: DATA-V2-010
+    level: DATA
+    statement: Notification concept (recipient, trigger, channel, language).
+    product: House
+    traces_to:
+      - WF-V2-005
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  # --- API: interface concepts ---
+  - id: API-V2-003
+    level: API
+    statement: Recognition request interface (into House authority).
+    product: Both
+    traces_to:
+      - UX-V2-003
+      - DATA-V2-003
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-004
+    level: API
+    statement: Evidence submission interface.
+    product: Both
+    traces_to:
+      - UX-V2-004
+      - DATA-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-005
+    level: API
+    statement: Status query interface.
+    product: Both
+    traces_to:
+      - UX-V2-005
+      - DATA-V2-010
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-006
+    level: API
+    statement: Reviewer routing and decision interface within House.
+    product: House
+    traces_to:
+      - UX-V2-006
+      - DATA-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: API-V2-007
+    level: API
+    statement: Fee-reconciliation ingest interface at the boundary.
+    product: House
+    traces_to:
+      - DATA-V2-009
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: API-V2-008
+    level: API
+    statement: Administrative correction interface within House.
+    product: House
+    traces_to:
+      - UX-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- EVT: domain events ---
+  - id: EVT-V2-004
+    level: EVT
+    statement: ClubRecognized event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-003
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-005
+    level: EVT
+    statement: AffiliationReturnedForInformation event emitted through the outbox.
+    product: House
+    traces_to:
+      - API-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-006
+    level: EVT
+    statement: AffiliationRefused event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-006
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-007
+    level: EVT
+    statement: EvidenceBound event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: EVT-V2-008
+    level: EVT
+    statement: FeeReconciled event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: EVT-V2-009
+    level: EVT
+    statement: AffiliationCorrected event emitted through the transactional outbox.
+    product: House
+    traces_to:
+      - API-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- CTRL: governance controls ---
+  - id: CTRL-V2-003
+    level: CTRL
+    statement: Privacy and data-minimization control across the service.
+    product: House
+    traces_to:
+      - NFR-V2-004
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-004
+    level: CTRL
+    statement: Bilingual-service control on client-facing content and notifications.
+    product: Both
+    traces_to:
+      - NFR-V2-005
+      - EVT-V2-004
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-005
+    level: CTRL
+    statement: Accessibility control on client-facing experiences.
+    product: Button
+    traces_to:
+      - NFR-V2-006
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: CTRL-V2-006
+    level: CTRL
+    statement: Security and least-privilege control on data and actions.
+    product: House
+    traces_to:
+      - NFR-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-007
+    level: CTRL
+    statement: Audit-and-reporting control on affiliation activity.
+    product: House
+    traces_to:
+      - NFR-V2-012
+      - EVT-V2-005
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V2-008
+    level: CTRL
+    statement: Administrative-correction governance control.
+    product: House
+    traces_to:
+      - NFR-V2-012
+      - EVT-V2-009
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # --- TEST: acceptance criteria ---
+  - id: TEST-V2-004
+    level: TEST
+    statement: >-
+      Acceptance: an affiliation cannot proceed for a club that is not recognized;
+      recognition precedes affiliation through governed transitions.
+    product: House
+    traces_to:
+      - RULE-V2-007
+      - UC-V2-004
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-005
+    level: TEST
+    statement: >-
+      Acceptance: an unauthorized representative cannot act for a club; the action is
+      denied with no state mutation.
+    product: House
+    traces_to:
+      - RULE-V2-008
+      - UC-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-006
+    level: TEST
+    statement: >-
+      Acceptance: an incomplete application cannot be submitted; completeness is enforced
+      before submission.
+    product: House
+    traces_to:
+      - UC-V2-009
+      - CTRL-V2-007
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-007
+    level: TEST
+    statement: >-
+      Acceptance: a returned application states the required information and can be
+      resubmitted through governed transitions.
+    product: House
+    traces_to:
+      - UC-V2-014
+      - UC-V2-015
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-008
+    level: TEST
+    statement: >-
+      Acceptance: a club cannot hold more than one active affiliation for a season;
+      activation is enforced at most once.
+    product: House
+    traces_to:
+      - RULE-V2-009
+      - UC-V2-017
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-009
+    level: TEST
+    statement: >-
+      Acceptance: fee reconciliation is treated as a boundary signal and does not make
+      the service an accounting authority.
+    product: House
+    traces_to:
+      - UC-V2-019
+      - CTRL-V2-007
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-010
+    level: TEST
+    statement: >-
+      Acceptance: an administrative correction is governed, audited, and cannot bypass a
+      governed decision.
+    product: House
+    traces_to:
+      - UC-V2-022
+      - CTRL-V2-008
+    governed_by_kernel: true
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: TEST-V2-011
+    level: TEST
+    statement: >-
+      Acceptance: status-change and required-action notifications are produced in the
+      recipient's chosen official language.
+    product: House
+    traces_to:
+      - UC-V2-020
+      - CTRL-V2-004
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-012
+    level: TEST
+    statement: >-
+      Acceptance: the service collects only the personal data each affiliation decision
+      requires.
+    product: House
+    traces_to:
+      - CTRL-V2-003
+    governed_by_kernel: false
+    authorizes_implementation: false
+    validation_status: stakeholder_validation_pending
+  - id: TEST-V2-013
+    level: TEST
+    statement: >-
+      Acceptance: withdrawn, dormant, merged, and reconstituted clubs are handled through
+      governed transitions with audit and evidence.
+    product: House
+    traces_to:
+      - UC-V2-023
+      - CTRL-V2-008
     governed_by_kernel: true
     authorizes_implementation: false
     validation_status: author_asserted

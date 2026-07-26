@@ -1,7 +1,7 @@
 register_id: REG-200
 name: Volume 2 Corpus Index
 status: IN_REVIEW
-version: 1.1.0
+version: 1.3.0
 records:
   - id: V2-00
     title: Volume Control and Inheritance
@@ -51,6 +51,54 @@ records:
     version: 1.0.0
     path: docs/program/volume-2/V2-05-requirements-and-acceptance-architecture.md
     gate: V2-G1
+  - id: V2-06
+    title: Affiliation Service Scope and Product Offer
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-06-affiliation-service-scope-and-product-offer.md
+    gate: V2-G2
+  - id: V2-07
+    title: Club Recognition and Affiliation Pathways
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-07-club-recognition-and-affiliation-pathways.md
+    gate: V2-G2
+  - id: V2-08
+    title: Affiliation Journeys, Use Cases, and Exception Scenarios
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-08-affiliation-journeys-use-cases-and-exception-scenarios.md
+    gate: V2-G2
+  - id: V2-09
+    title: Affiliation Capability and Requirement Catalogue
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-09-affiliation-capability-and-requirement-catalogue.md
+    gate: V2-G2
+  - id: V2-10
+    title: Affiliation Experience, Communication, and Support Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-10-affiliation-experience-communication-and-support-model.md
+    gate: V2-G2
+  - id: V2-11
+    title: Product Measures and Acceptance Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-11-product-measures-and-acceptance-baseline.md
+    gate: V2-G2
   - id: V2-A
     title: Package 1 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)
@@ -59,3 +107,11 @@ records:
     version: 1.0.1
     path: docs/program/volume-2/V2-A-package-1-closure-record.md
     gate: V2-G1
+  - id: V2-B
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-2/V2-B-package-2-closure-record.md
+    gate: V2-G2
