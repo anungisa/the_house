@@ -23,6 +23,10 @@
       "type": "string",
       "pattern": "^V5-G[0-9]$"
     },
+    "futureGateId": {
+      "type": "string",
+      "pattern": "^(V5-G[0-9]|V([6-9]|1[01])-G[0-9]|EXEC-MCG)$"
+    },
     "evidenceLabel": {
       "type": ["string", "null"],
       "enum": [
@@ -53,12 +57,22 @@
         "CONCEPTUAL_ENTITY",
         "CONCEPTUAL_RELATIONSHIP",
         "DATA_PRODUCT",
-        "CLASSIFICATION"
+        "CLASSIFICATION",
+        "LOGICAL_ENTITY",
+        "LOGICAL_RELATIONSHIP",
+        "VALUE_OBJECT",
+        "REFERENCE_DATA",
+        "CODE_SET",
+        "STATE_RECORD",
+        "SNAPSHOT",
+        "PROVENANCE_RECORD",
+        "CORRECTION_RECORD",
+        "DERIVED_DATA_PRODUCT"
       ]
     },
     "ruleKind": {
       "type": "string",
-      "enum": ["RULE", "QUALITY", "LINEAGE", "CTRL"]
+      "enum": ["RULE", "QUALITY", "LINEAGE", "CTRL", "INTEGRITY"]
     },
     "backlogKind": {
       "type": "string",

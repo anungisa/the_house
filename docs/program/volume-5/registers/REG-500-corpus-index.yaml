@@ -1,7 +1,7 @@
 register_id: REG-500
 name: Volume 5 Corpus Index
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: V5-00
     title: Volume Control, Inheritance, and Data-Definition Authority
@@ -107,3 +107,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-B-package-1-provenance-amendment.md
     gate: V5-G1
+  - id: V5-11
+    title: Logical Data-Model Doctrine and Modelling Conventions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-11-logical-data-model-doctrine-and-modelling-conventions.md
+    gate: V5-G2
+  - id: V5-12
+    title: Organization, Party, Identity, Membership, and Authority Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-12-organization-party-identity-membership-and-authority-logical-model.md
+    gate: V5-G2
+  - id: V5-13
+    title: Jurisdiction, Season, Policy, Requirement, and Applicability Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-13-jurisdiction-season-policy-requirement-and-applicability-logical-model.md
+    gate: V5-G2
+  - id: V5-14
+    title: Affiliation Case, Pathway, Lifecycle, Review, and Decision Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-14-affiliation-case-pathway-lifecycle-review-and-decision-logical-model.md
+    gate: V5-G2
+  - id: V5-15
+    title: Response, Evidence, Submission, and Decision-Record Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-15-response-evidence-submission-and-decision-record-logical-model.md
+    gate: V5-G2
+  - id: V5-16
+    title: Financial Obligation, Payment Acknowledgement, Reconciliation, and Activation Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-16-financial-obligation-payment-acknowledgement-reconciliation-and-activation-logical-model.md
+    gate: V5-G2
+  - id: V5-17
+    title: Temporal Truth, Versioning, Correction, Supersession, and Audit Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-17-temporal-truth-versioning-correction-supersession-and-audit-logical-model.md
+    gate: V5-G2
+  - id: V5-18
+    title: Logical Integrity, Cardinality, Uniqueness, Identity-Resolution, and Reconciliation Rules
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-18-logical-integrity-cardinality-uniqueness-identity-resolution-and-reconciliation-rules.md
+    gate: V5-G2
+  - id: V5-19
+    title: Derived Data, Projection, Search, Reporting, Analytics, and Export Logical Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-19-derived-data-projection-search-reporting-analytics-and-export-logical-model.md
+    gate: V5-G2
+  - id: V5-20
+    title: Logical-Model Traceability, Validation Backlog, and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-20-logical-model-traceability-validation-backlog-and-downstream-constraints.md
+    gate: V5-G2
+  - id: V5-C
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-C-package-2-closure-record.md
+    gate: V5-G2

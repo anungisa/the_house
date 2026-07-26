@@ -1,0 +1,206 @@
+[
+  {
+    "id": "LREL-V5-001",
+    "title": "Person holds authenticated identity",
+    "endpoints": [
+      "LENT-V5-004",
+      "LENT-V5-005"
+    ],
+    "cardinality": "One person to many accounts.",
+    "relationship_invariant": "A person is not equal to an account; binding is explicit and governed.",
+    "optionality": "An account must bind to exactly one person.",
+    "chapter_ref": "V5-12"
+  },
+  {
+    "id": "LREL-V5-002",
+    "title": "Person holds organization membership",
+    "endpoints": [
+      "LENT-V5-004",
+      "LENT-V5-006"
+    ],
+    "cardinality": "Many memberships per person.",
+    "relationship_invariant": "Membership does not confer representative authority.",
+    "optionality": null,
+    "chapter_ref": "V5-12"
+  },
+  {
+    "id": "LREL-V5-003",
+    "title": "Representative authority scopes a person to an organization",
+    "endpoints": [
+      "LENT-V5-007",
+      "LENT-V5-001"
+    ],
+    "cardinality": "Many authorities per organization.",
+    "relationship_invariant": "Authority is explicit and scoped, never implied by membership or role.",
+    "optionality": null,
+    "chapter_ref": "V5-12"
+  },
+  {
+    "id": "LREL-V5-004",
+    "title": "Organization holds affiliation case",
+    "endpoints": [
+      "LENT-V5-001",
+      "LENT-V5-013"
+    ],
+    "cardinality": "One organization to many cases across seasons.",
+    "relationship_invariant": "A case belongs to exactly one organization.",
+    "optionality": null,
+    "chapter_ref": "V5-14"
+  },
+  {
+    "id": "LREL-V5-005",
+    "title": "Affiliation case belongs to season",
+    "endpoints": [
+      "LENT-V5-013",
+      "LENT-V5-010"
+    ],
+    "cardinality": "Many cases to one season.",
+    "relationship_invariant": "One case per organization per season.",
+    "optionality": null,
+    "chapter_ref": "V5-14"
+  },
+  {
+    "id": "LREL-V5-006",
+    "title": "Requirement version applies under policy version",
+    "endpoints": [
+      "LENT-V5-012",
+      "LENT-V5-011"
+    ],
+    "cardinality": "Many requirement versions to one policy version.",
+    "relationship_invariant": "A requirement applies only under its effective policy version.",
+    "optionality": null,
+    "chapter_ref": "V5-13"
+  },
+  {
+    "id": "LREL-V5-007",
+    "title": "Response satisfies requirement version",
+    "endpoints": [
+      "LENT-V5-015",
+      "LENT-V5-012"
+    ],
+    "cardinality": "One response per requirement version per case.",
+    "relationship_invariant": "Completeness is derived from responses to the applicable requirement set.",
+    "optionality": null,
+    "chapter_ref": "V5-15"
+  },
+  {
+    "id": "LREL-V5-008",
+    "title": "Evidence metadata supports response",
+    "endpoints": [
+      "LENT-V5-016",
+      "LENT-V5-015"
+    ],
+    "cardinality": "Many evidence items to one response.",
+    "relationship_invariant": "Evidence binary content remains external; only metadata is governed here.",
+    "optionality": null,
+    "chapter_ref": "V5-15"
+  },
+  {
+    "id": "LREL-V5-009",
+    "title": "Submission snapshot captures case state",
+    "endpoints": [
+      "SNAP-V5-001",
+      "LENT-V5-013"
+    ],
+    "cardinality": "Many snapshots to one case.",
+    "relationship_invariant": "A snapshot is immutable; resubmission creates a new snapshot.",
+    "optionality": null,
+    "chapter_ref": "V5-17"
+  },
+  {
+    "id": "LREL-V5-010",
+    "title": "Decision record resolves affiliation case",
+    "endpoints": [
+      "LENT-V5-018",
+      "LENT-V5-013"
+    ],
+    "cardinality": "One active decision per case review outcome.",
+    "relationship_invariant": "A decision is distinct from the activation it may authorize.",
+    "optionality": null,
+    "chapter_ref": "V5-15"
+  },
+  {
+    "id": "LREL-V5-011",
+    "title": "Reviewer assignment binds reviewer to case",
+    "endpoints": [
+      "LENT-V5-008",
+      "LENT-V5-013"
+    ],
+    "cardinality": "One active assignment per case.",
+    "relationship_invariant": "An assignment is not a reviewer role.",
+    "optionality": null,
+    "chapter_ref": "V5-14"
+  },
+  {
+    "id": "LREL-V5-012",
+    "title": "Fee obligation scoped to affiliation case",
+    "endpoints": [
+      "LENT-V5-019",
+      "LENT-V5-013"
+    ],
+    "cardinality": "One or more obligations per case.",
+    "relationship_invariant": "Financial status is scoped to explicit finance authority.",
+    "optionality": null,
+    "chapter_ref": "V5-16"
+  },
+  {
+    "id": "LREL-V5-013",
+    "title": "Payment acknowledgement references fee obligation",
+    "endpoints": [
+      "LENT-V5-020",
+      "LENT-V5-019"
+    ],
+    "cardinality": "Many acknowledgements to one obligation.",
+    "relationship_invariant": "Acknowledgement is not accounting confirmation.",
+    "optionality": null,
+    "chapter_ref": "V5-16"
+  },
+  {
+    "id": "LREL-V5-014",
+    "title": "Reconciliation binds obligation, acknowledgement, and confirmation",
+    "endpoints": [
+      "LENT-V5-022",
+      "LENT-V5-019"
+    ],
+    "cardinality": "One reconciliation per obligation resolution.",
+    "relationship_invariant": "Reconciliation requires both acknowledgement and accounting confirmation.",
+    "optionality": null,
+    "chapter_ref": "V5-16"
+  },
+  {
+    "id": "LREL-V5-015",
+    "title": "Activation follows decision and reconciliation",
+    "endpoints": [
+      "LENT-V5-023",
+      "LENT-V5-018"
+    ],
+    "cardinality": "One active activation per case.",
+    "relationship_invariant": "Approval is not activation; activation is a distinct governed fact.",
+    "optionality": null,
+    "chapter_ref": "V5-16"
+  },
+  {
+    "id": "LREL-V5-016",
+    "title": "Correction record supersedes prior fact",
+    "endpoints": [
+      "CORR-V5-001",
+      "LENT-V5-013"
+    ],
+    "cardinality": "Many corrections to one corrected entity.",
+    "relationship_invariant": "Corrections preserve prior history via supersession.",
+    "optionality": null,
+    "chapter_ref": "V5-17"
+  },
+  {
+    "id": "LREL-V5-017",
+    "title": "Audit event records governed transition",
+    "endpoints": [
+      "PROV-V5-001",
+      "LENT-V5-013"
+    ],
+    "cardinality": "Many audit events to one case.",
+    "relationship_invariant": "Audit events are append-only and never mutated.",
+    "optionality": null,
+    "chapter_ref": "V5-17"
+  }
+]

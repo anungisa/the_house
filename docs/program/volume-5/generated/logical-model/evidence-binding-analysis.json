@@ -1,0 +1,28 @@
+{
+  "evidence_entities": [
+    {
+      "id": "LENT-V5-015",
+      "title": "Response",
+      "classification": "INTERNAL",
+      "authority": "House"
+    },
+    {
+      "id": "LENT-V5-016",
+      "title": "Evidence Metadata",
+      "classification": "RESTRICTED_EVIDENCE",
+      "authority": "House"
+    },
+    {
+      "id": "LENT-V5-018",
+      "title": "Decision Record",
+      "classification": "INTERNAL",
+      "authority": "House"
+    },
+    {
+      "id": "SNAP-V5-001",
+      "title": "Submission Snapshot",
+      "classification": "INTERNAL",
+      "authority": "House"
+    }
+  ]
+}

@@ -3,7 +3,8 @@
     "RULE": 12,
     "QUALITY": 10,
     "LINEAGE": 8,
-    "CTRL": 6
+    "CTRL": 8,
+    "INTEGRITY": 14
   },
   "by_quality_dimension": {
     "VALIDITY": 1,

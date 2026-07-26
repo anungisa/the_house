@@ -1,7 +1,7 @@
 register_id: REG-504
 name: Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ==== Assumptions ====
   - id: ASM-V5-001
@@ -16,7 +16,9 @@ records:
     required_decision: None (baseline confirmed)
     required_evidence: Release lineage in REG-405 APP-V4-072
     target_package_or_volume: Volume 5 Package 1
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V5-G3
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: DEFINED
     authorizes_implementation: false
@@ -33,7 +35,9 @@ records:
     required_decision: Records-policy authority ratification
     required_evidence: Approved records policy
     target_package_or_volume: Volume 11
-    future_blocking_gate: V5-G1
+    future_blocking_gate: EXEC-MCG
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Retention not implementable until approved
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -50,7 +54,9 @@ records:
     required_decision: Integration semantics confirmation
     required_evidence: Volume 8 contract schemas
     target_package_or_volume: Volume 8
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V8-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None in Package 1
     validation_status: CONSTRAINED
     authorizes_implementation: false
@@ -68,7 +74,9 @@ records:
     required_decision: Identity resolution policy
     required_evidence: Identity resolution validation
     target_package_or_volume: Volume 10
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V10-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Migration must resolve duplicates
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -85,7 +93,9 @@ records:
     required_decision: Scope isolation validation
     required_evidence: Volume 6 trust and privacy validation
     target_package_or_volume: Volume 6
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V6-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Scope must fail closed
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -102,7 +112,9 @@ records:
     required_decision: Rebuild and staleness policy
     required_evidence: Volume 9 testing evidence
     target_package_or_volume: Volume 9
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Staleness must be detectable
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -120,7 +132,9 @@ records:
     required_decision: Object-store custody confirmation
     required_evidence: Volume 8 storage semantics
     target_package_or_volume: Volume 8
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V8-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Custody boundary preserved
     validation_status: CONSTRAINED
     authorizes_implementation: false
@@ -137,7 +151,9 @@ records:
     required_decision: Account-to-person binding policy
     required_evidence: Volume 6 trust validation
     target_package_or_volume: Volume 6
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V6-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Binding is a governed operation
     validation_status: CONSTRAINED
     authorizes_implementation: false
@@ -155,7 +171,9 @@ records:
     required_decision: Ownership confirmation
     required_evidence: Business-authority sign-off
     target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V5-G3
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -172,7 +190,9 @@ records:
     required_decision: Identity rules confirmation
     required_evidence: Sample data validation
     target_package_or_volume: Volume 10
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V10-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Migration dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -189,7 +209,9 @@ records:
     required_decision: Duplicate resolution policy
     required_evidence: Historical data analysis
     target_package_or_volume: Volume 10
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V10-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Migration dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -206,7 +228,9 @@ records:
     required_decision: Binding policy
     required_evidence: Volume 6 trust validation
     target_package_or_volume: Volume 6
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V6-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Authorization dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -223,7 +247,9 @@ records:
     required_decision: Jurisdiction variant confirmation
     required_evidence: PTSO validation
     target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V5-G3
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -240,7 +266,9 @@ records:
     required_decision: Season rules confirmation
     required_evidence: Season data validation
     target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V5-G3
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -257,7 +285,9 @@ records:
     required_decision: Versioning confirmation
     required_evidence: Policy authority validation
     target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V5-G3
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -274,7 +304,9 @@ records:
     required_decision: Evidence access policy
     required_evidence: Volume 6 privacy validation
     target_package_or_volume: Volume 6
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V6-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Access-control dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -291,7 +323,9 @@ records:
     required_decision: Retention schedule approval
     required_evidence: Approved records policy
     target_package_or_volume: Volume 11
-    future_blocking_gate: V5-G1
+    future_blocking_gate: EXEC-MCG
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Retention blocked until approved
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -308,7 +342,9 @@ records:
     required_decision: Deletion authority approval
     required_evidence: Approved deletion policy
     target_package_or_volume: Volume 11
-    future_blocking_gate: V5-G1
+    future_blocking_gate: EXEC-MCG
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Deletion blocked until approved
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -325,7 +361,9 @@ records:
     required_decision: Reconciliation policy
     required_evidence: Finance authority validation
     target_package_or_volume: Volume 8
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V8-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Integration dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -342,7 +380,9 @@ records:
     required_decision: Integration semantics confirmation
     required_evidence: Volume 8 contract schemas
     target_package_or_volume: Volume 8
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V8-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Integration dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -359,7 +399,9 @@ records:
     required_decision: Analytics purpose approval
     required_evidence: Privacy validation
     target_package_or_volume: Volume 6
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V6-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -376,7 +418,9 @@ records:
     required_decision: Threshold approval
     required_evidence: Volume 9 testing
     target_package_or_volume: Volume 9
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -393,7 +437,9 @@ records:
     required_decision: Terminology approval
     required_evidence: Bilingual review
     target_package_or_volume: Volume 7
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V7-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -410,7 +456,9 @@ records:
     required_decision: Accessibility approach approval
     required_evidence: Volume 7 experience validation
     target_package_or_volume: Volume 7
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V7-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -427,7 +475,9 @@ records:
     required_decision: Privacy approach approval
     required_evidence: Volume 6 privacy validation
     target_package_or_volume: Volume 6
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V6-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Privacy dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -444,7 +494,9 @@ records:
     required_decision: Migration-source quality plan
     required_evidence: Volume 10 migration analysis
     target_package_or_volume: Volume 10
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V10-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     implementation_implication: Migration dependency
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false

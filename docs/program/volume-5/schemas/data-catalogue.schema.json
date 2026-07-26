@@ -19,7 +19,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS)-V5-[0-9]{3}$"
+            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS|LENT|LREL|VOBJ|REFD|CODE|STATE|SNAP|PROV|CORR|DERV)-V5-[0-9]{3}$"
           },
           "kind": { "$ref": "common.schema.json#/definitions/catalogueKind" },
           "title": { "type": "string" },
@@ -75,7 +75,20 @@
           "logging_restrictions": { "type": "string" },
           "analytics_restrictions": { "type": "string" },
           "deletion_authority_dependency": { "type": "string" },
-          "incident_implication": { "type": "string" }
+          "incident_implication": { "type": "string" },
+
+          "identity_concept": { "type": "string" },
+          "optionality": { "type": "string" },
+          "scope_posture": { "type": "string" },
+          "value_semantics": { "type": "string" },
+          "reference_semantics": { "type": "string" },
+          "state_semantics": { "type": "string" },
+          "snapshot_semantics": { "type": "string" },
+          "provenance_semantics": { "type": "string" },
+          "correction_semantics": { "type": "string" },
+          "derived_semantics": { "type": "string" },
+          "downstream_constraint": { "type": "string" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
         }
       }
     }

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "DERV-V5-001",
+    "title": "Organization affiliation status projection",
+    "authoritative_source": "LENT-V5-013",
+    "derived_semantics": "Rebuildable from authoritative case state; never a source of truth.",
+    "staleness_representation": "Carries a refresh time and staleness indicator.",
+    "non_authoritative": true
+  },
+  {
+    "id": "DERV-V5-002",
+    "title": "Reviewer worklist projection",
+    "authoritative_source": "LENT-V5-013 LENT-V5-008",
+    "derived_semantics": "Rebuildable from case state and reviewer assignments.",
+    "staleness_representation": "Carries a refresh time.",
+    "non_authoritative": true
+  },
+  {
+    "id": "DERV-V5-003",
+    "title": "Financial status projection",
+    "authoritative_source": "LENT-V5-019 LENT-V5-022",
+    "derived_semantics": "Rebuildable from obligations and reconciliation; not an accounting source.",
+    "staleness_representation": "Carries a refresh time and reconciliation state.",
+    "non_authoritative": true
+  },
+  {
+    "id": "DERV-V5-004",
+    "title": "Search index projection",
+    "authoritative_source": "LENT-V5-001 LENT-V5-013",
+    "derived_semantics": "Rebuildable index; preserves classification and minimization.",
+    "staleness_representation": "Carries an index refresh time.",
+    "non_authoritative": true
+  },
+  {
+    "id": "DERV-V5-005",
+    "title": "Analytics aggregate export",
+    "authoritative_source": "DOMAIN-V5-025",
+    "derived_semantics": "Aggregated and minimized; rebuildable from authoritative sources.",
+    "staleness_representation": "Carries an export time.",
+    "non_authoritative": true
+  }
+]

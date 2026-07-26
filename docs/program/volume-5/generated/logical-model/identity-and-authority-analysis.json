@@ -1,0 +1,144 @@
+{
+  "entities_by_authority": {
+    "House": 23,
+    "CurlingCanada": 4,
+    "External": 3,
+    "UNSET": 3
+  },
+  "entities_by_identity_concept": [
+    {
+      "id": "LENT-V5-001",
+      "identity_concept": "Governed organization identifier, independent of any natural name or physical key."
+    },
+    {
+      "id": "LENT-V5-002",
+      "identity_concept": "Governed organization identifier specialized as a club."
+    },
+    {
+      "id": "LENT-V5-003",
+      "identity_concept": "Governed organization identifier specialized as a jurisdictional association."
+    },
+    {
+      "id": "LENT-V5-004",
+      "identity_concept": "Governed person identifier; a person is never equal to an account or a membership."
+    },
+    {
+      "id": "LENT-V5-005",
+      "identity_concept": "External authentication subject reference; not a person and not an authority."
+    },
+    {
+      "id": "LENT-V5-006",
+      "identity_concept": "Membership fact linking a person to an organization; not an authority."
+    },
+    {
+      "id": "LENT-V5-007",
+      "identity_concept": "Delegation fact; distinct from membership and from role labels."
+    },
+    {
+      "id": "LENT-V5-008",
+      "identity_concept": "Assignment fact; distinct from a reviewer role."
+    },
+    {
+      "id": "LENT-V5-009",
+      "identity_concept": "Governed jurisdiction identifier."
+    },
+    {
+      "id": "LENT-V5-010",
+      "identity_concept": "Governed season identifier with unique boundaries."
+    },
+    {
+      "id": "LENT-V5-011",
+      "identity_concept": "Policy identifier plus governed version."
+    },
+    {
+      "id": "LENT-V5-012",
+      "identity_concept": "Requirement identifier plus governed version, bound to a policy version."
+    },
+    {
+      "id": "LENT-V5-013",
+      "identity_concept": "Governed case identifier scoped to organization and season."
+    },
+    {
+      "id": "LENT-V5-014",
+      "identity_concept": "Governed pathway identifier applicable to a case."
+    },
+    {
+      "id": "LENT-V5-015",
+      "identity_concept": "Governed response identifier bound to a case and requirement version."
+    },
+    {
+      "id": "LENT-V5-016",
+      "identity_concept": "Governed evidence-metadata identifier referencing an external binary."
+    },
+    {
+      "id": "LENT-V5-018",
+      "identity_concept": "Governed decision-record identifier bound to a case."
+    },
+    {
+      "id": "LENT-V5-019",
+      "identity_concept": "Governed fee-obligation identifier scoped to a case and season."
+    },
+    {
+      "id": "LENT-V5-020",
+      "identity_concept": "External payment reference; not an accounting confirmation."
+    },
+    {
+      "id": "LENT-V5-021",
+      "identity_concept": "External accounting reference distinct from payment acknowledgement."
+    },
+    {
+      "id": "LENT-V5-022",
+      "identity_concept": "Governed reconciliation identifier."
+    },
+    {
+      "id": "LENT-V5-023",
+      "identity_concept": "Governed activation identifier bound to a case."
+    },
+    {
+      "id": "STATE-V5-001",
+      "identity_concept": "Case identifier plus governed state; state is a record, not a mutable field."
+    },
+    {
+      "id": "SNAP-V5-001",
+      "identity_concept": "Governed snapshot identifier bound to a case and submission time."
+    },
+    {
+      "id": "PROV-V5-001",
+      "identity_concept": "Governed audit-event identifier; append-only and never mutated."
+    },
+    {
+      "id": "PROV-V5-002",
+      "identity_concept": "Governed lineage identifier linking a derived product to its source."
+    },
+    {
+      "id": "CORR-V5-001",
+      "identity_concept": "Governed correction identifier referencing the superseded fact."
+    },
+    {
+      "id": "VOBJ-V5-001",
+      "identity_concept": "Value has no identity of its own; it identifies an owning entity."
+    },
+    {
+      "id": "VOBJ-V5-002",
+      "identity_concept": null
+    },
+    {
+      "id": "VOBJ-V5-003",
+      "identity_concept": null
+    },
+    {
+      "id": "REFD-V5-001",
+      "identity_concept": null
+    },
+    {
+      "id": "CODE-V5-001",
+      "identity_concept": null
+    },
+    {
+      "id": "CODE-V5-002",
+      "identity_concept": null
+    }
+  ],
+  "entities_without_identity_concept": [],
+  "entities_without_owning_domain": []
+}

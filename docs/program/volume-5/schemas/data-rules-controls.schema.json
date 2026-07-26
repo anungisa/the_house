@@ -19,7 +19,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^(RULE|QUALITY|LINEAGE|CTRL)-V5-[0-9]{3}$"
+            "pattern": "^(RULE|QUALITY|LINEAGE|CTRL|INTEG)-V5-[0-9]{3}$"
           },
           "kind": { "$ref": "common.schema.json#/definitions/ruleKind" },
           "title": { "type": "string" },
@@ -41,7 +41,14 @@
           "reconciliation_source": { "type": "string" },
           "evidence_retained": { "type": "string" },
           "downstream_impact": { "type": "string" },
-          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/v5GateId" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "superseded_future_blocking_gate": { "$ref": "common.schema.json#/definitions/v5GateId" },
+          "gate_reassignment_ref": { "type": "string" },
+
+          "affected_entities": { "type": "array", "items": { "type": "string" } },
+          "logical_condition": { "type": "string" },
+          "failure_meaning": { "type": "string" },
+          "future_verification_class": { "type": "string" },
 
           "authoritative_fact": { "type": "string" },
           "source": { "type": "string" },
