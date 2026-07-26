@@ -1,6 +1,6 @@
 # Volume 4 Architecture-Foundation Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:00:05.412Z
+Generated: 2026-07-26T15:24:13.096Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
@@ -11,11 +11,11 @@ Generated: 2026-07-26T15:00:05.412Z
 
 | Category | Count |
 | --- | --- |
-| Architecture elements | 137 |
-| Quality-attribute (NFR) elements | 16 |
-| Architecture decisions | 18 |
-| Fitness functions | 33 |
-| Assumptions / risks / exceptions | 22 |
+| Architecture elements | 177 |
+| Quality-attribute (NFR) elements | 21 |
+| Architecture decisions | 28 |
+| Fitness functions | 48 |
+| Assumptions / risks / exceptions | 40 |
 
 ## Quality-attribute coverage
 
@@ -30,25 +30,25 @@ Generated: 2026-07-26T15:00:05.412Z
 | OPERABILITY | 1 |
 | PERFORMANCE | 1 |
 | PORTABILITY | 1 |
-| PRIVACY | 1 |
+| PRIVACY | 2 |
 | RECOVERABILITY | 1 |
-| RESILIENCE | 2 |
+| RESILIENCE | 3 |
 | SCALABILITY | 1 |
-| SECURITY | 1 |
+| SECURITY | 4 |
 
 ## Architecture status
 
 | Status | Count |
 | --- | --- |
-| TARGET_ASSUMED | 9 |
-| TARGET_CONSTRAINED | 39 |
-| TARGET_DEFINED | 89 |
+| TARGET_ASSUMED | 14 |
+| TARGET_CONSTRAINED | 58 |
+| TARGET_DEFINED | 105 |
 
 ## Decision verification status
 
 | Verification status | Count |
 | --- | --- |
-| SPECIFIED | 18 |
+| SPECIFIED | 28 |
 
 ## Authorization invariants (all must be 0)
 
@@ -72,6 +72,20 @@ Generated: 2026-07-26T15:00:05.412Z
 - ASM-V4-012 (Aubert Nungisa (Accountable Program Authority), V4-G3): Outbox operational ownership assumed
 - ASM-V4-013 (Aubert Nungisa (Accountable Program Authority), V4-G3): Deployment topology deferred
 - ASM-V4-014 (Aubert Nungisa (Accountable Program Authority), V4-G3): Numeric quality-attribute targets remain deferred
+- ASM-V4-015 (Aubert Nungisa (Accountable Program Authority), V4-G4): Final records and retention schedule pending
+- ASM-V4-016 (Aubert Nungisa (Accountable Program Authority), V4-G4): Expected data and evidence volumes unresolved
+- ASM-V4-017 (Aubert Nungisa (Accountable Program Authority), V4-G4): Evidence-storage provider capabilities pending
+- ASM-V4-018 (Aubert Nungisa (Accountable Program Authority), V4-G4): Malware-scanning contract pending
+- ASM-V4-019 (Aubert Nungisa (Accountable Program Authority), V4-G4): Cryptographic and key-management service pending
+- ASM-V4-020 (Aubert Nungisa (Accountable Program Authority), V4-G4): Identity-provider claims and scopes pending
+- ASM-V4-021 (Aubert Nungisa (Accountable Program Authority), V4-G4): External contract semantics unresolved
+- ASM-V4-022 (Aubert Nungisa (Accountable Program Authority), V4-G4): Search technology unresolved
+- ASM-V4-023 (Aubert Nungisa (Accountable Program Authority), V4-G4): Analytics latency tolerance unresolved
+- ASM-V4-024 (Aubert Nungisa (Accountable Program Authority), V4-G4): PostgreSQL isolation behaviour to be verified
+- ASM-V4-025 (Aubert Nungisa (Accountable Program Authority), V4-G4): Environment topology unresolved
+- ASM-V4-026 (Aubert Nungisa (Accountable Program Authority), V4-G4): Deployment platform unresolved
+- ASM-V4-027 (Aubert Nungisa (Accountable Program Authority), V4-G4): Regional resilience posture unresolved
+- ASM-V4-028 (Aubert Nungisa (Accountable Program Authority), V4-G4): Recovery objectives and ownership unresolved
 
 ## Open risks (owner and resolution gate)
 
@@ -82,3 +96,7 @@ Generated: 2026-07-26T15:00:05.412Z
 - RISK-V4-005 (Aubert Nungisa (Accountable Program Authority), V4-G3): Authorization scope-resolution gaps
 - RISK-V4-006 (Aubert Nungisa (Accountable Program Authority), V4-G3): Silent no-op integration in production
 - RISK-V4-007 (Aubert Nungisa (Accountable Program Authority), V4-G3): Completeness drift from derived to stored
+- RISK-V4-008 (Aubert Nungisa (Accountable Program Authority), V4-G4): External acknowledgement silently replaces House authority
+- RISK-V4-009 (Aubert Nungisa (Accountable Program Authority), V4-G4): Projection treated as authoritative
+- RISK-V4-010 (Aubert Nungisa (Accountable Program Authority), V4-G4): Production reliance on a test double or no-op
+- RISK-V4-011 (Aubert Nungisa (Accountable Program Authority), V4-G4): Unverified recovery claim

@@ -42,7 +42,11 @@
               "CONTRACT_VERIFICATION_CANDIDATE",
               "COMPOSITION_VERIFICATION_CANDIDATE",
               "DEPLOYMENT_PATH_VERIFICATION_CANDIDATE",
-              "OPERATIONAL_PROOF_REQUIRED"
+              "ARCHITECTURE_DEFINED",
+              "SECURITY_VALIDATION_REQUIRED",
+              "PRIVACY_VALIDATION_REQUIRED",
+              "OPERATIONAL_PROOF_REQUIRED",
+              "INDEPENDENT_ASSURANCE_REQUIRED"
             ]
           },
           "house_p0_ref": { "type": "string" },

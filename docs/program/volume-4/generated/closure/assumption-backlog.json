@@ -83,6 +83,90 @@
       "title": "Numeric quality-attribute targets remain deferred",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-015",
+      "title": "Final records and retention schedule pending",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-016",
+      "title": "Expected data and evidence volumes unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-017",
+      "title": "Evidence-storage provider capabilities pending",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-018",
+      "title": "Malware-scanning contract pending",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-019",
+      "title": "Cryptographic and key-management service pending",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-020",
+      "title": "Identity-provider claims and scopes pending",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-021",
+      "title": "External contract semantics unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-022",
+      "title": "Search technology unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-023",
+      "title": "Analytics latency tolerance unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-024",
+      "title": "PostgreSQL isolation behaviour to be verified",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-025",
+      "title": "Environment topology unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-026",
+      "title": "Deployment platform unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-027",
+      "title": "Regional resilience posture unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-028",
+      "title": "Recovery objectives and ownership unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
     }
   ],
   "risks": [
@@ -127,6 +211,30 @@
       "title": "Completeness drift from derived to stored",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "RISK-V4-008",
+      "title": "External acknowledgement silently replaces House authority",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "RISK-V4-009",
+      "title": "Projection treated as authoritative",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "RISK-V4-010",
+      "title": "Production reliance on a test double or no-op",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "RISK-V4-011",
+      "title": "Unverified recovery claim",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G4"
     }
   ]
 }

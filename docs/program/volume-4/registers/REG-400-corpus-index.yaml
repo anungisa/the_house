@@ -1,7 +1,7 @@
 register_id: REG-400
 name: Volume 4 Corpus Index
 status: RATIFIED
-version: 1.5.0
+version: 1.7.0
 records:
   - id: V4-00
     title: Volume 4 Control, Inheritance, and Architecture Authority
@@ -187,3 +187,83 @@ records:
     version: 1.0.0
     path: docs/program/volume-4/V4-D-package-2-provenance-amendment.md
     gate: V4-G2
+  - id: V4-19
+    title: V4-19 - Data Authority, Classification, and Persistence Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-19-data-authority-classification-and-persistence-architecture.md
+    gate: V4-G3
+  - id: V4-20
+    title: V4-20 - PostgreSQL Persistence, Integrity, Concurrency, and Migration-Boundary Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-20-postgresql-persistence-integrity-concurrency-and-migration-boundary-architecture.md
+    gate: V4-G3
+  - id: V4-21
+    title: V4-21 - Evidence, Document, and Object-Storage Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-21-evidence-document-and-object-storage-architecture.md
+    gate: V4-G3
+  - id: V4-22
+    title: V4-22 - Read-Model, Projection, Search, Analytics, and Reporting Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-22-read-model-projection-search-analytics-and-reporting-architecture.md
+    gate: V4-G3
+  - id: V4-23
+    title: V4-23 - Integration, Contract, Messaging, and Reconciliation Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-23-integration-contract-messaging-and-reconciliation-architecture.md
+    gate: V4-G3
+  - id: V4-24
+    title: V4-24 - Security, Privacy, Cryptography, Secrets, and Trust-Service Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-24-security-privacy-cryptography-secrets-and-trust-service-architecture.md
+    gate: V4-G3
+  - id: V4-25
+    title: V4-25 - Platform Runtime, Environment, Deployment, and Software-Supply-Chain Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-25-platform-runtime-environment-deployment-and-software-supply-chain-architecture.md
+    gate: V4-G3
+  - id: V4-26
+    title: V4-26 - Observability, Resilience, Backup, Restore, Continuity, and Recovery Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-26-observability-resilience-backup-restore-continuity-and-recovery-architecture.md
+    gate: V4-G3
+  - id: V4-27
+    title: V4-27 - Platform Verification, Architecture Evidence, and Downstream-Definition Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-27-platform-verification-architecture-evidence-and-downstream-definition-model.md
+    gate: V4-G3
+  - id: V4-E
+    title: "Package 3 Closure Record - Data, Integration, Security, and Platform Architecture"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-E-package-3-closure-record.md
+    gate: V4-G3

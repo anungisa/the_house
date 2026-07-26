@@ -1,7 +1,7 @@
 register_id: REG-404
 name: Volume 4 Assumptions, Risks, and Exceptions Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: ASM-V4-001
     kind: ASM
@@ -224,3 +224,184 @@ records:
     resolution_gate: V4-G3
     traces_to: [FIT-V4-022, CTRL-V4-014]
     chapter_ref: V4-12
+  # ==== Package 3: data, integration, security, and platform assumptions and risks ====
+  - id: ASM-V4-015
+    kind: ASM
+    title: Final records and retention schedule pending
+    statement: "An approved records-retention and privacy schedule will govern retention and destruction; none is asserted in Package 3."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Classification and evidence lifecycle depend on the approved schedule."
+    disposition: "Assumed; confirmed with evidence at a later gate."
+    resolution_gate: V4-G4
+    traces_to: [NFR-V4-017, V4-19]
+    chapter_ref: V4-19
+  - id: ASM-V4-016
+    kind: ASM
+    title: Expected data and evidence volumes unresolved
+    statement: "Expected data and evidence volumes and growth are not yet quantified."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Persistence sizing and performance posture depend on volume estimates."
+    disposition: "Assumed; quantified with evidence downstream."
+    resolution_gate: V4-G4
+    traces_to: [DEP-V4-017, V4-20]
+    chapter_ref: V4-20
+  - id: ASM-V4-017
+    kind: ASM
+    title: Evidence-storage provider capabilities pending
+    statement: "An evidence-storage service will provide integrity, access control, and retention capabilities; the specific provider is not selected."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Evidence architecture depends on the provider's capabilities."
+    disposition: "Assumed; provider selected and validated downstream."
+    resolution_gate: V4-G4
+    traces_to: [DEP-V4-018, V4-21]
+    chapter_ref: V4-21
+  - id: ASM-V4-018
+    kind: ASM
+    title: Malware-scanning contract pending
+    statement: "A malware-scanning capability will be available at the evidence-intake boundary; its contract is unresolved."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Quarantine and evidence-acceptance behaviour depend on the scanning contract."
+    disposition: "Assumed; contract validated downstream."
+    resolution_gate: V4-G4
+    traces_to: [ARCH-V4-021, V4-21]
+    chapter_ref: V4-21
+  - id: ASM-V4-019
+    kind: ASM
+    title: Cryptographic and key-management service pending
+    statement: "A cryptographic and key-management trust service will provide encryption and key rotation; the service is not selected."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Cryptography and evidence-confidentiality claims depend on this service."
+    disposition: "Assumed; service selected and validated downstream."
+    resolution_gate: V4-G4
+    traces_to: [DEP-V4-020, V4-24]
+    chapter_ref: V4-24
+  - id: ASM-V4-020
+    kind: ASM
+    title: Identity-provider claims and scopes pending
+    statement: "The external identity provider will supply the claims and scopes required for service and user authorization; the specifics are unresolved."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Service identity and authorization depend on available claims."
+    disposition: "Assumed; confirmed with evidence downstream."
+    resolution_gate: V4-G4
+    traces_to: [DEP-V4-019, V4-24]
+    chapter_ref: V4-24
+  - id: ASM-V4-021
+    kind: ASM
+    title: External contract semantics unresolved
+    statement: "The authority, versioning, and acknowledgement semantics of external integration contracts are not yet fixed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Reconciliation and idempotency behaviour depend on external semantics."
+    disposition: "Assumed; contracts validated downstream."
+    resolution_gate: V4-G4
+    traces_to: [API-V4-005, V4-23]
+    chapter_ref: V4-23
+  - id: ASM-V4-022
+    kind: ASM
+    title: Search technology unresolved
+    statement: "The search-index technology serving projections is not yet selected."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Search projection design depends on the chosen technology."
+    disposition: "Assumed; technology selected downstream."
+    resolution_gate: V4-G4
+    traces_to: [DATA-V4-018, V4-22]
+    chapter_ref: V4-22
+  - id: ASM-V4-023
+    kind: ASM
+    title: Analytics latency tolerance unresolved
+    statement: "Acceptable analytics and reporting staleness and latency are not yet defined."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Projection refresh and consistency posture depend on latency tolerance."
+    disposition: "Assumed; defined with evidence downstream."
+    resolution_gate: V4-G4
+    traces_to: [SVC-V4-024, V4-22]
+    chapter_ref: V4-22
+  - id: ASM-V4-024
+    kind: ASM
+    title: PostgreSQL isolation behaviour to be verified
+    statement: "The specific PostgreSQL isolation and concurrency behaviour for governed transitions will be verified against PostgreSQL."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Concurrency and integrity guarantees depend on verified isolation behaviour."
+    disposition: "Assumed; verified with PostgreSQL evidence downstream."
+    resolution_gate: V4-G4
+    traces_to: [CTRL-V4-021, V4-20]
+    chapter_ref: V4-20
+  - id: ASM-V4-025
+    kind: ASM
+    title: Environment topology unresolved
+    statement: "The concrete environment topology across the defined environment classes is not yet fixed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Deployment and composition posture depend on the topology."
+    disposition: "Assumed; defined downstream."
+    resolution_gate: V4-G4
+    traces_to: [DEP-V4-021, V4-25]
+    chapter_ref: V4-25
+  - id: ASM-V4-026
+    kind: ASM
+    title: Deployment platform unresolved
+    statement: "The concrete deployment platform and runtime hosting are not yet selected."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Runtime and supply-chain architecture depend on the platform."
+    disposition: "Assumed; selected downstream."
+    resolution_gate: V4-G4
+    traces_to: [DEP-V4-021, V4-25]
+    chapter_ref: V4-25
+  - id: ASM-V4-027
+    kind: ASM
+    title: Regional resilience posture unresolved
+    statement: "The regional resilience and failover posture is not yet defined."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Resilience and continuity claims depend on the regional posture."
+    disposition: "Assumed; defined with evidence downstream."
+    resolution_gate: V4-G4
+    traces_to: [NFR-V4-021, V4-26]
+    chapter_ref: V4-26
+  - id: ASM-V4-028
+    kind: ASM
+    title: Recovery objectives and ownership unresolved
+    statement: "Recovery-time and recovery-point objectives, restore acceptance criteria, and operational ownership are not yet established."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Recovery claims depend on established objectives, acceptance, and ownership."
+    disposition: "Assumed; established with verified evidence downstream."
+    resolution_gate: V4-G4
+    traces_to: [CTRL-V4-029, V4-26]
+    chapter_ref: V4-26
+  - id: RISK-V4-008
+    kind: RISK
+    title: External acknowledgement silently replaces House authority
+    statement: "An external acknowledgement could be treated as governed House state rather than reconciliation status."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Governed authority could be silently ceded to an external system."
+    disposition: "Mitigated by anti-corruption boundaries and inbound-validation controls."
+    resolution_gate: V4-G4
+    traces_to: [CTRL-V4-024, ARCH-V4-023]
+    chapter_ref: V4-23
+  - id: RISK-V4-009
+    kind: RISK
+    title: Projection treated as authoritative
+    statement: "A projection or search index could be treated as an authoritative record under delivery pressure."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "A stale or corrupt projection could drive governed decisions."
+    disposition: "Mitigated by projection non-authority and rebuild fitness functions."
+    resolution_gate: V4-G4
+    traces_to: [CTRL-V4-023, ARCH-V4-022]
+    chapter_ref: V4-22
+  - id: RISK-V4-010
+    kind: RISK
+    title: Production reliance on a test double or no-op
+    statement: "A production composition could resolve a required dependency to a test double or no-op."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Governed effects could be lost or falsely reported as complete."
+    disposition: "Mitigated by production-composition and no-production-no-op fitness functions."
+    resolution_gate: V4-G4
+    traces_to: [FIT-V4-045, CTRL-V4-027]
+    chapter_ref: V4-25
+  - id: RISK-V4-011
+    kind: RISK
+    title: Unverified recovery claim
+    statement: "A recovery claim could rest on backup configuration alone without verified restore evidence."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Continuity assurance could be false."
+    disposition: "Mitigated by evidence-gated backup and restore control and operational-proof fitness function."
+    resolution_gate: V4-G4
+    traces_to: [FIT-V4-048, CTRL-V4-029]
+    chapter_ref: V4-26

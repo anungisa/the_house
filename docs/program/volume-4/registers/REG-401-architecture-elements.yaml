@@ -1,7 +1,7 @@
 register_id: REG-401
 name: Volume 4 Architecture Elements Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   # ---- ARCH: architecture principles (V4-01) ----
   - id: ARCH-V4-001
@@ -1303,4 +1303,387 @@ records:
     architecture_status: TARGET_CONSTRAINED
     traces_to: [CTRL-V4-015]
     chapter_ref: V4-17
+    authorizes_implementation: false
+  # ==== Package 3: data, integration, security, and platform architecture ====
+  # ---- ARCH: platform-architecture principles (V4-19..V4-27) ----
+  - id: ARCH-V4-019
+    kind: ARCH
+    title: Singular explicit data authority and ownership
+    statement: "Each information domain has one authoritative owning module and record; projections and external systems never become competing sources of governed truth."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-002]
+    chapter_ref: V4-19
+    authorizes_implementation: false
+  - id: ARCH-V4-020
+    kind: ARCH
+    title: PostgreSQL authoritative relational persistence
+    statement: "Governed authoritative state is persisted in PostgreSQL with database and domain invariants enforced at defined boundaries."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-008]
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: ARCH-V4-021
+    kind: ARCH
+    title: Evidence metadata and binary-content separation
+    statement: "Authoritative evidence metadata and binding are owned by the House while binary content resides in a controlled storage service."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-006]
+    chapter_ref: V4-21
+    authorizes_implementation: false
+  - id: ARCH-V4-022
+    kind: ARCH
+    title: Projections non-authoritative and rebuildable
+    statement: "Read models, projections, search indexes, and reports are derived, rebuildable, and never authoritative."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-010]
+    chapter_ref: V4-22
+    authorizes_implementation: false
+  - id: ARCH-V4-023
+    kind: ARCH
+    title: Anti-corruption integration boundaries
+    statement: "External integrations are mediated by anti-corruption boundaries that preserve House authority and validate inbound data before governed state changes."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-003]
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  - id: ARCH-V4-024
+    kind: ARCH
+    title: Externalized secrets and least service trust
+    statement: "Secrets are externalized from source and artifacts and service-to-service calls carry explicit scoped trust rather than unlimited trust."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-005]
+    chapter_ref: V4-24
+    authorizes_implementation: false
+  - id: ARCH-V4-025
+    kind: ARCH
+    title: Production and test composition separation
+    statement: "Production composition is explicitly separated from test composition and production-required services cannot resolve to test doubles or no-ops."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-005]
+    chapter_ref: V4-25
+    authorizes_implementation: false
+  - id: ARCH-V4-026
+    kind: ARCH
+    title: Correlated telemetry across authoritative effects
+    statement: "Telemetry correlates authoritative commands, transitions, effects, integrations, and recovery through stable correlation concepts."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-012]
+    chapter_ref: V4-26
+    authorizes_implementation: false
+  - id: ARCH-V4-027
+    kind: ARCH
+    title: Platform verification and architecture-evidence model
+    statement: "Every platform verification is defined with an evidence class and downstream mapping; none is implemented in this package."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-010]
+    chapter_ref: V4-27
+    authorizes_implementation: false
+  # ---- NFR: platform quality attributes ----
+  - id: NFR-V4-017
+    kind: NFR
+    title: Data classification posture
+    statement: "Information domains carry classification that governs access, logging, retention, and transfer without asserting an approved retention schedule."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [PRIVACY]
+    traces_to: [ARCH-V4-019]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-19
+    authorizes_implementation: false
+  - id: NFR-V4-018
+    kind: NFR
+    title: Evidence confidentiality and integrity posture
+    statement: "Evidence confidentiality and integrity are architectural quality attributes; cryptographic implementation remains validation-pending."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [SECURITY]
+    traces_to: [ARCH-V4-021]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-21
+    authorizes_implementation: false
+  - id: NFR-V4-019
+    kind: NFR
+    title: Cryptography and key-management posture
+    statement: "Encryption and key-management boundaries are defined architecturally; cryptographic claims remain validation-pending until provider evidence exists."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [SECURITY]
+    traces_to: [ARCH-V4-024]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-24
+    authorizes_implementation: false
+  - id: NFR-V4-020
+    kind: NFR
+    title: Software-supply-chain integrity posture
+    statement: "Artifacts are reproducible and traceable to source with retained provenance, and environment promotion does not constitute business authorization."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [SECURITY]
+    traces_to: [ARCH-V4-025]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-25
+    authorizes_implementation: false
+  - id: NFR-V4-021
+    kind: NFR
+    title: Resilience posture across failure domains
+    statement: "Resilience is defined across database, evidence-storage, messaging, integration, and projection failure domains so governed authority fails closed and derived views degrade detectably."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [RESILIENCE]
+    traces_to: [ARCH-V4-026]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-26
+    authorizes_implementation: false
+  # ---- SVC: platform service boundaries ----
+  - id: SVC-V4-024
+    kind: SVC
+    title: Projection and reporting service boundary
+    statement: "Serves non-authoritative read models, search, analytics, and reports derived from authoritative House state or retained events."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-014]
+    chapter_ref: V4-22
+    authorizes_implementation: false
+  - id: SVC-V4-025
+    kind: SVC
+    title: Integration boundary service
+    statement: "Mediates external integrations through anti-corruption boundaries with authentication, versioning, idempotency, and reconciliation."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-015]
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  - id: SVC-V4-026
+    kind: SVC
+    title: Observability and recovery operations service
+    statement: "Provides correlated telemetry, resilience behaviour, and evidence-gated backup, restore, and recovery operations."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-012]
+    chapter_ref: V4-26
+    authorizes_implementation: false
+  # ---- DATA: platform data models (conceptual, not physical schema) ----
+  - id: DATA-V4-015
+    kind: DATA
+    title: Data-authority map
+    statement: "Conceptual map of information domains to authoritative owning module, permitted writers and readers, classification, scope, and dependencies; no physical schema defined."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-001]
+    chapter_ref: V4-19
+    authorizes_implementation: false
+  - id: DATA-V4-016
+    kind: DATA
+    title: Persistence-boundary model
+    statement: "Conceptual per-module persistence boundary with tenant, jurisdiction, parent-child, uniqueness, and referential invariants; no table or column defined."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-005]
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: DATA-V4-017
+    kind: DATA
+    title: Evidence metadata and binding model
+    statement: "Conceptual evidence metadata and binding separated from binary content, with provenance, sensitivity, integrity, and lifecycle; no storage schema defined."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-006]
+    chapter_ref: V4-21
+    authorizes_implementation: false
+  - id: DATA-V4-018
+    kind: DATA
+    title: Projection and read-model catalogue
+    statement: "Conceptual catalogue of projections with authoritative source, owner, refresh, consistency, rebuild source, and staleness representation; no query or view defined."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-014]
+    chapter_ref: V4-22
+    authorizes_implementation: false
+  # ---- API: integration contract posture (conceptual) ----
+  - id: API-V4-005
+    kind: API
+    title: Integration contract posture
+    statement: "Conceptual integration contract posture defining authority, authentication, versioning, idempotency, retry, and reconciliation; no executable contract defined."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [SVC-V4-025]
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  # ---- EVT: messaging and webhook intake posture (conceptual) ----
+  - id: EVT-V4-004
+    kind: EVT
+    title: Messaging and webhook intake posture
+    statement: "Conceptual authenticated, replay-protected, and idempotent webhook and messaging intake posture; no executable event schema defined."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [API-V4-005]
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  # ---- CTRL: platform controls ----
+  - id: CTRL-V4-019
+    kind: CTRL
+    title: Cross-jurisdiction fail-closed control
+    statement: "Reads and writes with missing, ambiguous, or mismatched tenant or jurisdiction context are denied rather than defaulted."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [DATA-V4-015]
+    traces_to: [ARCH-V4-019]
+    chapter_ref: V4-19
+    authorizes_implementation: false
+  - id: CTRL-V4-020
+    kind: CTRL
+    title: Tenant and parent-child integrity control
+    statement: "Organization-scoped child records reference the same organization or tenant context as their authoritative parent."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [DATA-V4-016]
+    traces_to: [ARCH-V4-020]
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: CTRL-V4-021
+    kind: CTRL
+    title: Concurrency and command-deduplication control
+    statement: "Concurrent modification of governed state is detected and command deduplication prevents duplicate governed effects."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-020]
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: CTRL-V4-022
+    kind: CTRL
+    title: Restricted-evidence access control
+    statement: "Access to restricted evidence requires both resource and sensitivity authorization."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-021]
+    chapter_ref: V4-21
+    authorizes_implementation: false
+  - id: CTRL-V4-023
+    kind: CTRL
+    title: Projection-failure isolation and staleness control
+    statement: "Projection failure does not change governed state and projection staleness is detectable rather than silently trusted."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    constrains: [DATA-V4-018]
+    traces_to: [ARCH-V4-022]
+    chapter_ref: V4-22
+    authorizes_implementation: false
+  - id: CTRL-V4-024
+    kind: CTRL
+    title: Inbound validation before governed state control
+    statement: "Inbound integration and webhook data is validated at the boundary before it affects governed state and external acknowledgements do not replace House authority."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-023]
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  - id: CTRL-V4-025
+    kind: CTRL
+    title: Secrets absent from source and artifacts control
+    statement: "No secret value resides in source code or deployment artifacts and secrets are consumed from a controlled trust service by actual entry points."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-024]
+    chapter_ref: V4-24
+    authorizes_implementation: false
+  - id: CTRL-V4-026
+    kind: CTRL
+    title: Privacy minimization control
+    statement: "Personal and sensitive data is minimized at the query, projection, logging, and export boundaries."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-014]
+    chapter_ref: V4-24
+    authorizes_implementation: false
+  - id: CTRL-V4-027
+    kind: CTRL
+    title: No production test-double or no-op control
+    statement: "Production-required services cannot resolve to test doubles or no-ops and a production composition lacking a required dependency fails closed."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-025]
+    chapter_ref: V4-25
+    authorizes_implementation: false
+  - id: CTRL-V4-028
+    kind: CTRL
+    title: Artifact and dependency provenance control
+    statement: "Released artifacts are traceable to source and dependency and image provenance evidence is retained."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-025]
+    chapter_ref: V4-25
+    authorizes_implementation: false
+  - id: CTRL-V4-029
+    kind: CTRL
+    title: Evidence-gated backup and restore control
+    statement: "Backup, restore, continuity, and recovery claims require evidence; only accepted business recovery supported by verified restore evidence supports a recovery claim."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-027]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-26
+    authorizes_implementation: false
+  - id: CTRL-V4-030
+    kind: CTRL
+    title: Verification-to-evidence traceability control
+    statement: "Each platform verification maps to its architecture element, decision, risk or assumption, control objective, future test class, evidence owner, and future blocking gate."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-027]
+    chapter_ref: V4-27
+    authorizes_implementation: false
+  # ---- DEP: platform and trust-service dependencies ----
+  - id: DEP-V4-017
+    kind: DEP
+    title: PostgreSQL persistence engine
+    statement: "Authoritative relational persistence engine; behaviour validated against PostgreSQL, not a substitute; no instance provisioned in Package 3."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-020]
+    chapter_ref: V4-20
+    authorizes_implementation: false
+  - id: DEP-V4-018
+    kind: DEP
+    title: Evidence and object-storage service
+    statement: "Controlled storage for evidence binary content with integrity and access control; no vendor selected in Package 3."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-022]
+    chapter_ref: V4-21
+    authorizes_implementation: false
+  - id: DEP-V4-019
+    kind: DEP
+    title: External integration providers
+    statement: "Identity, payment, accounting, registration, communications, and related external providers consumed through anti-corruption boundaries; contracts unresolved."
+    authority: External
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-024]
+    chapter_ref: V4-23
+    authorizes_implementation: false
+  - id: DEP-V4-020
+    kind: DEP
+    title: Secrets and key-management trust services
+    statement: "Controlled trust service holding secrets and key material; no secret authored or provisioned in Package 3."
+    authority: House
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-025]
+    chapter_ref: V4-24
+    authorizes_implementation: false
+  - id: DEP-V4-021
+    kind: DEP
+    title: Runtime and platform environments
+    statement: "Application and worker runtimes and environment classes; no infrastructure provisioned or cloud service selected in Package 3."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-027]
+    chapter_ref: V4-25
     authorizes_implementation: false

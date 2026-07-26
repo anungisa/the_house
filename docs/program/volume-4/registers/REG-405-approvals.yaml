@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.5.0
+version: 1.7.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -379,4 +379,171 @@ records:
       - Preserves Gate V4-G2 and its DOMAIN_AND_APPLICATION_ARCHITECTURE_READY disposition.
       - Does not reopen or modify frozen Package 2 artifacts V4-10..V4-18 or V4-C.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  # ==== Package 3: chapter ratification approvals ====
+  - id: APP-V4-028
+    artifact_id: V4-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data authority, classification, and persistence boundaries ratified as architecture definition only.
+      - No physical schema, migration, storage vendor, or approved retention schedule is defined.
+    approved_at: null
+  - id: APP-V4-029
+    artifact_id: V4-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - PostgreSQL persistence, integrity, concurrency, and migration-boundary architecture ratified.
+      - No DDL, table or column names, indexes, ORM mapping, migration file, or database provisioning is defined.
+    approved_at: null
+  - id: APP-V4-030
+    artifact_id: V4-21
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Evidence metadata and binary-content separation and lifecycle boundaries ratified.
+      - No storage vendor or schema selected; no scanning, encryption, legal-hold, or retention control claimed as implemented.
+    approved_at: null
+  - id: APP-V4-031
+    artifact_id: V4-22
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Projections, search, analytics, and reporting ratified as non-authoritative and rebuildable.
+      - No executable query, index, materialized view, or report definition is authored.
+    approved_at: null
+  - id: APP-V4-032
+    artifact_id: V4-23
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integration, contract, messaging, and reconciliation architecture ratified with anti-corruption boundaries.
+      - No executable OpenAPI, AsyncAPI, webhook, or file schema is authored; external acknowledgements do not replace House authority.
+    approved_at: null
+  - id: APP-V4-033
+    artifact_id: V4-24
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security, privacy, cryptography, secrets, and trust-service boundaries ratified.
+      - Cryptographic claims remain validation-pending; no certification, compliance, or accreditation is claimed.
+    approved_at: null
+  - id: APP-V4-034
+    artifact_id: V4-25
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Platform runtime, environment, deployment, and software-supply-chain architecture ratified with production and test composition separated.
+      - No infrastructure provisioned, vendor or cloud service selected, or procurement authorized.
+    approved_at: null
+  - id: APP-V4-035
+    artifact_id: V4-26
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Observability, resilience, backup, restore, continuity, and recovery architecture ratified with evidence-gated recovery claims.
+      - No RTO, RPO, availability figure, or restore-proof evidence is fabricated.
+    approved_at: null
+  - id: APP-V4-036
+    artifact_id: V4-27
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Platform verification, architecture-evidence, and downstream-definition model ratified.
+      - Every verification is defined and none is implemented; no security accreditation, operational proof, or independent assurance is claimed.
+    approved_at: null
+  # ==== Package 3: closure, gate, and freeze ====
+  - id: APP-V4-037
+    artifact_id: V4-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-E
+    conditions:
+      - Package 3 closure record ratified as architecture definition only.
+      - Consolidates data, integration, security, platform, and recovery architecture without claiming implementation.
+    approved_at: null
+  - id: APP-V4-038
+    artifact_id: GATE-V4-G3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: DATA_INTEGRATION_SECURITY_AND_PLATFORM_ARCHITECTURE_READY
+    closure_record: V4-E
+    scope: [V4-19, V4-20, V4-21, V4-22, V4-23, V4-24, V4-25, V4-26, V4-27]
+    conditions:
+      - Package 2 provenance is unambiguous.
+      - Authoritative information ownership and persistence boundaries are defined.
+      - PostgreSQL integrity, tenancy, jurisdiction, concurrency, and migration boundaries are defined.
+      - Evidence metadata, binary content, provenance, confidentiality, and lifecycle boundaries are defined.
+      - Projections, search, analytics, and reporting remain non-authoritative and rebuildable.
+      - Integration contracts define authority, authentication, versioning, idempotency, retry, reconciliation, and recovery.
+      - External systems do not silently replace House authority.
+      - Security, privacy, secrets, cryptography, and service-trust boundaries are defined.
+      - Production and test composition are explicitly separated.
+      - Required production dependencies cannot resolve to no-ops or test doubles.
+      - Runtime, environment, configuration, and software-supply-chain architecture are defined.
+      - Observability correlates authoritative commands, transitions, effects, integrations, and recovery.
+      - Backup, restore, continuity, and recovery claims are evidence-gated.
+      - Verification covers data, integration, security, platform, and recovery architecture.
+      - Unresolved assumptions have accountable owners and future gates.
+      - No artifact claims implementation, security accreditation, operational proof, or independent assurance without evidence.
+      - No runtime code, physical schemas, executable contracts, infrastructure, procurement, delivery sequence, or master development plan is created.
+      - Package 3 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V4-039
+    artifact_id: PACKAGE-4-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    frozen: true
+    closure_record: V4-E
+    frozen_artifacts:
+      - id: V4-19
+        version: 1.0.0
+      - id: V4-20
+        version: 1.0.0
+      - id: V4-21
+        version: 1.0.0
+      - id: V4-22
+        version: 1.0.0
+      - id: V4-23
+        version: 1.0.0
+      - id: V4-24
+        version: 1.0.0
+      - id: V4-25
+        version: 1.0.0
+      - id: V4-26
+        version: 1.0.0
+      - id: V4-27
+        version: 1.0.0
+      - id: V4-E
+        version: 1.0.0
+    conditions:
+      - Volume 4 Package 3 frozen at closure following Gate V4-G3 disposition.
+      - Authorizes commencement of Volume 4 Package 4 as an architecture package only.
+      - Authorizes no implementation, physical schema, executable contract, infrastructure, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+      - Changes to frozen Package 3 content require the recorded amendment process.
     approved_at: null
