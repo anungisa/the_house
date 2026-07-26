@@ -3,13 +3,13 @@
 Document ID: V2-A  
 Title: Package 1 Closure Record  
 Status: RATIFIED  
-Version: 1.0.0  
-Ratification: Volume 2 Package 1 closure; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at the material-commitment gate (see REG-205 APP-V2-008, APP-V2-009)  
+Version: 1.0.1  
+Ratification: Volume 2 Package 1 closure; basis Accountable Program Authority (Aubert Nungisa); evidence SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed; executive acceptance pending at the material-commitment gate (see REG-205 APP-V2-008, APP-V2-009); amended for freeze provenance (see REG-204 DEC-V2-005)  
 Classification: Internal - Program Governance  
 Owner: Aubert Nungisa (Accountable Program Authority)  
 Approver: Nolan (Executive Acceptance Authority)  
 Effective Date: TBD (Gate V2-G1)  
-Supersedes: None  
+Supersedes: V2-A@1.0.0 (freeze-provenance amendment; DEC-V2-005)  
 Review Cycle: Frozen at Volume 2 Package 1 closure; changes require the recorded amendment process  
 Repository Path: docs/program/volume-2/
 
@@ -65,11 +65,11 @@ REG-204 DEC-V2-004.
 
 This section is normative.
 
-The following Package 1 artifacts are frozen at version 1.0.0 (REG-205 APP-V2-009):
-V2-00, V2-01, V2-02, V2-03, V2-04, V2-05, and this record V2-A. The freeze baseline is
-the Package 1 closure commit on the volume-2 branch. Changes to frozen artifacts require
-a recorded Volume 2 amendment decision in REG-204 and a superseding approval in
-REG-205; frozen artifacts are not edited in place.
+The following Package 1 artifacts are frozen (REG-205 APP-V2-009): V2-00, V2-01, V2-02,
+V2-03, V2-04, and V2-05 at version 1.0.0, and this record V2-A at version 1.0.1 (the
+freeze-provenance amendment; see V2-A.7 and REG-204 DEC-V2-005). Changes to frozen
+artifacts require a recorded Volume 2 amendment decision in REG-204 and a superseding
+approval in REG-205; frozen artifacts are not edited in place.
 
 ## V2-A.5 Downstream posture
 
@@ -92,3 +92,24 @@ The stakeholder validations recorded as pending in V2-02 (OUT-V2-001, OUT-V2-004
 OUT-V2-006, OUT-V2-007, and the member-organization, club, administrator, participant,
 and external-system stakeholder records) are carried forward for validation in a later
 package. They are recorded, not fabricated, in satisfaction of Gate V2-G1 condition 8.
+
+## V2-A.7 Freeze provenance
+
+This section is normative.
+
+The Package 1 freeze is recorded against three distinct commits so that the source
+snapshot, the closure/freeze record, and the merge into main are unambiguous:
+
+- **Package 1 source snapshot commit**: `71c2be6`. This branch commit contains the full
+  Package 1 corpus (V2-00 through V2-05 and V2-A).
+- **Package 1 closure/freeze commit**: `71c2be6`. Package 1 content, the Gate V2-G1
+  closure disposition, and the freeze record (REG-205 APP-V2-009) were authored in the
+  same branch commit; the source snapshot commit and the closure/freeze commit therefore
+  coincide. This is recorded explicitly to avoid the earlier ambiguity in which the
+  freeze baseline was described only as "the Package 1 closure commit on the volume-2
+  branch," a commit that already contained the freeze record itself.
+- **Package 1 merged commit**: `8ee3a74`. This is the merge of `71c2be6` into main.
+
+Evidence posture: SELF-ATTESTED / AUTHOR-VERIFIED; independent validation not claimed.
+This amendment corrects freeze-provenance metadata only. It does not reopen Package 1
+content and does not alter Gate V2-G1, whose disposition remains PASS.

@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.0.0
+version: 1.1.0
 records:
   - id: DEC-V2-001
     class: D1
@@ -91,3 +91,36 @@ records:
     executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority
+  - id: DEC-V2-005
+    class: D2
+    question: >-
+      Does the Package 1 freeze record unambiguously distinguish the source snapshot,
+      closure/freeze, and merged commits?
+    decision: >-
+      Amend the Package 1 freeze provenance metadata. The original record named the
+      freeze baseline only as "the Package 1 closure commit on the volume-2 branch,"
+      which is ambiguous: Package 1 content, Gate V2-G1 closure, and the freeze record
+      were authored in a single branch commit, so the freeze record is co-located with
+      the content it freezes. Record the distinct commits explicitly. Package 1 source
+      snapshot commit 71c2be6; closure/freeze commit 71c2be6 (coincides with the source
+      snapshot because of single-commit authoring); merged commit 8ee3a74. This is a
+      narrow provenance-metadata clarification recorded self-attested / author-verified.
+      It does not reopen Package 1 content and does not alter Gate V2-G1, whose
+      disposition remains PASS. V2-A is amended to version 1.0.1 to carry the explicit
+      provenance; V2-00 through V2-05 remain frozen at 1.0.0 and are unchanged.
+    evidence_refs:
+      - V2-A
+      - REG-205
+      - APP-V2-009
+      - DEC-V2-004
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+    amends: DEC-V2-004
+    amendment_reason: >-
+      Removes ambiguity in the Package 1 freeze baseline by recording the distinct
+      source snapshot (71c2be6), closure/freeze (71c2be6), and merged (8ee3a74)
+      commits. Narrow provenance-metadata correction only; no Package 1 content or gate
+      disposition changes.
