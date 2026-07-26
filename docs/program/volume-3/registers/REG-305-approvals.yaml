@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.12.0
+version: 1.13.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -1193,5 +1193,42 @@ records:
       - Whole-volume freeze provenance completed post-merge; source snapshot 6b1a1df, closure/freeze 9f64667, merged 8a1c6ae.
       - Gate V3-G5 and V3-E are preserved; no substantive Volume 3 content is reopened.
       - Volume 3 is released at tag central-registration-volume-3-v1.0.0.
+    approved_at: null
+  # ---- Release-provenance amendment (patch v1.0.1) ----
+  - id: APP-V3-067
+    artifact_id: V3-F
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    supersedes: >-
+      Only the merged_commit 8a1c6ae released-state interpretation in APP-V3-065 (PACKAGE-3-5),
+      APP-V3-066 (VOLUME-3), and REG-304 DEC-V3-016. Those approvals remain the original freeze
+      and freeze-provenance records and are not otherwise reopened; Gate V3-G5 (APP-V3-062) and
+      V3-E are preserved.
+    package_provenance:
+      source_snapshot_commit: "6b1a1df"
+      closure_freeze_commit: "9f64667"
+      original_package_merge_commit: "8a1c6ae"
+      provenance_amendment_commit: "62db1cd"
+      release_merge_commit: "c1d8d9b"
+      release_tag: "central-registration-volume-3-v1.0.0"
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      note: >-
+        Correct six-role provenance model. Package 5 authoring snapshot 6b1a1df; Package 5 and
+        Volume 3 closure-freeze 9f64667; original Package 5 merge 8a1c6ae (PR #24);
+        provenance-amendment authoring commit 62db1cd (PR #25 branch tip); final Volume 3 v1.0.0
+        release merge c1d8d9b (PR #25); published tag central-registration-volume-3-v1.0.0 points
+        to c1d8d9b. The immutable v1.0.0 tag is not moved. Published as patch release v1.0.1 with
+        tag central-registration-volume-3-v1.0.1. Evidence posture: SELF_ATTESTED_AUTHOR_VERIFIED.
+    conditions:
+      - Release-provenance amendment (V3-F) ratified; narrow governance-metadata correction (DEC-V3-017).
+      - Supersedes ONLY the merged_commit 8a1c6ae released-state interpretation in APP-V3-065, APP-V3-066, and DEC-V3-016.
+      - Correct six-role model; authoring 6b1a1df; closure-freeze 9f64667; original Package 5 merge 8a1c6ae; provenance-amendment authoring 62db1cd; final release merge c1d8d9b; tag central-registration-volume-3-v1.0.0.
+      - 8a1c6ae preserved as the valid original Package 5 merge; no substantive finding, service, authority boundary, requirement, control, measure, or decision changed.
+      - V3-E and all substantive Volume 3 content unchanged; published v1.0.0 tag not moved or overwritten.
+      - Gate V3-G5 remains PASS; Volume 4 authorized for architecture and engineering definition; master development plan pending; implementation, procurement, staffing, cost, fees, funding, pilot, rollout, launch, and delivery sequencing unauthorized.
+      - Published as patch release v1.0.1; Volume 4 authoring proceeds from the corrected v1.0.1 baseline.
+      - Executive organizational acceptance (Nolan) pending at a later material-commitment gate.
     approved_at: null
 

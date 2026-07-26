@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T13:52:50.877Z
+Generated: 2026-07-26T14:04:45.971Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T13:52:50.877Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 49 |
+| RATIFIED | 50 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.7.0 | 49 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.8.0 | 50 |
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.4.0 | 43 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.3.0 | 21 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.4.0 | 358 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.9.0 | 16 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.12.0 | 66 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.10.0 | 17 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.13.0 | 67 |
 
 ## Findings by control
 
@@ -210,3 +210,11 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-066 (VOLUME-3): Whole-volume freeze provenance completed post-merge; source snapshot 6b1a1df, closure/freeze 9f64667, merged 8a1c6ae.
 - APP-V3-066 (VOLUME-3): Gate V3-G5 and V3-E are preserved; no substantive Volume 3 content is reopened.
 - APP-V3-066 (VOLUME-3): Volume 3 is released at tag central-registration-volume-3-v1.0.0.
+- APP-V3-067 (V3-F): Release-provenance amendment (V3-F) ratified; narrow governance-metadata correction (DEC-V3-017).
+- APP-V3-067 (V3-F): Supersedes ONLY the merged_commit 8a1c6ae released-state interpretation in APP-V3-065, APP-V3-066, and DEC-V3-016.
+- APP-V3-067 (V3-F): Correct six-role model; authoring 6b1a1df; closure-freeze 9f64667; original Package 5 merge 8a1c6ae; provenance-amendment authoring 62db1cd; final release merge c1d8d9b; tag central-registration-volume-3-v1.0.0.
+- APP-V3-067 (V3-F): 8a1c6ae preserved as the valid original Package 5 merge; no substantive finding, service, authority boundary, requirement, control, measure, or decision changed.
+- APP-V3-067 (V3-F): V3-E and all substantive Volume 3 content unchanged; published v1.0.0 tag not moved or overwritten.
+- APP-V3-067 (V3-F): Gate V3-G5 remains PASS; Volume 4 authorized for architecture and engineering definition; master development plan pending; implementation, procurement, staffing, cost, fees, funding, pilot, rollout, launch, and delivery sequencing unauthorized.
+- APP-V3-067 (V3-F): Published as patch release v1.0.1; Volume 4 authoring proceeds from the corrected v1.0.1 baseline.
+- APP-V3-067 (V3-F): Executive organizational acceptance (Nolan) pending at a later material-commitment gate.
