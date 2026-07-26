@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:21:41.760Z
+Generated: 2026-07-26T15:24:13.539Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T15:21:41.760Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 32 |
+| RATIFIED | 33 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.6.0 | 32 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.7.0 | 33 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.2.0 | 177 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.2.0 | 28 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.2.0 | 48 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.2.0 | 40 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.6.0 | 36 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.7.0 | 39 |
 
 ## Findings by control
 
@@ -192,3 +192,27 @@ Errors: 0 | Warnings: 12 | Info: 12
 - APP-V4-035 (V4-26): No RTO, RPO, availability figure, or restore-proof evidence is fabricated.
 - APP-V4-036 (V4-27): Platform verification, architecture-evidence, and downstream-definition model ratified.
 - APP-V4-036 (V4-27): Every verification is defined and none is implemented; no security accreditation, operational proof, or independent assurance is claimed.
+- APP-V4-037 (V4-E): Package 3 closure record ratified as architecture definition only.
+- APP-V4-037 (V4-E): Consolidates data, integration, security, platform, and recovery architecture without claiming implementation.
+- APP-V4-038 (GATE-V4-G3): Package 2 provenance is unambiguous.
+- APP-V4-038 (GATE-V4-G3): Authoritative information ownership and persistence boundaries are defined.
+- APP-V4-038 (GATE-V4-G3): PostgreSQL integrity, tenancy, jurisdiction, concurrency, and migration boundaries are defined.
+- APP-V4-038 (GATE-V4-G3): Evidence metadata, binary content, provenance, confidentiality, and lifecycle boundaries are defined.
+- APP-V4-038 (GATE-V4-G3): Projections, search, analytics, and reporting remain non-authoritative and rebuildable.
+- APP-V4-038 (GATE-V4-G3): Integration contracts define authority, authentication, versioning, idempotency, retry, reconciliation, and recovery.
+- APP-V4-038 (GATE-V4-G3): External systems do not silently replace House authority.
+- APP-V4-038 (GATE-V4-G3): Security, privacy, secrets, cryptography, and service-trust boundaries are defined.
+- APP-V4-038 (GATE-V4-G3): Production and test composition are explicitly separated.
+- APP-V4-038 (GATE-V4-G3): Required production dependencies cannot resolve to no-ops or test doubles.
+- APP-V4-038 (GATE-V4-G3): Runtime, environment, configuration, and software-supply-chain architecture are defined.
+- APP-V4-038 (GATE-V4-G3): Observability correlates authoritative commands, transitions, effects, integrations, and recovery.
+- APP-V4-038 (GATE-V4-G3): Backup, restore, continuity, and recovery claims are evidence-gated.
+- APP-V4-038 (GATE-V4-G3): Verification covers data, integration, security, platform, and recovery architecture.
+- APP-V4-038 (GATE-V4-G3): Unresolved assumptions have accountable owners and future gates.
+- APP-V4-038 (GATE-V4-G3): No artifact claims implementation, security accreditation, operational proof, or independent assurance without evidence.
+- APP-V4-038 (GATE-V4-G3): No runtime code, physical schemas, executable contracts, infrastructure, procurement, delivery sequence, or master development plan is created.
+- APP-V4-038 (GATE-V4-G3): Package 3 receives line-level review and a separate freeze commit.
+- APP-V4-039 (PACKAGE-4-3): Volume 4 Package 3 frozen at closure following Gate V4-G3 disposition.
+- APP-V4-039 (PACKAGE-4-3): Authorizes commencement of Volume 4 Package 4 as an architecture package only.
+- APP-V4-039 (PACKAGE-4-3): Authorizes no implementation, physical schema, executable contract, infrastructure, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-039 (PACKAGE-4-3): Changes to frozen Package 3 content require the recorded amendment process.
