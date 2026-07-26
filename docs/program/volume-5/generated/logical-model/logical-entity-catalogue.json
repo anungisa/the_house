@@ -493,5 +493,50 @@
     "scope_posture": null,
     "classification": "INTERNAL",
     "chapter_ref": "V5-15"
+  },
+  {
+    "id": "CODE-V5-003",
+    "kind": "CODE_SET",
+    "title": "Affiliation case status code set",
+    "owning_domain": null,
+    "identity_concept": null,
+    "authority": null,
+    "lifecycle": null,
+    "cardinality": null,
+    "temporal_posture": null,
+    "correction_posture": null,
+    "scope_posture": null,
+    "classification": null,
+    "chapter_ref": "V5-22"
+  },
+  {
+    "id": "CODE-V5-004",
+    "kind": "CODE_SET",
+    "title": "Decision outcome code set",
+    "owning_domain": null,
+    "identity_concept": null,
+    "authority": null,
+    "lifecycle": null,
+    "cardinality": null,
+    "temporal_posture": null,
+    "correction_posture": null,
+    "scope_posture": null,
+    "classification": null,
+    "chapter_ref": "V5-22"
+  },
+  {
+    "id": "CODE-V5-005",
+    "kind": "CODE_SET",
+    "title": "Data issue classification code set",
+    "owning_domain": null,
+    "identity_concept": null,
+    "authority": null,
+    "lifecycle": null,
+    "cardinality": null,
+    "temporal_posture": null,
+    "correction_posture": null,
+    "scope_posture": null,
+    "classification": null,
+    "chapter_ref": "V5-22"
   }
 ]

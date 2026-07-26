@@ -1,7 +1,7 @@
 register_id: REG-500
 name: Volume 5 Corpus Index
 status: RATIFIED
-version: 1.3.0
+version: 1.4.0
 records:
   - id: V5-00
     title: Volume Control, Inheritance, and Data-Definition Authority
@@ -203,3 +203,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-D-package-2-provenance-amendment.md
     gate: V5-G2
+  - id: V5-21
+    title: Master, Reference, Transactional, Evidentiary, and Derived-Data Classification Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-21-master-reference-transactional-evidentiary-and-derived-data-classification-model.md
+    gate: V5-G3
+  - id: V5-22
+    title: Controlled Vocabularies, Code Sets, Bilingual Semantics, and Reference-Data Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-22-controlled-vocabularies-code-sets-bilingual-semantics-and-reference-data-governance.md
+    gate: V5-G3
+  - id: V5-23
+    title: Data Ownership, Stewardship, Custody, Issue Management, and Decision-Rights Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-23-data-ownership-stewardship-custody-issue-management-and-decision-rights-model.md
+    gate: V5-G3
+  - id: V5-24
+    title: Data-Quality Rule Lifecycle, Measurement, Exception, and Remediation Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-24-data-quality-rule-lifecycle-measurement-exception-and-remediation-governance.md
+    gate: V5-G3
+  - id: V5-25
+    title: Data Lifecycle, Records, Retention, Legal-Hold, Archival, and Disposition Dependencies
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-25-data-lifecycle-records-retention-legal-hold-archival-and-disposition-dependencies.md
+    gate: V5-G3
+  - id: V5-26
+    title: Identity Resolution, Duplicate Management, Merge, Split, and Survivorship Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-26-identity-resolution-duplicate-management-merge-split-and-survivorship-model.md
+    gate: V5-G3
+  - id: V5-27
+    title: Cross-System Reconciliation, Conflict Resolution, and Authority-Alignment Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-27-cross-system-reconciliation-conflict-resolution-and-authority-alignment-model.md
+    gate: V5-G3
+  - id: V5-28
+    title: Data Exchange, Import, Export, Transformation, and Lineage Semantics
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-28-data-exchange-import-export-transformation-and-lineage-semantics.md
+    gate: V5-G3
+  - id: V5-29
+    title: Purpose, Minimization, Disclosure, Analytics Use, and Derived-Data Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-29-purpose-minimization-disclosure-analytics-use-and-derived-data-constraints.md
+    gate: V5-G3
+  - id: V5-30
+    title: Data Operations, Observability, Issue Evidence, and Stewardship-Measure Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-30-data-operations-observability-issue-evidence-and-stewardship-measure-model.md
+    gate: V5-G3
+  - id: V5-31
+    title: Package 3 Traceability, Validation Backlog, and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-31-package-3-traceability-validation-backlog-and-downstream-constraints.md
+    gate: V5-G3

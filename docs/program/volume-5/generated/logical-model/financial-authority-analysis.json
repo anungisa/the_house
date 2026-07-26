@@ -35,6 +35,12 @@
       "title": "Financial Status Amount",
       "authority": null,
       "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "CODE-V5-004",
+      "title": "Decision outcome code set",
+      "authority": null,
+      "classification": null
     }
   ]
 }

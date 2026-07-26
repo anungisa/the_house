@@ -1,6 +1,6 @@
 # Volume 5 Data-Governance Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:11:11.432Z
+Generated: 2026-07-26T18:46:10.221Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 1 defines DATA
@@ -17,9 +17,9 @@ Generated: 2026-07-26T18:11:11.432Z
 | Conceptual relationships | 8 |
 | Data products | 11 |
 | Classifications | 8 |
-| Rules and controls | 52 |
-| Decisions | 16 |
-| Backlog items | 26 |
+| Rules and controls | 69 |
+| Decisions | 28 |
+| Backlog items | 39 |
 
 ## Information-domain ownership completeness
 
@@ -32,9 +32,9 @@ Generated: 2026-07-26T18:11:11.432Z
 
 ## Quality, correction, and lineage coverage
 
-- Quality rules: 10
+- Quality rules: 14
 - Quality rules without correction authority (must be 0): 0
-- Lineage rules: 8
+- Lineage rules: 10
 - Lineage rules without source (must be 0): 0
 
 ## Projection posture
@@ -45,7 +45,7 @@ Generated: 2026-07-26T18:11:11.432Z
 
 ## Validation backlog
 
-- Validation items: 18
+- Validation items: 25
 - Without owner (must be 0): 0
 - Without future blocking gate (must be 0): 0
 

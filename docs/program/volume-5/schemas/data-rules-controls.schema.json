@@ -42,7 +42,12 @@
           "evidence_retained": { "type": "string" },
           "downstream_impact": { "type": "string" },
           "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
-          "superseded_future_blocking_gate": { "$ref": "common.schema.json#/definitions/v5GateId" },
+          "superseded_future_blocking_gate": {
+            "oneOf": [
+              { "$ref": "common.schema.json#/definitions/v5GateId" },
+              { "type": "array", "items": { "$ref": "common.schema.json#/definitions/v5GateId" } }
+            ]
+          },
           "gate_reassignment_ref": { "type": "string" },
 
           "affected_entities": { "type": "array", "items": { "type": "string" } },
@@ -54,7 +59,20 @@
           "source": { "type": "string" },
           "transformation_lineage": { "type": "string" },
           "retention_dependency": { "type": "string" },
-          "audit_expectation": { "type": "string" }
+          "audit_expectation": { "type": "string" },
+
+          "rule_lifecycle_stage": { "type": "string" },
+          "issue_classification": { "type": "string" },
+          "resolution_authority": { "type": "string" },
+          "exception_authority": { "type": "string" },
+          "exception_expiry": { "type": "string" },
+          "measurement_status": { "type": "string" },
+          "target_status": { "type": "string" },
+          "conflict_authority": { "type": "string" },
+          "purpose_limitation": { "type": "string" },
+          "minimization_posture": { "type": "string" },
+          "disclosure_authority": { "type": "string" },
+          "operational_proof_requirement": { "type": "string" }
         }
       }
     }

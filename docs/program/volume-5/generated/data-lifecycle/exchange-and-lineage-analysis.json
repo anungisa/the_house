@@ -1,0 +1,20 @@
+{
+  "exchange_records": 5,
+  "without_source_authority": [],
+  "without_lineage": [],
+  "external_authority_data": [
+    {
+      "id": "EXCH-V5-001",
+      "source_authority": "External payment provider"
+    },
+    {
+      "id": "EXCH-V5-002",
+      "source_authority": "Accounting authority"
+    },
+    {
+      "id": "EXCH-V5-003",
+      "source_authority": "External recognition authority"
+    }
+  ],
+  "external_data_retains_external_authority": true
+}

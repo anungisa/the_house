@@ -1,7 +1,7 @@
 register_id: REG-503
 name: Volume 5 Data Decisions
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: ADR-V5-001
     title: Data governance is defined before logical or physical design
@@ -192,3 +192,150 @@ records:
     evidence_refs:
       - RISK-V5-002
       - LENT-V5-009
+
+  # ==== Package 3: data lifecycle, stewardship, reference-data, quality decisions ====
+  - id: ADR-V5-017
+    title: Data is classified as master, reference, transactional, evidentiary, or derived
+    decision: Every governed data set is classified by data class (master, reference, transactional, lifecycle-history, evidentiary, audit, derived, analytical, external-authority, or transitional), and its class governs authority, custody, and lifecycle expectations.
+    status: ACCEPTED
+    context: Different data classes carry different authority and lifecycle obligations that must be explicit before design.
+    consequence: Logical and physical design in later volumes must respect the class-based authority and lifecycle model.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-21
+    evidence_refs:
+      - MDS-V5-001
+      - RDS-V5-001
+  - id: ADR-V5-018
+    title: Reference data and controlled vocabularies are versioned and bilingual
+    decision: Reference data sets, code sets, and controlled terms are versioned, carry English and French labels where user-facing, and deprecate values with a documented replacement rather than deleting or reusing them.
+    status: ACCEPTED
+    context: Unversioned or monolingual reference data corrupts historical interpretation and bilingual obligations.
+    consequence: Historical cases remain interpretable against the reference-data version that applied at their time.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-22
+    evidence_refs:
+      - CODE-V5-003
+      - CTERM-V5-001
+  - id: ADR-V5-019
+    title: External reference data retains external authority
+    decision: Reference data sourced from an external authority is held as an aligned governed copy; the House never becomes the independent authority for external facts such as jurisdiction identity.
+    status: ACCEPTED
+    context: Overwriting external authority would misrepresent governed truth.
+    consequence: External reference data is reconciled and aligned, never re-authored.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-22
+    evidence_refs:
+      - RDS-V5-001
+      - EXCH-V5-003
+  - id: ADR-V5-020
+    title: Stewardship is not decision authority
+    decision: Data ownership, stewardship, technical custody, and governed decision rights are separate; a steward manages data quality but does not thereby hold governed decision authority.
+    status: ACCEPTED
+    context: Conflating stewardship with decision authority would create an unauthorized decision path.
+    consequence: Decision rights remain with named governed authorities distinct from stewardship roles.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-23
+    evidence_refs:
+      - MDS-V5-001
+      - DISS-V5-003
+  - id: ADR-V5-021
+    title: Data-quality rules have a governed lifecycle with authority-bound exceptions
+    decision: Data-quality rules are defined, measured, and remediated through a governed lifecycle; exceptions are time-bounded and require a named exception authority and expiry.
+    status: ACCEPTED
+    context: Quality rules without a governed exception path either block operations or are silently bypassed.
+    consequence: Quality exceptions are explicit, authorized, and expiring, never permanent silent waivers.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-24
+    evidence_refs:
+      - QUALITY-V5-004
+      - DISS-V5-003
+  - id: ADR-V5-022
+    title: Retention is dependency-bound and legal hold supersedes disposition
+    decision: Data lifecycle, records, retention, archival, and disposition are dependency-bound; no retention period or deletion schedule is approved in Package 3, and a legal hold supersedes any archival or disposition eligibility.
+    status: ACCEPTED
+    context: Retention periods and disposition require a records-policy authority not yet appointed; legal obligations must never be overridden by elapsed time.
+    consequence: Disposition remains blocked until a records-policy authority sets governed schedules, and legal hold always prevails.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-25
+    evidence_refs:
+      - DLC-V5-001
+      - RETD-V5-002
+  - id: ADR-V5-023
+    title: Identity resolution is evidence-based and similarity is not identity
+    decision: Duplicate management, merge, split, and survivorship are evidence-based and steward-authorized; automated similarity is advisory only and never auto-merges records.
+    status: ACCEPTED
+    context: Automated matching on similarity risks incorrect merges that destroy governed identity and history.
+    consequence: Merges and splits preserve history and require named authority and evidence.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-26
+    evidence_refs:
+      - DISS-V5-001
+      - RCON-V5-003
+  - id: ADR-V5-024
+    title: Reconciliation preserves authority boundaries
+    decision: Cross-system reconciliation compares records without inventing a new authority; each context names a conflict authority, and payment acknowledgement, accounting confirmation, and reconciliation remain distinct facts.
+    status: ACCEPTED
+    context: A reconciliation that overrides source authority would corrupt governed truth.
+    consequence: Conflicts resolve to the named authoritative source, never to the reconciliation record itself.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-27
+    evidence_refs:
+      - RCON-V5-001
+      - CTERM-V5-004
+  - id: ADR-V5-025
+    title: Data exchange preserves source authority and lineage
+    decision: Import, export, and transformation preserve source authority and lineage; external-authority intake is normalized without inferring new authority, and derived exports are minimized and non-authoritative.
+    status: ACCEPTED
+    context: Exchange that loses lineage or re-authors external data breaks traceability and authority.
+    consequence: Every exchange record names a source authority and a transformation or lineage.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-28
+    evidence_refs:
+      - EXCH-V5-001
+      - EXCH-V5-004
+  - id: ADR-V5-026
+    title: Purpose, minimization, and disclosure govern data use
+    decision: Data use is bound by permitted purpose, minimum-necessary data, and named disclosure authority; derived and analytical data hold no independent authority and analytics use is aggregate and minimized.
+    status: ACCEPTED
+    context: Unbounded use or disclosure violates minimization and privacy obligations.
+    consequence: Each governed use names its purpose, audiences, and disclosure authority.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-29
+    evidence_refs:
+      - DUSE-V5-001
+      - DUSE-V5-004
+  - id: ADR-V5-027
+    title: Stewardship measures are concepts requiring future operational proof
+    decision: Stewardship measures are governed measurement concepts with accountable owners; no measure asserts an implemented metric, approved baseline, target, or operational assurance in Package 3.
+    status: ACCEPTED
+    context: Claiming operational measurement without evidence would fabricate assurance.
+    consequence: Measures name a future operational-proof requirement and claim no current assurance.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-30
+    evidence_refs:
+      - SMEA-V5-001
+      - SMEA-V5-004
+  - id: ADR-V5-028
+    title: Validation obligations are reassigned away from the passed Gate V5-G3
+    decision: Every rule, assumption, and validation-backlog obligation that named the now-passed Gate V5-G3 as its future blocking gate is additively reassigned to the next Volume 5 gate V5-G4 (or the appropriate downstream gate); the prior V5-G3 assignment is preserved on each record as superseded_future_blocking_gate, alongside any earlier superseded gate.
+    status: ACCEPTED
+    context: Gate V5-G3 passes at Package 3 closure, so no unresolved obligation may retain V5-G3 as a future blocking gate; the frozen Package 2 chapters record the historical assignment while the operative registers reflect the corrected gate.
+    consequence: The next Volume 5 gate carries the reassigned logical-model and governance validation obligations; the reassignment is additive and preserves history.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-31
+    evidence_refs:
+      - INTEG-V5-013
+      - ASM-V5-001
+

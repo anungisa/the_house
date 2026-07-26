@@ -1,0 +1,18 @@
+{
+  "total": 13,
+  "without_version_posture": [
+    "REFD-V5-001",
+    "CODE-V5-001",
+    "CODE-V5-002"
+  ],
+  "without_bilingual_labels": [
+    "CODE-V5-001",
+    "CODE-V5-002"
+  ],
+  "by_compatibility_posture": {
+    "UNSET": 10,
+    "Additive; retired jurisdictions are deprecated, not deleted.": 1,
+    "Additive and backward-compatible.": 1,
+    "Additive; retired statuses map to a documented replacement.": 1
+  }
+}

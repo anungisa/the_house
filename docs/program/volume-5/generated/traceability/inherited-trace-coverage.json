@@ -794,5 +794,319 @@
     "traces_to_local": [
       "TEST-V5-013"
     ]
+  },
+  {
+    "id": "MDS-V5-001",
+    "kind": "MASTER_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-001"
+    ]
+  },
+  {
+    "id": "MDS-V5-002",
+    "kind": "MASTER_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-002"
+    ]
+  },
+  {
+    "id": "MDS-V5-003",
+    "kind": "MASTER_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-004"
+    ]
+  },
+  {
+    "id": "MDS-V5-004",
+    "kind": "MASTER_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-003"
+    ]
+  },
+  {
+    "id": "MDS-V5-005",
+    "kind": "MASTER_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-010"
+    ]
+  },
+  {
+    "id": "RDS-V5-001",
+    "kind": "REFERENCE_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-009"
+    ]
+  },
+  {
+    "id": "RDS-V5-002",
+    "kind": "REFERENCE_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "RDS-V5-003",
+    "kind": "REFERENCE_DATA_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CODE-V5-003",
+    "kind": "CODE_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-013"
+    ]
+  },
+  {
+    "id": "CODE-V5-004",
+    "kind": "CODE_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-018"
+    ]
+  },
+  {
+    "id": "CODE-V5-005",
+    "kind": "CODE_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CTERM-V5-001",
+    "kind": "CONTROLLED_TERM",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CTERM-V5-002",
+    "kind": "CONTROLLED_TERM",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CTERM-V5-003",
+    "kind": "CONTROLLED_TERM",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-023"
+    ]
+  },
+  {
+    "id": "CTERM-V5-004",
+    "kind": "CONTROLLED_TERM",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-022"
+    ]
+  },
+  {
+    "id": "DISS-V5-001",
+    "kind": "DATA_ISSUE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MDS-V5-001"
+    ]
+  },
+  {
+    "id": "DISS-V5-002",
+    "kind": "DATA_ISSUE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MDS-V5-003"
+    ]
+  },
+  {
+    "id": "DISS-V5-003",
+    "kind": "DATA_ISSUE",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DLC-V5-001",
+    "kind": "DATA_LIFECYCLE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-013"
+    ]
+  },
+  {
+    "id": "DLC-V5-002",
+    "kind": "DATA_LIFECYCLE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-016"
+    ]
+  },
+  {
+    "id": "DLC-V5-003",
+    "kind": "DATA_LIFECYCLE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-019"
+    ]
+  },
+  {
+    "id": "DLC-V5-004",
+    "kind": "DATA_LIFECYCLE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-004"
+    ]
+  },
+  {
+    "id": "DLC-V5-005",
+    "kind": "DATA_LIFECYCLE",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "RETD-V5-001",
+    "kind": "RETENTION_DEPENDENCY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "RETD-V5-002",
+    "kind": "RETENTION_DEPENDENCY",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "RCON-V5-001",
+    "kind": "RECONCILIATION_CONTEXT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-022"
+    ]
+  },
+  {
+    "id": "RCON-V5-002",
+    "kind": "RECONCILIATION_CONTEXT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "RCON-V5-003",
+    "kind": "RECONCILIATION_CONTEXT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DISS-V5-001"
+    ]
+  },
+  {
+    "id": "EXCH-V5-001",
+    "kind": "EXCHANGE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-020"
+    ]
+  },
+  {
+    "id": "EXCH-V5-002",
+    "kind": "EXCHANGE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-021"
+    ]
+  },
+  {
+    "id": "EXCH-V5-003",
+    "kind": "EXCHANGE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RCON-V5-002"
+    ]
+  },
+  {
+    "id": "EXCH-V5-004",
+    "kind": "EXCHANGE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DERV-V5-005"
+    ]
+  },
+  {
+    "id": "EXCH-V5-005",
+    "kind": "EXCHANGE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DERV-V5-001"
+    ]
+  },
+  {
+    "id": "DUSE-V5-001",
+    "kind": "DATA_USE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-008"
+    ]
+  },
+  {
+    "id": "DUSE-V5-002",
+    "kind": "DATA_USE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-019"
+    ]
+  },
+  {
+    "id": "DUSE-V5-003",
+    "kind": "DATA_USE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DERV-V5-005"
+    ]
+  },
+  {
+    "id": "DUSE-V5-004",
+    "kind": "DATA_USE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "EXCH-V5-005"
+    ]
+  },
+  {
+    "id": "DUSE-V5-005",
+    "kind": "DATA_USE",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "SMEA-V5-001",
+    "kind": "STEWARDSHIP_MEASURE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MDS-V5-001"
+    ]
+  },
+  {
+    "id": "SMEA-V5-002",
+    "kind": "STEWARDSHIP_MEASURE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "RCON-V5-001"
+    ]
+  },
+  {
+    "id": "SMEA-V5-003",
+    "kind": "STEWARDSHIP_MEASURE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DISS-V5-002"
+    ]
+  },
+  {
+    "id": "SMEA-V5-004",
+    "kind": "STEWARDSHIP_MEASURE",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DISS-V5-003"
+    ]
   }
 ]

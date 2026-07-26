@@ -67,7 +67,47 @@
         "SNAPSHOT",
         "PROVENANCE_RECORD",
         "CORRECTION_RECORD",
-        "DERIVED_DATA_PRODUCT"
+        "DERIVED_DATA_PRODUCT",
+        "MASTER_DATA_SET",
+        "REFERENCE_DATA_SET",
+        "CONTROLLED_TERM",
+        "DATA_LIFECYCLE",
+        "DATA_ISSUE",
+        "RECONCILIATION_CONTEXT",
+        "EXCHANGE_RECORD",
+        "DATA_USE",
+        "STEWARDSHIP_MEASURE",
+        "RETENTION_DEPENDENCY"
+      ]
+    },
+    "dataClass": {
+      "type": "string",
+      "enum": [
+        "MASTER_DATA",
+        "REFERENCE_DATA",
+        "TRANSACTIONAL_DATA",
+        "LIFECYCLE_HISTORY",
+        "EVIDENTIARY_DATA",
+        "AUDIT_DATA",
+        "DERIVED_DATA",
+        "ANALYTICAL_DATA",
+        "EXTERNAL_AUTHORITY_DATA",
+        "TRANSITIONAL_DATA"
+      ]
+    },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "ACTIVE",
+        "SUPERSEDED",
+        "INACTIVE",
+        "ARCHIVAL_ELIGIBLE",
+        "ARCHIVED",
+        "LEGAL_HOLD",
+        "DISPOSITION_ELIGIBLE",
+        "DISPOSITION_AUTHORIZED",
+        "DISPOSED"
       ]
     },
     "ruleKind": {

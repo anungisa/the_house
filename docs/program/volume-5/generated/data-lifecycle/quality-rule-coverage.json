@@ -1,11 +1,13 @@
 {
-  "by_kind": {
-    "RULE": 15,
-    "QUALITY": 14,
-    "LINEAGE": 10,
-    "CTRL": 12,
-    "INTEGRITY": 18
-  },
+  "total": 14,
+  "without_dimension": [],
+  "without_correction_authority": [],
+  "with_exception_authority": [
+    "QUALITY-V5-011",
+    "QUALITY-V5-012",
+    "QUALITY-V5-013",
+    "QUALITY-V5-014"
+  ],
   "by_quality_dimension": {
     "VALIDITY": 2,
     "COMPLETENESS": 2,
