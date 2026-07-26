@@ -499,3 +499,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-H-package-4-provenance-amendment.md
     gate: V5-G4
+  - id: V5-I
+    title: Volume 5 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-I-volume-5-completion-and-release-freeze-record.md
+    gate: V5-G5

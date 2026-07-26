@@ -1,6 +1,6 @@
 # Volume 5 Package 4 Physical-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T20:06:27.762Z
+Generated: 2026-07-26T20:07:28.994Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 4 defines a DOCUMENTARY
@@ -55,5 +55,5 @@ Generated: 2026-07-26T20:06:27.762Z
 
 ## Validation-gate correctness
 
-- Completed (passed) gates: V5-G1, V5-G2, V5-G3, V5-G4
+- Completed (passed) gates: V5-G1, V5-G2, V5-G3, V5-G4, V5-G5
 - Backlog items pointing at a completed gate (must be 0): 0
