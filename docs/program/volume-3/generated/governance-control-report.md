@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:45:14.084Z
+Generated: 2026-07-26T12:47:55.432Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T12:45:14.084Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 28 |
+| RATIFIED | 29 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.2.0 | 28 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.3.0 | 29 |
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.2.0 | 25 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.1.0 | 19 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.2.0 | 211 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.3.0 | 7 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.4.0 | 34 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.4.0 | 9 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.5.0 | 37 |
 
 ## Findings by control
 
@@ -120,3 +120,21 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-032 (V3-23): Incident, continuity, and recovery governance defined; no technical incident response or disaster-recovery design.
 - APP-V3-033 (V3-24): Continuous improvement governed; proposals route to gates and do not authorize implementation.
 - APP-V3-034 (V3-25): Playbook consolidates the governance model and records explicit exclusions of material commitment.
+- APP-V3-035 (V3-C): Package 3 closure record ratified; records inherited Package 2 baseline and Gate V3-G3 disposition.
+- APP-V3-036 (GATE-V3-G3): Condition 1: Package 2 freeze provenance distinguishes source snapshot, closure/freeze commit, and merged commit
+- APP-V3-036 (GATE-V3-G3): Condition 2: Operating-governance functions and decision forums are defined with a decision-rights model
+- APP-V3-036 (GATE-V3-G3): Condition 3: Service ownership and management-reporting responsibilities are defined
+- APP-V3-036 (GATE-V3-G3): Condition 4: Material business risks have owners and control objectives
+- APP-V3-036 (GATE-V3-G3): Condition 5: Preventive, detective, corrective, and assurance controls are represented
+- APP-V3-036 (GATE-V3-G3): Condition 6: Operating, policy, financial, privacy, bilingual, accessibility, and authority-boundary changes are classified
+- APP-V3-036 (GATE-V3-G3): Condition 7: External dependencies have owners, failure handling, reconciliation, and escalation
+- APP-V3-036 (GATE-V3-G3): Condition 8: Operational information has business stewards and correction authority
+- APP-V3-036 (GATE-V3-G3): Condition 9: Incidents, problems, continuity events, and support issues are distinguished
+- APP-V3-036 (GATE-V3-G3): Condition 10: Recovery and post-incident assurance preserve governed authority and evidence
+- APP-V3-036 (GATE-V3-G3): Condition 11: Continuous improvement is governed and does not authorize implementation
+- APP-V3-036 (GATE-V3-G3): Condition 12: Unresolved governance assumptions have accountable owners and future gates
+- APP-V3-036 (GATE-V3-G3): Condition 13: No requirement or decision authorizes implementation or procurement
+- APP-V3-036 (GATE-V3-G3): Condition 14: No technical architecture, staffing plan, cost plan, delivery sequence, or master development plan is created
+- APP-V3-036 (GATE-V3-G3): Condition 15: Package 3 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit
+- APP-V3-037 (PACKAGE-3-3): Package 3 corpus frozen at version 1.0.0 through a separate freeze commit.
+- APP-V3-037 (PACKAGE-3-3): Freeze provenance completed post-merge through the recorded amendment process.
