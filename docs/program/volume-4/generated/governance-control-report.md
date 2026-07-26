@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T14:29:55.146Z
+Generated: 2026-07-26T14:52:49.940Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -13,10 +13,10 @@ Generated: 2026-07-26T14:29:55.146Z
 
 ## Summary
 
-- Total findings: 0
+- Total findings: 6
 - Errors: 0
-- Warnings: 0
-- Info: 0
+- Warnings: 3
+- Info: 3
 - Overall: PASS (no integrity errors)
 
 ## Architecture vocabularies (schema-enforced)
@@ -31,18 +31,18 @@ Generated: 2026-07-26T14:29:55.146Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 12 |
+| RATIFIED | 21 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.2.0 | 12 |
-| REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.0.0 | 93 |
-| REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.0.0 | 8 |
-| REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.0.0 | 13 |
-| REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.0.0 | 8 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.2.0 | 14 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.3.0 | 21 |
+| REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.1.0 | 137 |
+| REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.1.0 | 18 |
+| REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.1.0 | 33 |
+| REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.1.0 | 22 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.3.0 | 23 |
 
 ## Findings by control
 
@@ -54,9 +54,14 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Cross-reference & traceability integrity
 
-Errors: 0 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 3 | Info: 3
 
-- (no findings)
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-016]: ARCH-V4-016 (ARCH) traces_to ARCH-V4-001 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-016]: ARCH-V4-016: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-017]: ARCH-V4-017 (ARCH) traces_to ARCH-V4-001 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-017]: ARCH-V4-017: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-018]: ARCH-V4-018 (ARCH) traces_to ARCH-V4-006 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-018]: ARCH-V4-018: no traces_to target precedes its kind in the architecture order
 
 ## Recorded conditions (from REG-405 approvals)
 
@@ -106,3 +111,21 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V4-014 (V4-B): Preserves Gate V4-G1 and its ARCHITECTURE_FOUNDATION_READY disposition.
 - APP-V4-014 (V4-B): Does not reopen or modify frozen Package 1 artifacts V4-00..V4-09 or V4-A.
 - APP-V4-014 (V4-B): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-015 (V4-10): Application architecture, layering, and dependency rules ratified as architecture definition only.
+- APP-V4-015 (V4-10): Inward dependency direction defined; no runtime code, migration, or executable contract authorized.
+- APP-V4-016 (V4-11): Organization, jurisdiction, season, and affiliation domain model ratified.
+- APP-V4-016 (V4-11): Domain invariants defined conceptually; no database schema or table design authorized.
+- APP-V4-017 (V4-12): Requirements, applicability, evidence, completeness, and submission architecture ratified.
+- APP-V4-017 (V4-12): Versioned applicability and derived completeness defined; no storage contract or executable rule engine authorized.
+- APP-V4-018 (V4-13): Review, decision, reconciliation, activation, and correction domain architecture ratified.
+- APP-V4-018 (V4-13): Decision-authority separation defined; no lifecycle implementation or migration authorized.
+- APP-V4-019 (V4-14): Application services, commands, queries, and error semantics ratified.
+- APP-V4-019 (V4-14): Command and error semantics defined; no executable API design or endpoint contract authorized.
+- APP-V4-020 (V4-15): Resource-aware authorization and policy-decision architecture ratified.
+- APP-V4-020 (V4-15): Default-deny, resource, jurisdiction, and assignment inputs defined; no policy implementation authorized.
+- APP-V4-021 (V4-16): Transaction, concurrency, idempotency, outbox, and projection architecture ratified.
+- APP-V4-021 (V4-16): Atomicity and exactly-once activation effect defined; no persistence implementation or migration authorized.
+- APP-V4-022 (V4-17): Composition, configuration, adapters, and dependency-completeness architecture ratified.
+- APP-V4-022 (V4-17): Fail-closed composition defined; no infrastructure provisioning or deployment topology authorized.
+- APP-V4-023 (V4-18): Architecture verification, fitness functions, and implementation-readiness criteria ratified.
+- APP-V4-023 (V4-18): House P0 findings mapped to defined verifications; all verifications remain DEFINED_NOT_IMPLEMENTED.

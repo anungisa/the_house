@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -196,4 +196,94 @@ records:
       - Preserves Gate V4-G1 and its ARCHITECTURE_FOUNDATION_READY disposition.
       - Does not reopen or modify frozen Package 1 artifacts V4-00..V4-09 or V4-A.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  - id: APP-V4-015
+    artifact_id: V4-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Application architecture, layering, and dependency rules ratified as architecture definition only.
+      - Inward dependency direction defined; no runtime code, migration, or executable contract authorized.
+    approved_at: null
+  - id: APP-V4-016
+    artifact_id: V4-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Organization, jurisdiction, season, and affiliation domain model ratified.
+      - Domain invariants defined conceptually; no database schema or table design authorized.
+    approved_at: null
+  - id: APP-V4-017
+    artifact_id: V4-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Requirements, applicability, evidence, completeness, and submission architecture ratified.
+      - Versioned applicability and derived completeness defined; no storage contract or executable rule engine authorized.
+    approved_at: null
+  - id: APP-V4-018
+    artifact_id: V4-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Review, decision, reconciliation, activation, and correction domain architecture ratified.
+      - Decision-authority separation defined; no lifecycle implementation or migration authorized.
+    approved_at: null
+  - id: APP-V4-019
+    artifact_id: V4-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Application services, commands, queries, and error semantics ratified.
+      - Command and error semantics defined; no executable API design or endpoint contract authorized.
+    approved_at: null
+  - id: APP-V4-020
+    artifact_id: V4-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Resource-aware authorization and policy-decision architecture ratified.
+      - Default-deny, resource, jurisdiction, and assignment inputs defined; no policy implementation authorized.
+    approved_at: null
+  - id: APP-V4-021
+    artifact_id: V4-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Transaction, concurrency, idempotency, outbox, and projection architecture ratified.
+      - Atomicity and exactly-once activation effect defined; no persistence implementation or migration authorized.
+    approved_at: null
+  - id: APP-V4-022
+    artifact_id: V4-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Composition, configuration, adapters, and dependency-completeness architecture ratified.
+      - Fail-closed composition defined; no infrastructure provisioning or deployment topology authorized.
+    approved_at: null
+  - id: APP-V4-023
+    artifact_id: V4-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture verification, fitness functions, and implementation-readiness criteria ratified.
+      - House P0 findings mapped to defined verifications; all verifications remain DEFINED_NOT_IMPLEMENTED.
     approved_at: null

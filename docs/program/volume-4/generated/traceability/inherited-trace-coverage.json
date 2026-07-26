@@ -947,5 +947,445 @@
       "CTRL-V4-008"
     ],
     "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-016",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-001"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-017",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-001"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-018",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-006"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "NFR-V4-015",
+    "kind": "NFR",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-017"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "NFR-V4-016",
+    "kind": "NFR",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-017",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-018",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-019",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-020",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-021",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-022",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-023",
+    "kind": "MOD",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-024",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-016"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-025",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-004"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-012",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-017"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-013",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-017"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-014",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-018"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-015",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-019"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-016",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-020"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-017",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-021"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-018",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-022"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-019",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-022"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-020",
+    "kind": "SVC",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-023"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-021",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-024"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-022",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-022"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "SVC-V4-023",
+    "kind": "SVC",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-018"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-009",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-018"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-010",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-019"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-011",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-020"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-012",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-021"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-013",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-022"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-014",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-025"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-011",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-025"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-012",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-025"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-013",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-020"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-014",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-019"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-015",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-024"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-016",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "MOD-V4-024"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-017",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-005"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-018",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-005"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DEP-V4-013",
+    "kind": "DEP",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V4-011"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DEP-V4-014",
+    "kind": "DEP",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V4-013"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DEP-V4-015",
+    "kind": "DEP",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V4-015"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DEP-V4-016",
+    "kind": "DEP",
+    "authority": "External",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V4-015"
+    ],
+    "inherited_trace_present": false
   }
 ]

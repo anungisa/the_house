@@ -1,8 +1,8 @@
 {
-  "chapters": 12,
-  "architecture_elements": 93,
-  "decisions": 8,
-  "fitness_functions": 13,
-  "assumptions_risks_exceptions": 8,
-  "approvals": 14
+  "chapters": 21,
+  "architecture_elements": 137,
+  "decisions": 18,
+  "fitness_functions": 33,
+  "assumptions_risks_exceptions": 22,
+  "approvals": 23
 }

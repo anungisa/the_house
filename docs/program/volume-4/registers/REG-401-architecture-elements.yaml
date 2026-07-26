@@ -1,7 +1,7 @@
 register_id: REG-401
 name: Volume 4 Architecture Elements Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ---- ARCH: architecture principles (V4-01) ----
   - id: ARCH-V4-001
@@ -895,4 +895,412 @@ records:
     architecture_status: TARGET_CONSTRAINED
     traces_to: [CTRL-V4-008]
     chapter_ref: V4-08
+    authorizes_implementation: false
+  # ==== Package 2: affiliation domain and application architecture ====
+  # ---- ARCH: application-architecture principles (V4-10, V4-12) ----
+  - id: ARCH-V4-016
+    kind: ARCH
+    title: Layered application architecture with inward dependency
+    statement: "Transport and infrastructure adapters depend inward on application and domain contracts; domain modules depend on nothing outward."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-001]
+    chapter_ref: V4-10
+    authorizes_implementation: false
+  - id: ARCH-V4-017
+    kind: ARCH
+    title: Application services orchestrate; domain modules own invariants
+    statement: "Application services own orchestration and transaction boundaries; domain modules own invariants, lifecycle rules, and domain policy."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-001]
+    chapter_ref: V4-10
+    authorizes_implementation: false
+  - id: ARCH-V4-018
+    kind: ARCH
+    title: Derived completeness over stored flags
+    statement: "Requirement completeness is derived from authoritative requirement, response, and evidence facts, never from an independently maintained flag."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-006]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  # ---- NFR: application-architecture quality attributes ----
+  - id: NFR-V4-015
+    kind: NFR
+    title: Application-boundary auditability
+    statement: "Every governed command and authorization decision is auditable at the application boundary."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [AUDITABILITY]
+    traces_to: [ARCH-V4-017]
+    chapter_ref: V4-14
+    verification_status: VALIDATION_PENDING
+    authorizes_implementation: false
+  - id: NFR-V4-016
+    kind: NFR
+    title: Concurrency safety of governed state
+    statement: "Concurrent modification of governed state is controlled so that conflicts are detected rather than silently overwritten."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [RESILIENCE]
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-16
+    verification_status: VALIDATION_PENDING
+    authorizes_implementation: false
+  # ---- MOD: affiliation domain and authorization modules (V4-11, V4-15) ----
+  - id: MOD-V4-017
+    kind: MOD
+    title: Organization module
+    statement: "Owns organization, club recognition, identity match, and continuity concepts and their invariants."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-11
+    authorizes_implementation: false
+  - id: MOD-V4-018
+    kind: MOD
+    title: Affiliation case module
+    statement: "Owns the affiliation case, season binding, pathway, historical standing, expiry, and closure concepts."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-11
+    authorizes_implementation: false
+  - id: MOD-V4-019
+    kind: MOD
+    title: Requirements and applicability module
+    statement: "Owns versioned requirement sets, requirement versions, and their season, jurisdiction, pathway, and classification applicability."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: MOD-V4-020
+    kind: MOD
+    title: Evidence module
+    statement: "Owns evidence requests, references, provenance, restriction, replacement, supersession, validity, and acknowledgements."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: MOD-V4-021
+    kind: MOD
+    title: Submission module
+    statement: "Owns draft submissions, final submission snapshots, and return and resubmission."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: MOD-V4-022
+    kind: MOD
+    title: Lifecycle and decision module
+    statement: "Owns the authoritative affiliation lifecycle, governed decisions, reconsideration, and administrative-correction posture."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-13
+    authorizes_implementation: false
+  - id: MOD-V4-023
+    kind: MOD
+    title: Reconciliation boundary module
+    statement: "Owns the reconciliation status boundary between governed decision and authoritative external financial systems."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-13
+    authorizes_implementation: false
+  - id: MOD-V4-024
+    kind: MOD
+    title: Activation module
+    statement: "Owns activation authorization, authoritative activation execution, and activation recovery."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-016]
+    chapter_ref: V4-13
+    authorizes_implementation: false
+  - id: MOD-V4-025
+    kind: MOD
+    title: Authorization and policy-decision module
+    statement: "Owns the resource, role, jurisdiction, assignment, and evidence-sensitivity aware policy decision and enforcement boundaries."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-004]
+    chapter_ref: V4-15
+    authorizes_implementation: false
+  # ---- SVC: application services (V4-14) ----
+  - id: SVC-V4-012
+    kind: SVC
+    title: Organization recognition service
+    statement: "Recognizes or establishes an organization and records identity match under governed authority."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-017]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-013
+    kind: SVC
+    title: Representative authority service
+    statement: "Establishes resource-specific representative authority for an organization."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-017]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-014
+    kind: SVC
+    title: Seasonal affiliation and pathway service
+    statement: "Opens seasonal affiliation and determines or confirms pathway under governed rules."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-018]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-015
+    kind: SVC
+    title: Requirements and responses service
+    statement: "Calculates applicable requirements and saves responses against requirement versions."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-019]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-016
+    kind: SVC
+    title: Evidence binding service
+    statement: "Binds or replaces evidence bound to case, requirement version, actor, provenance, and evidence version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-020]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-017
+    kind: SVC
+    title: Submission service
+    statement: "Submits a case, capturing the final submission snapshot of requirement and policy versions."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-021]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-018
+    kind: SVC
+    title: Review assignment and return service
+    statement: "Assigns or reassigns reviewers, returns for information, resubmits, and escalates under governed authority."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-022]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-019
+    kind: SVC
+    title: Decision service
+    statement: "Records the governed decision bound to actor, authority, evidence, rationale, and policy version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-022]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-020
+    kind: SVC
+    title: Reconciliation status service
+    statement: "Updates reconciliation status from authoritative external financial systems."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-023]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-021
+    kind: SVC
+    title: Activation service
+    statement: "Authorizes, executes, and recovers authoritative affiliation activation with idempotent effect."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-024]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-022
+    kind: SVC
+    title: Administrative correction service
+    statement: "Corrects administrative information under governed authority without erasing history."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-022]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  - id: SVC-V4-023
+    kind: SVC
+    title: Close and expire service
+    statement: "Closes or expires an affiliation case under governed time and authority rules."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-018]
+    chapter_ref: V4-14
+    authorizes_implementation: false
+  # ---- DATA: conceptual domain concepts (not physical schema) ----
+  - id: DATA-V4-009
+    kind: DATA
+    title: Affiliation case concept
+    statement: "Conceptual affiliation case bound to one organization and one season; no physical schema defined."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-018]
+    chapter_ref: V4-11
+    authorizes_implementation: false
+  - id: DATA-V4-010
+    kind: DATA
+    title: Requirement version concept
+    statement: "Conceptual immutable requirement version with season, jurisdiction, pathway, and classification applicability."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-019]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: DATA-V4-011
+    kind: DATA
+    title: Evidence reference and provenance concept
+    statement: "Conceptual evidence reference bound to case, requirement version, actor, provenance, and evidence version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-020]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: DATA-V4-012
+    kind: DATA
+    title: Submission snapshot concept
+    statement: "Conceptual final submission snapshot preserving requirement and policy versions at submission."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-021]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: DATA-V4-013
+    kind: DATA
+    title: Affiliation lifecycle state concept
+    statement: "Conceptual authoritative lifecycle state and governed transition; no physical state store defined."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-022]
+    chapter_ref: V4-13
+    authorizes_implementation: false
+  - id: DATA-V4-014
+    kind: DATA
+    title: Authorization decision inputs concept
+    statement: "Conceptual set of authorization inputs (identity, role, resource, jurisdiction, assignment, action, state, sensitivity, delegation, policy version)."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-025]
+    chapter_ref: V4-15
+    authorizes_implementation: false
+  # ---- CTRL: domain and application controls ----
+  - id: CTRL-V4-011
+    kind: CTRL
+    title: Resource-aware default-deny authorization control
+    statement: "Authorization is computed from resource, role, and jurisdiction and defaults to deny; role alone is insufficient."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-025]
+    chapter_ref: V4-15
+    authorizes_implementation: false
+  - id: CTRL-V4-012
+    kind: CTRL
+    title: Assigned-reviewer and jurisdiction enforcement control
+    statement: "Missing reviewer assignment or unresolved jurisdiction fails closed where required."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-025]
+    chapter_ref: V4-15
+    authorizes_implementation: false
+  - id: CTRL-V4-013
+    kind: CTRL
+    title: Evidence-binding control
+    statement: "Evidence is acceptable only when bound to case, applicable requirement version, actor, provenance, and evidence version."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-020]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: CTRL-V4-014
+    kind: CTRL
+    title: Derived-completeness control
+    statement: "Completeness is derived from authoritative facts and never from an independent completeness flag."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-019]
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: CTRL-V4-015
+    kind: CTRL
+    title: Atomic transaction, audit, and outbox control
+    statement: "Governed state change, audit records, and required outbox records commit atomically in one unit of work."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-024]
+    chapter_ref: V4-16
+    authorizes_implementation: false
+  - id: CTRL-V4-016
+    kind: CTRL
+    title: Activation idempotency control
+    statement: "Duplicate activation commands cannot create duplicate authoritative activation effects."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [MOD-V4-024]
+    chapter_ref: V4-16
+    authorizes_implementation: false
+  - id: CTRL-V4-017
+    kind: CTRL
+    title: Fail-closed dependency-completeness control
+    statement: "Production composition fails when a required dependency is absent; required integrations have no production no-op."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-005]
+    chapter_ref: V4-17
+    authorizes_implementation: false
+  - id: CTRL-V4-018
+    kind: CTRL
+    title: Configuration governance control
+    statement: "Configuration has provenance, validation, effective scope, and audit, and is consumed by actual entry points; incomplete configuration fails closed."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-005]
+    chapter_ref: V4-17
+    authorizes_implementation: false
+  # ---- DEP: application dependencies (V4-17) ----
+  - id: DEP-V4-013
+    kind: DEP
+    title: Authorization service dependency
+    statement: "Policy decision capability consumed through a port; no vendor selected in Package 2."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-011]
+    chapter_ref: V4-17
+    authorizes_implementation: false
+  - id: DEP-V4-014
+    kind: DEP
+    title: Evidence storage dependency
+    statement: "Evidence storage with provenance and sensitivity consumed through a port; contract unresolved."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-013]
+    chapter_ref: V4-17
+    authorizes_implementation: false
+  - id: DEP-V4-015
+    kind: DEP
+    title: Outbox publisher dependency
+    statement: "Outbox publication consumed through a port; no production no-op publisher permitted."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-015]
+    chapter_ref: V4-17
+    authorizes_implementation: false
+  - id: DEP-V4-016
+    kind: DEP
+    title: Payment and accounting reconciliation dependency
+    statement: "Reconciliation status consumed from authoritative external financial systems through a port; acknowledgement semantics unresolved."
+    authority: External
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [CTRL-V4-015]
+    chapter_ref: V4-17
     authorizes_implementation: false
