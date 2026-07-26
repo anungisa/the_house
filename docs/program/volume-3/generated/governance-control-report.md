@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T11:58:35.378Z
+Generated: 2026-07-26T12:14:53.316Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T11:58:35.378Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 9 |
+| RATIFIED | 18 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.0.0 | 9 |
-| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.0.0 | 7 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.1.0 | 18 |
+| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.1.0 | 16 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.0.0 | 16 |
-| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.0.0 | 53 |
+| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.1.0 | 131 |
 | REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.1.0 | 4 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.1.0 | 12 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.2.0 | 21 |
 
 ## Findings by control
 
@@ -83,3 +83,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-011 (PACKAGE-3-1): Package 1 corpus frozen at version 1.0.0 through a separate freeze commit.
 - APP-V3-012 (PACKAGE-3-1): Package 1 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
 - APP-V3-012 (PACKAGE-3-1): Source snapshot 34eba63; closure/freeze ce41279; merged 8c4f4ff.
+- APP-V3-013 (V3-08): Operating cycle and readiness model are definition-only; no calendar dates or lead times are fabricated.
+- APP-V3-014 (V3-09): Recognition, triage, and case-opening determinations carry a class and authority; no informal pathway discretion.
+- APP-V3-015 (V3-10): Every handoff records retained and transferred authority; no handoff silently changes decision authority.
+- APP-V3-016 (V3-11): Exception and correction categories are distinct; none substitutes for a governed lifecycle decision.
+- APP-V3-017 (V3-12): Financial boundaries are preserved and activation executes exactly once; no fee amounts or accounting policy are fabricated.
+- APP-V3-018 (V3-13): Support holds no authority to change pathway, approve evidence, record decisions, waive fees, or activate.
+- APP-V3-019 (V3-14): Each control records owner, performer, frequency, evidence, and validation status; no numerical thresholds are invented.
+- APP-V3-020 (V3-15): Capacity inputs and measures are classified; no staffing, headcount, or numeric target is committed.
+- APP-V3-021 (V3-16): Playbook consolidates the operating model and records downstream matters outside Package 2; no material commitment.

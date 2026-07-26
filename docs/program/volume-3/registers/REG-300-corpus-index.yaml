@@ -1,7 +1,7 @@
 register_id: REG-300
 name: Volume 3 Corpus Index
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: V3-00
     title: Volume Control and Inheritance
@@ -75,3 +75,75 @@ records:
     version: 1.0.0
     path: docs/program/volume-3/V3-A-package-1-closure-record.md
     gate: V3-G1
+  - id: V3-08
+    title: Seasonal Affiliation Operating Calendar and Readiness Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-08-seasonal-affiliation-operating-calendar-and-readiness-model.md
+    gate: V3-G2
+  - id: V3-09
+    title: Organization Recognition, Pathway Triage, and Case-Opening Operations
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-09-organization-recognition-pathway-triage-and-case-opening-operations.md
+    gate: V3-G2
+  - id: V3-10
+    title: Queue, Assignment, Review, and Handoff Operations
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-10-queue-assignment-review-and-handoff-operations.md
+    gate: V3-G2
+  - id: V3-11
+    title: Remediation, Exception, Reconsideration, and Correction Operations
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-11-remediation-exception-reconsideration-and-correction-operations.md
+    gate: V3-G2
+  - id: V3-12
+    title: Financial Reconciliation and Activation Operations
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-12-financial-reconciliation-and-activation-operations.md
+    gate: V3-G2
+  - id: V3-13
+    title: Support, Communication, Notification, and Service-Recovery Operations
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-13-support-communication-notification-and-service-recovery-operations.md
+    gate: V3-G2
+  - id: V3-14
+    title: Operational Quality, Assurance, Audit, and Management Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-14-operational-quality-assurance-audit-and-management-controls.md
+    gate: V3-G2
+  - id: V3-15
+    title: Capacity, Workload, Service Measures, and Operating Assumptions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-15-capacity-workload-service-measures-and-operating-assumptions.md
+    gate: V3-G2
+  - id: V3-16
+    title: Seasonal Operating Playbook and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-16-seasonal-operating-playbook-and-downstream-constraints.md
+    gate: V3-G2

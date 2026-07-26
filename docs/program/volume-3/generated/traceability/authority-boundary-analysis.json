@@ -12,8 +12,8 @@
   ],
   "button_primary_with_governed_authority_conflict": [],
   "requirement_product_distribution": {
-    "House": 52,
-    "Button": 1,
+    "House": 129,
+    "Button": 2,
     "Both": 0,
     "Neither": 0
   },

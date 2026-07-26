@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -186,4 +186,86 @@ records:
     conditions:
       - Package 1 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
       - Source snapshot 34eba63; closure/freeze ce41279; merged 8c4f4ff.
+    approved_at: null
+  # ---- Package 2 chapter ratifications (V3-08 through V3-16) ----
+  - id: APP-V3-013
+    artifact_id: V3-08
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Operating cycle and readiness model are definition-only; no calendar dates or lead times are fabricated.
+    approved_at: null
+  - id: APP-V3-014
+    artifact_id: V3-09
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Recognition, triage, and case-opening determinations carry a class and authority; no informal pathway discretion.
+    approved_at: null
+  - id: APP-V3-015
+    artifact_id: V3-10
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Every handoff records retained and transferred authority; no handoff silently changes decision authority.
+    approved_at: null
+  - id: APP-V3-016
+    artifact_id: V3-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Exception and correction categories are distinct; none substitutes for a governed lifecycle decision.
+    approved_at: null
+  - id: APP-V3-017
+    artifact_id: V3-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Financial boundaries are preserved and activation executes exactly once; no fee amounts or accounting policy are fabricated.
+    approved_at: null
+  - id: APP-V3-018
+    artifact_id: V3-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Support holds no authority to change pathway, approve evidence, record decisions, waive fees, or activate.
+    approved_at: null
+  - id: APP-V3-019
+    artifact_id: V3-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Each control records owner, performer, frequency, evidence, and validation status; no numerical thresholds are invented.
+    approved_at: null
+  - id: APP-V3-020
+    artifact_id: V3-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Capacity inputs and measures are classified; no staffing, headcount, or numeric target is committed.
+    approved_at: null
+  - id: APP-V3-021
+    artifact_id: V3-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Playbook consolidates the operating model and records downstream matters outside Package 2; no material commitment.
     approved_at: null

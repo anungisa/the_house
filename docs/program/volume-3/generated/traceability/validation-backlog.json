@@ -1,12 +1,14 @@
 {
   "generated_at": null,
-  "pending_count": 16,
+  "pending_count": 39,
   "by_classification": {
-    "OPERATIONAL_VALIDATION_PENDING": 8,
-    "FINANCIAL_VALIDATION_PENDING": 2,
+    "OPERATIONAL_VALIDATION_PENDING": 18,
+    "FINANCIAL_VALIDATION_PENDING": 3,
     "BILINGUAL_VALIDATION_PENDING": 2,
-    "POLICY_VALIDATION_PENDING": 1,
-    "BASELINE_PENDING": 3
+    "POLICY_VALIDATION_PENDING": 6,
+    "BASELINE_PENDING": 7,
+    "ACCESSIBILITY_VALIDATION_PENDING": 2,
+    "PRIVACY_VALIDATION_PENDING": 1
   },
   "items": [
     {
@@ -23,6 +25,24 @@
       "level": "CTRL",
       "classifications": [
         "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "CTRL-V3-014",
+      "level": "CTRL",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "CTRL-V3-018",
+      "level": "CTRL",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
       ],
       "owner": null,
       "future_blocking_gate": null
@@ -46,10 +66,28 @@
       "future_blocking_gate": null
     },
     {
+      "id": "FR-V3-016",
+      "level": "FR",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
       "id": "NFR-V3-002",
       "level": "NFR",
       "classifications": [
         "BILINGUAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "NFR-V3-005",
+      "level": "NFR",
+      "classifications": [
+        "ACCESSIBILITY_VALIDATION_PENDING"
       ],
       "owner": null,
       "future_blocking_gate": null
@@ -83,6 +121,78 @@
     },
     {
       "id": "RULE-V3-004",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-005",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-006",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-007",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-008",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-009",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-010",
+      "level": "RULE",
+      "classifications": [
+        "FINANCIAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-011",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-012",
       "level": "RULE",
       "classifications": [
         "POLICY_VALIDATION_PENDING"
@@ -149,6 +259,105 @@
       "level": "TEST",
       "classifications": [
         "BILINGUAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-008",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-009",
+      "level": "TEST",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-010",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-011",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-012",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-013",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-014",
+      "level": "TEST",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-015",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-016",
+      "level": "TEST",
+      "classifications": [
+        "ACCESSIBILITY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-017",
+      "level": "TEST",
+      "classifications": [
+        "PRIVACY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-018",
+      "level": "TEST",
+      "classifications": [
+        "BASELINE_PENDING"
       ],
       "owner": null,
       "future_blocking_gate": null

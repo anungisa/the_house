@@ -123,7 +123,39 @@
               "INTENTIONALLY_EXCLUDED",
               "DEFECT_REQUIRING_AMENDMENT"
             ]
-          }
+          },
+          "operating_phase": { "type": "string" },
+          "operating_function": { "type": "string" },
+          "accountable_function": { "type": "string" },
+          "performing_function": { "type": "string" },
+          "handoff_from": { "type": "string" },
+          "handoff_to": { "type": "string" },
+          "decision_authority": { "type": "string" },
+          "exception_class": {
+            "type": "string",
+            "enum": [
+              "APPLICANT_REMEDIATION",
+              "OPERATIONAL_EXCEPTION",
+              "POLICY_EXCEPTION",
+              "ADMINISTRATIVE_CORRECTION",
+              "DECISION_RECONSIDERATION",
+              "DATA_QUALITY_CORRECTION",
+              "INCIDENT_RECOVERY"
+            ]
+          },
+          "control_frequency": {
+            "type": "string",
+            "enum": [
+              "EVENT_DRIVEN",
+              "CONTINUOUS",
+              "PER_CASE",
+              "PER_SEASON",
+              "PERIODIC_BASELINE_PENDING",
+              "INCIDENT_DRIVEN"
+            ]
+          },
+          "evidence_generated": { "type": "string" },
+          "capacity_dependency": { "type": "string" }
         }
       }
     }

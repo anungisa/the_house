@@ -1,7 +1,7 @@
 register_id: REG-303
 name: Volume 3 Requirement and Acceptance Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ---- Capabilities (CAP -> OUT) ----
   - id: CAP-V3-001
@@ -583,3 +583,904 @@ records:
     authorizes_implementation: false
     validation_status: author_asserted
     acceptance_status: BILINGUAL_VALIDATION_PENDING
+  # ============================================================================
+  # Package 2 - Seasonal Affiliation Operations and Case Management
+  # ============================================================================
+  # ---- Capabilities (CAP -> OUT) ----
+  - id: CAP-V3-008
+    level: CAP
+    statement: >-
+      The program shall define a complete seasonal affiliation operating cycle from prior-season
+      review through readiness, opening, active processing, remediation, closure, and
+      post-season assurance.
+    product: House
+    traces_to:
+      - OUT-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-009
+    level: CAP
+    statement: >-
+      The program shall define organization recognition, jurisdiction determination, pathway
+      triage, and seasonal case-opening as classified operational activities.
+    product: House
+    traces_to:
+      - OUT-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-010
+    level: CAP
+    statement: >-
+      The program shall define queue ownership, assignment, reassignment, review, and
+      inter-function handoffs with explicit authority disposition.
+    product: House
+    traces_to:
+      - OUT-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-011
+    level: CAP
+    statement: >-
+      The program shall define remediation, operational and policy exceptions, administrative
+      and data-quality corrections, decision reconsideration, and incident recovery as distinct
+      categories.
+    product: House
+    traces_to:
+      - OUT-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-012
+    level: CAP
+    statement: >-
+      The program shall define financial reconciliation and one-time activation operations that
+      preserve the authority boundaries among policy, the House, the payment provider, the
+      accounting system, finance operations, and the affiliation authority.
+    product: House
+    traces_to:
+      - OUT-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-013
+    level: CAP
+    statement: >-
+      The program shall define support, communication, notification, and service-recovery
+      operations that hold no affiliation decision authority.
+    product: House
+    traces_to:
+      - OUT-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-014
+    level: CAP
+    statement: >-
+      The program shall define operational quality, assurance, audit, and management controls
+      with owner, performer, frequency classification, evidence, and validation status.
+    product: House
+    traces_to:
+      - OUT-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-015
+    level: CAP
+    statement: >-
+      The program shall define a capacity, workload, and service-measure model with explicit
+      measure classification and no staffing or headcount commitment.
+    product: House
+    traces_to:
+      - OUT-V3-015
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-016
+    level: CAP
+    statement: >-
+      The program shall define a consolidated seasonal operating playbook that identifies the
+      downstream matters outside Package 2.
+    product: House
+    traces_to:
+      - OUT-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Business rules / operating constraints (BR -> CAP) ----
+  - id: BR-V3-007
+    level: BR
+    statement: >-
+      Operating-cycle phases shall not assert calendar dates or lead times that have not been
+      approved; unspecified timing shall be marked validation-pending rather than fabricated.
+    product: House
+    traces_to:
+      - CAP-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_phase: readiness
+  - id: BR-V3-008
+    level: BR
+    statement: >-
+      Pathway selection shall follow the recorded determination class and authority and shall
+      not become informal reviewer discretion.
+    product: House
+    traces_to:
+      - CAP-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    decision_authority: Compliance and Policy Function
+  - id: BR-V3-009
+    level: BR
+    statement: >-
+      A handoff shall not change decision authority except where the transfer of authority is
+      explicitly recorded on the handoff.
+    product: House
+    traces_to:
+      - CAP-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-010
+    level: BR
+    statement: >-
+      An operational exception, policy exception, administrative correction, data-quality
+      correction, and decision reconsideration shall each be handled under its own authority and
+      shall not substitute for a governed lifecycle decision.
+    product: House
+    traces_to:
+      - CAP-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-011
+    level: BR
+    statement: >-
+      Activation shall execute an approved lifecycle effect exactly once for an affiliation; a
+      duplicate activation attempt shall be prevented.
+    product: House
+    traces_to:
+      - CAP-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-012
+    level: BR
+    statement: >-
+      A support or service-recovery action shall not change pathway, approve evidence, record an
+      affiliation decision, waive a fee, or activate an affiliation.
+    product: House
+    traces_to:
+      - CAP-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-013
+    level: BR
+    statement: >-
+      An operating control shall not assert a numerical threshold that has not been baselined;
+      unbaselined thresholds shall be marked validation-pending.
+    product: House
+    traces_to:
+      - CAP-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-014
+    level: BR
+    statement: >-
+      Package 2 shall authorize no staffing, headcount, cost, procurement, technical
+      architecture, implementation, migration, deployment, or operating-service-level
+      commitment.
+    product: House
+    traces_to:
+      - CAP-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Functional operating requirements (FR -> CAP) ----
+  - id: FR-V3-007
+    level: FR
+    statement: >-
+      The operating model shall define each seasonal operating-cycle phase with objective,
+      accountable function, participating functions, inputs, readiness conditions, outputs,
+      operating controls, escalation, and completion evidence.
+    product: House
+    traces_to:
+      - CAP-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_phase: full_cycle
+    accountable_function: Curling Canada National Operations
+  - id: FR-V3-008
+    level: FR
+    statement: >-
+      The operating model shall determine organization recognition and jurisdiction and record a
+      determination class for each recognition and jurisdiction outcome.
+    product: House
+    traces_to:
+      - CAP-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_function: recognition
+    decision_authority: PTSO / Member Association
+  - id: FR-V3-009
+    level: FR
+    statement: >-
+      The operating model shall open a seasonal affiliation case and select its pathway from the
+      recorded triage determination.
+    product: House
+    traces_to:
+      - CAP-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_function: case_opening
+  - id: FR-V3-010
+    level: FR
+    statement: >-
+      The operating model shall create and own queues and assign, reassign, and escalate work
+      items within reviewer eligibility and conflict-of-interest handling.
+    product: House
+    traces_to:
+      - CAP-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_function: work_management
+  - id: FR-V3-011
+    level: FR
+    statement: >-
+      The operating model shall record every inter-function handoff with sending and receiving
+      function, trigger, transferred information, retained and transferred authority, expected
+      acknowledgement, and failure condition.
+    product: House
+    traces_to:
+      - CAP-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+    handoff_from: sending_function
+    handoff_to: receiving_function
+  - id: FR-V3-012
+    level: FR
+    statement: >-
+      The operating model shall classify and route each remediation, exception, correction,
+      reconsideration, and incident-recovery case to its category authority.
+    product: House
+    traces_to:
+      - CAP-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+    exception_class: OPERATIONAL_EXCEPTION
+  - id: FR-V3-013
+    level: FR
+    statement: >-
+      The operating model shall create fee obligations, consume processor and accounting
+      results, resolve reconciliation exceptions, and authorize one-time activation.
+    product: House
+    traces_to:
+      - CAP-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_function: reconciliation
+    accountable_function: Finance and Reconciliation Operations
+  - id: FR-V3-014
+    level: FR
+    statement: >-
+      The operating model shall intake, classify, correlate, escalate, and recover support cases
+      without conferring decision authority on support.
+    product: House
+    traces_to:
+      - CAP-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_function: support
+    accountable_function: Support and Service Operations
+  - id: FR-V3-015
+    level: FR
+    statement: >-
+      The operating model shall record each operational control with owner, performer, frequency
+      classification, evidence generated, and validation status.
+    product: House
+    traces_to:
+      - CAP-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+    operating_function: assurance
+  - id: FR-V3-016
+    level: FR
+    statement: >-
+      The operating model shall record capacity inputs, workload assumptions, and service
+      measures with an explicit measure classification.
+    product: House
+    traces_to:
+      - CAP-V3-015
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-06
+    measure_baseline_status: BASELINE_PENDING
+    capacity_dependency: active_club_count
+  # ---- Non-functional operating requirements (NFR -> CAP) ----
+  - id: NFR-V3-004
+    level: NFR
+    statement: >-
+      Case and work-management operations shall be reconstructable for audit, including phase,
+      queue history, handoffs, exceptions, corrections, and reconciliation outcomes.
+    product: House
+    traces_to:
+      - CAP-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V3-005
+    level: NFR
+    statement: >-
+      Bilingual and accessible service recovery shall be defined with owners for defect triage
+      without asserting unvalidated recovery-time commitments.
+    product: House
+    traces_to:
+      - CAP-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-07
+    measure_baseline_status: ACCESSIBILITY_VALIDATION_PENDING
+  - id: NFR-V3-006
+    level: NFR
+    statement: >-
+      The operating cycle shall preserve continuity across peak and interruption periods without
+      asserting unvalidated capacity commitments.
+    product: House
+    traces_to:
+      - CAP-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Operating scenarios (UC -> FR) ----
+  - id: UC-V3-007
+    level: UC
+    statement: >-
+      A season is prepared through readiness phases and opened only when its readiness
+      conditions are met.
+    product: House
+    traces_to:
+      - FR-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: readiness
+  - id: UC-V3-008
+    level: UC
+    statement: >-
+      An ambiguous or duplicate organization record is recognized, resolved through the
+      appropriate determination class, and assigned a jurisdiction.
+    product: House
+    traces_to:
+      - FR-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: recognition
+  - id: UC-V3-009
+    level: UC
+    statement: >-
+      A work item is created, assigned, reassigned on reviewer absence or conflict, and escalated
+      when it ages.
+    product: House
+    traces_to:
+      - FR-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: work_management
+  - id: UC-V3-010
+    level: UC
+    statement: >-
+      A case is handed off from review to finance and back with decision authority retained by
+      the affiliation authority.
+    product: House
+    traces_to:
+      - FR-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: handoff
+  - id: UC-V3-011
+    level: UC
+    statement: >-
+      A policy exception is raised, decided by the policy authority, and recorded without the
+      reviewer assuming policy authority.
+    product: House
+    traces_to:
+      - FR-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: exception
+    exception_class: POLICY_EXCEPTION
+  - id: UC-V3-012
+    level: UC
+    statement: >-
+      A payment mismatch is detected, reconciled by finance operations, and activation is held or
+      released accordingly, executing exactly once.
+    product: House
+    traces_to:
+      - FR-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: reconciliation
+  - id: UC-V3-013
+    level: UC
+    statement: >-
+      A support case correlated to an access failure is escalated to the accountable function
+      and recovered without a support decision.
+    product: House
+    traces_to:
+      - FR-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: support
+  # ---- Operating rules (RULE -> UC) ----
+  - id: RULE-V3-005
+    level: RULE
+    statement: >-
+      A season phase is entered only when its readiness conditions are satisfied; unmet
+      conditions hold the phase.
+    product: House
+    traces_to:
+      - UC-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-006
+    level: RULE
+    statement: >-
+      Recognition, jurisdiction, and pathway determinations are classified as deterministic
+      operational determination, policy-authority decision, applicant-supplied information,
+      system-derived information, or manual exception review.
+    product: House
+    traces_to:
+      - UC-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: POLICY_VALIDATION_PENDING
+  - id: RULE-V3-007
+    level: RULE
+    statement: >-
+      An aging or conflicted work item is reassigned within reviewer eligibility and escalated;
+      reassignment does not transfer decision authority beyond eligibility.
+    product: House
+    traces_to:
+      - UC-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-008
+    level: RULE
+    statement: >-
+      A handoff transfers only the authority explicitly recorded; unrecorded authority remains
+      with the sending function.
+    product: House
+    traces_to:
+      - UC-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-009
+    level: RULE
+    statement: >-
+      A policy exception is decided by the compliance-and-policy authority; a reviewer may apply
+      but may not create exception policy.
+    product: House
+    traces_to:
+      - UC-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: POLICY_VALIDATION_PENDING
+    exception_class: POLICY_EXCEPTION
+  - id: RULE-V3-010
+    level: RULE
+    statement: >-
+      Activation executes an approved lifecycle effect exactly once; a repeated activation
+      request for the same affiliation is rejected as already activated.
+    product: House
+    traces_to:
+      - UC-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: FINANCIAL_VALIDATION_PENDING
+  - id: RULE-V3-011
+    level: RULE
+    statement: >-
+      Support may progress, correlate, annotate, and escalate a case but may not record a
+      governed decision, approve evidence, waive a fee, or activate an affiliation.
+    product: House
+    traces_to:
+      - UC-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: POLICY_VALIDATION_PENDING
+  - id: RULE-V3-012
+    level: RULE
+    statement: >-
+      An administrative correction and a governed-decision correction are distinct; a
+      governed-decision correction requires the decision authority and follows reconsideration,
+      not administrative edit.
+    product: House
+    traces_to:
+      - UC-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: POLICY_VALIDATION_PENDING
+    exception_class: ADMINISTRATIVE_CORRECTION
+  # ---- Operating workflows (WF -> RULE) ----
+  - id: WF-V3-004
+    level: WF
+    statement: >-
+      The seasonal readiness workflow proceeds through prior-season review, preparation, and
+      opening with defined phase ownership.
+    product: House
+    traces_to:
+      - RULE-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-005
+    level: WF
+    statement: >-
+      The case-opening workflow determines recognition, jurisdiction, and pathway and opens a
+      seasonal case.
+    product: House
+    traces_to:
+      - RULE-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-006
+    level: WF
+    statement: >-
+      The exception and remediation workflow classifies, routes, resolves, and returns cases to
+      the normal workflow.
+    product: House
+    traces_to:
+      - RULE-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-007
+    level: WF
+    statement: >-
+      The reconciliation-and-activation workflow resolves financial exceptions and executes
+      one-time activation or holds the case.
+    product: House
+    traces_to:
+      - RULE-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Experience handoffs (UX -> WF) ----
+  - id: UX-V3-003
+    level: UX
+    statement: >-
+      The reviewer operating view presents queue items, assignment, handoff, and prior case
+      history sufficient to act within reviewer eligibility.
+    product: House
+    traces_to:
+      - WF-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UX-V3-004
+    level: UX
+    statement: >-
+      The applicant experience surfaces case status, requested corrections, notifications, and
+      support routes through the experience layer without exposing governed decision controls.
+    product: Button
+    traces_to:
+      - WF-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Operating records (DATA -> UX) ----
+  - id: DATA-V3-003
+    level: DATA
+    statement: >-
+      The seasonal case-and-queue operating record captures phase, assignment, handoffs,
+      exceptions, corrections, and reconciliation outcomes for audit.
+    product: House
+    traces_to:
+      - UX-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V3-004
+    level: DATA
+    statement: >-
+      The notification-and-communication operating record captures notifications, delivery
+      failures, and service-recovery actions.
+    product: House
+    traces_to:
+      - UX-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V3-005
+    level: DATA
+    statement: >-
+      The capacity-and-measure operating reference captures workload inputs and measure
+      classifications used for baseline planning.
+    product: House
+    traces_to:
+      - UX-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Operating controls (CTRL -> BR / NFR) ----
+  - id: CTRL-V3-008
+    level: CTRL
+    statement: >-
+      A readiness-gate control ensures a season phase is not entered until its readiness
+      conditions are met.
+    product: House
+    traces_to:
+      - BR-V3-007
+    acceptance_ref:
+      - TEST-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: readiness_signoff
+  - id: CTRL-V3-009
+    level: CTRL
+    statement: >-
+      A pathway-selection-integrity control ensures each pathway determination carries a
+      determination class and an authority.
+    product: House
+    traces_to:
+      - BR-V3-008
+    acceptance_ref:
+      - TEST-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_CASE
+    evidence_generated: pathway_determination_record
+  - id: CTRL-V3-010
+    level: CTRL
+    statement: >-
+      A handoff-authority control ensures each handoff records its retained and transferred
+      authority.
+    product: House
+    traces_to:
+      - BR-V3-009
+    acceptance_ref:
+      - TEST-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    evidence_generated: handoff_record
+  - id: CTRL-V3-011
+    level: CTRL
+    statement: >-
+      An exception-category control ensures each exception and correction is handled under its
+      own category authority.
+    product: House
+    traces_to:
+      - BR-V3-010
+    acceptance_ref:
+      - TEST-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_CASE
+    evidence_generated: exception_disposition_record
+  - id: CTRL-V3-012
+    level: CTRL
+    statement: >-
+      An activation-idempotency control ensures activation executes exactly once for an
+      affiliation.
+    product: House
+    traces_to:
+      - BR-V3-011
+    acceptance_ref:
+      - TEST-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    evidence_generated: activation_record
+  - id: CTRL-V3-013
+    level: CTRL
+    statement: >-
+      A support-boundary control ensures support actions cannot change pathway, approve
+      evidence, record decisions, waive fees, or activate affiliations.
+    product: House
+    traces_to:
+      - BR-V3-012
+    acceptance_ref:
+      - TEST-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: CONTINUOUS
+    evidence_generated: support_action_log
+  - id: CTRL-V3-014
+    level: CTRL
+    statement: >-
+      A threshold-baseline control ensures operating thresholds are baselined or marked
+      validation-pending in the capacity model.
+    product: House
+    traces_to:
+      - BR-V3-013
+    acceptance_ref:
+      - TEST-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PERIODIC_BASELINE_PENDING
+    measure_identifier: MEAS-V3-08
+    measure_baseline_status: BASELINE_PENDING
+  - id: CTRL-V3-015
+    level: CTRL
+    statement: >-
+      An audit-reconstruction control ensures case and work-management history is reconstructable
+      across phases, handoffs, exceptions, and reconciliation outcomes.
+    product: House
+    traces_to:
+      - NFR-V3-004
+    acceptance_ref:
+      - TEST-V3-015
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: audit_reconstruction_pack
+  - id: CTRL-V3-016
+    level: CTRL
+    statement: >-
+      A bilingual-and-accessibility recovery control routes service-recovery defects to their
+      accountable owners for triage and remediation.
+    product: House
+    traces_to:
+      - NFR-V3-005
+    acceptance_ref:
+      - TEST-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: INCIDENT_DRIVEN
+    evidence_generated: defect_triage_record
+  - id: CTRL-V3-017
+    level: CTRL
+    statement: >-
+      A restricted-evidence-access control ensures restricted evidence is accessed only under
+      recorded authority.
+    product: House
+    traces_to:
+      - BR-V3-010
+    acceptance_ref:
+      - TEST-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    evidence_generated: access_authorization_record
+  - id: CTRL-V3-018
+    level: CTRL
+    statement: >-
+      A queue-aging-and-unresolved-exception control monitors aging cases and unresolved
+      exceptions and triggers escalation.
+    product: House
+    traces_to:
+      - NFR-V3-004
+    acceptance_ref:
+      - TEST-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: CONTINUOUS
+    measure_identifier: MEAS-V3-09
+    measure_baseline_status: OPERATIONAL_VALIDATION_PENDING
+  - id: CTRL-V3-019
+    level: CTRL
+    statement: >-
+      A no-material-commitment control ensures no Package 2 requirement authorizes staffing,
+      cost, procurement, architecture, implementation, or a service-level commitment.
+    product: House
+    traces_to:
+      - BR-V3-014
+    acceptance_ref:
+      - TEST-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: scope_boundary_attestation
+  # ---- Acceptance (TEST -> CTRL) ----
+  - id: TEST-V3-008
+    level: TEST
+    statement: >-
+      Confirm that a season phase cannot be entered until its readiness conditions are recorded
+      as met.
+    product: House
+    traces_to:
+      - CTRL-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-009
+    level: TEST
+    statement: >-
+      Confirm that every pathway determination records a determination class and an authority.
+    product: House
+    traces_to:
+      - CTRL-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: POLICY_VALIDATION_PENDING
+  - id: TEST-V3-010
+    level: TEST
+    statement: >-
+      Confirm that every handoff records its retained and transferred authority and does not
+      silently change decision authority.
+    product: House
+    traces_to:
+      - CTRL-V3-010
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-011
+    level: TEST
+    statement: >-
+      Confirm that each exception and correction is handled under its own category authority and
+      does not substitute for a governed decision.
+    product: House
+    traces_to:
+      - CTRL-V3-011
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-012
+    level: TEST
+    statement: >-
+      Confirm that a repeated activation request for the same affiliation does not activate it a
+      second time.
+    product: House
+    traces_to:
+      - CTRL-V3-012
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-013
+    level: TEST
+    statement: >-
+      Confirm that support actions cannot change pathway, approve evidence, record a decision,
+      waive a fee, or activate an affiliation.
+    product: House
+    traces_to:
+      - CTRL-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-014
+    level: TEST
+    statement: >-
+      Confirm that every operating threshold in the capacity model is baselined or marked
+      validation-pending.
+    product: House
+    traces_to:
+      - CTRL-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-015
+    level: TEST
+    statement: >-
+      Confirm that case and work-management history is reconstructable across phases, handoffs,
+      exceptions, and reconciliation outcomes.
+    product: House
+    traces_to:
+      - CTRL-V3-015
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-016
+    level: TEST
+    statement: >-
+      Confirm that bilingual and accessibility service-recovery defects route to accountable
+      owners for triage and remediation.
+    product: House
+    traces_to:
+      - CTRL-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: ACCESSIBILITY_VALIDATION_PENDING
+  - id: TEST-V3-017
+    level: TEST
+    statement: >-
+      Confirm that restricted evidence is accessed only under recorded authority.
+    product: House
+    traces_to:
+      - CTRL-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: PRIVACY_VALIDATION_PENDING
+  - id: TEST-V3-018
+    level: TEST
+    statement: >-
+      Confirm that aging cases and unresolved exceptions are detected and trigger escalation.
+    product: House
+    traces_to:
+      - CTRL-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-019
+    level: TEST
+    statement: >-
+      Confirm that no Package 2 requirement authorizes staffing, cost, procurement, architecture,
+      implementation, or a service-level commitment.
+    product: House
+    traces_to:
+      - CTRL-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
