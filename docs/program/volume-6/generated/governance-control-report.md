@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:59:19.128Z
+Generated: 2026-07-26T22:33:12.054Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-26T21:59:19.128Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 25 |
+| RATIFIED | 36 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 25 |
-| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 41 |
-| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 59 |
-| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 19 |
-| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 18 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 29 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 36 |
+| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 56 |
+| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 82 |
+| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 31 |
+| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 28 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 42 |
 
 ## Findings by control
 
@@ -155,3 +155,47 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-029 (V6-D): Completes machine-readable Package 2 provenance after mainline merge.
 - APP-V6-029 (V6-D): Preserves the Gate V6-G2 disposition and the PACKAGE-6-2 freeze.
 - APP-V6-029 (V6-D): Reopens no substantive Package 2 content and authorizes no implementation.
+- APP-V6-030 (V6-21): Compliance applicability, obligation sources, and authority model defined.
+- APP-V6-030 (V6-21): Reaches no legal conclusion, sets no retention period, and authorizes no implementation.
+- APP-V6-031 (V6-22): Policy, control, evidence, exception, and assurance mapping defined.
+- APP-V6-031 (V6-22): Writes no executable policy and grants no exception; authorizes no implementation.
+- APP-V6-032 (V6-23): Records, retention, legal-hold, archival, and disposition controls defined.
+- APP-V6-032 (V6-23): Sets no retention period, deletes no record, and authorizes no implementation.
+- APP-V6-033 (V6-24): Financial, decision, auditability, and segregation-of-duties controls defined.
+- APP-V6-033 (V6-24): Moves no funds, grants no authority, and authorizes no implementation.
+- APP-V6-034 (V6-25): Accessibility requirement, user-need, and workflow model defined.
+- APP-V6-034 (V6-25): Builds no interface, claims no conformance, and authorizes no implementation.
+- APP-V6-035 (V6-26): Accessible content, forms, documents, evidence, and communication controls defined.
+- APP-V6-035 (V6-26): Authors no content, selects no provider, and authorizes no implementation.
+- APP-V6-036 (V6-27): Bilingual equivalence, controlled terminology, and language-governance controls defined.
+- APP-V6-036 (V6-27): Writes no production translation and claims no equivalence; authorizes no implementation.
+- APP-V6-037 (V6-28): Inclusive service, accommodation, support, and exception-path controls defined.
+- APP-V6-037 (V6-28): Grants no accommodation, processes no personal data, and authorizes no implementation.
+- APP-V6-038 (V6-29): Compliance, accessibility, and bilingual verification and remediation evidence model defined.
+- APP-V6-038 (V6-29): Runs no verification, remediates no defect, and claims no conformance; authorizes no implementation.
+- APP-V6-039 (V6-30): Package 3 compliance and inclusive-service traceability, validation backlog, and downstream constraints defined.
+- APP-V6-039 (V6-30): Records that no active protection-register record references a completed gate; closes no validation item and authorizes no implementation.
+- APP-V6-040 (V6-E): Package 3 closure record consolidates the compliance, accessibility, bilingual-equivalence, and inclusive-service control model.
+- APP-V6-040 (V6-E): Records Gate V6-G3 disposition, the completed-gate reference review, the approval-count review result, and Package 4 authorization.
+- APP-V6-040 (V6-E): Authorizes no implementation.
+- APP-V6-041 (GATE-V6-G3): The frozen Package 2 identity, authorization, privacy, and data-protection control model and its Gate V6-G2 disposition are inherited.
+- APP-V6-041 (GATE-V6-G3): The compliance applicability model is defined.
+- APP-V6-041 (GATE-V6-G3): The obligation-source families and authority model are defined and applicability requires evidence.
+- APP-V6-041 (GATE-V6-G3): Policy, control, evidence, exception, and assurance are mapped and no executable policy is written and no exception is granted.
+- APP-V6-041 (GATE-V6-G3): Records controls define a records authority with retention, legal-hold, archival, and disposition requirements and set no retention period.
+- APP-V6-041 (GATE-V6-G3): Legal hold supersedes disposition.
+- APP-V6-041 (GATE-V6-G3): Financial and affiliation authority are separated with segregation of duties and required approval and no funds are moved.
+- APP-V6-041 (GATE-V6-G3): Accessibility is defined by user need and workflow with a verification method and no interface is built.
+- APP-V6-041 (GATE-V6-G3): Accessible content, forms, documents, and evidence carry alternative representations and no content is authored.
+- APP-V6-041 (GATE-V6-G3): Bilingual equivalence is semantic and language-neutral with controlled terminology and no production translation is written.
+- APP-V6-041 (GATE-V6-G3): Inclusive-service accommodation and support preserve equivalent outcomes with governed exception paths and no accommodation is granted.
+- APP-V6-041 (GATE-V6-G3): Verification, defect classification, remediation, and retest are defined and no verification is run.
+- APP-V6-041 (GATE-V6-G3): Conformance claims require evidence and no conformance is claimed.
+- APP-V6-041 (GATE-V6-G3): Every control objective carries an owner, required evidence, and a future blocking gate.
+- APP-V6-041 (GATE-V6-G3): No record authorizes implementation and every record is not-implemented or not-proven.
+- APP-V6-041 (GATE-V6-G3): No executable compliance, records, retention, disposition, financial, accessibility, content, translation, accommodation, verification, or remediation artifact is created.
+- APP-V6-041 (GATE-V6-G3): No legal conclusion, conformance, operational proof, or independent assurance is claimed.
+- APP-V6-041 (GATE-V6-G3): Package 3 receives line-level review and a separate freeze commit.
+- APP-V6-042 (PACKAGE-6-3): Package 3 (PACKAGE-6-3) is frozen at version 1.0.0 across all deliverables.
+- APP-V6-042 (PACKAGE-6-3): After freeze, changes require the recorded amendment process (V6-00.5).
+- APP-V6-042 (PACKAGE-6-3): The freeze is committed separately from authoring.

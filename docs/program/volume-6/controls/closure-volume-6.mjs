@@ -55,6 +55,24 @@ export function project(ctx) {
     frozen_count: (freezeP2?.frozen_artifacts ?? []).length
   };
 
+  // Package 3 gate readiness and freeze coverage (additive; present only once the
+  // Package 3 gate and freeze approvals are recorded).
+  const gateP3 = approvals.find((a) => a.artifact_id === 'GATE-V6-G3');
+  const gateReadinessP3 = {
+    gate: 'V6-G3',
+    dispositioned: Boolean(gateP3 && gateP3.approval_state === 'ratified' && gateP3.gate_disposition),
+    disposition: gateP3?.gate_disposition ?? null,
+    closure_record: gateP3?.closure_record ?? null,
+    completed_gates: [...completedGates(ctx)]
+  };
+
+  const freezeP3 = approvals.find((a) => a.artifact_id === 'PACKAGE-6-3' && a.frozen);
+  const freezeCoverageP3 = {
+    package_frozen: Boolean(freezeP3),
+    frozen_artifacts: (freezeP3?.frozen_artifacts ?? []).map((f) => f.id),
+    frozen_count: (freezeP3?.frozen_artifacts ?? []).length
+  };
+
   const allRecords = [
     ...records(ctx, 'REG-601'),
     ...records(ctx, 'REG-602'),
@@ -69,7 +87,7 @@ export function project(ctx) {
       .map((r) => r.id)
   };
 
-  return { gateReadiness, freezeCoverage, gateReadinessP2, freezeCoverageP2, authorizationPosture };
+  return { gateReadiness, freezeCoverage, gateReadinessP2, freezeCoverageP2, gateReadinessP3, freezeCoverageP3, authorizationPosture };
 }
 
 export function generate(ctx = loadContext()) {
@@ -81,6 +99,8 @@ export function generate(ctx = loadContext()) {
   writeJson(outDir, 'authorization-posture.json', p.authorizationPosture);
   writeJson(outDir, 'gate-readiness-package-2.json', p.gateReadinessP2);
   writeJson(outDir, 'freeze-coverage-package-2.json', p.freezeCoverageP2);
+  writeJson(outDir, 'gate-readiness-package-3.json', p.gateReadinessP3);
+  writeJson(outDir, 'freeze-coverage-package-3.json', p.freezeCoverageP3);
 
   const report = `# Volume 6 Package 1 Closure Report (NON-AUTHORITATIVE)
 
@@ -136,6 +156,34 @@ Generated: ${new Date().toISOString()}
 - Records not marked not-implemented/not-proven: ${p.authorizationPosture.records_not_not_proven.length} (must be 0)
 `;
   writeFileSync(join(outDir, 'package-2-closure-report.md'), reportP2, 'utf8');
+
+  const reportP3 = `# Volume 6 Package 3 Closure Report (NON-AUTHORITATIVE)
+
+Generated: ${new Date().toISOString()}
+
+> Generated projection of the source-controlled Volume 6 corpus. Not a source of
+> truth and not a basis for ratification. Volume 6 Package 3 authorizes no
+> implementation and claims no compliance, conformance, or assurance.
+
+## Gate V6-G3 readiness
+
+- Dispositioned: ${p.gateReadinessP3.dispositioned}
+- Disposition: ${p.gateReadinessP3.disposition ?? '(pending)'}
+- Closure record: ${p.gateReadinessP3.closure_record ?? '(pending)'}
+- Completed gates: ${p.gateReadinessP3.completed_gates.join(', ') || '(none)'}
+
+## Package 3 freeze coverage
+
+- Package frozen: ${p.freezeCoverageP3.package_frozen}
+- Frozen artifacts: ${p.freezeCoverageP3.frozen_count}
+
+## Authorization posture (whole corpus)
+
+- Total controlled records: ${p.authorizationPosture.total_records}
+- Records authorizing implementation: ${p.authorizationPosture.records_authorizing_implementation.length} (must be 0)
+- Records not marked not-implemented/not-proven: ${p.authorizationPosture.records_not_not_proven.length} (must be 0)
+`;
+  writeFileSync(join(outDir, 'package-3-closure-report.md'), reportP3, 'utf8');
   return outDir;
 }
 

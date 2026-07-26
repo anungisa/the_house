@@ -1,0 +1,12 @@
+{
+  "total": 1,
+  "controls": [
+    {
+      "id": "A11Y-V6-004",
+      "affected_content": "Forms, documents, evidence-facing content, and communications",
+      "alternative_representation": "An equivalent representation conveying the same governed understanding.",
+      "document_accessibility_dependency": "PENDING (producing authority or provider validation)"
+    }
+  ],
+  "without_verification_method": []
+}

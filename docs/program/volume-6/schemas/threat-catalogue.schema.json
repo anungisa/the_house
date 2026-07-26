@@ -22,6 +22,19 @@
             "pattern": "^(ASSET|ACTOR|BOUNDARY|THREAT|ABUSE|RIGHT)-V6-[0-9]{3}$"
           },
           "kind": { "$ref": "common.schema.json#/definitions/protectionKind" },
+          "record_subtype": {
+            "type": "string",
+            "enum": [
+              "USER_NEED",
+              "WORKFLOW",
+              "CONTENT_ASSET",
+              "DOCUMENT_TYPE",
+              "LANGUAGE_CONTEXT",
+              "ACCOMMODATION_CONTEXT",
+              "RECORDS_CONTEXT",
+              "FINANCIAL_CONTROL_CONTEXT"
+            ]
+          },
           "title": { "type": "string" },
           "purpose": { "type": "string" },
           "authorizes_implementation": { "type": "boolean" },

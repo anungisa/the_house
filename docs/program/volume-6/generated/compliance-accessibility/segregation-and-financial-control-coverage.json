@@ -1,0 +1,23 @@
+{
+  "total": 2,
+  "by_control_family": {
+    "FINANCIAL_CONTROL": 1,
+    "SEGREGATION_OF_DUTIES": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-040",
+      "control_family": "FINANCIAL_CONTROL",
+      "protected_asset_or_right": "ASSET-V6-012",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-041",
+      "control_family": "SEGREGATION_OF_DUTIES",
+      "protected_asset_or_right": "ASSET-V6-012",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "segregation_controls_without_rule": [],
+  "controls_with_unresolved_protected_ref": []
+}

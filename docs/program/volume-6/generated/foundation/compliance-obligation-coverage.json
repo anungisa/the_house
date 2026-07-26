@@ -1,9 +1,9 @@
 {
-  "obligations": 8,
+  "obligations": 14,
   "by_applicability_status": {
-    "APPLICABLE_CONFIRMED": 5,
-    "LEGAL_VALIDATION_PENDING": 2,
-    "POLICY_VALIDATION_PENDING": 1
+    "APPLICABLE_CONFIRMED": 7,
+    "LEGAL_VALIDATION_PENDING": 3,
+    "POLICY_VALIDATION_PENDING": 4
   },
   "obligations_without_applicability": [],
   "obligations_without_control": [],

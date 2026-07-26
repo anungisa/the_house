@@ -1,5 +1,5 @@
 {
-  "control_objectives": 35,
+  "control_objectives": 44,
   "by_control_family": {
     "AUTHENTICATION": 2,
     "AUTHORIZATION": 3,
@@ -24,11 +24,20 @@
     "DISCLOSURE_AND_EXPORT": 1,
     "PRIVACY_PURPOSE": 1,
     "MINIMIZATION": 1,
-    "NOTICE_AND_RIGHTS": 1
+    "NOTICE_AND_RIGHTS": 1,
+    "COMPLIANCE_APPLICABILITY": 1,
+    "RECORDS_MANAGEMENT": 1,
+    "RETENTION_AND_DISPOSITION": 1,
+    "LEGAL_HOLD": 1,
+    "FINANCIAL_CONTROL": 1,
+    "SEGREGATION_OF_DUTIES": 1,
+    "ACCOMMODATION": 1,
+    "INCLUSIVE_SERVICE": 1,
+    "VERIFICATION_AND_REMEDIATION": 1
   },
   "controls_without_family": [],
   "by_evidence_class": {
-    "UNSET": 11,
+    "UNSET": 20,
     "DESIGN_EVIDENCE_REQUIRED": 23,
     "INDEPENDENT_ASSURANCE_REQUIRED": 1
   },
@@ -43,7 +52,16 @@
     "CTRL-V6-008",
     "CTRL-V6-009",
     "CTRL-V6-010",
-    "CTRL-V6-011"
+    "CTRL-V6-011",
+    "CTRL-V6-036",
+    "CTRL-V6-037",
+    "CTRL-V6-038",
+    "CTRL-V6-039",
+    "CTRL-V6-040",
+    "CTRL-V6-041",
+    "CTRL-V6-042",
+    "CTRL-V6-043",
+    "CTRL-V6-044"
   ],
   "controls_without_owner": [],
   "controls_without_required_evidence": [],

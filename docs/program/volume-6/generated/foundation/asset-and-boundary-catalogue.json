@@ -1,18 +1,18 @@
 {
-  "assets": 10,
+  "assets": 16,
   "actors": 9,
   "trust_boundaries": 7,
-  "rights": 5,
+  "rights": 7,
   "assets_without_authority": [],
   "assets_without_classification": [],
   "assets_by_classification": {
-    "RESTRICTED_EVIDENCE": 2,
+    "RESTRICTED_EVIDENCE": 4,
     "PERSONAL": 1,
     "PRIVILEGED_ADMIN": 3,
     "SECURITY_AUDIT": 1,
-    "FINANCIAL_STATUS": 1,
+    "FINANCIAL_STATUS": 2,
     "ANALYTICS_AGGREGATE": 1,
-    "INTERNAL": 1
+    "INTERNAL": 4
   },
   "boundaries_by_failure_posture": {
     "FAIL_CLOSED": 6,

@@ -1,0 +1,32 @@
+{
+  "total": 3,
+  "by_control_family": {
+    "RECORDS_MANAGEMENT": 1,
+    "RETENTION_AND_DISPOSITION": 1,
+    "LEGAL_HOLD": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-037",
+      "control_family": "RECORDS_MANAGEMENT",
+      "protected_asset_or_right": "ASSET-V6-011",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "CTRL-V6-038",
+      "control_family": "RETENTION_AND_DISPOSITION",
+      "protected_asset_or_right": "ASSET-V6-011",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "CTRL-V6-039",
+      "control_family": "LEGAL_HOLD",
+      "protected_asset_or_right": "ASSET-V6-011",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "records_context_assets": [
+    "ASSET-V6-011"
+  ],
+  "controls_with_unresolved_protected_ref": []
+}

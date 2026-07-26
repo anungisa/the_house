@@ -1,0 +1,11 @@
+{
+  "gate": "V6-G3",
+  "dispositioned": true,
+  "disposition": "COMPLIANCE_ACCESSIBILITY_AND_INCLUSIVE_SERVICE_CONTROL_MODEL_READY",
+  "closure_record": "V6-E",
+  "completed_gates": [
+    "V6-G1",
+    "V6-G2",
+    "V6-G3"
+  ]
+}

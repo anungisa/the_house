@@ -1250,3 +1250,433 @@ records:
     chapter_ref: V6-14
     traces_to:
       - THREAT-V6-004
+
+  # ==== Package 3 control objectives (V6-21 through V6-29) ====
+  - id: CTRL-V6-036
+    kind: CONTROL_OBJECTIVE
+    title: Compliance-applicability control objective
+    statement: Every compliance obligation must carry a validated applicability status owned by an accountable authority before reliance.
+    control_family: COMPLIANCE_APPLICABILITY
+    owner: Compliance Steward
+    required_evidence: PENDING (applicability validation evidence owned by the accountable authority)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ compliance validation)
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-21
+    traces_to:
+      - RIGHT-V6-001
+  - id: CTRL-V6-037
+    kind: CONTROL_OBJECTIVE
+    title: Records-management control objective
+    statement: Governed records must be subject to a validated records authority owning the retention, disposition, and archival schedules.
+    control_family: RECORDS_MANAGEMENT
+    owner: Data Governance Steward
+    required_evidence: PENDING (records authority and validated schedule)
+    records_authority: PENDING (records authority appointment and schedule approval)
+    retention_policy_status: PENDING (no retention period is set in Volume 6)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 11+ records governance)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: ASSET-V6-011
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - ASSET-V6-011
+  - id: CTRL-V6-038
+    kind: CONTROL_OBJECTIVE
+    title: Retention-and-disposition control objective
+    statement: Retention and disposition must occur only under a validated schedule with recorded disposition authority and deletion evidence.
+    control_family: RETENTION_AND_DISPOSITION
+    owner: Data Governance Steward
+    required_evidence: PENDING (validated disposition schedule and deletion evidence)
+    disposition_authority: PENDING (disposition authority appointment)
+    deletion_evidence_requirement: Disposition must produce evidence of what was disposed and under what authority.
+    archival_posture: PENDING (archival posture definition)
+    provider_records_dependency: PENDING (provider-records validation where a provider holds records)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 11+ records governance)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: ASSET-V6-011
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - ASSET-V6-011
+  - id: CTRL-V6-039
+    kind: CONTROL_OBJECTIVE
+    title: Legal-hold control objective
+    statement: A legal hold placed by the accountable authority must supersede any disposition schedule for records within its scope.
+    control_family: LEGAL_HOLD
+    owner: Data Governance Steward
+    required_evidence: PENDING (legal-hold precedence validation)
+    legal_hold_dependency: Legal hold supersedes disposition while in force; this volume places and releases no hold.
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 11+ records governance)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: ASSET-V6-011
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - ASSET-V6-011
+  - id: CTRL-V6-040
+    kind: CONTROL_OBJECTIVE
+    title: Financial-control objective
+    statement: Financially relevant decisions must be authorized, approved, and auditable with financial authority separated from affiliation decision authority.
+    control_family: FINANCIAL_CONTROL
+    owner: Finance Authority
+    required_evidence: PENDING (financial-control design and auditability validation)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ financial-control design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-012
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - ASSET-V6-012
+  - id: CTRL-V6-041
+    kind: CONTROL_OBJECTIVE
+    title: Segregation-of-duties control objective
+    statement: A single actor must not both originate a financially relevant action and approve the affiliation outcome that depends on it.
+    control_family: SEGREGATION_OF_DUTIES
+    owner: Finance Authority
+    required_evidence: PENDING (segregation validation evidence)
+    permitted_actor: An actor authorized for one of origination or approval, not both, for the same outcome.
+    prohibited_actor: An actor exercising both origination and approval authority for the same outcome.
+    segregation_rule: Origination and approval of a financially relevant affiliation outcome must be held by distinct actors.
+    required_approval: An independent approval must precede a financially relevant affiliation outcome.
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 9+ financial-control design)
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-012
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - ASSET-V6-012
+  - id: CTRL-V6-042
+    kind: CONTROL_OBJECTIVE
+    title: Accommodation control objective
+    statement: An accommodation for a user facing a barrier must preserve an equivalent governed outcome without bypassing any governed control.
+    control_family: ACCOMMODATION
+    owner: Inclusive-Service Steward
+    required_evidence: PENDING (accommodation equivalent-outcome verification)
+    user_barrier: A user cannot use the default service path to complete a governed workflow.
+    permitted_accommodation: A governed alternative path that reaches the same governed outcome.
+    equivalent_outcome_requirement: The accommodation must reach the same governed outcome as the default path.
+    failure_posture: FAIL_SAFE
+    control_operator_status: PENDING (Volume 11+ service delivery)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-007
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - RIGHT-V6-007
+  - id: CTRL-V6-043
+    kind: CONTROL_OBJECTIVE
+    title: Inclusive-service support control objective
+    statement: Support roles assisting users must operate under minimum-necessary information and draw no prohibited inference about the user.
+    control_family: INCLUSIVE_SERVICE
+    owner: Inclusive-Service Steward
+    required_evidence: PENDING (support-role governance validation)
+    support_role: A governed role that assists a user in completing a workflow.
+    minimum_necessary_information: Support relies only on the minimum information necessary to assist.
+    prohibited_inference: Support draws no inference about the user beyond providing assistance.
+    failure_posture: FAIL_SAFE
+    control_operator_status: PENDING (Volume 11+ service delivery)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-007
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - RIGHT-V6-007
+  - id: CTRL-V6-044
+    kind: CONTROL_OBJECTIVE
+    title: Verification-and-remediation control objective
+    statement: A conformance claim must require validated verification evidence, defect remediation, and a passing retest by a qualified reviewer.
+    control_family: VERIFICATION_AND_REMEDIATION
+    owner: Compliance Steward
+    required_evidence: PENDING (verification, remediation, and retest evidence)
+    defect_classification: PENDING (defect classification scheme)
+    remediation_evidence: Remediation must be evidence-bearing and never assumed.
+    retest_requirement: A defect is closed only when a retest to the same standard passes.
+    reviewer_qualification_status: PENDING (reviewer qualification definition)
+    failure_posture: FAIL_CLOSED
+    control_operator_status: PENDING (Volume 11+ verification)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-006
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - RIGHT-V6-006
+
+  # ==== Package 3 compliance obligations (V6-21, V6-22) ====
+  - id: COMP-V6-004
+    kind: COMPLIANCE_OBLIGATION
+    title: Organizational-policy compliance obligation
+    statement: The affiliation service must satisfy applicable organizational governance policy under a validated applicability determination.
+    source_type: ORGANIZATIONAL_POLICY
+    applicability_status: POLICY_VALIDATION_PENDING
+    authority_owner: Accountable Program Authority (Aubert Nungisa)
+    control_objective_ref: CTRL-V6-036
+    required_evidence: PENDING (policy applicability assessment and validation)
+    independent_validation_requirement: Policy authority confirmation required; no policy is interpreted in Volume 6.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-21
+    traces_to:
+      - CTRL-V6-036
+  - id: COMP-V6-005
+    kind: COMPLIANCE_OBLIGATION
+    title: Records-management compliance obligation
+    statement: Governed records must be managed under a validated records authority with retention, hold, and disposition schedules.
+    source_type: RECORDS_MANAGEMENT
+    applicability_status: POLICY_VALIDATION_PENDING
+    authority_owner: Data Governance Steward
+    control_objective_ref: CTRL-V6-037
+    required_evidence: PENDING (records authority and schedule validation)
+    independent_validation_requirement: Records authority approval required; no retention period is set in Volume 6.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - CTRL-V6-037
+  - id: COMP-V6-006
+    kind: COMPLIANCE_OBLIGATION
+    title: Financial-control compliance obligation
+    statement: Financially relevant decisions must satisfy applicable financial-control requirements with segregated authority.
+    source_type: FINANCIAL_CONTROL
+    applicability_status: POLICY_VALIDATION_PENDING
+    authority_owner: Finance Authority
+    control_objective_ref: CTRL-V6-040
+    required_evidence: PENDING (financial-control applicability and validation)
+    independent_validation_requirement: Finance authority confirmation required.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - CTRL-V6-040
+  - id: COMP-V6-007
+    kind: COMPLIANCE_OBLIGATION
+    title: Official-language and bilingual-service obligation
+    statement: User-facing governed service must meet applicable official-language and bilingual-service requirements with semantic equivalence.
+    source_type: OFFICIAL_LANGUAGE_OR_BILINGUAL_SERVICE
+    applicability_status: LEGAL_VALIDATION_PENDING
+    authority_owner: Bilingual-Service Steward
+    control_objective_ref: CTRL-V6-044
+    required_evidence: PENDING (bilingual-service applicability and equivalence verification)
+    independent_validation_requirement: Independent bilingual-equivalence validation required.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-21
+    traces_to:
+      - RIGHT-V6-005
+
+  # ==== Package 3 obligations (V6-23) ====
+  - id: OBL-V6-006
+    kind: OBLIGATION
+    title: Legal-hold precedence obligation
+    statement: Records under a legal hold must not be disposed of while the hold is in force, regardless of any disposition schedule.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Data Governance Steward
+    control_objective_ref: CTRL-V6-039
+    required_evidence: PENDING (legal-hold precedence validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V11-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - THREAT-V6-014
+  - id: OBL-V6-007
+    kind: OBLIGATION
+    title: Disposition-evidence obligation
+    statement: Disposition of a governed record must be performed under a validated disposition authority and must produce disposition evidence.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Data Governance Steward
+    control_objective_ref: CTRL-V6-038
+    required_evidence: PENDING (disposition authority and deletion evidence validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V11-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - THREAT-V6-014
+
+  # ==== Package 3 accessibility obligations (V6-25, V6-26) ====
+  - id: A11Y-V6-003
+    kind: ACCESSIBILITY_OBLIGATION
+    title: Accessible workflow-completion obligation
+    statement: A user with a relevant need must be able to complete a governed workflow and reach the same governed outcome.
+    user_need: Users with disabilities and users relying on assistive technology can complete governed workflows.
+    affected_workflow: All governed user-facing workflows
+    required_behaviour: Provide an accessible, completable path to the governed outcome.
+    verification_method: PENDING (independent workflow accessibility testing)
+    accessibility_evidence: PENDING (conformance evidence)
+    operational_proof_dependency: PENDING (Volume 11+ delivery)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-006
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - RIGHT-V6-006
+  - id: A11Y-V6-004
+    kind: ACCESSIBILITY_OBLIGATION
+    title: Accessible content and document obligation
+    statement: Content and documents a user must use must be perceivable or carry an equivalent alternative representation.
+    user_need: Users can perceive and use forms, documents, and communications.
+    affected_workflow: Content-bearing governed workflows
+    affected_content: Forms, documents, evidence-facing content, and communications
+    required_behaviour: Provide accessible content or an equivalent alternative representation.
+    alternative_representation: An equivalent representation conveying the same governed understanding.
+    document_accessibility_dependency: PENDING (producing authority or provider validation)
+    verification_method: PENDING (content accessibility testing)
+    accessibility_evidence: PENDING (conformance evidence)
+    operational_proof_dependency: PENDING (Volume 11+ delivery)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-006
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-26
+    traces_to:
+      - RIGHT-V6-006
+
+  # ==== Package 3 bilingual obligations (V6-27) ====
+  - id: BIL-V6-003
+    kind: BILINGUAL_OBLIGATION
+    title: Language-neutral concept-equivalence obligation
+    statement: Governed concepts must be anchored to language-neutral identifiers with semantically equivalent official-language expressions.
+    affected_content: Governed concept expressions in both official languages
+    equivalent_concept: A governed concept identified independently of any language expression.
+    semantic_equivalence: Official-language expressions convey the same governed meaning as the canonical concept.
+    canonical_concept_id: PENDING (canonical concept identifier scheme)
+    english_expression: PENDING (equivalent English expression)
+    french_expression: PENDING (equivalent French expression)
+    language_neutral_identifier: PENDING (language-neutral identifier scheme)
+    verification_method: PENDING (semantic-equivalence review)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - RIGHT-V6-005
+  - id: BIL-V6-004
+    kind: BILINGUAL_OBLIGATION
+    title: Deprecated-terminology governance obligation
+    statement: A deprecated official-language expression must be governed with a recorded replacement preserving the canonical concept.
+    affected_content: Deprecated and replacement official-language expressions
+    equivalent_concept: The canonical concept is preserved across deprecation and replacement.
+    semantic_equivalence: The replacement expression preserves the governed meaning of the deprecated expression.
+    deprecated_expression: PENDING (deprecated expression record)
+    replacement_expression: PENDING (replacement expression record)
+    verification_method: PENDING (terminology-change review)
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: RIGHT-V6-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - RIGHT-V6-005
+
+  # ==== Package 3 assurance requirements (V6-22, V6-29) ====
+  - id: ASSR-V6-005
+    kind: ASSURANCE_REQUIREMENT
+    title: Compliance applicability validation
+    statement: Compliance applicability must be validated by the accountable authority before an obligation is relied upon.
+    owner: Compliance Steward
+    required_evidence: PENDING (applicability validation evidence)
+    assurance_classification: POLICY_VALIDATION_PENDING
+    independent_validation_requirement: Accountable authority applicability confirmation required.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-22
+    traces_to:
+      - COMP-V6-004
+  - id: ASSR-V6-006
+    kind: ASSURANCE_REQUIREMENT
+    title: Records-authority and schedule validation
+    statement: The records authority and its retention and disposition schedules must be validated before any retention or disposition behaviour is relied upon.
+    owner: Data Governance Steward
+    required_evidence: PENDING (records authority and schedule validation evidence)
+    assurance_classification: POLICY_VALIDATION_PENDING
+    independent_validation_requirement: Records authority approval required.
+    confidence: LOW
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - CTRL-V6-037
+  - id: ASSR-V6-007
+    kind: ASSURANCE_REQUIREMENT
+    title: Accessibility conformance verification
+    statement: Accessibility conformance must be independently verified before any accessibility claim is made.
+    owner: Accessibility Steward
+    required_evidence: PENDING (independent accessibility conformance evidence)
+    assurance_classification: ACCESSIBILITY_VALIDATION_PENDING
+    independent_validation_requirement: Independent accessibility conformance validation required.
+    confidence: LOW
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - A11Y-V6-003
+  - id: ASSR-V6-008
+    kind: ASSURANCE_REQUIREMENT
+    title: Bilingual-equivalence verification
+    statement: Bilingual semantic equivalence must be independently verified before any equivalence claim is made.
+    owner: Bilingual-Service Steward
+    required_evidence: PENDING (independent bilingual-equivalence evidence)
+    assurance_classification: BILINGUAL_VALIDATION_PENDING
+    independent_validation_requirement: Independent bilingual-equivalence validation required.
+    confidence: LOW
+    future_blocking_gate: V11-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - BIL-V6-003

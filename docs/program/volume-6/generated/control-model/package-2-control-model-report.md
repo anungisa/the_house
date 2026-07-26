@@ -1,6 +1,6 @@
 # Volume 6 Package 2 Control-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:59:19.137Z
+Generated: 2026-07-26T22:33:12.062Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 2 defines the identity,
@@ -10,10 +10,10 @@ Generated: 2026-07-26T21:59:19.137Z
 
 ## Control-family catalogue and evidence semantics
 
-- Control objectives: 35
-- Control families in use: 24
+- Control objectives: 44
+- Control families in use: 33
 - Controls without a control family: 0
-- Controls without an implementation-evidence class: 11 (informational; the evidence class is a Package 2 attribute and is optional for Package 1 controls)
+- Controls without an implementation-evidence class: 20 (informational; the evidence class is a Package 2 attribute and is optional for Package 1 controls)
 - Controls with an unresolved protected asset/right: 0
 
 ## Identity and authentication coverage

@@ -1,0 +1,17 @@
+{
+  "obligations": 14,
+  "obligations_with_unresolved_control_ref": [],
+  "control_objectives": 44,
+  "control_objectives_without_owner": [],
+  "control_objectives_without_required_evidence": [],
+  "control_objectives_without_gate": [],
+  "control_objectives_with_unresolved_protected_ref": [],
+  "assurance_requirements": 8,
+  "by_assurance_classification": {
+    "INDEPENDENT_ASSURANCE_REQUIRED": 2,
+    "PRIVACY_VALIDATION_PENDING": 1,
+    "ACCESSIBILITY_VALIDATION_PENDING": 2,
+    "POLICY_VALIDATION_PENDING": 2,
+    "BILINGUAL_VALIDATION_PENDING": 1
+  }
+}

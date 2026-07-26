@@ -240,3 +240,149 @@ records:
     chapter_ref: V6-11
     traces_to:
       - CTRL-V6-016
+
+  # ==== Package 3 decisions (V6-21 through V6-29) ====
+  - id: ADR-V6-020
+    title: Applicability requires evidence
+    decision: A compliance obligation is neither in force nor discharged by its presence in the register; applicability, satisfaction, and exception each require validated evidence owned by the accountable authority.
+    status: ACCEPTED
+    context: Recording an obligation must never be mistaken for a legal conclusion, compliance, or exemption.
+    consequence: Every compliance obligation carries an applicability status and remains pending until validated by the accountable authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-21
+    traces_to:
+      - CTRL-V6-036
+  - id: ADR-V6-021
+    title: Policy is not control operation
+    decision: A control objective is a statement of required control intent and is not an executable policy, configuration, permission, rule, or running control.
+    status: ACCEPTED
+    context: Conflating a control objective with an operating control would overstate the proven posture.
+    consequence: The mapping from obligation to control objective to executable policy to operational proof is preserved at every layer.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-22
+    traces_to:
+      - CTRL-V6-036
+  - id: ADR-V6-022
+    title: Retention requires a records authority
+    decision: Retention, archival, and disposition of governed records are permitted only under schedules owned by a validated records authority; no retention period is set in Volume 6.
+    status: ACCEPTED
+    context: Setting a retention period without a validated records authority would exceed this volume's scope.
+    consequence: Records controls record a pending records authority and set no retention period, archival timing, or disposition schedule.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - CTRL-V6-037
+  - id: ADR-V6-023
+    title: Legal hold supersedes disposition
+    decision: A legal hold placed by the accountable authority supersedes any disposition schedule for records within its scope while the hold is in force.
+    status: ACCEPTED
+    context: Disposition during a legal hold would destroy records that must be preserved.
+    consequence: The legal-hold control records precedence over disposition; this volume places and releases no hold.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - CTRL-V6-039
+  - id: ADR-V6-024
+    title: Financial and affiliation authority are separated
+    decision: The authority to make or confirm a financial determination is separated from the authority to make an affiliation lifecycle decision, and no single actor may originate and approve the same outcome.
+    status: ACCEPTED
+    context: Self-approval of financially relevant affiliation outcomes would defeat financial control.
+    consequence: Financial-control and segregation-of-duties objectives record permitted and prohibited actors and a required independent approval.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - CTRL-V6-041
+  - id: ADR-V6-025
+    title: Accessibility is defined by user need and task flow
+    decision: Accessibility is determined by whether a user with a given need can complete a governed task, not by the presence of individual interface features.
+    status: ACCEPTED
+    context: Treating feature presence as conformance would overstate accessibility.
+    consequence: Accessibility obligations attach to user needs and workflows and require independent verification evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - A11Y-V6-003
+  - id: ADR-V6-026
+    title: Exception paths are part of the service
+    decision: An exception path is a governed part of the service carrying the same outcome, evidence, and authority as the default path; informal workarounds outside the governed model are prohibited.
+    status: ACCEPTED
+    context: Informal workarounds bypass governed outcome, evidence, and authority.
+    consequence: Inclusive-service controls require governed exception paths rather than ungoverned workarounds.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - CTRL-V6-042
+  - id: ADR-V6-027
+    title: Bilingual equivalence is semantic, not literal
+    decision: Bilingual equivalence requires that the governed meaning conveyed in each official language be the same, not that the text be a literal word-for-word translation.
+    status: ACCEPTED
+    context: A literal rendering that changes governed meaning is not equivalent.
+    consequence: Bilingual obligations record semantic equivalence and require independent equivalence verification.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - BIL-V6-003
+  - id: ADR-V6-028
+    title: Governed meaning uses language-neutral identifiers
+    decision: Governed identity, state, and decision concepts must be represented by language-neutral identifiers so that no official language is privileged as the system of record for meaning.
+    status: ACCEPTED
+    context: Privileging one language as the system of record for meaning would undermine equivalence.
+    consequence: Controlled terminology anchors official-language expressions to a canonical, language-neutral concept identifier.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - BIL-V6-003
+  - id: ADR-V6-029
+    title: Accommodation preserves equivalent outcomes
+    decision: An accommodation for a user facing a barrier changes the path, not the governed outcome, and never lowers the outcome or bypasses a governed control.
+    status: ACCEPTED
+    context: An accommodation that lowers the governed outcome would be inequitable and ungoverned.
+    consequence: Accommodation controls record an equivalent-outcome requirement and protect accommodation privacy.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - CTRL-V6-042
+  - id: ADR-V6-030
+    title: Remediation requires retest
+    decision: A defect is resolved only when a retest performed to the same verification standard passes and its evidence is recorded; no defect is closed on assertion.
+    status: ACCEPTED
+    context: Accepting remediation without retest would leave defects unproven.
+    consequence: The verification-and-remediation control records a retest requirement for every defect.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - CTRL-V6-044
+  - id: ADR-V6-031
+    title: Conformance claims require evidence
+    decision: A compliance, accessibility, or bilingual conformance claim requires validated verification evidence produced by a qualified reviewer and is never made on design intent or on the presence of a control.
+    status: ACCEPTED
+    context: Claiming conformance without evidence would misrepresent the proven posture.
+    consequence: Controls remain pending until verification evidence exists, and no conformance is claimed in Volume 6.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-29
+    traces_to:
+      - CTRL-V6-044

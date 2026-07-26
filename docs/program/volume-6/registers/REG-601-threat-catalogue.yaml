@@ -707,3 +707,316 @@ records:
     traces_to:
       - ASSET-V6-010
       - BOUNDARY-V6-002
+
+  # ==== Package 3 controlled records: assets (V6-23, V6-24, V6-25, V6-26, V6-27) ====
+  - id: ASSET-V6-011
+    kind: ASSET
+    record_subtype: RECORDS_CONTEXT
+    title: Governed records subject to retention and disposition
+    purpose: The governed records of the affiliation service that are subject to a records authority, a retention schedule, legal hold, archival, and disposition.
+    authority_owner: House
+    custodian_status: PENDING (Volume 11+ records authority and schedule)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-023
+    failure_impact: Improper retention or disposition of governed records, loss of records that must be held, or destruction of records under legal hold.
+    evidence_required: PENDING (records authority, retention schedule, and disposition validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - DOMAIN-V5-023
+  - id: ASSET-V6-012
+    kind: ASSET
+    record_subtype: FINANCIAL_CONTROL_CONTEXT
+    title: Financially relevant decision context
+    purpose: The financially relevant decisions of the affiliation service whose authority, approval, and auditability must be separated from affiliation decision authority.
+    authority_owner: House
+    custodian_status: PENDING (Volume 9+ financial-control design)
+    classification: FINANCIAL_STATUS
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-015
+      - DOMAIN-V5-016
+    failure_impact: Financial misstatement or self-approval where financial and affiliation authority are not segregated.
+    evidence_required: PENDING (segregation-of-duties and auditability validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - DOMAIN-V5-015
+  - id: ASSET-V6-013
+    kind: ASSET
+    record_subtype: WORKFLOW
+    title: Governed user-facing workflows
+    purpose: The end-to-end governed workflows a user must complete, which must remain accessible and completable without exclusion.
+    authority_owner: House
+    custodian_status: PENDING (Volume 11+ service delivery)
+    classification: INTERNAL
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-020
+    failure_impact: Exclusion of users who cannot complete a governed workflow, or reliance on informal workarounds outside the governed model.
+    evidence_required: PENDING (accessibility and inclusive-service verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - DOMAIN-V5-020
+  - id: ASSET-V6-014
+    kind: ASSET
+    record_subtype: CONTENT_ASSET
+    title: User-facing service content assets
+    purpose: The forms, communications, and interface content a user must perceive and operate to complete governed workflows.
+    authority_owner: House
+    custodian_status: PENDING (Volume 11+ content production)
+    classification: INTERNAL
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-020
+    failure_impact: Content that cannot be perceived or operated by users with disabilities or that lacks an accessible alternative.
+    evidence_required: PENDING (content accessibility verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-26
+    traces_to:
+      - DOMAIN-V5-020
+  - id: ASSET-V6-015
+    kind: ASSET
+    record_subtype: DOCUMENT_TYPE
+    title: Evidence-facing and notice documents
+    purpose: The documents, notices, and evidence-facing artifacts a user must read, submit, or review, whose accessibility and equivalence must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 11+ document production)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-010
+      - DOMAIN-V5-011
+    failure_impact: Documents or notices that are inaccessible or not semantically equivalent across official languages.
+    evidence_required: PENDING (document accessibility and equivalence verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-26
+    traces_to:
+      - DOMAIN-V5-010
+  - id: ASSET-V6-016
+    kind: ASSET
+    record_subtype: LANGUAGE_CONTEXT
+    title: Controlled terminology and language-neutral concepts
+    purpose: The governance identifier set of language-neutral concepts and their equivalent official-language expressions whose semantic equivalence must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 11+ terminology governance)
+    classification: INTERNAL
+    sensitivity: LOW
+    information_domains:
+      - DOMAIN-V5-020
+    failure_impact: Divergent meaning across official languages or a language privileged as the system of record for governed meaning.
+    evidence_required: PENDING (bilingual-equivalence verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - DOMAIN-V5-020
+
+  # ==== Package 3 controlled records: rights (V6-25, V6-28) ====
+  - id: RIGHT-V6-006
+    kind: RIGHT
+    record_subtype: USER_NEED
+    title: Right to complete governed workflows without exclusion
+    purpose: The right of users with disabilities and users relying on assistive technology to complete governed workflows and reach the same governed outcome.
+    right_holder: Users with disabilities and users relying on assistive technology
+    protected_outcome: Users can perceive, operate, understand, and complete governed workflows without exclusion.
+    control_implication: Requires accessibility obligations tied to user needs and workflows with independent verification.
+    rights_dependency: Depends on accessibility obligations and content-accessibility controls.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - DOMAIN-V5-020
+  - id: RIGHT-V6-007
+    kind: RIGHT
+    record_subtype: ACCOMMODATION_CONTEXT
+    title: Right to accommodation preserving equivalent outcome
+    purpose: The right of a user who cannot use the default service path to an accommodation that preserves an equivalent governed outcome.
+    right_holder: Users requiring accommodation
+    protected_outcome: A user who faces a barrier reaches an equivalent governed outcome through a governed accommodation.
+    control_implication: Requires accommodation controls preserving equivalent outcomes and protecting accommodation privacy.
+    rights_dependency: Depends on inclusive-service accommodation and support controls.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - DOMAIN-V5-020
+
+  # ==== Package 3 threats (V6-23, V6-24, V6-25, V6-26, V6-27, V6-28) ====
+  - id: THREAT-V6-009
+    kind: THREAT
+    title: Exclusion through inaccessible workflows
+    purpose: A user with a disability or relying on assistive technology cannot complete a governed workflow and is excluded from the service.
+    trust_boundary: BOUNDARY-V6-001
+    affected_right: RIGHT-V6-006
+    threat_actor: Inaccessible governed workflow
+    precondition: Workflow accessibility is unverified and no accessible path exists.
+    misuse_path: A governed workflow cannot be perceived, operated, or completed by a user with a relevant need.
+    potential_consequence: Exclusion of users from governed service and denial of equivalent outcome.
+    preventive_objective: Require workflow accessibility tied to user needs with an accessible completable path.
+    detective_objective: Verify workflow accessibility and detect uncompletable paths through independent testing.
+    corrective_objective: Remediate the workflow and retest before the barrier is considered closed.
+    owner: Accessibility Steward
+    future_blocking_gate: V11-G1
+    evidence: PENDING (accessibility conformance verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-25
+    traces_to:
+      - RIGHT-V6-006
+      - BOUNDARY-V6-001
+  - id: THREAT-V6-010
+    kind: THREAT
+    title: Bilingual semantic divergence
+    purpose: Governed meaning diverges across official languages so that one language conveys a different governed outcome than the other.
+    trust_boundary: BOUNDARY-V6-001
+    affected_asset: ASSET-V6-016
+    threat_actor: Non-equivalent language expression
+    precondition: Bilingual equivalence is unverified or content is translated literally without preserving meaning.
+    misuse_path: An official-language expression conveys a different governed meaning than its counterpart.
+    potential_consequence: Users receive materially different governed meaning depending on language.
+    preventive_objective: Require semantic equivalence anchored to language-neutral identifiers, not literal translation.
+    detective_objective: Independently review official-language pairs for semantic equivalence.
+    corrective_objective: Remediate divergent expressions and retest equivalence before reliance.
+    owner: Bilingual-Service Steward
+    future_blocking_gate: V11-G1
+    evidence: PENDING (bilingual-equivalence verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-27
+    traces_to:
+      - ASSET-V6-016
+      - BOUNDARY-V6-001
+  - id: THREAT-V6-011
+    kind: THREAT
+    title: Inaccessible documents and communications
+    purpose: A document, notice, or communication a user must read or submit cannot be perceived and has no accessible alternative.
+    trust_boundary: BOUNDARY-V6-003
+    affected_asset: ASSET-V6-015
+    threat_actor: Inaccessible document or provider-produced artifact
+    precondition: Document accessibility and provider dependencies are unverified and no alternative representation exists.
+    misuse_path: A required document or communication cannot be perceived and offers no equivalent alternative.
+    potential_consequence: Users cannot read, submit, or review documents required to complete governed workflows.
+    preventive_objective: Require accessible documents with equivalent alternative representations and validated provider dependencies.
+    detective_objective: Verify document accessibility and detect artifacts lacking an alternative.
+    corrective_objective: Remediate the document and retest before reliance.
+    owner: Accessibility Steward
+    future_blocking_gate: V11-G1
+    evidence: PENDING (document accessibility verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-26
+    traces_to:
+      - ASSET-V6-015
+      - BOUNDARY-V6-003
+  - id: THREAT-V6-012
+    kind: THREAT
+    title: Accommodation privacy exposure and prohibited inference
+    purpose: Information about a user's barrier or accommodation is used beyond providing the accommodation or supports a prohibited inference about the user.
+    trust_boundary: BOUNDARY-V6-001
+    affected_right: RIGHT-V6-007
+    threat_actor: Over-collection or misuse of accommodation information
+    precondition: Accommodation information is not held to minimum-necessary and prohibited inferences are not constrained.
+    misuse_path: Accommodation information is reused or correlated to infer restricted facts about a user.
+    potential_consequence: Privacy harm and discrimination through misuse of accommodation information.
+    preventive_objective: Hold accommodation information to minimum-necessary and prohibit inference beyond providing the accommodation.
+    detective_objective: Review accommodation-information use for purpose limitation and prohibited inference.
+    corrective_objective: Restrict, notify, and remediate accommodation-information misuse with preserved evidence.
+    owner: Privacy Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (accommodation-privacy verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - RIGHT-V6-007
+      - BOUNDARY-V6-001
+  - id: THREAT-V6-013
+    kind: THREAT
+    title: Informal workaround outside the governed model
+    purpose: A user or operator completes a governed workflow through an informal workaround that bypasses governed outcome, evidence, or authority.
+    trust_boundary: BOUNDARY-V6-004
+    affected_asset: ASSET-V6-013
+    threat_actor: Operator or user relying on an ungoverned workaround
+    precondition: No governed exception path exists, so informal workarounds are used instead.
+    misuse_path: A workflow is completed outside the governed model without equivalent outcome, evidence, or authority.
+    potential_consequence: Loss of governed outcome, evidence, and authority through ungoverned exception handling.
+    preventive_objective: Require governed exception paths carrying the same outcome, evidence, and authority as the default path.
+    detective_objective: Detect completion outside the governed model and absent exception-path evidence.
+    corrective_objective: Bring exception handling into the governed model and preserve evidence.
+    owner: Accountable Program Authority (Aubert Nungisa)
+    future_blocking_gate: V11-G1
+    evidence: PENDING (inclusive-service exception-path verification)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-28
+    traces_to:
+      - ASSET-V6-013
+      - BOUNDARY-V6-004
+  - id: THREAT-V6-014
+    kind: THREAT
+    title: Improper records disposition
+    purpose: A governed record is disposed of without records authority or while under legal hold, or is retained beyond a validated schedule.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-011
+    threat_actor: Disposition action without authority or hold awareness
+    precondition: Records authority, retention schedule, and legal-hold precedence are unverified.
+    misuse_path: A record is disposed of during legal hold or without a validated disposition authority, or retained without schedule.
+    potential_consequence: Destruction of records that must be held or improper retention of records that should be disposed.
+    preventive_objective: Require records authority, retention schedule, and legal-hold precedence over disposition with disposition evidence.
+    detective_objective: Detect disposition without authority or against a legal hold.
+    corrective_objective: Halt improper disposition, investigate, and preserve evidence of the attempt.
+    owner: Data Governance Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (records-authority and disposition validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-23
+    traces_to:
+      - ASSET-V6-011
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-015
+    kind: THREAT
+    title: Segregation-of-duties failure
+    purpose: A single actor both originates a financially relevant action and approves the affiliation outcome that depends on it.
+    trust_boundary: BOUNDARY-V6-004
+    affected_asset: ASSET-V6-012
+    threat_actor: Actor combining origination and approval authority
+    precondition: Financial and affiliation decision authority are not segregated and required approval is absent.
+    misuse_path: One actor originates and self-approves a financially relevant affiliation outcome.
+    potential_consequence: Financial misstatement or improper affiliation outcome through self-approval.
+    preventive_objective: Separate financial authority from affiliation decision authority with a required independent approval.
+    detective_objective: Audit financially relevant decisions for segregation and independent approval.
+    corrective_objective: Reverse, review, and remediate self-approved outcomes with preserved evidence.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (segregation-of-duties validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-24
+    traces_to:
+      - ASSET-V6-012
+      - BOUNDARY-V6-004

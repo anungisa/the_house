@@ -1,0 +1,35 @@
+{
+  "total": 4,
+  "controls": [
+    {
+      "id": "BIL-V6-001",
+      "equivalent_concept": "Both official-language interfaces convey the same governed meaning.",
+      "semantic_equivalence": "Content is functionally and semantically equivalent across languages, not merely translated.",
+      "canonical_concept_id": null,
+      "language_neutral_identifier": null
+    },
+    {
+      "id": "BIL-V6-002",
+      "equivalent_concept": "Governed notices convey identical meaning in both official languages.",
+      "semantic_equivalence": "Legal and governed meaning is preserved equivalently across languages.",
+      "canonical_concept_id": null,
+      "language_neutral_identifier": null
+    },
+    {
+      "id": "BIL-V6-003",
+      "equivalent_concept": "A governed concept identified independently of any language expression.",
+      "semantic_equivalence": "Official-language expressions convey the same governed meaning as the canonical concept.",
+      "canonical_concept_id": "PENDING (canonical concept identifier scheme)",
+      "language_neutral_identifier": "PENDING (language-neutral identifier scheme)"
+    },
+    {
+      "id": "BIL-V6-004",
+      "equivalent_concept": "The canonical concept is preserved across deprecation and replacement.",
+      "semantic_equivalence": "The replacement expression preserves the governed meaning of the deprecated expression.",
+      "canonical_concept_id": null,
+      "language_neutral_identifier": null
+    }
+  ],
+  "without_equivalence": [],
+  "without_verification_method": []
+}
