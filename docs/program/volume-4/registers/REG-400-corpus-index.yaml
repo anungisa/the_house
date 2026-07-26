@@ -1,7 +1,7 @@
 register_id: REG-400
 name: Volume 4 Corpus Index
 status: RATIFIED
-version: 1.8.0
+version: 1.9.0
 records:
   - id: V4-00
     title: Volume 4 Control, Inheritance, and Architecture Authority
@@ -275,3 +275,99 @@ records:
     version: 1.0.0
     path: docs/program/volume-4/V4-F-package-3-provenance-amendment.md
     gate: V4-G3
+  - id: V4-28
+    title: V4-28 - Engineering Architecture Standards and Module-Governance Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-28-engineering-architecture-standards-and-module-governance-model.md
+    gate: V4-G4
+  - id: V4-29
+    title: V4-29 - Quality-Attribute Scenarios and Architecture-Tactics Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-29-quality-attribute-scenarios-and-architecture-tactics-model.md
+    gate: V4-G4
+  - id: V4-30
+    title: V4-30 - Secure Software-Development Lifecycle and Engineering-Control Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-30-secure-software-development-lifecycle-and-engineering-control-architecture.md
+    gate: V4-G4
+  - id: V4-31
+    title: V4-31 - Test Architecture, Verification Environments, and Engineering-Evidence Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-31-test-architecture-verification-environments-and-engineering-evidence-model.md
+    gate: V4-G4
+  - id: V4-32
+    title: V4-32 - Coexistence, Migration, Cutover, Rollback, and Reconciliation Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-32-coexistence-migration-cutover-rollback-and-reconciliation-architecture.md
+    gate: V4-G4
+  - id: V4-33
+    title: V4-33 - Schema, Contract, Event, and Configuration Evolution Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-33-schema-contract-event-and-configuration-evolution-architecture.md
+    gate: V4-G4
+  - id: V4-34
+    title: V4-34 - Technology-Selection Criteria, Portability, and Vendor-Neutrality Architecture
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-34-technology-selection-criteria-portability-and-vendor-neutrality-architecture.md
+    gate: V4-G4
+  - id: V4-35
+    title: V4-35 - Architecture Decision, Exception, Debt, and Evolution Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-35-architecture-decision-exception-debt-and-evolution-governance.md
+    gate: V4-G4
+  - id: V4-36
+    title: V4-36 - Implementation-Readiness Gap, Dependency, and Decision Register
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-36-implementation-readiness-gap-dependency-and-decision-register.md
+    gate: V4-G4
+  - id: V4-37
+    title: V4-37 - Engineering Handoff and Downstream-Volume Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-37-engineering-handoff-and-downstream-volume-constraints.md
+    gate: V4-G4
+  - id: V4-38
+    title: V4-38 - Engineering Governance and Transition Playbook
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-38-engineering-governance-and-transition-playbook.md
+    gate: V4-G4
+  - id: V4-G
+    title: "Package 4 Closure Record - Engineering Governance, Verification, Transition, and Architecture Evolution"
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-G-package-4-closure-record.md
+    gate: V4-G4

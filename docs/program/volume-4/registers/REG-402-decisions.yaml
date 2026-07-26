@@ -1,7 +1,7 @@
 register_id: REG-402
 name: Volume 4 Architecture Decision Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: ADR-V4-001
     class: D1
@@ -480,4 +480,209 @@ records:
     supersession_rule: "Superseded only by a governed architecture decision at a later gate."
     evidence_label: AUTHOR-VERIFIED
     chapter_ref: V4-25
+    authorizes_implementation: false
+  # ==== Package 4: engineering governance and transition decisions ====
+  - id: ADR-V4-029
+    class: D1
+    title: Architecture-boundary enforcement by fitness function
+    decision: "Module boundaries and dependency direction are enforced by architecture fitness functions rather than convention alone."
+    context: "Convention-only boundaries erode under delivery pressure."
+    options: ["Fitness-function enforcement", "Convention only", "Manual review only"]
+    selected_posture: "Dependency direction and forbidden imports fail closed and are verified by fitness functions."
+    rationale: "Executable boundary verification preserves layering as the system grows."
+    constraints: ["No fitness function implemented in Package 4"]
+    consequences: ["Dependency and import fitness functions required downstream"]
+    risks: ["Repository topology and build capability unresolved"]
+    evidence_refs: [ARCH-V4-028, CTRL-V4-031, V4-28]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-28
+    authorizes_implementation: false
+  - id: ADR-V4-030
+    class: D1
+    title: Module public-surface governance
+    decision: "Cross-module interaction occurs only through published public surfaces; interior access is a forbidden dependency."
+    context: "Reaching into module interiors couples contexts and breaks encapsulation."
+    options: ["Explicit public surfaces", "Open internal access", "Package-private by accident"]
+    selected_posture: "Minimal explicit public surfaces with hidden interiors."
+    rationale: "Explicit surfaces preserve bounded-context independence."
+    constraints: ["No source-directory names or framework prescribed"]
+    consequences: ["Public-surface fitness function required downstream"]
+    risks: ["Module topology unresolved"]
+    evidence_refs: [MOD-V4-026, ARCH-V4-028, V4-28]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-28
+    authorizes_implementation: false
+  - id: ADR-V4-031
+    class: D1
+    title: Verification-environment separation
+    decision: "Verification environments are separated by fidelity class and from production, and production composition is distinct from test composition."
+    context: "Blurred environments produce false readiness signals."
+    options: ["Separated environments", "Shared environment", "Production testing"]
+    selected_posture: "Distinct verification environments with explicit fidelity and data restrictions."
+    rationale: "Separation keeps verification evidence trustworthy."
+    constraints: ["No environment provisioned in Package 4"]
+    consequences: ["Environment topology defined downstream"]
+    risks: ["Test-environment fidelity unresolved"]
+    evidence_refs: [ARCH-V4-031, CTRL-V4-033, V4-31]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-31
+    authorizes_implementation: false
+  - id: ADR-V4-032
+    class: D1
+    title: PostgreSQL as mandatory behavioural test target
+    decision: "Behavioural database claims must be verified against PostgreSQL; in-memory or SQLite behaviour cannot substitute."
+    context: "Substitute engines do not reproduce PostgreSQL concurrency and integrity behaviour."
+    options: ["PostgreSQL integration required", "In-memory substitute", "Mixed engines"]
+    selected_posture: "POSTGRES_INTEGRATION verification required for behavioural database claims."
+    rationale: "Only PostgreSQL verification proves PostgreSQL behaviour."
+    constraints: ["No test implemented in Package 4"]
+    consequences: ["PostgreSQL integration test class required downstream"]
+    risks: ["Test-environment fidelity unresolved"]
+    evidence_refs: [ARCH-V4-031, CTRL-V4-033, V4-31]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-31
+    authorizes_implementation: false
+  - id: ADR-V4-033
+    class: D1
+    title: Production composition testing via composition-root verification
+    decision: "Production composition is verified through composition-root and deployment-path verification; unit tests cannot prove composition."
+    context: "A green unit suite does not prove the production wiring is complete and real."
+    options: ["Composition-root verification", "Unit-only assurance", "Manual wiring review"]
+    selected_posture: "COMPOSITION_ROOT and DEPLOYMENT_PATH verification required for production readiness."
+    rationale: "Composition verification prevents false readiness from missing or fake dependencies."
+    constraints: ["No composition test implemented in Package 4"]
+    consequences: ["Composition-root and deployment-path fitness functions required downstream"]
+    risks: ["Deployment platform unresolved"]
+    evidence_refs: [ARCH-V4-031, CTRL-V4-033, V4-31]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-31
+    authorizes_implementation: false
+  - id: ADR-V4-034
+    class: D1
+    title: Migration authority and coexistence
+    decision: "During coexistence, source and target write authority is explicit and unambiguous, and migration does not silently convert uncertain data into authoritative truth."
+    context: "Ambiguous write authority and silent conversion corrupt governed truth."
+    options: ["Explicit authority and provenance", "Ambiguous dual-write", "Silent conversion"]
+    selected_posture: "Retained source provenance, explicit write authority, and governed duplicate resolution."
+    rationale: "Explicit authority and provenance protect the system of record during transition."
+    constraints: ["No migration script, date, cohort, or wave authored"]
+    consequences: ["Migration provenance verification required downstream"]
+    risks: ["Migration-source quality and legacy access unresolved"]
+    evidence_refs: [ARCH-V4-032, CTRL-V4-034, V4-32]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-32
+    authorizes_implementation: false
+  - id: ADR-V4-035
+    class: D1
+    title: Backward-compatible contract evolution
+    decision: "Contracts, schemas, and events evolve under classified change rules; breaking change requires explicit versioning, consumer-impact review, and a consumer-migration path."
+    context: "Uncontrolled breaking change silently breaks consumers."
+    options: ["Classified compatible evolution", "Ad hoc change", "Frozen contracts"]
+    selected_posture: "Change classes govern approval, compatibility evidence, transition, and rollback."
+    rationale: "Classified evolution preserves consumers and auditability."
+    constraints: ["No executable schema or contract authored"]
+    consequences: ["Contract and event compatibility fitness functions required downstream"]
+    risks: ["Consumer landscape unresolved"]
+    evidence_refs: [ARCH-V4-033, API-V4-006, EVT-V4-005, V4-33]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-33
+    authorizes_implementation: false
+  - id: ADR-V4-036
+    class: D1
+    title: Feature-control restrictions
+    decision: "Feature controls may change capability exposure but cannot bypass authorization, policy applicability, evidence requirements, lifecycle invariants, audit, or financial segregation."
+    context: "Feature flags that disable governed controls create silent governance holes."
+    options: ["Governed feature controls", "Unrestricted flags", "No feature controls"]
+    selected_posture: "Feature controls constrained to exposure, never to governed controls or invariants."
+    rationale: "Constrained feature controls preserve governance under staged enablement."
+    constraints: ["No feature-control implementation authored"]
+    consequences: ["Feature-control safety fitness function required downstream"]
+    risks: ["Feature-control misuse under delivery pressure"]
+    evidence_refs: [CTRL-V4-035, ARCH-V4-033, V4-33]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-33
+    authorizes_implementation: false
+  - id: ADR-V4-037
+    class: D1
+    title: Vendor-neutral technology evaluation
+    decision: "Technology is evaluated against capabilities, interfaces, portability, and exit criteria rather than by selecting a product, and no vendor is chosen in Package 4."
+    context: "Premature product selection creates lock-in and unvalidated commitment."
+    options: ["Criteria-based evaluation", "Immediate selection", "Default to incumbent"]
+    selected_posture: "Defined evaluation criteria with mandatory portability and data-export requirements."
+    rationale: "Criteria-first evaluation preserves neutrality and portability."
+    constraints: ["No cloud service, framework, library, or vendor selected; no procurement authorized"]
+    consequences: ["Technology decisions reserved for a later governed gate"]
+    risks: ["Technology options and dependency licensing unresolved"]
+    evidence_refs: [ARCH-V4-034, CTRL-V4-036, NFR-V4-023, V4-34]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-34
+    authorizes_implementation: false
+  - id: ADR-V4-038
+    class: D1
+    title: Architecture exceptions and debt governance
+    decision: "Exceptions and debt are governed with owner, compensating control, expiry, and evidence; expired exceptions fail review and exceptions never authorize product scope."
+    context: "Unexpiring exceptions and invisible debt silently erode architecture."
+    options: ["Governed, expiring exceptions", "Permanent silent exceptions", "No exception process"]
+    selected_posture: "Time-bounded, evidenced exceptions and visible debt with remediation ownership."
+    rationale: "Governed expiry and visibility keep architecture honest over time."
+    constraints: ["No active exception or accepted debt recorded as fact"]
+    consequences: ["Exception-expiry and documentation-drift fitness functions required downstream"]
+    risks: ["Exception accumulation under delivery pressure"]
+    evidence_refs: [ARCH-V4-035, CTRL-V4-037, V4-35]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-35
+    authorizes_implementation: false
+  - id: ADR-V4-039
+    class: D1
+    title: Secure software-development lifecycle controls
+    decision: "A secure-development control architecture defines required preventive, detective, and corrective controls without claiming any is implemented."
+    context: "Undefined engineering controls leave supply-chain and change risk ungoverned."
+    options: ["Defined control architecture", "Ad hoc controls", "No defined controls"]
+    selected_posture: "Named control families with objectives, evidence, exception authority, and future gates."
+    rationale: "Defined controls make later implementation verifiable and governable."
+    constraints: ["No control claimed as implemented; no tool or vendor selected"]
+    consequences: ["Control implementation and evidence required downstream"]
+    risks: ["Build and CI capabilities unresolved"]
+    evidence_refs: [ARCH-V4-030, CTRL-V4-032, V4-30]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-30
+    authorizes_implementation: false
+  - id: ADR-V4-040
+    class: D1
+    title: Quality-attribute scenarios without fabricated targets
+    decision: "Quality attributes are expressed as scenarios with expected responses and evidence, and numerical baselines remain BASELINE_PENDING until established with evidence."
+    context: "Fabricated targets create false assurance and misdirect design."
+    options: ["Scenario model with pending baselines", "Invented targets", "No quality scenarios"]
+    selected_posture: "Controlled scenarios with BASELINE_PENDING targets and named validation owners."
+    rationale: "Honest scenarios preserve credibility and defer measurement to evidence."
+    constraints: ["No numerical objective asserted"]
+    consequences: ["Quality baselines established with evidence downstream"]
+    risks: ["Quality baselines unresolved"]
+    evidence_refs: [ARCH-V4-029, NFR-V4-022, V4-29]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-29
     authorizes_implementation: false

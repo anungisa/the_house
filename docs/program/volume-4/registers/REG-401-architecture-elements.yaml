@@ -1,7 +1,7 @@
 register_id: REG-401
 name: Volume 4 Architecture Elements Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   # ---- ARCH: architecture principles (V4-01) ----
   - id: ARCH-V4-001
@@ -1686,4 +1686,233 @@ records:
     architecture_status: TARGET_CONSTRAINED
     traces_to: [CTRL-V4-027]
     chapter_ref: V4-25
+    authorizes_implementation: false
+  # ==== Package 4: engineering governance, verification, transition, and evolution ====
+  # ---- ARCH: engineering and transition principles (V4-28..V4-38) ----
+  - id: ARCH-V4-028
+    kind: ARCH
+    title: Engineering layering and module-governance standard
+    statement: "Later implementation must respect inward dependency direction, module ownership and public surfaces, transport and adapter isolation, and shared-kernel restrictions; domain modules depend on no transport, persistence framework, vendor SDK, deployment framework, or UI."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-010]
+    chapter_ref: V4-28
+    authorizes_implementation: false
+  - id: ARCH-V4-029
+    kind: ARCH
+    title: Quality-attribute scenario and tactics model
+    statement: "Inherited quality attributes are expressed as controlled scenarios with stimulus, environment, affected element, expected response, and evidence, without fabricated numerical targets."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-001]
+    chapter_ref: V4-29
+    authorizes_implementation: false
+  - id: ARCH-V4-030
+    kind: ARCH
+    title: Secure software-development lifecycle architecture
+    statement: "Required preventive, detective, and corrective engineering controls span change provenance, review, scanning, composition analysis, signing, build isolation, protected environments, and vulnerability handling, defined but not claimed as implemented."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [SECURITY]
+    traces_to: [ARCH-V4-024]
+    chapter_ref: V4-30
+    authorizes_implementation: false
+  - id: ARCH-V4-031
+    kind: ARCH
+    title: Test architecture and verification-environment separation
+    statement: "A complete future test-class architecture with separated verification environments, explicit proof limitations, and required PostgreSQL, composition-root, and deployment-path verification, none implemented."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-027]
+    chapter_ref: V4-31
+    authorizes_implementation: false
+  - id: ARCH-V4-032
+    kind: ARCH
+    title: Coexistence, migration, cutover, and rollback architecture
+    statement: "Transition from current systems retains source provenance, keeps write authority unambiguous, prevents silent conversion of uncertain data into truth, and treats migration execution as a future delivery concern."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-023]
+    chapter_ref: V4-32
+    authorizes_implementation: false
+  - id: ARCH-V4-033
+    kind: ARCH
+    title: Schema, contract, event, and configuration evolution architecture
+    statement: "Compatibility and evolution rules classify change, require compatibility evidence and consumer migration, and constrain feature controls, without authoring executable schemas."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-023]
+    chapter_ref: V4-33
+    authorizes_implementation: false
+  - id: ARCH-V4-034
+    kind: ARCH
+    title: Technology-selection criteria and vendor-neutrality architecture
+    statement: "Technology decisions are governed by defined evaluation criteria preserving portability and exit capability; no vendor, cloud service, framework, or library is selected."
+    authority: Shared
+    architecture_status: TARGET_DEFINED
+    quality_attributes: [PORTABILITY, INTEROPERABILITY]
+    traces_to: [ARCH-V4-001]
+    chapter_ref: V4-34
+    authorizes_implementation: false
+  - id: ARCH-V4-035
+    kind: ARCH
+    title: Architecture exception, debt, and evolution governance
+    statement: "Architecture decisions, exceptions, and technical, control, security, and privacy debt are governed with owners, compensating controls, expiry, and evidence; exceptions never authorize product scope."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-027]
+    chapter_ref: V4-35
+    authorizes_implementation: false
+  - id: ARCH-V4-036
+    kind: ARCH
+    title: Implementation-readiness and downstream-handoff model
+    statement: "Implementation-readiness gaps and downstream-volume constraints are recorded with classification, owner, resolution evidence, target volume, and future gate; they inform but do not authorize implementation or delivery planning."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-027]
+    chapter_ref: V4-36
+    authorizes_implementation: false
+  # ---- NFR: engineering quality requirements ----
+  - id: NFR-V4-022
+    kind: NFR
+    title: Maintainability, operability, and quality-scenario evolvability
+    statement: "The architecture supports controlled quality-attribute scenarios and evolvability; measured baselines remain BASELINE_PENDING until established with evidence at a future gate."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    quality_attributes: [MAINTAINABILITY, OPERABILITY]
+    traces_to: [ARCH-V4-029]
+    chapter_ref: V4-29
+    authorizes_implementation: false
+  - id: NFR-V4-023
+    kind: NFR
+    title: Portability and vendor-neutrality requirement
+    statement: "Every stateful evaluation domain requires a defined data-export and exit capability, and vendor coupling is confined to adapter boundaries."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    quality_attributes: [PORTABILITY, INTEROPERABILITY]
+    traces_to: [ARCH-V4-034]
+    chapter_ref: V4-34
+    authorizes_implementation: false
+  # ---- MOD: module governance ----
+  - id: MOD-V4-026
+    kind: MOD
+    title: Module public-surface and dependency-direction governance
+    statement: "Each module has a single owning context, an explicit minimal public surface, and a hidden interior; cross-module interaction occurs only through published contracts, commands, queries, and owned domain events."
+    authority: House
+    architecture_status: TARGET_DEFINED
+    traces_to: [ARCH-V4-028]
+    chapter_ref: V4-28
+    authorizes_implementation: false
+  # ---- DATA: migration and reconciliation data ----
+  - id: DATA-V4-019
+    kind: DATA
+    title: Migration source-provenance and reconciliation record
+    statement: "Migrated data retains source provenance and remains distinguishable from natively governed data; reconciliation status is recorded rather than overwriting governed truth."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-032]
+    chapter_ref: V4-32
+    authorizes_implementation: false
+  # ---- API / EVT: contract and event evolution ----
+  - id: API-V4-006
+    kind: API
+    title: API and contract compatibility and versioning rule
+    statement: "API and import/export contracts evolve under classified change rules; breaking change requires explicit versioning, consumer-impact review, and a consumer-migration path."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-033]
+    chapter_ref: V4-33
+    authorizes_implementation: false
+  - id: EVT-V4-005
+    kind: EVT
+    title: Event compatibility and replay evolution rule
+    statement: "Domain and integration events evolve compatibly; replay and rollback preserve governed authority and audit continuity and do not rewrite history without a governed correction."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-033]
+    chapter_ref: V4-33
+    authorizes_implementation: false
+  # ---- CTRL: engineering and transition controls ----
+  - id: CTRL-V4-031
+    kind: CTRL
+    title: Dependency-direction and forbidden-import control
+    statement: "Forbidden dependency directions and cross-module interior access fail closed; domain modules cannot depend on transports, persistence frameworks, vendor SDKs, deployment frameworks, or UI."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-028]
+    chapter_ref: V4-28
+    authorizes_implementation: false
+  - id: CTRL-V4-032
+    kind: CTRL
+    title: Secure-development preventive, detective, and corrective control
+    statement: "Each engineering-control family defines preventive, detective, and corrective controls over a protected asset and stage with retained evidence; controls are required and defined, not claimed as implemented."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-030]
+    verification_status: VALIDATION_PENDING
+    chapter_ref: V4-30
+    authorizes_implementation: false
+  - id: CTRL-V4-033
+    kind: CTRL
+    title: PostgreSQL, composition-root, and deployment-path verification requirement
+    statement: "Behavioural database claims require PostgreSQL verification, production composition requires composition-root verification, and delivery requires deployment-path evidence; lower-fidelity verification cannot substitute for higher-fidelity proof."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-031]
+    chapter_ref: V4-31
+    authorizes_implementation: false
+  - id: CTRL-V4-034
+    kind: CTRL
+    title: Migration provenance and write-authority disambiguation control
+    statement: "Migration retains source provenance, keeps legacy and target write authority unambiguous, prevents silent conversion of uncertain data into truth, and blocks unresolved duplicate merges."
+    authority: Shared
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-032]
+    chapter_ref: V4-32
+    authorizes_implementation: false
+  - id: CTRL-V4-035
+    kind: CTRL
+    title: Feature-control governance-preservation control
+    statement: "Feature controls cannot bypass authorization, policy applicability, evidence requirements, lifecycle invariants, audit, or financial segregation."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-033]
+    chapter_ref: V4-33
+    authorizes_implementation: false
+  - id: CTRL-V4-036
+    kind: CTRL
+    title: Data-export and exit-capability control
+    statement: "Every stateful technology domain requires a defined data-export and exit path so that portability and vendor-neutrality are preserved."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-034]
+    chapter_ref: V4-34
+    authorizes_implementation: false
+  - id: CTRL-V4-037
+    kind: CTRL
+    title: Exception-expiry fail-closed control
+    statement: "Architecture and engineering exceptions are time-bounded; an expired exception fails governance review rather than persisting silently, and no-op dependencies cannot become production defaults."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-035]
+    chapter_ref: V4-35
+    authorizes_implementation: false
+  - id: CTRL-V4-038
+    kind: CTRL
+    title: Downstream-volume constraint-preservation control
+    statement: "Each downstream volume inherits explicit architecture, security, privacy, and governance constraints and cannot weaken them; architecture order is not delivery order."
+    authority: House
+    architecture_status: TARGET_CONSTRAINED
+    traces_to: [ARCH-V4-036]
+    chapter_ref: V4-37
+    authorizes_implementation: false
+  # ---- DEP: engineering toolchain dependency ----
+  - id: DEP-V4-022
+    kind: DEP
+    title: Engineering toolchain and CI/CD platform
+    statement: "Build, test, scanning, signing, and CI/CD tooling required to realize the secure-development and verification architecture; no tool, platform, or vendor is selected in Package 4."
+    authority: Shared
+    architecture_status: TARGET_ASSUMED
+    traces_to: [CTRL-V4-032]
+    chapter_ref: V4-30
     authorizes_implementation: false

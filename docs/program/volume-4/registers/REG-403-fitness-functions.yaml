@@ -1,7 +1,7 @@
 register_id: REG-403
 name: Volume 4 Fitness-Function Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: FIT-V4-001
     title: Forbidden dependency direction
@@ -533,5 +533,171 @@ records:
     verification_status: FITNESS_FUNCTION_DEFINED
     verification_class: OPERATIONAL_PROOF_REQUIRED
     chapter_ref: V4-27
+    implemented: false
+    authorizes_implementation: false
+  # ==== Package 4: engineering, verification, and transition fitness functions ====
+  - id: FIT-V4-049
+    title: Module dependency enforcement
+    intent: "Ensure module dependencies follow the inward direction and forbidden dependencies fail closed."
+    invariant: "A dependency violating the allowed direction fails the architecture check."
+    evaluation_form: "Static architecture verification of module dependency direction (defined downstream)."
+    traces_to: [CTRL-V4-031, V4-28]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-28
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-050
+    title: Prohibited imports and dependency directions
+    intent: "Ensure domain modules do not import transports, persistence frameworks, vendor SDKs, deployment frameworks, or UI."
+    invariant: "A prohibited import in a domain module fails the architecture check."
+    evaluation_form: "Static architecture verification of prohibited imports (defined downstream)."
+    traces_to: [CTRL-V4-031, V4-28]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-28
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-051
+    title: Module public-surface enforcement
+    intent: "Ensure cross-module interaction occurs only through published public surfaces."
+    invariant: "Access to a module interior from another module fails the architecture check."
+    evaluation_form: "Static architecture verification of module public surfaces (defined downstream)."
+    traces_to: [MOD-V4-026, V4-28]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-28
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-052
+    title: Architecture-to-requirement traceability
+    intent: "Ensure architecture elements trace to inherited requirements and that ratified chapters are indexed."
+    invariant: "An architecture element or ratified chapter without required traceability fails the check."
+    evaluation_form: "Static verification of architecture-to-requirement traceability (defined downstream)."
+    traces_to: [ARCH-V4-036, V4-36]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-31
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-053
+    title: PostgreSQL test execution
+    intent: "Ensure behavioural database claims are verified against PostgreSQL."
+    invariant: "A behavioural database claim verified only against a substitute engine is not accepted."
+    evaluation_form: "PostgreSQL integration verification (defined downstream)."
+    traces_to: [CTRL-V4-033, V4-31]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-31
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-054
+    title: Composition-root verification
+    intent: "Ensure the production composition root wires every required real dependency."
+    invariant: "A production composition missing a required real dependency fails closed."
+    evaluation_form: "Composition-root verification (defined downstream)."
+    traces_to: [CTRL-V4-033, V4-31]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    chapter_ref: V4-31
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-055
+    title: Deployment-path verification
+    intent: "Ensure the deployment path is verified rather than assumed from unit evidence."
+    invariant: "A delivery claim without deployment-path evidence is not accepted."
+    evaluation_form: "Deployment-path verification (defined downstream)."
+    traces_to: [CTRL-V4-033, V4-31]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: DEPLOYMENT_PATH_VERIFICATION_CANDIDATE
+    chapter_ref: V4-31
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-056
+    title: No production test doubles
+    intent: "Ensure production-required services do not resolve to test doubles or no-ops, including expired temporary no-ops."
+    invariant: "A production-required dependency resolving to a test double or no-op fails closed."
+    evaluation_form: "Composition verification for production test doubles (defined downstream)."
+    traces_to: [CTRL-V4-037, V4-35]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    chapter_ref: V4-31
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-057
+    title: Migration provenance
+    intent: "Ensure migrated data retains source provenance and does not silently become authoritative truth."
+    invariant: "A migrated record without retained source provenance or with ambiguous write authority is rejected."
+    evaluation_form: "Contract verification of migration provenance (defined downstream)."
+    traces_to: [CTRL-V4-034, V4-32]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: CONTRACT_VERIFICATION_CANDIDATE
+    chapter_ref: V4-32
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-058
+    title: Contract compatibility
+    intent: "Ensure API and import/export contract changes conform to their declared change class."
+    invariant: "A contract change incompatible with its declared class fails the compatibility check."
+    evaluation_form: "Contract compatibility verification (defined downstream)."
+    traces_to: [API-V4-006, V4-33]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: CONTRACT_VERIFICATION_CANDIDATE
+    chapter_ref: V4-33
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-059
+    title: Event compatibility
+    intent: "Ensure domain and integration event changes remain compatible or follow a governed breaking-change path."
+    invariant: "An event change incompatible with its declared class fails the compatibility check."
+    evaluation_form: "Event compatibility verification (defined downstream)."
+    traces_to: [EVT-V4-005, V4-33]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: CONTRACT_VERIFICATION_CANDIDATE
+    chapter_ref: V4-33
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-060
+    title: Configuration-version completeness
+    intent: "Ensure configuration and policy versions are complete and a missing configuration is treated as absent."
+    invariant: "A missing or unversioned required configuration fails closed rather than defaulting."
+    evaluation_form: "Composition verification of configuration-version completeness (defined downstream)."
+    traces_to: [CTRL-V4-035, V4-33]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    chapter_ref: V4-33
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-061
+    title: Feature-control safety
+    intent: "Ensure feature controls cannot bypass authorization, policy, evidence, invariants, audit, or financial segregation."
+    invariant: "A feature control that disables a governed control or invariant fails the safety check."
+    evaluation_form: "Static verification of feature-control safety (defined downstream)."
+    traces_to: [CTRL-V4-035, V4-33]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-33
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-062
+    title: Exception expiry
+    intent: "Ensure architecture and engineering exceptions expire and expired exceptions fail governance review."
+    invariant: "An expired exception fails governance review rather than persisting silently."
+    evaluation_form: "Static verification of exception expiry (defined downstream)."
+    traces_to: [CTRL-V4-037, V4-35]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-35
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-063
+    title: Architecture-documentation drift
+    intent: "Ensure architecture documentation and runtime reality are periodically reconciled."
+    invariant: "Unreconciled drift between documented architecture and runtime reality is surfaced rather than hidden."
+    evaluation_form: "Static verification of architecture-documentation drift (defined downstream)."
+    traces_to: [ARCH-V4-035, V4-35]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-35
     implemented: false
     authorizes_implementation: false

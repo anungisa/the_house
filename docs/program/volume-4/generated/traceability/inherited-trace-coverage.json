@@ -1787,5 +1787,245 @@
       "CTRL-V4-027"
     ],
     "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-028",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-010"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-029",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-001"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-030",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-024"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-031",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-027"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-032",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-023"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-033",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-023"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-034",
+    "kind": "ARCH",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-001"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-035",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-027"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "ARCH-V4-036",
+    "kind": "ARCH",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-027"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "NFR-V4-022",
+    "kind": "NFR",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-029"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "NFR-V4-023",
+    "kind": "NFR",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-034"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "MOD-V4-026",
+    "kind": "MOD",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-028"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DATA-V4-019",
+    "kind": "DATA",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-032"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "API-V4-006",
+    "kind": "API",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-033"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "EVT-V4-005",
+    "kind": "EVT",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-033"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-031",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-028"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-032",
+    "kind": "CTRL",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-030"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-033",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-031"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-034",
+    "kind": "CTRL",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-032"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-035",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-033"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-036",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-034"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-037",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-035"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "CTRL-V4-038",
+    "kind": "CTRL",
+    "authority": "House",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ARCH-V4-036"
+    ],
+    "inherited_trace_present": false
+  },
+  {
+    "id": "DEP-V4-022",
+    "kind": "DEP",
+    "authority": "Shared",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "CTRL-V4-032"
+    ],
+    "inherited_trace_present": false
   }
 ]

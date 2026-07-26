@@ -1,6 +1,6 @@
 # Volume 4 Architecture Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:28:06.214Z
+Generated: 2026-07-26T15:53:59.046Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
@@ -10,33 +10,33 @@ Generated: 2026-07-26T15:28:06.214Z
 
 | Category | Count |
 | --- | --- |
-| Chapters | 34 |
-| Architecture elements | 177 |
-| Architecture decisions | 28 |
-| Fitness functions | 48 |
-| Assumptions / risks / exceptions | 40 |
-| Approvals | 40 |
+| Chapters | 46 |
+| Architecture elements | 201 |
+| Architecture decisions | 40 |
+| Fitness functions | 63 |
+| Assumptions / risks / exceptions | 58 |
+| Approvals | 54 |
 
 ## Architecture elements by kind
 
 | Kind | Count |
 | --- | --- |
-| ARCH | 27 |
-| NFR | 21 |
-| MOD | 25 |
+| ARCH | 36 |
+| NFR | 23 |
+| MOD | 26 |
 | SVC | 26 |
-| DATA | 18 |
-| API | 5 |
-| EVT | 4 |
-| CTRL | 30 |
-| DEP | 21 |
+| DATA | 19 |
+| API | 6 |
+| EVT | 5 |
+| CTRL | 38 |
+| DEP | 22 |
 
 ## Authority coverage
 
 | Authority | Elements |
 | --- | --- |
-| Shared | 19 |
-| House | 144 |
+| Shared | 33 |
+| House | 154 |
 | External | 8 |
 | Button | 4 |
 | Staff | 2 |
@@ -193,8 +193,23 @@ Generated: 2026-07-26T15:28:06.214Z
 - DEP-V4-019
 - DEP-V4-020
 - DEP-V4-021
+- NFR-V4-022
+- NFR-V4-023
+- MOD-V4-026
+- DATA-V4-019
+- API-V4-006
+- EVT-V4-005
+- CTRL-V4-031
+- CTRL-V4-032
+- CTRL-V4-033
+- CTRL-V4-034
+- CTRL-V4-035
+- CTRL-V4-036
+- CTRL-V4-037
+- CTRL-V4-038
+- DEP-V4-022
 
 ## Decision authorization posture
 
-- Decisions total: 28
+- Decisions total: 40
 - Decisions authorizing implementation: 0 (must be 0)

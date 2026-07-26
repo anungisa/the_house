@@ -167,6 +167,84 @@
       "title": "Recovery objectives and ownership unresolved",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "ASM-V4-029",
+      "title": "Repository topology unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-030",
+      "title": "Build and CI capabilities unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-031",
+      "title": "Migration-source data quality unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-032",
+      "title": "Legacy-system access unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-033",
+      "title": "Coexistence duration unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-034",
+      "title": "Rollback feasibility unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-035",
+      "title": "Test-environment fidelity unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-036",
+      "title": "Technology options unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-037",
+      "title": "Dependency licensing unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-038",
+      "title": "Operational ownership unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-039",
+      "title": "Quality-attribute baselines unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-040",
+      "title": "Implementation capacity unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "ASM-V4-041",
+      "title": "Independent assurance unresolved",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
     }
   ],
   "risks": [
@@ -235,6 +313,36 @@
       "title": "Unverified recovery claim",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G4"
+    },
+    {
+      "id": "RISK-V4-012",
+      "title": "Temporary no-op dependency becomes a production default",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "RISK-V4-013",
+      "title": "Expired exception silently persists",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "RISK-V4-014",
+      "title": "Lower-fidelity verification mistaken for proof",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "RISK-V4-015",
+      "title": "Migration converts uncertain data into authoritative truth",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
+    },
+    {
+      "id": "RISK-V4-016",
+      "title": "Vendor lock-in erodes portability",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G5"
     }
   ]
 }

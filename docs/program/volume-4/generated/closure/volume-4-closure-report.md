@@ -1,6 +1,6 @@
 # Volume 4 Architecture-Foundation Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:28:06.392Z
+Generated: 2026-07-26T15:53:59.225Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
@@ -11,11 +11,11 @@ Generated: 2026-07-26T15:28:06.392Z
 
 | Category | Count |
 | --- | --- |
-| Architecture elements | 177 |
-| Quality-attribute (NFR) elements | 21 |
-| Architecture decisions | 28 |
-| Fitness functions | 48 |
-| Assumptions / risks / exceptions | 40 |
+| Architecture elements | 201 |
+| Quality-attribute (NFR) elements | 23 |
+| Architecture decisions | 40 |
+| Fitness functions | 63 |
+| Assumptions / risks / exceptions | 58 |
 
 ## Quality-attribute coverage
 
@@ -25,11 +25,11 @@ Generated: 2026-07-26T15:28:06.392Z
 | AUDITABILITY | 2 |
 | AVAILABILITY | 1 |
 | BILINGUAL_EQUIVALENCE | 1 |
-| INTEROPERABILITY | 1 |
-| MAINTAINABILITY | 1 |
-| OPERABILITY | 1 |
+| INTEROPERABILITY | 2 |
+| MAINTAINABILITY | 2 |
+| OPERABILITY | 2 |
 | PERFORMANCE | 1 |
-| PORTABILITY | 1 |
+| PORTABILITY | 2 |
 | PRIVACY | 2 |
 | RECOVERABILITY | 1 |
 | RESILIENCE | 3 |
@@ -40,15 +40,15 @@ Generated: 2026-07-26T15:28:06.392Z
 
 | Status | Count |
 | --- | --- |
-| TARGET_ASSUMED | 14 |
-| TARGET_CONSTRAINED | 58 |
-| TARGET_DEFINED | 105 |
+| TARGET_ASSUMED | 16 |
+| TARGET_CONSTRAINED | 70 |
+| TARGET_DEFINED | 115 |
 
 ## Decision verification status
 
 | Verification status | Count |
 | --- | --- |
-| SPECIFIED | 28 |
+| SPECIFIED | 40 |
 
 ## Authorization invariants (all must be 0)
 
@@ -86,6 +86,19 @@ Generated: 2026-07-26T15:28:06.392Z
 - ASM-V4-026 (Aubert Nungisa (Accountable Program Authority), V4-G4): Deployment platform unresolved
 - ASM-V4-027 (Aubert Nungisa (Accountable Program Authority), V4-G4): Regional resilience posture unresolved
 - ASM-V4-028 (Aubert Nungisa (Accountable Program Authority), V4-G4): Recovery objectives and ownership unresolved
+- ASM-V4-029 (Aubert Nungisa (Accountable Program Authority), V4-G5): Repository topology unresolved
+- ASM-V4-030 (Aubert Nungisa (Accountable Program Authority), V4-G5): Build and CI capabilities unresolved
+- ASM-V4-031 (Aubert Nungisa (Accountable Program Authority), V4-G5): Migration-source data quality unresolved
+- ASM-V4-032 (Aubert Nungisa (Accountable Program Authority), V4-G5): Legacy-system access unresolved
+- ASM-V4-033 (Aubert Nungisa (Accountable Program Authority), V4-G5): Coexistence duration unresolved
+- ASM-V4-034 (Aubert Nungisa (Accountable Program Authority), V4-G5): Rollback feasibility unresolved
+- ASM-V4-035 (Aubert Nungisa (Accountable Program Authority), V4-G5): Test-environment fidelity unresolved
+- ASM-V4-036 (Aubert Nungisa (Accountable Program Authority), V4-G5): Technology options unresolved
+- ASM-V4-037 (Aubert Nungisa (Accountable Program Authority), V4-G5): Dependency licensing unresolved
+- ASM-V4-038 (Aubert Nungisa (Accountable Program Authority), V4-G5): Operational ownership unresolved
+- ASM-V4-039 (Aubert Nungisa (Accountable Program Authority), V4-G5): Quality-attribute baselines unresolved
+- ASM-V4-040 (Aubert Nungisa (Accountable Program Authority), V4-G5): Implementation capacity unresolved
+- ASM-V4-041 (Aubert Nungisa (Accountable Program Authority), V4-G5): Independent assurance unresolved
 
 ## Open risks (owner and resolution gate)
 
@@ -100,3 +113,8 @@ Generated: 2026-07-26T15:28:06.392Z
 - RISK-V4-009 (Aubert Nungisa (Accountable Program Authority), V4-G4): Projection treated as authoritative
 - RISK-V4-010 (Aubert Nungisa (Accountable Program Authority), V4-G4): Production reliance on a test double or no-op
 - RISK-V4-011 (Aubert Nungisa (Accountable Program Authority), V4-G4): Unverified recovery claim
+- RISK-V4-012 (Aubert Nungisa (Accountable Program Authority), V4-G5): Temporary no-op dependency becomes a production default
+- RISK-V4-013 (Aubert Nungisa (Accountable Program Authority), V4-G5): Expired exception silently persists
+- RISK-V4-014 (Aubert Nungisa (Accountable Program Authority), V4-G5): Lower-fidelity verification mistaken for proof
+- RISK-V4-015 (Aubert Nungisa (Accountable Program Authority), V4-G5): Migration converts uncertain data into authoritative truth
+- RISK-V4-016 (Aubert Nungisa (Accountable Program Authority), V4-G5): Vendor lock-in erodes portability
