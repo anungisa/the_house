@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.4.0
+version: 1.5.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -360,4 +360,23 @@ records:
       - Authorizes commencement of Volume 4 Package 3 as an architecture package only.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
       - Changes to frozen Package 2 content require the recorded amendment process.
+    approved_at: null
+  - id: APP-V4-027
+    artifact_id: V4-D
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V4-C
+    package_provenance:
+      source_snapshot_commit: 0bc7b72
+      closure_freeze_commit: 6991f81
+      release_merge_commit: 6fc1790
+      inherited_baseline_tag: central-registration-volume-3-v1.0.1
+      note: "Package 2 was authored (0bc7b72) and closed/frozen (6991f81) on a single pull request (#29) and merged once into main (6fc1790); the original package merge and the release merge coincide. This provenance amendment does not reopen or modify the frozen Package 2 artifacts and preserves Gate V4-G2."
+    conditions:
+      - Narrow post-merge provenance-metadata amendment only.
+      - Preserves Gate V4-G2 and its DOMAIN_AND_APPLICATION_ARCHITECTURE_READY disposition.
+      - Does not reopen or modify frozen Package 2 artifacts V4-10..V4-18 or V4-C.
+      - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
     approved_at: null
