@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:47:55.432Z
+Generated: 2026-07-26T12:52:00.811Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -38,8 +38,8 @@ Generated: 2026-07-26T12:47:55.432Z
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.2.0 | 25 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.1.0 | 19 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.2.0 | 211 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.4.0 | 9 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.5.0 | 37 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.5.0 | 10 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.6.0 | 38 |
 
 ## Findings by control
 
@@ -138,3 +138,5 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-036 (GATE-V3-G3): Condition 15: Package 3 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit
 - APP-V3-037 (PACKAGE-3-3): Package 3 corpus frozen at version 1.0.0 through a separate freeze commit.
 - APP-V3-037 (PACKAGE-3-3): Freeze provenance completed post-merge through the recorded amendment process.
+- APP-V3-038 (PACKAGE-3-3): Package 3 freeze provenance completed post-merge; source snapshot cfeda60, closure/freeze 3bdc6eb, merged 386b15c.
+- APP-V3-038 (PACKAGE-3-3): Gate V3-G3 and V3-C are preserved; no substantive Package 3 content is reopened.
