@@ -1,7 +1,7 @@
 register_id: REG-505
 name: Volume 5 Approval Register
 status: RATIFIED
-version: 1.4.0
+version: 1.5.0
 records:
   # ==== Package 1: chapter ratifications ====
   - id: APP-V5-001
@@ -531,5 +531,86 @@ records:
     conditions:
       - Package 3 traceability, validation backlog, and downstream constraints defined.
       - Records the validation-gate reassignment away from the passing Gate V5-G3.
+      - Authorizes no implementation.
+    approved_at: null
+  # ==== Package 3: closure, gate disposition, and freeze ====
+  - id: APP-V5-041
+    artifact_id: V5-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-E
+    conditions:
+      - Package 3 closure record consolidates the data-lifecycle and stewardship model.
+      - Records Gate V5-G3 disposition and Package 4 authorization.
+      - Records the validation-gate reassignment away from the passing Gate V5-G3.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-042
+    artifact_id: GATE-V5-G3
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: DATA_LIFECYCLE_AND_STEWARDSHIP_MODEL_READY
+    closure_record: V5-E
+    conditions:
+      - Package 1 and Package 2 provenance and freezes are preserved.
+      - Package 2 unresolved validations no longer name the completed Gate V5-G3.
+      - Governed data is classified as master, reference, transactional, lifecycle-history, evidentiary, audit, derived, analytical, external-authority, and transitional data.
+      - Each master data set names one authority owner and one steward.
+      - Reference and code values are versioned and deprecated with a documented replacement and never silently reused.
+      - Controlled terms carry a single canonical meaning with English and French labels.
+      - Data ownership, stewardship, custody, and decision rights are distinct and named.
+      - The data-quality rule lifecycle defines measurement, time-bounded exceptions, and remediation without executable rules.
+      - The data lifecycle, records authority, retention dependencies, legal hold, archival, and disposition dependencies are defined without approving any retention period or deletion schedule.
+      - Legal hold supersedes disposition.
+      - Identity resolution treats similarity as advisory and requires evidence for merge or split.
+      - Cross-system reconciliation preserves authority boundaries and resolves conflicts only to the named conflict authority.
+      - Data exchange preserves source authority and lineage.
+      - Purpose, minimization, and disclosure authority constrain data use and derived data holds no independent authority.
+      - Stewardship measures assert no operational assurance until future operational evidence is provided.
+      - Person, authenticated account, membership, representative authority, reviewer assignment, and finance authority remain distinct; payment acknowledgement and accounting confirmation remain distinct; affiliation approval, reconciliation, activation authorization, and activation execution remain distinct.
+      - No record authorizes implementation.
+      - No physical schema, table, column, index, key, DDL, ORM mapping, migration, pipeline, API, event, file contract, or executable quality rule is created.
+      - Package 3 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V5-043
+    artifact_id: PACKAGE-5-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-E
+    frozen: true
+    frozen_artifacts:
+      - id: V5-21
+        version: 1.0.0
+      - id: V5-22
+        version: 1.0.0
+      - id: V5-23
+        version: 1.0.0
+      - id: V5-24
+        version: 1.0.0
+      - id: V5-25
+        version: 1.0.0
+      - id: V5-26
+        version: 1.0.0
+      - id: V5-27
+        version: 1.0.0
+      - id: V5-28
+        version: 1.0.0
+      - id: V5-29
+        version: 1.0.0
+      - id: V5-30
+        version: 1.0.0
+      - id: V5-31
+        version: 1.0.0
+      - id: V5-E
+        version: 1.0.0
+    conditions:
+      - Package 3 corpus frozen; changes require the recorded amendment process.
+      - Freeze committed separately from authoring per Gate V5-G3 condition.
       - Authorizes no implementation.
     approved_at: null

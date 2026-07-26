@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:45:32.349Z
+Generated: 2026-07-26T18:47:57.266Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T18:45:32.349Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 36 |
+| RATIFIED | 37 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.4.0 | 36 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.5.0 | 37 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.2.0 | 163 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.2.0 | 69 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.2.0 | 28 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.2.0 | 39 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.4.0 | 40 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.5.0 | 43 |
 
 ## Findings by control
 
@@ -190,3 +190,29 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-040 (V5-31): Package 3 traceability, validation backlog, and downstream constraints defined.
 - APP-V5-040 (V5-31): Records the validation-gate reassignment away from the passing Gate V5-G3.
 - APP-V5-040 (V5-31): Authorizes no implementation.
+- APP-V5-041 (V5-E): Package 3 closure record consolidates the data-lifecycle and stewardship model.
+- APP-V5-041 (V5-E): Records Gate V5-G3 disposition and Package 4 authorization.
+- APP-V5-041 (V5-E): Records the validation-gate reassignment away from the passing Gate V5-G3.
+- APP-V5-041 (V5-E): Authorizes no implementation.
+- APP-V5-042 (GATE-V5-G3): Package 1 and Package 2 provenance and freezes are preserved.
+- APP-V5-042 (GATE-V5-G3): Package 2 unresolved validations no longer name the completed Gate V5-G3.
+- APP-V5-042 (GATE-V5-G3): Governed data is classified as master, reference, transactional, lifecycle-history, evidentiary, audit, derived, analytical, external-authority, and transitional data.
+- APP-V5-042 (GATE-V5-G3): Each master data set names one authority owner and one steward.
+- APP-V5-042 (GATE-V5-G3): Reference and code values are versioned and deprecated with a documented replacement and never silently reused.
+- APP-V5-042 (GATE-V5-G3): Controlled terms carry a single canonical meaning with English and French labels.
+- APP-V5-042 (GATE-V5-G3): Data ownership, stewardship, custody, and decision rights are distinct and named.
+- APP-V5-042 (GATE-V5-G3): The data-quality rule lifecycle defines measurement, time-bounded exceptions, and remediation without executable rules.
+- APP-V5-042 (GATE-V5-G3): The data lifecycle, records authority, retention dependencies, legal hold, archival, and disposition dependencies are defined without approving any retention period or deletion schedule.
+- APP-V5-042 (GATE-V5-G3): Legal hold supersedes disposition.
+- APP-V5-042 (GATE-V5-G3): Identity resolution treats similarity as advisory and requires evidence for merge or split.
+- APP-V5-042 (GATE-V5-G3): Cross-system reconciliation preserves authority boundaries and resolves conflicts only to the named conflict authority.
+- APP-V5-042 (GATE-V5-G3): Data exchange preserves source authority and lineage.
+- APP-V5-042 (GATE-V5-G3): Purpose, minimization, and disclosure authority constrain data use and derived data holds no independent authority.
+- APP-V5-042 (GATE-V5-G3): Stewardship measures assert no operational assurance until future operational evidence is provided.
+- APP-V5-042 (GATE-V5-G3): Person, authenticated account, membership, representative authority, reviewer assignment, and finance authority remain distinct; payment acknowledgement and accounting confirmation remain distinct; affiliation approval, reconciliation, activation authorization, and activation execution remain distinct.
+- APP-V5-042 (GATE-V5-G3): No record authorizes implementation.
+- APP-V5-042 (GATE-V5-G3): No physical schema, table, column, index, key, DDL, ORM mapping, migration, pipeline, API, event, file contract, or executable quality rule is created.
+- APP-V5-042 (GATE-V5-G3): Package 3 receives line-level review and a separate freeze commit.
+- APP-V5-043 (PACKAGE-5-3): Package 3 corpus frozen; changes require the recorded amendment process.
+- APP-V5-043 (PACKAGE-5-3): Freeze committed separately from authoring per Gate V5-G3 condition.
+- APP-V5-043 (PACKAGE-5-3): Authorizes no implementation.

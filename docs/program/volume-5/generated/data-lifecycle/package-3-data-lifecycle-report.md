@@ -1,6 +1,6 @@
 # Volume 5 Package 3 Data-Lifecycle Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:46:10.413Z
+Generated: 2026-07-26T18:48:06.900Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 3 defines DATA-LIFECYCLE
@@ -46,5 +46,5 @@ Generated: 2026-07-26T18:46:10.413Z
 
 ## Validation-gate correctness
 
-- Completed (passed) gates: V5-G1, V5-G2
+- Completed (passed) gates: V5-G1, V5-G2, V5-G3
 - Backlog items pointing at a completed gate (must be 0): 0
