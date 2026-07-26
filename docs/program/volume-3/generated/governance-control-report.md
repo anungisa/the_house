@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T11:36:48.517Z
+Generated: 2026-07-26T11:39:14.876Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T11:36:48.517Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 8 |
+| RATIFIED | 9 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.0.0 | 8 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.0.0 | 9 |
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.0.0 | 7 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.0.0 | 16 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.0.0 | 53 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.0.0 | 1 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.0.0 | 8 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.0.0 | 3 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.0.0 | 11 |
 
 ## Findings by control
 
@@ -65,3 +65,19 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-006 (V3-05): Financial operating boundary fabricates no amounts, costs, or commercial commitments.
 - APP-V3-007 (V3-06): Support holds no affiliation decision authority.
 - APP-V3-008 (V3-07): Operating measures are classified DEFINED or explicitly validation-pending; no targets are fabricated.
+- APP-V3-009 (V3-A): Package 1 closure record ratified.
+- APP-V3-010 (GATE-V3-G1): Condition 1: Corrected Volume 2 provenance (v1.0.1) inherited as the Package 1 baseline
+- APP-V3-010 (GATE-V3-G1): Condition 2: Institutional operating functions are defined across all functions
+- APP-V3-010 (GATE-V3-G1): Condition 3: Responsibilities are separated across operating functions
+- APP-V3-010 (GATE-V3-G1): Condition 4: All three affiliation pathways have operating models across the lifecycle
+- APP-V3-010 (GATE-V3-G1): Condition 5: Decision authority is distinguished from operational execution
+- APP-V3-010 (GATE-V3-G1): Condition 6: Delegation, escalation, conflicts, and segregation of duties are represented
+- APP-V3-010 (GATE-V3-G1): Condition 7: Queues, handoffs, exceptions, and recovery are defined without fabricated SLAs
+- APP-V3-010 (GATE-V3-G1): Condition 8: The financial and reconciliation operating boundary is defined
+- APP-V3-010 (GATE-V3-G1): Condition 9: Support does not acquire governed affiliation decision authority
+- APP-V3-010 (GATE-V3-G1): Condition 10: Operating measures are defined or explicitly validation-pending
+- APP-V3-010 (GATE-V3-G1): Condition 11: Unresolved assumptions carry owners and future gates
+- APP-V3-010 (GATE-V3-G1): Condition 12: No staffing, cost, procurement, architecture, delivery, or implementation is authorized
+- APP-V3-010 (GATE-V3-G1): Condition 13: No master development plan is created
+- APP-V3-010 (GATE-V3-G1): Condition 14: Package 1 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit
+- APP-V3-011 (PACKAGE-3-1): Package 1 corpus frozen at version 1.0.0 through a separate freeze commit.

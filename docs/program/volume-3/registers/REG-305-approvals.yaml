@@ -67,3 +67,77 @@ records:
     authorizes_implementation: false
     conditions:
       - Operating measures are classified DEFINED or explicitly validation-pending; no targets are fabricated.
+  - id: APP-V3-009
+    artifact_id: V3-A
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 1 closure record ratified.
+    approved_at: null
+  - id: APP-V3-010
+    artifact_id: GATE-V3-G1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: BUSINESS_OPERATING_MODEL_FOUNDATION_READY
+    closure_record: V3-A
+    scope:
+      - V3-00
+      - V3-01
+      - V3-02
+      - V3-03
+      - V3-04
+      - V3-05
+      - V3-06
+      - V3-07
+    conditions:
+      - "Condition 1: Corrected Volume 2 provenance (v1.0.1) inherited as the Package 1 baseline"
+      - "Condition 2: Institutional operating functions are defined across all functions"
+      - "Condition 3: Responsibilities are separated across operating functions"
+      - "Condition 4: All three affiliation pathways have operating models across the lifecycle"
+      - "Condition 5: Decision authority is distinguished from operational execution"
+      - "Condition 6: Delegation, escalation, conflicts, and segregation of duties are represented"
+      - "Condition 7: Queues, handoffs, exceptions, and recovery are defined without fabricated SLAs"
+      - "Condition 8: The financial and reconciliation operating boundary is defined"
+      - "Condition 9: Support does not acquire governed affiliation decision authority"
+      - "Condition 10: Operating measures are defined or explicitly validation-pending"
+      - "Condition 11: Unresolved assumptions carry owners and future gates"
+      - "Condition 12: No staffing, cost, procurement, architecture, delivery, or implementation is authorized"
+      - "Condition 13: No master development plan is created"
+      - "Condition 14: Package 1 has had line-level review and is frozen at version 1.0.0 via a separate freeze commit"
+    approved_at: null
+  - id: APP-V3-011
+    artifact_id: PACKAGE-3-1
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    gate_disposition: PACKAGE_1_COMPLETE
+    authorizes_implementation: false
+    frozen: true
+    amendment_process: >-
+      Changes to frozen Package 1 artifacts require a recorded Volume 3 amendment decision in
+      REG-304 and a superseding approval in REG-305; frozen artifacts are not edited in place.
+    frozen_artifacts:
+      - id: V3-00
+        version: 1.0.0
+      - id: V3-01
+        version: 1.0.0
+      - id: V3-02
+        version: 1.0.0
+      - id: V3-03
+        version: 1.0.0
+      - id: V3-04
+        version: 1.0.0
+      - id: V3-05
+        version: 1.0.0
+      - id: V3-06
+        version: 1.0.0
+      - id: V3-07
+        version: 1.0.0
+      - id: V3-A
+        version: 1.0.0
+    conditions:
+      - Package 1 corpus frozen at version 1.0.0 through a separate freeze commit.
+    approved_at: null
