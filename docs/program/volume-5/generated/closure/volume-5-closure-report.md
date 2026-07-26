@@ -1,6 +1,6 @@
 # Volume 5 Integrated Governed-Data Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T20:07:27.651Z
+Generated: 2026-07-26T20:11:43.792Z
 
 > Generated projection of the source-controlled Volume 5 corpus consolidated from
 > Packages 1 through 4. Not a source of truth and not a basis for ratification.

@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T20:07:28.986Z
+Generated: 2026-07-26T20:11:45.195Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T20:07:28.986Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 63 |
+| RATIFIED | 64 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.10.0 | 63 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.11.0 | 64 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.3.0 | 228 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.3.0 | 84 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.4.0 | 51 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.3.0 | 58 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.10.0 | 74 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.11.0 | 75 |
 
 ## Findings by control
 
@@ -341,3 +341,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-074 (VOLUME-5): Package 1 through Package 5 freezes and provenance are preserved.
 - APP-V5-074 (VOLUME-5): Volume 6 is authorized to proceed on the governed-data baseline.
 - APP-V5-074 (VOLUME-5): Authorizes no implementation, procurement, retention period, or master development plan.
+- APP-V5-075 (V5-J): Completes machine-readable Package 5 provenance after mainline merge.
+- APP-V5-075 (V5-J): Preserves the Gate V5-G5 disposition, the PACKAGE-5-5 freeze, and the VOLUME-5 freeze.
+- APP-V5-075 (V5-J): Reopens no substantive Package 5 or Volume 5 content and authorizes no implementation.
