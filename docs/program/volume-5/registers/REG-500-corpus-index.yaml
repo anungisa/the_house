@@ -1,7 +1,7 @@
 register_id: REG-500
 name: Volume 5 Corpus Index
 status: RATIFIED
-version: 1.10.0
+version: 1.11.0
 records:
   - id: V5-00
     title: Volume Control, Inheritance, and Data-Definition Authority
@@ -506,4 +506,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-5/V5-I-volume-5-completion-and-release-freeze-record.md
+    gate: V5-G5
+  - id: V5-J
+    title: Package 5 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-J-package-5-provenance-amendment.md
     gate: V5-G5

@@ -1,5 +1,5 @@
 {
-  "chapters": 63,
+  "chapters": 64,
   "information_domains": 25,
   "conceptual_entities": 14,
   "conceptual_relationships": 8,
@@ -8,5 +8,5 @@
   "rules_and_controls": 84,
   "decisions": 51,
   "backlog_items": 58,
-  "approvals": 74
+  "approvals": 75
 }

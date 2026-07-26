@@ -1,6 +1,6 @@
 # Volume 5 Package 3 Data-Lifecycle Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T20:07:28.991Z
+Generated: 2026-07-26T20:11:45.201Z
 
 > Generated projection of the source-controlled Volume 5 corpus. Not a source of
 > truth and not a basis for ratification. Volume 5 Package 3 defines DATA-LIFECYCLE
