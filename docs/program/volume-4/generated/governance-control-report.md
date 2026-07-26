@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T16:39:43.787Z
+Generated: 2026-07-26T16:57:56.645Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T16:39:43.787Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 60 |
+| RATIFIED | 61 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.12.0 | 60 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.13.0 | 61 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.4.0 | 212 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.4.0 | 46 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.4.0 | 70 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.4.0 | 69 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.12.0 | 71 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.13.0 | 72 |
 
 ## Findings by control
 
@@ -366,3 +366,9 @@ Errors: 0 | Warnings: 34 | Info: 30
 - APP-V4-071 (V4-J): Preserves Gate V4-G5 and its ARCHITECTURE_AND_ENGINEERING_DEFINITION_COMPLETE disposition.
 - APP-V4-071 (V4-J): Does not reopen or modify frozen Package 5 artifacts V4-39..V4-49 or V4-I, or the Package 5 and whole-volume freezes.
 - APP-V4-071 (V4-J): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-072 (V4-K): Narrow post-release provenance-metadata amendment only.
+- APP-V4-072 (V4-K): Preserves Gate V4-G5 PASS and its ARCHITECTURE_AND_ENGINEERING_DEFINITION_COMPLETE disposition.
+- APP-V4-072 (V4-K): Preserves V4-I, the Package 5 freeze (PACKAGE-4-5), and the whole-volume freeze (VOLUME-4).
+- APP-V4-072 (V4-K): Supersedes only the incomplete released-state interpretation in APP-V4-071; does not withdraw APP-V4-071's ratification of V4-J.
+- APP-V4-072 (V4-K): Does not move the immutable central-registration-volume-4-v1.0.0 tag.
+- APP-V4-072 (V4-K): Preserves Volume 5 authorization and every implementation, procurement, staffing, cost, pilot, rollout, launch, and master-development-plan restriction.
