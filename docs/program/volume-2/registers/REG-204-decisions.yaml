@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.8.0
+version: 1.8.1
 records:
   - id: DEC-V2-001
     class: D1
@@ -497,5 +497,25 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-023
+    class: D2
+    question: >-
+      Does the permanent Package 4 freeze-provenance record distinguish all three Package 4
+      commits?
+    decision: >-
+      Complete the Package 4 freeze-provenance record (REG-205 APP-V2-039) so that it
+      distinguishes all three commits: source snapshot dfe3ae0, closure/freeze commit
+      b4ec2cb, and merged commit 1b23753. The closure/freeze and merged commits only
+      existed after Package 4 closure and PR #11 merge, and are therefore recorded by this
+      narrow post-merge amendment. This does not reopen Package 4 content and does not alter
+      Gate V2-G4, whose disposition remains PASS.
+    evidence_refs:
+      - GATE-V2-G4
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
     effective_date: TBD
     status: accepted_by_accountable_authority

@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.8.0
+version: 1.8.1
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -515,22 +515,26 @@ records:
     authorizes_implementation: false
     frozen: true
     base_commit: "dfe3ae0"
+    supersedes: >-
+      APP-V2-039 prior package_provenance that recorded the source snapshot commit
+      (dfe3ae0) and left the closure/freeze commit as TBD and the merged commit as
+      PENDING_POST_MERGE at closure time; completed post-merge by narrow amendment (see
+      DEC-V2-023). Gate V2-G4 unchanged (PASS).
     package_provenance:
       source_snapshot_commit: "dfe3ae0"
-      closure_freeze_commit: "TBD"
-      merged_commit: "PENDING_POST_MERGE"
+      closure_freeze_commit: "b4ec2cb"
+      merged_commit: "1b23753"
       note: >-
-        The Package 4 freeze is recorded against three commits: source snapshot dfe3ae0
-        (the authoring commit containing V2-19 through V2-26 and the expanded registers);
-        closure/freeze commit (the Package 4 closure commit that adds V2-D, the Gate V2-G4
-        disposition, and this freeze record on branch
-        docs/volume-2-affiliation-service-experience); and the merged commit (the merge of
-        that branch into main). The source snapshot (dfe3ae0) is a distinct, named commit
-        separate from the closure/freeze commit, so the freeze baseline is unambiguous by
-        construction. The closure/freeze commit hash and the merged commit are recorded by
-        narrow post-merge amendment after the Package 4 pull request merges, because those
-        commits do not exist at closure-authoring time. Recorded self-attested /
-        author-verified.
+        The Package 4 freeze is recorded against three distinct commits: source snapshot
+        dfe3ae0 (the authoring commit containing V2-19 through V2-26 and the expanded
+        registers); closure/freeze commit b4ec2cb (the Package 4 closure commit that adds
+        V2-D, the Gate V2-G4 disposition, and this freeze record on branch
+        docs/volume-2-affiliation-service-experience); and merged commit 1b23753 (the merge
+        of that branch into main via PR #11). The source snapshot (dfe3ae0) is a distinct,
+        named commit separate from the closure/freeze commit, so the freeze baseline is
+        unambiguous by construction. The closure/freeze and merged commits only existed
+        after Package 4 closure and PR #11 merge, and are therefore recorded by this narrow
+        post-merge amendment. Recorded self-attested / author-verified.
     frozen_artifacts:
       - id: V2-19
         version: 1.0.0
@@ -556,8 +560,8 @@ records:
       place.
     conditions:
       - "Freeze source snapshot commit: dfe3ae0 (contains V2-19..V2-26 and the expanded registers)"
-      - "Freeze closure/freeze commit: recorded post-merge by narrow amendment (adds V2-D, Gate V2-G4 disposition, and the freeze record)"
-      - "Package 4 merged commit: PENDING_POST_MERGE (merge of the Package 4 branch into main)"
+      - "Freeze closure/freeze commit: b4ec2cb (adds V2-D, Gate V2-G4 disposition, and the freeze record)"
+      - "Package 4 merged commit: 1b23753 (merge of the Package 4 branch into main via PR #11)"
       - Gate V2-G4 PASS; Volume 2 Package 4 closed and frozen; V2-19..V2-26 and V2-D at 1.0.0
       - Service-experience definition only; implementation, procurement, architecture, and delivery plan unauthorized; not a master development plan
       - Volume 2 Package 5 authorized to commence as definition and governance work (DEC-V2-022)

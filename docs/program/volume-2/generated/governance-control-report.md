@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T02:28:22.083Z
+Generated: 2026-07-26T02:31:50.712Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -37,8 +37,8 @@ Generated: 2026-07-26T02:28:22.083Z
 | REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.3.0 | 21 |
 | REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.3.0 | 18 |
 | REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.3.0 | 361 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.8.0 | 22 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.8.0 | 39 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.8.1 | 23 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.8.1 | 39 |
 
 ## Findings by control
 
@@ -163,8 +163,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-038 (GATE-V2-G4): Condition 14: No technical architecture, delivery plan, or master development plan is created
 - APP-V2-038 (GATE-V2-G4): Condition 15: Package 4 has had line-level review and is closed with a separate freeze commit
 - APP-V2-039 (PACKAGE-2-4): Freeze source snapshot commit: dfe3ae0 (contains V2-19..V2-26 and the expanded registers)
-- APP-V2-039 (PACKAGE-2-4): Freeze closure/freeze commit: recorded post-merge by narrow amendment (adds V2-D, Gate V2-G4 disposition, and the freeze record)
-- APP-V2-039 (PACKAGE-2-4): Package 4 merged commit: PENDING_POST_MERGE (merge of the Package 4 branch into main)
+- APP-V2-039 (PACKAGE-2-4): Freeze closure/freeze commit: b4ec2cb (adds V2-D, Gate V2-G4 disposition, and the freeze record)
+- APP-V2-039 (PACKAGE-2-4): Package 4 merged commit: 1b23753 (merge of the Package 4 branch into main via PR #11)
 - APP-V2-039 (PACKAGE-2-4): Gate V2-G4 PASS; Volume 2 Package 4 closed and frozen; V2-19..V2-26 and V2-D at 1.0.0
 - APP-V2-039 (PACKAGE-2-4): Service-experience definition only; implementation, procurement, architecture, and delivery plan unauthorized; not a master development plan
 - APP-V2-039 (PACKAGE-2-4): Volume 2 Package 5 authorized to commence as definition and governance work (DEC-V2-022)
