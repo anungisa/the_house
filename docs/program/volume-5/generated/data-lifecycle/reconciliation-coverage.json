@@ -1,0 +1,10 @@
+{
+  "contexts": 3,
+  "without_conflict_authority": [],
+  "by_mismatch_class": {
+    "FINANCIAL_MISMATCH": 1,
+    "RECOGNITION_MISMATCH": 1,
+    "IDENTITY_MISMATCH": 1
+  },
+  "preserves_authority_boundaries": true
+}

@@ -1,7 +1,7 @@
 register_id: REG-505
 name: Volume 5 Approval Register
 status: RATIFIED
-version: 1.3.0
+version: 1.5.0
 records:
   # ==== Package 1: chapter ratifications ====
   - id: APP-V5-001
@@ -410,4 +410,207 @@ records:
       - Completes machine-readable Package 2 provenance after mainline merge.
       - Preserves the Gate V5-G2 disposition and the PACKAGE-5-2 freeze.
       - Reopens no substantive Package 2 content and authorizes no implementation.
+    approved_at: null
+  # ==== Package 3: chapter ratifications ====
+  - id: APP-V5-030
+    artifact_id: V5-21
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Master, reference, transactional, evidentiary, and derived data classification defined.
+      - Derived and external data hold no independent House authority.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-031
+    artifact_id: V5-22
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Controlled vocabularies, code sets, bilingual semantics, and reference-data governance defined.
+      - Reference values are versioned and deprecated with replacement, never silently reused.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-032
+    artifact_id: V5-23
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data ownership, stewardship, custody, issue management, and decision rights defined.
+      - Ownership, stewardship, and custody remain distinct.
+      - Authorizes no implementation and appoints no person.
+    approved_at: null
+  - id: APP-V5-033
+    artifact_id: V5-24
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data-quality rule lifecycle, measurement, exception, and remediation governance defined.
+      - Exceptions are time-bounded with a named authority; no silent permanent waivers.
+      - Authorizes no implementation and defines no executable quality rule.
+    approved_at: null
+  - id: APP-V5-034
+    artifact_id: V5-25
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data lifecycle, records, retention, legal-hold, archival, and disposition dependencies defined.
+      - No retention period or deletion schedule is approved; legal hold supersedes disposition.
+      - Authorizes no implementation and no deletion.
+    approved_at: null
+  - id: APP-V5-035
+    artifact_id: V5-26
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity resolution, duplicate management, merge, split, and survivorship defined.
+      - Similarity is not identity; automated matching is advisory unless validated.
+      - Authorizes no implementation and no automated merging.
+    approved_at: null
+  - id: APP-V5-036
+    artifact_id: V5-27
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Cross-system reconciliation, conflict resolution, and authority alignment defined.
+      - Reconciliation preserves authority boundaries and invents no new authority.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-037
+    artifact_id: V5-28
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data exchange, import, export, transformation, and lineage semantics defined.
+      - Every exchange names a source authority and preserves lineage.
+      - Authorizes no implementation and creates no pipeline, API, event, or file contract.
+    approved_at: null
+  - id: APP-V5-038
+    artifact_id: V5-29
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Purpose, minimization, disclosure, analytics use, and derived-data constraints defined.
+      - Derived and analytical data hold no independent authority.
+      - Authorizes no implementation and claims no privacy compliance.
+    approved_at: null
+  - id: APP-V5-039
+    artifact_id: V5-30
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data operations, observability, issue evidence, and stewardship-measure model defined.
+      - Stewardship measures assert no assurance until future operational evidence is provided.
+      - Authorizes no implementation and claims no operational proof.
+    approved_at: null
+  - id: APP-V5-040
+    artifact_id: V5-31
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 3 traceability, validation backlog, and downstream constraints defined.
+      - Records the validation-gate reassignment away from the passing Gate V5-G3.
+      - Authorizes no implementation.
+    approved_at: null
+  # ==== Package 3: closure, gate disposition, and freeze ====
+  - id: APP-V5-041
+    artifact_id: V5-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-E
+    conditions:
+      - Package 3 closure record consolidates the data-lifecycle and stewardship model.
+      - Records Gate V5-G3 disposition and Package 4 authorization.
+      - Records the validation-gate reassignment away from the passing Gate V5-G3.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V5-042
+    artifact_id: GATE-V5-G3
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: DATA_LIFECYCLE_AND_STEWARDSHIP_MODEL_READY
+    closure_record: V5-E
+    conditions:
+      - Package 1 and Package 2 provenance and freezes are preserved.
+      - Package 2 unresolved validations no longer name the completed Gate V5-G3.
+      - Governed data is classified as master, reference, transactional, lifecycle-history, evidentiary, audit, derived, analytical, external-authority, and transitional data.
+      - Each master data set names one authority owner and one steward.
+      - Reference and code values are versioned and deprecated with a documented replacement and never silently reused.
+      - Controlled terms carry a single canonical meaning with English and French labels.
+      - Data ownership, stewardship, custody, and decision rights are distinct and named.
+      - The data-quality rule lifecycle defines measurement, time-bounded exceptions, and remediation without executable rules.
+      - The data lifecycle, records authority, retention dependencies, legal hold, archival, and disposition dependencies are defined without approving any retention period or deletion schedule.
+      - Legal hold supersedes disposition.
+      - Identity resolution treats similarity as advisory and requires evidence for merge or split.
+      - Cross-system reconciliation preserves authority boundaries and resolves conflicts only to the named conflict authority.
+      - Data exchange preserves source authority and lineage.
+      - Purpose, minimization, and disclosure authority constrain data use and derived data holds no independent authority.
+      - Stewardship measures assert no operational assurance until future operational evidence is provided.
+      - Person, authenticated account, membership, representative authority, reviewer assignment, and finance authority remain distinct; payment acknowledgement and accounting confirmation remain distinct; affiliation approval, reconciliation, activation authorization, and activation execution remain distinct.
+      - No record authorizes implementation.
+      - No physical schema, table, column, index, key, DDL, ORM mapping, migration, pipeline, API, event, file contract, or executable quality rule is created.
+      - Package 3 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V5-043
+    artifact_id: PACKAGE-5-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V5-E
+    frozen: true
+    frozen_artifacts:
+      - id: V5-21
+        version: 1.0.0
+      - id: V5-22
+        version: 1.0.0
+      - id: V5-23
+        version: 1.0.0
+      - id: V5-24
+        version: 1.0.0
+      - id: V5-25
+        version: 1.0.0
+      - id: V5-26
+        version: 1.0.0
+      - id: V5-27
+        version: 1.0.0
+      - id: V5-28
+        version: 1.0.0
+      - id: V5-29
+        version: 1.0.0
+      - id: V5-30
+        version: 1.0.0
+      - id: V5-31
+        version: 1.0.0
+      - id: V5-E
+        version: 1.0.0
+    conditions:
+      - Package 3 corpus frozen; changes require the recorded amendment process.
+      - Freeze committed separately from authoring per Gate V5-G3 condition.
+      - Authorizes no implementation.
     approved_at: null

@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T18:11:11.933Z
+Generated: 2026-07-26T18:47:57.266Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T18:11:11.933Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 25 |
+| RATIFIED | 37 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.3.0 | 25 |
-| REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.1.0 | 121 |
-| REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.1.0 | 52 |
-| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.1.0 | 16 |
-| REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.1.0 | 26 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.3.0 | 29 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.5.0 | 37 |
+| REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.2.0 | 163 |
+| REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.2.0 | 69 |
+| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.2.0 | 28 |
+| REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.2.0 | 39 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.5.0 | 43 |
 
 ## Findings by control
 
@@ -157,3 +157,62 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-029 (V5-D): Completes machine-readable Package 2 provenance after mainline merge.
 - APP-V5-029 (V5-D): Preserves the Gate V5-G2 disposition and the PACKAGE-5-2 freeze.
 - APP-V5-029 (V5-D): Reopens no substantive Package 2 content and authorizes no implementation.
+- APP-V5-030 (V5-21): Master, reference, transactional, evidentiary, and derived data classification defined.
+- APP-V5-030 (V5-21): Derived and external data hold no independent House authority.
+- APP-V5-030 (V5-21): Authorizes no implementation.
+- APP-V5-031 (V5-22): Controlled vocabularies, code sets, bilingual semantics, and reference-data governance defined.
+- APP-V5-031 (V5-22): Reference values are versioned and deprecated with replacement, never silently reused.
+- APP-V5-031 (V5-22): Authorizes no implementation.
+- APP-V5-032 (V5-23): Data ownership, stewardship, custody, issue management, and decision rights defined.
+- APP-V5-032 (V5-23): Ownership, stewardship, and custody remain distinct.
+- APP-V5-032 (V5-23): Authorizes no implementation and appoints no person.
+- APP-V5-033 (V5-24): Data-quality rule lifecycle, measurement, exception, and remediation governance defined.
+- APP-V5-033 (V5-24): Exceptions are time-bounded with a named authority; no silent permanent waivers.
+- APP-V5-033 (V5-24): Authorizes no implementation and defines no executable quality rule.
+- APP-V5-034 (V5-25): Data lifecycle, records, retention, legal-hold, archival, and disposition dependencies defined.
+- APP-V5-034 (V5-25): No retention period or deletion schedule is approved; legal hold supersedes disposition.
+- APP-V5-034 (V5-25): Authorizes no implementation and no deletion.
+- APP-V5-035 (V5-26): Identity resolution, duplicate management, merge, split, and survivorship defined.
+- APP-V5-035 (V5-26): Similarity is not identity; automated matching is advisory unless validated.
+- APP-V5-035 (V5-26): Authorizes no implementation and no automated merging.
+- APP-V5-036 (V5-27): Cross-system reconciliation, conflict resolution, and authority alignment defined.
+- APP-V5-036 (V5-27): Reconciliation preserves authority boundaries and invents no new authority.
+- APP-V5-036 (V5-27): Authorizes no implementation.
+- APP-V5-037 (V5-28): Data exchange, import, export, transformation, and lineage semantics defined.
+- APP-V5-037 (V5-28): Every exchange names a source authority and preserves lineage.
+- APP-V5-037 (V5-28): Authorizes no implementation and creates no pipeline, API, event, or file contract.
+- APP-V5-038 (V5-29): Purpose, minimization, disclosure, analytics use, and derived-data constraints defined.
+- APP-V5-038 (V5-29): Derived and analytical data hold no independent authority.
+- APP-V5-038 (V5-29): Authorizes no implementation and claims no privacy compliance.
+- APP-V5-039 (V5-30): Data operations, observability, issue evidence, and stewardship-measure model defined.
+- APP-V5-039 (V5-30): Stewardship measures assert no assurance until future operational evidence is provided.
+- APP-V5-039 (V5-30): Authorizes no implementation and claims no operational proof.
+- APP-V5-040 (V5-31): Package 3 traceability, validation backlog, and downstream constraints defined.
+- APP-V5-040 (V5-31): Records the validation-gate reassignment away from the passing Gate V5-G3.
+- APP-V5-040 (V5-31): Authorizes no implementation.
+- APP-V5-041 (V5-E): Package 3 closure record consolidates the data-lifecycle and stewardship model.
+- APP-V5-041 (V5-E): Records Gate V5-G3 disposition and Package 4 authorization.
+- APP-V5-041 (V5-E): Records the validation-gate reassignment away from the passing Gate V5-G3.
+- APP-V5-041 (V5-E): Authorizes no implementation.
+- APP-V5-042 (GATE-V5-G3): Package 1 and Package 2 provenance and freezes are preserved.
+- APP-V5-042 (GATE-V5-G3): Package 2 unresolved validations no longer name the completed Gate V5-G3.
+- APP-V5-042 (GATE-V5-G3): Governed data is classified as master, reference, transactional, lifecycle-history, evidentiary, audit, derived, analytical, external-authority, and transitional data.
+- APP-V5-042 (GATE-V5-G3): Each master data set names one authority owner and one steward.
+- APP-V5-042 (GATE-V5-G3): Reference and code values are versioned and deprecated with a documented replacement and never silently reused.
+- APP-V5-042 (GATE-V5-G3): Controlled terms carry a single canonical meaning with English and French labels.
+- APP-V5-042 (GATE-V5-G3): Data ownership, stewardship, custody, and decision rights are distinct and named.
+- APP-V5-042 (GATE-V5-G3): The data-quality rule lifecycle defines measurement, time-bounded exceptions, and remediation without executable rules.
+- APP-V5-042 (GATE-V5-G3): The data lifecycle, records authority, retention dependencies, legal hold, archival, and disposition dependencies are defined without approving any retention period or deletion schedule.
+- APP-V5-042 (GATE-V5-G3): Legal hold supersedes disposition.
+- APP-V5-042 (GATE-V5-G3): Identity resolution treats similarity as advisory and requires evidence for merge or split.
+- APP-V5-042 (GATE-V5-G3): Cross-system reconciliation preserves authority boundaries and resolves conflicts only to the named conflict authority.
+- APP-V5-042 (GATE-V5-G3): Data exchange preserves source authority and lineage.
+- APP-V5-042 (GATE-V5-G3): Purpose, minimization, and disclosure authority constrain data use and derived data holds no independent authority.
+- APP-V5-042 (GATE-V5-G3): Stewardship measures assert no operational assurance until future operational evidence is provided.
+- APP-V5-042 (GATE-V5-G3): Person, authenticated account, membership, representative authority, reviewer assignment, and finance authority remain distinct; payment acknowledgement and accounting confirmation remain distinct; affiliation approval, reconciliation, activation authorization, and activation execution remain distinct.
+- APP-V5-042 (GATE-V5-G3): No record authorizes implementation.
+- APP-V5-042 (GATE-V5-G3): No physical schema, table, column, index, key, DDL, ORM mapping, migration, pipeline, API, event, file contract, or executable quality rule is created.
+- APP-V5-042 (GATE-V5-G3): Package 3 receives line-level review and a separate freeze commit.
+- APP-V5-043 (PACKAGE-5-3): Package 3 corpus frozen; changes require the recorded amendment process.
+- APP-V5-043 (PACKAGE-5-3): Freeze committed separately from authoring per Gate V5-G3 condition.
+- APP-V5-043 (PACKAGE-5-3): Authorizes no implementation.

@@ -9,6 +9,7 @@ import { join } from 'node:path';
 import { VOLUME_DIR, loadContext, printFindings } from './lib.mjs';
 import { collectFindings, buildReport } from './generate-control-report.mjs';
 import { generate as generateLogicalModel } from './logical-model-analysis.mjs';
+import { generate as generateDataLifecycle } from './data-lifecycle-analysis.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -29,9 +30,11 @@ mkdirSync(outDir, { recursive: true });
 const outPath = join(outDir, 'governance-control-report.md');
 writeFileSync(outPath, markdown, 'utf8');
 
-// Emit the non-authoritative Package 2 logical-model projections alongside the
-// control report so the generated corpus stays in sync with every check.
+// Emit the non-authoritative Package 2 logical-model and Package 3 data-lifecycle
+// projections alongside the control report so the generated corpus stays in sync
+// with every check.
 generateLogicalModel(ctx);
+generateDataLifecycle(ctx);
 
 console.log('\n=== Volume 5 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

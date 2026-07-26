@@ -300,6 +300,84 @@ function validateLogicalModel(ctx, findings) {
   }
 }
 
+// Package 3 data-lifecycle & stewardship guards (fail closed): master/reference
+// data-set and controlled-vocabulary records must name an authority owner (and
+// reference/code/term records must carry a version posture); DATA_LIFECYCLE
+// records must name a records authority; DATA_ISSUE records must name a
+// resolution authority; RECONCILIATION_CONTEXT records must name a conflict
+// authority; EXCHANGE_RECORD records must name a source authority and a
+// transformation/lineage; DATA_USE records must name a permitted purpose; and
+// STEWARDSHIP_MEASURE records must name an accountable owner. External-authority
+// data may never be given independent House authority: an EXCHANGE_RECORD must
+// name an external source_authority when its data_class is EXTERNAL_AUTHORITY_DATA.
+function validatePackage3Governance(ctx, findings) {
+  // A record belongs to Package 3 when its authoring chapter is V5-21..V5-31.
+  // The version-posture requirement for reference/code records applies only to
+  // Package-3-authored records; frozen Package 1/2 reference records are unchanged.
+  const isPackage3Chapter = (ref) => {
+    const m = /^V5-([0-9]{2})$/.exec(String(ref ?? ''));
+    if (!m) return false;
+    const n = Number(m[1]);
+    return n >= 21 && n <= 31;
+  };
+  for (const r of records(ctx, 'REG-501')) {
+    switch (r.kind) {
+      case 'MASTER_DATA_SET':
+      case 'REFERENCE_DATA_SET':
+        if (!r.authority_owner) {
+          findings.push(makeFinding(Severity.ERROR, 'DATASET_WITHOUT_AUTHORITY', `${r.id}: ${r.kind} names no authority_owner`, r.id));
+        }
+        break;
+      case 'CONTROLLED_TERM':
+        if (!r.version_posture) {
+          findings.push(makeFinding(Severity.ERROR, 'REFERENCE_WITHOUT_VERSION', `${r.id}: ${r.kind} names no version_posture`, r.id));
+        }
+        break;
+      case 'REFERENCE_DATA':
+      case 'CODE_SET':
+        if (isPackage3Chapter(r.chapter_ref) && !r.version_posture) {
+          findings.push(makeFinding(Severity.ERROR, 'REFERENCE_WITHOUT_VERSION', `${r.id}: ${r.kind} names no version_posture`, r.id));
+        }
+        break;
+      case 'DATA_LIFECYCLE':
+        if (!r.records_authority) {
+          findings.push(makeFinding(Severity.ERROR, 'LIFECYCLE_WITHOUT_RECORDS_AUTHORITY', `${r.id}: data lifecycle record names no records_authority`, r.id));
+        }
+        break;
+      case 'DATA_ISSUE':
+        if (!r.resolution_authority) {
+          findings.push(makeFinding(Severity.ERROR, 'ISSUE_WITHOUT_RESOLUTION_AUTHORITY', `${r.id}: data issue record names no resolution_authority`, r.id));
+        }
+        break;
+      case 'RECONCILIATION_CONTEXT':
+        if (!r.conflict_authority) {
+          findings.push(makeFinding(Severity.ERROR, 'RECON_WITHOUT_CONFLICT_AUTHORITY', `${r.id}: reconciliation context names no conflict_authority`, r.id));
+        }
+        break;
+      case 'EXCHANGE_RECORD':
+        if (!r.source_authority) {
+          findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_WITHOUT_SOURCE_AUTHORITY', `${r.id}: exchange record names no source_authority`, r.id));
+        }
+        if (!r.transformation && !r.lineage) {
+          findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_WITHOUT_LINEAGE', `${r.id}: exchange record names no transformation or lineage`, r.id));
+        }
+        break;
+      case 'DATA_USE':
+        if (!r.permitted_purpose) {
+          findings.push(makeFinding(Severity.ERROR, 'USE_WITHOUT_PURPOSE', `${r.id}: data use record names no permitted_purpose`, r.id));
+        }
+        break;
+      case 'STEWARDSHIP_MEASURE':
+        if (!r.accountable_owner) {
+          findings.push(makeFinding(Severity.ERROR, 'MEASURE_WITHOUT_OWNER', `${r.id}: stewardship measure names no accountable_owner`, r.id));
+        }
+        break;
+      default:
+        break;
+    }
+  }
+}
+
 // Physical-schema / migration leakage: no chapter or register value may contain
 // physical DDL, migration file references, or other implementation artifacts.
 function validateNoPhysicalLeakage(ctx, findings) {
@@ -334,6 +412,7 @@ export function run(ctx) {
   validateBacklogItems(ctx, findings);
   validateGateCorrectness(ctx, findings);
   validateLogicalModel(ctx, findings);
+  validatePackage3Governance(ctx, findings);
   validateNoPhysicalLeakage(ctx, findings);
   return findings;
 }

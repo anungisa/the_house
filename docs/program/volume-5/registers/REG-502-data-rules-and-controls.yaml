@@ -1,7 +1,7 @@
 register_id: REG-502
 name: Volume 5 Data Rules and Controls
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   # ==== Data doctrine rules (V5-01) ====
   - id: RULE-V5-001
@@ -530,7 +530,9 @@ records:
     failure_meaning: Duplicate cases undermine governed affiliation truth.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -545,7 +547,9 @@ records:
     failure_meaning: Overlapping seasons corrupt temporal scope.
     correction_authority: Governance and jurisdiction authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -563,7 +567,9 @@ records:
     failure_meaning: Applying the wrong version invalidates completeness.
     correction_authority: Policy and requirements authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -597,7 +603,9 @@ records:
     failure_meaning: Mutable snapshots destroy submission truth.
     correction_authority: Records governance authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -612,7 +620,9 @@ records:
     failure_meaning: Competing decisions corrupt case truth.
     correction_authority: Governed-decision correction authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -661,7 +671,9 @@ records:
     failure_meaning: Conflating approval and activation grants status prematurely.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -676,7 +688,9 @@ records:
     failure_meaning: Multiple active activations corrupt status.
     correction_authority: Affiliation administration
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -707,7 +721,9 @@ records:
     failure_meaning: Silent overwrite destroys governed history.
     correction_authority: Records governance authority
     future_verification_class: Logical model validation
-    future_blocking_gate: V5-G3
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate: V5-G3
+    gate_reassignment_ref: ADR-V5-028
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-18
@@ -730,3 +746,294 @@ records:
     chapter_ref: V5-18
     traces_to:
       - ADR-V5-004
+
+  # ==== Package 3: governance rules (V5-22 / V5-25 / V5-29) ====
+  - id: RULE-V5-013
+    kind: RULE
+    title: External-authority data is never re-authored
+    statement: Data sourced from an external authority is held as an aligned governed copy and is never given independent House authority.
+    affected_domains:
+      - DOMAIN-V5-002
+      - DOMAIN-V5-009
+    authority_owner: External
+    stewardship_implication: Stewards align the House copy but never override external authority.
+    control_implication: Exchange records must name an external source authority.
+    downstream_constraint: No downstream volume may treat the House copy as the source of truth for external facts.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - ADR-V5-019
+  - id: RULE-V5-014
+    kind: RULE
+    title: Derived data holds no independent authority
+    statement: Derived and analytical data are non-authoritative projections that never become a competing source of truth.
+    affected_domains:
+      - DOMAIN-V5-025
+    authority_owner: House
+    stewardship_implication: Projection stewards maintain derived data as rebuildable, non-authoritative outputs.
+    control_implication: Data-use records mark derived and analytical data as aggregate and non-authoritative.
+    downstream_constraint: No downstream volume may promote derived data to authoritative status.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - ADR-V5-026
+  - id: RULE-V5-015
+    kind: RULE
+    title: Legal hold supersedes disposition
+    statement: A legal hold supersedes any archival or disposition eligibility regardless of elapsed time.
+    affected_domains:
+      - DOMAIN-V5-016
+    authority_owner: House
+    stewardship_implication: Stewards cannot dispose data under legal hold.
+    control_implication: Retention-dependency controls block disposition while a hold is active.
+    downstream_constraint: No downstream volume may implement disposition that overrides legal hold.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+    traces_to:
+      - ADR-V5-022
+
+  # ==== Package 3: data-quality lifecycle rules (V5-24) ====
+  - id: QUALITY-V5-011
+    kind: QUALITY
+    title: Reference-data validity
+    statement: Reference and code values conform to their governed, versioned definitions.
+    quality_dimension: VALIDITY
+    detection_concept: Value conformance against the applicable reference-data version
+    correction_authority: Data Quality Steward
+    correction_type: Governed reference-data correction
+    reconciliation_source: Applicable reference-data version
+    evidence_retained: Correction and exception evidence retained
+    exception_authority: Data Quality Steward
+    exception_expiry: Time-bounded per governed exception; expiry escalates to the accountable program authority
+    downstream_impact: Invalid reference values block dependent completeness
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-24
+    traces_to:
+      - ADR-V5-021
+  - id: QUALITY-V5-012
+    kind: QUALITY
+    title: Master-data completeness
+    statement: Master-data records carry the governed attributes required for their class.
+    quality_dimension: COMPLETENESS
+    detection_concept: Required-attribute presence checks on master data
+    correction_authority: Membership and Affiliation Steward
+    correction_type: Governed master-data correction
+    reconciliation_source: Authoritative master data set
+    evidence_retained: Correction and exception evidence retained
+    exception_authority: Data Quality Steward
+    exception_expiry: Time-bounded per governed exception
+    downstream_impact: Incomplete master data blocks dependent processes
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-24
+    traces_to:
+      - ADR-V5-020
+  - id: QUALITY-V5-013
+    kind: QUALITY
+    title: Reconciliation consistency
+    statement: Reconciled records are consistent with their named authoritative source.
+    quality_dimension: CONSISTENCY
+    detection_concept: Comparison of reconciled state to the conflict authority
+    correction_authority: Finance Data Steward
+    correction_type: Governed reconciliation correction
+    reconciliation_source: Named conflict authority
+    evidence_retained: Reconciliation evidence retained
+    exception_authority: Finance authority
+    exception_expiry: Time-bounded per governed exception
+    downstream_impact: Inconsistent reconciliation blocks financial completeness
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-24
+    traces_to:
+      - ADR-V5-024
+  - id: QUALITY-V5-014
+    kind: QUALITY
+    title: Identity uniqueness
+    statement: Governed master records denote distinct real entities; suspected duplicates are governed as issues, not silently merged.
+    quality_dimension: UNIQUENESS
+    detection_concept: Advisory similarity detection surfaced as governed issues
+    correction_authority: Identity and Authorization Steward
+    correction_type: Evidence-based merge or split
+    reconciliation_source: Steward decision with evidence
+    evidence_retained: Merge and split evidence retained
+    exception_authority: Identity and Authorization Steward
+    exception_expiry: Time-bounded per governed exception
+    downstream_impact: Unmanaged duplicates block reconciliation and reporting
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-24
+    traces_to:
+      - ADR-V5-023
+
+  # ==== Package 3: lineage rules (V5-27 / V5-28) ====
+  - id: LINEAGE-V5-009
+    kind: LINEAGE
+    title: Exchange intake lineage preserved
+    statement: Imported data preserves lineage from its external source reference to its governed representation.
+    authoritative_fact: External source acknowledgement or confirmation identity
+    source: External source authority
+    transformation_lineage: External source reference to governed metadata
+    retention_dependency: Lineage retained per records-policy authority (PENDING)
+    audit_expectation: Intake lineage is auditable end to end
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - ADR-V5-025
+  - id: LINEAGE-V5-010
+    kind: LINEAGE
+    title: Reconciliation lineage preserved
+    statement: A reconciliation preserves lineage to both compared records and to the conflict authority that resolves it.
+    authoritative_fact: Named conflict authority resolution
+    source: House record and external record
+    transformation_lineage: Compared records to reconciliation outcome
+    retention_dependency: Lineage retained per records-policy authority (PENDING)
+    audit_expectation: Reconciliation resolution is auditable to its authority
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-27
+    traces_to:
+      - ADR-V5-024
+
+  # ==== Package 3: controls (V5-25 / V5-29 / V5-30) ====
+  - id: CTRL-V5-009
+    kind: CTRL
+    title: Purpose and minimization control
+    statement: Governed data use is checked against a permitted purpose and minimum-necessary data before use.
+    affected_domains:
+      - DOMAIN-V5-025
+    authority_owner: House
+    control_implication: Data-use records without a permitted purpose are rejected.
+    downstream_constraint: No downstream volume may use governed data beyond its permitted purpose.
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - ADR-V5-026
+  - id: CTRL-V5-010
+    kind: CTRL
+    title: Disclosure authority control
+    statement: Disclosure of governed data requires a named disclosure authority appropriate to the audience.
+    affected_domains:
+      - DOMAIN-V5-025
+    authority_owner: House
+    control_implication: Disclosure without a named authority is denied.
+    downstream_constraint: External disclosure remains subject to privacy validation.
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - ADR-V5-026
+  - id: CTRL-V5-011
+    kind: CTRL
+    title: Retention dependency control
+    statement: No archival or disposition proceeds without a records-policy authority and while a legal hold is active.
+    affected_domains:
+      - DOMAIN-V5-016
+    authority_owner: House
+    control_implication: Disposition is blocked until governed retention is set and holds are cleared.
+    downstream_constraint: No downstream volume may implement deletion absent governed retention.
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+    traces_to:
+      - ADR-V5-022
+  - id: CTRL-V5-012
+    kind: CTRL
+    title: Stewardship-measure proof control
+    statement: A stewardship measure asserts no operational assurance until future operational evidence is provided.
+    affected_domains:
+      - DOMAIN-V5-025
+    authority_owner: House
+    control_implication: Measures name a future operational-proof requirement and claim no current assurance.
+    downstream_constraint: No downstream volume may treat a measure concept as implemented assurance.
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-30
+    traces_to:
+      - ADR-V5-027
+
+  # ==== Package 3: integrity rules (V5-21 .. V5-28) ====
+  - id: INTEG-V5-015
+    kind: INTEGRITY
+    title: Master-data singular authority
+    statement: Every master data set names exactly one authority owner and one steward.
+    affected_entities:
+      - MDS-V5-001
+      - MDS-V5-003
+    logical_condition: One authority owner per master data set; stewardship is distinct from authority.
+    failure_meaning: Ambiguous master-data authority corrupts governed truth.
+    correction_authority: Membership and Affiliation Steward
+    future_verification_class: Logical model validation
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-21
+    traces_to:
+      - ADR-V5-017
+  - id: INTEG-V5-016
+    kind: INTEGRITY
+    title: Reference-data versioning integrity
+    statement: Reference and code values are versioned and deprecated with a documented replacement, never deleted or silently reused.
+    affected_entities:
+      - RDS-V5-002
+      - CODE-V5-003
+    logical_condition: Every reference value change is versioned; historical use remains interpretable.
+    failure_meaning: Silent reference-data changes corrupt historical interpretation.
+    correction_authority: Governance Policy Steward
+    future_verification_class: Logical model validation
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - ADR-V5-018
+  - id: INTEG-V5-017
+    kind: INTEGRITY
+    title: Reconciliation authority preservation
+    statement: A reconciliation preserves each source's authority and resolves conflicts only to the named conflict authority.
+    affected_entities:
+      - RCON-V5-001
+      - LENT-V5-022
+    logical_condition: Reconciliation never invents a new authority.
+    failure_meaning: A reconciliation that overrides source authority corrupts governed truth.
+    correction_authority: Finance Data Steward
+    future_verification_class: Financial reconciliation validation
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-27
+    traces_to:
+      - ADR-V5-024
+  - id: INTEG-V5-018
+    kind: INTEGRITY
+    title: Exchange lineage completeness
+    statement: Every exchange record names a source authority and preserves a transformation or lineage to its governed representation.
+    affected_entities:
+      - EXCH-V5-001
+      - EXCH-V5-002
+    logical_condition: No governed intake or export without source authority and lineage.
+    failure_meaning: Lineage-less exchange breaks traceability and authority.
+    correction_authority: Records governance authority
+    future_verification_class: Projection and analytics validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - ADR-V5-025
+

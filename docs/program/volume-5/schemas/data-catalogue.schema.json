@@ -19,7 +19,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS|LENT|LREL|VOBJ|REFD|CODE|STATE|SNAP|PROV|CORR|DERV)-V5-[0-9]{3}$"
+            "pattern": "^(DOMAIN|ENTITY|REL|DATA|CLASS|LENT|LREL|VOBJ|REFD|CODE|STATE|SNAP|PROV|CORR|DERV|MDS|RDS|CTERM|DLC|DISS|RCON|EXCH|DUSE|SMEA|RETD)-V5-[0-9]{3}$"
           },
           "kind": { "$ref": "common.schema.json#/definitions/catalogueKind" },
           "title": { "type": "string" },
@@ -88,7 +88,71 @@
           "correction_semantics": { "type": "string" },
           "derived_semantics": { "type": "string" },
           "downstream_constraint": { "type": "string" },
-          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+
+          "data_class": { "$ref": "common.schema.json#/definitions/dataClass" },
+          "permitted_changes": { "type": "string" },
+          "version_posture": { "type": "string" },
+          "authority_owner": { "type": "string" },
+          "steward": { "type": "string" },
+          "canonical_meaning": { "type": "string" },
+          "english_label": { "type": "string" },
+          "french_label": { "type": "string" },
+          "effective_period": { "type": "string" },
+          "deprecated_value": { "type": "string" },
+          "replacement_value": { "type": "string" },
+          "compatibility_posture": { "type": "string" },
+          "historical_use_posture": { "type": "string" },
+
+          "lifecycle_stages": { "type": "array", "items": { "$ref": "common.schema.json#/definitions/lifecycleStage" } },
+          "lifecycle_trigger": { "type": "string" },
+          "records_authority": { "type": "string" },
+          "privacy_dependency": { "type": "string" },
+          "legal_hold_dependency": { "type": "string" },
+          "archival_expectation": { "type": "string" },
+          "disposition_authority": { "type": "string" },
+          "deletion_authority": { "type": "string" },
+          "external_dependency": { "type": "string" },
+
+          "issue_classification": { "type": "string" },
+          "resolution_authority": { "type": "string" },
+          "escalation": { "type": "string" },
+          "evidence_required": { "type": "string" },
+
+          "house_record": { "type": "string" },
+          "external_record": { "type": "string" },
+          "comparison_basis": { "type": "string" },
+          "mismatch_class": { "type": "string" },
+          "conflict_authority": { "type": "string" },
+          "resolution_source": { "type": "string" },
+          "correction_route": { "type": "string" },
+          "closure_condition": { "type": "string" },
+
+          "source_authority": { "type": "string" },
+          "receiving_domain": { "type": "string" },
+          "source_reference": { "type": "string" },
+          "transformation": { "type": "string" },
+          "validation_outcome": { "type": "string" },
+          "rejected_posture": { "type": "string" },
+          "quarantine_posture": { "type": "string" },
+          "reprocessing_posture": { "type": "string" },
+          "lineage": { "type": "string" },
+          "scope": { "type": "string" },
+
+          "authoritative_basis": { "type": "string" },
+          "aggregation_posture": { "type": "string" },
+          "disclosure_authority": { "type": "string" },
+          "privacy_validation_status": { "type": "string" },
+
+          "accountable_owner": { "type": "string" },
+          "calculation_concept": { "type": "string" },
+          "interpretation_limits": { "type": "string" },
+          "baseline_status": { "type": "string" },
+          "target_status": { "type": "string" },
+          "escalation_posture": { "type": "string" },
+          "assurance_relationship": { "type": "string" },
+          "operational_proof_requirement": { "type": "string" },
+          "future_verification": { "type": "string" }
         }
       }
     }

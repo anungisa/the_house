@@ -1,0 +1,18 @@
+{
+  "total": 39,
+  "by_future_blocking_gate": {
+    "V5-G4": 7,
+    "EXEC-MCG": 3,
+    "V8-G1": 7,
+    "V10-G1": 6,
+    "V6-G1": 10,
+    "V9-G1": 3,
+    "V7-G1": 3
+  },
+  "pointing_at_completed_gate": [],
+  "completed_gates": [
+    "V5-G1",
+    "V5-G2",
+    "V5-G3"
+  ]
+}

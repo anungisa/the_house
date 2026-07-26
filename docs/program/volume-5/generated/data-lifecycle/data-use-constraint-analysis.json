@@ -1,0 +1,16 @@
+{
+  "use_records": 5,
+  "without_permitted_purpose": [],
+  "with_disclosure_authority": [
+    "DUSE-V5-001",
+    "DUSE-V5-002",
+    "DUSE-V5-003",
+    "DUSE-V5-004",
+    "DUSE-V5-005"
+  ],
+  "by_privacy_validation_status": {
+    "DEFINED": 3,
+    "PENDING_VALIDATION": 2
+  },
+  "derived_data_never_independent_authority": true
+}

@@ -39,7 +39,12 @@
           "required_evidence": { "type": "string" },
           "target_package_or_volume": { "type": "string" },
           "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
-          "superseded_future_blocking_gate": { "$ref": "common.schema.json#/definitions/v5GateId" },
+          "superseded_future_blocking_gate": {
+            "oneOf": [
+              { "$ref": "common.schema.json#/definitions/v5GateId" },
+              { "type": "array", "items": { "$ref": "common.schema.json#/definitions/v5GateId" } }
+            ]
+          },
           "gate_reassignment_ref": { "type": "string" },
           "implementation_implication": { "type": "string" },
           "traces_to": { "type": "array", "items": { "type": "string" } }

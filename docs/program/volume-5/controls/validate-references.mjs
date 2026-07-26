@@ -43,7 +43,17 @@ export function run(ctx) {
       r.kind === 'PROVENANCE_RECORD' ||
       r.kind === 'CORRECTION_RECORD' ||
       r.kind === 'REFERENCE_DATA' ||
-      r.kind === 'CODE_SET'
+      r.kind === 'CODE_SET' ||
+      r.kind === 'MASTER_DATA_SET' ||
+      r.kind === 'REFERENCE_DATA_SET' ||
+      r.kind === 'CONTROLLED_TERM' ||
+      r.kind === 'DATA_LIFECYCLE' ||
+      r.kind === 'DATA_ISSUE' ||
+      r.kind === 'RECONCILIATION_CONTEXT' ||
+      r.kind === 'EXCHANGE_RECORD' ||
+      r.kind === 'DATA_USE' ||
+      r.kind === 'STEWARDSHIP_MEASURE' ||
+      r.kind === 'RETENTION_DEPENDENCY'
   );
   const ruleIds = idSet(ctx, 'REG-502');
   const decisionIds = idSet(ctx, 'REG-503');

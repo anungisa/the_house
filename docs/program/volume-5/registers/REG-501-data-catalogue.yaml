@@ -1,7 +1,7 @@
 register_id: REG-501
 name: Volume 5 Data Catalogue
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   # ==== Information domains (V5-02) ====
   - id: DOMAIN-V5-001
@@ -2102,3 +2102,682 @@ records:
     chapter_ref: V5-19
     traces_to:
       - TEST-V5-013
+
+  # ==== Package 3: master data sets (V5-21) ====
+  - id: MDS-V5-001
+    kind: MASTER_DATA_SET
+    title: Organization master data set
+    purpose: The canonical governed set of recognized organizations as master data, distinct from any club, membership, or projection.
+    data_class: MASTER_DATA
+    authority_owner: House
+    steward: Membership and Affiliation Steward
+    version_posture: Versioned master data; corrections are governed, superseding but never erasing prior state.
+    owning_domain: DOMAIN-V5-001
+    canonical_meaning: A recognized organization that may be a party to affiliation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-21
+    traces_to:
+      - LENT-V5-001
+  - id: MDS-V5-002
+    kind: MASTER_DATA_SET
+    title: Club master data set
+    purpose: The canonical governed set of clubs as master data, distinct from the organizations that recognize them.
+    data_class: MASTER_DATA
+    authority_owner: House
+    steward: Membership and Affiliation Steward
+    version_posture: Versioned master data with governed correction.
+    owning_domain: DOMAIN-V5-001
+    canonical_meaning: A club as a distinct governed party, not conflated with its parent organization.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-21
+    traces_to:
+      - LENT-V5-002
+  - id: MDS-V5-003
+    kind: MASTER_DATA_SET
+    title: Person master data set
+    purpose: The canonical governed set of persons as master data, distinct from authenticated accounts, memberships, and representative authority.
+    data_class: MASTER_DATA
+    authority_owner: House
+    steward: Identity and Authorization Steward
+    version_posture: Versioned master data; personal-data corrections governed and privacy-minimized.
+    owning_domain: DOMAIN-V5-003
+    classification: PERSONAL
+    privacy_minimization: Minimum-necessary personal attributes only.
+    canonical_meaning: A natural person, never equated to an authenticated account or a role.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-21
+    traces_to:
+      - LENT-V5-004
+  - id: MDS-V5-004
+    kind: MASTER_DATA_SET
+    title: PTSO or Member Association master data set
+    purpose: The canonical governed set of PTSOs and Member Associations as master data within the national recognition context.
+    data_class: MASTER_DATA
+    authority_owner: CurlingCanada
+    steward: Membership and Affiliation Steward
+    version_posture: Versioned master data; recognition status corrections governed.
+    owning_domain: DOMAIN-V5-002
+    canonical_meaning: A provincial/territorial or member association party in the recognition hierarchy.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-21
+    traces_to:
+      - LENT-V5-003
+  - id: MDS-V5-005
+    kind: MASTER_DATA_SET
+    title: Season master data set
+    purpose: The canonical governed set of seasons as master data governing temporal scope of affiliation.
+    data_class: MASTER_DATA
+    authority_owner: House
+    steward: Governance Policy Steward
+    version_posture: Versioned; only one current season, superseding prior seasons without erasure.
+    owning_domain: DOMAIN-V5-010
+    canonical_meaning: A defined season that scopes affiliation currency.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-21
+    traces_to:
+      - LENT-V5-010
+
+  # ==== Package 3: reference-data sets, code sets, controlled terms (V5-22) ====
+  - id: RDS-V5-001
+    kind: REFERENCE_DATA_SET
+    title: Jurisdiction reference data set
+    purpose: Governed reference data for jurisdictions aligned to external authority; the House does not become the independent authority for external jurisdiction facts.
+    data_class: EXTERNAL_AUTHORITY_DATA
+    authority_owner: External
+    steward: Governance Policy Steward
+    version_posture: Versioned reference data; external authority is preserved, House holds an aligned governed copy.
+    external_dependency: External jurisdiction authority
+    english_label: Jurisdiction
+    french_label: Territoire de compétence
+    compatibility_posture: Additive; retired jurisdictions are deprecated, not deleted.
+    owning_domain: DOMAIN-V5-009
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - LENT-V5-009
+  - id: RDS-V5-002
+    kind: REFERENCE_DATA_SET
+    title: Affiliation type reference data set
+    purpose: Governed reference data enumerating affiliation types; House-authoritative and versioned.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Governance Policy Steward
+    version_posture: Versioned; historical use preserved, values deprecated rather than removed.
+    english_label: Affiliation type
+    french_label: Type d'affiliation
+    historical_use_posture: Prior affiliation types remain interpretable for historical cases.
+    compatibility_posture: Additive and backward-compatible.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: RDS-V5-003
+    kind: REFERENCE_DATA_SET
+    title: Fee schedule reference data set
+    purpose: Governed reference data describing fee schedule identities; financial authority remains with accounting, not with this reference copy.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Finance Data Steward
+    version_posture: Versioned by season; superseded schedules retained for historical obligations.
+    external_dependency: Accounting authority for financial confirmation
+    english_label: Fee schedule
+    french_label: Barème de frais
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: CODE-V5-003
+    kind: CODE_SET
+    title: Affiliation case status code set
+    purpose: Bilingual governed code set for affiliation case lifecycle status values, aligned to the governed state model, not a substitute for it.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Governance Policy Steward
+    version_posture: Versioned; status values deprecated with replacement, never silently reused.
+    english_label: Case status
+    french_label: Statut du dossier
+    compatibility_posture: Additive; retired statuses map to a documented replacement.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - LENT-V5-013
+  - id: CODE-V5-004
+    kind: CODE_SET
+    title: Decision outcome code set
+    purpose: Bilingual governed code set for decision outcomes; distinct from activation and from reconciliation outcomes.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Governance Policy Steward
+    version_posture: Versioned with governed deprecation and replacement.
+    english_label: Decision outcome
+    french_label: Résultat de la décision
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - LENT-V5-018
+  - id: CODE-V5-005
+    kind: CODE_SET
+    title: Data issue classification code set
+    purpose: Bilingual governed code set classifying data issues for stewardship and remediation.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Data Quality Steward
+    version_posture: Versioned; classes deprecated with replacement.
+    english_label: Data issue class
+    french_label: Catégorie de problème de données
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: CTERM-V5-001
+    kind: CONTROLLED_TERM
+    title: Controlled term - Affiliation
+    purpose: The canonical bilingual meaning of "affiliation" as a governed relationship, distinct from activation and from recognition.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Governance Policy Steward
+    version_posture: Versioned canonical meaning; changes are governed and dated.
+    english_label: Affiliation
+    french_label: Affiliation
+    canonical_meaning: A governed relationship of an organization to the recognizing authority for a season.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: CTERM-V5-002
+    kind: CONTROLLED_TERM
+    title: Controlled term - Recognition
+    purpose: The canonical bilingual meaning of "recognition" as organizational standing, distinct from affiliation approval.
+    data_class: REFERENCE_DATA
+    authority_owner: CurlingCanada
+    steward: Membership and Affiliation Steward
+    version_posture: Versioned canonical meaning.
+    english_label: Recognition
+    french_label: Reconnaissance
+    canonical_meaning: The standing of an organization within the recognition hierarchy.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: CTERM-V5-003
+    kind: CONTROLLED_TERM
+    title: Controlled term - Activation
+    purpose: The canonical bilingual meaning of "activation" as execution of an authorized affiliation, distinct from approval and from activation authorization.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Governance Policy Steward
+    version_posture: Versioned canonical meaning.
+    english_label: Activation
+    french_label: Activation
+    canonical_meaning: The governed execution that makes an approved affiliation effective; not the decision to approve.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - LENT-V5-023
+  - id: CTERM-V5-004
+    kind: CONTROLLED_TERM
+    title: Controlled term - Reconciliation
+    purpose: The canonical bilingual meaning of "reconciliation" as authority-preserving comparison, distinct from payment acknowledgement and accounting confirmation.
+    data_class: REFERENCE_DATA
+    authority_owner: House
+    steward: Finance Data Steward
+    version_posture: Versioned canonical meaning.
+    english_label: Reconciliation
+    french_label: Rapprochement
+    canonical_meaning: A governed comparison that preserves each source's authority and never invents a new authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+    traces_to:
+      - LENT-V5-022
+
+  # ==== Package 3: stewardship decision-rights and data-issue records (V5-23 / V5-26) ====
+  - id: DISS-V5-001
+    kind: DATA_ISSUE
+    title: Duplicate organization issue class
+    purpose: A governed class of issue where two organization records may denote the same real organization; similarity is not identity.
+    issue_classification: DUPLICATE_SUSPECTED
+    resolution_authority: Membership and Affiliation Steward
+    escalation: National recognition authority when cross-jurisdiction.
+    evidence_required: Governed evidence and steward decision before any merge.
+    owning_domain: DOMAIN-V5-001
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-26
+    traces_to:
+      - MDS-V5-001
+  - id: DISS-V5-002
+    kind: DATA_ISSUE
+    title: Duplicate person issue class
+    purpose: A governed class of issue where two person records may denote the same person; automated matching is advisory only.
+    issue_classification: DUPLICATE_SUSPECTED
+    resolution_authority: Identity and Authorization Steward
+    escalation: Privacy authority when personal data is implicated.
+    evidence_required: Steward validation; automated similarity never auto-merges.
+    owning_domain: DOMAIN-V5-003
+    classification: PERSONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-26
+    traces_to:
+      - MDS-V5-003
+  - id: DISS-V5-003
+    kind: DATA_ISSUE
+    title: Data-quality exception issue class
+    purpose: A governed class of issue where a quality rule fails and a time-bounded exception is requested.
+    issue_classification: QUALITY_EXCEPTION
+    resolution_authority: Data Quality Steward
+    escalation: Accountable Program Authority for expired exceptions.
+    evidence_required: Documented exception with authority and expiry.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-23
+
+  # ==== Package 3: data lifecycle, records, retention, disposition dependencies (V5-25) ====
+  - id: DLC-V5-001
+    kind: DATA_LIFECYCLE
+    title: Affiliation case lifecycle and records dependency
+    purpose: The governed lifecycle and records dependency for affiliation case data; no retention period is approved here.
+    data_class: LIFECYCLE_HISTORY
+    lifecycle_stages:
+      - CREATED
+      - ACTIVE
+      - SUPERSEDED
+      - ARCHIVAL_ELIGIBLE
+      - LEGAL_HOLD
+      - DISPOSITION_ELIGIBLE
+    records_authority: Records-policy authority (PENDING appointment)
+    legal_hold_dependency: Legal hold supersedes any disposition eligibility.
+    archival_expectation: Archival preserves governed history and provenance.
+    disposition_authority: Records-policy authority (PENDING)
+    lifecycle_trigger: Case closure and season expiry make a case archival-eligible.
+    owning_domain: DOMAIN-V5-013
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+    traces_to:
+      - LENT-V5-013
+  - id: DLC-V5-002
+    kind: DATA_LIFECYCLE
+    title: Evidence metadata lifecycle and legal-hold dependency
+    purpose: The governed lifecycle for evidence metadata; immutable while under legal hold or open compliance context.
+    data_class: EVIDENTIARY_DATA
+    lifecycle_stages:
+      - CREATED
+      - ACTIVE
+      - LEGAL_HOLD
+      - ARCHIVAL_ELIGIBLE
+    records_authority: Records-policy authority (PENDING)
+    legal_hold_dependency: Legal hold blocks disposition indefinitely.
+    privacy_dependency: Evidence may contain personal or privileged data.
+    disposition_authority: Records-policy authority (PENDING)
+    owning_domain: DOMAIN-V5-016
+    classification: RESTRICTED_EVIDENCE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+    traces_to:
+      - LENT-V5-016
+  - id: DLC-V5-003
+    kind: DATA_LIFECYCLE
+    title: Financial record lifecycle and records dependency
+    purpose: The governed lifecycle for financial obligation and reconciliation records; accounting authority governs financial disposition.
+    data_class: LIFECYCLE_HISTORY
+    lifecycle_stages:
+      - CREATED
+      - ACTIVE
+      - SUPERSEDED
+      - ARCHIVAL_ELIGIBLE
+    records_authority: Records-policy authority (PENDING)
+    external_dependency: Accounting authority for financial records.
+    legal_hold_dependency: Legal hold supersedes disposition.
+    disposition_authority: Records-policy authority (PENDING)
+    classification: FINANCIAL_STATUS
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+    traces_to:
+      - LENT-V5-019
+  - id: DLC-V5-004
+    kind: DATA_LIFECYCLE
+    title: Person and identity data lifecycle and privacy dependency
+    purpose: The governed lifecycle for person master and identity data; disposition is privacy-dependent and minimization-bound.
+    data_class: LIFECYCLE_HISTORY
+    lifecycle_stages:
+      - CREATED
+      - ACTIVE
+      - INACTIVE
+      - DISPOSITION_ELIGIBLE
+    records_authority: Records-policy authority (PENDING)
+    privacy_dependency: Privacy authority governs personal-data disposition.
+    legal_hold_dependency: Legal hold supersedes privacy-driven deletion.
+    disposition_authority: Privacy authority and records-policy authority (PENDING)
+    classification: PERSONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+    traces_to:
+      - LENT-V5-004
+  - id: DLC-V5-005
+    kind: DATA_LIFECYCLE
+    title: Audit and provenance lifecycle dependency
+    purpose: The governed lifecycle for audit and provenance records; append-only and never disposed while dependent records exist.
+    data_class: AUDIT_DATA
+    lifecycle_stages:
+      - CREATED
+      - ACTIVE
+      - ARCHIVAL_ELIGIBLE
+    records_authority: Records-policy authority (PENDING)
+    legal_hold_dependency: Immutable; legal hold and dependent records block disposition.
+    disposition_authority: Records-policy authority (PENDING)
+    classification: SECURITY_AUDIT
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+  - id: RETD-V5-001
+    kind: RETENTION_DEPENDENCY
+    title: Records-policy authority dependency
+    purpose: The dependency that no retention period, deletion schedule, or disposition authorization may be set until a records-policy authority is appointed.
+    records_authority: PENDING appointment
+    deletion_authority: PENDING (records-policy authority)
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-25
+  - id: RETD-V5-002
+    kind: RETENTION_DEPENDENCY
+    title: Legal-hold supersedes disposition dependency
+    purpose: The invariant that a legal hold supersedes any archival or disposition eligibility, regardless of elapsed time.
+    records_authority: Legal authority
+    deletion_authority: Blocked while legal hold is active.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-25
+
+  # ==== Package 3: reconciliation contexts (V5-27) ====
+  - id: RCON-V5-001
+    kind: RECONCILIATION_CONTEXT
+    title: Payment acknowledgement versus accounting confirmation reconciliation
+    purpose: A governed reconciliation comparing payment-provider acknowledgement to accounting confirmation; a payment acknowledgement is not an accounting confirmation.
+    house_record: Payment acknowledgement
+    external_record: Accounting confirmation
+    comparison_basis: Obligation identity and amount for a season.
+    mismatch_class: FINANCIAL_MISMATCH
+    conflict_authority: Accounting authority
+    resolution_source: Accounting confirmation is authoritative for financial truth.
+    correction_route: Governed correction to reconciliation record; obligations are not silently altered.
+    closure_condition: Reconciliation aligned or a governed exception recorded.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-27
+    traces_to:
+      - LENT-V5-022
+  - id: RCON-V5-002
+    kind: RECONCILIATION_CONTEXT
+    title: House recognition versus external recognition reconciliation
+    purpose: A governed reconciliation comparing House-held recognition to external recognition authority; external authority is preserved.
+    house_record: House recognition copy
+    external_record: External recognition authority
+    comparison_basis: Organization identity and recognition standing.
+    mismatch_class: RECOGNITION_MISMATCH
+    conflict_authority: External recognition authority
+    resolution_source: External authority governs recognition truth; House aligns its copy.
+    correction_route: Governed alignment of the House copy.
+    closure_condition: Alignment achieved or divergence documented.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-27
+  - id: RCON-V5-003
+    kind: RECONCILIATION_CONTEXT
+    title: Organization identity reconciliation
+    purpose: A governed reconciliation of potentially duplicate organization identities; resolution preserves history and authority boundaries.
+    house_record: Organization master record A
+    external_record: Organization master record B
+    comparison_basis: Governed identity attributes; similarity is advisory.
+    mismatch_class: IDENTITY_MISMATCH
+    conflict_authority: Membership and Affiliation Steward
+    resolution_source: Steward decision with evidence.
+    correction_route: Governed merge or split with survivorship rules; never silent deletion.
+    closure_condition: Steward-approved resolution recorded.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-27
+    traces_to:
+      - DISS-V5-001
+
+  # ==== Package 3: exchange, import, export, transformation, lineage (V5-28) ====
+  - id: EXCH-V5-001
+    kind: EXCHANGE_RECORD
+    title: Payment provider acknowledgement intake
+    purpose: The governed intake of external payment-provider acknowledgements; the acknowledgement is external-authority data, not an accounting confirmation.
+    data_class: EXTERNAL_AUTHORITY_DATA
+    source_authority: External payment provider
+    receiving_domain: DOMAIN-V5-020
+    source_reference: Provider acknowledgement identity
+    transformation: Normalized to governed acknowledgement metadata; no financial truth inferred.
+    validation_outcome: Validated acknowledgements retained; malformed records quarantined.
+    quarantine_posture: Invalid intake is quarantined, not silently dropped.
+    reprocessing_posture: Reprocessing is idempotent and lineage-preserving.
+    lineage: Provider acknowledgement to governed acknowledgement metadata.
+    scope: Payment acknowledgement only.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - LENT-V5-020
+  - id: EXCH-V5-002
+    kind: EXCHANGE_RECORD
+    title: Accounting confirmation intake
+    purpose: The governed intake of accounting confirmations from the accounting authority; authoritative for financial confirmation.
+    data_class: EXTERNAL_AUTHORITY_DATA
+    source_authority: Accounting authority
+    receiving_domain: DOMAIN-V5-021
+    source_reference: Accounting confirmation identity
+    transformation: Mapped to governed confirmation metadata.
+    validation_outcome: Confirmations validated against known obligations.
+    rejected_posture: Unmatched confirmations are flagged for reconciliation, not auto-applied.
+    lineage: Accounting confirmation to governed confirmation metadata.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - LENT-V5-021
+  - id: EXCH-V5-003
+    kind: EXCHANGE_RECORD
+    title: External recognition data intake
+    purpose: The governed intake of external recognition data; external authority is retained and never overwritten by House.
+    data_class: EXTERNAL_AUTHORITY_DATA
+    source_authority: External recognition authority
+    receiving_domain: DOMAIN-V5-002
+    source_reference: External recognition record identity
+    transformation: Aligned to House recognition copy.
+    validation_outcome: Aligned records retained; conflicts routed to reconciliation.
+    lineage: External recognition to House recognition copy.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - RCON-V5-002
+  - id: EXCH-V5-004
+    kind: EXCHANGE_RECORD
+    title: Analytics aggregate export
+    purpose: The governed export of minimized aggregate analytics; derived and never an independent authority.
+    data_class: ANALYTICAL_DATA
+    source_authority: House
+    receiving_domain: DOMAIN-V5-025
+    source_reference: Authoritative governed sources
+    transformation: Aggregated and minimized; privacy-preserving.
+    validation_outcome: Exports validated for minimization before release.
+    lineage: Governed sources to minimized aggregate.
+    scope: Aggregate only; no re-identification.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - DERV-V5-005
+  - id: EXCH-V5-005
+    kind: EXCHANGE_RECORD
+    title: Button projection export
+    purpose: The governed export of non-authoritative projections to the Button experience layer; the Button never owns governed lifecycle.
+    data_class: DERIVED_DATA
+    source_authority: House
+    receiving_domain: DOMAIN-V5-001
+    source_reference: Governed case and organization state
+    transformation: Projected to Button-facing views; classification and minimization preserved.
+    validation_outcome: Projections validated against classification rules.
+    lineage: Governed state to Button projection.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-28
+    traces_to:
+      - DERV-V5-001
+
+  # ==== Package 3: data use, purpose, minimization, disclosure (V5-29) ====
+  - id: DUSE-V5-001
+    kind: DATA_USE
+    title: Reviewer operational data use
+    purpose: Governed use of case data by reviewers for review decisions.
+    permitted_purpose: Affiliation review and decision-making.
+    minimum_necessary: Only case data required for the assigned review.
+    permitted_audiences:
+      - Assigned reviewers (reviewer assignment, not general staff)
+    authoritative_basis: Governed case state.
+    disclosure_authority: Not disclosed beyond assigned reviewers.
+    privacy_validation_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - LENT-V5-008
+  - id: DUSE-V5-002
+    kind: DATA_USE
+    title: Finance operational data use
+    purpose: Governed use of financial obligation and reconciliation data by finance.
+    permitted_purpose: Fee obligation management and reconciliation.
+    minimum_necessary: Financial-status data only; no unrelated personal data.
+    permitted_audiences:
+      - Finance role (distinct from reviewer and representative authority)
+    authoritative_basis: Governed obligations and reconciliation.
+    disclosure_authority: Accounting authority governs external financial disclosure.
+    privacy_validation_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - LENT-V5-019
+  - id: DUSE-V5-003
+    kind: DATA_USE
+    title: Analytics data use
+    purpose: Governed use of aggregate, minimized data for analytics.
+    permitted_purpose: Aggregate reporting and trend analysis.
+    minimum_necessary: Aggregated and minimized; no re-identification.
+    aggregation_posture: Aggregate-only; derived data holds no independent authority.
+    permitted_audiences:
+      - Analytics consumers
+    disclosure_authority: House, subject to minimization.
+    privacy_validation_status: PENDING_VALIDATION
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - DERV-V5-005
+  - id: DUSE-V5-004
+    kind: DATA_USE
+    title: Button disclosure data use
+    purpose: Governed disclosure of non-authoritative projections to the Button experience layer.
+    permitted_purpose: Stakeholder experience presentation.
+    minimum_necessary: Only classification-permitted projection fields.
+    permitted_audiences:
+      - Button-facing audiences
+    disclosure_authority: House projection authority.
+    export_restrictions: No restricted-evidence or privileged-admin data.
+    privacy_validation_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-29
+    traces_to:
+      - EXCH-V5-005
+  - id: DUSE-V5-005
+    kind: DATA_USE
+    title: External disclosure data use
+    purpose: Governed disclosure of data to external authorities; privacy validation pending.
+    permitted_purpose: Regulatory and recognition-authority reporting.
+    minimum_necessary: Minimum necessary for the external purpose.
+    permitted_audiences:
+      - Named external authorities
+    disclosure_authority: Privacy authority and accountable program authority.
+    privacy_validation_status: PENDING_VALIDATION
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-29
+
+  # ==== Package 3: stewardship measures (V5-30) ====
+  - id: SMEA-V5-001
+    kind: STEWARDSHIP_MEASURE
+    title: Master-data completeness measure
+    purpose: A governed stewardship measure concept for master-data completeness; not an implemented metric.
+    accountable_owner: Membership and Affiliation Steward
+    calculation_concept: Proportion of master records with required governed attributes present.
+    interpretation_limits: A measurement concept only; no target is approved.
+    baseline_status: PENDING (no baseline approved)
+    target_status: PENDING (no target approved)
+    escalation_posture: Sustained decline escalates to the accountable program authority.
+    assurance_relationship: Supports quality assurance; not itself assurance.
+    operational_proof_requirement: Requires future operational evidence; none claimed here.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-30
+    traces_to:
+      - MDS-V5-001
+  - id: SMEA-V5-002
+    kind: STEWARDSHIP_MEASURE
+    title: Reconciliation timeliness measure
+    purpose: A governed stewardship measure concept for reconciliation timeliness.
+    accountable_owner: Finance Data Steward
+    calculation_concept: Elapsed governed time from acknowledgement to reconciliation closure.
+    interpretation_limits: Concept only; no operational SLA approved.
+    baseline_status: PENDING
+    target_status: PENDING
+    escalation_posture: Overdue reconciliations escalate to finance authority.
+    operational_proof_requirement: Requires future operational evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-30
+    traces_to:
+      - RCON-V5-001
+  - id: SMEA-V5-003
+    kind: STEWARDSHIP_MEASURE
+    title: Duplicate-rate measure
+    purpose: A governed stewardship measure concept for suspected duplicate rate across master data.
+    accountable_owner: Identity and Authorization Steward
+    calculation_concept: Proportion of master records with open duplicate-suspected issues.
+    interpretation_limits: Similarity is advisory; the measure never authorizes automated merges.
+    baseline_status: PENDING
+    target_status: PENDING
+    escalation_posture: Rising duplicate rate escalates to stewardship review.
+    operational_proof_requirement: Requires future operational evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-30
+    traces_to:
+      - DISS-V5-002
+  - id: SMEA-V5-004
+    kind: STEWARDSHIP_MEASURE
+    title: Issue-resolution measure
+    purpose: A governed stewardship measure concept for data-issue resolution.
+    accountable_owner: Data Quality Steward
+    calculation_concept: Proportion of data issues resolved with recorded authority and evidence.
+    interpretation_limits: Concept only; no target approved.
+    baseline_status: PENDING
+    target_status: PENDING
+    escalation_posture: Aged unresolved issues escalate to the accountable program authority.
+    operational_proof_requirement: Requires future operational evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-30
+    traces_to:
+      - DISS-V5-003
+

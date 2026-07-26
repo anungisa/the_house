@@ -1,0 +1,15 @@
+{
+  "master_sets_without_authority": [],
+  "master_sets_without_steward": [],
+  "by_owning_domain": {
+    "DOMAIN-V5-001": 2,
+    "DOMAIN-V5-003": 1,
+    "DOMAIN-V5-002": 1,
+    "DOMAIN-V5-010": 1,
+    "DOMAIN-V5-004": 1,
+    "DOMAIN-V5-006": 1,
+    "DOMAIN-V5-014": 1,
+    "DOMAIN-V5-009": 1,
+    "UNSET": 9
+  }
+}

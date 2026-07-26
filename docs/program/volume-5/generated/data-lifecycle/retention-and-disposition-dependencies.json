@@ -1,0 +1,27 @@
+{
+  "lifecycle_records": 5,
+  "lifecycle_without_records_authority": [],
+  "lifecycle_with_legal_hold_dependency": [
+    "DLC-V5-001",
+    "DLC-V5-002",
+    "DLC-V5-003",
+    "DLC-V5-004",
+    "DLC-V5-005"
+  ],
+  "lifecycle_with_external_dependency": [
+    "DLC-V5-003"
+  ],
+  "retention_dependencies": [
+    {
+      "id": "RETD-V5-001",
+      "title": "Records-policy authority dependency",
+      "deletion_authority": "PENDING (records-policy authority)"
+    },
+    {
+      "id": "RETD-V5-002",
+      "title": "Legal-hold supersedes disposition dependency",
+      "deletion_authority": "Blocked while legal hold is active."
+    }
+  ],
+  "no_approved_retention_period": true
+}

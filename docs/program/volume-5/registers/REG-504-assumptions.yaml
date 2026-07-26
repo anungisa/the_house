@@ -1,7 +1,7 @@
 register_id: REG-504
 name: Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   # ==== Assumptions ====
   - id: ASM-V5-001
@@ -16,9 +16,11 @@ records:
     required_decision: None (baseline confirmed)
     required_evidence: Release lineage in REG-405 APP-V4-072
     target_package_or_volume: Volume 5 Package 1
-    future_blocking_gate: V5-G3
-    superseded_future_blocking_gate: V5-G1
-    gate_reassignment_ref: ADR-V5-007
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate:
+      - V5-G1
+      - V5-G3
+    gate_reassignment_ref: ADR-V5-028
     implementation_implication: None
     validation_status: DEFINED
     authorizes_implementation: false
@@ -170,10 +172,12 @@ records:
     confidence: MEDIUM
     required_decision: Ownership confirmation
     required_evidence: Business-authority sign-off
-    target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G3
-    superseded_future_blocking_gate: V5-G1
-    gate_reassignment_ref: ADR-V5-007
+    target_package_or_volume: Volume 5 Package 4
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate:
+      - V5-G1
+      - V5-G3
+    gate_reassignment_ref: ADR-V5-028
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -246,10 +250,12 @@ records:
     confidence: MEDIUM
     required_decision: Jurisdiction variant confirmation
     required_evidence: PTSO validation
-    target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G3
-    superseded_future_blocking_gate: V5-G1
-    gate_reassignment_ref: ADR-V5-007
+    target_package_or_volume: Volume 5 Package 4
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate:
+      - V5-G1
+      - V5-G3
+    gate_reassignment_ref: ADR-V5-028
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -265,10 +271,12 @@ records:
     confidence: MEDIUM
     required_decision: Season rules confirmation
     required_evidence: Season data validation
-    target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G3
-    superseded_future_blocking_gate: V5-G1
-    gate_reassignment_ref: ADR-V5-007
+    target_package_or_volume: Volume 5 Package 4
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate:
+      - V5-G1
+      - V5-G3
+    gate_reassignment_ref: ADR-V5-028
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -284,10 +292,12 @@ records:
     confidence: MEDIUM
     required_decision: Versioning confirmation
     required_evidence: Policy authority validation
-    target_package_or_volume: Volume 5 Package 2
-    future_blocking_gate: V5-G3
-    superseded_future_blocking_gate: V5-G1
-    gate_reassignment_ref: ADR-V5-007
+    target_package_or_volume: Volume 5 Package 4
+    future_blocking_gate: V5-G4
+    superseded_future_blocking_gate:
+      - V5-G1
+      - V5-G3
+    gate_reassignment_ref: ADR-V5-028
     implementation_implication: None
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
@@ -501,3 +511,232 @@ records:
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     chapter_ref: V5-10
+
+  # ==== Package 3: assumptions ====
+  - id: ASM-V5-004
+    kind: ASM
+    title: Records-policy authority will set retention and disposition
+    statement: Package 3 assumes a records-policy authority will later set retention periods, archival, and disposition schedules; none are approved here.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    affected_domain: DOMAIN-V5-016
+    classification: INTERNAL
+    current_evidence: Retention dependency records define the pending authority
+    confidence: MEDIUM
+    required_decision: Appointment of a records-policy authority
+    required_evidence: Governed records policy
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V6-G1
+    implementation_implication: Disposition remains blocked until set
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-25
+  - id: ASM-V5-005
+    kind: ASM
+    title: External authorities remain the source for external facts
+    statement: Package 3 assumes external authorities remain authoritative for jurisdiction, recognition, and accounting facts that the House mirrors.
+    owner: Governance Policy Steward
+    affected_domain: DOMAIN-V5-002
+    classification: INTERNAL
+    current_evidence: External-authority data class and exchange records defined
+    confidence: HIGH
+    required_decision: None (boundary confirmed)
+    required_evidence: External authority alignment
+    target_package_or_volume: Volume 7
+    future_blocking_gate: V7-G1
+    implementation_implication: Integration must not re-author external data
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-22
+
+  # ==== Package 3: risks ====
+  - id: RISK-V5-004
+    kind: RISK
+    title: Automated matching over-merges records
+    statement: Automated similarity matching could incorrectly merge distinct persons or organizations if treated as identity.
+    owner: Identity and Authorization Steward
+    affected_domain: DOMAIN-V5-003
+    classification: PERSONAL
+    current_evidence: Advisory-only matching and evidence-based merge defined
+    confidence: MEDIUM
+    required_decision: Identity-resolution validation policy
+    required_evidence: Historical duplicate analysis
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V10-G1
+    implementation_implication: Migration must not auto-merge on similarity
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-26
+  - id: RISK-V5-005
+    kind: RISK
+    title: Reference-data drift breaks historical interpretation
+    statement: Unversioned reference-data changes could make historical cases uninterpretable.
+    owner: Governance Policy Steward
+    affected_domain: DOMAIN-V5-009
+    classification: INTERNAL
+    current_evidence: Versioning and deprecation posture defined
+    confidence: MEDIUM
+    required_decision: Reference-data versioning confirmation
+    required_evidence: Versioning validation against historical cases
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V8-G1
+    implementation_implication: Design must preserve reference-data versions
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: RISK-V5-006
+    kind: RISK
+    title: Disposition without records authority
+    statement: Disposition executed before a records-policy authority exists could destroy records still required.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-016
+    classification: RESTRICTED_EVIDENCE
+    current_evidence: Retention dependency control blocks disposition
+    confidence: HIGH
+    required_decision: Records policy and disposition authority
+    required_evidence: Governed retention schedule
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V6-G1
+    implementation_implication: No deletion until governed retention is set
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-25
+
+  # ==== Package 3: exceptions ====
+  - id: EXC-V5-003
+    kind: EXC
+    title: Time-bounded data-quality exceptions
+    statement: A failing data-quality rule may be granted a time-bounded exception by a named exception authority; permanent silent waivers are not permitted.
+    owner: Data Quality Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Exception authority and expiry fields defined on quality rules
+    confidence: MEDIUM
+    required_decision: Exception governance confirmation
+    required_evidence: Exception register and expiry enforcement
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V8-G1
+    implementation_implication: Exception handling must enforce expiry
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-24
+
+  # ==== Package 3: validation backlog ====
+  - id: TEST-V5-019
+    kind: VALIDATION
+    title: Master and reference data classification validation
+    statement: Validate the master, reference, transactional, evidentiary, and derived data classification against real data domains.
+    owner: Membership and Affiliation Steward
+    affected_domain: DOMAIN-V5-001
+    classification: INTERNAL
+    current_evidence: Classification model defined
+    confidence: MEDIUM
+    required_decision: Classification confirmation
+    required_evidence: Data-domain classification review
+    target_package_or_volume: Volume 5 Package 4
+    future_blocking_gate: V5-G4
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-21
+  - id: TEST-V5-020
+    kind: VALIDATION
+    title: Bilingual reference-data completeness validation
+    statement: Validate that user-facing reference data and controlled terms carry complete English and French labels.
+    owner: Governance Policy Steward
+    affected_domain: DOMAIN-V5-009
+    classification: INTERNAL
+    current_evidence: Bilingual label fields defined
+    confidence: MEDIUM
+    required_decision: Bilingual coverage confirmation
+    required_evidence: Bilingual label review
+    target_package_or_volume: Volume 5 Package 4
+    future_blocking_gate: V5-G4
+    implementation_implication: None
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-22
+  - id: TEST-V5-021
+    kind: VALIDATION
+    title: Retention and disposition dependency validation
+    statement: Validate lifecycle, records, retention, legal-hold, and disposition dependencies once a records-policy authority is appointed.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-016
+    classification: RESTRICTED_EVIDENCE
+    current_evidence: Lifecycle and retention dependency records defined
+    confidence: LOW
+    required_decision: Records policy and retention schedule
+    required_evidence: Governed retention policy
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V6-G1
+    implementation_implication: Disposition blocked until validated
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-25
+  - id: TEST-V5-022
+    kind: VALIDATION
+    title: Reconciliation authority-alignment validation
+    statement: Validate that cross-system reconciliation preserves authority boundaries and resolves conflicts to the named conflict authority.
+    owner: Finance Data Steward
+    affected_domain: DOMAIN-V5-021
+    classification: FINANCIAL_STATUS
+    current_evidence: Reconciliation contexts and conflict authorities defined
+    confidence: MEDIUM
+    required_decision: Reconciliation policy confirmation
+    required_evidence: Reconciliation validation against real data
+    target_package_or_volume: Volume 8
+    future_blocking_gate: V8-G1
+    implementation_implication: Financial reconciliation dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-27
+  - id: TEST-V5-023
+    kind: VALIDATION
+    title: Exchange lineage validation
+    statement: Validate that import, export, and transformation preserve source authority and lineage.
+    owner: Records Governance Steward
+    affected_domain: DOMAIN-V5-020
+    classification: INTERNAL
+    current_evidence: Exchange records and lineage rules defined
+    confidence: MEDIUM
+    required_decision: Exchange lineage confirmation
+    required_evidence: Lineage validation
+    target_package_or_volume: Volume 9
+    future_blocking_gate: V9-G1
+    implementation_implication: Integration and analytics dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-28
+  - id: TEST-V5-024
+    kind: VALIDATION
+    title: Purpose and minimization validation
+    statement: Validate that governed data use respects permitted purpose, minimization, and disclosure authority.
+    owner: Identity and Authorization Steward
+    affected_domain: DOMAIN-V5-025
+    classification: PERSONAL
+    current_evidence: Data-use records and purpose/minimization controls defined
+    confidence: MEDIUM
+    required_decision: Privacy validation policy
+    required_evidence: Volume 6 trust and privacy validation
+    target_package_or_volume: Volume 6
+    future_blocking_gate: V6-G1
+    implementation_implication: Privacy and authorization dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-29
+  - id: TEST-V5-025
+    kind: VALIDATION
+    title: Stewardship-measure operational-proof validation
+    statement: Validate stewardship measures against future operational evidence before any assurance is claimed.
+    owner: Data Quality Steward
+    affected_domain: DOMAIN-V5-025
+    classification: INTERNAL
+    current_evidence: Stewardship-measure concepts defined
+    confidence: LOW
+    required_decision: Operational measurement plan
+    required_evidence: Operational evidence
+    target_package_or_volume: Volume 10
+    future_blocking_gate: V10-G1
+    implementation_implication: Observability dependency
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    chapter_ref: V5-30
