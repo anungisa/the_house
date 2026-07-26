@@ -1,7 +1,7 @@
 register_id: REG-205
 name: Volume 2 Approval Register
 status: IN_REVIEW
-version: 1.6.0
+version: 1.6.1
 records:
   - id: APP-V2-001
     artifact_id: V2-00
@@ -358,20 +358,25 @@ records:
     authorizes_implementation: false
     frozen: true
     base_commit: "4287b63"
+    supersedes: >-
+      APP-V2-028 prior package_provenance that recorded the source snapshot commit
+      (4287b63) and left the closure/freeze commit and merged commit as TBD at closure
+      time; completed post-merge by narrow amendment (see DEC-V2-017). Gate V2-G3
+      unchanged (PASS).
     package_provenance:
       source_snapshot_commit: "4287b63"
-      closure_freeze_commit: TBD
-      merged_commit: TBD
+      closure_freeze_commit: "184a331"
+      merged_commit: "b6318b5"
       note: >-
-        The Package 3 freeze is recorded against distinct commits: source snapshot 4287b63
-        (the authoring commit containing V2-12 through V2-18 and the expanded registers);
-        the closure/freeze commit (the Package 3 closure commit that adds V2-C, the Gate
-        V2-G3 disposition, and this freeze record on branch
-        docs/volume-2-affiliation-operating-rules); and the merged commit (the merge of
-        that branch into main). Unlike Package 1, the source snapshot (4287b63) is a
-        distinct, named commit separate from the closure/freeze commit, so the freeze
-        baseline is unambiguous by construction. The closure/freeze and merged commits are
-        recorded by narrow amendment after they exist. Recorded self-attested /
+        The Package 3 freeze is recorded against three distinct commits: source snapshot
+        4287b63 (the authoring commit containing V2-12 through V2-18 and the expanded
+        registers); closure/freeze commit 184a331 (the Package 3 closure commit that adds
+        V2-C, the Gate V2-G3 disposition, and this freeze record on branch
+        docs/volume-2-affiliation-operating-rules); and merged commit b6318b5 (the merge
+        of that branch into main via PR #9). Unlike Package 1, the source snapshot
+        (4287b63) is a distinct, named commit separate from the closure/freeze commit, so
+        the freeze baseline is unambiguous by construction. The merged commit was recorded
+        by narrow post-merge amendment after PR #9 merged. Recorded self-attested /
         author-verified.
     frozen_artifacts:
       - id: V2-12
@@ -396,8 +401,8 @@ records:
       not edited in place.
     conditions:
       - "Freeze source snapshot commit: 4287b63 (contains V2-12..V2-18 and the expanded registers)"
-      - Closure/freeze commit adds V2-C, Gate V2-G3 disposition, and this freeze record; recorded by amendment
-      - Merged commit is the merge of the Package 3 branch into main; recorded by amendment after merge
+      - "Freeze closure/freeze commit: 184a331 (adds V2-C, Gate V2-G3 disposition, and the freeze record)"
+      - "Package 3 merged commit: b6318b5 (merge of the Package 3 branch into main via PR #9)"
       - Gate V2-G3 PASS; Volume 2 Package 3 closed and frozen; V2-12..V2-18 and V2-C at 1.0.0
       - Operating-rule definition only; implementation, procurement, and architecture unauthorized; not a master development plan
       - Volume 2 Package 4 authorized to commence as definition and governance work (DEC-V2-016)

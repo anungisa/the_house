@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T01:51:39.549Z
+Generated: 2026-07-26T01:55:39.085Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -37,8 +37,8 @@ Generated: 2026-07-26T01:51:39.549Z
 | REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.2.0 | 16 |
 | REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.2.0 | 15 |
 | REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.2.0 | 280 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.6.0 | 16 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.6.0 | 28 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.6.1 | 17 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.6.1 | 28 |
 
 ## Findings by control
 
@@ -131,8 +131,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-027 (GATE-V2-G3): Condition 13: No technical architecture or master development plan is created
 - APP-V2-027 (GATE-V2-G3): Condition 14: Package 3 has had line-level review and is closed with a separate freeze commit
 - APP-V2-028 (PACKAGE-2-3): Freeze source snapshot commit: 4287b63 (contains V2-12..V2-18 and the expanded registers)
-- APP-V2-028 (PACKAGE-2-3): Closure/freeze commit adds V2-C, Gate V2-G3 disposition, and this freeze record; recorded by amendment
-- APP-V2-028 (PACKAGE-2-3): Merged commit is the merge of the Package 3 branch into main; recorded by amendment after merge
+- APP-V2-028 (PACKAGE-2-3): Freeze closure/freeze commit: 184a331 (adds V2-C, Gate V2-G3 disposition, and the freeze record)
+- APP-V2-028 (PACKAGE-2-3): Package 3 merged commit: b6318b5 (merge of the Package 3 branch into main via PR #9)
 - APP-V2-028 (PACKAGE-2-3): Gate V2-G3 PASS; Volume 2 Package 3 closed and frozen; V2-12..V2-18 and V2-C at 1.0.0
 - APP-V2-028 (PACKAGE-2-3): Operating-rule definition only; implementation, procurement, and architecture unauthorized; not a master development plan
 - APP-V2-028 (PACKAGE-2-3): Volume 2 Package 4 authorized to commence as definition and governance work (DEC-V2-016)
