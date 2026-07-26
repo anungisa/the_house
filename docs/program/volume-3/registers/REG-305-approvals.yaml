@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.7.0
+version: 1.8.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -686,5 +686,88 @@ records:
     authorizes_implementation: false
     conditions:
       - Playbook consolidates the capacity and readiness model and records explicit exclusions of material commitment.
+    approved_at: null
+  # ---- Package 4 closure, gate, and freeze ----
+  - id: APP-V3-048
+    artifact_id: V3-D
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 4 closure record ratified; records inherited baseline, gate, freeze, and Package 5 authorization only.
+    approved_at: null
+  - id: APP-V3-049
+    artifact_id: GATE-V3-G4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: OPERATING_CAPACITY_AND_READINESS_DEFINED
+    closure_record: V3-D
+    scope:
+      - V3-26
+      - V3-27
+      - V3-28
+      - V3-29
+      - V3-30
+      - V3-31
+      - V3-32
+      - V3-33
+      - V3-34
+    conditions:
+      - Package 3 provenance is unambiguous.
+      - The service-delivery and operating-coverage model is defined.
+      - Role archetypes and competency requirements are defined without staffing commitments.
+      - Workload and capacity drivers are defined without headcount commitments.
+      - Sourcing classifications preserve retained Curling Canada authority.
+      - External-provider assumptions remain contractually unvalidated where appropriate.
+      - Cost and funding drivers are represented without fabricated amounts.
+      - Training, competency, and adoption responsibilities are defined.
+      - Jurisdictional and club onboarding-readiness conditions are defined.
+      - Pilot and operating-validation evidence requirements are defined without authorizing execution.
+      - Material-commitment decision inputs are defined without claiming executive acceptance.
+      - Unresolved capacity, financial, sourcing, and readiness assumptions have owners and future gates.
+      - No requirement authorizes implementation or procurement.
+      - No staffing plan, cost plan, vendor selection, rollout sequence, technical architecture, or master development plan is created.
+      - Package 4 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V3-050
+    artifact_id: PACKAGE-3-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: PACKAGE_4_COMPLETE
+    frozen: true
+    amendment_process: >-
+      Frozen Package 4 artifacts are not edited in place. Any change requires a recorded
+      Volume 3 amendment decision in REG-304 and a superseding approval in REG-305 that
+      supersedes this approval, preserving Gate V3-G4 and the frozen version history.
+    frozen_artifacts:
+      - id: V3-26
+        version: 1.0.0
+      - id: V3-27
+        version: 1.0.0
+      - id: V3-28
+        version: 1.0.0
+      - id: V3-29
+        version: 1.0.0
+      - id: V3-30
+        version: 1.0.0
+      - id: V3-31
+        version: 1.0.0
+      - id: V3-32
+        version: 1.0.0
+      - id: V3-33
+        version: 1.0.0
+      - id: V3-34
+        version: 1.0.0
+      - id: V3-D
+        version: 1.0.0
+    conditions:
+      - Package 4 is frozen at version 1.0.0 through a separate freeze commit.
+      - Gate V3-G4 disposition is OPERATING_CAPACITY_AND_READINESS_DEFINED.
+      - Freeze provenance is completed post-merge without reopening Package 4 content.
     approved_at: null
 

@@ -1,7 +1,7 @@
 register_id: REG-300
 name: Volume 3 Corpus Index
 status: RATIFIED
-version: 1.4.0
+version: 1.5.0
 records:
   - id: V3-00
     title: Volume Control and Inheritance
@@ -306,4 +306,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-3/V3-34-capacity-economics-adoption-and-readiness-playbook.md
+    gate: V3-G4
+  - id: V3-D
+    title: Package 4 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-D-package-4-closure-record.md
     gate: V3-G4
