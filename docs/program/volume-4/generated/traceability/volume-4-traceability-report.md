@@ -1,6 +1,6 @@
 # Volume 4 Architecture Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T14:29:54.704Z
+Generated: 2026-07-26T14:56:29.357Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
@@ -10,34 +10,34 @@ Generated: 2026-07-26T14:29:54.704Z
 
 | Category | Count |
 | --- | --- |
-| Chapters | 12 |
-| Architecture elements | 93 |
-| Architecture decisions | 8 |
-| Fitness functions | 13 |
-| Assumptions / risks / exceptions | 8 |
-| Approvals | 14 |
+| Chapters | 22 |
+| Architecture elements | 137 |
+| Architecture decisions | 18 |
+| Fitness functions | 33 |
+| Assumptions / risks / exceptions | 22 |
+| Approvals | 26 |
 
 ## Architecture elements by kind
 
 | Kind | Count |
 | --- | --- |
-| ARCH | 15 |
-| NFR | 14 |
-| MOD | 16 |
-| SVC | 11 |
-| DATA | 8 |
+| ARCH | 18 |
+| NFR | 16 |
+| MOD | 25 |
+| SVC | 23 |
+| DATA | 14 |
 | API | 4 |
 | EVT | 3 |
-| CTRL | 10 |
-| DEP | 12 |
+| CTRL | 18 |
+| DEP | 16 |
 
 ## Authority coverage
 
 | Authority | Elements |
 | --- | --- |
-| Shared | 8 |
-| House | 73 |
-| External | 6 |
+| Shared | 11 |
+| House | 113 |
+| External | 7 |
 | Button | 4 |
 | Staff | 2 |
 
@@ -121,8 +121,49 @@ Generated: 2026-07-26T14:29:54.704Z
 - DEP-V4-010
 - DEP-V4-011
 - DEP-V4-012
+- NFR-V4-015
+- NFR-V4-016
+- MOD-V4-017
+- MOD-V4-018
+- MOD-V4-019
+- MOD-V4-020
+- MOD-V4-021
+- MOD-V4-022
+- MOD-V4-023
+- MOD-V4-024
+- MOD-V4-025
+- SVC-V4-012
+- SVC-V4-013
+- SVC-V4-014
+- SVC-V4-015
+- SVC-V4-016
+- SVC-V4-017
+- SVC-V4-018
+- SVC-V4-019
+- SVC-V4-020
+- SVC-V4-021
+- SVC-V4-022
+- SVC-V4-023
+- DATA-V4-009
+- DATA-V4-010
+- DATA-V4-011
+- DATA-V4-012
+- DATA-V4-013
+- DATA-V4-014
+- CTRL-V4-011
+- CTRL-V4-012
+- CTRL-V4-013
+- CTRL-V4-014
+- CTRL-V4-015
+- CTRL-V4-016
+- CTRL-V4-017
+- CTRL-V4-018
+- DEP-V4-013
+- DEP-V4-014
+- DEP-V4-015
+- DEP-V4-016
 
 ## Decision authorization posture
 
-- Decisions total: 8
+- Decisions total: 18
 - Decisions authorizing implementation: 0 (must be 0)

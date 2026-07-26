@@ -32,6 +32,20 @@
           "evaluation_form": { "type": "string" },
           "traces_to": { "type": "array", "items": { "type": "string" } },
           "verification_status": { "$ref": "common.schema.json#/definitions/verificationStatus" },
+          "verification_class": {
+            "type": "string",
+            "enum": [
+              "DEFINED_NOT_IMPLEMENTED",
+              "STATIC_VERIFICATION_CANDIDATE",
+              "UNIT_VERIFICATION_CANDIDATE",
+              "POSTGRES_INTEGRATION_CANDIDATE",
+              "CONTRACT_VERIFICATION_CANDIDATE",
+              "COMPOSITION_VERIFICATION_CANDIDATE",
+              "DEPLOYMENT_PATH_VERIFICATION_CANDIDATE",
+              "OPERATIONAL_PROOF_REQUIRED"
+            ]
+          },
+          "house_p0_ref": { "type": "string" },
           "chapter_ref": { "type": "string" },
           "notes": { "type": "string" },
           "implemented": { "type": "boolean", "const": false },

@@ -1,7 +1,7 @@
 register_id: REG-402
 name: Volume 4 Architecture Decision Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: ADR-V4-001
     class: D1
@@ -138,4 +138,175 @@ records:
     supersession_rule: "Superseded only by a governed architecture decision at a later gate."
     evidence_label: AUTHOR-VERIFIED
     chapter_ref: V4-09
+    authorizes_implementation: false
+  # ==== Package 2: affiliation domain and application architecture ====
+  - id: ADR-V4-009
+    class: D1
+    title: Layered application architecture with inward dependency direction
+    decision: "Adopt a layered architecture (transport -> application services -> domain modules -> ports; infrastructure adapters implement ports) with a single inward dependency direction."
+    context: "Governed authority and invariants must be protected from transport and infrastructure concerns."
+    options: ["Layered inward dependency", "Anemic transactional script", "Framework-coupled domain"]
+    selected_posture: "Domain modules depend on nothing outward; adapters depend inward on application and domain contracts."
+    rationale: "Inward dependency keeps domain policy independent of transports, databases, and vendors and enables verification of dependency direction."
+    constraints: ["Domain modules do not depend on transports, databases, vendor SDKs, or deployment frameworks"]
+    consequences: ["Composition only at the composition root", "Ports define testing seams"]
+    risks: ["Boundary erosion under delivery pressure"]
+    evidence_refs: [ARCH-V4-016, V4-10]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-10
+    authorizes_implementation: false
+  - id: ADR-V4-010
+    class: D1
+    title: Domain-module ownership of concepts and invariants
+    decision: "Each affiliation domain concept has exactly one owning module that guarantees its invariants; cross-module access occurs only through controlled contracts."
+    context: "Bounded contexts must encapsulate their model to keep invariants enforceable."
+    options: ["Single owning module per concept", "Shared mutable model", "Cross-module reach-in"]
+    selected_posture: "One owning module per concept with encapsulated internal model."
+    rationale: "Single ownership makes invariants enforceable and boundaries verifiable."
+    constraints: ["No cross-module access to internal state"]
+    consequences: ["Public surfaces are the invariant boundary"]
+    risks: ["Boundary disputes require governed resolution"]
+    evidence_refs: [MOD-V4-017, MOD-V4-018, V4-11]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-11
+    authorizes_implementation: false
+  - id: ADR-V4-011
+    class: D1
+    title: Authoritative lifecycle owned by the House
+    decision: "The affiliation lifecycle and its governed transitions are owned by the House lifecycle and decision module; recommendation, decision, reconciliation, and activation are distinct effects."
+    context: "Approval must not imply reconciliation or activation, and correction must not substitute for a decision."
+    options: ["Single owning lifecycle module", "Distributed lifecycle authority", "Status-flag mutation"]
+    selected_posture: "One governed lifecycle authority with explicitly separated effects."
+    rationale: "Separation prevents conflation of approval, reconciliation, and activation."
+    constraints: ["No direct status mutation outside governed transitions"]
+    consequences: ["Distinct states between approval and activation"]
+    risks: ["Vocabulary refinement in detailed design"]
+    evidence_refs: [MOD-V4-022, V4-13]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-13
+    authorizes_implementation: false
+  - id: ADR-V4-012
+    class: D1
+    title: Resource-aware default-deny authorization
+    decision: "Authorization is computed from identity, role, resource, jurisdiction, assignment, action, lifecycle state, and evidence sensitivity, and defaults to deny."
+    context: "Role alone is insufficient; unresolved scope or jurisdiction must fail closed."
+    options: ["Resource-aware default-deny", "Role-only authorization", "Default-permit"]
+    selected_posture: "Policy decision point over resolved resource facts; enforcement at application-service boundaries."
+    rationale: "Resource-aware evaluation prevents privilege leakage across organizations and jurisdictions."
+    constraints: ["Resource loaded before authorization", "Fail closed on unresolved scope or jurisdiction"]
+    consequences: ["Decision logging for audit"]
+    risks: ["Identity-provider claim availability"]
+    evidence_refs: [MOD-V4-025, CTRL-V4-011, V4-15]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-15
+    authorizes_implementation: false
+  - id: ADR-V4-013
+    class: D1
+    title: Evidence binding and derived completeness
+    decision: "Evidence binds to case, applicable requirement version, actor, provenance, and evidence version; completeness is derived from authoritative facts, not a stored flag."
+    context: "Completeness flags drift from underlying facts; evidence must be bound to a governed context."
+    options: ["Bind + derive", "Stored completeness flag", "Unbound evidence"]
+    selected_posture: "Bound evidence with derived completeness."
+    rationale: "Binding and derivation keep completeness consistent with authoritative requirement, response, and evidence facts."
+    constraints: ["No independent completeness flag"]
+    consequences: ["Requirement-version changes re-evaluate binding"]
+    risks: ["Evidence-storage contract unresolved"]
+    evidence_refs: [CTRL-V4-013, CTRL-V4-014, V4-12]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-12
+    authorizes_implementation: false
+  - id: ADR-V4-014
+    class: D1
+    title: Atomic transaction, audit, and outbox consistency
+    decision: "Governed state change, audit records, and required outbox records commit atomically in one unit of work; publication occurs after commit."
+    context: "Partial commits and lost audit or outbox records break governed consistency."
+    options: ["Atomic state+audit+outbox", "Separate transactions", "Best-effort audit"]
+    selected_posture: "Single unit of work for state, audit, and required outbox records."
+    rationale: "Atomicity guarantees that governed effects and their evidence are never partially recorded."
+    constraints: ["No partial commit of state without audit and required outbox records"]
+    consequences: ["Publication retried after commit"]
+    risks: ["PostgreSQL concurrency posture unresolved"]
+    evidence_refs: [CTRL-V4-015, V4-16]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-16
+    authorizes_implementation: false
+  - id: ADR-V4-015
+    class: D1
+    title: Authoritative exactly-once activation with at-least-once messaging
+    decision: "The authoritative activation effect is committed once via transactional state control and idempotent command execution; external messages remain at-least-once unless a stronger contract is independently established."
+    context: "Distributed exactly-once delivery cannot be claimed; the authoritative effect must still be exactly once."
+    options: ["Authoritative once + at-least-once messaging", "Claimed distributed exactly-once", "At-most-once"]
+    selected_posture: "Idempotent authoritative activation; at-least-once external delivery tolerated by idempotent consumers."
+    rationale: "This gives a correct authoritative effect without an unsupported delivery guarantee."
+    constraints: ["Duplicate activation commands cannot create duplicate authoritative effects"]
+    consequences: ["Consumers must be idempotent"]
+    risks: ["Consumer idempotency required downstream"]
+    evidence_refs: [CTRL-V4-016, V4-16]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-16
+    authorizes_implementation: false
+  - id: ADR-V4-016
+    class: D1
+    title: Fail-closed composition and dependency completeness
+    decision: "Production composition fails when a required dependency is absent; required integrations have no production no-op implementation."
+    context: "Silent no-op dependencies hide missing integrations and break governed effects."
+    options: ["Fail-closed composition", "Silent no-op fallback", "Optional-by-default"]
+    selected_posture: "Required dependencies must be present; only explicitly optional capabilities may be absent."
+    rationale: "Fail-closed composition prevents production from running without a required governed integration."
+    constraints: ["No production no-op for required integrations", "Config consumed by actual entry points"]
+    consequences: ["Dependency-completeness verification required"]
+    risks: ["Deployment topology unresolved"]
+    evidence_refs: [CTRL-V4-017, CTRL-V4-018, V4-17]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-17
+    authorizes_implementation: false
+  - id: ADR-V4-017
+    class: D1
+    title: Projections derive from authoritative state and never define authority
+    decision: "Projections (read models) are derived from authoritative state and outbox records; projection failure never redefines governed state, and replay is observable and controlled."
+    context: "Read models must not become a competing source of governed truth."
+    options: ["Derived projections", "Authoritative read model", "Uncontrolled replay"]
+    selected_posture: "Projections rebuilt from authoritative state; authority remains with governed records."
+    rationale: "Derivation keeps a single source of governed truth and allows safe rebuild."
+    constraints: ["Projection failure does not change governed state"]
+    consequences: ["Projection rebuild and controlled replay required"]
+    risks: ["Projection recovery ownership unresolved"]
+    evidence_refs: [ADR-V4-014, V4-16]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-16
+    authorizes_implementation: false
+  - id: ADR-V4-018
+    class: D1
+    title: Configuration governance with provenance and validation
+    decision: "Configuration has provenance, validation, effective scope, and audit, is consumed by actual entry points, and fails closed when incomplete."
+    context: "Unconsumed or unvalidated configuration gives false assurance of a working dependency."
+    options: ["Governed configuration", "Ad hoc environment variables", "Unvalidated config"]
+    selected_posture: "Governed configuration consumed by real entry points with validation and audit."
+    rationale: "Governed configuration prevents silent misconfiguration and false readiness."
+    constraints: ["Incomplete production configuration fails closed"]
+    consequences: ["Configuration-completeness verification required"]
+    risks: ["Numeric quality targets unresolved"]
+    evidence_refs: [CTRL-V4-018, V4-17]
+    validation_status: SPECIFIED
+    supersession_rule: "Superseded only by a governed architecture decision at a later gate."
+    evidence_label: AUTHOR-VERIFIED
+    chapter_ref: V4-17
     authorizes_implementation: false

@@ -1,7 +1,7 @@
 register_id: REG-404
 name: Volume 4 Assumptions, Risks, and Exceptions Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: ASM-V4-001
     kind: ASM
@@ -83,3 +83,144 @@ records:
     resolution_gate: V4-G1
     traces_to: [ARCH-V4-001]
     chapter_ref: V4-01
+  # ==== Package 2: affiliation domain and application architecture ====
+  - id: ASM-V4-005
+    kind: ASM
+    title: Final domain-boundary validation pending
+    statement: "The affiliation domain-module boundaries are architecturally defined but not yet validated against a running implementation."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Later module extraction and ownership guarantees depend on confirming the boundaries in code."
+    disposition: "Assumed; to be validated by the dependency-direction fitness function downstream."
+    resolution_gate: V4-G3
+    traces_to: [ARCH-V4-016, FIT-V4-014]
+    chapter_ref: V4-11
+  - id: ASM-V4-006
+    kind: ASM
+    title: Policy and workflow variants deferred
+    statement: "Season, jurisdiction, and pathway policy variants are architecturally accommodated but their concrete rule sets are deferred."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Requirement applicability behaviour depends on later-supplied policy content."
+    disposition: "Assumed; concrete policy variants supplied with governance evidence downstream."
+    resolution_gate: V4-G3
+    traces_to: [MOD-V4-019, ADR-V4-013]
+    chapter_ref: V4-12
+  - id: ASM-V4-007
+    kind: ASM
+    title: Evidence-storage contract not yet fixed
+    statement: "The concrete evidence-storage contract, including provenance and sensitivity semantics, is assumed but not yet specified."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Evidence binding and restricted-evidence access depend on the eventual storage contract."
+    disposition: "Assumed; contract fixed with evidence at a later gate."
+    resolution_gate: V4-G3
+    traces_to: [MOD-V4-020, DEP-V4-007]
+    chapter_ref: V4-12
+  - id: ASM-V4-008
+    kind: ASM
+    title: PostgreSQL concurrency posture assumed
+    statement: "The concurrency posture for atomic governed transactions is assumed to be supported by PostgreSQL behaviour but is not yet verified."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Atomicity and idempotency guarantees depend on the confirmed concurrency behaviour."
+    disposition: "Assumed; confirmed by PostgreSQL behavioural verification downstream."
+    resolution_gate: V4-G3
+    traces_to: [CTRL-V4-015, FIT-V4-030]
+    chapter_ref: V4-16
+  - id: ASM-V4-009
+    kind: ASM
+    title: Identity-provider claim shape assumed
+    statement: "The claim shape supplied by the external identity provider is assumed sufficient for resource-aware authorization but is not yet fixed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Authorization inputs depend on the eventual identity claim contract."
+    disposition: "Assumed; claim contract confirmed with evidence downstream."
+    resolution_gate: V4-G3
+    traces_to: [CTRL-V4-011, DEP-V4-002]
+    chapter_ref: V4-15
+  - id: ASM-V4-010
+    kind: ASM
+    title: Payment and accounting acknowledgement semantics assumed
+    statement: "The acknowledgement semantics of external payment and accounting systems are assumed but not yet contractually fixed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Reconciliation status recording depends on the eventual acknowledgement contract."
+    disposition: "Assumed per inherited operating model; confirmed with evidence downstream."
+    resolution_gate: V4-G3
+    traces_to: [MOD-V4-023, DEP-V4-003]
+    chapter_ref: V4-13
+  - id: ASM-V4-011
+    kind: ASM
+    title: Projection recovery ownership assumed
+    statement: "Projection rebuild and recovery are architecturally defined but their operational ownership is not yet assigned."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Recovery operations depend on assigning ownership of projection rebuild."
+    disposition: "Assumed; ownership assigned with operational evidence downstream."
+    resolution_gate: V4-G3
+    traces_to: [ADR-V4-017, FIT-V4-031]
+    chapter_ref: V4-16
+  - id: ASM-V4-012
+    kind: ASM
+    title: Outbox operational ownership assumed
+    statement: "Outbox publication, retry, and recovery are architecturally defined but their operational ownership is not yet assigned."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Reliable delivery operations depend on assigning outbox ownership."
+    disposition: "Assumed; ownership assigned with operational evidence downstream."
+    resolution_gate: V4-G3
+    traces_to: [CTRL-V4-017, DEP-V4-015]
+    chapter_ref: V4-16
+  - id: ASM-V4-013
+    kind: ASM
+    title: Deployment topology deferred
+    statement: "The concrete deployment topology that composes production adapters is assumed but deliberately not specified in Package 2."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Deployment-path composition verification depends on the eventual topology."
+    disposition: "Assumed; topology specified outside architecture definition at a later gate."
+    resolution_gate: V4-G3
+    traces_to: [DEP-V4-016, FIT-V4-032]
+    chapter_ref: V4-17
+  - id: ASM-V4-014
+    kind: ASM
+    title: Numeric quality-attribute targets remain deferred
+    statement: "Numeric quality-attribute targets for the application architecture remain deliberately unset in Package 2."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Premature performance or availability commitments would be unfounded."
+    disposition: "Tracked as VALIDATION_PENDING NFR elements; targets set with evidence downstream."
+    resolution_gate: V4-G3
+    traces_to: [NFR-V4-015, NFR-V4-016]
+    chapter_ref: V4-18
+  - id: RISK-V4-004
+    kind: RISK
+    title: Application-layer boundary erosion
+    statement: "Application layering may erode under delivery pressure, letting domain modules depend on transports or persistence."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Testability and later extraction options degrade."
+    disposition: "Mitigated by the inward-dependency fitness function; monitored downstream."
+    resolution_gate: V4-G3
+    traces_to: [FIT-V4-014, ADR-V4-009]
+    chapter_ref: V4-10
+  - id: RISK-V4-005
+    kind: RISK
+    title: Authorization scope-resolution gaps
+    statement: "Resource, jurisdiction, or assignment scope may be incompletely resolved, weakening default-deny authorization."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Incorrectly permitted actions could bypass institutional authority."
+    disposition: "Mitigated by resource-aware authorization fitness functions and fail-closed defaults."
+    resolution_gate: V4-G3
+    traces_to: [FIT-V4-017, CTRL-V4-011]
+    chapter_ref: V4-15
+  - id: RISK-V4-006
+    kind: RISK
+    title: Silent no-op integration in production
+    statement: "A required integration, including outbox publication, could silently resolve to a production no-op."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Governed effects could be lost without detection."
+    disposition: "Mitigated by the no-production-no-op and composition-completeness fitness functions."
+    resolution_gate: V4-G3
+    traces_to: [FIT-V4-027, CTRL-V4-017]
+    chapter_ref: V4-17
+  - id: RISK-V4-007
+    kind: RISK
+    title: Completeness drift from derived to stored
+    statement: "Derived completeness could be replaced by a stored flag under delivery pressure, diverging from authoritative facts."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Submission decisions could rely on stale or incorrect completeness."
+    disposition: "Mitigated by the derived-completeness fitness function and evidence-binding control."
+    resolution_gate: V4-G3
+    traces_to: [FIT-V4-022, CTRL-V4-014]
+    chapter_ref: V4-12

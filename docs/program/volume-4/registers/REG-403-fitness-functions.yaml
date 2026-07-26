@@ -1,7 +1,7 @@
 register_id: REG-403
 name: Volume 4 Fitness-Function Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: FIT-V4-001
     title: Forbidden dependency direction
@@ -131,5 +131,241 @@ records:
     traces_to: [ARCH-V4-007]
     verification_status: FITNESS_FUNCTION_DEFINED
     chapter_ref: V4-09
+    implemented: false
+    authorizes_implementation: false
+  # ==== Package 2: affiliation domain and application verification model ====
+  - id: FIT-V4-014
+    title: Application-layer inward dependency direction
+    intent: "Prevent domain modules from depending on transports, databases, vendor SDKs, or deployment frameworks."
+    invariant: "No domain module depends outward on a transport, persistence, vendor SDK, or deployment framework."
+    evaluation_form: "Static dependency analysis over application layers (defined downstream)."
+    traces_to: [ARCH-V4-016, V4-10]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-015
+    title: House/Button authority separation at the application boundary
+    intent: "Ensure the Button never mutates persistence or governed lifecycle state directly."
+    invariant: "Governed state changes originate only from House application-service commands."
+    evaluation_form: "Static and boundary analysis of mutation paths (defined downstream)."
+    traces_to: [ARCH-V4-002, ARCH-V4-017, V4-10]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-016
+    title: Transport-to-domain isolation
+    intent: "Ensure transport and experience adapters carry no domain policy or invariants."
+    invariant: "Domain policy and invariants exist only in domain modules, never in transport adapters."
+    evaluation_form: "Static analysis of transport adapters for domain policy (defined downstream)."
+    traces_to: [ARCH-V4-016, V4-10]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-017
+    title: Resource-aware authorization
+    intent: "Ensure authorization is computed from resource, role, and jurisdiction and defaults to deny."
+    invariant: "No governed action is permitted on role alone; unresolved resource scope fails closed."
+    evaluation_form: "Unit verification of the policy decision point over resolved resources (defined downstream)."
+    traces_to: [CTRL-V4-011, MOD-V4-025, V4-15]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-1
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-018
+    title: Jurisdiction isolation
+    intent: "Ensure jurisdiction is explicit and that unknown jurisdiction fails closed."
+    invariant: "No cross-jurisdiction access is permitted; unknown jurisdiction denies."
+    evaluation_form: "Unit verification of jurisdiction resolution and enforcement (defined downstream)."
+    traces_to: [CTRL-V4-012, MOD-V4-025, V4-15]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-2
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-019
+    title: Assigned-reviewer enforcement
+    intent: "Ensure review actions require an assigned reviewer where assignment is required."
+    invariant: "A missing reviewer assignment fails closed for actions that require assignment."
+    evaluation_form: "Unit verification of assignment enforcement (defined downstream)."
+    traces_to: [CTRL-V4-012, MOD-V4-022, V4-15]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-2
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-020
+    title: Evidence binding
+    intent: "Ensure evidence is acceptable only when bound to case, requirement version, actor, provenance, and evidence version."
+    invariant: "No unbound or misbound evidence contributes to completeness."
+    evaluation_form: "Unit verification of evidence binding (defined downstream)."
+    traces_to: [CTRL-V4-013, MOD-V4-020, V4-12]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-3
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-021
+    title: Versioned requirement applicability
+    intent: "Ensure applicable requirements are derived from season, jurisdiction, pathway, and classification."
+    invariant: "Identical circumstances yield identical applicable requirement versions."
+    evaluation_form: "Unit verification of applicability derivation (defined downstream)."
+    traces_to: [MOD-V4-019, DATA-V4-010, V4-12]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-6
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-022
+    title: Derived completeness
+    intent: "Ensure completeness is derived from authoritative facts and never from a stored flag."
+    invariant: "No independent completeness flag exists; completeness recomputes from facts."
+    evaluation_form: "Unit verification of completeness derivation (defined downstream)."
+    traces_to: [CTRL-V4-014, MOD-V4-019, V4-12]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-6
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-023
+    title: Valid lifecycle transitions
+    intent: "Ensure only governed transitions occur, including return and resubmission."
+    invariant: "No unknown or unpermitted lifecycle transition is possible; invalid transitions fail closed."
+    evaluation_form: "Unit verification of the lifecycle transition rules (defined downstream)."
+    traces_to: [MOD-V4-022, DATA-V4-013, V4-13]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: "P0-5, P0-7"
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-024
+    title: Decision-authority enforcement
+    intent: "Ensure governed decisions require the correct authority and that approval does not imply reconciliation or activation."
+    invariant: "Only authorized actors record decisions; approval, reconciliation, and activation remain distinct."
+    evaluation_form: "Unit verification of decision authority and effect separation (defined downstream)."
+    traces_to: [MOD-V4-022, MOD-V4-023, V4-13]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: UNIT_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-5
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-025
+    title: Transaction, audit, and outbox atomicity
+    intent: "Ensure governed state, audit, and required outbox records commit atomically."
+    invariant: "No partial commit of state without audit and required outbox records, or the reverse."
+    evaluation_form: "PostgreSQL integration verification of atomic commit (defined downstream)."
+    traces_to: [CTRL-V4-015, MOD-V4-024, V4-16]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    house_p0_ref: P0-8
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-026
+    title: Activation idempotency
+    intent: "Ensure duplicate activation commands cannot create duplicate authoritative effects."
+    invariant: "An idempotency key guarantees exactly one authoritative activation effect."
+    evaluation_form: "PostgreSQL integration verification of idempotent activation (defined downstream)."
+    traces_to: [CTRL-V4-016, MOD-V4-024, V4-16]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    house_p0_ref: P0-8
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-027
+    title: No production no-op dependencies
+    intent: "Ensure required integrations, including outbox publication, have no production no-op implementation."
+    invariant: "No required port resolves to a no-op in production composition."
+    evaluation_form: "Composition verification of production bindings (defined downstream)."
+    traces_to: [CTRL-V4-017, DEP-V4-015, V4-17]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-10
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-028
+    title: Configuration completeness
+    intent: "Ensure required configuration and secrets are consumed by actual entry points and fail closed when absent."
+    invariant: "Incomplete production configuration fails closed; declared-but-unconsumed config is not treated as present."
+    evaluation_form: "Composition verification of configuration consumption (defined downstream)."
+    traces_to: [CTRL-V4-018, V4-17]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    house_p0_ref: "P0-9, P0-14"
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-029
+    title: Composition-root completeness
+    intent: "Ensure every required port has a valid production adapter at the composition root."
+    invariant: "No required port is unbound in production composition."
+    evaluation_form: "Composition verification of the production composition root (defined downstream)."
+    traces_to: [CTRL-V4-017, V4-17]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: COMPOSITION_VERIFICATION_CANDIDATE
+    house_p0_ref: "P0-4, P0-12"
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-030
+    title: PostgreSQL behavioural verification
+    intent: "Ensure governed persistence behaviour (concurrency, atomicity, constraints) is verified against PostgreSQL."
+    invariant: "Governed persistence invariants hold under PostgreSQL behaviour, not only in-memory doubles."
+    evaluation_form: "PostgreSQL integration verification (defined downstream)."
+    traces_to: [CTRL-V4-015, V4-16]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    house_p0_ref: P0-11
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-031
+    title: Projection rebuild
+    intent: "Ensure projections can be rebuilt from authoritative state without redefining governed authority."
+    invariant: "A rebuilt projection matches authoritative state and never becomes the source of authority."
+    evaluation_form: "PostgreSQL integration verification of projection rebuild (defined downstream)."
+    traces_to: [ADR-V4-017, V4-16]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: POSTGRES_INTEGRATION_CANDIDATE
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-032
+    title: Deployment-path composition
+    intent: "Ensure the deployment path composes real production adapters and configuration."
+    invariant: "The deployment path yields a complete, fail-closed production composition."
+    evaluation_form: "Deployment-path verification (defined downstream)."
+    traces_to: [CTRL-V4-017, V4-17]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: DEPLOYMENT_PATH_VERIFICATION_CANDIDATE
+    house_p0_ref: P0-13
+    chapter_ref: V4-18
+    implemented: false
+    authorizes_implementation: false
+  - id: FIT-V4-033
+    title: Control-to-test traceability
+    intent: "Ensure every governed control maps to a defined verification."
+    invariant: "No governed control lacks a defined fitness function or verification candidate."
+    evaluation_form: "Traceability check over controls and fitness functions (defined downstream; approximated by governance:trace:v4)."
+    traces_to: [ARCH-V4-007, V4-18]
+    verification_status: FITNESS_FUNCTION_DEFINED
+    verification_class: STATIC_VERIFICATION_CANDIDATE
+    chapter_ref: V4-18
     implemented: false
     authorizes_implementation: false

@@ -23,6 +23,66 @@
       "title": "Transitional manual boundaries acceptable in early operation",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "ASM-V4-005",
+      "title": "Final domain-boundary validation pending",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-006",
+      "title": "Policy and workflow variants deferred",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-007",
+      "title": "Evidence-storage contract not yet fixed",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-008",
+      "title": "PostgreSQL concurrency posture assumed",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-009",
+      "title": "Identity-provider claim shape assumed",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-010",
+      "title": "Payment and accounting acknowledgement semantics assumed",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-011",
+      "title": "Projection recovery ownership assumed",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-012",
+      "title": "Outbox operational ownership assumed",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-013",
+      "title": "Deployment topology deferred",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "ASM-V4-014",
+      "title": "Numeric quality-attribute targets remain deferred",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
     }
   ],
   "risks": [
@@ -43,6 +103,30 @@
       "title": "Unvalidated quality-attribute targets",
       "owner": "Aubert Nungisa (Accountable Program Authority)",
       "resolution_gate": "V4-G2"
+    },
+    {
+      "id": "RISK-V4-004",
+      "title": "Application-layer boundary erosion",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "RISK-V4-005",
+      "title": "Authorization scope-resolution gaps",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "RISK-V4-006",
+      "title": "Silent no-op integration in production",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
+    },
+    {
+      "id": "RISK-V4-007",
+      "title": "Completeness drift from derived to stored",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "resolution_gate": "V4-G3"
     }
   ]
 }
