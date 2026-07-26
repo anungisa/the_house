@@ -209,3 +209,106 @@ records:
       - Preserves the Gate V6-G1 disposition and the PACKAGE-6-1 freeze.
       - Reopens no substantive Package 1 content and authorizes no implementation.
     approved_at: null
+
+  # ==== Package 2: chapter ratifications ====
+  - id: APP-V6-016
+    artifact_id: V6-11
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Control model, control families, and evidence semantics defined for Package 2.
+      - Separates control definition, implementation evidence, operational proof, and independent assurance.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-017
+    artifact_id: V6-12
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity lifecycle and authentication-assurance model defined with identity-class separations.
+      - Selects no authentication product or factor; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-018
+    artifact_id: V6-13
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Resource-aware authorization and policy-decision control model defined with fail-closed rules.
+      - Creates no executable authorization policy or permission; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-019
+    artifact_id: V6-14
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Delegation, privileged access, emergency access, and segregation-of-duties controls defined with expiry and post-use review.
+      - Grants no privilege and creates no administrative role; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-020
+    artifact_id: V6-15
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Data-classification, protection, cryptography, secrets, and key-management requirements defined.
+      - Selects no algorithm, provider, vault, certificate, key, or rotation period; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-021
+    artifact_id: V6-16
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Restricted-evidence, document access, sharing, disclosure, and export controls defined with heightened access and complete recording.
+      - Grants no evidence access and authorizes no disclosure or export; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-022
+    artifact_id: V6-17
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Privacy processing, notice, rights, correction, and minimization control model defined with purpose binding.
+      - Makes no per-activity privacy determination and asserts no privacy compliance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-023
+    artifact_id: V6-18
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security logging, audit, telemetry, monitoring, and detection control model defined as privacy-safe.
+      - Configures no logging pipeline or detection rule and asserts no detection capability; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-024
+    artifact_id: V6-19
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Service trust, external-provider security, and contractual-assurance model defined with provider-authority separation.
+      - Selects no vendor and signs no contract; provider assurance is not system assurance; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-025
+    artifact_id: V6-20
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 2 control traceability, validation backlog, and downstream constraints defined.
+      - Closes no validation item and authorizes no implementation.
+    approved_at: null

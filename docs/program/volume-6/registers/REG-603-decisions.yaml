@@ -52,3 +52,191 @@ records:
     chapter_ref: V6-09
     traces_to:
       - ASSR-V6-001
+
+  # ==== Package 2 decisions ====
+  - id: ADR-V6-005
+    title: Identity is separated from authority
+    decision: A person, an authenticated account, organization membership, representative authority, reviewer assignment, and a service identity are distinct; an account is not authority and authority is not assignment.
+    status: ACCEPTED
+    context: Collapsing these identity classes would grant access on the basis of identity alone rather than governed authority.
+    consequence: Identity, authentication, authorization, and assignment control objectives are recorded separately.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - CTRL-V6-012
+  - id: ADR-V6-006
+    title: Authentication is separated from authorization
+    decision: Authentication verifies who an account holder is; it does not by itself grant access to any governed resource.
+    status: ACCEPTED
+    context: Treating authentication as authorization would bypass resource-aware, fail-closed access control.
+    consequence: Authentication-assurance and policy-decision control objectives are recorded separately.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - CTRL-V6-013
+      - CTRL-V6-016
+  - id: ADR-V6-007
+    title: The target resource is loaded before the authorization decision
+    decision: Organization, jurisdiction, and sensitivity must be resolved from the loaded resource rather than assumed, and missing context fails closed.
+    status: ACCEPTED
+    context: Deciding before loading the resource allows cross-tenant and cross-jurisdiction exposure.
+    consequence: The resource-isolation control objective requires resource loading before decision.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - CTRL-V6-017
+  - id: ADR-V6-008
+    title: Reviewer access is enforced to assignment scope
+    decision: Reviewer eligibility and assignment must be enforced so access does not exceed assignment scope, and missing assignment fails closed when assignment is required.
+    status: ACCEPTED
+    context: Reviewer over-access beyond assignment is an identified abuse case.
+    consequence: The assignment-enforcement control objective is recorded with reviewer-eligibility inputs.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - CTRL-V6-018
+      - ABUSE-V6-001
+  - id: ADR-V6-009
+    title: Delegated authority is always time-bound
+    decision: Delegated authority must carry an effective period, expiry, revocation, and post-use review; delegated authority is not permanent authority.
+    status: ACCEPTED
+    context: Permanent delegation accumulates standing privilege and defeats least privilege.
+    consequence: The delegation control objective requires expiry and review.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - CTRL-V6-020
+  - id: ADR-V6-010
+    title: Privileged and emergency access require post-use review
+    decision: Privileged and emergency access must be approved, time-bound, monitored, and reviewed after use.
+    status: ACCEPTED
+    context: Unreviewed privileged and emergency access enables undetected control bypass.
+    consequence: The privileged-access control objective and privileged-operation obligation require post-use review.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - CTRL-V6-021
+      - OBL-V6-004
+  - id: ADR-V6-011
+    title: Emergency access is not permanent authority
+    decision: Emergency (break-glass) access is temporary, is reviewed after use, and never becomes standing authority.
+    status: ACCEPTED
+    context: Emergency access that persists becomes an unaudited standing privilege.
+    consequence: Segregation and privileged-access control objectives separate emergency use from permanent authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - CTRL-V6-022
+  - id: ADR-V6-012
+    title: Restricted evidence receives heightened protection
+    decision: Restricted evidence and its metadata receive access heightened above ordinary authorization, requiring need-to-know, purpose-bound, time-limited, decision-linked, and fully logged access.
+    status: ACCEPTED
+    context: Restricted evidence is not ordinary data and carries elevated disclosure harm.
+    consequence: The restricted-evidence control objective and obligation impose heightened access and recording.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-16
+    traces_to:
+      - CTRL-V6-027
+      - OBL-V6-003
+  - id: ADR-V6-013
+    title: Cryptographic requirements are defined without premature technology selection
+    decision: A cryptographic requirement is defined; algorithm, provider, parameter, key, certificate, and rotation-period selection are pending and are not made in Volume 6.
+    status: ACCEPTED
+    context: Selecting cryptographic technology before design and assurance would be premature and unproven.
+    consequence: The cryptographic control objective records the requirement with selection pending.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - CTRL-V6-024
+  - id: ADR-V6-014
+    title: Processing is bound to purpose and minimized
+    decision: Every processing of personal information must be bound to an authorized purpose and limited to what the purpose requires; unbound processing fails closed.
+    status: ACCEPTED
+    context: Purpose-unbound or excess processing creates privacy harm and re-identification risk.
+    consequence: Privacy-purpose and minimization control objectives are recorded with fail-closed posture.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-17
+    traces_to:
+      - CTRL-V6-029
+      - CTRL-V6-030
+  - id: ADR-V6-015
+    title: Security logging must remain privacy-safe
+    decision: Security logging must not copy personal or restricted content beyond the bound purpose, and log integrity must be protected.
+    status: ACCEPTED
+    context: Logging that leaks personal or restricted content converts an accountability control into a privacy risk.
+    consequence: The privacy-safe logging control objective binds logging to the privacy purpose model.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-18
+    traces_to:
+      - CTRL-V6-032
+  - id: ADR-V6-016
+    title: Service identities receive only explicit scoped permissions
+    decision: Service and non-human identities receive no implicit trust; every service-to-service call is explicitly authorized and cannot bypass authorization through direct data access.
+    status: ACCEPTED
+    context: Implicit service trust enables lateral movement and authorization bypass.
+    consequence: Service-identity and service-trust control objectives require explicit scoping.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - CTRL-V6-015
+      - CTRL-V6-019
+  - id: ADR-V6-017
+    title: Provider authority is separated from governed decision authority
+    decision: An external provider processes data under contract but holds no governed decision authority.
+    status: ACCEPTED
+    context: Allowing a provider to make governed decisions would move authority outside The House.
+    consequence: Service-trust and provider-assurance control objectives separate provider authority from decision authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-19
+    traces_to:
+      - CTRL-V6-034
+  - id: ADR-V6-018
+    title: Provider assurance is not system assurance
+    decision: A provider attestation, certification, or contractual commitment is evidence about the provider, not evidence that The House control model is implemented, tested, or independently assured.
+    status: ACCEPTED
+    context: Conflating provider assurance with system assurance would overstate The House's proven posture.
+    consequence: The provider-assurance control objective records provider evidence as distinct from system assurance.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-19
+    traces_to:
+      - CTRL-V6-035
+  - id: ADR-V6-019
+    title: Control evidence precedes any implementation claim
+    decision: A written control objective is evidence only that the control is defined; no implemented, compliant, conformant, operationally proven, or independently assured state may be claimed on the strength of a control objective.
+    status: ACCEPTED
+    context: The evidence-class model keeps definition, implementation, operation, and independent assurance distinct.
+    consequence: Every Package 2 control objective carries an implementation-evidence class and remains not implemented or proven.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-11
+    traces_to:
+      - CTRL-V6-016

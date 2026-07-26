@@ -31,6 +31,34 @@ records:
     traces_to:
       - CTRL-V6-002
 
+  # ==== Package 2 assumptions ====
+  - id: ASM-V6-003
+    kind: ASM
+    title: Identity-class distinctions hold across the platform
+    owner: Identity and Authorization Steward
+    statement: Volume 6 assumes the distinctions between person, account, organization membership, authority, assignment, and service identity hold consistently across the platform.
+    confidence: MEDIUM
+    target_package_or_volume: Volume 7+ security design
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - CTRL-V6-012
+  - id: ASM-V6-004
+    kind: ASM
+    title: External identity providers can meet federation assurance
+    owner: Security and Trust Steward
+    statement: Volume 6 assumes an external identity provider can meet the federation and authentication-assurance requirements to be validated in later volumes.
+    confidence: LOW
+    target_package_or_volume: Volume 9+ provider assessment
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-19
+    traces_to:
+      - CTRL-V6-035
+
   # ==== Risks ====
   - id: RISK-V6-001
     kind: RISK
@@ -64,6 +92,40 @@ records:
     chapter_ref: V6-09
     traces_to:
       - CTRL-V6-009
+
+  # ==== Package 2 risks ====
+  - id: RISK-V6-003
+    kind: RISK
+    title: Cryptographic and key-management technology unselected
+    owner: Security and Trust Steward
+    statement: No cryptographic algorithm, provider, key, certificate, or rotation period has been selected, so cryptographic and key-management design remains unproven.
+    assurance_classification: IMPLEMENTATION_EVIDENCE_REQUIRED
+    current_evidence: PENDING (cryptographic requirement defined only)
+    required_evidence: PENDING (algorithm selection, key-management design, and validation)
+    implementation_implication: Data-protection reliance is blocked until cryptographic design and key management are proven.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - CTRL-V6-024
+  - id: RISK-V6-004
+    kind: RISK
+    title: Restricted-evidence heightened-access model unvalidated
+    owner: Data Governance Steward
+    statement: The heightened restricted-evidence access and disclosure-recording model is defined but not designed, implemented, or validated.
+    assurance_classification: IMPLEMENTATION_EVIDENCE_REQUIRED
+    current_evidence: PENDING (control objective defined only)
+    required_evidence: PENDING (restricted-evidence design, implementation, and validation)
+    implementation_implication: Restricted-evidence handling is blocked until the heightened-access model is proven.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-16
+    traces_to:
+      - CTRL-V6-027
 
   # ==== Exceptions ====
   - id: EXC-V6-001
@@ -136,3 +198,80 @@ records:
     chapter_ref: V6-08
     traces_to:
       - INC-V6-001
+
+  # ==== Package 2 validation backlog ====
+  - id: TEST-V6-005
+    kind: TEST
+    title: Identity and authentication assurance validation
+    owner: Identity and Authorization Steward
+    statement: Future validation must prove identity lifecycle and authentication assurance, including fail-closed session and credential revocation.
+    future_test_class: Security validation
+    target_package_or_volume: Volume 7+ security
+    future_blocking_gate: V7-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - CTRL-V6-012
+      - CTRL-V6-013
+  - id: TEST-V6-006
+    kind: TEST
+    title: Resource-aware fail-closed authorization validation
+    owner: Identity and Authorization Steward
+    statement: Future validation must prove authorization is resource-aware, enforces assignment and jurisdiction scope, and fails closed.
+    future_test_class: Security validation
+    target_package_or_volume: Volume 7+ security
+    future_blocking_gate: V7-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+    traces_to:
+      - CTRL-V6-016
+      - CTRL-V6-018
+  - id: TEST-V6-007
+    kind: TEST
+    title: Delegation expiry, review, and segregation validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove delegated authority expires and is reviewed, and that segregation of duties prevents control bypass.
+    future_test_class: Security validation
+    target_package_or_volume: Volume 7+ security
+    future_blocking_gate: V7-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-14
+    traces_to:
+      - CTRL-V6-020
+      - CTRL-V6-022
+  - id: TEST-V6-008
+    kind: TEST
+    title: Data protection, key management, and rotation validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove classification-based data protection, key management, and operational rotation.
+    future_test_class: Security validation
+    target_package_or_volume: Volume 9+ security and privacy
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - CTRL-V6-023
+      - CTRL-V6-025
+  - id: TEST-V6-009
+    kind: TEST
+    title: Restricted-evidence access and disclosure-recording validation
+    owner: Data Governance Steward
+    statement: Future validation must prove heightened restricted-evidence access and complete disclosure and export recording.
+    future_test_class: Security and privacy validation
+    target_package_or_volume: Volume 9+ security and privacy
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-16
+    traces_to:
+      - CTRL-V6-027
+      - CTRL-V6-028

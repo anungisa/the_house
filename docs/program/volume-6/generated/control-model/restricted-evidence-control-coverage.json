@@ -1,0 +1,26 @@
+{
+  "total": 2,
+  "by_control_family": {
+    "RESTRICTED_EVIDENCE": 1,
+    "DISCLOSURE_AND_EXPORT": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-027",
+      "control_family": "RESTRICTED_EVIDENCE",
+      "protected_asset_or_right": "ASSET-V6-004",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-028",
+      "control_family": "DISCLOSURE_AND_EXPORT",
+      "protected_asset_or_right": "ASSET-V6-004",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "obligations_referencing": [
+    "OBL-V6-003"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "total": 4,
+  "by_control_family": {
+    "PRIVILEGED_ACCESS": 2,
+    "DELEGATION": 1,
+    "EXCEPTION_AND_RECOVERY": 1
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-003",
+      "control_family": "PRIVILEGED_ACCESS",
+      "protected_asset_or_right": "ASSET-V6-007",
+      "implementation_evidence_class": null,
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-020",
+      "control_family": "DELEGATION",
+      "protected_asset_or_right": "ASSET-V6-007",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-021",
+      "control_family": "PRIVILEGED_ACCESS",
+      "protected_asset_or_right": "ASSET-V6-007",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-022",
+      "control_family": "EXCEPTION_AND_RECOVERY",
+      "protected_asset_or_right": "ASSET-V6-007",
+      "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V7-G1"
+    }
+  ],
+  "obligations_referencing": [
+    "OBL-V6-004",
+    "OBL-V6-005"
+  ]
+}

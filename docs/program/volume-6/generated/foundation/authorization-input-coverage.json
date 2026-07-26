@@ -1,13 +1,13 @@
 {
-  "authorization_controls": 1,
+  "authorization_controls": 3,
   "controls_missing_inputs": [],
   "input_presence": {
-    "resource": 1,
-    "organization": 1,
-    "jurisdiction": 1,
-    "assignment": 1,
-    "action": 1,
-    "lifecycle": 1,
-    "sensitiv": 1
+    "resource": 3,
+    "organization": 3,
+    "jurisdiction": 3,
+    "assignment": 3,
+    "action": 3,
+    "lifecycle": 3,
+    "sensitiv": 3
   }
 }

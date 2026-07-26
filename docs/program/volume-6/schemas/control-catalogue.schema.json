@@ -67,11 +67,18 @@
 
           "control_family": { "$ref": "common.schema.json#/definitions/controlFamily" },
           "control_operator_status": { "type": "string" },
+          "control_owner": { "type": "string" },
           "current_evidence": { "type": "string" },
           "authorization_inputs": { "type": "array", "items": { "type": "string" } },
           "failure_posture": { "$ref": "common.schema.json#/definitions/failurePosture" },
           "future_test_class": { "type": "string" },
           "protected_asset_or_right": { "type": "string" },
+          "threat_or_abuse_ref": { "type": "string" },
+          "preventive_intent": { "type": "string" },
+          "detective_intent": { "type": "string" },
+          "corrective_intent": { "type": "string" },
+          "implementation_evidence_class": { "$ref": "common.schema.json#/definitions/controlEvidenceClass" },
+          "independent_assurance_dependency": { "type": "string" },
 
           "user_need": { "type": "string" },
           "affected_workflow": { "type": "string" },

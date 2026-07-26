@@ -557,3 +557,153 @@ records:
     chapter_ref: V6-03
     traces_to:
       - DOMAIN-V5-020
+
+  # ==== Package 2 assets (V6-12, V6-15) ====
+  - id: ASSET-V6-009
+    kind: ASSET
+    title: Service and workload identity
+    purpose: Non-human service and workload identities and their scoped credentials, whose compromise or over-scoping would defeat service-to-service authorization.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: PRIVILEGED_ADMIN
+    sensitivity: RESTRICTED
+    information_domains:
+      - DOMAIN-V5-024
+    failure_impact: Unauthorized service action, lateral movement, and control bypass through implicit trust.
+    evidence_required: PENDING (service-identity control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - DOMAIN-V5-024
+  - id: ASSET-V6-010
+    kind: ASSET
+    title: Configuration and policy-definition data
+    purpose: Environment configuration and governance policy-definition data whose integrity and separation must be protected against tampering and leakage.
+    authority_owner: House
+    custodian_status: PENDING (Volume 8+ logical/physical design)
+    classification: INTERNAL
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-024
+    failure_impact: Control bypass, environment cross-contamination, and secret or restricted-content leakage through configuration.
+    evidence_required: PENDING (configuration-integrity control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - DOMAIN-V5-024
+
+  # ==== Package 2 actors (V6-12, V6-19) ====
+  - id: ACTOR-V6-009
+    kind: ACTOR
+    title: Identity provider
+    purpose: An external identity provider that authenticates account holders under a federation relationship, without governed decision authority.
+    actor_type: External identity authority
+    authority: External
+    custody_status: Federation authentication authority; assurance PENDING
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - DOMAIN-V5-003
+
+  # ==== Package 2 trust boundaries (V6-13, V6-19) ====
+  - id: BOUNDARY-V6-006
+    kind: TRUST_BOUNDARY
+    title: Service-to-service boundary
+    purpose: The boundary crossed when one internal service calls another and must be explicitly authorized rather than implicitly trusted.
+    boundary_from: Internal service context
+    boundary_to: Internal service governed capability
+    crossing_controls: PENDING (service-trust and explicit-scope control objectives)
+    failure_posture: FAIL_CLOSED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-13
+  - id: BOUNDARY-V6-007
+    kind: TRUST_BOUNDARY
+    title: Identity-provider federation boundary
+    purpose: The boundary crossed when authentication is federated to an external identity provider.
+    boundary_from: External identity provider
+    boundary_to: The House authenticated-account context
+    crossing_controls: PENDING (federation, authentication-assurance, and failure-posture control objectives)
+    failure_posture: FAIL_CLOSED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+
+  # ==== Package 2 threats (V6-12, V6-15, V6-19) ====
+  - id: THREAT-V6-006
+    kind: THREAT
+    title: Service identity abuse
+    purpose: A service or workload identity is over-scoped or compromised and used to act beyond its intended, explicitly granted permissions.
+    trust_boundary: BOUNDARY-V6-006
+    affected_asset: ASSET-V6-009
+    threat_actor: Compromised or over-scoped service identity
+    precondition: Internal services receive implicit trust or unbounded scope.
+    misuse_path: A service identity performs actions outside its explicit, scoped permissions.
+    potential_consequence: Lateral movement and authorization bypass through service-to-service trust.
+    preventive_objective: Grant service identities only explicit, scoped permissions with no implicit trust.
+    detective_objective: Log and review service-to-service actions outside expected scope.
+    corrective_objective: Revoke, re-scope, and contain abused service identities with preserved evidence.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (service-trust control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-19
+    traces_to:
+      - ASSET-V6-009
+      - BOUNDARY-V6-006
+  - id: THREAT-V6-007
+    kind: THREAT
+    title: Identity-provider federation compromise
+    purpose: An external identity-provider relationship is compromised or misconfigured and used to assert false authenticated identities.
+    trust_boundary: BOUNDARY-V6-007
+    affected_asset: ASSET-V6-003
+    threat_actor: Compromised identity provider or federation attacker
+    precondition: Federation trust and authentication assurance are unverified or fail open.
+    misuse_path: A false or elevated identity assertion is accepted from the federation boundary.
+    potential_consequence: Impersonation and unauthorized authenticated access.
+    preventive_objective: Require verified federation trust and fail-closed authentication assurance.
+    detective_objective: Detect anomalous federation assertions and provider-outage conditions.
+    corrective_objective: Suspend, re-establish, and contain compromised federation with preserved evidence.
+    owner: Identity and Authorization Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (federation and authentication-assurance implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-12
+    traces_to:
+      - ASSET-V6-003
+      - BOUNDARY-V6-007
+  - id: THREAT-V6-008
+    kind: THREAT
+    title: Configuration tampering and leakage
+    purpose: Configuration or policy-definition data is altered or leaked, bypassing controls or exposing secrets and restricted content.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-010
+    threat_actor: Insider or compromised process
+    precondition: Configuration integrity and environment separation are unverified.
+    misuse_path: Configuration is altered to weaken controls, or secrets and restricted content are copied into configuration or logs.
+    potential_consequence: Control bypass and secret or restricted-content exposure.
+    preventive_objective: Enforce configuration integrity, environment separation, and no-secret-in-configuration rules.
+    detective_objective: Detect configuration change and secret or restricted-content leakage.
+    corrective_objective: Restore configuration, rotate exposed secrets, and preserve evidence of tampering.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (configuration-integrity control implementation and validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-15
+    traces_to:
+      - ASSET-V6-010
+      - BOUNDARY-V6-002

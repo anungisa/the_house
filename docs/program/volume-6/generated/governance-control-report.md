@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T21:21:34.678Z
+Generated: 2026-07-26T21:50:54.064Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-26T21:21:34.678Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 13 |
+| RATIFIED | 23 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 13 |
-| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 33 |
-| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 32 |
-| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 4 |
-| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 9 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 15 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 23 |
+| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 41 |
+| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 59 |
+| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 19 |
+| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 18 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 25 |
 
 ## Findings by control
 
@@ -109,3 +109,24 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-015 (V6-B): Completes machine-readable Package 1 provenance after mainline merge.
 - APP-V6-015 (V6-B): Preserves the Gate V6-G1 disposition and the PACKAGE-6-1 freeze.
 - APP-V6-015 (V6-B): Reopens no substantive Package 1 content and authorizes no implementation.
+- APP-V6-016 (V6-11): Control model, control families, and evidence semantics defined for Package 2.
+- APP-V6-016 (V6-11): Separates control definition, implementation evidence, operational proof, and independent assurance.
+- APP-V6-016 (V6-11): Authorizes no implementation.
+- APP-V6-017 (V6-12): Identity lifecycle and authentication-assurance model defined with identity-class separations.
+- APP-V6-017 (V6-12): Selects no authentication product or factor; authorizes no implementation.
+- APP-V6-018 (V6-13): Resource-aware authorization and policy-decision control model defined with fail-closed rules.
+- APP-V6-018 (V6-13): Creates no executable authorization policy or permission; authorizes no implementation.
+- APP-V6-019 (V6-14): Delegation, privileged access, emergency access, and segregation-of-duties controls defined with expiry and post-use review.
+- APP-V6-019 (V6-14): Grants no privilege and creates no administrative role; authorizes no implementation.
+- APP-V6-020 (V6-15): Data-classification, protection, cryptography, secrets, and key-management requirements defined.
+- APP-V6-020 (V6-15): Selects no algorithm, provider, vault, certificate, key, or rotation period; authorizes no implementation.
+- APP-V6-021 (V6-16): Restricted-evidence, document access, sharing, disclosure, and export controls defined with heightened access and complete recording.
+- APP-V6-021 (V6-16): Grants no evidence access and authorizes no disclosure or export; authorizes no implementation.
+- APP-V6-022 (V6-17): Privacy processing, notice, rights, correction, and minimization control model defined with purpose binding.
+- APP-V6-022 (V6-17): Makes no per-activity privacy determination and asserts no privacy compliance; authorizes no implementation.
+- APP-V6-023 (V6-18): Security logging, audit, telemetry, monitoring, and detection control model defined as privacy-safe.
+- APP-V6-023 (V6-18): Configures no logging pipeline or detection rule and asserts no detection capability; authorizes no implementation.
+- APP-V6-024 (V6-19): Service trust, external-provider security, and contractual-assurance model defined with provider-authority separation.
+- APP-V6-024 (V6-19): Selects no vendor and signs no contract; provider assurance is not system assurance; authorizes no implementation.
+- APP-V6-025 (V6-20): Package 2 control traceability, validation backlog, and downstream constraints defined.
+- APP-V6-025 (V6-20): Closes no validation item and authorizes no implementation.
