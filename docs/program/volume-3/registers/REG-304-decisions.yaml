@@ -1,7 +1,7 @@
 register_id: REG-304
 name: Volume 3 Governance Decision Register
 status: RATIFIED
-version: 1.9.0
+version: 1.10.0
 records:
   - id: DEC-V3-001
     class: D1
@@ -383,6 +383,39 @@ records:
     evidence_refs:
       - GATE-V3-G5
       - V3-E
+      - REG-305
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-017
+    class: D2
+    question: >-
+      Does the machine-readable Package 5 and whole-volume freeze provenance distinguish the
+      original Package 5 merge from the provenance-amendment authoring commit and the final
+      released repository state, and if not, how is the release provenance corrected without
+      moving the immutable v1.0.0 tag or reopening substantive Volume 3 content?
+    decision: >-
+      APP-V3-065 (PACKAGE-3-5), APP-V3-066 (VOLUME-3), and DEC-V3-016 recorded merged commit
+      8a1c6ae, which is the original Package 5 merge (PR #24), not the final released repository
+      state. The published central-registration-volume-3-v1.0.0 tag points to c1d8d9b, the merge
+      of the Package 5 provenance amendment (PR #25). This narrow post-release amendment ratifies
+      V3-F and records, through the superseding approval APP-V3-067, the correct six-role
+      provenance: source snapshot 6b1a1df, closure-freeze 9f64667, original Package 5 merge
+      8a1c6ae, provenance-amendment authoring commit 62db1cd, final release merge c1d8d9b, and
+      published tag central-registration-volume-3-v1.0.0, over inherited baseline tag
+      central-registration-volume-2-v1.0.1, with a self-attested / author-verified evidence
+      posture. It supersedes only the merged_commit 8a1c6ae released-state interpretation in
+      APP-V3-065, APP-V3-066, and DEC-V3-016. The immutable v1.0.0 tag is not moved. V3-E, Gate
+      V3-G5 (PASS), Volume 4 authorization, and all implementation, procurement, staffing, cost,
+      fees, funding, pilot, rollout, launch, and delivery-sequencing restrictions are preserved.
+      The correction is published as patch release v1.0.1 with tag
+      central-registration-volume-3-v1.0.1, and Volume 4 authoring proceeds from the corrected
+      v1.0.1 baseline.
+    evidence_refs:
+      - GATE-V3-G5
+      - V3-F
       - REG-305
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: AUTHOR-VERIFIED
