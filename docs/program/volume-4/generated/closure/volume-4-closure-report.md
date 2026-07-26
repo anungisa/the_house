@@ -1,6 +1,6 @@
 # Volume 4 Architecture-Foundation Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T16:35:24.253Z
+Generated: 2026-07-26T16:39:43.272Z
 
 > Generated projection of the source-controlled Volume 4 corpus. Not a source of
 > truth and not a basis for ratification. Volume 4 Package 1 defines TARGET
