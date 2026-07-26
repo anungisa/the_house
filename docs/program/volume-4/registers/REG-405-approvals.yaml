@@ -1,7 +1,7 @@
 register_id: REG-405
 name: Volume 4 Approval Register
 status: RATIFIED
-version: 1.8.0
+version: 1.9.0
 records:
   - id: APP-V4-001
     artifact_id: V4-00
@@ -565,4 +565,115 @@ records:
       - Preserves Gate V4-G3 and its DATA_INTEGRATION_SECURITY_AND_PLATFORM_ARCHITECTURE_READY disposition.
       - Does not reopen or modify frozen Package 3 artifacts V4-19..V4-27 or V4-E.
       - Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+    approved_at: null
+  # ==== Package 4: chapter ratification approvals ====
+  - id: APP-V4-041
+    artifact_id: V4-28
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Engineering architecture standards and module-governance model ratified as architecture definition only.
+      - No runtime module, framework, build pipeline, or source-directory name is prescribed.
+    approved_at: null
+  - id: APP-V4-042
+    artifact_id: V4-29
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Quality-attribute scenarios and architecture-tactics model ratified.
+      - No numerical target is fabricated; unestablished targets remain BASELINE_PENDING.
+    approved_at: null
+  - id: APP-V4-043
+    artifact_id: V4-30
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Secure software-development lifecycle and engineering-control architecture ratified.
+      - No control is claimed as implemented and no scanner, signer, pipeline, or vendor is selected.
+    approved_at: null
+  - id: APP-V4-044
+    artifact_id: V4-31
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Test architecture, verification environments, and engineering-evidence model ratified.
+      - No test is implemented; PostgreSQL, composition-root, and deployment-path verification are required with explicit proof limitations.
+    approved_at: null
+  - id: APP-V4-045
+    artifact_id: V4-32
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Coexistence, migration, cutover, rollback, and reconciliation architecture ratified.
+      - No migration script, date, cohort, or wave is authored; migration does not silently convert uncertain data into truth.
+    approved_at: null
+  - id: APP-V4-046
+    artifact_id: V4-33
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Schema, contract, event, and configuration evolution architecture ratified.
+      - No executable schema or contract is authored; feature controls cannot bypass governed authority or invariants.
+    approved_at: null
+  - id: APP-V4-047
+    artifact_id: V4-34
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Technology-selection criteria, portability, and vendor-neutrality architecture ratified.
+      - No cloud service, framework, library, or vendor is selected and no procurement is authorized.
+    approved_at: null
+  - id: APP-V4-048
+    artifact_id: V4-35
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Architecture decision, exception, debt, and evolution governance ratified.
+      - No active exception or accepted debt is recorded as fact; expired exceptions fail review.
+    approved_at: null
+  - id: APP-V4-049
+    artifact_id: V4-36
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Implementation-readiness gap, dependency, and decision register ratified.
+      - No gap is recorded as resolved without resolution evidence; the register authorizes no implementation or plan.
+    approved_at: null
+  - id: APP-V4-050
+    artifact_id: V4-37
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Engineering handoff and downstream-volume constraints ratified.
+      - Architecture order is not delivery order; no downstream volume is authored or sequenced.
+    approved_at: null
+  - id: APP-V4-051
+    artifact_id: V4-38
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Engineering governance and transition playbook ratified as a consolidation only.
+      - Explicitly excludes source code, tests, schemas, migrations, executable contracts, infrastructure, vendor selection, sequencing, staffing, cost, procurement, rollout, and the master development plan.
     approved_at: null

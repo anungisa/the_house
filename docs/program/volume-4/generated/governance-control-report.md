@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:28:06.837Z
+Generated: 2026-07-26T15:53:36.218Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -13,10 +13,10 @@ Generated: 2026-07-26T15:28:06.837Z
 
 ## Summary
 
-- Total findings: 24
+- Total findings: 42
 - Errors: 0
-- Warnings: 12
-- Info: 12
+- Warnings: 21
+- Info: 21
 - Overall: PASS (no integrity errors)
 
 ## Architecture vocabularies (schema-enforced)
@@ -31,18 +31,18 @@ Generated: 2026-07-26T15:28:06.837Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 34 |
+| RATIFIED | 45 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.8.0 | 34 |
-| REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.2.0 | 177 |
-| REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.2.0 | 28 |
-| REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.2.0 | 48 |
-| REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.2.0 | 40 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.8.0 | 40 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.9.0 | 45 |
+| REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.3.0 | 201 |
+| REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.3.0 | 40 |
+| REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.3.0 | 63 |
+| REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.3.0 | 58 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.9.0 | 51 |
 
 ## Findings by control
 
@@ -54,7 +54,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Cross-reference & traceability integrity
 
-Errors: 0 | Warnings: 12 | Info: 12
+Errors: 0 | Warnings: 21 | Info: 21
 
 - WARNING CHAIN_ORDER_NOTE [ARCH-V4-016]: ARCH-V4-016 (ARCH) traces_to ARCH-V4-001 (ARCH); parent normally precedes child in ARCH->...->DEP
 - INFO CHAIN_NO_PARENT [ARCH-V4-016]: ARCH-V4-016: no traces_to target precedes its kind in the architecture order
@@ -80,6 +80,24 @@ Errors: 0 | Warnings: 12 | Info: 12
 - INFO CHAIN_NO_PARENT [ARCH-V4-026]: ARCH-V4-026: no traces_to target precedes its kind in the architecture order
 - WARNING CHAIN_ORDER_NOTE [ARCH-V4-027]: ARCH-V4-027 (ARCH) traces_to ARCH-V4-010 (ARCH); parent normally precedes child in ARCH->...->DEP
 - INFO CHAIN_NO_PARENT [ARCH-V4-027]: ARCH-V4-027: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-028]: ARCH-V4-028 (ARCH) traces_to ARCH-V4-010 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-028]: ARCH-V4-028: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-029]: ARCH-V4-029 (ARCH) traces_to ARCH-V4-001 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-029]: ARCH-V4-029: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-030]: ARCH-V4-030 (ARCH) traces_to ARCH-V4-024 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-030]: ARCH-V4-030: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-031]: ARCH-V4-031 (ARCH) traces_to ARCH-V4-027 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-031]: ARCH-V4-031: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-032]: ARCH-V4-032 (ARCH) traces_to ARCH-V4-023 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-032]: ARCH-V4-032: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-033]: ARCH-V4-033 (ARCH) traces_to ARCH-V4-023 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-033]: ARCH-V4-033: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-034]: ARCH-V4-034 (ARCH) traces_to ARCH-V4-001 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-034]: ARCH-V4-034: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-035]: ARCH-V4-035 (ARCH) traces_to ARCH-V4-027 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-035]: ARCH-V4-035: no traces_to target precedes its kind in the architecture order
+- WARNING CHAIN_ORDER_NOTE [ARCH-V4-036]: ARCH-V4-036 (ARCH) traces_to ARCH-V4-027 (ARCH); parent normally precedes child in ARCH->...->DEP
+- INFO CHAIN_NO_PARENT [ARCH-V4-036]: ARCH-V4-036: no traces_to target precedes its kind in the architecture order
 
 ## Recorded conditions (from REG-405 approvals)
 
@@ -220,3 +238,25 @@ Errors: 0 | Warnings: 12 | Info: 12
 - APP-V4-040 (V4-F): Preserves Gate V4-G3 and its DATA_INTEGRATION_SECURITY_AND_PLATFORM_ARCHITECTURE_READY disposition.
 - APP-V4-040 (V4-F): Does not reopen or modify frozen Package 3 artifacts V4-19..V4-27 or V4-E.
 - APP-V4-040 (V4-F): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
+- APP-V4-041 (V4-28): Engineering architecture standards and module-governance model ratified as architecture definition only.
+- APP-V4-041 (V4-28): No runtime module, framework, build pipeline, or source-directory name is prescribed.
+- APP-V4-042 (V4-29): Quality-attribute scenarios and architecture-tactics model ratified.
+- APP-V4-042 (V4-29): No numerical target is fabricated; unestablished targets remain BASELINE_PENDING.
+- APP-V4-043 (V4-30): Secure software-development lifecycle and engineering-control architecture ratified.
+- APP-V4-043 (V4-30): No control is claimed as implemented and no scanner, signer, pipeline, or vendor is selected.
+- APP-V4-044 (V4-31): Test architecture, verification environments, and engineering-evidence model ratified.
+- APP-V4-044 (V4-31): No test is implemented; PostgreSQL, composition-root, and deployment-path verification are required with explicit proof limitations.
+- APP-V4-045 (V4-32): Coexistence, migration, cutover, rollback, and reconciliation architecture ratified.
+- APP-V4-045 (V4-32): No migration script, date, cohort, or wave is authored; migration does not silently convert uncertain data into truth.
+- APP-V4-046 (V4-33): Schema, contract, event, and configuration evolution architecture ratified.
+- APP-V4-046 (V4-33): No executable schema or contract is authored; feature controls cannot bypass governed authority or invariants.
+- APP-V4-047 (V4-34): Technology-selection criteria, portability, and vendor-neutrality architecture ratified.
+- APP-V4-047 (V4-34): No cloud service, framework, library, or vendor is selected and no procurement is authorized.
+- APP-V4-048 (V4-35): Architecture decision, exception, debt, and evolution governance ratified.
+- APP-V4-048 (V4-35): No active exception or accepted debt is recorded as fact; expired exceptions fail review.
+- APP-V4-049 (V4-36): Implementation-readiness gap, dependency, and decision register ratified.
+- APP-V4-049 (V4-36): No gap is recorded as resolved without resolution evidence; the register authorizes no implementation or plan.
+- APP-V4-050 (V4-37): Engineering handoff and downstream-volume constraints ratified.
+- APP-V4-050 (V4-37): Architecture order is not delivery order; no downstream volume is authored or sequenced.
+- APP-V4-051 (V4-38): Engineering governance and transition playbook ratified as a consolidation only.
+- APP-V4-051 (V4-38): Explicitly excludes source code, tests, schemas, migrations, executable contracts, infrastructure, vendor selection, sequencing, staffing, cost, procurement, rollout, and the master development plan.

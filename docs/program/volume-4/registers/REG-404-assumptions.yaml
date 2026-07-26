@@ -1,7 +1,7 @@
 register_id: REG-404
 name: Volume 4 Assumptions, Risks, and Exceptions Register
 status: RATIFIED
-version: 1.2.0
+version: 1.3.0
 records:
   - id: ASM-V4-001
     kind: ASM
@@ -405,3 +405,184 @@ records:
     resolution_gate: V4-G4
     traces_to: [FIT-V4-048, CTRL-V4-029]
     chapter_ref: V4-26
+  # ==== Package 4: engineering, verification, and transition assumptions and risks ====
+  - id: ASM-V4-029
+    kind: ASM
+    title: Repository topology unresolved
+    statement: "The concrete repository topology and module directory structure realizing the engineering standards are not yet fixed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Boundary and dependency enforcement depend on the chosen topology."
+    disposition: "Assumed; defined downstream without prescribing source-directory names here."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-028, V4-28]
+    chapter_ref: V4-28
+  - id: ASM-V4-030
+    kind: ASM
+    title: Build and CI capabilities unresolved
+    statement: "The build system, continuous-integration platform, and their capabilities are not yet selected."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Secure-development controls and fitness-function execution depend on CI capabilities."
+    disposition: "Assumed; selected downstream under vendor-neutral criteria."
+    resolution_gate: V4-G5
+    traces_to: [DEP-V4-022, V4-30]
+    chapter_ref: V4-30
+  - id: ASM-V4-031
+    kind: ASM
+    title: Migration-source data quality unresolved
+    statement: "The quality, completeness, and duplication level of source-system data are not yet assessed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Migration integrity and reconciliation effort depend on source-data quality."
+    disposition: "Assumed; assessed with evidence downstream."
+    resolution_gate: V4-G5
+    traces_to: [CTRL-V4-034, V4-32]
+    chapter_ref: V4-32
+  - id: ASM-V4-032
+    kind: ASM
+    title: Legacy-system access unresolved
+    statement: "Access to legacy systems and their export interfaces for coexistence and migration is not yet confirmed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Coexistence and migration feasibility depend on legacy-system access."
+    disposition: "Assumed; confirmed downstream."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-032, V4-32]
+    chapter_ref: V4-32
+  - id: ASM-V4-033
+    kind: ASM
+    title: Coexistence duration unresolved
+    statement: "The duration of coexistence between legacy and target systems is not yet defined."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Synchronization and reconciliation posture depend on coexistence duration."
+    disposition: "Assumed; defined downstream."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-032, V4-32]
+    chapter_ref: V4-32
+  - id: ASM-V4-034
+    kind: ASM
+    title: Rollback feasibility unresolved
+    statement: "The feasibility and boundary of rollback for each transition are not yet validated."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Cutover risk and rollback boundaries depend on validated feasibility."
+    disposition: "Assumed; validated with evidence downstream."
+    resolution_gate: V4-G5
+    traces_to: [CTRL-V4-034, V4-32]
+    chapter_ref: V4-32
+  - id: ASM-V4-035
+    kind: ASM
+    title: Test-environment fidelity unresolved
+    statement: "The fidelity of verification environments to production, including PostgreSQL parity, is not yet established."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Verification credibility depends on environment fidelity."
+    disposition: "Assumed; established with evidence downstream."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-031, V4-31]
+    chapter_ref: V4-31
+  - id: ASM-V4-036
+    kind: ASM
+    title: Technology options unresolved
+    statement: "The concrete technology options for each evaluation domain are not yet researched or selected."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Material technology decisions depend on options research and validation."
+    disposition: "Assumed; researched and decided downstream under vendor-neutral criteria."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-034, V4-34]
+    chapter_ref: V4-34
+  - id: ASM-V4-037
+    kind: ASM
+    title: Dependency licensing unresolved
+    statement: "The licensing and commercial terms of candidate dependencies and services are not yet reviewed."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Portability, cost, and compliance depend on licensing terms."
+    disposition: "Assumed; reviewed downstream."
+    resolution_gate: V4-G5
+    traces_to: [NFR-V4-023, V4-34]
+    chapter_ref: V4-34
+  - id: ASM-V4-038
+    kind: ASM
+    title: Operational ownership unresolved
+    statement: "The operational ownership of platform, data, security, and recovery responsibilities is not yet established."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Operability and recovery accountability depend on established ownership."
+    disposition: "Assumed; established downstream."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-036, V4-37]
+    chapter_ref: V4-37
+  - id: ASM-V4-039
+    kind: ASM
+    title: Quality-attribute baselines unresolved
+    statement: "Numerical quality-attribute baselines and targets remain BASELINE_PENDING and are not yet established."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Quality validation depends on established, evidenced baselines."
+    disposition: "Assumed; established with evidence downstream."
+    resolution_gate: V4-G5
+    traces_to: [NFR-V4-022, V4-29]
+    chapter_ref: V4-29
+  - id: ASM-V4-040
+    kind: ASM
+    title: Implementation capacity unresolved
+    statement: "The engineering capacity and skills available for later implementation are not yet determined."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Delivery planning depends on implementation capacity, which is outside Volume 4."
+    disposition: "Assumed; determined during delivery planning downstream, not in Volume 4."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-036, V4-36]
+    chapter_ref: V4-36
+  - id: ASM-V4-041
+    kind: ASM
+    title: Independent assurance unresolved
+    statement: "The scope and provider of independent assurance for security, privacy, and recovery are not yet established."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Independent-assurance claims depend on an established assurance scope and provider."
+    disposition: "Assumed; established downstream; no independent assurance is claimed in Volume 4."
+    resolution_gate: V4-G5
+    traces_to: [ARCH-V4-030, V4-36]
+    chapter_ref: V4-36
+  - id: RISK-V4-012
+    kind: RISK
+    title: Temporary no-op dependency becomes a production default
+    statement: "A temporary no-op or stub dependency introduced for convenience could persist into production."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Governed effects could be silently lost in production."
+    disposition: "Mitigated by no-production-no-op, composition-root, and exception-expiry fitness functions."
+    resolution_gate: V4-G5
+    traces_to: [FIT-V4-056, CTRL-V4-037]
+    chapter_ref: V4-35
+  - id: RISK-V4-013
+    kind: RISK
+    title: Expired exception silently persists
+    statement: "An architecture or engineering exception could persist past its expiry without review."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Ungoverned deviation could accumulate and erode architecture."
+    disposition: "Mitigated by exception-expiry fail-closed control and fitness function."
+    resolution_gate: V4-G5
+    traces_to: [FIT-V4-062, CTRL-V4-037]
+    chapter_ref: V4-35
+  - id: RISK-V4-014
+    kind: RISK
+    title: Lower-fidelity verification mistaken for proof
+    statement: "In-memory, unit, or configuration-only verification could be treated as proof of PostgreSQL, composition, or restore behaviour."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "False readiness could be reported for unproven behaviour."
+    disposition: "Mitigated by explicit proof limitations and PostgreSQL, composition-root, and deployment-path fitness functions."
+    resolution_gate: V4-G5
+    traces_to: [FIT-V4-053, CTRL-V4-033]
+    chapter_ref: V4-31
+  - id: RISK-V4-015
+    kind: RISK
+    title: Migration converts uncertain data into authoritative truth
+    statement: "Migration could silently promote uncertain or duplicate source data into governed authoritative records."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "The system of record could be corrupted at transition."
+    disposition: "Mitigated by migration-provenance control and governed duplicate resolution."
+    resolution_gate: V4-G5
+    traces_to: [FIT-V4-057, CTRL-V4-034]
+    chapter_ref: V4-32
+  - id: RISK-V4-016
+    kind: RISK
+    title: Vendor lock-in erodes portability
+    statement: "Premature or deep coupling to a vendor could erode portability and the defined exit capability."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    impact: "Future migration and negotiating position could be constrained."
+    disposition: "Mitigated by vendor-neutral evaluation criteria and data-export and exit-capability control."
+    resolution_gate: V4-G5
+    traces_to: [CTRL-V4-036, NFR-V4-023]
+    chapter_ref: V4-34
