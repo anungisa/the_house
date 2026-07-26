@@ -1,7 +1,7 @@
 register_id: REG-400
 name: Volume 4 Corpus Index
 status: RATIFIED
-version: 1.9.0
+version: 1.10.0
 records:
   - id: V4-00
     title: Volume 4 Control, Inheritance, and Architecture Authority
@@ -370,4 +370,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-4/V4-G-package-4-closure-record.md
+    gate: V4-G4
+  - id: V4-H
+    title: Volume 4 Package 4 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-4/V4-H-package-4-provenance-amendment.md
     gate: V4-G4

@@ -1,6 +1,6 @@
 # Volume 4 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T15:53:59.670Z
+Generated: 2026-07-26T15:58:09.887Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 4 corpus. It is not a source of truth, does not confer ratification, and
@@ -31,18 +31,18 @@ Generated: 2026-07-26T15:53:59.670Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 46 |
+| RATIFIED | 47 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.9.0 | 46 |
+| REG-400 | Volume 4 Corpus Index | RATIFIED | 1.10.0 | 47 |
 | REG-401 | Volume 4 Architecture Elements Register | RATIFIED | 1.3.0 | 201 |
 | REG-402 | Volume 4 Architecture Decision Register | RATIFIED | 1.3.0 | 40 |
 | REG-403 | Volume 4 Fitness-Function Register | RATIFIED | 1.3.0 | 63 |
 | REG-404 | Volume 4 Assumptions, Risks, and Exceptions Register | RATIFIED | 1.3.0 | 58 |
-| REG-405 | Volume 4 Approval Register | RATIFIED | 1.9.0 | 54 |
+| REG-405 | Volume 4 Approval Register | RATIFIED | 1.10.0 | 55 |
 
 ## Findings by control
 
@@ -283,3 +283,7 @@ Errors: 0 | Warnings: 21 | Info: 21
 - APP-V4-054 (PACKAGE-4-4): Authorizes commencement of the next architecture package only.
 - APP-V4-054 (PACKAGE-4-4): Authorizes no implementation, executable test, physical schema, executable contract, infrastructure, approved technology stack, vendor selection, procurement, provisioning, sequencing, staffing, cost, or master development plan.
 - APP-V4-054 (PACKAGE-4-4): Changes to frozen Package 4 content require the recorded amendment process.
+- APP-V4-055 (V4-H): Narrow post-merge provenance-metadata amendment only.
+- APP-V4-055 (V4-H): Preserves Gate V4-G4 and its ENGINEERING_GOVERNANCE_AND_TRANSITION_ARCHITECTURE_READY disposition.
+- APP-V4-055 (V4-H): Does not reopen or modify frozen Package 4 artifacts V4-28..V4-38 or V4-G.
+- APP-V4-055 (V4-H): Authorizes no implementation, procurement, provisioning, sequencing, staffing, cost, or master development plan.
