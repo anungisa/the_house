@@ -16,12 +16,18 @@
     "RULE-V3-007",
     "RULE-V3-009",
     "RULE-V3-011",
-    "RULE-V3-012"
+    "RULE-V3-012",
+    "RULE-V3-014",
+    "RULE-V3-015",
+    "RULE-V3-017",
+    "RULE-V3-020"
   ],
   "workflows_without_experience": [
     "WF-V3-003",
     "WF-V3-004",
-    "WF-V3-007"
+    "WF-V3-007",
+    "WF-V3-010",
+    "WF-V3-011"
   ],
   "controls_without_tests": [],
   "tests_without_outcome_lineage": []

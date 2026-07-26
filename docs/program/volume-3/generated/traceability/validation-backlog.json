@@ -1,14 +1,15 @@
 {
   "generated_at": null,
-  "pending_count": 39,
+  "pending_count": 60,
   "by_classification": {
-    "OPERATIONAL_VALIDATION_PENDING": 18,
+    "OPERATIONAL_VALIDATION_PENDING": 29,
     "FINANCIAL_VALIDATION_PENDING": 3,
     "BILINGUAL_VALIDATION_PENDING": 2,
-    "POLICY_VALIDATION_PENDING": 6,
-    "BASELINE_PENDING": 7,
+    "POLICY_VALIDATION_PENDING": 8,
+    "BASELINE_PENDING": 11,
     "ACCESSIBILITY_VALIDATION_PENDING": 2,
-    "PRIVACY_VALIDATION_PENDING": 1
+    "PRIVACY_VALIDATION_PENDING": 4,
+    "STAKEHOLDER_VALIDATION_PENDING": 1
   },
   "items": [
     {
@@ -43,6 +44,24 @@
       "level": "CTRL",
       "classifications": [
         "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "CTRL-V3-022",
+      "level": "CTRL",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "CTRL-V3-029",
+      "level": "CTRL",
+      "classifications": [
+        "BASELINE_PENDING"
       ],
       "owner": null,
       "future_blocking_gate": null
@@ -196,6 +215,78 @@
       "level": "RULE",
       "classifications": [
         "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-013",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-014",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-015",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-016",
+      "level": "RULE",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-017",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-018",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "RULE-V3-019",
+      "level": "RULE",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": "V3-G3"
+    },
+    {
+      "id": "RULE-V3-020",
+      "level": "RULE",
+      "classifications": [
+        "PRIVACY_VALIDATION_PENDING"
       ],
       "owner": null,
       "future_blocking_gate": null
@@ -358,6 +449,105 @@
       "level": "TEST",
       "classifications": [
         "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-020",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-021",
+      "level": "TEST",
+      "classifications": [
+        "STAKEHOLDER_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-022",
+      "level": "TEST",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-023",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-024",
+      "level": "TEST",
+      "classifications": [
+        "POLICY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-025",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-026",
+      "level": "TEST",
+      "classifications": [
+        "PRIVACY_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-027",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-028",
+      "level": "TEST",
+      "classifications": [
+        "OPERATIONAL_VALIDATION_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-029",
+      "level": "TEST",
+      "classifications": [
+        "BASELINE_PENDING"
+      ],
+      "owner": null,
+      "future_blocking_gate": null
+    },
+    {
+      "id": "TEST-V3-030",
+      "level": "TEST",
+      "classifications": [
+        "PRIVACY_VALIDATION_PENDING"
       ],
       "owner": null,
       "future_blocking_gate": null

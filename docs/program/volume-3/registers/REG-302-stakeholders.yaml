@@ -1,7 +1,7 @@
 register_id: REG-302
 name: Volume 3 Stakeholder and Persona Register
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: STK-V3-001
     name: Curling Canada National Operations
@@ -198,3 +198,42 @@ records:
     source_refs:
       - V3-00
       - V2-33
+  - id: STK-V3-017
+    name: Affiliation Service Owner
+    type: institutional
+    description: >-
+      Function accountable for the end-to-end operating performance of the affiliation service,
+      owning management reporting and service review; holds operating accountability but not
+      affiliation-lifecycle policy authority.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-18
+      - V2-28
+  - id: STK-V3-018
+    name: Risk and Assurance Function
+    type: institutional
+    description: >-
+      Function accountable for business-level risk governance and operating assurance, including
+      the risk register, control-effectiveness review, and assurance evidence; provides internal
+      assurance and holds no affiliation-lifecycle decision authority.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-19
+      - V2-24
+  - id: STK-V3-019
+    name: External Service Provider (Non-Financial)
+    type: external_system
+    description: >-
+      External or cross-organizational service other than payment and accounting, such as
+      identity, registration, communications, analytics, or learning platforms and PTSO-operated
+      systems; executes a business function but holds no affiliation decision authority.
+    primary_product: Neither
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-21
+      - V2-16

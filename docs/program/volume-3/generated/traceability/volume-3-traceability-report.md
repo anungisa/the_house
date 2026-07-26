@@ -1,6 +1,6 @@
 # Volume 3 Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:21:22.465Z
+Generated: 2026-07-26T12:45:21.309Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus produced by `npm run governance:trace:v3`. It is not a source of
@@ -9,32 +9,32 @@ Generated: 2026-07-26T12:21:22.465Z
 
 ## Identifier counts
 
-- Requirement total: 147
-- Stakeholders: 16 | Decisions: 7 | Approvals: 25
-- Chapters: 19 | Registers: 6
+- Requirement total: 236
+- Stakeholders: 19 | Decisions: 7 | Approvals: 34
+- Chapters: 28 | Registers: 6
 
 | Level | Count |
 | --- | --- |
-| OUT | 16 |
-| CAP | 16 |
-| BR | 14 |
-| FR | 16 |
-| NFR | 6 |
-| UC | 13 |
-| RULE | 12 |
-| WF | 7 |
-| UX | 4 |
-| DATA | 5 |
+| OUT | 25 |
+| CAP | 25 |
+| BR | 25 |
+| FR | 25 |
+| NFR | 9 |
+| UC | 20 |
+| RULE | 20 |
+| WF | 11 |
+| UX | 6 |
+| DATA | 8 |
 | API | 0 |
 | EVT | 0 |
-| CTRL | 19 |
-| TEST | 19 |
+| CTRL | 31 |
+| TEST | 31 |
 
 ## Orphan analysis
 
 - Broken traces: 0
 - Records without a resolving parent: 0
-- Non-leaf records without a consumer: 23
+- Non-leaf records without a consumer: 37
 
 ## Chain coverage
 
@@ -44,28 +44,29 @@ Generated: 2026-07-26T12:21:22.465Z
 
 - Outcomes without acceptance lineage: 3
 - Capabilities without rules or functional requirements: 4
-- Rules without workflows: 5
-- Workflows without experience requirements: 3
+- Rules without workflows: 9
+- Workflows without experience requirements: 5
 - Controls without tests: 0
 - Tests without outcome lineage: 0
 
 ## Authority-boundary analysis
 
-- Stakeholders with governed authority: 8
+- Stakeholders with governed authority: 9
 - Button-primary governed-authority conflicts: 0
 - Requirements authorizing implementation (must be 0): 0
-- Requirement product distribution: House 129, Button 2, Both 0, Neither 0
+- Requirement product distribution: House 208, Button 3, Both 0, Neither 0
 
 ## Validation backlog
 
-- Pending requirement records: 39
+- Pending requirement records: 60
 
 | Classification | Count |
 | --- | --- |
 | ACCESSIBILITY_VALIDATION_PENDING | 2 |
-| BASELINE_PENDING | 7 |
+| BASELINE_PENDING | 11 |
 | BILINGUAL_VALIDATION_PENDING | 2 |
 | FINANCIAL_VALIDATION_PENDING | 3 |
-| OPERATIONAL_VALIDATION_PENDING | 18 |
-| POLICY_VALIDATION_PENDING | 6 |
-| PRIVACY_VALIDATION_PENDING | 1 |
+| OPERATIONAL_VALIDATION_PENDING | 29 |
+| POLICY_VALIDATION_PENDING | 8 |
+| PRIVACY_VALIDATION_PENDING | 4 |
+| STAKEHOLDER_VALIDATION_PENDING | 1 |

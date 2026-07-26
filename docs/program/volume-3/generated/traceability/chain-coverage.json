@@ -18,44 +18,44 @@
   ],
   "by_level": {
     "OUT": {
-      "total": 16,
-      "with_parent": 16
+      "total": 25,
+      "with_parent": 25
     },
     "CAP": {
-      "total": 16,
-      "with_parent": 16
+      "total": 25,
+      "with_parent": 25
     },
     "BR": {
-      "total": 14,
-      "with_parent": 14
+      "total": 25,
+      "with_parent": 25
     },
     "FR": {
-      "total": 16,
-      "with_parent": 16
+      "total": 25,
+      "with_parent": 25
     },
     "NFR": {
+      "total": 9,
+      "with_parent": 9
+    },
+    "UC": {
+      "total": 20,
+      "with_parent": 20
+    },
+    "RULE": {
+      "total": 20,
+      "with_parent": 20
+    },
+    "WF": {
+      "total": 11,
+      "with_parent": 11
+    },
+    "UX": {
       "total": 6,
       "with_parent": 6
     },
-    "UC": {
-      "total": 13,
-      "with_parent": 13
-    },
-    "RULE": {
-      "total": 12,
-      "with_parent": 12
-    },
-    "WF": {
-      "total": 7,
-      "with_parent": 7
-    },
-    "UX": {
-      "total": 4,
-      "with_parent": 4
-    },
     "DATA": {
-      "total": 5,
-      "with_parent": 5
+      "total": 8,
+      "with_parent": 8
     },
     "API": {
       "total": 0,
@@ -66,12 +66,12 @@
       "with_parent": 0
     },
     "CTRL": {
-      "total": 19,
-      "with_parent": 19
+      "total": 31,
+      "with_parent": 31
     },
     "TEST": {
-      "total": 19,
-      "with_parent": 19
+      "total": 31,
+      "with_parent": 31
     }
   },
   "reverse_or_same_order_references": []

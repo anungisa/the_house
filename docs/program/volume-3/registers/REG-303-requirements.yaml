@@ -1,7 +1,7 @@
 register_id: REG-303
 name: Volume 3 Requirement and Acceptance Register
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   # ---- Capabilities (CAP -> OUT) ----
   - id: CAP-V3-001
@@ -1481,6 +1481,977 @@ records:
     product: House
     traces_to:
       - CTRL-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: DEFINED
+  # ==== Package 3 — Operating governance, service assurance, controlled change ====
+  # ---- Capabilities (CAP -> OUT) ----
+  - id: CAP-V3-017
+    level: CAP
+    statement: >-
+      Provide an operating-governance and decision-forum capability that governs the affiliation
+      service across its readiness, policy, service, financial, exception, oversight, dependency,
+      and assurance contexts.
+    product: House
+    traces_to:
+      - OUT-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+  - id: CAP-V3-018
+    level: CAP
+    statement: >-
+      Provide a functional service-ownership, performance-management, and management-reporting
+      capability for the affiliation service.
+    product: House
+    traces_to:
+      - OUT-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: service_ownership
+  - id: CAP-V3-019
+    level: CAP
+    statement: >-
+      Provide a business-level risk, control, and operating-assurance capability for the material
+      risks of the affiliation service.
+    product: House
+    traces_to:
+      - OUT-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: risk_and_assurance
+  - id: CAP-V3-020
+    level: CAP
+    statement: >-
+      Provide a policy, rule, and operating-change governance capability for changing service
+      rules and practices after approval.
+    product: House
+    traces_to:
+      - OUT-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: controlled_change
+  - id: CAP-V3-021
+    level: CAP
+    statement: >-
+      Provide an external-provider and cross-organizational dependency operating capability with
+      owners, failure handling, reconciliation, and escalation.
+    product: House
+    traces_to:
+      - OUT-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: dependency_oversight
+  - id: CAP-V3-022
+    level: CAP
+    statement: >-
+      Provide an operational data-stewardship, records, and evidence-accountability capability
+      across the operational information domains of the service.
+    product: House
+    traces_to:
+      - OUT-V3-022
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: information_stewardship
+  - id: CAP-V3-023
+    level: CAP
+    statement: >-
+      Provide an incident, problem, continuity, and service-recovery governance capability for
+      operating disruptions.
+    product: House
+    traces_to:
+      - OUT-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: incident_and_continuity
+  - id: CAP-V3-024
+    level: CAP
+    statement: >-
+      Provide a continuous-improvement, seasonal-review, and management-assurance capability that
+      routes improvement to gates rather than implementation.
+    product: House
+    traces_to:
+      - OUT-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: continuous_improvement
+  - id: CAP-V3-025
+    level: CAP
+    statement: >-
+      Provide a consolidated governance, assurance, and controlled-change playbook capability
+      with explicit exclusion of material commitments.
+    product: House
+    traces_to:
+      - OUT-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+  # ---- Business rules (BR -> CAP) ----
+  - id: BR-V3-015
+    level: BR
+    statement: >-
+      Every governed decision forum has a defined purpose, decision scope, accountable function,
+      and delegation limits, and matters beyond its scope are escalated.
+    product: House
+    traces_to:
+      - CAP-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+    decision_class: forum_governed_decision
+  - id: BR-V3-016
+    level: BR
+    statement: >-
+      A governance forum may be defined while its final organizational form remains pending, and
+      no standing committee or meeting cadence is asserted absent organizational approval.
+    product: House
+    traces_to:
+      - CAP-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_forum: pending_organizational_form
+  - id: BR-V3-017
+    level: BR
+    statement: >-
+      The affiliation service has a functional service owner accountable for operating
+      performance, and management reports are instruments rather than sources of governed truth.
+    product: House
+    traces_to:
+      - CAP-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    accountable_function: affiliation_service_owner
+    reporting_purpose: service_performance_management
+  - id: BR-V3-018
+    level: BR
+    statement: >-
+      Every material business risk has a risk owner, a control objective, and preventive,
+      detective, and corrective controls with an assurance method.
+    product: House
+    traces_to:
+      - CAP-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    risk_category: affiliation_service_risk
+    control_owner: risk_and_assurance_function
+    assurance_method: control_effectiveness_review
+  - id: BR-V3-019
+    level: BR
+    statement: >-
+      Every operating change is classified into a change class with an approving authority before
+      it takes effect, and change governance does not become software release management.
+    product: House
+    traces_to:
+      - CAP-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    change_class: MATERIAL_OPERATING
+  - id: BR-V3-020
+    level: BR
+    statement: >-
+      Every external and cross-organizational dependency has a dependency owner, failure mode,
+      manual fallback, reconciliation, and escalation, and no vendor is selected and no
+      procurement is authorized.
+    product: House
+    traces_to:
+      - CAP-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    dependency_owner: accountable_business_function
+  - id: BR-V3-021
+    level: BR
+    statement: >-
+      Every operational information domain has a business steward, a correction authority, and a
+      privacy classification, and no tables, schemas, storage technologies, or API payloads are
+      defined.
+    product: House
+    traces_to:
+      - CAP-V3-022
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: accountable_business_function
+    privacy_classification: domain_dependent
+  - id: BR-V3-022
+    level: BR
+    statement: >-
+      Incidents, problems, continuity events, and support issues are distinguished, each with a
+      declaration and closure authority, and recovery preserves governed authority and evidence.
+    product: House
+    traces_to:
+      - CAP-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    incident_class: SERVICE_INCIDENT
+    continuity_priority: governed_authority_and_evidence_preserved
+  - id: BR-V3-023
+    level: BR
+    statement: >-
+      Continuous improvement is governed and routes proposals to future-volume or operating-change
+      channels, and operational desirability does not authorize implementation or procurement.
+    product: House
+    traces_to:
+      - CAP-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: continuous_improvement
+  - id: BR-V3-024
+    level: BR
+    statement: >-
+      The Package 3 playbook consolidates the governance model and explicitly excludes permanent
+      organizational design, staffing, cost, procurement, technical architecture, and the master
+      development plan.
+    product: House
+    traces_to:
+      - CAP-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+  - id: BR-V3-025
+    level: BR
+    statement: >-
+      No Package 3 requirement or decision authorizes implementation, procurement, vendor
+      selection, staffing, cost, technical architecture, or a service-level commitment.
+    product: House
+    traces_to:
+      - CAP-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    future_blocking_gate: V3-G3
+  # ---- Functional requirements (FR -> CAP) ----
+  - id: FR-V3-017
+    level: FR
+    statement: >-
+      The operating model defines governance forums, each recording purpose, decision scope,
+      accountable function, participants, required evidence, inputs, outputs, decision class,
+      delegation limits, escalation route, cadence status, record retained, and validation status.
+    product: House
+    traces_to:
+      - CAP-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+  - id: FR-V3-018
+    level: FR
+    statement: >-
+      The operating model defines service ownership and management reports, each identifying
+      purpose, audience, accountable owner, evidence source, measure definitions, interpretation
+      limits, decision supported, escalation-threshold status, validation status, and retention.
+    product: House
+    traces_to:
+      - CAP-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    reporting_purpose: service_performance_management
+  - id: FR-V3-019
+    level: FR
+    statement: >-
+      The operating model defines a business risk register recording risk statement, affected
+      outcome, owner, control objective, preventive, detective, and corrective controls, evidence
+      generated, assurance method, escalation, residual-risk status, validation status, and future
+      blocking gate.
+    product: House
+    traces_to:
+      - CAP-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    risk_category: affiliation_service_risk
+  - id: FR-V3-020
+    level: FR
+    statement: >-
+      The operating model defines operating-change governance with change classes and, per class,
+      the approving authority, consulted functions, evidence required, effective-date handling,
+      affected cases and seasons, communication requirement, acceptance-impact review, transition
+      consideration, amendment record, and downstream technical-design implications.
+    product: House
+    traces_to:
+      - CAP-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    change_class: MATERIAL_OPERATING
+  - id: FR-V3-021
+    level: FR
+    statement: >-
+      The operating model defines dependency operating records with business function, dependency
+      owner, external authority, information exchanged, operating trigger, expected acknowledgement,
+      failure mode, manual fallback, reconciliation, escalation, evidence retained, continuity
+      implication, contractual validation status, and transition question.
+    product: House
+    traces_to:
+      - CAP-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    dependency_owner: accountable_business_function
+  - id: FR-V3-022
+    level: FR
+    statement: >-
+      The operating model defines information-stewardship records with business steward,
+      authoritative function, permitted users, operational purpose, minimum-necessary visibility,
+      quality responsibility, correction authority, record-retention status, privacy classification,
+      reconciliation dependency, audit expectation, and validation status.
+    product: House
+    traces_to:
+      - CAP-V3-022
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: accountable_business_function
+  - id: FR-V3-023
+    level: FR
+    statement: >-
+      The operating model defines incident and continuity governance distinguishing incident
+      classes with declaration authority, operating owner, triage, containment, continuity-mode
+      operation, communication, escalation, recovery confirmation, backlog reconciliation, evidence
+      preservation, root-cause review, corrective-action ownership, and closure authority.
+    product: House
+    traces_to:
+      - CAP-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    incident_class: SERVICE_INCIDENT
+  - id: FR-V3-024
+    level: FR
+    statement: >-
+      The operating model defines a governed continuous-improvement cycle from operational
+      evidence collection through seasonal review, control-effectiveness review, classification,
+      validation, approval, and routing to future-volume or operating-change channels.
+    product: House
+    traces_to:
+      - CAP-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: continuous_improvement
+  - id: FR-V3-025
+    level: FR
+    statement: >-
+      The operating model consolidates the Package 3 governance, assurance, and controlled-change
+      playbook and records its explicit exclusions of material commitments.
+    product: House
+    traces_to:
+      - CAP-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+  # ---- Non-functional requirements (NFR -> CAP) ----
+  - id: NFR-V3-007
+    level: NFR
+    statement: >-
+      Governance and assurance evidence is retained and reconstructable so that the accountability
+      and effectiveness of the service can be demonstrated.
+    product: House
+    traces_to:
+      - CAP-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    assurance_method: assurance_evidence_reconstruction
+  - id: NFR-V3-008
+    level: NFR
+    statement: >-
+      Management reporting preserves its interpretation limits and does not become an independent
+      governed source of truth.
+    product: House
+    traces_to:
+      - CAP-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    reporting_purpose: interpretation_limited_management_view
+  - id: NFR-V3-009
+    level: NFR
+    statement: >-
+      Restricted governance and incident evidence is handled only under recorded authority within
+      its privacy classification.
+    product: House
+    traces_to:
+      - CAP-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    privacy_classification: restricted
+  # ---- Use cases (UC -> FR) ----
+  - id: UC-V3-014
+    level: UC
+    statement: >-
+      A seasonal-readiness governance forum reviews readiness evidence and issues a governed
+      readiness disposition within its recorded decision scope.
+    product: House
+    traces_to:
+      - FR-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_forum: seasonal_readiness_governance
+  - id: UC-V3-015
+    level: UC
+    statement: >-
+      A service owner reviews queue, aging, and exception reporting and escalates a threshold
+      breach without altering a governed decision.
+    product: House
+    traces_to:
+      - FR-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    accountable_function: affiliation_service_owner
+  - id: UC-V3-016
+    level: UC
+    statement: >-
+      A material risk is reviewed, its controls confirmed, and its residual risk dispositioned by
+      the risk owner.
+    product: House
+    traces_to:
+      - FR-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    risk_category: affiliation_service_risk
+  - id: UC-V3-017
+    level: UC
+    statement: >-
+      A material operating change is classified, routed to its approving authority, and recorded
+      as an amendment.
+    product: House
+    traces_to:
+      - FR-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    change_class: MATERIAL_OPERATING
+  - id: UC-V3-018
+    level: UC
+    statement: >-
+      An external-provider failure triggers the manual fallback and reconciliation without
+      transferring governed authority to the provider.
+    product: House
+    traces_to:
+      - FR-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    dependency_owner: accountable_business_function
+  - id: UC-V3-019
+    level: UC
+    statement: >-
+      A service incident is declared, contained, recovered, and closed with evidence preserved and
+      governed authority intact.
+    product: House
+    traces_to:
+      - FR-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    incident_class: SERVICE_INCIDENT
+  - id: UC-V3-020
+    level: UC
+    statement: >-
+      An improvement proposal is classified and routed to a future volume or an operating-change
+      process rather than to implementation.
+    product: House
+    traces_to:
+      - FR-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: continuous_improvement
+  # ---- Operating rules (RULE -> UC) ----
+  - id: RULE-V3-013
+    level: RULE
+    statement: >-
+      A governance forum holds governed decision authority only within its recorded decision scope
+      and delegation limits; matters beyond scope escalate.
+    product: House
+    traces_to:
+      - UC-V3-014
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    decision_class: forum_governed_decision
+  - id: RULE-V3-014
+    level: RULE
+    statement: >-
+      A management report does not confer governed truth; a governed decision cites the
+      authoritative record rather than the report.
+    product: House
+    traces_to:
+      - UC-V3-015
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-015
+    level: RULE
+    statement: >-
+      A material risk without an owner and control objective is not accepted, and residual risk is
+      dispositioned only by the risk owner.
+    product: House
+    traces_to:
+      - UC-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-016
+    level: RULE
+    statement: >-
+      An operating change takes effect only after its change-class authority approves; an emergency
+      change is ratified retrospectively within a defined window.
+    product: House
+    traces_to:
+      - UC-V3-017
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: POLICY_VALIDATION_PENDING
+    change_class: EMERGENCY
+  - id: RULE-V3-017
+    level: RULE
+    statement: >-
+      An external provider executes but never holds governed affiliation authority; on failure the
+      manual fallback and reconciliation apply.
+    product: House
+    traces_to:
+      - UC-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    dependency_owner: accountable_business_function
+  - id: RULE-V3-018
+    level: RULE
+    statement: >-
+      An incident declaration and closure are made only by the recorded authority, and recovery
+      preserves governed authority and evidence.
+    product: House
+    traces_to:
+      - UC-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    incident_class: SERVICE_INCIDENT
+  - id: RULE-V3-019
+    level: RULE
+    statement: >-
+      An improvement proposal, however operationally desirable, does not authorize implementation
+      or procurement and routes to a gate.
+    product: House
+    traces_to:
+      - UC-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+    future_blocking_gate: V3-G3
+  - id: RULE-V3-020
+    level: RULE
+    statement: >-
+      Restricted evidence accessed during governance or incident handling is accessed only under
+      recorded authority within its privacy classification.
+    product: House
+    traces_to:
+      - UC-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: PRIVACY_VALIDATION_PENDING
+    privacy_classification: restricted
+  # ---- Operating workflows (WF -> RULE) ----
+  - id: WF-V3-008
+    level: WF
+    statement: >-
+      The operating-governance workflow proceeds through seasonal-readiness governance,
+      operational service review, exception and escalation review, and post-season assurance.
+    product: House
+    traces_to:
+      - RULE-V3-013
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: operating_governance
+  - id: WF-V3-009
+    level: WF
+    statement: >-
+      The operating-change workflow proceeds through proposal, classification, consultation,
+      approval, effective-date handling, communication, and amendment record.
+    product: House
+    traces_to:
+      - RULE-V3-016
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: controlled_change
+  - id: WF-V3-010
+    level: WF
+    statement: >-
+      The incident-and-continuity workflow proceeds through declaration, triage, containment,
+      continuity-mode operation, recovery, backlog reconciliation, and closure.
+    product: House
+    traces_to:
+      - RULE-V3-018
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: incident_and_continuity
+  - id: WF-V3-011
+    level: WF
+    statement: >-
+      The continuous-improvement workflow proceeds through evidence collection, review,
+      classification, validation, and routing to a future volume or operating-change process.
+    product: House
+    traces_to:
+      - RULE-V3-019
+    authorizes_implementation: false
+    validation_status: author_asserted
+    governance_domain: continuous_improvement
+  # ---- Experience touchpoints (UX -> WF) ----
+  - id: UX-V3-005
+    level: UX
+    statement: >-
+      A House-side governance and reporting view presents management reports with their
+      interpretation limits and escalation-threshold status to accountable owners.
+    product: House
+    traces_to:
+      - WF-V3-008
+    authorizes_implementation: false
+    validation_status: author_asserted
+    primary_persona: affiliation_service_owner
+    user_visible: true
+  - id: UX-V3-006
+    level: UX
+    statement: >-
+      A Button-side stakeholder communication view presents change, incident, and service
+      notifications to club representatives without conferring governed decision authority.
+    product: Button
+    traces_to:
+      - WF-V3-009
+    authorizes_implementation: false
+    validation_status: author_asserted
+    primary_persona: club_representative
+    user_visible: true
+  # ---- Operational data domains (DATA -> UX) ----
+  - id: DATA-V3-006
+    level: DATA
+    statement: >-
+      The governance record set of forum records, decisions, and delegations is a business
+      information domain with a steward and a correction authority.
+    product: House
+    traces_to:
+      - UX-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: affiliation_service_owner
+  - id: DATA-V3-007
+    level: DATA
+    statement: >-
+      The risk-and-control record set of the risk register, control evidence, and assurance
+      results is a business information domain with a steward.
+    product: House
+    traces_to:
+      - UX-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: risk_and_assurance_function
+  - id: DATA-V3-008
+    level: DATA
+    statement: >-
+      The change-and-amendment record set of change classifications, approvals, and amendments is
+      a business information domain with a steward.
+    product: House
+    traces_to:
+      - UX-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+    record_steward: compliance_and_policy_function
+  # ---- Operating controls (CTRL -> BR / NFR) ----
+  - id: CTRL-V3-020
+    level: CTRL
+    statement: >-
+      A governance-scope control ensures each forum decision is made within its recorded decision
+      scope and delegation limits.
+    product: House
+    traces_to:
+      - BR-V3-015
+    acceptance_ref:
+      - TEST-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: governance_decision_record
+    governance_domain: operating_governance
+  - id: CTRL-V3-021
+    level: CTRL
+    statement: >-
+      An unratified-forum control ensures no standing committee or meeting cadence is asserted
+      without organizational approval.
+    product: House
+    traces_to:
+      - BR-V3-016
+    acceptance_ref:
+      - TEST-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: forum_definition_status
+  - id: CTRL-V3-022
+    level: CTRL
+    statement: >-
+      A reporting-truth control ensures management reports carry interpretation limits and are not
+      cited as a governed source of truth.
+    product: House
+    traces_to:
+      - NFR-V3-008
+    acceptance_ref:
+      - TEST-V3-022
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: CONTINUOUS
+    reporting_purpose: interpretation_limited_management_view
+    measure_identifier: MEAS-V3-11
+    measure_baseline_status: BASELINE_PENDING
+  - id: CTRL-V3-023
+    level: CTRL
+    statement: >-
+      A risk-ownership control ensures every material risk has an owner, a control objective, and
+      an assurance method.
+    product: House
+    traces_to:
+      - BR-V3-018
+    acceptance_ref:
+      - TEST-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    risk_category: affiliation_service_risk
+    control_owner: risk_and_assurance_function
+    assurance_method: control_effectiveness_review
+  - id: CTRL-V3-024
+    level: CTRL
+    statement: >-
+      A change-classification control ensures every operating change is classified with an
+      approving authority before it takes effect.
+    product: House
+    traces_to:
+      - BR-V3-019
+    acceptance_ref:
+      - TEST-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    change_class: MATERIAL_OPERATING
+    evidence_generated: change_amendment_record
+  - id: CTRL-V3-025
+    level: CTRL
+    statement: >-
+      A dependency-fallback control ensures every dependency has a manual fallback and
+      reconciliation and never transfers governed authority to the provider.
+    product: House
+    traces_to:
+      - BR-V3-020
+    acceptance_ref:
+      - TEST-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: EVENT_DRIVEN
+    dependency_owner: accountable_business_function
+    evidence_generated: dependency_reconciliation_record
+  - id: CTRL-V3-026
+    level: CTRL
+    statement: >-
+      A stewardship-visibility control ensures each information domain enforces minimum-necessary
+      visibility and a correction authority.
+    product: House
+    traces_to:
+      - BR-V3-021
+    acceptance_ref:
+      - TEST-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: CONTINUOUS
+    record_steward: accountable_business_function
+    privacy_classification: domain_dependent
+  - id: CTRL-V3-027
+    level: CTRL
+    statement: >-
+      An incident-authority control ensures incident declaration and closure occur only under
+      recorded authority and that recovery preserves governed authority and evidence.
+    product: House
+    traces_to:
+      - BR-V3-022
+    acceptance_ref:
+      - TEST-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: INCIDENT_DRIVEN
+    incident_class: SERVICE_INCIDENT
+    continuity_priority: governed_authority_and_evidence_preserved
+  - id: CTRL-V3-028
+    level: CTRL
+    statement: >-
+      An improvement-routing control ensures improvement proposals route to gates and never
+      authorize implementation or procurement.
+    product: House
+    traces_to:
+      - BR-V3-023
+    acceptance_ref:
+      - TEST-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    future_blocking_gate: V3-G3
+  - id: CTRL-V3-029
+    level: CTRL
+    statement: >-
+      An assurance-evidence control ensures governance and assurance evidence is retained and
+      reconstructable.
+    product: House
+    traces_to:
+      - NFR-V3-007
+    acceptance_ref:
+      - TEST-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: assurance_evidence_pack
+    measure_identifier: MEAS-V3-10
+    measure_baseline_status: BASELINE_PENDING
+  - id: CTRL-V3-030
+    level: CTRL
+    statement: >-
+      A restricted-governance-evidence control ensures restricted governance and incident evidence
+      is accessed only under recorded authority.
+    product: House
+    traces_to:
+      - NFR-V3-009
+    acceptance_ref:
+      - TEST-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: INCIDENT_DRIVEN
+    privacy_classification: restricted
+    evidence_generated: restricted_access_record
+  - id: CTRL-V3-031
+    level: CTRL
+    statement: >-
+      A no-material-commitment control ensures no Package 3 requirement or decision authorizes
+      staffing, cost, procurement, vendor selection, architecture, implementation, or a
+      service-level commitment.
+    product: House
+    traces_to:
+      - BR-V3-025
+    acceptance_ref:
+      - TEST-V3-031
+    authorizes_implementation: false
+    validation_status: author_asserted
+    control_frequency: PER_SEASON
+    evidence_generated: scope_boundary_attestation
+  # ---- Acceptance (TEST -> CTRL) ----
+  - id: TEST-V3-020
+    level: TEST
+    statement: >-
+      Confirm that each governance-forum decision is recorded within its decision scope and
+      delegation limits and that out-of-scope matters escalate.
+    product: House
+    traces_to:
+      - CTRL-V3-020
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-021
+    level: TEST
+    statement: >-
+      Confirm that no standing committee or meeting cadence is asserted without recorded
+      organizational approval.
+    product: House
+    traces_to:
+      - CTRL-V3-021
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: STAKEHOLDER_VALIDATION_PENDING
+  - id: TEST-V3-022
+    level: TEST
+    statement: >-
+      Confirm that management reports carry interpretation limits and are not cited as a governed
+      source of truth.
+    product: House
+    traces_to:
+      - CTRL-V3-022
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-023
+    level: TEST
+    statement: >-
+      Confirm that every material risk records an owner, a control objective, and an assurance
+      method.
+    product: House
+    traces_to:
+      - CTRL-V3-023
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-024
+    level: TEST
+    statement: >-
+      Confirm that every operating change is classified with an approving authority before it
+      takes effect.
+    product: House
+    traces_to:
+      - CTRL-V3-024
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: POLICY_VALIDATION_PENDING
+  - id: TEST-V3-025
+    level: TEST
+    statement: >-
+      Confirm that every dependency records a manual fallback and reconciliation and does not
+      transfer governed authority to the provider.
+    product: House
+    traces_to:
+      - CTRL-V3-025
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-026
+    level: TEST
+    statement: >-
+      Confirm that each information domain records a business steward, minimum-necessary
+      visibility, and a correction authority.
+    product: House
+    traces_to:
+      - CTRL-V3-026
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: PRIVACY_VALIDATION_PENDING
+  - id: TEST-V3-027
+    level: TEST
+    statement: >-
+      Confirm that incident declaration and closure occur only under recorded authority and that
+      recovery preserves governed authority and evidence.
+    product: House
+    traces_to:
+      - CTRL-V3-027
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-028
+    level: TEST
+    statement: >-
+      Confirm that improvement proposals route to gates and never authorize implementation or
+      procurement.
+    product: House
+    traces_to:
+      - CTRL-V3-028
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-029
+    level: TEST
+    statement: >-
+      Confirm that governance and assurance evidence is retained and reconstructable.
+    product: House
+    traces_to:
+      - CTRL-V3-029
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-030
+    level: TEST
+    statement: >-
+      Confirm that restricted governance and incident evidence is accessed only under recorded
+      authority.
+    product: House
+    traces_to:
+      - CTRL-V3-030
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: PRIVACY_VALIDATION_PENDING
+  - id: TEST-V3-031
+    level: TEST
+    statement: >-
+      Confirm that no Package 3 requirement or decision authorizes staffing, cost, procurement,
+      vendor selection, architecture, implementation, or a service-level commitment.
+    product: House
+    traces_to:
+      - CTRL-V3-031
     authorizes_implementation: false
     validation_status: author_asserted
     acceptance_status: DEFINED

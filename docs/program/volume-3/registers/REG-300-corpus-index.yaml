@@ -1,7 +1,7 @@
 register_id: REG-300
 name: Volume 3 Corpus Index
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: V3-00
     title: Volume Control and Inheritance
@@ -155,3 +155,75 @@ records:
     version: 1.0.0
     path: docs/program/volume-3/V3-B-package-2-closure-record.md
     gate: V3-G2
+  - id: V3-17
+    title: Operating Governance and Decision-Forum Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-17-operating-governance-and-decision-forum-model.md
+    gate: V3-G3
+  - id: V3-18
+    title: Service Ownership, Performance Management, and Management Reporting
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-18-service-ownership-performance-management-and-management-reporting.md
+    gate: V3-G3
+  - id: V3-19
+    title: Business Risk, Control, and Operating-Assurance Framework
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-19-business-risk-control-and-operating-assurance-framework.md
+    gate: V3-G3
+  - id: V3-20
+    title: Policy, Rule, and Operating-Change Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-20-policy-rule-and-operating-change-governance.md
+    gate: V3-G3
+  - id: V3-21
+    title: External-Provider and Cross-Organizational Dependency Operating Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-21-external-provider-and-cross-organizational-dependency-operating-model.md
+    gate: V3-G3
+  - id: V3-22
+    title: Operational Data Stewardship, Records, and Evidence Accountability
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-22-operational-data-stewardship-records-and-evidence-accountability.md
+    gate: V3-G3
+  - id: V3-23
+    title: Incident, Problem, Continuity, and Service-Recovery Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-23-incident-problem-continuity-and-service-recovery-governance.md
+    gate: V3-G3
+  - id: V3-24
+    title: Continuous Improvement, Seasonal Review, and Management Assurance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-24-continuous-improvement-seasonal-review-and-management-assurance.md
+    gate: V3-G3
+  - id: V3-25
+    title: Governance, Assurance, and Controlled-Change Playbook
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-25-governance-assurance-and-controlled-change-playbook.md
+    gate: V3-G3

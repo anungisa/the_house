@@ -12,6 +12,14 @@
       "level": "BR"
     },
     {
+      "id": "BR-V3-017",
+      "level": "BR"
+    },
+    {
+      "id": "BR-V3-024",
+      "level": "BR"
+    },
+    {
       "id": "DATA-V3-001",
       "level": "DATA"
     },
@@ -32,6 +40,18 @@
       "level": "DATA"
     },
     {
+      "id": "DATA-V3-006",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-007",
+      "level": "DATA"
+    },
+    {
+      "id": "DATA-V3-008",
+      "level": "DATA"
+    },
+    {
       "id": "FR-V3-005",
       "level": "FR"
     },
@@ -49,6 +69,14 @@
     },
     {
       "id": "FR-V3-016",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V3-022",
+      "level": "FR"
+    },
+    {
+      "id": "FR-V3-025",
       "level": "FR"
     },
     {
@@ -76,12 +104,32 @@
       "level": "RULE"
     },
     {
+      "id": "RULE-V3-014",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-015",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-017",
+      "level": "RULE"
+    },
+    {
+      "id": "RULE-V3-020",
+      "level": "RULE"
+    },
+    {
       "id": "UC-V3-003",
       "level": "UC"
     },
     {
       "id": "UC-V3-006",
       "level": "UC"
+    },
+    {
+      "id": "UX-V3-006",
+      "level": "UX"
     },
     {
       "id": "WF-V3-003",
@@ -93,6 +141,14 @@
     },
     {
       "id": "WF-V3-007",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-010",
+      "level": "WF"
+    },
+    {
+      "id": "WF-V3-011",
       "level": "WF"
     }
   ]

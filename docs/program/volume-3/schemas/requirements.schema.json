@@ -155,7 +155,54 @@
             ]
           },
           "evidence_generated": { "type": "string" },
-          "capacity_dependency": { "type": "string" }
+          "capacity_dependency": { "type": "string" },
+          "governance_domain": { "type": "string" },
+          "governance_forum": { "type": "string" },
+          "decision_class": { "type": "string" },
+          "decision_owner": { "type": "string" },
+          "consulted_functions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "risk_category": { "type": "string" },
+          "control_owner": { "type": "string" },
+          "control_performer": { "type": "string" },
+          "assurance_method": { "type": "string" },
+          "reporting_purpose": { "type": "string" },
+          "dependency_owner": { "type": "string" },
+          "record_steward": { "type": "string" },
+          "continuity_priority": { "type": "string" },
+          "change_class": {
+            "type": "string",
+            "enum": [
+              "EDITORIAL",
+              "NON_MATERIAL_OPERATING",
+              "MATERIAL_OPERATING",
+              "POLICY",
+              "FINANCIAL",
+              "PRIVACY",
+              "BILINGUAL",
+              "ACCESSIBILITY",
+              "AUTHORITY_BOUNDARY",
+              "EMERGENCY",
+              "BREAKING_OPERATING_CHANGE"
+            ]
+          },
+          "incident_class": {
+            "type": "string",
+            "enum": [
+              "USER_SUPPORT_ISSUE",
+              "OPERATIONAL_EXCEPTION",
+              "SERVICE_INCIDENT",
+              "PRIVACY_INCIDENT",
+              "FINANCIAL_RECONCILIATION_INCIDENT",
+              "EXTERNAL_PROVIDER_INCIDENT",
+              "CONTROL_FAILURE",
+              "RECURRING_PROBLEM",
+              "CONTINUITY_EVENT",
+              "MATERIAL_ORGANIZATIONAL_INCIDENT"
+            ]
+          }
         }
       }
     }

@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T12:21:22.903Z
+Generated: 2026-07-26T12:45:14.084Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -28,18 +28,18 @@ Generated: 2026-07-26T12:21:22.903Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 19 |
+| RATIFIED | 28 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.1.0 | 19 |
-| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.1.0 | 16 |
-| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.0.0 | 16 |
-| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.1.0 | 131 |
+| REG-300 | Volume 3 Corpus Index | RATIFIED | 1.2.0 | 28 |
+| REG-301 | Volume 3 Outcome Register | RATIFIED | 1.2.0 | 25 |
+| REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.1.0 | 19 |
+| REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.2.0 | 211 |
 | REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.3.0 | 7 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.3.0 | 25 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.4.0 | 34 |
 
 ## Findings by control
 
@@ -111,3 +111,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-024 (PACKAGE-3-2): Freeze provenance completed post-merge through the recorded amendment process.
 - APP-V3-025 (PACKAGE-3-2): Package 2 corpus frozen at version 1.0.0; freeze provenance completed post-merge.
 - APP-V3-025 (PACKAGE-3-2): Source snapshot e2f1b0c; closure/freeze 6583d53; merged 877dba6.
+- APP-V3-026 (V3-17): Governance forums are defined without asserting standing committees or cadences absent organizational approval.
+- APP-V3-027 (V3-18): Service ownership and reports are defined; reports are instruments, not governed truth; no staffing committed.
+- APP-V3-028 (V3-19): Business risk and assurance framework defined; no technical security architecture or monitoring implementation.
+- APP-V3-029 (V3-20): Operating-change governance defined with change classes; not software release management.
+- APP-V3-030 (V3-21): Dependency operating model defined; no vendor selection, procurement, or unverified contractual capability.
+- APP-V3-031 (V3-22): Information stewardship defined; no tables, schemas, storage technologies, or API payloads.
+- APP-V3-032 (V3-23): Incident, continuity, and recovery governance defined; no technical incident response or disaster-recovery design.
+- APP-V3-033 (V3-24): Continuous improvement governed; proposals route to gates and do not authorize implementation.
+- APP-V3-034 (V3-25): Playbook consolidates the governance model and records explicit exclusions of material commitment.
