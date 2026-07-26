@@ -394,5 +394,405 @@
     "kind": "CLASSIFICATION",
     "traces_to_inherited": [],
     "traces_to_local": []
+  },
+  {
+    "id": "LENT-V5-001",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-001"
+    ]
+  },
+  {
+    "id": "LENT-V5-002",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-002"
+    ]
+  },
+  {
+    "id": "LENT-V5-003",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-003"
+    ]
+  },
+  {
+    "id": "LENT-V5-004",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-005"
+    ]
+  },
+  {
+    "id": "LENT-V5-005",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-006",
+      "EXC-V5-002"
+    ]
+  },
+  {
+    "id": "LENT-V5-006",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-008",
+      "REL-V5-003"
+    ]
+  },
+  {
+    "id": "LENT-V5-007",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-009",
+      "REL-V5-007"
+    ]
+  },
+  {
+    "id": "LENT-V5-008",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ENTITY-V5-010",
+      "REL-V5-005"
+    ]
+  },
+  {
+    "id": "LENT-V5-009",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-004"
+    ]
+  },
+  {
+    "id": "LENT-V5-010",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-005",
+      "TEST-V5-006"
+    ]
+  },
+  {
+    "id": "LENT-V5-011",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-008",
+      "TEST-V5-007"
+    ]
+  },
+  {
+    "id": "LENT-V5-012",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-008"
+    ]
+  },
+  {
+    "id": "LENT-V5-013",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-006",
+      "REL-V5-001"
+    ]
+  },
+  {
+    "id": "LENT-V5-014",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-007"
+    ]
+  },
+  {
+    "id": "LENT-V5-015",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-009"
+    ]
+  },
+  {
+    "id": "LENT-V5-016",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-010",
+      "EXC-V5-001"
+    ]
+  },
+  {
+    "id": "LENT-V5-018",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-014"
+    ]
+  },
+  {
+    "id": "LENT-V5-019",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-015",
+      "REL-V5-006"
+    ]
+  },
+  {
+    "id": "LENT-V5-020",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-016",
+      "ASM-V5-003"
+    ]
+  },
+  {
+    "id": "LENT-V5-021",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-017"
+    ]
+  },
+  {
+    "id": "LENT-V5-022",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-018",
+      "TEST-V5-011"
+    ]
+  },
+  {
+    "id": "LENT-V5-023",
+    "kind": "LOGICAL_ENTITY",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-019"
+    ]
+  },
+  {
+    "id": "STATE-V5-001",
+    "kind": "STATE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "LENT-V5-013"
+    ]
+  },
+  {
+    "id": "SNAP-V5-001",
+    "kind": "SNAPSHOT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-012"
+    ]
+  },
+  {
+    "id": "PROV-V5-001",
+    "kind": "PROVENANCE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-023"
+    ]
+  },
+  {
+    "id": "PROV-V5-002",
+    "kind": "PROVENANCE_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-024"
+    ]
+  },
+  {
+    "id": "CORR-V5-001",
+    "kind": "CORRECTION_RECORD",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "DOMAIN-V5-022",
+      "ADR-V5-005"
+    ]
+  },
+  {
+    "id": "VOBJ-V5-001",
+    "kind": "VALUE_OBJECT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "VOBJ-V5-002",
+    "kind": "VALUE_OBJECT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "VOBJ-V5-003",
+    "kind": "VALUE_OBJECT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "REFD-V5-001",
+    "kind": "REFERENCE_DATA",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CODE-V5-001",
+    "kind": "CODE_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "CODE-V5-002",
+    "kind": "CODE_SET",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-001",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-002",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-003",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-004",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-005",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-006",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-007",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-008",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-009",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-010",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-011",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-012",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-013",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-014",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-015",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-016",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "LREL-V5-017",
+    "kind": "LOGICAL_RELATIONSHIP",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DERV-V5-001",
+    "kind": "DERIVED_DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "ADR-V5-004"
+    ]
+  },
+  {
+    "id": "DERV-V5-002",
+    "kind": "DERIVED_DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DERV-V5-003",
+    "kind": "DERIVED_DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DERV-V5-004",
+    "kind": "DERIVED_DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": []
+  },
+  {
+    "id": "DERV-V5-005",
+    "kind": "DERIVED_DATA_PRODUCT",
+    "traces_to_inherited": [],
+    "traces_to_local": [
+      "TEST-V5-013"
+    ]
   }
 ]

@@ -1,0 +1,40 @@
+{
+  "financial_entities": [
+    {
+      "id": "LENT-V5-019",
+      "title": "Fee Obligation",
+      "authority": "House",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "LENT-V5-020",
+      "title": "Payment Acknowledgement",
+      "authority": "External",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "LENT-V5-021",
+      "title": "Accounting Confirmation",
+      "authority": "External",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "LENT-V5-022",
+      "title": "Reconciliation Record",
+      "authority": "House",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "LENT-V5-023",
+      "title": "Activation Record",
+      "authority": "House",
+      "classification": "INTERNAL"
+    },
+    {
+      "id": "VOBJ-V5-002",
+      "title": "Financial Status Amount",
+      "authority": null,
+      "classification": "FINANCIAL_STATUS"
+    }
+  ]
+}

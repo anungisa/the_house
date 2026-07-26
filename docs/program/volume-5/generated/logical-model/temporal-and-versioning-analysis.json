@@ -1,0 +1,45 @@
+{
+  "entities_by_temporal_posture": {
+    "Continuity preserved across seasons; identity is durable.": 1,
+    "Continuity preserved across seasons.": 1,
+    "Durable jurisdictional identity.": 1,
+    "Durable identity; historical references preserved.": 1,
+    "Binding history preserved.": 1,
+    "Membership periods preserved across seasons.": 1,
+    "Grant and revocation history preserved.": 1,
+    "Assignment history preserved.": 1,
+    "Jurisdiction changes preserved historically.": 1,
+    "Seasons do not overlap for a jurisdiction.": 1,
+    "Effective and superseded times preserved; prior versions never mutated.": 1,
+    "Applicability resolved at case-relevant time.": 1,
+    "Lifecycle transitions preserved as history.": 1,
+    "Pathway applicability resolved at case time.": 1,
+    "Response history preserved.": 1,
+    "Evidence metadata history preserved.": 1,
+    "Decision records are immutable and preserved.": 1,
+    "Obligation history preserved.": 1,
+    "Acknowledgement time preserved.": 1,
+    "Confirmation time preserved.": 1,
+    "Reconciliation history preserved.": 1,
+    "Activation history preserved.": 1,
+    "Effective and recorded times preserved for each transition.": 1,
+    "Captures state as known at submission time.": 1,
+    "Recorded time preserved; ordering preserved.": 1,
+    "Refresh time preserved.": 1,
+    "Correction time and effective time preserved.": 1,
+    "UNSET": 6
+  },
+  "correction_records": [
+    "CORR-V5-001"
+  ],
+  "provenance_records": [
+    "PROV-V5-001",
+    "PROV-V5-002"
+  ],
+  "snapshots": [
+    "SNAP-V5-001"
+  ],
+  "state_records": [
+    "STATE-V5-001"
+  ]
+}

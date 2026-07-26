@@ -89,6 +89,22 @@ export function makeFinding(severity, code, message, artifact) {
   return { severity, code, message, artifact: artifact ?? null };
 }
 
+// Derive the set of governance gates that have already been dispositioned
+// (passed) from the approval register. A gate is "completed" once a ratified
+// REG-505 approval carries a GATE-V5-Gx artifact and a gate_disposition. No
+// unresolved obligation may name a completed gate as its future blocking gate.
+export function completedGates(ctx) {
+  const done = new Set();
+  const approvals = ctx.registers?.['REG-505']?.doc?.records ?? [];
+  for (const a of approvals) {
+    const m = /^GATE-(V5-G[0-9])$/.exec(a.artifact_id ?? '');
+    if (m && a.approval_state === 'ratified' && a.gate_disposition) {
+      done.add(m[1]);
+    }
+  }
+  return done;
+}
+
 // Parse the header block of a Volume 5 chapter/annex markdown file.
 function parseChapter(fileName, text) {
   const lines = text.split(/\r?\n/).slice(0, 20);

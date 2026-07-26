@@ -1,0 +1,100 @@
+{
+  "entities_with_scope_posture": [
+    {
+      "id": "LENT-V5-001",
+      "scope_posture": "Scoped to its jurisdiction and PTSO context."
+    },
+    {
+      "id": "LENT-V5-002",
+      "scope_posture": "Scoped to a PTSO jurisdiction."
+    },
+    {
+      "id": "LENT-V5-003",
+      "scope_posture": "Defines a jurisdiction boundary."
+    },
+    {
+      "id": "LENT-V5-004",
+      "scope_posture": "Person governance is House-scoped; authentication is external."
+    },
+    {
+      "id": "LENT-V5-005",
+      "scope_posture": "Authentication authority is external; binding authority is House."
+    },
+    {
+      "id": "LENT-V5-006",
+      "scope_posture": "Scoped to an organization."
+    },
+    {
+      "id": "LENT-V5-007",
+      "scope_posture": "Scoped to an organization and a set of governed actions."
+    },
+    {
+      "id": "LENT-V5-008",
+      "scope_posture": "Scoped to a case and jurisdiction."
+    },
+    {
+      "id": "LENT-V5-009",
+      "scope_posture": "Defines the cross-scope fail-closed boundary."
+    },
+    {
+      "id": "LENT-V5-010",
+      "scope_posture": "Scoped by jurisdiction where variant seasons apply."
+    },
+    {
+      "id": "LENT-V5-011",
+      "scope_posture": "May be scoped by jurisdiction."
+    },
+    {
+      "id": "LENT-V5-012",
+      "scope_posture": "Inherits policy-version scope."
+    },
+    {
+      "id": "LENT-V5-013",
+      "scope_posture": "Scoped to organization, jurisdiction, and season."
+    },
+    {
+      "id": "LENT-V5-014",
+      "scope_posture": "Scoped by jurisdiction and season."
+    },
+    {
+      "id": "LENT-V5-015",
+      "scope_posture": "Scoped to a case."
+    },
+    {
+      "id": "LENT-V5-016",
+      "scope_posture": "Access scoped by classification."
+    },
+    {
+      "id": "LENT-V5-018",
+      "scope_posture": "Scoped to a case."
+    },
+    {
+      "id": "LENT-V5-019",
+      "scope_posture": "Scoped to finance authority."
+    },
+    {
+      "id": "LENT-V5-020",
+      "scope_posture": "External system of record."
+    },
+    {
+      "id": "LENT-V5-021",
+      "scope_posture": "External system of record."
+    },
+    {
+      "id": "LENT-V5-022",
+      "scope_posture": "Finance-authority scoped."
+    },
+    {
+      "id": "LENT-V5-023",
+      "scope_posture": "Scoped to a case."
+    }
+  ],
+  "by_classification": {
+    "INTERNAL": 21,
+    "PERSONAL": 4,
+    "RESTRICTED_EVIDENCE": 1,
+    "FINANCIAL_STATUS": 5,
+    "SECURITY_AUDIT": 1,
+    "PRIVILEGED_ADMIN": 1
+  }
+}

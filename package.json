@@ -63,6 +63,7 @@
     "governance:report:v5": "node docs/program/volume-5/controls/generate-control-report.mjs",
     "governance:trace:v5": "node docs/program/volume-5/controls/trace-volume-5.mjs",
     "governance:closure:v5": "node docs/program/volume-5/controls/closure-volume-5.mjs",
+    "governance:logical:v5": "node docs/program/volume-5/controls/logical-model-analysis.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

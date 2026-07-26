@@ -31,7 +31,20 @@ export function run(ctx) {
   const registerIds = new Set(Object.keys(ctx.registers));
   const catalogueIds = idSet(ctx, 'REG-501');
   const domainIds = idSet(ctx, 'REG-501', (r) => r.kind === 'INFORMATION_DOMAIN');
-  const entityIds = idSet(ctx, 'REG-501', (r) => r.kind === 'CONCEPTUAL_ENTITY');
+  const entityIds = idSet(
+    ctx,
+    'REG-501',
+    (r) =>
+      r.kind === 'CONCEPTUAL_ENTITY' ||
+      r.kind === 'LOGICAL_ENTITY' ||
+      r.kind === 'VALUE_OBJECT' ||
+      r.kind === 'STATE_RECORD' ||
+      r.kind === 'SNAPSHOT' ||
+      r.kind === 'PROVENANCE_RECORD' ||
+      r.kind === 'CORRECTION_RECORD' ||
+      r.kind === 'REFERENCE_DATA' ||
+      r.kind === 'CODE_SET'
+  );
   const ruleIds = idSet(ctx, 'REG-502');
   const decisionIds = idSet(ctx, 'REG-503');
   const backlogIds = idSet(ctx, 'REG-504');
@@ -86,21 +99,21 @@ export function run(ctx) {
         findings.push(makeFinding(Severity.ERROR, 'BROKEN_REFERENCE', `${rec.id}: traces_to ${t} does not resolve`, rec.id));
       }
     }
-    if (rec.kind === 'CONCEPTUAL_ENTITY') {
+    if (rec.kind === 'CONCEPTUAL_ENTITY' || rec.kind === 'LOGICAL_ENTITY') {
       if (!rec.owning_domain) {
-        findings.push(makeFinding(Severity.ERROR, 'ENTITY_WITHOUT_DOMAIN', `${rec.id}: conceptual entity names no owning_domain`, rec.id));
+        findings.push(makeFinding(Severity.ERROR, 'ENTITY_WITHOUT_DOMAIN', `${rec.id}: entity names no owning_domain`, rec.id));
       } else if (!domainIds.has(rec.owning_domain)) {
         findings.push(makeFinding(Severity.ERROR, 'ENTITY_DOMAIN_UNRESOLVED', `${rec.id}: owning_domain ${rec.owning_domain} does not resolve to a governed domain`, rec.id));
       }
     }
-    if (rec.kind === 'CONCEPTUAL_RELATIONSHIP') {
+    if (rec.kind === 'CONCEPTUAL_RELATIONSHIP' || rec.kind === 'LOGICAL_RELATIONSHIP') {
       const endpoints = rec.endpoints ?? [];
       if (endpoints.length < 2) {
-        findings.push(makeFinding(Severity.ERROR, 'RELATIONSHIP_ENDPOINTS', `${rec.id}: conceptual relationship needs at least two endpoints`, rec.id));
+        findings.push(makeFinding(Severity.ERROR, 'RELATIONSHIP_ENDPOINTS', `${rec.id}: relationship needs at least two endpoints`, rec.id));
       }
       for (const ep of endpoints) {
         if (!entityIds.has(ep) && !domainIds.has(ep)) {
-          findings.push(makeFinding(Severity.ERROR, 'RELATIONSHIP_ENDPOINT_UNRESOLVED', `${rec.id}: endpoint ${ep} does not resolve to a conceptual entity or domain`, rec.id));
+          findings.push(makeFinding(Severity.ERROR, 'RELATIONSHIP_ENDPOINT_UNRESOLVED', `${rec.id}: endpoint ${ep} does not resolve to an entity or domain`, rec.id));
         }
       }
     }

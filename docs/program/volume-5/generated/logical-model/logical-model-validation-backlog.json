@@ -1,0 +1,148 @@
+{
+  "total": 26,
+  "by_future_blocking_gate": {
+    "V5-G3": 5,
+    "EXEC-MCG": 3,
+    "V8-G1": 4,
+    "V10-G1": 4,
+    "V6-G1": 6,
+    "V9-G1": 2,
+    "V7-G1": 2
+  },
+  "pointing_at_completed_gate": [],
+  "reassigned_from_v5g1": [
+    {
+      "id": "ASM-V5-001",
+      "from": "V5-G1",
+      "to": "V5-G3"
+    },
+    {
+      "id": "ASM-V5-002",
+      "from": "V5-G1",
+      "to": "EXEC-MCG"
+    },
+    {
+      "id": "ASM-V5-003",
+      "from": "V5-G1",
+      "to": "V8-G1"
+    },
+    {
+      "id": "RISK-V5-001",
+      "from": "V5-G1",
+      "to": "V10-G1"
+    },
+    {
+      "id": "RISK-V5-002",
+      "from": "V5-G1",
+      "to": "V6-G1"
+    },
+    {
+      "id": "RISK-V5-003",
+      "from": "V5-G1",
+      "to": "V9-G1"
+    },
+    {
+      "id": "EXC-V5-001",
+      "from": "V5-G1",
+      "to": "V8-G1"
+    },
+    {
+      "id": "EXC-V5-002",
+      "from": "V5-G1",
+      "to": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-001",
+      "from": "V5-G1",
+      "to": "V5-G3"
+    },
+    {
+      "id": "TEST-V5-002",
+      "from": "V5-G1",
+      "to": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-003",
+      "from": "V5-G1",
+      "to": "V10-G1"
+    },
+    {
+      "id": "TEST-V5-004",
+      "from": "V5-G1",
+      "to": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-005",
+      "from": "V5-G1",
+      "to": "V5-G3"
+    },
+    {
+      "id": "TEST-V5-006",
+      "from": "V5-G1",
+      "to": "V5-G3"
+    },
+    {
+      "id": "TEST-V5-007",
+      "from": "V5-G1",
+      "to": "V5-G3"
+    },
+    {
+      "id": "TEST-V5-008",
+      "from": "V5-G1",
+      "to": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-009",
+      "from": "V5-G1",
+      "to": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V5-010",
+      "from": "V5-G1",
+      "to": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V5-011",
+      "from": "V5-G1",
+      "to": "V8-G1"
+    },
+    {
+      "id": "TEST-V5-012",
+      "from": "V5-G1",
+      "to": "V8-G1"
+    },
+    {
+      "id": "TEST-V5-013",
+      "from": "V5-G1",
+      "to": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-014",
+      "from": "V5-G1",
+      "to": "V9-G1"
+    },
+    {
+      "id": "TEST-V5-015",
+      "from": "V5-G1",
+      "to": "V7-G1"
+    },
+    {
+      "id": "TEST-V5-016",
+      "from": "V5-G1",
+      "to": "V7-G1"
+    },
+    {
+      "id": "TEST-V5-017",
+      "from": "V5-G1",
+      "to": "V6-G1"
+    },
+    {
+      "id": "TEST-V5-018",
+      "from": "V5-G1",
+      "to": "V10-G1"
+    }
+  ],
+  "completed_gates": [
+    "V5-G1"
+  ]
+}

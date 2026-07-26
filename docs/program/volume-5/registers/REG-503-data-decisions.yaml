@@ -1,7 +1,7 @@
 register_id: REG-503
 name: Volume 5 Data Decisions
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: ADR-V5-001
     title: Data governance is defined before logical or physical design
@@ -72,3 +72,123 @@ records:
     chapter_ref: V5-07
     evidence_refs:
       - RULE-V5-011
+  # ==== Package 2: validation-gate correctness ====
+  - id: ADR-V5-007
+    title: Validation obligations are reassigned away from the passed Gate V5-G1
+    decision: Every Package 1 assumption, risk, exception, and validation-backlog obligation that named the already-passed Gate V5-G1 as its future blocking gate is additively reassigned to the correct future gate (a later Volume 5 gate, a downstream volume gate, or the executive material-commitment gate); the prior V5-G1 assignment is preserved on each record as superseded_future_blocking_gate.
+    status: ACCEPTED
+    context: Gate V5-G1 passed at Package 1 closure, so no unresolved obligation may retain V5-G1 as a future blocking gate. The frozen Package 1 chapters record the historical assignment; the operative registers must reflect the corrected gate.
+    consequence: REG-504 obligations point only to future (uncompleted) gates; a validation-gate-correctness control fails closed if any obligation names a completed gate. Gate V5-G1 and the PACKAGE-5-1 freeze are preserved; no frozen chapter is rewritten.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-20
+    evidence_refs:
+      - APP-V5-013
+      - V5-10
+      - V5-20
+  # ==== Package 2: logical-model decisions ====
+  - id: ADR-V5-008
+    title: The logical model uses governed identifiers only, never physical keys
+    decision: Logical entities are identified by governed identity concepts; no physical key, column, index, or storage identifier is introduced.
+    status: ACCEPTED
+    context: Package 2 is logical definition only; physical identity is deferred to later volumes.
+    consequence: Logical records name identity concepts, not physical keys.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-11
+    evidence_refs:
+      - VOBJ-V5-001
+  - id: ADR-V5-009
+    title: Every logical entity has exactly one owning domain
+    decision: Each logical entity, value object, reference set, state, snapshot, provenance, and correction record names exactly one owning information domain.
+    status: ACCEPTED
+    context: Ownership must be unambiguous for governed authority.
+    consequence: Logical entities without an owning domain fail closed.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-11
+    evidence_refs:
+      - CTRL-V5-008
+  - id: ADR-V5-010
+    title: State is modelled as governed state records, not mutable status fields
+    decision: Lifecycle state is represented as governed state records changed only through governed transitions, never as a directly mutable status field.
+    status: ACCEPTED
+    context: Domain modules must not directly mutate governed status.
+    consequence: State changes are recorded as history through the governance kernel.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-17
+    evidence_refs:
+      - STATE-V5-001
+      - INTEG-V5-012
+  - id: ADR-V5-011
+    title: Submissions are captured as immutable snapshots
+    decision: A submission is captured as an immutable snapshot; resubmission creates a new snapshot.
+    status: ACCEPTED
+    context: Submission truth must be preserved as known at submission time.
+    consequence: Snapshots are never edited after capture.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-17
+    evidence_refs:
+      - SNAP-V5-001
+      - INTEG-V5-006
+  - id: ADR-V5-012
+    title: Payment acknowledgement and accounting confirmation are distinct
+    decision: Payment acknowledgement and accounting confirmation are distinct financial facts and reconciliation requires both.
+    status: ACCEPTED
+    context: External finance systems are systems of record; settlement must not be inferred from acknowledgement.
+    consequence: Reconciliation is incomplete without both facts.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-16
+    evidence_refs:
+      - INTEG-V5-008
+      - INTEG-V5-009
+  - id: ADR-V5-013
+    title: Approval and activation are distinct lifecycle facts
+    decision: An approval decision and an activation are modelled as distinct governed facts; activation follows decision and reconciliation.
+    status: ACCEPTED
+    context: Conflating approval and activation grants status prematurely.
+    consequence: Activation is a separate governed record.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-16
+    evidence_refs:
+      - INTEG-V5-010
+      - LENT-V5-023
+  - id: ADR-V5-014
+    title: Derived data products are non-authoritative logical projections
+    decision: Every derived data product is non-authoritative, rebuildable, names an authoritative source, and preserves lineage.
+    status: ACCEPTED
+    context: Derived data must never become a competing source of truth.
+    consequence: Derived products name sources and carry staleness representation.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-19
+    evidence_refs:
+      - INTEG-V5-014
+  - id: ADR-V5-015
+    title: Value objects carry no independent identity
+    decision: Value objects and reference/code sets carry governed values without independent entity identity.
+    status: ACCEPTED
+    context: Values identify or describe owning entities and must not be treated as entities.
+    consequence: Value objects have no lifecycle of their own.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-11
+    evidence_refs:
+      - VOBJ-V5-001
+      - VOBJ-V5-003
+  - id: ADR-V5-016
+    title: Cross-scope access fails closed in the logical model
+    decision: Logical scope by jurisdiction and season is fail-closed; cross-scope access is denied absent explicit governed authority.
+    status: ACCEPTED
+    context: Improper scope could allow cross-jurisdiction leakage.
+    consequence: Scope boundaries are explicit on logical entities and relationships.
+    authorizes_implementation: false
+    validation_status: DEFINED
+    chapter_ref: V5-13
+    evidence_refs:
+      - RISK-V5-002
+      - LENT-V5-009

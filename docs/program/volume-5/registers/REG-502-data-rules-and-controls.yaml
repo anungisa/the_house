@@ -1,7 +1,7 @@
 register_id: REG-502
 name: Volume 5 Data Rules and Controls
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ==== Data doctrine rules (V5-01) ====
   - id: RULE-V5-001
@@ -184,7 +184,9 @@ records:
     reconciliation_source: Authoritative domain
     evidence_retained: Correction evidence retained
     downstream_impact: Invalid data blocks completeness
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -199,7 +201,9 @@ records:
     reconciliation_source: Responses and acknowledgements
     evidence_retained: Completeness evidence retained
     downstream_impact: Incompleteness blocks submission
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -214,7 +218,9 @@ records:
     reconciliation_source: Decision and activation
     evidence_retained: Consistency evidence retained
     downstream_impact: Inconsistent decision and activation flagged
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -229,7 +235,9 @@ records:
     reconciliation_source: Organization and party identity
     evidence_retained: Resolution evidence retained
     downstream_impact: Duplicates block reconciliation
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -244,7 +252,9 @@ records:
     reconciliation_source: Authoritative domain
     evidence_retained: Rebuild evidence retained
     downstream_impact: Stale projections flagged
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -259,7 +269,9 @@ records:
     reconciliation_source: Authoritative source
     evidence_retained: Correction evidence retained
     downstream_impact: Inaccurate data blocks decisions
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -274,7 +286,9 @@ records:
     reconciliation_source: Lineage records
     evidence_retained: Lineage evidence retained
     downstream_impact: Missing provenance flagged
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -289,7 +303,9 @@ records:
     reconciliation_source: Authority matrix
     evidence_retained: Authority evidence retained
     downstream_impact: Unauthorized correction flagged
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -304,7 +320,9 @@ records:
     reconciliation_source: Jurisdiction and scope
     evidence_retained: Jurisdiction evidence retained
     downstream_impact: Jurisdiction mismatch fails closed
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -319,7 +337,9 @@ records:
     reconciliation_source: Temporal and version records
     evidence_retained: Temporal evidence retained
     downstream_impact: Temporal errors block trust
-    future_blocking_gate: V5-G1
+    future_blocking_gate: V9-G1
+    superseded_future_blocking_gate: V5-G1
+    gate_reassignment_ref: ADR-V5-007
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-08
@@ -461,3 +481,252 @@ records:
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-00
+  - id: CTRL-V5-007
+    kind: CTRL
+    title: Validation-gate correctness control
+    statement: No unresolved obligation or rule may name a governance gate that has already been dispositioned.
+    control_implication: Any future_blocking_gate pointing at a completed gate fails closed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-20
+  - id: CTRL-V5-008
+    kind: CTRL
+    title: Logical-model integrity control
+    statement: Every logical entity names an owning domain, identity concept, and lifecycle; every logical relationship names two endpoints and an invariant; every integrity rule names affected entities and a logical condition.
+    control_implication: Logical entities, relationships, or integrity rules that are incomplete fail closed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-11
+  # ==== Package 2: logical integrity rules (V5-18) ====
+  - id: INTEG-V5-001
+    kind: INTEGRITY
+    title: Identity separation
+    statement: Person, authenticated identity, organization membership, representative authority, reviewer assignment, and finance authority are distinct facts and are never conflated.
+    affected_entities:
+      - LENT-V5-004
+      - LENT-V5-005
+      - LENT-V5-006
+      - LENT-V5-007
+      - LENT-V5-008
+    logical_condition: A person is not an account; membership is not authority; a role is not an assignment.
+    failure_meaning: Conflation creates authorization and privacy defects.
+    correction_authority: Identity governance authority
+    future_verification_class: Identity and trust validation
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - ADR-V5-003
+  - id: INTEG-V5-002
+    kind: INTEGRITY
+    title: Affiliation case cardinality
+    statement: An organization has at most one affiliation case per season.
+    affected_entities:
+      - LENT-V5-013
+      - LENT-V5-001
+      - LENT-V5-010
+    logical_condition: One case per organization per season.
+    failure_meaning: Duplicate cases undermine governed affiliation truth.
+    correction_authority: Affiliation administration
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-003
+    kind: INTEGRITY
+    title: Season uniqueness and non-overlap
+    statement: Seasons are unique and do not overlap within a jurisdiction.
+    affected_entities:
+      - LENT-V5-010
+      - LENT-V5-009
+    logical_condition: No two current seasons overlap for one jurisdiction.
+    failure_meaning: Overlapping seasons corrupt temporal scope.
+    correction_authority: Governance and jurisdiction authority
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - TEST-V5-006
+  - id: INTEG-V5-004
+    kind: INTEGRITY
+    title: Requirement-version applicability
+    statement: A response satisfies only the requirement version applicable to the case at its relevant time.
+    affected_entities:
+      - LENT-V5-015
+      - LENT-V5-012
+      - LENT-V5-011
+    logical_condition: Applicability resolved by effective policy version and jurisdiction at case time.
+    failure_meaning: Applying the wrong version invalidates completeness.
+    correction_authority: Policy and requirements authority
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - TEST-V5-007
+  - id: INTEG-V5-005
+    kind: INTEGRITY
+    title: Evidence binding
+    statement: Evidence metadata binds to the response and requirement version it supports, and its binary remains external.
+    affected_entities:
+      - LENT-V5-016
+      - LENT-V5-015
+    logical_condition: Every evidence item references a governed response; binary content is external.
+    failure_meaning: Unbound or internalized evidence breaks the custody boundary.
+    correction_authority: Evidence and records authority
+    future_verification_class: Trust and privacy validation
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - EXC-V5-001
+  - id: INTEG-V5-006
+    kind: INTEGRITY
+    title: Submission snapshot immutability
+    statement: A submission snapshot is immutable; resubmission creates a new snapshot.
+    affected_entities:
+      - SNAP-V5-001
+      - LENT-V5-013
+    logical_condition: Snapshots are never edited after capture.
+    failure_meaning: Mutable snapshots destroy submission truth.
+    correction_authority: Records governance authority
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-007
+    kind: INTEGRITY
+    title: Decision singularity
+    statement: A case review outcome has one active decision record; superseding decisions preserve prior decisions.
+    affected_entities:
+      - LENT-V5-018
+      - LENT-V5-013
+    logical_condition: Exactly one active decision per review outcome.
+    failure_meaning: Competing decisions corrupt case truth.
+    correction_authority: Governed-decision correction authority
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-008
+    kind: INTEGRITY
+    title: Financial fact distinction
+    statement: Payment acknowledgement and accounting confirmation are distinct financial facts and are not interchangeable.
+    affected_entities:
+      - LENT-V5-020
+      - LENT-V5-021
+      - LENT-V5-019
+    logical_condition: Acknowledgement does not imply confirmation.
+    failure_meaning: Treating acknowledgement as confirmation misstates settlement.
+    correction_authority: Finance authority
+    future_verification_class: Financial reconciliation validation
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - TEST-V5-011
+  - id: INTEG-V5-009
+    kind: INTEGRITY
+    title: Reconciliation completeness
+    statement: A reconciliation requires both a payment acknowledgement and an accounting confirmation.
+    affected_entities:
+      - LENT-V5-022
+      - LENT-V5-020
+      - LENT-V5-021
+    logical_condition: Reconciled state requires acknowledgement and confirmation.
+    failure_meaning: Partial reconciliation overstates financial completion.
+    correction_authority: Finance authority
+    future_verification_class: Financial reconciliation validation
+    future_blocking_gate: V8-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-010
+    kind: INTEGRITY
+    title: Approval-activation distinction
+    statement: An approval decision is distinct from activation; activation is a separate governed fact.
+    affected_entities:
+      - LENT-V5-023
+      - LENT-V5-018
+    logical_condition: Approval does not by itself constitute activation.
+    failure_meaning: Conflating approval and activation grants status prematurely.
+    correction_authority: Affiliation administration
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-011
+    kind: INTEGRITY
+    title: Activation uniqueness
+    statement: A case has at most one active activation record at a time.
+    affected_entities:
+      - LENT-V5-023
+      - LENT-V5-013
+    logical_condition: One active activation per case.
+    failure_meaning: Multiple active activations corrupt status.
+    correction_authority: Affiliation administration
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-012
+    kind: INTEGRITY
+    title: Temporal correctness
+    statement: Governed facts preserve both effective time and recorded time; applicability is resolved at the relevant time.
+    affected_entities:
+      - STATE-V5-001
+      - LENT-V5-011
+      - LENT-V5-012
+    logical_condition: Effective and recorded times are preserved and never overwritten.
+    failure_meaning: Losing temporal truth breaks trust and audit.
+    correction_authority: Records governance authority
+    future_verification_class: Trust and privacy validation
+    future_blocking_gate: V6-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+  - id: INTEG-V5-013
+    kind: INTEGRITY
+    title: Correction via supersession
+    statement: Corrections are applied by supersession that preserves prior state and names a correction authority.
+    affected_entities:
+      - CORR-V5-001
+      - STATE-V5-001
+    logical_condition: No silent overwrite; every correction preserves prior history.
+    failure_meaning: Silent overwrite destroys governed history.
+    correction_authority: Records governance authority
+    future_verification_class: Logical model validation
+    future_blocking_gate: V5-G3
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - ADR-V5-005
+  - id: INTEG-V5-014
+    kind: INTEGRITY
+    title: Derived non-authority and lineage completeness
+    statement: Every derived data product is non-authoritative, names an authoritative source, and preserves lineage.
+    affected_entities:
+      - DERV-V5-001
+      - PROV-V5-002
+    logical_condition: Derived data never becomes a competing source of truth.
+    failure_meaning: Authoritative-treated projections corrupt governed truth.
+    correction_authority: Projection steward
+    future_verification_class: Projection and analytics validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-18
+    traces_to:
+      - ADR-V5-004

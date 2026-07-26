@@ -14,6 +14,7 @@ import {
   Severity,
   REGISTER_SCHEMAS,
   LEAKAGE_PATTERNS,
+  completedGates,
   loadSchema,
   makeFinding,
   runStandalone
@@ -214,6 +215,91 @@ function validateBacklogItems(ctx, findings) {
   }
 }
 
+// Validation-gate correctness (fail closed): no unresolved obligation in REG-504
+// or integrity/quality rule in REG-502 may name a governance gate that has
+// already been dispositioned (passed). An obligation blocked by a completed gate
+// can never clear. This enforces the additive reassignment away from Gate V5-G1
+// after it passed, and prevents the same defect for any future completed gate.
+function validateGateCorrectness(ctx, findings) {
+  const done = completedGates(ctx);
+  if (done.size === 0) return;
+  for (const regId of ['REG-502', 'REG-504']) {
+    for (const r of records(ctx, regId)) {
+      const g = r.future_blocking_gate;
+      if (g && done.has(g)) {
+        findings.push(
+          makeFinding(
+            Severity.ERROR,
+            'GATE_ALREADY_PASSED',
+            `${r.id}: future_blocking_gate ${g} has already been dispositioned; reassign to an uncompleted future gate`,
+            r.id
+          )
+        );
+      }
+    }
+  }
+}
+
+// Logical-model structural guards (fail closed): every LOGICAL_ENTITY must name
+// an owning domain, an identity concept, and a lifecycle; every
+// LOGICAL_RELATIONSHIP must name at least two endpoints and a relationship
+// invariant; every DERIVED_DATA_PRODUCT must name an authoritative source; every
+// INTEGRITY rule must name affected entities and a logical condition.
+function validateLogicalModel(ctx, findings) {
+  const catalogue = records(ctx, 'REG-501');
+  const entityLikeIds = new Set(
+    catalogue
+      .filter((r) => ['CONCEPTUAL_ENTITY', 'LOGICAL_ENTITY', 'VALUE_OBJECT', 'STATE_RECORD', 'SNAPSHOT', 'PROVENANCE_RECORD', 'CORRECTION_RECORD', 'REFERENCE_DATA', 'CODE_SET'].includes(r.kind))
+      .map((r) => r.id)
+  );
+  const domainIds = new Set(catalogue.filter((r) => r.kind === 'INFORMATION_DOMAIN').map((r) => r.id));
+  const sourceIds = new Set([...entityLikeIds, ...domainIds]);
+
+  for (const r of catalogue) {
+    if (r.kind === 'LOGICAL_ENTITY') {
+      if (!r.owning_domain) {
+        findings.push(makeFinding(Severity.ERROR, 'LOGICAL_ENTITY_WITHOUT_DOMAIN', `${r.id}: logical entity names no owning_domain`, r.id));
+      }
+      if (!r.identity_concept) {
+        findings.push(makeFinding(Severity.ERROR, 'LOGICAL_ENTITY_WITHOUT_IDENTITY', `${r.id}: logical entity names no identity_concept`, r.id));
+      }
+      if (!r.lifecycle) {
+        findings.push(makeFinding(Severity.ERROR, 'LOGICAL_ENTITY_WITHOUT_LIFECYCLE', `${r.id}: logical entity names no lifecycle`, r.id));
+      }
+    }
+    if (r.kind === 'LOGICAL_RELATIONSHIP') {
+      const endpoints = r.endpoints ?? [];
+      if (endpoints.length < 2) {
+        findings.push(makeFinding(Severity.ERROR, 'LOGICAL_RELATIONSHIP_ENDPOINTS', `${r.id}: logical relationship needs at least two endpoints`, r.id));
+      }
+      if (!r.relationship_invariant) {
+        findings.push(makeFinding(Severity.ERROR, 'LOGICAL_RELATIONSHIP_WITHOUT_INVARIANT', `${r.id}: logical relationship names no relationship_invariant`, r.id));
+      }
+    }
+    if (r.kind === 'DERIVED_DATA_PRODUCT') {
+      if (!r.authoritative_source) {
+        findings.push(makeFinding(Severity.ERROR, 'DERIVED_WITHOUT_SOURCE', `${r.id}: derived data product names no authoritative_source`, r.id));
+      } else {
+        const refs = String(r.authoritative_source).split(/[,\s]+/).filter(Boolean);
+        if (!refs.some((x) => sourceIds.has(x))) {
+          findings.push(makeFinding(Severity.ERROR, 'DERIVED_SOURCE_UNRESOLVED', `${r.id}: authoritative_source resolves to no governed domain or entity`, r.id));
+        }
+      }
+    }
+  }
+
+  for (const rule of records(ctx, 'REG-502')) {
+    if (rule.kind !== 'INTEGRITY') continue;
+    const affected = rule.affected_entities ?? [];
+    if (affected.length === 0) {
+      findings.push(makeFinding(Severity.ERROR, 'INTEGRITY_WITHOUT_ENTITIES', `${rule.id}: integrity rule names no affected_entities`, rule.id));
+    }
+    if (!rule.logical_condition) {
+      findings.push(makeFinding(Severity.ERROR, 'INTEGRITY_WITHOUT_CONDITION', `${rule.id}: integrity rule names no logical_condition`, rule.id));
+    }
+  }
+}
+
 // Physical-schema / migration leakage: no chapter or register value may contain
 // physical DDL, migration file references, or other implementation artifacts.
 function validateNoPhysicalLeakage(ctx, findings) {
@@ -246,6 +332,8 @@ export function run(ctx) {
   validateDerivedProductSources(ctx, findings);
   validateLineageSources(ctx, findings);
   validateBacklogItems(ctx, findings);
+  validateGateCorrectness(ctx, findings);
+  validateLogicalModel(ctx, findings);
   validateNoPhysicalLeakage(ctx, findings);
   return findings;
 }

@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T17:29:55.887Z
+Generated: 2026-07-26T18:06:56.264Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T17:29:55.887Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 13 |
+| RATIFIED | 23 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.1.0 | 13 |
-| REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.0.0 | 66 |
-| REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.0.0 | 36 |
-| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.0.0 | 6 |
-| REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 26 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.1.0 | 15 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.2.0 | 23 |
+| REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.1.0 | 121 |
+| REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.1.0 | 52 |
+| REG-503 | Volume 5 Data Decisions | RATIFIED | 1.1.0 | 16 |
+| REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.1.0 | 26 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.2.0 | 25 |
 
 ## Findings by control
 
@@ -108,3 +108,25 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-015 (V5-B): Completes machine-readable Package 1 provenance after mainline merge.
 - APP-V5-015 (V5-B): Preserves the Gate V5-G1 disposition and the PACKAGE-5-1 freeze.
 - APP-V5-015 (V5-B): Reopens no substantive Package 1 content and authorizes no implementation.
+- APP-V5-016 (V5-11): Logical data-model doctrine and modelling conventions defined.
+- APP-V5-016 (V5-11): Authorizes no implementation, physical schema, migration, or procurement.
+- APP-V5-017 (V5-12): Organization, party, identity, membership, and authority logical model defined with strict separation.
+- APP-V5-017 (V5-12): Authorizes no implementation.
+- APP-V5-018 (V5-13): Jurisdiction, season, policy, requirement, and applicability logical model defined.
+- APP-V5-018 (V5-13): Authorizes no implementation.
+- APP-V5-019 (V5-14): Affiliation case, pathway, lifecycle, review, and decision logical model defined with state as governed records.
+- APP-V5-019 (V5-14): Authorizes no implementation.
+- APP-V5-020 (V5-15): Response, evidence, submission, and decision-record logical model defined with custody boundary preserved.
+- APP-V5-020 (V5-15): Authorizes no implementation.
+- APP-V5-021 (V5-16): Financial obligation, payment acknowledgement, reconciliation, and activation logical model defined.
+- APP-V5-021 (V5-16): Payment acknowledgement is distinct from accounting confirmation; approval is distinct from activation.
+- APP-V5-021 (V5-16): Authorizes no implementation.
+- APP-V5-022 (V5-17): Temporal truth, versioning, correction, supersession, and audit logical model defined.
+- APP-V5-022 (V5-17): Authorizes no implementation.
+- APP-V5-023 (V5-18): Logical integrity, cardinality, uniqueness, identity-resolution, and reconciliation rules defined as logical conditions.
+- APP-V5-023 (V5-18): Verification deferred to named future gates; authorizes no implementation.
+- APP-V5-024 (V5-19): Derived data, projection, search, reporting, analytics, and export logical model defined as non-authoritative.
+- APP-V5-024 (V5-19): Authorizes no implementation.
+- APP-V5-025 (V5-20): Logical-model traceability, validation backlog, and downstream constraints defined.
+- APP-V5-025 (V5-20): Records the validation-gate reassignment away from the passed Gate V5-G1.
+- APP-V5-025 (V5-20): Authorizes no implementation.

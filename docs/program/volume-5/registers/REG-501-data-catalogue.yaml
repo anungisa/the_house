@@ -1,7 +1,7 @@
 register_id: REG-501
 name: Volume 5 Data Catalogue
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ==== Information domains (V5-02) ====
   - id: DOMAIN-V5-001
@@ -1243,3 +1243,862 @@ records:
     validation_status: DEFINED
     authorizes_implementation: false
     chapter_ref: V5-07
+  # ==== Package 2: logical entities — organization, party, identity, authority (V5-12) ====
+  - id: LENT-V5-001
+    kind: LOGICAL_ENTITY
+    title: Organization (logical)
+    purpose: The logical representation of a recognized organization as a party to affiliation.
+    owning_domain: DOMAIN-V5-001
+    identity_concept: Governed organization identifier, independent of any natural name or physical key.
+    authority: House
+    lifecycle: recognized, active, suspended, closed
+    cardinality: One organization to many affiliation cases across seasons.
+    optionality: An organization exists independently of any affiliation case.
+    temporal_posture: Continuity preserved across seasons; identity is durable.
+    correction_posture: Corrections applied by supersession preserving prior identity history.
+    scope_posture: Scoped to its jurisdiction and PTSO context.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-001
+  - id: LENT-V5-002
+    kind: LOGICAL_ENTITY
+    title: Club (logical)
+    purpose: A club as a specialized organization within a PTSO jurisdiction.
+    owning_domain: DOMAIN-V5-001
+    identity_concept: Governed organization identifier specialized as a club.
+    authority: House
+    lifecycle: recognized, active, suspended, closed
+    cardinality: Many clubs to one PTSO.
+    optionality: A club is an optional specialization of organization.
+    temporal_posture: Continuity preserved across seasons.
+    correction_posture: Supersession preserves recognition history.
+    scope_posture: Scoped to a PTSO jurisdiction.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-002
+  - id: LENT-V5-003
+    kind: LOGICAL_ENTITY
+    title: PTSO or Member Association (logical)
+    purpose: A jurisdictional parent organization for clubs.
+    owning_domain: DOMAIN-V5-001
+    identity_concept: Governed organization identifier specialized as a jurisdictional association.
+    authority: CurlingCanada
+    lifecycle: recognized, active, closed
+    cardinality: One association to many clubs.
+    optionality: Required parent for club scope.
+    temporal_posture: Durable jurisdictional identity.
+    correction_posture: Supersession preserves history.
+    scope_posture: Defines a jurisdiction boundary.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-003
+  - id: LENT-V5-004
+    kind: LOGICAL_ENTITY
+    title: Person
+    purpose: A natural person governed by The House, distinct from any authenticated account.
+    owning_domain: DOMAIN-V5-003
+    identity_concept: Governed person identifier; a person is never equal to an account or a membership.
+    authority: House
+    lifecycle: active, merged (by governed resolution), retired
+    cardinality: One person to many accounts, memberships, and authorities.
+    optionality: A person may exist without any account.
+    temporal_posture: Durable identity; historical references preserved.
+    correction_posture: Identity resolution by governed supersession, never silent merge.
+    scope_posture: Person governance is House-scoped; authentication is external.
+    classification: PERSONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-005
+  - id: LENT-V5-005
+    kind: LOGICAL_ENTITY
+    title: Authenticated Identity (account)
+    purpose: An externally governed authenticated account bound to a person.
+    owning_domain: DOMAIN-V5-003
+    identity_concept: External authentication subject reference; not a person and not an authority.
+    authority: External
+    lifecycle: active, disabled
+    cardinality: Many accounts to one person.
+    optionality: An account must bind to exactly one governed person.
+    temporal_posture: Binding history preserved.
+    correction_posture: Rebinding is a governed operation with preserved history.
+    scope_posture: Authentication authority is external; binding authority is House.
+    classification: PERSONAL
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-006
+      - EXC-V5-002
+  - id: LENT-V5-006
+    kind: LOGICAL_ENTITY
+    title: Organization Membership
+    purpose: A person's governed membership in an organization.
+    owning_domain: DOMAIN-V5-003
+    identity_concept: Membership fact linking a person to an organization; not an authority.
+    authority: House
+    lifecycle: active, lapsed, revoked
+    cardinality: Many memberships per person and per organization.
+    optionality: Membership does not confer representative or resource authority.
+    temporal_posture: Membership periods preserved across seasons.
+    correction_posture: Governed correction preserves membership history.
+    scope_posture: Scoped to an organization.
+    classification: PERSONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-008
+      - REL-V5-003
+  - id: LENT-V5-007
+    kind: LOGICAL_ENTITY
+    title: Representative Authority
+    purpose: An explicit, scoped delegation allowing a person to act for an organization.
+    owning_domain: DOMAIN-V5-003
+    identity_concept: Delegation fact; distinct from membership and from role labels.
+    authority: House
+    lifecycle: granted, active, expired, revoked
+    cardinality: Many authorities per person and per organization.
+    optionality: Authority is never implied by membership.
+    temporal_posture: Grant and revocation history preserved.
+    correction_posture: Governed correction preserves delegation history.
+    scope_posture: Scoped to an organization and a set of governed actions.
+    classification: PERSONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+    traces_to:
+      - ENTITY-V5-009
+      - REL-V5-007
+  - id: LENT-V5-008
+    kind: LOGICAL_ENTITY
+    title: Reviewer Assignment
+    purpose: The binding of an assigned reviewer to review activity on an affiliation case.
+    owning_domain: DOMAIN-V5-013
+    identity_concept: Assignment fact; distinct from a reviewer role.
+    authority: House
+    lifecycle: assigned, active, released
+    cardinality: One case to one active reviewer assignment at a time.
+    optionality: A reviewer role is not an assignment.
+    temporal_posture: Assignment history preserved.
+    correction_posture: Reassignment is governed and preserves prior assignment.
+    scope_posture: Scoped to a case and jurisdiction.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+    traces_to:
+      - ENTITY-V5-010
+      - REL-V5-005
+  # ==== Package 2: logical entities — jurisdiction, season, policy, requirement (V5-13) ====
+  - id: LENT-V5-009
+    kind: LOGICAL_ENTITY
+    title: Jurisdiction (logical)
+    purpose: A governed jurisdiction boundary for scope and authority.
+    owning_domain: DOMAIN-V5-004
+    identity_concept: Governed jurisdiction identifier.
+    authority: CurlingCanada
+    lifecycle: active, superseded
+    cardinality: One jurisdiction to many organizations and cases.
+    optionality: Required scope boundary for governed data.
+    temporal_posture: Jurisdiction changes preserved historically.
+    correction_posture: Supersession preserves prior jurisdiction context.
+    scope_posture: Defines the cross-scope fail-closed boundary.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-13
+    traces_to:
+      - DOMAIN-V5-004
+  - id: LENT-V5-010
+    kind: LOGICAL_ENTITY
+    title: Season (logical)
+    purpose: A governed season defining the temporal boundary of affiliation cases.
+    owning_domain: DOMAIN-V5-005
+    identity_concept: Governed season identifier with unique boundaries.
+    authority: CurlingCanada
+    lifecycle: upcoming, current, closed
+    cardinality: One season to many affiliation cases.
+    optionality: Every affiliation case belongs to exactly one season.
+    temporal_posture: Seasons do not overlap for a jurisdiction.
+    correction_posture: Season boundary corrections are governed.
+    scope_posture: Scoped by jurisdiction where variant seasons apply.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-13
+    traces_to:
+      - DOMAIN-V5-005
+      - TEST-V5-006
+  - id: LENT-V5-011
+    kind: LOGICAL_ENTITY
+    title: Policy Version
+    purpose: A governed, versioned policy applicable to affiliation.
+    owning_domain: DOMAIN-V5-008
+    identity_concept: Policy identifier plus governed version.
+    authority: House
+    lifecycle: draft, effective, superseded
+    cardinality: One policy to many versions; one version to many requirement versions.
+    optionality: Applicability is by effective date and jurisdiction.
+    temporal_posture: Effective and superseded times preserved; prior versions never mutated.
+    correction_posture: New versions supersede; history preserved.
+    scope_posture: May be scoped by jurisdiction.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-13
+    traces_to:
+      - DOMAIN-V5-008
+      - TEST-V5-007
+  - id: LENT-V5-012
+    kind: LOGICAL_ENTITY
+    title: Requirement Version
+    purpose: A governed, versioned requirement under a policy version.
+    owning_domain: DOMAIN-V5-008
+    identity_concept: Requirement identifier plus governed version, bound to a policy version.
+    authority: House
+    lifecycle: draft, effective, superseded
+    cardinality: Many requirement versions to one policy version.
+    optionality: A requirement applies only under its effective policy version.
+    temporal_posture: Applicability resolved at case-relevant time.
+    correction_posture: Supersession preserves prior requirement text.
+    scope_posture: Inherits policy-version scope.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-13
+    traces_to:
+      - DOMAIN-V5-008
+  # ==== Package 2: logical entities — affiliation case, pathway, review, decision (V5-14) ====
+  - id: LENT-V5-013
+    kind: LOGICAL_ENTITY
+    title: Affiliation Case
+    purpose: The governed case representing an organization's affiliation for a season.
+    owning_domain: DOMAIN-V5-006
+    identity_concept: Governed case identifier scoped to organization and season.
+    authority: House
+    lifecycle: draft, submitted, under_review, approved, active, suspended, revoked, closed, archived
+    cardinality: One case per organization per season.
+    optionality: A case requires exactly one organization and one season.
+    temporal_posture: Lifecycle transitions preserved as history.
+    correction_posture: State changes only through governed transitions; corrections by supersession.
+    scope_posture: Scoped to organization, jurisdiction, and season.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+    traces_to:
+      - DOMAIN-V5-006
+      - REL-V5-001
+  - id: LENT-V5-014
+    kind: LOGICAL_ENTITY
+    title: Pathway
+    purpose: The governed pathway or category an affiliation case follows.
+    owning_domain: DOMAIN-V5-007
+    identity_concept: Governed pathway identifier applicable to a case.
+    authority: House
+    lifecycle: applicable, superseded
+    cardinality: One case to one applicable pathway.
+    optionality: Pathway determines applicable requirement set.
+    temporal_posture: Pathway applicability resolved at case time.
+    correction_posture: Pathway change is a governed correction.
+    scope_posture: Scoped by jurisdiction and season.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+    traces_to:
+      - DOMAIN-V5-007
+  # ==== Package 2: logical entities — response, evidence, submission, decision record (V5-15) ====
+  - id: LENT-V5-015
+    kind: LOGICAL_ENTITY
+    title: Response
+    purpose: A governed response that satisfies a requirement version for a case.
+    owning_domain: DOMAIN-V5-009
+    identity_concept: Governed response identifier bound to a case and requirement version.
+    authority: House
+    lifecycle: draft, submitted, accepted, rejected
+    cardinality: One response per requirement version per case.
+    optionality: Completeness is derived from responses for the applicable requirement set.
+    temporal_posture: Response history preserved.
+    correction_posture: Correction by governed supersession.
+    scope_posture: Scoped to a case.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+    traces_to:
+      - DOMAIN-V5-009
+  - id: LENT-V5-016
+    kind: LOGICAL_ENTITY
+    title: Evidence Metadata
+    purpose: Governed metadata describing evidence that supports a response.
+    owning_domain: DOMAIN-V5-010
+    identity_concept: Governed evidence-metadata identifier referencing an external binary.
+    authority: House
+    lifecycle: recorded, superseded, withdrawn
+    cardinality: Many evidence items to one response.
+    optionality: Evidence binary content is held externally (system of record External).
+    temporal_posture: Evidence metadata history preserved.
+    correction_posture: Withdrawal and replacement are governed operations.
+    scope_posture: Access scoped by classification.
+    classification: RESTRICTED_EVIDENCE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+    traces_to:
+      - DOMAIN-V5-010
+      - EXC-V5-001
+  - id: LENT-V5-018
+    kind: LOGICAL_ENTITY
+    title: Decision Record
+    purpose: A governed decision resolving an affiliation case review.
+    owning_domain: DOMAIN-V5-014
+    identity_concept: Governed decision-record identifier bound to a case.
+    authority: House
+    lifecycle: recorded (immutable)
+    cardinality: One active decision per case review outcome.
+    optionality: A decision is distinct from activation.
+    temporal_posture: Decision records are immutable and preserved.
+    correction_posture: Superseding decisions preserve prior decisions.
+    scope_posture: Scoped to a case.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+    traces_to:
+      - DOMAIN-V5-014
+  # ==== Package 2: logical entities — financial obligation, payment, reconciliation, activation (V5-16) ====
+  - id: LENT-V5-019
+    kind: LOGICAL_ENTITY
+    title: Fee Obligation
+    purpose: A governed financial obligation scoped to an affiliation case.
+    owning_domain: DOMAIN-V5-015
+    identity_concept: Governed fee-obligation identifier scoped to a case and season.
+    authority: House
+    lifecycle: assessed, outstanding, satisfied, waived
+    cardinality: One or more obligations per case.
+    optionality: An obligation exists independently of any payment.
+    temporal_posture: Obligation history preserved.
+    correction_posture: Governed correction preserves prior obligation state.
+    scope_posture: Scoped to finance authority.
+    classification: FINANCIAL_STATUS
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+    traces_to:
+      - DOMAIN-V5-015
+      - REL-V5-006
+  - id: LENT-V5-020
+    kind: LOGICAL_ENTITY
+    title: Payment Acknowledgement
+    purpose: An externally sourced acknowledgement that a payment was received.
+    owning_domain: DOMAIN-V5-016
+    identity_concept: External payment reference; not an accounting confirmation.
+    authority: External
+    lifecycle: acknowledged
+    cardinality: Many acknowledgements to one obligation.
+    optionality: Acknowledgement is not proof of accounting reconciliation.
+    temporal_posture: Acknowledgement time preserved.
+    correction_posture: Corrections sourced from the external system are governed on import.
+    scope_posture: External system of record.
+    classification: FINANCIAL_STATUS
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+    traces_to:
+      - DOMAIN-V5-016
+      - ASM-V5-003
+  - id: LENT-V5-021
+    kind: LOGICAL_ENTITY
+    title: Accounting Confirmation
+    purpose: An externally sourced confirmation that a payment is accounted and settled.
+    owning_domain: DOMAIN-V5-017
+    identity_concept: External accounting reference distinct from payment acknowledgement.
+    authority: External
+    lifecycle: confirmed
+    cardinality: Many confirmations to one obligation.
+    optionality: Confirmation is required for reconciliation, distinct from acknowledgement.
+    temporal_posture: Confirmation time preserved.
+    correction_posture: Governed on import.
+    scope_posture: External system of record.
+    classification: FINANCIAL_STATUS
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+    traces_to:
+      - DOMAIN-V5-017
+  - id: LENT-V5-022
+    kind: LOGICAL_ENTITY
+    title: Reconciliation Record
+    purpose: A governed reconciliation binding obligation, acknowledgement, and confirmation.
+    owning_domain: DOMAIN-V5-018
+    identity_concept: Governed reconciliation identifier.
+    authority: House
+    lifecycle: pending, reconciled, exception
+    cardinality: One reconciliation per obligation resolution.
+    optionality: Reconciliation requires both acknowledgement and confirmation.
+    temporal_posture: Reconciliation history preserved.
+    correction_posture: Exceptions resolved by governed correction.
+    scope_posture: Finance-authority scoped.
+    classification: FINANCIAL_STATUS
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+    traces_to:
+      - DOMAIN-V5-018
+      - TEST-V5-011
+  - id: LENT-V5-023
+    kind: LOGICAL_ENTITY
+    title: Activation Record
+    purpose: A governed activation that follows an approval decision and reconciliation.
+    owning_domain: DOMAIN-V5-019
+    identity_concept: Governed activation identifier bound to a case.
+    authority: House
+    lifecycle: activated, suspended, revoked
+    cardinality: One active activation per case.
+    optionality: Activation is distinct from the approval decision that authorizes it.
+    temporal_posture: Activation history preserved.
+    correction_posture: Suspension and revocation are governed transitions.
+    scope_posture: Scoped to a case.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+    traces_to:
+      - DOMAIN-V5-019
+  # ==== Package 2: state, snapshot, provenance, correction records (V5-17) ====
+  - id: STATE-V5-001
+    kind: STATE_RECORD
+    title: Affiliation Case State
+    purpose: The governed current-state record for an affiliation case lifecycle.
+    owning_domain: DOMAIN-V5-006
+    identity_concept: Case identifier plus governed state; state is a record, not a mutable field.
+    authority: House
+    lifecycle: derived from governed transitions only
+    cardinality: One current-state record per case, with preserved transition history.
+    state_semantics: State changes only through governed transitions recorded as history.
+    temporal_posture: Effective and recorded times preserved for each transition.
+    correction_posture: State is never silently mutated; corrections are governed transitions.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+    traces_to:
+      - LENT-V5-013
+  - id: SNAP-V5-001
+    kind: SNAPSHOT
+    title: Submission Snapshot
+    purpose: An immutable snapshot of a case's responses and evidence at submission.
+    owning_domain: DOMAIN-V5-012
+    identity_concept: Governed snapshot identifier bound to a case and submission time.
+    authority: House
+    lifecycle: captured (immutable)
+    cardinality: One snapshot per submission event.
+    snapshot_semantics: Snapshots are immutable and never edited; resubmission creates a new snapshot.
+    temporal_posture: Captures state as known at submission time.
+    correction_posture: Not correctable; superseded by a later snapshot.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+    traces_to:
+      - DOMAIN-V5-012
+  - id: PROV-V5-001
+    kind: PROVENANCE_RECORD
+    title: Audit Event
+    purpose: An append-only provenance record of a governed transition or action.
+    owning_domain: DOMAIN-V5-023
+    identity_concept: Governed audit-event identifier; append-only and never mutated.
+    authority: House
+    lifecycle: appended (immutable)
+    cardinality: Many audit events per governed entity.
+    provenance_semantics: Append-only; records actor, action, time, and correlation.
+    temporal_posture: Recorded time preserved; ordering preserved.
+    correction_posture: Not correctable; corrections are new appended events.
+    classification: SECURITY_AUDIT
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+    traces_to:
+      - DOMAIN-V5-023
+  - id: PROV-V5-002
+    kind: PROVENANCE_RECORD
+    title: Lineage Record
+    purpose: A provenance record linking derived data to its authoritative source.
+    owning_domain: DOMAIN-V5-024
+    identity_concept: Governed lineage identifier linking a derived product to its source.
+    authority: House
+    lifecycle: appended
+    cardinality: Many lineage records per derived product.
+    provenance_semantics: Records source, derivation, and refresh time.
+    temporal_posture: Refresh time preserved.
+    correction_posture: New lineage supersedes prior for the same refresh.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+    traces_to:
+      - DOMAIN-V5-024
+  - id: CORR-V5-001
+    kind: CORRECTION_RECORD
+    title: Administrative Correction
+    purpose: A governed correction that supersedes a prior governed fact while preserving history.
+    owning_domain: DOMAIN-V5-022
+    identity_concept: Governed correction identifier referencing the superseded fact.
+    authority: House
+    lifecycle: recorded (immutable)
+    cardinality: Many corrections per corrected entity.
+    correction_semantics: Supersession preserves prior state; never a silent overwrite.
+    temporal_posture: Correction time and effective time preserved.
+    correction_posture: Requires named correction authority.
+    classification: PRIVILEGED_ADMIN
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+    traces_to:
+      - DOMAIN-V5-022
+      - ADR-V5-005
+  # ==== Package 2: value objects and reference/code data (V5-11 / V5-13) ====
+  - id: VOBJ-V5-001
+    kind: VALUE_OBJECT
+    title: Governed Identifier
+    purpose: A governed, opaque identity value with no independent lifecycle.
+    value_semantics: Identity of an entity is carried by a governed identifier, never a physical key.
+    identity_concept: Value has no identity of its own; it identifies an owning entity.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-11
+  - id: VOBJ-V5-002
+    kind: VALUE_OBJECT
+    title: Financial Status Amount
+    purpose: A monetary value representing an obligation or acknowledgement amount.
+    value_semantics: Amount and currency carried as a value; not an independent entity.
+    classification: FINANCIAL_STATUS
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+  - id: VOBJ-V5-003
+    kind: VALUE_OBJECT
+    title: Classification Label
+    purpose: A governed classification value applied to information.
+    value_semantics: Classification carried as a controlled value; drives access and minimization.
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-11
+  - id: REFD-V5-001
+    kind: REFERENCE_DATA
+    title: Jurisdiction Reference Data
+    purpose: Governed reference data enumerating recognized jurisdictions.
+    owning_domain: DOMAIN-V5-004
+    reference_semantics: Controlled reference set; changes are governed and versioned.
+    authority: CurlingCanada
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-13
+  - id: CODE-V5-001
+    kind: CODE_SET
+    title: Affiliation Lifecycle State Code Set
+    purpose: The controlled set of governed affiliation lifecycle states.
+    owning_domain: DOMAIN-V5-006
+    reference_semantics: Closed code set aligned with the governance-kernel lifecycle; changes are governed.
+    authority: House
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+  - id: CODE-V5-002
+    kind: CODE_SET
+    title: Case Decision Outcome Code Set
+    purpose: The controlled set of governed decision outcomes for a case review.
+    owning_domain: DOMAIN-V5-014
+    reference_semantics: Closed code set; changes are governed and versioned.
+    authority: House
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+  # ==== Package 2: logical relationships (V5-12 .. V5-17) ====
+  - id: LREL-V5-001
+    kind: LOGICAL_RELATIONSHIP
+    title: Person holds authenticated identity
+    purpose: Binds a governed person to one or more external authenticated accounts.
+    endpoints:
+      - LENT-V5-004
+      - LENT-V5-005
+    relationship_invariant: A person is not equal to an account; binding is explicit and governed.
+    cardinality: One person to many accounts.
+    optionality: An account must bind to exactly one person.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+  - id: LREL-V5-002
+    kind: LOGICAL_RELATIONSHIP
+    title: Person holds organization membership
+    purpose: Binds a person to a membership in an organization.
+    endpoints:
+      - LENT-V5-004
+      - LENT-V5-006
+    relationship_invariant: Membership does not confer representative authority.
+    cardinality: Many memberships per person.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+  - id: LREL-V5-003
+    kind: LOGICAL_RELATIONSHIP
+    title: Representative authority scopes a person to an organization
+    purpose: An explicit delegation lets a person act for an organization.
+    endpoints:
+      - LENT-V5-007
+      - LENT-V5-001
+    relationship_invariant: Authority is explicit and scoped, never implied by membership or role.
+    cardinality: Many authorities per organization.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-12
+  - id: LREL-V5-004
+    kind: LOGICAL_RELATIONSHIP
+    title: Organization holds affiliation case
+    purpose: Binds an organization to a governed affiliation case for a season.
+    endpoints:
+      - LENT-V5-001
+      - LENT-V5-013
+    relationship_invariant: A case belongs to exactly one organization.
+    cardinality: One organization to many cases across seasons.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+  - id: LREL-V5-005
+    kind: LOGICAL_RELATIONSHIP
+    title: Affiliation case belongs to season
+    purpose: Scopes an affiliation case to exactly one season.
+    endpoints:
+      - LENT-V5-013
+      - LENT-V5-010
+    relationship_invariant: One case per organization per season.
+    cardinality: Many cases to one season.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+  - id: LREL-V5-006
+    kind: LOGICAL_RELATIONSHIP
+    title: Requirement version applies under policy version
+    purpose: Binds a requirement version to its governing policy version.
+    endpoints:
+      - LENT-V5-012
+      - LENT-V5-011
+    relationship_invariant: A requirement applies only under its effective policy version.
+    cardinality: Many requirement versions to one policy version.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-13
+  - id: LREL-V5-007
+    kind: LOGICAL_RELATIONSHIP
+    title: Response satisfies requirement version
+    purpose: A response satisfies an applicable requirement version for a case.
+    endpoints:
+      - LENT-V5-015
+      - LENT-V5-012
+    relationship_invariant: Completeness is derived from responses to the applicable requirement set.
+    cardinality: One response per requirement version per case.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+  - id: LREL-V5-008
+    kind: LOGICAL_RELATIONSHIP
+    title: Evidence metadata supports response
+    purpose: Binds evidence metadata to the response it supports.
+    endpoints:
+      - LENT-V5-016
+      - LENT-V5-015
+    relationship_invariant: Evidence binary content remains external; only metadata is governed here.
+    cardinality: Many evidence items to one response.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+  - id: LREL-V5-009
+    kind: LOGICAL_RELATIONSHIP
+    title: Submission snapshot captures case state
+    purpose: An immutable snapshot captures the case responses and evidence at submission.
+    endpoints:
+      - SNAP-V5-001
+      - LENT-V5-013
+    relationship_invariant: A snapshot is immutable; resubmission creates a new snapshot.
+    cardinality: Many snapshots to one case.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+  - id: LREL-V5-010
+    kind: LOGICAL_RELATIONSHIP
+    title: Decision record resolves affiliation case
+    purpose: Binds a decision record to the case review it resolves.
+    endpoints:
+      - LENT-V5-018
+      - LENT-V5-013
+    relationship_invariant: A decision is distinct from the activation it may authorize.
+    cardinality: One active decision per case review outcome.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-15
+  - id: LREL-V5-011
+    kind: LOGICAL_RELATIONSHIP
+    title: Reviewer assignment binds reviewer to case
+    purpose: Binds an assigned reviewer to an affiliation case under review.
+    endpoints:
+      - LENT-V5-008
+      - LENT-V5-013
+    relationship_invariant: An assignment is not a reviewer role.
+    cardinality: One active assignment per case.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-14
+  - id: LREL-V5-012
+    kind: LOGICAL_RELATIONSHIP
+    title: Fee obligation scoped to affiliation case
+    purpose: Scopes a governed fee obligation to a case.
+    endpoints:
+      - LENT-V5-019
+      - LENT-V5-013
+    relationship_invariant: Financial status is scoped to explicit finance authority.
+    cardinality: One or more obligations per case.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+  - id: LREL-V5-013
+    kind: LOGICAL_RELATIONSHIP
+    title: Payment acknowledgement references fee obligation
+    purpose: Links an external payment acknowledgement to a fee obligation.
+    endpoints:
+      - LENT-V5-020
+      - LENT-V5-019
+    relationship_invariant: Acknowledgement is not accounting confirmation.
+    cardinality: Many acknowledgements to one obligation.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+  - id: LREL-V5-014
+    kind: LOGICAL_RELATIONSHIP
+    title: Reconciliation binds obligation, acknowledgement, and confirmation
+    purpose: Binds a reconciliation record to the obligation, acknowledgement, and confirmation it resolves.
+    endpoints:
+      - LENT-V5-022
+      - LENT-V5-019
+    relationship_invariant: Reconciliation requires both acknowledgement and accounting confirmation.
+    cardinality: One reconciliation per obligation resolution.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+  - id: LREL-V5-015
+    kind: LOGICAL_RELATIONSHIP
+    title: Activation follows decision and reconciliation
+    purpose: An activation record follows an approval decision and required reconciliation.
+    endpoints:
+      - LENT-V5-023
+      - LENT-V5-018
+    relationship_invariant: Approval is not activation; activation is a distinct governed fact.
+    cardinality: One active activation per case.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-16
+  - id: LREL-V5-016
+    kind: LOGICAL_RELATIONSHIP
+    title: Correction record supersedes prior fact
+    purpose: A correction record supersedes a prior governed fact while preserving history.
+    endpoints:
+      - CORR-V5-001
+      - LENT-V5-013
+    relationship_invariant: Corrections preserve prior history via supersession.
+    cardinality: Many corrections to one corrected entity.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+  - id: LREL-V5-017
+    kind: LOGICAL_RELATIONSHIP
+    title: Audit event records governed transition
+    purpose: An append-only audit event records a governed transition on a case.
+    endpoints:
+      - PROV-V5-001
+      - LENT-V5-013
+    relationship_invariant: Audit events are append-only and never mutated.
+    cardinality: Many audit events to one case.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-17
+  # ==== Package 2: derived data products (V5-19) ====
+  - id: DERV-V5-001
+    kind: DERIVED_DATA_PRODUCT
+    title: Organization affiliation status projection
+    purpose: A non-authoritative projection of organization affiliation status for experience layers.
+    authoritative_source: LENT-V5-013
+    derived_semantics: Rebuildable from authoritative case state; never a source of truth.
+    staleness_representation: Carries a refresh time and staleness indicator.
+    consumer: Button-facing organization views
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-19
+    traces_to:
+      - ADR-V5-004
+  - id: DERV-V5-002
+    kind: DERIVED_DATA_PRODUCT
+    title: Reviewer worklist projection
+    purpose: A non-authoritative projection of cases awaiting review.
+    authoritative_source: LENT-V5-013 LENT-V5-008
+    derived_semantics: Rebuildable from case state and reviewer assignments.
+    staleness_representation: Carries a refresh time.
+    consumer: Reviewers
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-19
+  - id: DERV-V5-003
+    kind: DERIVED_DATA_PRODUCT
+    title: Financial status projection
+    purpose: A non-authoritative projection of case financial status.
+    authoritative_source: LENT-V5-019 LENT-V5-022
+    derived_semantics: Rebuildable from obligations and reconciliation; not an accounting source.
+    staleness_representation: Carries a refresh time and reconciliation state.
+    consumer: Finance and Button views
+    classification: FINANCIAL_STATUS
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-19
+  - id: DERV-V5-004
+    kind: DERIVED_DATA_PRODUCT
+    title: Search index projection
+    purpose: A non-authoritative search projection over governed entities.
+    authoritative_source: LENT-V5-001 LENT-V5-013
+    derived_semantics: Rebuildable index; preserves classification and minimization.
+    staleness_representation: Carries an index refresh time.
+    consumer: Search consumers
+    classification: INTERNAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-19
+  - id: DERV-V5-005
+    kind: DERIVED_DATA_PRODUCT
+    title: Analytics aggregate export
+    purpose: A non-authoritative aggregate export preserving governed semantics and minimization.
+    authoritative_source: DOMAIN-V5-025
+    derived_semantics: Aggregated and minimized; rebuildable from authoritative sources.
+    staleness_representation: Carries an export time.
+    consumer: Analytics consumers
+    classification: ANALYTICS_AGGREGATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    chapter_ref: V5-19
+    traces_to:
+      - TEST-V5-013
