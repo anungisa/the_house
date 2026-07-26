@@ -1,0 +1,21 @@
+{
+  "generated_at": null,
+  "stakeholders_with_governed_authority": [
+    "STK-V3-001",
+    "STK-V3-002",
+    "STK-V3-005",
+    "STK-V3-006",
+    "STK-V3-007",
+    "STK-V3-008",
+    "STK-V3-011",
+    "STK-V3-016"
+  ],
+  "button_primary_with_governed_authority_conflict": [],
+  "requirement_product_distribution": {
+    "House": 52,
+    "Button": 1,
+    "Both": 0,
+    "Neither": 0
+  },
+  "requirements_authorizing_implementation": []
+}

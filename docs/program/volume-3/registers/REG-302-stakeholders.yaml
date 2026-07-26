@@ -1,0 +1,200 @@
+register_id: REG-302
+name: Volume 3 Stakeholder and Persona Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: STK-V3-001
+    name: Curling Canada National Operations
+    type: institutional
+    description: >-
+      National sport organization accountable for the affiliation service as system-of-record
+      operator; owns national policy, national oversight, and material-commitment escalation
+      into the executive authority.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-01
+      - V2-28
+  - id: STK-V3-002
+    name: PTSO / Member Association
+    type: member_organization
+    description: >-
+      Provincial/territorial sport organization or member association holding jurisdictional
+      authority over clubs within its territory; participates in recognition, review, and
+      jurisdictional decisions.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-01
+      - V2-07
+  - id: STK-V3-003
+    name: Club
+    type: club
+    description: >-
+      Curling club or affiliating organization that is the subject of the affiliation service;
+      supplies evidence and fees and is recognized, reviewed, and activated.
+    primary_product: Both
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-02
+      - V2-07
+  - id: STK-V3-004
+    name: Club Representative
+    type: club
+    description: >-
+      Individual acting for a club through the experience layer (The Button); initiates and
+      responds to affiliation service interactions but holds no governed decision authority.
+    primary_product: Button
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-02
+      - V2-20
+  - id: STK-V3-005
+    name: National Reviewer
+    type: administrator
+    description: >-
+      Reviewer operating at national scope who evaluates affiliation submissions against
+      requirements and records review outcomes without owning finance or policy authority.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-03
+      - V2-15
+  - id: STK-V3-006
+    name: Jurisdictional Reviewer
+    type: administrator
+    description: >-
+      Reviewer operating at PTSO/jurisdictional scope; evaluates submissions routed to the
+      jurisdiction and records review outcomes within delegated authority.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-03
+      - V2-15
+  - id: STK-V3-007
+    name: Compliance and Policy Function
+    type: institutional
+    description: >-
+      Function accountable for affiliation policy interpretation, compliance flags, and
+      exception-policy authority; distinct from reviewers who apply policy operationally.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-03
+      - V2-12
+  - id: STK-V3-008
+    name: Finance and Reconciliation Operations
+    type: institutional
+    description: >-
+      Function accountable for fee obligation, reconciliation of processor and ledger results,
+      and financial exception handling; a precondition-owner for activation.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-05
+      - V2-16
+  - id: STK-V3-009
+    name: Support and Service Operations
+    type: administrator
+    description: >-
+      Function accountable for support intake, case ownership, and service continuity; assists
+      users and routes cases but does not acquire affiliation decision authority.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-06
+      - V2-17
+  - id: STK-V3-010
+    name: Technology and Product Stewardship
+    type: institutional
+    description: >-
+      Function accountable for product-and-technology consistency and stewardship of the
+      operating model's supporting systems; holds no governed affiliation-lifecycle authority.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-01
+      - V2-28
+  - id: STK-V3-011
+    name: Privacy Authority
+    type: institutional
+    description: >-
+      Function accountable for privacy governance, restricted-evidence access decisions, and
+      privacy-incident handling within the operating model.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-06
+      - V2-24
+  - id: STK-V3-012
+    name: Bilingual Content Owner
+    type: institutional
+    description: >-
+      Function accountable for official-language parity of service content and for triage and
+      remediation of bilingual-content defects.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-06
+      - V2-24
+  - id: STK-V3-013
+    name: Accessibility Accountability
+    type: institutional
+    description: >-
+      Function accountable for accessibility of the service experience and for triage and
+      remediation of accessibility issues.
+    primary_product: House
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-06
+      - V2-24
+  - id: STK-V3-014
+    name: External Payment Processor
+    type: external_system
+    description: >-
+      External service that executes payment collection; produces processor results consumed by
+      reconciliation. Executes payment but holds no affiliation decision authority.
+    primary_product: Neither
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-05
+      - V2-16
+  - id: STK-V3-015
+    name: External Accounting and Ledger System
+    type: external_system
+    description: >-
+      External accounting authority that confirms financial postings; produces ledger
+      confirmations consumed by reconciliation operations.
+    primary_product: Neither
+    governed_authority: false
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-05
+      - V2-16
+  - id: STK-V3-016
+    name: Executive Material-Commitment Authority
+    type: executive
+    description: >-
+      Executive authority that accepts material organizational commitments; the acceptance
+      point beyond which staffing, cost, procurement, and implementation could be authorized in
+      a later volume. Not exercised in Volume 3 definition work.
+    primary_product: House
+    governed_authority: true
+    validation_status: stakeholder_validation_pending
+    source_refs:
+      - V3-00
+      - V2-33

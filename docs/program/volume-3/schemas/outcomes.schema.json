@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "outcomes.schema.json",
+  "title": "REG-301 Volume 3 Outcome Register",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-301" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "stakeholder_refs", "product", "source_refs"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^OUT-V3-[0-9]{3}$" },
+          "statement": { "type": "string" },
+          "stakeholder_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "pattern": "^STK-V3-[0-9]{3}$" }
+          },
+          "product": { "$ref": "common.schema.json#/definitions/product" },
+          "success_signal": { "type": "string" },
+          "validation_status": {
+            "type": "string",
+            "enum": ["author_asserted", "stakeholder_validation_pending", "stakeholder_validated"]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+register_id: REG-300
+name: Volume 3 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V3-00
+    title: Volume Control and Inheritance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-00-volume-control-and-inheritance.md
+    gate: V3-G1
+  - id: V3-01
+    title: Target Institutional Operating Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-01-target-institutional-operating-model.md
+    gate: V3-G1
+  - id: V3-02
+    title: Affiliation Service Operating Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-02-affiliation-service-operating-model.md
+    gate: V3-G1
+  - id: V3-03
+    title: Roles, Accountability, Delegation, and Segregation of Duties
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-03-roles-accountability-delegation-segregation.md
+    gate: V3-G1
+  - id: V3-04
+    title: Work Management, Queues, Handoffs, and Service Controls
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-04-work-management-queues-handoffs-service-controls.md
+    gate: V3-G1
+  - id: V3-05
+    title: Financial and Reconciliation Operating Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-05-financial-and-reconciliation-operating-model.md
+    gate: V3-G1
+  - id: V3-06
+    title: Support, Privacy, Continuity, and Operational Assurance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-06-support-privacy-continuity-operational-assurance.md
+    gate: V3-G1
+  - id: V3-07
+    title: Operating Measures, Assumptions, and Validation Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-07-operating-measures-assumptions-validation-backlog.md
+    gate: V3-G1
+  - id: V3-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-A-package-1-closure-record.md
+    gate: V3-G1

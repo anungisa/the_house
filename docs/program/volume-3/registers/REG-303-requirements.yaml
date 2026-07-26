@@ -1,0 +1,585 @@
+register_id: REG-303
+name: Volume 3 Requirement and Acceptance Register
+status: RATIFIED
+version: 1.0.0
+records:
+  # ---- Capabilities (CAP -> OUT) ----
+  - id: CAP-V3-001
+    level: CAP
+    statement: >-
+      The program shall define a target institutional operating model spanning national,
+      jurisdictional, club, review, compliance, finance, support, stewardship, and external
+      provider functions.
+    product: House
+    traces_to:
+      - OUT-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-002
+    level: CAP
+    statement: >-
+      The program shall define an affiliation service operating model that realizes the three
+      product pathways across the full service lifecycle.
+    product: House
+    traces_to:
+      - OUT-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-003
+    level: CAP
+    statement: >-
+      The program shall define roles, accountable decisions, delegation, conflict restrictions,
+      and segregation-of-duty controls for the operating model.
+    product: House
+    traces_to:
+      - OUT-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-004
+    level: CAP
+    statement: >-
+      The program shall define work management for queues, assignment, handoffs, exceptions,
+      escalation, recovery, and audit review.
+    product: House
+    traces_to:
+      - OUT-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-005
+    level: CAP
+    statement: >-
+      The program shall define the financial and reconciliation operating boundary and the
+      dependency between reconciliation and activation.
+    product: House
+    traces_to:
+      - OUT-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-006
+    level: CAP
+    statement: >-
+      The program shall define support, privacy, continuity, and operational-assurance
+      operating models with support holding no affiliation decision authority.
+    product: House
+    traces_to:
+      - OUT-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CAP-V3-007
+    level: CAP
+    statement: >-
+      The program shall define operating measures with explicit classification and a validation
+      backlog carrying owners and future gates for unresolved assumptions.
+    product: House
+    traces_to:
+      - OUT-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Business rules / operating constraints (BR -> CAP) ----
+  - id: BR-V3-001
+    level: BR
+    statement: >-
+      Operating authority shall derive from an accountable function and delegated authority,
+      not from workspace visibility or system access.
+    product: House
+    traces_to:
+      - CAP-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-002
+    level: BR
+    statement: >-
+      A support or service-operations intervention shall not create, alter, or substitute for
+      an affiliation lifecycle decision.
+    product: House
+    traces_to:
+      - CAP-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-003
+    level: BR
+    statement: >-
+      The reviewer who records a review outcome for an application shall not also be the finance
+      authority who confirms that application's reconciliation for activation.
+    product: House
+    traces_to:
+      - CAP-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-004
+    level: BR
+    statement: >-
+      Activation of an affiliation shall depend on a confirmed financial reconciliation result
+      for that affiliation.
+    product: House
+    traces_to:
+      - CAP-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-005
+    level: BR
+    statement: >-
+      Operating measures shall not assert numeric targets, amounts, or service-level commitments
+      that have not been baselined; unbaselined measures shall be marked validation-pending.
+    product: House
+    traces_to:
+      - CAP-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: BR-V3-006
+    level: BR
+    statement: >-
+      Jurisdictional decisions shall remain within the authority of the responsible PTSO or
+      member association except where national authority is explicitly reserved.
+    product: House
+    traces_to:
+      - CAP-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Functional operating requirements (FR -> CAP) ----
+  - id: FR-V3-001
+    level: FR
+    statement: >-
+      The operating model shall define queue ownership, assignment, and reassignment for
+      affiliation work items.
+    product: House
+    traces_to:
+      - CAP-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-03
+    measure_baseline_status: OPERATIONAL_VALIDATION_PENDING
+  - id: FR-V3-002
+    level: FR
+    statement: >-
+      The operating model shall determine and route each affiliation case to the correct pathway
+      (continuity confirmation, renewal with remediation, or new affiliation).
+    product: House
+    traces_to:
+      - CAP-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V3-003
+    level: FR
+    statement: >-
+      The operating model shall define handling of financial reconciliation exceptions and
+      mismatches prior to activation.
+    product: House
+    traces_to:
+      - CAP-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-04
+    measure_baseline_status: FINANCIAL_VALIDATION_PENDING
+  - id: FR-V3-004
+    level: FR
+    statement: >-
+      The operating model shall define support intake, case ownership, and routing without
+      conferring decision authority on support.
+    product: House
+    traces_to:
+      - CAP-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V3-005
+    level: FR
+    statement: >-
+      The operating model shall assign each affiliation case to a jurisdiction and route review
+      to the responsible national or jurisdictional reviewer.
+    product: House
+    traces_to:
+      - CAP-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: FR-V3-006
+    level: FR
+    statement: >-
+      The operating model shall define handoffs, escalation routes, and exception recovery
+      between operating functions.
+    product: House
+    traces_to:
+      - CAP-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Non-functional operating requirements (NFR -> CAP) ----
+  - id: NFR-V3-001
+    level: NFR
+    statement: >-
+      The operating model shall define a continuity and recovery posture for service
+      interruption without asserting unvalidated recovery-time commitments.
+    product: House
+    traces_to:
+      - CAP-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: NFR-V3-002
+    level: NFR
+    statement: >-
+      The operating model shall define bilingual and accessible service operation with owners
+      for defect triage and remediation.
+    product: House
+    traces_to:
+      - CAP-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-05
+    measure_baseline_status: BILINGUAL_VALIDATION_PENDING
+  - id: NFR-V3-003
+    level: NFR
+    statement: >-
+      The operating model shall define auditability of work management including queue history,
+      handoffs, and exception outcomes.
+    product: House
+    traces_to:
+      - CAP-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Operating scenarios (UC -> FR) ----
+  - id: UC-V3-001
+    level: UC
+    statement: >-
+      A club with a current affiliation completes the continuity confirmation pathway with
+      minimal review and progresses to activation.
+    product: House
+    traces_to:
+      - FR-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: continuity_confirmation
+  - id: UC-V3-002
+    level: UC
+    statement: >-
+      A club renewing with outstanding remediation is returned for correction, resubmits, and is
+      re-reviewed under the renewal-with-remediation pathway.
+    product: House
+    traces_to:
+      - FR-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: renewal_with_remediation
+  - id: UC-V3-003
+    level: UC
+    statement: >-
+      A new club completes the new-affiliation pathway from opening through recognition, review,
+      reconciliation, and activation.
+    product: House
+    traces_to:
+      - FR-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: new_affiliation
+  - id: UC-V3-004
+    level: UC
+    statement: >-
+      A reconciliation mismatch is detected, routed to finance operations, resolved, and the
+      affiliation proceeds to or is held from activation accordingly.
+    product: House
+    traces_to:
+      - FR-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: reconciliation
+  - id: UC-V3-005
+    level: UC
+    statement: >-
+      A support case is escalated to the accountable decision function without support altering
+      the affiliation decision itself.
+    product: House
+    traces_to:
+      - FR-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: support
+  - id: UC-V3-006
+    level: UC
+    statement: >-
+      An aging work item is detected in a queue, reassigned, and escalated per the work-
+      management model.
+    product: House
+    traces_to:
+      - FR-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+    service_stage: work_management
+  # ---- Operating rules (RULE -> UC) ----
+  - id: RULE-V3-001
+    level: RULE
+    statement: >-
+      The pathway for an affiliation case is determined by current affiliation status, season
+      currency, and remediation state at service opening.
+    product: House
+    traces_to:
+      - UC-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-002
+    level: RULE
+    statement: >-
+      A returned application re-enters review at the review stage rather than restarting the
+      full pathway, preserving prior review evidence.
+    product: House
+    traces_to:
+      - UC-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: OPERATIONAL_VALIDATION_PENDING
+  - id: RULE-V3-003
+    level: RULE
+    statement: >-
+      Activation is permitted only after a confirmed reconciliation result; an unresolved
+      mismatch holds the case in a reconciliation-pending operating state.
+    product: House
+    traces_to:
+      - UC-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: FINANCIAL_VALIDATION_PENDING
+  - id: RULE-V3-004
+    level: RULE
+    statement: >-
+      Support may progress, annotate, or escalate a case but may not record a review outcome,
+      reconciliation confirmation, or lifecycle decision.
+    product: House
+    traces_to:
+      - UC-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+    rule_classification: POLICY_VALIDATION_PENDING
+  # ---- Operating workflows (WF -> RULE) ----
+  - id: WF-V3-001
+    level: WF
+    statement: >-
+      The normal service workflow proceeds from opening through recognition, review,
+      reconciliation, and activation with defined function ownership at each stage.
+    product: House
+    traces_to:
+      - RULE-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-002
+    level: WF
+    statement: >-
+      The exception workflow handles returns, escalations, and holds and returns the case to the
+      normal workflow when resolved.
+    product: House
+    traces_to:
+      - RULE-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: WF-V3-003
+    level: WF
+    statement: >-
+      The reconciliation workflow consumes processor and ledger results, resolves mismatches,
+      and releases or holds activation.
+    product: House
+    traces_to:
+      - RULE-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Experience handoffs (UX -> WF) ----
+  - id: UX-V3-001
+    level: UX
+    statement: >-
+      The reviewer operating view presents assigned queue items, evidence, and prior review
+      history sufficient to record a review outcome.
+    product: House
+    traces_to:
+      - WF-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: UX-V3-002
+    level: UX
+    statement: >-
+      The club representative experience surfaces service status, returns, and requested
+      corrections through the experience layer without exposing governed decision controls.
+    product: Button
+    traces_to:
+      - WF-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Operating records (DATA -> UX) ----
+  - id: DATA-V3-001
+    level: DATA
+    statement: >-
+      The case-and-queue operating record captures assignment, handoffs, review outcomes, and
+      exception history for audit.
+    product: House
+    traces_to:
+      - UX-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: DATA-V3-002
+    level: DATA
+    statement: >-
+      The reconciliation operating reference captures processor results, ledger confirmations,
+      and mismatch dispositions used for the activation dependency.
+    product: House
+    traces_to:
+      - UX-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Operating controls (CTRL -> BR / NFR) ----
+  - id: CTRL-V3-001
+    level: CTRL
+    statement: >-
+      A segregation-of-duties control ensures the reviewer of an application is not its finance
+      confirmer for activation.
+    product: House
+    traces_to:
+      - BR-V3-003
+    acceptance_ref:
+      - TEST-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V3-002
+    level: CTRL
+    statement: >-
+      An activation-dependency control prevents activation without a confirmed reconciliation
+      result.
+    product: House
+    traces_to:
+      - BR-V3-004
+    acceptance_ref:
+      - TEST-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V3-003
+    level: CTRL
+    statement: >-
+      A support-boundary control ensures support actions cannot record lifecycle decisions,
+      review outcomes, or reconciliation confirmations.
+    product: House
+    traces_to:
+      - BR-V3-002
+    acceptance_ref:
+      - TEST-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V3-004
+    level: CTRL
+    statement: >-
+      A queue-aging control monitors work-item age and triggers reassignment and escalation.
+    product: House
+    traces_to:
+      - NFR-V3-003
+    acceptance_ref:
+      - TEST-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-01
+    measure_baseline_status: OPERATIONAL_VALIDATION_PENDING
+  - id: CTRL-V3-005
+    level: CTRL
+    statement: >-
+      A continuity-and-recovery control defines the operating response to service interruption
+      and the resumption of queued work.
+    product: House
+    traces_to:
+      - NFR-V3-001
+    acceptance_ref:
+      - TEST-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+  - id: CTRL-V3-006
+    level: CTRL
+    statement: >-
+      An operating-measure-baseline control ensures every operating measure is classified and
+      unbaselined measures are surfaced in the validation backlog.
+    product: House
+    traces_to:
+      - BR-V3-005
+    acceptance_ref:
+      - TEST-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+    measure_identifier: MEAS-V3-02
+    measure_baseline_status: BASELINE_PENDING
+  - id: CTRL-V3-007
+    level: CTRL
+    statement: >-
+      A bilingual-and-accessibility assurance control routes defects to the accountable owners
+      for triage and remediation.
+    product: House
+    traces_to:
+      - NFR-V3-002
+    acceptance_ref:
+      - TEST-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+  # ---- Acceptance (TEST -> CTRL) ----
+  - id: TEST-V3-001
+    level: TEST
+    statement: >-
+      Confirm that the operating model prohibits the same actor from being both reviewer and
+      finance confirmer of one application.
+    product: House
+    traces_to:
+      - CTRL-V3-001
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-002
+    level: TEST
+    statement: >-
+      Confirm that the operating model holds activation until a confirmed reconciliation result
+      exists.
+    product: House
+    traces_to:
+      - CTRL-V3-002
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-003
+    level: TEST
+    statement: >-
+      Confirm that support actions cannot record review outcomes, reconciliation confirmations,
+      or lifecycle decisions.
+    product: House
+    traces_to:
+      - CTRL-V3-003
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-004
+    level: TEST
+    statement: >-
+      Confirm that aging work items are detected and trigger reassignment and escalation.
+    product: House
+    traces_to:
+      - CTRL-V3-004
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-005
+    level: TEST
+    statement: >-
+      Confirm that a defined continuity and recovery response exists for service interruption.
+    product: House
+    traces_to:
+      - CTRL-V3-005
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: OPERATIONAL_VALIDATION_PENDING
+  - id: TEST-V3-006
+    level: TEST
+    statement: >-
+      Confirm that every operating measure is classified and unbaselined measures appear in the
+      validation backlog.
+    product: House
+    traces_to:
+      - CTRL-V3-006
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BASELINE_PENDING
+  - id: TEST-V3-007
+    level: TEST
+    statement: >-
+      Confirm that bilingual and accessibility defects route to accountable owners for triage
+      and remediation.
+    product: House
+    traces_to:
+      - CTRL-V3-007
+    authorizes_implementation: false
+    validation_status: author_asserted
+    acceptance_status: BILINGUAL_VALIDATION_PENDING

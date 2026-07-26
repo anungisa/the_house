@@ -1,0 +1,79 @@
+register_id: REG-304
+name: Volume 3 Governance Decision Register
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: DEC-V3-001
+    class: D1
+    question: >-
+      Should the Volume 3 Package 1 business operating-model foundation (V3-00 through V3-07) be
+      adopted as the definitional institutional and service operating model for the affiliation
+      service, without authorizing staffing, cost, procurement, architecture, delivery
+      sequencing, or implementation?
+    decision: >-
+      Adopt V3-00 through V3-07 as the ratified Volume 3 Package 1 operating-model foundation.
+      The chapters define the target institutional operating model, the affiliation service
+      operating model across all three pathways, roles and segregation of duties, work
+      management and service controls, the financial and reconciliation operating boundary,
+      support/privacy/continuity assurance, and operating measures with a validation backlog.
+      Adoption is definition-only and authorizes no construction or commitment.
+    evidence_refs:
+      - V3-00
+      - V3-01
+      - V3-02
+      - V3-03
+      - V3-04
+      - V3-05
+      - V3-06
+      - V3-07
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-002
+    class: D1
+    question: >-
+      Is Gate V3-G1 (Business Operating-Model Foundation Ready) satisfied, and should the
+      Volume 3 Package 1 corpus be frozen at version 1.0.0 through a separate freeze commit?
+    decision: >-
+      Gate V3-G1 is dispositioned BUSINESS_OPERATING_MODEL_FOUNDATION_READY (PASS). All
+      fourteen gate conditions are satisfied to the extent of author assertion: corrected
+      Volume 2 provenance inherited; institutional operating functions defined;
+      responsibilities separated; all three pathways modelled; decision authority
+      distinguished from execution; delegation, escalation, conflicts, and segregation of
+      duties represented; queues, handoffs, exceptions, and recovery defined; financial
+      operating boundary defined; support acquires no governed decision authority; operating
+      measures defined or validation-pending; unresolved assumptions carry owners and future
+      gates; no staffing, cost, procurement, architecture, delivery, or implementation
+      authorized; no master development plan created; and Package 1 receives a separate freeze
+      commit. The Package 1 corpus (V3-00..V3-07, V3-A) is frozen at version 1.0.0.
+    evidence_refs:
+      - GATE-V3-G1
+      - V3-A
+      - REG-305
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-003
+    class: D1
+    question: >-
+      Should Volume 3 Package 2 be authorized as a definition-only continuation of the
+      operating-model work, without authorizing any material commitment?
+    decision: >-
+      Authorize Volume 3 Package 2 as a definition-only continuation of the business
+      operating-model work. Package 2 authorizes no implementation, procurement, technical
+      architecture, delivery sequencing, staffing, or cost, and does not create a master
+      development plan. Executive organizational acceptance remains pending at the
+      material-commitment gate.
+    evidence_refs:
+      - V3-A
+      - GATE-V3-G1
+      - DEC-V3-002
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
