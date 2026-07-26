@@ -1,7 +1,7 @@
 register_id: REG-300
 name: Volume 3 Corpus Index
 status: RATIFIED
-version: 1.6.0
+version: 1.7.0
 records:
   - id: V3-00
     title: Volume Control and Inheritance
@@ -386,4 +386,12 @@ records:
     status: RATIFIED
     version: 1.0.0
     path: docs/program/volume-3/V3-43-integrated-operating-traceability-and-closure-assessment.md
+    gate: V3-G5
+  - id: V3-E
+    title: Volume 3 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-3/V3-E-volume-3-completion-and-release-freeze-record.md
     gate: V3-G5

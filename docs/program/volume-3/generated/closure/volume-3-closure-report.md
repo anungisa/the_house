@@ -1,6 +1,6 @@
 # Volume 3 Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T13:42:39.470Z
+Generated: 2026-07-26T13:48:31.139Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus produced by `npm run governance:closure:v3`. It is not a source of
@@ -10,8 +10,8 @@ Generated: 2026-07-26T13:42:39.470Z
 ## Identifier counts
 
 - Requirement total: 401
-- Stakeholders: 21 | Decisions: 13 | Approvals: 51
-- Chapters: 48 | Registers: 6
+- Stakeholders: 21 | Decisions: 15 | Approvals: 64
+- Chapters: 49 | Registers: 6
 
 | Level | Count |
 | --- | --- |

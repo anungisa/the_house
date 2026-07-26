@@ -1,7 +1,7 @@
 register_id: REG-304
 name: Volume 3 Governance Decision Register
 status: RATIFIED
-version: 1.7.0
+version: 1.8.0
 records:
   - id: DEC-V3-001
     class: D1
@@ -309,5 +309,59 @@ records:
     approver: Aubert Nungisa (Accountable Program Authority)
     evidence_label: AUTHOR-VERIFIED
     executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-014
+    class: D1
+    question: >-
+      Is the affiliation business operating model sufficiently defined across institutional
+      responsibility, seasonal operations, governance, controls, capacity, economics, sourcing,
+      adoption, readiness, and unresolved validation to satisfy Gate V3-G5, freeze Package 5, and
+      freeze the whole Volume 3 corpus?
+    decision: >-
+      Gate V3-G5 disposition is BUSINESS_OPERATING_MODEL_COMPLETE. All seventeen Gate V3-G5
+      conditions are satisfied to the extent of author assertion, as recorded in V3-E. The
+      Package 5 corpus (V3-35 through V3-43 and V3-E) is frozen at version 1.0.0 through a
+      separate freeze commit, and the complete Volume 3 corpus (V3-00 through V3-43, V3-A through
+      V3-E, the Package 1 through Package 4 provenance amendments, REG-300 through REG-305, the
+      schemas and control scripts, and the generated outputs, over inherited Volume 2 v1.0.1) is
+      frozen at version 1.0.0. Changes require the recorded amendment process. Freeze provenance
+      is completed post-merge without reopening substantive Volume 3 content or altering Gate
+      V3-G5. No implementation, procurement, vendor selection, architecture, staffing, headcount,
+      cost, fees, funding, pilot, rollout, or delivery sequencing is authorized, and no master
+      development plan is created. Executive organizational acceptance remains pending at the
+      material-commitment gate.
+    evidence_refs:
+      - GATE-V3-G5
+      - V3-E
+      - REG-305
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V3-015
+    class: D1
+    question: >-
+      Should Volume 4 (Architecture and Engineering) be authorized as the next volume, taking the
+      frozen Volume 3 business operating model as its authoritative business input, without
+      authorizing implementation, procurement, staffing, cost, or a master development plan?
+    decision: >-
+      Authorize Volume 4 (Architecture and Engineering) as the next volume. Volume 4 takes the
+      frozen Volume 3 business operating model as its authoritative business input and must
+      respect the downstream business constraints (V3-41) without inferring approved staffing,
+      volumes, service levels, budget, providers, production deployment authorization,
+      implementation sequencing, or executive commitment. This authorization defines no technical
+      architecture, authorizes no implementation, procurement, vendor selection, staffing,
+      headcount, cost, fees, funding, pilot, rollout, launch, or delivery sequencing, and creates
+      no master development plan. Executive organizational acceptance remains pending at the
+      material-commitment gate.
+    evidence_refs:
+      - GATE-V3-G5
+      - V3-E
+      - V3-41
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: AUTHOR-VERIFIED
+    executive_acceptance: pending
     effective_date: TBD
     status: accepted_by_accountable_authority

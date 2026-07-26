@@ -1,7 +1,7 @@
 register_id: REG-305
 name: Volume 3 Approval Register
 status: RATIFIED
-version: 1.10.0
+version: 1.11.0
 records:
   - id: APP-V3-001
     artifact_id: V3-00
@@ -899,5 +899,220 @@ records:
     authorizes_implementation: false
     conditions:
       - Integrated operating traceability and closure assessment defined; the deterministic closure outputs remain non-authoritative.
+    approved_at: null
+  # ---- Volume 3 completion, Gate V3-G5, and freezes ----
+  - id: APP-V3-061
+    artifact_id: V3-E
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume 3 completion and release-freeze record defined; no implementation, procurement, staffing, cost, or master development plan authorized.
+    approved_at: null
+  - id: APP-V3-062
+    artifact_id: GATE-V3-G5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: BUSINESS_OPERATING_MODEL_COMPLETE
+    closure_record: V3-E
+    scope:
+      - V3-35
+      - V3-36
+      - V3-37
+      - V3-38
+      - V3-39
+      - V3-40
+      - V3-41
+      - V3-42
+      - V3-43
+    conditions:
+      - Package 4 provenance is unambiguous; original merge, provenance-amendment authoring commit, and provenance-amendment merge are distinct.
+      - Packages 1 through 4 are inherited without modifying frozen substantive content.
+      - One integrated business-operating baseline exists.
+      - Operating services and accountable functions are defined.
+      - Authority, delegation, conflicts, and segregation of duties are explicit.
+      - Seasonal operations, exceptions, support, reconciliation, activation, and closure are covered.
+      - Governance, risk, controls, assurance, incidents, and continuous improvement are defined.
+      - Capacity, sourcing, economic, training, and readiness assumptions are defined or validation-pending.
+      - Measures and management evidence have accountable owners.
+      - External dependencies preserve retained Curling Canada authority.
+      - Unresolved validations have owners, evidence needs, and future gates.
+      - Architecture constraints are explicit without defining the architecture.
+      - The executive brief introduces no new authority.
+      - No requirement or decision authorizes staffing, procurement, implementation, pilot, rollout, or launch.
+      - No cost plan, technical architecture, delivery sequence, or master development plan is created.
+      - Volume 3 receives complete line-level and deterministic traceability review.
+      - Package 5 and the complete Volume 3 corpus receive explicit freeze records.
+    approved_at: null
+  - id: APP-V3-063
+    artifact_id: PACKAGE-3-5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: PACKAGE_5_COMPLETE
+    frozen: true
+    amendment_process: >-
+      Frozen Package 5 artifacts are not edited in place. Any change requires a recorded
+      Volume 3 amendment decision in REG-304 and a superseding approval in REG-305 that
+      supersedes this approval, preserving Gate V3-G5 and the frozen version history.
+    frozen_artifacts:
+      - id: V3-35
+        version: 1.0.0
+      - id: V3-36
+        version: 1.0.0
+      - id: V3-37
+        version: 1.0.0
+      - id: V3-38
+        version: 1.0.0
+      - id: V3-39
+        version: 1.0.0
+      - id: V3-40
+        version: 1.0.0
+      - id: V3-41
+        version: 1.0.0
+      - id: V3-42
+        version: 1.0.0
+      - id: V3-43
+        version: 1.0.0
+      - id: V3-E
+        version: 1.0.0
+    conditions:
+      - Package 5 is frozen at version 1.0.0 through a separate freeze commit.
+      - Gate V3-G5 disposition is BUSINESS_OPERATING_MODEL_COMPLETE.
+      - Freeze provenance is completed post-merge without reopening Package 5 content.
+    approved_at: null
+  - id: APP-V3-064
+    artifact_id: VOLUME-3
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: authorized
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: VOLUME_3_COMPLETE
+    frozen: true
+    amendment_process: >-
+      The complete Volume 3 corpus is frozen at version 1.0.0. Frozen artifacts - including the
+      chapters, the Package 1 through Package 4 provenance amendments, the registers REG-300
+      through REG-305, the schemas and control scripts, and the generated traceability and
+      closure outputs - are not edited in place. Any change requires a recorded Volume 3
+      amendment decision in REG-304 and a superseding approval in REG-305 that supersedes this
+      approval, preserving Gate V3-G5, the frozen version history, and the release provenance.
+    package_provenance:
+      inherited_baseline_tag: "central-registration-volume-2-v1.0.1"
+      release_tag: "central-registration-volume-3-v1.0.0"
+      note: >-
+        Whole-volume freeze over inherited Volume 2 v1.0.1. Package 5 authoring, closure tooling,
+        and register expansion are snapshotted in the Package 5 authoring commit; the V3-E closure,
+        Gate V3-G5 disposition, and freezes are recorded in the separate Package 5 closure and
+        freeze commit; the merged commit and release provenance are completed post-merge through
+        the recorded amendment process. Evidence posture: SELF_ATTESTED_AUTHOR_VERIFIED.
+    frozen_artifacts:
+      - id: V3-00
+        version: 1.0.0
+      - id: V3-01
+        version: 1.0.0
+      - id: V3-02
+        version: 1.0.0
+      - id: V3-03
+        version: 1.0.0
+      - id: V3-04
+        version: 1.0.0
+      - id: V3-05
+        version: 1.0.0
+      - id: V3-06
+        version: 1.0.0
+      - id: V3-07
+        version: 1.0.0
+      - id: V3-08
+        version: 1.0.0
+      - id: V3-09
+        version: 1.0.0
+      - id: V3-10
+        version: 1.0.0
+      - id: V3-11
+        version: 1.0.0
+      - id: V3-12
+        version: 1.0.0
+      - id: V3-13
+        version: 1.0.0
+      - id: V3-14
+        version: 1.0.0
+      - id: V3-15
+        version: 1.0.0
+      - id: V3-16
+        version: 1.0.0
+      - id: V3-17
+        version: 1.0.0
+      - id: V3-18
+        version: 1.0.0
+      - id: V3-19
+        version: 1.0.0
+      - id: V3-20
+        version: 1.0.0
+      - id: V3-21
+        version: 1.0.0
+      - id: V3-22
+        version: 1.0.0
+      - id: V3-23
+        version: 1.0.0
+      - id: V3-24
+        version: 1.0.0
+      - id: V3-25
+        version: 1.0.0
+      - id: V3-26
+        version: 1.0.0
+      - id: V3-27
+        version: 1.0.0
+      - id: V3-28
+        version: 1.0.0
+      - id: V3-29
+        version: 1.0.0
+      - id: V3-30
+        version: 1.0.0
+      - id: V3-31
+        version: 1.0.0
+      - id: V3-32
+        version: 1.0.0
+      - id: V3-33
+        version: 1.0.0
+      - id: V3-34
+        version: 1.0.0
+      - id: V3-35
+        version: 1.0.0
+      - id: V3-36
+        version: 1.0.0
+      - id: V3-37
+        version: 1.0.0
+      - id: V3-38
+        version: 1.0.0
+      - id: V3-39
+        version: 1.0.0
+      - id: V3-40
+        version: 1.0.0
+      - id: V3-41
+        version: 1.0.0
+      - id: V3-42
+        version: 1.0.0
+      - id: V3-43
+        version: 1.0.0
+      - id: V3-A
+        version: 1.0.0
+      - id: V3-B
+        version: 1.0.0
+      - id: V3-C
+        version: 1.0.0
+      - id: V3-D
+        version: 1.0.0
+      - id: V3-E
+        version: 1.0.0
+    conditions:
+      - The complete Volume 3 corpus is frozen at version 1.0.0.
+      - Gate V3-G5 disposition is VOLUME_3_COMPLETE.
+      - Volume 0, Volume 1, and Volume 2 remain frozen and are inherited without modification.
+      - Whole-volume freeze provenance is completed post-merge without reopening substantive Volume 3 content.
+      - No requirement or decision authorizes implementation, procurement, staffing, cost, fees, funding, pilot, rollout, launch, or delivery sequencing, and no master development plan is created.
     approved_at: null
 
