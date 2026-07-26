@@ -91,3 +91,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-5/V5-10-data-validation-backlog-and-downstream-constraints.md
     gate: V5-G1
+  - id: V5-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-5/V5-A-package-1-closure-record.md
+    gate: V5-G1

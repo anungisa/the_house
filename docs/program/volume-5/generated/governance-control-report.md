@@ -1,6 +1,6 @@
 # Volume 5 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T17:24:38.455Z
+Generated: 2026-07-26T17:25:04.206Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 5 corpus. It is not a source of truth, does not confer ratification, and
@@ -32,18 +32,18 @@ Generated: 2026-07-26T17:24:38.455Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.0.0 | 11 |
+| REG-500 | Volume 5 Corpus Index | RATIFIED | 1.0.0 | 12 |
 | REG-501 | Volume 5 Data Catalogue | RATIFIED | 1.0.0 | 66 |
 | REG-502 | Volume 5 Data Rules and Controls | RATIFIED | 1.0.0 | 36 |
 | REG-503 | Volume 5 Data Decisions | RATIFIED | 1.0.0 | 6 |
 | REG-504 | Volume 5 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 26 |
-| REG-505 | Volume 5 Approval Register | RATIFIED | 1.0.0 | 11 |
+| REG-505 | Volume 5 Approval Register | RATIFIED | 1.0.0 | 14 |
 
 ## Findings by control
 
@@ -83,3 +83,25 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V5-010 (V5-09): Authorizes no implementation.
 - APP-V5-011 (V5-10): Data validation backlog and downstream constraints defined with owners and future gates.
 - APP-V5-011 (V5-10): Authorizes no implementation.
+- APP-V5-012 (V5-A): Package 1 closure record consolidates the data-governance foundation.
+- APP-V5-012 (V5-A): Records Gate V5-G1 disposition and Package 2 authorization.
+- APP-V5-012 (V5-A): Authorizes no implementation.
+- APP-V5-013 (GATE-V5-G1): Corrected Volume 4 release provenance is inherited.
+- APP-V5-013 (GATE-V5-G1): Data-definition authority and amendment rules are controlled.
+- APP-V5-013 (GATE-V5-G1): Data principles and governance responsibilities are defined.
+- APP-V5-013 (GATE-V5-G1): Information domains have explicit business authority, stewardship, and system-of-record posture.
+- APP-V5-013 (GATE-V5-G1): Conceptual identities and relationships are defined without physical schema design.
+- APP-V5-013 (GATE-V5-G1): Organization, jurisdiction, season, and affiliation scope are explicit.
+- APP-V5-013 (GATE-V5-G1): Policy, requirement, evidence, submission, decision, reconciliation, and activation relationships are defined.
+- APP-V5-013 (GATE-V5-G1): Temporal truth, versioning, provenance, and lineage are represented.
+- APP-V5-013 (GATE-V5-G1): Classification, minimization, access, and records dependencies are defined.
+- APP-V5-013 (GATE-V5-G1): Data quality, correction, identity resolution, and reconciliation are distinguished.
+- APP-V5-013 (GATE-V5-G1): Projections, analytics, reports, and exports remain non-authoritative.
+- APP-V5-013 (GATE-V5-G1): Unresolved assumptions have owners, evidence requirements, and future gates.
+- APP-V5-013 (GATE-V5-G1): Volume 4 architecture constraints trace into Volume 5.
+- APP-V5-013 (GATE-V5-G1): No record authorizes implementation.
+- APP-V5-013 (GATE-V5-G1): No physical schema, table, column, index, DDL, ORM mapping, migration, pipeline, infrastructure, procurement, delivery sequence, or master development plan is created.
+- APP-V5-013 (GATE-V5-G1): Package 1 receives line-level review and a separate freeze commit.
+- APP-V5-014 (PACKAGE-5-1): Package 1 corpus frozen; changes require the recorded amendment process.
+- APP-V5-014 (PACKAGE-5-1): Freeze committed separately from authoring per Gate V5-G1 condition 16.
+- APP-V5-014 (PACKAGE-5-1): Authorizes no implementation.
