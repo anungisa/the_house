@@ -1,6 +1,6 @@
 # Volume 3 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T13:48:31.759Z
+Generated: 2026-07-26T13:52:50.877Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 3 corpus. It is not a source of truth, does not confer ratification, and
@@ -38,8 +38,8 @@ Generated: 2026-07-26T13:48:31.759Z
 | REG-301 | Volume 3 Outcome Register | RATIFIED | 1.4.0 | 43 |
 | REG-302 | Volume 3 Stakeholder and Persona Register | RATIFIED | 1.3.0 | 21 |
 | REG-303 | Volume 3 Requirement and Acceptance Register | RATIFIED | 1.4.0 | 358 |
-| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.8.0 | 15 |
-| REG-305 | Volume 3 Approval Register | RATIFIED | 1.11.0 | 64 |
+| REG-304 | Volume 3 Governance Decision Register | RATIFIED | 1.9.0 | 16 |
+| REG-305 | Volume 3 Approval Register | RATIFIED | 1.12.0 | 66 |
 
 ## Findings by control
 
@@ -205,3 +205,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V3-064 (VOLUME-3): Volume 0, Volume 1, and Volume 2 remain frozen and are inherited without modification.
 - APP-V3-064 (VOLUME-3): Whole-volume freeze provenance is completed post-merge without reopening substantive Volume 3 content.
 - APP-V3-064 (VOLUME-3): No requirement or decision authorizes implementation, procurement, staffing, cost, fees, funding, pilot, rollout, launch, or delivery sequencing, and no master development plan is created.
+- APP-V3-065 (PACKAGE-3-5): Package 5 freeze provenance completed post-merge; source snapshot 6b1a1df, closure/freeze 9f64667, merged 8a1c6ae.
+- APP-V3-065 (PACKAGE-3-5): Gate V3-G5 and V3-E are preserved; no substantive Package 5 content is reopened.
+- APP-V3-066 (VOLUME-3): Whole-volume freeze provenance completed post-merge; source snapshot 6b1a1df, closure/freeze 9f64667, merged 8a1c6ae.
+- APP-V3-066 (VOLUME-3): Gate V3-G5 and V3-E are preserved; no substantive Volume 3 content is reopened.
+- APP-V3-066 (VOLUME-3): Volume 3 is released at tag central-registration-volume-3-v1.0.0.
