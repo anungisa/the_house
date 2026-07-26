@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T04:20:34.341Z
+Generated: 2026-07-26T11:20:26.848Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -37,8 +37,8 @@ Generated: 2026-07-26T04:20:34.341Z
 | REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.4.0 | 26 |
 | REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.4.0 | 24 |
 | REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.4.0 | 415 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.10.1 | 30 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.10.1 | 50 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.10.2 | 31 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.10.2 | 51 |
 
 ## Findings by control
 
@@ -203,7 +203,13 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-050 (VOLUME-2): Whole-volume freeze base commit: 60f652a; closure/freeze commit 4219c33; merged commit f4c6c55 (recorded by narrow post-merge amendment)
 - APP-V2-050 (VOLUME-2): Frozen: V2-00 through V2-33; V2-A through V2-E; REG-200 through REG-205; schemas and governance controls
 - APP-V2-050 (VOLUME-2): Generated traceability outputs are frozen as non-authoritative projections; registers and chapters remain authoritative
-- APP-V2-050 (VOLUME-2): Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.0) is preserved unchanged
+- APP-V2-050 (VOLUME-2): Inherited Volume 1 release baseline (v1.0.1, tag central-registration-volume-1-v1.0.1) is preserved unchanged; the immutable central-registration-volume-1-v1.0.0 tag remains the original, uncorrected Volume 1 release (release-provenance correction: DEC-V2-031, APP-V2-051)
 - APP-V2-050 (VOLUME-2): Two distinct freeze approvals recorded (PACKAGE-2-5 APP-V2-049 and VOLUME-2 APP-V2-050)
 - APP-V2-050 (VOLUME-2): Product-and-service definition only; implementation, procurement, architecture, delivery, staffing, and cost plans unauthorized; not a master development plan
 - APP-V2-050 (VOLUME-2): Volume 3 authorized as definition work only (DEC-V2-029); executive organizational acceptance (Nolan, D0) pending at the material-commitment gate
+- APP-V2-051 (VOLUME-2): Inherited Volume 1 baseline corrected to tag central-registration-volume-1-v1.0.1 (v1.0.1); immutable v1.0.0 tag unchanged
+- APP-V2-051 (VOLUME-2): Provenance roles distinguished: source 60f652a; closure/freeze 4219c33; original package merge f4c6c55; provenance amendment 852ef29; final release merge 6e4908b
+- APP-V2-051 (VOLUME-2): Original release tag central-registration-volume-2-v1.0.0 preserved immutable; corrected release tag central-registration-volume-2-v1.0.1 published on the release-provenance-correction merge
+- APP-V2-051 (VOLUME-2): Gate V2-G5 PASS preserved; all substantive Volume 2 findings, requirements, and the APP-V2-050 frozen artifact set preserved unchanged
+- APP-V2-051 (VOLUME-2): Metadata correction only; implementation, procurement, architecture, delivery, staffing, and cost plans remain unauthorized; not a master development plan
+- APP-V2-051 (VOLUME-2): Volume 3 authorization (DEC-V2-029) unchanged; executive organizational acceptance (Nolan, D0) pending at the material-commitment gate

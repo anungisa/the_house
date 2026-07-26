@@ -1,7 +1,7 @@
 register_id: REG-204
 name: Volume 2 Governance Decision Register
 status: IN_REVIEW
-version: 1.10.1
+version: 1.10.2
 records:
   - id: DEC-V2-001
     class: D1
@@ -667,6 +667,31 @@ records:
       PR #13 merge, and are therefore recorded by this narrow post-merge amendment. This does
       not reopen Package 5 or Volume 2 content and does not alter Gate V2-G5, whose disposition
       remains PASS.
+    evidence_refs:
+      - GATE-V2-G5
+      - REG-205
+    approver: Aubert Nungisa (Accountable Program Authority)
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    executive_acceptance: not_required
+    effective_date: TBD
+    status: accepted_by_accountable_authority
+  - id: DEC-V2-031
+    class: D2
+    question: >-
+      Does the Volume 2 release metadata correctly identify the inherited Volume 1 baseline
+      tag and distinguish every release-provenance role?
+    decision: >-
+      Record a narrow release-provenance correction (REG-205 APP-V2-051) that (a) corrects the
+      inherited Volume 1 baseline tag reference from central-registration-volume-1-v1.0.0 to the
+      corrected v1.0.1 baseline tag central-registration-volume-1-v1.0.1, and (b) distinguishes
+      the five release-provenance roles that were previously collapsed into a single merged_commit:
+      source snapshot 60f652a, closure/freeze commit 4219c33, original Package 5 merge f4c6c55,
+      provenance-amendment commit 852ef29, and final Volume 2 release merge 6e4908b. The corrected
+      release is published as tag central-registration-volume-2-v1.0.1; the immutable
+      central-registration-volume-1-v1.0.0 and central-registration-volume-2-v1.0.0 tags are not
+      moved. This is metadata correction only: it does not reopen or alter any substantive Volume 2
+      chapter, requirement, measure, or gate, and Gate V2-G5 remains PASS. Implementation and
+      procurement remain unauthorized; the Volume 3 authorization (DEC-V2-029) is unchanged.
     evidence_refs:
       - GATE-V2-G5
       - REG-205
