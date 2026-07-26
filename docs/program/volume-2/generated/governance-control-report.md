@@ -1,6 +1,6 @@
 # Volume 2 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T01:27:02.075Z
+Generated: 2026-07-26T01:36:50.243Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 2 corpus. It is not a source of truth, does not confer ratification, and
@@ -37,8 +37,8 @@ Generated: 2026-07-26T01:27:02.075Z
 | REG-201 | Volume 2 Outcome Register | IN_REVIEW | 1.1.0 | 12 |
 | REG-202 | Volume 2 Stakeholder and Persona Register | IN_REVIEW | 1.1.0 | 12 |
 | REG-203 | Volume 2 Requirement and Acceptance Register | IN_REVIEW | 1.1.0 | 176 |
-| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.3.0 | 10 |
-| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.3.0 | 18 |
+| REG-204 | Volume 2 Governance Decision Register | IN_REVIEW | 1.4.0 | 11 |
+| REG-205 | Volume 2 Approval Register | IN_REVIEW | 1.4.0 | 18 |
 
 ## Findings by control
 
@@ -101,7 +101,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V2-017 (GATE-V2-G2): Condition 11: No master development plan is created
 - APP-V2-017 (GATE-V2-G2): Condition 12: Package 2 has had line-level review and is closed with a separate freeze record
 - APP-V2-018 (PACKAGE-2-2): Freeze source snapshot commit: 071921c (contains V2-06..V2-11 and the expanded registers)
-- APP-V2-018 (PACKAGE-2-2): Freeze closure/freeze commit: the Package 2 closure commit on branch docs/volume-2-affiliation-product-definition (distinct from the source snapshot)
+- APP-V2-018 (PACKAGE-2-2): Freeze closure/freeze commit: 03488ed (adds V2-B, Gate V2-G2 disposition, and the freeze record)
+- APP-V2-018 (PACKAGE-2-2): Package 2 merged commit: f7cf330 (merge of the Package 2 branch into main via PR #7)
 - APP-V2-018 (PACKAGE-2-2): Gate V2-G2 PASS; Volume 2 Package 2 closed and frozen; V2-06..V2-11 and V2-B at 1.0.0
 - APP-V2-018 (PACKAGE-2-2): Product definition only; implementation and procurement unauthorized; not a master development plan
 - APP-V2-018 (PACKAGE-2-2): Volume 2 Package 3 authorized to commence as definition and governance work (DEC-V2-010)
