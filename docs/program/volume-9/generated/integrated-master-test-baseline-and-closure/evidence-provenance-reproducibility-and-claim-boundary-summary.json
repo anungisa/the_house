@@ -1,0 +1,5 @@
+{
+  "evidence_provenance_coverage": 1,
+  "master_evidence_requirements": 1,
+  "note": "Every future evidence artifact must bind version, commit, configuration, environment, identity, organization, jurisdiction, data, provider state, and time, and must be reproducible. Each evidence artifact carries an explicit claim boundary; a definition is never treated as executed evidence."
+}

@@ -1,0 +1,209 @@
+{
+  "gate": "V9-G4",
+  "disposition_target": "QUALITY_AND_MASTER_TEST_DEFINITION_COMPLETE",
+  "total_conditions": 38,
+  "satisfied": 36,
+  "unmet": [
+    {
+      "n": 37,
+      "title": "Package 4 and the whole Volume 9 corpus carry explicit freeze approvals and the gate disposition is complete"
+    },
+    {
+      "n": 38,
+      "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1, 2, and 3 provenance-role classifications are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Packages 1, 2, and 3 remain gated and frozen unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Package 1, 2, and 3 provenance projections remain complete",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "A single integrated master-test baseline unifies the Volume 9 quality corpus",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every material requirement has a test obligation or a governed non-test disposition",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every obligation traces to an authoritative source and an institutional invariant",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Test objects, requirements, scenarios, cases, oracles, environments, data, evidence, results, defects, and acceptance remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Every master-test oracle derives from a governed authority and never from the object under test",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "The affiliation lifecycle has full master-test scenario-family coverage",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Command, query, resource, event, webhook, callback, provider, file, batch, and migration surfaces have master-test dispositions",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Account, membership, authority, delegation, assignment, finance, support, and denial paths are covered",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Organization and jurisdiction isolation are covered",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Requirement and evidence versioning are covered",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Submission, approval, reconciliation, activation, standing, and expiry remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Exactly-once activation is an institutional invariant",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Security obligations define fail-closed negatives and preserve the authentication/authorization distinction",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Privacy obligations cover minimum necessary, evidence, logs, traces, exports, legal hold, and disposition",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Accessibility obligations cover automated, manual, keyboard, assistive technology, document, interruption, and recovery",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Bilingual string presence remains distinct from semantic equivalence",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Financial obligations cover acknowledgement, accounting, reconciliation, activation, and standing",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Resilience obligations cover backup, restore, recovery, and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Observability obligations cover telemetry, alerting, detection, and response",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Provider obligations cover continuity, incident, substitution, return, deletion, residual, and exit",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Environment, configuration, identity, organization, jurisdiction, lifecycle, data, provider, and evidence-capture prerequisites are catalogued",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Production is prohibited as a test environment and only governed synthetic data is admissible",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Evidence binds version, commit, configuration, environment, identity, organization, jurisdiction, data, provider state, and time and is reproducible",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Defect, exception, waiver, remediation, retest, regression, closure, and reopening are controlled",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Coverage, independence, acceptance, material commitment, and release evidence are controlled with named acceptance authority",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Every House P0 finding has a test mapping and an evidence mapping",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Every active unresolved item has an owner, required evidence, a forward gate, and a readiness disposition",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No active unresolved item points to a completed Volume 9 gate",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "The deterministic final-closure analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "No executable tests, environments, datasets, credentials, secrets, tools, services, or implementation are created",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "No passing, conformance, effectiveness, compliance, readiness, or acceptance claim is made without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "No procurement, sequencing, staffing, cost, pilot, rollout, release, or master plan is created and no release is authorized",
+      "satisfied": true
+    },
+    {
+      "n": 36,
+      "title": "No record authorizes implementation or test execution",
+      "satisfied": true
+    },
+    {
+      "n": 37,
+      "title": "Package 4 and the whole Volume 9 corpus carry explicit freeze approvals and the gate disposition is complete",
+      "satisfied": false
+    },
+    {
+      "n": 38,
+      "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved",
+      "satisfied": false
+    }
+  ]
+}

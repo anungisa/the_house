@@ -1,0 +1,174 @@
+{
+  "whole_volume_dispositions": 21,
+  "dispositions": [
+    {
+      "id": "READY-V9-004",
+      "historical_source_record": "ASM-V9-001",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-005",
+      "historical_source_record": "RISK-V9-001",
+      "readiness_disposition": "ENVIRONMENT_PROVISIONING_PENDING",
+      "downstream_volume": "Volume 11",
+      "future_blocking_gate": "V11-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-006",
+      "historical_source_record": "EXC-V9-001",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 11",
+      "future_blocking_gate": "V11-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-007",
+      "historical_source_record": "DEFECT-V9-001",
+      "readiness_disposition": "DEFECT_REQUIRING_AMENDMENT",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-008",
+      "historical_source_record": "WAIVER-V9-001",
+      "readiness_disposition": "MATERIAL_COMMITMENT_PENDING",
+      "downstream_volume": "Volume 11",
+      "future_blocking_gate": "V11-G1",
+      "owner": "Nolan (Executive Acceptance Authority)"
+    },
+    {
+      "id": "READY-V9-009",
+      "historical_source_record": "REMED-V9-001",
+      "readiness_disposition": "DEFECT_REQUIRING_AMENDMENT",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-010",
+      "historical_source_record": "RETEST-V9-001",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-011",
+      "historical_source_record": "REGRESSION-V9-001",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-012",
+      "historical_source_record": "TEST-V9-001",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-013",
+      "historical_source_record": "ASM-V9-002",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-014",
+      "historical_source_record": "ASM-V9-003",
+      "readiness_disposition": "TEST_DATA_GOVERNANCE_PENDING",
+      "downstream_volume": "Volume 11",
+      "future_blocking_gate": "V11-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-015",
+      "historical_source_record": "RISK-V9-002",
+      "readiness_disposition": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-016",
+      "historical_source_record": "RISK-V9-003",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "downstream_volume": "Volume 11",
+      "future_blocking_gate": "V11-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-017",
+      "historical_source_record": "DEFECT-V9-002",
+      "readiness_disposition": "DEFECT_REQUIRING_AMENDMENT",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-018",
+      "historical_source_record": "REMED-V9-002",
+      "readiness_disposition": "DEFECT_REQUIRING_AMENDMENT",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-019",
+      "historical_source_record": "RETEST-V9-002",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-020",
+      "historical_source_record": "TEST-V9-002",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-021",
+      "historical_source_record": "ASM-V9-004",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-022",
+      "historical_source_record": "RISK-V9-004",
+      "readiness_disposition": "ENVIRONMENT_PROVISIONING_PENDING",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    },
+    {
+      "id": "READY-V9-023",
+      "historical_source_record": "RISK-V9-005",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Nolan (Executive Acceptance Authority)"
+    },
+    {
+      "id": "READY-V9-024",
+      "historical_source_record": "TEST-V9-003",
+      "readiness_disposition": "TEST_EXECUTION_REQUIRED",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1",
+      "owner": "Aubert Nungisa (Accountable Program Authority)"
+    }
+  ],
+  "note": "Every active unresolved Volume 9 Package 1 through Package 3 item receives an additive whole-volume readiness disposition carrying an owner, required evidence, forward gate, and downstream volume. The frozen source records are not reopened or mutated; each disposition traces to its historical source record."
+}

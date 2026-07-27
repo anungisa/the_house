@@ -1,0 +1,18 @@
+{
+  "inherited_baseline": "central-registration-volume-8-v1.0.0",
+  "master_coverage_records": 10,
+  "master_model_records": 17,
+  "coverage_by_kind": {
+    "MASTER_TEST_BASELINE": 1,
+    "MASTER_TEST_CATALOGUE": 1,
+    "AFFILIATION_MASTER_TEST_COVERAGE": 1,
+    "ASSURANCE_MASTER_TEST_COVERAGE": 1,
+    "ENVIRONMENT_READINESS_COVERAGE": 1,
+    "EVIDENCE_PROVENANCE_COVERAGE": 1,
+    "DEFECT_CLOSURE_COVERAGE": 1,
+    "ACCEPTANCE_RELEASE_COVERAGE": 1,
+    "HOUSE_P0_MASTER_TEST_COVERAGE": 1,
+    "DOWNSTREAM_HANDOFF_COVERAGE": 1
+  },
+  "note": "A single integrated master-test baseline unifies the Volume 9 quality corpus into one authoritative source of test obligations and governed non-test dispositions. Definition is held distinct from execution, from a passing result, and from operational readiness; no execution, environment, dataset, credential, or implementation is authorized."
+}

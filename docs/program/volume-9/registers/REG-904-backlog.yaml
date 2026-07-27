@@ -310,3 +310,549 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-30
+  - id: READY-V9-004
+    kind: READINESS
+    title: "Whole-volume disposition: ASM-V9-001 Volume 8 baseline stability"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item ASM-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: ASM-V9-001
+    required_evidence: Confirmation that the released Volume 8 baseline remains stable at the point of downstream planning.
+    future_test_level: DOCUMENT_REVIEW
+    environment_dependency: None; documentary confirmation only.
+    data_dependency: None.
+    implementation_dependency: Downstream implementation depends on this baseline assumption holding.
+    operational_proof_dependency: Not applicable at definition time.
+    independent_assurance_dependency: Not required for a documentary assumption.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    disposition_rationale: The assumption is accepted as a Volume 10 planning input and requires downstream confirmation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - ASM-V9-001
+  - id: READY-V9-005
+    kind: READINESS
+    title: "Whole-volume disposition: RISK-V9-001 environment provisioning lag"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RISK-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: RISK-V9-001
+    required_evidence: Governed, qualified test environments provisioned before execution is authorized.
+    future_test_level: INTEGRATION_TEST
+    environment_dependency: Qualified integration and system test environments must be provisioned.
+    data_dependency: Governed test data provisioned under purpose-limited approval.
+    implementation_dependency: Implementation must be deployable to the provisioned environments.
+    operational_proof_dependency: Operational proof depends on qualified environments.
+    independent_assurance_dependency: Not required at provisioning stage.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 11
+    future_blocking_gate: V11-G1
+    readiness_disposition: ENVIRONMENT_PROVISIONING_PENDING
+    disposition_rationale: Environment provisioning is a Volume 11 obligation and blocks execution evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RISK-V9-001
+  - id: READY-V9-006
+    kind: READINESS
+    title: "Whole-volume disposition: EXC-V9-001 performance test deferral"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item EXC-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: EXC-V9-001
+    required_evidence: Performance test definition depth authored and executed under later authorization.
+    future_test_level: PERFORMANCE_TEST
+    environment_dependency: A qualified performance test environment.
+    data_dependency: Representative governed synthetic load data.
+    implementation_dependency: Implementation available to exercise under load.
+    operational_proof_dependency: Performance proof depends on execution.
+    independent_assurance_dependency: Not required at definition stage.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 11
+    future_blocking_gate: V11-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The deferred performance depth requires later authored and executed tests.
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - EXC-V9-001
+  - id: READY-V9-007
+    kind: READINESS
+    title: "Whole-volume disposition: DEFECT-V9-001 provider-contract traceability"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item DEFECT-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: DEFECT-V9-001
+    required_evidence: Full traceability of provider-contract test requirements, re-verified after remediation.
+    future_test_level: PROVIDER_CONTRACT_TEST
+    environment_dependency: Not applicable to a documentary traceability defect.
+    data_dependency: None.
+    implementation_dependency: Provider-contract requirements authored downstream.
+    operational_proof_dependency: Not applicable.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: DEFECT_REQUIRING_AMENDMENT
+    disposition_rationale: The documentary traceability defect requires a governed additive amendment downstream.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - DEFECT-V9-001
+  - id: READY-V9-008
+    kind: READINESS
+    title: "Whole-volume disposition: WAIVER-V9-001 capacity-test depth"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item WAIVER-V9-001, without reopening the frozen Package 1 source record.
+    owner: Nolan (Executive Acceptance Authority)
+    historical_source_record: WAIVER-V9-001
+    required_evidence: Capacity-test definition depth authored when the waiver expires or is lifted.
+    future_test_level: CAPACITY_TEST
+    environment_dependency: A qualified capacity test environment.
+    data_dependency: Representative governed synthetic capacity data.
+    implementation_dependency: Implementation available to exercise at capacity.
+    operational_proof_dependency: Capacity proof depends on execution.
+    independent_assurance_dependency: Not required at definition stage.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 11
+    future_blocking_gate: V11-G1
+    readiness_disposition: MATERIAL_COMMITMENT_PENDING
+    disposition_rationale: The time-bounded waiver defers capacity depth; it confers no pass and expires downstream.
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - WAIVER-V9-001
+  - id: READY-V9-009
+    kind: READINESS
+    title: "Whole-volume disposition: REMED-V9-001 provider-contract remediation"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item REMED-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: REMED-V9-001
+    required_evidence: Governed remediation of the provider-contract traceability defect.
+    future_test_level: PROVIDER_CONTRACT_TEST
+    environment_dependency: Not applicable.
+    data_dependency: None.
+    implementation_dependency: Provider-contract requirements authored downstream.
+    operational_proof_dependency: Not applicable.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: DEFECT_REQUIRING_AMENDMENT
+    disposition_rationale: The remediation obligation is carried forward to close DEFECT-V9-001 downstream.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - REMED-V9-001
+  - id: READY-V9-010
+    kind: READINESS
+    title: "Whole-volume disposition: RETEST-V9-001 traceability retest"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RETEST-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: RETEST-V9-001
+    required_evidence: Re-verified traceability evidence after remediation is complete.
+    future_test_level: CONTRACT_TEST
+    environment_dependency: Not applicable.
+    data_dependency: None.
+    implementation_dependency: Depends on the remediation being complete.
+    operational_proof_dependency: Not applicable.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The retest obligation requires later execution after remediation.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RETEST-V9-001
+  - id: READY-V9-011
+    kind: READINESS
+    title: "Whole-volume disposition: REGRESSION-V9-001 invariant-coverage regression"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item REGRESSION-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: REGRESSION-V9-001
+    required_evidence: Confirmation that institutional-invariant coverage is not lost across later packages and volumes.
+    future_test_level: SYSTEM_TEST
+    environment_dependency: A qualified system test environment.
+    data_dependency: Governed synthetic regression data.
+    implementation_dependency: Implementation available to exercise the regression.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The regression watch requires later execution to confirm no coverage loss.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - REGRESSION-V9-001
+  - id: READY-V9-012
+    kind: READINESS
+    title: "Whole-volume disposition: TEST-V9-001 club-affiliation functional test"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item TEST-V9-001, without reopening the frozen Package 1 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: TEST-V9-001
+    required_evidence: Executed club-affiliation functional and workflow test evidence.
+    future_test_level: WORKFLOW_TEST
+    environment_dependency: A qualified workflow test environment.
+    data_dependency: Governed synthetic affiliation data.
+    implementation_dependency: Affiliation implementation available to exercise.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The functional test backlog item requires later authored and executed tests.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - TEST-V9-001
+  - id: READY-V9-013
+    kind: READINESS
+    title: "Whole-volume disposition: ASM-V9-002 affiliation contract authority"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item ASM-V9-002, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: ASM-V9-002
+    required_evidence: Confirmation that Volume 7-8 affiliation contracts remain the authoritative test basis.
+    future_test_level: DOCUMENT_REVIEW
+    environment_dependency: None.
+    data_dependency: None.
+    implementation_dependency: Downstream implementation depends on the contract baseline holding.
+    operational_proof_dependency: Not applicable.
+    independent_assurance_dependency: Not required for a documentary assumption.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    disposition_rationale: The assumption is accepted as a Volume 10 planning input and requires downstream confirmation.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - ASM-V9-002
+  - id: READY-V9-014
+    kind: READINESS
+    title: "Whole-volume disposition: ASM-V9-003 jurisdiction and season data"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item ASM-V9-003, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: ASM-V9-003
+    required_evidence: Governed jurisdiction and season reference data available as qualified inputs.
+    future_test_level: DATA_QUALITY_TEST
+    environment_dependency: A qualified data-quality environment.
+    data_dependency: Governed jurisdiction and season reference data.
+    implementation_dependency: Reference-data services available.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 11
+    future_blocking_gate: V11-G1
+    readiness_disposition: TEST_DATA_GOVERNANCE_PENDING
+    disposition_rationale: The assumption depends on governed reference data provisioned downstream.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - ASM-V9-003
+  - id: READY-V9-015
+    kind: READINESS
+    title: "Whole-volume disposition: RISK-V9-002 authority-distinction erosion"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RISK-V9-002, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: RISK-V9-002
+    required_evidence: Independent confirmation that account, membership, authority, delegation, and assignment distinctions are preserved.
+    future_test_level: SECURITY_TEST
+    environment_dependency: A qualified security test environment.
+    data_dependency: Governed synthetic identity and authority data.
+    implementation_dependency: Authorization implementation available to exercise.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Independent security review of preserved distinctions.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: INDEPENDENT_ASSURANCE_REQUIRED
+    disposition_rationale: The risk that distinctions erode requires independent assurance downstream.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RISK-V9-002
+  - id: READY-V9-016
+    kind: READINESS
+    title: "Whole-volume disposition: RISK-V9-003 provider mocks as evidence"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RISK-V9-003, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: RISK-V9-003
+    required_evidence: Provider-integration evidence distinct from mocked responses, with recorded provider state.
+    future_test_level: PROVIDER_CONTRACT_TEST
+    environment_dependency: A qualified provider sandbox or governed substitute.
+    data_dependency: Governed synthetic provider-exchange data.
+    implementation_dependency: Provider integration implemented.
+    operational_proof_dependency: End-to-end operational proof with real provider state.
+    independent_assurance_dependency: Independent review that mocks are not treated as integration evidence.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 11
+    future_blocking_gate: V11-G1
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    disposition_rationale: The risk that mocks are treated as integration evidence requires operational proof downstream.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RISK-V9-003
+  - id: READY-V9-017
+    kind: READINESS
+    title: "Whole-volume disposition: DEFECT-V9-002 migration reconciliation traceability"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item DEFECT-V9-002, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: DEFECT-V9-002
+    required_evidence: Full traceability of the migration reconciliation oracle to every migration scenario.
+    future_test_level: MIGRATION_TEST
+    environment_dependency: A qualified migration test environment.
+    data_dependency: Governed synthetic migration data.
+    implementation_dependency: Migration implementation available.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: DEFECT_REQUIRING_AMENDMENT
+    disposition_rationale: The documentary migration-traceability defect requires a governed additive amendment downstream.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - DEFECT-V9-002
+  - id: READY-V9-018
+    kind: READINESS
+    title: "Whole-volume disposition: REMED-V9-002 migration remediation"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item REMED-V9-002, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: REMED-V9-002
+    required_evidence: Governed remediation of the migration reconciliation traceability defect.
+    future_test_level: MIGRATION_TEST
+    environment_dependency: A qualified migration test environment.
+    data_dependency: Governed synthetic migration data.
+    implementation_dependency: Migration implementation available.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: DEFECT_REQUIRING_AMENDMENT
+    disposition_rationale: The remediation obligation is carried forward to close DEFECT-V9-002 downstream.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - REMED-V9-002
+  - id: READY-V9-019
+    kind: READINESS
+    title: "Whole-volume disposition: RETEST-V9-002 migration retest"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RETEST-V9-002, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: RETEST-V9-002
+    required_evidence: Re-verified migration oracle traceability after remediation.
+    future_test_level: MIGRATION_TEST
+    environment_dependency: A qualified migration test environment.
+    data_dependency: Governed synthetic migration data.
+    implementation_dependency: Depends on the migration remediation being complete.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The retest obligation requires later execution after migration remediation.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RETEST-V9-002
+  - id: READY-V9-020
+    kind: READINESS
+    title: "Whole-volume disposition: TEST-V9-002 contract, data, and migration test"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item TEST-V9-002, without reopening the frozen Package 2 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: TEST-V9-002
+    required_evidence: Executed club-affiliation contract, data-integrity, and migration test evidence.
+    future_test_level: CONTRACT_TEST
+    environment_dependency: A qualified contract and migration test environment.
+    data_dependency: Governed synthetic contract and migration data.
+    implementation_dependency: Contract and migration implementation available.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The contract, data, and migration test backlog item requires later execution.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - TEST-V9-002
+  - id: READY-V9-021
+    kind: READINESS
+    title: "Whole-volume disposition: ASM-V9-004 assurance context and authorities"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item ASM-V9-004, without reopening the frozen Package 3 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: ASM-V9-004
+    required_evidence: Resolved and governed assurance context, authorities, and inventories recorded as an accepted input.
+    future_test_level: DOCUMENT_REVIEW
+    environment_dependency: None at definition stage.
+    data_dependency: Governed assurance context and inventories.
+    implementation_dependency: Downstream implementation depends on resolved authorities.
+    operational_proof_dependency: Not applicable at definition stage.
+    independent_assurance_dependency: Not required for a documentary assumption.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    disposition_rationale: The assurance-context assumption is accepted as a Volume 10 input and requires downstream resolution.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - ASM-V9-004
+  - id: READY-V9-022
+    kind: READINESS
+    title: "Whole-volume disposition: RISK-V9-004 assurance environments and datasets"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RISK-V9-004, without reopening the frozen Package 3 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: RISK-V9-004
+    required_evidence: Separately authorized governed test environments, synthetic datasets, and tooling with purpose-limited approval.
+    future_test_level: INTEGRATION_TEST
+    environment_dependency: Qualified assurance test environments.
+    data_dependency: Governed synthetic assurance datasets under purpose-limited approval.
+    implementation_dependency: Assurance implementation available to exercise.
+    operational_proof_dependency: Operational proof depends on qualified environments.
+    independent_assurance_dependency: Independent review of environment and dataset governance.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: ENVIRONMENT_PROVISIONING_PENDING
+    disposition_rationale: The assurance obligations cannot be exercised until environments and datasets are separately authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RISK-V9-004
+  - id: READY-V9-023
+    kind: READINESS
+    title: "Whole-volume disposition: RISK-V9-005 provider continuity and exit"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item RISK-V9-005, without reopening the frozen Package 3 source record.
+    owner: Nolan (Executive Acceptance Authority)
+    historical_source_record: RISK-V9-005
+    required_evidence: Authorized provider sandbox exercises, recovery exercises, and independent assurance with governed evidence.
+    future_test_level: RECOVERY_EXERCISE
+    environment_dependency: Qualified provider sandboxes and recovery-exercise environments.
+    data_dependency: Governed synthetic provider and recovery data.
+    implementation_dependency: Provider continuity and exit implementation available.
+    operational_proof_dependency: Recovery and exit exercises with recorded provider state.
+    independent_assurance_dependency: Independent assurance of provider continuity, deletion, and exit.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    disposition_rationale: Provider continuity, deletion, and exit assurance cannot be demonstrated until later exercises are authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - RISK-V9-005
+  - id: READY-V9-024
+    kind: READINESS
+    title: "Whole-volume disposition: TEST-V9-003 cross-cutting assurance test"
+    statement: >-
+      Additive whole-volume readiness disposition normalizing the attribution of active unresolved
+      item TEST-V9-003, without reopening the frozen Package 3 source record.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    historical_source_record: TEST-V9-003
+    required_evidence: Executed cross-cutting assurance test evidence across security, privacy, records, accessibility, bilingual, financial, resilience, recovery, observability, and provider dimensions.
+    future_test_level: SECURITY_TEST
+    environment_dependency: Qualified assurance test environments.
+    data_dependency: Governed synthetic assurance datasets.
+    implementation_dependency: Assurance implementation available to exercise.
+    operational_proof_dependency: Operational and recovery proof for the operational dimensions.
+    independent_assurance_dependency: Independent assurance for the material assurance claims.
+    acceptance_authority: Nolan (Executive Acceptance Authority)
+    downstream_volume: Volume 10
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_EXECUTION_REQUIRED
+    disposition_rationale: The cross-cutting assurance test backlog item requires later authored and executed tests.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-40
+    traces_to:
+      - TEST-V9-003

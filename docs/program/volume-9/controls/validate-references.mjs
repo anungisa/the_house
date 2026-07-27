@@ -25,10 +25,12 @@ function collectKnownIds(ctx) {
   ids.add('PACKAGE-9-1');
   ids.add('PACKAGE-9-2');
   ids.add('PACKAGE-9-3');
+  ids.add('PACKAGE-9-4');
   ids.add('VOLUME-9');
   ids.add('GATE-V9-G1');
   ids.add('GATE-V9-G2');
   ids.add('GATE-V9-G3');
+  ids.add('GATE-V9-G4');
   return ids;
 }
 

@@ -1,0 +1,8 @@
+{
+  "master_test_requirements": 4,
+  "master_test_scenarios": 2,
+  "master_test_cases": 2,
+  "master_test_oracles": 2,
+  "master_evidence_requirements": 1,
+  "note": "The master-test catalogue keeps test object, requirement, scenario, case, oracle, environment, data, evidence, result, defect, and acceptance as distinct governed elements. Each oracle derives its judging basis from a governed authority and never from the object under test."
+}

@@ -17,7 +17,7 @@
         "additionalProperties": false,
         "required": ["id", "kind", "title", "statement", "validation_status", "authorizes_implementation", "implementation_status", "chapter_ref"],
         "properties": {
-          "id": { "type": "string", "pattern": "^(QUALITY|OBJECT|INVAR|COVERAGE|LEVEL|EVIDTIER|INDEP|CTRL|DOMAIN|AUTHZ|LIFECOV|CTRCOV|DATACOV|MIGCOV|P0COV|SECCOV|PRIVCOV|ACCCOV|BILCOV|FINCOV|RESCOV|OPSCOV|PROVCOV|P0ACOV)-V9-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(QUALITY|OBJECT|INVAR|COVERAGE|LEVEL|EVIDTIER|INDEP|CTRL|DOMAIN|AUTHZ|LIFECOV|CTRCOV|DATACOV|MIGCOV|P0COV|SECCOV|PRIVCOV|ACCCOV|BILCOV|FINCOV|RESCOV|OPSCOV|PROVCOV|P0ACOV|MTBASE|MTCAT|AMTCOV|ASMTCOV|ENVRDCOV|EVPROVCOV|DEFCLCOV|ACCRELCOV|P0MTCOV|DHANDCOV)-V9-[0-9]{3}$" },
           "kind": { "$ref": "common.schema.json#/definitions/qualityAttributeKind" },
           "title": { "type": "string" },
           "statement": { "type": "string" },

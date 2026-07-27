@@ -1,0 +1,5 @@
+{
+  "house_p0_master_test_coverage": 1,
+  "master_test_requirements": 4,
+  "note": "Each House priority-zero finding is mapped to master-test obligations and to evidence obligations. Every finding remains open until admissible evidence is produced and accepted by the named authority in a later authorized volume; the mapping confers no execution and no closure."
+}

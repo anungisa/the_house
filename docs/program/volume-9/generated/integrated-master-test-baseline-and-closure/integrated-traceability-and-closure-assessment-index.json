@@ -1,0 +1,15 @@
+{
+  "master_coverage_records": 10,
+  "master_model_records": 17,
+  "whole_volume_dispositions": 21,
+  "gaps": {
+    "missing_coverage_kinds": [],
+    "missing_model_kinds": [],
+    "master_requirements_without_governed_invariant": [],
+    "master_oracles_without_authoritative_basis": [],
+    "master_scenarios_without_governed_oracle": [],
+    "master_cases_without_governed_oracle": [],
+    "dispositions_without_historical_source": []
+  },
+  "note": "A deterministic integrated traceability index binds coverage, requirements, scenarios, cases, oracles, evidence requirements, and whole-volume dispositions. The closure assessment records that Volume 9 is complete as a definition only; it is a final-closure analysis control projection and is never authoritative."
+}

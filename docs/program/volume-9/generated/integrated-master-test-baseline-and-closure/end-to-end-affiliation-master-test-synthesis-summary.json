@@ -1,0 +1,6 @@
+{
+  "affiliation_master_test_coverage": 1,
+  "master_test_requirements": 4,
+  "master_test_scenarios": 2,
+  "note": "The affiliation lifecycle — submission, approval, reconciliation, activation, standing, and expiry — is synthesized into master-test scenario families with exactly-once activation as an institutional invariant. Command, query, resource, event, webhook, callback, provider, file, batch, and migration surfaces are covered without authorizing execution."
+}

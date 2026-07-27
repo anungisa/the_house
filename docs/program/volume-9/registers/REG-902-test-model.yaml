@@ -1704,3 +1704,357 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-27
+  - id: MTORACLE-V9-001
+    kind: MASTER_TEST_ORACLE
+    title: "Master-test oracle: Integrated affiliation master oracle"
+    statement: >-
+      Defines the authoritative basis by which a future integrated affiliation result would be
+      judged across the whole lifecycle, holding submission, approval, reconciliation, activation,
+      standing, and expiry distinct, and treating exactly-once activation as an invariant so that a
+      duplicate or replayed activation is judged against the governed idempotency authority.
+    authoritative_basis: Volume 7-8 affiliation lifecycle, identity, authority, and idempotency specifications
+    derived_from: Derived from the governed affiliation lifecycle contracts and the exactly-once activation invariant
+    prohibited_basis: A duplicate or replayed activation treated as a distinct valid activation, or approval treated as activation
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-33
+  - id: MTORACLE-V9-002
+    kind: MASTER_TEST_ORACLE
+    title: "Master-test oracle: Integrated cross-cutting assurance master oracle"
+    statement: >-
+      Defines the authoritative basis by which a future integrated assurance result would be judged,
+      holding authentication distinct from authorization, acknowledgement distinct from
+      reconciliation, backup distinct from recovery, string presence distinct from semantic
+      equivalence, and provider certification distinct from end-to-end assurance.
+    authoritative_basis: Volume 4-8 security, privacy, accessibility, bilingual, financial, resilience, and provider specifications
+    derived_from: Derived from the governed cross-cutting assurance contracts and their preserved distinctions
+    prohibited_basis: An authenticated session treated as authorization, or a provider certificate treated as end-to-end assurance
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-34
+  - id: MTREQ-V9-001
+    kind: MASTER_TEST_REQUIREMENT
+    title: "Master-test requirement: End-to-end affiliation disposition completeness"
+    statement: >-
+      Defines a future master-test obligation that every affiliation lifecycle stage, interface
+      surface, authority relationship, and isolation boundary carries a governed disposition and that
+      exactly-once activation is preserved. It asserts no executed test.
+    source_requirement: Volume 7-8 affiliation lifecycle, identity, authority, and idempotency obligations
+    object_under_test: Integrated affiliation lifecycle and its interface surfaces
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: END_TO_END_TEST
+    expected_outcome: >-
+      Every affiliation stage and surface carries a governed disposition, and activation is exactly
+      once across duplicate, replay, and recovery situations.
+    negative_outcome: >-
+      A duplicate or replayed activation that produces two activations, or an undispositioned
+      surface, is detected and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: END_TO_END
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-33
+  - id: MTREQ-V9-002
+    kind: MASTER_TEST_REQUIREMENT
+    title: "Master-test requirement: Cross-cutting assurance disposition completeness"
+    statement: >-
+      Defines a future master-test obligation that every cross-cutting assurance dimension carries a
+      governed disposition preserving the Package 3 distinctions, and asserts no executed test and no
+      control effectiveness.
+    source_requirement: Volume 4-8 security, privacy, accessibility, bilingual, financial, resilience, observability, and provider obligations
+    object_under_test: Integrated cross-cutting assurance surface
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: SYSTEM_TEST
+    expected_outcome: >-
+      Every assurance dimension carries a governed disposition and the preserved distinctions hold.
+    negative_outcome: >-
+      A collapsed distinction - for example acknowledgement treated as reconciliation - is detected
+      and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: SYSTEM
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-34
+  - id: MTREQ-V9-003
+    kind: MASTER_TEST_REQUIREMENT
+    title: "Master-test requirement: House P0 finding mapping completeness"
+    statement: >-
+      Defines a future master-test obligation that every House priority-zero finding has a complete
+      test mapping and a complete evidence mapping and remains open until accepted, and asserts no
+      executed test.
+    source_requirement: House P0 specifications inherited from Volumes 4-8
+    object_under_test: House priority-zero finding set
+    institutional_invariant_ref: INVAR-V9-003
+    applicable_test_level: SYSTEM_TEST
+    expected_outcome: >-
+      Every priority-zero finding has a governed test mapping and evidence mapping; none is closed
+      without accepted evidence.
+    negative_outcome: >-
+      A priority-zero finding without a mapping, or a closure without accepted evidence, is detected
+      and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: INDEPENDENT_ASSURANCE
+    independence_requirement: INDEPENDENT_ASSURANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-39
+  - id: MTREQ-V9-004
+    kind: MASTER_TEST_REQUIREMENT
+    title: "Master-test requirement: Material-requirement disposition completeness"
+    statement: >-
+      Defines a future master-test obligation that every material requirement in the integrated
+      baseline resolves to a governed test obligation or a governed non-test disposition, and asserts
+      no executed test.
+    source_requirement: Volume 1-8 released contracts and Volume 9 institutional invariants
+    object_under_test: Integrated master-test baseline
+    institutional_invariant_ref: INVAR-V9-004
+    applicable_test_level: DOCUMENT_REVIEW
+    expected_outcome: >-
+      Every material requirement carries a governed test obligation or a governed non-test
+      disposition; nothing material is undispositioned.
+    negative_outcome: >-
+      A material requirement without any disposition is detected and fails closed; the negative
+      expectation must be exercised.
+    evidence_tier_required: DOCUMENTARY_DEFINITION
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-31
+  - id: MTSCN-V9-001
+    kind: MASTER_TEST_SCENARIO
+    title: "Master-test scenario: End-to-end affiliation happy path with exactly-once activation"
+    statement: >-
+      An integrated scenario in which a submission is approved, reconciled, and activated exactly
+      once, and a duplicate activation stimulus is rejected. It asserts no executed test.
+    actor_or_service: Affiliation applicant and governed activation service
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation application and its lifecycle state
+    lifecycle_state_context: Submission through activation
+    scenario_disposition: ACTIVATED_EXACTLY_ONCE
+    evidence_tier_required: END_TO_END
+    expected_result_oracle_ref: MTORACLE-V9-001
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-33
+  - id: MTSCN-V9-002
+    kind: MASTER_TEST_SCENARIO
+    title: "Master-test scenario: Cross-cutting assurance denial and distinction preservation"
+    statement: >-
+      An integrated scenario in which an authenticated identity without authority is denied and an
+      acknowledgement is not treated as reconciliation. It asserts no executed test.
+    actor_or_service: Authenticated identity without resolved authority
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Authorization decision and financial reconciliation surfaces
+    lifecycle_state_context: Under review
+    scenario_disposition: DENIED_AND_DISTINCTIONS_PRESERVED
+    evidence_tier_required: SYSTEM
+    expected_result_oracle_ref: MTORACLE-V9-002
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-34
+  - id: MTCASE-V9-001
+    kind: MASTER_TEST_CASE_DEFINITION
+    title: "Master-test case: Duplicate activation rejected"
+    statement: >-
+      A governed case definition in which a second activation stimulus for an already-activated
+      affiliation is rejected and no second activation occurs. It asserts no executed test.
+    preconditions:
+      - An affiliation has been approved, reconciled, and activated exactly once.
+    action_or_stimulus: A duplicate activation stimulus for the same affiliation is presented.
+    expected_result_oracle_ref: MTORACLE-V9-001
+    applicable_test_level: END_TO_END_TEST
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-33
+  - id: MTCASE-V9-002
+    kind: MASTER_TEST_CASE_DEFINITION
+    title: "Master-test case: Authenticated-without-authority denial"
+    statement: >-
+      A governed case definition in which an authenticated identity without resolved authority is
+      denied access to a scoped resource and the denial fails closed. It asserts no executed test.
+    preconditions:
+      - An identity is authenticated but holds no resolved authority for the target organization.
+    action_or_stimulus: The identity attempts a scoped action on the target organization's resource.
+    expected_result_oracle_ref: MTORACLE-V9-002
+    applicable_test_level: SECURITY_TEST
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-34
+  - id: MTEVID-V9-001
+    kind: MASTER_TEST_EVIDENCE_REQUIREMENT
+    title: "Master-test evidence requirement: Integrated evidence binding"
+    statement: >-
+      Defines the future evidence obligations for the integrated master-test baseline; every evidence
+      artifact must bind version, commit, configuration, environment, identity, organization,
+      jurisdiction, data, provider state, and time and be reproducible. No evidence is asserted to
+      exist.
+    provenance_requirement: Evidence must record the exact commit, policy version, identity, organization, jurisdiction, data reference, provider state, and time of the run.
+    configuration_requirement: Evidence must record the full environment configuration, secret-dependency references by reference only, and composition under test.
+    environment_requirement: Evidence must name the environment class in which it was produced and bind it to the configuration.
+    version_requirement: Evidence must record the artifact, schema, and policy versions under test.
+    reproducibility_requirement: Evidence must be reproducible from the recorded version, configuration, environment, identity, data, provider state, and time.
+    future_gate: V11-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-36
+  - id: EXECPRE-V9-001
+    kind: EXECUTION_PREREQUISITE
+    title: "Execution prerequisite: Governed and qualified execution context"
+    statement: >-
+      Defines a future execution prerequisite that no test may be executed until a governed and
+      qualified environment, configuration, identity, organization, jurisdiction, lifecycle, data,
+      and provider context is resolved and recorded. It provisions nothing and asserts no executed
+      test.
+    source_requirement: Volume 5-8 environment, configuration, identity, and data-governance obligations
+    object_under_test: Execution prerequisite and readiness context
+    institutional_invariant_ref: INVAR-V9-005
+    applicable_test_level: NOT_APPLICABLE
+    expected_outcome: >-
+      No test executes until every prerequisite context is governed, qualified, and recorded.
+    negative_outcome: >-
+      A test executed against an unqualified environment or context is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: DOCUMENTARY_DEFINITION
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V11-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-35
+  - id: ENVREQ-V9-001
+    kind: ENVIRONMENT_REQUIREMENT
+    title: "Environment requirement: Qualified environment class, no substitution"
+    statement: >-
+      Defines a future environment requirement that each environment class is qualified before use
+      and that no environment class is a substitute for another. It provisions nothing and asserts no
+      executed test.
+    source_requirement: Volume 5-8 environment and deployment obligations
+    object_under_test: Test environment class
+    institutional_invariant_ref: INVAR-V9-005
+    applicable_test_level: NOT_APPLICABLE
+    expected_outcome: >-
+      Each environment class is qualified before use and evidence names the class it was produced in.
+    negative_outcome: >-
+      Evidence produced in one class and claimed for another is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: DOCUMENTARY_DEFINITION
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V11-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-35
+  - id: INDREQ-V9-001
+    kind: INDEPENDENCE_REQUIREMENT
+    title: "Independence requirement: Independence scaled to claim materiality"
+    statement: >-
+      Defines a future independence requirement that the independence level of a claim is scaled to
+      the materiality of the claim and that a more material claim requires a higher independence
+      level. It asserts no executed test.
+    source_requirement: Volume 9 evidence hierarchy and independence-level definitions
+    object_under_test: Claim independence assignment
+    institutional_invariant_ref: INVAR-V9-006
+    applicable_test_level: DOCUMENT_REVIEW
+    expected_outcome: >-
+      Every material claim carries an independence level scaled to its materiality and named authority.
+    negative_outcome: >-
+      A material claim asserted at author self-check independence is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: DOCUMENTARY_DEFINITION
+    independence_requirement: INDEPENDENT_ASSURANCE
+    future_gate: V12-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
+  - id: ACCREQ-V9-001
+    kind: ACCEPTANCE_REQUIREMENT
+    title: "Acceptance requirement: Executive acceptance distinct from passing"
+    statement: >-
+      Defines a future acceptance requirement that acceptance is an executive determination made only
+      by the named authority against admissible in-boundary evidence and is distinct from a passing
+      result. It confers no acceptance and asserts no executed test.
+    source_requirement: Volume 9 executive-acceptance authority and evidence hierarchy
+    object_under_test: Acceptance determination
+    institutional_invariant_ref: INVAR-V9-007
+    applicable_test_level: RELEASE_ACCEPTANCE
+    expected_outcome: >-
+      Acceptance is conferred only by the named authority against admissible in-boundary evidence.
+    negative_outcome: >-
+      An acceptance asserted without admissible evidence or by an unauthorized actor is detected and
+      fails closed; the negative expectation must be exercised.
+    evidence_tier_required: EXECUTIVE_ACCEPTANCE
+    independence_requirement: EXECUTIVE_ACCEPTANCE
+    future_gate: V12-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
+  - id: RELREQ-V9-001
+    kind: RELEASE_EVIDENCE_REQUIREMENT
+    title: "Release-evidence requirement: Admissible in-boundary release evidence"
+    statement: >-
+      Defines a future release-evidence requirement that a release would require a governed body of
+      admissible, in-boundary, independently assured evidence, and that no record in Volume 9
+      authorizes a release. It produces no release evidence and asserts no executed test.
+    source_requirement: Volume 9 evidence hierarchy and bounded-authorization doctrine
+    object_under_test: Release-evidence body
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: RELEASE_ACCEPTANCE
+    expected_outcome: >-
+      A release is accepted only against admissible, in-boundary, independently assured evidence.
+    negative_outcome: >-
+      A release inferred from a documentary definition without release evidence is detected and fails
+      closed; the negative expectation must be exercised.
+    evidence_tier_required: INDEPENDENT_ASSURANCE
+    independence_requirement: INDEPENDENT_ASSURANCE
+    future_gate: V12-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
+  - id: MCREQ-V9-001
+    kind: MATERIAL_COMMITMENT_REQUIREMENT
+    title: "Material-commitment requirement: Material commitments pending and unauthorized"
+    statement: >-
+      Defines a future material-commitment requirement that any procurement, staffing, cost,
+      sequencing, pilot, rollout, release, or launch commitment is outside Volume 9 authority and
+      remains pending. It authorizes no commitment and asserts no executed test.
+    source_requirement: Volume 9 bounded-authorization doctrine
+    object_under_test: Material-commitment authorization boundary
+    institutional_invariant_ref: INVAR-V9-004
+    applicable_test_level: DOCUMENT_REVIEW
+    expected_outcome: >-
+      Every material commitment is recorded as pending and named to a later authorized volume.
+    negative_outcome: >-
+      A material commitment inferred from a Volume 9 record is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: DOCUMENTARY_DEFINITION
+    independence_requirement: EXECUTIVE_ACCEPTANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
