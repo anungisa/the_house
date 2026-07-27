@@ -9,16 +9,20 @@ import { summarize } from './lib.mjs';
 import { run as runStructural } from './validate-volume-10.mjs';
 import { run as runReferences } from './validate-references.mjs';
 import { run as runFoundation } from './foundation-volume-10.mjs';
+import { run as runAffiliation } from './foundation-affiliation-volume-10.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-10.mjs';
 import { run as runGate } from './gate-g1-volume-10.mjs';
+import { run as runGate2 } from './gate-g2-volume-10.mjs';
 
 export function collectFindings(ctx) {
   return {
     'Structural, schema & delivery-planning-governance conformance': runStructural(ctx),
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Delivery-planning-foundation coverage': runFoundation(ctx),
+    'Affiliation implementation-plan foundation coverage': runAffiliation(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
-    'Gate V10-G1 readiness': runGate(ctx)
+    'Gate V10-G1 readiness': runGate(ctx),
+    'Gate V10-G2 readiness': runGate2(ctx)
   };
 }
 

@@ -1,0 +1,49 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "migration_slices": [
+    {
+      "id": "MDS-V10-201",
+      "title": "Migration slice: Source inventory and provenance slice",
+      "data_integrity_invariant": "A source record is not a resolved person, account, membership, or representative authority.",
+      "reconciliation_dependency": "Depends on reconciliation evidence a later gate will require.",
+      "rollback_dependency": "Depends on the migration rollback requirements planned in V10-15."
+    },
+    {
+      "id": "MDS-V10-202",
+      "title": "Migration slice: Mapping and identity-candidate slice",
+      "data_integrity_invariant": "Mapping completed is not identity resolved.",
+      "reconciliation_dependency": "Depends on reconciliation evidence a later gate will require.",
+      "rollback_dependency": "Depends on the migration rollback requirements planned in V10-15."
+    },
+    {
+      "id": "MDS-V10-203",
+      "title": "Migration slice: Coexistence, reconciliation, and cutover slice",
+      "data_integrity_invariant": "A migration executed is not a business acceptance and is not a source retirement.",
+      "reconciliation_dependency": "Depends on reconciliation evidence a later gate will require.",
+      "rollback_dependency": "Depends on the migration rollback requirements planned in V10-15."
+    }
+  ],
+  "migration_readiness_requirements": [
+    {
+      "id": "MIGREQ-V10-201",
+      "title": "Source-provenance and quarantine migration readiness requirement",
+      "rehearsal_requirement": "Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.",
+      "reconciliation_requirement": "Requires reconciliation evidence between source and House records.",
+      "rollback_dependency": "Requires a rehearsed rollback path; rollback remains a planning concept only."
+    },
+    {
+      "id": "MIGREQ-V10-202",
+      "title": "Reconciliation and coexistence migration readiness requirement",
+      "rehearsal_requirement": "Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.",
+      "reconciliation_requirement": "Requires reconciliation evidence between source and House records.",
+      "rollback_dependency": "Requires a rehearsed rollback path; rollback remains a planning concept only."
+    },
+    {
+      "id": "MIGREQ-V10-203",
+      "title": "Cutover and rollback migration readiness requirement",
+      "rehearsal_requirement": "Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.",
+      "reconciliation_requirement": "Requires reconciliation evidence between source and House records.",
+      "rollback_dependency": "Requires a rehearsed rollback path; rollback remains a planning concept only."
+    }
+  ]
+}

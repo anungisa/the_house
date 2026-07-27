@@ -1,0 +1,32 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "experience_slices": [
+    {
+      "id": "EDS-V10-201",
+      "title": "Button experience slice: Affiliation initiation and requirement completion",
+      "experience_outcome": "Client can complete affiliation initiation and requirement completion within governed House contracts.",
+      "volume_7_action": "submit affiliation requirements",
+      "house_command_or_query_dependency": "Depends on a House command or query; performs no independent mutation.",
+      "accessibility_obligations": "Semantic structure, keyboard operation, focus management, and screen-reader status are required.",
+      "bilingual_content_dependencies": "English and French content, errors, and notifications are required."
+    },
+    {
+      "id": "EDS-V10-202",
+      "title": "Button experience slice: Submission, return, and resubmission experience",
+      "experience_outcome": "Client can complete submission, return, and resubmission experience within governed House contracts.",
+      "volume_7_action": "submit and resubmit affiliation case",
+      "house_command_or_query_dependency": "Depends on a House command or query; performs no independent mutation.",
+      "accessibility_obligations": "Semantic structure, keyboard operation, focus management, and screen-reader status are required.",
+      "bilingual_content_dependencies": "English and French content, errors, and notifications are required."
+    },
+    {
+      "id": "EDS-V10-203",
+      "title": "Button experience slice: Staff review and finance workbench",
+      "experience_outcome": "Client can complete staff review and finance workbench within governed House contracts.",
+      "volume_7_action": "review and reconcile affiliation case",
+      "house_command_or_query_dependency": "Depends on a House command or query; performs no independent mutation.",
+      "accessibility_obligations": "Semantic structure, keyboard operation, focus management, and screen-reader status are required.",
+      "bilingual_content_dependencies": "English and French content, errors, and notifications are required."
+    }
+  ]
+}

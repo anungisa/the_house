@@ -1,0 +1,41 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "technical_slices": [
+    {
+      "id": "TDS-V10-201",
+      "title": "House technical slice: Affiliation lifecycle state-machine slice",
+      "delivery_layer": "domain",
+      "persistence_dependency": "Governed affiliation state persistence",
+      "data_integrity_invariant": "A single active affiliation per club-season is a business invariant.",
+      "database_behaviour_evidence": "PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.",
+      "rollback_dependency": "Depends on the rollback requirements planned in V10-20."
+    },
+    {
+      "id": "TDS-V10-202",
+      "title": "House technical slice: Activation-uniqueness slice",
+      "delivery_layer": "persistence",
+      "persistence_dependency": "Activation uniqueness constraint and outbox coupling",
+      "data_integrity_invariant": "Exactly-once activation is a business invariant and is not a transport claim.",
+      "database_behaviour_evidence": "PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.",
+      "rollback_dependency": "Depends on the rollback requirements planned in V10-20."
+    },
+    {
+      "id": "TDS-V10-203",
+      "title": "House technical slice: Outbox and reconciliation slice",
+      "delivery_layer": "application",
+      "persistence_dependency": "Transactional outbox persistence",
+      "data_integrity_invariant": "An outbox implemented is not delivery and reconciliation proven.",
+      "database_behaviour_evidence": "PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.",
+      "rollback_dependency": "Depends on the rollback requirements planned in V10-20."
+    },
+    {
+      "id": "TDS-V10-204",
+      "title": "House technical slice: Evidence-binding and audit slice",
+      "delivery_layer": "persistence",
+      "persistence_dependency": "Immutable evidence and audit references",
+      "data_integrity_invariant": "A schema created is not an invariant enforced.",
+      "database_behaviour_evidence": "PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.",
+      "rollback_dependency": "Depends on the rollback requirements planned in V10-20."
+    }
+  ]
+}

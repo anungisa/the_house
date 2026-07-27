@@ -117,6 +117,8 @@
     "governance:provenance:v10": "node docs/program/volume-10/controls/provenance-integrity-volume-10.mjs",
     "governance:references:v10": "node docs/program/volume-10/controls/validate-references.mjs",
     "governance:gate1:v10": "node docs/program/volume-10/controls/gate-g1-volume-10.mjs",
+    "governance:gate2:v10": "node docs/program/volume-10/controls/gate-g2-volume-10.mjs",
+    "governance:affiliation:v10": "node docs/program/volume-10/controls/foundation-affiliation-volume-10.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

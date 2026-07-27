@@ -1,0 +1,149 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "workstreams": [
+    {
+      "id": "AWS-V10-201",
+      "title": "Affiliation workstream: Platform and repository enablement"
+    },
+    {
+      "id": "AWS-V10-202",
+      "title": "Affiliation workstream: Identity and representative authority"
+    },
+    {
+      "id": "AWS-V10-203",
+      "title": "Affiliation workstream: Club and organization records"
+    },
+    {
+      "id": "AWS-V10-204",
+      "title": "Affiliation workstream: Affiliation case lifecycle"
+    },
+    {
+      "id": "AWS-V10-205",
+      "title": "Affiliation workstream: Requirements, responses, and evidence"
+    },
+    {
+      "id": "AWS-V10-206",
+      "title": "Affiliation workstream: Submission and review"
+    },
+    {
+      "id": "AWS-V10-207",
+      "title": "Affiliation workstream: Decision, finance, and reconciliation"
+    },
+    {
+      "id": "AWS-V10-208",
+      "title": "Affiliation workstream: Activation and standing"
+    },
+    {
+      "id": "AWS-V10-209",
+      "title": "Affiliation workstream: Button experience"
+    },
+    {
+      "id": "AWS-V10-210",
+      "title": "Affiliation workstream: Staff workbenches"
+    },
+    {
+      "id": "AWS-V10-211",
+      "title": "Affiliation workstream: API and event contracts"
+    },
+    {
+      "id": "AWS-V10-212",
+      "title": "Affiliation workstream: Provider and exchange integration"
+    },
+    {
+      "id": "AWS-V10-213",
+      "title": "Affiliation workstream: Data migration and coexistence"
+    },
+    {
+      "id": "AWS-V10-214",
+      "title": "Affiliation workstream: Security, privacy, records, accessibility, and bilingual enablement"
+    },
+    {
+      "id": "AWS-V10-215",
+      "title": "Affiliation workstream: Testing and assurance enablement"
+    },
+    {
+      "id": "AWS-V10-216",
+      "title": "Affiliation workstream: Deployment and operational handoff"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "IWP-V10-201",
+      "title": "Affiliation lifecycle state-machine implementation plan",
+      "affected_application_layers": "domain, application, persistence, transactional state change",
+      "dependencies": [
+        "DEP-V10-001",
+        "DEP-V10-002"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "IWP-V10-202",
+      "title": "Requirements, evidence, and completeness implementation plan",
+      "affected_application_layers": "domain, application, persistence, read projection",
+      "dependencies": [
+        "DEP-V10-001",
+        "DEP-V10-002"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "IWP-V10-203",
+      "title": "Submission, review, return, and resubmission implementation plan",
+      "affected_application_layers": "application, authorization context, audit evidence",
+      "dependencies": [
+        "DEP-V10-001",
+        "DEP-V10-002"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "IWP-V10-204",
+      "title": "Decision, finance, and reconciliation implementation plan",
+      "affected_application_layers": "domain, application, persistence, outbox",
+      "dependencies": [
+        "DEP-V10-001",
+        "DEP-V10-002"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "IWP-V10-205",
+      "title": "Exactly-once activation and standing implementation plan",
+      "affected_application_layers": "domain, persistence, transactional state change, outbox",
+      "dependencies": [
+        "DEP-V10-001",
+        "DEP-V10-002"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "IWP-V10-206",
+      "title": "Button experience and staff-workbench implementation plan",
+      "affected_application_layers": "experience, authorization context",
+      "dependencies": [
+        "DEP-V10-001",
+        "DEP-V10-002"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    }
+  ]
+}

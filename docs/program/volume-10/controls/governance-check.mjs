@@ -10,8 +10,10 @@ import { join } from 'node:path';
 import { VOLUME_DIR, loadContext, printFindings } from './lib.mjs';
 import { collectFindings, buildReport } from './generate-control-report.mjs';
 import { generate as generateFoundation } from './foundation-volume-10.mjs';
+import { generate as generateAffiliation } from './foundation-affiliation-volume-10.mjs';
 import { generate as generateProvenance } from './provenance-integrity-volume-10.mjs';
 import { generate as generateGate } from './gate-g1-volume-10.mjs';
+import { generate as generateGate2 } from './gate-g2-volume-10.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -33,8 +35,10 @@ const outPath = join(outDir, 'governance-control-report.md');
 writeFileSync(outPath, markdown, 'utf8');
 
 generateFoundation(ctx);
+generateAffiliation(ctx);
 generateProvenance(ctx);
 generateGate(ctx);
+generateGate2(ctx);
 
 console.log('\n=== Volume 10 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

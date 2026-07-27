@@ -34,6 +34,78 @@
       "kind": "DECISION_BOUNDARY",
       "status": "PROPOSED",
       "authority": "Executive Acceptance Authority"
+    },
+    {
+      "id": "ADR-V10-201",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-202",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-203",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-204",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-205",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-206",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-207",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-208",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-209",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-210",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-211",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-212",
+      "kind": "DECISION_BOUNDARY",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
     }
   ],
   "assumptions": [
@@ -41,6 +113,16 @@
       "id": "ASM-V10-001",
       "owner": "Independent Assurance Lead",
       "status": "PENDING_VALIDATION"
+    },
+    {
+      "id": "ASM-V10-201",
+      "owner": "Accountable Program Authority",
+      "status": "PENDING_VALIDATION"
+    },
+    {
+      "id": "ASM-V10-202",
+      "owner": "Engineering Delivery Lead",
+      "status": "ENVIRONMENT_QUALIFICATION_PENDING"
     }
   ],
   "commitments": [

@@ -1,7 +1,7 @@
 register_id: REG-1005
 name: Volume 10 Delivery-Planning Approvals and Provenance
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ---------------------------------------------------------------------------
   # Chapter approvals (V10-00 .. V10-10)
@@ -326,4 +326,78 @@ records:
       operational_effective_date: >-
         Not applicable. Documentary effectiveness is distinct from operational
         effectiveness; Package 1 authorizes no operation.
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # Package 2 chapter approvals (V10-11 .. V10-20)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-018
+    artifact_id: V10-11
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-019
+    artifact_id: V10-12
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-020
+    artifact_id: V10-13
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-021
+    artifact_id: V10-14
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-022
+    artifact_id: V10-15
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-023
+    artifact_id: V10-16
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-024
+    artifact_id: V10-17
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-025
+    artifact_id: V10-18
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-026
+    artifact_id: V10-19
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-027
+    artifact_id: V10-20
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
     approved_at: null

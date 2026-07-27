@@ -1,0 +1,23 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "control_enablement_slices": [
+    {
+      "id": "CES-V10-201",
+      "title": "Control-enablement slice: Identity, authorization, and fail-closed configuration enablement",
+      "security_boundary": "Fail-closed authorization and configuration boundary for the affiliation vertical.",
+      "security_privacy_obligations": "Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded."
+    },
+    {
+      "id": "CES-V10-202",
+      "title": "Control-enablement slice: Privacy, records, and retention enablement",
+      "security_boundary": "Fail-closed authorization and configuration boundary for the affiliation vertical.",
+      "security_privacy_obligations": "Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded."
+    },
+    {
+      "id": "CES-V10-203",
+      "title": "Control-enablement slice: Accessibility and bilingual enablement",
+      "security_boundary": "Fail-closed authorization and configuration boundary for the affiliation vertical.",
+      "security_privacy_obligations": "Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded."
+    }
+  ]
+}

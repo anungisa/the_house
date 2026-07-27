@@ -1,0 +1,73 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "assumptions": [
+    {
+      "id": "ASM-V10-001",
+      "owner": "Independent Assurance Lead",
+      "status": "PENDING_VALIDATION",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "ASM-V10-201",
+      "owner": "Accountable Program Authority",
+      "status": "PENDING_VALIDATION",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "ASM-V10-202",
+      "owner": "Engineering Delivery Lead",
+      "status": "ENVIRONMENT_QUALIFICATION_PENDING",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "risks": [
+    {
+      "id": "RISK-V10-001",
+      "owner": "Engineering Delivery Lead",
+      "likelihood": "MEDIUM",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-201",
+      "owner": "Engineering Delivery Lead",
+      "likelihood": "MEDIUM",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-202",
+      "owner": "Accountable Program Authority",
+      "likelihood": "MEDIUM",
+      "future_blocking_gate": "EXEC-MCG"
+    }
+  ],
+  "cost_estimates": [
+    {
+      "id": "COST-V10-001",
+      "range": "Indicative range only; wide and non-binding at this planning stage.",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "Not approved; planning estimate only."
+    },
+    {
+      "id": "COST-V10-201",
+      "range": "Indicative range only; not a committed figure.",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    }
+  ],
+  "procurement": [
+    {
+      "id": "PROC-V10-001",
+      "status": "NOT_AUTHORIZED",
+      "approval_status": "Not approved; no solicitation or selection performed.",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-201",
+      "status": "PLANNING_ONLY",
+      "approval_status": "NOT_APPROVED",
+      "commitment_status": "NOT_COMMITTED"
+    }
+  ]
+}

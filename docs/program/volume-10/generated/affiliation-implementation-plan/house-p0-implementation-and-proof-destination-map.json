@@ -1,0 +1,118 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "findings": [
+    {
+      "finding": "resource-aware authorization",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"resource-aware authorization\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "reviewer assignment and jurisdiction",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"reviewer assignment and jurisdiction\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "evidence binding",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"evidence binding\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "production-dependency completeness",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"production-dependency completeness\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "composite tenant-parent integrity",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"composite tenant-parent integrity\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "affiliation lifecycle",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"affiliation lifecycle\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "versioned requirements",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"versioned requirements\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "return and resubmission",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"return and resubmission\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "exactly-once activation",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"exactly-once activation\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "fail-closed configuration",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"fail-closed configuration\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "outbox publication",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"outbox publication\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "PostgreSQL behavioural verification",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"PostgreSQL behavioural verification\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "production-composition verification",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"production-composition verification\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    },
+    {
+      "finding": "deployment-path, secret, and entry-point configuration",
+      "has_delivery_destination": true,
+      "has_chapter_destination": true,
+      "implementation_evidence": "Implementation destination for \"deployment-path, secret, and entry-point configuration\" is planned in the House and integration slices; no implementation occurs.",
+      "test_enablement_destination": "V10-18",
+      "operational_proof_destination": "V10-20"
+    }
+  ],
+  "all_mapped": true
+}

@@ -1,7 +1,7 @@
 register_id: REG-1004
 name: Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: ASM-V10-001
     kind: ASSUMPTION
@@ -177,3 +177,132 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Package 2 assumptions, risks, issues, estimate, funding, and procurement readiness
+  # ---------------------------------------------------------------------------
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: ASM-V10-201
+    kind: ASSUMPTION
+    title: Capability capacity assumption
+    statement: It is assumed that the identified engineering, assurance, and program capabilities can be made available when a future gate authorizes execution. A role identified is not a person assigned and is not a capacity confirmed.
+    owner: Accountable Program Authority
+    current_status: PENDING_VALIDATION
+    impact_if_unresolved: Delivery sequencing estimates may be optimistic if capacity is unconfirmed.
+    required_action_or_evidence: Confirm capability availability at a future staffing gate.
+    future_blocking_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: ASM-V10-202
+    kind: ASSUMPTION
+    title: Environment availability assumption
+    statement: It is assumed that qualified environments can be provisioned when authorized. Environment definition is not provisioning and is not qualification.
+    owner: Engineering Delivery Lead
+    current_status: ENVIRONMENT_QUALIFICATION_PENDING
+    impact_if_unresolved: Verification planning depends on environments not yet provisioned.
+    required_action_or_evidence: Confirm environment provisioning and qualification at a future provisioning gate.
+    future_blocking_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: RISK-V10-201
+    kind: RISK
+    title: Source data quality risk
+    statement: Migration source data quality may be insufficient for confident identity resolution.
+    owner: Engineering Delivery Lead
+    current_status: OPEN
+    impact_if_unresolved: Migration and coexistence planning may require additional quarantine and reconciliation.
+    required_action_or_evidence: Assess source data quality during a future migration-rehearsal gate.
+    likelihood_or_occurrence: MEDIUM
+    data_impact: Potential unresolved identity and duplicate candidates.
+    future_blocking_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: RISK-V10-202
+    kind: RISK
+    title: Provider readiness risk
+    statement: External provider readiness is uncertain and may affect exchange planning. A provider requirement is not a provider selection and is not a provider engagement.
+    owner: Accountable Program Authority
+    current_status: OPEN
+    impact_if_unresolved: Exchange and integration sequencing may need governed dispositions.
+    required_action_or_evidence: Evaluate provider readiness at a future procurement-readiness gate.
+    likelihood_or_occurrence: MEDIUM
+    operational_impact: Potential dependency on provider timelines.
+    future_blocking_gate: EXEC-MCG
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: ISSUE-V10-201
+    kind: ISSUE
+    title: Identity resolution approach undecided
+    statement: The detailed identity-resolution approach for migration candidates is not yet decided.
+    owner: Engineering Delivery Lead
+    current_status: OPEN
+    impact_if_unresolved: Migration delivery slices carry an open governed disposition.
+    required_action_or_evidence: Decide the identity-resolution approach at a future gate.
+    future_blocking_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: COST-V10-201
+    kind: COST_ESTIMATE
+    title: Affiliation implementation planning cost estimate
+    statement: Indicative planning-level cost estimate for the affiliation implementation vertical. An estimate is not a budget, a quote, a procurement, or a contract.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ESTIMATE_ONLY
+    impact_if_unresolved: Funding and sequencing planning depends on estimate refinement.
+    required_action_or_evidence: Refine and validate the estimate at a future funding gate.
+    estimate_basis: Bottom-up planning across the Package 2 work packages and control-enablement slices.
+    range: Indicative range only; not a committed figure.
+    confidence: INDICATIVE_ONLY
+    assumptions: Assumes capability availability and qualified environments per ASM-V10-201 and ASM-V10-202.
+    dependencies:
+      - ASM-V10-201
+      - ASM-V10-202
+    included_scope: Implementation, control-enablement, test-enablement, and migration planning for the affiliation vertical.
+    excluded_scope: Excludes procurement, expenditure, staffing commitments, and any authorized execution.
+    source_date: '2026-07-27'
+    currency: CAD
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+    commitment_status: NOT_COMMITTED
+    future_blocking_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: FUND-V10-201
+    kind: FUNDING
+    title: Affiliation implementation funding readiness
+    statement: Documentary funding-readiness consideration for the affiliation implementation vertical. No funding is committed.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Sequencing decisions require a future funding determination.
+    required_action_or_evidence: Determine funding at a future funding gate.
+    commitment_status: NOT_COMMITTED
+    future_blocking_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    id: PROC-V10-201
+    kind: PROCUREMENT
+    title: Provider procurement readiness
+    statement: Documentary procurement-readiness consideration for provider and infrastructure dependencies. No vendor is selected and no procurement is opened.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Provider and infrastructure sequencing requires a future procurement determination.
+    required_action_or_evidence: Evaluate procurement readiness at a future procurement gate.
+    approval_status: NOT_APPROVED
+    commitment_status: NOT_COMMITTED
+    future_blocking_gate: EXEC-MCG
