@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "experience-requirements.schema.json",
+  "title": "REG-702 Experience Requirements, Patterns, States, and Content Semantics",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-702" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "authorizes_implementation", "implementation_status", "validation_status", "chapter_ref"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(IA|STATE|ACTION|CONTENT|PATTERN|A11Y|BIL|PRIV|CTRL)-V7-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/experienceKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "purpose": { "type": "string" },
+          "primary_actor": { "type": "string" },
+          "authoritative_source": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "permitted_actions": { "type": "array", "items": { "type": "string" } },
+          "status_semantics": { "type": "string" },
+          "deep_work_destination": { "type": "string" },
+          "access_condition": { "type": "string" },
+          "privacy_posture": { "$ref": "common.schema.json#/definitions/privacyPosture" },
+          "accessibility_dependency": { "type": "array", "items": { "$ref": "common.schema.json#/definitions/accessibilityDependency" } },
+          "bilingual_dependency": { "$ref": "common.schema.json#/definitions/languageRequirement" },
+          "canonical_concept": { "type": "string" },
+          "user_facing_meaning": { "type": "string" },
+          "institutional_consequence": { "type": "string" },
+          "prohibited_inference": { "type": "string" },
+          "english_semantic_requirement": { "type": "string" },
+          "french_semantic_requirement": { "type": "string" },
+          "accessibility_requirement": { "type": "string" },
+          "source_of_truth": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "staleness_posture": { "$ref": "common.schema.json#/definitions/stalenessPosture" },
+          "verification_method": { "type": "string" },
+          "required_evidence": { "type": "string" },
+          "control_intent": { "type": "string" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "chapter_ref": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

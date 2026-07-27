@@ -1,0 +1,114 @@
+{
+  "gate": "V7-G1",
+  "total_conditions": 20,
+  "satisfied": 19,
+  "unmet": [
+    {
+      "n": 20,
+      "title": "Package 1 receives line-level review and a separate freeze commit"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Corrected Volume 6 release provenance inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Experience authority and amendment rules controlled",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "House and Button responsibilities distinct",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Club affiliation is the first complete experience vertical",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Actors, needs, authority, and prohibited actions explicit",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Complete affiliation journey represented",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Frontstage, backstage, staff, finance, support, provider mapped",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Information architecture has authoritative sources and access conditions",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Status, action, notification, and content semantics governed",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Errors, exceptions, interruptions, degraded states, recovery defined",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Sensitive information and evidence interactions preserve privacy and authority",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Accessibility applies to primary, exception, and recovery paths",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "English and French governed meanings required equivalent",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Support does not acquire decision/reconciliation/activation/disclosure/disposition authority",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Unresolved items have owners, evidence requirements, and future gates",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Deterministic Package 1 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "No prohibited implementation/design/coded artifacts created",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "No unfounded implementation/conformance/validation claims",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Package 1 receives line-level review and a separate freeze commit",
+      "satisfied": false
+    }
+  ]
+}

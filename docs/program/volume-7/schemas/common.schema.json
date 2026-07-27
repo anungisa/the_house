@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "Volume 7 common definitions",
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registerStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentId": {
+      "type": "string",
+      "pattern": "^V7-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?$"
+    },
+    "v7GateId": {
+      "type": "string",
+      "pattern": "^V7-G[0-9]$"
+    },
+    "futureGateId": {
+      "type": "string",
+      "pattern": "^(V7-G[0-9]|V([89]|1[012])-G[0-9]|EXEC-MCG)$"
+    },
+    "evidenceLabel": {
+      "type": ["string", "null"],
+      "enum": [
+        "AUTHOR-VERIFIED",
+        "SELF-ATTESTED",
+        "SELF-ATTESTED / AUTHOR-VERIFIED",
+        "DOMAIN-VALIDATED",
+        "PEER-REVIEWED",
+        "AUTOMATED-EVIDENCE",
+        "INDEPENDENTLY-ASSESSED",
+        "EXECUTIVE-ACCEPTED",
+        "PRODUCTION-PROVEN",
+        null
+      ]
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ].*)?$"
+    },
+    "implementationStatus": {
+      "type": "string",
+      "enum": ["NOT_IMPLEMENTED_OR_NOT_PROVEN"]
+    },
+    "authorityDomain": {
+      "type": "string",
+      "enum": ["House", "CurlingCanada", "Button", "External", "Staff", "Shared", "Neither"]
+    },
+    "actorKind": {
+      "type": "string",
+      "enum": ["ACTOR", "NEED", "JOURNEY", "STAGE", "BLUEPRINT"]
+    },
+    "experienceKind": {
+      "type": "string",
+      "enum": ["IA", "STATE", "ACTION", "CONTENT", "PATTERN", "A11Y", "BIL", "PRIV", "CTRL"]
+    },
+    "backlogKind": {
+      "type": "string",
+      "enum": ["ASM", "RISK", "EXC", "TEST"]
+    },
+    "authorityPosture": {
+      "type": "string",
+      "enum": [
+        "AUTHORIZED_REPRESENTATIVE",
+        "DELEGATED_REPRESENTATIVE",
+        "PROSPECTIVE_REPRESENTATIVE",
+        "JURISDICTION_REVIEWER",
+        "NATIONAL_REVIEWER",
+        "FINANCE_OPERATOR",
+        "SUPPORT_OPERATOR",
+        "PRIVACY_OR_RECORDS_FUNCTION",
+        "SERVICE_ADMINISTRATOR",
+        "NONE"
+      ]
+    },
+    "sensitivityLevel": {
+      "type": "string",
+      "enum": ["LOW", "MODERATE", "HIGH", "RESTRICTED"]
+    },
+    "languageRequirement": {
+      "type": "string",
+      "enum": ["ENGLISH_AND_FRENCH_EQUIVALENT", "ENGLISH", "FRENCH", "LANGUAGE_NEUTRAL"]
+    },
+    "accessibilityDependency": {
+      "type": "string",
+      "enum": [
+        "KEYBOARD_AND_FOCUS",
+        "SEMANTIC_STRUCTURE",
+        "FORM_INSTRUCTIONS",
+        "ERROR_PREVENTION_AND_RECOVERY",
+        "STATUS_ANNOUNCEMENT",
+        "EVIDENCE_INTERACTION",
+        "AUTHENTICATION_AND_RECOVERY",
+        "TIME_SENSITIVE_TASK",
+        "ALTERNATE_FORMAT",
+        "ACCOMMODATION_PATH",
+        "NONE"
+      ]
+    },
+    "privacyPosture": {
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "PERSONAL",
+        "RESTRICTED_EVIDENCE",
+        "FINANCIAL_STATUS",
+        "PRIVILEGED_ADMIN",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "stalenessPosture": {
+      "type": "string",
+      "enum": ["AUTHORITATIVE_LIVE", "MAY_BE_STALE_DISCLOSE", "CACHED_NONBINDING", "NOT_APPLICABLE"]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": ["DEFINED", "CONSTRAINED", "ASSUMED", "PENDING_VALIDATION", "DEFERRED"]
+    }
+  }
+}

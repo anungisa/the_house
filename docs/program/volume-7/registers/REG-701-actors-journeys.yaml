@@ -1,0 +1,920 @@
+register_id: REG-701
+name: Volume 7 Actors, Needs, Journeys, and Service Blueprints
+status: RATIFIED
+version: 1.0.0
+records:
+  # --- Actors and access postures (V7-02) ---
+  - id: ACTOR-V7-001
+    kind: ACTOR
+    title: Authorized club representative
+    statement: The individual with confirmed authority to act for an affiliating club within a jurisdiction and season.
+    authority_posture: AUTHORIZED_REPRESENTATIVE
+    authority_domain: External
+    primary_goal: Complete and maintain the club's affiliation standing accurately and on time.
+    permitted_actions:
+      - View the club's affiliation status and required actions
+      - Complete and submit affiliation responses
+      - Attach and manage affiliation evidence
+    prohibited_actions:
+      - Decide the outcome of the club's own affiliation
+      - Reconcile financial obligations authoritatively
+      - Activate affiliation standing
+    information_needed:
+      - Current affiliation status and its meaning
+      - Applicable requirements for the season and jurisdiction
+      - Outstanding required actions and their consequences
+    sensitivity: MODERATE
+    accessibility_needs:
+      - KEYBOARD_AND_FOCUS
+      - FORM_INSTRUCTIONS
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Entered work must be preserved on validation error and a recovery path must remain visible.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-002
+    kind: ACTOR
+    title: Delegated representative
+    statement: An individual acting under a delegation from an authorized representative, with scoped and revocable authority.
+    authority_posture: DELEGATED_REPRESENTATIVE
+    authority_domain: External
+    primary_goal: Contribute to affiliation completion within the bounds of an explicit delegation.
+    permitted_actions:
+      - View permitted portions of the club's affiliation
+      - Complete delegated portions of responses and evidence
+    prohibited_actions:
+      - Act beyond the scope of the delegation
+      - Grant delegations to others
+      - Decide affiliation outcomes
+    information_needed:
+      - Scope and limits of the delegation
+      - Tasks assigned within that scope
+    sensitivity: MODERATE
+    accessibility_needs:
+      - KEYBOARD_AND_FOCUS
+      - FORM_INSTRUCTIONS
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Delegation limits must be communicated clearly and denials must explain the missing authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-003
+    kind: ACTOR
+    title: New club representative
+    statement: A representative of an organization not yet established as an affiliated club.
+    authority_posture: PROSPECTIVE_REPRESENTATIVE
+    authority_domain: External
+    primary_goal: Establish the club and begin its first affiliation.
+    permitted_actions:
+      - Begin club establishment
+      - Provide initial organization information
+    prohibited_actions:
+      - Assume affiliation exists before it is established
+      - Decide or activate affiliation standing
+    information_needed:
+      - What is required to establish a club
+      - How establishment differs from affiliation
+    sensitivity: MODERATE
+    accessibility_needs:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Duplicate-organization detection must be explained without disclosing restricted details of an existing club.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-004
+    kind: ACTOR
+    title: Returning club representative
+    statement: A representative of a previously affiliated club renewing or continuing affiliation.
+    authority_posture: AUTHORIZED_REPRESENTATIVE
+    authority_domain: External
+    primary_goal: Renew affiliation efficiently while confirming or correcting carried-forward information.
+    permitted_actions:
+      - Review carried-forward information
+      - Confirm or correct prior responses and evidence
+    prohibited_actions:
+      - Assume prior standing remains valid without confirmation
+      - Decide or activate the renewed affiliation
+    information_needed:
+      - What information carries forward and what must be reconfirmed
+      - Current standing and expiry
+    sensitivity: MODERATE
+    accessibility_needs:
+      - KEYBOARD_AND_FOCUS
+      - STATUS_ANNOUNCEMENT
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Carried-forward information that may be stale must be disclosed as such.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-005
+    kind: ACTOR
+    title: Jurisdiction reviewer
+    statement: A reviewer authorized within a jurisdiction to review affiliation submissions at that level.
+    authority_posture: JURISDICTION_REVIEWER
+    authority_domain: House
+    primary_goal: Review submissions and record jurisdiction-level dispositions faithfully.
+    permitted_actions:
+      - Review submitted affiliation responses and evidence
+      - Return submissions for information within authority
+      - Record a jurisdiction-level review outcome
+    prohibited_actions:
+      - Decide outside the jurisdiction's authority
+      - Activate affiliation standing directly
+      - Alter the authoritative record outside the governed transition
+    information_needed:
+      - Submission contents and completeness signals
+      - Applicable requirements and prior history
+    sensitivity: HIGH
+    accessibility_needs:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Review actions must be traceable and reversible only through governed transitions.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-006
+    kind: ACTOR
+    title: National reviewer
+    statement: A reviewer authorized at the national level for dispositions reserved to that level.
+    authority_posture: NATIONAL_REVIEWER
+    authority_domain: House
+    primary_goal: Exercise national-level review authority accurately and traceably.
+    permitted_actions:
+      - Review submissions escalated or reserved to the national level
+      - Record a national-level review outcome
+    prohibited_actions:
+      - Bypass jurisdiction-level authority where it applies
+      - Alter records outside governed transitions
+    information_needed:
+      - Escalation context and jurisdiction history
+      - Applicable national requirements
+    sensitivity: HIGH
+    accessibility_needs:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: National dispositions must be explainable and traceable to authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-007
+    kind: ACTOR
+    title: Finance operator
+    statement: An operator responsible for confirming financial or reconciliation dependencies related to affiliation.
+    authority_posture: FINANCE_OPERATOR
+    authority_domain: Staff
+    primary_goal: Confirm financial and reconciliation status without deciding affiliation.
+    permitted_actions:
+      - Record financial confirmation or reconciliation status
+      - Communicate outstanding financial dependencies
+    prohibited_actions:
+      - Decide affiliation outcomes
+      - Activate affiliation standing
+      - Disclose financial detail beyond authorized recipients
+    information_needed:
+      - Outstanding obligations and their state
+      - Which affiliation steps depend on financial confirmation
+    sensitivity: RESTRICTED
+    accessibility_needs:
+      - SEMANTIC_STRUCTURE
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Financial confirmation must be shown as distinct from affiliation decision.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-008
+    kind: ACTOR
+    title: Support operator
+    statement: An operator who assists users through the experience without acquiring institutional authority.
+    authority_posture: SUPPORT_OPERATOR
+    authority_domain: Staff
+    primary_goal: Help users understand status, actions, and recovery paths.
+    permitted_actions:
+      - Explain status, required actions, and recovery paths
+      - Guide users to the correct authoritative destination
+    prohibited_actions:
+      - Make an affiliation decision on a user's behalf
+      - Perform financial reconciliation authoritatively
+      - Perform activation of affiliation standing
+      - Perform disclosure of restricted information
+      - Perform records disposition or retention override
+    information_needed:
+      - Non-restricted status and required-action information
+      - Known recovery paths and escalation routes
+    sensitivity: MODERATE
+    accessibility_needs:
+      - ACCOMMODATION_PATH
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Support boundaries must be explicit so assistance never appears to confer authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-009
+    kind: ACTOR
+    title: Privacy and records function
+    statement: The function responsible for privacy, access, correction, retention, and disposition obligations.
+    authority_posture: PRIVACY_OR_RECORDS_FUNCTION
+    authority_domain: Staff
+    primary_goal: Uphold privacy and records obligations across the experience.
+    permitted_actions:
+      - Handle access and correction requests through governed processes
+      - Apply retention and legal-hold dependencies
+    prohibited_actions:
+      - Decide affiliation outcomes
+      - Treat operational access as disclosure authority
+    information_needed:
+      - Privacy posture and disclosure constraints
+      - Retention and legal-hold state
+    sensitivity: RESTRICTED
+    accessibility_needs:
+      - SEMANTIC_STRUCTURE
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Access must never imply disclosure or disposition authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-010
+    kind: ACTOR
+    title: Service administrator
+    statement: An administrator responsible for service configuration within governed limits.
+    authority_posture: SERVICE_ADMINISTRATOR
+    authority_domain: Staff
+    primary_goal: Maintain service configuration without exercising affiliation decision authority.
+    permitted_actions:
+      - Maintain service-level configuration within governed limits
+    prohibited_actions:
+      - Decide, activate, or reconcile individual affiliations
+      - Override governed transitions
+    information_needed:
+      - Service configuration scope and its limits
+    sensitivity: HIGH
+    accessibility_needs:
+      - SEMANTIC_STRUCTURE
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Administrative scope must be distinct from case-level authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-011
+    kind: ACTOR
+    title: User requiring accommodation
+    statement: A cross-cutting context for any user who requires an accessibility accommodation.
+    authority_posture: NONE
+    authority_domain: Neither
+    primary_goal: Complete the same tasks through accessible primary, exception, and recovery paths.
+    permitted_actions:
+      - Use accessible equivalents of every governed task
+      - Request an accommodation path
+    prohibited_actions:
+      - Be required to use an inaccessible path to complete a governed task
+    information_needed:
+      - Available accommodations and how to request them
+    sensitivity: MODERATE
+    accessibility_needs:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+      - ERROR_PREVENTION_AND_RECOVERY
+      - ACCOMMODATION_PATH
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: Accessibility applies to primary, exception, and recovery paths alike.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  - id: ACTOR-V7-012
+    kind: ACTOR
+    title: User working in English or French
+    statement: A cross-cutting context for any user working in either official language.
+    authority_posture: NONE
+    authority_domain: Neither
+    primary_goal: Receive equivalent governed meaning in the chosen official language.
+    permitted_actions:
+      - Work through the experience in English or French
+    prohibited_actions:
+      - Receive a materially different governed meaning by language
+    information_needed:
+      - Governed meaning of status, actions, and consequences
+    sensitivity: LOW
+    accessibility_needs:
+      - SEMANTIC_STRUCTURE
+    language_needs: ENGLISH_AND_FRENCH_EQUIVALENT
+    failure_and_recovery_needs: English and French governed meaning must remain equivalent.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+  # --- Governed needs (traced to actors) ---
+  - id: NEED-V7-001
+    kind: NEED
+    title: Understand current affiliation status and its meaning
+    statement: Representatives need to understand what a status means and what it obliges.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-001
+      - ACTOR-V7-004
+  - id: NEED-V7-002
+    kind: NEED
+    title: Understand delegation scope and limits
+    statement: Delegated representatives need to know exactly what they may and may not do.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-002
+  - id: NEED-V7-003
+    kind: NEED
+    title: Understand how to establish a club
+    statement: New clubs need to distinguish establishment from affiliation.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-003
+  - id: NEED-V7-004
+    kind: NEED
+    title: Review submissions with faithful authority signals
+    statement: Reviewers need faithful completeness and authority signals to disposition submissions.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-005
+      - ACTOR-V7-006
+  - id: NEED-V7-005
+    kind: NEED
+    title: Confirm financial dependencies without deciding affiliation
+    statement: Finance operators need to record financial confirmation as distinct from affiliation decision.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-007
+  - id: NEED-V7-006
+    kind: NEED
+    title: Assist users without acquiring authority
+    statement: Support operators need boundaries that keep assistance separate from authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-008
+  - id: NEED-V7-007
+    kind: NEED
+    title: Uphold privacy and records obligations
+    statement: The privacy and records function needs access without implied disclosure authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-009
+  - id: NEED-V7-008
+    kind: NEED
+    title: Maintain configuration without case authority
+    statement: Service administrators need configuration scope distinct from case-level decisions.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-010
+  - id: NEED-V7-009
+    kind: NEED
+    title: Complete governed tasks accessibly
+    statement: Users requiring accommodation need accessible equivalents of every governed task.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-011
+  - id: NEED-V7-010
+    kind: NEED
+    title: Receive equivalent governed meaning by language
+    statement: Users in English or French need equivalent governed meaning.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-02
+    traces_to:
+      - ACTOR-V7-012
+  # --- Journey (V7-03) ---
+  - id: JOURNEY-V7-001
+    kind: JOURNEY
+    title: End-to-end club-affiliation journey
+    statement: The complete governed experience from representative-authority confirmation to affiliation standing and next actions.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  # --- Journey stages (V7-03) ---
+  - id: STAGE-V7-001
+    kind: STAGE
+    title: Establish or confirm representative authority
+    statement: The user establishes or confirms authority to act for the club.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 1
+    house_authority: The House determines whether representative authority exists and its scope.
+    button_responsibility: The Button collects identity and delegation input and presents the authority result.
+    required_information:
+      - Identity of the representative
+      - Basis of authority or delegation
+    decisions:
+      - Whether representative authority is confirmed
+    evidence:
+      - Delegation or authority basis where required
+    states:
+      - Authority unconfirmed
+      - Authority confirmed
+      - Authority denied
+    errors:
+      - Missing representative authority
+    recovery: The user is shown the missing authority basis and a path to obtain or request it.
+    accessibility:
+      - AUTHENTICATION_AND_RECOVERY
+      - KEYBOARD_AND_FOCUS
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: PERSONAL
+    future_verification: Usability and authority-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-002
+    kind: STAGE
+    title: Identify or establish the club
+    statement: The user identifies an existing club or establishes a new one.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 2
+    house_authority: The House holds the authoritative organization record and duplicate determination.
+    button_responsibility: The Button collects organization information and presents identification results.
+    required_information:
+      - Organization identifying information
+    decisions:
+      - Whether the organization already exists
+    evidence:
+      - Establishing information for a new club
+    states:
+      - Club not identified
+      - Existing club identified
+      - New club establishment started
+    errors:
+      - Duplicate organization
+    recovery: A suspected duplicate is explained without disclosing restricted detail and a resolution path is offered.
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Duplicate-handling comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-003
+    kind: STAGE
+    title: Confirm jurisdiction and season
+    statement: The user confirms the jurisdiction and season for the affiliation.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 3
+    house_authority: The House determines the current season and applicable jurisdiction.
+    button_responsibility: The Button presents jurisdiction and season and collects confirmation.
+    required_information:
+      - Jurisdiction
+      - Season
+    decisions:
+      - Which jurisdiction and season apply
+    evidence: []
+    states:
+      - Jurisdiction and season unconfirmed
+      - Jurisdiction and season confirmed
+    errors:
+      - Jurisdiction mismatch
+    recovery: A mismatch is explained and the correct jurisdiction path is offered.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Season-currency comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-004
+    kind: STAGE
+    title: Select or derive pathway
+    statement: The applicable affiliation pathway is selected or derived.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 4
+    house_authority: The House derives or constrains the applicable pathway.
+    button_responsibility: The Button presents the derived pathway and any permitted choices.
+    required_information:
+      - Club characteristics affecting the pathway
+    decisions:
+      - Which pathway applies
+    evidence: []
+    states:
+      - Pathway underived
+      - Pathway derived
+    errors:
+      - Ambiguous or unavailable pathway
+    recovery: An unavailable pathway is explained and an alternative or support route is offered.
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Pathway-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-005
+    kind: STAGE
+    title: Review applicable requirements
+    statement: The user reviews the requirements that apply to the affiliation.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 5
+    house_authority: The House holds the authoritative set of applicable requirements.
+    button_responsibility: The Button presents requirements and their meaning.
+    required_information:
+      - Applicable requirements for the pathway
+    decisions: []
+    evidence: []
+    states:
+      - Requirements unreviewed
+      - Requirements reviewed
+    errors:
+      - Requirements unavailable
+    recovery: If requirements cannot be shown, the user is told and offered a retry or support route.
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - FORM_INSTRUCTIONS
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Requirement-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-006
+    kind: STAGE
+    title: Complete responses
+    statement: The user completes the affiliation responses.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 6
+    house_authority: The House defines the required responses and their validity conditions.
+    button_responsibility: The Button collects responses and preserves entered work.
+    required_information:
+      - Responses to required questions
+    decisions: []
+    evidence: []
+    states:
+      - Responses incomplete
+      - Responses complete
+    errors:
+      - Validation errors
+    recovery: Validation errors preserve entered work and explain how to correct each field.
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: PERSONAL
+    future_verification: Response-usability validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-007
+    kind: STAGE
+    title: Attach and manage evidence
+    statement: The user attaches and manages affiliation evidence.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 7
+    house_authority: The House defines which evidence is required and its handling constraints.
+    button_responsibility: The Button collects and manages evidence within privacy constraints.
+    required_information:
+      - Evidence items required by the pathway
+    decisions: []
+    evidence:
+      - Required affiliation evidence
+    states:
+      - Evidence missing
+      - Evidence attached
+    errors:
+      - Failed upload
+    recovery: A failed upload preserves other work and offers a retry with clear guidance.
+    accessibility:
+      - EVIDENCE_INTERACTION
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: RESTRICTED_EVIDENCE
+    future_verification: Evidence-interaction accessibility validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-008
+    kind: STAGE
+    title: Review completeness
+    statement: The user reviews the completeness of the affiliation before submission.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 8
+    house_authority: The House defines completeness criteria.
+    button_responsibility: The Button presents completeness signals accurately.
+    required_information:
+      - Completeness signals for each requirement
+    decisions: []
+    evidence: []
+    states:
+      - Incomplete
+      - Ready to submit
+    errors:
+      - Outstanding items remain
+    recovery: Outstanding items are listed with a direct path to complete each.
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Completeness-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-009
+    kind: STAGE
+    title: Submit
+    statement: The user submits the completed affiliation.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 9
+    house_authority: The House records the submission through a governed transition.
+    button_responsibility: The Button confirms the consequential action and presents the traceable outcome.
+    required_information:
+      - Confirmation of intent to submit
+    decisions:
+      - Whether submission is accepted for review
+    evidence: []
+    states:
+      - Not submitted
+      - Submitted
+    errors:
+      - Submission conflict
+    recovery: A submission conflict is explained and the user is shown the current authoritative state.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Confirmation-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-010
+    kind: STAGE
+    title: Monitor review
+    statement: The user monitors the review of the submission.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 10
+    house_authority: The House holds the authoritative review state.
+    button_responsibility: The Button presents the review state and discloses staleness.
+    required_information:
+      - Current review state
+    decisions: []
+    evidence: []
+    states:
+      - Awaiting review
+      - Under review
+    errors:
+      - Stale projection
+    recovery: A possibly stale review state is disclosed as such with a way to refresh.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Staleness-disclosure comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-011
+    kind: STAGE
+    title: Receive return-for-information
+    statement: The user receives a return-for-information request.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 11
+    house_authority: The House determines and records the return-for-information.
+    button_responsibility: The Button presents the returned request and what is needed.
+    required_information:
+      - What information is being requested
+    decisions: []
+    evidence: []
+    states:
+      - Returned for information
+    errors:
+      - Returned submission
+    recovery: The returned items are explained with a direct path to correct and resubmit.
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Return-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-012
+    kind: STAGE
+    title: Correct and resubmit
+    statement: The user corrects the returned items and resubmits.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 12
+    house_authority: The House records the corrected resubmission through a governed transition.
+    button_responsibility: The Button collects corrections and preserves prior valid work.
+    required_information:
+      - Corrections to the returned items
+    decisions:
+      - Whether the resubmission is accepted for review
+    evidence:
+      - Additional or corrected evidence where requested
+    states:
+      - Resubmitted
+    errors:
+      - Validation errors on correction
+    recovery: Correction errors preserve prior valid work and explain each remaining issue.
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: PERSONAL
+    future_verification: Resubmission-usability validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-013
+    kind: STAGE
+    title: Receive decision
+    statement: The user receives the affiliation decision.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 13
+    house_authority: The House determines and records the decision through a governed transition.
+    button_responsibility: The Button presents the decision, its reason, and its consequence.
+    required_information:
+      - The decision and its meaning
+    decisions:
+      - Approved or refused
+    evidence: []
+    states:
+      - Approved
+      - Refused
+    errors:
+      - Decision unavailable
+    recovery: If the decision cannot be shown, the user is told and offered a retry or support route.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Decision-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-014
+    kind: STAGE
+    title: Resolve financial or reconciliation dependencies
+    statement: The user resolves financial or reconciliation dependencies where required.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 14
+    house_authority: The House records financial confirmation as distinct from the affiliation decision.
+    button_responsibility: The Button presents outstanding dependencies and collects resolution input.
+    required_information:
+      - Outstanding financial or reconciliation dependencies
+    decisions:
+      - Whether financial dependencies are confirmed
+    evidence: []
+    states:
+      - Reconciliation pending
+      - Reconciliation confirmed
+    errors:
+      - Payment or accounting mismatch
+    recovery: A mismatch is explained without disclosing restricted financial detail and a resolution path is offered.
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: FINANCIAL_STATUS
+    future_verification: Reconciliation-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-015
+    kind: STAGE
+    title: Receive authoritative activation
+    statement: The user receives authoritative activation of affiliation standing.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 15
+    house_authority: The House performs and records activation through a governed transition.
+    button_responsibility: The Button presents activation and its meaning without performing it.
+    required_information:
+      - Activation status and its meaning
+    decisions: []
+    evidence: []
+    states:
+      - Activation pending
+      - Active
+    errors:
+      - Activation delay
+    recovery: An activation delay is disclosed with expected next steps and a support route.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Activation-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  - id: STAGE-V7-016
+    kind: STAGE
+    title: View standing, expiry, and next required actions
+    statement: The user views current standing, expiry, and next required actions.
+    journey_ref: JOURNEY-V7-001
+    stage_order: 16
+    house_authority: The House holds the authoritative standing, expiry, and required actions.
+    button_responsibility: The Button presents standing, expiry, and required actions accurately.
+    required_information:
+      - Current standing
+      - Expiry
+      - Next required actions
+    decisions: []
+    evidence: []
+    states:
+      - Active
+      - Expired
+    errors:
+      - Standing unavailable
+    recovery: If standing cannot be shown, the user is told and offered a retry or support route.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_constraints: INTERNAL
+    future_verification: Standing-comprehension validation deferred to a future gate.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-03
+  # --- Service blueprint (V7-04) ---
+  - id: BLUEPRINT-V7-001
+    kind: BLUEPRINT
+    title: Club-affiliation service blueprint and channel-responsibility model
+    statement: The channel-responsibility model for the club-affiliation service across frontstage, backstage, staff, finance, support, and providers.
+    frontstage:
+      - Button interactions that collect input and present status, actions, reasons, consequences, and recovery
+    backstage:
+      - House application and domain responsibilities that hold authoritative state and governed transitions
+    staff_activities:
+      - Jurisdiction and national review activities
+    finance_activities:
+      - Financial confirmation and reconciliation activities distinct from affiliation decision
+    support_activities:
+      - Assistance that explains status, actions, and recovery without acquiring authority
+    provider_interactions:
+      - Provider and external-system interactions whose acknowledgement is not institutional truth
+    records_responsibility: Evidence and records responsibilities remain governed by House authority and the records function.
+    notifications:
+      - Required-action and status notifications presented by the Button
+    failure_recovery_handoff: Failure and recovery handoffs preserve authority boundaries and route users to the correct authoritative destination.
+    separation_invariants:
+      - Button interaction is not House authority
+      - Support assistance is not decision authority
+      - Financial confirmation is not an affiliation decision
+      - Provider acknowledgement is not institutional truth
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-04

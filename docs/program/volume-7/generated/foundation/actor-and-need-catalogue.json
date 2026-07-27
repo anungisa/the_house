@@ -1,0 +1,9 @@
+{
+  "counts": {
+    "actors": 12,
+    "needs": 10
+  },
+  "gaps": {
+    "actors_without_need": []
+  }
+}

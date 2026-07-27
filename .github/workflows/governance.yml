@@ -1,4 +1,4 @@
-# Documentation governance gate for the Volume 0 through Volume 6 corpora.
+# Documentation governance gate for the Volume 0 through Volume 7 corpora.
 #
 # This workflow runs ONLY when the governance corpus or its toolchain changes
 # (docs/program/** or the package manifest/lockfile). It NEVER deploys, requires
@@ -69,6 +69,9 @@ jobs:
       - name: Run Volume 6 governance controls
         run: npm run governance:check:v6
 
+      - name: Run Volume 7 governance controls
+        run: npm run governance:check:v7
+
       - name: Upload non-authoritative control report
         if: always()
         uses: actions/upload-artifact@v4
@@ -122,4 +125,12 @@ jobs:
         with:
           name: governance-control-report-v6
           path: docs/program/volume-6/generated/governance-control-report.md
+          if-no-files-found: warn
+
+      - name: Upload Volume 7 non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report-v7
+          path: docs/program/volume-7/generated/governance-control-report.md
           if-no-files-found: warn

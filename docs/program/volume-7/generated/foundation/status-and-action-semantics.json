@@ -1,0 +1,7 @@
+{
+  "states": 16,
+  "actions": 2,
+  "content": 2,
+  "states_without_source": [],
+  "actions_without_house_command": []
+}
