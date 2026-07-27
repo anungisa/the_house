@@ -1,0 +1,21 @@
+{
+  "non_authoritative": true,
+  "total": 13,
+  "covered": 13,
+  "uncovered": [],
+  "findings": [
+    "resource-aware authorization",
+    "reviewer and jurisdiction authority",
+    "evidence binding",
+    "affiliation lifecycle",
+    "versioned requirements",
+    "return and resubmission",
+    "activation uniqueness",
+    "fail-closed configuration",
+    "outbox and publication state",
+    "PostgreSQL verification",
+    "composition",
+    "deployment path",
+    "secrets and configuration"
+  ]
+}

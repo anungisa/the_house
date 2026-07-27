@@ -13,6 +13,19 @@
       "authoring_closure_separation": "NOT_SATISFIED_HISTORICALLY",
       "chronology_exception": "RECORDED",
       "future_separation_required": true
+    },
+    {
+      "freeze_artifact": "PACKAGE-7-5",
+      "approval": "APP-V7-078",
+      "substantive_authoring_commit": "20bde2d",
+      "closure_authored_commit": "d2d85b1",
+      "closure_effective_commit": "d2d85b1",
+      "freeze_commit": "d2d85b1",
+      "gate_effective_commit": "d2d85b1",
+      "provenance_binding_commit": null,
+      "authoring_closure_separation": "SATISFIED",
+      "chronology_exception": null,
+      "future_separation_required": false
     }
   ]
 }

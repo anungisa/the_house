@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T10:05:09.231Z
+Generated: 2026-07-27T10:32:44.036Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T10:05:09.231Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 54 |
+| RATIFIED | 68 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 54 |
+| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 68 |
 | REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 137 |
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 131 |
-| REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 31 |
+| REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 36 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 39 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 62 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 79 |
 
 ## Findings by control
 
@@ -107,6 +107,18 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
 
+### Integrated closure coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Gate V7-G5 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
 ## Recorded conditions (from REG-705 approvals)
 
 - APP-V7-013 (GATE-V7-G1): Corrected Volume 6 release provenance is inherited
@@ -169,3 +181,23 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V7-059 (GATE-V7-G4): The validation backlog carries forward gates and owners
 - APP-V7-059 (GATE-V7-G4): Every Package 4 chapter states its explicit non-authorizations
 - APP-V7-059 (GATE-V7-G4): Package 4 receives line-level review and a separate freeze commit
+- APP-V7-077 (GATE-V7-G5): Package 4 chronology amendment inherited
+- APP-V7-077 (GATE-V7-G5): Packages 1-4 remain frozen and unchanged
+- APP-V7-077 (GATE-V7-G5): The complete affiliation experience is traceable end to end
+- APP-V7-077 (GATE-V7-G5): The House and the Button remain distinct authorities
+- APP-V7-077 (GATE-V7-G5): All actions map to governed intents
+- APP-V7-077 (GATE-V7-G5): All material surfaces have complete state coverage
+- APP-V7-077 (GATE-V7-G5): Accessibility covers primary, exception, staff, interruption, and recovery paths
+- APP-V7-077 (GATE-V7-G5): English and French concepts retain equivalent governed meanings
+- APP-V7-077 (GATE-V7-G5): Privacy and restricted-evidence constraints are represented
+- APP-V7-077 (GATE-V7-G5): Validation protocols exist without validation claims
+- APP-V7-077 (GATE-V7-G5): Measurement includes privacy and interpretation limits
+- APP-V7-077 (GATE-V7-G5): Implementation handoffs include authority, state, and evidence requirements
+- APP-V7-077 (GATE-V7-G5): House P0 findings have experience coverage
+- APP-V7-077 (GATE-V7-G5): Every unresolved item has a valid downstream destination
+- APP-V7-077 (GATE-V7-G5): Deterministic closure analysis reports no blocking defect
+- APP-V7-077 (GATE-V7-G5): No record claims usability, accessibility, bilingual, stakeholder, operational, or production validation
+- APP-V7-077 (GATE-V7-G5): No production interface, runtime code, final content, procurement, pilot, rollout, or master development plan is created
+- APP-V7-077 (GATE-V7-G5): No record authorizes implementation
+- APP-V7-077 (GATE-V7-G5): Package 5 and the whole of Volume 7 receive explicit freezes
+- APP-V7-077 (GATE-V7-G5): Authoring and closure/freeze commits are properly separated

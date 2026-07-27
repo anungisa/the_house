@@ -387,6 +387,110 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-42-package-4-traceability-validation-backlog-and-downstream-constraints.md
     gate: V7-G4
+  - id: V7-43
+    title: Integrated Experience and Service-Design Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-43-integrated-experience-and-service-design-baseline.md
+    gate: V7-G5
+  - id: V7-44
+    title: Complete Club-Affiliation Experience Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-44-complete-club-affiliation-experience-synthesis.md
+    gate: V7-G5
+  - id: V7-45
+    title: Actor, Authority, Task, Action, and Workbench Crosswalk
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-45-actor-authority-task-action-and-workbench-crosswalk.md
+    gate: V7-G5
+  - id: V7-46
+    title: Experience-Surface, Component, Pattern, and State Catalogue
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-46-experience-surface-component-pattern-and-state-catalogue.md
+    gate: V7-G5
+  - id: V7-47
+    title: Content, Terminology, Bilingual, and Semantic-Governance Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-47-content-terminology-bilingual-and-semantic-governance-synthesis.md
+    gate: V7-G5
+  - id: V7-48
+    title: Accessibility, Responsive, Privacy, Evidence, and Inclusive-Service Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-48-accessibility-responsive-privacy-evidence-and-inclusive-service-synthesis.md
+    gate: V7-G5
+  - id: V7-49
+    title: Error, Conflict, Stale, Degraded, Interruption, Support, and Recovery Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-49-error-conflict-stale-degraded-interruption-support-and-recovery-synthesis.md
+    gate: V7-G5
+  - id: V7-50
+    title: Validation, Measurement, Content-Governance, Issue, and Retest Readiness
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-50-validation-measurement-content-governance-issue-and-retest-readiness.md
+    gate: V7-G5
+  - id: V7-51
+    title: Design-to-Implementation Conformance and Evidence Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-51-design-to-implementation-conformance-and-evidence-matrix.md
+    gate: V7-G5
+  - id: V7-52
+    title: House P0 Experience-Coverage Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-52-house-p0-experience-coverage-matrix.md
+    gate: V7-G5
+  - id: V7-53
+    title: Assumptions, Risks, Exceptions, and Readiness Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-53-assumptions-risks-exceptions-and-readiness-disposition.md
+    gate: V7-G5
+  - id: V7-54
+    title: Downstream-Volume Handoff and Executive Experience Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-54-downstream-volume-handoff-and-executive-experience-brief.md
+    gate: V7-G5
+  - id: V7-55
+    title: Integrated Traceability and Volume 7 Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-55-integrated-traceability-and-volume-7-closure-assessment.md
+    gate: V7-G5
   - id: V7-E
     title: Package 3 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)
@@ -435,3 +539,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-H-1-package-4-governance-amendment.md
     gate: V7-G4
+  - id: V7-I
+    title: Volume 7 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-I-volume-7-completion-and-release-freeze-record.md
+    gate: V7-G5
