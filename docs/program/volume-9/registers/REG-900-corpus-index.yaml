@@ -299,3 +299,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-30-integrated-cross-cutting-assurance-coverage-and-backlog.md
     gate: V9-G3
+  - id: V9-E
+    title: Package 3 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-E-package-3-closure-record.md
+    gate: V9-G3
