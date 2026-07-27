@@ -2,14 +2,9 @@
   "gate": "V8-G5",
   "disposition_target": "API_EVENT_INTEGRATION_AND_EXCHANGE_CONTRACT_DEFINITION_COMPLETE",
   "total_conditions": 32,
-  "satisfied": 31,
-  "unmet": [
-    {
-      "n": 32,
-      "title": "Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 32,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -169,7 +164,7 @@
     {
       "n": 32,
       "title": "Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

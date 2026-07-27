@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T14:49:57.923Z
+Generated: 2026-07-27T14:51:04.929Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,11 +16,11 @@ Generated: 2026-07-27T14:49:57.923Z
 
 ## Summary
 
-- Total findings: 1
-- Errors: 1
+- Total findings: 0
+- Errors: 0
 - Warnings: 0
 - Info: 0
-- Overall: FAIL (contract-governance integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -91,9 +91,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V8-G5 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V8_G5_CONDITION_UNMET [GATE-V8-G5]: Condition 32 not satisfied: Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding
+- (no findings)
 
 ### Event-delivery contract coverage
 

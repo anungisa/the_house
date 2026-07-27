@@ -1383,10 +1383,10 @@ records:
       closure_artifact: V8-I
       gate: GATE-V8-G5
       freeze_artifact: PACKAGE-8-5
-      closure_authored_commit: PENDING_V8-I_CLOSURE_COMMIT
-      closure_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
-      gate_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
       chronology_disposition: >-
         The substantive authoring commit precedes the closure commit; the closure,
         Gate V8-G5 disposition, and dual freeze of Package 5 and the whole of
@@ -1394,7 +1394,7 @@ records:
         the immediately following provenance-binding commit.
     effective_date_clarification:
       gate: GATE-V8-G5
-      documentary_definition_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
+      documentary_definition_effective_commit: d4b7e6d
       implementation_effective_date: >-
         Not applicable. Volume 8 authorizes no implementation; documentary
         definition effectiveness is distinct from any future implementation date.
@@ -1418,8 +1418,8 @@ records:
     authorizes_implementation: false
     gate_disposition: API_EVENT_INTEGRATION_AND_EXCHANGE_CONTRACT_DEFINITION_COMPLETE
     requires_freeze_artifact: PACKAGE-8-5
-    effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-    gate_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
+    effective_commit: d4b7e6d
+    gate_effective_commit: d4b7e6d
     conditions:
       - Package 4 provenance, V8-H, and V8-H-1 are inherited
       - Packages 1 through 4 remain frozen and unchanged
@@ -1499,10 +1499,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-8-5
       substantive_authoring_commit: df19266
-      closure_authored_commit: PENDING_V8-I_CLOSURE_COMMIT
-      closure_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      gate_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      freeze_commit: d4b7e6d
       provenance_binding_commit: PENDING_V8-J_AMENDMENT
       required_sequence: >-
         Substantive authoring precedes closure; closure and dual freeze precede
@@ -1524,12 +1524,12 @@ records:
       source_baseline_commit: a1aaa75
       branch_base_commit: a1aaa75
       authoring_commit: df19266
-      closure_authored_commit: PENDING_V8-I_CLOSURE_COMMIT
-      closure_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      closure_freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
-      gate_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      effective_commit: PENDING_V8-I_CLOSURE_COMMIT
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      closure_freeze_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      effective_commit: d4b7e6d
       provenance_binding_commit: PENDING_V8-J_AMENDMENT
       note: >-
         Package 5 was authored in a substantive authoring commit and frozen in a
@@ -1567,10 +1567,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: VOLUME-8
       substantive_authoring_commit: df19266
-      closure_authored_commit: PENDING_V8-I_CLOSURE_COMMIT
-      closure_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      gate_effective_commit: PENDING_V8-I_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      freeze_commit: d4b7e6d
       provenance_binding_commit: PENDING_V8-J_AMENDMENT
       required_sequence: >-
         The whole-volume freeze is recorded together with the Package 5 closure
@@ -1592,9 +1592,9 @@ records:
       source_baseline_commit: a1aaa75
       branch_base_commit: a1aaa75
       authoring_commit: df19266
-      closure_freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-I_CLOSURE_COMMIT
-      effective_commit: PENDING_V8-I_CLOSURE_COMMIT
+      closure_freeze_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      effective_commit: d4b7e6d
       provenance_binding_commit: PENDING_V8-J_AMENDMENT
       note: >-
         Whole-volume freeze for Volume 8. Records that Packages 1 through 5 are
