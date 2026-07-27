@@ -1,0 +1,109 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "house_p0_operational_coverage": [
+    {
+      "id": "HPOC-V11-001",
+      "title": "House P0 Operational-Assurance Coverage",
+      "coverage_area": "House P0 operational-assurance destinations.",
+      "consolidated_from": [
+        "V11-20"
+      ],
+      "preserved_distinction": "Finding identified is not finding resolved; documentary destination is not operational proof.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT operational proof required before any P0 closure.",
+      "volume_12_destination": "Volume 12 operational-proof and release-evidence package.",
+      "house_p0_destination": "Volume 12 House P0 operational-proof and release-evidence package.",
+      "owner_gap_status": "Every House P0 finding retains a governed operational-proof destination.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "volume_12_handoff_coverage": [
+    {
+      "id": "V12HC-V11-001",
+      "title": "Volume 12 Handoff Coverage",
+      "coverage_area": "Volume 12 handoff destinations.",
+      "consolidated_from": [
+        "V11-20",
+        "V11-31"
+      ],
+      "preserved_distinction": "Handoff defined is not evidence produced; destination named is not acceptance granted.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT assurance and EXECUTIVE acceptance required at Volume 12.",
+      "volume_12_destination": "Volume 12 integrated gate, release, and acceptance-evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every material obligation has a defined Volume 12 destination and future gate.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "independent_assurance_requirements": [
+    {
+      "id": "IAR-V11-001",
+      "title": "Affiliation Independent-Assurance Requirement",
+      "authoritative_source": "Package 2 operational-evidence plan (V11-C).",
+      "institutional_purpose": "Define the independent assurance Volume 12 must obtain.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Independent assurance evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 independent-assurance evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "volume_12_release_evidence_requirements": [
+    {
+      "id": "V12RER-V11-001",
+      "title": "Volume 12 Release-Evidence Binding Requirement",
+      "authoritative_source": "Package 2 operational-evidence plan (V11-C).",
+      "institutional_purpose": "Define the binding every Volume 12 release-evidence item must satisfy.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed, bound release evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 release and acceptance-evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "material_commitment_requirements": [
+    {
+      "id": "MCR-V11-001",
+      "title": "Affiliation Material-Commitment Requirement",
+      "authoritative_source": "Package 2 operating model and operational-evidence plan (V11-C).",
+      "institutional_purpose": "Record that material commitments remain undefined and unauthorized.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed, evidenced basis for any commitment not yet produced.",
+      "independence_requirement": "EXECUTIVE",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 material-commitment and acceptance-evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

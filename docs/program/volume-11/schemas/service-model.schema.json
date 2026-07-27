@@ -30,7 +30,7 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(SERVICE|CAP|OWNER|STATE|SUPPORT|PROVIDER|AFFSVC|AFFCAP|AFFOWN|AFFSTATE|AFFSUP|AFFSIG|AFFPROV|DQOP|RECONOP|AUD)-V11-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(SERVICE|CAP|OWNER|STATE|SUPPORT|PROVIDER|AFFSVC|AFFCAP|AFFOWN|AFFSTATE|AFFSUP|AFFSIG|AFFPROV|DQOP|RECONOP|AUD|IOB|AOM|SLC|SOC|OOC|CRC|MOC|DQRC|TAC|POC|HPOC|V12HC)-V11-[0-9]{3}$" },
           "kind": {
             "type": "string",
             "enum": [
@@ -49,7 +49,19 @@
               "AFFILIATION_PROVIDER_CONTEXT",
               "DATA_QUALITY_OPERATION",
               "RECONCILIATION_OPERATION",
-              "ADOPTION_AUDIENCE"
+              "ADOPTION_AUDIENCE",
+              "INTEGRATED_OPERATING_BASELINE",
+              "AUTHORITY_OWNERSHIP_MAP",
+              "SERVICE_LIFECYCLE_COVERAGE",
+              "SUPPORT_OPERATIONAL_COVERAGE",
+              "OBSERVABILITY_OPERATIONAL_COVERAGE",
+              "CONTINUITY_RECOVERY_COVERAGE",
+              "MIGRATION_OPERATIONAL_COVERAGE",
+              "DATA_QUALITY_RECONCILIATION_COVERAGE",
+              "TRAINING_ADOPTION_COVERAGE",
+              "PROVIDER_OPERATIONAL_COVERAGE",
+              "HOUSE_P0_OPERATIONAL_COVERAGE",
+              "VOLUME_12_HANDOFF_COVERAGE"
             ]
           },
           "title": { "type": "string" },
@@ -146,6 +158,15 @@
           "adoption_measure": { "type": "string" },
           "readiness_criterion": { "type": "string" },
           "reinforcement_requirement": { "type": "string" },
+          "coverage_area": { "type": "string" },
+          "consolidated_from": { "type": "array", "items": { "type": "string" } },
+          "preserved_distinction": { "type": "string" },
+          "coverage_status": { "type": "string" },
+          "acceptance_authority": { "type": "string" },
+          "independence_requirement": { "type": "string" },
+          "volume_12_destination": { "type": "string" },
+          "house_p0_destination": { "type": "string" },
+          "owner_gap_status": { "type": "string" },
           "required_capabilities": { "type": "array", "items": { "type": "string" } },
           "dependencies": { "type": "array", "items": { "type": "string" } },
           "affected_capability": { "type": "string" },

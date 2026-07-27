@@ -1,0 +1,27 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "data_quality_reconciliation_coverage": [
+    {
+      "id": "DQRC-V11-001",
+      "title": "Data-Quality, Quarantine, Reconciliation, and Obligation Coverage",
+      "coverage_area": "Data quality, quarantine, reconciliation, and outstanding obligations.",
+      "consolidated_from": [
+        "V11-17"
+      ],
+      "preserved_distinction": "Quarantine is not rejection; projection rebuilt is not authoritative state corrected.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-003",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT reconciliation evidence required before closure.",
+      "volume_12_destination": "Volume 12 reconciliation and obligation evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every data-quality operation defines owners, permitted actions, and closure authority.",
+      "traces_to": [
+        "V11-28"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

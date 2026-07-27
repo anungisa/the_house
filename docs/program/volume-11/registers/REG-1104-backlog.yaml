@@ -237,3 +237,173 @@ records:
     operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
     execution_status: NOT_EXECUTED
     future_blocking_gate: V12-G1
+  # --- Package 3 whole-volume dispositions of active Package 1 and Package 2 obligations ---
+  - id: ASM-V11-003
+    kind: ASSUMPTION
+    title: Whole-Volume Disposition of Active Operating Assumptions
+    statement: >-
+      Whole-volume disposition consolidating every active Package 1 and Package 2 operating assumption;
+      each remains an assumption until executed, environment-bound evidence is produced in Volume 12.
+    source: Packages 1 and 2 (ASM-V11-001, ASM-V11-002).
+    owner: OWNER-V11-001
+    current_status: OPEN
+    impact_if_unresolved: Operating assumptions cannot be treated as validated without evidence.
+    required_action_or_evidence: Produce executed, environment-bound validation evidence in Volume 12.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    configuration_dependency: Requires governed configuration not yet established.
+    execution_dependency: Requires executed validation not yet performed.
+    provider_dependency: Requires provider assurance not yet obtained.
+    independent_assurance_dependency: Requires independent assurance not yet obtained.
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 integrated gate and acceptance-evidence package.
+    readiness_disposition: NOT_READY_PENDING_EXECUTED_EVIDENCE
+    traces_to:
+      - V11-32
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: RISK-V11-003
+    kind: RISK
+    title: Whole-Volume Disposition of Active Operating Risks
+    statement: >-
+      Whole-volume disposition consolidating every active Package 1 and Package 2 operating risk; each
+      remains unmitigated until executed evidence and independent assurance are produced in Volume 12.
+    source: Packages 1 and 2 (RISK-V11-001, RISK-V11-002).
+    owner: OWNER-V11-001
+    current_status: OPEN
+    impact_if_unresolved: Operating risks cannot be treated as mitigated without evidence.
+    required_action_or_evidence: Produce mitigation and independent-assurance evidence in Volume 12.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    configuration_dependency: Requires governed configuration not yet established.
+    execution_dependency: Requires executed mitigation not yet performed.
+    provider_dependency: Requires provider assurance not yet obtained.
+    independent_assurance_dependency: Requires independent assurance not yet obtained.
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 integrated gate and acceptance-evidence package.
+    readiness_disposition: NOT_READY_PENDING_EXECUTED_EVIDENCE
+    traces_to:
+      - V11-32
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ISSUE-V11-003
+    kind: ISSUE
+    title: Whole-Volume Disposition of Active Operating Issues
+    statement: >-
+      Whole-volume disposition consolidating every active Package 1 and Package 2 operating issue; each
+      remains open until resolved with evidence in Volume 12.
+    source: Packages 1 and 2 (ISSUE-V11-001, ISSUE-V11-002).
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Operating issues cannot be treated as resolved without evidence.
+    required_action_or_evidence: Produce resolution evidence in Volume 12.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    configuration_dependency: Requires governed configuration not yet established.
+    execution_dependency: Requires executed resolution not yet performed.
+    provider_dependency: Requires provider assurance where a provider is involved.
+    independent_assurance_dependency: Requires independent assurance not yet obtained.
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 integrated gate and acceptance-evidence package.
+    readiness_disposition: NOT_READY_PENDING_EXECUTED_EVIDENCE
+    traces_to:
+      - V11-32
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: MIGBL-V11-003
+    kind: MIGRATION_BACKLOG
+    title: Whole-Volume Disposition of Active Migration Obligations
+    statement: >-
+      Whole-volume disposition consolidating every active Package 1 and Package 2 migration obligation;
+      each remains unauthorized until migration-acceptance evidence is produced in Volume 12.
+    source: Packages 1 and 2 (MIGBL-V11-001, MIGBL-V11-002).
+    owner: OWNER-V11-003
+    current_status: OPEN
+    impact_if_unresolved: Migration cannot be authorized or accepted without evidence.
+    required_action_or_evidence: Produce migration-acceptance and reconciliation evidence in Volume 12.
+    environment_dependency: Requires a governed migration environment not yet provisioned.
+    configuration_dependency: Requires governed migration configuration not yet established.
+    execution_dependency: Requires executed migration rehearsal and cutover not yet performed.
+    provider_dependency: Requires provider assurance where a provider is involved.
+    independent_assurance_dependency: Requires independent migration-acceptance assurance not yet obtained.
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 migration-acceptance evidence package.
+    readiness_disposition: NOT_READY_PENDING_EXECUTED_EVIDENCE
+    traces_to:
+      - V11-32
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ADOPTBL-V11-003
+    kind: ADOPTION_BACKLOG
+    title: Whole-Volume Disposition of Active Adoption Obligations
+    statement: >-
+      Whole-volume disposition consolidating every active Package 1 and Package 2 adoption obligation;
+      each remains unproven until competence and sustained-adoption evidence is produced in Volume 12.
+    source: Packages 1 and 2 (ADOPTBL-V11-001, ADOPTBL-V11-002).
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Adoption cannot be treated as achieved without evidence.
+    required_action_or_evidence: Produce competence and sustained-adoption evidence in Volume 12.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    configuration_dependency: Requires governed onboarding configuration not yet established.
+    execution_dependency: Requires executed training and adoption not yet performed.
+    provider_dependency: Requires provider assurance where a provider is involved.
+    independent_assurance_dependency: Requires domain assessment not yet obtained.
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 training-competence and adoption evidence package.
+    readiness_disposition: NOT_READY_PENDING_EXECUTED_EVIDENCE
+    traces_to:
+      - V11-32
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ASSGAP-V11-003
+    kind: ASSURANCE_GAP
+    title: Whole-Volume Disposition of Active Assurance Requirements
+    statement: >-
+      Whole-volume disposition consolidating every active Package 1 and Package 2 assurance requirement;
+      each remains unmet until independent assurance and release evidence are produced in Volume 12.
+    source: Packages 1 and 2 (ASSGAP-V11-001, ASSGAP-V11-002).
+    owner: OWNER-V11-004
+    current_status: OPEN
+    impact_if_unresolved: Independent assurance and release acceptance cannot be granted without evidence.
+    required_action_or_evidence: Produce independent-assurance and release evidence in Volume 12.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    configuration_dependency: Requires governed configuration not yet established.
+    execution_dependency: Requires executed assurance exercises not yet performed.
+    provider_dependency: Requires provider assurance not yet obtained.
+    independent_assurance_dependency: Requires independent assurance not yet obtained.
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 independent-assurance and release-evidence package.
+    readiness_disposition: NOT_READY_PENDING_EXECUTED_EVIDENCE
+    assurance_impact: Blocks independent assurance, operational acceptance, and release acceptance.
+    traces_to:
+      - V11-32
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1

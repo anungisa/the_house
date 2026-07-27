@@ -876,3 +876,346 @@ records:
     execution_status: NOT_EXECUTED
     chapter_ref: V11-20
     future_gate: V12-G1
+  # --- Package 3 integrated operational obligations and evidence requirements (Commit A) ---
+  - id: IOR-V11-001
+    kind: INTEGRATED_OPERATIONAL_REQUIREMENT
+    title: Integrated Affiliation Operational Obligation
+    statement: >-
+      Consolidated material operational obligation for the affiliation vertical, binding its
+      authoritative source, purpose, owners, affected operating states, required procedure,
+      dependencies, required evidence, and Volume 12 destination without authorizing operation.
+    authoritative_source: Packages 1 and 2 affiliation operating model (V11-A, V11-C).
+    institutional_purpose: Preserve institutional accountability for the affiliation operating obligation.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    affected_operating_states: All thirteen operating states from OPERATIONALLY_PREPARED through RETIRED.
+    required_procedure_or_runbook: Package 2 operating procedures, support, continuity, and migration runbooks.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    configuration_dependency: Requires governed configuration not yet established.
+    data_dependency: Requires reconciled authoritative data not yet migrated.
+    provider_dependency: Requires provider assurance not yet obtained.
+    evidence_required: Executed, environment-bound operational evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 integrated gate, release, and acceptance-evidence package.
+    traces_to:
+      - V11-21
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-21
+    future_gate: V12-G1
+  - id: ORR-V11-001
+    kind: OPERATIONAL_READINESS_REQUIREMENT
+    title: Affiliation Operational-Readiness Requirement
+    statement: >-
+      Operational-readiness definition for the affiliation vertical; definition completeness is
+      not operational readiness and confers no readiness claim.
+    authoritative_source: Package 2 operating model and operating states (V11-C).
+    institutional_purpose: Define what readiness evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    required_procedure_or_runbook: Package 2 operating procedures and readiness criteria.
+    environment_dependency: Requires a governed environment not yet provisioned.
+    evidence_required: Executed readiness evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 operational-readiness evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: OAR-V11-001
+    kind: OPERATIONAL_ACCEPTANCE_REQUIREMENT
+    title: Affiliation Operational-Acceptance Requirement
+    statement: >-
+      Operational-acceptance definition requiring executed, environment-bound evidence; documentary
+      approval is not operational proof and acceptance is not inferred from missing evidence.
+    authoritative_source: Package 2 operating model and acceptance criteria (V11-C).
+    institutional_purpose: Define the executed evidence required for operational acceptance.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    evidence_required: Executed operational-acceptance evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 operational-acceptance evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: MAR-V11-001
+    kind: MIGRATION_ACCEPTANCE_REQUIREMENT
+    title: Affiliation Migration-Acceptance Requirement
+    statement: >-
+      Migration-acceptance definition requiring reconciled, evidenced acceptance; migration-readiness
+      definition is not migration authorization and rehearsal completed is not migration authorized.
+    authoritative_source: Package 2 migration runbooks (V11-C).
+    institutional_purpose: Define the migration-acceptance evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-003
+    decision_authority: OWNER-V11-001
+    evidence_required: Executed migration-acceptance and reconciliation evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 migration-acceptance evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: RER-V11-001
+    kind: RECOVERY_EVIDENCE_REQUIREMENT
+    title: Affiliation Recovery-Evidence Requirement
+    statement: >-
+      Recovery-evidence definition requiring executed recovery exercises; recovery definition is not
+      recovery capability and restore completed is not service recovered.
+    authoritative_source: Package 2 continuity and recovery procedures (V11-C).
+    institutional_purpose: Define the recovery evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    evidence_required: Executed recovery-exercise evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 recovery evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: RECER-V11-001
+    kind: RECONCILIATION_EVIDENCE_REQUIREMENT
+    title: Affiliation Reconciliation-Evidence Requirement
+    statement: >-
+      Reconciliation-evidence definition requiring executed reconciliation; projection rebuilt is not
+      authoritative state corrected and compensation is not history rewrite.
+    authoritative_source: Package 2 reconciliation procedures (V11-C).
+    institutional_purpose: Define the reconciliation evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-003
+    decision_authority: OWNER-V11-001
+    evidence_required: Executed reconciliation evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 reconciliation evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: TCER-V11-001
+    kind: TRAINING_COMPETENCE_EVIDENCE_REQUIREMENT
+    title: Affiliation Training-Competence Evidence Requirement
+    statement: >-
+      Training-competence evidence definition; training delivered is not competence demonstrated and
+      training plans are not competence.
+    authoritative_source: Package 2 training requirements (V11-C).
+    institutional_purpose: Define the competence evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-002
+    evidence_required: Executed competence-assessment evidence not yet produced.
+    independence_requirement: DOMAIN
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 training-competence evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: AER-V11-001
+    kind: ADOPTION_EVIDENCE_REQUIREMENT
+    title: Affiliation Adoption-Evidence Requirement
+    statement: >-
+      Adoption-evidence definition; onboarding completed is not sustained adoption and adoption plans
+      are not adoption.
+    authoritative_source: Package 2 adoption requirements (V11-C).
+    institutional_purpose: Define the adoption evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-002
+    evidence_required: Executed sustained-adoption evidence not yet produced.
+    independence_requirement: DOMAIN
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 adoption evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: PAER-V11-001
+    kind: PROVIDER_ASSURANCE_EVIDENCE_REQUIREMENT
+    title: Affiliation Provider-Assurance Evidence Requirement
+    statement: >-
+      Provider-assurance evidence definition; provider certification is not operational assurance and
+      provider-operational requirements are not provider assurance.
+    authoritative_source: Package 2 provider-operational requirements (V11-C).
+    institutional_purpose: Define the provider-assurance evidence Volume 12 must produce.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-004
+    decision_authority: OWNER-V11-001
+    provider_dependency: Requires provider continuity, exit, and deletion evidence not yet produced.
+    evidence_required: Executed provider-assurance evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 provider-assurance evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: IAR-V11-001
+    kind: INDEPENDENT_ASSURANCE_REQUIREMENT
+    title: Affiliation Independent-Assurance Requirement
+    statement: >-
+      Independent-assurance definition requiring assurance independent of the delivery and operations
+      teams; author-verified documentation is not independent assurance.
+    authoritative_source: Package 2 operational-evidence plan (V11-C).
+    institutional_purpose: Define the independent assurance Volume 12 must obtain.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    evidence_required: Independent assurance evidence not yet produced.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 independent-assurance evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: V12RER-V11-001
+    kind: VOLUME_12_RELEASE_EVIDENCE_REQUIREMENT
+    title: Volume 12 Release-Evidence Binding Requirement
+    statement: >-
+      Release-evidence binding definition; every acceptance-evidence item must bind its capability,
+      environment, configuration, version, identity context, organization, jurisdiction, dataset,
+      provider state, and time, and Volume 12 may assess evidence but may not infer missing evidence.
+    authoritative_source: Package 2 operational-evidence plan (V11-C).
+    institutional_purpose: Define the binding every Volume 12 release-evidence item must satisfy.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    capability_reference: Binds the affiliation capability under evidence.
+    evidence_binds_environment: Binds the environment in which evidence was produced.
+    evidence_binds_config: Binds the configuration under evidence.
+    evidence_binds_version: Binds the version or commit under evidence.
+    evidence_binds_identity: Binds the identity and authority context.
+    evidence_binds_org: Binds the organization under evidence.
+    evidence_binds_jurisdiction: Binds the jurisdiction under evidence.
+    evidence_binds_data_classification: Binds the dataset or migration batch and its classification.
+    evidence_binds_provider_state: Binds the provider state under evidence.
+    evidence_binds_time: Binds the execution time of the evidence.
+    observed_result_binding: Binds the observed result to the executed exercise.
+    evidence_location: Binds the evidence location.
+    evidence_integrity: Binds the evidence integrity.
+    executor_role: Binds the executor.
+    reviewer_role: Binds the reviewer.
+    defect_disposition: Binds defect and exception disposition.
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-001
+    evidence_required: Executed, bound release evidence not yet produced.
+    volume_12_destination: Volume 12 release and acceptance-evidence package.
+    house_p0_destination: House P0 findings have operational-proof and release-evidence destinations in Volume 12.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: MCR-V11-001
+    kind: MATERIAL_COMMITMENT_REQUIREMENT
+    title: Affiliation Material-Commitment Requirement
+    statement: >-
+      Material-commitment definition; no service level, recovery target, schedule, or commitment is
+      established, and any future commitment requires separately evidenced acceptance authority.
+    authoritative_source: Package 2 operating model and operational-evidence plan (V11-C).
+    institutional_purpose: Record that material commitments remain undefined and unauthorized.
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    material_commitment: No service-level, recovery-target, schedule, or availability commitment is established.
+    commitment_basis: Any future commitment requires separately evidenced acceptance authority in Volume 12.
+    evidence_required: Executed, evidenced basis for any commitment not yet produced.
+    independence_requirement: EXECUTIVE
+    acceptance_authority: OWNER-V11-001
+    volume_12_destination: Volume 12 material-commitment and acceptance-evidence package.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1

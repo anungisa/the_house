@@ -1,0 +1,46 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "provider_operational_coverage": [
+    {
+      "id": "POC-V11-001",
+      "title": "Provider Operations, Continuity, Return, Deletion, Substitution, and Exit Coverage",
+      "coverage_area": "Provider operations, continuity, return, deletion, substitution, and exit.",
+      "consolidated_from": [
+        "V11-19"
+      ],
+      "preserved_distinction": "Provider custody is not Curling Canada authority; provider certification is not operational assurance.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-004",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT provider-assurance evidence required before provider acceptance.",
+      "volume_12_destination": "Volume 12 provider-assurance evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every provider requirement defines return, deletion evidence, substitution, and exit.",
+      "traces_to": [
+        "V11-30"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "provider_assurance_evidence_requirements": [
+    {
+      "id": "PAER-V11-001",
+      "title": "Affiliation Provider-Assurance Evidence Requirement",
+      "authoritative_source": "Package 2 provider-operational requirements (V11-C).",
+      "institutional_purpose": "Define the provider-assurance evidence Volume 12 must produce.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-004",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed provider-assurance evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 provider-assurance evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

@@ -1341,3 +1341,394 @@ records:
     execution_status: NOT_EXECUTED
     chapter_ref: V11-18
     future_gate: V12-G1
+  # --- Package 3 integrated operating-baseline coverage maps (Commit A) ---
+  - id: IOB-V11-001
+    kind: INTEGRATED_OPERATING_BASELINE
+    title: Integrated Affiliation Operating, Migration, Adoption, and Assurance Baseline Coverage
+    statement: >-
+      Consolidated coverage map that binds the Package 1 governance foundation and the
+      Package 2 operating model into a single authoritative operational-definition baseline
+      for the affiliation vertical without asserting that any capability is operational.
+    coverage_area: Whole-volume integrated operating, migration, adoption, and assurance definition.
+    consolidated_from:
+      - V11-A
+      - V11-C
+      - V11-11
+      - V11-20
+    preserved_distinction: Operating model defined is not operating service; consolidation is not implementation.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT operational assurance required before any acceptance.
+    volume_12_destination: Volume 12 integrated gate, release, and acceptance-evidence package.
+    owner_gap_status: No unowned material obligation; identified gaps carry a Volume 12 destination.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-21
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-21
+    future_gate: V12-G1
+  - id: AOM-V11-001
+    kind: AUTHORITY_OWNERSHIP_MAP
+    title: Authority, Ownership, Accountability, and Decision-Rights Coverage
+    statement: >-
+      Consolidated authority and ownership map preserving the separation of institutional
+      authority, service ownership, technical custody, data authority, provider custody,
+      and support access across the affiliation vertical.
+    coverage_area: Authority, ownership, accountability, and decision rights.
+    consolidated_from:
+      - V11-11
+      - V11-13
+    preserved_distinction: Service ownership is not institutional decision authority; technical custody is not data authority.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT confirmation required for any authority claim.
+    volume_12_destination: Volume 12 integrated gate and acceptance-evidence package.
+    owner_gap_status: All twelve ownership dimensions represented; no conflated authority.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-22
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-22
+    future_gate: V12-G1
+  - id: SLC-V11-001
+    kind: SERVICE_LIFECYCLE_COVERAGE
+    title: Service Lifecycle, Readiness, Acceptance, and Stabilization Coverage
+    statement: >-
+      Consolidated coverage of the thirteen operating states preserving the separation of
+      preparation, acceptance, deployment, stabilization, operation, degradation, recovery,
+      and retirement for the affiliation vertical.
+    coverage_area: Service lifecycle, readiness, acceptance, and stabilization.
+    consolidated_from:
+      - V11-12
+    preserved_distinction: Operationally prepared is not operationally accepted; deployed is not stabilized.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT operational-readiness assessment required before acceptance.
+    volume_12_destination: Volume 12 operational-readiness and acceptance-evidence package.
+    owner_gap_status: Every operating state carries required operational evidence.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-23
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-23
+    future_gate: V12-G1
+  - id: SOC-V11-001
+    kind: SUPPORT_OPERATIONAL_COVERAGE
+    title: Support, Incident, Problem, Escalation, and Communications Coverage
+    statement: >-
+      Consolidated coverage of support classes, service requests, incident and problem
+      runbooks, escalation, and communications preserving the separation of support access
+      from mutation and decision authority.
+    coverage_area: Support, incident, problem, escalation, and communications.
+    consolidated_from:
+      - V11-13
+      - V11-14
+    preserved_distinction: Support access is not mutation authority; incident resolved is not problem eliminated.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-002
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: DOMAIN review required for support-model acceptance.
+    volume_12_destination: Volume 12 operational-readiness and acceptance-evidence package.
+    owner_gap_status: Every support class defines requester, receiver, authority boundary, and closure evidence.
+    authority_domain: House
+    operational_domain: SUPPORT
+    traces_to:
+      - V11-24
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-24
+    future_gate: V12-G1
+  - id: OOC-V11-001
+    kind: OBSERVABILITY_OPERATIONAL_COVERAGE
+    title: Observability, Audit, Reconciliation, and Operational-Evidence Coverage
+    statement: >-
+      Consolidated coverage of telemetry, alerting, incident declaration, audit, and
+      reconciliation preserving the separation of telemetry emitted from signal observed,
+      incident handled, and business reconciled.
+    coverage_area: Observability, audit, incident response, and reconciliation.
+    consolidated_from:
+      - V11-14
+    preserved_distinction: Telemetry emitted is not signal observed; service restored is not business reconciled.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-002
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT verification required for observability evidence.
+    volume_12_destination: Volume 12 operational-evidence and acceptance package.
+    owner_gap_status: Every signal binds correlation context, escalation authority, and evidence.
+    authority_domain: House
+    operational_domain: OBSERVABILITY_AND_INCIDENT
+    traces_to:
+      - V11-25
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-25
+    future_gate: V12-G1
+  - id: CRC-V11-001
+    kind: CONTINUITY_RECOVERY_COVERAGE
+    title: Continuity, Backup, Restoration, Recovery, and Degraded-Operation Coverage
+    statement: >-
+      Consolidated coverage of continuity, backup, restoration, recovery, and degraded
+      operation preserving the separation of backup generated, backup verified, service
+      recovered, and data reconciled.
+    coverage_area: Continuity, backup, restoration, recovery, and degraded operation.
+    consolidated_from:
+      - V11-15
+    preserved_distinction: Backup generated is not backup verified; restore completed is not service recovered.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT recovery-evidence review required before any recovery claim.
+    volume_12_destination: Volume 12 recovery and reconciliation evidence package.
+    owner_gap_status: Every continuity procedure defines preserved work, prohibited actions, and evidence.
+    authority_domain: House
+    operational_domain: CONTINUITY_AND_RECOVERY
+    traces_to:
+      - V11-26
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-26
+    future_gate: V12-G1
+  - id: MOC-V11-001
+    kind: MIGRATION_OPERATIONAL_COVERAGE
+    title: Migration, Coexistence, Cutover, Rollback, Acceptance, and Retirement Coverage
+    statement: >-
+      Consolidated coverage of migration qualification, rehearsal, cutover, rollback,
+      acceptance, and source retirement preserving the separation of mapping complete,
+      identity resolved, rehearsal completed, migration authorized, and source retired.
+    coverage_area: Migration, coexistence, cutover, rollback, acceptance, and retirement.
+    consolidated_from:
+      - V11-16
+    preserved_distinction: Mapping complete is not identity resolved; cutover completed is not source retired.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-003
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT migration-acceptance evidence required before cutover authorization.
+    volume_12_destination: Volume 12 migration-acceptance evidence package.
+    owner_gap_status: Every migration runbook preserves source authority, provenance, and rollback.
+    authority_domain: House
+    operational_domain: MIGRATION
+    traces_to:
+      - V11-27
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-27
+    future_gate: V12-G1
+  - id: DQRC-V11-001
+    kind: DATA_QUALITY_RECONCILIATION_COVERAGE
+    title: Data-Quality, Quarantine, Reconciliation, and Obligation Coverage
+    statement: >-
+      Consolidated coverage of data-quality, quarantine, reconciliation, and outstanding
+      obligation preserving the separation of quarantine, rejection, correction, and
+      institutional resolution.
+    coverage_area: Data quality, quarantine, reconciliation, and outstanding obligations.
+    consolidated_from:
+      - V11-17
+    preserved_distinction: Quarantine is not rejection; projection rebuilt is not authoritative state corrected.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-003
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT reconciliation evidence required before closure.
+    volume_12_destination: Volume 12 reconciliation and obligation evidence package.
+    owner_gap_status: Every data-quality operation defines owners, permitted actions, and closure authority.
+    authority_domain: House
+    operational_domain: RECONCILIATION
+    traces_to:
+      - V11-28
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-28
+    future_gate: V12-G1
+  - id: TAC-V11-001
+    kind: TRAINING_ADOPTION_COVERAGE
+    title: Training, Onboarding, Accessibility, Bilingual, and Adoption Coverage
+    statement: >-
+      Consolidated coverage of training, onboarding, communications, accessibility,
+      bilingual obligation, and adoption preserving the separation of content authored,
+      training delivered, competence demonstrated, and sustained adoption.
+    coverage_area: Training, onboarding, accessibility, bilingual, and adoption.
+    consolidated_from:
+      - V11-18
+    preserved_distinction: Training delivered is not competence demonstrated; onboarding completed is not sustained adoption.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-002
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: DOMAIN assessment required for competence and adoption evidence.
+    volume_12_destination: Volume 12 training-competence and adoption evidence package.
+    owner_gap_status: Every audience defines required competence and adoption measure.
+    authority_domain: House
+    operational_domain: TRAINING_AND_ADOPTION
+    traces_to:
+      - V11-29
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-29
+    future_gate: V12-G1
+  - id: POC-V11-001
+    kind: PROVIDER_OPERATIONAL_COVERAGE
+    title: Provider Operations, Continuity, Return, Deletion, Substitution, and Exit Coverage
+    statement: >-
+      Consolidated coverage of provider operations, continuity, return, deletion,
+      substitution, and exit preserving the separation of provider custody from Curling
+      Canada authority and provider certification from end-to-end assurance.
+    coverage_area: Provider operations, continuity, return, deletion, substitution, and exit.
+    consolidated_from:
+      - V11-19
+    preserved_distinction: Provider custody is not Curling Canada authority; provider certification is not operational assurance.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-004
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT provider-assurance evidence required before provider acceptance.
+    volume_12_destination: Volume 12 provider-assurance evidence package.
+    owner_gap_status: Every provider requirement defines return, deletion evidence, substitution, and exit.
+    authority_domain: House
+    operational_domain: PROVIDER_MANAGEMENT
+    traces_to:
+      - V11-30
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-30
+    future_gate: V12-G1
+  - id: HPOC-V11-001
+    kind: HOUSE_P0_OPERATIONAL_COVERAGE
+    title: House P0 Operational-Assurance Coverage
+    statement: >-
+      Consolidated coverage of inherited House P0 findings preserving their operational-proof
+      and release-evidence destinations without asserting that any finding is resolved.
+    coverage_area: House P0 operational-assurance destinations.
+    consolidated_from:
+      - V11-20
+    preserved_distinction: Finding identified is not finding resolved; documentary destination is not operational proof.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT operational proof required before any P0 closure.
+    volume_12_destination: Volume 12 operational-proof and release-evidence package.
+    house_p0_destination: Volume 12 House P0 operational-proof and release-evidence package.
+    owner_gap_status: Every House P0 finding retains a governed operational-proof destination.
+    authority_domain: House
+    operational_domain: INDEPENDENT_ASSURANCE
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: V12HC-V11-001
+    kind: VOLUME_12_HANDOFF_COVERAGE
+    title: Volume 12 Handoff Coverage
+    statement: >-
+      Consolidated coverage of every Volume 12 handoff destination for executed evidence,
+      migration acceptance, recovery, provider assurance, training, accessibility, defects,
+      commitments, independent assurance, and executive release acceptance.
+    coverage_area: Volume 12 handoff destinations.
+    consolidated_from:
+      - V11-20
+      - V11-31
+    preserved_distinction: Handoff defined is not evidence produced; destination named is not acceptance granted.
+    coverage_status: COMPLETE_OR_IDENTIFIED_GAP
+    institutional_owner: OWNER-V11-001
+    operational_owner: OWNER-V11-002
+    decision_authority: OWNER-V11-001
+    acceptance_authority: OWNER-V11-001
+    independence_requirement: INDEPENDENT assurance and EXECUTIVE acceptance required at Volume 12.
+    volume_12_destination: Volume 12 integrated gate, release, and acceptance-evidence package.
+    owner_gap_status: Every material obligation has a defined Volume 12 destination and future gate.
+    authority_domain: House
+    operational_domain: INDEPENDENT_ASSURANCE
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1

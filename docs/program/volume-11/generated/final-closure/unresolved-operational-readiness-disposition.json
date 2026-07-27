@@ -1,0 +1,71 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "unresolved": [
+    {
+      "id": "ASM-V11-003",
+      "title": "Whole-Volume Disposition of Active Operating Assumptions",
+      "source": "Packages 1 and 2 (ASM-V11-001, ASM-V11-002).",
+      "owner": "OWNER-V11-001",
+      "required_action_or_evidence": "Produce executed, environment-bound validation evidence in Volume 12.",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 integrated gate and acceptance-evidence package.",
+      "readiness_disposition": "NOT_READY_PENDING_EXECUTED_EVIDENCE",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "RISK-V11-003",
+      "title": "Whole-Volume Disposition of Active Operating Risks",
+      "source": "Packages 1 and 2 (RISK-V11-001, RISK-V11-002).",
+      "owner": "OWNER-V11-001",
+      "required_action_or_evidence": "Produce mitigation and independent-assurance evidence in Volume 12.",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 integrated gate and acceptance-evidence package.",
+      "readiness_disposition": "NOT_READY_PENDING_EXECUTED_EVIDENCE",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ISSUE-V11-003",
+      "title": "Whole-Volume Disposition of Active Operating Issues",
+      "source": "Packages 1 and 2 (ISSUE-V11-001, ISSUE-V11-002).",
+      "owner": "OWNER-V11-002",
+      "required_action_or_evidence": "Produce resolution evidence in Volume 12.",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 integrated gate and acceptance-evidence package.",
+      "readiness_disposition": "NOT_READY_PENDING_EXECUTED_EVIDENCE",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "MIGBL-V11-003",
+      "title": "Whole-Volume Disposition of Active Migration Obligations",
+      "source": "Packages 1 and 2 (MIGBL-V11-001, MIGBL-V11-002).",
+      "owner": "OWNER-V11-003",
+      "required_action_or_evidence": "Produce migration-acceptance and reconciliation evidence in Volume 12.",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 migration-acceptance evidence package.",
+      "readiness_disposition": "NOT_READY_PENDING_EXECUTED_EVIDENCE",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ADOPTBL-V11-003",
+      "title": "Whole-Volume Disposition of Active Adoption Obligations",
+      "source": "Packages 1 and 2 (ADOPTBL-V11-001, ADOPTBL-V11-002).",
+      "owner": "OWNER-V11-002",
+      "required_action_or_evidence": "Produce competence and sustained-adoption evidence in Volume 12.",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 training-competence and adoption evidence package.",
+      "readiness_disposition": "NOT_READY_PENDING_EXECUTED_EVIDENCE",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ASSGAP-V11-003",
+      "title": "Whole-Volume Disposition of Active Assurance Requirements",
+      "source": "Packages 1 and 2 (ASSGAP-V11-001, ASSGAP-V11-002).",
+      "owner": "OWNER-V11-004",
+      "required_action_or_evidence": "Produce independent-assurance and release evidence in Volume 12.",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 independent-assurance and release-evidence package.",
+      "readiness_disposition": "NOT_READY_PENDING_EXECUTED_EVIDENCE",
+      "future_blocking_gate": "V12-G1"
+    }
+  ]
+}

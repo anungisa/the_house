@@ -219,3 +219,99 @@ records:
     version: 1.0.0
     path: docs/program/volume-11/V11-D-1.md
     gate: V11-G2
+  - id: V11-21
+    title: Integrated Operations, Migration, Adoption, and Assurance Baseline
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-21.md
+    gate: V11-G3
+  - id: V11-22
+    title: Authority, Ownership, Accountability, and Decision-Rights Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-22.md
+    gate: V11-G3
+  - id: V11-23
+    title: Service Lifecycle, Readiness, Acceptance, and Stabilization Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-23.md
+    gate: V11-G3
+  - id: V11-24
+    title: Support, Incident, Problem, Escalation, and Communications Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-24.md
+    gate: V11-G3
+  - id: V11-25
+    title: Observability, Audit, Reconciliation, and Operational-Evidence Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-25.md
+    gate: V11-G3
+  - id: V11-26
+    title: Continuity, Backup, Restoration, Recovery, and Degraded-Operation Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-26.md
+    gate: V11-G3
+  - id: V11-27
+    title: Migration, Coexistence, Cutover, Rollback, Acceptance, and Retirement Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-27.md
+    gate: V11-G3
+  - id: V11-28
+    title: Data-Quality, Quarantine, Reconciliation, and Obligation Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-28.md
+    gate: V11-G3
+  - id: V11-29
+    title: Training, Onboarding, Accessibility, Bilingual, and Adoption Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-29.md
+    gate: V11-G3
+  - id: V11-30
+    title: Provider Operations, Continuity, Return, Deletion, Substitution, and Exit Synthesis
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-30.md
+    gate: V11-G3
+  - id: V11-31
+    title: Operational Readiness, Independent Assurance, and Volume 12 Handoff
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-31.md
+    gate: V11-G3
+  - id: V11-32
+    title: Integrated Traceability and Volume 11 Closure Assessment
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-32.md
+    gate: V11-G3

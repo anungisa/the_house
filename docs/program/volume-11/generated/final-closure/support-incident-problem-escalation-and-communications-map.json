@@ -1,0 +1,28 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "support_operational_coverage": [
+    {
+      "id": "SOC-V11-001",
+      "title": "Support, Incident, Problem, Escalation, and Communications Coverage",
+      "coverage_area": "Support, incident, problem, escalation, and communications.",
+      "consolidated_from": [
+        "V11-13",
+        "V11-14"
+      ],
+      "preserved_distinction": "Support access is not mutation authority; incident resolved is not problem eliminated.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-002",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "DOMAIN review required for support-model acceptance.",
+      "volume_12_destination": "Volume 12 operational-readiness and acceptance-evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every support class defines requester, receiver, authority boundary, and closure evidence.",
+      "traces_to": [
+        "V11-24"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "integrated_baseline": [
+    {
+      "id": "IOB-V11-001",
+      "title": "Integrated Affiliation Operating, Migration, Adoption, and Assurance Baseline Coverage",
+      "coverage_area": "Whole-volume integrated operating, migration, adoption, and assurance definition.",
+      "consolidated_from": [
+        "V11-A",
+        "V11-C",
+        "V11-11",
+        "V11-20"
+      ],
+      "preserved_distinction": "Operating model defined is not operating service; consolidation is not implementation.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT operational assurance required before any acceptance.",
+      "volume_12_destination": "Volume 12 integrated gate, release, and acceptance-evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "No unowned material obligation; identified gaps carry a Volume 12 destination.",
+      "traces_to": [
+        "V11-21"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "integrated_requirements": [
+    {
+      "id": "IOR-V11-001",
+      "title": "Integrated Affiliation Operational Obligation",
+      "authoritative_source": "Packages 1 and 2 affiliation operating model (V11-A, V11-C).",
+      "institutional_purpose": "Preserve institutional accountability for the affiliation operating obligation.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed, environment-bound operational evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 integrated gate, release, and acceptance-evidence package.",
+      "traces_to": [
+        "V11-21"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}
