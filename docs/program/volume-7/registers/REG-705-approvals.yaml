@@ -444,6 +444,8 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
     gate_disposition: VISUAL_COMPONENT_CONTENT_AND_REFERENCE_PROTOTYPE_DEFINITION_READY
+    effective_commit: "f573a66"
+    requires_freeze_artifact: PACKAGE-7-3
     conditions:
       - Corrected Volume 6, frozen Package 1, and corrected frozen Package 2 provenance are inherited
       - No unresolved backlog item points to a completed gate
@@ -499,5 +501,26 @@ records:
       inherited_baseline_tag: central-registration-volume-6-v1.0.1
       base_release_tag: central-registration-volume-6-v1.0.1
       base_release_commit: ae11b076
-      note: Package 3 freeze is a separate freeze commit after line-level review; the authoring commit, freeze commit, and merge commit identifiers are recorded in the V7-F provenance amendment. Volume 7 is not tagged after Package 3.
+      freeze_commit: "f573a66"
+      note: Package 3 freeze is a separate freeze commit after line-level review; the source baseline, authoring commit, freeze commit, and merge commit identifiers are recorded in the V7-F provenance amendment. Volume 7 is not tagged after Package 3.
+    approved_at: null
+  - id: APP-V7-045
+    artifact_id: V7-F
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Records Package 3 source baseline, authoring, freeze, and merge commit identifiers after merge, and binds Gate V7-G3 effective ratification to the PACKAGE-7-3 freeze commit. Supersedes and overwrites nothing in the frozen Package 3 corpus. Volume 7 is not tagged after Package 3.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_baseline_commit: "d0046c8"
+      branch_base_commit: "d0046c8"
+      authoring_commit: "4f3671c"
+      closure_freeze_commit: "f573a66"
+      freeze_commit: "f573a66"
+      effective_commit: "f573a66"
+      original_package_merge_commit: "86628b7"
+      note: Narrow post-merge provenance amendment for Package 3. Records the branch base baseline, the authoring commit, the separate freeze commit, and the mainline merge commit, and confirms Gate V7-G3 became effective at the freeze commit f573a66. Volume 7 is not tagged after Package 3.
     approved_at: null
