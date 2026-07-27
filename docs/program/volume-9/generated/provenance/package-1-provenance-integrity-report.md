@@ -1,6 +1,6 @@
 # Volume 9 Package 1 Provenance-Integrity Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T16:24:55.163Z
+Generated: 2026-07-27T16:28:40.516Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 corpus. It proves provenance coherence deterministically; it confers no

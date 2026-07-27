@@ -195,3 +195,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-20-integrated-affiliation-workflow-coverage-oracle-and-validation-backlog-assessment.md
     gate: V9-G2
+  - id: V9-C
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-C-package-2-closure-record.md
+    gate: V9-G2
