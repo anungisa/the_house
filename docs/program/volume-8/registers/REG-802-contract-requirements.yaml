@@ -1492,3 +1492,454 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-30
+  - id: MANIFEST-V8-001
+    kind: FILE_MANIFEST_REQUIREMENT
+    title: Bulk membership file manifest requirement
+    statement: >-
+      A governed bulk membership file declares its manifest before it is
+      evaluated. A complete manifest establishes structure only and is not proof
+      of semantic or institutional validity.
+    manifest_fields:
+      - Exchange identifier
+      - File identifier
+      - Source-system identity
+      - Source extract time
+      - Generated time
+      - Schema or format version
+      - Organization and jurisdiction scope
+      - Record count
+      - Control totals
+      - Classification
+      - Integrity reference
+    integrity_dependency: >-
+      The file declares an integrity dependency; its content is verifiably
+      intact and attributable to its declared source before evaluation.
+    control_totals_requirement: >-
+      Declared control totals are reconciled against the records actually
+      present before acceptance.
+    source_provenance: >-
+      The file declares its source system, extract time, and generated time as
+      governed provenance.
+    version_distinction: >-
+      The file's schema or format version is distinct from the business-rule and
+      requirement versions that govern the meaning of its records.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-33
+    traces_to:
+      - V8-31
+  - id: BATCHENV-V8-001
+    kind: BATCH_ENVELOPE_REQUIREMENT
+    title: Scheduled batch envelope requirement
+    statement: >-
+      A governed batch declares its envelope before it is processed. A verified
+      envelope establishes structure and integrity only and is not proof of
+      business validity.
+    manifest_fields:
+      - Exchange identifier
+      - Batch identifier
+      - Source-system identity
+      - Generated time
+      - Schema or format version
+      - Record count
+      - Control totals
+      - Correlation reference
+      - Predecessor or replacement batch reference
+      - Retry or replay indication
+    integrity_dependency: >-
+      The batch declares an integrity dependency; its content is verifiably
+      intact and attributable to its declared source before processing.
+    control_totals_requirement: >-
+      Declared control totals are reconciled against the records actually
+      present before acceptance.
+    source_provenance: >-
+      The batch declares its source system and generated time as governed
+      provenance.
+    version_distinction: >-
+      The batch's schema or format version is distinct from the business-rule
+      and requirement versions that govern the meaning of its records.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-33
+    traces_to:
+      - V8-38
+  - id: IMPORT-V8-001
+    kind: IMPORT_REQUIREMENT
+    title: Membership import acceptance and disposition requirement
+    statement: >-
+      A governed membership import evaluates received records and assigns each an
+      explicit disposition. Import cannot silently create governed authority, and
+      accepted structure is not proof of business validity.
+    source_authority: >-
+      The import declares the source authority of the records it intakes; a
+      source assertion is an input to House determination, never a substitute.
+    validation_classes:
+      - Structural evaluation
+      - Semantic evaluation
+      - Authority evaluation
+    acceptance_authority: >-
+      The House authority that determines whether an imported record is accepted;
+      acceptance is never delegated to the source.
+    reject_conditions: >-
+      Records that fail structural, semantic, or authority evaluation are
+      rejected and remain non-authoritative.
+    quarantine_conditions: >-
+      Records that are ambiguous or unresolved are quarantined pending
+      reconciliation and produce no governed state while held.
+    partial_success_posture: >-
+      Partial success is explicit: the outcome names exactly which records were
+      accepted, rejected, or quarantined.
+    duplicate_posture: >-
+      A duplicate record under a stable key produces no duplicate governed
+      effect.
+    unknown_record_posture: >-
+      Unsupported or unknown values remain visible and are never silently
+      coerced into a supported value.
+    identity_resolution_dependency: >-
+      Acceptance depends on governed identity resolution; an unresolved identity
+      is quarantined, not assumed.
+    correction_posture: >-
+      Correction and resubmission are governed and preserve the original
+      exchange record.
+    authoritative_state_consequence: >-
+      An import confers no representative, reviewer, finance, or decision
+      authority; the default consequence for unauthorized content is no governed
+      effect.
+    reconciliation_dependency: >-
+      Every import is reconciled; unreconciled records remain non-authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: ACCEPT-V8-001
+    kind: ACCEPTANCE_SEMANTIC
+    title: Import acceptance semantic
+    statement: >-
+      Acceptance of an imported record confirms that it passed governed
+      evaluation. Acceptance of structure is not acceptance of business meaning
+      or grant of authority.
+    acceptance_posture: >-
+      An accepted record has passed structural, semantic, and authority
+      evaluation and carries only the governed effect its evaluation authorizes.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: REJECT-V8-001
+    kind: REJECTION_SEMANTIC
+    title: Import rejection semantic
+    statement: >-
+      A rejected imported record produces no governed state and is recorded as a
+      governed outcome with evidence, never silently discarded.
+    non_authoritative_posture: >-
+      A rejected record remains non-authoritative and produces no governed
+      effect; the original exchange record is preserved.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: PARTIAL-V8-001
+    kind: PARTIAL_SUCCESS_SEMANTIC
+    title: Import partial-success semantic
+    statement: >-
+      A partial success names exactly which records reached which disposition. A
+      partial failure is never treated as a silent partial success.
+    partial_success_posture: >-
+      When some records are accepted and others rejected or quarantined, the
+      outcome explicitly enumerates each record's disposition.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: EXPORT-V8-001
+    kind: EXPORT_REQUIREMENT
+    title: Finance-exchange export requirement
+    statement: >-
+      A governed finance-exchange export discloses only the minimum necessary
+      content to an entitled recipient under an explicit disclosure basis. Export
+      authority is distinct from internal read access.
+    export_authority: >-
+      The explicit House authority to export the content outside the institution;
+      it is never inferred from internal read access.
+    recipient: External accounting recipient
+    recipient_authority_status: >-
+      The recipient's authority to receive the content is recorded and confirmed
+      before disclosure.
+    disclosure_basis_status: >-
+      An explicit disclosure basis is recorded; an absent or unresolved basis is
+      not authorized.
+    minimum_necessary_content: >-
+      Only the minimum necessary financial content for the stated purpose crosses
+      the boundary.
+    redaction_requirement: >-
+      Content beyond the minimum necessary is redacted or excluded.
+    delivery_evidence: >-
+      Delivery produces evidence distinct from generation.
+    receipt_evidence: >-
+      Recipient receipt produces evidence distinct from delivery.
+    recipient_processing_status: >-
+      Recipient processing is tracked distinctly and is not presumed from
+      receipt.
+    reconciliation_dependency: >-
+      The export is reconciled; an unknown delivery or processing outcome is held
+      as unknown until reconciled.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-35
+    traces_to:
+      - V8-31
+  - id: EXPORT-V8-002
+    kind: EXPORT_REQUIREMENT
+    title: Access-request fulfillment export requirement
+    statement: >-
+      A governed export fulfilling a stakeholder access request discloses the
+      minimum necessary content under an explicit disclosure basis, in both
+      official languages and in an accessible form where the obligation applies.
+    export_authority: >-
+      The explicit House authority to disclose the requested content to the
+      requesting stakeholder.
+    recipient: Requesting stakeholder
+    recipient_authority_status: >-
+      The requester's entitlement to the content is confirmed before disclosure.
+    disclosure_basis_status: >-
+      An explicit disclosure basis for the access request is recorded.
+    minimum_necessary_content: >-
+      Only the content the requester is entitled to receive is disclosed.
+    redaction_requirement: >-
+      Content the requester is not entitled to receive is redacted or excluded.
+    delivery_evidence: >-
+      Delivery to the requester produces evidence distinct from generation.
+    recipient_processing_status: >-
+      Recipient acknowledgement is tracked distinctly from delivery.
+    reconciliation_dependency: >-
+      The fulfillment is reconciled to confirm the request was satisfied.
+    english_semantic: The disclosed content and its explanation stated in English.
+    french_semantic: The disclosed content and its explanation stated in equivalent French.
+    accessibility_requirement: >-
+      The disclosed content is provided in a form perceivable by the requester
+      under the platform accessibility obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-35
+    traces_to:
+      - V8-39
+  - id: MIGMAP-V8-001
+    kind: MIGRATION_MAPPING_REQUIREMENT
+    title: Legacy membership migration mapping requirement
+    statement: >-
+      A governed migration mapping proposes a translation of legacy source values
+      into candidate governed forms. A mapped value is a proposal, not validated
+      institutional meaning, and mapping is not identity resolution.
+    source_provenance: >-
+      The mapping declares the source system, extract, and source identifiers it
+      translates as governed provenance.
+    mapping_posture: >-
+      Mapping rules translate source codes and values into candidate governed
+      forms without asserting their institutional validity.
+    uncertainty_posture: >-
+      Ambiguous mappings are recorded as uncertain and quarantined rather than
+      forced into false certainty.
+    identity_resolution_dependency: >-
+      A mapped record becomes a resolved identity only through governed identity
+      resolution, which the mapping does not itself perform.
+    coexistence_dependency: >-
+      Migrated and source data coexist under governed coexistence rules until
+      cutover.
+    cutover_dependency: >-
+      Cutover records what must be true before the source ceases to be
+      authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-36
+    traces_to:
+      - V8-31
+  - id: IDRES-V8-001
+    kind: IDENTITY_RESOLUTION_REQUIREMENT
+    title: Migration identity-resolution requirement
+    statement: >-
+      A governed identity resolution determines whether a source record
+      corresponds to a known governed person or entity. Resolution is distinct
+      from mapping and from authority confirmation.
+    resolution_posture: >-
+      A source record is resolved to a governed identity only on governed
+      evidence; resolution is never presumed from a mapping.
+    uncertainty_posture: >-
+      Duplicate candidates and ambiguous correspondences are recorded as
+      uncertain.
+    unresolved_posture: >-
+      An unresolved identity is quarantined and confers no governed standing.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-36
+    traces_to:
+      - V8-31
+  - id: PROVCONT-V8-001
+    kind: PROVIDER_CONTINUITY_REQUIREMENT
+    title: Provider continuity and substitution requirement
+    statement: >-
+      A governed provider relationship handles degraded service and provider
+      substitution without silent loss of governed meaning. Continuity is
+      distinct from substitution.
+    continuity_posture: >-
+      A degraded or unavailable provider is handled so that governed meaning is
+      preserved and no governed effect is silently lost.
+    substitution_posture: >-
+      Introducing a replacement provider is a governed change, distinct from
+      continuity, with its own trust establishment.
+    degraded_service_posture: >-
+      Degraded service is detected and handled explicitly rather than presumed
+      healthy.
+    incident_linkage: >-
+      Continuity and substitution events are linked to governed incident
+      records.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-37
+    traces_to:
+      - V8-31
+  - id: DATARET-V8-001
+    kind: DATA_RETURN_REQUIREMENT
+    title: Provider data-return requirement
+    statement: >-
+      On termination a provider returns governed data in a usable form. Provider
+      termination is not by itself data return.
+    return_posture: >-
+      Governed data is returned in a usable, portable form as a distinct,
+      evidenced obligation on termination.
+    portability_posture: >-
+      Returned data is portable so that governed meaning survives the provider
+      relationship.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-37
+    traces_to:
+      - V8-31
+  - id: DELEVID-V8-001
+    kind: DELETION_EVIDENCE_REQUIREMENT
+    title: Provider deletion-evidence requirement
+    statement: >-
+      A provider deletion is evidenced, not merely asserted. Provider
+      certification of deletion is not House confirmation, and residual copies
+      are addressed.
+    deletion_evidence_posture: >-
+      Deletion is evidenced; a provider assertion of deletion is a certification,
+      not House confirmation.
+    residual_copy_posture: >-
+      Residual copies, backups, and derivatives are explicitly addressed before
+      deletion is treated as complete.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-37
+    traces_to:
+      - V8-31
+  - id: PROVEXIT-V8-001
+    kind: PROVIDER_EXIT_REQUIREMENT
+    title: Provider exit-completion requirement
+    statement: >-
+      A governed provider exit completes only when data return, deletion
+      evidence, and reconciliation are complete. Termination is distinct from
+      exit completion.
+    exit_posture: >-
+      Exit completes only when its constituent obligations are evidenced;
+      otherwise it remains incomplete.
+    termination_distinction: >-
+      Provider termination is distinct from data return, deletion, and exit
+      completion.
+    exit_acceptance: >-
+      Exit is accepted as closed only on evidence of return, deletion, and
+      reconciliation.
+    replacement_posture: >-
+      Where a replacement provider is introduced, its onboarding is a distinct
+      governed step.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-37
+    traces_to:
+      - V8-31
+  - id: EXRECON-V8-001
+    kind: EXCHANGE_RECONCILIATION_REQUIREMENT
+    title: Batch and exchange reconciliation requirement
+    statement: >-
+      A governed exchange is reconciled and closed only on evidence. Replay
+      re-runs a prior exchange under recorded authority and creates no new
+      governed authority.
+    reconciliation_owner_status: >-
+      Every reconciliation names its owner; an unowned reconciliation is not
+      complete.
+    replay_authority: >-
+      Replay proceeds only under recorded replay authority and produces replay
+      evidence.
+    replay_evidence: >-
+      Replay produces evidence of what was re-run and its outcome.
+    partial_success_posture: >-
+      Partial failure is explicit; failed records are quarantined and remain
+      non-authoritative rather than silently dropped.
+    compensation_limitation: >-
+      Compensation reverses or offsets a prior effect within declared limits and
+      does not delete governed history.
+    closure_evidence: >-
+      An exchange is closed only when its reconciliation is owned, evidenced, and
+      complete.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-38
+    traces_to:
+      - V8-31
+  - id: CONTRACT-V8-123
+    kind: COMPATIBILITY_RULE
+    title: Provider and exchange contract compatibility rule
+    statement: >-
+      A change to a provider, file, batch, import, export, or migration contract
+      is compatible only when known participants can process it without loss of
+      governed meaning. A change that cannot preserve meaning is a breaking
+      change requiring a new contract version and a governed transition path.
+    compatibility_state: BACKWARD_COMPATIBLE
+    consumer_evidence: >-
+      Evidence of the known producers, consumers, providers, and recipients that
+      depend on the contract and confirmation that the change preserves governed
+      meaning for each.
+    deprecation_rule: >-
+      A breaking change proceeds only through a new contract version, a
+      coexistence period, a migration path, and a sunset condition satisfied
+      before withdrawal.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-40
+    traces_to:
+      - V8-31

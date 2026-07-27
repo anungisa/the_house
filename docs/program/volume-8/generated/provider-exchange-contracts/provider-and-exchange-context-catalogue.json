@@ -1,0 +1,122 @@
+{
+  "provider_contract_surfaces": 2,
+  "import_contexts": 2,
+  "export_contexts": 2,
+  "file_exchange_contexts": 1,
+  "batch_exchange_contexts": 1,
+  "migration_contexts": 2,
+  "manual_exchange_contexts": 2,
+  "contexts": [
+    {
+      "id": "PROVSURF-V8-001",
+      "kind": "PROVIDER_CONTRACT_SURFACE",
+      "purpose": null,
+      "producer": null,
+      "consumer": null,
+      "owner": "House",
+      "classification": "INTERNAL_OPERATIONAL"
+    },
+    {
+      "id": "PROVSURF-V8-002",
+      "kind": "PROVIDER_CONTRACT_SURFACE",
+      "purpose": null,
+      "producer": null,
+      "consumer": null,
+      "owner": "House",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "IMPCTX-V8-001",
+      "kind": "IMPORT_CONTEXT",
+      "purpose": "Intake externally asserted membership records for governed evaluation",
+      "producer": "Provincial or territorial source system",
+      "consumer": "House affiliation domain",
+      "owner": "House affiliation authority",
+      "classification": "PERSONAL_INFORMATION"
+    },
+    {
+      "id": "IMPCTX-V8-002",
+      "kind": "IMPORT_CONTEXT",
+      "purpose": "Intake provider settlement outcomes for governed reconciliation",
+      "producer": "External payment provider",
+      "consumer": "House affiliation and finance domain",
+      "owner": "House finance authority",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "EXPCTX-V8-001",
+      "kind": "EXPORT_CONTEXT",
+      "purpose": "Disclose governed reporting extracts to an entitled external recipient",
+      "producer": "House affiliation domain",
+      "consumer": "Provincial or territorial recipient",
+      "owner": "House affiliation authority",
+      "classification": "INTERNAL_OPERATIONAL"
+    },
+    {
+      "id": "EXPCTX-V8-002",
+      "kind": "EXPORT_CONTEXT",
+      "purpose": "Disclose governed financial extracts to an entitled accounting recipient",
+      "producer": "House affiliation and finance domain",
+      "consumer": "External accounting recipient",
+      "owner": "House finance authority",
+      "classification": "FINANCIAL_STATUS"
+    },
+    {
+      "id": "FILECTX-V8-001",
+      "kind": "FILE_EXCHANGE_CONTEXT",
+      "purpose": "Exchange bulk membership data as governed files",
+      "producer": "External or provincial source system",
+      "consumer": "House affiliation domain",
+      "owner": "House affiliation authority",
+      "classification": "PERSONAL_INFORMATION"
+    },
+    {
+      "id": "BATCHCTX-V8-001",
+      "kind": "BATCH_EXCHANGE_CONTEXT",
+      "purpose": "Exchange records in governed scheduled batches",
+      "producer": "House affiliation domain or external source system",
+      "consumer": "House affiliation domain or external recipient",
+      "owner": "House affiliation authority",
+      "classification": "INTERNAL_OPERATIONAL"
+    },
+    {
+      "id": "MIGCTX-V8-001",
+      "kind": "MIGRATION_CONTEXT",
+      "purpose": "Migrate legacy membership data into the governed system-of-record",
+      "producer": "Legacy source system",
+      "consumer": "House affiliation domain",
+      "owner": "House affiliation authority",
+      "classification": "MIGRATION_OR_QUARANTINE"
+    },
+    {
+      "id": "MIGCTX-V8-002",
+      "kind": "MIGRATION_CONTEXT",
+      "purpose": "Migrate legacy affiliation standing and decision history for governed evaluation",
+      "producer": "Legacy source system",
+      "consumer": "House affiliation domain",
+      "owner": "House affiliation authority",
+      "classification": "MIGRATION_OR_QUARANTINE"
+    },
+    {
+      "id": "MANCTX-V8-001",
+      "kind": "MANUAL_EXCHANGE_CONTEXT",
+      "purpose": "Conduct governed manual and transitional document exchanges",
+      "producer": "House staff or external correspondent",
+      "consumer": "House affiliation domain",
+      "owner": "House affiliation authority",
+      "classification": "INTERNAL_OPERATIONAL"
+    },
+    {
+      "id": "MANCTX-V8-002",
+      "kind": "MANUAL_EXCHANGE_CONTEXT",
+      "purpose": "Conduct governed transitional correspondence under bilingual obligations",
+      "producer": "House staff",
+      "consumer": "Applicant or member organization",
+      "owner": "House affiliation authority",
+      "classification": "INTERNAL_OPERATIONAL"
+    }
+  ],
+  "gaps": {
+    "exchanges_without_owner": []
+  }
+}

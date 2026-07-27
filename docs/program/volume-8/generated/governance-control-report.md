@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T13:03:52.183Z
+Generated: 2026-07-27T13:49:01.439Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T13:03:52.183Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 40 |
+| RATIFIED | 51 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 40 |
-| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 35 |
-| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 72 |
-| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 20 |
-| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 15 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 47 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 51 |
+| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 49 |
+| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 88 |
+| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 33 |
+| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 19 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 60 |
 
 ## Findings by control
 
@@ -83,7 +83,19 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
 
+### Gate V8-G4 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
 ### Event-delivery contract coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Provider-exchange contract coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
 
@@ -171,3 +183,31 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V8-044 (GATE-V8-G3): No prohibited implementation, coded, executable-schema, endpoint, broker, or transport artifacts are created
 - APP-V8-044 (GATE-V8-G3): Unresolved Package 3 items have owners, evidence requirements, and future gates
 - APP-V8-044 (GATE-V8-G3): Package 3 receives a closure record and a separate freeze commit, no record authorizes implementation, and the completed gate has no unresolved required commit binding
+- APP-V8-059 (GATE-V8-G4): Package 3 provenance, V8-F, and V8-F-1 are inherited
+- APP-V8-059 (GATE-V8-G4): Packages 1 through 3 remain frozen and unchanged
+- APP-V8-059 (GATE-V8-G4): Provider and exchange authority doctrine is controlled
+- APP-V8-059 (GATE-V8-G4): Provider custody remains distinct from institutional authority
+- APP-V8-059 (GATE-V8-G4): Provider, import, export, file, batch, migration, and manual-exchange contexts are catalogued
+- APP-V8-059 (GATE-V8-G4): Every exchange identifies producer, consumer, owner, purpose, authority, classification, and trust boundary
+- APP-V8-059 (GATE-V8-G4): Files and batches define identity, provenance, version, manifest, counts, integrity, and reconciliation
+- APP-V8-059 (GATE-V8-G4): Structural validity remains distinct from semantic and institutional validity
+- APP-V8-059 (GATE-V8-G4): Imports define acceptance, rejection, quarantine, duplicate, correction, and partial-success semantics
+- APP-V8-059 (GATE-V8-G4): Rejected and quarantined records remain non-authoritative
+- APP-V8-059 (GATE-V8-G4): Imports cannot silently create governed authority
+- APP-V8-059 (GATE-V8-G4): Exports require explicit disclosure and recipient authority
+- APP-V8-059 (GATE-V8-G4): Read access remains distinct from export authority
+- APP-V8-059 (GATE-V8-G4): Export generation, delivery, receipt, processing, and reconciliation remain distinct
+- APP-V8-059 (GATE-V8-G4): Migration contracts preserve source provenance and uncertainty
+- APP-V8-059 (GATE-V8-G4): Mapping remains distinct from identity resolution and authority confirmation
+- APP-V8-059 (GATE-V8-G4): Migration completion remains distinct from business acceptance and source retirement
+- APP-V8-059 (GATE-V8-G4): Provider incidents, continuity, substitution, return, deletion, residual copies, and exit are governed
+- APP-V8-059 (GATE-V8-G4): Provider certification remains distinct from service assurance
+- APP-V8-059 (GATE-V8-G4): Batch idempotency, replay, ordering, concurrency, partial failure, compensation, and reconciliation are controlled
+- APP-V8-059 (GATE-V8-G4): Manual and transitional exchanges remain governed and auditable
+- APP-V8-059 (GATE-V8-G4): Accessible and bilingual requirements apply to documents and exchange communications
+- APP-V8-059 (GATE-V8-G4): Every unresolved item has an owner, evidence requirement, and valid future gate
+- APP-V8-059 (GATE-V8-G4): Deterministic Package 4 assessment completes without blocking defects
+- APP-V8-059 (GATE-V8-G4): No executable file schema, endpoint, transfer mechanism, migration script, provider integration, infrastructure, procurement, sequence, staffing, cost, pilot, rollout, or master development plan is created
+- APP-V8-059 (GATE-V8-G4): No migration-complete, provider-assured, data-deleted, reconciliation-complete, compatibility, privacy-compliance, or operational claim is made without evidence
+- APP-V8-059 (GATE-V8-G4): No record authorizes implementation
+- APP-V8-059 (GATE-V8-G4): Genuine authoring, closure/freeze, and pre-merge binding separation is preserved

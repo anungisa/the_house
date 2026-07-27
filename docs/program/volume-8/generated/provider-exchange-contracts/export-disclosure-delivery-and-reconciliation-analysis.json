@@ -1,0 +1,28 @@
+{
+  "export_requirements": 2,
+  "exports": [
+    {
+      "id": "EXPORT-V8-001",
+      "export_authority": "The explicit House authority to export the content outside the institution; it is never inferred from internal read access.",
+      "recipient_authority_status": "The recipient's authority to receive the content is recorded and confirmed before disclosure.",
+      "disclosure_basis_status": "An explicit disclosure basis is recorded; an absent or unresolved basis is not authorized.",
+      "delivery_evidence": "Delivery produces evidence distinct from generation.",
+      "receipt_evidence": "Recipient receipt produces evidence distinct from delivery.",
+      "recipient_processing_status": "Recipient processing is tracked distinctly and is not presumed from receipt.",
+      "reconciliation_dependency": "The export is reconciled; an unknown delivery or processing outcome is held as unknown until reconciled."
+    },
+    {
+      "id": "EXPORT-V8-002",
+      "export_authority": "The explicit House authority to disclose the requested content to the requesting stakeholder.",
+      "recipient_authority_status": "The requester's entitlement to the content is confirmed before disclosure.",
+      "disclosure_basis_status": "An explicit disclosure basis for the access request is recorded.",
+      "delivery_evidence": "Delivery to the requester produces evidence distinct from generation.",
+      "receipt_evidence": null,
+      "recipient_processing_status": "Recipient acknowledgement is tracked distinctly from delivery.",
+      "reconciliation_dependency": "The fulfillment is reconciled to confirm the request was satisfied."
+    }
+  ],
+  "gaps": {
+    "exports_without_disclosure_or_recipient_authority": []
+  }
+}

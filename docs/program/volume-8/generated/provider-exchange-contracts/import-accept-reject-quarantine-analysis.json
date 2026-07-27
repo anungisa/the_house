@@ -1,0 +1,21 @@
+{
+  "import_requirements": 1,
+  "acceptance_semantics": 1,
+  "rejection_semantics": 1,
+  "partial_success_semantics": 1,
+  "imports": [
+    {
+      "id": "IMPORT-V8-001",
+      "source_authority": "The import declares the source authority of the records it intakes; a source assertion is an input to House determination, never a substitute.",
+      "acceptance_authority": "The House authority that determines whether an imported record is accepted; acceptance is never delegated to the source.",
+      "reject_conditions": "Records that fail structural, semantic, or authority evaluation are rejected and remain non-authoritative.",
+      "quarantine_conditions": "Records that are ambiguous or unresolved are quarantined pending reconciliation and produce no governed state while held.",
+      "partial_success_posture": "Partial success is explicit: the outcome names exactly which records were accepted, rejected, or quarantined.",
+      "authoritative_state_consequence": "An import confers no representative, reviewer, finance, or decision authority; the default consequence for unauthorized content is no governed effect."
+    }
+  ],
+  "gaps": {
+    "imports_without_accept_reject_quarantine_partial": [],
+    "imports_without_authoritative_state_consequence": []
+  }
+}

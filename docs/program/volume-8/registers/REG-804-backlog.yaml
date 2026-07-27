@@ -219,4 +219,76 @@ records:
     chapter_ref: V8-29
     traces_to:
       - V8-29
+  - id: ASM-V8-005
+    kind: ASM
+    title: Provider and exchange counterparties are trusted only after verification
+    statement: >-
+      Package 4 assumes that no provider, source system, or recipient is trusted
+      by default and that each is authenticated, integrity-verified, and scoped
+      before any governed exchange effect; the assumption is validated only in
+      later, separately governed work.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: >-
+      Evidence that provider and exchange trust boundaries fail closed and admit
+      no unverified counterparty.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-31
+  - id: RISK-V8-006
+    kind: RISK
+    title: Silent authority creation through import or migration
+    statement: >-
+      There is a risk that a future import or migration implementation silently
+      confers governed authority or standing from external content; Package 4
+      records the risk and defines the fail-closed contracts that mitigate it,
+      but does not prove the mitigation.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: >-
+      Evidence that imports and migrations confer no representative, reviewer,
+      finance, or decision authority absent a governed grant.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-34
+    traces_to:
+      - V8-36
+  - id: TEST-V8-006
+    kind: TEST
+    title: Import, export, and reconciliation conformance test class deferred
+    statement: >-
+      A future conformance test class must prove that imports assign explicit
+      dispositions, that exports enforce export authority and disclosure basis,
+      and that batch and exchange reconciliation is owned, evidenced, and
+      idempotent under replay.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Import, export, and reconciliation conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-38
+    traces_to:
+      - V8-34
+  - id: TEST-V8-007
+    kind: TEST
+    title: Provider lifecycle and migration conformance test class deferred
+    statement: >-
+      A future conformance test class must prove that provider incident,
+      continuity, data return, deletion evidence, and exit obligations are met
+      with evidence, and that migration preserves provenance and treats
+      uncertainty as quarantine rather than false certainty.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Provider lifecycle and migration conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-37
+    traces_to:
+      - V8-36
 

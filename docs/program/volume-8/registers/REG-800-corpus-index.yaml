@@ -323,3 +323,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-F-1-package-3-governance-amendment.md
     gate: V8-G3
+  - id: V8-31
+    title: External-Provider and Exchange-Contract Authority Doctrine
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-31-external-provider-and-exchange-contract-authority-doctrine.md
+    gate: V8-G4
+  - id: V8-32
+    title: Provider and Exchange-Context Catalogue, Ownership, and Trust Boundaries
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-32-provider-and-exchange-context-catalogue-ownership-and-trust-boundaries.md
+    gate: V8-G4
+  - id: V8-33
+    title: File, Batch, Manifest, Envelope, Version, and Integrity Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-33-file-batch-manifest-envelope-version-and-integrity-model.md
+    gate: V8-G4
+  - id: V8-34
+    title: Import Intake, Validation, Acceptance, Rejection, Quarantine, and Partial-Success Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-34-import-intake-validation-acceptance-rejection-quarantine-and-partial-success-contracts.md
+    gate: V8-G4
+  - id: V8-35
+    title: Export, Disclosure, Recipient Authority, Delivery, Receipt, and Reconciliation Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-35-export-disclosure-recipient-authority-delivery-receipt-and-reconciliation-contracts.md
+    gate: V8-G4
+  - id: V8-36
+    title: Migration Source, Mapping, Provenance, Identity Resolution, Uncertainty, and Coexistence Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-36-migration-source-mapping-provenance-identity-resolution-uncertainty-and-coexistence-contracts.md
+    gate: V8-G4
+  - id: V8-37
+    title: Provider Lifecycle, Incident, Continuity, Substitution, Data Return, Deletion, and Exit Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-37-provider-lifecycle-incident-continuity-substitution-data-return-deletion-and-exit-contracts.md
+    gate: V8-G4
+  - id: V8-38
+    title: Batch Idempotency, Replay, Ordering, Concurrency, Partial Failure, Compensation, and Reconciliation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-38-batch-idempotency-replay-ordering-concurrency-partial-failure-compensation-and-reconciliation.md
+    gate: V8-G4
+  - id: V8-39
+    title: Manual, Transitional, Document, Accessible, and Bilingual Exchange Requirements
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-39-manual-transitional-document-accessible-and-bilingual-exchange-requirements.md
+    gate: V8-G4
+  - id: V8-40
+    title: Provider, File, Batch, Migration, and Exchange Traceability Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-40-provider-file-batch-migration-and-exchange-traceability-assessment.md
+    gate: V8-G4
+  - id: V8-G
+    title: Package 4 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-G-package-4-closure-record.md
+    gate: V8-G4

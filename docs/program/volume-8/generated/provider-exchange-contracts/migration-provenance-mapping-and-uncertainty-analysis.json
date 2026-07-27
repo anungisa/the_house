@@ -1,0 +1,25 @@
+{
+  "migration_mapping_requirements": 1,
+  "identity_resolution_requirements": 1,
+  "mappings": [
+    {
+      "id": "MIGMAP-V8-001",
+      "source_provenance": "The mapping declares the source system, extract, and source identifiers it translates as governed provenance.",
+      "mapping_posture": "Mapping rules translate source codes and values into candidate governed forms without asserting their institutional validity.",
+      "uncertainty_posture": "Ambiguous mappings are recorded as uncertain and quarantined rather than forced into false certainty.",
+      "identity_resolution_dependency": "A mapped record becomes a resolved identity only through governed identity resolution, which the mapping does not itself perform."
+    }
+  ],
+  "identity": [
+    {
+      "id": "IDRES-V8-001",
+      "resolution_posture": "A source record is resolved to a governed identity only on governed evidence; resolution is never presumed from a mapping.",
+      "uncertainty_posture": "Duplicate candidates and ambiguous correspondences are recorded as uncertain.",
+      "unresolved_posture": "An unresolved identity is quarantined and confers no governed standing."
+    }
+  ],
+  "gaps": {
+    "migrations_without_provenance_or_uncertainty": [],
+    "mappings_without_identity_resolution_dependency": []
+  }
+}
