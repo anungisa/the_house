@@ -737,3 +737,51 @@ records:
         recorded separately in the V9-F provenance amendment and the V9-F-1
         provenance-role classification. Volume 9 is not tagged after Package 3.
     approved_at: null
+  - id: APP-V9-048
+    artifact_id: V9-F
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 3 mainline history after merge and binds
+      the pre-merge provenance-binding reference to a concrete commit. Reopens and
+      overwrites nothing in the frozen Package 3 corpus. Preserves the Gate V9-G3
+      disposition and the PACKAGE-9-3 freeze, and preserves the Package 1 and
+      Package 2 foundations, their Gate V9-G1 and Gate V9-G2 dispositions, and the
+      PACKAGE-9-1 and PACKAGE-9-2 freezes. Volume 9 is not tagged after Package 3.
+    approved_at: null
+  - id: APP-V9-049
+    artifact_id: PACKAGE-9-3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 3 substantive authoring commit, the
+      separate closure and freeze commit, the pre-merge provenance-binding commit,
+      and the mainline merge commit after merge. Supersedes and overwrites nothing
+      in the frozen Package 3 corpus. Preserves the Gate V9-G3 disposition and the
+      PACKAGE-9-3 freeze. The complete provenance-role classification, including
+      this amendment's own authoring and merge commits, is recorded in the
+      subsequent amendment (V9-F-1). Volume 9 is not tagged after Package 3.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-8-v1.0.0
+      base_release_tag: central-registration-volume-8-v1.0.0
+      source_baseline_commit: ef104f0
+      branch_base_commit: ef104f0
+      authoring_commit: b8d35cc
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      closure_freeze_commit: 2e7332b
+      freeze_commit: 2e7332b
+      gate_effective_commit: 2e7332b
+      effective_commit: 2e7332b
+      provenance_binding_commit: 20a6c2d
+      original_package_merge_commit: 790fc8d
+      note: >-
+        Volume 9 Package 3 mainline history. Source baseline ef104f0; substantive
+        authoring b8d35cc; closure, gate, and freeze 2e7332b; pre-merge provenance
+        binding 20a6c2d; original Package 3 merge 790fc8d. Volume 9 is not tagged
+        after Package 3.
+    approved_at: null
