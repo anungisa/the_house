@@ -14,6 +14,8 @@ import { generate as generateAffiliation } from './foundation-affiliation-volume
 import { generate as generateProvenance } from './provenance-integrity-volume-10.mjs';
 import { generate as generateGate } from './gate-g1-volume-10.mjs';
 import { generate as generateGate2 } from './gate-g2-volume-10.mjs';
+import { generate as generateGate3 } from './gate-g3-volume-10.mjs';
+import { generate as generateFinalClosure } from './final-closure-volume-10.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -39,6 +41,8 @@ generateAffiliation(ctx);
 generateProvenance(ctx);
 generateGate(ctx);
 generateGate2(ctx);
+generateGate3(ctx);
+generateFinalClosure(ctx);
 
 console.log('\n=== Volume 10 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

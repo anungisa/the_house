@@ -1,0 +1,351 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus (Packages 1-3). Confers no ratification and authorizes no implementation, expenditure, procurement, release, or deployment. Documentary and implementation-neutral.",
+  "generated_from": "REG-1001",
+  "dependency_edges": [
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-301",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Delivery and environment enablement precedes organization authority",
+      "statement": "Integrated sequencing edge classifying the HARD_PREREQUISITE relationship for delivery and environment enablement precedes organization authority. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "HARD_PREREQUISITE",
+      "predecessors": [
+        "WAVE-V10-300"
+      ],
+      "successors": [
+        "WAVE-V10-301"
+      ],
+      "blocking_dependencies": [
+        "ENVREQ-V10-201"
+      ],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [
+        "Environment qualification evidence"
+      ],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "ON_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-302",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Organization authority precedes affiliation draft and requirements",
+      "statement": "Integrated sequencing edge classifying the HARD_PREREQUISITE relationship for organization authority precedes affiliation draft and requirements. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "HARD_PREREQUISITE",
+      "predecessors": [
+        "WAVE-V10-301"
+      ],
+      "successors": [
+        "WAVE-V10-302"
+      ],
+      "blocking_dependencies": [
+        "IWP-V10-201"
+      ],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [
+        "Authority-scope evidence"
+      ],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "ON_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-303",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Evidence and completeness support submission",
+      "statement": "Integrated sequencing edge classifying the SOFT_PREREQUISITE relationship for evidence and completeness support submission. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "SOFT_PREREQUISITE",
+      "predecessors": [
+        "WAVE-V10-303"
+      ],
+      "successors": [
+        "WAVE-V10-304"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [
+        "Bilingual content preparation"
+      ],
+      "decision_dependencies": [],
+      "evidence_dependencies": [],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "NEAR_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-304",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Button experience and House surfaces develop in parallel",
+      "statement": "Integrated sequencing edge classifying the PARALLELIZABLE relationship for button experience and house surfaces develop in parallel. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "PARALLELIZABLE",
+      "predecessors": [
+        "MDP-V10-303"
+      ],
+      "successors": [
+        "MDP-V10-304"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [
+        "House and Button slices"
+      ],
+      "decision_dependencies": [],
+      "evidence_dependencies": [],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "OFF_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-305",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Exactly-once activation depends on decision and reconciliation evidence",
+      "statement": "Integrated sequencing edge classifying the EVIDENCE_DEPENDENCY relationship for exactly-once activation depends on decision and reconciliation evidence. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "EVIDENCE_DEPENDENCY",
+      "predecessors": [
+        "WAVE-V10-305"
+      ],
+      "successors": [
+        "WAVE-V10-306"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [],
+      "decision_dependencies": [
+        "ADR-V10-301"
+      ],
+      "evidence_dependencies": [
+        "Decision and reconciliation evidence"
+      ],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "ON_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-306",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Fee and finance rules depend on institutional policy determination",
+      "statement": "Integrated sequencing edge classifying the POLICY_DEPENDENCY relationship for fee and finance rules depend on institutional policy determination. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "POLICY_DEPENDENCY",
+      "predecessors": [
+        "ADR-V10-302"
+      ],
+      "successors": [
+        "WAVE-V10-305"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [],
+      "decision_dependencies": [
+        "ADR-V10-302"
+      ],
+      "evidence_dependencies": [],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "NEAR_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-307",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Payment and identity integration depend on provider readiness",
+      "statement": "Integrated sequencing edge classifying the PROVIDER_DEPENDENCY relationship for payment and identity integration depend on provider readiness. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "PROVIDER_DEPENDENCY",
+      "predecessors": [
+        "PROC-V10-302"
+      ],
+      "successors": [
+        "MDP-V10-303"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "OFF_CRITICAL_PATH",
+      "fallback_status": "Manual reconciliation fallback documented; not executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-308",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "PostgreSQL behavioural verification depends on qualified environment",
+      "statement": "Integrated sequencing edge classifying the ENVIRONMENT_DEPENDENCY relationship for postgresql behavioural verification depends on qualified environment. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "ENVIRONMENT_DEPENDENCY",
+      "predecessors": [
+        "ENVREQ-V10-203"
+      ],
+      "successors": [
+        "MDP-V10-303"
+      ],
+      "blocking_dependencies": [
+        "ENVREQ-V10-203"
+      ],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [
+        "Database behavioural evidence"
+      ],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "ON_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-309",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Cutover depends on migration reconciliation and rollback readiness",
+      "statement": "Integrated sequencing edge classifying the MIGRATION_DEPENDENCY relationship for cutover depends on migration reconciliation and rollback readiness. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "MIGRATION_DEPENDENCY",
+      "predecessors": [
+        "MIGREQ-V10-202"
+      ],
+      "successors": [
+        "WAVE-V10-307"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [
+        "Reconciliation evidence"
+      ],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "NEAR_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-310",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Operational handoff depends on support-readiness definition",
+      "statement": "Integrated sequencing edge classifying the OPERATIONAL_DEPENDENCY relationship for operational handoff depends on support-readiness definition. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "OPERATIONAL_DEPENDENCY",
+      "predecessors": [
+        "OPCAP-V10-301"
+      ],
+      "successors": [
+        "WAVE-V10-307"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "OFF_CRITICAL_PATH",
+      "fallback_status": "Support readiness deferred to Volume 11.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "EDGE-V10-311",
+      "kind": "DEPENDENCY_EDGE",
+      "title": "Release-candidate formation depends on assurance evidence",
+      "statement": "Integrated sequencing edge classifying the RELEASE_DEPENDENCY relationship for release-candidate formation depends on assurance evidence. The critical path is evidence-derived and is not visually convenient. Target windows remain uncommitted.",
+      "relationship_kind": "RELEASE_DEPENDENCY",
+      "predecessors": [
+        "WAVE-V10-307"
+      ],
+      "successors": [
+        "WAVE-V10-308"
+      ],
+      "blocking_dependencies": [],
+      "parallel_opportunities": [],
+      "decision_dependencies": [],
+      "evidence_dependencies": [
+        "Independent assurance evidence"
+      ],
+      "earliest_planning_window": "Indicative planning window only; uncommitted.",
+      "latest_planning_window": "Indicative latest tolerable window only; uncommitted.",
+      "schedule_confidence_status": "UNCOMMITTED",
+      "critical_path_status": "ON_CRITICAL_PATH",
+      "fallback_status": "Fallback documented; no fallback is executed.",
+      "chapter_ref": "V10-22",
+      "future_gate": "V11-G1"
+    }
+  ]
+}

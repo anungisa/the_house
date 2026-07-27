@@ -1,6 +1,6 @@
 # Volume 10 Package 2 — Affiliation Implementation-Plan Foundation Report
 
-Generated: 2026-07-27T20:15:58.831Z
+Generated: 2026-07-27T20:51:01.856Z
 
 Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.
 
@@ -16,9 +16,9 @@ Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus
 - Integration delivery slices: 3
 - Test-enablement slices: 2
 - House P0 delivery destinations: 14
-- Environment enablement requirements: 6
+- Environment enablement requirements: 9
 - Release-candidate requirements: 10
-- Cost estimates: 2
+- Cost estimates: 15
 
 ## Boundary
 

@@ -1,7 +1,7 @@
 register_id: REG-1000
 name: Volume 10 Corpus Index
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: V10-00
     title: Volume Control, Inheritance, and Planning Authority
@@ -187,3 +187,115 @@ records:
     version: 1.0.0
     path: docs/program/volume-10/V10-C-package-2-closure-record.md
     gate: V10-G2
+  - id: V10-D
+    title: Package 2 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-D-package-2-provenance-amendment.md
+    gate: V10-G2
+  - id: V10-D-1
+    title: Package 2 Provenance-Role Classification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-D-1-package-2-provenance-role-classification.md
+    gate: V10-G2
+  - id: V10-21
+    title: Integrated Master-Development-Plan Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-21-integrated-master-development-plan-baseline.md
+    gate: V10-G3
+  - id: V10-22
+    title: Integrated Sequencing, Dependency Graph, and Critical-Path Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-22-integrated-sequencing-dependency-graph-and-critical-path-model.md
+    gate: V10-G3
+  - id: V10-23
+    title: Implementation Waves, Increments, and Release-Roadmap Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-23-implementation-waves-increments-and-release-roadmap-synthesis.md
+    gate: V10-G3
+  - id: V10-24
+    title: Capacity, Capability, Responsibility, and Delivery-Operating Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-24-capacity-capability-responsibility-and-delivery-operating-model.md
+    gate: V10-G3
+  - id: V10-25
+    title: Integrated Estimate, Cost, Contingency, and Funding Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-25-integrated-estimate-cost-contingency-and-funding-model.md
+    gate: V10-G3
+  - id: V10-26
+    title: Funding, Procurement-Readiness, Make/Buy/Partner, and Commercial-Decision Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-26-funding-procurement-readiness-make-buy-partner-and-commercial-decision-model.md
+    gate: V10-G3
+  - id: V10-27
+    title: Environment, Test-Enablement, CI/CD, Infrastructure, and Assurance Roadmap
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-27-environment-test-enablement-ci-cd-infrastructure-and-assurance-roadmap.md
+    gate: V10-G3
+  - id: V10-28
+    title: Migration, Coexistence, Cutover, Rollback, and Data-Readiness Roadmap
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-28-migration-coexistence-cutover-rollback-and-data-readiness-roadmap.md
+    gate: V10-G3
+  - id: V10-29
+    title: Operations, Support, Adoption, Training, and Transition Roadmap
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-29-operations-support-adoption-training-and-transition-roadmap.md
+    gate: V10-G3
+  - id: V10-30
+    title: Integrated Risk, Issue, Assumption, Decision, and Material-Commitment Register
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-30-integrated-risk-issue-assumption-decision-and-material-commitment-register.md
+    gate: V10-G3
+  - id: V10-31
+    title: Executive Master-Development-Plan Brief and Authorization Boundaries
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-31-executive-master-development-plan-brief-and-authorization-boundaries.md
+    gate: V10-G3
+  - id: V10-32
+    title: Integrated Master-Plan Traceability and Volume 10 Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-32-integrated-master-plan-traceability-and-volume-10-closure-assessment.md
+    gate: V10-G3

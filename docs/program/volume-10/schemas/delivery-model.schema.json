@@ -29,7 +29,7 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(OUTCOME|CAP|STREAM|WORK|DELIV|DEP|AOUT|AWS|IWP|TDS|EDS|MDS|CES|IDS|TES|P0D)-V10-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(OUTCOME|CAP|STREAM|WORK|DELIV|DEP|AOUT|AWS|IWP|TDS|EDS|MDS|CES|IDS|TES|P0D|MDP|EDGE|CAPD|OPCAP)-V10-[0-9]{3}$" },
           "kind": {
             "type": "string",
             "enum": [
@@ -48,7 +48,11 @@
               "CONTROL_ENABLEMENT_SLICE",
               "INTEGRATION_DELIVERY_SLICE",
               "TEST_ENABLEMENT_SLICE",
-              "HOUSE_P0_DELIVERY_DESTINATION"
+              "HOUSE_P0_DELIVERY_DESTINATION",
+              "MASTER_PLAN_OBJECTIVE",
+              "DEPENDENCY_EDGE",
+              "CAPABILITY_DEMAND",
+              "OPERATIONAL_CAPABILITY"
             ]
           },
           "title": { "type": "string" },
@@ -122,6 +126,44 @@
           "test_enablement_destination": { "type": "string" },
           "operational_proof_destination": { "type": "string" },
           "proof_destination": { "type": "string" },
+          "institutional_outcome": { "type": "string" },
+          "affected_capabilities": { "type": "array", "items": { "type": "string" } },
+          "workstreams": { "type": "array", "items": { "type": "string" } },
+          "work_packages": { "type": "array", "items": { "type": "string" } },
+          "environment_dependencies": { "type": "array", "items": { "type": "string" } },
+          "test_enablement_dependencies": { "type": "array", "items": { "type": "string" } },
+          "migration_dependencies": { "type": "array", "items": { "type": "string" } },
+          "operational_dependencies": { "type": "array", "items": { "type": "string" } },
+          "implementation_authorization_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "relationship_kind": { "$ref": "common.schema.json#/definitions/relationshipKind" },
+          "predecessors": { "type": "array", "items": { "type": "string" } },
+          "successors": { "type": "array", "items": { "type": "string" } },
+          "blocking_dependencies": { "type": "array", "items": { "type": "string" } },
+          "parallel_opportunities": { "type": "array", "items": { "type": "string" } },
+          "decision_dependencies": { "type": "array", "items": { "type": "string" } },
+          "evidence_dependencies": { "type": "array", "items": { "type": "string" } },
+          "earliest_planning_window": { "type": "string" },
+          "latest_planning_window": { "type": "string" },
+          "schedule_confidence_status": { "$ref": "common.schema.json#/definitions/scheduleConfidenceStatus" },
+          "critical_path_status": { "$ref": "common.schema.json#/definitions/criticalPathStatus" },
+          "demand_by_wave": { "type": "string" },
+          "minimum_viable_capacity": { "type": "string" },
+          "preferred_capacity": { "type": "string" },
+          "single_person_dependency": { "type": "string" },
+          "external_service_dependency": { "type": "string" },
+          "capacity_risk": { "type": "string" },
+          "mitigation_option": { "type": "string" },
+          "planned_owner_role": { "type": "string" },
+          "required_procedures": { "type": "string" },
+          "required_training": { "type": "string" },
+          "required_tooling": { "type": "string" },
+          "required_evidence": { "type": "string" },
+          "service_dependency": { "type": "string" },
+          "continuity_dependency": { "type": "string" },
+          "support_readiness_criterion": { "type": "string" },
+          "adoption_readiness_criterion": { "type": "string" },
+          "operational_acceptance_authority": { "type": "string" },
+          "volume_11_destination": { "type": "string" },
           "release_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
           "estimate_status": { "$ref": "common.schema.json#/definitions/estimateStatus" },
           "dependency_kind": { "$ref": "common.schema.json#/definitions/dependencyKind" },
@@ -287,6 +329,92 @@
                 "test_enablement_destination",
                 "operational_proof_destination",
                 "proof_destination"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "MASTER_PLAN_OBJECTIVE" } } },
+            "then": {
+              "required": [
+                "objective",
+                "institutional_outcome",
+                "source_requirements",
+                "affected_capabilities",
+                "workstreams",
+                "work_packages",
+                "deliverables",
+                "dependencies",
+                "required_capabilities",
+                "environment_dependencies",
+                "test_enablement_dependencies",
+                "migration_dependencies",
+                "operational_dependencies",
+                "evidence_obligations",
+                "estimate_status",
+                "commitment_status",
+                "implementation_authorization_gate",
+                "release_gate",
+                "definition_of_ready",
+                "definition_of_done"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "DEPENDENCY_EDGE" } } },
+            "then": {
+              "required": [
+                "relationship_kind",
+                "predecessors",
+                "successors",
+                "blocking_dependencies",
+                "parallel_opportunities",
+                "decision_dependencies",
+                "evidence_dependencies",
+                "earliest_planning_window",
+                "latest_planning_window",
+                "schedule_confidence_status",
+                "critical_path_status",
+                "fallback_status",
+                "future_gate"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "CAPABILITY_DEMAND" } } },
+            "then": {
+              "required": [
+                "capability_domain",
+                "demand_by_wave",
+                "required_competence",
+                "decision_rights",
+                "independence_requirement",
+                "minimum_viable_capacity",
+                "preferred_capacity",
+                "availability_status",
+                "single_person_dependency",
+                "external_service_dependency",
+                "capacity_risk",
+                "mitigation_option",
+                "commitment_status"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "OPERATIONAL_CAPABILITY" } } },
+            "then": {
+              "required": [
+                "planned_owner_role",
+                "required_procedures",
+                "required_training",
+                "required_tooling",
+                "required_evidence",
+                "service_dependency",
+                "provider_dependency",
+                "continuity_dependency",
+                "support_readiness_criterion",
+                "adoption_readiness_criterion",
+                "operational_acceptance_authority",
+                "volume_11_destination"
               ]
             }
           }

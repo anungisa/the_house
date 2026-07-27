@@ -18,6 +18,24 @@
       "owner": "Accountable Program Authority",
       "likelihood": "MEDIUM",
       "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "RISK-V10-301",
+      "owner": "Accountable Program Authority",
+      "likelihood": "HIGH occurrence in current state.",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-302",
+      "owner": "Accountable Program Authority",
+      "likelihood": "MEDIUM.",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-303",
+      "owner": "Accountable Program Authority",
+      "likelihood": "MEDIUM.",
+      "future_blocking_gate": "V11-G1"
     }
   ],
   "issues": [
@@ -30,6 +48,11 @@
       "id": "ISSUE-V10-201",
       "owner": "Engineering Delivery Lead",
       "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "ISSUE-V10-301",
+      "owner": "Accountable Program Authority",
+      "future_blocking_gate": "EXEC-MCG"
     }
   ],
   "evidence_requirements": [

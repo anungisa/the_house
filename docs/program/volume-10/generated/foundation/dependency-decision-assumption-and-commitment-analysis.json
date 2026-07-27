@@ -106,6 +106,30 @@
       "kind": "DECISION_BOUNDARY",
       "status": "APPROVED_FOR_PLANNING",
       "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-301",
+      "kind": "RECOMMENDED_DECISION",
+      "status": "RECOMMENDED",
+      "authority": "Executive Acceptance Authority"
+    },
+    {
+      "id": "ADR-V10-302",
+      "kind": "DECISION_BOUNDARY",
+      "status": "PENDING",
+      "authority": "Executive Acceptance Authority"
+    },
+    {
+      "id": "ADR-V10-303",
+      "kind": "RECOMMENDED_DECISION",
+      "status": "RECOMMENDED",
+      "authority": "Executive Acceptance Authority"
+    },
+    {
+      "id": "ADR-V10-304",
+      "kind": "RECOMMENDED_DECISION",
+      "status": "RECOMMENDED",
+      "authority": "Executive Acceptance Authority"
     }
   ],
   "assumptions": [
@@ -123,11 +147,29 @@
       "id": "ASM-V10-202",
       "owner": "Engineering Delivery Lead",
       "status": "ENVIRONMENT_QUALIFICATION_PENDING"
+    },
+    {
+      "id": "ASM-V10-301",
+      "owner": "Accountable Program Authority",
+      "status": "PLANNING_ONLY"
+    },
+    {
+      "id": "ASM-V10-302",
+      "owner": "Accountable Program Authority",
+      "status": "PLANNING_ONLY"
     }
   ],
   "commitments": [
     {
       "id": "COMMIT-V10-001",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "COMMIT-V10-301",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "COMMIT-V10-302",
       "commitment_status": "NOT_COMMITTED"
     }
   ]

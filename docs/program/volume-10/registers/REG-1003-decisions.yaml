@@ -1,7 +1,7 @@
 register_id: REG-1003
 name: Volume 10 Delivery-Planning Decisions
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: ADR-V10-001
     kind: DECISION
@@ -280,4 +280,81 @@ records:
     planning_status: DOCUMENTARY_PLAN_ONLY
     commitment_status: NOT_COMMITTED
     chapter_ref: V10-11
+    future_gate: V11-G1
+  # ---------------------------------------------------------------------------
+  # Package 3 additions (V10-22/23/24/30/31 planning decisions)
+  # ---------------------------------------------------------------------------
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ADR-V10-301
+    kind: RECOMMENDED_DECISION
+    title: Adopt a wave-based implementation decomposition
+    statement: Recommend a wave-0-through-8 planning decomposition for the affiliation vertical.
+    decision_status: RECOMMENDED
+    context: Package 2 release units require governed sequencing.
+    alternatives_considered: []
+    consequences: Provides evidence-derived sequencing without committing dates or authorizing implementation.
+    decision_authority: Executive Acceptance Authority
+    prohibited_inference: A recommended planning decision is not an implementation authorization.
+    chapter_ref: V10-23
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ADR-V10-302
+    kind: DECISION_BOUNDARY
+    title: Defer fee and finance policy determination to a governed decision
+    statement: >-
+      Recommend that affiliation fee and finance policy is determined through a governed decision
+      before Wave 5.
+    decision_status: PENDING
+    context: Fee and finance rules are a policy dependency on the critical path.
+    alternatives_considered: []
+    consequences: Keeps the policy dependency explicit and unresolved rather than assumed complete.
+    decision_authority: Executive Acceptance Authority
+    prohibited_inference: A recommended planning decision is not an implementation authorization.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ADR-V10-303
+    kind: RECOMMENDED_DECISION
+    title: Treat solo-delivery concentration as a material capacity risk
+    statement: >-
+      Recommend that the present solo-delivery concentration is retained as a visible material
+      planning risk.
+    decision_status: RECOMMENDED
+    context: Capacity is concentrated in a single delivery person.
+    alternatives_considered: []
+    consequences: Preserves the risk for executive decision rather than normalizing it away.
+    decision_authority: Executive Acceptance Authority
+    prohibited_inference: A recommended planning decision is not an implementation authorization.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ADR-V10-304
+    kind: RECOMMENDED_DECISION
+    title: Request planning-baseline approval only
+    statement: >-
+      Recommend that the executive brief requests approval of the planning baseline only and not
+      implementation or release authorization.
+    decision_status: RECOMMENDED
+    context: The master development plan is documentary.
+    alternatives_considered: []
+    consequences: Maintains the boundary between planning and implementation authorization.
+    decision_authority: Executive Acceptance Authority
+    prohibited_inference: A recommended planning decision is not an implementation authorization.
+    chapter_ref: V10-31
     future_gate: V11-G1

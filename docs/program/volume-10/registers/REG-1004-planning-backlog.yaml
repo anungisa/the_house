@@ -1,7 +1,7 @@
 register_id: REG-1004
 name: Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   - id: ASM-V10-001
     kind: ASSUMPTION
@@ -306,3 +306,756 @@ records:
     approval_status: NOT_APPROVED
     commitment_status: NOT_COMMITTED
     future_blocking_gate: EXEC-MCG
+  # ---------------------------------------------------------------------------
+  # Package 3 additions (V10-25 estimates, V10-26 funding/procurement, V10-30 integrated risk register)
+  # ---------------------------------------------------------------------------
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-301
+    kind: COST_ESTIMATE
+    title: Internal labour planning estimate
+    statement: >-
+      Planning estimate for internal delivery labour. An estimate is not a budget, a quote, an
+      approved expenditure, a procurement commitment, or a contract. No unsupported point estimate is
+      used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for internal delivery labour derived from the frozen Package 2 work
+      packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: internal delivery labour planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-302
+    kind: COST_ESTIMATE
+    title: External engineering planning estimate
+    statement: >-
+      Planning estimate for specialist external engineering augmentation. An estimate is not a budget,
+      a quote, an approved expenditure, a procurement commitment, or a contract. No unsupported point
+      estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for specialist external engineering augmentation derived from the
+      frozen Package 2 work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: specialist external engineering augmentation planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-303
+    kind: COST_ESTIMATE
+    title: Architecture and assurance planning estimate
+    statement: >-
+      Planning estimate for independent architecture and assurance. An estimate is not a budget, a
+      quote, an approved expenditure, a procurement commitment, or a contract. No unsupported point
+      estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for independent architecture and assurance derived from the frozen
+      Package 2 work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: independent architecture and assurance planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-304
+    kind: COST_ESTIMATE
+    title: Cloud and infrastructure planning estimate
+    statement: >-
+      Planning estimate for cloud, database, and infrastructure. An estimate is not a budget, a quote,
+      an approved expenditure, a procurement commitment, or a contract. No unsupported point estimate
+      is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for cloud, database, and infrastructure derived from the frozen
+      Package 2 work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: cloud, database, and infrastructure planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-305
+    kind: COST_ESTIMATE
+    title: Software and licensing planning estimate
+    statement: >-
+      Planning estimate for software and licensing. An estimate is not a budget, a quote, an approved
+      expenditure, a procurement commitment, or a contract. No unsupported point estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for software and licensing derived from the frozen Package 2 work
+      packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: software and licensing planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-306
+    kind: COST_ESTIMATE
+    title: Security and privacy validation planning estimate
+    statement: >-
+      Planning estimate for security and privacy verification. An estimate is not a budget, a quote,
+      an approved expenditure, a procurement commitment, or a contract. No unsupported point estimate
+      is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for security and privacy verification derived from the frozen
+      Package 2 work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: security and privacy verification planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-307
+    kind: COST_ESTIMATE
+    title: Accessibility and bilingual validation planning estimate
+    statement: >-
+      Planning estimate for accessibility and bilingual verification. An estimate is not a budget, a
+      quote, an approved expenditure, a procurement commitment, or a contract. No unsupported point
+      estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for accessibility and bilingual verification derived from the frozen
+      Package 2 work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: accessibility and bilingual verification planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-308
+    kind: COST_ESTIMATE
+    title: Testing and independent assurance planning estimate
+    statement: >-
+      Planning estimate for testing and independent assurance. An estimate is not a budget, a quote,
+      an approved expenditure, a procurement commitment, or a contract. No unsupported point estimate
+      is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for testing and independent assurance derived from the frozen
+      Package 2 work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: testing and independent assurance planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-309
+    kind: COST_ESTIMATE
+    title: Migration and reconciliation planning estimate
+    statement: >-
+      Planning estimate for migration and reconciliation. An estimate is not a budget, a quote, an
+      approved expenditure, a procurement commitment, or a contract. No unsupported point estimate is
+      used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for migration and reconciliation derived from the frozen Package 2
+      work packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: migration and reconciliation planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-310
+    kind: COST_ESTIMATE
+    title: Training and adoption planning estimate
+    statement: >-
+      Planning estimate for training and adoption. An estimate is not a budget, a quote, an approved
+      expenditure, a procurement commitment, or a contract. No unsupported point estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for training and adoption derived from the frozen Package 2 work
+      packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: training and adoption planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-311
+    kind: COST_ESTIMATE
+    title: Operations and support planning estimate
+    statement: >-
+      Planning estimate for operations and support. An estimate is not a budget, a quote, an approved
+      expenditure, a procurement commitment, or a contract. No unsupported point estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for operations and support derived from the frozen Package 2 work
+      packages and waves.
+    range: CAD low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: operations and support planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-312
+    kind: COST_ESTIMATE
+    title: Contingency planning estimate
+    statement: >-
+      Planning estimate for contingency. An estimate is not a budget, a quote, an approved
+      expenditure, a procurement commitment, or a contract. No unsupported point estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for contingency derived from the frozen Package 2 work packages and
+      waves.
+    range: CAD range as a percentage band (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: contingency planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COST-V10-313
+    kind: COST_ESTIMATE
+    title: Ongoing operating cost planning estimate
+    statement: >-
+      Planning estimate for ongoing operating cost. An estimate is not a budget, a quote, an approved
+      expenditure, a procurement commitment, or a contract. No unsupported point estimate is used.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Funding and sequencing planning cannot be completed.
+    required_action_or_evidence: Validate the estimate basis at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    estimate_basis: >-
+      Bottom-up planning estimate for ongoing operating cost derived from the frozen Package 2 work
+      packages and waves.
+    range: CAD annual low/expected/high (indicative only, uncommitted)
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes solo-delivery baseline capacity and synthetic-data environments; no availability is
+      confirmed.
+    included_scope: ongoing operating cost planning scope only.
+    excluded_scope: Excludes committed budgets, quotes, procurements, and contracts.
+    dependencies:
+      - CAPD-V10-302
+      - ENVREQ-V10-301
+    source_date: '2026-07-27'
+    currency: CAD
+    tax_treatment_status: NOT_DETERMINED
+    contingency_posture: Contingency represented separately as a range; not an approved reserve.
+    operating_or_capital_treatment: NOT_DETERMINED
+    approval_status: NOT_APPROVED
+    estimate_status: PLANNING_ESTIMATE
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: FUND-V10-301
+    kind: FUNDING
+    title: Internal-only funding scenario
+    statement: >-
+      Planning funding scenario relying on internal capacity only. A funding scenario is not an
+      approved budget.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Delivery sequencing cannot be funded.
+    required_action_or_evidence: Confirm a funding scenario at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: FUND-V10-302
+    kind: FUNDING
+    title: Blended internal and specialist-augmentation funding scenario
+    statement: >-
+      Planning funding scenario blending internal capacity with specialist augmentation. A funding
+      scenario is not an approved budget.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Delivery sequencing cannot be funded.
+    required_action_or_evidence: Confirm a funding scenario at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: FUND-V10-303
+    kind: FUNDING
+    title: Assured-delivery funding scenario
+    statement: >-
+      Planning funding scenario including independent assurance and managed services. A funding
+      scenario is not an approved budget.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Delivery sequencing cannot be funded.
+    required_action_or_evidence: Confirm a funding scenario at a future funding gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: PROC-V10-301
+    kind: PROCUREMENT
+    title: Specialist engineering augmentation readiness
+    statement: >-
+      Procurement-readiness context for specialist engineering augmentation. Procurement readiness is
+      not procurement authorization; a provider category is not a selected provider.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Provider sequencing requires a future procurement determination.
+    required_action_or_evidence: Evaluate procurement readiness at a future procurement gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: PROC-V10-302
+    kind: PROCUREMENT
+    title: Payment and identity services readiness
+    statement: >-
+      Procurement-readiness context for payment and identity integration services. Procurement
+      readiness is not procurement authorization; evaluation criteria are not an award decision.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Provider sequencing requires a future procurement determination.
+    required_action_or_evidence: Evaluate procurement readiness at a future procurement gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: PROC-V10-303
+    kind: PROCUREMENT
+    title: Cloud and managed-database services readiness
+    statement: >-
+      Procurement-readiness context for cloud and managed-database services. Procurement readiness is
+      not procurement authorization.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Provider sequencing requires a future procurement determination.
+    required_action_or_evidence: Evaluate procurement readiness at a future procurement gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: PROC-V10-304
+    kind: PROCUREMENT
+    title: Independent assurance services readiness
+    statement: >-
+      Procurement-readiness context for independent security, privacy, accessibility, and assurance
+      services. Procurement readiness is not procurement authorization; a commercial estimate is not a
+      negotiated contract.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Provider sequencing requires a future procurement determination.
+    required_action_or_evidence: Evaluate procurement readiness at a future procurement gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: PROC-V10-305
+    kind: PROCUREMENT
+    title: Migration support services readiness
+    statement: >-
+      Procurement-readiness context for migration and reconciliation support. Procurement readiness is
+      not procurement authorization.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Provider sequencing requires a future procurement determination.
+    required_action_or_evidence: Evaluate procurement readiness at a future procurement gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RISK-V10-301
+    kind: RISK
+    title: Solo-delivery capacity concentration
+    statement: >-
+      Delivery capacity is concentrated in a single person, bounding throughput and creating a
+      single-person dependency.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Schedule and quality risk from single-person dependency.
+    required_action_or_evidence: Confirm augmentation or accept the risk at a future gate.
+    future_blocking_gate: V11-G1
+    likelihood_or_occurrence: HIGH occurrence in current state.
+    affected_wave: Waves 0-8
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RISK-V10-302
+    kind: RISK
+    title: Specialist-capacity unavailability
+    statement: >-
+      Security, privacy, accessibility, bilingual, migration, and independent-assurance specialists
+      may be unavailable when required.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Evidence generation and release assurance may be blocked.
+    required_action_or_evidence: Confirm specialist readiness at a future gate.
+    future_blocking_gate: V11-G1
+    likelihood_or_occurrence: MEDIUM.
+    affected_wave: Waves 0-8
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RISK-V10-303
+    kind: RISK
+    title: Migration reconciliation complexity
+    statement: Legacy affiliation data quality and reconciliation complexity may exceed available capacity.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Cutover and reconciliation may be delayed.
+    required_action_or_evidence: Confirm migration readiness at a future migration gate.
+    future_blocking_gate: V11-G1
+    likelihood_or_occurrence: MEDIUM.
+    affected_wave: Wave 7
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ASM-V10-301
+    kind: ASSUMPTION
+    title: Synthetic-data environments are sufficient for pre-release evidence
+    statement: >-
+      Assumes synthetic and anonymized data are sufficient for pre-release environments; production
+      data remains prohibited.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Planning basis may be invalid.
+    required_action_or_evidence: Validate the assumption at a future gate.
+    future_blocking_gate: V11-G1
+    fallback_status: Fallback documented; not executed.
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ASM-V10-302
+    kind: ASSUMPTION
+    title: Inherited Volumes 0-9 remain frozen and authoritative
+    statement: >-
+      Assumes the inherited frozen volumes remain the authoritative baseline for the master
+      development plan.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Planning basis may be invalid.
+    required_action_or_evidence: Validate the assumption at a future gate.
+    future_blocking_gate: V11-G1
+    fallback_status: Fallback documented; not executed.
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ISSUE-V10-301
+    kind: ISSUE
+    title: Capacity model requires executive confirmation
+    statement: >-
+      The capacity model depends on executive confirmation of augmentation or acceptance of the
+      solo-delivery risk.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Sequencing confidence remains low until capacity is confirmed.
+    required_action_or_evidence: Executive decision on capacity at a future gate.
+    future_blocking_gate: EXEC-MCG
+    affected_wave: Waves 0-8
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COMMIT-V10-301
+    kind: COMMITMENT
+    title: Specialist augmentation is a future material commitment
+    statement: >-
+      Specialist augmentation, if pursued, is a material commitment that remains explicit and
+      unapproved unless evidenced and authorized.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Material commitment remains explicit and unapproved.
+    required_action_or_evidence: Executive decision required at a future gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: COMMIT-V10-302
+    kind: COMMITMENT
+    title: Cloud and managed services are a future material commitment
+    statement: >-
+      Cloud and managed-service adoption is a material commitment that remains explicit and unapproved
+      unless evidenced and authorized.
+    owner: Accountable Program Authority
+    current_status: PLANNING_ONLY
+    impact_if_unresolved: Material commitment remains explicit and unapproved.
+    required_action_or_evidence: Executive decision required at a future gate.
+    future_blocking_gate: EXEC-MCG
+    approval_status: NOT_APPROVED

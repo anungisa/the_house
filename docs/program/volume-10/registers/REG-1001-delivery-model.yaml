@@ -1,7 +1,7 @@
 register_id: REG-1001
 name: Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies
 status: RATIFIED
-version: 1.1.0
+version: 1.2.0
 records:
   # ---------------------------------------------------------------------------
   # Program outcome
@@ -1305,4 +1305,1263 @@ records:
     operational_proof_destination: V10-20
     proof_destination: V10-20
     chapter_ref: V10-13
+    future_gate: V11-G1
+  # ---------------------------------------------------------------------------
+  # Package 3 additions (V10-21 master plan, V10-22 sequencing, V10-24 capacity, V10-29 operations)
+  # ---------------------------------------------------------------------------
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDP-V10-301
+    kind: MASTER_PLAN_OBJECTIVE
+    title: Organization, representative authority, and tenancy baseline
+    statement: >-
+      Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for
+      organization, representative authority, and tenancy baseline. Documentary plan only; authorizes
+      no implementation, provisioning, procurement, staffing, test execution, release, or deployment.
+    objective: >-
+      Consolidate the organization, representative-authority, jurisdiction, and tenancy planning
+      baseline for the club-affiliation vertical.
+    institutional_outcome: >-
+      Governed, tenant-aware institutional identity is the precondition for every affiliation
+      determination.
+    source_requirements:
+      - Volume 1 governance kernel
+      - Volume 2 tenancy and identity
+      - Volume 5 organization model
+    affected_capabilities:
+      - DOMAIN_OWNERSHIP
+      - APPLICATION_ENGINEERING
+      - SECURITY
+    workstreams:
+      - AWS-V10-201
+    work_packages:
+      - IWP-V10-201
+      - IWP-V10-202
+    deliverables:
+      - V10-16
+    dependencies:
+      - EDGE-V10-301
+      - EDGE-V10-302
+    required_capabilities:
+      - CAPD-V10-303
+      - CAPD-V10-304
+    environment_dependencies:
+      - ENVREQ-V10-201
+    test_enablement_dependencies:
+      - TENREQ-V10-201
+    migration_dependencies:
+      - MIGREQ-V10-201
+    operational_dependencies:
+      - OHREQ-V10-201
+    evidence_obligations: >-
+      Tenant-isolation, authority-scope, and audit evidence are required before any implementation
+      authorization.
+    estimate_status: PLANNING_ESTIMATE
+    implementation_authorization_gate: V11-G1
+    release_gate: V11-G2
+    definition_of_ready: >-
+      Ready when the inherited requirement, architecture, contract, and test obligations are traced
+      and the work packages, dependencies, and evidence obligations are documented. Readiness is
+      documentary and confers no implementation authorization.
+    definition_of_done: >-
+      Done when the objective is fully traced to work packages, sequencing, capacity, estimate,
+      environment, migration, and operational-handoff destinations with a bound future authorization
+      gate. Documentary completeness is distinct from implementation completeness.
+    chapter_ref: V10-21
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDP-V10-302
+    kind: MASTER_PLAN_OBJECTIVE
+    title: Affiliation lifecycle from draft to activation, standing, and expiry
+    statement: >-
+      Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for
+      affiliation lifecycle from draft to activation, standing, and expiry. Documentary plan only;
+      authorizes no implementation, provisioning, procurement, staffing, test execution, release, or
+      deployment.
+    objective: >-
+      Consolidate the full club-affiliation lifecycle planning baseline: requirement, evidence,
+      completeness, submission, review, return, resubmission, decision, reconciliation, exactly-once
+      activation, standing, and expiry.
+    institutional_outcome: >-
+      A governed, evidence-bound affiliation lifecycle is the institutional system of record for club
+      standing.
+    source_requirements:
+      - Volume 3 affiliation requirements
+      - Volume 9 affiliation test obligations
+    affected_capabilities:
+      - DOMAIN_OWNERSHIP
+      - APPLICATION_ENGINEERING
+      - QUALITY_ENGINEERING
+    workstreams:
+      - AWS-V10-202
+    work_packages:
+      - IWP-V10-203
+      - IWP-V10-204
+    deliverables:
+      - V10-11
+      - V10-12
+    dependencies:
+      - EDGE-V10-302
+      - EDGE-V10-305
+    required_capabilities:
+      - CAPD-V10-302
+      - CAPD-V10-308
+    environment_dependencies:
+      - ENVREQ-V10-202
+    test_enablement_dependencies:
+      - TENREQ-V10-202
+    migration_dependencies:
+      - MIGREQ-V10-202
+    operational_dependencies:
+      - OHREQ-V10-202
+    evidence_obligations: >-
+      Exactly-once activation is a business invariant and is not a transport claim; activation,
+      standing, and expiry evidence are required.
+    estimate_status: PLANNING_ESTIMATE
+    implementation_authorization_gate: V11-G1
+    release_gate: V11-G2
+    definition_of_ready: >-
+      Ready when the inherited requirement, architecture, contract, and test obligations are traced
+      and the work packages, dependencies, and evidence obligations are documented. Readiness is
+      documentary and confers no implementation authorization.
+    definition_of_done: >-
+      Done when the objective is fully traced to work packages, sequencing, capacity, estimate,
+      environment, migration, and operational-handoff destinations with a bound future authorization
+      gate. Documentary completeness is distinct from implementation completeness.
+    chapter_ref: V10-21
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDP-V10-303
+    kind: MASTER_PLAN_OBJECTIVE
+    title: House domain, persistence, outbox, and integration platform
+    statement: >-
+      Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for
+      house domain, persistence, outbox, and integration platform. Documentary plan only; authorizes
+      no implementation, provisioning, procurement, staffing, test execution, release, or deployment.
+    objective: >-
+      Consolidate the House domain, application, persistence, outbox, projection, integration, and
+      infrastructure planning baseline.
+    institutional_outcome: A governed House platform enforces institutional invariants and durable, idempotent integration.
+    source_requirements:
+      - Volume 4 architecture
+      - Volume 5 data model
+      - Volume 8 contracts
+    affected_capabilities:
+      - ARCHITECTURE
+      - APPLICATION_ENGINEERING
+      - DATA_ENGINEERING
+      - INFRASTRUCTURE_AND_CLOUD
+    workstreams:
+      - AWS-V10-203
+    work_packages:
+      - IWP-V10-205
+    deliverables:
+      - V10-13
+    dependencies:
+      - EDGE-V10-308
+    required_capabilities:
+      - CAPD-V10-303
+      - CAPD-V10-305
+    environment_dependencies:
+      - ENVREQ-V10-203
+    test_enablement_dependencies:
+      - TENREQ-V10-203
+    migration_dependencies:
+      - MIGREQ-V10-203
+    operational_dependencies:
+      - OHREQ-V10-201
+    evidence_obligations: >-
+      Database-integrity and PostgreSQL-behaviour evidence destinations are required; a schema created
+      is not an invariant enforced.
+    estimate_status: PLANNING_ESTIMATE
+    implementation_authorization_gate: V11-G1
+    release_gate: V11-G2
+    definition_of_ready: >-
+      Ready when the inherited requirement, architecture, contract, and test obligations are traced
+      and the work packages, dependencies, and evidence obligations are documented. Readiness is
+      documentary and confers no implementation authorization.
+    definition_of_done: >-
+      Done when the objective is fully traced to work packages, sequencing, capacity, estimate,
+      environment, migration, and operational-handoff destinations with a bound future authorization
+      gate. Documentary completeness is distinct from implementation completeness.
+    chapter_ref: V10-21
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDP-V10-304
+    kind: MASTER_PLAN_OBJECTIVE
+    title: Button and staff-workbench experience delivery
+    statement: >-
+      Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for
+      button and staff-workbench experience delivery. Documentary plan only; authorizes no
+      implementation, provisioning, procurement, staffing, test execution, release, or deployment.
+    objective: Consolidate the Button and staff-workbench experience-delivery planning baseline.
+    institutional_outcome: Experience layers request governed House actions without owning institutional determinations.
+    source_requirements:
+      - Volume 7 experience model
+    affected_capabilities:
+      - APPLICATION_ENGINEERING
+      - ACCESSIBILITY
+      - BILINGUAL_CONTENT
+    workstreams:
+      - AWS-V10-204
+    work_packages:
+      - IWP-V10-206
+    deliverables:
+      - V10-14
+    dependencies:
+      - EDGE-V10-304
+    required_capabilities:
+      - CAPD-V10-304
+      - CAPD-V10-311
+    environment_dependencies:
+      - ENVREQ-V10-202
+    test_enablement_dependencies:
+      - TENREQ-V10-202
+    migration_dependencies: []
+    operational_dependencies:
+      - OHREQ-V10-202
+    evidence_obligations: >-
+      Accessibility and bilingual evidence are required; a Button interaction is not an independent
+      institutional mutation.
+    estimate_status: PLANNING_ESTIMATE
+    implementation_authorization_gate: V11-G1
+    release_gate: V11-G2
+    definition_of_ready: >-
+      Ready when the inherited requirement, architecture, contract, and test obligations are traced
+      and the work packages, dependencies, and evidence obligations are documented. Readiness is
+      documentary and confers no implementation authorization.
+    definition_of_done: >-
+      Done when the objective is fully traced to work packages, sequencing, capacity, estimate,
+      environment, migration, and operational-handoff destinations with a bound future authorization
+      gate. Documentary completeness is distinct from implementation completeness.
+    chapter_ref: V10-21
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDP-V10-305
+    kind: MASTER_PLAN_OBJECTIVE
+    title: Data migration, coexistence, reconciliation, and cutover
+    statement: >-
+      Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for
+      data migration, coexistence, reconciliation, and cutover. Documentary plan only; authorizes no
+      implementation, provisioning, procurement, staffing, test execution, release, or deployment.
+    objective: >-
+      Consolidate the migration, coexistence, reconciliation, rollback, and cutover planning baseline
+      for legacy affiliation data.
+    institutional_outcome: >-
+      Governed migration preserves provenance and reconciliation while protecting the institutional
+      record.
+    source_requirements:
+      - Volume 5 data model
+      - Volume 6 migration obligations
+    affected_capabilities:
+      - MIGRATION
+      - DATA_ENGINEERING
+      - PRIVACY_AND_RECORDS
+    workstreams:
+      - AWS-V10-205
+    work_packages:
+      - IWP-V10-205
+    deliverables:
+      - V10-15
+    dependencies:
+      - EDGE-V10-309
+    required_capabilities:
+      - CAPD-V10-310
+      - CAPD-V10-305
+    environment_dependencies:
+      - ENVREQ-V10-203
+    test_enablement_dependencies:
+      - TENREQ-V10-203
+    migration_dependencies:
+      - MIGREQ-V10-201
+      - MIGREQ-V10-202
+      - MIGREQ-V10-203
+    operational_dependencies:
+      - OHREQ-V10-201
+    evidence_obligations: >-
+      A mapping completed is not an identity resolved and a migration executed is not a business
+      acceptance and is not a source retirement.
+    estimate_status: PLANNING_ESTIMATE
+    implementation_authorization_gate: V11-G1
+    release_gate: V11-G2
+    definition_of_ready: >-
+      Ready when the inherited requirement, architecture, contract, and test obligations are traced
+      and the work packages, dependencies, and evidence obligations are documented. Readiness is
+      documentary and confers no implementation authorization.
+    definition_of_done: >-
+      Done when the objective is fully traced to work packages, sequencing, capacity, estimate,
+      environment, migration, and operational-handoff destinations with a bound future authorization
+      gate. Documentary completeness is distinct from implementation completeness.
+    chapter_ref: V10-21
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDP-V10-306
+    kind: MASTER_PLAN_OBJECTIVE
+    title: Environment, test-enablement, assurance, and release-candidate formation
+    statement: >-
+      Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for
+      environment, test-enablement, assurance, and release-candidate formation. Documentary plan only;
+      authorizes no implementation, provisioning, procurement, staffing, test execution, release, or
+      deployment.
+    objective: >-
+      Consolidate the environment, test-enablement, CI/CD, assurance, and release-candidate-formation
+      planning baseline.
+    institutional_outcome: Qualified environments and evidence-bound assurance precede any release-candidate acceptance.
+    source_requirements:
+      - Volume 9 quality and master test strategy
+    affected_capabilities:
+      - QUALITY_ENGINEERING
+      - INFRASTRUCTURE_AND_CLOUD
+      - INDEPENDENT_ASSURANCE
+    workstreams:
+      - AWS-V10-206
+    work_packages:
+      - IWP-V10-206
+    deliverables:
+      - V10-18
+      - V10-20
+    dependencies:
+      - EDGE-V10-308
+      - EDGE-V10-311
+    required_capabilities:
+      - CAPD-V10-308
+      - CAPD-V10-309
+    environment_dependencies:
+      - ENVREQ-V10-201
+      - ENVREQ-V10-202
+      - ENVREQ-V10-203
+    test_enablement_dependencies:
+      - TENREQ-V10-201
+      - TENREQ-V10-202
+      - TENREQ-V10-203
+    migration_dependencies: []
+    operational_dependencies:
+      - OHREQ-V10-202
+    evidence_obligations: >-
+      An environment defined is not provisioned and is not qualified; a test enablement is not an
+      executable test and is not a test execution.
+    estimate_status: PLANNING_ESTIMATE
+    implementation_authorization_gate: V11-G1
+    release_gate: V11-G2
+    definition_of_ready: >-
+      Ready when the inherited requirement, architecture, contract, and test obligations are traced
+      and the work packages, dependencies, and evidence obligations are documented. Readiness is
+      documentary and confers no implementation authorization.
+    definition_of_done: >-
+      Done when the objective is fully traced to work packages, sequencing, capacity, estimate,
+      environment, migration, and operational-handoff destinations with a bound future authorization
+      gate. Documentary completeness is distinct from implementation completeness.
+    chapter_ref: V10-21
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-301
+    kind: DEPENDENCY_EDGE
+    title: Delivery and environment enablement precedes organization authority
+    statement: >-
+      Integrated sequencing edge classifying the HARD_PREREQUISITE relationship for delivery and
+      environment enablement precedes organization authority. The critical path is evidence-derived
+      and is not visually convenient. Target windows remain uncommitted.
+    relationship_kind: HARD_PREREQUISITE
+    predecessors:
+      - WAVE-V10-300
+    successors:
+      - WAVE-V10-301
+    blocking_dependencies:
+      - ENVREQ-V10-201
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies:
+      - Environment qualification evidence
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: ON_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-302
+    kind: DEPENDENCY_EDGE
+    title: Organization authority precedes affiliation draft and requirements
+    statement: >-
+      Integrated sequencing edge classifying the HARD_PREREQUISITE relationship for organization
+      authority precedes affiliation draft and requirements. The critical path is evidence-derived and
+      is not visually convenient. Target windows remain uncommitted.
+    relationship_kind: HARD_PREREQUISITE
+    predecessors:
+      - WAVE-V10-301
+    successors:
+      - WAVE-V10-302
+    blocking_dependencies:
+      - IWP-V10-201
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies:
+      - Authority-scope evidence
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: ON_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-303
+    kind: DEPENDENCY_EDGE
+    title: Evidence and completeness support submission
+    statement: >-
+      Integrated sequencing edge classifying the SOFT_PREREQUISITE relationship for evidence and
+      completeness support submission. The critical path is evidence-derived and is not visually
+      convenient. Target windows remain uncommitted.
+    relationship_kind: SOFT_PREREQUISITE
+    predecessors:
+      - WAVE-V10-303
+    successors:
+      - WAVE-V10-304
+    blocking_dependencies: []
+    parallel_opportunities:
+      - Bilingual content preparation
+    decision_dependencies: []
+    evidence_dependencies: []
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: NEAR_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-304
+    kind: DEPENDENCY_EDGE
+    title: Button experience and House surfaces develop in parallel
+    statement: >-
+      Integrated sequencing edge classifying the PARALLELIZABLE relationship for button experience and
+      house surfaces develop in parallel. The critical path is evidence-derived and is not visually
+      convenient. Target windows remain uncommitted.
+    relationship_kind: PARALLELIZABLE
+    predecessors:
+      - MDP-V10-303
+    successors:
+      - MDP-V10-304
+    blocking_dependencies: []
+    parallel_opportunities:
+      - House and Button slices
+    decision_dependencies: []
+    evidence_dependencies: []
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: OFF_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-305
+    kind: DEPENDENCY_EDGE
+    title: Exactly-once activation depends on decision and reconciliation evidence
+    statement: >-
+      Integrated sequencing edge classifying the EVIDENCE_DEPENDENCY relationship for exactly-once
+      activation depends on decision and reconciliation evidence. The critical path is
+      evidence-derived and is not visually convenient. Target windows remain uncommitted.
+    relationship_kind: EVIDENCE_DEPENDENCY
+    predecessors:
+      - WAVE-V10-305
+    successors:
+      - WAVE-V10-306
+    blocking_dependencies: []
+    parallel_opportunities: []
+    decision_dependencies:
+      - ADR-V10-301
+    evidence_dependencies:
+      - Decision and reconciliation evidence
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: ON_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-306
+    kind: DEPENDENCY_EDGE
+    title: Fee and finance rules depend on institutional policy determination
+    statement: >-
+      Integrated sequencing edge classifying the POLICY_DEPENDENCY relationship for fee and finance
+      rules depend on institutional policy determination. The critical path is evidence-derived and is
+      not visually convenient. Target windows remain uncommitted.
+    relationship_kind: POLICY_DEPENDENCY
+    predecessors:
+      - ADR-V10-302
+    successors:
+      - WAVE-V10-305
+    blocking_dependencies: []
+    parallel_opportunities: []
+    decision_dependencies:
+      - ADR-V10-302
+    evidence_dependencies: []
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: NEAR_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-307
+    kind: DEPENDENCY_EDGE
+    title: Payment and identity integration depend on provider readiness
+    statement: >-
+      Integrated sequencing edge classifying the PROVIDER_DEPENDENCY relationship for payment and
+      identity integration depend on provider readiness. The critical path is evidence-derived and is
+      not visually convenient. Target windows remain uncommitted.
+    relationship_kind: PROVIDER_DEPENDENCY
+    predecessors:
+      - PROC-V10-302
+    successors:
+      - MDP-V10-303
+    blocking_dependencies: []
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies: []
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: OFF_CRITICAL_PATH
+    fallback_status: Manual reconciliation fallback documented; not executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-308
+    kind: DEPENDENCY_EDGE
+    title: PostgreSQL behavioural verification depends on qualified environment
+    statement: >-
+      Integrated sequencing edge classifying the ENVIRONMENT_DEPENDENCY relationship for postgresql
+      behavioural verification depends on qualified environment. The critical path is evidence-derived
+      and is not visually convenient. Target windows remain uncommitted.
+    relationship_kind: ENVIRONMENT_DEPENDENCY
+    predecessors:
+      - ENVREQ-V10-203
+    successors:
+      - MDP-V10-303
+    blocking_dependencies:
+      - ENVREQ-V10-203
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies:
+      - Database behavioural evidence
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: ON_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-309
+    kind: DEPENDENCY_EDGE
+    title: Cutover depends on migration reconciliation and rollback readiness
+    statement: >-
+      Integrated sequencing edge classifying the MIGRATION_DEPENDENCY relationship for cutover depends
+      on migration reconciliation and rollback readiness. The critical path is evidence-derived and is
+      not visually convenient. Target windows remain uncommitted.
+    relationship_kind: MIGRATION_DEPENDENCY
+    predecessors:
+      - MIGREQ-V10-202
+    successors:
+      - WAVE-V10-307
+    blocking_dependencies: []
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies:
+      - Reconciliation evidence
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: NEAR_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-310
+    kind: DEPENDENCY_EDGE
+    title: Operational handoff depends on support-readiness definition
+    statement: >-
+      Integrated sequencing edge classifying the OPERATIONAL_DEPENDENCY relationship for operational
+      handoff depends on support-readiness definition. The critical path is evidence-derived and is
+      not visually convenient. Target windows remain uncommitted.
+    relationship_kind: OPERATIONAL_DEPENDENCY
+    predecessors:
+      - OPCAP-V10-301
+    successors:
+      - WAVE-V10-307
+    blocking_dependencies: []
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies: []
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: OFF_CRITICAL_PATH
+    fallback_status: Support readiness deferred to Volume 11.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDGE-V10-311
+    kind: DEPENDENCY_EDGE
+    title: Release-candidate formation depends on assurance evidence
+    statement: >-
+      Integrated sequencing edge classifying the RELEASE_DEPENDENCY relationship for release-candidate
+      formation depends on assurance evidence. The critical path is evidence-derived and is not
+      visually convenient. Target windows remain uncommitted.
+    relationship_kind: RELEASE_DEPENDENCY
+    predecessors:
+      - WAVE-V10-307
+    successors:
+      - WAVE-V10-308
+    blocking_dependencies: []
+    parallel_opportunities: []
+    decision_dependencies: []
+    evidence_dependencies:
+      - Independent assurance evidence
+    earliest_planning_window: Indicative planning window only; uncommitted.
+    latest_planning_window: Indicative latest tolerable window only; uncommitted.
+    schedule_confidence_status: UNCOMMITTED
+    critical_path_status: ON_CRITICAL_PATH
+    fallback_status: Fallback documented; no fallback is executed.
+    chapter_ref: V10-22
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-301
+    kind: CAPABILITY_DEMAND
+    title: Executive sponsorship capability demand
+    statement: >-
+      Capability-demand model for executive sponsorship. A named role is not an assigned person and is
+      not a confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: EXECUTIVE_SPONSORSHIP
+    demand_by_wave: 'Waves 0-8: continuous executive sponsorship.'
+    required_competence: Executive accountability and governance authority.
+    decision_rights: Executive acceptance authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One accountable executive.
+    preferred_capacity: One accountable executive with governance support.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: None assumed.
+    capacity_risk: Sponsorship discontinuity.
+    mitigation_option: Documented delegation of executive acceptance.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-302
+    kind: CAPABILITY_DEMAND
+    title: Product and service ownership capability demand
+    statement: >-
+      Capability-demand model for product service ownership. A named role is not an assigned person
+      and is not a confirmed capacity; a capacity model is not a hiring authorization and is not a
+      consultant engagement.
+    capability_domain: PRODUCT_SERVICE_OWNERSHIP
+    demand_by_wave: 'Waves 0-8: continuous product ownership.'
+    required_competence: Product ownership and institutional-service definition.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One owner (currently the solo delivery concentration).
+    preferred_capacity: One owner plus a deputy.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: >-
+      YES. Present solo-delivery concentration is a material planning risk and is retained as a
+      visible risk rather than normalized away.
+    external_service_dependency: None assumed.
+    capacity_risk: Single-person dependency across product ownership.
+    mitigation_option: Cross-training and documented decision records.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-303
+    kind: CAPABILITY_DEMAND
+    title: Architecture capability demand
+    statement: >-
+      Capability-demand model for architecture. A named role is not an assigned person and is not a
+      confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: ARCHITECTURE
+    demand_by_wave: Waves 0-3 heavy; Waves 4-8 advisory.
+    required_competence: Governed modular-monolith and integration architecture.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One architect.
+    preferred_capacity: One architect plus independent review.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: >-
+      YES. Present solo-delivery concentration is a material planning risk and is retained as a
+      visible risk rather than normalized away.
+    external_service_dependency: None assumed.
+    capacity_risk: Architecture concentration in a single person.
+    mitigation_option: Independent architecture review before implementation authorization.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-304
+    kind: CAPABILITY_DEMAND
+    title: Application engineering capability demand
+    statement: >-
+      Capability-demand model for application engineering. A named role is not an assigned person and
+      is not a confirmed capacity; a capacity model is not a hiring authorization and is not a
+      consultant engagement.
+    capability_domain: APPLICATION_ENGINEERING
+    demand_by_wave: Waves 1-6 heavy.
+    required_competence: TypeScript, PostgreSQL, and governed-kernel engineering.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One engineer (current solo concentration).
+    preferred_capacity: Two to three engineers.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: >-
+      YES. Present solo-delivery concentration is a material planning risk and is retained as a
+      visible risk rather than normalized away.
+    external_service_dependency: None assumed.
+    capacity_risk: Delivery throughput bounded by solo capacity.
+    mitigation_option: Specialist augmentation readiness (not engagement).
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-305
+    kind: CAPABILITY_DEMAND
+    title: Data engineering capability demand
+    statement: >-
+      Capability-demand model for data engineering. A named role is not an assigned person and is not
+      a confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: DATA_ENGINEERING
+    demand_by_wave: Waves 3-7.
+    required_competence: Data modelling, migration, and reconciliation.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One data engineer.
+    preferred_capacity: One data engineer plus migration specialist.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: None assumed.
+    capacity_risk: Migration complexity exceeds available capacity.
+    mitigation_option: Migration-specialist procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-306
+    kind: CAPABILITY_DEMAND
+    title: Security capability demand
+    statement: >-
+      Capability-demand model for security. A named role is not an assigned person and is not a
+      confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: SECURITY
+    demand_by_wave: Waves 0-8 advisory; verification Waves 6-8.
+    required_competence: Application and cloud security assurance.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: Security verification requires independence from implementation.
+    minimum_viable_capacity: One security reviewer.
+    preferred_capacity: One reviewer plus independent assessment.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: Possible independent security assessor.
+    capacity_risk: Security verification capacity unavailable.
+    mitigation_option: Independent security assurance procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-307
+    kind: CAPABILITY_DEMAND
+    title: Privacy and records capability demand
+    statement: >-
+      Capability-demand model for privacy and records. A named role is not an assigned person and is
+      not a confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: PRIVACY_AND_RECORDS
+    demand_by_wave: Waves 2-7.
+    required_competence: Privacy, records retention, and disclosure controls.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: Privacy assessment independence preferred.
+    minimum_viable_capacity: One privacy reviewer.
+    preferred_capacity: One reviewer plus records specialist.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: None assumed.
+    capacity_risk: Privacy review capacity unavailable.
+    mitigation_option: Privacy assurance procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-308
+    kind: CAPABILITY_DEMAND
+    title: Quality engineering capability demand
+    statement: >-
+      Capability-demand model for quality engineering. A named role is not an assigned person and is
+      not a confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: QUALITY_ENGINEERING
+    demand_by_wave: Waves 1-8.
+    required_competence: Test enablement, evidence capture, and assurance.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One quality engineer.
+    preferred_capacity: One engineer plus independent assurance.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: None assumed.
+    capacity_risk: Test-enablement capacity bounds evidence generation.
+    mitigation_option: Independent assurance procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-309
+    kind: CAPABILITY_DEMAND
+    title: Infrastructure and cloud capability demand
+    statement: >-
+      Capability-demand model for infrastructure and cloud. A named role is not an assigned person and
+      is not a confirmed capacity; a capacity model is not a hiring authorization and is not a
+      consultant engagement.
+    capability_domain: INFRASTRUCTURE_AND_CLOUD
+    demand_by_wave: Waves 0-8.
+    required_competence: Cloud, PostgreSQL, and CI/CD infrastructure.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One infrastructure engineer.
+    preferred_capacity: One engineer plus managed-service support.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: Cloud and managed database services.
+    capacity_risk: Environment provisioning capacity unavailable.
+    mitigation_option: Managed-service procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-310
+    kind: CAPABILITY_DEMAND
+    title: Migration capability demand
+    statement: >-
+      Capability-demand model for migration. A named role is not an assigned person and is not a
+      confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: MIGRATION
+    demand_by_wave: Waves 5-7.
+    required_competence: Legacy extraction, mapping, reconciliation, and rollback.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One migration engineer.
+    preferred_capacity: One engineer plus reconciliation analyst.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: None assumed.
+    capacity_risk: Migration reconciliation complexity.
+    mitigation_option: Migration-support procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-311
+    kind: CAPABILITY_DEMAND
+    title: Accessibility and bilingual capability demand
+    statement: >-
+      Capability-demand model for accessibility. A named role is not an assigned person and is not a
+      confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: ACCESSIBILITY
+    demand_by_wave: Waves 2-8.
+    required_competence: WCAG accessibility and bilingual (English/French) validation.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: No independence requirement beyond conflict-of-interest management.
+    minimum_viable_capacity: One accessibility and bilingual reviewer.
+    preferred_capacity: One reviewer plus bilingual content specialist.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: None assumed.
+    capacity_risk: Accessibility and bilingual validation capacity unavailable.
+    mitigation_option: Accessibility and bilingual validation procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CAPD-V10-312
+    kind: CAPABILITY_DEMAND
+    title: Independent assurance capability demand
+    statement: >-
+      Capability-demand model for independent assurance. A named role is not an assigned person and is
+      not a confirmed capacity; a capacity model is not a hiring authorization and is not a consultant
+      engagement.
+    capability_domain: INDEPENDENT_ASSURANCE
+    demand_by_wave: Waves 6-8.
+    required_competence: Independent verification of implementation and release evidence.
+    decision_rights: Advisory to the Accountable Program Authority; no independent implementation authority.
+    independence_requirement: Independence from the delivery team is required.
+    minimum_viable_capacity: One independent assurer.
+    preferred_capacity: One independent assurance provider.
+    availability_status: ASSUMED; no availability is confirmed.
+    single_person_dependency: 'NO'
+    external_service_dependency: Independent assurance provider.
+    capacity_risk: Independent assurance unavailable, undermining release evidence.
+    mitigation_option: Independent assurance procurement readiness.
+    chapter_ref: V10-24
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-301
+    kind: OPERATIONAL_CAPABILITY
+    title: Service ownership and support-tier operations
+    statement: >-
+      Operational-capability planning destination for service ownership and support-tier operations.
+      Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Service owner
+    required_procedures: Service ownership, support tiers, and escalation procedures.
+    required_training: Support-tier and escalation training.
+    required_tooling: Support case and escalation tooling.
+    required_evidence: Support-readiness evidence.
+    service_dependency: House platform availability.
+    provider_dependency: None assumed.
+    continuity_dependency: Business-continuity plan.
+    support_readiness_criterion: Documented support tiers and escalation paths.
+    adoption_readiness_criterion: Support model communicated to clubs and MAs.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 operations and support definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-302
+    kind: OPERATIONAL_CAPABILITY
+    title: Monitoring, alerting, and incident response
+    statement: >-
+      Operational-capability planning destination for monitoring, alerting, and incident response.
+      Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Operations owner
+    required_procedures: Monitoring, alerting, and incident-response procedures.
+    required_training: Incident-response training.
+    required_tooling: Observability and alerting tooling.
+    required_evidence: Incident-response readiness evidence.
+    service_dependency: Observability platform.
+    provider_dependency: None assumed.
+    continuity_dependency: Incident continuity plan.
+    support_readiness_criterion: Documented alerting thresholds and runbooks.
+    adoption_readiness_criterion: On-call model defined.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 operational-assurance definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-303
+    kind: OPERATIONAL_CAPABILITY
+    title: Reconciliation and data-quality operations
+    statement: >-
+      Operational-capability planning destination for reconciliation and data-quality operations.
+      Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Data-quality operations owner
+    required_procedures: Reconciliation and data-quality operating procedures.
+    required_training: Reconciliation-operations training.
+    required_tooling: Reconciliation and data-quality tooling.
+    required_evidence: Reconciliation-operations readiness evidence.
+    service_dependency: Migration and reconciliation outputs.
+    provider_dependency: None assumed.
+    continuity_dependency: Data-quality continuity plan.
+    support_readiness_criterion: Documented reconciliation cadence.
+    adoption_readiness_criterion: Data-quality expectations communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 reconciliation operations definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-304
+    kind: OPERATIONAL_CAPABILITY
+    title: Privacy, records, and disclosure operations
+    statement: >-
+      Operational-capability planning destination for privacy, records, and disclosure operations.
+      Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Privacy and records operations owner
+    required_procedures: Privacy, records-retention, and disclosure operating procedures.
+    required_training: Privacy and records-operations training.
+    required_tooling: Records and disclosure tooling.
+    required_evidence: Privacy-operations readiness evidence.
+    service_dependency: House records surfaces.
+    provider_dependency: None assumed.
+    continuity_dependency: Records-retention continuity plan.
+    support_readiness_criterion: Documented retention and disclosure procedures.
+    adoption_readiness_criterion: Privacy expectations communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 privacy and records operations definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-305
+    kind: OPERATIONAL_CAPABILITY
+    title: Bilingual content and accessibility support operations
+    statement: >-
+      Operational-capability planning destination for bilingual content and accessibility support
+      operations. Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Bilingual and accessibility operations owner
+    required_procedures: Bilingual content and accessibility support procedures.
+    required_training: Bilingual and accessibility support training.
+    required_tooling: Content and accessibility tooling.
+    required_evidence: Bilingual and accessibility support readiness evidence.
+    service_dependency: Content management surfaces.
+    provider_dependency: None assumed.
+    continuity_dependency: Content continuity plan.
+    support_readiness_criterion: Documented bilingual and accessibility support model.
+    adoption_readiness_criterion: Bilingual support communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 accessibility and bilingual operations definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-306
+    kind: OPERATIONAL_CAPABILITY
+    title: Provider operations and exchange monitoring
+    statement: >-
+      Operational-capability planning destination for provider operations and exchange monitoring.
+      Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Provider operations owner
+    required_procedures: Provider-operations and exchange-monitoring procedures.
+    required_training: Provider-operations training.
+    required_tooling: Provider exchange and monitoring tooling.
+    required_evidence: Provider-operations readiness evidence.
+    service_dependency: Provider exchange surfaces.
+    provider_dependency: Future provider engagements (not authorized).
+    continuity_dependency: Provider-outage continuity plan.
+    support_readiness_criterion: Documented provider monitoring.
+    adoption_readiness_criterion: Provider operations communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 provider operations definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-307
+    kind: OPERATIONAL_CAPABILITY
+    title: Club and member-association onboarding and adoption
+    statement: >-
+      Operational-capability planning destination for club and member-association onboarding and
+      adoption. Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Adoption owner
+    required_procedures: Club and MA onboarding and adoption procedures.
+    required_training: Onboarding and adoption training.
+    required_tooling: Onboarding and adoption tooling.
+    required_evidence: Adoption-readiness evidence.
+    service_dependency: Affiliation surfaces.
+    provider_dependency: None assumed.
+    continuity_dependency: Adoption continuity plan.
+    support_readiness_criterion: Documented onboarding model.
+    adoption_readiness_criterion: Onboarding communicated to clubs and MAs.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 adoption and onboarding definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-308
+    kind: OPERATIONAL_CAPABILITY
+    title: Training and communications operations
+    statement: >-
+      Operational-capability planning destination for training and communications operations.
+      Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Training and communications owner
+    required_procedures: Training and communications procedures.
+    required_training: Train-the-trainer materials.
+    required_tooling: Training and communications tooling.
+    required_evidence: Training-readiness evidence.
+    service_dependency: Documentation surfaces.
+    provider_dependency: None assumed.
+    continuity_dependency: Communications continuity plan.
+    support_readiness_criterion: Documented training model.
+    adoption_readiness_criterion: Training communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 training and communications definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-309
+    kind: OPERATIONAL_CAPABILITY
+    title: Stabilization and continuous improvement operations
+    statement: >-
+      Operational-capability planning destination for stabilization and continuous improvement
+      operations. Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Stabilization owner
+    required_procedures: Stabilization and continuous-improvement procedures.
+    required_training: Stabilization training.
+    required_tooling: Improvement backlog tooling.
+    required_evidence: Stabilization-readiness evidence.
+    service_dependency: Operational telemetry.
+    provider_dependency: None assumed.
+    continuity_dependency: Stabilization continuity plan.
+    support_readiness_criterion: Documented stabilization cadence.
+    adoption_readiness_criterion: Improvement model communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 stabilization definition.
+    chapter_ref: V10-29
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OPCAP-V10-310
+    kind: OPERATIONAL_CAPABILITY
+    title: Case escalation and reconciliation-support operations
+    statement: >-
+      Operational-capability planning destination for case escalation and reconciliation-support
+      operations. Operational planning is not operational readiness; the destination is Volume 11.
+    planned_owner_role: Case escalation owner
+    required_procedures: Case-escalation and reconciliation-support procedures.
+    required_training: Case-escalation training.
+    required_tooling: Case management tooling.
+    required_evidence: Case-escalation readiness evidence.
+    service_dependency: Support platform.
+    provider_dependency: None assumed.
+    continuity_dependency: Escalation continuity plan.
+    support_readiness_criterion: Documented escalation matrix.
+    adoption_readiness_criterion: Escalation model communicated.
+    operational_acceptance_authority: Executive Acceptance Authority (future Volume 11 gate).
+    volume_11_destination: Volume 11 case escalation definition.
+    chapter_ref: V10-29
     future_gate: V11-G1

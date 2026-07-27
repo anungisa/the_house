@@ -13,6 +13,8 @@ import { run as runAffiliation } from './foundation-affiliation-volume-10.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-10.mjs';
 import { run as runGate } from './gate-g1-volume-10.mjs';
 import { run as runGate2 } from './gate-g2-volume-10.mjs';
+import { run as runGate3 } from './gate-g3-volume-10.mjs';
+import { run as runFinalClosure } from './final-closure-volume-10.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -22,7 +24,9 @@ export function collectFindings(ctx) {
     'Affiliation implementation-plan foundation coverage': runAffiliation(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V10-G1 readiness': runGate(ctx),
-    'Gate V10-G2 readiness': runGate2(ctx)
+    'Gate V10-G2 readiness': runGate2(ctx),
+    'Gate V10-G3 readiness': runGate3(ctx),
+    'Final-closure coverage': runFinalClosure(ctx)
   };
 }
 
