@@ -211,3 +211,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-D-package-2-provenance-amendment.md
     gate: V8-G2
+  - id: V8-D-1
+    title: Package 2 Governance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-D-1-package-2-governance-amendment.md
+    gate: V8-G2
