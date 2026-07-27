@@ -723,10 +723,10 @@ records:
       closure_artifact: V8-E
       gate: GATE-V8-G3
       freeze_artifact: PACKAGE-8-3
-      closure_authored_commit: PENDING_V8-E_CLOSURE_COMMIT
-      closure_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
-      gate_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      closure_authored_commit: 5d4ad7d
+      closure_effective_commit: 5d4ad7d
+      freeze_commit: 5d4ad7d
+      gate_effective_commit: 5d4ad7d
       chronology_disposition: >-
         The substantive authoring commit precedes the closure commit; the closure,
         Gate V8-G3 disposition, and freeze are recorded together in the closure
@@ -734,7 +734,7 @@ records:
         commit.
     effective_date_clarification:
       gate: GATE-V8-G3
-      documentary_definition_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      documentary_definition_effective_commit: 5d4ad7d
       implementation_effective_date: >-
         Not applicable. Package 3 authorizes no implementation; documentary
         definition effectiveness is distinct from any future implementation date.
@@ -754,8 +754,8 @@ records:
     authorizes_implementation: false
     gate_disposition: AFFILIATION_EVENT_AND_DELIVERY_CONTRACT_DEFINITION_READY
     requires_freeze_artifact: PACKAGE-8-3
-    effective_commit: PENDING_V8-E_CLOSURE_COMMIT
-    gate_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+    effective_commit: 5d4ad7d
+    gate_effective_commit: 5d4ad7d
     conditions:
       - Package 3 inherits the frozen Package 1 and Package 2 corpora and the corrected Package 2 provenance
       - Affiliation event-contract doctrine, taxonomy, ownership, and authority defined
@@ -824,10 +824,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-8-3
       substantive_authoring_commit: f636fa4
-      closure_authored_commit: PENDING_V8-E_CLOSURE_COMMIT
-      closure_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
-      gate_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
+      closure_authored_commit: 5d4ad7d
+      closure_effective_commit: 5d4ad7d
+      gate_effective_commit: 5d4ad7d
+      freeze_commit: 5d4ad7d
       provenance_binding_commit: PENDING_V8-F_AMENDMENT
       required_sequence: >-
         Substantive authoring precedes closure; closure and freeze precede the
@@ -847,9 +847,9 @@ records:
       base_release_commit: 624081e
       branch_base_commit: 8d476a1
       authoring_commit: f636fa4
-      closure_freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
-      freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
-      effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      closure_freeze_commit: 5d4ad7d
+      freeze_commit: 5d4ad7d
+      effective_commit: 5d4ad7d
       note: >-
         Package 3 was authored in a substantive authoring commit and frozen in a
         separate closure commit after line-level review; the commit-hash bindings

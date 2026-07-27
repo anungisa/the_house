@@ -2,14 +2,9 @@
   "gate": "V8-G3",
   "disposition_target": "AFFILIATION_EVENT_AND_DELIVERY_CONTRACT_DEFINITION_READY",
   "total_conditions": 28,
-  "satisfied": 27,
-  "unmet": [
-    {
-      "n": 28,
-      "title": "Package 3 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 28,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -149,7 +144,7 @@
     {
       "n": 28,
       "title": "Package 3 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
