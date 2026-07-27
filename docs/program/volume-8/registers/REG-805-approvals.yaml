@@ -102,17 +102,17 @@ records:
       closure_artifact: V8-A
       gate: GATE-V8-G1
       freeze_artifact: PACKAGE-8-1
-      closure_authored_commit: PENDING_PROVENANCE_BINDING
-      closure_effective_commit: PENDING_PROVENANCE_BINDING
-      freeze_commit: PENDING_PROVENANCE_BINDING
-      gate_effective_commit: PENDING_PROVENANCE_BINDING
+      closure_authored_commit: 506fe51
+      closure_effective_commit: 506fe51
+      freeze_commit: 506fe51
+      gate_effective_commit: 506fe51
       chronology_disposition: >-
         The substantive authoring commit precedes the closure commit; the closure,
         gate disposition, and freeze are recorded together in the closure commit
         and bound to it in the immediately following provenance-binding commit.
     effective_date_clarification:
       gate: GATE-V8-G1
-      documentary_definition_effective_commit: PENDING_PROVENANCE_BINDING
+      documentary_definition_effective_commit: 506fe51
       implementation_effective_date: >-
         Not applicable. Package 1 authorizes no implementation; documentary
         definition effectiveness is distinct from any future implementation date.
@@ -131,8 +131,8 @@ records:
     authorizes_implementation: false
     gate_disposition: API_EVENT_INTEGRATION_CONTRACT_GOVERNANCE_FOUNDATION_READY
     requires_freeze_artifact: PACKAGE-8-1
-    effective_commit: PENDING_PROVENANCE_BINDING
-    gate_effective_commit: PENDING_PROVENANCE_BINDING
+    effective_commit: 506fe51
+    gate_effective_commit: 506fe51
     conditions:
       - Released Volume 7 provenance (central-registration-volume-7-v1.0.0) is inherited
       - Contract authority and amendment rules are controlled
@@ -198,12 +198,12 @@ records:
         version: 1.0.0
     authoring_closure_separation:
       freeze_artifact: PACKAGE-8-1
-      substantive_authoring_commit: PENDING_PROVENANCE_BINDING
-      closure_authored_commit: PENDING_PROVENANCE_BINDING
-      closure_effective_commit: PENDING_PROVENANCE_BINDING
-      gate_effective_commit: PENDING_PROVENANCE_BINDING
-      freeze_commit: PENDING_PROVENANCE_BINDING
-      provenance_binding_commit: PENDING_PROVENANCE_BINDING
+      substantive_authoring_commit: a572cdf
+      closure_authored_commit: 506fe51
+      closure_effective_commit: 506fe51
+      gate_effective_commit: 506fe51
+      freeze_commit: 506fe51
+      provenance_binding_commit: PENDING_V8-B_AMENDMENT
       required_sequence: >-
         Substantive authoring precedes closure; closure and freeze precede the
         provenance binding.
@@ -221,10 +221,10 @@ records:
       base_release_tag: central-registration-volume-7-v1.0.0
       base_release_commit: 624081e
       branch_base_commit: 624081e
-      authoring_commit: PENDING_PROVENANCE_BINDING
-      closure_freeze_commit: PENDING_PROVENANCE_BINDING
-      freeze_commit: PENDING_PROVENANCE_BINDING
-      effective_commit: PENDING_PROVENANCE_BINDING
+      authoring_commit: a572cdf
+      closure_freeze_commit: 506fe51
+      freeze_commit: 506fe51
+      effective_commit: 506fe51
       note: >-
         Package 1 was authored in a substantive authoring commit and frozen in a
         separate closure commit after line-level review; the commit-hash bindings
