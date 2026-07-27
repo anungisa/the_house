@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "contract_surfaces": 6,
+    "producers": 3,
+    "consumers": 2
+  },
+  "gaps": {
+    "surfaces_without_authority": [],
+    "endpoints_without_ownership": []
+  }
+}

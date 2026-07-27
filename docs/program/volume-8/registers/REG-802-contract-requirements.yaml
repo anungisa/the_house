@@ -1,0 +1,451 @@
+register_id: REG-802
+name: Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: COMMAND-V8-001
+    kind: COMMAND_CLASS
+    title: Submit affiliation application command
+    statement: >-
+      Requests the governed transition of an affiliation application from draft to
+      submitted. Honoured only when its preconditions are satisfied.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Application exists in draft state under the caller's tenant
+      - Required fields are complete per governed policy
+    result_semantics: >-
+      Acceptance means the submission was validated and admitted; completion means
+      the governed transition committed. Acceptance is never presented as
+      completion.
+    error_semantics: >-
+      Rejection for unmet preconditions is distinguished from failure to complete;
+      neither is presented as success.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per application and submission idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-04
+  - id: COMMAND-V8-002
+    kind: COMMAND_CLASS
+    title: Approve affiliation application command
+    statement: >-
+      Requests the governed transition of an affiliation application from under
+      review to approved. High-risk; evidence-bearing at the kernel.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Application is under review under the caller's tenant
+      - Caller holds the reviewer grant in the authorization context
+    result_semantics: >-
+      Acceptance admits the approval request; completion means the approval
+      transition committed and evidence metadata was recorded.
+    error_semantics: >-
+      Rejection for missing reviewer grant is distinguished from failure to
+      complete the transition.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per application and approval idempotency key
+    concurrency_precondition: >-
+      Concurrent approvals of the same application are serialized; the losing
+      attempt receives an explicit conflict outcome.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-04
+  - id: COMMAND-V8-003
+    kind: COMMAND_CLASS
+    title: Revoke affiliation command
+    statement: >-
+      Requests the governed transition of an active or suspended affiliation to
+      revoked. High-risk; evidence-bearing at the kernel.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is active or suspended under the caller's tenant
+      - Caller holds the revocation grant in the authorization context
+    result_semantics: >-
+      Acceptance admits the revocation request; completion means the revocation
+      transition committed.
+    error_semantics: >-
+      Rejection for insufficient authority is distinguished from failure to
+      complete.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and revocation idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-04
+  - id: QUERY-V8-001
+    kind: QUERY_CLASS
+    title: Read affiliation status query
+    statement: >-
+      Returns the authoritative current affiliation status for a resource within
+      the caller's tenant scope.
+    interaction_type: SYNCHRONOUS_QUERY
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    staleness_posture: AUTHORITATIVE_CURRENT
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-04
+  - id: QUERY-V8-002
+    kind: QUERY_CLASS
+    title: List affiliations projection query
+    statement: >-
+      Returns a bounded-staleness projection of affiliations for reporting and
+      experience use; explicitly non-authoritative.
+    interaction_type: SYNCHRONOUS_QUERY
+    institutional_authority: House
+    authoritative_source: House read-model projection
+    staleness_posture: BOUNDED_STALENESS_PROJECTION
+    source_posture: Non-authoritative projection; consumers must not treat as authoritative
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-04
+  - id: EVENT-V8-001
+    kind: EVENT_CLASS
+    title: Affiliation state-changed domain event
+    statement: >-
+      Emitted through the transactional outbox after an affiliation transition
+      commits. Consumed by internal projections.
+    interaction_type: DOMAIN_EVENT
+    institutional_authority: House
+    envelope_fields:
+      - event_id
+      - event_type
+      - originating_authority
+      - tenant_scope
+      - correlation_id
+      - causation_id
+      - occurred_at
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    ordering_requirement: PER_AGGREGATE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-05
+  - id: EVENT-V8-002
+    kind: EVENT_CLASS
+    title: Affiliation outcome integration event
+    statement: >-
+      Emitted to the experience layer under at-least-once delivery after an
+      affiliation outcome commits. Consumers absorb duplicates idempotently.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    envelope_fields:
+      - event_id
+      - event_type
+      - originating_authority
+      - tenant_scope
+      - correlation_id
+      - causation_id
+      - occurred_at
+    delivery_posture: AT_LEAST_ONCE
+    ordering_requirement: PER_AGGREGATE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-05
+  - id: EVENT-V8-003
+    kind: EVENT_CLASS
+    title: Affiliation audit event
+    statement: >-
+      An append-only audit signal describing a governed affiliation transition for
+      the audit trail. Carries no restricted payload beyond its named constraint.
+    interaction_type: AUDIT_EVENT
+    institutional_authority: House
+    envelope_fields:
+      - event_id
+      - event_type
+      - actor_reference
+      - tenant_scope
+      - correlation_id
+      - occurred_at
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    ordering_requirement: PER_AGGREGATE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    classification: AUDIT_AND_SECURITY
+    privacy_constraint: >-
+      Audit content is restricted to the audit authority; actor references convey
+      no disclosure authority and are not surfaced to unauthorized consumers.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-05
+  - id: WEBHOOK-V8-001
+    kind: WEBHOOK_CLASS
+    title: Provider outcome webhook
+    statement: >-
+      An at-least-once webhook delivered by an external provider across the
+      provider trust boundary. Carries no authority.
+    interaction_type: WEBHOOK
+    institutional_authority: Provider
+    authentication_requirement: >-
+      Receiver must authenticate the provider sender before honouring the callback.
+    integrity_requirement: >-
+      Receiver must verify payload integrity and reject tampered payloads.
+    replay_posture: >-
+      Receiver must detect and absorb replays idempotently using a delivery key.
+    delivery_posture: AT_LEAST_ONCE
+    idempotency_requirement: REQUIRED_PER_KEY
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-05
+  - id: EXCHANGE-V8-001
+    kind: EXCHANGE_CLASS
+    title: Membership import batch exchange
+    statement: >-
+      A scheduled batch import of membership records with accept, reject, and
+      quarantine handling and reconciliation to the authoritative source.
+    interaction_type: BATCH_EXCHANGE
+    institutional_authority: House
+    accept_reject_quarantine_semantics: >-
+      Valid records are accepted; invalid records are rejected with a canonical
+      reason; ambiguous records are quarantined for review.
+    reconciliation_dependency: >-
+      Imported records are reconciled against the House membership register before
+      being treated as governed.
+    manifest_and_integrity: >-
+      Each batch carries a manifest and an integrity check; corrupted or tampered
+      batches are rejected in full.
+    duplicate_handling: Re-submitted batches produce no additional governed effect
+    classification: PERSONAL_INFORMATION
+    privacy_constraint: >-
+      Personal information limited to the exchange purpose; no onward disclosure
+      inferred from participation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-09
+  - id: EXCHANGE-V8-002
+    kind: EXCHANGE_CLASS
+    title: Legacy migration exchange
+    statement: >-
+      A one-way migration exchange of legacy records into the platform, quarantined
+      until reconciled against the authoritative source.
+    interaction_type: MIGRATION_EXCHANGE
+    institutional_authority: House
+    accept_reject_quarantine_semantics: >-
+      Migrated records are quarantined on arrival; accepted only after reconciliation;
+      rejected records are reported with a canonical reason.
+    reconciliation_dependency: >-
+      Migrated data is validated against the authoritative source before being
+      treated as governed; never assumed authoritative on arrival.
+    manifest_and_integrity: >-
+      Each migration set carries a manifest and integrity check; partial application
+      is explicit and never presented as complete.
+    duplicate_handling: Re-run migrations produce no additional governed effect
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-09
+  - id: ERROR-V8-001
+    kind: ERROR_SEMANTIC
+    title: Precondition-not-met rejection
+    statement: >-
+      A validated refusal to act because a command precondition was not satisfied.
+      A rejection, not a failure.
+    canonical_code: PRECONDITION_NOT_MET
+    retryable: NON_RETRYABLE
+    user_safe_semantic: >-
+      The request could not be performed because a required condition was not met.
+    logging_constraint: >-
+      Log the canonical code and correlation id; do not log restricted precondition
+      details in caller-visible messages.
+    correlation_requirement: Carries the request correlation id
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-07
+  - id: ERROR-V8-002
+    kind: ERROR_SEMANTIC
+    title: Not-authorized rejection
+    statement: >-
+      A validated refusal to act because the caller lacked the required grant. Must
+      not leak whether the target resource exists.
+    canonical_code: NOT_AUTHORIZED
+    retryable: NON_RETRYABLE
+    user_safe_semantic: >-
+      The request was not permitted for the current caller.
+    privacy_constraint: >-
+      Must not disclose the existence, state, or attributes of a resource the
+      caller is not authorized to know.
+    correlation_requirement: Carries the request correlation id
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-07
+  - id: ERROR-V8-003
+    kind: ERROR_SEMANTIC
+    title: Transient-dependency failure
+    statement: >-
+      An inability to complete because a dependency was transiently unavailable. A
+      failure, not a rejection.
+    canonical_code: TRANSIENT_DEPENDENCY_FAILURE
+    retryable: RETRYABLE
+    user_safe_semantic: >-
+      The request could not be completed right now and may be retried.
+    logging_constraint: >-
+      Log the canonical code and correlation id; retry only under idempotency
+      obligations with full-jitter backoff.
+    correlation_requirement: Carries the request correlation id
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-07
+  - id: RECON-V8-001
+    kind: RECONCILIATION_REQUIREMENT
+    title: Unknown-outcome reconciliation
+    statement: >-
+      Resolves an interaction whose outcome is unknown after a timeout, interruption,
+      or ambiguous result. Never assumed to have succeeded or failed.
+    interaction_type: SYNCHRONOUS_COMMAND
+    reconciliation_dependency: >-
+      The outcome is reconciled by comparing against the authoritative source before
+      any governed conclusion is drawn.
+    conflict_outcome: >-
+      Reconciliation yields an explicit accepted, rejected, or reconciled outcome;
+      never a silent assumption.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-07
+  - id: IDEMP-V8-001
+    kind: IDEMPOTENCY_REQUIREMENT
+    title: Command idempotency key requirement
+    statement: >-
+      Every retryable command carries an idempotency key so that repeated submission
+      produces no additional governed effect.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per command and idempotency key within tenant scope
+    concurrency_precondition: >-
+      Concurrent submissions with the same key are serialized to a single governed
+      effect.
+    exactly_once_business_invariant: >-
+      Processing once and processing many times yield an identical governed outcome.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-06
+  - id: IDEMP-V8-002
+    kind: IDEMPOTENCY_REQUIREMENT
+    title: Consumer deduplication requirement
+    statement: >-
+      Every at-least-once consumer deduplicates delivered messages so that duplicate
+      delivery produces no additional governed effect.
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    deduplication_scope: Per message identity within consumer and tenant scope
+    conflict_outcome: >-
+      A duplicate is absorbed without additional effect; a genuine conflict resolves
+      to an explicit outcome, never a silent overwrite.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-06
+  - id: DELIV-V8-001
+    kind: DELIVERY_REQUIREMENT
+    title: At-least-once delivery requirement
+    statement: >-
+      Governed events are delivered at least once; no interaction claims exactly-once
+      delivery. Consumers prepare for duplicates.
+    delivery_posture: AT_LEAST_ONCE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    ordering_requirement: PER_AGGREGATE
+    concurrency_precondition: >-
+      Ordering is guaranteed only within the named scope; global order is not
+      presumed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-06
+  - id: REPLAY-V8-001
+    kind: REPLAY_REQUIREMENT
+    title: Replay-detection requirement
+    statement: >-
+      Consumers distinguish a first delivery from a replay and handle replays under
+      a named posture.
+    replay_posture: >-
+      Replays are absorbed idempotently or rejected as duplicates; never processed
+      as new.
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    conflict_outcome: A detected replay yields no additional governed effect
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-06
+  - id: MESSAGE-V8-001
+    kind: MESSAGE_REQUIREMENT
+    title: Correlation and causation envelope requirement
+    statement: >-
+      Every governed message carries a correlation identity and, where derived from
+      another message, a causation identity, so that lineage is traceable.
+    correlation_requirement: >-
+      Correlation id is propagated end-to-end; causation id links a message to its
+      cause.
+    envelope_fields:
+      - correlation_id
+      - causation_id
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-05
+  - id: CONTRACT-V8-101
+    kind: COMPATIBILITY_RULE
+    title: Additive-change compatibility rule
+    statement: >-
+      An additive, optional change to a contract is backward-compatible only when
+      consumer evidence confirms no consumer requires the added element.
+    compatibility_state: BACKWARD_COMPATIBLE
+    consumer_evidence: >-
+      Evidence that no existing consumer treats the added element as required before
+      the change is made.
+    deprecation_rule: Not applicable for additive change
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-10
+  - id: CONTRACT-V8-102
+    kind: COMPATIBILITY_RULE
+    title: Breaking-change deprecation rule
+    statement: >-
+      A breaking change may proceed only through an evidenced deprecation path with a
+      coexistence period and a sunset condition.
+    compatibility_state: BREAKING_CHANGE
+    consumer_evidence: >-
+      Evidence of every consumer that depends on the contract and confirmation of
+      their migration before sunset.
+    deprecation_rule: >-
+      Notice, a coexistence period in which both contracts remain valid, a migration
+      path, and a sunset condition that is satisfied before withdrawal.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-10

@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "contract-surfaces.schema.json",
+  "title": "REG-801 Contract Surfaces, Producers, Consumers, and Trust Boundaries",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-801" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "authorizes_implementation", "implementation_status", "validation_status", "chapter_ref"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(API|RESOURCE|PRODUCER|CONSUMER|TRUST|PROVIDER|AUTHCTX|CONTRACT)-V8-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/surfaceKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "interaction_type": { "$ref": "common.schema.json#/definitions/interactionType" },
+          "producer": { "type": "string" },
+          "consumer": { "type": "string" },
+          "owner": { "type": "string" },
+          "institutional_authority": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "authoritative_source": { "type": "string" },
+          "purpose": { "type": "string" },
+          "organization_scope": { "type": "string" },
+          "jurisdiction_scope": { "type": "string" },
+          "classification": { "$ref": "common.schema.json#/definitions/classification" },
+          "sensitivity": { "$ref": "common.schema.json#/definitions/sensitivityLevel" },
+          "authentication_dependency": { "type": "string" },
+          "authorization_dependency": { "type": "string" },
+          "delivery_posture": { "$ref": "common.schema.json#/definitions/deliveryPosture" },
+          "idempotency_requirement": { "$ref": "common.schema.json#/definitions/idempotencyRequirement" },
+          "ordering_requirement": { "$ref": "common.schema.json#/definitions/orderingRequirement" },
+          "reconciliation_dependency": { "type": "string" },
+          "privacy_constraint": { "type": "string" },
+          "records_dependency": { "type": "string" },
+          "evidence_requirement": { "type": "string" },
+          "fail_closed_posture": { "type": "string" },
+          "authority_protected": { "type": "string" },
+          "trusted_callers": { "type": "array", "items": { "type": "string" } },
+          "context_elements": { "type": "array", "items": { "type": "string" } },
+          "incident_notification_dependency": { "type": "string" },
+          "continuity_dependency": { "type": "string" },
+          "exit_dependency": { "type": "string" },
+          "data_return_dependency": { "type": "string" },
+          "deletion_evidence_dependency": { "type": "string" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "chapter_ref": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
