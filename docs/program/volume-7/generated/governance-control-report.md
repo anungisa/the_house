@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T03:13:54.896Z
+Generated: 2026-07-27T07:58:13.600Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T03:13:54.896Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 24 |
+| RATIFIED | 26 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 24 |
+| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 26 |
 | REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 97 |
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 108 |
 | REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 21 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 25 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 28 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 30 |
 
 ## Findings by control
 
@@ -72,6 +72,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Gate V7-G2 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Provenance & gate-chronology integrity
 
 Errors: 0 | Warnings: 0 | Info: 0
 
