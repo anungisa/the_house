@@ -1,0 +1,31 @@
+{
+  "validation_activities": [
+    {
+      "id": "VAL-V7-001",
+      "title": "Usability research activity",
+      "activity_class": "usability"
+    },
+    {
+      "id": "VAL-V7-002",
+      "title": "Accessibility verification activity",
+      "activity_class": "accessibility"
+    },
+    {
+      "id": "VAL-V7-003",
+      "title": "Bilingual semantic validation activity",
+      "activity_class": "bilingual"
+    },
+    {
+      "id": "VAL-V7-004",
+      "title": "Expert-review activity",
+      "activity_class": "expert-review"
+    },
+    {
+      "id": "VAL-V7-005",
+      "title": "Operational readiness assessment activity",
+      "activity_class": "operational"
+    }
+  ],
+  "missing_validation_activities": [],
+  "underspecified_validation_activities": []
+}

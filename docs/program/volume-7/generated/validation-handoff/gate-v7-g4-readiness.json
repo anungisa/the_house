@@ -1,0 +1,90 @@
+{
+  "gate": "V7-G4",
+  "disposition": "EXPERIENCE_VALIDATION_AND_IMPLEMENTATION_HANDOFF_DEFINITION_READY",
+  "total_conditions": 16,
+  "satisfied": 16,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Corrected Volume 6, frozen Package 1-3, and the Package 3 governance amendment are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "No unresolved backlog item points to a completed gate",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "No record authorizes validation execution, production approval, or implementation",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Every controlled record carries a non-implementation status",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "The validation families are complete and no family substitutes for another",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Evaluation scenarios cover every affiliation stage",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Evaluation scenarios cover every governed path class",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Usability, accessibility, bilingual, expert-review, and operational activities are defined",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Bilingual equivalence requires qualified human judgement",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Measurement definitions bound consent, interpretation, and aggregation",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Content governance defines approval, lifecycle, and localization",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Implementation-conformance, service-readiness, and content-readiness handoff are defined",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "An issue closes only on retest under the family that raised it",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "The validation backlog carries forward gates and owners",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Every Package 4 chapter states its explicit non-authorizations",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Package 4 receives line-level review and a separate freeze commit",
+      "satisfied": true
+    }
+  ]
+}

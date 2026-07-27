@@ -71,7 +71,10 @@
         "FORM_SECTION",
         "VISUAL_SYSTEM",
         "COMPONENT",
-        "REFERENCE_PROTOTYPE"
+        "REFERENCE_PROTOTYPE",
+        "EVALUATION_SCENARIO",
+        "VALIDATION_ACTIVITY",
+        "HANDOFF_ARTIFACT"
       ]
     },
     "experienceKind": {
@@ -97,7 +100,10 @@
         "BILINGUAL_SEMANTIC",
         "DESIGN_SPEC",
         "COMPONENT_STATE",
-        "CONTENT_TERM"
+        "CONTENT_TERM",
+        "VALIDATION_FAMILY",
+        "MEASUREMENT_DEFINITION",
+        "CONTENT_GOVERNANCE_RULE"
       ]
     },
     "referenceStatus": {

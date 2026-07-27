@@ -1,0 +1,31 @@
+{
+  "handoff_artifacts": [
+    {
+      "id": "HAND-V7-001",
+      "title": "Club-facing surface conformance handoff",
+      "handoff_class": "implementation-conformance"
+    },
+    {
+      "id": "HAND-V7-002",
+      "title": "Reviewer workbench conformance handoff",
+      "handoff_class": "implementation-conformance"
+    },
+    {
+      "id": "HAND-V7-003",
+      "title": "Finance and support workbench conformance handoff",
+      "handoff_class": "implementation-conformance"
+    },
+    {
+      "id": "HAND-V7-004",
+      "title": "Service-readiness handoff",
+      "handoff_class": "service-readiness"
+    },
+    {
+      "id": "HAND-V7-005",
+      "title": "Content-readiness handoff",
+      "handoff_class": "content-readiness"
+    }
+  ],
+  "missing_handoff_classes": [],
+  "underspecified_handoff_artifacts": []
+}

@@ -1,0 +1,51 @@
+{
+  "validation_families": [
+    {
+      "id": "VALF-V7-001",
+      "title": "Design-completeness validation family",
+      "spec_class": "design-completeness"
+    },
+    {
+      "id": "VALF-V7-002",
+      "title": "Expert-review validation family",
+      "spec_class": "expert-review"
+    },
+    {
+      "id": "VALF-V7-003",
+      "title": "Prototype-evaluation validation family",
+      "spec_class": "prototype-evaluation"
+    },
+    {
+      "id": "VALF-V7-004",
+      "title": "Usability validation family",
+      "spec_class": "usability"
+    },
+    {
+      "id": "VALF-V7-005",
+      "title": "Accessibility validation family",
+      "spec_class": "accessibility"
+    },
+    {
+      "id": "VALF-V7-006",
+      "title": "Bilingual validation family",
+      "spec_class": "bilingual"
+    },
+    {
+      "id": "VALF-V7-007",
+      "title": "Operational validation family",
+      "spec_class": "operational"
+    },
+    {
+      "id": "VALF-V7-008",
+      "title": "Stakeholder-acceptance validation family",
+      "spec_class": "stakeholder-acceptance"
+    },
+    {
+      "id": "VALF-V7-009",
+      "title": "Production-approval validation family",
+      "spec_class": "production-approval"
+    }
+  ],
+  "missing_validation_families": [],
+  "underspecified_validation_families": []
+}

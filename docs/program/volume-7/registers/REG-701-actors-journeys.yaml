@@ -3276,3 +3276,443 @@ records:
       - COMP-V7-019
       - COMP-V7-020
       - COMP-V7-021
+  # --- Evaluation scenarios and governed task protocols (V7-33) ---
+  - id: SCEN-V7-001
+    kind: EVALUATION_SCENARIO
+    title: Club representative end-to-end affiliation scenario
+    statement: The governed scenario in which an authorized representative completes the full affiliation vertical.
+    scenario_class: club-representative-vertical
+    primary_actor: Authorized club representative
+    authority_posture: AUTHORIZED_REPRESENTATIVE
+    covers_stages:
+      - STAGE-V7-001
+      - STAGE-V7-002
+      - STAGE-V7-003
+      - STAGE-V7-004
+      - STAGE-V7-005
+      - STAGE-V7-006
+      - STAGE-V7-007
+      - STAGE-V7-008
+      - STAGE-V7-009
+      - STAGE-V7-010
+      - STAGE-V7-011
+      - STAGE-V7-012
+      - STAGE-V7-013
+      - STAGE-V7-014
+      - STAGE-V7-015
+      - STAGE-V7-016
+    states:
+      - primary
+      - exception
+      - denied
+      - stale
+      - degraded
+      - recovery
+    protocol_steps:
+      - Confirm representative authority and club identity
+      - Establish jurisdiction and season and determine applicability
+      - Assemble requirements and evidence and confirm completeness
+      - Submit and observe review, decision, reconciliation, activation, and standing
+    expected_evidence:
+      - Observed completion of each governed step within a consented session
+    exception_paths:
+      - Return for information and correction and resubmission
+      - Denied attempt beyond representative authority
+      - Stale information disclosed as such
+      - Degraded low-bandwidth or interrupted service
+    recovery: Entered work is preserved on failure and a visible route forward remains.
+    validation_family_ref: VALF-V7-004
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-33
+    traces_to:
+      - PROTO-V7-001
+  - id: SCEN-V7-002
+    kind: EVALUATION_SCENARIO
+    title: Jurisdiction reviewer scenario
+    statement: The governed scenario in which a jurisdiction reviewer tracks, returns, and dispositions an application.
+    scenario_class: reviewer-workbench
+    primary_actor: Jurisdiction reviewer
+    authority_posture: JURISDICTION_REVIEWER
+    covers_stages:
+      - STAGE-V7-008
+      - STAGE-V7-009
+      - STAGE-V7-010
+      - STAGE-V7-011
+    states:
+      - primary
+      - exception
+      - denied
+      - stale
+      - degraded
+      - recovery
+    protocol_steps:
+      - Track a submitted application and its evidence
+      - Return for information and observe correction and resubmission
+      - Record a decision within reviewer authority
+    expected_evidence:
+      - Observed reviewer actions bounded to reviewer authority
+    exception_paths:
+      - Denied attempt to perform finance reconciliation or privileged correction
+      - Stale application state disclosed as such
+    recovery: Reviewer work in progress is preserved and recoverable.
+    validation_family_ref: VALF-V7-004
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-33
+    traces_to:
+      - PROTO-V7-002
+  - id: SCEN-V7-003
+    kind: EVALUATION_SCENARIO
+    title: Finance operator reconciliation scenario
+    statement: The governed scenario in which a finance operator reconciles affiliation obligations.
+    scenario_class: finance-workbench
+    primary_actor: Finance operator
+    authority_posture: FINANCE_OPERATOR
+    covers_stages:
+      - STAGE-V7-012
+      - STAGE-V7-013
+    states:
+      - primary
+      - exception
+      - denied
+      - stale
+      - degraded
+      - recovery
+    protocol_steps:
+      - Review financial obligations for an application
+      - Reconcile obligations within finance authority
+    expected_evidence:
+      - Observed finance actions bounded to finance authority
+    exception_paths:
+      - Denied attempt to decide the application outcome
+      - Stale financial status disclosed as such
+    recovery: Partial reconciliation work is preserved and recoverable.
+    validation_family_ref: VALF-V7-007
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-33
+    traces_to:
+      - PROTO-V7-002
+  - id: SCEN-V7-004
+    kind: EVALUATION_SCENARIO
+    title: Support operator assistance scenario
+    statement: The governed scenario in which a support operator assists a representative without assuming review or finance authority.
+    scenario_class: support-workbench
+    primary_actor: Support operator
+    authority_posture: SUPPORT_OPERATOR
+    covers_stages:
+      - STAGE-V7-006
+      - STAGE-V7-007
+    states:
+      - primary
+      - exception
+      - denied
+      - stale
+      - degraded
+      - recovery
+    protocol_steps:
+      - Assist a representative through a governed task and its recovery path
+      - Refer decisions to the authority that holds them
+    expected_evidence:
+      - Observed support actions bounded to support authority
+    exception_paths:
+      - Denied attempt to decide, reconcile, or disclose beyond permission
+      - Degraded service assisted without expanding access
+    recovery: Assisted work is preserved and handed back without loss.
+    validation_family_ref: VALF-V7-007
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-33
+    traces_to:
+      - PROTO-V7-002
+  - id: SCEN-V7-005
+    kind: EVALUATION_SCENARIO
+    title: Privacy or records function scenario
+    statement: The governed scenario in which the privacy or records function handles a disclosure or records request.
+    scenario_class: privacy-records
+    primary_actor: Privacy or records function
+    authority_posture: PRIVACY_OR_RECORDS_FUNCTION
+    covers_stages:
+      - STAGE-V7-014
+      - STAGE-V7-015
+      - STAGE-V7-016
+    states:
+      - primary
+      - exception
+      - denied
+      - stale
+      - degraded
+      - recovery
+    protocol_steps:
+      - Handle a governed disclosure or records request within authority
+      - Record the disposition without expanding access
+    expected_evidence:
+      - Observed privacy or records actions bounded to their authority
+    exception_paths:
+      - Denied attempt to assume review or finance authority
+      - Restricted evidence handled without disclosure beyond permission
+    recovery: In-progress records handling is preserved and recoverable.
+    validation_family_ref: VALF-V7-007
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-33
+    traces_to:
+      - PROTO-V7-002
+  # --- Validation activities and participant governance (V7-34, V7-35, V7-36) ---
+  - id: VAL-V7-001
+    kind: VALIDATION_ACTIVITY
+    title: Usability research activity
+    statement: The planned usability research activity for the governed affiliation tasks.
+    activity_class: usability
+    validation_family_ref: VALF-V7-004
+    participant_governance: Participants represent the governed actors, provide explicit revocable consent, and are protected under the inherited privacy postures.
+    permitted_evidence:
+      - Observed behaviour and reported experience of qualified sessions
+    prohibited_inferences:
+      - A small or unrepresentative sample proves nothing about the population
+      - The absence of an observed failure is not proof of success
+    acceptance_authority: Accountable Program Authority, distinct from the experience author.
+    evaluation_environment: A representative environment including low-bandwidth and interrupted-service conditions.
+    defect_treatment: Findings are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected artifact is re-evaluated before the finding is closed.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-34
+    traces_to:
+      - VALF-V7-004
+  - id: VAL-V7-002
+    kind: VALIDATION_ACTIVITY
+    title: Accessibility verification activity
+    statement: The planned accessibility verification activity across assistive technologies.
+    activity_class: accessibility
+    validation_family_ref: VALF-V7-005
+    participant_governance: Evaluators are qualified and use the assistive technologies participants actually use; no activity expands access.
+    permitted_evidence:
+      - Combined automated, manual, and assistive-technology evidence under qualified judgement
+    prohibited_inferences:
+      - A passed automated scan is not a conformance claim
+      - No partial evidence establishes conformance
+    acceptance_authority: Accountable Program Authority, distinct from the experience author.
+    evaluation_environment: A representative environment covering the complete-state set.
+    defect_treatment: Defects are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected artifact is re-evaluated before the defect is closed; no defect closes on a design-file change alone.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-35
+    traces_to:
+      - VALF-V7-005
+  - id: VAL-V7-003
+    kind: VALIDATION_ACTIVITY
+    title: Bilingual semantic validation activity
+    statement: The planned bilingual semantic validation activity for governed content.
+    activity_class: bilingual
+    validation_family_ref: VALF-V7-006
+    participant_governance: Validators are fluent in both languages and literate in the governed domain, and no activity expands access.
+    permitted_evidence:
+      - Qualified human judgement of institutional equivalence against the canonical concept
+    prohibited_inferences:
+      - Machine translation is insufficient evidence of equivalence
+      - Literal word-for-word matching is insufficient evidence of equivalence
+    acceptance_authority: Accountable Program Authority, distinct from the content author.
+    evaluation_environment: The governed contexts including status, error, and recovery messaging.
+    defect_treatment: Defects are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected translation is re-validated before the defect is closed.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-36
+    traces_to:
+      - VALF-V7-006
+  - id: VAL-V7-004
+    kind: VALIDATION_ACTIVITY
+    title: Expert-review activity
+    statement: The planned expert-review activity for the governed specifications.
+    activity_class: expert-review
+    validation_family_ref: VALF-V7-002
+    participant_governance: Reviewers are qualified in the governed domain and independent of authorship.
+    permitted_evidence:
+      - Documented qualified expert judgement against named criteria
+    prohibited_inferences:
+      - Expert review does not establish usability, accessibility, or bilingual equivalence
+    acceptance_authority: Executive Acceptance Authority, distinct from the artifact author.
+    evaluation_environment: A structured review against the frozen corpus.
+    defect_treatment: Findings are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A revised specification is re-reviewed before the finding is closed.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+    traces_to:
+      - VALF-V7-002
+  - id: VAL-V7-005
+    kind: VALIDATION_ACTIVITY
+    title: Operational readiness assessment activity
+    statement: The planned operational readiness assessment for the service functions.
+    activity_class: operational
+    validation_family_ref: VALF-V7-007
+    participant_governance: Assessors are qualified and independent of authorship, and no assessment expands access.
+    permitted_evidence:
+      - Demonstrated capability of each function against its readiness dimension
+    prohibited_inferences:
+      - Operational readiness does not establish usability, accessibility, or bilingual equivalence
+    acceptance_authority: Executive Acceptance Authority, distinct from the experience author.
+    evaluation_environment: A representative operating context.
+    defect_treatment: Gaps are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A remediated function is re-assessed before the gap is closed.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-40
+    traces_to:
+      - VALF-V7-007
+  # --- Implementation-conformance and readiness handoff artifacts (V7-39, V7-40) ---
+  - id: HAND-V7-001
+    kind: HANDOFF_ARTIFACT
+    title: Club-facing surface conformance handoff
+    statement: The implementation-conformance handoff for the club-facing affiliation surfaces.
+    handoff_class: implementation-conformance
+    design_sources:
+      - PROTO-V7-001
+      - COMP-V7-001
+      - DSPEC-V7-001
+    conformance_dimensions:
+      - Renders the specified complete states
+      - Behaves as the interaction model requires
+      - Preserves the governed semantic source of each status
+      - Meets the accessibility dependencies
+      - Maintains bilingual equivalence
+      - Honours the privacy posture
+      - Respects the authority constraints
+    implementation_evidence: A future implementation must produce evidence of conforming behaviour across every named dimension.
+    design_review_evidence: A qualified reviewer must record acceptance against the conformance dimensions.
+    deviation_treatment: Deviations are recorded as governed items and never silently accepted.
+    future_authority: Accountable Program Authority at a forward gate, distinct from the implementer.
+    privacy_posture: PERSONAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-39
+    traces_to:
+      - PROTO-V7-001
+  - id: HAND-V7-002
+    kind: HANDOFF_ARTIFACT
+    title: Reviewer workbench conformance handoff
+    statement: The implementation-conformance handoff for the reviewer workbench surfaces.
+    handoff_class: implementation-conformance
+    design_sources:
+      - PROTO-V7-002
+      - COMP-V7-012
+    conformance_dimensions:
+      - Renders the specified complete states
+      - Behaves as the interaction model requires
+      - Preserves reviewer authority separation
+      - Meets the accessibility dependencies
+      - Maintains bilingual equivalence
+      - Honours the privacy posture
+    implementation_evidence: A future implementation must demonstrate reviewer-bounded behaviour across every named dimension.
+    design_review_evidence: A qualified reviewer must record acceptance against the conformance dimensions.
+    deviation_treatment: Deviations are recorded as governed items and never silently accepted.
+    future_authority: Accountable Program Authority at a forward gate, distinct from the implementer.
+    privacy_posture: PRIVILEGED_ADMIN
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-39
+    traces_to:
+      - PROTO-V7-002
+  - id: HAND-V7-003
+    kind: HANDOFF_ARTIFACT
+    title: Finance and support workbench conformance handoff
+    statement: The implementation-conformance handoff for the finance, support, and privacy workbench surfaces.
+    handoff_class: implementation-conformance
+    design_sources:
+      - PROTO-V7-002
+      - COMP-V7-012
+    conformance_dimensions:
+      - Renders the specified complete states
+      - Behaves as the interaction model requires
+      - Preserves finance, support, and privacy authority separation
+      - Meets the accessibility dependencies
+      - Maintains bilingual equivalence
+      - Honours the privacy posture
+    implementation_evidence: A future implementation must demonstrate function-bounded behaviour across every named dimension.
+    design_review_evidence: A qualified reviewer must record acceptance against the conformance dimensions.
+    deviation_treatment: Deviations are recorded as governed items and never silently accepted.
+    future_authority: Accountable Program Authority at a forward gate, distinct from the implementer.
+    privacy_posture: FINANCIAL_STATUS
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-39
+    traces_to:
+      - PROTO-V7-002
+  - id: HAND-V7-004
+    kind: HANDOFF_ARTIFACT
+    title: Service-readiness handoff
+    statement: The service-readiness handoff for the support, staff, and content functions.
+    handoff_class: service-readiness
+    design_sources:
+      - PROTO-V7-002
+    conformance_dimensions:
+      - Support can assist through governed tasks and recovery paths
+      - Staff functions hold the governed information their workbench assumes
+      - Content is governed, approved, and localized
+      - Exception and remediation paths are understood by operating functions
+    implementation_evidence: Each function must demonstrate capability against its readiness dimension.
+    design_review_evidence: A qualified assessor must record readiness acceptance against the dimensions.
+    deviation_treatment: Readiness gaps are recorded as governed items with an explicit treatment.
+    future_authority: Executive Acceptance Authority at a forward gate, distinct from the operating function.
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-40
+    traces_to:
+      - VALF-V7-007
+  - id: HAND-V7-005
+    kind: HANDOFF_ARTIFACT
+    title: Content-readiness handoff
+    statement: The content-readiness handoff for governed, approved, and localized content.
+    handoff_class: content-readiness
+    design_sources:
+      - TERM-V7-001
+      - CGOV-V7-001
+    conformance_dimensions:
+      - Content traces to a canonical governed concept and authoritative source
+      - Content is approved under the named authority and lifecycle
+      - English and French equivalents are validated under the bilingual family
+      - Sensitivity and disclosure constraints are honoured
+    implementation_evidence: Content must demonstrate approval and validated localization before readiness.
+    design_review_evidence: The content authority must record readiness acceptance against the dimensions.
+    deviation_treatment: Content-readiness gaps are recorded as governed items with an explicit treatment.
+    future_authority: Content authority at a forward gate, distinct from the content author.
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-40
+    traces_to:
+      - CGOV-V7-001

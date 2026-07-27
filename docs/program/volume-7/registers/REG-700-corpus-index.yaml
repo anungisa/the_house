@@ -299,6 +299,94 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-31-design-system-traceability-and-validation-backlog.md
     gate: V7-G3
+  - id: V7-32
+    title: Experience-Validation Doctrine and Evidence Boundaries
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-32-experience-validation-doctrine-and-evidence-boundaries.md
+    gate: V7-G4
+  - id: V7-33
+    title: Affiliation Evaluation Scenarios and Governed Task Protocols
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-33-affiliation-evaluation-scenarios-and-governed-task-protocols.md
+    gate: V7-G4
+  - id: V7-34
+    title: Usability Research and Participant-Governance Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-34-usability-research-and-participant-governance-plan.md
+    gate: V7-G4
+  - id: V7-35
+    title: Accessibility Verification and Assistive-Technology Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-35-accessibility-verification-and-assistive-technology-plan.md
+    gate: V7-G4
+  - id: V7-36
+    title: Bilingual Semantic and Content-Validation Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-36-bilingual-semantic-and-content-validation-plan.md
+    gate: V7-G4
+  - id: V7-37
+    title: Content Governance, Approval, Lifecycle, and Localization Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-37-content-governance-approval-lifecycle-and-localization-model.md
+    gate: V7-G4
+  - id: V7-38
+    title: Experience Analytics, Telemetry, Consent, and Interpretation Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-38-experience-analytics-telemetry-consent-and-interpretation-model.md
+    gate: V7-G4
+  - id: V7-39
+    title: Design-Quality Assurance and Implementation-Conformance Handoff
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-39-design-quality-assurance-and-implementation-conformance-handoff.md
+    gate: V7-G4
+  - id: V7-40
+    title: Support, Staff, Content, and Service-Readiness Handoff
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-40-support-staff-content-and-service-readiness-handoff.md
+    gate: V7-G4
+  - id: V7-41
+    title: Experience Issue, Exception, Remediation, and Retest Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-41-experience-issue-exception-remediation-and-retest-model.md
+    gate: V7-G4
+  - id: V7-42
+    title: Package 4 Traceability, Validation Backlog, and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-42-package-4-traceability-validation-backlog-and-downstream-constraints.md
+    gate: V7-G4
   - id: V7-E
     title: Package 3 Closure Record
     owner: Aubert Nungisa (Accountable Program Authority)
@@ -323,3 +411,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-F-1-package-3-governance-amendment.md
     gate: V7-G3
+  - id: V7-G
+    title: Package 4 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-G-package-4-closure-record.md
+    gate: V7-G4

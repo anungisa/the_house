@@ -1,0 +1,13 @@
+{
+  "measurement_definitions": [
+    {
+      "id": "MEAS-V7-001",
+      "title": "Governed-task completion measure"
+    },
+    {
+      "id": "MEAS-V7-002",
+      "title": "Recovery-path traversal measure"
+    }
+  ],
+  "underspecified_measurement_definitions": []
+}

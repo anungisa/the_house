@@ -85,6 +85,8 @@
     "governance:design:v7": "node docs/program/volume-7/controls/design-system-volume-7.mjs",
     "governance:gate3:v7": "node docs/program/volume-7/controls/gate-volume-7-g3.mjs",
     "governance:provenance:v7": "node docs/program/volume-7/controls/provenance-integrity-volume-7.mjs",
+    "governance:validation:v7": "node docs/program/volume-7/controls/validation-handoff-volume-7.mjs",
+    "governance:gate4:v7": "node docs/program/volume-7/controls/gate-volume-7-g4.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

@@ -14,6 +14,20 @@
       "implementation_effective_date": "NOT_ESTABLISHED",
       "production_adoption_date": "NOT_ESTABLISHED",
       "operational_effective_date": "NOT_ESTABLISHED"
+    },
+    {
+      "freeze_artifact": "PACKAGE-7-4",
+      "closure_artifact": "V7-G",
+      "gate": "GATE-V7-G4",
+      "closure_authored_commit": "85451f3",
+      "closure_effective_commit": "85451f3",
+      "freeze_commit": "85451f3",
+      "gate_effective_commit": "85451f3",
+      "chronology_exception": null,
+      "documentary_definition_effective_commit": "85451f3",
+      "implementation_effective_date": "NOT_ESTABLISHED",
+      "production_adoption_date": "NOT_ESTABLISHED",
+      "operational_effective_date": "NOT_ESTABLISHED"
     }
   ]
 }

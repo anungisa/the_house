@@ -313,3 +313,64 @@ records:
     chapter_ref: V7-28
     traces_to:
       - TERM-V7-001
+  # --- Package 4 decisions (V7-32 through V7-42) ---
+  - id: ADR-V7-027
+    title: No validation family substitutes for another
+    decision: Each validation family relies only on its own permitted evidence, and evidence from one family is never proof for another.
+    status: ACCEPTED
+    context: Conflating families would let design completeness or an automated scan masquerade as usability or conformance.
+    consequence: Each validation family records its own objective, permitted evidence, and prohibited inference, and fails closed where its evidence is absent.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-32
+    traces_to:
+      - VALF-V7-001
+  - id: ADR-V7-028
+    title: No issue closes on a design-file change alone
+    decision: An issue closes only when its remediation is retested under the family that raised it and the retest produces the qualifying evidence.
+    status: ACCEPTED
+    context: Closing issues by edit would leave the underlying experience unproven.
+    consequence: Every remediation names a retest rule and every issue traces to what raised it.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-41
+    traces_to:
+      - VALF-V7-004
+  - id: ADR-V7-029
+    title: Aggregation is not anonymization
+    decision: An aggregate is treated as potentially identifying until a named protection is demonstrated.
+    status: ACCEPTED
+    context: Small-population aggregates can re-identify individuals.
+    consequence: Every measurement definition names an aggregation rule with thresholds and protections, and a metric is never treated as proof.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-38
+    traces_to:
+      - MEAS-V7-001
+  - id: ADR-V7-030
+    title: A specification is not an implementation
+    decision: A handed-off specification is not built, rendered, or accepted by being handed off, and completed development is not acceptance.
+    status: ACCEPTED
+    context: Treating a specification as an implementation would skip conformance evaluation and acceptance.
+    consequence: Each handoff artifact names conformance dimensions, implementation and design-review evidence, and a future acceptance authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-39
+    traces_to:
+      - HAND-V7-001
+  - id: ADR-V7-031
+    title: Machine translation is insufficient for bilingual equivalence
+    decision: Bilingual equivalence requires qualified human judgement of institutional meaning, not machine or literal matching.
+    status: ACCEPTED
+    context: Fluent or literal translations can silently alter governed meaning.
+    consequence: The bilingual validation family requires qualified human judgement and fails closed on machine or literal evidence alone.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-36
+    traces_to:
+      - VALF-V7-006
