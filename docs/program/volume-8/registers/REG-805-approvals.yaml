@@ -408,17 +408,17 @@ records:
       closure_artifact: V8-C
       gate: GATE-V8-G2
       freeze_artifact: PACKAGE-8-2
-      closure_authored_commit: PENDING_V8-C_BINDING
-      closure_effective_commit: PENDING_V8-C_BINDING
-      freeze_commit: PENDING_V8-C_BINDING
-      gate_effective_commit: PENDING_V8-C_BINDING
+      closure_authored_commit: 29e5f5e
+      closure_effective_commit: 29e5f5e
+      freeze_commit: 29e5f5e
+      gate_effective_commit: 29e5f5e
       chronology_disposition: >-
         The substantive authoring commit precedes the closure commit; the closure,
         gate disposition, and freeze are recorded together in the closure commit
         and bound to it in the immediately following provenance-binding commit.
     effective_date_clarification:
       gate: GATE-V8-G2
-      documentary_definition_effective_commit: PENDING_V8-C_BINDING
+      documentary_definition_effective_commit: 29e5f5e
       implementation_effective_date: >-
         Not applicable. Package 2 authorizes no implementation; documentary
         definition effectiveness is distinct from any future implementation date.
@@ -437,8 +437,8 @@ records:
     authorizes_implementation: false
     gate_disposition: AFFILIATION_LOGICAL_CONTRACT_DEFINITION_READY
     requires_freeze_artifact: PACKAGE-8-2
-    effective_commit: PENDING_V8-C_BINDING
-    gate_effective_commit: PENDING_V8-C_BINDING
+    effective_commit: 29e5f5e
+    gate_effective_commit: 29e5f5e
     conditions:
       - Affiliation contract-domain decomposition and scope defined
       - Package 2 inherits the Package 1 contract-governance foundation
@@ -504,11 +504,11 @@ records:
         version: 1.0.0
     authoring_closure_separation:
       freeze_artifact: PACKAGE-8-2
-      substantive_authoring_commit: PENDING_V8-C_BINDING
-      closure_authored_commit: PENDING_V8-C_BINDING
-      closure_effective_commit: PENDING_V8-C_BINDING
-      gate_effective_commit: PENDING_V8-C_BINDING
-      freeze_commit: PENDING_V8-C_BINDING
+      substantive_authoring_commit: 6b396a8
+      closure_authored_commit: 29e5f5e
+      closure_effective_commit: 29e5f5e
+      gate_effective_commit: 29e5f5e
+      freeze_commit: 29e5f5e
       provenance_binding_commit: PENDING_V8-D_AMENDMENT
       required_sequence: >-
         Substantive authoring precedes closure; closure and freeze precede the
@@ -527,10 +527,10 @@ records:
       base_release_tag: central-registration-volume-7-v1.0.0
       base_release_commit: 624081e
       branch_base_commit: 8dc3058
-      authoring_commit: PENDING_V8-C_BINDING
-      closure_freeze_commit: PENDING_V8-C_BINDING
-      freeze_commit: PENDING_V8-C_BINDING
-      effective_commit: PENDING_V8-C_BINDING
+      authoring_commit: 6b396a8
+      closure_freeze_commit: 29e5f5e
+      freeze_commit: 29e5f5e
+      effective_commit: 29e5f5e
       note: >-
         Package 2 was authored in a substantive authoring commit and frozen in a
         separate closure commit after line-level review; the commit-hash bindings

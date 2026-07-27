@@ -2,14 +2,9 @@
   "gate": "V8-G2",
   "disposition_target": "AFFILIATION_LOGICAL_CONTRACT_DEFINITION_READY",
   "total_conditions": 27,
-  "satisfied": 26,
-  "unmet": [
-    {
-      "n": 27,
-      "title": "Completed gate has no unresolved required commit binding"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 27,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -144,7 +139,7 @@
     {
       "n": 27,
       "title": "Completed gate has no unresolved required commit binding",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
