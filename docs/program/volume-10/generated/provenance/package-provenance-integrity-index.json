@@ -1,7 +1,26 @@
 {
-  "generated": "2026-07-27T19:18:44.162Z",
-  "authoritative_record_count": 0,
-  "packages": [],
+  "generated": "2026-07-27T19:22:54.903Z",
+  "authoritative_record_count": 1,
+  "packages": [
+    {
+      "package": "PACKAGE-10-1",
+      "source_record": "APP-V10-017",
+      "conditions_total": 12,
+      "conditions_satisfied": 12,
+      "all_conditions_satisfied": true,
+      "failed_conditions": [],
+      "roles": {
+        "sourceBaseline": "e1b3109875cf2750bba1acaff11cae5fefca374d",
+        "authoring": "54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55",
+        "closureFreeze": "997052d3e952057189e81fb870535b87ab9c1dfc",
+        "binding": "fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b",
+        "originalMerge": "7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a",
+        "amendmentAuthoring": "c6e1e9c7d167d8bfd93d52c100ac7d771de70b96",
+        "amendmentMerge": "15befbfbae14d7cd6f93b8be7ca2a4d168debde9",
+        "inheritedTag": "central-registration-volume-9-v1.0.0"
+      }
+    }
+  ],
   "all_packages_satisfied": true,
   "note": "Package-indexed projection of every authoritative Package 1-N provenance-role-classification record. Non-authoritative; confers no ratification and authorizes no implementation."
 }

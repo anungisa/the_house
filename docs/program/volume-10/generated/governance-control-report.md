@@ -1,6 +1,6 @@
 # Volume 10 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T19:18:44.156Z
+Generated: 2026-07-27T19:22:54.897Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It is not a source of truth, does not confer ratification, and
@@ -14,17 +14,17 @@ Generated: 2026-07-27T19:18:44.156Z
 
 ## Summary
 
-- Total findings: 2
+- Total findings: 1
 - Errors: 0
 - Warnings: 0
-- Info: 2
+- Info: 1
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 13 |
+| RATIFIED | 14 |
 
 ## Register health
 
@@ -35,7 +35,7 @@ Generated: 2026-07-27T19:18:44.156Z
 | REG-1002 | Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria | RATIFIED | 1.0.0 | 6 |
 | REG-1003 | Volume 10 Delivery-Planning Decisions | RATIFIED | 1.0.0 | 3 |
 | REG-1004 | Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog | RATIFIED | 1.0.0 | 8 |
-| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.0.0 | 16 |
+| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.0.0 | 17 |
 
 ## Findings by control
 
@@ -59,9 +59,9 @@ Errors: 0 | Warnings: 0 | Info: 1
 
 ### Provenance-integrity enforcement
 
-Errors: 0 | Warnings: 0 | Info: 1
+Errors: 0 | Warnings: 0 | Info: 0
 
-- INFO PROVENANCE_AMENDMENT_PENDING [REG-1005]: No REG-1005 approval yet carries a provenance_role_classification block; the post-merge provenance amendment (V10-B-1) is pending
+- (no findings)
 
 ### Gate V10-G1 readiness
 
