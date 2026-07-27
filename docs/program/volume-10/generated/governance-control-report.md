@@ -1,6 +1,6 @@
 # Volume 10 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T20:51:01.847Z
+Generated: 2026-07-27T20:54:52.880Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It is not a source of truth, does not confer ratification, and
@@ -14,8 +14,8 @@ Generated: 2026-07-27T20:51:01.847Z
 
 ## Summary
 
-- Total findings: 5
-- Errors: 2
+- Total findings: 4
+- Errors: 1
 - Warnings: 0
 - Info: 3
 - Overall: FAIL (delivery-planning-governance integrity errors present)
@@ -24,18 +24,18 @@ Generated: 2026-07-27T20:51:01.847Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 39 |
+| RATIFIED | 40 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1000 | Volume 10 Corpus Index | RATIFIED | 1.2.0 | 37 |
+| REG-1000 | Volume 10 Corpus Index | RATIFIED | 1.2.0 | 38 |
 | REG-1001 | Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies | RATIFIED | 1.2.0 | 106 |
 | REG-1002 | Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria | RATIFIED | 1.2.0 | 53 |
 | REG-1003 | Volume 10 Delivery-Planning Decisions | RATIFIED | 1.2.0 | 19 |
 | REG-1004 | Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog | RATIFIED | 1.2.0 | 45 |
-| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.2.0 | 45 |
+| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.2.0 | 49 |
 
 ## Findings by control
 
@@ -83,9 +83,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V10-G3 readiness
 
-Errors: 2 | Warnings: 0 | Info: 0
+Errors: 1 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V10_G3_CONDITION_UNMET [GATE-V10-G3]: Condition 39 not satisfied: Package 3 and the complete Volume 10 corpus receive explicit freeze approvals
 - ERROR GATE_V10_G3_CONDITION_UNMET [GATE-V10-G3]: Condition 40 not satisfied: Genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation is preserved
 
 ### Final-closure coverage

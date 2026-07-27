@@ -2,12 +2,8 @@
   "gate": "V10-G3",
   "disposition_target": "MASTER_DEVELOPMENT_PLAN_AND_RELEASE_ROADMAP_DEFINITION_COMPLETE",
   "total_conditions": 40,
-  "satisfied": 38,
+  "satisfied": 39,
   "unmet": [
-    {
-      "n": 39,
-      "title": "Package 3 and the complete Volume 10 corpus receive explicit freeze approvals"
-    },
     {
       "n": 40,
       "title": "Genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation is preserved"
@@ -208,7 +204,7 @@
     {
       "n": 39,
       "title": "Package 3 and the complete Volume 10 corpus receive explicit freeze approvals",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 40,

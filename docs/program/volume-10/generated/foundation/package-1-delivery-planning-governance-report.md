@@ -1,6 +1,6 @@
 # Volume 10 Package 1 Delivery-Planning Governance Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T20:51:01.853Z
+Generated: 2026-07-27T20:54:52.892Z
 
 > Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.
 

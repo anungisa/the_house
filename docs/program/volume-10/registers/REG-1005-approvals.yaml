@@ -725,3 +725,165 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
     approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # Package 3 closure record (V10-E)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-046
+    artifact_id: V10-E
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: >-
+      Volume 11 is authorized to a bounded scope only: AUTHORIZED FOR OPERATIONS,
+      MIGRATION, ADOPTION, SUPPORT, CONTINUITY, RECOVERY, RECONCILIATION, TRAINING,
+      AND OPERATIONAL-ASSURANCE DEFINITION ONLY. Volume 11 remains planning and
+      definitional only. Runtime implementation, production operations, migration
+      execution, environment provisioning, environment qualification, executable
+      tests, test execution, test data, identities, secrets, provider engagement,
+      procurement, expenditure, staffing, pilot, rollout, release, and deployment
+      are NOT AUTHORIZED. Volume 11 may define operations, migration, adoption,
+      support, continuity, recovery, reconciliation, training, and
+      operational-assurance destinations; it may not infer implementation,
+      provisioning, procurement, staffing, test-execution, release, or deployment
+      authorization from that definition. Any expansion beyond that bounded scope
+      requires a separate, explicit authorization gate.
+    amendment_process: >-
+      Amendments to the frozen Package 3 corpus and the frozen Volume 10 corpus are
+      made only through a recorded, additive amendment; the frozen chapters and
+      registers are not reopened.
+    closure_binding:
+      closure_artifact: V10-E
+      gate: GATE-V10-G3
+      freeze_artifact: PACKAGE-10-3
+      closure_authored_commit: PENDING_V10_F_BINDING
+      closure_effective_commit: PENDING_V10_F_BINDING
+      freeze_commit: PENDING_V10_F_BINDING
+      gate_effective_commit: PENDING_V10_F_BINDING
+      chronology_disposition: PENDING_PROVENANCE_BINDING
+    effective_date_clarification:
+      gate: GATE-V10-G3
+      documentary_definition_effective_commit: PENDING_V10_F_BINDING
+      implementation_effective_date: >-
+        Not applicable. Documentary completeness is distinct from implementation
+        completeness; Volume 10 authorizes no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary completeness is distinct from operational
+        effectiveness; Volume 10 authorizes no operation.
+      commitment_effective_date: >-
+        Not applicable. A documentary plan is distinct from a commitment; Volume 10
+        commits no schedule, cost, staffing, or delivery date.
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # Gate V10-G3 disposition
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-047
+    artifact_id: GATE-V10-G3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    gate_disposition: MASTER_DEVELOPMENT_PLAN_AND_RELEASE_ROADMAP_DEFINITION_COMPLETE
+    requires_freeze_artifact: PACKAGE-10-3
+    base_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
+    effective_commit: PENDING_V10_F_BINDING
+    gate_effective_commit: PENDING_V10_F_BINDING
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # PACKAGE-10-3 freeze
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-048
+    artifact_id: PACKAGE-10-3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    frozen: true
+    frozen_artifacts:
+      - id: REG-1000
+        version: 1.2.0
+      - id: REG-1001
+        version: 1.2.0
+      - id: REG-1002
+        version: 1.2.0
+      - id: REG-1003
+        version: 1.2.0
+      - id: REG-1004
+        version: 1.2.0
+      - id: REG-1005
+        version: 1.2.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-10-3
+      substantive_authoring_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
+      closure_authored_commit: PENDING_V10_F_BINDING
+      closure_effective_commit: PENDING_V10_F_BINDING
+      gate_effective_commit: PENDING_V10_F_BINDING
+      freeze_commit: PENDING_V10_F_BINDING
+      provenance_binding_commit: PENDING_V10-F_AMENDMENT
+      required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      sequence_disposition: CONFORMANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-9-v1.0.0
+      base_release_tag: central-registration-volume-9-v1.0.0
+      source_baseline_commit: c6fc6a5b60034524e486472e2b46556eeab0fc60
+      branch_base_commit: c6fc6a5b60034524e486472e2b46556eeab0fc60
+      authoring_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
+      closure_authored_commit: PENDING_V10_F_BINDING
+      closure_effective_commit: PENDING_V10_F_BINDING
+      closure_freeze_commit: PENDING_V10_F_BINDING
+      freeze_commit: PENDING_V10_F_BINDING
+      gate_effective_commit: PENDING_V10_F_BINDING
+      effective_commit: PENDING_V10_F_BINDING
+      provenance_binding_commit: PENDING_V10-F_AMENDMENT
+      original_package_merge_commit: PENDING_V10-F_AMENDMENT
+      note: >-
+        Volume 10 Package 3 branches from the Package 2 mainline baseline
+        c6fc6a5b60034524e486472e2b46556eeab0fc60. The substantive-authoring commit
+        is b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05. The closure, dual freeze, and
+        gate commit, the pre-merge provenance-binding commit, the
+        original-package-merge commit, and the provenance-amendment commits are
+        bound after merge by the V10-F provenance amendment and the V10-F-1
+        provenance-role classification. Volume 10 is tagged
+        central-registration-volume-10-v1.0.0 only after V10-F-1.
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # VOLUME-10 whole-volume freeze
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-049
+    artifact_id: VOLUME-10
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    frozen: true
+    frozen_artifacts:
+      - id: REG-1000
+        version: 1.2.0
+      - id: REG-1001
+        version: 1.2.0
+      - id: REG-1002
+        version: 1.2.0
+      - id: REG-1003
+        version: 1.2.0
+      - id: REG-1004
+        version: 1.2.0
+      - id: REG-1005
+        version: 1.2.0
+    amendment_process: >-
+      Whole-volume freeze of the complete Volume 10 corpus (Packages 1, 2, and 3;
+      chapters V10-00 through V10-32 and records V10-A through V10-E). Additive
+      only. Reopens and overwrites nothing in the frozen corpus. Volume 10 is
+      released under the tag central-registration-volume-10-v1.0.0 only after the
+      V10-F provenance amendment and the V10-F-1 provenance-role classification.
+    approved_at: null

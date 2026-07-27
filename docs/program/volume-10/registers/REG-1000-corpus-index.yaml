@@ -299,3 +299,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-10/V10-32-integrated-master-plan-traceability-and-volume-10-closure-assessment.md
     gate: V10-G3
+  - id: V10-E
+    title: Package 3 Closure Record, Gate V10-G3 Disposition, and Volume 10 Closure
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-E-volume-10-closure-record.md
+    gate: V10-G3
