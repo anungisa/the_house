@@ -1,0 +1,18 @@
+{
+  "visual_systems": [
+    {
+      "id": "VIS-V7-001",
+      "title": "Visual-system doctrine"
+    },
+    {
+      "id": "VIS-V7-002",
+      "title": "Brand, typography, colour, spacing, and layout system"
+    }
+  ],
+  "spec_classes": [
+    "visual-language",
+    "forms-evidence",
+    "status-messaging",
+    "responsive-interruption"
+  ]
+}

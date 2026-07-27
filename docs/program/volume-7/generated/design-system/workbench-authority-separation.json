@@ -1,0 +1,31 @@
+{
+  "workbench_designs": [
+    {
+      "id": "COMP-V7-017",
+      "title": "Reviewer workbench design",
+      "authority_posture": "JURISDICTION_REVIEWER"
+    },
+    {
+      "id": "COMP-V7-018",
+      "title": "Finance workbench design",
+      "authority_posture": "FINANCE_OPERATOR"
+    },
+    {
+      "id": "COMP-V7-019",
+      "title": "Support workbench design",
+      "authority_posture": "SUPPORT_OPERATOR"
+    },
+    {
+      "id": "COMP-V7-020",
+      "title": "Privacy and records workbench design",
+      "authority_posture": "PRIVACY_OR_RECORDS_FUNCTION"
+    },
+    {
+      "id": "COMP-V7-021",
+      "title": "Administrative-correction workbench design",
+      "authority_posture": "SERVICE_ADMINISTRATOR"
+    }
+  ],
+  "workbench_postures_distinct": true,
+  "missing_workbench_postures": []
+}

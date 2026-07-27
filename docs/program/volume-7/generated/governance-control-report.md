@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T07:58:13.600Z
+Generated: 2026-07-27T08:20:44.055Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T07:58:13.600Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 26 |
+| RATIFIED | 38 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 26 |
-| REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 97 |
-| REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 108 |
-| REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 21 |
-| REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 25 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 30 |
+| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 38 |
+| REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 122 |
+| REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 118 |
+| REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 26 |
+| REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 29 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 44 |
 
 ## Findings by control
 
@@ -72,6 +72,18 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Gate V7-G2 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Design-system coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Gate V7-G3 readiness
 
 Errors: 0 | Warnings: 0 | Info: 0
 
@@ -113,3 +125,19 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V7-027 (GATE-V7-G2): Accessibility applies to every state and recovery path
 - APP-V7-027 (GATE-V7-G2): Bilingual meaning is specified as equivalent and not literal
 - APP-V7-027 (GATE-V7-G2): Package 2 receives line-level review and a separate freeze commit
+- APP-V7-043 (GATE-V7-G3): Corrected Volume 6, frozen Package 1, and corrected frozen Package 2 provenance are inherited
+- APP-V7-043 (GATE-V7-G3): No unresolved backlog item points to a completed gate
+- APP-V7-043 (GATE-V7-G3): No record authorizes implementation or final production design
+- APP-V7-043 (GATE-V7-G3): Every controlled record carries a non-implementation status
+- APP-V7-043 (GATE-V7-G3): The visual language is documentary and names design specifications without production tokens
+- APP-V7-043 (GATE-V7-G3): Every component names anatomy, variants, states, and permitted and prohibited uses
+- APP-V7-043 (GATE-V7-G3): The component taxonomy covers the required component families
+- APP-V7-043 (GATE-V7-G3): Every visual and status state retains a governed semantic source
+- APP-V7-043 (GATE-V7-G3): Forms, validation, evidence, upload, and document design are specified
+- APP-V7-043 (GATE-V7-G3): Status, task, notification, timeline, and messaging design are specified
+- APP-V7-043 (GATE-V7-G3): Workbench design preserves reviewer, finance, support, privacy, and administrative-correction separation
+- APP-V7-043 (GATE-V7-G3): Responsive, adaptive, low-bandwidth, and interrupted-service design are specified
+- APP-V7-043 (GATE-V7-G3): Content terms trace English and French to one canonical governed concept
+- APP-V7-043 (GATE-V7-G3): Complete-state coverage includes every required state
+- APP-V7-043 (GATE-V7-G3): Reference prototypes cover the full affiliation vertical as reference candidates that are not approved
+- APP-V7-043 (GATE-V7-G3): Package 3 receives line-level review and a separate freeze commit

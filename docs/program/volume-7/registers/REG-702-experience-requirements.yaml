@@ -1547,3 +1547,149 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
     chapter_ref: V7-19
+  - id: DSPEC-V7-001
+    kind: DESIGN_SPEC
+    title: Visual-language design specification
+    statement: The documentary specification of the brand, typography, colour, spacing, and layout language by role and intent.
+    spec_class: visual-language
+    control_intent: Visual attributes are described by role and intent and never as production tokens, stylesheet, or framework configuration.
+    governed_semantic_source: Package 1 status, action, and content semantics
+    authoritative_source: House
+    accessibility_requirement: Meaning is preserved without reliance on colour alone.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-22
+  - id: DSPEC-V7-002
+    kind: DESIGN_SPEC
+    title: Forms, evidence, upload, and document design specification
+    statement: The documentary specification of form, validation, evidence, upload, and document design.
+    spec_class: forms-evidence
+    control_intent: Completion never implies approval or activation, and evidence preserves provenance and history.
+    governed_semantic_source: Package 2 requirements and evidence model
+    authoritative_source: House
+    accessibility_requirement: Forms and evidence interactions are operable by keyboard with instructions and recovery.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-24
+  - id: DSPEC-V7-003
+    kind: DESIGN_SPEC
+    title: Status, task, notification, timeline, and messaging design specification
+    statement: The documentary specification of status, task, notification, timeline, and messaging design.
+    spec_class: status-messaging
+    control_intent: Every visual state retains its governed semantic source and never overstates authority or outcome.
+    governed_semantic_source: Package 2 status-message and notification model
+    authoritative_source: House
+    accessibility_requirement: Status and message changes are announced to assistive technology.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-25
+  - id: DSPEC-V7-004
+    kind: DESIGN_SPEC
+    title: Responsive, adaptive, low-bandwidth, and interrupted-service design specification
+    statement: The documentary specification of responsive, adaptive, low-bandwidth, and interrupted-service design.
+    spec_class: responsive-interruption
+    control_intent: Governed obligations, status meaning, and recovery paths survive across all conditions and are never hidden.
+    governed_semantic_source: Package 1 error, interruption, and recovery experience
+    authoritative_source: House
+    accessibility_requirement: Meaning and recovery remain operable under degraded and low-bandwidth conditions.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-27
+  - id: CSTATE-V7-001
+    kind: COMPONENT_STATE
+    title: Interactive component complete-state specification
+    statement: The documentary complete-state specification for interactive components.
+    governed_semantic_source: Package 2 screen-state matrix
+    required_states:
+      - default
+      - hover
+      - focus
+      - keyboard
+      - loading
+      - empty
+      - success
+      - error
+    accessibility_requirement: Every state is operable by keyboard with managed focus and status announcement.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-29
+  - id: CSTATE-V7-002
+    kind: COMPONENT_STATE
+    title: Exception and consequential complete-state specification
+    statement: The documentary complete-state specification for exception and consequential conditions.
+    governed_semantic_source: Package 1 error, exception, and recovery experience
+    required_states:
+      - denied
+      - conflict
+      - stale
+      - degraded
+      - interrupted
+      - recovery
+      - confirmation
+      - destructive
+    accessibility_requirement: Denied, conflict, and recovery states explain the governed reason and route to a legitimate path.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-29
+  - id: TERM-V7-001
+    kind: CONTENT_TERM
+    title: Received term
+    statement: The documentary content term for received status in both official languages.
+    canonical_concept: Affiliation submission received but not yet reviewed or decided
+    user_facing_meaning: The submission has been received and is awaiting review.
+    english_semantic_requirement: English expresses receipt without implying approval or decision.
+    french_semantic_requirement: French expresses the equivalent institutional meaning of receipt without implying approval.
+    prohibited_inference: Receipt is not approval.
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V7-28
+  - id: TERM-V7-002
+    kind: CONTENT_TERM
+    title: Returned-for-information term
+    statement: The documentary content term for return-for-information in both official languages.
+    canonical_concept: Affiliation returned to the applicant for additional information
+    user_facing_meaning: More information is required before review can continue.
+    english_semantic_requirement: English expresses a request for information without implying refusal.
+    french_semantic_requirement: French expresses the equivalent institutional meaning without implying refusal.
+    prohibited_inference: Return for information is not a refusal.
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V7-28
+  - id: TERM-V7-003
+    kind: CONTENT_TERM
+    title: Approved term
+    statement: The documentary content term for an approved decision in both official languages.
+    canonical_concept: Affiliation decision recorded as approved
+    user_facing_meaning: The affiliation has been approved by governed decision.
+    english_semantic_requirement: English expresses an approval decision without implying that standing is already active.
+    french_semantic_requirement: French expresses the equivalent institutional meaning of approval without implying activation.
+    prohibited_inference: Approval is not activation.
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V7-28
+  - id: TERM-V7-004
+    kind: CONTENT_TERM
+    title: Active term
+    statement: The documentary content term for active standing in both official languages.
+    canonical_concept: Affiliation standing recorded as active
+    user_facing_meaning: The affiliation standing is active.
+    english_semantic_requirement: English expresses active standing distinct from the approval decision that preceded it.
+    french_semantic_requirement: French expresses the equivalent institutional meaning of active standing.
+    prohibited_inference: Activation is not a new decision; it is the recorded standing following approval and any dependency.
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V7-28

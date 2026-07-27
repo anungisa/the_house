@@ -351,3 +351,153 @@ records:
       corrects: The V7-D provenance amendment recorded the authoring commit 1e7487b as the source snapshot. The Package 2 source baseline is the branch base commit 51b1860, and 1e7487b is the authoring commit. This record supersedes that inaccurate field additively.
       note: Package 2 governance amendment. Corrects the source baseline, clarifies that Gate V7-G2 became fully effective at the freeze commit 7efa075, and records the bounded Package 3 authorization. Volume 7 is not tagged.
     approved_at: null
+  - id: APP-V7-031
+    artifact_id: V7-21
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-032
+    artifact_id: V7-22
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-033
+    artifact_id: V7-23
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-034
+    artifact_id: V7-24
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-035
+    artifact_id: V7-25
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-036
+    artifact_id: V7-26
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-037
+    artifact_id: V7-27
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-038
+    artifact_id: V7-28
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-039
+    artifact_id: V7-29
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-040
+    artifact_id: V7-30
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-041
+    artifact_id: V7-31
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-042
+    artifact_id: V7-E
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: Package 4 authorized for further experience and interaction definition only. Production interface implementation, runtime code, validated usability or conformance claims, validated translation, and procurement or rollout are not authorized.
+    approved_at: null
+  - id: APP-V7-043
+    artifact_id: GATE-V7-G3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: VISUAL_COMPONENT_CONTENT_AND_REFERENCE_PROTOTYPE_DEFINITION_READY
+    conditions:
+      - Corrected Volume 6, frozen Package 1, and corrected frozen Package 2 provenance are inherited
+      - No unresolved backlog item points to a completed gate
+      - No record authorizes implementation or final production design
+      - Every controlled record carries a non-implementation status
+      - The visual language is documentary and names design specifications without production tokens
+      - Every component names anatomy, variants, states, and permitted and prohibited uses
+      - The component taxonomy covers the required component families
+      - Every visual and status state retains a governed semantic source
+      - Forms, validation, evidence, upload, and document design are specified
+      - Status, task, notification, timeline, and messaging design are specified
+      - Workbench design preserves reviewer, finance, support, privacy, and administrative-correction separation
+      - Responsive, adaptive, low-bandwidth, and interrupted-service design are specified
+      - Content terms trace English and French to one canonical governed concept
+      - Complete-state coverage includes every required state
+      - Reference prototypes cover the full affiliation vertical as reference candidates that are not approved
+      - Package 3 receives line-level review and a separate freeze commit
+    approved_at: null
+  - id: APP-V7-044
+    artifact_id: PACKAGE-7-3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Frozen artifacts are superseded, never overwritten. A narrow post-merge provenance amendment is recorded as V7-F. Volume 7 is not tagged after Package 3.
+    frozen: true
+    frozen_artifacts:
+      - id: V7-21
+        version: 1.0.0
+      - id: V7-22
+        version: 1.0.0
+      - id: V7-23
+        version: 1.0.0
+      - id: V7-24
+        version: 1.0.0
+      - id: V7-25
+        version: 1.0.0
+      - id: V7-26
+        version: 1.0.0
+      - id: V7-27
+        version: 1.0.0
+      - id: V7-28
+        version: 1.0.0
+      - id: V7-29
+        version: 1.0.0
+      - id: V7-30
+        version: 1.0.0
+      - id: V7-31
+        version: 1.0.0
+      - id: V7-E
+        version: 1.0.0
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      note: Package 3 freeze is a separate freeze commit after line-level review; the authoring commit, freeze commit, and merge commit identifiers are recorded in the V7-F provenance amendment. Volume 7 is not tagged after Package 3.
+    approved_at: null
