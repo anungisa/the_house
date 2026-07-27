@@ -1,8 +1,10 @@
 {
   "package": "PACKAGE-11-1",
   "classification": {
-    "unknown": "V11_B_PROVENANCE_AMENDMENT_MERGE"
+    "255bfffa060d9217eb8c6d490c7363c720fe10ce": "PRE_MERGE_PROVENANCE_BINDING",
+    "7a853707c44bb3a9cb391d1e6fb64b5b072b3b84": "V11_B_PROVENANCE_AMENDMENT_AUTHORING",
+    "52b2ddae91906ea160c5a9a2d9477ff3e197bbeb": "V11_B_PROVENANCE_AMENDMENT_MERGE"
   },
-  "binding_not_conflated_with_amendment": false,
-  "role_classification": "PENDING"
+  "binding_not_conflated_with_amendment": true,
+  "role_classification": "SATISFIED"
 }

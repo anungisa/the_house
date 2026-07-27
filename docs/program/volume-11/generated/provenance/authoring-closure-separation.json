@@ -1,7 +1,7 @@
 {
   "package": "PACKAGE-11-1",
-  "substantive_authoring": null,
-  "closure_and_freeze": null,
-  "distinct": false,
-  "authoring_closure_separation": "PENDING"
+  "substantive_authoring": "19c4e3c623c65984617ec922ca4d018f3ea54754",
+  "closure_and_freeze": "c55f7d0318189378c0ef7100374758e49cf84835",
+  "distinct": true,
+  "authoring_closure_separation": "SATISFIED"
 }
