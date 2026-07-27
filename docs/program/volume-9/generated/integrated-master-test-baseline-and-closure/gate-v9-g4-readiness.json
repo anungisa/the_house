@@ -2,14 +2,9 @@
   "gate": "V9-G4",
   "disposition_target": "QUALITY_AND_MASTER_TEST_DEFINITION_COMPLETE",
   "total_conditions": 38,
-  "satisfied": 37,
-  "unmet": [
-    {
-      "n": 38,
-      "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 38,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -199,7 +194,7 @@
     {
       "n": 38,
       "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
