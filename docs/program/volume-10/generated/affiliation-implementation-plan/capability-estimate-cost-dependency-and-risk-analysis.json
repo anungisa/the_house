@@ -18,6 +18,18 @@
       "owner": "Engineering Delivery Lead",
       "status": "ENVIRONMENT_QUALIFICATION_PENDING",
       "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "ASM-V10-301",
+      "owner": "Accountable Program Authority",
+      "status": "PLANNING_ONLY",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "ASM-V10-302",
+      "owner": "Accountable Program Authority",
+      "status": "PLANNING_ONLY",
+      "future_blocking_gate": "V11-G1"
     }
   ],
   "risks": [
@@ -38,6 +50,24 @@
       "owner": "Accountable Program Authority",
       "likelihood": "MEDIUM",
       "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "RISK-V10-301",
+      "owner": "Accountable Program Authority",
+      "likelihood": "HIGH occurrence in current state.",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-302",
+      "owner": "Accountable Program Authority",
+      "likelihood": "MEDIUM.",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-303",
+      "owner": "Accountable Program Authority",
+      "likelihood": "MEDIUM.",
+      "future_blocking_gate": "V11-G1"
     }
   ],
   "cost_estimates": [
@@ -54,6 +84,97 @@
       "confidence": "INDICATIVE_ONLY",
       "estimate_status": "PLANNING_ESTIMATE",
       "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-301",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-302",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-303",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-304",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-305",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-306",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-307",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-308",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-309",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-310",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-311",
+      "range": "CAD low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-312",
+      "range": "CAD range as a percentage band (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
+    },
+    {
+      "id": "COST-V10-313",
+      "range": "CAD annual low/expected/high (indicative only, uncommitted)",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
     }
   ],
   "procurement": [
@@ -65,6 +186,36 @@
     },
     {
       "id": "PROC-V10-201",
+      "status": "PLANNING_ONLY",
+      "approval_status": "NOT_APPROVED",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-301",
+      "status": "PLANNING_ONLY",
+      "approval_status": "NOT_APPROVED",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-302",
+      "status": "PLANNING_ONLY",
+      "approval_status": "NOT_APPROVED",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-303",
+      "status": "PLANNING_ONLY",
+      "approval_status": "NOT_APPROVED",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-304",
+      "status": "PLANNING_ONLY",
+      "approval_status": "NOT_APPROVED",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-305",
       "status": "PLANNING_ONLY",
       "approval_status": "NOT_APPROVED",
       "commitment_status": "NOT_COMMITTED"

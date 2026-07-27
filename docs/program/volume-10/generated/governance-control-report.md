@@ -1,6 +1,6 @@
 # Volume 10 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T20:15:58.825Z
+Generated: 2026-07-27T20:55:32.764Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It is not a source of truth, does not confer ratification, and
@@ -14,28 +14,28 @@ Generated: 2026-07-27T20:15:58.825Z
 
 ## Summary
 
-- Total findings: 2
+- Total findings: 3
 - Errors: 0
 - Warnings: 0
-- Info: 2
+- Info: 3
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 27 |
+| RATIFIED | 40 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1000 | Volume 10 Corpus Index | RATIFIED | 1.1.0 | 23 |
-| REG-1001 | Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies | RATIFIED | 1.1.0 | 67 |
-| REG-1002 | Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria | RATIFIED | 1.1.0 | 38 |
-| REG-1003 | Volume 10 Delivery-Planning Decisions | RATIFIED | 1.1.0 | 15 |
-| REG-1004 | Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog | RATIFIED | 1.1.0 | 16 |
-| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.1.0 | 33 |
+| REG-1000 | Volume 10 Corpus Index | RATIFIED | 1.2.0 | 38 |
+| REG-1001 | Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies | RATIFIED | 1.2.0 | 106 |
+| REG-1002 | Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria | RATIFIED | 1.2.0 | 53 |
+| REG-1003 | Volume 10 Delivery-Planning Decisions | RATIFIED | 1.2.0 | 19 |
+| REG-1004 | Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog | RATIFIED | 1.2.0 | 45 |
+| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.2.0 | 49 |
 
 ## Findings by control
 
@@ -55,7 +55,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 Errors: 0 | Warnings: 0 | Info: 1
 
-- INFO FOUNDATION_COVERAGE [REG-1001]: Foundation coverage: 3 work packages, 2 dependencies, 1 environments, 1 release units, 16 backlog items
+- INFO FOUNDATION_COVERAGE [REG-1001]: Foundation coverage: 3 work packages, 2 dependencies, 1 environments, 1 release units, 45 backlog items
 
 ### Affiliation implementation-plan foundation coverage
 
@@ -80,3 +80,15 @@ Errors: 0 | Warnings: 0 | Info: 0
 Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
+
+### Gate V10-G3 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Final-closure coverage
+
+Errors: 0 | Warnings: 0 | Info: 1
+
+- INFO FINAL_CLOSURE_COVERAGE [REG-1001]: Final-closure coverage: 6 master-plan objectives, 11 dependency edges, 9 implementation waves, 12 capability demands, 15 cost estimates, 7 procurement contexts, 10 operational capabilities, 14 House P0 destinations

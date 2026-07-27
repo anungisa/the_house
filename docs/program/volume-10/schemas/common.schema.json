@@ -136,6 +136,29 @@
         "READINESS_CONDITION"
       ]
     },
+    "relationshipKind": {
+      "type": "string",
+      "enum": [
+        "HARD_PREREQUISITE",
+        "SOFT_PREREQUISITE",
+        "PARALLELIZABLE",
+        "EVIDENCE_DEPENDENCY",
+        "POLICY_DEPENDENCY",
+        "PROVIDER_DEPENDENCY",
+        "ENVIRONMENT_DEPENDENCY",
+        "MIGRATION_DEPENDENCY",
+        "OPERATIONAL_DEPENDENCY",
+        "RELEASE_DEPENDENCY"
+      ]
+    },
+    "criticalPathStatus": {
+      "type": "string",
+      "enum": ["ON_CRITICAL_PATH", "NEAR_CRITICAL_PATH", "OFF_CRITICAL_PATH"]
+    },
+    "scheduleConfidenceStatus": {
+      "type": "string",
+      "enum": ["INDICATIVE_ONLY", "LOW", "MEDIUM", "HIGH", "UNCOMMITTED"]
+    },
     "environmentClass": {
       "type": "string",
       "enum": [

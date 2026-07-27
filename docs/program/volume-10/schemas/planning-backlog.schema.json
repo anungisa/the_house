@@ -37,6 +37,7 @@
           "source": { "type": "string" },
           "affected_objective": { "type": "string" },
           "affected_work_packages": { "type": "array", "items": { "type": "string" } },
+          "affected_wave": { "type": "string" },
           "owner": { "type": "string" },
           "current_status": { "type": "string" },
           "impact_if_unresolved": { "type": "string" },

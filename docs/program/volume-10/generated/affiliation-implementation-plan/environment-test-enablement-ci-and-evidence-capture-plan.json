@@ -48,6 +48,30 @@
       "provisioning_gate": "V11-G1",
       "execution_authority_status": "NOT_AUTHORIZED",
       "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-301",
+      "environment_class": "INTEGRATION_TEST",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-302",
+      "environment_class": "PRE_PRODUCTION",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-303",
+      "environment_class": "RECOVERY_EXERCISE",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
     }
   ],
   "test_enablement_requirements": [
@@ -79,6 +103,34 @@
         "COMPONENT_TEST",
         "INTEGRATION_TEST",
         "SYSTEM_TEST"
+      ],
+      "traces_to": [
+        "central-registration-volume-9-v1.0.0"
+      ]
+    },
+    {
+      "id": "TENREQ-V10-301",
+      "permitted_test_levels": [
+        "COMPONENT",
+        "INTEGRATION"
+      ],
+      "traces_to": [
+        "central-registration-volume-9-v1.0.0"
+      ]
+    },
+    {
+      "id": "TENREQ-V10-302",
+      "permitted_test_levels": [
+        "SYSTEM"
+      ],
+      "traces_to": [
+        "central-registration-volume-9-v1.0.0"
+      ]
+    },
+    {
+      "id": "TENREQ-V10-303",
+      "permitted_test_levels": [
+        "SYSTEM"
       ],
       "traces_to": [
         "central-registration-volume-9-v1.0.0"

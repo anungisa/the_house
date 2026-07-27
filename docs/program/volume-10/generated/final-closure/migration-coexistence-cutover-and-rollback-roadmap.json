@@ -1,0 +1,57 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus (Packages 1-3). Confers no ratification and authorizes no implementation, expenditure, procurement, release, or deployment. Documentary and implementation-neutral.",
+  "generated_from": "REG-1002",
+  "migration_requirements": [
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MIGREQ-V10-201",
+      "kind": "MIGRATION_READINESS_REQUIREMENT",
+      "title": "Source-provenance and quarantine migration readiness requirement",
+      "statement": "Documentary migration-readiness requirement for source-provenance and quarantine migration readiness requirement. A migration executed is not a business acceptance and is not a source retirement; no migration is performed.",
+      "migration_requirement_basis": "Derived from Volume 9 migration and coexistence obligations and the House P0 findings.",
+      "rehearsal_requirement": "Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.",
+      "reconciliation_requirement": "Requires reconciliation evidence between source and House records.",
+      "rollback_dependency": "Requires a rehearsed rollback path; rollback remains a planning concept only.",
+      "chapter_ref": "V10-15",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MIGREQ-V10-202",
+      "kind": "MIGRATION_READINESS_REQUIREMENT",
+      "title": "Reconciliation and coexistence migration readiness requirement",
+      "statement": "Documentary migration-readiness requirement for reconciliation and coexistence migration readiness requirement. A migration executed is not a business acceptance and is not a source retirement; no migration is performed.",
+      "migration_requirement_basis": "Derived from Volume 9 migration and coexistence obligations and the House P0 findings.",
+      "rehearsal_requirement": "Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.",
+      "reconciliation_requirement": "Requires reconciliation evidence between source and House records.",
+      "rollback_dependency": "Requires a rehearsed rollback path; rollback remains a planning concept only.",
+      "chapter_ref": "V10-15",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MIGREQ-V10-203",
+      "kind": "MIGRATION_READINESS_REQUIREMENT",
+      "title": "Cutover and rollback migration readiness requirement",
+      "statement": "Documentary migration-readiness requirement for cutover and rollback migration readiness requirement. A migration executed is not a business acceptance and is not a source retirement; no migration is performed.",
+      "migration_requirement_basis": "Derived from Volume 9 migration and coexistence obligations and the House P0 findings.",
+      "rehearsal_requirement": "Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.",
+      "reconciliation_requirement": "Requires reconciliation evidence between source and House records.",
+      "rollback_dependency": "Requires a rehearsed rollback path; rollback remains a planning concept only.",
+      "chapter_ref": "V10-15",
+      "future_gate": "V11-G1"
+    }
+  ]
+}

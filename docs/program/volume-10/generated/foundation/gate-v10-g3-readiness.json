@@ -1,0 +1,210 @@
+{
+  "gate": "V10-G3",
+  "disposition_target": "MASTER_DEVELOPMENT_PLAN_AND_RELEASE_ROADMAP_DEFINITION_COMPLETE",
+  "total_conditions": 40,
+  "satisfied": 40,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1 and Package 2 lineages and freezes are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Packages 1 and 2 remain frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "REG-1000 indexes all controlled chapters and amendments, including V10-D and V10-D-1",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "One integrated master-development-plan baseline exists",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Club affiliation remains the first implementation vertical",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "House authority remains distinct from Button interaction",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Every material inherited obligation maps to a work package or governed disposition",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Every work package has deliverables, readiness, completion, evidence, and authorization gates",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "A complete dependency graph exists",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Critical-path items are evidence-derived and explicitly identified",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Prerequisite, parallel, deferred, and blocked work remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Implementation waves have entry and exit conditions",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Release units remain distinct from accepted releases and deployments",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Capability and capacity demand is defined by wave",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Named roles remain distinct from assignments and confirmed availability",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Solo-delivery and specialist-capacity risks remain visible",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Estimates include basis, range, confidence, assumptions, dependencies, currency, and approval status",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Estimates remain distinct from budgets, quotes, expenditures, procurements, and contracts",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Funding scenarios and decision dependencies are represented",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Procurement readiness remains distinct from provider selection and engagement",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Environment and infrastructure enablement roadmaps are defined",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Environment planning remains distinct from provisioning and qualification",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Test-enablement destinations trace to Volume 9",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Test enablement remains distinct from executable tests and execution",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Migration, coexistence, rehearsal, cutover, reconciliation, rollback, acceptance, and retirement remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Operations, support, adoption, training, and transition have Volume 11 destinations",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Security, privacy, records, accessibility, bilingual, financial, data, and audit obligations remain embedded",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "All 14 House P0 findings have implementation, testing, operational-proof, and release-evidence destinations",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Every active unresolved item has an owner, required evidence, decision dependency, and valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "No active unresolved item points to a completed Volume 10 gate",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "Material commitments remain explicit and unapproved unless evidenced",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "The executive brief distinguishes requested planning decisions from prohibited implementation or release approvals",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "Deterministic Volume 10 closure analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "No runtime code, executable tests, environments, datasets, credentials, secrets, migrations, integrations, or infrastructure is created",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "No provider engagement, procurement, expenditure, hiring, staff assignment, or consultant commitment is authorized",
+      "satisfied": true
+    },
+    {
+      "n": 36,
+      "title": "No test execution, migration execution, pilot, rollout, deployment, release, or launch is authorized",
+      "satisfied": true
+    },
+    {
+      "n": 37,
+      "title": "No estimate, target date, capacity state, readiness state, or release state is represented as approved without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 38,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 39,
+      "title": "Package 3 and the complete Volume 10 corpus receive explicit freeze approvals",
+      "satisfied": true
+    },
+    {
+      "n": 40,
+      "title": "Genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation is preserved",
+      "satisfied": true
+    }
+  ]
+}

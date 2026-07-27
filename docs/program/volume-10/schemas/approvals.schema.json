@@ -18,7 +18,7 @@
         "required": ["id", "artifact_id", "approver_role", "approval_state", "evidence_label", "authorizes_implementation"],
         "properties": {
           "id": { "type": "string", "pattern": "^APP-V10-[0-9]{3}$" },
-          "artifact_id": { "type": "string", "pattern": "^(V10-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?|GATE-V10-G[0-9]|PACKAGE-10-[0-9])$" },
+          "artifact_id": { "type": "string", "pattern": "^(V10-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?|GATE-V10-G[0-9]|PACKAGE-10-[0-9]|VOLUME-10)$" },
           "approver_role": { "type": "string" },
           "approval_state": { "type": "string", "enum": ["ratified", "pending", "withdrawn"] },
           "evidence_label": { "$ref": "common.schema.json#/definitions/evidenceLabel" },

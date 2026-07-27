@@ -29,7 +29,7 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(MILE|ENV|REL|READY|EVID|ACCEPT|IMILE|ENVREQ|TENREQ|MIGREQ|RC|RB|OHREQ|IEVID|OEVID)-V10-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(MILE|ENV|REL|READY|EVID|ACCEPT|IMILE|ENVREQ|TENREQ|MIGREQ|RC|RB|OHREQ|IEVID|OEVID|WAVE)-V10-[0-9]{3}$" },
           "kind": {
             "type": "string",
             "enum": [
@@ -47,7 +47,8 @@
               "ROLLBACK_REQUIREMENT",
               "OPERATIONAL_HANDOFF_REQUIREMENT",
               "IMPLEMENTATION_EVIDENCE_REQUIREMENT",
-              "OPERATIONAL_EVIDENCE_REQUIREMENT"
+              "OPERATIONAL_EVIDENCE_REQUIREMENT",
+              "IMPLEMENTATION_WAVE"
             ]
           },
           "title": { "type": "string" },
@@ -105,6 +106,13 @@
           "database_behaviour_evidence": { "type": "string" },
           "implementation_evidence_basis": { "type": "string" },
           "operational_evidence_basis": { "type": "string" },
+          "wave_sequence": { "type": "string" },
+          "entry_conditions": { "type": "string" },
+          "exit_conditions": { "type": "string" },
+          "required_environments": { "type": "array", "items": { "type": "string" } },
+          "required_implementation_evidence": { "type": "string" },
+          "migration_evidence": { "type": "string" },
+          "authorization_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
           "traces_to": { "type": "array", "items": { "type": "string" } },
           "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
           "authorizes_implementation": { "const": false },
@@ -202,6 +210,28 @@
                 "rehearsal_requirement",
                 "reconciliation_requirement",
                 "rollback_dependency"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "IMPLEMENTATION_WAVE" } } },
+            "then": {
+              "required": [
+                "wave_sequence",
+                "contained_work_packages",
+                "entry_conditions",
+                "exit_conditions",
+                "required_environments",
+                "required_implementation_evidence",
+                "required_test_evidence",
+                "security_privacy_evidence",
+                "accessibility_bilingual_evidence",
+                "migration_evidence",
+                "operational_evidence",
+                "known_limitations",
+                "rollback_dependency",
+                "acceptance_authority",
+                "authorization_gate"
               ]
             }
           }

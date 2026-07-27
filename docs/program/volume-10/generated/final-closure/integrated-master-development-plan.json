@@ -1,0 +1,364 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus (Packages 1-3). Confers no ratification and authorizes no implementation, expenditure, procurement, release, or deployment. Documentary and implementation-neutral.",
+  "generated_from": "REG-1001",
+  "objectives": [
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MDP-V10-301",
+      "kind": "MASTER_PLAN_OBJECTIVE",
+      "title": "Organization, representative authority, and tenancy baseline",
+      "statement": "Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for organization, representative authority, and tenancy baseline. Documentary plan only; authorizes no implementation, provisioning, procurement, staffing, test execution, release, or deployment.",
+      "objective": "Consolidate the organization, representative-authority, jurisdiction, and tenancy planning baseline for the club-affiliation vertical.",
+      "institutional_outcome": "Governed, tenant-aware institutional identity is the precondition for every affiliation determination.",
+      "source_requirements": [
+        "Volume 1 governance kernel",
+        "Volume 2 tenancy and identity",
+        "Volume 5 organization model"
+      ],
+      "affected_capabilities": [
+        "DOMAIN_OWNERSHIP",
+        "APPLICATION_ENGINEERING",
+        "SECURITY"
+      ],
+      "workstreams": [
+        "AWS-V10-201"
+      ],
+      "work_packages": [
+        "IWP-V10-201",
+        "IWP-V10-202"
+      ],
+      "deliverables": [
+        "V10-16"
+      ],
+      "dependencies": [
+        "EDGE-V10-301",
+        "EDGE-V10-302"
+      ],
+      "required_capabilities": [
+        "CAPD-V10-303",
+        "CAPD-V10-304"
+      ],
+      "environment_dependencies": [
+        "ENVREQ-V10-201"
+      ],
+      "test_enablement_dependencies": [
+        "TENREQ-V10-201"
+      ],
+      "migration_dependencies": [
+        "MIGREQ-V10-201"
+      ],
+      "operational_dependencies": [
+        "OHREQ-V10-201"
+      ],
+      "evidence_obligations": "Tenant-isolation, authority-scope, and audit evidence are required before any implementation authorization.",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "implementation_authorization_gate": "V11-G1",
+      "release_gate": "V11-G2",
+      "definition_of_ready": "Ready when the inherited requirement, architecture, contract, and test obligations are traced and the work packages, dependencies, and evidence obligations are documented. Readiness is documentary and confers no implementation authorization.",
+      "definition_of_done": "Done when the objective is fully traced to work packages, sequencing, capacity, estimate, environment, migration, and operational-handoff destinations with a bound future authorization gate. Documentary completeness is distinct from implementation completeness.",
+      "chapter_ref": "V10-21",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MDP-V10-302",
+      "kind": "MASTER_PLAN_OBJECTIVE",
+      "title": "Affiliation lifecycle from draft to activation, standing, and expiry",
+      "statement": "Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for affiliation lifecycle from draft to activation, standing, and expiry. Documentary plan only; authorizes no implementation, provisioning, procurement, staffing, test execution, release, or deployment.",
+      "objective": "Consolidate the full club-affiliation lifecycle planning baseline: requirement, evidence, completeness, submission, review, return, resubmission, decision, reconciliation, exactly-once activation, standing, and expiry.",
+      "institutional_outcome": "A governed, evidence-bound affiliation lifecycle is the institutional system of record for club standing.",
+      "source_requirements": [
+        "Volume 3 affiliation requirements",
+        "Volume 9 affiliation test obligations"
+      ],
+      "affected_capabilities": [
+        "DOMAIN_OWNERSHIP",
+        "APPLICATION_ENGINEERING",
+        "QUALITY_ENGINEERING"
+      ],
+      "workstreams": [
+        "AWS-V10-202"
+      ],
+      "work_packages": [
+        "IWP-V10-203",
+        "IWP-V10-204"
+      ],
+      "deliverables": [
+        "V10-11",
+        "V10-12"
+      ],
+      "dependencies": [
+        "EDGE-V10-302",
+        "EDGE-V10-305"
+      ],
+      "required_capabilities": [
+        "CAPD-V10-302",
+        "CAPD-V10-308"
+      ],
+      "environment_dependencies": [
+        "ENVREQ-V10-202"
+      ],
+      "test_enablement_dependencies": [
+        "TENREQ-V10-202"
+      ],
+      "migration_dependencies": [
+        "MIGREQ-V10-202"
+      ],
+      "operational_dependencies": [
+        "OHREQ-V10-202"
+      ],
+      "evidence_obligations": "Exactly-once activation is a business invariant and is not a transport claim; activation, standing, and expiry evidence are required.",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "implementation_authorization_gate": "V11-G1",
+      "release_gate": "V11-G2",
+      "definition_of_ready": "Ready when the inherited requirement, architecture, contract, and test obligations are traced and the work packages, dependencies, and evidence obligations are documented. Readiness is documentary and confers no implementation authorization.",
+      "definition_of_done": "Done when the objective is fully traced to work packages, sequencing, capacity, estimate, environment, migration, and operational-handoff destinations with a bound future authorization gate. Documentary completeness is distinct from implementation completeness.",
+      "chapter_ref": "V10-21",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MDP-V10-303",
+      "kind": "MASTER_PLAN_OBJECTIVE",
+      "title": "House domain, persistence, outbox, and integration platform",
+      "statement": "Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for house domain, persistence, outbox, and integration platform. Documentary plan only; authorizes no implementation, provisioning, procurement, staffing, test execution, release, or deployment.",
+      "objective": "Consolidate the House domain, application, persistence, outbox, projection, integration, and infrastructure planning baseline.",
+      "institutional_outcome": "A governed House platform enforces institutional invariants and durable, idempotent integration.",
+      "source_requirements": [
+        "Volume 4 architecture",
+        "Volume 5 data model",
+        "Volume 8 contracts"
+      ],
+      "affected_capabilities": [
+        "ARCHITECTURE",
+        "APPLICATION_ENGINEERING",
+        "DATA_ENGINEERING",
+        "INFRASTRUCTURE_AND_CLOUD"
+      ],
+      "workstreams": [
+        "AWS-V10-203"
+      ],
+      "work_packages": [
+        "IWP-V10-205"
+      ],
+      "deliverables": [
+        "V10-13"
+      ],
+      "dependencies": [
+        "EDGE-V10-308"
+      ],
+      "required_capabilities": [
+        "CAPD-V10-303",
+        "CAPD-V10-305"
+      ],
+      "environment_dependencies": [
+        "ENVREQ-V10-203"
+      ],
+      "test_enablement_dependencies": [
+        "TENREQ-V10-203"
+      ],
+      "migration_dependencies": [
+        "MIGREQ-V10-203"
+      ],
+      "operational_dependencies": [
+        "OHREQ-V10-201"
+      ],
+      "evidence_obligations": "Database-integrity and PostgreSQL-behaviour evidence destinations are required; a schema created is not an invariant enforced.",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "implementation_authorization_gate": "V11-G1",
+      "release_gate": "V11-G2",
+      "definition_of_ready": "Ready when the inherited requirement, architecture, contract, and test obligations are traced and the work packages, dependencies, and evidence obligations are documented. Readiness is documentary and confers no implementation authorization.",
+      "definition_of_done": "Done when the objective is fully traced to work packages, sequencing, capacity, estimate, environment, migration, and operational-handoff destinations with a bound future authorization gate. Documentary completeness is distinct from implementation completeness.",
+      "chapter_ref": "V10-21",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MDP-V10-304",
+      "kind": "MASTER_PLAN_OBJECTIVE",
+      "title": "Button and staff-workbench experience delivery",
+      "statement": "Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for button and staff-workbench experience delivery. Documentary plan only; authorizes no implementation, provisioning, procurement, staffing, test execution, release, or deployment.",
+      "objective": "Consolidate the Button and staff-workbench experience-delivery planning baseline.",
+      "institutional_outcome": "Experience layers request governed House actions without owning institutional determinations.",
+      "source_requirements": [
+        "Volume 7 experience model"
+      ],
+      "affected_capabilities": [
+        "APPLICATION_ENGINEERING",
+        "ACCESSIBILITY",
+        "BILINGUAL_CONTENT"
+      ],
+      "workstreams": [
+        "AWS-V10-204"
+      ],
+      "work_packages": [
+        "IWP-V10-206"
+      ],
+      "deliverables": [
+        "V10-14"
+      ],
+      "dependencies": [
+        "EDGE-V10-304"
+      ],
+      "required_capabilities": [
+        "CAPD-V10-304",
+        "CAPD-V10-311"
+      ],
+      "environment_dependencies": [
+        "ENVREQ-V10-202"
+      ],
+      "test_enablement_dependencies": [
+        "TENREQ-V10-202"
+      ],
+      "migration_dependencies": [],
+      "operational_dependencies": [
+        "OHREQ-V10-202"
+      ],
+      "evidence_obligations": "Accessibility and bilingual evidence are required; a Button interaction is not an independent institutional mutation.",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "implementation_authorization_gate": "V11-G1",
+      "release_gate": "V11-G2",
+      "definition_of_ready": "Ready when the inherited requirement, architecture, contract, and test obligations are traced and the work packages, dependencies, and evidence obligations are documented. Readiness is documentary and confers no implementation authorization.",
+      "definition_of_done": "Done when the objective is fully traced to work packages, sequencing, capacity, estimate, environment, migration, and operational-handoff destinations with a bound future authorization gate. Documentary completeness is distinct from implementation completeness.",
+      "chapter_ref": "V10-21",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MDP-V10-305",
+      "kind": "MASTER_PLAN_OBJECTIVE",
+      "title": "Data migration, coexistence, reconciliation, and cutover",
+      "statement": "Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for data migration, coexistence, reconciliation, and cutover. Documentary plan only; authorizes no implementation, provisioning, procurement, staffing, test execution, release, or deployment.",
+      "objective": "Consolidate the migration, coexistence, reconciliation, rollback, and cutover planning baseline for legacy affiliation data.",
+      "institutional_outcome": "Governed migration preserves provenance and reconciliation while protecting the institutional record.",
+      "source_requirements": [
+        "Volume 5 data model",
+        "Volume 6 migration obligations"
+      ],
+      "affected_capabilities": [
+        "MIGRATION",
+        "DATA_ENGINEERING",
+        "PRIVACY_AND_RECORDS"
+      ],
+      "workstreams": [
+        "AWS-V10-205"
+      ],
+      "work_packages": [
+        "IWP-V10-205"
+      ],
+      "deliverables": [
+        "V10-15"
+      ],
+      "dependencies": [
+        "EDGE-V10-309"
+      ],
+      "required_capabilities": [
+        "CAPD-V10-310",
+        "CAPD-V10-305"
+      ],
+      "environment_dependencies": [
+        "ENVREQ-V10-203"
+      ],
+      "test_enablement_dependencies": [
+        "TENREQ-V10-203"
+      ],
+      "migration_dependencies": [
+        "MIGREQ-V10-201",
+        "MIGREQ-V10-202",
+        "MIGREQ-V10-203"
+      ],
+      "operational_dependencies": [
+        "OHREQ-V10-201"
+      ],
+      "evidence_obligations": "A mapping completed is not an identity resolved and a migration executed is not a business acceptance and is not a source retirement.",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "implementation_authorization_gate": "V11-G1",
+      "release_gate": "V11-G2",
+      "definition_of_ready": "Ready when the inherited requirement, architecture, contract, and test obligations are traced and the work packages, dependencies, and evidence obligations are documented. Readiness is documentary and confers no implementation authorization.",
+      "definition_of_done": "Done when the objective is fully traced to work packages, sequencing, capacity, estimate, environment, migration, and operational-handoff destinations with a bound future authorization gate. Documentary completeness is distinct from implementation completeness.",
+      "chapter_ref": "V10-21",
+      "future_gate": "V11-G1"
+    },
+    {
+      "validation_status": "DEFINED",
+      "authorizes_implementation": false,
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN",
+      "planning_status": "DOCUMENTARY_PLAN_ONLY",
+      "commitment_status": "NOT_COMMITTED",
+      "id": "MDP-V10-306",
+      "kind": "MASTER_PLAN_OBJECTIVE",
+      "title": "Environment, test-enablement, assurance, and release-candidate formation",
+      "statement": "Integrated master-development-plan objective consolidating the frozen Volumes 0-10 baseline for environment, test-enablement, assurance, and release-candidate formation. Documentary plan only; authorizes no implementation, provisioning, procurement, staffing, test execution, release, or deployment.",
+      "objective": "Consolidate the environment, test-enablement, CI/CD, assurance, and release-candidate-formation planning baseline.",
+      "institutional_outcome": "Qualified environments and evidence-bound assurance precede any release-candidate acceptance.",
+      "source_requirements": [
+        "Volume 9 quality and master test strategy"
+      ],
+      "affected_capabilities": [
+        "QUALITY_ENGINEERING",
+        "INFRASTRUCTURE_AND_CLOUD",
+        "INDEPENDENT_ASSURANCE"
+      ],
+      "workstreams": [
+        "AWS-V10-206"
+      ],
+      "work_packages": [
+        "IWP-V10-206"
+      ],
+      "deliverables": [
+        "V10-18",
+        "V10-20"
+      ],
+      "dependencies": [
+        "EDGE-V10-308",
+        "EDGE-V10-311"
+      ],
+      "required_capabilities": [
+        "CAPD-V10-308",
+        "CAPD-V10-309"
+      ],
+      "environment_dependencies": [
+        "ENVREQ-V10-201",
+        "ENVREQ-V10-202",
+        "ENVREQ-V10-203"
+      ],
+      "test_enablement_dependencies": [
+        "TENREQ-V10-201",
+        "TENREQ-V10-202",
+        "TENREQ-V10-203"
+      ],
+      "migration_dependencies": [],
+      "operational_dependencies": [
+        "OHREQ-V10-202"
+      ],
+      "evidence_obligations": "An environment defined is not provisioned and is not qualified; a test enablement is not an executable test and is not a test execution.",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "implementation_authorization_gate": "V11-G1",
+      "release_gate": "V11-G2",
+      "definition_of_ready": "Ready when the inherited requirement, architecture, contract, and test obligations are traced and the work packages, dependencies, and evidence obligations are documented. Readiness is documentary and confers no implementation authorization.",
+      "definition_of_done": "Done when the objective is fully traced to work packages, sequencing, capacity, estimate, environment, migration, and operational-handoff destinations with a bound future authorization gate. Documentary completeness is distinct from implementation completeness.",
+      "chapter_ref": "V10-21",
+      "future_gate": "V11-G1"
+    }
+  ]
+}
