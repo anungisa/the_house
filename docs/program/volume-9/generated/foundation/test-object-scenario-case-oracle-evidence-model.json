@@ -3,7 +3,7 @@
   "test_requirements": 4,
   "test_scenarios": 3,
   "test_cases": 3,
-  "test_oracles": 3,
+  "test_oracles": 7,
   "evidence_requirements": 3,
   "result_models": 2,
   "cases_without_oracle": [],

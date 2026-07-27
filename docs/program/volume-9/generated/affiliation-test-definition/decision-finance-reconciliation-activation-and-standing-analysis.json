@@ -1,0 +1,5 @@
+{
+  "functional_requirements": 4,
+  "duplicate_scenarios": 1,
+  "note": "Recommendation, decision, payment acknowledgement, reconciliation, approval, activation, active standing, and expiry are held as distinct governed distinctions."
+}

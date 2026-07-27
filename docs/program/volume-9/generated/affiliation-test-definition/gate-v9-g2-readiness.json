@@ -1,0 +1,185 @@
+{
+  "gate": "V9-G2",
+  "disposition_target": "AFFILIATION_FUNCTIONAL_CONTRACT_WORKFLOW_DATA_AND_MIGRATION_TEST_DEFINITION_READY",
+  "total_conditions": 34,
+  "satisfied": 33,
+  "unmet": [
+    {
+      "n": 34,
+      "title": "Genuine authoring, closure-and-freeze, and pre-merge-binding separation is preserved with no unresolved required commit binding"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1 provenance and the V9-B / V9-B-1 amendments are inherited unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Package 1 quality and master-test foundation remains frozen and undisturbed",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Every affiliation journey stage is decomposed into governed test obligations",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Every material Volume 7 experience action maps to a test disposition",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every material Volume 8 command, query, resource, event, webhook, provider-exchange, file, batch, and migration contract maps to a test obligation",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every affiliation test obligation traces to a governed institutional invariant and every oracle to governed authority",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Account, membership, representative-authority, delegation, assignment, finance, and support distinctions carry negative tests",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Organization and jurisdiction isolation carry denial tests",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Missing mandatory authority context fails closed",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Requirement and evidence versioning carries positive, negative, stale, and conflict tests",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Restricted-evidence access and disclosure carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Completeness is treated as derived and carries recalculation tests",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Submission eligibility, receipt, approval, and activation are held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Submission idempotency, timeout, retry, duplicate, conflict, and unknown-outcome carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Return, correction, and resubmission preserve history",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Reviewer eligibility, jurisdiction, assignment, and sensitivity carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Finance testing preserves decision-authority boundaries",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Decision, reconciliation, activation, standing, and expiry are held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Exactly-once activation is tested as a business invariant, not a transport guarantee",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Query source, scope, sensitivity, staleness, disclosure, degraded, and unavailable behaviour carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Event and outbox atomicity, duplicate, replay, ordering, and consumer idempotency carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Webhook authentication, integrity, replay, idempotency, lifecycle, quarantine, and reconciliation carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Provider and exchange receipt, acceptance, authority, processing, and reconciliation distinctions carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Data-integrity tenant/parent, version, history, uniqueness, and provenance carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Database behavioural testing is held distinct from schema inspection and mock behaviour",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Migration provenance, uncertainty, duplicate candidates, quarantine, coexistence, reconciliation, and business acceptance carry tests",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Positive, negative, denied, conflict, stale, degraded, interrupted, duplicate, replay, and recovery scenarios all exist",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Every scenario names a governed oracle and a required evidence tier",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Every unresolved item names an owner, an evidence expectation, and a valid forward gate",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Deterministic Package 2 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No executable test, fixture, dataset, environment, credential, provider testing, migration execution, or implementation was created",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "No passing, conformance, compatibility, integration, database, migration, provider, operational, readiness, or acceptance result is claimed without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "No record authorizes implementation or test execution",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "Genuine authoring, closure-and-freeze, and pre-merge-binding separation is preserved with no unresolved required commit binding",
+      "satisfied": false
+    }
+  ]
+}

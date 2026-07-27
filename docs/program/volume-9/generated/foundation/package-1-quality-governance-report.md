@@ -1,6 +1,6 @@
 # Volume 9 Package 1 — Quality & Master-Test Governance Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T15:54:13.993Z
+Generated: 2026-07-27T16:24:55.162Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 quality and master-test-governance foundation corpus. It is not a source
@@ -29,16 +29,16 @@ Generated: 2026-07-27T15:54:13.993Z
 | test_requirements | 4 |
 | test_scenarios | 3 |
 | test_cases | 3 |
-| test_oracles | 3 |
+| test_oracles | 7 |
 | environment_classes | 8 |
 | test_data_requirements | 3 |
 | evidence_requirements | 3 |
 | result_models | 2 |
-| decisions | 4 |
-| backlog | 10 |
-| defects | 1 |
+| decisions | 18 |
+| backlog | 19 |
+| defects | 2 |
 | waivers | 1 |
-| readiness | 1 |
+| readiness | 2 |
 | distinct_test_levels_catalogued | 34 |
 
 ## Coverage backlog signals (non-blocking)

@@ -1,0 +1,8 @@
+{
+  "data_quality_requirements": 1,
+  "database_behaviour_requirements": 1,
+  "migration_requirements": 1,
+  "data_integrity_coverage_records": 1,
+  "migration_coverage_records": 1,
+  "note": "Data-integrity, database-behavioural, migration, and coexistence obligations are defined; database behaviour is held distinct from schema inspection and migration execution is held distinct from business acceptance."
+}

@@ -115,3 +115,83 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-B-1-package-1-provenance-role-classification.md
     gate: V9-G1
+  - id: V9-11
+    title: Affiliation Test Domain, Scope, and Coverage Decomposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-11-affiliation-test-domain-scope-and-coverage-decomposition.md
+    gate: V9-G2
+  - id: V9-12
+    title: Actor, Identity, Authority, Organization, Jurisdiction, and Assignment Test Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-12-actor-identity-authority-organization-jurisdiction-and-assignment-test-matrix.md
+    gate: V9-G2
+  - id: V9-13
+    title: Club Identity, Representative Authority, Initiation, Jurisdiction, Season, and Applicability Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-13-club-identity-representative-authority-initiation-jurisdiction-season-and-applicability-test-definition.md
+    gate: V9-G2
+  - id: V9-14
+    title: Requirements, Responses, Attestations, Evidence, and Completeness Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-14-requirements-responses-attestations-evidence-and-completeness-test-definition.md
+    gate: V9-G2
+  - id: V9-15
+    title: Draft, Submission, Idempotency, Concurrency, Confirmation, and Conflict Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-15-draft-submission-idempotency-concurrency-confirmation-and-conflict-test-definition.md
+    gate: V9-G2
+  - id: V9-16
+    title: Review, Return for Information, Correction, and Resubmission Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-16-review-return-for-information-correction-and-resubmission-test-definition.md
+    gate: V9-G2
+  - id: V9-17
+    title: Decision, Finance, Reconciliation, Activation, Standing, and Expiry Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-17-decision-finance-reconciliation-activation-standing-and-expiry-test-definition.md
+    gate: V9-G2
+  - id: V9-18
+    title: Command, Query, Event, Webhook, Provider, and Exchange Contract-Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-18-command-query-event-webhook-provider-and-exchange-contract-test-definition.md
+    gate: V9-G2
+  - id: V9-19
+    title: Data Integrity, Database Behaviour, Migration, Coexistence, and Reconciliation Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-19-data-integrity-database-behaviour-migration-coexistence-and-reconciliation-test-definition.md
+    gate: V9-G2
+  - id: V9-20
+    title: Integrated Affiliation Workflow, Coverage, Oracle, and Validation-Backlog Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-20-integrated-affiliation-workflow-coverage-oracle-and-validation-backlog-assessment.md
+    gate: V9-G2

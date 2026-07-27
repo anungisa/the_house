@@ -11,14 +11,18 @@ import { run as runReferences } from './validate-references.mjs';
 import { run as runFoundation } from './foundation-volume-9.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-9.mjs';
 import { run as runGate } from './gate-g1-volume-9.mjs';
+import { run as runAffiliation } from './affiliation-test-definition-volume-9.mjs';
+import { run as runGate2 } from './gate-g2-volume-9.mjs';
 
 export function collectFindings(ctx) {
   return {
     'Structural, schema & quality/test-governance conformance': runStructural(ctx),
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Quality & master-test-governance-foundation coverage': runFoundation(ctx),
+    'Affiliation test-definition coverage': runAffiliation(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
-    'Gate V9-G1 readiness': runGate(ctx)
+    'Gate V9-G1 readiness': runGate(ctx),
+    'Gate V9-G2 readiness': runGate2(ctx)
   };
 }
 

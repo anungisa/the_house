@@ -117,3 +117,117 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-10
+  - id: ASM-V9-002
+    kind: ASM
+    title: Volume 7-8 affiliation contracts are the authoritative test basis
+    statement: >-
+      Assumes the released Volume 7 experience obligations and Volume 8 affiliation contracts remain
+      the authoritative basis for Package 2 test definition.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-11
+  - id: ASM-V9-003
+    kind: ASM
+    title: Jurisdiction and season reference data will be governed inputs
+    statement: >-
+      Assumes provincial jurisdiction and season reference data will be available as governed inputs
+      when affiliation testing is later authorized.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V11-G1
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-13
+  - id: RISK-V9-002
+    kind: RISK
+    title: Authority distinctions may erode under implementation pressure
+    statement: >-
+      Risk that account, membership, representative authority, delegation, and assignment
+      distinctions are collapsed during later implementation.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: RISK-V9-003
+    kind: RISK
+    title: Provider-integration evidence may be substituted by mocks
+    statement: >-
+      Risk that mocked provider responses are later treated as provider-integration evidence or
+      end-to-end operational proof.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V11-G1
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: DEFECT-V9-002
+    kind: DEFECT
+    title: Migration reconciliation oracle not yet fully traced
+    statement: >-
+      Documentary defect: the migration reconciliation oracle is defined but not yet fully traced to
+      every migration scenario.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: DEFECT
+    retest_requirement: Re-verify migration oracle traceability once all migration scenarios are authored.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: REMED-V9-002
+    kind: REMEDIATION
+    title: Remediate migration reconciliation traceability
+    statement: Remediation obligation to close DEFECT-V9-002.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: REMEDIATION
+    remediation_ref: DEFECT-V9-002
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: RETEST-V9-002
+    kind: RETEST
+    title: Retest migration reconciliation traceability after remediation
+    statement: Retest obligation to re-verify migration oracle traceability after remediation.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: RETEST
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: TEST-V9-002
+    kind: TEST
+    title: Club-affiliation contract, data, and migration test definition
+    statement: >-
+      Bounded test-definition backlog item for Package 2 club-affiliation contract, data-integrity,
+      and migration scope.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    future_test_level: CONTRACT_TEST
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: READY-V9-002
+    kind: READINESS
+    title: Package 3 test-definition input readiness
+    statement: >-
+      Readiness obligation confirming the affiliation test-definition corpus is an accepted input to
+      the bounded Package 3 assurance-dimension test definition.
+    owner: Nolan (Executive Acceptance Authority)
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_DEFINITION_PENDING
+    disposition_rationale: >-
+      The affiliation functional, contract, workflow, data, and migration test definition is accepted
+      as an input to the bounded Package 3 test definition.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-20

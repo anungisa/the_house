@@ -290,4 +290,74 @@ records:
         Not applicable. Documentary effectiveness is distinct from operational
         effectiveness; Package 1 authorizes no operation.
     approved_at: null
+  - id: APP-V9-019
+    artifact_id: V9-11
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-020
+    artifact_id: V9-12
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-021
+    artifact_id: V9-13
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-022
+    artifact_id: V9-14
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-023
+    artifact_id: V9-15
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-024
+    artifact_id: V9-16
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-025
+    artifact_id: V9-17
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-026
+    artifact_id: V9-18
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-027
+    artifact_id: V9-19
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-028
+    artifact_id: V9-20
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
 

@@ -1,0 +1,6 @@
+{
+  "house_p0_coverage_records": 1,
+  "affiliation_test_requirements": 14,
+  "affiliation_test_scenarios": 10,
+  "note": "House P0 affiliation obligations are covered by governed test requirements and scenarios; coverage confers no execution and no result."
+}

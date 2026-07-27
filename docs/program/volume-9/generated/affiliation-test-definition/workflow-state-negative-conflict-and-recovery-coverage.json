@@ -1,0 +1,17 @@
+{
+  "workflow_requirements": 2,
+  "scenarios_by_kind": {
+    "NEGATIVE_TEST_SCENARIO": 1,
+    "DENIAL_TEST_SCENARIO": 2,
+    "CONFLICT_TEST_SCENARIO": 1,
+    "STALE_STATE_TEST_SCENARIO": 1,
+    "DEGRADED_TEST_SCENARIO": 1,
+    "INTERRUPTION_TEST_SCENARIO": 1,
+    "DUPLICATE_TEST_SCENARIO": 1,
+    "REPLAY_TEST_SCENARIO": 1,
+    "RECOVERY_TEST_SCENARIO": 1
+  },
+  "missing_scenario_kinds": [],
+  "scenarios_without_governed_oracle": [],
+  "note": "Positive, negative, denial, conflict, stale-state, degraded, interruption, duplicate, replay, and recovery scenarios are catalogued for the affiliation workflow."
+}
