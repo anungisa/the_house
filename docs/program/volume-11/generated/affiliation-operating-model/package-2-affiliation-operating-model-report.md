@@ -1,6 +1,6 @@
 # Volume 11 Package 2 Affiliation Operating-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T22:45:02.656Z
+Generated: 2026-07-27T22:46:07.395Z
 
 > Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.
 

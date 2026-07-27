@@ -2,14 +2,9 @@
   "gate": "V11-G2",
   "disposition_target": "AFFILIATION_OPERATING_MODEL_MIGRATION_CONTINUITY_ADOPTION_AND_OPERATIONAL_EVIDENCE_PLAN_READY",
   "total_conditions": 35,
-  "satisfied": 34,
-  "unmet": [
-    {
-      "n": 35,
-      "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation is preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 35,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -184,7 +179,7 @@
     {
       "n": 35,
       "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation is preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
