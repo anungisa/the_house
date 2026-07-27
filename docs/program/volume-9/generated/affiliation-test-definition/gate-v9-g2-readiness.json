@@ -2,14 +2,9 @@
   "gate": "V9-G2",
   "disposition_target": "AFFILIATION_FUNCTIONAL_CONTRACT_WORKFLOW_DATA_AND_MIGRATION_TEST_DEFINITION_READY",
   "total_conditions": 34,
-  "satisfied": 33,
-  "unmet": [
-    {
-      "n": 34,
-      "title": "Genuine authoring, closure-and-freeze, and pre-merge-binding separation is preserved with no unresolved required commit binding"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 34,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -179,7 +174,7 @@
     {
       "n": 34,
       "title": "Genuine authoring, closure-and-freeze, and pre-merge-binding separation is preserved with no unresolved required commit binding",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
