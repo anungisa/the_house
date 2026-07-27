@@ -23,9 +23,11 @@ function collectKnownIds(ctx) {
   // Package and volume freeze artifacts are legitimate reference targets.
   ids.add('PACKAGE-8-1');
   ids.add('PACKAGE-8-2');
+  ids.add('PACKAGE-8-3');
   ids.add('VOLUME-8');
   ids.add('GATE-V8-G1');
   ids.add('GATE-V8-G2');
+  ids.add('GATE-V8-G3');
   return ids;
 }
 

@@ -1,0 +1,34 @@
+{
+  "notification_contexts": 2,
+  "notification_requirements": 3,
+  "notifications": [
+    {
+      "id": "NOTIFY-V8-001",
+      "audience": "Applicant acting for a member organization",
+      "english_semantic": true,
+      "french_semantic": true,
+      "accessibility_requirement": true,
+      "classification": "PERSONAL_INFORMATION"
+    },
+    {
+      "id": "NOTIFY-V8-002",
+      "audience": "Reviewer under delegated House authority",
+      "english_semantic": true,
+      "french_semantic": true,
+      "accessibility_requirement": true,
+      "classification": "INTERNAL_OPERATIONAL"
+    },
+    {
+      "id": "NOTIFY-V8-003",
+      "audience": "Applicant acting for a member organization",
+      "english_semantic": true,
+      "french_semantic": true,
+      "accessibility_requirement": true,
+      "classification": "PERSONAL_INFORMATION"
+    }
+  ],
+  "gaps": {
+    "notifications_not_bilingual_or_accessible": [],
+    "notifications_carrying_restricted_evidence": []
+  }
+}

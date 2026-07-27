@@ -456,4 +456,263 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-12
+  - id: EVTSURF-V8-001
+    kind: EVENT_CONTRACT_SURFACE
+    title: Affiliation domain-event surface
+    statement: >-
+      The governed surface on which the House emits affiliation domain events
+      after a committed lifecycle transition. A logical surface only; no topic,
+      broker, or transport is defined.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: DOMAIN_EVENT
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    purpose: Emit committed affiliation lifecycle facts to entitled consumers
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-21
+  - id: EVTSURF-V8-002
+    kind: EVENT_CONTRACT_SURFACE
+    title: Affiliation integration-event surface
+    statement: >-
+      The governed surface on which the House emits affiliation integration
+      events to consumers across a trust boundary, such as an experience layer.
+      A logical surface only; no topic, broker, or transport is defined.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: INTEGRATION_EVENT
+    delivery_posture: AT_LEAST_ONCE
+    purpose: Notify cross-boundary consumers of governed affiliation outcomes
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-21
+  - id: EVTPROD-V8-001
+    kind: EVENT_PRODUCER_CONTEXT
+    title: House affiliation event-producer context
+    statement: >-
+      The governed context in which the House emits affiliation events after a
+      committed transition. Emission carries the emitting authority and occurs
+      only after commit.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: DOMAIN_EVENT
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    context_elements:
+      - Emitting House authority
+      - Committed affiliation transition
+      - Tenant scope of the emitted fact
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-21
+  - id: EVTPROD-V8-002
+    kind: EVENT_PRODUCER_CONTEXT
+    title: House affiliation notification-producer context
+    statement: >-
+      The governed context in which the House generates affiliation notification
+      events after a committed outcome. Generation is distinct from delivery.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: NOTIFICATION_EVENT
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    context_elements:
+      - Emitting House authority
+      - Committed affiliation outcome
+      - Entitled notification audience
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-27
+  - id: EVTCONS-V8-001
+    kind: EVENT_CONSUMER_CONTEXT
+    title: Experience-layer affiliation event-consumer context
+    statement: >-
+      The governed context in which a named cross-boundary consumer is entitled
+      to receive affiliation integration events within a tenant scope. Presence
+      is never, by itself, permission.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: INTEGRATION_EVENT
+    idempotency_requirement: REQUIRED
+    ordering_requirement: PER_AGGREGATE
+    context_elements:
+      - Named consumer subscription grant
+      - Tenant scope of the grant
+      - Purpose the grant admits
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: EVTCONS-V8-002
+    kind: EVENT_CONSUMER_CONTEXT
+    title: Internal affiliation projection-consumer context
+    statement: >-
+      The governed context in which an internal House consumer receives
+      affiliation domain events to maintain a derived projection. The consumer
+      is idempotent and tolerates duplicate and out-of-order delivery.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: DOMAIN_EVENT
+    idempotency_requirement: REQUIRED
+    ordering_requirement: PER_AGGREGATE
+    context_elements:
+      - Internal consumer subscription grant
+      - Tenant scope of the grant
+      - Derived projection maintained by the consumer
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: WHCTX-V8-001
+    kind: WEBHOOK_CONTEXT
+    title: Provider payment-callback webhook context
+    statement: >-
+      The governed context for an inbound webhook from a trusted payment
+      provider reporting a settlement outcome. Untrusted by default; admitted
+      only after authentication and integrity verification.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: WEBHOOK
+    authentication_requirement: >-
+      The inbound signal must authenticate as a specific trusted payment
+      provider before it is admitted.
+    integrity_requirement: >-
+      The inbound signal must pass integrity verification confirming it was not
+      altered in transit.
+    replay_protection_dependency: >-
+      The inbound signal is protected against replay so a re-delivered signal
+      produces no duplicate governed effect.
+    unknown_outcome_posture: >-
+      An unknown or unverifiable provider outcome remains unresolved and fails
+      closed until reconciliation resolves it.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-25
+  - id: WHCTX-V8-002
+    kind: WEBHOOK_CONTEXT
+    title: Provider verification-callback webhook context
+    statement: >-
+      The governed context for an inbound callback from a trusted verification
+      provider reporting an asynchronous verification outcome. Acknowledgement
+      of receipt is never authoritative reconciliation.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: PROVIDER_CALLBACK
+    authentication_requirement: >-
+      The inbound callback must authenticate as a specific trusted verification
+      provider before it is admitted.
+    integrity_requirement: >-
+      The inbound callback must pass integrity verification confirming it was
+      not altered in transit.
+    replay_protection_dependency: >-
+      The inbound callback is protected against replay so a re-delivered
+      callback produces no duplicate governed effect.
+    unknown_outcome_posture: >-
+      An unknown verification outcome remains unresolved and fails closed until
+      reconciliation resolves it.
+    acknowledgement_semantics: >-
+      An acknowledgement confirms receipt only and never makes the provider's
+      asserted outcome authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-25
+  - id: NOTIFCTX-V8-001
+    kind: NOTIFICATION_CONTEXT
+    title: Applicant affiliation-outcome notification context
+    statement: >-
+      The governed context for notifying an applicant of a committed affiliation
+      outcome. Carries only the minimum necessary content in equivalent English
+      and French.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: NOTIFICATION_EVENT
+    audience: Applicant acting for a member organization
+    disclosure_authority: >-
+      House authority to disclose the affiliation outcome to the applicant who
+      submitted it.
+    minimum_necessary_content: >-
+      The governed outcome and the applicant's next step only; no internal
+      detail or restricted evidence.
+    english_semantic: The affiliation outcome and next step stated in English.
+    french_semantic: The affiliation outcome and next step stated in equivalent French.
+    accessibility_requirement: >-
+      The notification is perceivable by its audience under the platform
+      accessibility obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-27
+  - id: NOTIFCTX-V8-002
+    kind: NOTIFICATION_CONTEXT
+    title: Reviewer affiliation-assignment notification context
+    statement: >-
+      The governed context for notifying a reviewer that an affiliation is
+      assigned for review. Carries only the minimum necessary content in
+      equivalent English and French.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    interaction_type: NOTIFICATION_EVENT
+    audience: Reviewer under delegated House authority
+    disclosure_authority: >-
+      House authority to disclose the review assignment to the entitled
+      reviewer.
+    minimum_necessary_content: >-
+      The assignment and the affiliation subject reference only; no restricted
+      evidence.
+    english_semantic: The review assignment stated in English.
+    french_semantic: The review assignment stated in equivalent French.
+    accessibility_requirement: >-
+      The notification is perceivable by its audience under the platform
+      accessibility obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-27
+  - id: DTRUST-V8-001
+    kind: DELIVERY_TRUST_BOUNDARY
+    title: House-to-provider outbound delivery trust boundary
+    statement: >-
+      The boundary the House crosses to deliver events to an external provider.
+      Only content the provider is entitled to receive crosses it.
+    fail_closed_posture: >-
+      An outbound delivery to a provider is refused unless it resolves to a
+      trusted provider and carries only content that provider is entitled to
+      receive.
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-29
+  - id: DTRUST-V8-002
+    kind: DELIVERY_TRUST_BOUNDARY
+    title: Provider-to-House inbound delivery trust boundary
+    statement: >-
+      The boundary an external provider crosses to reach the House affiliation
+      domain. Inbound signals are untrusted until authenticated, integrity-
+      verified, scoped, and reconciled.
+    fail_closed_posture: >-
+      An inbound provider signal is refused before any governed effect unless it
+      authenticates as a trusted provider, passes integrity verification, and
+      resolves to a known scope.
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-29
 

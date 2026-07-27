@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T12:13:29.826Z
+Generated: 2026-07-27T12:47:11.256Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T12:13:29.826Z
 
 ## Summary
 
-- Total findings: 0
-- Errors: 0
+- Total findings: 1
+- Errors: 1
 - Warnings: 0
 - Info: 0
-- Overall: PASS (no integrity errors)
+- Overall: FAIL (contract-governance integrity errors present)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 27 |
+| RATIFIED | 37 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 27 |
-| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 23 |
-| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 40 |
-| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 8 |
-| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 10 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 32 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 37 |
+| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 35 |
+| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 72 |
+| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 20 |
+| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 15 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 42 |
 
 ## Findings by control
 
@@ -72,6 +72,18 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Gate V8-G2 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Gate V8-G3 readiness
+
+Errors: 1 | Warnings: 0 | Info: 0
+
+- ERROR GATE_V8_G3_CONDITION_UNMET [GATE-V8-G3]: Condition 28 not satisfied: Package 3 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding
+
+### Event-delivery contract coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
 

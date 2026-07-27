@@ -1,0 +1,25 @@
+{
+  "webhook_contexts": 2,
+  "webhook_requirements": 1,
+  "callback_requirements": 1,
+  "webhooks": [
+    {
+      "id": "WEBHOOK-V8-011",
+      "authentication_requirement": "The webhook must authenticate as a specific trusted provider before it is admitted.",
+      "integrity_requirement": "The webhook must pass integrity verification confirming it was not altered in transit.",
+      "replay_protection_dependency": "The webhook is protected against replay so a re-delivered signal produces no duplicate governed effect.",
+      "reconciliation_dependency": "The provider's asserted outcome becomes authoritative only after reconciliation against the House governed state."
+    }
+  ],
+  "callbacks": [
+    {
+      "id": "CALLBACK-V8-001",
+      "unknown_outcome_posture": "An unknown provider outcome is never optimistically treated as success and never silently treated as failure; it is held as unresolved.",
+      "reconciliation_dependency": "The callback outcome becomes authoritative only after reconciliation against the House governed state."
+    }
+  ],
+  "gaps": {
+    "webhooks_without_integrity": [],
+    "callbacks_without_unknown_outcome": []
+  }
+}

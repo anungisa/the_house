@@ -382,6 +382,133 @@ function validateCompatibilityRules(ctx, findings) {
   }
 }
 
+// ---- Package 3: event, outbox, webhook, notification & delivery contracts ----
+// The following guards fail closed on Package 3 event-and-delivery contract kinds.
+// Each keys on a kind introduced in Package 3, so it adds obligations without
+// altering the evaluation of any Package 1 or Package 2 record.
+
+// Event/delivery surfaces and contexts (REG-801) without their governing obligations.
+function validateEventDeliverySurfaces(ctx, findings) {
+  for (const s of records(ctx, 'REG-801')) {
+    if (s.kind === 'EVENT_CONTRACT_SURFACE') {
+      if (!s.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'EVENT_SURFACE_WITHOUT_AUTHORITY', `${s.id}: event contract surface names no institutional_authority`, s.id));
+      if (!s.authoritative_source) findings.push(makeFinding(Severity.ERROR, 'EVENT_SURFACE_WITHOUT_SOURCE', `${s.id}: event contract surface names no authoritative_source`, s.id));
+      if (!s.delivery_posture) findings.push(makeFinding(Severity.ERROR, 'EVENT_SURFACE_WITHOUT_DELIVERY', `${s.id}: event contract surface names no delivery_posture`, s.id));
+    } else if (s.kind === 'EVENT_PRODUCER_CONTEXT' || s.kind === 'EVENT_CONSUMER_CONTEXT') {
+      if (!s.owner && !s.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'EVENT_ENDPOINT_WITHOUT_OWNERSHIP', `${s.id}: ${s.kind.toLowerCase()} names no owner or institutional_authority`, s.id));
+      if (!s.interaction_type) findings.push(makeFinding(Severity.ERROR, 'EVENT_ENDPOINT_WITHOUT_INTERACTION', `${s.id}: ${s.kind.toLowerCase()} names no interaction_type`, s.id));
+    } else if (s.kind === 'WEBHOOK_CONTEXT') {
+      if (!s.authentication_requirement) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_CONTEXT_WITHOUT_AUTHENTICATION', `${s.id}: webhook context names no authentication_requirement`, s.id));
+      if (!s.integrity_requirement) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_CONTEXT_WITHOUT_INTEGRITY', `${s.id}: webhook context names no integrity_requirement`, s.id));
+      if (!s.replay_protection_dependency) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_CONTEXT_WITHOUT_REPLAY', `${s.id}: webhook context names no replay_protection_dependency`, s.id));
+      if (!s.unknown_outcome_posture) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_CONTEXT_WITHOUT_UNKNOWN_OUTCOME', `${s.id}: webhook context names no unknown_outcome_posture`, s.id));
+    } else if (s.kind === 'NOTIFICATION_CONTEXT') {
+      if (!s.audience) findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_CONTEXT_WITHOUT_AUDIENCE', `${s.id}: notification context names no audience`, s.id));
+      if (!s.disclosure_authority) findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_CONTEXT_WITHOUT_DISCLOSURE_AUTHORITY', `${s.id}: notification context names no disclosure_authority`, s.id));
+    } else if (s.kind === 'DELIVERY_TRUST_BOUNDARY') {
+      if (!s.fail_closed_posture) findings.push(makeFinding(Severity.ERROR, 'DELIVERY_BOUNDARY_WITHOUT_FAIL_CLOSED', `${s.id}: delivery trust boundary names no fail_closed_posture`, s.id));
+    }
+  }
+}
+
+// Event contracts without authoritative source, producing transition, or delivery posture.
+function validateEventContracts(ctx, findings) {
+  for (const e of records(ctx, 'REG-802')) {
+    if (e.kind !== 'EVENT_CONTRACT') continue;
+    if (!e.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'EVENT_CONTRACT_WITHOUT_AUTHORITY', `${e.id}: event contract names no institutional_authority`, e.id));
+    if (!e.authoritative_source) findings.push(makeFinding(Severity.ERROR, 'EVENT_CONTRACT_WITHOUT_SOURCE', `${e.id}: event contract names no authoritative_source`, e.id));
+    if (!e.triggering_transition) findings.push(makeFinding(Severity.ERROR, 'EVENT_CONTRACT_WITHOUT_TRANSITION', `${e.id}: event contract names no triggering_transition`, e.id));
+    if (!e.delivery_posture) findings.push(makeFinding(Severity.ERROR, 'EVENT_CONTRACT_WITHOUT_DELIVERY', `${e.id}: event contract names no delivery_posture`, e.id));
+  }
+}
+
+// Event envelope requirements without envelope fields or a replay posture.
+function validateEnvelopeRequirements(ctx, findings) {
+  for (const e of records(ctx, 'REG-802')) {
+    if (e.kind !== 'EVENT_ENVELOPE_REQUIREMENT') continue;
+    if (!(e.envelope_fields && e.envelope_fields.length > 0)) findings.push(makeFinding(Severity.ERROR, 'ENVELOPE_WITHOUT_FIELDS', `${e.id}: event envelope requirement names no envelope_fields`, e.id));
+    if (!e.replay_posture) findings.push(makeFinding(Severity.ERROR, 'ENVELOPE_WITHOUT_REPLAY', `${e.id}: event envelope requirement names no replay_posture`, e.id));
+  }
+}
+
+// Outbox requirements without an atomicity requirement or a transactional-outbox posture.
+function validateOutboxRequirements(ctx, findings) {
+  for (const o of records(ctx, 'REG-802')) {
+    if (o.kind !== 'OUTBOX_REQUIREMENT') continue;
+    if (!o.atomicity_requirement) findings.push(makeFinding(Severity.ERROR, 'OUTBOX_WITHOUT_ATOMICITY', `${o.id}: outbox requirement names no atomicity_requirement`, o.id));
+    if (!o.delivery_posture) findings.push(makeFinding(Severity.ERROR, 'OUTBOX_WITHOUT_DELIVERY', `${o.id}: outbox requirement names no delivery_posture`, o.id));
+  }
+}
+
+// Delivery semantics without a delivery posture or an exactly-once business invariant.
+function validateDeliverySemantics(ctx, findings) {
+  for (const d of records(ctx, 'REG-802')) {
+    if (d.kind !== 'DELIVERY_SEMANTIC') continue;
+    if (!d.delivery_posture) findings.push(makeFinding(Severity.ERROR, 'DELIVERY_SEMANTIC_WITHOUT_POSTURE', `${d.id}: delivery semantic names no delivery_posture`, d.id));
+    if (!d.exactly_once_business_invariant) findings.push(makeFinding(Severity.ERROR, 'DELIVERY_SEMANTIC_WITHOUT_BUSINESS_INVARIANT', `${d.id}: delivery semantic names no exactly_once_business_invariant`, d.id));
+  }
+}
+
+// Consumer requirements without an idempotency posture or a concurrency/conflict posture.
+function validateConsumerRequirements(ctx, findings) {
+  for (const c of records(ctx, 'REG-802')) {
+    if (c.kind !== 'CONSUMER_REQUIREMENT') continue;
+    if (!c.idempotency_requirement && !c.deduplication_scope) findings.push(makeFinding(Severity.ERROR, 'CONSUMER_WITHOUT_IDEMPOTENCY', `${c.id}: consumer requirement names no idempotency_requirement or deduplication_scope`, c.id));
+    if (!c.concurrency_precondition && !c.conflict_outcome && !c.replay_posture) findings.push(makeFinding(Severity.ERROR, 'CONSUMER_WITHOUT_CONCURRENCY', `${c.id}: consumer requirement names no concurrency_precondition, conflict_outcome, or replay_posture`, c.id));
+  }
+}
+
+// Deduplication requirements without a deduplication scope; ordering requirements
+// without an explicit ordering requirement.
+function validateDeduplicationAndOrdering(ctx, findings) {
+  for (const d of records(ctx, 'REG-802')) {
+    if (d.kind === 'DEDUPLICATION_REQUIREMENT' && !d.deduplication_scope) {
+      findings.push(makeFinding(Severity.ERROR, 'DEDUPLICATION_WITHOUT_SCOPE', `${d.id}: deduplication requirement names no deduplication_scope`, d.id));
+    }
+    if (d.kind === 'ORDERING_REQUIREMENT' && !d.ordering_requirement) {
+      findings.push(makeFinding(Severity.ERROR, 'ORDERING_WITHOUT_REQUIREMENT', `${d.id}: ordering requirement names no ordering_requirement`, d.id));
+    }
+  }
+}
+
+// Webhook and callback requirements without authentication, integrity, replay
+// protection, unknown-outcome, or reconciliation handling.
+function validateWebhookAndCallbackRequirements(ctx, findings) {
+  for (const w of records(ctx, 'REG-802')) {
+    if (w.kind === 'WEBHOOK_REQUIREMENT') {
+      if (!w.authentication_requirement) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_REQUIREMENT_WITHOUT_AUTHENTICATION', `${w.id}: webhook requirement names no authentication_requirement`, w.id));
+      if (!w.integrity_requirement) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_REQUIREMENT_WITHOUT_INTEGRITY', `${w.id}: webhook requirement names no integrity_requirement`, w.id));
+      if (!w.replay_protection_dependency && !w.replay_posture) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_REQUIREMENT_WITHOUT_REPLAY', `${w.id}: webhook requirement names no replay_protection_dependency or replay_posture`, w.id));
+      if (!w.reconciliation_dependency) findings.push(makeFinding(Severity.ERROR, 'WEBHOOK_REQUIREMENT_WITHOUT_RECONCILIATION', `${w.id}: webhook requirement names no reconciliation_dependency`, w.id));
+    } else if (w.kind === 'CALLBACK_REQUIREMENT') {
+      if (!w.unknown_outcome_posture) findings.push(makeFinding(Severity.ERROR, 'CALLBACK_WITHOUT_UNKNOWN_OUTCOME', `${w.id}: callback requirement names no unknown_outcome_posture`, w.id));
+      if (!w.reconciliation_dependency) findings.push(makeFinding(Severity.ERROR, 'CALLBACK_WITHOUT_RECONCILIATION', `${w.id}: callback requirement names no reconciliation_dependency`, w.id));
+    }
+  }
+}
+
+// Quarantine requirements without a quarantine posture or a reconciliation dependency.
+function validateQuarantineRequirements(ctx, findings) {
+  for (const q of records(ctx, 'REG-802')) {
+    if (q.kind !== 'QUARANTINE_REQUIREMENT') continue;
+    if (!q.quarantine_posture) findings.push(makeFinding(Severity.ERROR, 'QUARANTINE_WITHOUT_POSTURE', `${q.id}: quarantine requirement names no quarantine_posture`, q.id));
+    if (!q.reconciliation_dependency) findings.push(makeFinding(Severity.ERROR, 'QUARANTINE_WITHOUT_RECONCILIATION', `${q.id}: quarantine requirement names no reconciliation_dependency`, q.id));
+  }
+}
+
+// Notification requirements without bilingual, accessible, minimum-necessary content,
+// or that carry restricted evidence as routine notification content.
+function validateNotificationRequirements(ctx, findings) {
+  for (const n of records(ctx, 'REG-802')) {
+    if (n.kind !== 'NOTIFICATION_REQUIREMENT') continue;
+    if (!n.english_semantic) findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_WITHOUT_ENGLISH', `${n.id}: notification requirement names no english_semantic`, n.id));
+    if (!n.french_semantic) findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_WITHOUT_FRENCH', `${n.id}: notification requirement names no french_semantic`, n.id));
+    if (!n.accessibility_requirement) findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_WITHOUT_ACCESSIBILITY', `${n.id}: notification requirement names no accessibility_requirement`, n.id));
+    if (!n.minimum_necessary_content) findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_WITHOUT_MINIMUM_NECESSARY', `${n.id}: notification requirement names no minimum_necessary_content`, n.id));
+    if (n.classification === 'RESTRICTED_EVIDENCE') findings.push(makeFinding(Severity.ERROR, 'NOTIFICATION_CARRIES_RESTRICTED_EVIDENCE', `${n.id}: notification requirement carries restricted evidence as routine content`, n.id));
+  }
+}
+
 // Exceptions without expiry or approval; assumptions/risks/tests without owner or
 // future gate.
 function validateBacklog(ctx, findings) {
@@ -450,6 +577,16 @@ export function run(ctx) {
   validateClassificationDiscipline(ctx, findings);
   validateExchangeClasses(ctx, findings);
   validateCompatibilityRules(ctx, findings);
+  validateEventDeliverySurfaces(ctx, findings);
+  validateEventContracts(ctx, findings);
+  validateEnvelopeRequirements(ctx, findings);
+  validateOutboxRequirements(ctx, findings);
+  validateDeliverySemantics(ctx, findings);
+  validateConsumerRequirements(ctx, findings);
+  validateDeduplicationAndOrdering(ctx, findings);
+  validateWebhookAndCallbackRequirements(ctx, findings);
+  validateQuarantineRequirements(ctx, findings);
+  validateNotificationRequirements(ctx, findings);
   validateBacklog(ctx, findings);
   validateGateForwardOnly(ctx, findings);
   validateLeakage(ctx, findings);

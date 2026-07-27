@@ -14,6 +14,8 @@ import { run as runFoundation } from './foundation-volume-8.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-8.mjs';
 import { run as runGate } from './gate-volume-8.mjs';
 import { run as runGateG2 } from './gate-g2-volume-8.mjs';
+import { run as runGateG3 } from './gate-g3-volume-8.mjs';
+import { run as runEventDelivery } from './event-delivery-volume-8.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -22,7 +24,9 @@ export function collectFindings(ctx) {
     'Contract-governance-foundation coverage': runFoundation(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V8-G1 readiness': runGate(ctx),
-    'Gate V8-G2 readiness': runGateG2(ctx)
+    'Gate V8-G2 readiness': runGateG2(ctx),
+    'Gate V8-G3 readiness': runGateG3(ctx),
+    'Event-delivery contract coverage': runEventDelivery(ctx)
   };
 }
 

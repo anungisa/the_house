@@ -1,0 +1,80 @@
+{
+  "event_contracts": 12,
+  "transitions": [
+    {
+      "id": "EVENT-V8-021",
+      "triggering_transition": "submit",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-022",
+      "triggering_transition": "review_start",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-023",
+      "triggering_transition": "approve",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-024",
+      "triggering_transition": "reject",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-025",
+      "triggering_transition": "activate",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-026",
+      "triggering_transition": "suspend",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-027",
+      "triggering_transition": "reinstate",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-028",
+      "triggering_transition": "revoke",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-029",
+      "triggering_transition": "close",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-030",
+      "triggering_transition": "archive",
+      "delivery_posture": "AT_LEAST_ONCE",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-031",
+      "triggering_transition": "submit",
+      "delivery_posture": "TRANSACTIONAL_OUTBOX",
+      "ordering_requirement": null
+    },
+    {
+      "id": "EVENT-V8-032",
+      "triggering_transition": "approve",
+      "delivery_posture": "TRANSACTIONAL_OUTBOX",
+      "ordering_requirement": null
+    }
+  ],
+  "gaps": {
+    "events_without_triggering_transition": []
+  }
+}

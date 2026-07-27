@@ -853,3 +853,642 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-20
+  - id: EVENT-V8-021
+    kind: EVENT_CONTRACT
+    title: Affiliation submitted event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was submitted,
+      produced by the committed submit transition. Reports a fact; commands
+      nothing.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: submit
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-022
+    kind: EVENT_CONTRACT
+    title: Affiliation review-started event contract
+    statement: >-
+      The governed event contract reporting that affiliation review started,
+      produced by the committed review-start transition.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: review_start
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-023
+    kind: EVENT_CONTRACT
+    title: Affiliation approved event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was approved,
+      produced by the committed approve transition. References but never embeds
+      the governed decision evidence.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: approve
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-024
+    kind: EVENT_CONTRACT
+    title: Affiliation rejected event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was rejected,
+      produced by the committed reject transition. Discloses no restricted
+      reviewer content.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: reject
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-025
+    kind: EVENT_CONTRACT
+    title: Affiliation activated event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was activated,
+      produced by the committed activate transition. Activation is a business
+      invariant enforced by governed state, not a transport guarantee.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: activate
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-026
+    kind: EVENT_CONTRACT
+    title: Affiliation suspended event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was suspended,
+      produced by the committed suspend transition.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: suspend
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-027
+    kind: EVENT_CONTRACT
+    title: Affiliation reinstated event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was reinstated,
+      produced by the committed reinstate transition.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: reinstate
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-028
+    kind: EVENT_CONTRACT
+    title: Affiliation revoked event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was revoked,
+      produced by the committed revoke transition.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: revoke
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-029
+    kind: EVENT_CONTRACT
+    title: Affiliation closed event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was closed,
+      produced by the committed close transition.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: close
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-030
+    kind: EVENT_CONTRACT
+    title: Affiliation archived event contract
+    statement: >-
+      The governed event contract reporting that an affiliation was archived,
+      produced by the committed archive transition.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: archive
+    delivery_posture: AT_LEAST_ONCE
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-031
+    kind: EVENT_CONTRACT
+    title: Affiliation submitted domain-event contract
+    statement: >-
+      The governed domain-event contract reporting an affiliation submission to
+      internal consumers, produced by the committed submit transition. Distinct
+      from its integration-event counterpart.
+    interaction_type: DOMAIN_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: submit
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: EVENT-V8-032
+    kind: EVENT_CONTRACT
+    title: Affiliation approved domain-event contract
+    statement: >-
+      The governed domain-event contract reporting an affiliation approval to
+      internal consumers, produced by the committed approve transition. Distinct
+      from its integration-event counterpart.
+    interaction_type: DOMAIN_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    triggering_transition: approve
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-23
+  - id: ENVELOPE-V8-001
+    kind: EVENT_ENVELOPE_REQUIREMENT
+    title: Affiliation event envelope requirement
+    statement: >-
+      The required envelope every affiliation event carries as governed meaning:
+      identity, type, version, provenance, scope, correlation, causation, timing,
+      sensitivity, and replay marking. A logical requirement; no serialization is
+      defined.
+    envelope_fields:
+      - event_id
+      - event_type
+      - event_contract_version
+      - originating_authority
+      - authoritative_source
+      - tenant_scope
+      - correlation_id
+      - causation_id
+      - occurred_at
+      - recorded_at
+      - sensitivity
+      - replay_marker
+    replay_posture: >-
+      The envelope distinguishes an original emission from a governed
+      re-emission by its replay marker; a re-emission carries the same event
+      identity, not a new one presented as a new fact.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-22
+  - id: ENVELOPE-V8-002
+    kind: EVENT_ENVELOPE_REQUIREMENT
+    title: Affiliation notification envelope requirement
+    statement: >-
+      The required envelope every affiliation notification event carries:
+      identity, type, version, provenance, audience scope, correlation, timing,
+      sensitivity, and replay marking. A logical requirement; no serialization is
+      defined.
+    envelope_fields:
+      - event_id
+      - event_type
+      - event_contract_version
+      - originating_authority
+      - audience_scope
+      - correlation_id
+      - occurred_at
+      - sensitivity
+      - replay_marker
+    replay_posture: >-
+      A re-generated notification carries the same event identity and a replay
+      marker rather than presenting as a new notification.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-22
+  - id: OUTBOX-V8-001
+    kind: OUTBOX_REQUIREMENT
+    title: Affiliation transactional-outbox atomicity requirement
+    statement: >-
+      The authoritative affiliation state change and the outbox record of its
+      event are written in one committed transaction, or neither is. Persistence
+      is distinct from publication.
+    atomicity_requirement: >-
+      The state change and its outbox record share a single committed governance
+      transaction; an event is never durably recorded without its committed
+      state change.
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    publication_eligibility: >-
+      An outbox record becomes eligible for publication only after its governing
+      transaction commits and its publication preconditions are satisfied.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-24
+  - id: OUTBOX-V8-002
+    kind: OUTBOX_REQUIREMENT
+    title: Affiliation outbox publisher-failure boundary requirement
+    statement: >-
+      A publisher failure before a transport accepts an event leaves the outbox
+      record owed and pending, to be attempted again under governed publication.
+      It is not a dead-letter event.
+    atomicity_requirement: >-
+      The pending outbox record remains the durable record that a governed event
+      is owed until it is published or governed to a terminal disposition.
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-24
+  - id: DELIV-V8-011
+    kind: DELIVERY_SEMANTIC
+    title: Affiliation at-least-once delivery semantic
+    statement: >-
+      Affiliation event delivery is at-least-once at the transport boundary; a
+      published event may be delivered more than once and consumers tolerate
+      duplicates.
+    delivery_posture: AT_LEAST_ONCE
+    exactly_once_business_invariant: >-
+      Exactly-once business effect, such as activating an affiliation once, is a
+      business invariant enforced by governed state and consumer idempotency,
+      never presumed from transport.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-24
+  - id: DELIV-V8-012
+    kind: DELIVERY_SEMANTIC
+    title: Affiliation outbox-published delivery semantic
+    statement: >-
+      Outbox-published affiliation events are delivered under transactional
+      outbox semantics: durably recorded on commit, published afterward, and
+      never delivered exactly-once by transport promise.
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    exactly_once_business_invariant: >-
+      The one-time business effect is enforced by governed state and idempotent
+      consumers; the transport provides at-least-once delivery only.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-24
+  - id: CONSUMER-V8-001
+    kind: CONSUMER_REQUIREMENT
+    title: Affiliation integration-consumer idempotency requirement
+    statement: >-
+      An affiliation integration consumer is idempotent and deduplicates by
+      event identity within a tenant, converging duplicate and out-of-order
+      deliveries on one correct outcome.
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    deduplication_scope: Per event identity within a tenant scope
+    concurrency_precondition: >-
+      The consumer applies an effect only when its required current state or
+      version precondition holds.
+    conflict_outcome: >-
+      When the precondition does not hold, the consumer resolves to a governed
+      conflict outcome rather than overwriting a newer state.
+    replay_posture: >-
+      The consumer recognizes a governed replay by its replay marker and
+      re-establishes derived state without a duplicate one-time effect.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: CONSUMER-V8-002
+    kind: CONSUMER_REQUIREMENT
+    title: Affiliation projection-consumer concurrency requirement
+    statement: >-
+      An internal affiliation projection consumer is idempotent and applies
+      updates under a stated concurrency precondition, resolving stale deliveries
+      to a conflict outcome.
+    idempotency_requirement: REQUIRED
+    deduplication_scope: Per event identity within a tenant scope
+    concurrency_precondition: >-
+      A projection update is applied only when the event is newer than the
+      projection's recorded position for the aggregate.
+    conflict_outcome: >-
+      A stale or out-of-order delivery is discarded without regressing the
+      projection.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: DEDUP-V8-001
+    kind: DEDUPLICATION_REQUIREMENT
+    title: Affiliation event deduplication requirement
+    statement: >-
+      Two deliveries recognized as the same affiliation event within the
+      deduplication scope collapse to one governed effect. A deduplication
+      requirement without a named scope fails closed.
+    deduplication_scope: Per event identity within a tenant scope
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: ORDER-V8-001
+    kind: ORDERING_REQUIREMENT
+    title: Affiliation global-ordering-not-presumed requirement
+    statement: >-
+      Global ordering of affiliation events is never presumed. A consumer that
+      would silently depend on global order fails closed.
+    ordering_requirement: GLOBAL_NOT_PRESUMED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: ORDER-V8-002
+    kind: ORDERING_REQUIREMENT
+    title: Affiliation per-aggregate ordering requirement
+    statement: >-
+      Where ordering is required, it is scoped per affiliation aggregate; order
+      is guaranteed within an aggregate and arbitrary outside it.
+    ordering_requirement: PER_AGGREGATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: REPLAY-V8-011
+    kind: REPLAY_REQUIREMENT
+    title: Affiliation governed-replay requirement
+    statement: >-
+      A governed replay is an authoritative re-emission of an affiliation event
+      under authority and evidence, not an arbitrary re-send. It never produces a
+      duplicate business effect.
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    deduplication_scope: Per event identity within a tenant scope
+    concurrency_precondition: >-
+      A replay re-establishes derived state only where the consumer's precondition
+      permits, never re-triggering a completed one-time effect.
+    conflict_outcome: >-
+      A replay that would duplicate a completed one-time effect is recognized and
+      suppressed.
+    replay_authority: >-
+      Only the House, under governed authority, may authorize a replay; no
+      consumer or provider may initiate one.
+    replay_evidence: >-
+      Every replay records the authorizing authority, its reason, and the events
+      re-emitted as governed evidence.
+    replay_posture: >-
+      Replayed events carry the same identity and a replay marker so consumers
+      distinguish them from original emissions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+  - id: WEBHOOK-V8-011
+    kind: WEBHOOK_REQUIREMENT
+    title: Affiliation inbound-webhook requirement
+    statement: >-
+      An inbound affiliation webhook is authenticated, integrity-verified,
+      replay-protected, scoped, idempotent, and reconciled. It is untrusted until
+      admitted and never authoritative on arrival.
+    authentication_requirement: >-
+      The webhook must authenticate as a specific trusted provider before it is
+      admitted.
+    integrity_requirement: >-
+      The webhook must pass integrity verification confirming it was not altered
+      in transit.
+    replay_protection_dependency: >-
+      The webhook is protected against replay so a re-delivered signal produces
+      no duplicate governed effect.
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    deduplication_scope: Per provider signal identity within a tenant scope
+    reconciliation_dependency: >-
+      The provider's asserted outcome becomes authoritative only after
+      reconciliation against the House governed state.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-25
+  - id: CALLBACK-V8-001
+    kind: CALLBACK_REQUIREMENT
+    title: Affiliation provider-callback requirement
+    statement: >-
+      An asynchronous provider callback carrying an unknown or unverifiable
+      outcome remains unresolved and fails closed until reconciliation resolves
+      it. Acknowledgement is not reconciliation.
+    authentication_requirement: >-
+      The callback must authenticate as a specific trusted provider before it is
+      admitted.
+    integrity_requirement: >-
+      The callback must pass integrity verification confirming it was not altered
+      in transit.
+    unknown_outcome_posture: >-
+      An unknown provider outcome is never optimistically treated as success and
+      never silently treated as failure; it is held as unresolved.
+    reconciliation_dependency: >-
+      The callback outcome becomes authoritative only after reconciliation
+      against the House governed state.
+    acknowledgement_semantics: >-
+      An acknowledgement confirms receipt only and never makes the provider's
+      asserted outcome authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-25
+  - id: QUAR-V8-001
+    kind: QUARANTINE_REQUIREMENT
+    title: Affiliation quarantine and dead-letter requirement
+    statement: >-
+      An affiliation event or inbound signal that cannot be processed after its
+      governed retries is quarantined with its identity, provenance, and history
+      preserved, never dropped.
+    quarantine_posture: >-
+      A quarantined item is moved to a governed holding disposition retaining its
+      identity, provenance, and history for authoritative resolution; a
+      dead-letter disposition applies only after a transport accepted an event
+      and a downstream consumer failed it.
+    reconciliation_dependency: >-
+      A quarantined item is resolved only through reconciliation against the
+      House governed state; it never silently expires.
+    compensation_limitation: >-
+      Correction uses forward compensation; it cannot un-commit a governed fact,
+      delete an audit event, or fabricate an outcome.
+    incident_linkage: >-
+      A quarantine that indicates a governed incident links to the incident
+      record without embedding restricted content.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-28
+  - id: NOTIFY-V8-001
+    kind: NOTIFICATION_REQUIREMENT
+    title: Applicant affiliation-outcome notification requirement
+    statement: >-
+      The governed requirement for notifying an applicant of a committed
+      affiliation outcome: minimum-necessary, accessible, and bilingual.
+      Generation is distinct from delivery.
+    audience: Applicant acting for a member organization
+    disclosure_authority: >-
+      House authority to disclose the affiliation outcome to the applicant who
+      submitted it.
+    minimum_necessary_content: >-
+      The governed outcome and the applicant's next step only; no internal detail
+      or restricted evidence.
+    content_minimization: >-
+      No information beyond the audience's entitlement is included.
+    english_semantic: The affiliation outcome and next step stated in English.
+    french_semantic: The affiliation outcome and next step stated in equivalent French.
+    accessibility_requirement: >-
+      The notification is perceivable by its audience under the platform
+      accessibility obligation.
+    classification: PERSONAL_INFORMATION
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-27
+  - id: NOTIFY-V8-002
+    kind: NOTIFICATION_REQUIREMENT
+    title: Reviewer affiliation-assignment notification requirement
+    statement: >-
+      The governed requirement for notifying a reviewer of an affiliation review
+      assignment: minimum-necessary, accessible, and bilingual.
+    audience: Reviewer under delegated House authority
+    disclosure_authority: >-
+      House authority to disclose the review assignment to the entitled reviewer.
+    minimum_necessary_content: >-
+      The assignment and the affiliation subject reference only; no restricted
+      evidence.
+    content_minimization: >-
+      No reviewer-restricted decision content is included in the assignment
+      notification.
+    english_semantic: The review assignment stated in English.
+    french_semantic: The review assignment stated in equivalent French.
+    accessibility_requirement: >-
+      The notification is perceivable by its audience under the platform
+      accessibility obligation.
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-27
+  - id: NOTIFY-V8-003
+    kind: NOTIFICATION_REQUIREMENT
+    title: Applicant affiliation-suspension notification requirement
+    statement: >-
+      The governed requirement for notifying an applicant of an affiliation
+      suspension or reinstatement: minimum-necessary, accessible, and bilingual.
+    audience: Applicant acting for a member organization
+    disclosure_authority: >-
+      House authority to disclose the suspension or reinstatement outcome to the
+      affected applicant.
+    minimum_necessary_content: >-
+      The governed status change and the applicant's next step only; no internal
+      detail or restricted evidence.
+    content_minimization: >-
+      No compliance-flag or reviewer-restricted content is disclosed.
+    english_semantic: The status change and next step stated in English.
+    french_semantic: The status change and next step stated in equivalent French.
+    accessibility_requirement: >-
+      The notification is perceivable by its audience under the platform
+      accessibility obligation.
+    classification: PERSONAL_INFORMATION
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-27
+  - id: CONTRACT-V8-121
+    kind: COMPATIBILITY_RULE
+    title: Affiliation event additive-change compatibility rule
+    statement: >-
+      An additive, optional change to an affiliation event contract is
+      backward-compatible only when consumer evidence confirms no known consumer
+      requires the added element.
+    compatibility_state: BACKWARD_COMPATIBLE
+    consumer_evidence: >-
+      Evidence that no known affiliation event consumer treats the added envelope
+      or payload element as required before the change is made.
+    deprecation_rule: Not applicable for additive change
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-30
+  - id: CONTRACT-V8-122
+    kind: COMPATIBILITY_RULE
+    title: Affiliation event breaking-change deprecation rule
+    statement: >-
+      A breaking change to an affiliation event envelope or payload contract may
+      proceed only through a new event contract version and an evidenced
+      deprecation path for every known consumer.
+    compatibility_state: BREAKING_CHANGE
+    consumer_evidence: >-
+      Evidence of every known affiliation event consumer that depends on the
+      contract and confirmation of their migration before sunset.
+    deprecation_rule: >-
+      A new event contract version, a coexistence period in which both versions
+      remain valid, a migration path, and a sunset condition satisfied before
+      withdrawal.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-30

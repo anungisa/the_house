@@ -139,4 +139,84 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-12
+  - id: ASM-V8-004
+    kind: ASM
+    title: A transactional outbox and a message transport will exist at integration time
+    statement: >-
+      Assumption that a later, separately governed package will provide a
+      transactional outbox and a message transport capable of at-least-once
+      delivery, without which the event and delivery contracts cannot be realized.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: A named outbox and transport proven to support at-least-once delivery
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-24
+    traces_to:
+      - V8-24
+  - id: RISK-V8-004
+    kind: RISK
+    title: Provider callbacks may deliver unverifiable outcomes at integration time
+    statement: >-
+      Risk that an external provider delivers an unauthenticated, tampered, or
+      unverifiable outcome that cannot be reconciled, leaving affiliation finance
+      or verification state unresolved.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: A reconciliation path that resolves every admitted provider outcome against House state
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-25
+    traces_to:
+      - V8-25
+  - id: RISK-V8-005
+    kind: RISK
+    title: Consumers may assume exactly-once transport or global ordering
+    statement: >-
+      Risk that a future consumer implementation depends on exactly-once transport
+      or global ordering, producing duplicate or misordered effects the delivery
+      semantics explicitly do not guarantee.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Conformance evidence that consumers are idempotent and order-scope-tolerant
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-26
+    traces_to:
+      - V8-26
+  - id: TEST-V8-004
+    kind: TEST
+    title: Affiliation delivery-semantic conformance test class deferred
+    statement: >-
+      A future conformance test class must prove at-least-once delivery with
+      idempotent consumers, per-aggregate ordering scope, replay authority and
+      evidence, and reconciliation of unknown provider outcomes.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Affiliation event and delivery-semantic conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-30
+    traces_to:
+      - V8-30
+  - id: TEST-V8-005
+    kind: TEST
+    title: Affiliation notification and restricted-content conformance test class deferred
+    statement: >-
+      A future conformance test class must prove that notifications are
+      minimum-necessary, bilingual, and accessible, and that no event or
+      notification carries restricted evidence across a trust boundary.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Affiliation notification and restricted-content conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-29
+    traces_to:
+      - V8-29
 

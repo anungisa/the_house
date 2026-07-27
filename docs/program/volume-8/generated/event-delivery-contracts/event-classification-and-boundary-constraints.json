@@ -1,0 +1,80 @@
+{
+  "delivery_trust_boundaries": 2,
+  "boundaries": [
+    {
+      "id": "DTRUST-V8-001",
+      "fail_closed_posture": true,
+      "classification": "INTERNAL_OPERATIONAL"
+    },
+    {
+      "id": "DTRUST-V8-002",
+      "fail_closed_posture": true,
+      "classification": "INTERNAL_OPERATIONAL"
+    }
+  ],
+  "event_classifications": [
+    {
+      "id": "EVENT-V8-021",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-022",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-023",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-024",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-025",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-026",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-027",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-028",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-029",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-030",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-031",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    },
+    {
+      "id": "EVENT-V8-032",
+      "classification": "INTERNAL_OPERATIONAL",
+      "sensitivity": null
+    }
+  ],
+  "gaps": {
+    "notifications_carrying_restricted_evidence": []
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "gate": "V8-G3",
+  "disposition_target": "AFFILIATION_EVENT_AND_DELIVERY_CONTRACT_DEFINITION_READY",
+  "total_conditions": 28,
+  "satisfied": 27,
+  "unmet": [
+    {
+      "n": 28,
+      "title": "Package 3 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 3 inherits the corrected Package 2 provenance and the V8-D / V8-D-1 amendments",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Packages 1 and 2 remain frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Event-contract taxonomy and authority doctrine are controlled",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Commands remain distinct from events",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Domain, integration, notification, audit, webhook, callback, and reconciliation event types are distinct",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Events represent governed facts with authoritative sources and owners",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Event envelopes define identity, version, provenance, scope, correlation, causation, sensitivity, and replay",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Affiliation lifecycle transitions map to explicit event dispositions",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Authoritative state and outbox records share one logical atomicity requirement",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Outbox persistence remains distinct from publication and delivery",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "At-least-once transport remains distinct from exactly-once business effect",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Consumers define idempotency and deduplication requirements",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Ordering is scoped explicitly and global ordering is not presumed",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Replay requires authority, provenance, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Webhooks and callbacks define authentication, integrity, replay, scope, idempotency, and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Webhook acknowledgement remains distinct from authoritative reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Unknown provider outcomes remain unresolved until reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Failure, retry, quarantine, dead-letter, and compensation preserve institutional history",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Notification contracts are minimum-necessary, accessible, and bilingual",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Restricted evidence is excluded from routine event and notification content",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Finance, activation, audit, security, and provider boundaries preserve authority",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Event versioning and compatibility are evaluated against known producers and consumers",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Every unresolved item has an owner, an evidence requirement, and a valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Deterministic Package 3 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "No executable schema, endpoint, topic, broker, or coded-contract artifacts are created",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "No delivery, exactly-once, provider-assurance, or integration claim is asserted without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Package 3 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding",
+      "satisfied": false
+    }
+  ]
+}
