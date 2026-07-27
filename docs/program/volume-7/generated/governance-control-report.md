@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T03:11:54.198Z
+Generated: 2026-07-27T03:13:54.896Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,11 +16,11 @@ Generated: 2026-07-27T03:11:54.198Z
 
 ## Summary
 
-- Total findings: 1
-- Errors: 1
+- Total findings: 0
+- Errors: 0
 - Warnings: 0
 - Info: 0
-- Overall: FAIL (experience/service-design integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -37,7 +37,7 @@ Generated: 2026-07-27T03:11:54.198Z
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 108 |
 | REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 21 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 25 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 27 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 28 |
 
 ## Findings by control
 
@@ -73,9 +73,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V7-G2 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V7_G2_CONDITION_UNMET [GATE-V7-G2]: Condition 24 not satisfied: Package 2 receives line-level review and a separate freeze commit
+- (no findings)
 
 ## Recorded conditions (from REG-705 approvals)
 

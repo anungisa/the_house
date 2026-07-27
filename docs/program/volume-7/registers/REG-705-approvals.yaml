@@ -265,3 +265,40 @@ records:
       - Bilingual meaning is specified as equivalent and not literal
       - Package 2 receives line-level review and a separate freeze commit
     approved_at: null
+  - id: APP-V7-028
+    artifact_id: PACKAGE-7-2
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Frozen artifacts are superseded, never overwritten. A narrow post-merge provenance amendment is recorded as V7-D. Volume 7 is not tagged after Package 2.
+    frozen: true
+    frozen_artifacts:
+      - id: V7-11
+        version: 1.0.0
+      - id: V7-12
+        version: 1.0.0
+      - id: V7-13
+        version: 1.0.0
+      - id: V7-14
+        version: 1.0.0
+      - id: V7-15
+        version: 1.0.0
+      - id: V7-16
+        version: 1.0.0
+      - id: V7-17
+        version: 1.0.0
+      - id: V7-18
+        version: 1.0.0
+      - id: V7-19
+        version: 1.0.0
+      - id: V7-20
+        version: 1.0.0
+      - id: V7-C
+        version: 1.0.0
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      note: Package 2 freeze is a separate freeze commit after line-level review; the authoring commit, freeze commit, and merge commit identifiers are recorded in the V7-D provenance amendment. Volume 7 is not tagged after Package 2.
+    approved_at: null

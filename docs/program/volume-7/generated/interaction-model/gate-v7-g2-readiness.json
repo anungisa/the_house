@@ -2,14 +2,9 @@
   "gate": "V7-G2",
   "disposition": "AFFILIATION_INTERACTION_AND_SCREEN_STATE_MODEL_READY",
   "total_conditions": 24,
-  "satisfied": 23,
-  "unmet": [
-    {
-      "n": 24,
-      "title": "Package 2 receives line-level review and a separate freeze commit"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 24,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -129,7 +124,7 @@
     {
       "n": 24,
       "title": "Package 2 receives line-level review and a separate freeze commit",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
