@@ -1221,3 +1221,63 @@ records:
         definition effectiveness is distinct from, and never implies, any
         implementation or operational effective date.
     approved_at: null
+  - id: APP-V8-062
+    artifact_id: V8-H-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive governance amendment. Records the deterministic Volume 8 Package 4
+      provenance-role classification, including the V8-H provenance-amendment
+      authoring and merge commits that were knowable only after V8-H was authored
+      and merged. It corrects no earlier record; the V8-H amendment recorded the
+      pre-merge provenance-binding commit in a schema-valid provenance-binding
+      property and conflated no provenance roles. It reopens and overwrites
+      nothing in the frozen Package 4 corpus, the Gate V8-G4 disposition, or the
+      PACKAGE-8-4 freeze. Volume 8 is not tagged after Package 4.
+    provenance_role_classification:
+      package: PACKAGE-8-4
+      source_baseline: d41600a
+      substantive_authoring: 96c9e28
+      closure_and_freeze: 87bdad0
+      pre_merge_provenance_binding: 12de16c
+      original_package_merge: 3bb88d5
+      provenance_amendment_authoring: f1e14f5
+      provenance_amendment_merge: 870d7ff
+      inherited_release_tag: central-registration-volume-7-v1.0.0
+      historical_sequence_exception: NONE
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      source_baseline_commit: d41600a
+      branch_base_commit: d41600a
+      authoring_commit: 96c9e28
+      closure_authored_commit: 87bdad0
+      closure_effective_commit: 87bdad0
+      closure_freeze_commit: 87bdad0
+      freeze_commit: 87bdad0
+      gate_effective_commit: 87bdad0
+      effective_commit: 87bdad0
+      provenance_binding_commit: 12de16c
+      original_package_merge_commit: 3bb88d5
+      provenance_amendment_authoring_commit: f1e14f5
+      provenance_amendment_merge_commit: 870d7ff
+      note: >-
+        Complete Volume 8 Package 4 provenance. Source baseline d41600a;
+        substantive authoring 96c9e28; closure, gate, and freeze 87bdad0;
+        pre-merge provenance binding 12de16c; original Package 4 merge 3bb88d5;
+        V8-H provenance-amendment authoring f1e14f5; V8-H provenance-amendment
+        merge (current baseline) 870d7ff. The 12de16c commit is the pre-merge
+        provenance binding and is recorded in the provenance_binding_commit
+        property, not a provenance-amendment property. Volume 8 is not tagged
+        after Package 4.
+    effective_date_clarification:
+      gate: GATE-V8-G4
+      documentary_definition_effective_commit: 87bdad0
+      implementation_effective_date: >-
+        Not applicable. Package 4 authorizes no implementation. Documentary
+        definition effectiveness is distinct from, and never implies, any
+        implementation or operational effective date.
+    approved_at: null
