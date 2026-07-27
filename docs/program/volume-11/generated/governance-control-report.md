@@ -1,6 +1,6 @@
 # Volume 11 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T23:29:39.380Z
+Generated: 2026-07-27T23:33:37.636Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 11 corpus. It is not a source of truth, does not confer ratification, and
@@ -25,18 +25,18 @@ Generated: 2026-07-27T23:29:39.380Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 41 |
+| RATIFIED | 42 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 41 |
+| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 42 |
 | REG-1101 | Services, Capabilities, Owners, Operating States, Support Classes, and Providers | RATIFIED | 1.0.0 | 70 |
 | REG-1102 | Operational Requirements, Procedures, Scenarios, Evidence, Acceptance, and Handoffs | RATIFIED | 1.0.0 | 49 |
 | REG-1103 | Volume 11 Operational-Governance Decisions | RATIFIED | 1.0.0 | 20 |
 | REG-1104 | Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps | RATIFIED | 1.0.0 | 17 |
-| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 48 |
+| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 49 |
 
 ## Findings by control
 
