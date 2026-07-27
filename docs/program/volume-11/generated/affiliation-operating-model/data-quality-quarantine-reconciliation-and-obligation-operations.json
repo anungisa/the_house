@@ -1,0 +1,55 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "data_quality_operations": [
+    {
+      "id": "DQOP-V11-001",
+      "title": "Duplicate Organization Data-Quality Operation",
+      "authoritative_source": "Central registration record.",
+      "detection_dependency": "Duplicate-detection dependency defined.",
+      "operational_owner": "OWNER-V11-001",
+      "institutional_decision_owner": "CurlingCanada",
+      "quarantine_status": "Quarantine is distinct from rejection and from correction.",
+      "permitted_actions": "Documentary quarantine and escalation only.",
+      "prohibited_actions": "Institutional resolution and history rewrite.",
+      "correction_method_dependency": "Correction method dependency defined.",
+      "reconciliation_method": "Reconciliation method bound to authoritative source.",
+      "escalation_route": "Operational owner to institutional decision owner.",
+      "closure_authority": "Institutional decision owner.",
+      "residual_risk_posture": "Residual risk tracked to closure."
+    },
+    {
+      "id": "DQOP-V11-002",
+      "title": "Financial Mismatch Data-Quality Operation",
+      "authoritative_source": "Finance and reconciliation record.",
+      "detection_dependency": "Mismatch-detection dependency defined.",
+      "operational_owner": "OWNER-V11-004",
+      "institutional_decision_owner": "CurlingCanada",
+      "quarantine_status": "Acknowledgement is distinct from reconciliation.",
+      "permitted_actions": "Documentary quarantine and reconciliation escalation only.",
+      "prohibited_actions": "Accounting confirmation and history rewrite.",
+      "correction_method_dependency": "Correction method dependency defined.",
+      "reconciliation_method": "Reconciliation method bound to the finance record.",
+      "escalation_route": "Finance owner to institutional decision owner.",
+      "closure_authority": "Institutional decision owner.",
+      "residual_risk_posture": "Residual risk tracked to reconciliation closure."
+    }
+  ],
+  "reconciliation_operations": [
+    {
+      "id": "RECONOP-V11-001",
+      "title": "Post-Recovery Reconciliation Operation",
+      "authoritative_source": "Central registration record.",
+      "reconciliation_method": "Reconciliation method bound to authoritative source.",
+      "closure_authority": "Institutional decision owner."
+    }
+  ],
+  "quarantine_procedures": [
+    {
+      "id": "QP-V11-001",
+      "title": "Quarantine Procedure",
+      "quarantine_status": "Quarantine is distinct from rejection and from correction.",
+      "permitted_actions": "Documentary quarantine and escalation only.",
+      "prohibited_actions": "Institutional resolution and history rewrite."
+    }
+  ]
+}

@@ -248,3 +248,74 @@ records:
         Authoritative provenance-role classification for Package 1. Each commit is
         bound to exactly one role; authoring, closure and freeze, pre-merge binding,
         original merge, and provenance amendment are never conflated.
+  # --- Package 2 chapter ratifications (Commit A) ---
+  - id: APP-V11-017
+    artifact_id: V11-11
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-018
+    artifact_id: V11-12
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-019
+    artifact_id: V11-13
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-020
+    artifact_id: V11-14
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-021
+    artifact_id: V11-15
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-022
+    artifact_id: V11-16
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-023
+    artifact_id: V11-17
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-024
+    artifact_id: V11-18
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-025
+    artifact_id: V11-19
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+  - id: APP-V11-026
+    artifact_id: V11-20
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false

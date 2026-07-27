@@ -1,0 +1,47 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "operating_states": [
+    {
+      "id": "AFFSTATE-V11-001",
+      "title": "Operationally Accepted State",
+      "operating_state": "OPERATIONALLY_ACCEPTED",
+      "scenario": "Stabilization after migration or deployment.",
+      "exit": "Operationally prepared is distinct from operationally accepted.",
+      "permitted_operations": "Governed operational-acceptance review only.",
+      "prohibited_operations": "Live operation, migration execution, and release authorization.",
+      "required_operational_evidence": "Operational-acceptance evidence independent of the service owner.",
+      "rollback_or_suspension": "Suspension dependency defined in the continuity procedures.",
+      "outstanding_obligations": "Outstanding reconciliation obligations tracked to closure.",
+      "decision_authority": "Operational-acceptance authority independent of the service owner.",
+      "future_gate": "V12-G1"
+    },
+    {
+      "id": "AFFSTATE-V11-002",
+      "title": "Stabilizing State",
+      "operating_state": "STABILIZING",
+      "scenario": "Reconciliation backlog and delayed event delivery.",
+      "exit": "Stabilizing is distinct from operating.",
+      "permitted_operations": "Governed stabilization observation only.",
+      "prohibited_operations": "Operation, migration execution, and acceptance claims.",
+      "required_operational_evidence": "Stabilization evidence bound to the operating environment.",
+      "rollback_or_suspension": "Rollback dependency defined in the migration runbooks.",
+      "outstanding_obligations": "Outstanding obligations tracked to reconciliation closure.",
+      "decision_authority": "Service owner within governed policy.",
+      "future_gate": "V12-G1"
+    },
+    {
+      "id": "AFFSTATE-V11-003",
+      "title": "Degraded State",
+      "operating_state": "DEGRADED",
+      "scenario": "Provider outage and stale projections.",
+      "exit": "Recovering is distinct from operating.",
+      "permitted_operations": "Governed degraded-mode documentation only.",
+      "prohibited_operations": "Live operation and recovery-capability claims.",
+      "required_operational_evidence": "Degraded-operation evidence bound to the fallback exercise.",
+      "rollback_or_suspension": "Suspension dependency defined in continuity procedures.",
+      "outstanding_obligations": "Outstanding obligations preserved through the degraded posture.",
+      "decision_authority": "Continuity decision authority.",
+      "future_gate": "V12-G1"
+    }
+  ]
+}

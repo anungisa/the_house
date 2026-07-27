@@ -1,0 +1,41 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "signals": [
+    {
+      "id": "AFFSIG-V11-001",
+      "title": "Outbox Backlog Signal",
+      "signal_source": "Outbox processing telemetry.",
+      "correlation_context": "Correlation and causation identifiers.",
+      "sensitivity": "INTERNAL",
+      "alert_destination": "Affiliation operations owner.",
+      "owner": "OWNER-V11-002",
+      "escalation_authority": "Operations owner to executive sponsor.",
+      "containment": "Documentary containment action class only.",
+      "recovery_dependency": "Recovery dependency defined in continuity procedures.",
+      "reconciliation_requirement": "Reconciliation required after backlog clearance.",
+      "evidence_required": "Evidence bound to the signal and containment."
+    },
+    {
+      "id": "AFFSIG-V11-002",
+      "title": "Provider Availability Signal",
+      "signal_source": "Provider availability telemetry.",
+      "correlation_context": "Provider and service correlation context.",
+      "sensitivity": "INTERNAL",
+      "alert_destination": "Affiliation operations owner.",
+      "owner": "OWNER-V11-003",
+      "escalation_authority": "Operations owner to provider owner.",
+      "containment": "Documentary containment action class only.",
+      "recovery_dependency": "Provider substitution dependency defined in provider runbooks.",
+      "reconciliation_requirement": "Reconciliation required after provider recovery.",
+      "evidence_required": "Evidence bound to the provider signal."
+    }
+  ],
+  "reconciliation_procedures": [
+    {
+      "id": "RECP-V11-001",
+      "title": "Reconciliation Procedure",
+      "reconciliation_method": "Reconciliation method bound to authoritative source.",
+      "evidence_required": "Evidence bound to the reconciliation record."
+    }
+  ]
+}

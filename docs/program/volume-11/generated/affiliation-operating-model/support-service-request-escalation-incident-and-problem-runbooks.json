@@ -1,0 +1,65 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "support_classes": [
+    {
+      "id": "AFFSUP-V11-001",
+      "title": "Account and Access Assistance Support Class",
+      "support_class_kind": "USER_ASSISTANCE",
+      "requester": "Authorized club representative or administrator.",
+      "receiving_role": "Affiliation support role.",
+      "authority_boundary": "Support access is distinct from mutation authority and from decision authority.",
+      "sensitivity": "PERSONAL_INFORMATION",
+      "escalation_route": "Support to incident to problem escalation.",
+      "communication_obligation": "Bilingual and accessible communication obligations apply.",
+      "resolution_authority": "Support resolution authority within governed policy.",
+      "closure_evidence": "Closure evidence bound to the request."
+    },
+    {
+      "id": "AFFSUP-V11-002",
+      "title": "Finance and Reconciliation Issue Support Class",
+      "support_class_kind": "FINANCE_AND_RECONCILIATION_ISSUE",
+      "requester": "Club administrator or finance staff.",
+      "receiving_role": "Finance support role.",
+      "authority_boundary": "Support access is distinct from mutation authority and from decision authority.",
+      "sensitivity": "FINANCIAL",
+      "escalation_route": "Finance support to reconciliation to institutional decision.",
+      "communication_obligation": "Bilingual and accessible communication obligations apply.",
+      "resolution_authority": "Finance resolution authority within governed policy.",
+      "closure_evidence": "Reconciliation closure evidence bound to the issue."
+    }
+  ],
+  "support_runbooks": [
+    {
+      "id": "SUPRB-V11-001",
+      "title": "Account and Access Support Runbook",
+      "permitted_requester": "Authorized club representative or administrator.",
+      "receiving_role": "Affiliation support role.",
+      "triage_criteria": "Triage is distinct from diagnosis and from resolution.",
+      "authority_boundary": "Support access is distinct from mutation authority and from decision authority.",
+      "escalation_path": "Support to incident to problem.",
+      "closure_evidence": "Closure evidence bound to the request.",
+      "reopening_criteria": "Reopening criteria defined for unresolved requests."
+    }
+  ],
+  "incident_runbooks": [
+    {
+      "id": "INCRB-V11-001",
+      "title": "Outbox Backlog Incident Runbook",
+      "signal_source": "Outbox processing telemetry.",
+      "triage_criteria": "Triage is distinct from diagnosis and from resolution.",
+      "containment": "Documentary containment action class only.",
+      "recovery_dependency": "Recovery dependency defined in continuity procedures.",
+      "reconciliation_requirement": "Reconciliation required after backlog clearance.",
+      "escalation_authority": "Operations owner to executive sponsor.",
+      "evidence_required": "Evidence bound to the incident and containment."
+    }
+  ],
+  "problem_runbooks": [
+    {
+      "id": "PROBRB-V11-001",
+      "title": "Recurring Reconciliation Mismatch Problem Runbook",
+      "problem_management_dependency": "Root-cause dependency defined.",
+      "evidence_required": "Evidence bound to the problem record."
+    }
+  ]
+}

@@ -368,3 +368,511 @@ records:
     execution_status: NOT_EXECUTED
     chapter_ref: V11-09
     future_gate: V12-G1
+  # --- Package 2: Affiliation operating procedures and support runbooks ---
+  - id: AOP-V11-001
+    kind: AFFILIATION_OPERATING_PROCEDURE
+    title: Affiliation Submission Operating Procedure
+    statement: Documentary operating procedure for affiliation submission intake. A defined procedure is not an executed procedure.
+    objective: Define the operating procedure boundary for submission intake.
+    operational_owner: OWNER-V11-001
+    decision_authority: Service owner within governed policy.
+    evidence_required: Evidence bound to the operating procedure definition.
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: SUPRB-V11-001
+    kind: SUPPORT_RUNBOOK
+    title: Account and Access Support Runbook
+    statement: Documentary support runbook for account and access assistance. Support access is distinct from mutation authority.
+    objective: Define the support runbook boundary for account and access assistance.
+    permitted_requester: Authorized club representative or administrator.
+    receiving_role: Affiliation support role.
+    triage_criteria: Triage is distinct from diagnosis and from resolution.
+    authority_boundary: Support access is distinct from mutation authority and from decision authority.
+    information_classification: PERSONAL_INFORMATION
+    minimum_necessary_access: Minimum-necessary diagnostic access only.
+    priority_method_dependency: Priority method defined by governed support policy.
+    escalation_path: Support to incident to problem.
+    diagnostic_evidence: Diagnostic evidence bound to the request.
+    communication_obligation: Bilingual and accessible communication obligations apply.
+    accessibility_bilingual_obligation: Accessibility and bilingual obligations apply.
+    privacy_restriction: Personal information restricted to minimum necessary.
+    resolution_authority: Support resolution authority within governed policy.
+    closure_evidence: Closure evidence bound to the request.
+    reopening_criteria: Reopening criteria defined for unresolved requests.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-13
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-13
+    future_gate: V12-G1
+  - id: INCRB-V11-001
+    kind: INCIDENT_RUNBOOK
+    title: Outbox Backlog Incident Runbook
+    statement: Documentary incident runbook for outbox backlog. Incident resolved is not underlying problem eliminated.
+    objective: Define the incident runbook boundary for outbox backlog.
+    signal_source: Outbox processing telemetry.
+    triage_criteria: Triage is distinct from diagnosis and from resolution.
+    containment_action_class: Documentary containment action class only.
+    recovery_dependency: Recovery dependency defined in continuity procedures.
+    reconciliation_requirement: Reconciliation required after backlog clearance.
+    escalation_authority: Operations owner to executive sponsor.
+    problem_management_dependency: Problem management dependency defined.
+    evidence_required: Evidence bound to the incident and containment.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-14
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-14
+    future_gate: V12-G1
+  - id: PROBRB-V11-001
+    kind: PROBLEM_RUNBOOK
+    title: Recurring Reconciliation Mismatch Problem Runbook
+    statement: Documentary problem runbook for recurring reconciliation mismatches. Incident closure does not establish problem elimination.
+    objective: Define the problem runbook boundary for reconciliation mismatches.
+    problem_management_dependency: Root-cause dependency defined.
+    evidence_required: Evidence bound to the problem record.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-14
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-14
+    future_gate: V12-G1
+  # --- Package 2: Continuity, backup, restore, and recovery procedures ---
+  - id: CONTP-V11-001
+    kind: CONTINUITY_PROCEDURE
+    title: Database Interruption Continuity Procedure
+    statement: Documentary continuity procedure for database interruption. Documented fallback is not proven fallback capability.
+    objective: Define the continuity procedure boundary for database interruption.
+    failure_stimulus: Database interruption.
+    affected_service: AFFSVC-V11-003
+    authoritative_state_at_risk: Central registration record.
+    preserved_work: Preserved affiliation case work.
+    prohibited_action: Live mutation during interruption.
+    degraded_mode: Documentary degraded mode only.
+    fallback_procedure: Manual fallback dependency defined.
+    backup_dependency: Backup dependency defined.
+    restore_dependency: Restore dependency defined.
+    recovery_procedure: Recovery dependency defined.
+    reconciliation_dependency: Reconciliation dependency defined.
+    outstanding_obligation_treatment: Outstanding obligations preserved.
+    evidence_required: Evidence bound to the continuity exercise.
+    exercise_environment: Non-production documentary exercise environment.
+    decision_authority: Continuity decision authority.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-15
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-15
+    future_gate: V12-G1
+  - id: BKV-V11-001
+    kind: BACKUP_VERIFICATION_PROCEDURE
+    title: Backup Verification Procedure
+    statement: Documentary backup verification procedure. Backup generated is not backup verified is not backup restorable.
+    objective: Define the backup verification procedure boundary.
+    backup_completion_definition: Backup completion is bound to a completion record.
+    backup_verification_definition: Backup verification is bound to a verification record.
+    evidence_required: Evidence bound to the verification.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-15
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-15
+    future_gate: V12-G1
+  - id: RSTP-V11-001
+    kind: RESTORE_PROCEDURE
+    title: Restore Procedure
+    statement: Documentary restore procedure. Restore completed is not service recovered.
+    objective: Define the restore procedure boundary.
+    restoration_definition: Restoration is bound to a restoration record.
+    evidence_required: Evidence bound to the restoration.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-15
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-15
+    future_gate: V12-G1
+  - id: RCVP-V11-001
+    kind: RECOVERY_PROCEDURE
+    title: Recovery Procedure
+    statement: Documentary recovery procedure. Service recovered is not data reconciled.
+    objective: Define the recovery procedure boundary.
+    recovery_definition: Recovery is bound to a recovery record.
+    reconciliation_definition: Reconciliation is bound to a reconciliation record.
+    evidence_required: Evidence bound to the recovery and reconciliation.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-15
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-15
+    future_gate: V12-G1
+  # --- Package 2: Migration runbooks and stage requirements ---
+  - id: MIGRB-V11-001
+    kind: MIGRATION_RUNBOOK
+    title: Club Migration Runbook
+    statement: Documentary migration runbook for club records. Mapping complete is not identity resolved; rehearsal completed is not migration authorized.
+    objective: Define the migration runbook boundary for club records.
+    source: Legacy club registration source.
+    source_authority: Source authority remains with the originating system until retirement authorization.
+    target_service: AFFSVC-V11-002
+    entry_criteria: Source qualification entry criteria defined.
+    data_quality_dependencies: Data-quality dependencies defined.
+    identity_resolution_dependencies: Identity-resolution dependencies defined.
+    provenance_capture: Provenance captured for every source record.
+    mapping_dependency: Mapping dependency defined; source record is not resolved identity.
+    uncertainty_treatment: Duplicate and uncertainty treatment defined.
+    identity_candidate_treatment: Identity candidates treated as candidates only.
+    quarantine_posture: Quarantine posture defined for unresolved records.
+    evidence_reference_posture: Evidence-reference posture preserved.
+    rehearsal_requirement: Rehearsal required before cutover authorization.
+    acceptance_criteria: Business acceptance criteria defined; cutover completed is not business accepted.
+    reconciliation_method: Reconciliation method bound to authoritative source.
+    rollback_dependency: Rollback dependency defined.
+    cutover_boundary: Cutover completed is not business accepted.
+    source_retirement_boundary: Business accepted is not source retired.
+    operational_dependency: Operational dependency defined.
+    evidence_required: Evidence bound to every migration stage.
+    decision_authority: Cutover authorization authority independent of the migration operator.
+    operational_owner: OWNER-V11-003
+    traces_to:
+      - V11-16
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-16
+    future_gate: V12-G1
+  - id: REH-V11-001
+    kind: REHEARSAL_REQUIREMENT
+    title: Migration Rehearsal Requirement
+    statement: Documentary migration rehearsal requirement. Rehearsal completed is not migration authorized.
+    objective: Define the rehearsal requirement boundary.
+    rehearsal_requirement: Rehearsal required in a non-production documentary environment.
+    evidence_required: Evidence bound to the rehearsal.
+    operational_owner: OWNER-V11-003
+    traces_to:
+      - V11-16
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-16
+    future_gate: V12-G1
+  - id: CUT-V11-001
+    kind: CUTOVER_REQUIREMENT
+    title: Cutover Requirement
+    statement: Documentary cutover requirement. Cutover completed is not business accepted.
+    objective: Define the cutover requirement boundary.
+    cutover_boundary: Cutover requires authorization independent of the migration operator.
+    acceptance_criteria: Business acceptance criteria defined.
+    evidence_required: Evidence bound to the cutover authorization.
+    operational_owner: OWNER-V11-003
+    traces_to:
+      - V11-16
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-16
+    future_gate: V12-G1
+  - id: RBK-V11-001
+    kind: ROLLBACK_REQUIREMENT
+    title: Rollback Requirement
+    statement: Documentary rollback requirement for migration and cutover.
+    objective: Define the rollback requirement boundary.
+    rollback_dependency: Rollback dependency defined for every cutover.
+    evidence_required: Evidence bound to the rollback capability.
+    operational_owner: OWNER-V11-003
+    traces_to:
+      - V11-16
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-16
+    future_gate: V12-G1
+  - id: SRET-V11-001
+    kind: SOURCE_RETIREMENT_REQUIREMENT
+    title: Source Retirement Requirement
+    statement: Documentary source-retirement requirement. Business accepted is not source retired.
+    objective: Define the source-retirement requirement boundary.
+    source_retirement_boundary: Source retirement requires separate authorization after business acceptance.
+    evidence_required: Evidence bound to the source-retirement authorization.
+    operational_owner: OWNER-V11-003
+    traces_to:
+      - V11-16
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-16
+    future_gate: V12-G1
+  # --- Package 2: Quarantine and reconciliation procedures ---
+  - id: QP-V11-001
+    kind: QUARANTINE_PROCEDURE
+    title: Quarantine Procedure
+    statement: Documentary quarantine procedure. Quarantine is not rejection.
+    objective: Define the quarantine procedure boundary.
+    quarantine_status: Quarantine is distinct from rejection and from correction.
+    permitted_actions: Documentary quarantine and escalation only.
+    prohibited_actions: Institutional resolution and history rewrite.
+    evidence_required: Evidence bound to the quarantine record.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-17
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-17
+    future_gate: V12-G1
+  - id: RECP-V11-001
+    kind: RECONCILIATION_PROCEDURE
+    title: Reconciliation Procedure
+    statement: Documentary reconciliation procedure. Acknowledgement is not reconciliation.
+    objective: Define the reconciliation procedure boundary.
+    reconciliation_method: Reconciliation method bound to authoritative source.
+    evidence_required: Evidence bound to the reconciliation record.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-17
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-17
+    future_gate: V12-G1
+  # --- Package 2: Training, onboarding, and adoption requirements ---
+  - id: TRNG-V11-001
+    kind: TRAINING_REQUIREMENT
+    title: Reviewer Training Requirement
+    statement: Documentary training requirement for reviewers. Training delivered is not competence demonstrated.
+    objective: Define the training requirement boundary for reviewers.
+    training_content: Review, return, and decision-disclosure content.
+    delivery_method_dependency: Delivery-method dependency defined.
+    competence_definition: Competence demonstrated through assessment.
+    english_french_requirement: English and French semantic equivalence required.
+    accessibility_requirement: Accessibility requirements apply.
+    practice_or_simulation_requirement: Practice or simulation requirement defined.
+    assessment_method: Assessment method bound to competence.
+    support_dependency: Support and escalation awareness dependency defined.
+    evidence_required: Evidence bound to training delivery and competence.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-18
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-18
+    future_gate: V12-G1
+  - id: ONB-V11-001
+    kind: ONBOARDING_REQUIREMENT
+    title: Club Onboarding Requirement
+    statement: Documentary onboarding requirement for clubs. Account provisioned is not authority established.
+    objective: Define the onboarding requirement boundary for clubs.
+    onboarding_evidence: Onboarding evidence bound to governed authority establishment.
+    support_dependency: Support and escalation dependency defined.
+    evidence_required: Evidence bound to onboarding.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-18
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-18
+    future_gate: V12-G1
+  - id: ADOPTR-V11-001
+    kind: ADOPTION_REQUIREMENT
+    title: Adoption Monitoring Requirement
+    statement: Documentary adoption requirement. Onboarding completed is not sustained adoption.
+    objective: Define the adoption requirement boundary.
+    adoption_measure: Adoption measured by governed evidence.
+    reinforcement_requirement: Post-launch reinforcement and remediation for low adoption required.
+    readiness_criterion: Readiness criterion bound to sustained adoption evidence.
+    evidence_required: Evidence bound to adoption monitoring.
+    operational_owner: OWNER-V11-002
+    traces_to:
+      - V11-18
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-18
+    future_gate: V12-G1
+  # --- Package 2: Provider operational requirements ---
+  - id: PROVOP-V11-001
+    kind: PROVIDER_OPERATIONAL_REQUIREMENT
+    title: Payments Provider Operational Requirement
+    statement: Documentary provider operational requirement for payments. Provider certification is not operational assurance.
+    objective: Define the provider operational requirement boundary for payments.
+    institutional_owner: CurlingCanada
+    contract_owner: OWNER-V11-004
+    operational_owner: OWNER-V11-003
+    service_dependency: AFFSVC-V11-004
+    data_custody: Provider custody of payment data; Curling Canada retains records authority.
+    authority_retained: Authority retained by Curling Canada.
+    authentication_dependency: Provider authentication dependency defined.
+    incident_obligation: Provider incident obligation defined.
+    continuity_obligation: Provider continuity obligation defined.
+    subcontractor_dependency: Subcontractor dependency disclosed.
+    return_requirement: Data return requirement defined; provider termination is not data returned.
+    deletion_evidence_requirement: Deletion-evidence requirement defined.
+    residual_copy_posture: Residual-copy posture defined.
+    backup_posture: Provider backup posture defined.
+    substitution_dependency: Provider substitution dependency defined.
+    reconciliation_requirement: Reconciliation required after provider exit.
+    exit_procedure: Provider exit procedure defined.
+    provider_certification_boundary: Provider certification covers the provider platform only.
+    end_to_end_assurance_boundary: Provider certification is not end-to-end assurance of the affiliated service.
+    traces_to:
+      - V11-19
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-19
+    future_gate: V12-G1
+  # --- Package 2: Operational-evidence requirements ---
+  - id: OEV-V11-001
+    kind: OPERATIONAL_EVIDENCE_REQUIREMENT
+    title: Affiliation Operational-Evidence Requirement
+    statement: Documentary operational-evidence requirement binding operational evidence to full provenance.
+    objective: Define the operational-evidence requirement boundary.
+    evidence_binds_environment: Operational evidence binds the environment.
+    evidence_binds_config: Operational evidence binds the configuration.
+    evidence_binds_version: Operational evidence binds the version.
+    evidence_binds_identity: Operational evidence binds the identity.
+    evidence_binds_org: Operational evidence binds the organization.
+    evidence_binds_jurisdiction: Operational evidence binds the jurisdiction.
+    evidence_binds_data_classification: Operational evidence binds the data classification.
+    evidence_binds_provider_state: Operational evidence binds the provider state.
+    evidence_binds_time: Operational evidence binds the time.
+    evidence_destination: Operational-evidence destination defined.
+    volume_12_destination: Volume 12 operational-evidence governance package.
+    house_p0_destination: House P0 findings have operational-proof and release-evidence destinations in Volume 12.
+    operational_owner: OWNER-V11-004
+    traces_to:
+      - V11-20
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-20
+    future_gate: V12-G1
+  - id: OEV-V11-002
+    kind: OPERATIONAL_EVIDENCE_REQUIREMENT
+    title: Migration Operational-Evidence Requirement
+    statement: Documentary operational-evidence requirement for migration and reconciliation evidence.
+    objective: Define the migration operational-evidence requirement boundary.
+    evidence_binds_environment: Migration evidence binds the environment.
+    evidence_binds_config: Migration evidence binds the configuration.
+    evidence_binds_version: Migration evidence binds the version.
+    evidence_binds_identity: Migration evidence binds the identity.
+    evidence_binds_org: Migration evidence binds the organization.
+    evidence_binds_jurisdiction: Migration evidence binds the jurisdiction.
+    evidence_binds_data_classification: Migration evidence binds the data classification.
+    evidence_binds_provider_state: Migration evidence binds the provider state.
+    evidence_binds_time: Migration evidence binds the time.
+    evidence_destination: Migration operational-evidence destination defined.
+    volume_12_destination: Volume 12 migration operational-evidence governance package.
+    house_p0_destination: House P0 migration findings have operational-proof and release-evidence destinations in Volume 12.
+    operational_owner: OWNER-V11-003
+    traces_to:
+      - V11-20
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-20
+    future_gate: V12-G1

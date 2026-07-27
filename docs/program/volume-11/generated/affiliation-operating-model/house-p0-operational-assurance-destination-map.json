@@ -1,0 +1,17 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "house_p0_destinations": [
+    {
+      "id": "OEV-V11-001",
+      "title": "Affiliation Operational-Evidence Requirement",
+      "house_p0_destination": "House P0 findings have operational-proof and release-evidence destinations in Volume 12.",
+      "volume_12_destination": "Volume 12 operational-evidence governance package."
+    },
+    {
+      "id": "OEV-V11-002",
+      "title": "Migration Operational-Evidence Requirement",
+      "house_p0_destination": "House P0 migration findings have operational-proof and release-evidence destinations in Volume 12.",
+      "volume_12_destination": "Volume 12 migration operational-evidence governance package."
+    }
+  ]
+}

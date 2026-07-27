@@ -25,6 +25,8 @@ function collectKnownIds(ctx) {
   // Package and gate freeze artifacts are legitimate reference targets.
   ids.add('PACKAGE-11-1');
   ids.add('GATE-V11-G1');
+  ids.add('PACKAGE-11-2');
+  ids.add('GATE-V11-G2');
   return ids;
 }
 

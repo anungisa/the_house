@@ -1,0 +1,38 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "continuity_procedures": [
+    {
+      "id": "CONTP-V11-001",
+      "title": "Database Interruption Continuity Procedure",
+      "failure_stimulus": "Database interruption.",
+      "affected_service": "AFFSVC-V11-003",
+      "authoritative_state_at_risk": "Central registration record.",
+      "preserved_work": "Preserved affiliation case work.",
+      "prohibited_action": "Live mutation during interruption.",
+      "degraded_mode": "Documentary degraded mode only.",
+      "fallback": "Manual fallback dependency defined.",
+      "recovery": "Recovery dependency defined.",
+      "evidence_required": "Evidence bound to the continuity exercise."
+    }
+  ],
+  "backup_verifications": [
+    {
+      "id": "BKV-V11-001",
+      "completion": "Backup completion is bound to a completion record.",
+      "verification": "Backup verification is bound to a verification record."
+    }
+  ],
+  "restore_procedures": [
+    {
+      "id": "RSTP-V11-001",
+      "restoration": "Restoration is bound to a restoration record."
+    }
+  ],
+  "recovery_procedures": [
+    {
+      "id": "RCVP-V11-001",
+      "recovery": "Recovery is bound to a recovery record.",
+      "reconciliation": "Reconciliation is bound to a reconciliation record."
+    }
+  ]
+}

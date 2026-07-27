@@ -1,0 +1,41 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "provider_contexts": [
+    {
+      "id": "AFFPROV-V11-001",
+      "title": "Payments and Accounting Provider Context",
+      "institutional_owner": "CurlingCanada",
+      "contract_owner": "OWNER-V11-004",
+      "operational_owner": "OWNER-V11-003",
+      "data_custody": "Provider custody of payment data; Curling Canada retains records authority.",
+      "authority_retained": "Authority retained by Curling Canada."
+    },
+    {
+      "id": "AFFPROV-V11-002",
+      "title": "Identity Provider Context",
+      "institutional_owner": "CurlingCanada",
+      "contract_owner": "OWNER-V11-003",
+      "operational_owner": "OWNER-V11-003",
+      "data_custody": "Provider custody of authentication data; Curling Canada retains authority.",
+      "authority_retained": "Authority retained by Curling Canada."
+    }
+  ],
+  "provider_requirements": [
+    {
+      "id": "PROVOP-V11-001",
+      "title": "Payments Provider Operational Requirement",
+      "incident_obligation": "Provider incident obligation defined.",
+      "continuity_obligation": "Provider continuity obligation defined.",
+      "subcontractor_dependency": "Subcontractor dependency disclosed.",
+      "return_requirement": "Data return requirement defined; provider termination is not data returned.",
+      "deletion_evidence_requirement": "Deletion-evidence requirement defined.",
+      "residual_copy_posture": "Residual-copy posture defined.",
+      "backup_posture": "Provider backup posture defined.",
+      "substitution_dependency": "Provider substitution dependency defined.",
+      "reconciliation_requirement": "Reconciliation required after provider exit.",
+      "exit_procedure": "Provider exit procedure defined.",
+      "certification_boundary": "Provider certification covers the provider platform only.",
+      "end_to_end_assurance_boundary": "Provider certification is not end-to-end assurance of the affiliated service."
+    }
+  ]
+}

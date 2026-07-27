@@ -44,6 +44,48 @@
       "owner": "OWNER-V11-004",
       "evidence": "Produce independent operational-acceptance evidence in a future assurance package.",
       "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ASM-V11-002",
+      "kind": "ASSUMPTION",
+      "owner": "OWNER-V11-002",
+      "evidence": "Validate operational ownership and support capacity in a future operational-readiness package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "RISK-V11-002",
+      "kind": "RISK",
+      "owner": "OWNER-V11-002",
+      "evidence": "Prove monitoring and incident-response capability in a future operational-readiness package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ISSUE-V11-002",
+      "kind": "ISSUE",
+      "owner": "OWNER-V11-002",
+      "evidence": "Demonstrate continuity and recovery capability in a future operational-readiness package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "MIGBL-V11-002",
+      "kind": "MIGRATION_BACKLOG",
+      "owner": "OWNER-V11-003",
+      "evidence": "Validate migration sources, data quality, and identity resolution in a future migration-readiness package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ADOPTBL-V11-002",
+      "kind": "ADOPTION_BACKLOG",
+      "owner": "OWNER-V11-002",
+      "evidence": "Complete training, bilingual, accessibility, and onboarding validation in a future adoption-readiness package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ASSGAP-V11-002",
+      "kind": "ASSURANCE_GAP",
+      "owner": "OWNER-V11-004",
+      "evidence": "Produce provider continuity, exit, and Volume 12 operational evidence in a future assurance package.",
+      "future_blocking_gate": "V12-G1"
     }
   ],
   "downstream_gates": [

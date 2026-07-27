@@ -115,3 +115,125 @@ records:
     operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
     execution_status: NOT_EXECUTED
     future_blocking_gate: V12-G1
+  # --- Package 2 backlog ---
+  - id: ASM-V11-002
+    kind: ASSUMPTION
+    title: Operational Ownership and Support Capacity Assumed
+    statement: >-
+      Operational ownership and service-desk and escalation capacity for the affiliation
+      vertical are assumed and not yet validated.
+    source: V11-11
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Support and escalation runbooks cannot be operated without validated capacity.
+    required_action_or_evidence: Validate operational ownership and support capacity in a future operational-readiness package.
+    traces_to:
+      - V11-13
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: RISK-V11-002
+    kind: RISK
+    title: Monitoring and Incident-Response Capability Not Yet Proven
+    statement: >-
+      Monitoring, alerting, and incident-response capability for the affiliation vertical
+      is not yet proven.
+    source: V11-14
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Observability and incident runbooks cannot be relied upon without proven capability.
+    required_action_or_evidence: Prove monitoring and incident-response capability in a future operational-readiness package.
+    traces_to:
+      - V11-14
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ISSUE-V11-002
+    kind: ISSUE
+    title: Continuity and Recovery Capability Not Yet Demonstrated
+    statement: >-
+      Continuity, backup, restore, and recovery capability for the affiliation vertical
+      has not yet been demonstrated.
+    source: V11-15
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Continuity and recovery procedures cannot be relied upon without demonstration.
+    required_action_or_evidence: Demonstrate continuity and recovery capability in a future operational-readiness package.
+    traces_to:
+      - V11-15
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: MIGBL-V11-002
+    kind: MIGRATION_BACKLOG
+    title: Migration Sources, Data Quality, and Identity Resolution Not Yet Validated
+    statement: >-
+      Migration sources, data-quality dependencies, and identity resolution for the
+      affiliation vertical are not yet validated.
+    source: V11-16
+    owner: OWNER-V11-003
+    current_status: OPEN
+    impact_if_unresolved: Migration runbooks cannot be authorized without validated sources and identity resolution.
+    required_action_or_evidence: Validate migration sources, data quality, and identity resolution in a future migration-readiness package.
+    traces_to:
+      - V11-16
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ADOPTBL-V11-002
+    kind: ADOPTION_BACKLOG
+    title: Training Content, Bilingual, and Accessibility Validation Not Yet Complete
+    statement: >-
+      Training content, bilingual delivery, accessibility validation, and club and MA
+      onboarding for the affiliation vertical are not yet complete.
+    source: V11-18
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Adoption cannot be claimed without validated content and onboarding.
+    required_action_or_evidence: Complete training, bilingual, accessibility, and onboarding validation in a future adoption-readiness package.
+    traces_to:
+      - V11-18
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ASSGAP-V11-002
+    kind: ASSURANCE_GAP
+    title: Provider Continuity, Exit, and Volume 12 Evidence Not Yet Produced
+    statement: >-
+      Provider continuity and exit assurance and Volume 12 operational evidence for the
+      affiliation vertical have not yet been produced.
+    source: V11-19
+    owner: OWNER-V11-004
+    current_status: OPEN
+    impact_if_unresolved: Provider assurance and operational acceptance cannot be granted without evidence.
+    required_action_or_evidence: Produce provider continuity, exit, and Volume 12 operational evidence in a future assurance package.
+    assurance_impact: Blocks provider assurance and operational acceptance.
+    traces_to:
+      - V11-19
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1

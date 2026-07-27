@@ -1,0 +1,199 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "services": [
+    {
+      "id": "AFFSVC-V11-001",
+      "title": "Representative Authority Service",
+      "institutional_authority": "CurlingCanada",
+      "operational_owner": "OWNER-V11-001",
+      "product_owner": "OWNER-V11-001",
+      "domain_owner": "OWNER-V11-001",
+      "technical_owner": "OWNER-V11-003",
+      "data_owner": "OWNER-V11-004",
+      "security_owner": "OWNER-V11-004",
+      "privacy_owner": "OWNER-V11-004",
+      "accessibility_bilingual_owner": "OWNER-V11-002",
+      "support_owner": "OWNER-V11-002",
+      "provider_owner": "OWNER-V11-003",
+      "operational_boundary": "House authority is distinct from Button interaction; service ownership is distinct from institutional decision authority.",
+      "upstream": [
+        "central-registration-volume-10-v1.0.0"
+      ],
+      "downstream": [
+        "AFFSVC-V11-003"
+      ],
+      "evidence_responsibility": "Operational evidence obligations defined in REG-1102.",
+      "escalation_authority": "Service owner to operations owner to executive sponsor.",
+      "operational_acceptance_authority": "Operational-acceptance authority is independent of the service owner.",
+      "material": true,
+      "governed_ownership_gap": null
+    },
+    {
+      "id": "AFFSVC-V11-002",
+      "title": "Club and Organization Identity Service",
+      "institutional_authority": "CurlingCanada",
+      "operational_owner": "OWNER-V11-001",
+      "product_owner": "OWNER-V11-001",
+      "domain_owner": "OWNER-V11-001",
+      "technical_owner": "OWNER-V11-003",
+      "data_owner": "OWNER-V11-004",
+      "security_owner": "OWNER-V11-004",
+      "privacy_owner": "OWNER-V11-004",
+      "accessibility_bilingual_owner": "OWNER-V11-002",
+      "support_owner": "OWNER-V11-002",
+      "provider_owner": "OWNER-V11-003",
+      "operational_boundary": "Technical custody is distinct from data or records authority.",
+      "upstream": [
+        "central-registration-volume-10-v1.0.0"
+      ],
+      "downstream": [
+        "AFFSVC-V11-003"
+      ],
+      "evidence_responsibility": "Operational evidence obligations defined in REG-1102.",
+      "escalation_authority": "Service owner to operations owner to executive sponsor.",
+      "operational_acceptance_authority": "Operational-acceptance authority is independent of the service owner.",
+      "material": true,
+      "governed_ownership_gap": null
+    },
+    {
+      "id": "AFFSVC-V11-003",
+      "title": "Affiliation Case Service",
+      "institutional_authority": "CurlingCanada",
+      "operational_owner": "OWNER-V11-001",
+      "product_owner": "OWNER-V11-001",
+      "domain_owner": "OWNER-V11-001",
+      "technical_owner": "OWNER-V11-003",
+      "data_owner": "OWNER-V11-004",
+      "security_owner": "OWNER-V11-004",
+      "privacy_owner": "OWNER-V11-004",
+      "accessibility_bilingual_owner": "OWNER-V11-002",
+      "support_owner": "OWNER-V11-002",
+      "provider_owner": "OWNER-V11-003",
+      "operational_boundary": "Service ownership is distinct from institutional decision authority.",
+      "upstream": [
+        "AFFSVC-V11-001"
+      ],
+      "downstream": [
+        "AFFSVC-V11-004"
+      ],
+      "evidence_responsibility": "Operational evidence obligations defined in REG-1102.",
+      "escalation_authority": "Service owner to operations owner to executive sponsor.",
+      "operational_acceptance_authority": "Operational-acceptance authority is independent of the service owner.",
+      "material": true,
+      "governed_ownership_gap": null
+    },
+    {
+      "id": "AFFSVC-V11-004",
+      "title": "Finance and Reconciliation Service",
+      "institutional_authority": "CurlingCanada",
+      "operational_owner": "OWNER-V11-004",
+      "product_owner": "OWNER-V11-001",
+      "domain_owner": "OWNER-V11-004",
+      "technical_owner": "OWNER-V11-003",
+      "data_owner": "OWNER-V11-004",
+      "security_owner": "OWNER-V11-004",
+      "privacy_owner": "OWNER-V11-004",
+      "accessibility_bilingual_owner": "OWNER-V11-002",
+      "support_owner": "OWNER-V11-002",
+      "provider_owner": "OWNER-V11-003",
+      "operational_boundary": "Provider custody is distinct from Curling Canada authority.",
+      "upstream": [
+        "AFFSVC-V11-003"
+      ],
+      "downstream": [
+        "central-registration-volume-10-v1.0.0"
+      ],
+      "evidence_responsibility": "Operational evidence obligations defined in REG-1102.",
+      "escalation_authority": "Service owner to finance owner to executive sponsor.",
+      "operational_acceptance_authority": "Operational-acceptance authority is independent of the service owner.",
+      "material": true,
+      "governed_ownership_gap": null
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "AFFCAP-V11-001",
+      "title": "Affiliation Submission Capability",
+      "operational_owner": "OWNER-V11-001"
+    },
+    {
+      "id": "AFFCAP-V11-002",
+      "title": "Affiliation Review and Return Capability",
+      "operational_owner": "OWNER-V11-001"
+    }
+  ],
+  "owner_assignments": [
+    {
+      "id": "AFFOWN-V11-001",
+      "dimension": "INSTITUTIONAL",
+      "assigned_role": "CurlingCanada",
+      "distinction": "Institutional authority is distinct from service ownership."
+    },
+    {
+      "id": "AFFOWN-V11-002",
+      "dimension": "SERVICE",
+      "assigned_role": "OWNER-V11-001",
+      "distinction": "Service ownership does not confer institutional decision authority."
+    },
+    {
+      "id": "AFFOWN-V11-003",
+      "dimension": "PRODUCT",
+      "assigned_role": "OWNER-V11-001",
+      "distinction": "Product ownership is distinct from technical custody."
+    },
+    {
+      "id": "AFFOWN-V11-004",
+      "dimension": "DOMAIN",
+      "assigned_role": "OWNER-V11-001",
+      "distinction": "Domain ownership is distinct from institutional authority."
+    },
+    {
+      "id": "AFFOWN-V11-005",
+      "dimension": "TECHNICAL",
+      "assigned_role": "OWNER-V11-003",
+      "distinction": "Technical custody is distinct from data or records authority."
+    },
+    {
+      "id": "AFFOWN-V11-006",
+      "dimension": "DATA",
+      "assigned_role": "OWNER-V11-004",
+      "distinction": "Data authority is distinct from technical custody."
+    },
+    {
+      "id": "AFFOWN-V11-007",
+      "dimension": "SECURITY",
+      "assigned_role": "OWNER-V11-004",
+      "distinction": "Security ownership is distinct from privacy and records authority."
+    },
+    {
+      "id": "AFFOWN-V11-008",
+      "dimension": "PRIVACY",
+      "assigned_role": "OWNER-V11-004",
+      "distinction": "Privacy and records authority is distinct from data custody."
+    },
+    {
+      "id": "AFFOWN-V11-009",
+      "dimension": "ACCESSIBILITY",
+      "assigned_role": "OWNER-V11-002",
+      "distinction": "Accessibility ownership is distinct from bilingual-content ownership."
+    },
+    {
+      "id": "AFFOWN-V11-010",
+      "dimension": "BILINGUAL",
+      "assigned_role": "OWNER-V11-002",
+      "distinction": "Bilingual-content ownership is distinct from accessibility ownership."
+    },
+    {
+      "id": "AFFOWN-V11-011",
+      "dimension": "SUPPORT",
+      "assigned_role": "OWNER-V11-002",
+      "distinction": "Support access is distinct from mutation authority and from decision authority."
+    },
+    {
+      "id": "AFFOWN-V11-012",
+      "dimension": "PROVIDER",
+      "assigned_role": "OWNER-V11-003",
+      "distinction": "Provider custody is distinct from Curling Canada authority."
+    }
+  ]
+}
