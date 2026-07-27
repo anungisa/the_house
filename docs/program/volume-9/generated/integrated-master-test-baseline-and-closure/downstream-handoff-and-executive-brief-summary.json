@@ -1,0 +1,5 @@
+{
+  "downstream_handoff_coverage": 1,
+  "dispositions": 21,
+  "note": "The Volume 9 corpus is handed off to Volume 10 (delivery and release planning), Volume 11, and Volume 12 as a bounded input. Volume 10 may plan and sequence work but may not infer a release authorization; no record in Volume 9 authorizes a release."
+}

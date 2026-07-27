@@ -16,6 +16,8 @@ import { generate as generateAffiliation } from './affiliation-test-definition-v
 import { generate as generateGate2 } from './gate-g2-volume-9.mjs';
 import { generate as generateAssurance } from './cross-cutting-assurance-test-definition-volume-9.mjs';
 import { generate as generateGate3 } from './gate-g3-volume-9.mjs';
+import { generate as generateFinalClosure } from './final-closure-analysis-volume-9.mjs';
+import { generate as generateGate4 } from './gate-g4-volume-9.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -43,6 +45,8 @@ generateAffiliation(ctx);
 generateGate2(ctx);
 generateAssurance(ctx);
 generateGate3(ctx);
+generateFinalClosure(ctx);
+generateGate4(ctx);
 
 console.log('\n=== Volume 9 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

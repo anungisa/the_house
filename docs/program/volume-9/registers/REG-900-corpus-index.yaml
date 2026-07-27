@@ -323,3 +323,107 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-F-1-package-3-provenance-role-classification.md
     gate: V9-G3
+  - id: V9-31
+    title: Integrated Quality and Master-Test Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-31-integrated-quality-and-master-test-baseline.md
+    gate: V9-G4
+  - id: V9-32
+    title: Master-Test Catalogue
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-32-master-test-catalogue.md
+    gate: V9-G4
+  - id: V9-33
+    title: End-to-End Affiliation Master-Test Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-33-end-to-end-affiliation-master-test-synthesis.md
+    gate: V9-G4
+  - id: V9-34
+    title: Cross-Cutting Assurance Master-Test Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-34-cross-cutting-assurance-master-test-synthesis.md
+    gate: V9-G4
+  - id: V9-35
+    title: Environment, Configuration, Identity, Data, and Provider Prerequisite Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-35-environment-configuration-identity-data-provider-prerequisite-matrix.md
+    gate: V9-G4
+  - id: V9-36
+    title: Evidence, Provenance, Reproducibility, and Claim-Boundary Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-36-evidence-provenance-reproducibility-claim-boundary-standard.md
+    gate: V9-G4
+  - id: V9-37
+    title: Defect, Exception, Waiver, Remediation, Retest, and Regression Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-37-defect-exception-waiver-remediation-retest-regression-standard.md
+    gate: V9-G4
+  - id: V9-38
+    title: Coverage, Independence, Acceptance, Material-Commitment, and Release-Evidence Standard
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-38-coverage-independence-acceptance-material-commitment-release-evidence-standard.md
+    gate: V9-G4
+  - id: V9-39
+    title: House P0 Master-Test Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-39-house-p0-master-test-matrix.md
+    gate: V9-G4
+  - id: V9-40
+    title: Whole-Volume Readiness Dispositions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-40-whole-volume-readiness-dispositions.md
+    gate: V9-G4
+  - id: V9-41
+    title: Downstream Handoff and Executive Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-41-downstream-handoff-and-executive-brief.md
+    gate: V9-G4
+  - id: V9-42
+    title: Integrated Traceability and Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-42-integrated-traceability-and-closure-assessment.md
+    gate: V9-G4
+  - id: V9-G
+    title: Volume 9 Completion and Release Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-G-volume-9-completion-and-release-freeze-record.md
+    gate: V9-G4

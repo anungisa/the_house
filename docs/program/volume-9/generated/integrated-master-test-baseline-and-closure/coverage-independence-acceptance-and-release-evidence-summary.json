@@ -1,0 +1,8 @@
+{
+  "acceptance_release_coverage": 1,
+  "independence_requirements": 1,
+  "acceptance_requirements": 1,
+  "release_evidence_requirements": 1,
+  "material_commitment_requirements": 1,
+  "note": "Coverage completeness, independence, acceptance, material commitment, and release evidence are standardized. Coverage completeness is distinct from a passing result; independence scales with claim materiality; acceptance of a definition is distinct from acceptance of executed, admissible, in-boundary evidence by the named acceptance authority. No release is authorized."
+}

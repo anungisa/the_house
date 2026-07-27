@@ -1,0 +1,4 @@
+{
+  "defect_closure_coverage": 1,
+  "note": "The defect lifecycle — defect, exception, waiver, remediation, retest, regression, closure, and reopening — is standardized. A defect is closed only with accepted retest evidence, a waiver confers no pass, and reopening is always available. No result is asserted."
+}

@@ -371,3 +371,136 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-30
+  - id: ADR-V9-033
+    title: Master-test definition is not test execution
+    decision: >-
+      The integrated master-test baseline defines test obligations and dispositions only; it
+      authorizes no test execution, environment, dataset, credential, tool, or service.
+    status: ACCEPTED
+    context: A complete master-test definition can be mistaken for an executed or executable test suite.
+    consequence: The master-test baseline carries a strict definition-only boundary.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-31
+  - id: ADR-V9-034
+    title: Every master oracle derives from a governed authority
+    decision: >-
+      Every master-test oracle derives its judging basis from a governed specification or invariant
+      and never from the object under test.
+    status: ACCEPTED
+    context: An oracle grounded in the object it judges cannot detect the object's own defects.
+    consequence: Master oracles carry an authoritative-basis and prohibited-basis obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-32
+  - id: ADR-V9-035
+    title: Coverage completeness is not passing
+    decision: >-
+      Documentary coverage completeness is held strictly distinct from a passing result, control
+      effectiveness, and operational readiness.
+    status: ACCEPTED
+    context: A complete coverage map can be mistaken for demonstrated behaviour.
+    consequence: Coverage carries a definition-only measurement posture.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
+  - id: ADR-V9-036
+    title: Environments require qualification before evidence is accepted
+    decision: >-
+      Each environment class must be qualified before use and no environment class substitutes for
+      another; evidence names the class it was produced in.
+    status: ACCEPTED
+    context: Evidence produced in one environment class can be misattributed to another.
+    consequence: Execution prerequisites carry an environment-qualification obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-35
+  - id: ADR-V9-037
+    title: Evidence must bind configuration, version, data, identity, and time
+    decision: >-
+      Every future evidence artifact must bind version, commit, configuration, environment,
+      identity, organization, jurisdiction, data, provider state, and time and be reproducible.
+    status: ACCEPTED
+    context: Evidence detached from its bindings cannot be reproduced or trusted, and supports no claim.
+    consequence: Evidence carries a full provenance-binding and reproducibility obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-36
+  - id: ADR-V9-038
+    title: Defect closure requires accepted retest evidence
+    decision: >-
+      A defect is closed only with accepted retest evidence; a closure without retest evidence is
+      prohibited and a reopening is always available.
+    status: ACCEPTED
+    context: A defect marked closed without retest can silently persist.
+    consequence: Defect closure carries a retest-evidence obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-37
+  - id: ADR-V9-039
+    title: A waiver does not convert a failure into a success
+    decision: >-
+      A governed waiver is a time-bounded decision not to require a control now; it never converts a
+      failure into a passing result.
+    status: ACCEPTED
+    context: A waiver can be mistaken for a demonstrated pass.
+    consequence: Waivers carry an owner, expiry, and approval obligation and confer no pass.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-37
+  - id: ADR-V9-040
+    title: Independence is determined by claim materiality
+    decision: >-
+      The independence level required for a claim is determined by the materiality of the claim; a
+      more material claim requires a higher independence level.
+    status: ACCEPTED
+    context: A material claim asserted at low independence cannot be trusted.
+    consequence: Claims carry a materiality-scaled independence obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
+  - id: ADR-V9-041
+    title: Documentary acceptance is not executed evidence
+    decision: >-
+      Executive acceptance of a documentary definition is held strictly distinct from acceptance of
+      executed, admissible, in-boundary evidence.
+    status: ACCEPTED
+    context: Acceptance of a definition can be mistaken for acceptance of proven behaviour.
+    consequence: Acceptance carries an admissible-evidence and claim-boundary obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-38
+  - id: ADR-V9-042
+    title: House P0 findings remain open until evidence is accepted
+    decision: >-
+      Every House priority-zero finding remains open until admissible evidence is produced and
+      accepted by the named authority in a later authorized volume.
+    status: ACCEPTED
+    context: A priority-zero finding mapped to obligations can be mistaken for a closed finding.
+    consequence: House P0 findings carry a test-mapping, evidence-mapping, and open-until-accepted obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-39
+  - id: ADR-V9-043
+    title: Volume 10 may plan but may not infer release authorization
+    decision: >-
+      Volume 10 may plan delivery, sequence work, and design a master development plan against the
+      Volume 9 handoff, but may not infer a release authorization from the definition; no record in
+      Volume 9 authorizes a release.
+    status: ACCEPTED
+    context: A complete definition and handoff can be mistaken for a release authorization.
+    consequence: The downstream handoff carries a bounded-scope and no-release-authorization obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-41

@@ -1,0 +1,6 @@
+{
+  "assurance_master_test_coverage": 1,
+  "master_test_requirements": 4,
+  "master_test_scenarios": 2,
+  "note": "Security, privacy, records, accessibility, bilingual, financial-control, resilience, recovery, observability, and provider-assurance obligations are synthesized into master-test scenario families. Fail-closed authorization, minimum-necessary evidence, semantic equivalence, and provider exit remain distinct obligations; no execution is authorized."
+}

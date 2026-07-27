@@ -15,6 +15,8 @@ import { run as runAffiliation } from './affiliation-test-definition-volume-9.mj
 import { run as runGate2 } from './gate-g2-volume-9.mjs';
 import { run as runAssurance } from './cross-cutting-assurance-test-definition-volume-9.mjs';
 import { run as runGate3 } from './gate-g3-volume-9.mjs';
+import { run as runFinalClosure } from './final-closure-analysis-volume-9.mjs';
+import { run as runGate4 } from './gate-g4-volume-9.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -23,10 +25,12 @@ export function collectFindings(ctx) {
     'Quality & master-test-governance-foundation coverage': runFoundation(ctx),
     'Affiliation test-definition coverage': runAffiliation(ctx),
     'Cross-cutting assurance test-definition coverage': runAssurance(ctx),
+    'Integrated master-test baseline and closure': runFinalClosure(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V9-G1 readiness': runGate(ctx),
     'Gate V9-G2 readiness': runGate2(ctx),
-    'Gate V9-G3 readiness': runGate3(ctx)
+    'Gate V9-G3 readiness': runGate3(ctx),
+    'Gate V9-G4 readiness': runGate4(ctx)
   };
 }
 
