@@ -1,0 +1,90 @@
+{
+  "actors": 12,
+  "task_flows": [
+    {
+      "id": "FLOW-V7-001",
+      "title": "Sign-in and session establishment flow",
+      "traces_to": [
+        "STAGE-V7-001",
+        "ACTOR-V7-001"
+      ]
+    },
+    {
+      "id": "FLOW-V7-002",
+      "title": "Organization, club identity, and representative-authority flow",
+      "traces_to": [
+        "STAGE-V7-002",
+        "ACTOR-V7-002",
+        "ACTOR-V7-003"
+      ]
+    },
+    {
+      "id": "FLOW-V7-003",
+      "title": "Affiliation initiation and applicability flow",
+      "traces_to": [
+        "STAGE-V7-003",
+        "STAGE-V7-004"
+      ]
+    },
+    {
+      "id": "FLOW-V7-004",
+      "title": "Requirements, responses, attestations, and evidence flow",
+      "traces_to": [
+        "STAGE-V7-005",
+        "STAGE-V7-006"
+      ]
+    },
+    {
+      "id": "FLOW-V7-005",
+      "title": "Completeness, submission, and conflict flow",
+      "traces_to": [
+        "STAGE-V7-007",
+        "STAGE-V7-008"
+      ]
+    },
+    {
+      "id": "FLOW-V7-006",
+      "title": "Review tracking, return, correction, and resubmission flow",
+      "traces_to": [
+        "STAGE-V7-009",
+        "STAGE-V7-010"
+      ]
+    },
+    {
+      "id": "FLOW-V7-007",
+      "title": "Decision, finance, reconciliation, and activation flow",
+      "traces_to": [
+        "STAGE-V7-011",
+        "STAGE-V7-012",
+        "STAGE-V7-013",
+        "STAGE-V7-014",
+        "STAGE-V7-015",
+        "STAGE-V7-016"
+      ]
+    },
+    {
+      "id": "FLOW-V7-008",
+      "title": "Reviewer disposition flow",
+      "traces_to": [
+        "STAGE-V7-009",
+        "ACTOR-V7-005"
+      ]
+    },
+    {
+      "id": "FLOW-V7-009",
+      "title": "Finance reconciliation flow",
+      "traces_to": [
+        "STAGE-V7-012",
+        "ACTOR-V7-007"
+      ]
+    },
+    {
+      "id": "FLOW-V7-010",
+      "title": "Support-assisted recovery flow",
+      "traces_to": [
+        "ACTOR-V7-008"
+      ]
+    }
+  ],
+  "journeys_have_task_flows": true
+}

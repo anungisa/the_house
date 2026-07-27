@@ -1,5 +1,5 @@
 register_id: REG-701
-name: Volume 7 Actors, Needs, Journeys, and Service Blueprints
+name: Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches
 status: RATIFIED
 version: 1.0.0
 records:
@@ -918,3 +918,1549 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
     chapter_ref: V7-04
+  # ===================================================================
+  # Package 2 — Interaction architecture (V7-11 .. V7-20)
+  # Every record below is documentary and authorizes no implementation.
+  # ===================================================================
+  # --- Experience surfaces (V7-11) ---
+  - id: SURFACE-V7-001
+    kind: EXPERIENCE_SURFACE
+    title: Button club-representative surface
+    statement: The stakeholder experience surface through which representatives perform club affiliation.
+    purpose: Let authorized and delegated representatives view status and express affiliation intents to The House.
+    primary_actor: Authorized club representative
+    authority_posture: AUTHORIZED_REPRESENTATIVE
+    authority_domain: Button
+    authoritative_source: House
+    supported_tasks:
+      - View affiliation status and required actions
+      - Complete responses and attach evidence
+      - Submit and resubmit affiliation
+    prohibited_actions:
+      - Decide, activate, or reconcile affiliation
+      - Mutate governed truth directly
+    privacy_posture: PERSONAL
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Surface-boundary validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+    traces_to:
+      - ACTOR-V7-001
+      - ACTOR-V7-002
+  - id: SURFACE-V7-002
+    kind: EXPERIENCE_SURFACE
+    title: Button new-club establishment surface
+    statement: The surface through which a prospective representative establishes a club candidate.
+    purpose: Distinguish club establishment from affiliation and prevent duplicate organizations.
+    primary_actor: New club representative
+    authority_posture: PROSPECTIVE_REPRESENTATIVE
+    authority_domain: Button
+    authoritative_source: House
+    supported_tasks:
+      - Provide initial organization information
+      - Recognize an existing club
+      - Establish a new club candidate
+    prohibited_actions:
+      - Assume affiliation exists before establishment
+      - Disclose restricted details of an existing club
+    privacy_posture: PERSONAL
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Duplicate-handling validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+    traces_to:
+      - ACTOR-V7-003
+  - id: SURFACE-V7-003
+    kind: EXPERIENCE_SURFACE
+    title: House reviewer workbench surface
+    statement: The governed staff surface for jurisdiction and national reviewers.
+    purpose: Present case context and record dispositions within reviewer authority.
+    primary_actor: Jurisdiction reviewer
+    authority_posture: JURISDICTION_REVIEWER
+    authority_domain: House
+    authoritative_source: House
+    supported_tasks:
+      - Review responses and evidence
+      - Return for information
+      - Record a review outcome within authority
+    prohibited_actions:
+      - Activate affiliation standing directly
+      - Alter records outside governed transitions
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Reviewer-authority-boundary validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+    traces_to:
+      - ACTOR-V7-005
+      - ACTOR-V7-006
+  - id: SURFACE-V7-004
+    kind: EXPERIENCE_SURFACE
+    title: House finance surface
+    statement: The governed staff surface for financial confirmation and reconciliation.
+    purpose: Record financial and reconciliation status without deciding affiliation.
+    primary_actor: Finance operator
+    authority_posture: FINANCE_OPERATOR
+    authority_domain: House
+    authoritative_source: House
+    supported_tasks:
+      - Record financial confirmation
+      - Resolve reconciliation mismatches
+    prohibited_actions:
+      - Decide affiliation outcomes
+      - Activate affiliation standing
+    privacy_posture: FINANCIAL_STATUS
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Finance-boundary validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+    traces_to:
+      - ACTOR-V7-007
+  - id: SURFACE-V7-005
+    kind: EXPERIENCE_SURFACE
+    title: House support surface
+    statement: The governed staff surface through which support assists users without acquiring authority.
+    purpose: Provide guidance and assisted navigation within explicit support boundaries.
+    primary_actor: Support operator
+    authority_posture: SUPPORT_OPERATOR
+    authority_domain: House
+    authoritative_source: House
+    supported_tasks:
+      - Explain status, required actions, and recovery
+      - Route users to the correct authoritative destination
+    prohibited_actions:
+      - Decide, reconcile, or activate
+      - Inspect restricted evidence without authority
+      - Disclose restricted information or mutate history
+    privacy_posture: INTERNAL
+    accessibility:
+      - ACCOMMODATION_PATH
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Support-boundary validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+    traces_to:
+      - ACTOR-V7-008
+  - id: SURFACE-V7-006
+    kind: EXPERIENCE_SURFACE
+    title: House privacy, records, and administration surface
+    statement: The governed staff surface for privacy, records, and administrative functions.
+    purpose: Handle access, correction, retention, and administrative corrections through governed processes.
+    primary_actor: Privacy and records function
+    authority_posture: PRIVACY_OR_RECORDS_FUNCTION
+    authority_domain: House
+    authoritative_source: House
+    supported_tasks:
+      - Handle access and correction request context
+      - Apply retention and legal-hold dependencies
+      - Confirm privileged administrative corrections
+    prohibited_actions:
+      - Decide affiliation outcomes
+      - Treat access as disclosure authority
+    privacy_posture: PRIVILEGED_ADMIN
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Privacy-and-records-boundary validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+    traces_to:
+      - ACTOR-V7-009
+      - ACTOR-V7-010
+  # --- Views (V7-11 conventions; V7-12 .. V7-17 content) ---
+  - id: VIEW-V7-001
+    kind: VIEW
+    title: Affiliation overview view
+    statement: The representative's overview of current affiliation status, standing, and required actions.
+    purpose: Present derived status and next actions from authoritative House facts.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Current affiliation status and its governed meaning
+      - Outstanding required actions and consequences
+      - Standing and expiry
+    command_or_query_intent:
+      - QRY-V7-001
+      - QRY-V7-005
+    entry_conditions:
+      - Session established
+      - Representative authority resolved
+    exit_conditions:
+      - User navigates to a task flow or leaves the surface
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-002
+      - SCREEN-V7-007
+      - SCREEN-V7-008
+    error_states:
+      - SCREEN-V7-004
+      - SCREEN-V7-005
+    recovery: If status cannot be shown the user is told and offered retry or support.
+    privacy_posture: PERSONAL
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: View-comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+    traces_to:
+      - STAGE-V7-001
+  - id: VIEW-V7-002
+    kind: VIEW
+    title: Organization and club identity view
+    statement: The view for identifying the organization, selecting among authorized organizations, and confirming club identity.
+    purpose: Establish which organization and club the representative acts for.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Authorized organizations for the account
+      - Club identity and recognition signals
+    command_or_query_intent:
+      - CMD-V7-002
+      - CMD-V7-003
+      - QRY-V7-001
+    entry_conditions:
+      - Session established
+    exit_conditions:
+      - Organization and club identity confirmed or establishment begun
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-002
+      - SCREEN-V7-006
+    error_states:
+      - SCREEN-V7-005
+    recovery: Conflicting or duplicate organizations route to a support-assisted resolution without restricted disclosure.
+    privacy_posture: PERSONAL
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Identity-comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+    traces_to:
+      - STAGE-V7-002
+  - id: VIEW-V7-003
+    kind: VIEW
+    title: Affiliation initiation and applicability view
+    statement: The view for starting affiliation and displaying derived jurisdiction, season, pathway, and applicability.
+    purpose: Present pathway and applicability derived from governed House facts.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Derived jurisdiction and season
+      - Applicable pathway and policy versions
+      - Historical standing shown as history, not current standing
+    command_or_query_intent:
+      - CMD-V7-006
+      - QRY-V7-003
+    entry_conditions:
+      - Organization and club identity confirmed
+    exit_conditions:
+      - Applicable pathway resolved or a fail-closed reason shown
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-005
+      - SCREEN-V7-009
+    error_states:
+      - SCREEN-V7-005
+    recovery: Unresolved jurisdiction, season, or applicability fails closed with a meaningful reason and recovery path.
+    privacy_posture: INTERNAL
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Applicability-comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-13
+    traces_to:
+      - STAGE-V7-003
+      - STAGE-V7-004
+  - id: VIEW-V7-004
+    kind: VIEW
+    title: Requirements and responses view
+    statement: The view listing applicable requirements, grouping, and response entry.
+    purpose: Present governed requirements and collect responses and acknowledgements.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Applicable requirements grouped and sequenced
+      - Required versus conditional requirements
+      - Explanatory and policy content
+    command_or_query_intent:
+      - QRY-V7-002
+      - CMD-V7-007
+    entry_conditions:
+      - Applicable pathway resolved
+    exit_conditions:
+      - Responses saved as draft or completed
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-002
+      - SCREEN-V7-007
+    error_states:
+      - SCREEN-V7-004
+    recovery: Validation errors preserve entered work and show inline recovery.
+    privacy_posture: PERSONAL
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Requirement-comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - STAGE-V7-005
+  - id: VIEW-V7-005
+    kind: VIEW
+    title: Evidence management view
+    statement: The view for uploading, previewing, replacing, and withdrawing evidence.
+    purpose: Bind evidence to the affiliation case, requirement version, actor, and provenance.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Evidence list with provenance and version
+      - Restricted-evidence indicators
+      - Upload progress and preview
+    command_or_query_intent:
+      - CMD-V7-008
+      - CMD-V7-009
+      - QRY-V7-004
+    entry_conditions:
+      - A requirement needing evidence is in scope
+    exit_conditions:
+      - Evidence attached, replaced, or withdrawn
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-002
+      - SCREEN-V7-004
+      - SCREEN-V7-011
+    error_states:
+      - SCREEN-V7-004
+    recovery: Failed uploads offer retry; replacement preserves prior evidence history.
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility:
+      - EVIDENCE_INTERACTION
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Evidence-interaction validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - STAGE-V7-006
+  - id: VIEW-V7-006
+    kind: VIEW
+    title: Completeness review and submission view
+    statement: The view presenting derived completeness, final review, attestations, and submission.
+    purpose: Distinguish draft completeness from submission eligibility and from approval.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Derived completeness and unresolved warnings
+      - Requirement and evidence summary
+      - Final attestations and consequential-action confirmation
+    command_or_query_intent:
+      - QRY-V7-005
+      - CMD-V7-010
+    entry_conditions:
+      - Requirements and evidence in a reviewable state
+    exit_conditions:
+      - Submission accepted for processing or blocked with reasons
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-003
+      - SCREEN-V7-007
+      - SCREEN-V7-010
+    error_states:
+      - SCREEN-V7-005
+      - SCREEN-V7-012
+    recovery: Stale-state conflict and duplicate submission are prevented and explained.
+    privacy_posture: PERSONAL
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Submission-comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+    traces_to:
+      - STAGE-V7-007
+      - STAGE-V7-008
+  - id: VIEW-V7-007
+    kind: VIEW
+    title: Review tracking and return view
+    statement: The view showing review progress, returned-for-information status, and correction routes.
+    purpose: Represent review status and return-for-information without exposing internal deliberation.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Submitted and awaiting-review status
+      - Return reason and affected requirements
+      - Preserved original submission
+    command_or_query_intent:
+      - QRY-V7-006
+      - CMD-V7-011
+    entry_conditions:
+      - A submission exists in a review state
+    exit_conditions:
+      - Correction and resubmission begun, or awaiting continues
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-009
+    error_states:
+      - SCREEN-V7-005
+    recovery: Returned submissions preserve prior evidence and snapshots and show clear next actions.
+    privacy_posture: PERSONAL
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Return-comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+    traces_to:
+      - STAGE-V7-009
+      - STAGE-V7-010
+  - id: VIEW-V7-008
+    kind: VIEW
+    title: Decision, finance, and activation view
+    statement: The view showing decision, financial obligation, reconciliation, activation, and standing.
+    purpose: Keep decision, payment acknowledgement, reconciliation, activation, and standing distinct.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    surface_ref: SURFACE-V7-001
+    displayed_information:
+      - Governed decision and its consequence
+      - Financial obligation and payment instruction
+      - Activation status and standing
+    command_or_query_intent:
+      - QRY-V7-001
+      - QRY-V7-007
+    entry_conditions:
+      - A decision or financial step exists
+    exit_conditions:
+      - Standing shown, or a pending or mismatch state explained
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-009
+      - SCREEN-V7-010
+    error_states:
+      - SCREEN-V7-005
+      - SCREEN-V7-012
+    recovery: Reconciliation mismatch and activation-pending states disclose staleness and next steps.
+    privacy_posture: FINANCIAL_STATUS
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Decision-and-activation comprehension validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+    traces_to:
+      - STAGE-V7-011
+      - STAGE-V7-012
+      - STAGE-V7-013
+  - id: VIEW-V7-009
+    kind: VIEW
+    title: Reviewer case view
+    statement: The reviewer workbench case view showing requirements, evidence, and disposition controls.
+    purpose: Present case context and record dispositions within reviewer authority.
+    primary_actor: Jurisdiction reviewer
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-003
+    displayed_information:
+      - Assigned queue and case context
+      - Requirement and evidence review with restricted-evidence access controls
+    command_or_query_intent:
+      - QRY-V7-008
+      - CMD-V7-013
+      - CMD-V7-014
+    entry_conditions:
+      - Reviewer authenticated with jurisdictional scope
+    exit_conditions:
+      - Outcome recorded or returned for information
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-011
+    error_states:
+      - SCREEN-V7-005
+    recovery: Conflict, escalation, and reassignment preserve traceability.
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Reviewer-workbench validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - STAGE-V7-009
+  - id: VIEW-V7-010
+    kind: VIEW
+    title: Finance reconciliation view
+    statement: The finance workbench view showing obligations, acknowledgements, and reconciliation.
+    purpose: Record financial confirmation and reconciliation without deciding affiliation.
+    primary_actor: Finance operator
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-004
+    displayed_information:
+      - Obligation status and provider acknowledgement
+      - Accounting confirmation and reconciliation queue
+    command_or_query_intent:
+      - QRY-V7-007
+      - CMD-V7-015
+      - CMD-V7-016
+    entry_conditions:
+      - Finance operator authenticated
+    exit_conditions:
+      - Financial confirmation or reconciliation resolution recorded
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-012
+    error_states:
+      - SCREEN-V7-012
+    recovery: Mismatch resolution is explicit and activation dependency is shown.
+    privacy_posture: FINANCIAL_STATUS
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Finance-workbench validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - STAGE-V7-012
+  # --- Task flows (V7-12 .. V7-18) ---
+  - id: FLOW-V7-001
+    kind: TASK_FLOW
+    title: Sign-in and session establishment flow
+    statement: The flow for authentication and session establishment prior to any governed task.
+    purpose: Establish an authenticated session distinct from organization membership and representative authority.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - CMD-V7-001
+    entry_conditions:
+      - User is unauthenticated or the session has expired
+    exit_conditions:
+      - Session established, or account-state problem surfaced with recovery
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-005
+    error_states:
+      - SCREEN-V7-005
+    recovery: Account-state problems present a support-assisted recovery route without exposing internal detail.
+    privacy_posture: PERSONAL
+    accessibility:
+      - AUTHENTICATION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Session-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+    traces_to:
+      - STAGE-V7-001
+      - ACTOR-V7-001
+  - id: FLOW-V7-002
+    kind: TASK_FLOW
+    title: Organization, club identity, and representative-authority flow
+    statement: The flow for selecting an organization, confirming club identity, and confirming representative authority.
+    purpose: Keep account, organization membership, representative authority, and delegation distinct.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - CMD-V7-002
+      - CMD-V7-003
+      - CMD-V7-004
+      - CMD-V7-005
+    entry_conditions:
+      - Session established
+    exit_conditions:
+      - Organization, club, and representative authority resolved or fail-closed
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-006
+      - SCREEN-V7-005
+    error_states:
+      - SCREEN-V7-005
+    recovery: No-authority, pending-authority, expired, revoked, or conflicting cases fail closed with support-assisted recovery.
+    privacy_posture: PERSONAL
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Authority-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+    traces_to:
+      - STAGE-V7-002
+      - ACTOR-V7-002
+      - ACTOR-V7-003
+  - id: FLOW-V7-003
+    kind: TASK_FLOW
+    title: Affiliation initiation and applicability flow
+    statement: The flow for starting affiliation and resolving jurisdiction, season, pathway, and applicability.
+    purpose: Derive pathway and applicability from governed House facts and fail closed when unresolved.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - CMD-V7-006
+      - QRY-V7-003
+    entry_conditions:
+      - Organization and representative authority resolved
+    exit_conditions:
+      - Applicable pathway resolved or a fail-closed reason and recovery shown
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-009
+      - SCREEN-V7-005
+    error_states:
+      - SCREEN-V7-005
+    recovery: Unresolved jurisdiction, season, or applicability fails closed with a meaningful reason.
+    privacy_posture: INTERNAL
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Initiation-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-13
+    traces_to:
+      - STAGE-V7-003
+      - STAGE-V7-004
+  - id: FLOW-V7-004
+    kind: TASK_FLOW
+    title: Requirements, responses, attestations, and evidence flow
+    statement: The flow for viewing requirements, entering responses and attestations, and managing evidence.
+    purpose: Collect governed responses and evidence with versioning, sensitivity, and provenance preserved.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-002
+      - CMD-V7-007
+      - CMD-V7-008
+      - CMD-V7-009
+    entry_conditions:
+      - Applicable pathway resolved
+    exit_conditions:
+      - Responses and evidence saved as draft or completed
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-002
+      - SCREEN-V7-011
+      - SCREEN-V7-004
+    error_states:
+      - SCREEN-V7-004
+    recovery: Failed uploads retry; replacement preserves history; drafts autosave with disclosed limits.
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - EVIDENCE_INTERACTION
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Requirement-and-evidence-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - STAGE-V7-005
+      - STAGE-V7-006
+  - id: FLOW-V7-005
+    kind: TASK_FLOW
+    title: Completeness, submission, and conflict flow
+    statement: The flow for derived completeness, final review, attestations, and submission.
+    purpose: Keep draft completeness, submission eligibility, and submission receipt distinct and idempotent.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-005
+      - CMD-V7-010
+    entry_conditions:
+      - Requirements and evidence in a reviewable state
+    exit_conditions:
+      - Submission accepted for processing or blocked with reasons
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-003
+      - SCREEN-V7-010
+      - SCREEN-V7-012
+    error_states:
+      - SCREEN-V7-005
+      - SCREEN-V7-012
+    recovery: Duplicate submission is prevented; stale-state conflict is detected and explained.
+    privacy_posture: PERSONAL
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Submission-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+    traces_to:
+      - STAGE-V7-007
+      - STAGE-V7-008
+  - id: FLOW-V7-006
+    kind: TASK_FLOW
+    title: Review tracking, return, correction, and resubmission flow
+    statement: The flow for tracking review, receiving returns for information, correcting, and resubmitting.
+    purpose: Preserve prior submission history and treat return for information as distinct from refusal.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-006
+      - CMD-V7-011
+      - CMD-V7-012
+    entry_conditions:
+      - A submission exists in a review state
+    exit_conditions:
+      - Resubmission created or withdrawal recorded
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-009
+    error_states:
+      - SCREEN-V7-005
+    recovery: Resubmission creates a new governed submission state; prior snapshots remain preserved.
+    privacy_posture: PERSONAL
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Return-and-resubmission-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+    traces_to:
+      - STAGE-V7-009
+      - STAGE-V7-010
+  - id: FLOW-V7-007
+    kind: TASK_FLOW
+    title: Decision, finance, reconciliation, and activation flow
+    statement: The flow spanning decision, financial obligation, reconciliation, and activation to standing.
+    purpose: Keep decision, payment acknowledgement, accounting confirmation, reconciliation, and activation distinct.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-001
+      - QRY-V7-007
+    entry_conditions:
+      - A governed decision or financial obligation exists
+    exit_conditions:
+      - Standing shown, or pending or mismatch state explained
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-009
+      - SCREEN-V7-010
+      - SCREEN-V7-012
+    error_states:
+      - SCREEN-V7-012
+    recovery: Reconciliation mismatch and activation-pending states disclose staleness and next steps.
+    privacy_posture: FINANCIAL_STATUS
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Decision-and-activation-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+    traces_to:
+      - STAGE-V7-011
+      - STAGE-V7-012
+      - STAGE-V7-013
+      - STAGE-V7-014
+      - STAGE-V7-015
+      - STAGE-V7-016
+  - id: FLOW-V7-008
+    kind: TASK_FLOW
+    title: Reviewer disposition flow
+    statement: The reviewer workbench flow for case review, return for information, and recording an outcome.
+    purpose: Record review outcomes within reviewer authority and never activate standing directly.
+    primary_actor: Jurisdiction reviewer
+    authority_domain: House
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-008
+      - CMD-V7-013
+      - CMD-V7-014
+    entry_conditions:
+      - A submission is assigned within jurisdictional scope
+    exit_conditions:
+      - Outcome recorded or returned for information
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-011
+    error_states:
+      - SCREEN-V7-005
+    recovery: Conflicts, escalation, and reassignment preserve traceability.
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Reviewer-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - STAGE-V7-009
+      - ACTOR-V7-005
+  - id: FLOW-V7-009
+    kind: TASK_FLOW
+    title: Finance reconciliation flow
+    statement: The finance workbench flow for confirming obligations and resolving reconciliation mismatches.
+    purpose: Record financial confirmation and reconciliation resolution without deciding affiliation.
+    primary_actor: Finance operator
+    authority_domain: House
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-007
+      - CMD-V7-015
+      - CMD-V7-016
+    entry_conditions:
+      - A financial obligation or mismatch exists
+    exit_conditions:
+      - Confirmation or reconciliation resolution recorded
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-007
+      - SCREEN-V7-012
+    error_states:
+      - SCREEN-V7-012
+    recovery: Mismatch resolution is explicit and does not alter affiliation decisions.
+    privacy_posture: FINANCIAL_STATUS
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Finance-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - STAGE-V7-012
+      - ACTOR-V7-007
+  - id: FLOW-V7-010
+    kind: TASK_FLOW
+    title: Support-assisted recovery flow
+    statement: The support workbench flow for assisted navigation and escalation within support boundaries.
+    purpose: Help users recover without support acquiring decision, reconciliation, activation, or disclosure authority.
+    primary_actor: Support operator
+    authority_domain: House
+    authoritative_source: House
+    command_or_query_intent:
+      - QRY-V7-001
+    entry_conditions:
+      - A user requires assistance or escalation
+    exit_conditions:
+      - User guided to the correct authoritative destination or escalated
+    screen_states:
+      - SCREEN-V7-001
+      - SCREEN-V7-005
+    error_states:
+      - SCREEN-V7-005
+    recovery: Escalation preserves boundaries; support never approves, reconciles, activates, or discloses.
+    privacy_posture: INTERNAL
+    accessibility:
+      - ACCOMMODATION_PATH
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    fidelity: DOCUMENTARY
+    future_verification: Support-flow validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - ACTOR-V7-008
+  # --- Wireflows (low-fidelity, non-final) (V7-11) ---
+  - id: WIRE-V7-001
+    kind: WIRE_FLOW
+    title: Authority and identity wireflow
+    statement: A low-fidelity wireflow communicating the structure and sequence of authority and identity resolution.
+    purpose: Communicate structure and sequence, not approved visual design.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    traces_to:
+      - FLOW-V7-001
+      - FLOW-V7-002
+    future_verification: Wireflow structure validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: WIRE-V7-002
+    kind: WIRE_FLOW
+    title: Initiation and applicability wireflow
+    statement: A low-fidelity wireflow for initiation, jurisdiction, season, and applicability sequence.
+    purpose: Communicate sequence of derived applicability without visual design.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    traces_to:
+      - FLOW-V7-003
+    future_verification: Wireflow structure validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: WIRE-V7-003
+    kind: WIRE_FLOW
+    title: Requirements and evidence wireflow
+    statement: A low-fidelity wireflow for requirement, response, and evidence sequence.
+    purpose: Communicate the requirement and evidence sequence without visual design.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    traces_to:
+      - FLOW-V7-004
+    future_verification: Wireflow structure validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: WIRE-V7-004
+    kind: WIRE_FLOW
+    title: Completeness and submission wireflow
+    statement: A low-fidelity wireflow for completeness, review, and submission sequence.
+    purpose: Communicate the submission sequence without visual design.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    traces_to:
+      - FLOW-V7-005
+    future_verification: Wireflow structure validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: WIRE-V7-005
+    kind: WIRE_FLOW
+    title: Review, return, and resubmission wireflow
+    statement: A low-fidelity wireflow for review tracking, return, and resubmission sequence.
+    purpose: Communicate the return and resubmission sequence without visual design.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    traces_to:
+      - FLOW-V7-006
+    future_verification: Wireflow structure validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: WIRE-V7-006
+    kind: WIRE_FLOW
+    title: Reviewer workbench wireflow
+    statement: A low-fidelity wireflow for the reviewer disposition sequence.
+    purpose: Communicate the reviewer sequence without visual design.
+    primary_actor: Jurisdiction reviewer
+    authority_domain: House
+    authoritative_source: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    traces_to:
+      - FLOW-V7-008
+    future_verification: Wireflow structure validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  # --- Screen states (V7-11; matrix in V7-20) ---
+  - id: SCREEN-V7-001
+    kind: SCREEN_STATE
+    title: Loading state
+    statement: The documentary loading state shown while authoritative data is being retrieved.
+    purpose: Communicate that data is loading without asserting completeness.
+    staleness_posture: NOT_APPLICABLE
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Loading-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-002
+    kind: SCREEN_STATE
+    title: Empty state
+    statement: The documentary empty state shown when no items exist for a view.
+    purpose: Communicate absence of items with a meaningful next action.
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Empty-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-003
+    kind: SCREEN_STATE
+    title: Success state
+    statement: The documentary success state confirming an accepted action.
+    purpose: Confirm receipt without asserting an authoritative decision.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Success-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-004
+    kind: SCREEN_STATE
+    title: Error state
+    statement: The documentary error state that preserves entered work and offers recovery.
+    purpose: Communicate an error with a recovery path and no data loss.
+    accessibility:
+      - ERROR_PREVENTION_AND_RECOVERY
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Error-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-005
+    kind: SCREEN_STATE
+    title: Denied or fail-closed state
+    statement: The documentary denied state shown when authority or applicability is missing.
+    purpose: Fail closed with a meaningful reason and a recovery or support route.
+    accessibility:
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Denied-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-006
+    kind: SCREEN_STATE
+    title: Selection state
+    statement: The documentary selection state for choosing among authorized organizations or clubs.
+    purpose: Present authorized choices without implying authority the user lacks.
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Selection-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-007
+    kind: SCREEN_STATE
+    title: Populated state
+    statement: The documentary populated state showing derived authoritative content.
+    purpose: Present derived content clearly attributed to authoritative House data.
+    staleness_posture: AUTHORITATIVE_LIVE
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Populated-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-008
+    kind: SCREEN_STATE
+    title: Degraded state
+    statement: The documentary degraded state shown when some capability is temporarily unavailable.
+    purpose: Communicate reduced capability without misrepresenting authoritative truth.
+    staleness_posture: CACHED_NONBINDING
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Degraded-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-009
+    kind: SCREEN_STATE
+    title: Stale-disclosed state
+    statement: The documentary stale state that discloses that shown data may be stale.
+    purpose: Disclose potential staleness rather than presenting stale data as authoritative.
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Stale-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-010
+    kind: SCREEN_STATE
+    title: In-progress state
+    statement: The documentary in-progress state shown while a submission or action is being processed.
+    purpose: Communicate processing and prevent duplicate submission.
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: In-progress-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-011
+    kind: SCREEN_STATE
+    title: Restricted-evidence state
+    statement: The documentary restricted state indicating minimum-necessary display of restricted evidence.
+    purpose: Indicate restricted evidence and enforce minimum-necessary disclosure.
+    staleness_posture: NOT_APPLICABLE
+    accessibility:
+      - EVIDENCE_INTERACTION
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Restricted-evidence-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  - id: SCREEN-V7-012
+    kind: SCREEN_STATE
+    title: Conflict state
+    statement: The documentary conflict state shown on stale-state or reconciliation conflict.
+    purpose: Detect and explain conflicts without exposing internal implementation detail.
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    accessibility:
+      - ERROR_PREVENTION_AND_RECOVERY
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Conflict-state validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-11
+  # --- Workbenches (V7-18) ---
+  - id: BENCH-V7-001
+    kind: WORKBENCH
+    title: Reviewer workbench
+    statement: The documentary reviewer workbench requirements for jurisdiction and national reviewers.
+    purpose: Present assigned queue, case context, and disposition controls within reviewer authority.
+    primary_actor: Jurisdiction reviewer
+    authority_posture: JURISDICTION_REVIEWER
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-003
+    supported_tasks:
+      - Review requirements and evidence with restricted-evidence access controls
+      - Request information and record a recommendation or outcome within authority
+    authority_constraints:
+      - Reviewers do not activate affiliation standing directly
+      - Reviewers do not alter records outside governed transitions
+    prohibited_actions:
+      - Activate standing
+      - Reconcile finance
+      - Disclose beyond authorized recipients
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Reviewer-workbench authority validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - ACTOR-V7-005
+      - ACTOR-V7-006
+  - id: BENCH-V7-002
+    kind: WORKBENCH
+    title: Finance workbench
+    statement: The documentary finance workbench requirements for confirmation and reconciliation.
+    purpose: Present obligation status, acknowledgements, and reconciliation without deciding affiliation.
+    primary_actor: Finance operator
+    authority_posture: FINANCE_OPERATOR
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-004
+    supported_tasks:
+      - Record accounting confirmation
+      - Resolve reconciliation mismatches and show activation dependency
+    authority_constraints:
+      - Finance does not alter affiliation decisions
+    prohibited_actions:
+      - Decide affiliation outcomes
+      - Activate standing
+    privacy_posture: FINANCIAL_STATUS
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Finance-workbench authority validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - ACTOR-V7-007
+  - id: BENCH-V7-003
+    kind: WORKBENCH
+    title: Support workbench
+    statement: The documentary support workbench requirements for assisted navigation and escalation.
+    purpose: Present user context and non-sensitive diagnostics within support boundaries.
+    primary_actor: Support operator
+    authority_posture: SUPPORT_OPERATOR
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-005
+    supported_tasks:
+      - Provide guidance and assisted navigation
+      - Escalate to the correct authority
+    authority_constraints:
+      - Support acquires no governed authority
+    prohibited_actions:
+      - Approve or decide
+      - Reconcile or activate
+      - Inspect evidence without authority
+      - Disclose restricted information or mutate history
+    privacy_posture: INTERNAL
+    accessibility:
+      - ACCOMMODATION_PATH
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Support-workbench authority validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - ACTOR-V7-008
+  - id: BENCH-V7-004
+    kind: WORKBENCH
+    title: Privacy and records workbench
+    statement: The documentary privacy and records workbench requirements.
+    purpose: Present access, correction, legal-hold, and disposition dependencies through governed processes.
+    primary_actor: Privacy and records function
+    authority_posture: PRIVACY_OR_RECORDS_FUNCTION
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-006
+    supported_tasks:
+      - Present access and correction request context
+      - Apply legal-hold and disposition dependencies
+    authority_constraints:
+      - Access is not disclosure authority
+      - Reconsideration boundaries are preserved
+    prohibited_actions:
+      - Decide affiliation outcomes
+    privacy_posture: PRIVILEGED_ADMIN
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Privacy-workbench authority validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - ACTOR-V7-009
+  - id: BENCH-V7-005
+    kind: WORKBENCH
+    title: Administrative workbench
+    statement: The documentary administrative workbench requirements for privileged corrections.
+    purpose: Present privileged-action confirmation and audit evidence within governed limits.
+    primary_actor: Service administrator
+    authority_posture: SERVICE_ADMINISTRATOR
+    authority_domain: House
+    authoritative_source: House
+    surface_ref: SURFACE-V7-006
+    supported_tasks:
+      - Confirm privileged administrative corrections
+      - Present audit evidence
+    authority_constraints:
+      - Administration is not case-level decision authority
+    prohibited_actions:
+      - Decide, activate, or reconcile individual affiliations
+    privacy_posture: PRIVILEGED_ADMIN
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Administrative-workbench authority validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - ACTOR-V7-010
+  # --- Form sections (V7-14 .. V7-15) ---
+  - id: FORM-V7-001
+    kind: FORM_SECTION
+    title: Organization and club identity section
+    statement: The documentary form section for organization and club identity input.
+    purpose: Collect identity input with clear required and optional information.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Organization identifier or selection
+      - Club identity confirmation
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - VIEW-V7-002
+  - id: FORM-V7-002
+    kind: FORM_SECTION
+    title: Representative-authority section
+    statement: The documentary form section for confirming representative authority or delegation.
+    purpose: Confirm authority with fields that fail closed when authority is missing.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Authority or delegation confirmation
+    accessibility:
+      - FORM_INSTRUCTIONS
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - VIEW-V7-002
+  - id: FORM-V7-003
+    kind: FORM_SECTION
+    title: Requirement response section
+    statement: The documentary form section for entering requirement responses.
+    purpose: Collect required and conditional responses with inline validation and recovery.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Responses to applicable requirements
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - VIEW-V7-004
+  - id: FORM-V7-004
+    kind: FORM_SECTION
+    title: Attestation and acknowledgement section
+    statement: The documentary form section for acknowledgements and attestations.
+    purpose: Present consequential attestations clearly and require explicit acknowledgement.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Acknowledgement and attestation confirmations
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+    traces_to:
+      - VIEW-V7-006
+  - id: FORM-V7-005
+    kind: FORM_SECTION
+    title: Evidence upload section
+    statement: The documentary form section for evidence upload and replacement.
+    purpose: Collect evidence with provenance and restricted-evidence indicators.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Evidence documents where required
+    accessibility:
+      - EVIDENCE_INTERACTION
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+    traces_to:
+      - VIEW-V7-005
+  - id: FORM-V7-006
+    kind: FORM_SECTION
+    title: Final review and submission section
+    statement: The documentary form section for final review, attestations, and submission.
+    purpose: Present the final consequential confirmation before submission.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Final attestation and submission confirmation
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+    traces_to:
+      - VIEW-V7-006
+  - id: FORM-V7-007
+    kind: FORM_SECTION
+    title: Correction and resubmission section
+    statement: The documentary form section for correcting returned items and resubmitting.
+    purpose: Collect corrections while preserving prior submission history.
+    primary_actor: Authorized club representative
+    authority_domain: Button
+    authoritative_source: House
+    required_inputs:
+      - Corrections to affected requirements or evidence
+    accessibility:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+    traces_to:
+      - VIEW-V7-007
+  - id: FORM-V7-008
+    kind: FORM_SECTION
+    title: Reviewer disposition section
+    statement: The documentary form section for reviewer recommendations and outcomes.
+    purpose: Collect reviewer input within authority and route returns for information.
+    primary_actor: Jurisdiction reviewer
+    authority_domain: House
+    authoritative_source: House
+    required_inputs:
+      - Review outcome or return reason within authority
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    future_verification: Form-section validation deferred to Gate V7-G2 evidence.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+    traces_to:
+      - VIEW-V7-009

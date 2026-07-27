@@ -12,13 +12,17 @@ import { run as runStructural } from './validate-volume-7.mjs';
 import { run as runReferences } from './validate-references.mjs';
 import { run as runFoundation } from './foundation-volume-7.mjs';
 import { run as runGate } from './gate-volume-7.mjs';
+import { run as runInteraction } from './interaction-model-volume-7.mjs';
+import { run as runGateG2 } from './gate-volume-7-g2.mjs';
 
 export function collectFindings(ctx) {
   return {
     'Structural, schema & experience conformance': runStructural(ctx),
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Experience-foundation coverage': runFoundation(ctx),
-    'Gate V7-G1 readiness': runGate(ctx)
+    'Gate V7-G1 readiness': runGate(ctx),
+    'Interaction-model coverage': runInteraction(ctx),
+    'Gate V7-G2 readiness': runGateG2(ctx)
   };
 }
 

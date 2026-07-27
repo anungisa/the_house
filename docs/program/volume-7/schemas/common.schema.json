@@ -56,11 +56,43 @@
     },
     "actorKind": {
       "type": "string",
-      "enum": ["ACTOR", "NEED", "JOURNEY", "STAGE", "BLUEPRINT"]
+      "enum": [
+        "ACTOR",
+        "NEED",
+        "JOURNEY",
+        "STAGE",
+        "BLUEPRINT",
+        "EXPERIENCE_SURFACE",
+        "VIEW",
+        "TASK_FLOW",
+        "WIRE_FLOW",
+        "SCREEN_STATE",
+        "WORKBENCH",
+        "FORM_SECTION"
+      ]
     },
     "experienceKind": {
       "type": "string",
-      "enum": ["IA", "STATE", "ACTION", "CONTENT", "PATTERN", "A11Y", "BIL", "PRIV", "CTRL"]
+      "enum": [
+        "IA",
+        "STATE",
+        "ACTION",
+        "CONTENT",
+        "PATTERN",
+        "A11Y",
+        "BIL",
+        "PRIV",
+        "CTRL",
+        "COMMAND_INTENT",
+        "QUERY_INTENT",
+        "VALIDATION_BEHAVIOUR",
+        "CONTENT_REQUIREMENT",
+        "STATUS_MESSAGE",
+        "ERROR_MESSAGE",
+        "RECOVERY_PATH",
+        "ACCESSIBILITY_BEHAVIOUR",
+        "BILINGUAL_SEMANTIC"
+      ]
     },
     "backlogKind": {
       "type": "string",

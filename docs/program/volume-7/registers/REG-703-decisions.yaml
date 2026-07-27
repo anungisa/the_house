@@ -73,3 +73,183 @@ records:
     chapter_ref: V7-09
     traces_to:
       - PRIV-V7-002
+  - id: ADR-V7-007
+    title: Button actions express House command intents
+    decision: A Button action expresses a command intent to The House and never mutates governed truth directly.
+    status: ACCEPTED
+    context: The Button is a presentation and collection surface; The House owns governed lifecycle truth.
+    consequence: Every action maps to a command intent, query intent, or local interaction, and every command names its House authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-11
+    traces_to:
+      - CMD-V7-010
+  - id: ADR-V7-008
+    title: Documentary screen states do not authorize implementation
+    decision: Screen states and wireflows are documentary and low-fidelity, and do not authorize implementation or final visual design.
+    status: ACCEPTED
+    context: Package 2 specifies interaction behaviour without producing final design or code.
+    consequence: All screen-state and wireflow records carry non-authorization and low-fidelity markers.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-11
+    traces_to:
+      - SCREEN-V7-001
+  - id: ADR-V7-009
+    title: Organization and representative authority are distinct
+    decision: Organization identity and representative authority are modelled as distinct resolutions.
+    status: ACCEPTED
+    context: A representative may act for an organization only through a distinct, verifiable authority.
+    consequence: Separate command intents resolve organization selection and representative authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-12
+    traces_to:
+      - CMD-V7-005
+  - id: ADR-V7-010
+    title: Applicability is derived from House facts
+    decision: Jurisdiction, season, pathway, and applicability are derived from House facts, not entered by the user.
+    status: ACCEPTED
+    context: Applicable requirements must reflect authoritative House data.
+    consequence: Applicability queries read derived House facts and requirements reflect that derivation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-13
+    traces_to:
+      - QRY-V7-003
+  - id: ADR-V7-011
+    title: Completeness is derived, not asserted
+    decision: Submission completeness and eligibility are derived signals, not user-asserted claims.
+    status: ACCEPTED
+    context: Submission eligibility must reflect derived requirements and evidence state.
+    consequence: Submission is enabled only when derived completeness is met, with each unmet condition explained.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-15
+    traces_to:
+      - VAL-V7-004
+  - id: ADR-V7-012
+    title: Evidence replacement preserves history
+    decision: Replacing or withdrawing evidence preserves prior evidence history.
+    status: ACCEPTED
+    context: Evidence provenance and history are institutionally significant.
+    consequence: Evidence commands preserve prior versions and never imply replacement erases history.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-14
+    traces_to:
+      - CMD-V7-009
+  - id: ADR-V7-013
+    title: Submission receipt is not approval
+    decision: A submission receipt confirms recording for review and is not an approval.
+    status: ACCEPTED
+    context: Users must not infer approval from a submission receipt.
+    consequence: Submission status messages distinguish receipt from approval.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-15
+    traces_to:
+      - SMSG-V7-001
+  - id: ADR-V7-014
+    title: Return for information is not refusal
+    decision: Returning a submission for information requests information and is not a refusal.
+    status: ACCEPTED
+    context: A return preserves the submission and requests additional information.
+    consequence: Return status messages state that information is requested, not refused.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-16
+    traces_to:
+      - SMSG-V7-002
+  - id: ADR-V7-015
+    title: Review recommendation is not a governed decision
+    decision: A reviewer recommendation is not itself a governed decision.
+    status: ACCEPTED
+    context: Governed decisions are recorded through kernel-governed transitions.
+    consequence: Reviewer command intents record recommendations or outcomes within authority, not final decisions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-18
+    traces_to:
+      - CMD-V7-013
+  - id: ADR-V7-016
+    title: Payment acknowledgement is not accounting confirmation
+    decision: A payment acknowledgement is not an accounting confirmation.
+    status: ACCEPTED
+    context: Provider payment acknowledgement precedes finance accounting confirmation.
+    consequence: Payment status messages distinguish acknowledgement from accounting confirmation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-17
+    traces_to:
+      - SMSG-V7-003
+  - id: ADR-V7-017
+    title: Approval is not activation
+    decision: Approval does not by itself constitute activation or active standing.
+    status: ACCEPTED
+    context: Activation depends on approval and additional dependencies being satisfied.
+    consequence: Activation status messages distinguish approval from active standing.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-17
+    traces_to:
+      - SMSG-V7-004
+  - id: ADR-V7-018
+    title: Support acquires no governed authority
+    decision: Support-assisted interactions never transfer governed authority to support.
+    status: ACCEPTED
+    context: Support helps users navigate without deciding, disclosing, or disposing.
+    consequence: The support workbench prohibits decision, reconciliation, activation, and restricted disclosure.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-18
+    traces_to:
+      - BENCH-V7-003
+  - id: ADR-V7-019
+    title: Wireflows are low-fidelity and non-final
+    decision: Package 2 wireflows are low-fidelity and non-final, communicating structure and sequence only.
+    status: ACCEPTED
+    context: Package 2 must not produce final visual design.
+    consequence: Wireflow records carry a low-fidelity, non-final marker.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-11
+    traces_to:
+      - WIRE-V7-001
+  - id: ADR-V7-020
+    title: Accessibility applies to every state and recovery
+    decision: Accessibility requirements apply to every interaction state and recovery path.
+    status: ACCEPTED
+    context: Accessibility must not be limited to primary success paths.
+    consequence: Accessibility behaviours cover loading, error, stale-disclosed, and recovery states.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-19
+    traces_to:
+      - A11YB-V7-002
+  - id: ADR-V7-021
+    title: Bilingual meaning is semantic, not literal
+    decision: Bilingual content preserves equivalent institutional meaning rather than literal translation.
+    status: ACCEPTED
+    context: Governed meaning must remain equivalent across English and French.
+    consequence: Bilingual semantic records specify equivalent meaning requirements for both languages.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-19
+    traces_to:
+      - BSEM-V7-001

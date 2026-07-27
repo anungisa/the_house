@@ -1,0 +1,126 @@
+{
+  "actions": 2,
+  "command_intents": [
+    {
+      "id": "CMD-V7-001",
+      "title": "Establish session intent",
+      "house_authority": "House identity and session authority"
+    },
+    {
+      "id": "CMD-V7-002",
+      "title": "Select organization intent",
+      "house_authority": "House organization and membership authority"
+    },
+    {
+      "id": "CMD-V7-003",
+      "title": "Confirm club identity intent",
+      "house_authority": "House club-identity authority"
+    },
+    {
+      "id": "CMD-V7-004",
+      "title": "Establish new club candidate intent",
+      "house_authority": "House club-establishment authority"
+    },
+    {
+      "id": "CMD-V7-005",
+      "title": "Confirm representative authority intent",
+      "house_authority": "House representative-authority function"
+    },
+    {
+      "id": "CMD-V7-006",
+      "title": "Start or continue affiliation intent",
+      "house_authority": "House affiliation-lifecycle authority"
+    },
+    {
+      "id": "CMD-V7-007",
+      "title": "Save draft responses intent",
+      "house_authority": "House affiliation-case authority"
+    },
+    {
+      "id": "CMD-V7-008",
+      "title": "Attach evidence intent",
+      "house_authority": "House evidence authority"
+    },
+    {
+      "id": "CMD-V7-009",
+      "title": "Withdraw or replace evidence intent",
+      "house_authority": "House evidence authority"
+    },
+    {
+      "id": "CMD-V7-010",
+      "title": "Submit affiliation intent",
+      "house_authority": "House affiliation-lifecycle authority"
+    },
+    {
+      "id": "CMD-V7-011",
+      "title": "Resubmit after return intent",
+      "house_authority": "House affiliation-lifecycle authority"
+    },
+    {
+      "id": "CMD-V7-012",
+      "title": "Withdraw affiliation intent",
+      "house_authority": "House affiliation-lifecycle authority"
+    },
+    {
+      "id": "CMD-V7-013",
+      "title": "Record review outcome intent",
+      "house_authority": "House review authority within jurisdictional scope"
+    },
+    {
+      "id": "CMD-V7-014",
+      "title": "Return for information intent",
+      "house_authority": "House review authority within jurisdictional scope"
+    },
+    {
+      "id": "CMD-V7-015",
+      "title": "Record financial confirmation intent",
+      "house_authority": "House finance function"
+    },
+    {
+      "id": "CMD-V7-016",
+      "title": "Resolve reconciliation intent",
+      "house_authority": "House finance function"
+    },
+    {
+      "id": "CMD-V7-017",
+      "title": "Authorize activation intent",
+      "house_authority": "House activation authority"
+    }
+  ],
+  "query_intents": [
+    {
+      "id": "QRY-V7-001",
+      "title": "Query affiliation status and standing"
+    },
+    {
+      "id": "QRY-V7-002",
+      "title": "Query applicable requirements"
+    },
+    {
+      "id": "QRY-V7-003",
+      "title": "Query jurisdiction, season, and applicability"
+    },
+    {
+      "id": "QRY-V7-004",
+      "title": "Query evidence and provenance"
+    },
+    {
+      "id": "QRY-V7-005",
+      "title": "Query completeness signals"
+    },
+    {
+      "id": "QRY-V7-006",
+      "title": "Query review status"
+    },
+    {
+      "id": "QRY-V7-007",
+      "title": "Query financial and obligation status"
+    },
+    {
+      "id": "QRY-V7-008",
+      "title": "Query reviewer queue"
+    }
+  ],
+  "actions_without_intent": [],
+  "commands_without_house_authority": []
+}

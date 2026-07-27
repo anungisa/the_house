@@ -107,3 +107,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-B-package-1-provenance-amendment.md
     gate: V7-G1
+  - id: V7-11
+    title: Interaction Architecture and Specification Conventions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-11-interaction-architecture-and-specification-conventions.md
+    gate: V7-G2
+  - id: V7-12
+    title: Representative Authority, Account, Organization, and Club-Identity Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-12-representative-authority-account-organization-and-club-identity-interaction-model.md
+    gate: V7-G2
+  - id: V7-13
+    title: Affiliation Initiation, Jurisdiction, Season, Pathway, and Applicability Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-13-affiliation-initiation-jurisdiction-season-pathway-and-applicability-interaction-model.md
+    gate: V7-G2
+  - id: V7-14
+    title: Requirements, Responses, Attestations, and Evidence Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-14-requirements-responses-attestations-and-evidence-interaction-model.md
+    gate: V7-G2
+  - id: V7-15
+    title: Completeness Review, Submission, Confirmation, and Conflict Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-15-completeness-review-submission-confirmation-and-conflict-interaction-model.md
+    gate: V7-G2
+  - id: V7-16
+    title: Review Tracking, Return for Information, Correction, and Resubmission Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-16-review-tracking-return-for-information-correction-and-resubmission-interaction-model.md
+    gate: V7-G2
+  - id: V7-17
+    title: Decision, Financial, Reconciliation, Activation, Standing, and Expiry Interaction Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-17-decision-financial-reconciliation-activation-standing-and-expiry-interaction-model.md
+    gate: V7-G2
+  - id: V7-18
+    title: Reviewer, Finance, Support, Privacy, and Administrative Workbench Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-18-reviewer-finance-support-privacy-and-administrative-workbench-model.md
+    gate: V7-G2
+  - id: V7-19
+    title: Responsive, Accessible, Bilingual, and Content-Pattern Specifications
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-19-responsive-accessible-bilingual-and-content-pattern-specifications.md
+    gate: V7-G2
+  - id: V7-20
+    title: Interaction Traceability, Screen-State Matrix, and Validation Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-20-interaction-traceability-screen-state-matrix-and-validation-backlog.md
+    gate: V7-G2
+  - id: V7-C
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-C-package-2-closure-record.md
+    gate: V7-G2

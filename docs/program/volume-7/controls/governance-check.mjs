@@ -11,6 +11,8 @@ import { VOLUME_DIR, loadContext, printFindings } from './lib.mjs';
 import { collectFindings, buildReport } from './generate-control-report.mjs';
 import { generate as generateFoundation } from './foundation-volume-7.mjs';
 import { generate as generateGate } from './gate-volume-7.mjs';
+import { generate as generateInteraction } from './interaction-model-volume-7.mjs';
+import { generate as generateGateG2 } from './gate-volume-7-g2.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -33,6 +35,8 @@ writeFileSync(outPath, markdown, 'utf8');
 
 generateFoundation(ctx);
 generateGate(ctx);
+generateInteraction(ctx);
+generateGateG2(ctx);
 
 console.log('\n=== Volume 7 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);
