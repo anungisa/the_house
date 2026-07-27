@@ -1,0 +1,21 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "environments": [
+    {
+      "id": "ENV-V10-001",
+      "environment_class": "SYSTEM_TEST",
+      "data_classification": "SYNTHETIC",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "production_data_prohibition": true
+    }
+  ],
+  "readiness_conditions": [
+    {
+      "id": "READY-V10-001",
+      "disposition": "ENVIRONMENT_QUALIFICATION_PENDING",
+      "owner": "Engineering Delivery Lead",
+      "future_gate": "V11-G1"
+    }
+  ]
+}

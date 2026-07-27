@@ -1,0 +1,56 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "outcomes": [
+    {
+      "id": "OUTCOME-V10-001",
+      "title": "Governed club-affiliation delivery outcome"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-V10-001",
+      "title": "Delivery governance and program-management capability",
+      "domain": "PRODUCT_SERVICE_OWNERSHIP"
+    },
+    {
+      "id": "CAP-V10-002",
+      "title": "Application and data engineering capability",
+      "domain": "APPLICATION_ENGINEERING"
+    },
+    {
+      "id": "CAP-V10-003",
+      "title": "Quality engineering and independent assurance capability",
+      "domain": "INDEPENDENT_ASSURANCE"
+    }
+  ],
+  "workstreams": [
+    {
+      "id": "STREAM-V10-001",
+      "title": "Club-affiliation delivery workstream"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "WORK-V10-001",
+      "title": "Club-affiliation lifecycle implementation plan"
+    },
+    {
+      "id": "WORK-V10-002",
+      "title": "Test-enablement plan for club-affiliation verification"
+    },
+    {
+      "id": "WORK-V10-003",
+      "title": "Environment and provider-readiness plan"
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "DELIV-V10-001",
+      "title": "Club-affiliation lifecycle construction-plan document"
+    },
+    {
+      "id": "DELIV-V10-002",
+      "title": "Test-enablement and environment-readiness plan document"
+    }
+  ]
+}

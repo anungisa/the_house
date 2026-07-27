@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "delivery-model.schema.json",
+  "title": "REG-1001 Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1001" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "validation_status",
+          "authorizes_implementation",
+          "implementation_status",
+          "planning_status",
+          "commitment_status",
+          "chapter_ref",
+          "future_gate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(OUTCOME|CAP|STREAM|WORK|DELIV|DEP)-V10-[0-9]{3}$" },
+          "kind": {
+            "type": "string",
+            "enum": ["OUTCOME", "CAPABILITY", "WORKSTREAM", "WORK_PACKAGE", "DELIVERABLE", "DEPENDENCY"]
+          },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "objective": { "type": "string" },
+          "scope": { "type": "string" },
+          "excluded_scope": { "type": "string" },
+          "source_requirements": { "type": "array", "items": { "type": "string" } },
+          "affected_capability": { "type": "string" },
+          "capability_domain": { "$ref": "common.schema.json#/definitions/capabilityDomain" },
+          "decision_rights": { "type": "string" },
+          "accountabilities": { "type": "string" },
+          "required_competence": { "type": "string" },
+          "independence_requirement": { "type": "string" },
+          "capacity_assumption": { "type": "string" },
+          "availability_status": { "type": "string" },
+          "conflict_of_interest_constraint": { "type": "string" },
+          "escalation_route": { "type": "string" },
+          "responsible_role": { "type": "string" },
+          "required_capabilities": { "type": "array", "items": { "type": "string" } },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "deliverables": { "type": "array", "items": { "type": "string" } },
+          "definition_of_ready": { "type": "string" },
+          "definition_of_done": { "type": "string" },
+          "quality_obligations": { "type": "string" },
+          "evidence_obligations": { "type": "string" },
+          "security_privacy_obligations": { "type": "string" },
+          "accessibility_bilingual_obligations": { "type": "string" },
+          "estimate_status": { "$ref": "common.schema.json#/definitions/estimateStatus" },
+          "dependency_kind": { "$ref": "common.schema.json#/definitions/dependencyKind" },
+          "owner": { "type": "string" },
+          "source": { "type": "string" },
+          "affected_work_packages": { "type": "array", "items": { "type": "string" } },
+          "required_decision_or_evidence": { "type": "string" },
+          "target_resolution_window": { "type": "string" },
+          "current_status": { "type": "string" },
+          "impact_if_unresolved": { "type": "string" },
+          "fallback_status": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "planning_status": { "$ref": "common.schema.json#/definitions/planningStatus" },
+          "commitment_status": { "$ref": "common.schema.json#/definitions/commitmentStatus" },
+          "chapter_ref": { "type": "string" },
+          "future_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "kind": { "const": "WORK_PACKAGE" } } },
+            "then": {
+              "required": [
+                "objective",
+                "scope",
+                "excluded_scope",
+                "source_requirements",
+                "responsible_role",
+                "required_capabilities",
+                "dependencies",
+                "deliverables",
+                "definition_of_ready",
+                "definition_of_done",
+                "evidence_obligations",
+                "security_privacy_obligations",
+                "accessibility_bilingual_obligations"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "DEPENDENCY" } } },
+            "then": {
+              "required": [
+                "dependency_kind",
+                "owner",
+                "source",
+                "affected_work_packages",
+                "required_decision_or_evidence",
+                "target_resolution_window",
+                "current_status",
+                "impact_if_unresolved",
+                "fallback_status"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "CAPABILITY" } } },
+            "then": {
+              "required": [
+                "capability_domain",
+                "responsible_role",
+                "decision_rights",
+                "accountabilities",
+                "required_competence",
+                "independence_requirement",
+                "capacity_assumption",
+                "availability_status",
+                "conflict_of_interest_constraint",
+                "escalation_route"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

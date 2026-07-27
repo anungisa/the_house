@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "milestones.schema.json",
+  "title": "REG-1002 Milestones, Environments, Release Units, Evidence, Readiness, and Acceptance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1002" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "validation_status",
+          "authorizes_implementation",
+          "implementation_status",
+          "planning_status",
+          "commitment_status",
+          "chapter_ref",
+          "future_gate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(MILE|ENV|REL|READY|EVID|ACCEPT)-V10-[0-9]{3}$" },
+          "kind": {
+            "type": "string",
+            "enum": ["MILESTONE", "ENVIRONMENT", "RELEASE_UNIT", "EVIDENCE_REQUIREMENT", "READINESS_CONDITION", "ACCEPTANCE_CRITERION"]
+          },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "target_date_status": { "type": "string" },
+          "committed_date_status": { "type": "string" },
+          "environment_class": { "$ref": "common.schema.json#/definitions/environmentClass" },
+          "purpose": { "type": "string" },
+          "required_capabilities": { "type": "array", "items": { "type": "string" } },
+          "permitted_test_levels": { "type": "array", "items": { "type": "string" } },
+          "configuration_baseline_dependency": { "type": "string" },
+          "identity_requirements": { "type": "string" },
+          "fixture_requirements": { "type": "string" },
+          "synthetic_data_requirements": { "type": "string" },
+          "restricted_evidence_substitute": { "type": "string" },
+          "secret_dependencies": { "type": "string" },
+          "provider_dependencies": { "type": "string" },
+          "observability_requirements": { "type": "string" },
+          "isolation_reset_requirements": { "type": "string" },
+          "evidence_capture_requirements": { "type": "string" },
+          "data_classification": { "$ref": "common.schema.json#/definitions/dataClassification" },
+          "production_data_prohibition": { "type": "string" },
+          "qualification_criteria": { "type": "string" },
+          "provisioning_status": { "$ref": "common.schema.json#/definitions/provisioningStatus" },
+          "provisioning_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "release_unit_state": { "$ref": "common.schema.json#/definitions/releaseUnitState" },
+          "contained_work_packages": { "type": "array", "items": { "type": "string" } },
+          "configuration_baseline": { "type": "string" },
+          "data_migration_dependencies": { "type": "string" },
+          "required_test_evidence": { "type": "string" },
+          "security_privacy_evidence": { "type": "string" },
+          "accessibility_bilingual_evidence": { "type": "string" },
+          "operational_evidence": { "type": "string" },
+          "rollback_dependency": { "type": "string" },
+          "acceptance_authority": { "type": "string" },
+          "release_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "evidence_type": { "type": "string" },
+          "provenance_requirement": { "type": "string" },
+          "reproducibility_requirement": { "type": "string" },
+          "readiness_disposition": { "$ref": "common.schema.json#/definitions/readinessDisposition" },
+          "owner": { "type": "string" },
+          "required_evidence": { "type": "string" },
+          "impact_if_unresolved": { "type": "string" },
+          "acceptance_criterion_basis": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "planning_status": { "$ref": "common.schema.json#/definitions/planningStatus" },
+          "commitment_status": { "$ref": "common.schema.json#/definitions/commitmentStatus" },
+          "chapter_ref": { "type": "string" },
+          "future_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "kind": { "const": "ENVIRONMENT" } } },
+            "then": {
+              "required": [
+                "environment_class",
+                "purpose",
+                "data_classification",
+                "production_data_prohibition",
+                "qualification_criteria",
+                "provisioning_status",
+                "provisioning_gate",
+                "identity_requirements",
+                "synthetic_data_requirements",
+                "secret_dependencies",
+                "provider_dependencies",
+                "observability_requirements",
+                "isolation_reset_requirements",
+                "evidence_capture_requirements"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "RELEASE_UNIT" } } },
+            "then": {
+              "required": [
+                "release_unit_state",
+                "contained_work_packages",
+                "configuration_baseline",
+                "data_migration_dependencies",
+                "required_test_evidence",
+                "security_privacy_evidence",
+                "accessibility_bilingual_evidence",
+                "operational_evidence",
+                "rollback_dependency",
+                "acceptance_authority",
+                "release_gate"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "READINESS_CONDITION" } } },
+            "then": {
+              "required": ["readiness_disposition", "owner", "required_evidence", "impact_if_unresolved"]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "EVIDENCE_REQUIREMENT" } } },
+            "then": {
+              "required": ["evidence_type", "provenance_requirement", "reproducibility_requirement"]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

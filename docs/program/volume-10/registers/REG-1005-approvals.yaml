@@ -1,0 +1,208 @@
+register_id: REG-1005
+name: Volume 10 Delivery-Planning Approvals and Provenance
+status: RATIFIED
+version: 1.0.0
+records:
+  # ---------------------------------------------------------------------------
+  # Chapter approvals (V10-00 .. V10-10)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-001
+    artifact_id: V10-00
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-002
+    artifact_id: V10-01
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-003
+    artifact_id: V10-02
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-004
+    artifact_id: V10-03
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-005
+    artifact_id: V10-04
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-006
+    artifact_id: V10-05
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-007
+    artifact_id: V10-06
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-008
+    artifact_id: V10-07
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-009
+    artifact_id: V10-08
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-010
+    artifact_id: V10-09
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V10-011
+    artifact_id: V10-10
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # V10-A closure record (bounded next-package disposition; no volume tag)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-012
+    artifact_id: V10-A
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: >-
+      Volume 10 Package 2 is authorized to a bounded scope only: AUTHORIZED TO
+      AUTHOR A CLUB-AFFILIATION IMPLEMENTATION PLAN ONLY. Package 2 remains planning
+      and definitional only. Construction, environment provisioning, environment
+      qualification, executable tests, test execution, test data, identities,
+      secrets, provider engagement, procurement, expenditure, staffing, pilot,
+      rollout, release, and deployment are NOT AUTHORIZED. Package 2 may plan; it
+      may not infer implementation, provisioning, or release authorization from this
+      definition. Any expansion beyond that bounded scope requires a separate,
+      explicit authorization gate. Volume 10 is NOT tagged upon Package 1 closure.
+    amendment_process: >-
+      Amendments to the frozen Package 1 corpus are made only through a recorded,
+      additive amendment; the frozen chapters and registers are not reopened.
+    closure_binding:
+      closure_artifact: V10-A
+      gate: GATE-V10-G1
+      freeze_artifact: PACKAGE-10-1
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      chronology_disposition: PENDING_PROVENANCE_BINDING
+    effective_date_clarification:
+      gate: GATE-V10-G1
+      documentary_definition_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      implementation_effective_date: >-
+        Not applicable. Documentary completeness is distinct from implementation
+        completeness; Package 1 authorizes no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary completeness is distinct from operational
+        effectiveness; Package 1 authorizes no operation.
+      commitment_effective_date: >-
+        Not applicable. A documentary plan is distinct from a commitment; Package 1
+        commits no schedule, cost, staffing, or delivery date.
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # Gate V10-G1 disposition
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-013
+    artifact_id: GATE-V10-G1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    gate_disposition: DELIVERY_AND_MASTER_DEVELOPMENT_PLAN_GOVERNANCE_FOUNDATION_READY
+    requires_freeze_artifact: PACKAGE-10-1
+    base_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+    effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+    gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+    approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # PACKAGE-10-1 freeze
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-014
+    artifact_id: PACKAGE-10-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    frozen: true
+    frozen_artifacts:
+      - id: REG-1000
+        version: 1.0.0
+      - id: REG-1001
+        version: 1.0.0
+      - id: REG-1002
+        version: 1.0.0
+      - id: REG-1003
+        version: 1.0.0
+      - id: REG-1004
+        version: 1.0.0
+      - id: REG-1005
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-10-1
+      substantive_authoring_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      provenance_binding_commit: PENDING_V10-B_AMENDMENT
+      required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      sequence_disposition: CONFORMANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-9-v1.0.0
+      base_release_tag: central-registration-volume-9-v1.0.0
+      source_baseline_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      branch_base_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      authoring_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      provenance_binding_commit: PENDING_V10-B_AMENDMENT
+      note: >-
+        Volume 10 Package 1 inherits the released Volume 9 baseline
+        central-registration-volume-9-v1.0.0. The substantive-authoring, closure and
+        freeze, pre-merge provenance-binding, original-package-merge, and
+        provenance-amendment commits are bound after merge by the V10-B provenance
+        amendment and the V10-B-1 provenance-role classification. Volume 10 is not
+        tagged upon Package 1 closure.
+    approved_at: null

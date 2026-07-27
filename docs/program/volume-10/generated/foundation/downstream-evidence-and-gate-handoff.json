@@ -1,0 +1,26 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "evidence_requirements": [
+    {
+      "id": "EVID-V10-001",
+      "future_gate": "V11-G1"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ACCEPT-V10-001",
+      "future_gate": "V12-G1"
+    }
+  ],
+  "release_units": [
+    {
+      "id": "REL-V10-001",
+      "release_gate": "V12-G1"
+    }
+  ],
+  "downstream_gates": [
+    "V11-G1",
+    "V12-G1",
+    "EXEC-MCG"
+  ]
+}

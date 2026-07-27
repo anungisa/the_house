@@ -1,0 +1,87 @@
+register_id: REG-1003
+name: Volume 10 Delivery-Planning Decisions
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V10-001
+    kind: DECISION
+    title: Planning authority is separated from implementation authority
+    statement: >-
+      Volume 10 establishes that authoring a delivery plan, estimate, decision, or
+      readiness recommendation never authorizes implementation, provisioning,
+      procurement, execution, or release. Implementation authority is granted only
+      by a distinct future authorization gate.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The House governance model requires fail-closed separation between planning
+      and execution to prevent a plan from being mistaken for an authorization.
+    consequences: >-
+      Every Volume 10 record is execution-neutral; no record may set
+      authorizes_implementation to true; execution is deferred to future gates.
+    decision_authority: Executive Acceptance Authority
+    prohibited_inference: >-
+      This decision must not be read as authorizing any construction, provisioning,
+      procurement, staffing, test execution, release, or deployment.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-00
+    future_gate: V11-G1
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+
+  - id: ADR-V10-002
+    kind: DECISION
+    title: Estimates, target dates, and environment definitions are non-committal
+    statement: >-
+      Volume 10 establishes that an estimate is not an approved budget, a target
+      date is not a committed date, an environment definition is not a provisioned
+      or qualified environment, a test-enablement plan is not an executable test,
+      and a release candidate is not an accepted release or deployment.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Delivery planning must record intent without creating financial, schedule,
+      staffing, provisioning, or release commitments.
+    consequences: >-
+      Estimates carry a planning-estimate posture; commitments carry a not-committed
+      posture; environments carry a not-authorized provisioning status until a future
+      provisioning gate.
+    decision_authority: Accountable Program Authority
+    prohibited_inference: >-
+      This decision must not be read as approving any budget, committing any date,
+      provisioning any environment, engaging any provider, or accepting any release.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-07
+    future_gate: V11-G1
+
+  - id: ADR-V10-003
+    kind: DECISION_BOUNDARY
+    title: Package 2 is bounded to a club-affiliation implementation plan only
+    statement: >-
+      Upon Gate V10-G1 passing, Package 2 is authorized only to author a
+      club-affiliation implementation PLAN. It is not authorized to construct,
+      provision, test, procure, release, or deploy anything.
+    decision_status: PROPOSED
+    context: >-
+      The delivery-planning foundation must bound the next package so that
+      downstream work remains documentary until a distinct implementation
+      authorization gate is passed.
+    consequences: >-
+      Package 2 scope is constrained to planning; execution remains gated.
+    decision_authority: Executive Acceptance Authority
+    prohibited_inference: >-
+      This boundary must not be read as authorizing any Package 2 implementation
+      activity beyond authoring a plan.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-A
+    future_gate: V11-G1

@@ -1,0 +1,179 @@
+register_id: REG-1004
+name: Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V10-001
+    kind: ASSUMPTION
+    title: Inherited Volume 9 obligations remain the authoritative quality baseline
+    statement: >-
+      It is assumed that the released Volume 9 integrated quality and master-test
+      definition remains the authoritative baseline for club-affiliation verification.
+    owner: Independent Assurance Lead
+    current_status: PENDING_VALIDATION
+    impact_if_unresolved: >-
+      Verification planning could reference an out-of-date quality baseline.
+    required_action_or_evidence: >-
+      Confirm inheritance of central-registration-volume-9-v1.0.0 at planning review.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+
+  - id: RISK-V10-001
+    kind: RISK
+    title: Environment qualification may be delayed
+    statement: >-
+      Risk that the environments required for verification are not qualified in time
+      for a future implementation-readiness gate.
+    owner: Engineering Delivery Lead
+    current_status: OPEN
+    likelihood_or_occurrence: MEDIUM
+    impact_if_unresolved: >-
+      Construction and verification could not begin, delaying the outcome.
+    required_action_or_evidence: >-
+      Environment qualification evidence per READY-V10-001 at a future gate.
+    operational_impact: >-
+      Delays downstream verification and release-candidate formation.
+    escalation_threshold: >-
+      Escalate to Accountable Program Authority if unresolved at planning review.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+
+  - id: ISSUE-V10-001
+    kind: ISSUE
+    title: House P0 production-dependency completeness not yet planned to work packages
+    statement: >-
+      Some House P0 production-dependency findings require explicit work-package
+      destinations before an implementation-readiness gate can pass.
+    owner: Accountable Program Authority
+    current_status: OPEN
+    impact_if_unresolved: >-
+      Implementation readiness cannot be admitted with unmapped P0 findings.
+    required_action_or_evidence: >-
+      Complete the House P0 delivery-readiness map projection and assign destinations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+    traces_to:
+      - V9-42
+
+  - id: CHANGE-V10-001
+    kind: CHANGE
+    title: Scope-baseline change-control process defined for delivery planning
+    statement: >-
+      Establishes that any change to the delivery scope baseline must pass governed
+      change control; this record defines the process, it does not enact a change.
+    owner: Accountable Program Authority
+    current_status: DEFINED
+    impact_if_unresolved: >-
+      Uncontrolled scope changes could invalidate the planning baseline.
+    required_action_or_evidence: >-
+      Governed change-control review for any scope-baseline modification.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+
+  - id: COMMIT-V10-001
+    kind: COMMITMENT
+    title: Prospective material commitment for cloud infrastructure (not committed)
+    statement: >-
+      Records a prospective material commitment for cloud infrastructure required
+      for future environments. This is a planning placeholder; nothing is committed,
+      procured, or contracted.
+    owner: Accountable Program Authority
+    current_status: NOT_COMMITTED
+    impact_if_unresolved: >-
+      Future provisioning would require a governed material-commitment decision.
+    required_action_or_evidence: >-
+      A governed commitment decision with authority and evidence at a future gate.
+    commitment_status: NOT_COMMITTED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+
+  - id: COST-V10-001
+    kind: COST_ESTIMATE
+    title: Indicative planning estimate for club-affiliation delivery
+    statement: >-
+      Indicative planning estimate for delivering the club-affiliation outcome. This
+      estimate is not an approved budget, a quote, a purchase, or a contract.
+    owner: Accountable Program Authority
+    current_status: DRAFT
+    estimate_basis: >-
+      Bottom-up estimate across defined work packages under stated assumptions.
+    range: >-
+      Indicative range only; wide and non-binding at this planning stage.
+    confidence: INDICATIVE_ONLY
+    assumptions: >-
+      Assumes inherited Volume 9 baseline, qualified environments at a future gate,
+      and no scope expansion.
+    included_scope: >-
+      Construction planning, test-enablement planning, and environment planning for
+      club affiliation.
+    excluded_scope: >-
+      Excludes procurement, provider engagement, staffing, and any execution.
+    dependencies:
+      - DEP-V10-002
+    source_date: '2026-07-27'
+    currency: CAD
+    contingency_posture: >-
+      Contingency is indicative and non-binding.
+    operating_or_capital_treatment: >-
+      Treatment undetermined at planning stage.
+    approval_status: >-
+      Not approved; planning estimate only.
+    estimate_status: PLANNING_ESTIMATE
+    impact_if_unresolved: >-
+      Funding planning cannot proceed without a validated estimate.
+    required_action_or_evidence: >-
+      Estimate validation and, separately, a budget-approval decision at a future gate.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+
+  - id: FUND-V10-001
+    kind: FUNDING
+    title: Prospective funding source for club-affiliation delivery (not secured)
+    statement: >-
+      Records a prospective funding source. Funding is neither secured nor approved;
+      this is a planning placeholder.
+    owner: Accountable Program Authority
+    current_status: NOT_SECURED
+    impact_if_unresolved: >-
+      Delivery cannot be funded until a governed funding decision is made.
+    required_action_or_evidence: >-
+      A governed funding-approval decision with authority and evidence.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+
+  - id: PROC-V10-001
+    kind: PROCUREMENT
+    title: Prospective procurement of cloud services (not authorized)
+    statement: >-
+      Records a prospective procurement of cloud database and messaging services.
+      No procurement, solicitation, selection, or contract is authorized or made.
+    owner: Procurement Authority
+    current_status: NOT_AUTHORIZED
+    impact_if_unresolved: >-
+      Provider readiness cannot be established without a governed procurement decision.
+    required_action_or_evidence: >-
+      A governed procurement decision with authority, budget, and evidence at a
+      future gate.
+    approval_status: >-
+      Not approved; no solicitation or selection performed.
+    commitment_status: NOT_COMMITTED
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1

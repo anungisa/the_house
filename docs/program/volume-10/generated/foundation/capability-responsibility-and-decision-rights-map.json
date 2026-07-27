@@ -1,0 +1,29 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "capabilities": [
+    {
+      "id": "CAP-V10-001",
+      "domain": "PRODUCT_SERVICE_OWNERSHIP",
+      "responsible_role": "Accountable Program Authority",
+      "decision_rights": "Holds planning-level decision rights over scope baseline, work-package definition, and gate readiness recommendations; holds no implementation, procurement, provisioning, or release authorization rights.",
+      "independence_requirement": "Planning authority is separated from implementation authority; the same role may not both author a plan and authorize its execution.",
+      "escalation_route": "Unresolved planning conflicts escalate to the Executive Acceptance Authority and the future executive master-coordination gate (EXEC-MCG)."
+    },
+    {
+      "id": "CAP-V10-002",
+      "domain": "APPLICATION_ENGINEERING",
+      "responsible_role": "Engineering Delivery Lead",
+      "decision_rights": "Planning-level input to work-package definition-of-done and technical readiness criteria; no authority to begin construction under this package.",
+      "independence_requirement": "Construction planning is separated from independent quality assurance and from release-acceptance authority.",
+      "escalation_route": "Technical readiness disputes escalate to the Accountable Program Authority."
+    },
+    {
+      "id": "CAP-V10-003",
+      "domain": "INDEPENDENT_ASSURANCE",
+      "responsible_role": "Independent Assurance Lead",
+      "decision_rights": "Planning-level definition of evidence obligations and acceptance criteria; no authority to execute tests or accept releases under this package.",
+      "independence_requirement": "Assurance is organizationally independent from construction and from the role that authored the artifact under assessment.",
+      "escalation_route": "Assurance findings escalate to the Executive Acceptance Authority."
+    }
+  ]
+}

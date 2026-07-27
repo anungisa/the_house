@@ -1,0 +1,170 @@
+{
+  "gate": "V10-G1",
+  "disposition_target": "DELIVERY_AND_MASTER_DEVELOPMENT_PLAN_GOVERNANCE_FOUNDATION_READY",
+  "total_conditions": 32,
+  "satisfied": 32,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Released Volume 9 provenance inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Planning authority distinct from implementation authority",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Delivery phases and gate boundaries defined",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Delivery phases held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Complete planning hierarchy controlled",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every material inherited obligation has a work-package destination or governed disposition",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Work packages identify scope, exclusions, owner, capabilities, dependencies, deliverables, readiness, completion, evidence, and future gate",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Scope baseline and change-control rules defined",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Configuration baselines and release units controlled",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Assumptions, dependencies, decisions, commitments, risks, issues, and blockers held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Every dependency and readiness condition has owner, evidence requirement, and future gate",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Estimates contain basis, range, confidence, assumptions, inclusions, exclusions, dependencies, and approval status",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Estimates held distinct from budgets, quotes, purchases, and contracts",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Resource models held distinct from assignments, hiring, and engagement authority",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Capability and decision-rights requirements controlled",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Environment classes and qualification requirements defined",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Environment planning held distinct from provisioning and qualification",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Test-enablement planning traces to Volume 9 obligations",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Test-enablement held distinct from executable tests and execution",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Data, identity, secret, provider, observability, isolation, reset, and evidence-capture dependencies represented",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Security, privacy, accessibility, and bilingual obligations embedded in work-package planning",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Delivery risk, issue, defect, exception, waiver, evidence-gap, and escalation flows controlled",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Migration, coexistence, cutover, rollback, operational handoff, and stabilization remain planning concepts",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Release candidates held distinct from accepted releases and deployments",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "House P0 findings have implementation, test-enablement, operational-proof, and release-evidence destinations",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Deterministic Package 1 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "No prohibited implementation, provisioning, deployment, or executable-artifact leakage created",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "No runtime code, executable tests, environments, datasets, identities, secrets, provider integration, or infrastructure created",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "No procurement, expenditure, staffing, provisioning, execution, release, or deployment authorized",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "No schedule, cost, staffing, readiness, delivery, or release commitment represented as approved without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "Genuine authoring, closure-freeze, and pre-merge provenance-binding separation preserved",
+      "satisfied": true
+    }
+  ]
+}

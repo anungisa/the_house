@@ -1,0 +1,52 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "dependencies": [
+    {
+      "id": "DEP-V10-001",
+      "owner": "Independent Assurance Lead",
+      "kind": "DEPENDENCY",
+      "status": "PENDING_VALIDATION",
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "DEP-V10-002",
+      "owner": "Engineering Delivery Lead",
+      "kind": "READINESS_CONDITION",
+      "status": "ENVIRONMENT_QUALIFICATION_PENDING",
+      "future_gate": "V11-G1"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "ADR-V10-001",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Executive Acceptance Authority"
+    },
+    {
+      "id": "ADR-V10-002",
+      "kind": "DECISION",
+      "status": "APPROVED_FOR_PLANNING",
+      "authority": "Accountable Program Authority"
+    },
+    {
+      "id": "ADR-V10-003",
+      "kind": "DECISION_BOUNDARY",
+      "status": "PROPOSED",
+      "authority": "Executive Acceptance Authority"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "ASM-V10-001",
+      "owner": "Independent Assurance Lead",
+      "status": "PENDING_VALIDATION"
+    }
+  ],
+  "commitments": [
+    {
+      "id": "COMMIT-V10-001",
+      "commitment_status": "NOT_COMMITTED"
+    }
+  ]
+}
