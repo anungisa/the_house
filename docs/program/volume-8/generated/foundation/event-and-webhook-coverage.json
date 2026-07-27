@@ -1,5 +1,5 @@
 {
-  "event_classes": 3,
+  "event_classes": 6,
   "webhook_classes": 1,
   "events_without_delivery": [],
   "webhooks_without_integrity": []

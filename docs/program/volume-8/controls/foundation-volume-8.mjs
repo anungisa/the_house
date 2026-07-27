@@ -33,6 +33,7 @@ function analyse(ctx) {
   const trustBoundaries = byKind(ctx, 'REG-801', 'TRUST_BOUNDARY');
   const providerContexts = byKind(ctx, 'REG-801', 'PROVIDER_CONTEXT');
   const authContexts = byKind(ctx, 'REG-801', 'AUTHORIZATION_CONTEXT');
+  const logicalResources = byKind(ctx, 'REG-801', 'LOGICAL_RESOURCE');
   const commands = byKind(ctx, 'REG-802', 'COMMAND_CLASS');
   const queries = byKind(ctx, 'REG-802', 'QUERY_CLASS');
   const events = byKind(ctx, 'REG-802', 'EVENT_CLASS');
@@ -58,6 +59,7 @@ function analyse(ctx) {
   const providersWithoutExit = providerContexts.filter((p) => !p.exit_dependency);
   const exchangesWithoutReconciliation = exchanges.filter((x) => !x.reconciliation_dependency);
   const compatibilityWithoutEvidence = compatibility.filter((c) => !c.consumer_evidence);
+  const resourcesWithoutSource = logicalResources.filter((r) => !r.institutional_authority || !r.authoritative_source || !r.purpose);
 
   return {
     counts: {
@@ -67,6 +69,7 @@ function analyse(ctx) {
       trust_boundaries: trustBoundaries.length,
       provider_contexts: providerContexts.length,
       authorization_contexts: authContexts.length,
+      logical_resources: logicalResources.length,
       command_classes: commands.length,
       query_classes: queries.length,
       event_classes: events.length,
@@ -92,7 +95,8 @@ function analyse(ctx) {
       errors_without_canonical_code: errorsWithoutCode.map((r) => r.id),
       providers_without_exit: providersWithoutExit.map((r) => r.id),
       exchanges_without_reconciliation: exchangesWithoutReconciliation.map((r) => r.id),
-      compatibility_without_consumer_evidence: compatibilityWithoutEvidence.map((r) => r.id)
+      compatibility_without_consumer_evidence: compatibilityWithoutEvidence.map((r) => r.id),
+      logical_resources_without_authority_source_or_purpose: resourcesWithoutSource.map((r) => r.id)
     }
   };
 }
@@ -149,6 +153,7 @@ export function generate(ctx = loadContext()) {
   const write = (name, obj) => writeFileSync(join(outDir, name), JSON.stringify(obj, null, 2) + '\n', 'utf8');
   write('contract-surface-catalogue.json', { counts: { contract_surfaces: a.counts.contract_surfaces, producers: a.counts.producers, consumers: a.counts.consumers }, gaps: { surfaces_without_authority: a.gaps.surfaces_without_authority, endpoints_without_ownership: a.gaps.endpoints_without_ownership } });
   write('identity-and-trust-boundary-coverage.json', { trust_boundaries: a.counts.trust_boundaries, authorization_contexts: a.counts.authorization_contexts });
+  write('logical-resource-coverage.json', { logical_resources: a.counts.logical_resources, logical_resources_without_authority_source_or_purpose: a.gaps.logical_resources_without_authority_source_or_purpose });
   write('command-and-query-semantics.json', { command_classes: a.counts.command_classes, query_classes: a.counts.query_classes, commands_without_result: a.gaps.commands_without_result, queries_without_staleness: a.gaps.queries_without_staleness });
   write('event-and-webhook-coverage.json', { event_classes: a.counts.event_classes, webhook_classes: a.counts.webhook_classes, events_without_delivery: a.gaps.events_without_delivery, webhooks_without_integrity: a.gaps.webhooks_without_integrity });
   write('idempotency-and-replay-coverage.json', { idempotency_requirements: a.counts.idempotency_requirements, replay_requirements: a.counts.replay_requirements, reconciliation_requirements: a.counts.reconciliation_requirements, exchanges_without_reconciliation: a.gaps.exchanges_without_reconciliation });

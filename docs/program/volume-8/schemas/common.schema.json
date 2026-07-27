@@ -133,7 +133,8 @@
         "CONSUMER",
         "TRUST_BOUNDARY",
         "PROVIDER_CONTEXT",
-        "AUTHORIZATION_CONTEXT"
+        "AUTHORIZATION_CONTEXT",
+        "LOGICAL_RESOURCE"
       ]
     },
     "requirementKind": {

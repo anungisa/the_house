@@ -97,3 +97,46 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-08
+  - id: ASM-V8-003
+    kind: ASM
+    title: Affiliation lifecycle state machine is supplied by the governance kernel
+    statement: >-
+      Assumes the affiliation lifecycle state machine and its governed transitions are
+      supplied by the inherited Governance Kernel; Volume 8 defines contracts over that
+      lifecycle and states dependency only.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Cross-reference to the kernel affiliation state machine at implementation time
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-11
+  - id: RISK-V8-003
+    kind: RISK
+    title: Affiliation finance reconciliation may lack a settlement source at integration time
+    statement: >-
+      Risk that no authoritative settlement source is available to reconcile the
+      affiliation fee obligation when the reconcile contract is later implemented,
+      leaving affiliations unable to activate.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: A named settlement source reconciled against the fee obligation before activation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-19
+  - id: TEST-V8-003
+    kind: TEST
+    title: Affiliation authorization-scope conformance test class deferred
+    statement: >-
+      A future conformance test class must prove that every affiliation command and
+      query resolves to an entitled authorization context and returns or mutates
+      nothing outside the acting context's scope.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Affiliation authorization-scope conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-12
+

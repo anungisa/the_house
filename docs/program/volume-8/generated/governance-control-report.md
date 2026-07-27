@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T11:32:09.179Z
+Generated: 2026-07-27T11:58:14.711Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T11:32:09.179Z
 
 ## Summary
 
-- Total findings: 0
-- Errors: 0
+- Total findings: 3
+- Errors: 3
 - Warnings: 0
 - Info: 0
-- Overall: PASS (no integrity errors)
+- Overall: FAIL (contract-governance integrity errors present)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 14 |
+| RATIFIED | 24 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 14 |
-| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 15 |
-| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 22 |
-| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 4 |
-| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 7 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 17 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 24 |
+| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 23 |
+| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 40 |
+| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 8 |
+| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 10 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 27 |
 
 ## Findings by control
 
@@ -70,6 +70,14 @@ Errors: 0 | Warnings: 0 | Info: 0
 Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
+
+### Gate V8-G2 readiness
+
+Errors: 3 | Warnings: 0 | Info: 0
+
+- ERROR GATE_V8_G2_CONDITION_UNMET [GATE-V8-G2]: Condition 25 not satisfied: Package 2 receives a closure record and a separate freeze commit
+- ERROR GATE_V8_G2_CONDITION_UNMET [GATE-V8-G2]: Condition 26 not satisfied: Gate V8-G2 disposition recorded as affiliation logical-contract definition ready
+- ERROR GATE_V8_G2_CONDITION_UNMET [GATE-V8-G2]: Condition 27 not satisfied: Completed gate has no unresolved required commit binding
 
 ## Recorded conditions (from REG-805 approvals)
 
