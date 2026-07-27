@@ -139,3 +139,19 @@ records:
       base_release_commit: ae11b076
       note: Package 1 freeze is a separate freeze commit after line-level review; merge and freeze commit identifiers are recorded in the V7-B provenance amendment. Volume 7 is not tagged after Package 1.
     approved_at: null
+  - id: APP-V7-015
+    artifact_id: V7-B
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Records Package 1 freeze and merge commit identifiers after merge. Supersedes and overwrites nothing in the frozen Package 1 corpus. Volume 7 is not tagged after Package 1.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_snapshot_commit: c3188d3
+      closure_freeze_commit: 1ce68e5
+      original_package_merge_commit: 9013c5f
+      note: Narrow post-merge provenance amendment for Package 1. Records the authoring snapshot, the separate freeze commit, and the mainline merge commit. Volume 7 is not tagged after Package 1.
+    approved_at: null
