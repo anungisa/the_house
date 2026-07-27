@@ -1,0 +1,10 @@
+{
+  "package": "PACKAGE-8-1",
+  "classification": {
+    "15c3f03": "PRE_MERGE_PROVENANCE_BINDING",
+    "67c8adc": "V8_B_PROVENANCE_AMENDMENT_AUTHORING",
+    "52d2e10": "V8_B_PROVENANCE_AMENDMENT_MERGE"
+  },
+  "binding_not_conflated_with_amendment": true,
+  "role_classification": "SATISFIED"
+}

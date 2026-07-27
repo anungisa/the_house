@@ -92,6 +92,7 @@
     "governance:check:v8": "node docs/program/volume-8/controls/governance-check.mjs",
     "governance:report:v8": "node docs/program/volume-8/controls/generate-control-report.mjs",
     "governance:foundation:v8": "node docs/program/volume-8/controls/foundation-volume-8.mjs",
+    "governance:provenance:v8": "node docs/program/volume-8/controls/provenance-integrity-volume-8.mjs",
     "governance:gate:v8": "node docs/program/volume-8/controls/gate-volume-8.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
