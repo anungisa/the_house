@@ -188,6 +188,24 @@ function validateAuthorizationContexts(ctx, findings) {
   }
 }
 
+// Logical resource contracts without an owning authority, authoritative source, or
+// purpose. A logical resource is a governed definition, not a wire schema; it must
+// resolve to a single authority and source before any later package may shape it.
+function validateLogicalResources(ctx, findings) {
+  for (const r of records(ctx, 'REG-801')) {
+    if (r.kind !== 'LOGICAL_RESOURCE') continue;
+    if (!r.institutional_authority) {
+      findings.push(makeFinding(Severity.ERROR, 'RESOURCE_WITHOUT_AUTHORITY', `${r.id}: logical resource names no institutional_authority`, r.id));
+    }
+    if (!r.authoritative_source) {
+      findings.push(makeFinding(Severity.ERROR, 'RESOURCE_WITHOUT_SOURCE', `${r.id}: logical resource names no authoritative_source`, r.id));
+    }
+    if (!r.purpose) {
+      findings.push(makeFinding(Severity.ERROR, 'RESOURCE_WITHOUT_PURPOSE', `${r.id}: logical resource names no purpose`, r.id));
+    }
+  }
+}
+
 // Provider contexts without incident, continuity, exit, data-return, or
 // deletion-evidence obligations.
 function validateProviderContexts(ctx, findings) {
@@ -421,6 +439,7 @@ export function run(ctx) {
   validateTrustBoundaries(ctx, findings);
   validateAuthorizationContexts(ctx, findings);
   validateProviderContexts(ctx, findings);
+  validateLogicalResources(ctx, findings);
   validateCommandClasses(ctx, findings);
   validateQueryClasses(ctx, findings);
   validateEventClasses(ctx, findings);

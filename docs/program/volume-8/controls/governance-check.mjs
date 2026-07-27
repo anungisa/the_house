@@ -12,6 +12,7 @@ import { collectFindings, buildReport } from './generate-control-report.mjs';
 import { generate as generateFoundation } from './foundation-volume-8.mjs';
 import { generate as generateProvenance } from './provenance-integrity-volume-8.mjs';
 import { generate as generateGate } from './gate-volume-8.mjs';
+import { generate as generateGateG2 } from './gate-g2-volume-8.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -35,6 +36,7 @@ writeFileSync(outPath, markdown, 'utf8');
 generateFoundation(ctx);
 generateProvenance(ctx);
 generateGate(ctx);
+generateGateG2(ctx);
 
 console.log('\n=== Volume 8 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

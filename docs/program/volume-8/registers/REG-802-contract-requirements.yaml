@@ -449,3 +449,407 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-10
+  - id: COMMAND-V8-011
+    kind: COMMAND_CLASS
+    title: Create affiliation draft command
+    statement: >-
+      Establishes an affiliation application in draft state under the applicant
+      authorization context. Honoured only when its preconditions are satisfied.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Applicant authorization context is resolved for the tenant
+      - Affiliation subject is named and owned by the applicant
+      - Idempotency key is present
+    result_semantics: >-
+      Acceptance admits the create request; completion means the draft was
+      established. Repeated requests bearing the same idempotency key resolve to
+      the same draft without duplication.
+    error_semantics: >-
+      Rejection for an unresolved applicant context is distinguished from failure
+      to complete; neither is presented as success.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per applicant, affiliation subject, and creation idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-16
+  - id: COMMAND-V8-012
+    kind: COMMAND_CLASS
+    title: Revise affiliation draft command
+    statement: >-
+      Updates the declared fields of an affiliation application while it remains
+      in draft state. Never changes lifecycle state.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is in draft state under the caller's tenant
+      - Acting context is the owning applicant context
+      - Idempotency key is present
+    result_semantics: >-
+      Acceptance admits the revision; completion means the declared fields were
+      updated. A revision against a non-draft affiliation is rejected.
+    error_semantics: >-
+      Rejection for a non-draft affiliation is distinguished from failure to
+      complete; neither mutates lifecycle state.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and revision idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-16
+  - id: COMMAND-V8-013
+    kind: COMMAND_CLASS
+    title: Start affiliation review command
+    statement: >-
+      Requests the governed transition of an affiliation from submitted to under
+      review under a reviewer authorization context. Low-risk; records no
+      decision.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is in submitted state under the caller's tenant
+      - Reviewer scope is resolved for the affiliation tenant and season
+      - Season is current
+    result_semantics: >-
+      Acceptance admits the review-start request; completion means the governed
+      transition to under review committed. No decision state is mutated.
+    error_semantics: >-
+      Rejection for an unresolved reviewer scope is distinguished from failure to
+      complete.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and review-start idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-18
+  - id: COMMAND-V8-014
+    kind: COMMAND_CLASS
+    title: Return affiliation to applicant command
+    statement: >-
+      Requests the governed transition of an affiliation from under review back to
+      draft for correction. High-risk; evidence-bearing at the kernel.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is under review under the caller's tenant
+      - Reviewer scope is resolved for the affiliation
+      - A named deficiency reason is provided
+    result_semantics: >-
+      Acceptance admits the return request; completion means the governed
+      transition to draft committed and evidence recording the return reason was
+      created. Records no decision.
+    error_semantics: >-
+      Rejection for an unresolved reviewer scope is distinguished from failure to
+      complete.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and return idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-18
+  - id: COMMAND-V8-015
+    kind: COMMAND_CLASS
+    title: Resubmit affiliation command
+    statement: >-
+      Requests the governed transition of a previously returned affiliation from
+      draft to submitted. Carries the same affiliation subject.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is in draft state after a prior return under the caller's tenant
+      - Required fields are complete per governed policy
+      - Required documents are present per governed policy
+    result_semantics: >-
+      Acceptance admits the resubmission; completion means the governed transition
+      to submitted committed. Creates no new affiliation and duplicates no prior
+      evidence.
+    error_semantics: >-
+      Rejection for failed completeness guards is distinguished from failure to
+      complete; the affiliation remains in draft.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and resubmission idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-18
+  - id: COMMAND-V8-016
+    kind: COMMAND_CLASS
+    title: Record affiliation decision command
+    statement: >-
+      Requests the governed transition of an affiliation from under review to
+      approved or rejected under a reviewer authorization context. High-risk;
+      evidence-bearing at the kernel.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is under review under the caller's tenant
+      - Reviewer scope is resolved for the affiliation
+      - No open compliance flags exist for the affiliation
+    result_semantics: >-
+      Acceptance admits the decision request; completion means the approval or
+      rejection transition committed and evidence recording the disposition was
+      created.
+    error_semantics: >-
+      Rejection for an unresolved reviewer scope or an open compliance flag is
+      distinguished from failure to complete.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and decision idempotency key
+    concurrency_precondition: >-
+      Concurrent decisions on the same affiliation are serialized; the losing
+      attempt receives an explicit conflict outcome.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-19
+  - id: COMMAND-V8-017
+    kind: COMMAND_CLASS
+    title: Reconcile affiliation finance command
+    statement: >-
+      Registers the affiliation fee obligation as a governed fact and reconciles
+      recorded settlement against it. Moves no money and issues no charge.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation has a registered fee obligation under the caller's tenant
+      - Recorded settlement state is available for reconciliation
+    result_semantics: >-
+      Acceptance admits the reconciliation; completion means settlement was
+      compared against the obligation and the outcome recorded as accept, reject,
+      or quarantine.
+    error_semantics: >-
+      A reconciliation mismatch resolves to an explicit quarantine or reject
+      outcome; never a silent assumption of settlement.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and reconciliation idempotency key
+    reconciliation_dependency: >-
+      Settlement is reconciled against the registered fee obligation before the
+      affiliation is treated as settled.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-19
+  - id: COMMAND-V8-018
+    kind: COMMAND_CLASS
+    title: Activate affiliation command
+    statement: >-
+      Requests the governed transition of an affiliation from approved to active.
+      High-risk; guarded by settlement and season posture.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    preconditions:
+      - Affiliation is approved under the caller's tenant
+      - Fee obligation is settled per the reconciled finance record
+      - Season is current
+    result_semantics: >-
+      Acceptance admits the activation; completion means the governed transition
+      to active committed. A failed fees-paid or season guard leaves the
+      affiliation approved but inactive.
+    error_semantics: >-
+      Rejection for an unsettled fee obligation or a non-current season is
+      distinguished from failure to complete.
+    idempotency_requirement: REQUIRED_PER_KEY
+    idempotency_scope: Per affiliation and activation idempotency key
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-19
+  - id: QUERY-V8-011
+    kind: QUERY_CLASS
+    title: Applicant affiliation view query
+    statement: >-
+      Returns the authoritative affiliation view for the applicant's own
+      affiliation subjects within tenant scope. Read-your-writes posture.
+    interaction_type: SYNCHRONOUS_QUERY
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    staleness_posture: AUTHORITATIVE_CURRENT
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-17
+  - id: QUERY-V8-012
+    kind: QUERY_CLASS
+    title: Reviewer decision-queue query
+    statement: >-
+      Returns the authoritative queue of affiliations awaiting a decision within
+      the reviewer's delegated scope. Returns nothing without an entitled context.
+    interaction_type: SYNCHRONOUS_QUERY
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    staleness_posture: AUTHORITATIVE_CURRENT
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-17
+  - id: QUERY-V8-013
+    kind: QUERY_CLASS
+    title: Affiliation status projection query
+    statement: >-
+      Returns a bounded-staleness projection of affiliation status for integration
+      consumers; explicitly non-authoritative.
+    interaction_type: SYNCHRONOUS_QUERY
+    institutional_authority: House
+    authoritative_source: House read-model projection
+    staleness_posture: BOUNDED_STALENESS_PROJECTION
+    source_posture: Non-authoritative projection; consumers must not treat as authoritative
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-17
+  - id: EVENT-V8-011
+    kind: EVENT_CLASS
+    title: Affiliation submitted integration event
+    statement: >-
+      Emitted to integration consumers under at-least-once delivery after an
+      affiliation submission commits. Consumers absorb duplicates idempotently.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    envelope_fields:
+      - event_id
+      - event_type
+      - originating_authority
+      - tenant_scope
+      - correlation_id
+      - causation_id
+      - occurred_at
+    delivery_posture: AT_LEAST_ONCE
+    ordering_requirement: PER_AGGREGATE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-16
+  - id: EVENT-V8-012
+    kind: EVENT_CLASS
+    title: Affiliation decision integration event
+    statement: >-
+      Emitted to integration consumers under at-least-once delivery after an
+      affiliation decision commits. Discloses no restricted reviewer content.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    envelope_fields:
+      - event_id
+      - event_type
+      - originating_authority
+      - tenant_scope
+      - correlation_id
+      - causation_id
+      - occurred_at
+    delivery_posture: AT_LEAST_ONCE
+    ordering_requirement: PER_AGGREGATE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-19
+  - id: EVENT-V8-013
+    kind: EVENT_CLASS
+    title: Affiliation activation integration event
+    statement: >-
+      Emitted to integration consumers under at-least-once delivery after an
+      affiliation activation commits. Consumers absorb duplicates idempotently.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    envelope_fields:
+      - event_id
+      - event_type
+      - originating_authority
+      - tenant_scope
+      - correlation_id
+      - causation_id
+      - occurred_at
+    delivery_posture: AT_LEAST_ONCE
+    ordering_requirement: PER_AGGREGATE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-19
+  - id: ERROR-V8-011
+    kind: ERROR_SEMANTIC
+    title: Affiliation-incomplete rejection
+    statement: >-
+      A validated refusal to submit or resubmit because required fields or
+      documents were incomplete. A rejection, not a failure.
+    canonical_code: AFFILIATION_INCOMPLETE
+    retryable: NON_RETRYABLE
+    user_safe_semantic: >-
+      The affiliation could not be submitted because required information was
+      incomplete.
+    logging_constraint: >-
+      Log the canonical code and correlation id; do not log restricted evidence
+      details in caller-visible messages.
+    correlation_requirement: Carries the request correlation id
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-20
+  - id: ERROR-V8-012
+    kind: ERROR_SEMANTIC
+    title: Reconciliation-mismatch failure
+    statement: >-
+      An inability to treat an affiliation as settled because recorded settlement
+      did not reconcile against the registered obligation. Resolves to quarantine.
+    canonical_code: RECONCILIATION_MISMATCH
+    retryable: CONDITIONAL
+    user_safe_semantic: >-
+      The affiliation settlement could not be confirmed and is held for review.
+    privacy_constraint: >-
+      Must not disclose settlement amounts or finance details to a caller not
+      authorized to know them.
+    correlation_requirement: Carries the request correlation id
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-20
+  - id: CONTRACT-V8-111
+    kind: COMPATIBILITY_RULE
+    title: Affiliation additive-change compatibility rule
+    statement: >-
+      An additive, optional change to an affiliation contract is backward-compatible
+      only when consumer evidence confirms no consumer requires the added element.
+    compatibility_state: BACKWARD_COMPATIBLE
+    consumer_evidence: >-
+      Evidence that no existing affiliation consumer treats the added element as
+      required before the change is made.
+    deprecation_rule: Not applicable for additive change
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-20
+  - id: CONTRACT-V8-112
+    kind: COMPATIBILITY_RULE
+    title: Affiliation breaking-change deprecation rule
+    statement: >-
+      A breaking change to an affiliation command class, event envelope, or resource
+      authority may proceed only through an evidenced deprecation path.
+    compatibility_state: BREAKING_CHANGE
+    consumer_evidence: >-
+      Evidence of every affiliation consumer that depends on the contract and
+      confirmation of their migration before sunset.
+    deprecation_rule: >-
+      Notice, a coexistence period in which both contracts remain valid, a migration
+      path, and a sunset condition that is satisfied before withdrawal.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-20

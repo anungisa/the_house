@@ -78,3 +78,86 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V8-10
+  - id: ADR-V8-005
+    title: The House is the sole institutional authority for the affiliation domain
+    decision: >-
+      Every affiliation resource, command, query, and event resolves to The House as
+      institutional authority and to House affiliation lifecycle state as authoritative
+      source. No experience layer, staff role, or provider holds affiliation authority.
+    status: ACCEPTED
+    context: >-
+      The affiliation domain is the first governed domain defined over the Package 1
+      foundation. Its authority must be named unambiguously before any affiliation
+      contract is defined, consistent with ADR-V8-001.
+    consequence: >-
+      Every affiliation contract record names House authority and House lifecycle state.
+      An affiliation contract whose authority cannot be named fails closed. No
+      implementation is authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-11
+    traces_to:
+      - V8-01
+  - id: ADR-V8-006
+    title: Affiliation resources are logical definitions, not wire schemas
+    decision: >-
+      Affiliation resources are modelled as logical resource contracts that name an
+      owning authority, an authoritative source, and a purpose. They define no
+      serialization, storage, field list, or transport.
+    status: ACCEPTED
+    context: >-
+      Package 2 defines logical contracts only. Modelling resources as wire schemas
+      would leak implementation and exceed the package scope and freeze discipline.
+    consequence: >-
+      The contract-surface register carries a logical-resource kind; affiliation
+      resources are validated for authority, source, and purpose. No schema, storage,
+      or transport is authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-13
+    traces_to:
+      - V8-11
+  - id: ADR-V8-007
+    title: Affiliation decisions and high-risk transitions are evidence-bearing at the kernel
+    decision: >-
+      Affiliation return, decision, and activation are high-risk governed transitions
+      that create evidence metadata within the same transaction that records the
+      transition, consistent with the Governance Kernel evidence obligations.
+    status: ACCEPTED
+    context: >-
+      Affiliation outcomes carry accountability and privacy weight. Evidence must be
+      created atomically with the transition, never as a later side effect.
+    consequence: >-
+      High-risk affiliation command contracts name their evidence obligation and their
+      guards. Low-risk transitions require completeness only. No implementation is
+      authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-15
+    traces_to:
+      - V8-19
+  - id: ADR-V8-008
+    title: Affiliation finance is reconciled as a governed fact and never moves money
+    decision: >-
+      The affiliation fee obligation is registered as a governed fact and reconciled
+      against recorded settlement. The activation fees-paid guard resolves against the
+      reconciled finance record, not against an external processor.
+    status: ACCEPTED
+    context: >-
+      Affiliation activation depends on settlement, but Package 2 authorizes no payment
+      processor, ledger, or provider integration. Finance must be modelled as a
+      reconciled governed fact only.
+    consequence: >-
+      The finance-and-reconciliation resource and the reconcile command define settlement
+      as accept, reject, or quarantine semantics. No payment mechanism or money movement
+      is authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-19
+    traces_to:
+      - V8-09
+

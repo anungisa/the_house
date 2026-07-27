@@ -115,3 +115,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-B-1-package-1-governance-amendment.md
     gate: V8-G1
+  - id: V8-11
+    title: Affiliation Contract-Domain Decomposition and Scope
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-11-affiliation-contract-domain-decomposition-and-scope.md
+    gate: V8-G2
+  - id: V8-12
+    title: Affiliation Authorization-Context and Actor Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-12-affiliation-authorization-context-and-actor-contracts.md
+    gate: V8-G2
+  - id: V8-13
+    title: Affiliation Logical Resource Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-13-affiliation-logical-resource-contracts.md
+    gate: V8-G2
+  - id: V8-14
+    title: Affiliation Requirement, Response, and Acceptance Semantics
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-14-affiliation-requirement-response-and-acceptance-semantics.md
+    gate: V8-G2
+  - id: V8-15
+    title: Affiliation Evidence, Attestation, and Completeness Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-15-affiliation-evidence-attestation-and-completeness-contracts.md
+    gate: V8-G2
+  - id: V8-16
+    title: Affiliation Draft and Submission Command Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-16-affiliation-draft-and-submission-command-contracts.md
+    gate: V8-G2
+  - id: V8-17
+    title: Affiliation Query and Projection Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-17-affiliation-query-and-projection-contracts.md
+    gate: V8-G2
+  - id: V8-18
+    title: Affiliation Review, Return, and Resubmission Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-18-affiliation-review-return-and-resubmission-contracts.md
+    gate: V8-G2
+  - id: V8-19
+    title: Affiliation Decision, Finance, Reconciliation, and Activation Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-19-affiliation-decision-finance-reconciliation-and-activation-contracts.md
+    gate: V8-G2
+  - id: V8-20
+    title: Affiliation Staff Boundaries, Error, Compatibility, and Traceability Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-20-affiliation-staff-boundaries-error-compatibility-and-traceability-assessment.md
+    gate: V8-G2
+  - id: V8-C
+    title: Package 2 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-C-package-2-closure-record.md
+    gate: V8-G2

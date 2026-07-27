@@ -1,6 +1,6 @@
 {
-  "command_classes": 3,
-  "query_classes": 2,
+  "command_classes": 11,
+  "query_classes": 5,
   "commands_without_result": [],
   "queries_without_staleness": []
 }

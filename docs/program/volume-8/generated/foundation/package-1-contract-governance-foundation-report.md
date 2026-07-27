@@ -1,6 +1,6 @@
 # Volume 8 Package 1 — Contract Governance Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T11:32:09.181Z
+Generated: 2026-07-27T12:01:55.225Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 API, event, integration, and exchange-contract governance foundation
@@ -20,23 +20,24 @@ Generated: 2026-07-27T11:32:09.181Z
 | contract_surfaces | 6 |
 | producers | 3 |
 | consumers | 2 |
-| trust_boundaries | 2 |
+| trust_boundaries | 3 |
 | provider_contexts | 1 |
-| authorization_contexts | 1 |
-| command_classes | 3 |
-| query_classes | 2 |
-| event_classes | 3 |
+| authorization_contexts | 4 |
+| logical_resources | 4 |
+| command_classes | 11 |
+| query_classes | 5 |
+| event_classes | 6 |
 | webhook_classes | 1 |
 | exchange_classes | 2 |
 | message_requirements | 1 |
-| error_semantics | 3 |
+| error_semantics | 5 |
 | delivery_requirements | 1 |
 | idempotency_requirements | 2 |
 | replay_requirements | 1 |
 | reconciliation_requirements | 1 |
-| compatibility_rules | 2 |
-| decisions | 4 |
-| backlog | 7 |
+| compatibility_rules | 4 |
+| decisions | 8 |
+| backlog | 10 |
 
 ## Coverage backlog signals (non-blocking)
 
@@ -52,3 +53,4 @@ Generated: 2026-07-27T11:32:09.181Z
 | providers_without_exit | 0 | (none) |
 | exchanges_without_reconciliation | 0 | (none) |
 | compatibility_without_consumer_evidence | 0 | (none) |
+| logical_resources_without_authority_source_or_purpose | 0 | (none) |

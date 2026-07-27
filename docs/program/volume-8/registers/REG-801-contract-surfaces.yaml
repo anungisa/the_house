@@ -312,3 +312,148 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-09
+  - id: RESOURCE-V8-001
+    kind: LOGICAL_RESOURCE
+    title: Affiliation application logical resource
+    statement: >-
+      The governed definition of an affiliation application: the requested
+      affiliation and its declared fields for a member organization. A logical
+      definition only; no serialization, storage, or transport is defined.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Hold the requested affiliation and its declared fields
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-13
+    traces_to:
+      - V8-11
+      - V8-01
+  - id: RESOURCE-V8-002
+    kind: LOGICAL_RESOURCE
+    title: Affiliation evidence-set logical resource
+    statement: >-
+      The governed definition of the affiliation evidence set: the attestations
+      and required documents an affiliation depends on. Classified evidence
+      carries the privacy and logging constraints of the data-classification
+      doctrine.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Hold affiliation attestations and required documents
+    classification: RESTRICTED_EVIDENCE
+    privacy_constraint: >-
+      Restricted evidence is never disclosed in responses or errors and is
+      logged only under the data-classification privacy constraints.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-13
+    traces_to:
+      - V8-15
+      - V8-08
+  - id: RESOURCE-V8-003
+    kind: LOGICAL_RESOURCE
+    title: Affiliation decision logical resource
+    statement: >-
+      The governed definition of the affiliation decision: the reviewed
+      disposition of an affiliation recorded only through a governed transition
+      by the House authority.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Hold the reviewed affiliation disposition
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-13
+    traces_to:
+      - V8-19
+      - V8-01
+  - id: RESOURCE-V8-004
+    kind: LOGICAL_RESOURCE
+    title: Affiliation finance-and-reconciliation logical resource
+    statement: >-
+      The governed definition of the affiliation finance-and-reconciliation
+      record: the fee obligation and its settlement state as a governed fact.
+      Holds no payment instruction and moves no money.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Hold the affiliation fee obligation and settlement state
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-13
+    traces_to:
+      - V8-19
+      - V8-09
+  - id: AUTHCTX-V8-002
+    kind: AUTHORIZATION_CONTEXT
+    title: Applicant authorization context
+    statement: >-
+      The context required to authorize an applicant draft or submission action.
+      Presence within the context is never, by itself, permission to act.
+    context_elements:
+      - Applicant identity acting for a member organization
+      - Tenant or organization scope
+      - Affiliation subject owned by the applicant
+      - Idempotency key on commands
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-12
+  - id: AUTHCTX-V8-003
+    kind: AUTHORIZATION_CONTEXT
+    title: Reviewer authorization context
+    statement: >-
+      The context required to authorize a reviewer review, return, decision, or
+      activation action under delegated House authority. Reviewer scope is a
+      required context element on every decision command.
+    context_elements:
+      - Reviewer identity under delegated House authority
+      - Delegated reviewer scope for tenant and season
+      - Affiliation subject under review
+      - Idempotency key on commands
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-12
+  - id: AUTHCTX-V8-004
+    kind: AUTHORIZATION_CONTEXT
+    title: Staff operational authorization context
+    statement: >-
+      The context required to authorize House staff operational action, bounded
+      away from applicant self-service and reviewer decision authority. Staff
+      hold no authority to author or override an affiliation decision.
+    context_elements:
+      - Staff identity under operational authority
+      - Scoped affiliation subject
+      - Operational action bounded away from decision authorship
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-20
+  - id: TRUST-V8-003
+    kind: TRUST_BOUNDARY
+    title: Applicant-to-House trust boundary
+    statement: >-
+      The boundary an applicant crosses to reach the House affiliation domain.
+      Requests crossing it are denied unless attributable to a known applicant
+      context, tenant, and affiliation subject.
+    fail_closed_posture: >-
+      An applicant request is refused before any affiliation contract is
+      evaluated unless it resolves to a known applicant context, tenant, and
+      affiliation subject.
+    trusted_callers:
+      - Applicant acting for a member organization (authenticated)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-12
+

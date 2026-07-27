@@ -13,6 +13,7 @@ import { run as runReferences } from './validate-references.mjs';
 import { run as runFoundation } from './foundation-volume-8.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-8.mjs';
 import { run as runGate } from './gate-volume-8.mjs';
+import { run as runGateG2 } from './gate-g2-volume-8.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -20,7 +21,8 @@ export function collectFindings(ctx) {
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Contract-governance-foundation coverage': runFoundation(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
-    'Gate V8-G1 readiness': runGate(ctx)
+    'Gate V8-G1 readiness': runGate(ctx),
+    'Gate V8-G2 readiness': runGateG2(ctx)
   };
 }
 
