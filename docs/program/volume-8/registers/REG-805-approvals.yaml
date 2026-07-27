@@ -1649,3 +1649,67 @@ records:
         definition effectiveness is distinct from, and never implies, any
         implementation or operational effective date.
     approved_at: null
+  - id: APP-V8-081
+    artifact_id: V8-J-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive governance amendment. Records the deterministic Volume 8 Package 5
+      provenance-role classification, including the V8-J provenance-amendment
+      authoring and merge commits that were knowable only after V8-J was authored
+      and merged. It corrects no earlier record; the V8-J amendment recorded the
+      pre-merge provenance-binding commit in a schema-valid provenance-binding
+      property and conflated no provenance roles. It reopens and overwrites
+      nothing in the frozen Package 5 corpus, the Gate V8-G5 disposition, the
+      PACKAGE-8-5 freeze, or the VOLUME-8 whole-volume freeze. Upon merge, the
+      Volume 8 release tag central-registration-volume-8-v1.0.0 is applied to the
+      governance-amendment merge commit.
+    provenance_role_classification:
+      package: PACKAGE-8-5
+      source_baseline: a1aaa75
+      substantive_authoring: df19266
+      closure_and_freeze: d4b7e6d
+      pre_merge_provenance_binding: 0c763762
+      original_package_merge: 44a9ef0
+      provenance_amendment_authoring: bfdcb79
+      provenance_amendment_merge: d89f6cf
+      inherited_release_tag: central-registration-volume-7-v1.0.0
+      historical_sequence_exception: NONE
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      source_baseline_commit: a1aaa75
+      branch_base_commit: a1aaa75
+      authoring_commit: df19266
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      closure_freeze_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      effective_commit: d4b7e6d
+      provenance_binding_commit: 0c763762
+      original_package_merge_commit: 44a9ef0
+      provenance_amendment_authoring_commit: bfdcb79
+      provenance_amendment_merge_commit: d89f6cf
+      note: >-
+        Complete Volume 8 Package 5 provenance. Source baseline a1aaa75;
+        substantive authoring df19266; closure, Gate V8-G5 disposition,
+        PACKAGE-8-5 freeze, and VOLUME-8 whole-volume freeze d4b7e6d; pre-merge
+        provenance binding 0c763762; original Package 5 merge 44a9ef0; V8-J
+        provenance-amendment authoring bfdcb79; V8-J provenance-amendment merge
+        d89f6cf. The 0c763762 commit is the pre-merge provenance binding and is
+        recorded in the provenance_binding_commit property, not a
+        provenance-amendment property. Upon merge of this governance amendment the
+        Volume 8 release tag central-registration-volume-8-v1.0.0 is applied to
+        the governance-amendment merge commit.
+    effective_date_clarification:
+      gate: GATE-V8-G5
+      documentary_definition_effective_commit: d4b7e6d
+      implementation_effective_date: >-
+        Not applicable. Package 5 authorizes no implementation. Documentary
+        definition effectiveness is distinct from, and never implies, any
+        implementation or operational effective date.
+    approved_at: null
