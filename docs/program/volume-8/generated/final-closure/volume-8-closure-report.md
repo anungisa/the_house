@@ -1,6 +1,6 @@
 # Volume 8 — Integrated Contract Baseline and Volume 8 Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T14:49:58.035Z
+Generated: 2026-07-27T14:56:11.200Z
 
 > This report is a generated, non-authoritative projection of the entire
 > source-controlled Volume 8 API, event, integration, and exchange-contract
@@ -20,13 +20,13 @@ Generated: 2026-07-27T14:49:58.035Z
 
 | Element | Count |
 | --- | --- |
-| chapters | 67 |
+| chapters | 68 |
 | package_5_chapters | 13 |
 | reg_801_records | 57 |
 | reg_802_records | 115 |
 | reg_803_records | 36 |
 | reg_804_records | 25 |
-| reg_805_records | 79 |
+| reg_805_records | 80 |
 | contract_capabilities | 10 |
 | integrated_catalogue_entries | 8 |
 | p0_contract_coverage_records | 14 |

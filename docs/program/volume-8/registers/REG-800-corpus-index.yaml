@@ -532,3 +532,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-I-volume-8-completion-and-release-freeze-record.md
     gate: V8-G5
+  - id: V8-J
+    title: Package 5 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-J-package-5-provenance-amendment.md
+    gate: V8-G5

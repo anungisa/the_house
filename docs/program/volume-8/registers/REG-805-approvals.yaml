@@ -1604,3 +1604,48 @@ records:
         Package 5 provenance and governance amendments are merged and is recorded
         in the V8-J provenance amendment.
     approved_at: null
+  - id: APP-V8-080
+    artifact_id: V8-J
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 5 source baseline, the substantive
+      authoring commit, the separate closure and dual-freeze commit, the pre-merge
+      provenance-binding commit, and the mainline merge commit after merge.
+      Supersedes and overwrites nothing in the frozen Package 5 corpus. Preserves
+      the Gate V8-G5 disposition, the PACKAGE-8-5 freeze, and the VOLUME-8
+      whole-volume freeze. The Volume 8 release tag is applied only after the
+      subsequent V8-J-1 governance amendment is merged.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      source_baseline_commit: a1aaa75
+      branch_base_commit: a1aaa75
+      authoring_commit: df19266
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      closure_freeze_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      effective_commit: d4b7e6d
+      provenance_binding_commit: 0c763762
+      original_package_merge_commit: 44a9ef0
+      note: >-
+        Corrected and complete Volume 8 Package 5 provenance. Source baseline
+        a1aaa75; substantive authoring df19266; closure, Gate V8-G5 disposition,
+        PACKAGE-8-5 freeze, and VOLUME-8 whole-volume freeze d4b7e6d; pre-merge
+        provenance binding 0c763762; original Package 5 merge 44a9ef0. The
+        0c763762 commit is the pre-merge provenance binding and is recorded in the
+        provenance_binding_commit property, not a provenance-amendment property.
+        The Volume 8 release tag is applied after the V8-J-1 governance amendment.
+    effective_date_clarification:
+      gate: GATE-V8-G5
+      documentary_definition_effective_commit: d4b7e6d
+      implementation_effective_date: >-
+        Not applicable. Package 5 authorizes no implementation. Documentary
+        definition effectiveness is distinct from, and never implies, any
+        implementation or operational effective date.
+    approved_at: null
