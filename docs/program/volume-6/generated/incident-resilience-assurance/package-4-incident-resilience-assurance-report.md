@@ -1,6 +1,6 @@
 # Volume 6 Package 4 Incident, Resilience, Recovery, and Assurance Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T00:02:15.819Z
+Generated: 2026-07-27T00:06:45.812Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 4 defines the
