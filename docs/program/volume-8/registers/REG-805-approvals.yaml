@@ -233,3 +233,33 @@ records:
         merge commit is recorded in the V8-B provenance amendment. Volume 8 is not
         tagged after Package 1.
     approved_at: null
+  - id: APP-V8-016
+    artifact_id: V8-B
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 1 substantive authoring commit, the
+      separate closure and freeze commit, the provenance-binding commit, and the
+      mainline merge commit after merge. Supersedes and overwrites nothing in the
+      frozen Package 1 corpus. Preserves the Gate V8-G1 disposition and the
+      PACKAGE-8-1 freeze. Volume 8 is not tagged after Package 1.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      branch_base_commit: 624081e
+      authoring_commit: a572cdf
+      closure_freeze_commit: 506fe51
+      freeze_commit: 506fe51
+      effective_commit: 506fe51
+      provenance_amendment_commit: 15c3f03
+      original_package_merge_commit: e944116
+      note: >-
+        Provenance amendment for Volume 8 Package 1. The substantive authoring
+        commit is a572cdf; the separate closure and freeze commit is 506fe51; the
+        provenance-binding commit that bound the closure, gate, and freeze
+        commit-hash fields is 15c3f03; the mainline merge commit that integrated
+        Package 1 is e944116. Volume 8 is not tagged after Package 1.
+    approved_at: null

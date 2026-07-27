@@ -1,6 +1,6 @@
 # Volume 8 Package 1 — Contract Governance Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T11:10:17.177Z
+Generated: 2026-07-27T11:16:18.972Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 API, event, integration, and exchange-contract governance foundation
