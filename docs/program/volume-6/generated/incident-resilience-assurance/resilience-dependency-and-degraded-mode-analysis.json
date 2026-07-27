@@ -1,0 +1,14 @@
+{
+  "total": 1,
+  "controls": [
+    {
+      "id": "CTRL-V6-055",
+      "failure_detection_requirement": "A dependency failure must be observable rather than silent.",
+      "authority_retained": "Governed authorization, tenant isolation, evidence integrity, and consent controls continue to apply in degraded mode.",
+      "failure_posture": "FAIL_CLOSED",
+      "reconciliation_requirement": "Work performed or deferred during degradation must be reconciled on recovery."
+    }
+  ],
+  "controls_not_failing_closed": [],
+  "controls_with_unresolved_protected_ref": []
+}

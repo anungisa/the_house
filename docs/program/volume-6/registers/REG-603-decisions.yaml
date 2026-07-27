@@ -386,3 +386,161 @@ records:
     chapter_ref: V6-29
     traces_to:
       - CTRL-V6-044
+
+  # ==== Package 4 decisions (V6-31..V6-39) ====
+  - id: ADR-V6-032
+    title: Events, alerts, and incidents are distinct
+    decision: A security event is not an alert, an alert is not a confirmed incident, and an incident is not a breach; each is a distinct governed concept with its own obligations.
+    status: ACCEPTED
+    context: Conflating observation with confirmed condition or response would distort detection and incident governance.
+    consequence: Detection, incident, and breach models are separated in V6-32, V6-33, and V6-34.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - CTRL-V6-046
+  - id: ADR-V6-033
+    title: Incident authority is distinct from business authority
+    decision: Authority to direct the technical response to an incident is distinct from authority to accept the business consequences of that incident.
+    status: ACCEPTED
+    context: Merging technical and business authority would let a responder accept business risk without accountability.
+    consequence: Incident command and business-acceptance authority are separated across V6-33 and V6-37.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - CTRL-V6-048
+  - id: ADR-V6-034
+    title: Breach applicability requires validation
+    decision: Whether an incident constitutes a breach requiring notification is a governed determination pending legal and factual validation, never assumed by incident label.
+    status: ACCEPTED
+    context: Treating any incident as a breach, or none, without validation would misstate notification duties.
+    consequence: Notification obligations begin pending legal and contractual validation and interpret no law in Volume 6.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - CTRL-V6-050
+  - id: ADR-V6-035
+    title: Incident communications are minimum-necessary, accessible, and bilingual
+    decision: A communication arising from an incident discloses only the minimum necessary, under a named authority, in an accessible and semantically equivalent form, and is recorded as evidence.
+    status: ACCEPTED
+    context: Over-disclosure or inaccessible communications would cause privacy or equity harm.
+    consequence: Incident communications inherit Package 3 accessibility and bilingual obligations under V6-34.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - CTRL-V6-051
+  - id: ADR-V6-036
+    title: Vulnerability closure requires validated retest
+    decision: A vulnerability is closed only when a retest confirms resolution with evidence; closure on an attempted fix is prohibited.
+    status: ACCEPTED
+    context: Closing vulnerabilities without retest would leave weaknesses unproven.
+    consequence: Vulnerability management records a retest requirement for every remediation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - CTRL-V6-052
+  - id: ADR-V6-037
+    title: Security exceptions expire
+    decision: A security exception is granted only under a named authority with a compensating control and a mandatory expiry, and reverts to an open condition on expiry.
+    status: ACCEPTED
+    context: An exception without an owner, compensating control, or expiry would leave a weakness open indefinitely.
+    consequence: The security-exception control records authority, compensating control, and expiry with revert-on-expiry.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - CTRL-V6-054
+  - id: ADR-V6-038
+    title: Degraded operation fails closed on unresolved authorization
+    decision: Where a degraded mode cannot resolve governed authorization, tenant, or consent context, the affected operation fails closed rather than proceeding on assumption.
+    status: ACCEPTED
+    context: Failing open during degradation would bypass authorization or isolation.
+    consequence: Degraded-mode controls record a fail-closed posture on unresolved context.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-36
+    traces_to:
+      - CTRL-V6-055
+  - id: ADR-V6-039
+    title: Technical recovery is not business acceptance
+    decision: Reconstructing technical state does not resume governed operation; resumption requires a business-acceptance decision by a named authority.
+    status: ACCEPTED
+    context: Resuming on technical recovery alone could operate on inconsistent or unaccepted state.
+    consequence: Recovery controls record a business-acceptance authority and reconciliation requirement.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - CTRL-V6-057
+  - id: ADR-V6-040
+    title: A backup is not a verified restore
+    decision: The existence of a backup is not recovery; a backup provides no proven recovery capability until restore-tested with integrity verification.
+    status: ACCEPTED
+    context: Relying on an untested backup could result in permanent loss or corruption.
+    consequence: Recovery controls record a restore dependency and integrity-verification requirement.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - CTRL-V6-056
+  - id: ADR-V6-041
+    title: Provider certification is not service assurance
+    decision: A provider certification or attestation is evidence about the provider, not proof that the governed service is assured; reliance requires independent assurance evidence.
+    status: ACCEPTED
+    context: Accepting certification as service assurance would overstate the proven posture.
+    consequence: Provider controls record a contract-validation status and independent-assurance dependency.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - CTRL-V6-058
+  - id: ADR-V6-042
+    title: Provider exit requires return, deletion, and reconciliation evidence
+    decision: Reliance on a provider must be exitable, with governed data returned in usable form, residual copies deleted under evidence, and the exit reconciled.
+    status: ACCEPTED
+    context: A provider relationship without a defined exit and data return would strand or retain governed data.
+    consequence: Provider controls record an exit trigger, data-return requirement, and deletion evidence including residual copies.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - CTRL-V6-058
+  - id: ADR-V6-043
+    title: Metrics and exercises have interpretation limits
+    decision: A control metric indicates operation but does not prove effectiveness, and defects found in an exercise are findings requiring remediation, not proof of readiness.
+    status: ACCEPTED
+    context: Treating a metric or exercise as proof of effectiveness would create false confidence.
+    consequence: Assurance controls record an operational-proof limitation and defect-treatment rule.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - CTRL-V6-059
+  - id: ADR-V6-044
+    title: Independent assurance is distinct from self-attestation
+    decision: Self-attestation by the party operating a control is not independent assurance; reliance on effectiveness requires independent validation, time-bounded and renewed.
+    status: ACCEPTED
+    context: Accepting self-attestation as independent assurance would misrepresent validation.
+    consequence: Assurance controls distinguish self-attested from independently validated evidence; Volume 6 claims no independent assurance.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - CTRL-V6-060

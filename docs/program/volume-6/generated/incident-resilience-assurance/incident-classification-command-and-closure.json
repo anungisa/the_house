@@ -1,0 +1,71 @@
+{
+  "control_objectives": 4,
+  "incident_families": 4,
+  "controls": [
+    {
+      "id": "CTRL-V6-048",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "MANUAL_ESCALATION",
+      "protected_asset_or_right": "ASSET-V6-018",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-049",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_SAFE",
+      "protected_asset_or_right": "ASSET-V6-018",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-050",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "MANUAL_ESCALATION",
+      "protected_asset_or_right": "RIGHT-V6-008",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-051",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-025",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "families": [
+    {
+      "id": "INC-V6-004",
+      "evidence_preservation": "Preserve telemetry, triage records, and timeline with integrity.",
+      "decision_authority": "Security and Trust Steward",
+      "containment_objective": "Restore observability and contain the missed condition.",
+      "recovery_objective": "Confirm detection coverage is restored and validated."
+    },
+    {
+      "id": "INC-V6-005",
+      "evidence_preservation": "Preserve configuration state, exception records, and forensic evidence with integrity.",
+      "decision_authority": "Security and Trust Steward",
+      "containment_objective": "Contain exposure and isolate affected configuration.",
+      "recovery_objective": "Restore integrity and confirm remediation with retest."
+    },
+    {
+      "id": "INC-V6-006",
+      "evidence_preservation": "Preserve provider notifications, timeline, and governed-data impact with integrity.",
+      "decision_authority": "Security and Trust Steward",
+      "containment_objective": "Contain governed-data impact and invoke continuity or substitution where required.",
+      "recovery_objective": "Restore governed service and confirm provider remediation."
+    },
+    {
+      "id": "INC-V6-007",
+      "evidence_preservation": "Preserve recovery timeline, integrity-verification results, and acceptance records.",
+      "decision_authority": "Security and Trust Steward",
+      "containment_objective": "Halt reliance on unverified recovered state.",
+      "recovery_objective": "Achieve verified recovery accepted by the business-acceptance authority."
+    }
+  ],
+  "families_without_evidence_preservation": [],
+  "controls_without_owner": [],
+  "controls_with_unresolved_protected_ref": []
+}

@@ -1,0 +1,26 @@
+{
+  "total": 2,
+  "controls": [
+    {
+      "id": "CTRL-V6-050",
+      "affected_party": "Affected data subjects and affected parties.",
+      "potential_notification_obligation": "PENDING (notification-obligation family determination)",
+      "legal_validation_dependency": "Legal validation required; no statute or regulation is interpreted in this volume.",
+      "contractual_dependency": "PENDING (contractual notification validation)",
+      "minimum_necessary_disclosure": null,
+      "communication_authority": null,
+      "language_and_accessibility_requirement": null
+    },
+    {
+      "id": "CTRL-V6-051",
+      "affected_party": null,
+      "potential_notification_obligation": null,
+      "legal_validation_dependency": null,
+      "contractual_dependency": null,
+      "minimum_necessary_disclosure": "Disclose only the minimum necessary information.",
+      "communication_authority": "PENDING (communication authority appointment)",
+      "language_and_accessibility_requirement": "Communications must be accessible and semantically equivalent across official languages, inheriting the Package 3 obligations."
+    }
+  ],
+  "controls_with_unresolved_protected_ref": []
+}

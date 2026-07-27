@@ -1020,3 +1020,513 @@ records:
     traces_to:
       - ASSET-V6-012
       - BOUNDARY-V6-004
+
+  # ==== Package 4 controlled records: assets (V6-31..V6-39) ====
+  - id: ASSET-V6-017
+    kind: ASSET
+    record_subtype: SECURITY_EVENT_FAMILY
+    title: Governed security-event and telemetry context
+    purpose: The governed security events, alerts, and telemetry from which detection may derive actionable signals under the operations model.
+    authority_owner: House
+    custodian_status: PENDING (Volume 7+ security operations)
+    classification: SECURITY_AUDIT
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Detection blindness or over-collection of personal data through unbounded security telemetry.
+    evidence_required: PENDING (detection capability and privacy-constraint validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - DOMAIN-V5-011
+  - id: ASSET-V6-018
+    kind: ASSET
+    record_subtype: INCIDENT_CLASS
+    title: Governed incident-case context
+    purpose: The governed incident cases whose classification, command, containment, closure, and evidence must be governed under the incident model.
+    authority_owner: House
+    custodian_status: PENDING (Volume 7+ incident operations)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Unmanaged incident handling, loss of incident evidence, or premature closure without review.
+    evidence_required: PENDING (incident-response capability validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - DOMAIN-V5-011
+  - id: ASSET-V6-019
+    kind: ASSET
+    record_subtype: VULNERABILITY_CONTEXT
+    title: Governed vulnerability and dependency context
+    purpose: The governed vulnerabilities, dependencies, and configuration whose identification, remediation, and exception must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 9+ vulnerability management)
+    classification: SECURITY_AUDIT
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Unremediated vulnerabilities, ungoverned patching, or expired security exceptions left open.
+    evidence_required: PENDING (vulnerability-management capability validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - DOMAIN-V5-011
+  - id: ASSET-V6-020
+    kind: ASSET
+    record_subtype: DEPENDENCY_FAILURE_CONTEXT
+    title: Governed dependency-failure context
+    purpose: The governed dependencies whose failure must be detectable and handled without relaxing governed controls.
+    authority_owner: House
+    custodian_status: PENDING (Volume 7+ resilience operations)
+    classification: INTERNAL
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Silent dependency failure or degraded operation that relaxes authorization or isolation.
+    evidence_required: PENDING (resilience capability validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-36
+    traces_to:
+      - DOMAIN-V5-011
+  - id: ASSET-V6-021
+    kind: ASSET
+    record_subtype: DEGRADED_MODE_CONTEXT
+    title: Governed degraded-mode operating context
+    purpose: The governed degraded operating modes whose permitted and prohibited operations, fail-closed posture, and reconciliation must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 7+ resilience operations)
+    classification: INTERNAL
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Fail-open degraded operation that proceeds on unresolved authorization, tenant, or consent context.
+    evidence_required: PENDING (degraded-mode fail-closed validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-36
+    traces_to:
+      - DOMAIN-V5-011
+  - id: ASSET-V6-022
+    kind: ASSET
+    record_subtype: RECOVERY_CONTEXT
+    title: Governed backup and recovery context
+    purpose: The governed backups and recovery of authoritative sources whose protection, restore, and integrity verification must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 7+ recovery operations)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-023
+    failure_impact: Unrecoverable governed state or a restore that reconstructs incomplete or incorrect data.
+    evidence_required: PENDING (restore capability and integrity validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - DOMAIN-V5-023
+  - id: ASSET-V6-023
+    kind: ASSET
+    record_subtype: CONTINUITY_CONTEXT
+    title: Governed continuity and business-acceptance context
+    purpose: The governed continuity of service whose resumption requires a business-acceptance decision distinct from technical recovery.
+    authority_owner: House
+    custodian_status: PENDING (Volume 7+ continuity governance)
+    classification: INTERNAL
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Resumption of governed service without business acceptance or reconciliation of disrupted work.
+    evidence_required: PENDING (business-acceptance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - DOMAIN-V5-011
+  - id: ASSET-V6-024
+    kind: ASSET
+    record_subtype: PROVIDER_INCIDENT_CONTEXT
+    title: Governed provider-incident and exit context
+    purpose: The governed provider incidents, continuity, exit, data return, and deletion assurance for which institutional accountability is retained.
+    authority_owner: Shared
+    custodian_status: PENDING (Volume 9+ provider assurance)
+    classification: RESTRICTED_EVIDENCE
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-003
+    failure_impact: Provider exit without data return, residual copies left undeleted, or provider incidents not surfaced.
+    evidence_required: PENDING (provider continuity, exit, and deletion-assurance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - DOMAIN-V5-003
+  - id: ASSET-V6-025
+    kind: ASSET
+    record_subtype: NOTIFICATION_CONTEXT
+    title: Governed breach-notification and communications context
+    purpose: The governed breach assessments and communications whose applicability, minimum-necessary disclosure, accessibility, and bilingual equivalence must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 9+ notification governance)
+    classification: PERSONAL
+    sensitivity: HIGH
+    information_domains:
+      - DOMAIN-V5-010
+    failure_impact: Missed or improper notification, over-disclosure, or communications that are inaccessible or not equivalent across languages.
+    evidence_required: PENDING (breach applicability and notification validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - DOMAIN-V5-010
+  - id: ASSET-V6-026
+    kind: ASSET
+    record_subtype: ASSURANCE_CONTEXT
+    title: Governed control-metric and assurance context
+    purpose: The governed control metrics, exercises, and assurance evidence whose production, acceptance, and independent validation must be governed.
+    authority_owner: House
+    custodian_status: PENDING (Volume 9+ control assurance)
+    classification: SECURITY_AUDIT
+    sensitivity: MODERATE
+    information_domains:
+      - DOMAIN-V5-011
+    failure_impact: Overstated assurance where a metric or self-attestation is treated as proof of effectiveness or independent validation.
+    evidence_required: PENDING (independent assurance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - DOMAIN-V5-011
+
+  # ==== Package 4 controlled records: rights (V6-34) ====
+  - id: RIGHT-V6-008
+    kind: RIGHT
+    record_subtype: NOTIFICATION_CONTEXT
+    title: Right to timely and accessible incident notification
+    purpose: The right of an affected party to be notified of an incident or breach affecting them, in an accessible and semantically equivalent form, where a notification duty applies.
+    right_holder: Affected data subjects and affected parties
+    protected_outcome: An affected party receives required notification in an accessible, minimum-necessary, and language-equivalent form.
+    control_implication: Requires breach-applicability determination and notification obligations with accessibility and bilingual equivalence.
+    rights_dependency: Depends on breach-notification and communications control objectives under legal validation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - DOMAIN-V5-010
+
+  # ==== Package 4 threats (V6-32..V6-39) ====
+  - id: THREAT-V6-016
+    kind: THREAT
+    title: Monitoring and detection blindness
+    purpose: A governed condition occurs but no security event is observed or no alert is derived, so the condition goes undetected.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-017
+    threat_actor: Undetected condition or gap in detection coverage
+    precondition: Detection coverage and objectives are unverified and no monitoring is operated.
+    misuse_path: A security-relevant condition produces no observable event or actionable alert.
+    potential_consequence: Harm proceeds undetected without response.
+    preventive_objective: Define detection objectives and required context for each recognized security-event family.
+    detective_objective: Validate detection coverage and detect gaps in observability.
+    corrective_objective: Remediate detection gaps and preserve evidence of missed conditions.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (detection capability validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - ASSET-V6-017
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-017
+    kind: THREAT
+    title: False-negative detection and missed incident
+    purpose: An alert is triaged away as a false negative and a real condition is not escalated to an incident.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-018
+    threat_actor: Erroneous triage disposition
+    precondition: Triage authority, false-positive posture, and escalation conditions are unverified.
+    misuse_path: A real condition is dispositioned as noise and never escalated to the incident model.
+    potential_consequence: An incident proceeds without classification, command, or containment.
+    preventive_objective: Define triage authority, false-positive posture, and escalation-to-incident conditions.
+    detective_objective: Review triage dispositions for missed escalations.
+    corrective_objective: Re-open, escalate, and remediate missed conditions with preserved evidence.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (triage and escalation validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - ASSET-V6-018
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-018
+    kind: THREAT
+    title: Excessive investigation data access
+    purpose: An investigation grants access to personal or governed data beyond the minimum necessary for the investigative purpose.
+    trust_boundary: BOUNDARY-V6-004
+    affected_asset: ASSET-V6-002
+    threat_actor: Over-scoped investigation capability
+    precondition: Investigation authority and minimum-necessary constraint are unverified.
+    misuse_path: Investigation access exceeds what the investigation requires and exposes personal data.
+    potential_consequence: Privacy harm and over-collection through investigation.
+    preventive_objective: Constrain investigation access to the minimum necessary under a named investigation authority.
+    detective_objective: Audit investigation access against investigative purpose.
+    corrective_objective: Revoke excess access and remediate exposure with preserved evidence.
+    owner: Privacy Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (investigation-access constraint validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - ASSET-V6-002
+      - BOUNDARY-V6-004
+  - id: THREAT-V6-019
+    kind: THREAT
+    title: Incident evidence loss or tampering
+    purpose: Evidence relevant to an incident is lost, altered, or destroyed before or during containment.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-004
+    threat_actor: Containment action or actor without evidence preservation
+    precondition: Evidence-preservation obligations for incidents are unverified.
+    misuse_path: Relevant state is overwritten or destroyed during response.
+    potential_consequence: Loss of incident accountability and inability to assess or notify.
+    preventive_objective: Require evidence preservation with integrity before and during containment.
+    detective_objective: Detect loss or alteration of incident evidence.
+    corrective_objective: Restore, investigate, and preserve evidence of the loss.
+    owner: Data Governance Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (incident evidence-preservation validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - ASSET-V6-004
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-020
+    kind: THREAT
+    title: Inappropriate or excessive breach disclosure
+    purpose: A communication arising from an incident discloses more than the minimum necessary or is issued without the governing communication authority.
+    trust_boundary: BOUNDARY-V6-001
+    affected_right: RIGHT-V6-008
+    threat_actor: Unauthorized or over-broad communication
+    precondition: Communication authority and minimum-necessary disclosure are unverified.
+    misuse_path: An incident communication over-discloses or is issued outside governed authority.
+    potential_consequence: Privacy harm, misinformation, or breach of disclosure obligations.
+    preventive_objective: Require minimum-necessary disclosure under a named communication authority.
+    detective_objective: Review incident communications for authority and minimum-necessary disclosure.
+    corrective_objective: Correct, retract, and remediate improper disclosures with preserved evidence.
+    owner: Privacy Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (breach-communication authority validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - RIGHT-V6-008
+      - BOUNDARY-V6-001
+  - id: THREAT-V6-021
+    kind: THREAT
+    title: Fail-open degraded operation
+    purpose: A degraded operating mode proceeds on unresolved authorization, tenant, or consent context instead of failing closed.
+    trust_boundary: BOUNDARY-V6-005
+    affected_asset: ASSET-V6-021
+    threat_actor: Degraded-mode path without fail-closed posture
+    precondition: Degraded-mode fail-closed posture is unverified.
+    misuse_path: A dependency failure causes an operation to proceed without resolving governed context.
+    potential_consequence: Authorization bypass or cross-tenant exposure during degradation.
+    preventive_objective: Require fail-closed posture on unresolved authorization, tenant, or consent context in degraded mode.
+    detective_objective: Detect degraded-mode operations that proceed without resolved context.
+    corrective_objective: Halt, reconcile, and remediate fail-open degraded operations with preserved evidence.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (degraded-mode fail-closed validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-36
+    traces_to:
+      - ASSET-V6-021
+      - BOUNDARY-V6-005
+  - id: THREAT-V6-022
+    kind: THREAT
+    title: Unsuccessful or unverified restore
+    purpose: A restore from backup reconstructs incomplete or incorrect governed state, or a backup that was never restore-tested provides no recovery.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-022
+    threat_actor: Untested backup or failed restore
+    precondition: Restore capability and integrity verification are unverified.
+    misuse_path: Reliance is placed on a backup that cannot be restored to a complete, correct state.
+    potential_consequence: Permanent loss or corruption of governed state.
+    preventive_objective: Require validated restore capability with integrity verification before reliance.
+    detective_objective: Detect restore failures and integrity gaps through validation.
+    corrective_objective: Remediate restore capability and preserve evidence of failure.
+    owner: Data Governance Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (restore and integrity validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - ASSET-V6-022
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-023
+    kind: THREAT
+    title: Unverified business recovery
+    purpose: Governed service resumes on technical recovery alone without a business-acceptance decision or reconciliation.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-023
+    threat_actor: Resumption without business acceptance
+    precondition: Business-acceptance authority and reconciliation requirement are unverified.
+    misuse_path: Service resumes before recovery is accepted and disrupted work is reconciled.
+    potential_consequence: Operation on inconsistent or unaccepted recovered state.
+    preventive_objective: Require business-acceptance and reconciliation before governed service resumes.
+    detective_objective: Detect resumption without business acceptance or reconciliation.
+    corrective_objective: Halt, reconcile, and re-accept recovery with preserved evidence.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (business-acceptance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - ASSET-V6-023
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-024
+    kind: THREAT
+    title: Provider exit and data-return failure
+    purpose: A provider exit occurs without governed data return, or residual and backup copies held by the provider are left undeleted.
+    trust_boundary: BOUNDARY-V6-003
+    affected_asset: ASSET-V6-024
+    threat_actor: Provider exit without return or deletion assurance
+    precondition: Exit trigger, data-return requirement, and deletion assurance are unverified.
+    misuse_path: Governed data is stranded with or retained by a provider after exit.
+    potential_consequence: Loss of institutional control over governed data.
+    preventive_objective: Require exit trigger, usable data return, and deletion evidence including residual copies.
+    detective_objective: Verify data return and deletion assurance on provider exit.
+    corrective_objective: Recover data, compel deletion, and preserve evidence of the failure.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (provider exit and deletion-assurance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - ASSET-V6-024
+      - BOUNDARY-V6-003
+  - id: THREAT-V6-025
+    kind: THREAT
+    title: Expired or unmanaged security exception
+    purpose: A security exception is granted without a compensating control or expiry, or continues to be relied upon after it has expired.
+    trust_boundary: BOUNDARY-V6-002
+    affected_asset: ASSET-V6-019
+    threat_actor: Exception without owner, compensating control, or expiry
+    precondition: Exception authority, compensating-control requirement, and expiry are unverified.
+    misuse_path: An unremediated condition is left open under an exception that never closes.
+    potential_consequence: A known weakness persists indefinitely without accountability.
+    preventive_objective: Require named exception authority, compensating control, and mandatory expiry with revert-on-expiry.
+    detective_objective: Detect exceptions lacking owner, compensating control, or expiry, and detect expired exceptions.
+    corrective_objective: Close or re-authorize exceptions and preserve evidence of the exposure.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (security-exception governance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - ASSET-V6-019
+      - BOUNDARY-V6-002
+  - id: THREAT-V6-026
+    kind: THREAT
+    title: Assurance overstatement
+    purpose: A control metric or self-attestation is presented as proof of control effectiveness or as independent assurance.
+    trust_boundary: BOUNDARY-V6-001
+    affected_asset: ASSET-V6-026
+    threat_actor: Overstated assurance claim
+    precondition: Assurance classification and independent-validation distinction are unverified.
+    misuse_path: A metric or self-attestation is relied upon as if it proved effectiveness or independent assurance.
+    potential_consequence: False confidence in unproven controls.
+    preventive_objective: Distinguish metrics and self-attestation from proof of effectiveness and independent validation.
+    detective_objective: Review assurance claims against their classification and evidence.
+    corrective_objective: Correct overstated claims and require appropriate evidence with preserved record.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    evidence: PENDING (independent-assurance validation)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - ASSET-V6-026
+      - BOUNDARY-V6-001
+
+  # ==== Package 4 abuse cases (V6-32, V6-39) ====
+  - id: ABUSE-V6-003
+    kind: ABUSE_CASE
+    title: Investigator misuse of investigation access
+    purpose: An authorized investigator uses investigation access to view governed or personal data beyond the investigative purpose.
+    trust_boundary: BOUNDARY-V6-004
+    affected_asset: ASSET-V6-002
+    threat_actor: Authorized investigator
+    precondition: Investigation access is not constrained to the investigative purpose.
+    misuse_path: An investigator browses personal data unrelated to the investigation.
+    potential_consequence: Privacy harm by an otherwise-authorized actor.
+    preventive_objective: Constrain investigation access to minimum necessary for the stated purpose.
+    detective_objective: Audit investigator access against the investigative purpose.
+    corrective_objective: Revoke, investigate, and remediate misuse with preserved evidence.
+    owner: Privacy Steward
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - ASSET-V6-002
+      - BOUNDARY-V6-004
+  - id: ABUSE-V6-004
+    kind: ABUSE_CASE
+    title: Self-attestation presented as independent assurance
+    purpose: A control operator presents self-attested evidence as if it were independent assurance of control effectiveness.
+    trust_boundary: BOUNDARY-V6-001
+    affected_asset: ASSET-V6-026
+    threat_actor: Authorized control operator
+    precondition: The distinction between self-attestation and independent validation is not enforced.
+    misuse_path: Self-attested evidence is accepted as independent assurance.
+    potential_consequence: Reliance on unvalidated controls under false assurance.
+    preventive_objective: Require independent validation distinct from self-attestation for assurance claims.
+    detective_objective: Review the source and standing of assurance evidence.
+    corrective_objective: Reject overstated assurance and require independent evidence with preserved record.
+    owner: Security and Trust Steward
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - ASSET-V6-026
+      - BOUNDARY-V6-001

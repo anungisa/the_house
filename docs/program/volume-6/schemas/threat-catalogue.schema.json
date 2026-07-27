@@ -32,7 +32,17 @@
               "LANGUAGE_CONTEXT",
               "ACCOMMODATION_CONTEXT",
               "RECORDS_CONTEXT",
-              "FINANCIAL_CONTROL_CONTEXT"
+              "FINANCIAL_CONTROL_CONTEXT",
+              "SECURITY_EVENT_FAMILY",
+              "INCIDENT_CLASS",
+              "DEPENDENCY_FAILURE_CONTEXT",
+              "DEGRADED_MODE_CONTEXT",
+              "RECOVERY_CONTEXT",
+              "CONTINUITY_CONTEXT",
+              "VULNERABILITY_CONTEXT",
+              "PROVIDER_INCIDENT_CONTEXT",
+              "ASSURANCE_CONTEXT",
+              "NOTIFICATION_CONTEXT"
             ]
           },
           "title": { "type": "string" },

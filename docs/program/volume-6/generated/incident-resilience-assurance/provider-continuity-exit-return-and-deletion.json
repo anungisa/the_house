@@ -1,0 +1,17 @@
+{
+  "total": 1,
+  "controls": [
+    {
+      "id": "CTRL-V6-058",
+      "institutional_authority_retained": "The accountable authority for governed data and outcomes remains The House regardless of provider arrangements.",
+      "continuity_dependency": "Continuity of governed service must not depend on a single unrecoverable provider.",
+      "exit_trigger": "PENDING (exit-trigger definition)",
+      "data_return_requirement": "Governed data must be returnable to institutional control in a usable form with integrity.",
+      "deletion_evidence_requirement": "Provider deletion must be evidenced, including residual and backup copies.",
+      "residual_copy_posture": "Residual and backup copies held by a provider must be accounted for and disposed of under evidence.",
+      "independent_assurance_dependency": "Provider certification is not service assurance; independent assurance evidence is required."
+    }
+  ],
+  "controls_without_owner": [],
+  "controls_with_unresolved_protected_ref": []
+}

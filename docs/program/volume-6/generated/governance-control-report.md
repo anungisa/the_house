@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T22:37:57.363Z
+Generated: 2026-07-27T00:02:15.807Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-26T22:37:57.363Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 37 |
+| RATIFIED | 48 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 37 |
-| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 56 |
-| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 82 |
-| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 31 |
-| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 28 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 43 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 48 |
+| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 80 |
+| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 110 |
+| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 44 |
+| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 44 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 56 |
 
 ## Findings by control
 
@@ -202,3 +202,45 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-043 (V6-F): Completes machine-readable Package 3 provenance after mainline merge.
 - APP-V6-043 (V6-F): Preserves the Gate V6-G3 disposition and the PACKAGE-6-3 freeze.
 - APP-V6-043 (V6-F): Reopens no substantive Package 3 content and authorizes no implementation.
+- APP-V6-044 (V6-31): Security-operations and control-operation governance model defined.
+- APP-V6-044 (V6-31): Stands up no operations function and authorizes no implementation.
+- APP-V6-045 (V6-32): Security-event, alert, detection, triage, and investigation control model defined.
+- APP-V6-045 (V6-32): Writes no detection rule or alert and authorizes no implementation.
+- APP-V6-046 (V6-33): Incident classification, command, containment, and decision-authority control model defined.
+- APP-V6-046 (V6-33): Writes no incident-response procedure and authorizes no implementation.
+- APP-V6-047 (V6-34): Breach assessment, notification, communications, and disclosure control model defined.
+- APP-V6-047 (V6-34): Reaches no legal conclusion, drafts no notice, and authorizes no implementation.
+- APP-V6-048 (V6-35): Vulnerability, dependency, patch, configuration, and security-exception control model defined.
+- APP-V6-048 (V6-35): Runs no scan, applies no patch, and authorizes no implementation.
+- APP-V6-049 (V6-36): Resilience, dependency-failure, degraded-mode, and fail-closed continuity control model defined.
+- APP-V6-049 (V6-36): Sets no availability or recovery target and authorizes no implementation.
+- APP-V6-050 (V6-37): Backup, restore, recovery, continuity, and business-acceptance evidence control model defined.
+- APP-V6-050 (V6-37): Configures no backup, performs no restore, and authorizes no implementation.
+- APP-V6-051 (V6-38): Provider incident, continuity, exit, data-return, and deletion-assurance control model defined.
+- APP-V6-051 (V6-38): Selects no provider, signs no contract, and authorizes no implementation.
+- APP-V6-052 (V6-39): Control metrics, assurance evidence, exercises, and independent-validation control model defined.
+- APP-V6-052 (V6-39): Runs no exercise, produces no assurance evidence, and authorizes no implementation.
+- APP-V6-053 (V6-40): Package 4 incident, resilience, recovery, and assurance traceability, validation backlog, and downstream constraints defined.
+- APP-V6-053 (V6-40): Records that no active protection-register record references a completed gate; closes no validation item and authorizes no implementation.
+- APP-V6-054 (V6-G): Package 4 closure record consolidates the security-operations, incident, resilience, recovery, and assurance control model.
+- APP-V6-054 (V6-G): Records Gate V6-G4 disposition, the completed-gate reference review, the approval-count review result, and Package 5 authorization.
+- APP-V6-054 (V6-G): Authorizes no implementation.
+- APP-V6-055 (GATE-V6-G4): The frozen Package 3 compliance, accessibility, bilingual-equivalence, and inclusive-service control model and its Gate V6-G3 disposition are inherited.
+- APP-V6-055 (GATE-V6-G4): The security-operations and control-operation governance model defines control ownership and operation and stands up no operations function.
+- APP-V6-055 (GATE-V6-G4): Security events, alerts, detection, triage, and investigation are defined with detection objectives, triage and investigation authority, and privacy constraints and no detection rule or alert is written.
+- APP-V6-055 (GATE-V6-G4): Incident classification, command, containment, and decision authority are defined, incident authority is separated from business authority, and every incident family requires evidence preservation.
+- APP-V6-055 (GATE-V6-G4): Breach assessment, notification, communications, and disclosure are minimum-necessary, accessible, and bilingual, breach applicability requires legal validation, and no legal conclusion is reached and no notice is drafted.
+- APP-V6-055 (GATE-V6-G4): Vulnerability, dependency, patch, configuration, and security-exception controls are defined, remediation closure requires retest, and security exceptions expire, and no scan is run and no patch is applied.
+- APP-V6-055 (GATE-V6-G4): Resilience, dependency-failure, and degraded-mode controls fail closed and retain institutional authority, and no availability or recovery target is set.
+- APP-V6-055 (GATE-V6-G4): Backup, restore, recovery, continuity, and business-acceptance evidence are defined, technical recovery is separated from business acceptance and backup from verified restore, and no backup is configured and no restore is performed.
+- APP-V6-055 (GATE-V6-G4): Provider incident, continuity, exit, data-return, and deletion assurance are defined, provider certification is separated from service assurance, and provider exit requires data return, deletion evidence, and reconciliation, and no provider is selected and no contract is signed.
+- APP-V6-055 (GATE-V6-G4): Control metrics, assurance evidence, exercises, and independent validation are defined, self-attestation is separated from independent assurance, and no exercise is run and no assurance evidence is produced.
+- APP-V6-055 (GATE-V6-G4): Every control objective carries an owner, required evidence, and a future blocking gate.
+- APP-V6-055 (GATE-V6-G4): No record authorizes implementation and every record is not-implemented or not-proven.
+- APP-V6-055 (GATE-V6-G4): No executable monitoring, runbook, incident, vulnerability, patch, backup, restore, continuity, provider, exercise, or assurance artifact is created.
+- APP-V6-055 (GATE-V6-G4): No recovery-time, recovery-point, availability, response-time, staffing, or cost commitment is made.
+- APP-V6-055 (GATE-V6-G4): No operational-readiness, control-effectiveness, operational-proof, or independent-assurance claim is made.
+- APP-V6-055 (GATE-V6-G4): Package 4 receives line-level review and a separate freeze commit.
+- APP-V6-056 (PACKAGE-6-4): Package 4 (PACKAGE-6-4) is frozen at version 1.0.0 across all deliverables.
+- APP-V6-056 (PACKAGE-6-4): After freeze, changes require the recorded amendment process (V6-00.5).
+- APP-V6-056 (PACKAGE-6-4): The freeze is committed separately from authoring.

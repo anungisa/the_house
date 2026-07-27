@@ -609,4 +609,181 @@ records:
       - Reopens no substantive Package 3 content and authorizes no implementation.
     approved_at: null
 
+  # ==== Package 4: chapter ratifications ====
+  - id: APP-V6-044
+    artifact_id: V6-31
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security-operations and control-operation governance model defined.
+      - Stands up no operations function and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-045
+    artifact_id: V6-32
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security-event, alert, detection, triage, and investigation control model defined.
+      - Writes no detection rule or alert and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-046
+    artifact_id: V6-33
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Incident classification, command, containment, and decision-authority control model defined.
+      - Writes no incident-response procedure and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-047
+    artifact_id: V6-34
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Breach assessment, notification, communications, and disclosure control model defined.
+      - Reaches no legal conclusion, drafts no notice, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-048
+    artifact_id: V6-35
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Vulnerability, dependency, patch, configuration, and security-exception control model defined.
+      - Runs no scan, applies no patch, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-049
+    artifact_id: V6-36
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Resilience, dependency-failure, degraded-mode, and fail-closed continuity control model defined.
+      - Sets no availability or recovery target and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-050
+    artifact_id: V6-37
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Backup, restore, recovery, continuity, and business-acceptance evidence control model defined.
+      - Configures no backup, performs no restore, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-051
+    artifact_id: V6-38
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Provider incident, continuity, exit, data-return, and deletion-assurance control model defined.
+      - Selects no provider, signs no contract, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-052
+    artifact_id: V6-39
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Control metrics, assurance evidence, exercises, and independent-validation control model defined.
+      - Runs no exercise, produces no assurance evidence, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-053
+    artifact_id: V6-40
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 4 incident, resilience, recovery, and assurance traceability, validation backlog, and downstream constraints defined.
+      - Records that no active protection-register record references a completed gate; closes no validation item and authorizes no implementation.
+    approved_at: null
+
+  # ==== Package 4: closure record, gate, and freeze ====
+  - id: APP-V6-054
+    artifact_id: V6-G
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Package 4 closure record consolidates the security-operations, incident, resilience, recovery, and assurance control model.
+      - Records Gate V6-G4 disposition, the completed-gate reference review, the approval-count review result, and Package 5 authorization.
+      - Authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-055
+    artifact_id: GATE-V6-G4
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: INCIDENT_RESILIENCE_RECOVERY_AND_ASSURANCE_CONTROL_MODEL_READY
+    closure_record: V6-G
+    conditions:
+      - The frozen Package 3 compliance, accessibility, bilingual-equivalence, and inclusive-service control model and its Gate V6-G3 disposition are inherited.
+      - The security-operations and control-operation governance model defines control ownership and operation and stands up no operations function.
+      - Security events, alerts, detection, triage, and investigation are defined with detection objectives, triage and investigation authority, and privacy constraints and no detection rule or alert is written.
+      - Incident classification, command, containment, and decision authority are defined, incident authority is separated from business authority, and every incident family requires evidence preservation.
+      - Breach assessment, notification, communications, and disclosure are minimum-necessary, accessible, and bilingual, breach applicability requires legal validation, and no legal conclusion is reached and no notice is drafted.
+      - Vulnerability, dependency, patch, configuration, and security-exception controls are defined, remediation closure requires retest, and security exceptions expire, and no scan is run and no patch is applied.
+      - Resilience, dependency-failure, and degraded-mode controls fail closed and retain institutional authority, and no availability or recovery target is set.
+      - Backup, restore, recovery, continuity, and business-acceptance evidence are defined, technical recovery is separated from business acceptance and backup from verified restore, and no backup is configured and no restore is performed.
+      - Provider incident, continuity, exit, data-return, and deletion assurance are defined, provider certification is separated from service assurance, and provider exit requires data return, deletion evidence, and reconciliation, and no provider is selected and no contract is signed.
+      - Control metrics, assurance evidence, exercises, and independent validation are defined, self-attestation is separated from independent assurance, and no exercise is run and no assurance evidence is produced.
+      - Every control objective carries an owner, required evidence, and a future blocking gate.
+      - No record authorizes implementation and every record is not-implemented or not-proven.
+      - No executable monitoring, runbook, incident, vulnerability, patch, backup, restore, continuity, provider, exercise, or assurance artifact is created.
+      - No recovery-time, recovery-point, availability, response-time, staffing, or cost commitment is made.
+      - No operational-readiness, control-effectiveness, operational-proof, or independent-assurance claim is made.
+      - Package 4 receives line-level review and a separate freeze commit.
+    approved_at: null
+  - id: APP-V6-056
+    artifact_id: PACKAGE-6-4
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-G
+    frozen: true
+    frozen_artifacts:
+      - id: V6-31
+        version: 1.0.0
+      - id: V6-32
+        version: 1.0.0
+      - id: V6-33
+        version: 1.0.0
+      - id: V6-34
+        version: 1.0.0
+      - id: V6-35
+        version: 1.0.0
+      - id: V6-36
+        version: 1.0.0
+      - id: V6-37
+        version: 1.0.0
+      - id: V6-38
+        version: 1.0.0
+      - id: V6-39
+        version: 1.0.0
+      - id: V6-40
+        version: 1.0.0
+      - id: V6-G
+        version: 1.0.0
+    conditions:
+      - Package 4 (PACKAGE-6-4) is frozen at version 1.0.0 across all deliverables.
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null
+
 

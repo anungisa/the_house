@@ -1,7 +1,7 @@
 {
-  "total": 4,
+  "total": 5,
   "by_control_family": {
-    "PROVIDER_ASSURANCE": 2,
+    "PROVIDER_ASSURANCE": 3,
     "SERVICE_TRUST": 2
   },
   "controls": [
@@ -31,6 +31,13 @@
       "control_family": "PROVIDER_ASSURANCE",
       "protected_asset_or_right": "ASSET-V6-002",
       "implementation_evidence_class": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-058",
+      "control_family": "PROVIDER_ASSURANCE",
+      "protected_asset_or_right": "ASSET-V6-024",
+      "implementation_evidence_class": null,
       "future_blocking_gate": "V9-G1"
     }
   ],
