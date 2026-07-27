@@ -86,6 +86,8 @@ records:
     approval_state: ratified
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: Package 2 authorized for affiliation interaction architecture, task-flow, and screen-state model definition only. Implementation, final visual design, and production content are not authorized.
     approved_at: null
   - id: APP-V7-013
     artifact_id: GATE-V7-G1
@@ -231,6 +233,8 @@ records:
     approval_state: ratified
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: Package 3 authorized for visual, component, content, and prototype definition only. Production interface implementation, runtime code, validated usability or conformance claims, and procurement or rollout are not authorized.
     approved_at: null
   - id: APP-V7-027
     artifact_id: GATE-V7-G2
@@ -239,6 +243,8 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
     gate_disposition: AFFILIATION_INTERACTION_AND_SCREEN_STATE_MODEL_READY
+    effective_commit: "7efa075"
+    requires_freeze_artifact: PACKAGE-7-2
     conditions:
       - Package 1 experience foundation is inherited and frozen
       - No unresolved backlog item points to a completed gate
@@ -300,6 +306,7 @@ records:
       inherited_baseline_tag: central-registration-volume-6-v1.0.1
       base_release_tag: central-registration-volume-6-v1.0.1
       base_release_commit: ae11b076
+      freeze_commit: "7efa075"
       note: Package 2 freeze is a separate freeze commit after line-level review; the authoring commit, freeze commit, and merge commit identifiers are recorded in the V7-D provenance amendment. Volume 7 is not tagged after Package 2.
     approved_at: null
   - id: APP-V7-029
@@ -317,4 +324,30 @@ records:
       closure_freeze_commit: 7efa075
       original_package_merge_commit: 0af1ccb
       note: Narrow post-merge provenance amendment for Package 2. Records the authoring snapshot, the separate freeze commit, and the mainline merge commit. Volume 7 is not tagged after Package 2.
+    approved_at: null
+  - id: APP-V7-030
+    artifact_id: V7-D-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Corrects the Package 2 source baseline, clarifies Gate V7-G2 effective ratification at the freeze commit, and records the bounded Package 3 authorization. Supersedes and overwrites nothing in the frozen Package 2 corpus. Does not consume the identifiers reserved for Package 3 closure and provenance. Volume 7 is not tagged.
+    supersedes:
+      - APP-V7-029
+    effective_commit: "816a12c"
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_baseline_commit: "51b1860"
+      branch_base_commit: "51b1860"
+      authoring_commit: "1e7487b"
+      closure_freeze_commit: "7efa075"
+      freeze_commit: "7efa075"
+      effective_commit: "7efa075"
+      original_package_merge_commit: "0af1ccb"
+      provenance_amendment_commit: "2375b7d"
+      provenance_amendment_merge_commit: "816a12c"
+      corrects: The V7-D provenance amendment recorded the authoring commit 1e7487b as the source snapshot. The Package 2 source baseline is the branch base commit 51b1860, and 1e7487b is the authoring commit. This record supersedes that inaccurate field additively.
+      note: Package 2 governance amendment. Corrects the source baseline, clarifies that Gate V7-G2 became fully effective at the freeze commit 7efa075, and records the bounded Package 3 authorization. Volume 7 is not tagged.
     approved_at: null

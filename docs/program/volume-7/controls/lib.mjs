@@ -118,7 +118,7 @@ function parseChapter(fileName, text) {
     }
   }
   const h1 = (text.split(/\r?\n/)[0] || '').startsWith('# ');
-  const idFromName = (fileName.match(/^(V7-[0-9A-Z]+)/) || [])[1] || fileName;
+  const idFromName = (fileName.match(/^(V7-[0-9A-Z]+(?:-[0-9A-Z]+)*)/) || [])[1] || fileName;
   return {
     file: fileName,
     path: relative(REPO_ROOT, join(VOLUME_DIR, fileName)),

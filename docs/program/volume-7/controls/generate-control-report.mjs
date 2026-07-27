@@ -14,6 +14,7 @@ import { run as runFoundation } from './foundation-volume-7.mjs';
 import { run as runGate } from './gate-volume-7.mjs';
 import { run as runInteraction } from './interaction-model-volume-7.mjs';
 import { run as runGateG2 } from './gate-volume-7-g2.mjs';
+import { run as runProvenance } from './provenance-integrity-volume-7.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -22,7 +23,8 @@ export function collectFindings(ctx) {
     'Experience-foundation coverage': runFoundation(ctx),
     'Gate V7-G1 readiness': runGate(ctx),
     'Interaction-model coverage': runInteraction(ctx),
-    'Gate V7-G2 readiness': runGateG2(ctx)
+    'Gate V7-G2 readiness': runGateG2(ctx),
+    'Provenance & gate-chronology integrity': runProvenance(ctx)
   };
 }
 
