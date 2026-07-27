@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T01:05:10.866Z
+Generated: 2026-07-27T01:10:50.342Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-27T01:05:10.866Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 61 |
+| RATIFIED | 62 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 61 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 62 |
 | REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 80 |
 | REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 110 |
 | REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 57 |
 | REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 71 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 72 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 73 |
 
 ## Findings by control
 
@@ -305,3 +305,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-072 (VOLUME-6): The whole Volume 6 corpus (VOLUME-6) is frozen at version 1.0.0 and covers V6-00 through V6-51 and V6-A through V6-I.
 - APP-V6-072 (VOLUME-6): The freeze additionally covers registers REG-600 through REG-605, the register schemas, the deterministic governance controls, and the non-authoritative generated projections, and inherits central-registration-volume-5-v1.0.0 without modification.
 - APP-V6-072 (VOLUME-6): After freeze, changes require the recorded additive amendment process, which preserves frozen substantive content and superseded history.
+- APP-V6-073 (V6-J): Completes machine-readable Package 5 provenance after mainline merge.
+- APP-V6-073 (V6-J): Preserves the Gate V6-G5 disposition, the PACKAGE-6-5 freeze, and the VOLUME-6 freeze.
+- APP-V6-073 (V6-J): Reopens no substantive Volume 6 content and authorizes no implementation.

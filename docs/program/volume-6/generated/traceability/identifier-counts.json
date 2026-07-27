@@ -1,5 +1,5 @@
 {
-  "chapters": 61,
+  "chapters": 62,
   "assets": 26,
   "actors": 9,
   "trust_boundaries": 7,
@@ -18,5 +18,5 @@
   },
   "decisions": 57,
   "backlog_items": 71,
-  "approvals": 72
+  "approvals": 73
 }

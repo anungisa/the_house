@@ -1,6 +1,6 @@
 # Volume 6 Protection Traceability Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T01:05:10.869Z
+Generated: 2026-07-27T01:10:50.345Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 1 defines PROTECTION,
@@ -11,7 +11,7 @@ Generated: 2026-07-27T01:05:10.869Z
 
 | Category | Count |
 | --- | --- |
-| Chapters | 61 |
+| Chapters | 62 |
 | Assets | 26 |
 | Actors | 9 |
 | Trust boundaries | 7 |
@@ -20,7 +20,7 @@ Generated: 2026-07-27T01:05:10.869Z
 | Rights | 8 |
 | Decisions | 57 |
 | Backlog items | 71 |
-| Approvals | 72 |
+| Approvals | 73 |
 
 ## Asset authority coverage
 
