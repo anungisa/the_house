@@ -1,0 +1,10 @@
+{
+  "boundaries": 7,
+  "threats": 30,
+  "control_objectives": 60,
+  "boundaries_without_naming_threat": [],
+  "threats_without_target": [],
+  "threats_without_owner": [],
+  "control_objectives_without_owner": [],
+  "control_objectives_without_gate": []
+}

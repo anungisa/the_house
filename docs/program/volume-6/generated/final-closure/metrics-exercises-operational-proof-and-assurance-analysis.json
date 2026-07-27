@@ -1,0 +1,15 @@
+{
+  "assurance_requirements": 13,
+  "by_assurance_classification": {
+    "INDEPENDENT_ASSURANCE_REQUIRED": 4,
+    "PRIVACY_VALIDATION_PENDING": 1,
+    "ACCESSIBILITY_VALIDATION_PENDING": 2,
+    "POLICY_VALIDATION_PENDING": 2,
+    "BILINGUAL_VALIDATION_PENDING": 1,
+    "OPERATIONAL_PROOF_REQUIRED": 3
+  },
+  "assurance_without_owner": [],
+  "assurance_without_required_evidence": [],
+  "assurance_without_classification": [],
+  "assurance_without_gate": []
+}

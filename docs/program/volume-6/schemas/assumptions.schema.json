@@ -46,6 +46,15 @@
           "future_test_class": { "type": "string" },
           "target_package_or_volume": { "type": "string" },
           "downstream_volume": { "type": "string" },
+          "readiness_disposition": { "type": "string" },
+          "p0_finding": { "type": "string" },
+          "definition_status": { "type": "string" },
+          "required_environment": { "type": "string" },
+          "operational_evidence": { "type": "string" },
+          "implementation_evidence": { "type": "string" },
+          "independent_assurance_dependency": { "type": "string" },
+          "privacy_dependency": { "type": "string" },
+          "accessibility_or_bilingual_dependency": { "type": "string" },
           "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
           "superseded_future_blocking_gate": {
             "oneOf": [
