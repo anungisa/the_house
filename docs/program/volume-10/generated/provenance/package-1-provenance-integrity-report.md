@@ -1,6 +1,6 @@
 # Volume 10 Package 1 Provenance-Integrity Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T20:12:28.046Z
+Generated: 2026-07-27T20:15:58.832Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It proves provenance coherence deterministically; it confers no
@@ -31,6 +31,21 @@ Generated: 2026-07-27T20:12:28.046Z
 ## Conditions
 
 ### APP-V10-017 (PACKAGE-10-1)
+
+- PASS 1: Source baseline differs from substantive authoring
+- PASS 2: Substantive authoring differs from closure and freeze
+- PASS 3: Closure effective commit equals freeze commit
+- PASS 4: Gate effective commit equals freeze commit
+- PASS 5: Required freeze artifact exists and is frozen
+- PASS 6: No unresolved provenance placeholder
+- PASS 7: Completed gate has no unresolved required binding
+- PASS 8: Provenance-binding commit not conflated with an amendment commit
+- PASS 9: Post-merge amendment records authoring and merge commits
+- PASS 10: Closure carries bounded next-package authorization
+- PASS 11: Documentary effectiveness not treated as implementation effectiveness
+- PASS 12: No record authorizes implementation
+
+### APP-V10-033 (PACKAGE-10-2)
 
 - PASS 1: Source baseline differs from substantive authoring
 - PASS 2: Substantive authoring differs from closure and freeze
