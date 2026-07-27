@@ -1,6 +1,6 @@
 # Volume 7 Package 1 — Experience Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T03:11:54.201Z
+Generated: 2026-07-27T08:18:13.955Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 experience and service-design foundation corpus. It is not a source of
@@ -30,7 +30,7 @@ Generated: 2026-07-27T03:11:54.201Z
 | bilingual | 2 |
 | privacy | 6 |
 | controls | 2 |
-| backlog | 25 |
+| backlog | 29 |
 
 ## Coverage backlog signals (non-blocking)
 

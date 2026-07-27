@@ -1,0 +1,25 @@
+{
+  "content_terms": [
+    {
+      "id": "TERM-V7-001",
+      "title": "Received term",
+      "canonical_concept": "Affiliation submission received but not yet reviewed or decided"
+    },
+    {
+      "id": "TERM-V7-002",
+      "title": "Returned-for-information term",
+      "canonical_concept": "Affiliation returned to the applicant for additional information"
+    },
+    {
+      "id": "TERM-V7-003",
+      "title": "Approved term",
+      "canonical_concept": "Affiliation decision recorded as approved"
+    },
+    {
+      "id": "TERM-V7-004",
+      "title": "Active term",
+      "canonical_concept": "Affiliation standing recorded as active"
+    }
+  ],
+  "content_terms_without_bilingual_concept": []
+}

@@ -13,6 +13,8 @@ import { generate as generateFoundation } from './foundation-volume-7.mjs';
 import { generate as generateGate } from './gate-volume-7.mjs';
 import { generate as generateInteraction } from './interaction-model-volume-7.mjs';
 import { generate as generateGateG2 } from './gate-volume-7-g2.mjs';
+import { generate as generateDesign } from './design-system-volume-7.mjs';
+import { generate as generateGateG3 } from './gate-volume-7-g3.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -37,6 +39,8 @@ generateFoundation(ctx);
 generateGate(ctx);
 generateInteraction(ctx);
 generateGateG2(ctx);
+generateDesign(ctx);
+generateGateG3(ctx);
 
 console.log('\n=== Volume 7 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

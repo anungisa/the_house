@@ -17,7 +17,7 @@
         "additionalProperties": false,
         "required": ["id", "kind", "title", "statement", "authorizes_implementation", "implementation_status", "validation_status", "chapter_ref"],
         "properties": {
-          "id": { "type": "string", "pattern": "^(IA|STATE|ACTION|CONTENT|PATTERN|A11Y|BIL|PRIV|CTRL|CMD|QRY|VAL|REQ|SMSG|EMSG|RECOV|A11YB|BSEM)-V7-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(IA|STATE|ACTION|CONTENT|PATTERN|A11Y|BIL|PRIV|CTRL|CMD|QRY|VAL|REQ|SMSG|EMSG|RECOV|A11YB|BSEM|DSPEC|CSTATE|TERM)-V7-[0-9]{3}$" },
           "kind": { "$ref": "common.schema.json#/definitions/experienceKind" },
           "title": { "type": "string" },
           "statement": { "type": "string" },
@@ -59,6 +59,8 @@
           "permitted_use": { "type": "string" },
           "prohibited_use": { "type": "string" },
           "required_states": { "type": "array", "items": { "type": "string" } },
+          "governed_semantic_source": { "type": "string" },
+          "spec_class": { "type": "string" },
           "authorizes_implementation": { "const": false },
           "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
           "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },

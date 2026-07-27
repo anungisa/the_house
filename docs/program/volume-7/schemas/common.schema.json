@@ -68,7 +68,10 @@
         "WIRE_FLOW",
         "SCREEN_STATE",
         "WORKBENCH",
-        "FORM_SECTION"
+        "FORM_SECTION",
+        "VISUAL_SYSTEM",
+        "COMPONENT",
+        "REFERENCE_PROTOTYPE"
       ]
     },
     "experienceKind": {
@@ -91,7 +94,17 @@
         "ERROR_MESSAGE",
         "RECOVERY_PATH",
         "ACCESSIBILITY_BEHAVIOUR",
-        "BILINGUAL_SEMANTIC"
+        "BILINGUAL_SEMANTIC",
+        "DESIGN_SPEC",
+        "COMPONENT_STATE",
+        "CONTENT_TERM"
+      ]
+    },
+    "referenceStatus": {
+      "type": "string",
+      "enum": [
+        "REFERENCE_CANDIDATE_NOT_APPROVED",
+        "NOT_APPLICABLE"
       ]
     },
     "backlogKind": {

@@ -327,3 +327,59 @@ records:
     chapter_ref: V7-19
     traces_to:
       - A11YB-V7-002
+  - id: ASM-V7-011
+    kind: ASM
+    title: Governed semantics remain stable through design definition
+    statement: Package 3 assumes the Package 1 and Package 2 governed semantics remain stable while visual, component, and content design is defined.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Confirmation that no governed semantic source changed during Package 3.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G4
+    chapter_ref: V7-31
+    traces_to:
+      - VIS-V7-001
+  - id: RISK-V7-010
+    kind: RISK
+    title: Reference prototypes mistaken for approved production design
+    statement: A risk that high-fidelity reference prototypes are mistaken for stakeholder-approved, usability-validated, or production-final design.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Reference-candidate labelling and closure-record disclaimers reviewed.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G4
+    chapter_ref: V7-31
+    traces_to:
+      - PROTO-V7-001
+  - id: TEST-V7-011
+    kind: TEST
+    title: Usability validation of reference prototypes
+    statement: A future validation must confirm the usability of the affiliation reference prototypes before any production commitment.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Usability validation evidence for the reference prototypes.
+    future_test_class: USABILITY_VALIDATION
+    downstream_volume: Volume 9 interface validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-31
+    traces_to:
+      - PROTO-V7-001
+  - id: TEST-V7-012
+    kind: TEST
+    title: Validated bilingual translation
+    statement: A future validation must confirm validated English and French production translations of the content terms.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validated bilingual translation evidence.
+    future_test_class: CONFORMANCE_VALIDATION
+    downstream_volume: Volume 9 interface validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-31
+    traces_to:
+      - TERM-V7-001

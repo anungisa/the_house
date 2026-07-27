@@ -211,3 +211,99 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-D-1-package-2-governance-amendment.md
     gate: V7-G2
+  - id: V7-21
+    title: Visual-System Doctrine and Design-Spec Conventions
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-21-visual-system-doctrine-and-design-spec-conventions.md
+    gate: V7-G3
+  - id: V7-22
+    title: Brand Application, Typography, Colour, Spacing, and Layout System
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-22-brand-application-typography-colour-spacing-and-layout-system.md
+    gate: V7-G3
+  - id: V7-23
+    title: Component Taxonomy, Anatomy, Variants, and State Specifications
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-23-component-taxonomy-anatomy-variants-and-state-specifications.md
+    gate: V7-G3
+  - id: V7-24
+    title: Forms, Validation, Evidence, Upload, and Document Design
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-24-forms-validation-evidence-upload-and-document-design.md
+    gate: V7-G3
+  - id: V7-25
+    title: Status, Task, Notification, Timeline, and Messaging Design
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-25-status-task-notification-timeline-and-messaging-design.md
+    gate: V7-G3
+  - id: V7-26
+    title: Reviewer, Finance, Support, Privacy, and Administrative Workbench Design
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-26-reviewer-finance-support-privacy-and-administrative-workbench-design.md
+    gate: V7-G3
+  - id: V7-27
+    title: Responsive, Adaptive, Low-Bandwidth, and Interrupted-Service Design
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-27-responsive-adaptive-low-bandwidth-and-interrupted-service-design.md
+    gate: V7-G3
+  - id: V7-28
+    title: Content Architecture, Terminology, Microcopy, and Bilingual Design
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-28-content-architecture-terminology-microcopy-and-bilingual-design.md
+    gate: V7-G3
+  - id: V7-29
+    title: Accessibility-by-Design and Complete-State Specifications
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-29-accessibility-by-design-and-complete-state-specifications.md
+    gate: V7-G3
+  - id: V7-30
+    title: Affiliation Reference Prototypes
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-30-affiliation-reference-prototypes.md
+    gate: V7-G3
+  - id: V7-31
+    title: Design-System Traceability and Validation Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-31-design-system-traceability-and-validation-backlog.md
+    gate: V7-G3
+  - id: V7-E
+    title: Package 3 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-E-package-3-closure-record.md
+    gate: V7-G3

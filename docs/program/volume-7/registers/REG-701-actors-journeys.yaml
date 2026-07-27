@@ -2464,3 +2464,815 @@ records:
     chapter_ref: V7-18
     traces_to:
       - VIEW-V7-009
+  - id: VIS-V7-001
+    kind: VISUAL_SYSTEM
+    title: Visual-system doctrine
+    statement: The documentary visual-system doctrine and design-spec conventions for the club-affiliation experience.
+    purpose: Establish that visual form expresses governed meaning and carries no production tokens, stylesheet, or framework configuration.
+    authority_domain: House
+    authoritative_source: House
+    governed_semantic_source: Package 1 experience foundation and Package 2 interaction model
+    fidelity: DOCUMENTARY
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: NOT_APPLICABLE
+    future_verification: Visual-system validation deferred beyond Gate V7-G3.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-21
+    traces_to:
+      - V7-11
+  - id: VIS-V7-002
+    kind: VISUAL_SYSTEM
+    title: Brand, typography, colour, spacing, and layout system
+    statement: The documentary brand-application, typography, colour, spacing, and layout system, described by role and intent and not as production values.
+    purpose: Specify a restrained institutional visual language in which colour never carries meaning alone and layout never hides governed obligations.
+    authority_domain: House
+    authoritative_source: House
+    governed_semantic_source: Package 1 status, action, and content semantics
+    fidelity: DOCUMENTARY
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: NOT_APPLICABLE
+    future_verification: Visual-language validation deferred beyond Gate V7-G3.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-22
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-001
+    kind: COMPONENT
+    title: Navigation component
+    statement: The documentary specification for the navigation component family.
+    component_family: navigation
+    anatomy:
+      - Primary navigation region
+      - Section and task links
+      - Current-location indicator
+    variants:
+      - Club-facing navigation
+      - Governed-staff navigation
+    states:
+      - default
+      - focus
+      - denied
+    permitted_uses:
+      - Route between governed surfaces the actor is authorized to reach
+    prohibited_uses:
+      - Present a destination the actor has no authority to access
+    governed_semantic_source: Package 1 information architecture and navigation foundation
+    authority_domain: House
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-002
+    kind: COMPONENT
+    title: Page-header component
+    statement: The documentary specification for the page-header component family.
+    component_family: page-headers
+    anatomy:
+      - Title
+      - Context and status summary
+      - Primary action affordance
+    variants:
+      - Task page header
+      - Record page header
+    states:
+      - default
+      - loading
+      - error
+    permitted_uses:
+      - Orient the actor and summarize governed status
+    prohibited_uses:
+      - Assert an outcome the governed system has not recorded
+    governed_semantic_source: Package 2 interaction architecture
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-003
+    kind: COMPONENT
+    title: Card component
+    statement: The documentary specification for the card component family.
+    component_family: cards
+    anatomy:
+      - Card title
+      - Summary content
+      - Status indicator
+    variants:
+      - Summary card
+      - Action card
+    states:
+      - default
+      - empty
+      - stale
+    permitted_uses:
+      - Group related governed information for scanning
+    prohibited_uses:
+      - Present stale information as authoritative and live
+    governed_semantic_source: Package 2 status and content semantics
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-004
+    kind: COMPONENT
+    title: Task-item component
+    statement: The documentary specification for the task-item component family.
+    component_family: task-items
+    anatomy:
+      - Task label
+      - Responsibility indicator
+      - Consequence note
+    variants:
+      - Actor task
+      - Staff task
+    states:
+      - default
+      - success
+      - denied
+    permitted_uses:
+      - Show what is required and who is responsible
+    prohibited_uses:
+      - Imply authority the actor does not hold
+    governed_semantic_source: Package 2 task-flow model
+    authority_domain: House
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-005
+    kind: COMPONENT
+    title: Progress component
+    statement: The documentary specification for the progress component family.
+    component_family: progress
+    anatomy:
+      - Stage sequence
+      - Current-stage indicator
+      - Completion summary
+    variants:
+      - Linear progress
+      - Stage progress
+    states:
+      - default
+      - loading
+    permitted_uses:
+      - Communicate governed stage advancement
+    prohibited_uses:
+      - Present a stage as decided before the governed decision
+    governed_semantic_source: Package 2 completeness and submission model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-006
+    kind: COMPONENT
+    title: Form component
+    statement: The documentary specification for the form component family.
+    component_family: forms
+    anatomy:
+      - Grouped fields
+      - Instructions
+      - Submit affordance
+    variants:
+      - Single-section form
+      - Multi-section form
+    states:
+      - default
+      - error
+      - success
+    permitted_uses:
+      - Collect governed responses with clear consequence
+    prohibited_uses:
+      - Imply that completion confers approval or activation
+    governed_semantic_source: Package 2 requirements and responses model
+    authority_domain: House
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: PERSONAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-007
+    kind: COMPONENT
+    title: Validation component
+    statement: The documentary specification for the validation component family.
+    component_family: validation
+    anatomy:
+      - Field-level message
+      - Summary message
+      - Correction affordance
+    variants:
+      - Formatting validation
+      - Completeness validation
+    states:
+      - default
+      - error
+    permitted_uses:
+      - Explain a problem and route to correction
+    prohibited_uses:
+      - Present a validation pass as a governed decision
+    governed_semantic_source: Package 2 validation-behaviour model
+    authority_domain: House
+    accessibility:
+      - ERROR_PREVENTION_AND_RECOVERY
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-008
+    kind: COMPONENT
+    title: Status component
+    statement: The documentary specification for the status component family.
+    component_family: status
+    anatomy:
+      - Status label
+      - Meaning note
+      - Source reference
+    variants:
+      - Received status
+      - Decided status
+    states:
+      - default
+      - stale
+    permitted_uses:
+      - Present a governed status with its meaning
+    prohibited_uses:
+      - Overstate receipt as approval or approval as activation
+    governed_semantic_source: Package 2 status-message model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-009
+    kind: COMPONENT
+    title: Timeline component
+    statement: The documentary specification for the timeline component family.
+    component_family: timelines
+    anatomy:
+      - Ordered events
+      - Event meaning
+      - Provenance reference
+    variants:
+      - Affiliation history timeline
+      - Case history timeline
+    states:
+      - default
+      - stale
+      - empty
+    permitted_uses:
+      - Present governed history in order with provenance
+    prohibited_uses:
+      - Rewrite or hide superseded history
+    governed_semantic_source: Package 2 decision and standing model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-010
+    kind: COMPONENT
+    title: Table component
+    statement: The documentary specification for the table component family.
+    component_family: tables
+    anatomy:
+      - Column headers
+      - Rows
+      - Sort and filter affordances
+    variants:
+      - Queue table
+      - Record table
+    states:
+      - default
+      - empty
+      - loading
+    permitted_uses:
+      - Present governed records for review within authority
+    prohibited_uses:
+      - Expose records beyond the operator authority
+    governed_semantic_source: Package 2 reviewer and finance workbench model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+      - KEYBOARD_AND_FOCUS
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: RESTRICTED_EVIDENCE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-011
+    kind: COMPONENT
+    title: Responsive-list component
+    statement: The documentary specification for the responsive-list component family.
+    component_family: responsive-lists
+    anatomy:
+      - List items
+      - Item summary
+      - Adaptive layout behaviour
+    variants:
+      - Compact list
+      - Expanded list
+    states:
+      - default
+      - empty
+      - degraded
+    permitted_uses:
+      - Present governed collections legibly across viewports
+    prohibited_uses:
+      - Hide institutional obligations behind density
+    governed_semantic_source: Package 1 information architecture
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-012
+    kind: COMPONENT
+    title: Evidence component
+    statement: The documentary specification for the evidence component family.
+    component_family: evidence
+    anatomy:
+      - Evidence item
+      - Provenance and version
+      - Sensitivity disclosure
+    variants:
+      - Uploaded evidence
+      - Replaced evidence
+    states:
+      - default
+      - loading
+      - error
+      - success
+    permitted_uses:
+      - Present evidence with provenance and history
+    prohibited_uses:
+      - Present received evidence as reviewed or accepted
+    governed_semantic_source: Package 2 evidence-interaction model
+    authority_domain: House
+    accessibility:
+      - EVIDENCE_INTERACTION
+      - KEYBOARD_AND_FOCUS
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: RESTRICTED_EVIDENCE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-013
+    kind: COMPONENT
+    title: Document component
+    statement: The documentary specification for the document component family.
+    component_family: documents
+    anatomy:
+      - Document title
+      - Institutional-status indicator
+      - Bilingual content
+    variants:
+      - Receipt document
+      - Decision document
+    states:
+      - default
+      - loading
+    permitted_uses:
+      - Present a governed document with its institutional status
+    prohibited_uses:
+      - Assert an outcome the governed system has not recorded
+    governed_semantic_source: Package 2 decision and confirmation model
+    authority_domain: House
+    accessibility:
+      - ALTERNATE_FORMAT
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: PERSONAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-014
+    kind: COMPONENT
+    title: Confirmation component
+    statement: The documentary specification for the confirmation component family.
+    component_family: confirmations
+    anatomy:
+      - Consequence summary
+      - Confirm and cancel affordances
+      - Reversibility note
+    variants:
+      - Standard confirmation
+      - Destructive confirmation
+    states:
+      - default
+      - confirmation
+      - destructive
+    permitted_uses:
+      - Make institutional effect clear before a consequential action
+    prohibited_uses:
+      - Present a destructive action as routine
+    governed_semantic_source: Package 2 confirmation pattern
+    authority_domain: House
+    accessibility:
+      - ERROR_PREVENTION_AND_RECOVERY
+      - KEYBOARD_AND_FOCUS
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-015
+    kind: COMPONENT
+    title: Notification component
+    statement: The documentary specification for the notification component family.
+    component_family: notifications
+    anatomy:
+      - Change summary
+      - Required action or recovery path
+      - Route to authoritative record
+    variants:
+      - Informational notification
+      - Action-required notification
+    states:
+      - default
+      - success
+      - error
+    permitted_uses:
+      - Communicate a governed change and route to the record
+    prohibited_uses:
+      - Substitute for the authoritative record or expose restricted detail
+    governed_semantic_source: Package 2 notification and messaging model
+    authority_domain: House
+    accessibility:
+      - STATUS_ANNOUNCEMENT
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-016
+    kind: COMPONENT
+    title: Help-and-support component
+    statement: The documentary specification for the help-and-support component family.
+    component_family: help-support
+    anatomy:
+      - Guidance content
+      - Support routing
+      - Accommodation path
+    variants:
+      - Inline help
+      - Support-assisted help
+    states:
+      - default
+      - denied
+    permitted_uses:
+      - Assist and route without transferring governed authority
+    prohibited_uses:
+      - Acquire governed authority through support
+    governed_semantic_source: Package 2 support model
+    authority_domain: House
+    accessibility:
+      - ACCOMMODATION_PATH
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-23
+    traces_to:
+      - VIS-V7-001
+  - id: COMP-V7-017
+    kind: COMPONENT
+    title: Reviewer workbench design
+    statement: The documentary workbench design for the reviewer function, preserving reviewer authority.
+    component_family: workbench
+    authority_posture: JURISDICTION_REVIEWER
+    anatomy:
+      - Assigned queue
+      - Case context and evidence
+      - Recommendation and return affordances
+    variants:
+      - Jurisdiction reviewer workbench
+      - National reviewer workbench
+    states:
+      - default
+      - denied
+    permitted_uses:
+      - Present completeness and evidence for recommendation
+    prohibited_uses:
+      - Present finance authority or activate standing
+    authority_constraints:
+      - Reviewers do not activate standing or reconcile finance
+    prohibited_actions:
+      - Activate standing
+      - Reconcile finance
+    governed_semantic_source: Package 2 reviewer workbench model
+    authority_domain: House
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: RESTRICTED_EVIDENCE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-26
+    traces_to:
+      - BENCH-V7-001
+  - id: COMP-V7-018
+    kind: COMPONENT
+    title: Finance workbench design
+    statement: The documentary workbench design for the finance function, preserving finance authority.
+    component_family: workbench
+    authority_posture: FINANCE_OPERATOR
+    anatomy:
+      - Fee and obligation status
+      - Reconciliation view
+      - Activation-dependency note
+    variants:
+      - Reconciliation workbench
+    states:
+      - default
+    permitted_uses:
+      - Present fee status and reconciliation
+    prohibited_uses:
+      - Decide affiliation or activate standing
+    authority_constraints:
+      - Finance does not decide affiliation outcomes
+    prohibited_actions:
+      - Decide affiliation outcomes
+      - Activate standing
+    governed_semantic_source: Package 2 finance workbench model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: FINANCIAL_STATUS
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-26
+    traces_to:
+      - BENCH-V7-002
+  - id: COMP-V7-019
+    kind: COMPONENT
+    title: Support workbench design
+    statement: The documentary workbench design for the support function, acquiring no governed authority.
+    component_family: workbench
+    authority_posture: SUPPORT_OPERATOR
+    anatomy:
+      - Guidance and lookup
+      - Routing affordances
+    variants:
+      - Support-assist workbench
+    states:
+      - default
+      - denied
+    permitted_uses:
+      - Guide, locate, and route
+    prohibited_uses:
+      - Decide, approve, activate, or alter governed records
+    authority_constraints:
+      - Support acquires no governed authority
+    prohibited_actions:
+      - Decide
+      - Approve
+      - Activate
+      - Alter governed records
+    governed_semantic_source: Package 2 support model
+    authority_domain: House
+    accessibility:
+      - ACCOMMODATION_PATH
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: INTERNAL
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-26
+    traces_to:
+      - BENCH-V7-003
+  - id: COMP-V7-020
+    kind: COMPONENT
+    title: Privacy and records workbench design
+    statement: The documentary workbench design for the privacy and records function under its own authority.
+    component_family: workbench
+    authority_posture: PRIVACY_OR_RECORDS_FUNCTION
+    anatomy:
+      - Disclosure and retention view
+      - Correction affordances
+    variants:
+      - Privacy workbench
+    states:
+      - default
+      - denied
+    permitted_uses:
+      - Serve disclosure, retention, and correction of personal information
+    prohibited_uses:
+      - Serve as a task shortcut for decision or activation
+    authority_constraints:
+      - Privacy function is distinct from all task authorities
+    prohibited_actions:
+      - Decide affiliation
+      - Activate standing
+    governed_semantic_source: Package 2 privacy model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: PRIVILEGED_ADMIN
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-26
+    traces_to:
+      - BENCH-V7-004
+  - id: COMP-V7-021
+    kind: COMPONENT
+    title: Administrative-correction workbench design
+    statement: The documentary workbench design for administrative correction, distinct from decision authority.
+    component_family: workbench
+    authority_posture: SERVICE_ADMINISTRATOR
+    anatomy:
+      - Correction record
+      - Provenance capture
+    variants:
+      - Administrative-correction workbench
+    states:
+      - default
+      - denied
+    permitted_uses:
+      - Record a governed correction with provenance
+    prohibited_uses:
+      - Substitute for a governed decision
+    authority_constraints:
+      - Administrative correction is distinct from decision authority
+    prohibited_actions:
+      - Decide affiliation
+    governed_semantic_source: Package 2 administrative-correction model
+    authority_domain: House
+    accessibility:
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: PRIVILEGED_ADMIN
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-26
+    traces_to:
+      - BENCH-V7-005
+  - id: PROTO-V7-001
+    kind: REFERENCE_PROTOTYPE
+    title: Club-facing affiliation reference prototype
+    statement: The documentary club-facing reference prototype walking the full affiliation vertical as a reference candidate that is not approved.
+    purpose: Represent the club-facing experience end to end without asserting stakeholder approval, usability validation, or production finality.
+    primary_actor: Authorized club representative
+    authority_domain: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    reference_status: REFERENCE_CANDIDATE_NOT_APPROVED
+    governed_semantic_source: Package 2 end-to-end affiliation interaction model
+    covers_stages:
+      - STAGE-V7-001
+      - STAGE-V7-002
+      - STAGE-V7-003
+      - STAGE-V7-004
+      - STAGE-V7-005
+      - STAGE-V7-006
+      - STAGE-V7-007
+      - STAGE-V7-008
+      - STAGE-V7-009
+      - STAGE-V7-010
+      - STAGE-V7-011
+      - STAGE-V7-012
+      - STAGE-V7-013
+      - STAGE-V7-014
+      - STAGE-V7-015
+      - STAGE-V7-016
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: PERSONAL
+    future_verification: Usability and stakeholder validation deferred beyond Gate V7-G3.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V7-30
+    traces_to:
+      - COMP-V7-001
+      - COMP-V7-006
+      - COMP-V7-012
+  - id: PROTO-V7-002
+    kind: REFERENCE_PROTOTYPE
+    title: Governed-staff affiliation reference prototype
+    statement: The documentary governed-staff reference prototype preserving reviewer, finance, support, privacy, and administrative-correction separation as a reference candidate that is not approved.
+    purpose: Represent the governed staff surfaces without merging authorities and without asserting approval or validation.
+    primary_actor: Jurisdiction reviewer
+    authority_domain: House
+    fidelity: LOW_FIDELITY_NON_FINAL
+    reference_status: REFERENCE_CANDIDATE_NOT_APPROVED
+    governed_semantic_source: Package 2 governed staff workbench model
+    covers_stages:
+      - STAGE-V7-011
+      - STAGE-V7-012
+      - STAGE-V7-013
+      - STAGE-V7-014
+      - STAGE-V7-015
+    accessibility:
+      - KEYBOARD_AND_FOCUS
+      - SEMANTIC_STRUCTURE
+    bilingual_semantics: ENGLISH_AND_FRENCH_EQUIVALENT
+    privacy_posture: RESTRICTED_EVIDENCE
+    future_verification: Usability and stakeholder validation deferred beyond Gate V7-G3.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: PENDING_VALIDATION
+    chapter_ref: V7-30
+    traces_to:
+      - COMP-V7-017
+      - COMP-V7-018
+      - COMP-V7-019
+      - COMP-V7-020
+      - COMP-V7-021

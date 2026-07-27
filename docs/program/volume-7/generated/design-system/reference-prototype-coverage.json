@@ -1,0 +1,41 @@
+{
+  "reference_prototypes": [
+    {
+      "id": "PROTO-V7-001",
+      "title": "Club-facing affiliation reference prototype",
+      "reference_status": "REFERENCE_CANDIDATE_NOT_APPROVED",
+      "covers_stages": [
+        "STAGE-V7-001",
+        "STAGE-V7-002",
+        "STAGE-V7-003",
+        "STAGE-V7-004",
+        "STAGE-V7-005",
+        "STAGE-V7-006",
+        "STAGE-V7-007",
+        "STAGE-V7-008",
+        "STAGE-V7-009",
+        "STAGE-V7-010",
+        "STAGE-V7-011",
+        "STAGE-V7-012",
+        "STAGE-V7-013",
+        "STAGE-V7-014",
+        "STAGE-V7-015",
+        "STAGE-V7-016"
+      ]
+    },
+    {
+      "id": "PROTO-V7-002",
+      "title": "Governed-staff affiliation reference prototype",
+      "reference_status": "REFERENCE_CANDIDATE_NOT_APPROVED",
+      "covers_stages": [
+        "STAGE-V7-011",
+        "STAGE-V7-012",
+        "STAGE-V7-013",
+        "STAGE-V7-014",
+        "STAGE-V7-015"
+      ]
+    }
+  ],
+  "stages_without_reference_prototype": [],
+  "prototypes_not_labelled_candidate": []
+}

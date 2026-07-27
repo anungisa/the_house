@@ -82,6 +82,8 @@
     "governance:gate:v7": "node docs/program/volume-7/controls/gate-volume-7.mjs",
     "governance:interaction:v7": "node docs/program/volume-7/controls/interaction-model-volume-7.mjs",
     "governance:gate2:v7": "node docs/program/volume-7/controls/gate-volume-7-g2.mjs",
+    "governance:design:v7": "node docs/program/volume-7/controls/design-system-volume-7.mjs",
+    "governance:gate3:v7": "node docs/program/volume-7/controls/gate-volume-7-g3.mjs",
     "governance:provenance:v7": "node docs/program/volume-7/controls/provenance-integrity-volume-7.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",

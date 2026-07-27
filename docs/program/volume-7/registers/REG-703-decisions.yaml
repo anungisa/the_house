@@ -253,3 +253,63 @@ records:
     chapter_ref: V7-19
     traces_to:
       - BSEM-V7-001
+  - id: ADR-V7-022
+    title: Visual form expresses governed meaning and carries no production tokens
+    decision: The visual language is documentary and is described by role and intent, never as production tokens, stylesheet, or framework configuration.
+    status: ACCEPTED
+    context: A visual system could drift into implementation and prematurely fix production values.
+    consequence: Visual specifications are recorded as documentary role and intent and authorize no implementation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-22
+    traces_to:
+      - VIS-V7-002
+  - id: ADR-V7-023
+    title: Every visual state retains a governed semantic source
+    decision: Each component and status state names the governed semantic source that determines its meaning.
+    status: ACCEPTED
+    context: Visual states could otherwise drift away from institutional meaning.
+    consequence: Component and status records name a governed semantic source and cannot present unrecorded outcomes.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-25
+    traces_to:
+      - DSPEC-V7-003
+  - id: ADR-V7-024
+    title: Workbench design preserves authority separation
+    decision: Reviewer, finance, support, privacy, and administrative-correction workbench designs remain distinct and never merge authorities.
+    status: ACCEPTED
+    context: Merging staff authorities in design would undermine the governed separation model.
+    consequence: Each workbench design names its authority posture, constraints, and prohibited actions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-26
+    traces_to:
+      - COMP-V7-017
+  - id: ADR-V7-025
+    title: Reference prototypes are candidates, not approvals
+    decision: Reference prototypes are recorded as reference candidates that are not approved, usability-validated, production-final, or implemented.
+    status: ACCEPTED
+    context: High-fidelity design candidates could be mistaken for approved production design.
+    consequence: Every reference prototype carries a reference-candidate status and a pending validation posture.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-30
+    traces_to:
+      - PROTO-V7-001
+  - id: ADR-V7-026
+    title: English and French content terms trace to one canonical governed concept
+    decision: Each content term in English and in French traces to a single canonical governed concept, and validated translations remain pending.
+    status: ACCEPTED
+    context: Divergent bilingual terminology would fracture governed meaning.
+    consequence: Content-term records name a canonical concept and equivalent English and French semantic requirements.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-28
+    traces_to:
+      - TERM-V7-001

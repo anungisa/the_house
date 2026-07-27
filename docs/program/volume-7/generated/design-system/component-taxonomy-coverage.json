@@ -1,0 +1,86 @@
+{
+  "components": [
+    {
+      "id": "COMP-V7-001",
+      "title": "Navigation component",
+      "component_family": "navigation"
+    },
+    {
+      "id": "COMP-V7-002",
+      "title": "Page-header component",
+      "component_family": "page-headers"
+    },
+    {
+      "id": "COMP-V7-003",
+      "title": "Card component",
+      "component_family": "cards"
+    },
+    {
+      "id": "COMP-V7-004",
+      "title": "Task-item component",
+      "component_family": "task-items"
+    },
+    {
+      "id": "COMP-V7-005",
+      "title": "Progress component",
+      "component_family": "progress"
+    },
+    {
+      "id": "COMP-V7-006",
+      "title": "Form component",
+      "component_family": "forms"
+    },
+    {
+      "id": "COMP-V7-007",
+      "title": "Validation component",
+      "component_family": "validation"
+    },
+    {
+      "id": "COMP-V7-008",
+      "title": "Status component",
+      "component_family": "status"
+    },
+    {
+      "id": "COMP-V7-009",
+      "title": "Timeline component",
+      "component_family": "timelines"
+    },
+    {
+      "id": "COMP-V7-010",
+      "title": "Table component",
+      "component_family": "tables"
+    },
+    {
+      "id": "COMP-V7-011",
+      "title": "Responsive-list component",
+      "component_family": "responsive-lists"
+    },
+    {
+      "id": "COMP-V7-012",
+      "title": "Evidence component",
+      "component_family": "evidence"
+    },
+    {
+      "id": "COMP-V7-013",
+      "title": "Document component",
+      "component_family": "documents"
+    },
+    {
+      "id": "COMP-V7-014",
+      "title": "Confirmation component",
+      "component_family": "confirmations"
+    },
+    {
+      "id": "COMP-V7-015",
+      "title": "Notification component",
+      "component_family": "notifications"
+    },
+    {
+      "id": "COMP-V7-016",
+      "title": "Help-and-support component",
+      "component_family": "help-support"
+    }
+  ],
+  "missing_component_families": [],
+  "underspecified_components": []
+}

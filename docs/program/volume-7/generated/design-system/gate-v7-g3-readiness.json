@@ -1,0 +1,95 @@
+{
+  "gate": "V7-G3",
+  "disposition": "VISUAL_COMPONENT_CONTENT_AND_REFERENCE_PROTOTYPE_DEFINITION_READY",
+  "total_conditions": 16,
+  "satisfied": 15,
+  "unmet": [
+    {
+      "n": 16,
+      "title": "Package 3 receives line-level review and a separate freeze commit"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Corrected Volume 6, frozen Package 1, and corrected frozen Package 2 provenance are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "No unresolved backlog item points to a completed gate",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "No record authorizes implementation or final production design",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Every controlled record carries a non-implementation status",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "The visual language is documentary and names design specifications without production tokens",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every component names anatomy, variants, states, and permitted and prohibited uses",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "The component taxonomy covers the required component families",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Every visual and status state retains a governed semantic source",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Forms, validation, evidence, upload, and document design are specified",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Status, task, notification, timeline, and messaging design are specified",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Workbench design preserves reviewer, finance, support, privacy, and administrative-correction separation",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Responsive, adaptive, low-bandwidth, and interrupted-service design are specified",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Content terms trace English and French to one canonical governed concept",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Complete-state coverage includes every required state",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Reference prototypes cover the full affiliation vertical as reference candidates that are not approved",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Package 3 receives line-level review and a separate freeze commit",
+      "satisfied": false
+    }
+  ]
+}
