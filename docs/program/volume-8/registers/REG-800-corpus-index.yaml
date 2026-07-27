@@ -219,3 +219,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-D-1-package-2-governance-amendment.md
     gate: V8-G2
+  - id: V8-21
+    title: Affiliation Event-Contract Doctrine, Taxonomy, Ownership, and Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-21-affiliation-event-contract-doctrine-taxonomy-ownership-and-authority.md
+    gate: V8-G3
+  - id: V8-22
+    title: Affiliation Event Envelope, Identity, Version, Provenance, and Correlation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-22-affiliation-event-envelope-identity-version-provenance-and-correlation.md
+    gate: V8-G3
+  - id: V8-23
+    title: Affiliation Lifecycle Event Catalogue and State-Transition Mapping
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-23-affiliation-lifecycle-event-catalogue-and-state-transition-mapping.md
+    gate: V8-G3
+  - id: V8-24
+    title: Affiliation Transactional Outbox, Publication, Acknowledgement, and Delivery Semantics
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-24-affiliation-transactional-outbox-publication-acknowledgement-and-delivery-semantics.md
+    gate: V8-G3
+  - id: V8-25
+    title: Affiliation Webhook, Callback, Authentication, Integrity, Replay, and Unknown-Outcome Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-25-affiliation-webhook-callback-authentication-integrity-replay-and-unknown-outcome-contracts.md
+    gate: V8-G3
+  - id: V8-26
+    title: Affiliation Consumer Idempotency, Deduplication, Ordering, Concurrency, and Replay
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-26-affiliation-consumer-idempotency-deduplication-ordering-concurrency-and-replay.md
+    gate: V8-G3
+  - id: V8-27
+    title: Affiliation Notification and Governed Communication-Event Contracts
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-27-affiliation-notification-and-governed-communication-event-contracts.md
+    gate: V8-G3
+  - id: V8-28
+    title: Affiliation Failure, Retry, Quarantine, Dead-Letter, Compensation, and Reconciliation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-28-affiliation-failure-retry-quarantine-dead-letter-compensation-and-reconciliation.md
+    gate: V8-G3
+  - id: V8-29
+    title: Affiliation Restricted-Evidence, Financial, Audit, Security, and Provider-Boundary Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-29-affiliation-restricted-evidence-financial-audit-security-and-provider-boundary-constraints.md
+    gate: V8-G3
+  - id: V8-30
+    title: Affiliation Event-Contract Traceability, Compatibility, and Validation Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-30-affiliation-event-contract-traceability-compatibility-and-validation-backlog.md
+    gate: V8-G3
+  - id: V8-E
+    title: Package 3 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-E-package-3-closure-record.md
+    gate: V8-G3

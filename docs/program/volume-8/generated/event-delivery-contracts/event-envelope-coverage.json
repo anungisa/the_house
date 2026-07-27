@@ -1,0 +1,18 @@
+{
+  "event_envelope_requirements": 2,
+  "envelopes": [
+    {
+      "id": "ENVELOPE-V8-001",
+      "envelope_field_count": 12,
+      "replay_posture": "The envelope distinguishes an original emission from a governed re-emission by its replay marker; a re-emission carries the same event identity, not a new one presented as a new fact."
+    },
+    {
+      "id": "ENVELOPE-V8-002",
+      "envelope_field_count": 9,
+      "replay_posture": "A re-generated notification carries the same event identity and a replay marker rather than presenting as a new notification."
+    }
+  ],
+  "gaps": {
+    "envelopes_without_replay_posture": []
+  }
+}

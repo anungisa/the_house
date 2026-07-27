@@ -1,0 +1,93 @@
+{
+  "event_contract_surfaces": 2,
+  "event_contracts": 12,
+  "contracts": [
+    {
+      "id": "EVENT-V8-021",
+      "title": "Affiliation submitted event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-022",
+      "title": "Affiliation review-started event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-023",
+      "title": "Affiliation approved event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-024",
+      "title": "Affiliation rejected event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-025",
+      "title": "Affiliation activated event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-026",
+      "title": "Affiliation suspended event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-027",
+      "title": "Affiliation reinstated event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-028",
+      "title": "Affiliation revoked event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-029",
+      "title": "Affiliation closed event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-030",
+      "title": "Affiliation archived event contract",
+      "interaction_type": "INTEGRATION_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-031",
+      "title": "Affiliation submitted domain-event contract",
+      "interaction_type": "DOMAIN_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    },
+    {
+      "id": "EVENT-V8-032",
+      "title": "Affiliation approved domain-event contract",
+      "interaction_type": "DOMAIN_EVENT",
+      "authority": "House",
+      "source": "House affiliation lifecycle state"
+    }
+  ],
+  "gaps": {
+    "events_without_authority_or_source": []
+  }
+}

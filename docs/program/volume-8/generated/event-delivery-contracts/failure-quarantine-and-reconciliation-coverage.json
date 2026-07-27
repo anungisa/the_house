@@ -1,0 +1,14 @@
+{
+  "quarantine_requirements": 1,
+  "quarantine": [
+    {
+      "id": "QUAR-V8-001",
+      "quarantine_posture": "A quarantined item is moved to a governed holding disposition retaining its identity, provenance, and history for authoritative resolution; a dead-letter disposition applies only after a transport accepted an event and a downstream consumer failed it.",
+      "reconciliation_dependency": "A quarantined item is resolved only through reconciliation against the House governed state; it never silently expires.",
+      "compensation_limitation": "Correction uses forward compensation; it cannot un-commit a governed fact, delete an audit event, or fabricate an outcome."
+    }
+  ],
+  "gaps": {
+    "quarantine_without_reconciliation": []
+  }
+}

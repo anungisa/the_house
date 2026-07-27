@@ -1,0 +1,21 @@
+{
+  "replay_requirements": 1,
+  "deduplication_requirements": 1,
+  "replay": [
+    {
+      "id": "REPLAY-V8-011",
+      "replay_authority": "Only the House, under governed authority, may authorize a replay; no consumer or provider may initiate one.",
+      "replay_evidence": "Every replay records the authorizing authority, its reason, and the events re-emitted as governed evidence.",
+      "replay_posture": "Replayed events carry the same identity and a replay marker so consumers distinguish them from original emissions."
+    }
+  ],
+  "dedup": [
+    {
+      "id": "DEDUP-V8-001",
+      "deduplication_scope": "Per event identity within a tenant scope"
+    }
+  ],
+  "gaps": {
+    "replay_without_authority_or_evidence": []
+  }
+}

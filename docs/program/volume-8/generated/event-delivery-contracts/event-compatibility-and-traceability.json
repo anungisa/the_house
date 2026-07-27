@@ -1,0 +1,18 @@
+{
+  "compatibility_rules": 2,
+  "compatibility": [
+    {
+      "id": "CONTRACT-V8-121",
+      "compatibility_state": "BACKWARD_COMPATIBLE",
+      "consumer_evidence": true
+    },
+    {
+      "id": "CONTRACT-V8-122",
+      "compatibility_state": "BREAKING_CHANGE",
+      "consumer_evidence": true
+    }
+  ],
+  "gaps": {
+    "compatibility_without_consumer_evidence": []
+  }
+}

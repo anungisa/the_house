@@ -160,4 +160,228 @@ records:
     chapter_ref: V8-19
     traces_to:
       - V8-09
+  - id: ADR-V8-009
+    title: Events are governed facts, not commands
+    decision: >-
+      An affiliation event records a fact that has already committed; a command
+      requests a change and may be rejected. An event is emitted only after its
+      transition commits and never acts as an instruction.
+    status: ACCEPTED
+    context: >-
+      Conflating events with commands would let a report of a fact re-drive a
+      transition and would break the governance kernel's sole authority over
+      state.
+    consequence: >-
+      The event taxonomy defines events as post-commit reports; no event
+      authorizes, replays, or re-drives a transition.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-21
+    traces_to:
+      - V8-04
+  - id: ADR-V8-010
+    title: Domain, integration, notification, audit, webhook, and callback events are distinct
+    decision: >-
+      The affiliation event plane recognizes distinct event types, each with a
+      distinct purpose and audience; none is a synonym for another.
+    status: ACCEPTED
+    context: >-
+      Treating all events as one type would blur audience entitlement, trust
+      boundaries, and disclosure authority.
+    consequence: >-
+      Each event type is separately defined with its own authority, audience, and
+      boundary; producers and consumers are scoped to types.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-21
+    traces_to:
+      - V8-05
+  - id: ADR-V8-011
+    title: State and outbox share one atomicity requirement
+    decision: >-
+      The authoritative affiliation state change and the outbox record of its
+      event are written in one committed transaction, or neither is.
+    status: ACCEPTED
+    context: >-
+      Writing an event without its committed state change, or committing state
+      without its owed event, would break the transactional-outbox guarantee.
+    consequence: >-
+      The outbox atomicity requirement binds state and outbox record to a single
+      transaction; persistence is distinct from publication.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-24
+    traces_to:
+      - V8-05
+  - id: ADR-V8-012
+    title: At-least-once transport is distinct from exactly-once business effect
+    decision: >-
+      Affiliation delivery is at-least-once at the transport boundary; exactly-once
+      effect is a business invariant enforced by governed state and idempotent
+      consumers, never a transport promise.
+    status: ACCEPTED
+    context: >-
+      Presuming exactly-once transport would place a business invariant on an
+      unreliable guarantee and would produce duplicate effects.
+    consequence: >-
+      Delivery semantics require duplicate-tolerant, idempotent consumers; no
+      exactly-once transport is presumed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-24
+    traces_to:
+      - V8-06
+  - id: ADR-V8-013
+    title: Global ordering is not presumed
+    decision: >-
+      Global ordering of affiliation events is never presumed; ordering is scoped
+      explicitly, such as per affiliation aggregate.
+    status: ACCEPTED
+    context: >-
+      Depending on global order would create a hidden coupling that no transport
+      can guarantee without broker sessions, which are not enabled in v1.
+    consequence: >-
+      Ordering requirements are scoped; a consumer that would depend on global
+      order fails closed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-26
+    traces_to:
+      - V8-06
+  - id: ADR-V8-014
+    title: Replay requires authority, provenance, and evidence
+    decision: >-
+      A governed replay is an authoritative re-emission under authority and
+      evidence, not an arbitrary re-send, and never produces a duplicate business
+      effect.
+    status: ACCEPTED
+    context: >-
+      Unauthenticated or unevidenced replay could fabricate or duplicate governed
+      outcomes.
+    consequence: >-
+      The replay requirement names replay authority and replay evidence; replayed
+      events carry the same identity and a replay marker.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-26
+    traces_to:
+      - V8-06
+  - id: ADR-V8-015
+    title: Webhook acknowledgement is not reconciliation
+    decision: >-
+      An acknowledgement of an inbound signal confirms receipt only; a provider's
+      asserted outcome becomes authoritative only after reconciliation against the
+      House governed state.
+    status: ACCEPTED
+    context: >-
+      Treating acknowledgement as reconciliation would let a provider signal set
+      authoritative state without House resolution.
+    consequence: >-
+      Webhook and callback contracts separate acknowledgement from reconciliation
+      and name a reconciliation dependency.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-25
+    traces_to:
+      - V8-05
+  - id: ADR-V8-016
+    title: Unknown provider outcomes fail closed until reconciliation
+    decision: >-
+      An unknown, ambiguous, or unverifiable provider outcome remains unresolved
+      and fails closed until reconciliation resolves it.
+    status: ACCEPTED
+    context: >-
+      Optimistically treating an unknown outcome as success, or silently as
+      failure, would corrupt governed affiliation state.
+    consequence: >-
+      Callback contracts carry an unknown-outcome posture and a reconciliation
+      dependency; no unresolved outcome leaks into governed state.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-25
+    traces_to:
+      - V8-05
+  - id: ADR-V8-017
+    title: Failure preserves history; correction is forward compensation
+    decision: >-
+      No failure path discards the authoritative record or the audit trail;
+      correction of a committed outcome uses forward compensation, never a silent
+      rewrite of history.
+    status: ACCEPTED
+    context: >-
+      Erasing or overwriting history on failure would break append-only audit and
+      immutable evidence guarantees.
+    consequence: >-
+      Failed and quarantined items retain identity, provenance, and history;
+      compensation cannot un-commit a fact or delete an audit event.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-28
+    traces_to:
+      - V8-05
+  - id: ADR-V8-018
+    title: Notification generation is distinct from delivery
+    decision: >-
+      Generating a correct, minimum-necessary, bilingual notification is governed
+      separately from delivering it across a channel; a notification is not
+      delivered because it was generated.
+    status: ACCEPTED
+    context: >-
+      Conflating generation with delivery would let generation imply a delivery
+      guarantee the transport cannot provide.
+    consequence: >-
+      Notification contracts govern generation; delivery is an at-least-once
+      outbox concern with separate delivery evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-27
+    traces_to:
+      - V8-05
+  - id: ADR-V8-019
+    title: Restricted evidence is excluded from routine event and notification content
+    decision: >-
+      Affiliation events and notifications reference governed evidence by identity
+      and never embed restricted evidence; entitled access is separately governed.
+    status: ACCEPTED
+    context: >-
+      Embedding restricted evidence in routine content would disclose it across
+      trust boundaries beyond audience entitlement.
+    consequence: >-
+      Events and notifications carry minimum-necessary content; an event or
+      notification that would carry restricted evidence fails closed.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-29
+    traces_to:
+      - V8-08
+  - id: ADR-V8-020
+    title: Event compatibility is evaluated against known consumers
+    decision: >-
+      Event compatibility is evaluated against known producers and consumers with
+      consumer evidence; a breaking change requires a new event contract version
+      and an evidenced deprecation path.
+    status: ACCEPTED
+    context: >-
+      Presuming universal compatibility, or changing a contract without consumer
+      evidence, would silently break known consumers.
+    consequence: >-
+      Compatibility rules state a compatibility state and name consumer evidence;
+      breaking changes proceed only through an evidenced deprecation path.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-30
+    traces_to:
+      - V8-07
 

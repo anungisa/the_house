@@ -1,0 +1,30 @@
+{
+  "consumer_requirements": 2,
+  "ordering_requirements": 2,
+  "consumers": [
+    {
+      "id": "CONSUMER-V8-001",
+      "idempotency_requirement": "DEDUPLICATION_REQUIRED",
+      "deduplication_scope": "Per event identity within a tenant scope"
+    },
+    {
+      "id": "CONSUMER-V8-002",
+      "idempotency_requirement": "REQUIRED",
+      "deduplication_scope": "Per event identity within a tenant scope"
+    }
+  ],
+  "ordering": [
+    {
+      "id": "ORDER-V8-001",
+      "ordering_requirement": "GLOBAL_NOT_PRESUMED"
+    },
+    {
+      "id": "ORDER-V8-002",
+      "ordering_requirement": "PER_AGGREGATE"
+    }
+  ],
+  "gaps": {
+    "consumers_without_idempotency": [],
+    "ordering_with_presumed_global": []
+  }
+}
