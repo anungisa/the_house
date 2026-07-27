@@ -652,6 +652,21 @@ records:
     authorizes_implementation: false
     closure_record: true
     next_package_disposition: Package 5 authorized for further experience and validation definition only. Validation execution, production interface implementation, runtime code, validated usability, accessibility, or bilingual conformance claims, content approval, measurement collection, and procurement or rollout are not authorized.
+    closure_binding:
+      closure_artifact: V7-G
+      gate: GATE-V7-G4
+      freeze_artifact: PACKAGE-7-4
+      closure_authored_commit: 85451f3
+      closure_effective_commit: 85451f3
+      freeze_commit: 85451f3
+      gate_effective_commit: 85451f3
+      chronology_disposition: Closure record, gate disposition, and freeze are authored and made documentary-effective at the same reviewed freeze commit; no chronology exception is required.
+    effective_date_clarification:
+      gate: GATE-V7-G4
+      documentary_definition_effective_commit: 85451f3
+      implementation_effective_date: NOT_ESTABLISHED
+      production_adoption_date: NOT_ESTABLISHED
+      operational_effective_date: NOT_ESTABLISHED
     approved_at: null
   - id: APP-V7-059
     artifact_id: GATE-V7-G4
@@ -661,6 +676,7 @@ records:
     authorizes_implementation: false
     gate_disposition: EXPERIENCE_VALIDATION_AND_IMPLEMENTATION_HANDOFF_DEFINITION_READY
     requires_freeze_artifact: PACKAGE-7-4
+    effective_commit: 85451f3
     conditions:
       - Corrected Volume 6, frozen Package 1-3, and the Package 3 governance amendment are inherited
       - No unresolved backlog item points to a completed gate
@@ -716,5 +732,6 @@ records:
       inherited_baseline_tag: central-registration-volume-6-v1.0.1
       base_release_tag: central-registration-volume-6-v1.0.1
       base_release_commit: ae11b076
-      note: Package 4 freeze is a separate freeze commit after line-level review; the source baseline, authoring commit, freeze commit, and merge commit identifiers are recorded in the V7-H provenance amendment. Volume 7 is not tagged after Package 4.
+      freeze_commit: 85451f3
+      note: Package 4 was line-level reviewed and frozen at commit 85451f3; the commit-hash bindings for the gate and freeze are recorded in the immediately following provenance-binding commit on the same branch. The Package 4 merge commit is recorded in the V7-H provenance amendment. Volume 7 is not tagged after Package 4.
     approved_at: null

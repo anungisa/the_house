@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T09:37:22.837Z
+Generated: 2026-07-27T09:43:18.672Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,11 +16,11 @@ Generated: 2026-07-27T09:37:22.837Z
 
 ## Summary
 
-- Total findings: 14
-- Errors: 14
+- Total findings: 0
+- Errors: 0
 - Warnings: 0
 - Info: 0
-- Overall: FAIL (experience/service-design integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -91,22 +91,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Provenance & gate-chronology integrity
 
-Errors: 14 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_EFFECTIVE_COMMIT_MISSING [APP-V7-059]: Ratified gate GATE-V7-G4 requires freeze PACKAGE-7-4 but declares no effective commit
-- ERROR PACKAGE_CLOSED_WITHOUT_FREEZE [APP-V7-059]: Gate GATE-V7-G4 is dispositioned while the required freeze PACKAGE-7-4 is not frozen or declares no freeze commit
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-32]: Chapter V7-32 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-33]: Chapter V7-33 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-34]: Chapter V7-34 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-35]: Chapter V7-35 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-36]: Chapter V7-36 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-37]: Chapter V7-37 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-38]: Chapter V7-38 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-39]: Chapter V7-39 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-40]: Chapter V7-40 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-41]: Chapter V7-41 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-42]: Chapter V7-42 uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
-- ERROR CLOSURE_TBD_AFTER_GATE_COMPLETED [V7-G]: Chapter V7-G uses unresolved-at-gate wording for completed gate V7-G4 without a documentary-versus-implementation effectiveness clarification
+- (no findings)
 
 ### Validation-handoff coverage
 
