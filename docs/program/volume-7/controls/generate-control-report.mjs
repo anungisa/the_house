@@ -19,6 +19,8 @@ import { run as runGateG3 } from './gate-volume-7-g3.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-7.mjs';
 import { run as runValidation } from './validation-handoff-volume-7.mjs';
 import { run as runGateG4 } from './gate-volume-7-g4.mjs';
+import { run as runFinalClosure } from './final-closure-volume-7.mjs';
+import { run as runGateG5 } from './gate-volume-7-g5.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -32,7 +34,9 @@ export function collectFindings(ctx) {
     'Gate V7-G3 readiness': runGateG3(ctx),
     'Provenance & gate-chronology integrity': runProvenance(ctx),
     'Validation-handoff coverage': runValidation(ctx),
-    'Gate V7-G4 readiness': runGateG4(ctx)
+    'Gate V7-G4 readiness': runGateG4(ctx),
+    'Integrated closure coverage': runFinalClosure(ctx),
+    'Gate V7-G5 readiness': runGateG5(ctx)
   };
 }
 

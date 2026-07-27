@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T10:05:09.231Z
+Generated: 2026-07-27T10:24:47.093Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T10:05:09.231Z
 
 ## Summary
 
-- Total findings: 1
-- Errors: 0
+- Total findings: 4
+- Errors: 3
 - Warnings: 0
 - Info: 1
-- Overall: PASS (no integrity errors)
+- Overall: FAIL (experience/service-design integrity errors present)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 54 |
+| RATIFIED | 67 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 54 |
+| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 67 |
 | REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 137 |
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 131 |
-| REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 31 |
+| REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 36 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 39 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 62 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 75 |
 
 ## Findings by control
 
@@ -106,6 +106,20 @@ Errors: 0 | Warnings: 0 | Info: 0
 Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
+
+### Integrated closure coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Gate V7-G5 readiness
+
+Errors: 3 | Warnings: 0 | Info: 0
+
+- ERROR GATE_V7_G5_CONDITION_UNMET [GATE-V7-G5]: Condition 1 not satisfied: Package 4 chronology amendment inherited
+- ERROR GATE_V7_G5_CONDITION_UNMET [GATE-V7-G5]: Condition 19 not satisfied: Package 5 and the whole of Volume 7 receive explicit freezes
+- ERROR GATE_V7_G5_CONDITION_UNMET [GATE-V7-G5]: Condition 20 not satisfied: Authoring and closure/freeze commits are properly separated
 
 ## Recorded conditions (from REG-705 approvals)
 

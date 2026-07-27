@@ -1,0 +1,39 @@
+{
+  "non_authoritative": true,
+  "chapters": 67,
+  "blocking_defects": 0,
+  "coverage_gaps": 0,
+  "upstream_gaps": {
+    "interaction": {
+      "actions_without_intent": [],
+      "commands_without_house_authority": [],
+      "surfaces_without_authority_domain": [],
+      "stages_without_surface_or_view": [],
+      "workbenches_without_constraints": [],
+      "missing_required_screen_states": []
+    },
+    "design": {
+      "missing_component_families": [],
+      "underspecified_components": [],
+      "components_without_semantic_source": [],
+      "missing_workbench_postures": [],
+      "missing_complete_states": [],
+      "content_terms_without_bilingual_concept": [],
+      "stages_without_reference_prototype": [],
+      "prototypes_not_labelled_candidate": []
+    },
+    "validation": {
+      "missing_validation_families": [],
+      "underspecified_validation_families": [],
+      "stages_without_evaluation_scenario": [],
+      "missing_scenario_path_classes": [],
+      "underspecified_evaluation_scenarios": [],
+      "missing_validation_activities": [],
+      "underspecified_validation_activities": [],
+      "missing_handoff_classes": [],
+      "underspecified_handoff_artifacts": [],
+      "underspecified_measurement_definitions": [],
+      "underspecified_content_governance_rules": []
+    }
+  }
+}

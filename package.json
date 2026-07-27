@@ -87,6 +87,8 @@
     "governance:provenance:v7": "node docs/program/volume-7/controls/provenance-integrity-volume-7.mjs",
     "governance:validation:v7": "node docs/program/volume-7/controls/validation-handoff-volume-7.mjs",
     "governance:gate4:v7": "node docs/program/volume-7/controls/gate-volume-7-g4.mjs",
+    "governance:finalclosure:v7": "node docs/program/volume-7/controls/final-closure-volume-7.mjs",
+    "governance:gate5:v7": "node docs/program/volume-7/controls/gate-volume-7-g5.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

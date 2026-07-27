@@ -1,0 +1,123 @@
+{
+  "gate": "V7-G5",
+  "disposition": "EXPERIENCE_AND_SERVICE_DESIGN_DEFINITION_COMPLETE",
+  "total_conditions": 20,
+  "satisfied": 17,
+  "unmet": [
+    {
+      "n": 1,
+      "title": "Package 4 chronology amendment inherited"
+    },
+    {
+      "n": 19,
+      "title": "Package 5 and the whole of Volume 7 receive explicit freezes"
+    },
+    {
+      "n": 20,
+      "title": "Authoring and closure/freeze commits are properly separated"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 4 chronology amendment inherited",
+      "satisfied": false
+    },
+    {
+      "n": 2,
+      "title": "Packages 1-4 remain frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "The complete affiliation experience is traceable end to end",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "The House and the Button remain distinct authorities",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "All actions map to governed intents",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "All material surfaces have complete state coverage",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Accessibility covers primary, exception, staff, interruption, and recovery paths",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "English and French concepts retain equivalent governed meanings",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Privacy and restricted-evidence constraints are represented",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Validation protocols exist without validation claims",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Measurement includes privacy and interpretation limits",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Implementation handoffs include authority, state, and evidence requirements",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "House P0 findings have experience coverage",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Every unresolved item has a valid downstream destination",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Deterministic closure analysis reports no blocking defect",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "No record claims usability, accessibility, bilingual, stakeholder, operational, or production validation",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "No production interface, runtime code, final content, procurement, pilot, rollout, or master development plan is created",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Package 5 and the whole of Volume 7 receive explicit freezes",
+      "satisfied": false
+    },
+    {
+      "n": 20,
+      "title": "Authoring and closure/freeze commits are properly separated",
+      "satisfied": false
+    }
+  ]
+}

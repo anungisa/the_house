@@ -374,3 +374,53 @@ records:
     chapter_ref: V7-36
     traces_to:
       - VALF-V7-006
+  - id: ADR-V7-032
+    title: The House and the Button remain distinct authorities
+    decision: The House is the governed system of record and sole lifecycle authority; the Button is a stakeholder experience surface that may request actions but never owns governed state.
+    status: ACCEPTED
+    context: An integrated experience synthesis could blur the boundary between the experience surface and the governed authority it invokes.
+    consequence: Every synthesised experience distinguishes the requesting surface from the House authority and command intent that adjudicates it, and no surface is described as mutating governed state directly.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-44
+  - id: ADR-V7-033
+    title: Account, membership, and authority are distinct
+    decision: Holding an account is not membership, and membership is not authority to act; each is represented separately in the integrated experience.
+    status: ACCEPTED
+    context: A single sign-in or profile experience can be mistaken for conferring membership or governed authority.
+    consequence: The crosswalk keeps actor identity, affiliation state, and delegated authority as separate governed concepts, and no experience implies that authentication alone confers standing.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-45
+  - id: ADR-V7-034
+    title: A Button action is not an independent mutation
+    decision: A stakeholder action is a governed request that resolves to a House command intent; it never performs an independent state change.
+    status: ACCEPTED
+    context: Describing actions as direct outcomes would let the experience layer appear to bypass governed adjudication.
+    consequence: Every action in the catalogue maps to a governed intent with its authority, state, and evidence requirements, and outcomes are attributed to the House, not the surface.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-45
+  - id: ADR-V7-035
+    title: Volume 7 defines experience and authorizes no implementation
+    decision: Volume 7 is an experience and service-design definition; it consolidates prior packages without authorizing production interfaces, runtime code, final content, or rollout.
+    status: ACCEPTED
+    context: A closing synthesis could be misread as a build authorization or as evidence of completed validation.
+    consequence: Every Package 5 record keeps authorizes_implementation false and implementation_status not implemented or not proven, and the closure disposition explicitly withholds implementation authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-53
+  - id: ADR-V7-036
+    title: Package 5 consolidates without revalidating
+    decision: Package 5 synthesises and traces work already ratified in Packages 1 through 4; it does not re-open, re-run, or re-adjudicate any prior validation.
+    status: ACCEPTED
+    context: An integrated closure could be mistaken for a fresh validation pass or for altering frozen prior packages.
+    consequence: Package 5 crosswalks and matrices are projections computed from frozen Package 1 to 4 registers, and no Package 5 record claims usability, accessibility, bilingual, stakeholder, operational, or production validation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-55

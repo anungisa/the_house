@@ -336,7 +336,8 @@ records:
     validation_status: ASSUMED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    downstream_volume: Volume 9 experience and acceptance testing
+    future_blocking_gate: V9-G1
     chapter_ref: V7-31
     traces_to:
       - VIS-V7-001
@@ -349,7 +350,8 @@ records:
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    downstream_volume: Volume 9 experience and acceptance testing
+    future_blocking_gate: V9-G1
     chapter_ref: V7-31
     traces_to:
       - PROTO-V7-001
@@ -391,11 +393,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Observed behaviour and reported experience of qualified representative sessions, accepted by the named authority.
     future_test_class: USABILITY_VALIDATION
-    downstream_volume: Volume 7 validation execution
+    downstream_volume: Volume 9 experience and acceptance testing
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - VALF-V7-004
@@ -406,11 +408,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Combined automated, manual, and assistive-technology evidence under qualified judgement, accepted by the named authority.
     future_test_class: ACCESSIBILITY_VALIDATION
-    downstream_volume: Volume 7 validation execution
+    downstream_volume: Volume 9 experience and acceptance testing
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - VALF-V7-005
@@ -421,11 +423,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Qualified human judgement of institutional equivalence against the canonical concept, accepted by the named authority.
     future_test_class: BILINGUAL_VALIDATION
-    downstream_volume: Volume 7 validation execution
+    downstream_volume: Volume 9 experience and acceptance testing
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - VALF-V7-006
@@ -436,11 +438,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Approved content with validated English and French equivalents, accepted by the content authority.
     future_test_class: CONTENT_VALIDATION
-    downstream_volume: Volume 7 validation execution
+    downstream_volume: Volume 11 support and content operations
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-42
     traces_to:
       - CGOV-V7-001
@@ -451,11 +453,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Consented measurement collection honouring interpretation and aggregation rules, accepted by the named authority.
     future_test_class: MEASUREMENT_VALIDATION
-    downstream_volume: Volume 7 validation execution
+    downstream_volume: Volume 11 support and content operations
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-42
     traces_to:
       - MEAS-V7-001
@@ -466,11 +468,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Implementation and design-review evidence across every conformance dimension, accepted by the named authority.
     future_test_class: CONFORMANCE_VALIDATION
-    downstream_volume: Volume 9 interface validation
+    downstream_volume: Volume 9 experience and acceptance testing
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - HAND-V7-001
@@ -481,11 +483,11 @@ records:
     owner: Aubert Nungisa (Accountable Program Authority)
     required_evidence: Demonstrated capability of each function against its readiness dimension, accepted by the named authority.
     future_test_class: OPERATIONAL_VALIDATION
-    downstream_volume: Volume 7 validation execution
+    downstream_volume: Volume 11 support and content operations
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-42
     traces_to:
       - HAND-V7-004
@@ -498,7 +500,8 @@ records:
     validation_status: ASSUMED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    downstream_volume: Volume 9 experience and acceptance testing
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - VALF-V7-001
@@ -511,7 +514,8 @@ records:
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    downstream_volume: Volume 9 experience and acceptance testing
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - VALF-V7-001
@@ -525,7 +529,8 @@ records:
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G5
+    downstream_volume: Volume 9 experience and acceptance testing
+    future_blocking_gate: V9-G1
     chapter_ref: V7-42
     traces_to:
       - VALF-V7-004
