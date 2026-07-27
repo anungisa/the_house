@@ -99,3 +99,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-11/V11-A.md
     gate: V11-G1
+  - id: V11-B
+    title: Package 1 Post-Merge Provenance Amendment
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-B.md
+    gate: V11-G1
