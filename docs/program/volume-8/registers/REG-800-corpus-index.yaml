@@ -1,0 +1,101 @@
+register_id: REG-800
+name: Volume 8 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V8-00
+    title: Volume Control, Inheritance, and Contract-Definition Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-00-volume-control-inheritance-and-contract-definition-authority.md
+    gate: V8-G1
+  - id: V8-01
+    title: Contract-Authority Doctrine and Definitional Ownership
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-01-contract-authority-doctrine-and-definitional-ownership.md
+    gate: V8-G1
+  - id: V8-02
+    title: Contract-Surface Catalogue and Interaction Taxonomy
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-02-contract-surface-catalogue-and-interaction-taxonomy.md
+    gate: V8-G1
+  - id: V8-03
+    title: Identity, Authorization Context, and Trust Boundaries
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-03-identity-authorization-context-and-trust-boundaries.md
+    gate: V8-G1
+  - id: V8-04
+    title: Command, Query, and Response Semantics
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-04-command-query-and-response-semantics.md
+    gate: V8-G1
+  - id: V8-05
+    title: Event, Outbox, and Webhook Doctrine
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-05-event-outbox-and-webhook-doctrine.md
+    gate: V8-G1
+  - id: V8-06
+    title: Idempotency, Replay, Ordering, and Concurrency
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-06-idempotency-replay-ordering-and-concurrency.md
+    gate: V8-G1
+  - id: V8-07
+    title: Error, Retry, and Reconciliation Taxonomy
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-07-error-retry-and-reconciliation-taxonomy.md
+    gate: V8-G1
+  - id: V8-08
+    title: Data Classification, Privacy, and Message Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-08-data-classification-privacy-and-message-constraints.md
+    gate: V8-G1
+  - id: V8-09
+    title: Provider, File, Batch, and Exchange Foundation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-09-provider-file-batch-and-exchange-foundation.md
+    gate: V8-G1
+  - id: V8-10
+    title: Versioning, Compatibility, and Deprecation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-10-versioning-compatibility-and-deprecation.md
+    gate: V8-G1
+  - id: V8-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-A-package-1-closure-record.md
+    gate: V8-G1

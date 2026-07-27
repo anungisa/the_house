@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "corpus-index.schema.json",
+  "title": "REG-800 Volume 8 Corpus Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-800" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "owner", "approver", "status", "version", "path", "gate"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/definitions/documentId" },
+          "title": { "type": "string" },
+          "owner": { "type": "string" },
+          "approver": { "type": "string" },
+          "status": { "$ref": "common.schema.json#/definitions/documentStatus" },
+          "version": { "$ref": "common.schema.json#/definitions/semver" },
+          "path": { "type": "string", "pattern": "^docs/program/volume-8/.+\\.md$" },
+          "gate": { "$ref": "common.schema.json#/definitions/v8GateId" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "idempotency_requirements": 2,
+  "replay_requirements": 1,
+  "reconciliation_requirements": 1,
+  "exchanges_without_reconciliation": []
+}

@@ -1,0 +1,99 @@
+register_id: REG-804
+name: Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V8-001
+    kind: ASM
+    title: Inherited outbox and idempotency foundation remains available
+    statement: >-
+      Assumes the inherited transactional-outbox and idempotency foundation from the
+      governance kernel remains the delivery mechanism for governed events when
+      contracts are later implemented.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Confirmation against the kernel design at implementation time
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-05
+  - id: ASM-V8-002
+    kind: ASM
+    title: Identity and authorization providers are supplied by inherited volumes
+    statement: >-
+      Assumes authentication and authorization mechanisms are supplied by inherited
+      identity and tenancy volumes; Volume 8 states dependency only.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Cross-reference to inherited identity/authorization design
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-03
+  - id: RISK-V8-001
+    kind: RISK
+    title: Consumer inventory may be incomplete at change time
+    statement: >-
+      Risk that the full set of consumers depending on a contract is not known when a
+      change is proposed, undermining compatibility evidence.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: A maintained consumer inventory validated before changes
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V10-G1
+    chapter_ref: V8-10
+  - id: RISK-V8-002
+    kind: RISK
+    title: Provider assurances may not be evidenced at integration time
+    statement: >-
+      Risk that a provider cannot evidence incident, continuity, exit, data-return, or
+      deletion obligations when integration is later attempted.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Provider assurance evidence recorded before integration
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-09
+  - id: EXC-V8-001
+    kind: EXC
+    title: Migration-exchange source authority provisionally deferred
+    statement: >-
+      Exception permitting the legacy migration-exchange authoritative-source mapping
+      to remain provisional until the migration package validates it.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validated source mapping for migrated records
+    expiry: "2026-12-31"
+    approval_ref: APP-V8-012
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-09
+  - id: TEST-V8-001
+    kind: TEST
+    title: Idempotency and replay conformance test class deferred
+    statement: >-
+      A future conformance test class must prove that repeated and replayed delivery
+      produces no additional governed effect for every at-least-once contract.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Idempotency and replay conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-06
+  - id: TEST-V8-002
+    kind: TEST
+    title: Error-privacy conformance test class deferred
+    statement: >-
+      A future conformance test class must prove that no error message, code, or log
+      leaks restricted, personal, financial, audit, or secret information.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_test_class: Error-message privacy conformance
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-08

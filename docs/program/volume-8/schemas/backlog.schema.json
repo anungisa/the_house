@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "backlog.schema.json",
+  "title": "REG-804 Assumptions, Risks, Exceptions, and Validation Backlog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-804" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "owner", "validation_status", "authorizes_implementation", "implementation_status", "future_blocking_gate", "chapter_ref"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(ASM|RISK|EXC|TEST)-V8-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/backlogKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "owner": { "type": "string" },
+          "required_evidence": { "type": "string" },
+          "future_test_class": { "type": "string" },
+          "downstream_volume": { "type": "string" },
+          "expiry": { "$ref": "common.schema.json#/definitions/isoDate" },
+          "approval_ref": { "type": "string" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "chapter_ref": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

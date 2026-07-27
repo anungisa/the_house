@@ -1,0 +1,314 @@
+register_id: REG-801
+name: Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: CONTRACT-V8-001
+    kind: CONTRACT_SURFACE
+    title: Affiliation command surface
+    statement: >-
+      The governed surface through which affiliation-lifecycle commands are
+      requested. Owned by The House as the system-of-record authority; carries
+      synchronous commands that request governed state changes.
+    interaction_type: SYNCHRONOUS_COMMAND
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Request governed affiliation-lifecycle transitions
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    authentication_dependency: Caller identity established at the House trust boundary
+    authorization_dependency: Reviewer or applicant grant evaluated per authorization context
+    delivery_posture: SYNCHRONOUS_REQUEST_RESPONSE
+    idempotency_requirement: REQUIRED_PER_KEY
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-01
+      - V8-04
+  - id: CONTRACT-V8-002
+    kind: CONTRACT_SURFACE
+    title: Affiliation query surface
+    statement: >-
+      The governed surface through which affiliation status and resources are
+      read. Returns authoritative or bounded-staleness views from the House
+      authoritative source; never changes governed state.
+    interaction_type: SYNCHRONOUS_QUERY
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Read affiliation status and resource representations
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    authentication_dependency: Caller identity established at the House trust boundary
+    authorization_dependency: Read grant scoped to tenant and resource
+    delivery_posture: SYNCHRONOUS_REQUEST_RESPONSE
+    idempotency_requirement: NOT_APPLICABLE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-04
+  - id: CONTRACT-V8-003
+    kind: CONTRACT_SURFACE
+    title: Affiliation domain-event surface
+    statement: >-
+      The governed surface through which committed affiliation state changes are
+      emitted as domain events through the transactional outbox for internal
+      consumers.
+    interaction_type: DOMAIN_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Emit committed affiliation state changes to internal consumers
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    authentication_dependency: Internal trust established within the House boundary
+    authorization_dependency: Consumer subscription grant scoped to tenant
+    delivery_posture: TRANSACTIONAL_OUTBOX
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    ordering_requirement: PER_AGGREGATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-05
+  - id: CONTRACT-V8-004
+    kind: CONTRACT_SURFACE
+    title: Integration-event surface to the experience layer
+    statement: >-
+      The governed surface through which integration events are emitted to the
+      Button experience layer across the experience trust boundary.
+    interaction_type: INTEGRATION_EVENT
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    purpose: Notify the experience layer of governed affiliation outcomes
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    authentication_dependency: Sender authenticated across the experience trust boundary
+    authorization_dependency: Experience-layer subscription grant scoped to tenant
+    delivery_posture: AT_LEAST_ONCE
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    ordering_requirement: PER_AGGREGATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-05
+      - V8-03
+  - id: CONTRACT-V8-005
+    kind: CONTRACT_SURFACE
+    title: Provider webhook-callback surface
+    statement: >-
+      The governed surface through which an external provider delivers callbacks
+      to the platform across the provider trust boundary. At-least-once delivery
+      from outside the trust boundary.
+    interaction_type: WEBHOOK
+    institutional_authority: Provider
+    authoritative_source: Provider outcome record (reconciled against House)
+    purpose: Receive provider callbacks for asynchronous provider operations
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    authentication_dependency: Provider sender authenticated at the provider trust boundary
+    authorization_dependency: Callback grant scoped to the provider integration
+    delivery_posture: AT_LEAST_ONCE
+    idempotency_requirement: REQUIRED_PER_KEY
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-05
+      - V8-09
+  - id: CONTRACT-V8-006
+    kind: CONTRACT_SURFACE
+    title: Membership batch-exchange surface
+    statement: >-
+      The governed surface through which bulk membership records are exchanged as
+      a batch, subject to accept, reject, and quarantine semantics and
+      reconciliation against the authoritative source.
+    interaction_type: BATCH_EXCHANGE
+    institutional_authority: House
+    authoritative_source: House membership register
+    purpose: Exchange bulk membership records with reconciliation
+    classification: PERSONAL_INFORMATION
+    sensitivity: HIGH
+    authentication_dependency: Exchange partner authenticated at the House trust boundary
+    authorization_dependency: Exchange grant scoped to tenant and dataset
+    delivery_posture: SCHEDULED_BATCH
+    idempotency_requirement: DEDUPLICATION_REQUIRED
+    privacy_constraint: >-
+      Personal information limited to exchange partners under named authority; no
+      onward disclosure inferred from participation in the exchange.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-09
+      - V8-08
+  - id: PRODUCER-V8-001
+    kind: PRODUCER
+    title: House affiliation-domain producer
+    statement: >-
+      The House affiliation domain is the sole producer of affiliation domain
+      events, emitting only after a governed state change commits.
+    interaction_type: DOMAIN_EVENT
+    owner: House affiliation domain
+    institutional_authority: House
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-05
+  - id: PRODUCER-V8-002
+    kind: PRODUCER
+    title: House integration-event producer
+    statement: >-
+      The House integration surface is the producer of integration events to the
+      experience layer, driven by the transactional outbox after commit.
+    interaction_type: INTEGRATION_EVENT
+    owner: House integration surface
+    institutional_authority: House
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-05
+  - id: PRODUCER-V8-003
+    kind: PRODUCER
+    title: External provider callback producer
+    statement: >-
+      An external provider is the producer of webhook callbacks delivered to the
+      platform across the provider trust boundary.
+    interaction_type: WEBHOOK
+    owner: External provider (under contract)
+    institutional_authority: Provider
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-09
+  - id: CONSUMER-V8-001
+    kind: CONSUMER
+    title: Experience-layer integration-event consumer
+    statement: >-
+      The Button experience layer consumes integration events under at-least-once
+      delivery and must absorb duplicate delivery idempotently.
+    interaction_type: INTEGRATION_EVENT
+    owner: Button experience layer
+    institutional_authority: Button
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-05
+      - V8-06
+  - id: CONSUMER-V8-002
+    kind: CONSUMER
+    title: Internal projection consumer
+    statement: >-
+      An internal read-model projection consumes affiliation domain events to
+      maintain non-authoritative query projections with a named staleness posture.
+    interaction_type: DOMAIN_EVENT
+    owner: House read-model projection
+    institutional_authority: House
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-02
+    traces_to:
+      - V8-04
+      - V8-06
+  - id: TRUST-V8-001
+    kind: TRUST_BOUNDARY
+    title: Experience-to-House trust boundary
+    statement: >-
+      The boundary between the Button experience layer and The House. Requests
+      crossing it are denied unless authenticated and authorized.
+    fail_closed_posture: >-
+      A request crossing the boundary is denied by default and admitted only when
+      it satisfies the boundary authentication and authorization requirements.
+    trusted_callers:
+      - Button experience layer (authenticated)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-03
+  - id: TRUST-V8-002
+    kind: TRUST_BOUNDARY
+    title: House-to-provider trust boundary
+    statement: >-
+      The boundary between The House and external providers. Provider callbacks
+      and calls are denied unless authenticated, integrity-verified, and
+      authorized.
+    fail_closed_posture: >-
+      A provider interaction crossing the boundary is denied by default and
+      admitted only when it satisfies sender authentication, payload integrity,
+      and callback authorization.
+    trusted_callers:
+      - External providers under contract (authenticated)
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-03
+  - id: AUTHCTX-V8-001
+    kind: AUTHORIZATION_CONTEXT
+    title: Affiliation authorization context
+    statement: >-
+      The context required to authorize an affiliation command or query. Presence
+      within the context is never, by itself, permission to act.
+    context_elements:
+      - Authenticated identity
+      - Tenant or organization scope
+      - Role or grant
+      - Target resource
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-03
+  - id: PROVIDER-V8-001
+    kind: PROVIDER_CONTEXT
+    title: External integration-provider context
+    statement: >-
+      The governed context for an external provider that performs asynchronous
+      operations on behalf of the platform. The provider acquires no governed
+      authority.
+    institutional_authority: Provider
+    incident_notification_dependency: >-
+      Provider must notify the platform of security and availability incidents
+      within a named period.
+    continuity_dependency: >-
+      Provider must sustain agreed service continuity and recovery objectives.
+    exit_dependency: >-
+      Provider must permit an orderly, non-punitive exit on termination.
+    data_return_dependency: >-
+      Provider must return all platform-owned data on exit in a usable form.
+    deletion_evidence_dependency: >-
+      Provider must provide evidence of deletion of platform-owned data after
+      return.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-09

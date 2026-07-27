@@ -1,0 +1,135 @@
+{
+  "gate": "V8-G1",
+  "disposition_target": "API_EVENT_INTEGRATION_CONTRACT_GOVERNANCE_FOUNDATION_READY",
+  "total_conditions": 25,
+  "satisfied": 25,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Released Volume 7 provenance inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Contract authority and amendment rules controlled",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Contract-authority doctrine defined",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Contract-surface catalogue present",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every contract surface names authority and authoritative source",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Identity, authorization-context, and trust-boundary model defined",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Producers and consumers carry ownership",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Command, query, and response semantics governed",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Commands name preconditions and result semantics",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Queries name authority and staleness posture",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Event, outbox, and webhook doctrine defined",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Events name envelope and delivery posture",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Webhooks name authentication, integrity, and replay handling",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Idempotency, replay, ordering, and concurrency defined",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Error and reconciliation taxonomy defined",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Errors name language-neutral codes and privacy constraints",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Data classification and privacy constraints defined",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Provider, file, batch, and exchange foundation defined",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Provider contexts name incident, continuity, exit, return, and deletion obligations",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Versioning, compatibility, and deprecation defined",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Deterministic Package 1 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "No prohibited implementation/coded/executable-contract artifacts created",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Unresolved items have owners, evidence requirements, and future gates",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Package 1 receives line-level review and a separate freeze commit",
+      "satisfied": true
+    }
+  ]
+}
