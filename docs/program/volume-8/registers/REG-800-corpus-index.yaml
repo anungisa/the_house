@@ -524,3 +524,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-53-integrated-contract-traceability-and-volume-8-closure-assessment.md
     gate: V8-G5
+  - id: V8-I
+    title: Volume 8 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-I-volume-8-completion-and-release-freeze-record.md
+    gate: V8-G5
