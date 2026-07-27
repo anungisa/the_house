@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T11:06:34.532Z
+Generated: 2026-07-27T11:10:17.676Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T11:06:34.532Z
 
 ## Summary
 
-- Total findings: 1
-- Errors: 1
+- Total findings: 0
+- Errors: 0
 - Warnings: 0
 - Info: 0
-- Overall: FAIL (contract-governance integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 11 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 12 |
 | REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 15 |
 | REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 22 |
 | REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 4 |
 | REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 7 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 12 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 15 |
 
 ## Findings by control
 
@@ -61,10 +61,34 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V8-G1 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V8_G1_CONDITION_UNMET [GATE-V8-G1]: Condition 25 not satisfied: Package 1 receives line-level review and a separate freeze commit
+- (no findings)
 
 ## Recorded conditions (from REG-805 approvals)
 
-- (none)
+- APP-V8-014 (GATE-V8-G1): Released Volume 7 provenance (central-registration-volume-7-v1.0.0) is inherited
+- APP-V8-014 (GATE-V8-G1): Contract authority and amendment rules are controlled
+- APP-V8-014 (GATE-V8-G1): The contract-authority doctrine is defined
+- APP-V8-014 (GATE-V8-G1): The contract-surface catalogue is present
+- APP-V8-014 (GATE-V8-G1): Every contract surface names an institutional authority and an authoritative source
+- APP-V8-014 (GATE-V8-G1): The identity, authorization-context, and trust-boundary model is defined
+- APP-V8-014 (GATE-V8-G1): Producers and consumers carry ownership
+- APP-V8-014 (GATE-V8-G1): Command, query, and response semantics are governed
+- APP-V8-014 (GATE-V8-G1): Commands name preconditions and result semantics
+- APP-V8-014 (GATE-V8-G1): Queries name authority and staleness posture
+- APP-V8-014 (GATE-V8-G1): Event, outbox, and webhook doctrine is defined
+- APP-V8-014 (GATE-V8-G1): Events name an envelope and a delivery posture
+- APP-V8-014 (GATE-V8-G1): Webhooks name authentication, integrity, and replay handling
+- APP-V8-014 (GATE-V8-G1): Idempotency, replay, ordering, and concurrency are defined
+- APP-V8-014 (GATE-V8-G1): The error and reconciliation taxonomy is defined
+- APP-V8-014 (GATE-V8-G1): Errors name language-neutral canonical codes and privacy constraints
+- APP-V8-014 (GATE-V8-G1): Data classification and privacy constraints are defined
+- APP-V8-014 (GATE-V8-G1): Provider, file, batch, and exchange foundation is defined
+- APP-V8-014 (GATE-V8-G1): Provider contexts name incident, continuity, exit, return, and deletion obligations
+- APP-V8-014 (GATE-V8-G1): Versioning, compatibility, and deprecation are defined with consumer evidence
+- APP-V8-014 (GATE-V8-G1): Deterministic Package 1 analysis completes without blocking defects
+- APP-V8-014 (GATE-V8-G1): No prohibited implementation, coded, or executable-contract artifacts are created
+- APP-V8-014 (GATE-V8-G1): Unresolved items carry owners, evidence requirements, and future gates
+- APP-V8-014 (GATE-V8-G1): No record authorizes implementation
+- APP-V8-014 (GATE-V8-G1): Package 1 receives line-level review and a separate freeze commit

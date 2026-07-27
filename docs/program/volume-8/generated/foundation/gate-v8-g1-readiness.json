@@ -2,14 +2,9 @@
   "gate": "V8-G1",
   "disposition_target": "API_EVENT_INTEGRATION_CONTRACT_GOVERNANCE_FOUNDATION_READY",
   "total_conditions": 25,
-  "satisfied": 24,
-  "unmet": [
-    {
-      "n": 25,
-      "title": "Package 1 receives line-level review and a separate freeze commit"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 25,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -134,7 +129,7 @@
     {
       "n": 25,
       "title": "Package 1 receives line-level review and a separate freeze commit",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

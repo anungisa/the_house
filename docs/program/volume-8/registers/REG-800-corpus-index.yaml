@@ -91,3 +91,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-10-versioning-compatibility-and-deprecation.md
     gate: V8-G1
+  - id: V8-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-A-package-1-closure-record.md
+    gate: V8-G1

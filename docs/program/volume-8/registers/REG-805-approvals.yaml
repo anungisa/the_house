@@ -91,3 +91,145 @@ records:
       authoritative-source mapping to remain provisional until validated by the
       migration package before its future blocking gate.
     approved_at: null
+  - id: APP-V8-013
+    artifact_id: V8-A
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: true
+    closure_binding:
+      closure_artifact: V8-A
+      gate: GATE-V8-G1
+      freeze_artifact: PACKAGE-8-1
+      closure_authored_commit: PENDING_PROVENANCE_BINDING
+      closure_effective_commit: PENDING_PROVENANCE_BINDING
+      freeze_commit: PENDING_PROVENANCE_BINDING
+      gate_effective_commit: PENDING_PROVENANCE_BINDING
+      chronology_disposition: >-
+        The substantive authoring commit precedes the closure commit; the closure,
+        gate disposition, and freeze are recorded together in the closure commit
+        and bound to it in the immediately following provenance-binding commit.
+    effective_date_clarification:
+      gate: GATE-V8-G1
+      documentary_definition_effective_commit: PENDING_PROVENANCE_BINDING
+      implementation_effective_date: >-
+        Not applicable. Package 1 authorizes no implementation; documentary
+        definition effectiveness is distinct from any future implementation date.
+    next_package_disposition: >-
+      Package 2 is authorized for affiliation command, query, resource, and
+      response contract definition only. No executable API implementation,
+      endpoint, wire schema, SDK, broker or transport configuration, runtime
+      authorization, identity or cryptographic configuration, provider
+      integration, procurement, pilot, rollout, or launch is authorized.
+    approved_at: null
+  - id: APP-V8-014
+    artifact_id: GATE-V8-G1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: API_EVENT_INTEGRATION_CONTRACT_GOVERNANCE_FOUNDATION_READY
+    requires_freeze_artifact: PACKAGE-8-1
+    effective_commit: PENDING_PROVENANCE_BINDING
+    gate_effective_commit: PENDING_PROVENANCE_BINDING
+    conditions:
+      - Released Volume 7 provenance (central-registration-volume-7-v1.0.0) is inherited
+      - Contract authority and amendment rules are controlled
+      - The contract-authority doctrine is defined
+      - The contract-surface catalogue is present
+      - Every contract surface names an institutional authority and an authoritative source
+      - The identity, authorization-context, and trust-boundary model is defined
+      - Producers and consumers carry ownership
+      - Command, query, and response semantics are governed
+      - Commands name preconditions and result semantics
+      - Queries name authority and staleness posture
+      - Event, outbox, and webhook doctrine is defined
+      - Events name an envelope and a delivery posture
+      - Webhooks name authentication, integrity, and replay handling
+      - Idempotency, replay, ordering, and concurrency are defined
+      - The error and reconciliation taxonomy is defined
+      - Errors name language-neutral canonical codes and privacy constraints
+      - Data classification and privacy constraints are defined
+      - Provider, file, batch, and exchange foundation is defined
+      - Provider contexts name incident, continuity, exit, return, and deletion obligations
+      - Versioning, compatibility, and deprecation are defined with consumer evidence
+      - Deterministic Package 1 analysis completes without blocking defects
+      - No prohibited implementation, coded, or executable-contract artifacts are created
+      - Unresolved items carry owners, evidence requirements, and future gates
+      - No record authorizes implementation
+      - Package 1 receives line-level review and a separate freeze commit
+    approved_at: null
+  - id: APP-V8-015
+    artifact_id: PACKAGE-8-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Frozen artifacts are superseded, never overwritten. A narrow
+      post-merge provenance amendment is recorded as V8-B. Volume 8 is not tagged
+      after Package 1.
+    frozen: true
+    frozen_artifacts:
+      - id: V8-00
+        version: 1.0.0
+      - id: V8-01
+        version: 1.0.0
+      - id: V8-02
+        version: 1.0.0
+      - id: V8-03
+        version: 1.0.0
+      - id: V8-04
+        version: 1.0.0
+      - id: V8-05
+        version: 1.0.0
+      - id: V8-06
+        version: 1.0.0
+      - id: V8-07
+        version: 1.0.0
+      - id: V8-08
+        version: 1.0.0
+      - id: V8-09
+        version: 1.0.0
+      - id: V8-10
+        version: 1.0.0
+      - id: V8-A
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-8-1
+      substantive_authoring_commit: PENDING_PROVENANCE_BINDING
+      closure_authored_commit: PENDING_PROVENANCE_BINDING
+      closure_effective_commit: PENDING_PROVENANCE_BINDING
+      gate_effective_commit: PENDING_PROVENANCE_BINDING
+      freeze_commit: PENDING_PROVENANCE_BINDING
+      provenance_binding_commit: PENDING_PROVENANCE_BINDING
+      required_sequence: >-
+        Substantive authoring precedes closure; closure and freeze precede the
+        provenance binding.
+      actual_sequence: >-
+        Substantive authoring in the first commit; closure, gate disposition, and
+        freeze in the second commit; commit-hash binding in the third commit.
+      sequence_disposition: COMPLIANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      branch_base_commit: 624081e
+      authoring_commit: PENDING_PROVENANCE_BINDING
+      closure_freeze_commit: PENDING_PROVENANCE_BINDING
+      freeze_commit: PENDING_PROVENANCE_BINDING
+      effective_commit: PENDING_PROVENANCE_BINDING
+      note: >-
+        Package 1 was authored in a substantive authoring commit and frozen in a
+        separate closure commit after line-level review; the commit-hash bindings
+        for the closure, gate, and freeze are recorded in the immediately
+        following provenance-binding commit on the same branch. The Package 1
+        merge commit is recorded in the V8-B provenance amendment. Volume 8 is not
+        tagged after Package 1.
+    approved_at: null
