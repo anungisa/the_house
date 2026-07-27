@@ -1,12 +1,13 @@
 {
   "gate": "V6-G5",
-  "dispositioned": false,
-  "disposition": null,
-  "closure_record": null,
+  "dispositioned": true,
+  "disposition": "SECURITY_PRIVACY_COMPLIANCE_ACCESSIBILITY_AND_TRUST_DEFINITION_COMPLETE",
+  "closure_record": "V6-I",
   "completed_gates": [
     "V6-G1",
     "V6-G2",
     "V6-G3",
-    "V6-G4"
+    "V6-G4",
+    "V6-G5"
   ]
 }

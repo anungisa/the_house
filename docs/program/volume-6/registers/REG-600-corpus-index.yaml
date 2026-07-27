@@ -483,3 +483,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-51-integrated-protection-traceability-and-volume-6-closure-assessment.md
     gate: V6-G5
+  - id: V6-I
+    title: Volume 6 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-I-volume-6-completion-and-release-freeze-record.md
+    gate: V6-G5

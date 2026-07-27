@@ -919,3 +919,227 @@ records:
       - Integrated protection traceability and Volume 6 closure assessment records the deterministic integrity review.
       - Projections are non-authoritative; closure requires zero blocking errors and zero implementation authorizations; authorizes no implementation.
     approved_at: null
+
+  # ==== Package 5: completion record, Gate V6-G5, package freeze, whole-volume freeze ====
+  - id: APP-V6-069
+    artifact_id: V6-I
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Volume 6 completion and release-freeze record consolidates Package 5, records the Gate V6-G5 disposition, and authorizes Volume 7.
+      - Records the Package 5 freeze, whole-volume freeze, amendment process, and release-tag doctrine, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-070
+    artifact_id: GATE-V6-G5
+    approver_role: Executive Acceptance Authority (Nolan)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: SECURITY_PRIVACY_COMPLIANCE_ACCESSIBILITY_AND_TRUST_DEFINITION_COMPLETE
+    closure_record: V6-I
+    conditions:
+      - Package 4 provenance is unambiguous.
+      - Packages 1 through 4 are inherited without altering frozen substantive content.
+      - No unresolved item points to a completed Volume 6 gate or V6-G5.
+      - One integrated trust, protection, and assurance baseline exists.
+      - Assets, actors, boundaries, threats, rights, obligations, and controls are traceable.
+      - Identity, authentication, authorization, delegation, and privilege remain distinct.
+      - Resource-aware authorization retains organization, resource, jurisdiction, assignment, action, lifecycle, sensitivity, delegation, policy, purpose, and administrative context.
+      - Restricted evidence and privileged operations receive heightened controls.
+      - Privacy purpose, minimization, notice, rights, disclosure, retention, and records dependencies are defined.
+      - Compliance applicability, policy, control, evidence, exception, and assurance relationships are defined.
+      - Financial and affiliation authorities remain segregated.
+      - Accessibility is defined through user needs and complete task flows.
+      - English and French governed meanings are required to remain equivalent.
+      - Accommodation paths preserve authority, privacy, evidence, and equivalent outcomes.
+      - Events, incidents, breach determinations, and notifications remain distinct.
+      - Vulnerability, exception, expiry, remediation, and retest requirements are defined.
+      - Dependency failures preserve institutional authority and fail closed where required.
+      - Backup, restore, integrity verification, reconciliation, technical recovery, and business acceptance remain distinct.
+      - Provider incident, continuity, exit, return, deletion, and assurance controls are defined.
+      - Metrics, exercises, operational proof, self-attestation, and independent assurance remain distinct.
+      - House P0 findings have protection definitions and future evidence mappings.
+      - Every unresolved item has an owner, evidence requirement, and downstream destination.
+      - Downstream constraints and the executive brief introduce no new authority.
+      - The deterministic Volume 6 closure analysis completes without blocking defects.
+      - No record claims implemented controls, compliance, conformance, operational readiness, verified restore, continuity readiness, provider assurance, or independent assurance without evidence.
+      - No executable policy, IAM configuration, cryptographic configuration, runbook, monitoring rule, incident procedure, recovery automation, infrastructure, procurement, delivery sequence, staffing plan, cost plan, pilot, rollout, or master development plan is created.
+      - No record authorizes implementation.
+      - Package 5 and the whole Volume 6 corpus receive separate explicit freeze approvals.
+    approved_at: null
+  - id: APP-V6-071
+    artifact_id: PACKAGE-6-5
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-I
+    frozen: true
+    frozen_artifacts:
+      - id: V6-41
+        version: 1.0.0
+      - id: V6-42
+        version: 1.0.0
+      - id: V6-43
+        version: 1.0.0
+      - id: V6-44
+        version: 1.0.0
+      - id: V6-45
+        version: 1.0.0
+      - id: V6-46
+        version: 1.0.0
+      - id: V6-47
+        version: 1.0.0
+      - id: V6-48
+        version: 1.0.0
+      - id: V6-49
+        version: 1.0.0
+      - id: V6-50
+        version: 1.0.0
+      - id: V6-51
+        version: 1.0.0
+      - id: V6-I
+        version: 1.0.0
+    conditions:
+      - Package 5 (PACKAGE-6-5) is frozen at version 1.0.0 across all deliverables (V6-41 through V6-51 and V6-I).
+      - After freeze, changes require the recorded amendment process (V6-00.5).
+      - The freeze is committed separately from authoring.
+    approved_at: null
+  - id: APP-V6-072
+    artifact_id: VOLUME-6
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: V6-I
+    frozen: true
+    frozen_artifacts:
+      - id: V6-00
+        version: 1.0.0
+      - id: V6-01
+        version: 1.0.0
+      - id: V6-02
+        version: 1.0.0
+      - id: V6-03
+        version: 1.0.0
+      - id: V6-04
+        version: 1.0.0
+      - id: V6-05
+        version: 1.0.0
+      - id: V6-06
+        version: 1.0.0
+      - id: V6-07
+        version: 1.0.0
+      - id: V6-08
+        version: 1.0.0
+      - id: V6-09
+        version: 1.0.0
+      - id: V6-10
+        version: 1.0.0
+      - id: V6-11
+        version: 1.0.0
+      - id: V6-12
+        version: 1.0.0
+      - id: V6-13
+        version: 1.0.0
+      - id: V6-14
+        version: 1.0.0
+      - id: V6-15
+        version: 1.0.0
+      - id: V6-16
+        version: 1.0.0
+      - id: V6-17
+        version: 1.0.0
+      - id: V6-18
+        version: 1.0.0
+      - id: V6-19
+        version: 1.0.0
+      - id: V6-20
+        version: 1.0.0
+      - id: V6-21
+        version: 1.0.0
+      - id: V6-22
+        version: 1.0.0
+      - id: V6-23
+        version: 1.0.0
+      - id: V6-24
+        version: 1.0.0
+      - id: V6-25
+        version: 1.0.0
+      - id: V6-26
+        version: 1.0.0
+      - id: V6-27
+        version: 1.0.0
+      - id: V6-28
+        version: 1.0.0
+      - id: V6-29
+        version: 1.0.0
+      - id: V6-30
+        version: 1.0.0
+      - id: V6-31
+        version: 1.0.0
+      - id: V6-32
+        version: 1.0.0
+      - id: V6-33
+        version: 1.0.0
+      - id: V6-34
+        version: 1.0.0
+      - id: V6-35
+        version: 1.0.0
+      - id: V6-36
+        version: 1.0.0
+      - id: V6-37
+        version: 1.0.0
+      - id: V6-38
+        version: 1.0.0
+      - id: V6-39
+        version: 1.0.0
+      - id: V6-40
+        version: 1.0.0
+      - id: V6-41
+        version: 1.0.0
+      - id: V6-42
+        version: 1.0.0
+      - id: V6-43
+        version: 1.0.0
+      - id: V6-44
+        version: 1.0.0
+      - id: V6-45
+        version: 1.0.0
+      - id: V6-46
+        version: 1.0.0
+      - id: V6-47
+        version: 1.0.0
+      - id: V6-48
+        version: 1.0.0
+      - id: V6-49
+        version: 1.0.0
+      - id: V6-50
+        version: 1.0.0
+      - id: V6-51
+        version: 1.0.0
+      - id: V6-A
+        version: 1.0.0
+      - id: V6-B
+        version: 1.0.0
+      - id: V6-C
+        version: 1.0.0
+      - id: V6-D
+        version: 1.0.0
+      - id: V6-E
+        version: 1.0.0
+      - id: V6-F
+        version: 1.0.0
+      - id: V6-G
+        version: 1.0.0
+      - id: V6-H
+        version: 1.0.0
+      - id: V6-I
+        version: 1.0.0
+    conditions:
+      - The whole Volume 6 corpus (VOLUME-6) is frozen at version 1.0.0 and covers V6-00 through V6-51 and V6-A through V6-I.
+      - The freeze additionally covers registers REG-600 through REG-605, the register schemas, the deterministic governance controls, and the non-authoritative generated projections, and inherits central-registration-volume-5-v1.0.0 without modification.
+      - After freeze, changes require the recorded additive amendment process, which preserves frozen substantive content and superseded history.
+    approved_at: null

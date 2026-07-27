@@ -1,6 +1,6 @@
 # Volume 6 Integrated Final-Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T00:58:27.032Z
+Generated: 2026-07-27T01:05:10.882Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 5 consolidates Packages
@@ -16,7 +16,7 @@ Generated: 2026-07-27T00:58:27.032Z
 - REG-602 records: 110
 - REG-603 records: 57
 - REG-604 records: 71
-- REG-605 records: 68
+- REG-605 records: 72
 
 ## Asset authority and classification coverage
 
