@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decisions.schema.json",
+  "title": "REG-903 Volume 9 Decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-903" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "decision", "status", "context", "consequence", "validation_status", "authorizes_implementation", "implementation_status", "chapter_ref"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^ADR-V9-[0-9]{3}$" },
+          "title": { "type": "string" },
+          "decision": { "type": "string" },
+          "status": { "type": "string", "enum": ["ACCEPTED", "SUPERSEDED", "PROPOSED"] },
+          "context": { "type": "string" },
+          "consequence": { "type": "string" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "chapter_ref": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

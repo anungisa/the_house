@@ -1,0 +1,1736 @@
+register_id: REG-901
+name: Volume 9 Quality Attributes, Test Objects, Institutional Invariants, and Coverage
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: QUALITY-V9-001
+    kind: QUALITY_ATTRIBUTE
+    title: Correctness of governed lifecycle behaviour
+    statement: >-
+      Correctness of governed lifecycle behaviour is a governed quality attribute of The House v2
+      that Volume 9 defines as a future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of correctness of governed lifecycle behaviour across
+      governed operations for the Canadian National Sport Organization.
+    authoritative_source: Governance Kernel state-machine specification
+    applicable_test_levels:
+      - DOMAIN_BEHAVIOUR_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: CONTRACT
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-002
+    kind: QUALITY_ATTRIBUTE
+    title: Tenant isolation
+    statement: >-
+      Tenant isolation is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of tenant isolation across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Row-level-security and tenancy specification
+    applicable_test_levels:
+      - SECURITY_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: INTEGRATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-003
+    kind: QUALITY_ATTRIBUTE
+    title: Authorization integrity
+    statement: >-
+      Authorization integrity is a governed quality attribute of The House v2 that Volume 9 defines
+      as a future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of authorization integrity across governed operations for
+      the Canadian National Sport Organization.
+    authoritative_source: Authorization policy and permission model
+    applicable_test_levels:
+      - SECURITY_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: CONTRACT
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-004
+    kind: QUALITY_ATTRIBUTE
+    title: Auditability
+    statement: >-
+      Auditability is a governed quality attribute of The House v2 that Volume 9 defines as a future
+      test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of auditability across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Append-only audit specification
+    applicable_test_levels:
+      - INTEGRATION_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: INTEGRATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-005
+    kind: QUALITY_ATTRIBUTE
+    title: Evidence integrity
+    statement: >-
+      Evidence integrity is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of evidence integrity across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Immutable evidence-metadata specification
+    applicable_test_levels:
+      - DOCUMENT_REVIEW
+      - DOCUMENT_REVIEW
+    required_evidence_tier: DOCUMENTARY_DEFINITION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-006
+    kind: QUALITY_ATTRIBUTE
+    title: Idempotency
+    statement: >-
+      Idempotency is a governed quality attribute of The House v2 that Volume 9 defines as a future
+      test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of idempotency across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Idempotency-key and dedupe specification
+    applicable_test_levels:
+      - INTEGRATION_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: INTEGRATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-007
+    kind: QUALITY_ATTRIBUTE
+    title: Data quality
+    statement: >-
+      Data quality is a governed quality attribute of The House v2 that Volume 9 defines as a future
+      test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of data quality across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Data-quality and referential-integrity specification
+    applicable_test_levels:
+      - DATA_QUALITY_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: INTEGRATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-008
+    kind: QUALITY_ATTRIBUTE
+    title: Migration safety
+    statement: >-
+      Migration safety is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of migration safety across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Schema-migration and rollback specification
+    applicable_test_levels:
+      - MIGRATION_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: MIGRATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-009
+    kind: QUALITY_ATTRIBUTE
+    title: Contract fidelity
+    statement: >-
+      Contract fidelity is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of contract fidelity across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: API and event contract specifications
+    applicable_test_levels:
+      - CONTRACT_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: CONTRACT
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-010
+    kind: QUALITY_ATTRIBUTE
+    title: Workflow determinism
+    statement: >-
+      Workflow determinism is a governed quality attribute of The House v2 that Volume 9 defines as
+      a future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of workflow determinism across governed operations for
+      the Canadian National Sport Organization.
+    authoritative_source: Deterministic-workflow specification
+    applicable_test_levels:
+      - WORKFLOW_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: SYSTEM
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-011
+    kind: QUALITY_ATTRIBUTE
+    title: Security posture
+    statement: >-
+      Security posture is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of security posture across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Security-control specification
+    applicable_test_levels:
+      - SECURITY_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: SYSTEM
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-012
+    kind: QUALITY_ATTRIBUTE
+    title: Privacy protection
+    statement: >-
+      Privacy protection is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of privacy protection across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Privacy and data-minimization specification
+    applicable_test_levels:
+      - PRIVACY_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: SYSTEM
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-013
+    kind: QUALITY_ATTRIBUTE
+    title: Accessibility conformance
+    statement: >-
+      Accessibility conformance is a governed quality attribute of The House v2 that Volume 9
+      defines as a future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of accessibility conformance across governed operations
+      for the Canadian National Sport Organization.
+    authoritative_source: Accessibility conformance specification
+    applicable_test_levels:
+      - ACCESSIBILITY_MANUAL_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: MANUAL_VERIFICATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-014
+    kind: QUALITY_ATTRIBUTE
+    title: Bilingual equivalence
+    statement: >-
+      Bilingual equivalence is a governed quality attribute of The House v2 that Volume 9 defines as
+      a future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of bilingual equivalence across governed operations for
+      the Canadian National Sport Organization.
+    authoritative_source: Bilingual-equivalence specification
+    applicable_test_levels:
+      - BILINGUAL_SEMANTIC_REVIEW
+      - DOCUMENT_REVIEW
+    required_evidence_tier: MANUAL_VERIFICATION
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-015
+    kind: QUALITY_ATTRIBUTE
+    title: Resilience
+    statement: >-
+      Resilience is a governed quality attribute of The House v2 that Volume 9 defines as a future
+      test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of resilience across governed operations for the Canadian
+      National Sport Organization.
+    authoritative_source: Resilience and fault-tolerance specification
+    applicable_test_levels:
+      - RESILIENCE_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: OPERATIONAL_EXERCISE
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-016
+    kind: QUALITY_ATTRIBUTE
+    title: Recoverability
+    statement: >-
+      Recoverability is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of recoverability across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Backup, restore, and recovery specification
+    applicable_test_levels:
+      - RECOVERY_EXERCISE
+      - DOCUMENT_REVIEW
+    required_evidence_tier: OPERATIONAL_EXERCISE
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-017
+    kind: QUALITY_ATTRIBUTE
+    title: Observability
+    statement: >-
+      Observability is a governed quality attribute of The House v2 that Volume 9 defines as a
+      future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of observability across governed operations for the
+      Canadian National Sport Organization.
+    authoritative_source: Observability and telemetry specification
+    applicable_test_levels:
+      - OBSERVABILITY_TEST
+      - DOCUMENT_REVIEW
+    required_evidence_tier: SYSTEM
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: QUALITY-V9-018
+    kind: QUALITY_ATTRIBUTE
+    title: Operational readiness
+    statement: >-
+      Operational readiness is a governed quality attribute of The House v2 that Volume 9 defines as
+      a future test obligation; no property herein is asserted as achieved.
+    institutional_purpose: >-
+      Protects the institutional integrity of operational readiness across governed operations for
+      the Canadian National Sport Organization.
+    authoritative_source: Operational-readiness specification
+    applicable_test_levels:
+      - OPERATIONAL_EXERCISE
+      - DOCUMENT_REVIEW
+    required_evidence_tier: OPERATIONAL_EXERCISE
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-001
+    kind: INSTITUTIONAL_INVARIANT
+    title: No cross-tenant disclosure
+    statement: A governed read or write must never expose or mutate data belonging to another tenant.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no cross-tenant disclosure."
+    authoritative_source: Tenancy and row-level-security specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-002
+    kind: INSTITUTIONAL_INVARIANT
+    title: No direct governed-state mutation
+    statement: No domain module may mutate a governed lifecycle state outside the Governance Kernel.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no direct governed-state mutation."
+    authoritative_source: Governance Kernel authority specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-003
+    kind: INSTITUTIONAL_INVARIANT
+    title: No unknown transition
+    statement: An unknown or unresolved lifecycle transition must fail closed and never mutate state.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no unknown transition."
+    authoritative_source: Governance Kernel state-machine specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-004
+    kind: INSTITUTIONAL_INVARIANT
+    title: No unknown guard execution
+    statement: An unknown guard code must block the transition and never be treated as satisfied.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no unknown guard execution."
+    authoritative_source: Guard-registry specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-005
+    kind: INSTITUTIONAL_INVARIANT
+    title: No implementation authorization from documentation
+    statement: >-
+      No documentary artifact may authorize construction, execution, provider selection, or
+      acceptance.
+    institutional_purpose: >-
+      Preserves a non-negotiable institutional guarantee: no implementation authorization from
+      documentation.
+    authoritative_source: Volume 9 governance charter
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-006
+    kind: INSTITUTIONAL_INVARIANT
+    title: No real production data in test
+    statement: >-
+      No real production personal, financial, or restricted evidence data may be used for test
+      without a separate purpose-limited authorization.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no real production data in test."
+    authoritative_source: Test-data governance specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-007
+    kind: INSTITUTIONAL_INVARIANT
+    title: No evidence substitution
+    statement: A lower evidence tier must never be substituted for a required higher tier.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no evidence substitution."
+    authoritative_source: Evidence-hierarchy specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: INVAR-V9-008
+    kind: INSTITUTIONAL_INVARIANT
+    title: No acceptance without evidence
+    statement: >-
+      No release or acceptance may be inferred in the absence of the required, reproducible
+      evidence.
+    institutional_purpose: "Preserves a non-negotiable institutional guarantee: no acceptance without evidence."
+    authoritative_source: Acceptance and release-evidence specification
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    negative_expectation_required: true
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-02
+  - id: OBJECT-V9-001
+    kind: TEST_OBJECT
+    title: "Test object: Governance Kernel"
+    statement: >-
+      Governance Kernel is defined as a governed object under future test; Volume 9 names it without
+      asserting that it has been tested.
+    object_type: APPLICATION_SERVICE
+    authoritative_source: Governance Kernel specification
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: OBJECT-V9-002
+    kind: TEST_OBJECT
+    title: "Test object: Guard registry"
+    statement: >-
+      Guard registry is defined as a governed object under future test; Volume 9 names it without
+      asserting that it has been tested.
+    object_type: COMPONENT
+    authoritative_source: Guard registry specification
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: OBJECT-V9-003
+    kind: TEST_OBJECT
+    title: "Test object: Transactional outbox processor"
+    statement: >-
+      Transactional outbox processor is defined as a governed object under future test; Volume 9
+      names it without asserting that it has been tested.
+    object_type: WORKER_SERVICE
+    authoritative_source: Transactional outbox processor specification
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: OBJECT-V9-004
+    kind: TEST_OBJECT
+    title: "Test object: Row-level-security policy"
+    statement: >-
+      Row-level-security policy is defined as a governed object under future test; Volume 9 names it
+      without asserting that it has been tested.
+    object_type: DATABASE_POLICY
+    authoritative_source: Row-level-security policy specification
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: OBJECT-V9-005
+    kind: TEST_OBJECT
+    title: "Test object: Schema migration set"
+    statement: >-
+      Schema migration set is defined as a governed object under future test; Volume 9 names it
+      without asserting that it has been tested.
+    object_type: MIGRATION_ARTIFACT
+    authoritative_source: Schema migration set specification
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: OBJECT-V9-006
+    kind: TEST_OBJECT
+    title: "Test object: API and event contracts"
+    statement: >-
+      API and event contracts is defined as a governed object under future test; Volume 9 names it
+      without asserting that it has been tested.
+    object_type: CONTRACT_SURFACE
+    authoritative_source: API and event contracts specification
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: COVERAGE-V9-001
+    kind: COVERAGE_RECORD
+    title: Institutional-invariant coverage
+    statement: >-
+      Institutional-invariant coverage is a documentary coverage record; it records definitional
+      traceability only.
+    coverage_dimension: Institutional-invariant coverage
+    coverage_basis: Every institutional invariant is traced to at least one future test requirement.
+    measurement_posture: Definitional traceability only; no execution coverage is claimed.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: COVERAGE-V9-002
+    kind: COVERAGE_RECORD
+    title: Test-level coverage
+    statement: >-
+      Test-level coverage is a documentary coverage record; it records definitional traceability
+      only.
+    coverage_dimension: Test-level coverage
+    coverage_basis: Every defined test level is traced to at least one object under test.
+    measurement_posture: Definitional taxonomy coverage only; no measured coverage is claimed.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: LEVEL-V9-001
+    kind: TEST_LEVEL
+    title: "Test level: DOCUMENT_REVIEW"
+    statement: >-
+      The DOCUMENT_REVIEW level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: DOCUMENT_REVIEW
+    object_under_test: Governed objects appropriate to the DOCUMENT_REVIEW level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the DOCUMENT_REVIEW level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: No runtime environment; documentary or static analysis only.
+    independence_requirement: AUTHOR_SELF_CHECK
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-002
+    kind: TEST_LEVEL
+    title: "Test level: SCHEMA_VALIDATION"
+    statement: >-
+      The SCHEMA_VALIDATION level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: SCHEMA_VALIDATION
+    object_under_test: Governed objects appropriate to the SCHEMA_VALIDATION level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the SCHEMA_VALIDATION level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: No runtime environment; documentary or static analysis only.
+    independence_requirement: AUTHOR_SELF_CHECK
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-003
+    kind: TEST_LEVEL
+    title: "Test level: STATIC_ANALYSIS"
+    statement: >-
+      The STATIC_ANALYSIS level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: STATIC_ANALYSIS
+    object_under_test: Governed objects appropriate to the STATIC_ANALYSIS level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the STATIC_ANALYSIS level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: No runtime environment; documentary or static analysis only.
+    independence_requirement: AUTHOR_SELF_CHECK
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-004
+    kind: TEST_LEVEL
+    title: "Test level: UNIT_TEST"
+    statement: >-
+      The UNIT_TEST level is defined in the Volume 9 taxonomy as a future test level; its definition
+      asserts no executed test.
+    test_level: UNIT_TEST
+    object_under_test: Governed objects appropriate to the UNIT_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the UNIT_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Local development or component-test environment class.
+    independence_requirement: AUTHOR_SELF_CHECK
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-005
+    kind: TEST_LEVEL
+    title: "Test level: COMPONENT_TEST"
+    statement: >-
+      The COMPONENT_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: COMPONENT_TEST
+    object_under_test: Governed objects appropriate to the COMPONENT_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the COMPONENT_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Local development or component-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-006
+    kind: TEST_LEVEL
+    title: "Test level: APPLICATION_SERVICE_TEST"
+    statement: >-
+      The APPLICATION_SERVICE_TEST level is defined in the Volume 9 taxonomy as a future test level;
+      its definition asserts no executed test.
+    test_level: APPLICATION_SERVICE_TEST
+    object_under_test: Governed objects appropriate to the APPLICATION_SERVICE_TEST level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the APPLICATION_SERVICE_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-007
+    kind: TEST_LEVEL
+    title: "Test level: DOMAIN_BEHAVIOUR_TEST"
+    statement: >-
+      The DOMAIN_BEHAVIOUR_TEST level is defined in the Volume 9 taxonomy as a future test level;
+      its definition asserts no executed test.
+    test_level: DOMAIN_BEHAVIOUR_TEST
+    object_under_test: Governed objects appropriate to the DOMAIN_BEHAVIOUR_TEST level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the DOMAIN_BEHAVIOUR_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-008
+    kind: TEST_LEVEL
+    title: "Test level: DATABASE_BEHAVIOUR_TEST"
+    statement: >-
+      The DATABASE_BEHAVIOUR_TEST level is defined in the Volume 9 taxonomy as a future test level;
+      its definition asserts no executed test.
+    test_level: DATABASE_BEHAVIOUR_TEST
+    object_under_test: Governed objects appropriate to the DATABASE_BEHAVIOUR_TEST level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the DATABASE_BEHAVIOUR_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-009
+    kind: TEST_LEVEL
+    title: "Test level: CONTRACT_TEST"
+    statement: >-
+      The CONTRACT_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: CONTRACT_TEST
+    object_under_test: Governed objects appropriate to the CONTRACT_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the CONTRACT_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Integration-test environment class.
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-010
+    kind: TEST_LEVEL
+    title: "Test level: EVENT_CONTRACT_TEST"
+    statement: >-
+      The EVENT_CONTRACT_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: EVENT_CONTRACT_TEST
+    object_under_test: Governed objects appropriate to the EVENT_CONTRACT_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the EVENT_CONTRACT_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Integration-test environment class.
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-011
+    kind: TEST_LEVEL
+    title: "Test level: PROVIDER_CONTRACT_TEST"
+    statement: >-
+      The PROVIDER_CONTRACT_TEST level is defined in the Volume 9 taxonomy as a future test level;
+      its definition asserts no executed test.
+    test_level: PROVIDER_CONTRACT_TEST
+    object_under_test: Governed objects appropriate to the PROVIDER_CONTRACT_TEST level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the PROVIDER_CONTRACT_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Integration-test environment class.
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-012
+    kind: TEST_LEVEL
+    title: "Test level: INTEGRATION_TEST"
+    statement: >-
+      The INTEGRATION_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: INTEGRATION_TEST
+    object_under_test: Governed objects appropriate to the INTEGRATION_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the INTEGRATION_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Integration-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-013
+    kind: TEST_LEVEL
+    title: "Test level: SYSTEM_TEST"
+    statement: >-
+      The SYSTEM_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: SYSTEM_TEST
+    object_under_test: Governed objects appropriate to the SYSTEM_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the SYSTEM_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-014
+    kind: TEST_LEVEL
+    title: "Test level: END_TO_END_TEST"
+    statement: >-
+      The END_TO_END_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: END_TO_END_TEST
+    object_under_test: Governed objects appropriate to the END_TO_END_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the END_TO_END_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-015
+    kind: TEST_LEVEL
+    title: "Test level: WORKFLOW_TEST"
+    statement: >-
+      The WORKFLOW_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: WORKFLOW_TEST
+    object_under_test: Governed objects appropriate to the WORKFLOW_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the WORKFLOW_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-016
+    kind: TEST_LEVEL
+    title: "Test level: DATA_QUALITY_TEST"
+    statement: >-
+      The DATA_QUALITY_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: DATA_QUALITY_TEST
+    object_under_test: Governed objects appropriate to the DATA_QUALITY_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the DATA_QUALITY_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Integration-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-017
+    kind: TEST_LEVEL
+    title: "Test level: MIGRATION_TEST"
+    statement: >-
+      The MIGRATION_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: MIGRATION_TEST
+    object_under_test: Governed objects appropriate to the MIGRATION_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the MIGRATION_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-018
+    kind: TEST_LEVEL
+    title: "Test level: SECURITY_TEST"
+    statement: >-
+      The SECURITY_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: SECURITY_TEST
+    object_under_test: Governed objects appropriate to the SECURITY_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the SECURITY_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-019
+    kind: TEST_LEVEL
+    title: "Test level: PRIVACY_TEST"
+    statement: >-
+      The PRIVACY_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: PRIVACY_TEST
+    object_under_test: Governed objects appropriate to the PRIVACY_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the PRIVACY_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-020
+    kind: TEST_LEVEL
+    title: "Test level: ACCESSIBILITY_STATIC_TEST"
+    statement: >-
+      The ACCESSIBILITY_STATIC_TEST level is defined in the Volume 9 taxonomy as a future test
+      level; its definition asserts no executed test.
+    test_level: ACCESSIBILITY_STATIC_TEST
+    object_under_test: >-
+      Governed objects appropriate to the ACCESSIBILITY_STATIC_TEST level (see REG-901 test
+      objects).
+    permitted_evidence: >-
+      Evidence appropriate to the ACCESSIBILITY_STATIC_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-021
+    kind: TEST_LEVEL
+    title: "Test level: ACCESSIBILITY_MANUAL_TEST"
+    statement: >-
+      The ACCESSIBILITY_MANUAL_TEST level is defined in the Volume 9 taxonomy as a future test
+      level; its definition asserts no executed test.
+    test_level: ACCESSIBILITY_MANUAL_TEST
+    object_under_test: >-
+      Governed objects appropriate to the ACCESSIBILITY_MANUAL_TEST level (see REG-901 test
+      objects).
+    permitted_evidence: >-
+      Evidence appropriate to the ACCESSIBILITY_MANUAL_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-022
+    kind: TEST_LEVEL
+    title: "Test level: ASSISTIVE_TECHNOLOGY_TEST"
+    statement: >-
+      The ASSISTIVE_TECHNOLOGY_TEST level is defined in the Volume 9 taxonomy as a future test
+      level; its definition asserts no executed test.
+    test_level: ASSISTIVE_TECHNOLOGY_TEST
+    object_under_test: >-
+      Governed objects appropriate to the ASSISTIVE_TECHNOLOGY_TEST level (see REG-901 test
+      objects).
+    permitted_evidence: >-
+      Evidence appropriate to the ASSISTIVE_TECHNOLOGY_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-023
+    kind: TEST_LEVEL
+    title: "Test level: BILINGUAL_SEMANTIC_REVIEW"
+    statement: >-
+      The BILINGUAL_SEMANTIC_REVIEW level is defined in the Volume 9 taxonomy as a future test
+      level; its definition asserts no executed test.
+    test_level: BILINGUAL_SEMANTIC_REVIEW
+    object_under_test: >-
+      Governed objects appropriate to the BILINGUAL_SEMANTIC_REVIEW level (see REG-901 test
+      objects).
+    permitted_evidence: >-
+      Evidence appropriate to the BILINGUAL_SEMANTIC_REVIEW level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-024
+    kind: TEST_LEVEL
+    title: "Test level: PERFORMANCE_TEST"
+    statement: >-
+      The PERFORMANCE_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: PERFORMANCE_TEST
+    object_under_test: Governed objects appropriate to the PERFORMANCE_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the PERFORMANCE_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-025
+    kind: TEST_LEVEL
+    title: "Test level: CAPACITY_TEST"
+    statement: >-
+      The CAPACITY_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: CAPACITY_TEST
+    object_under_test: Governed objects appropriate to the CAPACITY_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the CAPACITY_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: System-test environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-026
+    kind: TEST_LEVEL
+    title: "Test level: RESILIENCE_TEST"
+    statement: >-
+      The RESILIENCE_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: RESILIENCE_TEST
+    object_under_test: Governed objects appropriate to the RESILIENCE_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the RESILIENCE_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Recovery-exercise environment class.
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-027
+    kind: TEST_LEVEL
+    title: "Test level: BACKUP_RESTORE_TEST"
+    statement: >-
+      The BACKUP_RESTORE_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: BACKUP_RESTORE_TEST
+    object_under_test: Governed objects appropriate to the BACKUP_RESTORE_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the BACKUP_RESTORE_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Recovery-exercise environment class.
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-028
+    kind: TEST_LEVEL
+    title: "Test level: RECOVERY_EXERCISE"
+    statement: >-
+      The RECOVERY_EXERCISE level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: RECOVERY_EXERCISE
+    object_under_test: Governed objects appropriate to the RECOVERY_EXERCISE level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the RECOVERY_EXERCISE level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Recovery-exercise environment class.
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-029
+    kind: TEST_LEVEL
+    title: "Test level: OBSERVABILITY_TEST"
+    statement: >-
+      The OBSERVABILITY_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: OBSERVABILITY_TEST
+    object_under_test: Governed objects appropriate to the OBSERVABILITY_TEST level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the OBSERVABILITY_TEST level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Production-path validation environment class.
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-030
+    kind: TEST_LEVEL
+    title: "Test level: DEPLOYMENT_PATH_TEST"
+    statement: >-
+      The DEPLOYMENT_PATH_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: DEPLOYMENT_PATH_TEST
+    object_under_test: Governed objects appropriate to the DEPLOYMENT_PATH_TEST level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the DEPLOYMENT_PATH_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Production-path validation environment class.
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-031
+    kind: TEST_LEVEL
+    title: "Test level: OPERATIONAL_EXERCISE"
+    statement: >-
+      The OPERATIONAL_EXERCISE level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: OPERATIONAL_EXERCISE
+    object_under_test: Governed objects appropriate to the OPERATIONAL_EXERCISE level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the OPERATIONAL_EXERCISE level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Production-path validation environment class.
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-032
+    kind: TEST_LEVEL
+    title: "Test level: USER_ACCEPTANCE_TEST"
+    statement: >-
+      The USER_ACCEPTANCE_TEST level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: USER_ACCEPTANCE_TEST
+    object_under_test: Governed objects appropriate to the USER_ACCEPTANCE_TEST level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the USER_ACCEPTANCE_TEST level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Independent-assurance or pre-production environment class.
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-033
+    kind: TEST_LEVEL
+    title: "Test level: INDEPENDENT_ASSURANCE"
+    statement: >-
+      The INDEPENDENT_ASSURANCE level is defined in the Volume 9 taxonomy as a future test level;
+      its definition asserts no executed test.
+    test_level: INDEPENDENT_ASSURANCE
+    object_under_test: Governed objects appropriate to the INDEPENDENT_ASSURANCE level (see REG-901 test objects).
+    permitted_evidence: >-
+      Evidence appropriate to the INDEPENDENT_ASSURANCE level, at or above the required evidence
+      tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Independent-assurance or pre-production environment class.
+    independence_requirement: INDEPENDENT_ASSURANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: LEVEL-V9-034
+    kind: TEST_LEVEL
+    title: "Test level: RELEASE_ACCEPTANCE"
+    statement: >-
+      The RELEASE_ACCEPTANCE level is defined in the Volume 9 taxonomy as a future test level; its
+      definition asserts no executed test.
+    test_level: RELEASE_ACCEPTANCE
+    object_under_test: Governed objects appropriate to the RELEASE_ACCEPTANCE level (see REG-901 test objects).
+    permitted_evidence: Evidence appropriate to the RELEASE_ACCEPTANCE level, at or above the required evidence tier.
+    prohibited_inference: >-
+      Definition of this item confers no assertion that any corresponding test has been authored,
+      provisioned, executed, or passed; it is a documentary obligation only.
+    environment_dependency: Independent-assurance or pre-production environment class.
+    independence_requirement: EXECUTIVE_ACCEPTANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-03
+  - id: EVIDTIER-V9-001
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 1: DOCUMENTARY_DEFINITION"
+    statement: >-
+      The DOCUMENTARY_DEFINITION evidence tier ranks the strength of evidence; a lower tier may
+      never substitute for a required higher tier.
+    evidence_tier: DOCUMENTARY_DEFINITION
+    tier_rank: 1
+    substitution_prohibition: >-
+      Evidence at the DOCUMENTARY_DEFINITION tier may not be substituted for any required tier
+      ranked above it (rank 1).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-002
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 2: EXPERT_REVIEW"
+    statement: >-
+      The EXPERT_REVIEW evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: EXPERT_REVIEW
+    tier_rank: 2
+    substitution_prohibition: >-
+      Evidence at the EXPERT_REVIEW tier may not be substituted for any required tier ranked above
+      it (rank 2).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-003
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 3: STATIC_ANALYSIS"
+    statement: >-
+      The STATIC_ANALYSIS evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: STATIC_ANALYSIS
+    tier_rank: 3
+    substitution_prohibition: >-
+      Evidence at the STATIC_ANALYSIS tier may not be substituted for any required tier ranked above
+      it (rank 3).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-004
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 4: UNIT_COMPONENT"
+    statement: >-
+      The UNIT_COMPONENT evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: UNIT_COMPONENT
+    tier_rank: 4
+    substitution_prohibition: >-
+      Evidence at the UNIT_COMPONENT tier may not be substituted for any required tier ranked above
+      it (rank 4).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-005
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 5: CONTRACT"
+    statement: >-
+      The CONTRACT evidence tier ranks the strength of evidence; a lower tier may never substitute
+      for a required higher tier.
+    evidence_tier: CONTRACT
+    tier_rank: 5
+    substitution_prohibition: >-
+      Evidence at the CONTRACT tier may not be substituted for any required tier ranked above it
+      (rank 5).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-006
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 6: INTEGRATION"
+    statement: >-
+      The INTEGRATION evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: INTEGRATION
+    tier_rank: 6
+    substitution_prohibition: >-
+      Evidence at the INTEGRATION tier may not be substituted for any required tier ranked above it
+      (rank 6).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-007
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 7: SYSTEM"
+    statement: >-
+      The SYSTEM evidence tier ranks the strength of evidence; a lower tier may never substitute for
+      a required higher tier.
+    evidence_tier: SYSTEM
+    tier_rank: 7
+    substitution_prohibition: >-
+      Evidence at the SYSTEM tier may not be substituted for any required tier ranked above it (rank
+      7).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-008
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 8: END_TO_END"
+    statement: >-
+      The END_TO_END evidence tier ranks the strength of evidence; a lower tier may never substitute
+      for a required higher tier.
+    evidence_tier: END_TO_END
+    tier_rank: 8
+    substitution_prohibition: >-
+      Evidence at the END_TO_END tier may not be substituted for any required tier ranked above it
+      (rank 8).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-009
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 9: MANUAL_VERIFICATION"
+    statement: >-
+      The MANUAL_VERIFICATION evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: MANUAL_VERIFICATION
+    tier_rank: 9
+    substitution_prohibition: >-
+      Evidence at the MANUAL_VERIFICATION tier may not be substituted for any required tier ranked
+      above it (rank 9).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-010
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 10: ASSISTIVE_TECHNOLOGY"
+    statement: >-
+      The ASSISTIVE_TECHNOLOGY evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: ASSISTIVE_TECHNOLOGY
+    tier_rank: 10
+    substitution_prohibition: >-
+      Evidence at the ASSISTIVE_TECHNOLOGY tier may not be substituted for any required tier ranked
+      above it (rank 10).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-011
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 11: MIGRATION"
+    statement: >-
+      The MIGRATION evidence tier ranks the strength of evidence; a lower tier may never substitute
+      for a required higher tier.
+    evidence_tier: MIGRATION
+    tier_rank: 11
+    substitution_prohibition: >-
+      Evidence at the MIGRATION tier may not be substituted for any required tier ranked above it
+      (rank 11).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-012
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 12: OPERATIONAL_EXERCISE"
+    statement: >-
+      The OPERATIONAL_EXERCISE evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: OPERATIONAL_EXERCISE
+    tier_rank: 12
+    substitution_prohibition: >-
+      Evidence at the OPERATIONAL_EXERCISE tier may not be substituted for any required tier ranked
+      above it (rank 12).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-013
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 13: PRODUCTION_PATH"
+    statement: >-
+      The PRODUCTION_PATH evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: PRODUCTION_PATH
+    tier_rank: 13
+    substitution_prohibition: >-
+      Evidence at the PRODUCTION_PATH tier may not be substituted for any required tier ranked above
+      it (rank 13).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-014
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 14: INDEPENDENT_ASSURANCE"
+    statement: >-
+      The INDEPENDENT_ASSURANCE evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: INDEPENDENT_ASSURANCE
+    tier_rank: 14
+    substitution_prohibition: >-
+      Evidence at the INDEPENDENT_ASSURANCE tier may not be substituted for any required tier ranked
+      above it (rank 14).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVIDTIER-V9-015
+    kind: EVIDENCE_TIER
+    title: "Evidence tier 15: EXECUTIVE_ACCEPTANCE"
+    statement: >-
+      The EXECUTIVE_ACCEPTANCE evidence tier ranks the strength of evidence; a lower tier may never
+      substitute for a required higher tier.
+    evidence_tier: EXECUTIVE_ACCEPTANCE
+    tier_rank: 15
+    substitution_prohibition: >-
+      Evidence at the EXECUTIVE_ACCEPTANCE tier may not be substituted for any required tier ranked
+      above it (rank 15).
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: INDEP-V9-001
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: AUTHOR_SELF_CHECK"
+    statement: >-
+      The AUTHOR_SELF_CHECK independence level defines the degree of separation between the author
+      of an artifact and the party attesting to its evidence.
+    independence_level: AUTHOR_SELF_CHECK
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-002
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: PEER_REVIEW"
+    statement: >-
+      The PEER_REVIEW independence level defines the degree of separation between the author of an
+      artifact and the party attesting to its evidence.
+    independence_level: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-003
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: DOMAIN_REVIEW"
+    statement: >-
+      The DOMAIN_REVIEW independence level defines the degree of separation between the author of an
+      artifact and the party attesting to its evidence.
+    independence_level: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-004
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: SECURITY_OR_PRIVACY_REVIEW"
+    statement: >-
+      The SECURITY_OR_PRIVACY_REVIEW independence level defines the degree of separation between the
+      author of an artifact and the party attesting to its evidence.
+    independence_level: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-005
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: ACCESSIBILITY_OR_BILINGUAL_REVIEW"
+    statement: >-
+      The ACCESSIBILITY_OR_BILINGUAL_REVIEW independence level defines the degree of separation
+      between the author of an artifact and the party attesting to its evidence.
+    independence_level: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-006
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: OPERATIONAL_REVIEW"
+    statement: >-
+      The OPERATIONAL_REVIEW independence level defines the degree of separation between the author
+      of an artifact and the party attesting to its evidence.
+    independence_level: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-007
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: INDEPENDENT_ASSURANCE"
+    statement: >-
+      The INDEPENDENT_ASSURANCE independence level defines the degree of separation between the
+      author of an artifact and the party attesting to its evidence.
+    independence_level: INDEPENDENT_ASSURANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: INDEP-V9-008
+    kind: INDEPENDENCE_LEVEL
+    title: "Independence level: EXECUTIVE_ACCEPTANCE"
+    statement: >-
+      The EXECUTIVE_ACCEPTANCE independence level defines the degree of separation between the
+      author of an artifact and the party attesting to its evidence.
+    independence_level: EXECUTIVE_ACCEPTANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-09
+  - id: CTRL-V9-001
+    kind: CONTROL
+    title: Structural and schema conformance control
+    statement: >-
+      Structural and schema conformance control is a deterministic, non-authoritative Volume 9
+      governance control.
+    control_purpose: Validates YAML, schema conformance, identifier uniqueness, and quality/test-governance guards.
+    control_determinism: >-
+      Deterministic: identical corpus input yields identical findings; the control never confers
+      ratification.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: CTRL-V9-002
+    kind: CONTROL
+    title: Cross-reference integrity control
+    statement: >-
+      Cross-reference integrity control is a deterministic, non-authoritative Volume 9 governance
+      control.
+    control_purpose: Validates that every intra-corpus reference resolves or is inherited.
+    control_determinism: >-
+      Deterministic: identical corpus input yields identical findings; the control never confers
+      ratification.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: CTRL-V9-003
+    kind: CONTROL
+    title: Quality and master-test foundation control
+    statement: >-
+      Quality and master-test foundation control is a deterministic, non-authoritative Volume 9
+      governance control.
+    control_purpose: Projects non-authoritative foundation coverage from the corpus.
+    control_determinism: >-
+      Deterministic: identical corpus input yields identical findings; the control never confers
+      ratification.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: CTRL-V9-004
+    kind: CONTROL
+    title: Provenance-integrity control
+    statement: >-
+      Provenance-integrity control is a deterministic, non-authoritative Volume 9 governance
+      control.
+    control_purpose: Proves recorded provenance is coherent and role-correct, fail closed.
+    control_determinism: >-
+      Deterministic: identical corpus input yields identical findings; the control never confers
+      ratification.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: CTRL-V9-005
+    kind: CONTROL
+    title: Gate V9-G1 readiness control
+    statement: >-
+      Gate V9-G1 readiness control is a deterministic, non-authoritative Volume 9 governance
+      control.
+    control_purpose: Evaluates the twenty-nine Gate V9-G1 conditions against corpus evidence.
+    control_determinism: >-
+      Deterministic: identical corpus input yields identical findings; the control never confers
+      ratification.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00

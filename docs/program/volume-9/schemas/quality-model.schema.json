@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "quality-model.schema.json",
+  "title": "REG-901 Quality Attributes, Test Objects, Institutional Invariants, and Coverage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-901" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "title", "statement", "validation_status", "authorizes_implementation", "implementation_status", "chapter_ref"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(QUALITY|OBJECT|INVAR|COVERAGE|LEVEL|EVIDTIER|INDEP|CTRL)-V9-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/qualityAttributeKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "institutional_purpose": { "type": "string" },
+          "authoritative_source": { "type": "string" },
+          "authority_domain": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "applicable_test_levels": { "type": "array", "items": { "$ref": "common.schema.json#/definitions/testLevel" } },
+          "required_evidence_tier": { "$ref": "common.schema.json#/definitions/evidenceTier" },
+          "prohibited_inference": { "type": "string" },
+          "acceptance_authority": { "type": "string" },
+          "negative_expectation_required": { "type": "boolean" },
+          "object_type": { "type": "string" },
+          "object_under_test": { "type": "string" },
+          "coverage_dimension": { "type": "string" },
+          "coverage_basis": { "type": "string" },
+          "measurement_posture": { "type": "string" },
+          "test_level": { "$ref": "common.schema.json#/definitions/testLevel" },
+          "permitted_evidence": { "type": "string" },
+          "environment_dependency": { "type": "string" },
+          "independence_requirement": { "$ref": "common.schema.json#/definitions/independenceLevel" },
+          "evidence_tier": { "$ref": "common.schema.json#/definitions/evidenceTier" },
+          "tier_rank": { "type": "integer" },
+          "substitution_prohibition": { "type": "string" },
+          "independence_level": { "$ref": "common.schema.json#/definitions/independenceLevel" },
+          "control_purpose": { "type": "string" },
+          "control_determinism": { "type": "string" },
+          "future_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "chapter_ref": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

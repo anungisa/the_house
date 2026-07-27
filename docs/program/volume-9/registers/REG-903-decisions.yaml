@@ -1,0 +1,49 @@
+register_id: REG-903
+name: Volume 9 Decisions
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V9-001
+    title: Test definition precedes test execution
+    decision: Volume 9 Package 1 defines test obligations only and authorizes no execution.
+    status: ACCEPTED
+    context: >-
+      The program requires a governed definition of what must be tested before any test is written
+      or run.
+    consequence: Downstream volumes inherit a stable, versioned test-definition baseline.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: ADR-V9-002
+    title: Evidence is tiered and non-substitutable
+    decision: >-
+      Evidence is ranked into fifteen tiers and a lower tier may not substitute for a required
+      higher tier.
+    status: ACCEPTED
+    context: Assurance claims must be grounded in evidence of adequate strength.
+    consequence: Acceptance decisions can be audited against a fixed evidence hierarchy.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: ADR-V9-003
+    title: Real production data is prohibited in Package 1 test definition
+    decision: No test data requirement or environment class may name real production data.
+    status: ACCEPTED
+    context: Privacy and records obligations forbid unauthorized use of real data.
+    consequence: A separate purpose-limited authorization is required before any real data use.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00
+  - id: ADR-V9-004
+    title: Gate V9-G1 disposes readiness, not implementation
+    decision: Gate V9-G1 confers foundation readiness only and authorizes no construction.
+    status: ACCEPTED
+    context: The program separates documentary readiness from implementation authority.
+    consequence: Package 2 may proceed to bounded test-definition only.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-00

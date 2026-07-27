@@ -78,6 +78,12 @@ jobs:
       - name: Run Volume 8 provenance-integrity control
         run: npm run governance:provenance:v8
 
+      - name: Run Volume 9 governance controls
+        run: npm run governance:check:v9
+
+      - name: Run Volume 9 provenance-integrity control
+        run: npm run governance:provenance:v9
+
       - name: Upload non-authoritative control report
         if: always()
         uses: actions/upload-artifact@v4
@@ -155,4 +161,20 @@ jobs:
         with:
           name: provenance-integrity-report-v8
           path: docs/program/volume-8/generated/provenance/package-1-provenance-integrity-report.md
+          if-no-files-found: warn
+
+      - name: Upload Volume 9 non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report-v9
+          path: docs/program/volume-9/generated/governance-control-report.md
+          if-no-files-found: warn
+
+      - name: Upload Volume 9 non-authoritative provenance-integrity report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-integrity-report-v9
+          path: docs/program/volume-9/generated/provenance/package-1-provenance-integrity-report.md
           if-no-files-found: warn

@@ -1,0 +1,6 @@
+{
+  "package": null,
+  "closure_effective_equals_freeze": false,
+  "gate_effective_equals_freeze": false,
+  "gate_freeze_effectiveness": "VIOLATED"
+}
