@@ -1143,3 +1143,24 @@ records:
       - The freeze additionally covers registers REG-600 through REG-605, the register schemas, the deterministic governance controls, and the non-authoritative generated projections, and inherits central-registration-volume-5-v1.0.0 without modification.
       - After freeze, changes require the recorded additive amendment process, which preserves frozen substantive content and superseded history.
     approved_at: null
+
+  # ==== Package 5: provenance amendment ====
+  - id: APP-V6-073
+    artifact_id: V6-J
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    base_commit: 0dd7804
+    amendment_process: Narrow additive provenance amendment; preserves Gate V6-G5, the Package 5 freeze, and the whole-volume freeze; does not reopen substantive Volume 6 content.
+    package_provenance:
+      source_snapshot_commit: ac8f18e
+      closure_freeze_commit: 83d1776
+      original_package_merge_commit: 0dd7804
+      inherited_baseline_tag: central-registration-volume-5-v1.0.0
+      note: 'Package 5 branched from the Package 4 provenance-amendment baseline ac8f18e; authoring, tooling, and register-expansion commit 6e1b29c; closure and freeze commit 83d1776; original package merge 0dd7804. Commit 0dd7804 is the original Package 5 merge, not the final release state; the canonical final Volume 6 release pointer is the annotated tag central-registration-volume-6-v1.0.0 published on this amendment mainline merge. Provenance-amendment authoring and merge commits are recorded in the amendment history, mirroring the Package 1 through Package 4 provenance discipline.'
+    conditions:
+      - Completes machine-readable Package 5 provenance after mainline merge.
+      - Preserves the Gate V6-G5 disposition, the PACKAGE-6-5 freeze, and the VOLUME-6 freeze.
+      - Reopens no substantive Volume 6 content and authorizes no implementation.
+    approved_at: null
