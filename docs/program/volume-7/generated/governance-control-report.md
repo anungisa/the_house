@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T08:20:44.055Z
+Generated: 2026-07-27T08:26:13.682Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T08:20:44.055Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 38 |
+| RATIFIED | 39 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 38 |
+| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 39 |
 | REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 122 |
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 118 |
 | REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 26 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 29 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 44 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 45 |
 
 ## Findings by control
 
