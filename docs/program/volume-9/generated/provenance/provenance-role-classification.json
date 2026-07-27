@@ -1,8 +1,10 @@
 {
-  "package": null,
+  "package": "PACKAGE-9-1",
   "classification": {
-    "unknown": "V9_B_PROVENANCE_AMENDMENT_MERGE"
+    "e29e6e0": "PRE_MERGE_PROVENANCE_BINDING",
+    "fa4475f": "V9_B_PROVENANCE_AMENDMENT_AUTHORING",
+    "9b98752": "V9_B_PROVENANCE_AMENDMENT_MERGE"
   },
-  "binding_not_conflated_with_amendment": false,
-  "role_classification": "VIOLATED"
+  "binding_not_conflated_with_amendment": true,
+  "role_classification": "SATISFIED"
 }

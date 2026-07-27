@@ -107,3 +107,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-B-package-1-provenance-amendment.md
     gate: V9-G1
+  - id: V9-B-1
+    title: Package 1 Provenance-Role Classification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-B-1-package-1-provenance-role-classification.md
+    gate: V9-G1
