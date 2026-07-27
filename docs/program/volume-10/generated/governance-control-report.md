@@ -1,6 +1,6 @@
 # Volume 10 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T20:54:52.880Z
+Generated: 2026-07-27T20:55:32.764Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It is not a source of truth, does not confer ratification, and
@@ -14,11 +14,11 @@ Generated: 2026-07-27T20:54:52.880Z
 
 ## Summary
 
-- Total findings: 4
-- Errors: 1
+- Total findings: 3
+- Errors: 0
 - Warnings: 0
 - Info: 3
-- Overall: FAIL (delivery-planning-governance integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -83,9 +83,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V10-G3 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V10_G3_CONDITION_UNMET [GATE-V10-G3]: Condition 40 not satisfied: Genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation is preserved
+- (no findings)
 
 ### Final-closure coverage
 

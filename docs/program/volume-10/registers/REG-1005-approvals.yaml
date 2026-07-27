@@ -758,14 +758,14 @@ records:
       closure_artifact: V10-E
       gate: GATE-V10-G3
       freeze_artifact: PACKAGE-10-3
-      closure_authored_commit: PENDING_V10_F_BINDING
-      closure_effective_commit: PENDING_V10_F_BINDING
-      freeze_commit: PENDING_V10_F_BINDING
-      gate_effective_commit: PENDING_V10_F_BINDING
+      closure_authored_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      closure_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      freeze_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      gate_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
       chronology_disposition: PENDING_PROVENANCE_BINDING
     effective_date_clarification:
       gate: GATE-V10-G3
-      documentary_definition_effective_commit: PENDING_V10_F_BINDING
+      documentary_definition_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
       implementation_effective_date: >-
         Not applicable. Documentary completeness is distinct from implementation
         completeness; Volume 10 authorizes no implementation.
@@ -789,8 +789,8 @@ records:
     gate_disposition: MASTER_DEVELOPMENT_PLAN_AND_RELEASE_ROADMAP_DEFINITION_COMPLETE
     requires_freeze_artifact: PACKAGE-10-3
     base_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
-    effective_commit: PENDING_V10_F_BINDING
-    gate_effective_commit: PENDING_V10_F_BINDING
+    effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+    gate_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
     approved_at: null
 
   # ---------------------------------------------------------------------------
@@ -819,10 +819,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-10-3
       substantive_authoring_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
-      closure_authored_commit: PENDING_V10_F_BINDING
-      closure_effective_commit: PENDING_V10_F_BINDING
-      gate_effective_commit: PENDING_V10_F_BINDING
-      freeze_commit: PENDING_V10_F_BINDING
+      closure_authored_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      closure_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      gate_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      freeze_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
       provenance_binding_commit: PENDING_V10-F_AMENDMENT
       required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
       actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
@@ -838,12 +838,12 @@ records:
       source_baseline_commit: c6fc6a5b60034524e486472e2b46556eeab0fc60
       branch_base_commit: c6fc6a5b60034524e486472e2b46556eeab0fc60
       authoring_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
-      closure_authored_commit: PENDING_V10_F_BINDING
-      closure_effective_commit: PENDING_V10_F_BINDING
-      closure_freeze_commit: PENDING_V10_F_BINDING
-      freeze_commit: PENDING_V10_F_BINDING
-      gate_effective_commit: PENDING_V10_F_BINDING
-      effective_commit: PENDING_V10_F_BINDING
+      closure_authored_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      closure_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      closure_freeze_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      freeze_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      gate_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
       provenance_binding_commit: PENDING_V10-F_AMENDMENT
       original_package_merge_commit: PENDING_V10-F_AMENDMENT
       note: >-
