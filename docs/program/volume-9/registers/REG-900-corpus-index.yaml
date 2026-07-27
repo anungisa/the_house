@@ -435,3 +435,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-H-package-4-provenance-amendment.md
     gate: V9-G4
+  - id: V9-H-1
+    title: Package 4 Provenance-Role Classification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-H-1-package-4-provenance-role-classification.md
+    gate: V9-G4
