@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T13:49:01.439Z
+Generated: 2026-07-27T13:54:18.749Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,7 +26,7 @@ Generated: 2026-07-27T13:49:01.439Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 51 |
+| RATIFIED | 52 |
 
 ## Register health
 
@@ -37,7 +37,7 @@ Generated: 2026-07-27T13:49:01.439Z
 | REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 88 |
 | REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 33 |
 | REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 19 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 60 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 61 |
 
 ## Findings by control
 
