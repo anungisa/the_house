@@ -507,3 +507,63 @@ records:
         binding ece3d7e; original Package 2 merge 8ce710a. Volume 9 is not tagged
         after Package 2.
     approved_at: null
+  - id: APP-V9-034
+    artifact_id: V9-D-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    requires_freeze_artifact: PACKAGE-9-2
+    amendment_process: >-
+      Additive governance amendment. Records the complete, role-correct Volume 9
+      Package 2 provenance-role classification, including the V9-D provenance
+      amendment's own authoring and merge commits. It corrects no earlier record;
+      it completes the V9-D classification. Reopens and overwrites nothing in the
+      frozen Package 2 corpus, and preserves the Gate V9-G2 disposition and the
+      PACKAGE-9-2 freeze, and the Package 1 foundation, its Gate V9-G1 disposition,
+      and the PACKAGE-9-1 freeze. Volume 9 is not tagged after Package 2.
+    provenance_role_classification:
+      package: PACKAGE-9-2
+      source_baseline: 624650e
+      substantive_authoring: 933bd44
+      closure_and_freeze: 375ed50
+      pre_merge_provenance_binding: ece3d7e
+      original_package_merge: 8ce710a
+      provenance_amendment_authoring: 753416f
+      provenance_amendment_merge: 4bb7475
+      inherited_release_tag: central-registration-volume-8-v1.0.0
+      historical_sequence_exception: NONE
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-8-v1.0.0
+      base_release_tag: central-registration-volume-8-v1.0.0
+      source_baseline_commit: 624650e
+      branch_base_commit: 624650e
+      authoring_commit: 933bd44
+      closure_authored_commit: 375ed50
+      closure_effective_commit: 375ed50
+      closure_freeze_commit: 375ed50
+      freeze_commit: 375ed50
+      gate_effective_commit: 375ed50
+      effective_commit: 375ed50
+      provenance_binding_commit: ece3d7e
+      original_package_merge_commit: 8ce710a
+      provenance_amendment_authoring_commit: 753416f
+      provenance_amendment_merge_commit: 4bb7475
+      note: >-
+        Complete Volume 9 Package 2 provenance. Source baseline 624650e;
+        substantive authoring 933bd44; closure, gate, and freeze 375ed50;
+        pre-merge provenance binding ece3d7e; original Package 2 merge 8ce710a;
+        V9-D provenance-amendment authoring 753416f; V9-D provenance-amendment
+        merge 4bb7475. The ece3d7e commit is the pre-merge provenance binding and
+        is recorded in the provenance_binding_commit property, not a
+        provenance-amendment property. Volume 9 is not tagged after Package 2.
+    effective_date_clarification:
+      gate: GATE-V9-G2
+      documentary_definition_effective_commit: 375ed50
+      implementation_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from implementation
+        effectiveness; Package 2 authorizes no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from operational
+        effectiveness; Package 2 authorizes no operation.
+    approved_at: null
