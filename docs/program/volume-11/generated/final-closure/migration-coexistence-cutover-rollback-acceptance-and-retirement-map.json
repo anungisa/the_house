@@ -1,0 +1,46 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "migration_operational_coverage": [
+    {
+      "id": "MOC-V11-001",
+      "title": "Migration, Coexistence, Cutover, Rollback, Acceptance, and Retirement Coverage",
+      "coverage_area": "Migration, coexistence, cutover, rollback, acceptance, and retirement.",
+      "consolidated_from": [
+        "V11-16"
+      ],
+      "preserved_distinction": "Mapping complete is not identity resolved; cutover completed is not source retired.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-003",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT migration-acceptance evidence required before cutover authorization.",
+      "volume_12_destination": "Volume 12 migration-acceptance evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every migration runbook preserves source authority, provenance, and rollback.",
+      "traces_to": [
+        "V11-27"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "migration_acceptance_requirements": [
+    {
+      "id": "MAR-V11-001",
+      "title": "Affiliation Migration-Acceptance Requirement",
+      "authoritative_source": "Package 2 migration runbooks (V11-C).",
+      "institutional_purpose": "Define the migration-acceptance evidence Volume 12 must produce.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-003",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed migration-acceptance and reconciliation evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 migration-acceptance evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

@@ -238,3 +238,237 @@ records:
     execution_status: NOT_EXECUTED
     chapter_ref: V11-18
     future_gate: V12-G1
+  # --- Package 3 integrated-baseline and closure decisions ---
+  - id: ADR-V11-010
+    kind: DECISION_BOUNDARY
+    title: Integrated Operating Baseline Does Not Authorize Operations
+    statement: >-
+      Consolidating Packages 1 and 2 into an integrated operating baseline defines the affiliation
+      operating model; it does not authorize operation, migration, recovery, training, or provider
+      engagement.
+    decision_status: APPROVED_FOR_PLANNING
+    context: The Volume 11 closure consolidates operational definitions only.
+    consequences: The integrated baseline coverage records assert no operation and authorize nothing.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as authorizing operations or release.
+    traces_to:
+      - V11-21
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-21
+    future_gate: V12-G1
+  - id: ADR-V11-011
+    kind: DECISION_BOUNDARY
+    title: Operational-Definition Completeness Is Not Operational Readiness
+    statement: >-
+      A complete operational definition is not operational readiness; readiness requires executed,
+      environment-bound evidence produced in a future authorization-gated volume.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines readiness requirements without asserting readiness.
+    consequences: Operational-readiness requirements in REG-1102 carry a not-operational posture.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as claiming operational readiness.
+    traces_to:
+      - V11-23
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-23
+    future_gate: V12-G1
+  - id: ADR-V11-012
+    kind: DECISION_BOUNDARY
+    title: Ownership Records Are Not Assigned or Available Capacity
+    statement: >-
+      Recording an owner for an obligation does not assign staff, allocate capacity, or make a role
+      available; ownership definition is not resourcing.
+    decision_status: APPROVED_FOR_PLANNING
+    context: The authority and ownership map records accountable roles only.
+    consequences: Owner assignments confer no staffing, procurement, or capacity commitment.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as assigning capacity or authorizing staffing.
+    traces_to:
+      - V11-22
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-22
+    future_gate: V12-G1
+  - id: ADR-V11-013
+    kind: DECISION_BOUNDARY
+    title: Procedure Completeness Is Not Execution Effectiveness
+    statement: >-
+      A complete procedure or runbook is not an executed or effective one; effectiveness requires
+      executed evidence.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines procedures without executing them.
+    consequences: Every procedure and runbook carries a not-executed posture.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as claiming a procedure was executed or is effective.
+    traces_to:
+      - V11-24
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-24
+    future_gate: V12-G1
+  - id: ADR-V11-014
+    kind: DECISION_BOUNDARY
+    title: Migration-Readiness Definition Is Not Migration Authorization
+    statement: >-
+      Defining migration readiness does not authorize migration, rehearsal, cutover, or source
+      retirement; authorization is a future gated decision.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines migration acceptance without authorizing migration.
+    consequences: Migration-acceptance requirements carry a not-executed posture.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as authorizing migration or cutover.
+    traces_to:
+      - V11-27
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-27
+    future_gate: V12-G1
+  - id: ADR-V11-015
+    kind: DECISION_BOUNDARY
+    title: Recovery Definition Is Not Recovery Capability
+    statement: >-
+      Defining recovery, backup, and restoration does not establish recovery capability; capability
+      requires executed recovery exercises with evidence.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines recovery evidence requirements without proving recovery.
+    consequences: Recovery-evidence requirements carry a not-operational posture.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as claiming recovery capability.
+    traces_to:
+      - V11-26
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-26
+    future_gate: V12-G1
+  - id: ADR-V11-016
+    kind: DECISION_BOUNDARY
+    title: Training and Adoption Plans Are Not Competence or Sustained Adoption
+    statement: >-
+      Training and adoption plans do not establish competence or sustained adoption; both require
+      executed assessment and adoption evidence.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines competence and adoption evidence without proving either.
+    consequences: Training-competence and adoption-evidence requirements carry a not-operational posture.
+    decision_authority: OWNER-V11-002
+    prohibited_inference: This decision must not be read as claiming competence or sustained adoption.
+    traces_to:
+      - V11-29
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-29
+    future_gate: V12-G1
+  - id: ADR-V11-017
+    kind: DECISION_BOUNDARY
+    title: Provider-Operational Requirements Are Not Provider Assurance
+    statement: >-
+      Defining provider-operational requirements does not establish provider assurance; assurance
+      requires independent evidence of provider continuity, deletion, and exit.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines provider-assurance evidence without engaging providers.
+    consequences: Provider-assurance evidence requirements carry a not-operational posture.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as claiming provider assurance or engagement.
+    traces_to:
+      - V11-30
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-30
+    future_gate: V12-G1
+  - id: ADR-V11-018
+    kind: DECISION_BOUNDARY
+    title: Operational Acceptance Requires Executed Environment-Bound Evidence
+    statement: >-
+      Operational acceptance requires executed, environment-bound evidence; it cannot rest on
+      documentary approval alone.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Volume 11 defines the executed evidence acceptance must bind.
+    consequences: Operational-acceptance requirements bind executed evidence in Volume 12.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as granting operational acceptance.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: ADR-V11-019
+    kind: DECISION_BOUNDARY
+    title: Volume 12 May Assess Evidence But May Not Infer Missing Evidence
+    statement: >-
+      Volume 12 may assess produced acceptance evidence but may not infer, assume, or substitute for
+      missing evidence; absence of evidence is not acceptance.
+    decision_status: APPROVED_FOR_PLANNING
+    context: The release-evidence binding forbids inferring missing evidence.
+    consequences: Volume 12 release-evidence requirements bind concrete evidence and fail closed on absence.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as permitting inferred acceptance.
+    traces_to:
+      - V11-31
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-31
+    future_gate: V12-G1
+  - id: ADR-V11-020
+    kind: DECISION_BOUNDARY
+    title: Documentary Approval Is Not Operational Proof
+    statement: >-
+      Ratification and freeze of the Volume 11 operating definition is documentary approval; it is not
+      operational proof, migration acceptance, recovery capability, adoption, provider assurance, or
+      release acceptance.
+    decision_status: APPROVED_FOR_PLANNING
+    context: The Volume 11 closure freezes definitions, not operational outcomes.
+    consequences: The closure record and freezes assert no operational outcome.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as operational proof or release acceptance.
+    traces_to:
+      - V11-32
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-32
+    future_gate: V12-G1

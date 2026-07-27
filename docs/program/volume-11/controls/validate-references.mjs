@@ -27,6 +27,9 @@ function collectKnownIds(ctx) {
   ids.add('GATE-V11-G1');
   ids.add('PACKAGE-11-2');
   ids.add('GATE-V11-G2');
+  ids.add('PACKAGE-11-3');
+  ids.add('GATE-V11-G3');
+  ids.add('VOLUME-11');
   return ids;
 }
 

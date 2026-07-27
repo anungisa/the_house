@@ -10,9 +10,11 @@ import { run as runStructural } from './validate-volume-11.mjs';
 import { run as runReferences } from './validate-references.mjs';
 import { run as runFoundation } from './foundation-volume-11.mjs';
 import { run as runAffiliation } from './foundation-affiliation-volume-11.mjs';
+import { run as runFinalClosure } from './final-closure-volume-11.mjs';
 import { run as runProvenance } from './provenance-integrity-volume-11.mjs';
 import { run as runGate } from './gate-g1-volume-11.mjs';
 import { run as runGate2 } from './gate-g2-volume-11.mjs';
+import { run as runGate3 } from './gate-g3-volume-11.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -20,9 +22,11 @@ export function collectFindings(ctx) {
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Operational-governance-foundation coverage': runFoundation(ctx),
     'Affiliation operating-model coverage': runAffiliation(ctx),
+    'Integrated operating-baseline & closure coverage': runFinalClosure(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V11-G1 readiness': runGate(ctx),
-    'Gate V11-G2 readiness': runGate2(ctx)
+    'Gate V11-G2 readiness': runGate2(ctx),
+    'Gate V11-G3 readiness': runGate3(ctx)
   };
 }
 

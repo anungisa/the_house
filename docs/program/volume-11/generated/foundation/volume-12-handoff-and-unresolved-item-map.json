@@ -86,6 +86,48 @@
       "owner": "OWNER-V11-004",
       "evidence": "Produce provider continuity, exit, and Volume 12 operational evidence in a future assurance package.",
       "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ASM-V11-003",
+      "kind": "ASSUMPTION",
+      "owner": "OWNER-V11-001",
+      "evidence": "Produce executed, environment-bound validation evidence in Volume 12.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "RISK-V11-003",
+      "kind": "RISK",
+      "owner": "OWNER-V11-001",
+      "evidence": "Produce mitigation and independent-assurance evidence in Volume 12.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ISSUE-V11-003",
+      "kind": "ISSUE",
+      "owner": "OWNER-V11-002",
+      "evidence": "Produce resolution evidence in Volume 12.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "MIGBL-V11-003",
+      "kind": "MIGRATION_BACKLOG",
+      "owner": "OWNER-V11-003",
+      "evidence": "Produce migration-acceptance and reconciliation evidence in Volume 12.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ADOPTBL-V11-003",
+      "kind": "ADOPTION_BACKLOG",
+      "owner": "OWNER-V11-002",
+      "evidence": "Produce competence and sustained-adoption evidence in Volume 12.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ASSGAP-V11-003",
+      "kind": "ASSURANCE_GAP",
+      "owner": "OWNER-V11-004",
+      "evidence": "Produce independent-assurance and release evidence in Volume 12.",
+      "future_blocking_gate": "V12-G1"
     }
   ],
   "downstream_gates": [

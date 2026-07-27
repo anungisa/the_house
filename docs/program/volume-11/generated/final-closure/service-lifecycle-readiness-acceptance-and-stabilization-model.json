@@ -1,0 +1,65 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "service_lifecycle_coverage": [
+    {
+      "id": "SLC-V11-001",
+      "title": "Service Lifecycle, Readiness, Acceptance, and Stabilization Coverage",
+      "coverage_area": "Service lifecycle, readiness, acceptance, and stabilization.",
+      "consolidated_from": [
+        "V11-12"
+      ],
+      "preserved_distinction": "Operationally prepared is not operationally accepted; deployed is not stabilized.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT operational-readiness assessment required before acceptance.",
+      "volume_12_destination": "Volume 12 operational-readiness and acceptance-evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every operating state carries required operational evidence.",
+      "traces_to": [
+        "V11-23"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "operational_readiness_requirements": [
+    {
+      "id": "ORR-V11-001",
+      "title": "Affiliation Operational-Readiness Requirement",
+      "authoritative_source": "Package 2 operating model and operating states (V11-C).",
+      "institutional_purpose": "Define what readiness evidence Volume 12 must produce.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed readiness evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 operational-readiness evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "operational_acceptance_requirements": [
+    {
+      "id": "OAR-V11-001",
+      "title": "Affiliation Operational-Acceptance Requirement",
+      "authoritative_source": "Package 2 operating model and acceptance criteria (V11-C).",
+      "institutional_purpose": "Define the executed evidence required for operational acceptance.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed operational-acceptance evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 operational-acceptance evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

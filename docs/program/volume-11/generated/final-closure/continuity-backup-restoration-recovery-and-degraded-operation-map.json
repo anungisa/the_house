@@ -1,0 +1,46 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 3 corpus. Confers no ratification and authorizes no implementation, migration, recovery, adoption, provider engagement, or release.",
+  "continuity_recovery_coverage": [
+    {
+      "id": "CRC-V11-001",
+      "title": "Continuity, Backup, Restoration, Recovery, and Degraded-Operation Coverage",
+      "coverage_area": "Continuity, backup, restoration, recovery, and degraded operation.",
+      "consolidated_from": [
+        "V11-15"
+      ],
+      "preserved_distinction": "Backup generated is not backup verified; restore completed is not service recovered.",
+      "coverage_status": "COMPLETE_OR_IDENTIFIED_GAP",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "acceptance_authority": "OWNER-V11-001",
+      "independence_requirement": "INDEPENDENT recovery-evidence review required before any recovery claim.",
+      "volume_12_destination": "Volume 12 recovery and reconciliation evidence package.",
+      "house_p0_destination": null,
+      "owner_gap_status": "Every continuity procedure defines preserved work, prohibited actions, and evidence.",
+      "traces_to": [
+        "V11-26"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ],
+  "recovery_evidence_requirements": [
+    {
+      "id": "RER-V11-001",
+      "title": "Affiliation Recovery-Evidence Requirement",
+      "authoritative_source": "Package 2 continuity and recovery procedures (V11-C).",
+      "institutional_purpose": "Define the recovery evidence Volume 12 must produce.",
+      "institutional_owner": "OWNER-V11-001",
+      "operational_owner": "OWNER-V11-002",
+      "decision_authority": "OWNER-V11-001",
+      "evidence_required": "Executed recovery-exercise evidence not yet produced.",
+      "independence_requirement": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-001",
+      "volume_12_destination": "Volume 12 recovery evidence package.",
+      "traces_to": [
+        "V11-31"
+      ],
+      "future_gate": "V12-G1"
+    }
+  ]
+}

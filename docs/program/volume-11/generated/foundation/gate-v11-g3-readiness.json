@@ -1,0 +1,230 @@
+{
+  "gate": "V11-G3",
+  "disposition_target": "OPERATIONS_MIGRATION_ADOPTION_SUPPORT_CONTINUITY_AND_OPERATIONAL_ASSURANCE_DEFINITION_COMPLETE",
+  "total_conditions": 44,
+  "satisfied": 44,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1 lineage and V11-B-1 are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Package 1 remains frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Package 2 lineage and V11-D-1 are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Package 2 remains frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "The integrated baseline consolidates Packages 1 and 2",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every integrated operational requirement carries its full obligation binding",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Authority and ownership distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Service-lifecycle readiness and acceptance distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Support, incident, and problem distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Observability and reconciliation distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Continuity and recovery distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Migration, cutover, and retirement distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Data-quality and reconciliation distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Training and adoption distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Provider-operations distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "All twelve consolidated coverage areas are present",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Requirement kind INTEGRATED_OPERATIONAL_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Requirement kind OPERATIONAL_READINESS_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Requirement kind OPERATIONAL_ACCEPTANCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Requirement kind MIGRATION_ACCEPTANCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Requirement kind RECOVERY_EVIDENCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Requirement kind RECONCILIATION_EVIDENCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Requirement kind TRAINING_COMPETENCE_EVIDENCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Requirement kind ADOPTION_EVIDENCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Requirement kind PROVIDER_ASSURANCE_EVIDENCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Requirement kind INDEPENDENT_ASSURANCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Requirement kind VOLUME_12_RELEASE_EVIDENCE_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Requirement kind MATERIAL_COMMITMENT_REQUIREMENT is present",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Volume 12 release-evidence requirements bind every evidence dimension",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Volume 12 handoff destinations and House P0 destinations are recorded",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Volume 12 may assess but may not infer missing evidence",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "Definition completeness is not operational readiness",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "Documentary approval is not operational proof",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "Volume 11 closure is not release acceptance",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "Deterministic Package 3 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "Every unresolved item has an owner, required evidence, and valid future gate that is not a completed gate",
+      "satisfied": true
+    },
+    {
+      "n": 36,
+      "title": "A bounded Volume 12 authorization is recorded in the closure record",
+      "satisfied": true
+    },
+    {
+      "n": 37,
+      "title": "No runtime, environment, tooling, credential, or operational infrastructure is created",
+      "satisfied": true
+    },
+    {
+      "n": 38,
+      "title": "No migration, recovery, reconciliation, training, provider, or operational procedure is executed",
+      "satisfied": true
+    },
+    {
+      "n": 39,
+      "title": "No operational-readiness, migration-success, recovery, adoption, provider-assurance, or acceptance claim is made without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 40,
+      "title": "No record authorizes implementation or operations",
+      "satisfied": true
+    },
+    {
+      "n": 41,
+      "title": "The Package 2 amendment authoring commit is preserved in the closure record",
+      "satisfied": true
+    },
+    {
+      "n": 42,
+      "title": "Package 3 and the whole of Volume 11 are ratified frozen",
+      "satisfied": true
+    },
+    {
+      "n": 43,
+      "title": "Genuine closure, gate, freeze, and pre-merge provenance-binding separation is preserved",
+      "satisfied": true
+    }
+  ]
+}

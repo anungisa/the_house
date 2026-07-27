@@ -1,6 +1,6 @@
 # Volume 11 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T22:53:59.326Z
+Generated: 2026-07-27T23:25:03.505Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 11 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,28 +15,28 @@ Generated: 2026-07-27T22:53:59.326Z
 
 ## Summary
 
-- Total findings: 2
+- Total findings: 3
 - Errors: 0
 - Warnings: 0
-- Info: 2
+- Info: 3
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 27 |
+| RATIFIED | 40 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 27 |
-| REG-1101 | Services, Capabilities, Owners, Operating States, Support Classes, and Providers | RATIFIED | 1.0.0 | 58 |
-| REG-1102 | Operational Requirements, Procedures, Scenarios, Evidence, Acceptance, and Handoffs | RATIFIED | 1.0.0 | 37 |
-| REG-1103 | Volume 11 Operational-Governance Decisions | RATIFIED | 1.0.0 | 9 |
-| REG-1104 | Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps | RATIFIED | 1.0.0 | 11 |
-| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 31 |
+| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 40 |
+| REG-1101 | Services, Capabilities, Owners, Operating States, Support Classes, and Providers | RATIFIED | 1.0.0 | 70 |
+| REG-1102 | Operational Requirements, Procedures, Scenarios, Evidence, Acceptance, and Handoffs | RATIFIED | 1.0.0 | 49 |
+| REG-1103 | Volume 11 Operational-Governance Decisions | RATIFIED | 1.0.0 | 20 |
+| REG-1104 | Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps | RATIFIED | 1.0.0 | 17 |
+| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 47 |
 
 ## Findings by control
 
@@ -56,13 +56,19 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 Errors: 0 | Warnings: 0 | Info: 1
 
-- INFO FOUNDATION_COVERAGE [REG-1101]: Foundation coverage: 2 services, 13 operating states, 3 migration stages, 2 providers, 1 handoffs, 11 backlog items
+- INFO FOUNDATION_COVERAGE [REG-1101]: Foundation coverage: 2 services, 13 operating states, 3 migration stages, 2 providers, 1 handoffs, 17 backlog items
 
 ### Affiliation operating-model coverage
 
 Errors: 0 | Warnings: 0 | Info: 1
 
 - INFO AFFILIATION_COVERAGE [REG-1101]: Affiliation coverage: 4 services, 3 operating states, 1 migration runbooks, 1 provider requirements, 2 evidence requirements
+
+### Integrated operating-baseline & closure coverage
+
+Errors: 0 | Warnings: 0 | Info: 1
+
+- INFO FINAL_CLOSURE_COVERAGE [REG-1101/REG-1102]: Package 3 consolidation: 12 coverage records across 12 areas, 12 requirements across 12 kinds
 
 ### Provenance-integrity enforcement
 
@@ -77,6 +83,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Gate V11-G2 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Gate V11-G3 readiness
 
 Errors: 0 | Warnings: 0 | Info: 0
 
