@@ -2,14 +2,9 @@
   "gate": "V7-G3",
   "disposition": "VISUAL_COMPONENT_CONTENT_AND_REFERENCE_PROTOTYPE_DEFINITION_READY",
   "total_conditions": 16,
-  "satisfied": 15,
-  "unmet": [
-    {
-      "n": 16,
-      "title": "Package 3 receives line-level review and a separate freeze commit"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 16,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -89,7 +84,7 @@
     {
       "n": 16,
       "title": "Package 3 receives line-level review and a separate freeze commit",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

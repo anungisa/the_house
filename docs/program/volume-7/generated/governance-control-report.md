@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T08:18:13.892Z
+Generated: 2026-07-27T08:20:44.055Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,11 +16,11 @@ Generated: 2026-07-27T08:18:13.892Z
 
 ## Summary
 
-- Total findings: 1
-- Errors: 1
+- Total findings: 0
+- Errors: 0
 - Warnings: 0
 - Info: 0
-- Overall: FAIL (experience/service-design integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -37,7 +37,7 @@ Generated: 2026-07-27T08:18:13.892Z
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 118 |
 | REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 26 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 29 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 43 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 44 |
 
 ## Findings by control
 
@@ -85,9 +85,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V7-G3 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V7_G3_CONDITION_UNMET [GATE-V7-G3]: Condition 16 not satisfied: Package 3 receives line-level review and a separate freeze commit
+- (no findings)
 
 ### Provenance & gate-chronology integrity
 
