@@ -506,6 +506,8 @@ records:
     primary_actor: Authorized club representative
     institutional_consequence: Requests a governed transition that records the submission for review.
     status_semantics: Moves the affiliation to a submitted, awaiting-review state.
+    command_or_query_intent:
+      - CMD-V7-010
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
@@ -517,6 +519,8 @@ records:
     primary_actor: Authorized club representative
     institutional_consequence: Requests a governed transition that returns the submission to review.
     status_semantics: Moves the affiliation back to a submitted, awaiting-review state.
+    command_or_query_intent:
+      - CMD-V7-011
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
@@ -797,3 +801,749 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
     chapter_ref: V7-01
+  # ===================================================================
+  # Package 2 — Command and query intents (V7-11 conventions)
+  # A Button action expresses an intent to The House; it never mutates
+  # governed truth directly. Every command names its House authority.
+  # ===================================================================
+  - id: CMD-V7-001
+    kind: COMMAND_INTENT
+    title: Establish session intent
+    statement: Expresses the intent to establish an authenticated session.
+    primary_actor: Authorized club representative
+    house_authority: House identity and session authority
+    expresses_intent_to: House
+    required_inputs:
+      - Authentication credentials handled by the identity function
+    entry_conditions:
+      - User is unauthenticated
+    exit_conditions:
+      - Session established or account-state problem surfaced
+    failure_modes:
+      - Account-state problem
+      - Authentication failure
+    recovery_behaviour: Present a support-assisted recovery route without exposing internal detail.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+  - id: CMD-V7-002
+    kind: COMMAND_INTENT
+    title: Select organization intent
+    statement: Expresses the intent to select among organizations the account is authorized for.
+    primary_actor: Authorized club representative
+    house_authority: House organization and membership authority
+    expresses_intent_to: House
+    required_inputs:
+      - Selected organization
+    entry_conditions:
+      - Session established
+    exit_conditions:
+      - Organization selected within authorization
+    failure_modes:
+      - No authorized organization
+      - Conflicting organizations
+    recovery_behaviour: Fail closed and route to support-assisted resolution.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+  - id: CMD-V7-003
+    kind: COMMAND_INTENT
+    title: Confirm club identity intent
+    statement: Expresses the intent to confirm the identity of an existing club.
+    primary_actor: Authorized club representative
+    house_authority: House club-identity authority
+    expresses_intent_to: House
+    required_inputs:
+      - Club identity confirmation
+    entry_conditions:
+      - Organization selected
+    exit_conditions:
+      - Club identity confirmed
+    failure_modes:
+      - Unrecognized club
+      - Duplicate club
+    recovery_behaviour: Explain duplicates without disclosing restricted details.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+  - id: CMD-V7-004
+    kind: COMMAND_INTENT
+    title: Establish new club candidate intent
+    statement: Expresses the intent to establish a new club candidate distinct from affiliation.
+    primary_actor: New club representative
+    house_authority: House club-establishment authority
+    expresses_intent_to: House
+    required_inputs:
+      - Initial organization information
+    entry_conditions:
+      - No existing club recognized
+    exit_conditions:
+      - Club candidate established
+    failure_modes:
+      - Duplicate organization detected
+    recovery_behaviour: Route to recognition of the existing organization without restricted disclosure.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+  - id: CMD-V7-005
+    kind: COMMAND_INTENT
+    title: Confirm representative authority intent
+    statement: Expresses the intent to confirm representative or delegated authority.
+    primary_actor: Authorized club representative
+    house_authority: House representative-authority function
+    expresses_intent_to: House
+    required_inputs:
+      - Authority or delegation confirmation
+    entry_conditions:
+      - Club identity confirmed
+    exit_conditions:
+      - Authority resolved or fail-closed
+    failure_modes:
+      - No authority
+      - Pending, expired, or revoked authority
+    recovery_behaviour: Fail closed and explain the missing authority with a recovery route.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+  - id: CMD-V7-006
+    kind: COMMAND_INTENT
+    title: Start or continue affiliation intent
+    statement: Expresses the intent to start or continue an affiliation for a season and jurisdiction.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-lifecycle authority
+    expresses_intent_to: House
+    required_inputs:
+      - Season and jurisdiction context derived from House facts
+    entry_conditions:
+      - Representative authority resolved
+    exit_conditions:
+      - Affiliation case started or continued
+    failure_modes:
+      - Already active, withdrawn, expired, or duplicate affiliation
+    recovery_behaviour: Present the existing case state and a meaningful next action.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-13
+  - id: CMD-V7-007
+    kind: COMMAND_INTENT
+    title: Save draft responses intent
+    statement: Expresses the intent to save draft responses and acknowledgements.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-case authority
+    expresses_intent_to: House
+    required_inputs:
+      - Draft responses
+    entry_conditions:
+      - An affiliation case is open
+    exit_conditions:
+      - Draft saved
+    failure_modes:
+      - Save failure
+    recovery_behaviour: Preserve entered work and offer retry.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: CMD-V7-008
+    kind: COMMAND_INTENT
+    title: Attach evidence intent
+    statement: Expresses the intent to attach evidence bound to a requirement version and provenance.
+    primary_actor: Authorized club representative
+    house_authority: House evidence authority
+    expresses_intent_to: House
+    required_inputs:
+      - Evidence document and requirement context
+    entry_conditions:
+      - A requirement needing evidence is in scope
+    exit_conditions:
+      - Evidence attached with provenance recorded
+    failure_modes:
+      - Unsupported or inaccessible document
+      - Failed upload
+    recovery_behaviour: Offer retry; never imply an uploaded file is automatically valid evidence.
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: CMD-V7-009
+    kind: COMMAND_INTENT
+    title: Withdraw or replace evidence intent
+    statement: Expresses the intent to withdraw or replace evidence while preserving prior history.
+    primary_actor: Authorized club representative
+    house_authority: House evidence authority
+    expresses_intent_to: House
+    required_inputs:
+      - Target evidence and replacement or withdrawal
+    entry_conditions:
+      - Evidence exists on the case
+    exit_conditions:
+      - Evidence replaced or withdrawn with history preserved
+    failure_modes:
+      - Replacement failure
+    recovery_behaviour: Never imply replacement erases prior evidence.
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: CMD-V7-010
+    kind: COMMAND_INTENT
+    title: Submit affiliation intent
+    statement: Expresses the intent to submit a completed affiliation for review.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-lifecycle authority
+    expresses_intent_to: House
+    required_inputs:
+      - Final attestations and submission confirmation
+    entry_conditions:
+      - Submission eligibility is derived and met
+    exit_conditions:
+      - Submission accepted for processing
+    failure_modes:
+      - Duplicate submission
+      - Stale-state conflict
+      - Submission failure
+    recovery_behaviour: Prevent duplicates idempotently and explain stale conflicts.
+    confirmation_required: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+  - id: CMD-V7-011
+    kind: COMMAND_INTENT
+    title: Resubmit after return intent
+    statement: Expresses the intent to resubmit a corrected submission as a new governed submission state.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-lifecycle authority
+    expresses_intent_to: House
+    required_inputs:
+      - Corrections to affected requirements or evidence
+    entry_conditions:
+      - The submission was returned for information
+    exit_conditions:
+      - A new submission state is recorded
+    failure_modes:
+      - Stale-state conflict
+    recovery_behaviour: Preserve prior submission snapshots.
+    confirmation_required: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+  - id: CMD-V7-012
+    kind: COMMAND_INTENT
+    title: Withdraw affiliation intent
+    statement: Expresses the intent to withdraw an affiliation submission or case.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-lifecycle authority
+    expresses_intent_to: House
+    required_inputs:
+      - Withdrawal confirmation
+    entry_conditions:
+      - A withdrawable case exists
+    exit_conditions:
+      - Withdrawal recorded
+    failure_modes:
+      - Withdrawal not permitted in current state
+    recovery_behaviour: Explain reconsideration dependencies and consequences.
+    confirmation_required: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+  - id: CMD-V7-013
+    kind: COMMAND_INTENT
+    title: Record review outcome intent
+    statement: Expresses the reviewer intent to record a review outcome within authority.
+    primary_actor: Jurisdiction reviewer
+    house_authority: House review authority within jurisdictional scope
+    expresses_intent_to: House
+    required_inputs:
+      - Review outcome within authority
+    entry_conditions:
+      - A submission is assigned within scope
+    exit_conditions:
+      - Outcome recorded through a governed transition
+    failure_modes:
+      - Outcome outside authority
+    recovery_behaviour: A review recommendation is not itself a governed decision.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+  - id: CMD-V7-014
+    kind: COMMAND_INTENT
+    title: Return for information intent
+    statement: Expresses the reviewer intent to return a submission for information.
+    primary_actor: Jurisdiction reviewer
+    house_authority: House review authority within jurisdictional scope
+    expresses_intent_to: House
+    required_inputs:
+      - Return reason and affected requirements
+    entry_conditions:
+      - A submission is under review
+    exit_conditions:
+      - Submission returned for information with history preserved
+    failure_modes:
+      - Return outside authority
+    recovery_behaviour: Return for information is not refusal.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+  - id: CMD-V7-015
+    kind: COMMAND_INTENT
+    title: Record financial confirmation intent
+    statement: Expresses the finance intent to record accounting confirmation.
+    primary_actor: Finance operator
+    house_authority: House finance function
+    expresses_intent_to: House
+    required_inputs:
+      - Accounting confirmation
+    entry_conditions:
+      - An obligation and provider acknowledgement exist
+    exit_conditions:
+      - Accounting confirmation recorded
+    failure_modes:
+      - Reconciliation mismatch
+    recovery_behaviour: Payment acknowledgement is not accounting confirmation.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+  - id: CMD-V7-016
+    kind: COMMAND_INTENT
+    title: Resolve reconciliation intent
+    statement: Expresses the finance intent to resolve a reconciliation mismatch.
+    primary_actor: Finance operator
+    house_authority: House finance function
+    expresses_intent_to: House
+    required_inputs:
+      - Reconciliation resolution
+    entry_conditions:
+      - A reconciliation mismatch exists
+    exit_conditions:
+      - Reconciliation resolved
+    failure_modes:
+      - Unresolved mismatch
+    recovery_behaviour: Reconciliation resolution does not decide affiliation.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+  - id: CMD-V7-017
+    kind: COMMAND_INTENT
+    title: Authorize activation intent
+    statement: Expresses the governed intent to authorize activation of affiliation standing.
+    primary_actor: Service administrator
+    house_authority: House activation authority
+    expresses_intent_to: House
+    required_inputs:
+      - Satisfied activation dependencies
+    entry_conditions:
+      - A governed approval and financial dependencies are satisfied
+    exit_conditions:
+      - Activation authorized through a governed transition
+    failure_modes:
+      - Unsatisfied dependency
+    recovery_behaviour: Approval is not activation authorization, execution, or active standing.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+  # --- Query intents (V7-11 conventions) ---
+  - id: QRY-V7-001
+    kind: QUERY_INTENT
+    title: Query affiliation status and standing
+    statement: Expresses the intent to read derived affiliation status and standing from House data.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-status authority
+    expresses_intent_to: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-12
+  - id: QRY-V7-002
+    kind: QUERY_INTENT
+    title: Query applicable requirements
+    statement: Expresses the intent to read applicable requirements and their versions.
+    primary_actor: Authorized club representative
+    house_authority: House requirements authority
+    expresses_intent_to: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: QRY-V7-003
+    kind: QUERY_INTENT
+    title: Query jurisdiction, season, and applicability
+    statement: Expresses the intent to read derived jurisdiction, season, pathway, and applicability.
+    primary_actor: Authorized club representative
+    house_authority: House applicability authority
+    expresses_intent_to: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-13
+  - id: QRY-V7-004
+    kind: QUERY_INTENT
+    title: Query evidence and provenance
+    statement: Expresses the intent to read evidence, its version, and its provenance.
+    primary_actor: Authorized club representative
+    house_authority: House evidence authority
+    expresses_intent_to: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: QRY-V7-005
+    kind: QUERY_INTENT
+    title: Query completeness signals
+    statement: Expresses the intent to read derived completeness and submission eligibility signals.
+    primary_actor: Authorized club representative
+    house_authority: House affiliation-case authority
+    expresses_intent_to: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+  - id: QRY-V7-006
+    kind: QUERY_INTENT
+    title: Query review status
+    statement: Expresses the intent to read disclosure-appropriate review status.
+    primary_actor: Authorized club representative
+    house_authority: House review authority
+    expresses_intent_to: House
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+  - id: QRY-V7-007
+    kind: QUERY_INTENT
+    title: Query financial and obligation status
+    statement: Expresses the intent to read obligation, acknowledgement, and reconciliation status.
+    primary_actor: Finance operator
+    house_authority: House finance function
+    expresses_intent_to: House
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+  - id: QRY-V7-008
+    kind: QUERY_INTENT
+    title: Query reviewer queue
+    statement: Expresses the reviewer intent to read the assigned queue within jurisdictional scope.
+    primary_actor: Jurisdiction reviewer
+    house_authority: House review authority within jurisdictional scope
+    expresses_intent_to: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-18
+  # --- Validation behaviours (V7-14) ---
+  - id: VAL-V7-001
+    kind: VALIDATION_BEHAVIOUR
+    title: Inline required-field validation
+    statement: Required fields are validated inline with clear, recoverable guidance.
+    validation_behaviour: Validate on blur and before submission; never discard entered work on failure.
+    accessibility_requirement: Announce validation errors and associate them with their fields.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: VAL-V7-002
+    kind: VALIDATION_BEHAVIOUR
+    title: Conditional applicability validation
+    statement: Validation reflects derived applicability rather than a fixed field set.
+    validation_behaviour: Only require responses to requirements derived as applicable from House facts.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: VAL-V7-003
+    kind: VALIDATION_BEHAVIOUR
+    title: Evidence acceptance validation
+    statement: Evidence attachment validates format and accessibility, not evidentiary sufficiency.
+    validation_behaviour: Never imply an uploaded file is automatically valid or sufficient evidence.
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-14
+  - id: VAL-V7-004
+    kind: VALIDATION_BEHAVIOUR
+    title: Submission eligibility validation
+    statement: Submission is enabled only when derived completeness and eligibility are met.
+    validation_behaviour: Derive eligibility from House facts; explain each unmet condition.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+  - id: VAL-V7-005
+    kind: VALIDATION_BEHAVIOUR
+    title: Duplicate submission prevention
+    statement: Submission prevents duplicate governed requests idempotently.
+    validation_behaviour: Present an in-progress state and prevent duplicate submission attempts.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+  - id: VAL-V7-006
+    kind: VALIDATION_BEHAVIOUR
+    title: Stale-state conflict detection
+    statement: Submission and resubmission detect stale-state conflicts.
+    validation_behaviour: Detect and explain conflicts without exposing internal implementation detail.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+  # --- Content requirements (V7-19) ---
+  - id: REQ-V7-001
+    kind: CONTENT_REQUIREMENT
+    title: Consequence-clear content
+    statement: Content makes institutional consequences clear at consequential moments.
+    message_requirement: Consequential actions state their institutional meaning before confirmation.
+    english_semantic_requirement: Convey the institutional consequence plainly.
+    french_semantic_requirement: Convey the same institutional consequence with equivalent meaning.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: REQ-V7-002
+    kind: CONTENT_REQUIREMENT
+    title: Non-misleading status content
+    statement: Status content never overstates authority, decision, or activation.
+    message_requirement: Distinguish receipt, review, decision, and activation as distinct meanings.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: REQ-V7-003
+    kind: CONTENT_REQUIREMENT
+    title: Plain-language help content
+    statement: Help content is plain-language and does not imply guarantees.
+    message_requirement: Provide guidance without asserting outcomes the House has not decided.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  # --- Status messages (V7-15) ---
+  - id: SMSG-V7-001
+    kind: STATUS_MESSAGE
+    title: Submission received message
+    statement: A status message confirming a submission was received for review.
+    message_requirement: State that submission is received and awaiting review, not approved.
+    user_facing_meaning: The submission is recorded and awaiting review.
+    prohibited_inference: This is not an approval or an activation.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-15
+  - id: SMSG-V7-002
+    kind: STATUS_MESSAGE
+    title: Returned for information message
+    statement: A status message that a submission was returned for information.
+    message_requirement: State that information is requested, not that the submission was refused.
+    user_facing_meaning: Additional information is requested.
+    prohibited_inference: This is not a refusal or a decision.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-16
+  - id: SMSG-V7-003
+    kind: STATUS_MESSAGE
+    title: Payment acknowledged message
+    statement: A status message acknowledging a payment attempt or provider acknowledgement.
+    message_requirement: State that payment is acknowledged, not that accounting is confirmed.
+    user_facing_meaning: A payment has been acknowledged.
+    prohibited_inference: This is not accounting confirmation or affiliation approval.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+  - id: SMSG-V7-004
+    kind: STATUS_MESSAGE
+    title: Activation pending message
+    statement: A status message that activation is pending remaining dependencies.
+    message_requirement: State that approval does not by itself mean active standing.
+    user_facing_meaning: Activation is pending remaining dependencies.
+    prohibited_inference: Approval is not activation.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-17
+  # --- Error messages (V7-19) ---
+  - id: EMSG-V7-001
+    kind: ERROR_MESSAGE
+    title: Authority missing error
+    statement: An error message shown when representative authority is missing.
+    message_requirement: Explain that authority is required and route to a recovery path.
+    user_facing_meaning: The required representative authority is not present.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: EMSG-V7-002
+    kind: ERROR_MESSAGE
+    title: Duplicate submission error
+    statement: An error message shown when a duplicate submission is prevented.
+    message_requirement: Explain that the submission is already in progress or recorded.
+    user_facing_meaning: A submission is already in progress or recorded.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: EMSG-V7-003
+    kind: ERROR_MESSAGE
+    title: Stale-state conflict error
+    statement: An error message shown when a stale-state conflict is detected.
+    message_requirement: Explain the conflict without exposing internal implementation detail.
+    user_facing_meaning: The information changed since it was loaded.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  # --- Recovery paths (V7-19) ---
+  - id: RECOV-V7-001
+    kind: RECOVERY_PATH
+    title: Recover from failed submission
+    statement: A recovery path that preserves entered work after a failed submission.
+    recovery_behaviour: Preserve entered work, explain the failure, and offer retry.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: RECOV-V7-002
+    kind: RECOVERY_PATH
+    title: Recover from interrupted session
+    statement: A recovery path that restores draft context after an interrupted session.
+    recovery_behaviour: Restore saved draft context and disclose any potential staleness.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: RECOV-V7-003
+    kind: RECOVERY_PATH
+    title: Support-assisted recovery
+    statement: A recovery path routing to support without transferring authority.
+    recovery_behaviour: Route to support-assisted guidance without granting support governed authority.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  # --- Accessibility behaviours (V7-19) ---
+  - id: A11YB-V7-001
+    kind: ACCESSIBILITY_BEHAVIOUR
+    title: Keyboard and focus management
+    statement: Every interactive state supports keyboard operation and visible focus.
+    accessibility_requirement: All flows and states are operable by keyboard with managed focus.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: A11YB-V7-002
+    kind: ACCESSIBILITY_BEHAVIOUR
+    title: Status and error announcement
+    statement: Status and error changes are announced to assistive technology.
+    accessibility_requirement: Announce loading, success, error, and stale-disclosed states.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: A11YB-V7-003
+    kind: ACCESSIBILITY_BEHAVIOUR
+    title: Accessible evidence interaction
+    statement: Evidence upload and review interactions are accessible.
+    accessibility_requirement: Provide accessible names, instructions, and error recovery for evidence.
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: A11YB-V7-004
+    kind: ACCESSIBILITY_BEHAVIOUR
+    title: Accommodation path
+    statement: An accessible accommodation path is available where interaction is blocked.
+    accessibility_requirement: Provide an accommodation route that does not weaken governance controls.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  # --- Bilingual semantics (V7-19) ---
+  - id: BSEM-V7-001
+    kind: BILINGUAL_SEMANTIC
+    title: Equivalent institutional meaning
+    statement: English and French convey equivalent institutional meaning, not literal translation.
+    english_semantic_requirement: State the institutional meaning in clear English.
+    french_semantic_requirement: State the same institutional meaning with equivalent French semantics.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: BSEM-V7-002
+    kind: BILINGUAL_SEMANTIC
+    title: Consistent status terminology
+    statement: Status terminology is consistent and equivalent across both languages.
+    english_semantic_requirement: Use consistent English status terms for receipt, review, decision, and activation.
+    french_semantic_requirement: Use consistent French status terms with equivalent meaning.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  # --- Additional experience patterns (V7-19) ---
+  - id: PATTERN-V7-005
+    kind: PATTERN
+    title: Consequential confirmation pattern
+    statement: Consequential actions require explicit confirmation stating their meaning.
+    control_intent: Confirmation is required before consequential governed intents are expressed.
+    confirmation_required: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: PATTERN-V7-006
+    kind: PATTERN
+    title: Evidence provenance pattern
+    statement: Evidence display always indicates version and provenance.
+    control_intent: Evidence is never shown without provenance and restricted-evidence handling.
+    restricted: true
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: PATTERN-V7-007
+    kind: PATTERN
+    title: Responsive and low-bandwidth pattern
+    statement: Interactions remain usable across responsive and low-bandwidth conditions.
+    control_intent: Responsive and low-bandwidth conditions do not hide institutional obligations.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19
+  - id: PATTERN-V7-008
+    kind: PATTERN
+    title: Stale-disclosure pattern
+    statement: Potentially stale data is disclosed as such with an authoritative refresh path.
+    control_intent: Stale data is disclosed, never presented as authoritative live truth.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-19

@@ -1,0 +1,29 @@
+{
+  "command_intents": [
+    {
+      "id": "CMD-V7-001",
+      "title": "Establish session intent",
+      "house_authority": "House identity and session authority"
+    },
+    {
+      "id": "CMD-V7-002",
+      "title": "Select organization intent",
+      "house_authority": "House organization and membership authority"
+    },
+    {
+      "id": "CMD-V7-003",
+      "title": "Confirm club identity intent",
+      "house_authority": "House club-identity authority"
+    },
+    {
+      "id": "CMD-V7-004",
+      "title": "Establish new club candidate intent",
+      "house_authority": "House club-establishment authority"
+    },
+    {
+      "id": "CMD-V7-005",
+      "title": "Confirm representative authority intent",
+      "house_authority": "House representative-authority function"
+    }
+  ]
+}

@@ -155,3 +155,113 @@ records:
       original_package_merge_commit: 9013c5f
       note: Narrow post-merge provenance amendment for Package 1. Records the authoring snapshot, the separate freeze commit, and the mainline merge commit. Volume 7 is not tagged after Package 1.
     approved_at: null
+  - id: APP-V7-016
+    artifact_id: V7-11
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-017
+    artifact_id: V7-12
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-018
+    artifact_id: V7-13
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-019
+    artifact_id: V7-14
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-020
+    artifact_id: V7-15
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-021
+    artifact_id: V7-16
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-022
+    artifact_id: V7-17
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-023
+    artifact_id: V7-18
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-024
+    artifact_id: V7-19
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-025
+    artifact_id: V7-20
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-026
+    artifact_id: V7-C
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-027
+    artifact_id: GATE-V7-G2
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: AFFILIATION_INTERACTION_AND_SCREEN_STATE_MODEL_READY
+    conditions:
+      - Package 1 experience foundation is inherited and frozen
+      - No unresolved backlog item points to a completed gate
+      - No record authorizes implementation or final visual design
+      - Every controlled record carries a non-implementation status
+      - Every user action maps to a command intent, query intent, or local interaction
+      - Every command intent names a House authority
+      - Every experience surface belongs to a defined authority domain
+      - Every actor journey is covered by at least one task flow
+      - Every affiliation stage traces to at least one surface or view
+      - Every view defines its required screen states
+      - Screen states cover loading, empty, success, error, denied, and recovery
+      - Representative authority and organization identity are modelled distinctly
+      - Applicability and completeness are derived from House facts and not asserted
+      - Evidence interactions preserve provenance and history
+      - Submission distinguishes receipt from approval
+      - Return for information is distinguished from refusal
+      - Review recommendation is distinguished from a governed decision
+      - Payment acknowledgement is distinguished from accounting confirmation
+      - Approval is distinguished from activation
+      - Staff workbenches declare authority constraints and prohibited actions
+      - Support acquires no governed authority
+      - Accessibility applies to every state and recovery path
+      - Bilingual meaning is specified as equivalent and not literal
+      - Package 2 receives line-level review and a separate freeze commit
+    approved_at: null

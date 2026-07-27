@@ -1,0 +1,105 @@
+{
+  "views": [
+    {
+      "id": "VIEW-V7-001",
+      "title": "Affiliation overview view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-002",
+      "title": "Organization and club identity view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-003",
+      "title": "Affiliation initiation and applicability view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-004",
+      "title": "Requirements and responses view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-005",
+      "title": "Evidence management view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-006",
+      "title": "Completeness review and submission view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-007",
+      "title": "Review tracking and return view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-008",
+      "title": "Decision, finance, and activation view",
+      "surface_ref": "SURFACE-V7-001"
+    },
+    {
+      "id": "VIEW-V7-009",
+      "title": "Reviewer case view",
+      "surface_ref": "SURFACE-V7-003"
+    },
+    {
+      "id": "VIEW-V7-010",
+      "title": "Finance reconciliation view",
+      "surface_ref": "SURFACE-V7-004"
+    }
+  ],
+  "screen_states": [
+    {
+      "id": "SCREEN-V7-001",
+      "title": "Loading state"
+    },
+    {
+      "id": "SCREEN-V7-002",
+      "title": "Empty state"
+    },
+    {
+      "id": "SCREEN-V7-003",
+      "title": "Success state"
+    },
+    {
+      "id": "SCREEN-V7-004",
+      "title": "Error state"
+    },
+    {
+      "id": "SCREEN-V7-005",
+      "title": "Denied or fail-closed state"
+    },
+    {
+      "id": "SCREEN-V7-006",
+      "title": "Selection state"
+    },
+    {
+      "id": "SCREEN-V7-007",
+      "title": "Populated state"
+    },
+    {
+      "id": "SCREEN-V7-008",
+      "title": "Degraded state"
+    },
+    {
+      "id": "SCREEN-V7-009",
+      "title": "Stale-disclosed state"
+    },
+    {
+      "id": "SCREEN-V7-010",
+      "title": "In-progress state"
+    },
+    {
+      "id": "SCREEN-V7-011",
+      "title": "Restricted-evidence state"
+    },
+    {
+      "id": "SCREEN-V7-012",
+      "title": "Conflict state"
+    }
+  ],
+  "missing_required_screen_states": []
+}

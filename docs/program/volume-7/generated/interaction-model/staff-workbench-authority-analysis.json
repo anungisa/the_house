@@ -1,0 +1,51 @@
+{
+  "workbenches": [
+    {
+      "id": "BENCH-V7-001",
+      "title": "Reviewer workbench",
+      "authority_posture": "JURISDICTION_REVIEWER",
+      "prohibited_actions": [
+        "Activate standing",
+        "Reconcile finance",
+        "Disclose beyond authorized recipients"
+      ]
+    },
+    {
+      "id": "BENCH-V7-002",
+      "title": "Finance workbench",
+      "authority_posture": "FINANCE_OPERATOR",
+      "prohibited_actions": [
+        "Decide affiliation outcomes",
+        "Activate standing"
+      ]
+    },
+    {
+      "id": "BENCH-V7-003",
+      "title": "Support workbench",
+      "authority_posture": "SUPPORT_OPERATOR",
+      "prohibited_actions": [
+        "Approve or decide",
+        "Reconcile or activate",
+        "Inspect evidence without authority",
+        "Disclose restricted information or mutate history"
+      ]
+    },
+    {
+      "id": "BENCH-V7-004",
+      "title": "Privacy and records workbench",
+      "authority_posture": "PRIVACY_OR_RECORDS_FUNCTION",
+      "prohibited_actions": [
+        "Decide affiliation outcomes"
+      ]
+    },
+    {
+      "id": "BENCH-V7-005",
+      "title": "Administrative workbench",
+      "authority_posture": "SERVICE_ADMINISTRATOR",
+      "prohibited_actions": [
+        "Decide, activate, or reconcile individual affiliations"
+      ]
+    }
+  ],
+  "workbenches_without_constraints": []
+}

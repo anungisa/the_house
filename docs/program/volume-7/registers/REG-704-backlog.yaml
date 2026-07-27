@@ -190,3 +190,140 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V12-G1
     chapter_ref: V7-10
+  # ===== Package 2 backlog additions (interaction model) =====
+  - id: ASM-V7-003
+    kind: ASM
+    title: Representative-authority evidence exists downstream
+    statement: The interaction model assumes representative-authority evidence and delegation records are available from House authority downstream.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Downstream authority and delegation model definitions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V8-G1
+    chapter_ref: V7-12
+    traces_to:
+      - CMD-V7-005
+  - id: ASM-V7-004
+    kind: ASM
+    title: Applicability derivation is available
+    statement: The interaction model assumes jurisdiction, season, and applicability derivation is available from House facts.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Downstream applicability derivation definitions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V8-G1
+    chapter_ref: V7-13
+    traces_to:
+      - QRY-V7-003
+  - id: RISK-V7-005
+    kind: RISK
+    title: Duplicate-club ambiguity
+    statement: New-club establishment could create duplicate organizations without a clear recognition path.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validation that duplicate-club detection and recognition works without restricted disclosure.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-12
+    traces_to:
+      - CMD-V7-004
+  - id: RISK-V7-006
+    kind: RISK
+    title: Restricted-evidence over-disclosure
+    statement: Evidence display could disclose restricted evidence beyond the minimum necessary.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validation that restricted-evidence display enforces minimum-necessary disclosure.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-14
+    traces_to:
+      - PATTERN-V7-006
+  - id: RISK-V7-007
+    kind: RISK
+    title: Submission conflict on stale state
+    statement: Concurrent edits could cause stale-state submission conflicts that confuse users.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validation that stale-state conflicts are detected and explained clearly.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-15
+    traces_to:
+      - VAL-V7-006
+  - id: RISK-V7-008
+    kind: RISK
+    title: Review-status disclosure ambiguity
+    statement: Review status could disclose more than is appropriate or imply a decision not yet made.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validation of disclosure-appropriate review-status content.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-16
+    traces_to:
+      - QRY-V7-006
+  - id: RISK-V7-009
+    kind: RISK
+    title: Reconciliation timing confusion
+    statement: Payment, accounting confirmation, and activation timing could be conflated by users.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validation that reconciliation and activation timing are clearly distinguished.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-17
+    traces_to:
+      - SMSG-V7-003
+  - id: TEST-V7-008
+    kind: TEST
+    title: Task-flow usability validation
+    statement: A future usability validation must confirm task flows are learnable and do not imply unauthorized authority.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Usability validation evidence for the affiliation task flows.
+    future_test_class: USABILITY_VALIDATION
+    downstream_volume: Volume 9 interface validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-20
+    traces_to:
+      - FLOW-V7-003
+  - id: TEST-V7-009
+    kind: TEST
+    title: Screen-state coverage validation
+    statement: A future validation must confirm every view covers required screen states including error, denied, stale, and recovery.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Screen-state coverage validation evidence.
+    future_test_class: COVERAGE_VALIDATION
+    downstream_volume: Volume 9 interface validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-20
+    traces_to:
+      - SCREEN-V7-004
+  - id: TEST-V7-010
+    kind: TEST
+    title: Accessibility and bilingual conformance validation
+    statement: A future validation must confirm accessibility and bilingual equivalence across every state and recovery path.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Accessibility and bilingual conformance evidence.
+    future_test_class: CONFORMANCE_VALIDATION
+    downstream_volume: Volume 9 interface validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-19
+    traces_to:
+      - A11YB-V7-002

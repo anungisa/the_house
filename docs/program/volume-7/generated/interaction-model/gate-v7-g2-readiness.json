@@ -1,0 +1,135 @@
+{
+  "gate": "V7-G2",
+  "disposition": "AFFILIATION_INTERACTION_AND_SCREEN_STATE_MODEL_READY",
+  "total_conditions": 24,
+  "satisfied": 23,
+  "unmet": [
+    {
+      "n": 24,
+      "title": "Package 2 receives line-level review and a separate freeze commit"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1 experience foundation is inherited and frozen",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "No unresolved backlog item points to a completed gate",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "No record authorizes implementation or final visual design",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Every controlled record carries a non-implementation status",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every user action maps to a command intent, query intent, or local interaction",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every command intent names a House authority",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Every experience surface belongs to a defined authority domain",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Every actor journey is covered by at least one task flow",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Every affiliation stage traces to at least one surface or view",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Every view defines its required screen states",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Screen states cover loading, empty, success, error, denied, and recovery",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Representative authority and organization identity are modelled distinctly",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Applicability and completeness are derived from House facts and not asserted",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Evidence interactions preserve provenance and history",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Submission distinguishes receipt from approval",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Return for information is distinguished from refusal",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Review recommendation is distinguished from a governed decision",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Payment acknowledgement is distinguished from accounting confirmation",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Approval is distinguished from activation",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Staff workbenches declare authority constraints and prohibited actions",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Support acquires no governed authority",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Accessibility applies to every state and recovery path",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Bilingual meaning is specified as equivalent and not literal",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Package 2 receives line-level review and a separate freeze commit",
+      "satisfied": false
+    }
+  ]
+}

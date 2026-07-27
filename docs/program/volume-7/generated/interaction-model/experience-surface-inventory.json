@@ -1,0 +1,37 @@
+{
+  "surfaces": [
+    {
+      "id": "SURFACE-V7-001",
+      "title": "Button club-representative surface",
+      "authority_domain": "Button"
+    },
+    {
+      "id": "SURFACE-V7-002",
+      "title": "Button new-club establishment surface",
+      "authority_domain": "Button"
+    },
+    {
+      "id": "SURFACE-V7-003",
+      "title": "House reviewer workbench surface",
+      "authority_domain": "House"
+    },
+    {
+      "id": "SURFACE-V7-004",
+      "title": "House finance surface",
+      "authority_domain": "House"
+    },
+    {
+      "id": "SURFACE-V7-005",
+      "title": "House support surface",
+      "authority_domain": "House"
+    },
+    {
+      "id": "SURFACE-V7-006",
+      "title": "House privacy, records, and administration surface",
+      "authority_domain": "House"
+    }
+  ],
+  "gaps": {
+    "surfaces_without_authority_domain": []
+  }
+}
