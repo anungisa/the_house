@@ -524,3 +524,46 @@ records:
       original_package_merge_commit: "86628b7"
       note: Narrow post-merge provenance amendment for Package 3. Records the branch base baseline, the authoring commit, the separate freeze commit, and the mainline merge commit, and confirms Gate V7-G3 became effective at the freeze commit f573a66. Volume 7 is not tagged after Package 3.
     approved_at: null
+  - id: APP-V7-046
+    artifact_id: V7-F-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Records the Package 3 authoring-versus-closure chronology exception, binds the closure artifact V7-E and Gate V7-G3 effective ratification to the PACKAGE-7-3 freeze commit, clarifies documentary versus implementation effectiveness, and structurally surfaces the bounded Package 4 authorization. Supersedes and overwrites nothing in the frozen Package 3 corpus. Does not consume V7-G or V7-H reserved for Package 4 closure and provenance. Volume 7 is not tagged after Package 3.
+    requires_freeze_artifact: PACKAGE-7-3
+    closure_effective_commit: "f573a66"
+    gate_effective_commit: "f573a66"
+    chronology_exception: HISTORICAL_SEQUENCE_EXCEPTION_RECORDED
+    closure_binding:
+      closure_artifact: V7-E
+      gate: GATE-V7-G3
+      freeze_artifact: PACKAGE-7-3
+      closure_authored_commit: "4f3671c"
+      closure_effective_commit: "f573a66"
+      freeze_commit: "f573a66"
+      gate_effective_commit: "f573a66"
+      chronology_exception: RECORDED
+      chronology_disposition: HISTORICAL_SEQUENCE_EXCEPTION_RECORDED
+    effective_date_clarification:
+      gate: GATE-V7-G3
+      documentary_definition_effective_commit: "f573a66"
+      implementation_effective_date: NOT_ESTABLISHED
+      production_adoption_date: NOT_ESTABLISHED
+      operational_effective_date: NOT_ESTABLISHED
+    next_package_disposition: Package 4 is authorized for experience validation, content governance, measurement, and implementation-handoff definition only. User or stakeholder validation execution is not authorized. Production design approval is not authorized. Runtime implementation is not authorized. Accessibility or bilingual conformance claims are not authorized. Procurement, pilot, rollout, and launch are not authorized.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_baseline_commit: "d0046c8"
+      branch_base_commit: "d0046c8"
+      authoring_commit: "4f3671c"
+      closure_freeze_commit: "f573a66"
+      freeze_commit: "f573a66"
+      effective_commit: "f573a66"
+      original_package_merge_commit: "86628b7"
+      provenance_amendment_commit: "e5aff01"
+      provenance_amendment_merge_commit: "d76f855"
+      note: Package 3 governance amendment. Records the authoring-versus-closure chronology exception (closure artifact authored at 4f3671c, closure and gate effective at the freeze commit f573a66), binds the closure and gate to the PACKAGE-7-3 freeze, clarifies documentary versus implementation effectiveness, and surfaces the bounded Package 4 authorization. Volume 7 is not tagged.
+    approved_at: null

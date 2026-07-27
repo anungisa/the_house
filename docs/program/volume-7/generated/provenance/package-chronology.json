@@ -1,0 +1,19 @@
+{
+  "note": "NON-AUTHORITATIVE projection of closure/freeze chronology and effective-date clarifications.",
+  "packages": [
+    {
+      "freeze_artifact": "PACKAGE-7-3",
+      "closure_artifact": "V7-E",
+      "gate": "GATE-V7-G3",
+      "closure_authored_commit": "4f3671c",
+      "closure_effective_commit": "f573a66",
+      "freeze_commit": "f573a66",
+      "gate_effective_commit": "f573a66",
+      "chronology_exception": "RECORDED",
+      "documentary_definition_effective_commit": "f573a66",
+      "implementation_effective_date": "NOT_ESTABLISHED",
+      "production_adoption_date": "NOT_ESTABLISHED",
+      "operational_effective_date": "NOT_ESTABLISHED"
+    }
+  ]
+}

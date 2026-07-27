@@ -27,6 +27,35 @@
           "base_commit": { "type": "string" },
           "effective_commit": { "type": "string" },
           "requires_freeze_artifact": { "type": "string" },
+          "closure_effective_commit": { "type": "string" },
+          "gate_effective_commit": { "type": "string" },
+          "chronology_exception": { "type": "string" },
+          "closure_binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "closure_artifact": { "type": "string" },
+              "gate": { "type": "string" },
+              "freeze_artifact": { "type": "string" },
+              "closure_authored_commit": { "type": "string" },
+              "closure_effective_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "gate_effective_commit": { "type": "string" },
+              "chronology_exception": { "type": "string" },
+              "chronology_disposition": { "type": "string" }
+            }
+          },
+          "effective_date_clarification": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "gate": { "type": "string" },
+              "documentary_definition_effective_commit": { "type": "string" },
+              "implementation_effective_date": { "type": "string" },
+              "production_adoption_date": { "type": "string" },
+              "operational_effective_date": { "type": "string" }
+            }
+          },
           "closure_record": { "type": "boolean" },
           "next_package_disposition": { "type": "string" },
           "supersedes": { "type": "array", "items": { "type": "string" } },

@@ -15,6 +15,7 @@ import { generate as generateInteraction } from './interaction-model-volume-7.mj
 import { generate as generateGateG2 } from './gate-volume-7-g2.mjs';
 import { generate as generateDesign } from './design-system-volume-7.mjs';
 import { generate as generateGateG3 } from './gate-volume-7-g3.mjs';
+import { generate as generateProvenance } from './provenance-integrity-volume-7.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -41,6 +42,7 @@ generateInteraction(ctx);
 generateGateG2(ctx);
 generateDesign(ctx);
 generateGateG3(ctx);
+generateProvenance(ctx);
 
 console.log('\n=== Volume 7 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);
