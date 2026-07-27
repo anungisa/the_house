@@ -1,6 +1,6 @@
 # Volume 11 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T23:20:18.320Z
+Generated: 2026-07-27T23:24:28.269Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 11 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,8 +15,8 @@ Generated: 2026-07-27T23:20:18.320Z
 
 ## Summary
 
-- Total findings: 7
-- Errors: 4
+- Total findings: 4
+- Errors: 1
 - Warnings: 0
 - Info: 3
 - Overall: FAIL (operational-governance integrity errors present)
@@ -25,18 +25,18 @@ Generated: 2026-07-27T23:20:18.320Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 39 |
+| RATIFIED | 40 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 39 |
+| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 40 |
 | REG-1101 | Services, Capabilities, Owners, Operating States, Support Classes, and Providers | RATIFIED | 1.0.0 | 70 |
 | REG-1102 | Operational Requirements, Procedures, Scenarios, Evidence, Acceptance, and Handoffs | RATIFIED | 1.0.0 | 49 |
 | REG-1103 | Volume 11 Operational-Governance Decisions | RATIFIED | 1.0.0 | 20 |
 | REG-1104 | Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps | RATIFIED | 1.0.0 | 17 |
-| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 43 |
+| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 47 |
 
 ## Findings by control
 
@@ -90,9 +90,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V11-G3 readiness
 
-Errors: 4 | Warnings: 0 | Info: 0
+Errors: 1 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V11_G3_CONDITION_UNMET [GATE-V11-G3]: Condition 36 not satisfied: A bounded Volume 12 authorization is recorded in the closure record
-- ERROR GATE_V11_G3_CONDITION_UNMET [GATE-V11-G3]: Condition 41 not satisfied: The Package 2 amendment authoring commit is preserved in the closure record
-- ERROR GATE_V11_G3_CONDITION_UNMET [GATE-V11-G3]: Condition 42 not satisfied: Package 3 and the whole of Volume 11 are ratified frozen
 - ERROR GATE_V11_G3_CONDITION_UNMET [GATE-V11-G3]: Condition 43 not satisfied: Genuine closure, gate, freeze, and pre-merge provenance-binding separation is preserved

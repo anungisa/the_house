@@ -2,20 +2,8 @@
   "gate": "V11-G3",
   "disposition_target": "OPERATIONS_MIGRATION_ADOPTION_SUPPORT_CONTINUITY_AND_OPERATIONAL_ASSURANCE_DEFINITION_COMPLETE",
   "total_conditions": 44,
-  "satisfied": 40,
+  "satisfied": 43,
   "unmet": [
-    {
-      "n": 36,
-      "title": "A bounded Volume 12 authorization is recorded in the closure record"
-    },
-    {
-      "n": 41,
-      "title": "The Package 2 amendment authoring commit is preserved in the closure record"
-    },
-    {
-      "n": 42,
-      "title": "Package 3 and the whole of Volume 11 are ratified frozen"
-    },
     {
       "n": 43,
       "title": "Genuine closure, gate, freeze, and pre-merge provenance-binding separation is preserved"
@@ -206,7 +194,7 @@
     {
       "n": 36,
       "title": "A bounded Volume 12 authorization is recorded in the closure record",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 37,
@@ -231,12 +219,12 @@
     {
       "n": 41,
       "title": "The Package 2 amendment authoring commit is preserved in the closure record",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 42,
       "title": "Package 3 and the whole of Volume 11 are ratified frozen",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 43,

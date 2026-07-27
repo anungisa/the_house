@@ -315,3 +315,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-11/V11-32.md
     gate: V11-G3
+  - id: V11-E
+    title: Package 3 Closure, Volume 11 Whole-Volume Closure, and Bounded Volume 12 Authorization
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-E.md
+    gate: V11-G3
