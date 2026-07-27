@@ -1,0 +1,5 @@
+{
+  "contract_requirements": 2,
+  "contract_coverage_records": 1,
+  "note": "Command, query, resource, and response contract obligations are catalogued as contract test requirements; no contract conformance is asserted."
+}

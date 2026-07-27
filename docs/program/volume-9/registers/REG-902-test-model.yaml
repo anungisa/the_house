@@ -536,3 +536,571 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-04
+  - id: ORACLE-V9-004
+    kind: TEST_ORACLE
+    title: "Test oracle: Authority and authorization oracle"
+    statement: >-
+      Defines the authoritative basis by which a future affiliation authority or authorization
+      result would be judged, distinguishing account, membership, representative authority,
+      delegation, and assignment.
+    authoritative_basis: Volume 8 identity, authority, delegation, and assignment specifications
+    derived_from: Derived from the governed identity and authority contracts and jurisdiction rules
+    prohibited_basis: Tester intuition, implementation output, or an assumption that authority exists
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: ORACLE-V9-005
+    kind: TEST_ORACLE
+    title: "Test oracle: Lifecycle and activation oracle"
+    statement: >-
+      Defines the authoritative basis by which a future submission, decision, activation, or
+      standing result would be judged, holding submission receipt, approval, activation
+      authorization, activation execution, and active standing as distinct, and treating exactly-once
+      activation as a business invariant rather than a transport guarantee.
+    authoritative_basis: Volume 7-8 affiliation lifecycle, decision, and activation specifications
+    derived_from: Derived from the governed lifecycle policy and state-machine contract
+    prohibited_basis: Transport-level delivery guarantees or an assumption that receipt implies approval
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: ORACLE-V9-006
+    kind: TEST_ORACLE
+    title: "Test oracle: Contract and event oracle"
+    statement: >-
+      Defines the authoritative basis by which a future command, query, event, webhook, or provider
+      result would be judged, holding a mocked provider response as distinct from provider
+      integration evidence and end-to-end operational proof.
+    authoritative_basis: Volume 8 command, query, event, webhook, and provider-exchange contracts
+    derived_from: Derived from the governed contract and event specifications
+    prohibited_basis: A mocked response treated as integration evidence, or unverified environment output
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: ORACLE-V9-007
+    kind: TEST_ORACLE
+    title: "Test oracle: Data-integrity and migration oracle"
+    statement: >-
+      Defines the authoritative basis by which a future data-integrity, database-behavioural, or
+      migration result would be judged, holding database behaviour as distinct from schema
+      inspection and migration execution as distinct from business acceptance.
+    authoritative_basis: Volume 5 and Volume 8 data-integrity and migration specifications
+    derived_from: Derived from the governed data model, integrity constraints, and migration contracts
+    prohibited_basis: Schema inspection treated as behaviour, or migration execution treated as acceptance
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: FREQ-V9-001
+    kind: FUNCTIONAL_TEST_REQUIREMENT
+    title: "Functional test requirement: Draft creation and autosave"
+    statement: >-
+      Defines a future functional test obligation for affiliation draft creation and autosave,
+      holding draft state as distinct from submission and asserting no executed test.
+    source_requirement: Volume 7 affiliation draft and autosave experience obligations
+    object_under_test: Affiliation draft application service
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: DOMAIN_BEHAVIOUR_TEST
+    expected_outcome: >-
+      A governed draft is created and autosaved without mutating any governed lifecycle state
+      outside the kernel.
+    negative_outcome: >-
+      An attempt to advance lifecycle state through draft autosave is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: UNIT_COMPONENT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: FREQ-V9-002
+    kind: FUNCTIONAL_TEST_REQUIREMENT
+    title: "Functional test requirement: Derived completeness recalculation"
+    statement: >-
+      Defines a future functional test obligation for derived completeness, holding completeness as
+      a derived determination recalculated from governed inputs and asserting no executed test.
+    source_requirement: Volume 7-8 completeness derivation obligations
+    object_under_test: Affiliation completeness derivation service
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: APPLICATION_SERVICE_TEST
+    expected_outcome: >-
+      Completeness is recalculated deterministically from governed inputs and is never stored as an
+      independent mutable claim.
+    negative_outcome: >-
+      A stored completeness value that diverges from recalculation is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: UNIT_COMPONENT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-14
+  - id: FREQ-V9-003
+    kind: FUNCTIONAL_TEST_REQUIREMENT
+    title: "Functional test requirement: Submission receipt distinct from approval"
+    statement: >-
+      Defines a future functional test obligation that a submission receipt is held strictly
+      distinct from eligibility, approval, and activation, and asserts no executed test.
+    source_requirement: Volume 7-8 submission and eligibility obligations
+    object_under_test: Affiliation submission application service
+    institutional_invariant_ref: INVAR-V9-003
+    applicable_test_level: APPLICATION_SERVICE_TEST
+    expected_outcome: >-
+      A submission produces a receipt that confers no approval and no activation; each remains a
+      distinct governed transition.
+    negative_outcome: >-
+      A receipt treated as approval or activation is detected and fails closed; the negative
+      expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: FREQ-V9-004
+    kind: FUNCTIONAL_TEST_REQUIREMENT
+    title: "Functional test requirement: Exactly-once activation as a business invariant"
+    statement: >-
+      Defines a future functional test obligation that activation occurs exactly once as a governed
+      business invariant, not as a transport-level delivery guarantee, and asserts no executed test.
+    source_requirement: Volume 7-8 activation and standing obligations
+    object_under_test: Affiliation activation domain behaviour
+    institutional_invariant_ref: INVAR-V9-003
+    applicable_test_level: DOMAIN_BEHAVIOUR_TEST
+    expected_outcome: >-
+      Repeated activation stimuli result in exactly one active standing; approval, activation
+      authorization, activation execution, and active standing remain distinct.
+    negative_outcome: >-
+      A second activation that produces a duplicate active standing is detected and fails closed;
+      the negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: WREQ-V9-001
+    kind: WORKFLOW_TEST_REQUIREMENT
+    title: "Workflow test requirement: Review and return preserve history"
+    statement: >-
+      Defines a future workflow test obligation that review and return-for-information preserve full
+      history, holding return as distinct from refusal, and asserts no executed test.
+    source_requirement: Volume 7-8 review and return obligations
+    object_under_test: Affiliation review and return workflow
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: WORKFLOW_TEST
+    expected_outcome: >-
+      A return for information preserves prior submission history and reviewer context and is held
+      distinct from a refusal decision.
+    negative_outcome: >-
+      A return that discards history or is conflated with refusal is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: SYSTEM
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-16
+  - id: WREQ-V9-002
+    kind: WORKFLOW_TEST_REQUIREMENT
+    title: "Workflow test requirement: Decision distinct from recommendation"
+    statement: >-
+      Defines a future workflow test obligation that a reviewer recommendation is held distinct from
+      a governed decision, and asserts no executed test.
+    source_requirement: Volume 7-8 decision authority obligations
+    object_under_test: Affiliation decision workflow
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: WORKFLOW_TEST
+    expected_outcome: >-
+      A recommendation is recorded without effecting a decision; only an authorized decision
+      transition changes governed standing.
+    negative_outcome: >-
+      A recommendation treated as a decision is detected and fails closed; the negative expectation
+      must be exercised.
+    evidence_tier_required: SYSTEM
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: CREQ-V9-001
+    kind: CONTRACT_TEST_REQUIREMENT
+    title: "Contract test requirement: Affiliation command contract"
+    statement: >-
+      Defines a future contract test obligation for the affiliation command surface, asserting no
+      conformance, compatibility, or integration result and no executed test.
+    source_requirement: Volume 8 affiliation command contract
+    object_under_test: Affiliation command contract
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: CONTRACT_TEST
+    expected_outcome: >-
+      The command contract accepts governed inputs, enforces idempotency and expected-version
+      semantics, and rejects malformed or unauthorized requests.
+    negative_outcome: >-
+      A command that bypasses idempotency or expected-version semantics is detected and fails
+      closed; the negative expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: CREQ-V9-002
+    kind: CONTRACT_TEST_REQUIREMENT
+    title: "Contract test requirement: Affiliation query scope and sensitivity"
+    statement: >-
+      Defines a future contract test obligation for the affiliation query surface, holding source,
+      scope, sensitivity, staleness, and disclosure as governed concerns and asserting no executed
+      test.
+    source_requirement: Volume 8 affiliation query contract
+    object_under_test: Affiliation query contract
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: CONTRACT_TEST
+    expected_outcome: >-
+      The query contract enforces tenant and jurisdiction scope, sensitivity filtering, and bounded
+      staleness disclosure.
+    negative_outcome: >-
+      A query that discloses cross-tenant or over-scoped data is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: EREQ-V9-001
+    kind: EVENT_TEST_REQUIREMENT
+    title: "Event test requirement: Outbox event atomicity and ordering"
+    statement: >-
+      Defines a future event-contract test obligation for outbox event atomicity, duplicate
+      handling, replay, ordering, and consumer idempotency, and asserts no executed test.
+    source_requirement: Volume 8 transactional outbox and event contract
+    object_under_test: Affiliation outbox event contract
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: EVENT_CONTRACT_TEST
+    expected_outcome: >-
+      An event is enqueued atomically with the governed transition, and duplicate or replayed events
+      are handled idempotently in a stable order by an idempotent consumer.
+    negative_outcome: >-
+      An event published without its governed transition, or a non-idempotent consumer, is detected
+      and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: WHREQ-V9-001
+    kind: WEBHOOK_TEST_REQUIREMENT
+    title: "Webhook test requirement: Authentication, integrity, and replay defence"
+    statement: >-
+      Defines a future contract test obligation for inbound webhook authentication, integrity,
+      replay defence, idempotency, lifecycle, quarantine, and reconciliation, and asserts no
+      executed test.
+    source_requirement: Volume 8 inbound webhook contract
+    object_under_test: Affiliation inbound webhook contract
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: CONTRACT_TEST
+    expected_outcome: >-
+      A webhook is accepted only when authenticated and integrity-verified, is processed
+      idempotently, and unverifiable payloads are quarantined and reconciled.
+    negative_outcome: >-
+      An unauthenticated, tampered, or replayed webhook that is processed is detected and fails
+      closed; the negative expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: PREQ-V9-001
+    kind: PROVIDER_TEST_REQUIREMENT
+    title: "Provider test requirement: Exchange acceptance distinct from integration"
+    statement: >-
+      Defines a future provider-contract test obligation for provider exchange, holding a mocked
+      provider response as distinct from provider integration evidence and end-to-end operational
+      proof, and asserts no executed test.
+    source_requirement: Volume 8 provider-exchange contract
+    object_under_test: Affiliation provider-exchange contract
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: PROVIDER_CONTRACT_TEST
+    expected_outcome: >-
+      Provider receipt, acceptance, authority, processing, and reconciliation are held distinct, and
+      a mocked provider response is never treated as integration evidence.
+    negative_outcome: >-
+      A mocked provider response treated as integration or operational proof is detected and fails
+      closed; the negative expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: DQREQ-V9-001
+    kind: DATA_QUALITY_TEST_REQUIREMENT
+    title: "Data-quality test requirement: Tenant, parent, version, and uniqueness integrity"
+    statement: >-
+      Defines a future data-quality test obligation for tenant and parent scoping, versioning,
+      history, uniqueness, and provenance, and asserts no executed test.
+    source_requirement: Volume 5 and Volume 8 data-integrity contracts
+    object_under_test: Affiliation data-integrity constraints
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: DATA_QUALITY_TEST
+    expected_outcome: >-
+      Records maintain tenant and parent scoping, monotonic versioning, complete history, uniqueness,
+      and provenance under governed operations.
+    negative_outcome: >-
+      A record that violates tenant scoping, uniqueness, or provenance is detected and fails closed;
+      the negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: DBREQ-V9-001
+    kind: DATABASE_BEHAVIOUR_TEST_REQUIREMENT
+    title: "Database-behaviour test requirement: Behaviour distinct from schema inspection"
+    statement: >-
+      Defines a future database-behavioural test obligation, holding observed governed database
+      behaviour as distinct from schema inspection and from mock behaviour, and asserts no executed
+      test.
+    source_requirement: Volume 5 and Volume 8 database behaviour contracts
+    object_under_test: Affiliation database behaviour
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: DATABASE_BEHAVIOUR_TEST
+    expected_outcome: >-
+      Row-level security, constraints, and transactional behaviour are exercised against a governed
+      database, not inferred from schema inspection or mocks.
+    negative_outcome: >-
+      A schema inspection or mock treated as behavioural evidence is detected and fails closed; the
+      negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: MREQ-V9-001
+    kind: MIGRATION_TEST_REQUIREMENT
+    title: "Migration test requirement: Provenance, quarantine, and coexistence reconciliation"
+    statement: >-
+      Defines a future migration test obligation for provenance, uncertainty, duplicate candidates,
+      quarantine, coexistence, and reconciliation, holding migration execution as distinct from
+      business acceptance, and asserts no executed test.
+    source_requirement: Volume 8 migration and coexistence contract
+    object_under_test: Affiliation migration and coexistence process
+    institutional_invariant_ref: INVAR-V9-006
+    applicable_test_level: MIGRATION_TEST
+    expected_outcome: >-
+      Migrated records carry provenance, ambiguous candidates are quarantined, and coexistence is
+      reconciled without asserting business acceptance.
+    negative_outcome: >-
+      A migrated record without provenance, or migration execution treated as business acceptance,
+      is detected and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: MIGRATION
+    independence_requirement: INDEPENDENT_ASSURANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: NEG-V9-001
+    kind: NEGATIVE_TEST_SCENARIO
+    title: "Negative scenario: Lesser authority cannot act as representative"
+    statement: >-
+      A negative scenario in which an account with membership but without representative authority
+      attempts a representative action; the negative expectation must be exercised.
+    actor_or_service: Authenticated account holder without representative authority
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation application in draft
+    lifecycle_state_context: Draft
+    scenario_disposition: NEGATIVE_EXPECTATION_EXERCISED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-004
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: DENY-V9-001
+    kind: DENIAL_TEST_SCENARIO
+    title: "Denial scenario: Missing mandatory authority context fails closed"
+    statement: >-
+      A denial scenario in which mandatory representative-authority context is absent; the request
+      must be denied and fail closed rather than proceed on assumption.
+    actor_or_service: Service identity acting without resolved authority context
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation submission command
+    lifecycle_state_context: Submitted
+    scenario_disposition: DENIED_FAIL_CLOSED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-004
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: DENY-V9-002
+    kind: DENIAL_TEST_SCENARIO
+    title: "Denial scenario: Cross-jurisdiction access denied"
+    statement: >-
+      A denial scenario in which an actor scoped to one provincial jurisdiction attempts to access
+      an affiliation in another jurisdiction; the request must be denied and fail closed.
+    actor_or_service: Reviewer scoped to a different provincial jurisdiction
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Non-home provincial jurisdiction (isolation boundary)
+    resource_context: Affiliation application under review
+    lifecycle_state_context: Under review
+    scenario_disposition: DENIED_FAIL_CLOSED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-004
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-13
+  - id: CONF-V9-001
+    kind: CONFLICT_TEST_SCENARIO
+    title: "Conflict scenario: Concurrent submission expected-version conflict"
+    statement: >-
+      A conflict scenario in which two concurrent submissions carry a stale expected version; the
+      governed conflict must be detected rather than silently overwritten.
+    actor_or_service: Two representatives acting concurrently
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation application submission
+    lifecycle_state_context: Draft to submitted
+    scenario_disposition: CONFLICT_DETECTED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: STALE-V9-001
+    kind: STALE_STATE_TEST_SCENARIO
+    title: "Stale-state scenario: Stale requirement version rejected"
+    statement: >-
+      A stale-state scenario in which a response is submitted against a superseded requirement
+      version; the governed staleness must be detected and rejected.
+    actor_or_service: Representative submitting against a superseded requirement version
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Requirement response and evidence
+    lifecycle_state_context: Draft
+    scenario_disposition: STALE_STATE_REJECTED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-14
+  - id: DEGR-V9-001
+    kind: DEGRADED_TEST_SCENARIO
+    title: "Degraded scenario: Query under degraded projection returns bounded staleness"
+    statement: >-
+      A degraded scenario in which a read projection is stale or partially available; the governed
+      response must disclose bounded staleness rather than assert freshness.
+    actor_or_service: Authenticated account holder issuing a governed query
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation status query projection
+    lifecycle_state_context: Active
+    scenario_disposition: DEGRADED_HANDLED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-006
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: INTR-V9-001
+    kind: INTERRUPTION_TEST_SCENARIO
+    title: "Interruption scenario: Submission interrupted mid-flight"
+    statement: >-
+      An interruption scenario in which a submission is interrupted before commit; the governed
+      state must remain consistent and recoverable without partial mutation.
+    actor_or_service: Representative whose submission is interrupted
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation submission command
+    lifecycle_state_context: Draft to submitted
+    scenario_disposition: INTERRUPTION_RECOVERED
+    evidence_tier_required: INTEGRATION
+    expected_result_oracle_ref: ORACLE-V9-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: DUP-V9-001
+    kind: DUPLICATE_TEST_SCENARIO
+    title: "Duplicate scenario: Duplicate submission suppressed idempotently"
+    statement: >-
+      A duplicate scenario in which the same submission is retried with the same idempotency key;
+      the governed result must be a single effect, not a duplicate.
+    actor_or_service: Representative retrying a submission
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation submission command with idempotency key
+    lifecycle_state_context: Submitted
+    scenario_disposition: DUPLICATE_SUPPRESSED
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: REPLAY-V9-001
+    kind: REPLAY_TEST_SCENARIO
+    title: "Replay scenario: Event and webhook replay handled idempotently"
+    statement: >-
+      A replay scenario in which a previously delivered event or webhook is redelivered; the
+      governed consumer must handle the replay idempotently without duplicate effect.
+    actor_or_service: Messaging transport redelivering an event or webhook
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation event or inbound webhook
+    lifecycle_state_context: Active
+    scenario_disposition: REPLAY_IDEMPOTENT
+    evidence_tier_required: CONTRACT
+    expected_result_oracle_ref: ORACLE-V9-006
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: RECOV-V9-001
+    kind: RECOVERY_TEST_SCENARIO
+    title: "Recovery scenario: Activation recovery after interruption"
+    statement: >-
+      A recovery scenario in which activation is interrupted and later resumed; recovery must yield
+      exactly one active standing, preserving the exactly-once activation business invariant.
+    actor_or_service: Activation service resuming after interruption
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Affiliation activation
+    lifecycle_state_context: Approved to active
+    scenario_disposition: RECOVERY_VERIFIED
+    evidence_tier_required: INTEGRATION
+    expected_result_oracle_ref: ORACLE-V9-005
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17

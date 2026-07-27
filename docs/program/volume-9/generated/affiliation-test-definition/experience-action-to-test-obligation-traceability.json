@@ -1,0 +1,16 @@
+{
+  "affiliation_test_requirements": 14,
+  "requirements_by_kind": {
+    "FUNCTIONAL_TEST_REQUIREMENT": 4,
+    "WORKFLOW_TEST_REQUIREMENT": 2,
+    "CONTRACT_TEST_REQUIREMENT": 2,
+    "EVENT_TEST_REQUIREMENT": 1,
+    "WEBHOOK_TEST_REQUIREMENT": 1,
+    "PROVIDER_TEST_REQUIREMENT": 1,
+    "DATA_QUALITY_TEST_REQUIREMENT": 1,
+    "DATABASE_BEHAVIOUR_TEST_REQUIREMENT": 1,
+    "MIGRATION_TEST_REQUIREMENT": 1
+  },
+  "requirements_without_governed_invariant": [],
+  "note": "Every material experience action maps to a governed test requirement that traces to an institutional invariant in REG-901."
+}

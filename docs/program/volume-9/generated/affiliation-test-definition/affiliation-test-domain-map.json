@@ -1,0 +1,57 @@
+{
+  "inherited_baseline": "central-registration-volume-8-v1.0.0",
+  "affiliation_test_domains": 10,
+  "domains": [
+    {
+      "id": "DOMAIN-V9-001",
+      "dimension": "Representative authority establishment",
+      "source": "Volumes 7-8 affiliation identity, authority, and assignment specifications"
+    },
+    {
+      "id": "DOMAIN-V9-002",
+      "dimension": "Organization and club identity",
+      "source": "Volume 8 organization and club identity specifications"
+    },
+    {
+      "id": "DOMAIN-V9-003",
+      "dimension": "Jurisdiction, season, and applicability",
+      "source": "Volumes 7-8 jurisdiction and season specifications"
+    },
+    {
+      "id": "DOMAIN-V9-004",
+      "dimension": "Requirements, responses, attestations, and evidence",
+      "source": "Volumes 7-8 requirement, attestation, and evidence specifications"
+    },
+    {
+      "id": "DOMAIN-V9-005",
+      "dimension": "Completeness and submission",
+      "source": "Volumes 7-8 completeness and submission specifications"
+    },
+    {
+      "id": "DOMAIN-V9-006",
+      "dimension": "Review and return for information",
+      "source": "Volumes 7-8 review and return specifications"
+    },
+    {
+      "id": "DOMAIN-V9-007",
+      "dimension": "Correction and resubmission",
+      "source": "Volumes 7-8 correction and resubmission specifications"
+    },
+    {
+      "id": "DOMAIN-V9-008",
+      "dimension": "Decision, finance, and reconciliation",
+      "source": "Volumes 7-8 decision, finance, and reconciliation specifications"
+    },
+    {
+      "id": "DOMAIN-V9-009",
+      "dimension": "Activation, standing, and expiry",
+      "source": "Volumes 7-8 activation, standing, and expiry specifications"
+    },
+    {
+      "id": "DOMAIN-V9-010",
+      "dimension": "Contract, event, data, and migration surfaces",
+      "source": "Volume 8 contract, event, data, and migration specifications"
+    }
+  ],
+  "note": "Each affiliation journey stage inherited from Volumes 7-8 is decomposed into a governed test domain; no execution is authorized."
+}

@@ -363,6 +363,92 @@ function validateModelTraceability(ctx, findings) {
   }
 }
 
+// Package 2 coverage records (fail closed): affiliation test domains, actor/
+// authority matrices, and lifecycle/contract/data-integrity/migration/House-P0
+// coverage records are modelled as coverage-shaped quality records. Each must name
+// a coverage dimension, a coverage basis, a measurement posture, an authoritative
+// source, and a forward execution gate. They confer no execution and no result.
+const AFFILIATION_COVERAGE_KINDS = new Set([
+  'AFFILIATION_TEST_DOMAIN',
+  'ACTOR_AUTHORITY_MATRIX',
+  'LIFECYCLE_COVERAGE',
+  'CONTRACT_COVERAGE',
+  'DATA_INTEGRITY_COVERAGE',
+  'MIGRATION_COVERAGE',
+  'HOUSE_P0_TEST_COVERAGE'
+]);
+function validateAffiliationCoverage(ctx, findings) {
+  for (const c of records(ctx, 'REG-901')) {
+    if (!AFFILIATION_COVERAGE_KINDS.has(c.kind)) continue;
+    if (!c.coverage_dimension) findings.push(makeFinding(Severity.ERROR, 'AFFIL_COVERAGE_WITHOUT_DIMENSION', `${c.id}: ${c.kind} names no coverage_dimension`, c.id));
+    if (!c.coverage_basis) findings.push(makeFinding(Severity.ERROR, 'AFFIL_COVERAGE_WITHOUT_BASIS', `${c.id}: ${c.kind} names no coverage_basis`, c.id));
+    if (!c.measurement_posture) findings.push(makeFinding(Severity.ERROR, 'AFFIL_COVERAGE_WITHOUT_MEASUREMENT', `${c.id}: ${c.kind} names no measurement_posture`, c.id));
+    if (!c.authoritative_source) findings.push(makeFinding(Severity.ERROR, 'AFFIL_COVERAGE_WITHOUT_SOURCE', `${c.id}: ${c.kind} names no authoritative_source`, c.id));
+    if (!c.future_gate) findings.push(makeFinding(Severity.ERROR, 'AFFIL_COVERAGE_WITHOUT_FUTURE_GATE', `${c.id}: ${c.kind} names no future_gate`, c.id));
+  }
+}
+
+// Package 2 test-model records (fail closed): the affiliation functional, workflow,
+// contract, event, webhook, provider, data-quality, database-behaviour, and
+// migration requirement kinds are requirement-shaped and must carry the same
+// governed-authority, negative-outcome, evidence, independence, and forward-gate
+// obligations as a base TEST_REQUIREMENT, and must trace to a governed
+// institutional invariant in REG-901. The negative, denial, conflict, stale-state,
+// degraded, interruption, duplicate, replay, and recovery scenario kinds are
+// scenario-shaped and must carry full actor/tenant/jurisdiction/resource/state
+// context, a disposition, an evidence tier, and a governed oracle that resolves in
+// REG-902. Unknown references block.
+const AFFILIATION_REQUIREMENT_KINDS = new Set([
+  'FUNCTIONAL_TEST_REQUIREMENT',
+  'WORKFLOW_TEST_REQUIREMENT',
+  'CONTRACT_TEST_REQUIREMENT',
+  'EVENT_TEST_REQUIREMENT',
+  'WEBHOOK_TEST_REQUIREMENT',
+  'PROVIDER_TEST_REQUIREMENT',
+  'DATA_QUALITY_TEST_REQUIREMENT',
+  'DATABASE_BEHAVIOUR_TEST_REQUIREMENT',
+  'MIGRATION_TEST_REQUIREMENT'
+]);
+const AFFILIATION_SCENARIO_KINDS = new Set([
+  'NEGATIVE_TEST_SCENARIO',
+  'DENIAL_TEST_SCENARIO',
+  'CONFLICT_TEST_SCENARIO',
+  'STALE_STATE_TEST_SCENARIO',
+  'DEGRADED_TEST_SCENARIO',
+  'INTERRUPTION_TEST_SCENARIO',
+  'DUPLICATE_TEST_SCENARIO',
+  'REPLAY_TEST_SCENARIO',
+  'RECOVERY_TEST_SCENARIO'
+]);
+function validateAffiliationTestModel(ctx, findings) {
+  const invariants = new Set(records(ctx, 'REG-901').filter((r) => r.kind === 'INSTITUTIONAL_INVARIANT').map((r) => r.id));
+  const oracles = new Set(records(ctx, 'REG-902').filter((r) => r.kind === 'TEST_ORACLE').map((r) => r.id));
+  for (const t of records(ctx, 'REG-902')) {
+    if (AFFILIATION_REQUIREMENT_KINDS.has(t.kind)) {
+      if (!t.source_requirement) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_SOURCE', `${t.id}: ${t.kind} names no source_requirement`, t.id));
+      if (!t.object_under_test) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_OBJECT', `${t.id}: ${t.kind} names no object_under_test`, t.id));
+      if (!t.institutional_invariant_ref) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_INVARIANT', `${t.id}: ${t.kind} names no institutional_invariant_ref`, t.id));
+      else if (!invariants.has(t.institutional_invariant_ref)) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_INVARIANT_UNRESOLVED', `${t.id}: institutional_invariant_ref "${t.institutional_invariant_ref}" resolves to no INSTITUTIONAL_INVARIANT`, t.id));
+      if (!t.applicable_test_level) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_LEVEL', `${t.id}: ${t.kind} names no applicable_test_level`, t.id));
+      if (!t.expected_outcome) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_EXPECTED', `${t.id}: ${t.kind} names no expected_outcome`, t.id));
+      if (!t.negative_outcome) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_NEGATIVE', `${t.id}: ${t.kind} names no negative_outcome`, t.id));
+      if (!t.evidence_tier_required) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_EVIDENCE_TIER', `${t.id}: ${t.kind} names no evidence_tier_required`, t.id));
+      if (!t.independence_requirement) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_INDEPENDENCE', `${t.id}: ${t.kind} names no independence_requirement`, t.id));
+      if (!t.future_gate) findings.push(makeFinding(Severity.ERROR, 'AFFIL_REQ_WITHOUT_FUTURE_GATE', `${t.id}: ${t.kind} names no future_gate`, t.id));
+    } else if (AFFILIATION_SCENARIO_KINDS.has(t.kind)) {
+      if (!t.actor_or_service) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_ACTOR', `${t.id}: ${t.kind} names no actor_or_service`, t.id));
+      if (!t.tenant_context) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_TENANT', `${t.id}: ${t.kind} names no tenant_context`, t.id));
+      if (!t.jurisdiction_context) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_JURISDICTION', `${t.id}: ${t.kind} names no jurisdiction_context`, t.id));
+      if (!t.resource_context) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_RESOURCE', `${t.id}: ${t.kind} names no resource_context`, t.id));
+      if (!t.lifecycle_state_context) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_STATE', `${t.id}: ${t.kind} names no lifecycle_state_context`, t.id));
+      if (!t.scenario_disposition) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_DISPOSITION', `${t.id}: ${t.kind} names no scenario_disposition`, t.id));
+      if (!t.evidence_tier_required) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_EVIDENCE_TIER', `${t.id}: ${t.kind} names no evidence_tier_required`, t.id));
+      if (!t.expected_result_oracle_ref) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_WITHOUT_ORACLE', `${t.id}: ${t.kind} names no expected_result_oracle_ref`, t.id));
+      else if (!oracles.has(t.expected_result_oracle_ref)) findings.push(makeFinding(Severity.ERROR, 'AFFIL_SCENARIO_ORACLE_UNRESOLVED', `${t.id}: expected_result_oracle_ref "${t.expected_result_oracle_ref}" resolves to no TEST_ORACLE`, t.id));
+    }
+  }
+}
+
 // Backlog: items without owners or future gates; exceptions and waivers without an
 // expiry or approval; defect-family records without a defect state.
 function validateBacklog(ctx, findings) {
@@ -435,6 +521,8 @@ export function run(ctx) {
   validateTestEvidenceRequirements(ctx, findings);
   validateTestResultModels(ctx, findings);
   validateModelTraceability(ctx, findings);
+  validateAffiliationCoverage(ctx, findings);
+  validateAffiliationTestModel(ctx, findings);
   validateBacklog(ctx, findings);
   validateGateForwardOnly(ctx, findings);
   validateLeakage(ctx, findings);

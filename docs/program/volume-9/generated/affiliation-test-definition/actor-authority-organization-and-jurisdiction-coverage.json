@@ -1,0 +1,21 @@
+{
+  "actor_authority_matrices": 3,
+  "matrices": [
+    {
+      "id": "AUTHZ-V9-001",
+      "dimension": "Account, membership, representative-authority, and delegation distinctions",
+      "source": "Volume 8 identity and authority specifications"
+    },
+    {
+      "id": "AUTHZ-V9-002",
+      "dimension": "Reviewer eligibility, jurisdiction, assignment, and sensitivity distinctions",
+      "source": "Volumes 7-8 review authority specifications"
+    },
+    {
+      "id": "AUTHZ-V9-003",
+      "dimension": "Finance, support, and administrative boundary distinctions",
+      "source": "Volumes 7-8 finance and support authority specifications"
+    }
+  ],
+  "note": "Account, membership, representative authority, delegation, assignment, finance, and support authority are held as distinct governed distinctions requiring negative tests."
+}

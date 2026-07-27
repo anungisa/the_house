@@ -1734,3 +1734,308 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-00
+  - id: DOMAIN-V9-001
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Representative authority establishment"
+    statement: >-
+      Decomposes the representative-authority establishment stage of the club-affiliation journey
+      into a governed test domain. Account existence, account state, organization membership, and
+      representative authority are held as distinct concerns; no test is asserted to have executed.
+    coverage_dimension: Representative authority establishment
+    coverage_basis: Volume 7 experience journey and Volume 8 identity and authority contracts
+    measurement_posture: >-
+      Coverage is measured by the presence of governed test requirements and scenarios; it asserts
+      no execution, passing result, or acceptance.
+    authoritative_source: Volumes 7-8 affiliation identity, authority, and assignment specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-13
+  - id: DOMAIN-V9-002
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Organization and club identity"
+    statement: >-
+      Decomposes organization and club identity resolution into a governed test domain, holding
+      account, membership, and representative authority as distinct concerns and requiring duplicate
+      and ambiguous-identity handling to be defined without asserting any executed test.
+    coverage_dimension: Organization and club identity
+    coverage_basis: Volume 8 organization and facility registry contracts
+    measurement_posture: >-
+      Coverage is measured by governed requirement and scenario presence and asserts no execution
+      or acceptance.
+    authoritative_source: Volume 8 organization and club identity specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-13
+  - id: DOMAIN-V9-003
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Jurisdiction, season, and applicability"
+    statement: >-
+      Decomposes jurisdiction, season, and pathway applicability into a governed test domain,
+      requiring isolation and current-season determinations to be tested without asserting any
+      executed test.
+    coverage_dimension: Jurisdiction, season, and applicability
+    coverage_basis: Volume 7-8 jurisdiction, season, and applicability rules
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 jurisdiction and season specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-13
+  - id: DOMAIN-V9-004
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Requirements, responses, attestations, and evidence"
+    statement: >-
+      Decomposes requirement presentation, response capture, attestation, and evidence handling
+      into a governed test domain, requiring versioning and restricted-evidence handling to be
+      tested without asserting any executed test.
+    coverage_dimension: Requirements, responses, attestations, and evidence
+    coverage_basis: Volume 7-8 requirement and evidence contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 requirement, attestation, and evidence specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-14
+  - id: DOMAIN-V9-005
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Completeness and submission"
+    statement: >-
+      Decomposes derived completeness and submission into a governed test domain, holding
+      completeness as a derived determination and submission receipt as distinct from approval and
+      activation, without asserting any executed test.
+    coverage_dimension: Completeness and submission
+    coverage_basis: Volume 7-8 completeness derivation and submission contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 completeness and submission specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: DOMAIN-V9-006
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Review and return for information"
+    statement: >-
+      Decomposes review and return-for-information into a governed test domain, holding return as
+      distinct from refusal and requiring reviewer eligibility, jurisdiction, and assignment to be
+      tested without asserting any executed test.
+    coverage_dimension: Review and return for information
+    coverage_basis: Volume 7-8 review and return contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 review and return specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-16
+  - id: DOMAIN-V9-007
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Correction and resubmission"
+    statement: >-
+      Decomposes correction and resubmission into a governed test domain, requiring history
+      preservation across resubmission without asserting any executed test.
+    coverage_dimension: Correction and resubmission
+    coverage_basis: Volume 7-8 correction and resubmission contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 correction and resubmission specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-16
+  - id: DOMAIN-V9-008
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Decision, finance, and reconciliation"
+    statement: >-
+      Decomposes recommendation, decision, payment acknowledgement, and reconciliation into a
+      governed test domain, holding recommendation as distinct from decision and payment
+      acknowledgement as distinct from accounting confirmation and reconciliation resolution,
+      without asserting any executed test.
+    coverage_dimension: Decision, finance, and reconciliation
+    coverage_basis: Volume 7-8 decision and financial reconciliation contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 decision, finance, and reconciliation specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: DOMAIN-V9-009
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Activation, standing, and expiry"
+    statement: >-
+      Decomposes activation, active standing, and expiry into a governed test domain, holding
+      approval as distinct from activation authorization, activation execution, and active standing,
+      without asserting any executed test.
+    coverage_dimension: Activation, standing, and expiry
+    coverage_basis: Volume 7-8 activation and standing contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volumes 7-8 activation, standing, and expiry specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: DOMAIN-V9-010
+    kind: AFFILIATION_TEST_DOMAIN
+    title: "Affiliation test domain: Contract, event, data, and migration surfaces"
+    statement: >-
+      Decomposes command, query, event, webhook, provider-exchange, data-integrity, and migration
+      surfaces into a governed test domain, holding a mocked provider response as distinct from
+      provider integration evidence and end-to-end operational proof, without asserting any executed
+      test.
+    coverage_dimension: Contract, event, data, and migration surfaces
+    coverage_basis: Volume 8 command, query, event, webhook, provider, and migration contracts
+    measurement_posture: Coverage measured by governed requirement and scenario presence.
+    authoritative_source: Volume 8 contract, event, data, and migration specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: AUTHZ-V9-001
+    kind: ACTOR_AUTHORITY_MATRIX
+    title: "Actor authority matrix: Identity and representative-authority distinctions"
+    statement: >-
+      Holds authenticated account, account state, organization membership, representative authority,
+      and delegated authority as distinct governed distinctions, each requiring a negative test that
+      a lesser or missing authority is denied. No test is asserted to have executed.
+    coverage_dimension: Account, membership, representative-authority, and delegation distinctions
+    coverage_basis: Volume 8 identity, authority, and delegation contracts
+    measurement_posture: >-
+      Coverage is measured by the presence of governed denial and negative scenarios for each
+      distinction; it asserts no execution or acceptance.
+    authoritative_source: Volume 8 identity and authority specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: AUTHZ-V9-002
+    kind: ACTOR_AUTHORITY_MATRIX
+    title: "Actor authority matrix: Reviewer eligibility and assignment distinctions"
+    statement: >-
+      Holds reviewer eligibility, jurisdiction scope, reviewer assignment, and sensitivity clearance
+      as distinct governed distinctions, each requiring a denial test where the distinction is not
+      satisfied. No test is asserted to have executed.
+    coverage_dimension: Reviewer eligibility, jurisdiction, assignment, and sensitivity distinctions
+    coverage_basis: Volume 7-8 review authority and assignment contracts
+    measurement_posture: Coverage measured by governed denial scenario presence per distinction.
+    authoritative_source: Volumes 7-8 review authority specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: AUTHZ-V9-003
+    kind: ACTOR_AUTHORITY_MATRIX
+    title: "Actor authority matrix: Finance and support boundary distinctions"
+    statement: >-
+      Holds finance authority, support relationship, and administrative authority as distinct
+      governed distinctions that must not confer decision authority, each requiring a negative test
+      that a boundary crossing is denied. No test is asserted to have executed.
+    coverage_dimension: Finance, support, and administrative boundary distinctions
+    coverage_basis: Volume 7-8 finance, support, and administrative authority contracts
+    measurement_posture: Coverage measured by governed negative scenario presence per boundary.
+    authoritative_source: Volumes 7-8 finance and support authority specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: LIFECOV-V9-001
+    kind: LIFECYCLE_COVERAGE
+    title: "Lifecycle coverage: Affiliation workflow states and transitions"
+    statement: >-
+      Records that the affiliation lifecycle states and transitions inherited from Volumes 7-8 carry
+      governed positive, negative, denial, conflict, stale-state, degraded, interruption, duplicate,
+      replay, and recovery obligations. No transition is asserted to have executed or passed.
+    coverage_dimension: Affiliation lifecycle states and transitions
+    coverage_basis: Volume 7-8 affiliation lifecycle and workflow contracts
+    measurement_posture: >-
+      Coverage is measured by governed workflow requirement and scenario presence across states and
+      transitions; it asserts no execution or acceptance.
+    authoritative_source: Volumes 7-8 affiliation lifecycle specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-20
+  - id: CTRCOV-V9-001
+    kind: CONTRACT_COVERAGE
+    title: "Contract coverage: Command, query, event, webhook, and provider contracts"
+    statement: >-
+      Records that Volume 8 command, query, resource, response, event, webhook, provider-exchange,
+      file, and batch contracts carry governed contract test obligations. No contract conformance,
+      compatibility, or integration result is asserted.
+    coverage_dimension: Command, query, event, webhook, and provider contracts
+    coverage_basis: Volume 8 command, query, event, webhook, and provider contracts
+    measurement_posture: >-
+      Coverage is measured by governed contract, event, webhook, and provider requirement presence;
+      it asserts no conformance, compatibility, or integration result.
+    authoritative_source: Volume 8 contract specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: DATACOV-V9-001
+    kind: DATA_INTEGRITY_COVERAGE
+    title: "Data-integrity coverage: Tenant, parent, version, history, uniqueness, and provenance"
+    statement: >-
+      Records that data-integrity concerns - tenant and parent scoping, versioning, history,
+      uniqueness, and provenance - carry governed data-quality and database-behavioural obligations.
+      Database behaviour is held distinct from schema inspection. No database result is asserted.
+    coverage_dimension: Tenant, parent, version, history, uniqueness, and provenance
+    coverage_basis: Volume 5 and Volume 8 data model and integrity contracts
+    measurement_posture: >-
+      Coverage is measured by governed data-quality and database-behaviour requirement presence; it
+      asserts no database or integration result.
+    authoritative_source: Volume 5 and Volume 8 data-integrity specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: MIGCOV-V9-001
+    kind: MIGRATION_COVERAGE
+    title: "Migration coverage: Provenance, quarantine, coexistence, and reconciliation"
+    statement: >-
+      Records that migration concerns - provenance, uncertainty, duplicate candidates, quarantine,
+      coexistence, and reconciliation - carry governed migration test obligations. Migration
+      execution is held distinct from business acceptance. No migration success is asserted.
+    coverage_dimension: Migration provenance, quarantine, coexistence, and reconciliation
+    coverage_basis: Volume 8 migration and coexistence contracts
+    measurement_posture: >-
+      Coverage is measured by governed migration requirement presence; it asserts no migration
+      execution, success, or business acceptance.
+    authoritative_source: Volume 8 migration specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: P0COV-V9-001
+    kind: HOUSE_P0_TEST_COVERAGE
+    title: "House P0 coverage: Priority-zero affiliation obligations"
+    statement: >-
+      Records that House priority-zero affiliation obligations are covered by governed functional,
+      workflow, contract, event, data-integrity, and migration test requirements and by negative and
+      recovery scenarios. Coverage confers no execution, no passing result, and no acceptance.
+    coverage_dimension: House priority-zero affiliation obligations
+    coverage_basis: House P0 affiliation requirements inherited from Volumes 7-8
+    measurement_posture: >-
+      Coverage is measured by governed requirement and scenario presence for each priority-zero
+      obligation; it asserts no execution or acceptance.
+    authoritative_source: House P0 affiliation specifications in Volumes 7-8
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-20

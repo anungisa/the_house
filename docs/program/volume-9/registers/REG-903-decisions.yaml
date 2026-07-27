@@ -47,3 +47,159 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-00
+  - id: ADR-V9-005
+    title: Every governed affiliation action requires a test disposition
+    decision: >-
+      Every material affiliation action inherited from Volumes 7-8 is decomposed into a governed
+      test requirement or scenario with an expected and a negative outcome.
+    status: ACCEPTED
+    context: Undefined actions cannot be assured; coverage must be traceable to governed actions.
+    consequence: Package 2 enumerates test obligations per action without authorizing execution.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-11
+  - id: ADR-V9-006
+    title: Oracles derive from governed authority
+    decision: Every affiliation oracle derives from a governed specification, not tester intuition.
+    status: ACCEPTED
+    context: A result can only be judged against an authoritative basis.
+    consequence: Oracles are auditable against Volume 7-8 contracts and the state machine.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-11
+  - id: ADR-V9-007
+    title: Authority distinctions require negative tests
+    decision: >-
+      Account, membership, representative authority, delegation, assignment, finance, and support
+      distinctions each require a negative or denial test.
+    status: ACCEPTED
+    context: Distinctions that are not negatively tested collapse under implementation pressure.
+    consequence: Each authority distinction is bound to a governed negative or denial scenario.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-12
+  - id: ADR-V9-008
+    title: Completeness remains a derived determination
+    decision: Completeness is recalculated from governed inputs and never stored as a mutable claim.
+    status: ACCEPTED
+    context: A stored completeness flag can diverge from the governed inputs.
+    consequence: Completeness carries a recalculation test obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-14
+  - id: ADR-V9-009
+    title: Submission receipt is not approval
+    decision: A submission receipt confers no eligibility, approval, or activation.
+    status: ACCEPTED
+    context: Conflating receipt with approval would bypass governed decision authority.
+    consequence: Submission, approval, and activation each remain distinct governed transitions.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-15
+  - id: ADR-V9-010
+    title: Return for information is not refusal
+    decision: A return for information preserves history and is held distinct from a refusal decision.
+    status: ACCEPTED
+    context: Returns and refusals have different governed consequences and authority.
+    consequence: Return, correction, and resubmission carry history-preservation obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-16
+  - id: ADR-V9-011
+    title: Resubmission preserves history
+    decision: Resubmission after correction preserves the full prior submission and review history.
+    status: ACCEPTED
+    context: Governed audit requires an unbroken history across correction cycles.
+    consequence: Resubmission carries a history-preservation test obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-16
+  - id: ADR-V9-012
+    title: Recommendation is not decision
+    decision: A reviewer recommendation is held distinct from a governed decision transition.
+    status: ACCEPTED
+    context: Only authorized decision authority may change governed standing.
+    consequence: Recommendation and decision each carry distinct workflow test obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: ADR-V9-013
+    title: Payment acknowledgement is not reconciliation
+    decision: >-
+      Payment acknowledgement is held distinct from accounting confirmation and reconciliation
+      resolution.
+    status: ACCEPTED
+    context: A payment acknowledgement does not by itself resolve financial reconciliation.
+    consequence: Finance testing preserves the decision-authority and reconciliation boundaries.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: ADR-V9-014
+    title: Approval is not activation
+    decision: >-
+      Approval, activation authorization, activation execution, and active standing are held
+      distinct.
+    status: ACCEPTED
+    context: Collapsing approval into activation would bypass governed activation authority.
+    consequence: Each activation distinction carries a distinct test obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: ADR-V9-015
+    title: Exactly-once activation is a business invariant, not a transport guarantee
+    decision: >-
+      Exactly-once activation is tested as a governed business invariant, independent of any
+      transport delivery guarantee.
+    status: ACCEPTED
+    context: Transport delivery guarantees do not establish a single governed active standing.
+    consequence: Activation carries duplicate and recovery scenario obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-17
+  - id: ADR-V9-016
+    title: Provider mocks are not provider integration
+    decision: >-
+      A mocked provider response is held distinct from provider integration evidence and end-to-end
+      operational proof.
+    status: ACCEPTED
+    context: A mock demonstrates contract shape, not provider integration or operation.
+    consequence: Provider testing carries distinct receipt, acceptance, and reconciliation obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-18
+  - id: ADR-V9-017
+    title: Database behaviour is not schema inspection
+    decision: >-
+      Governed database behaviour is exercised against a database and is held distinct from schema
+      inspection and mock behaviour.
+    status: ACCEPTED
+    context: Schema inspection cannot establish row-level-security or transactional behaviour.
+    consequence: Database-behaviour testing carries an integration-tier evidence obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19
+  - id: ADR-V9-018
+    title: Migration execution is not business acceptance
+    decision: >-
+      Migration execution is held distinct from business acceptance; provenance and reconciliation
+      are required before acceptance.
+    status: ACCEPTED
+    context: A completed migration run does not by itself establish business acceptance.
+    consequence: Migration testing carries provenance, quarantine, and reconciliation obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-19

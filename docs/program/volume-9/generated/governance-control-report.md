@@ -1,6 +1,6 @@
 # Volume 9 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T15:54:13.987Z
+Generated: 2026-07-27T16:29:37.333Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 corpus. It is not a source of truth, does not confer ratification, and
@@ -25,18 +25,18 @@ Generated: 2026-07-27T15:54:13.987Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 14 |
+| RATIFIED | 25 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 14 |
-| REG-901 | Volume 9 Quality Attributes, Test Objects, Institutional Invariants, and Coverage | RATIFIED | 1.0.0 | 96 |
-| REG-902 | Volume 9 Test Requirements, Scenarios, Cases, Oracles, Evidence, and Results | RATIFIED | 1.0.0 | 29 |
-| REG-903 | Volume 9 Decisions | RATIFIED | 1.0.0 | 4 |
-| REG-904 | Volume 9 Assumptions, Risks, Exceptions, Defects, Waivers, and Validation Backlog | RATIFIED | 1.0.0 | 10 |
-| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 18 |
+| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 25 |
+| REG-901 | Volume 9 Quality Attributes, Test Objects, Institutional Invariants, and Coverage | RATIFIED | 1.0.0 | 114 |
+| REG-902 | Volume 9 Test Requirements, Scenarios, Cases, Oracles, Evidence, and Results | RATIFIED | 1.0.0 | 57 |
+| REG-903 | Volume 9 Decisions | RATIFIED | 1.0.0 | 18 |
+| REG-904 | Volume 9 Assumptions, Risks, Exceptions, Defects, Waivers, and Validation Backlog | RATIFIED | 1.0.0 | 19 |
+| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 31 |
 
 ## Findings by control
 
@@ -58,6 +58,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
 
+### Affiliation test-definition coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
 ### Provenance-integrity enforcement
 
 Errors: 0 | Warnings: 0 | Info: 0
@@ -65,6 +71,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Gate V9-G1 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Gate V9-G2 readiness
 
 Errors: 0 | Warnings: 0 | Info: 0
 

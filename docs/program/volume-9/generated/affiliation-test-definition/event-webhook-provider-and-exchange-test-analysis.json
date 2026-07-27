@@ -1,0 +1,7 @@
+{
+  "event_requirements": 1,
+  "webhook_requirements": 1,
+  "provider_requirements": 1,
+  "replay_scenarios": 1,
+  "note": "Event, outbox, webhook, provider, and exchange obligations are defined; mocked provider responses are held distinct from provider integration evidence and end-to-end proof."
+}
