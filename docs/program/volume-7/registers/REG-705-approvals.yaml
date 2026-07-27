@@ -1,0 +1,141 @@
+register_id: REG-705
+name: Volume 7 Approvals
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: APP-V7-001
+    artifact_id: V7-00
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-002
+    artifact_id: V7-01
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-003
+    artifact_id: V7-02
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-004
+    artifact_id: V7-03
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-005
+    artifact_id: V7-04
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-006
+    artifact_id: V7-05
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-007
+    artifact_id: V7-06
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-008
+    artifact_id: V7-07
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-009
+    artifact_id: V7-08
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-010
+    artifact_id: V7-09
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-011
+    artifact_id: V7-10
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-012
+    artifact_id: V7-A
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V7-013
+    artifact_id: GATE-V7-G1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: EXPERIENCE_AND_SERVICE_DESIGN_FOUNDATION_READY
+    conditions:
+      - Corrected Volume 6 release provenance is inherited
+      - Club affiliation is the first complete experience vertical
+      - No record authorizes implementation
+      - Deferred exceptions carry a forward gate and an owner
+    approved_at: null
+  - id: APP-V7-014
+    artifact_id: PACKAGE-7-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Frozen artifacts are superseded, never overwritten. A narrow post-merge provenance amendment is recorded as V7-B. Volume 7 is not tagged after Package 1.
+    frozen: true
+    frozen_artifacts:
+      - id: V7-00
+        version: 1.0.0
+      - id: V7-01
+        version: 1.0.0
+      - id: V7-02
+        version: 1.0.0
+      - id: V7-03
+        version: 1.0.0
+      - id: V7-04
+        version: 1.0.0
+      - id: V7-05
+        version: 1.0.0
+      - id: V7-06
+        version: 1.0.0
+      - id: V7-07
+        version: 1.0.0
+      - id: V7-08
+        version: 1.0.0
+      - id: V7-09
+        version: 1.0.0
+      - id: V7-10
+        version: 1.0.0
+      - id: V7-A
+        version: 1.0.0
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      note: Package 1 freeze is a separate freeze commit after line-level review; merge and freeze commit identifiers are recorded in the V7-B provenance amendment. Volume 7 is not tagged after Package 1.
+    approved_at: null

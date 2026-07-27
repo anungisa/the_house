@@ -1,0 +1,192 @@
+register_id: REG-704
+name: Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V7-001
+    kind: ASM
+    title: Corrected Volume 6 baseline is inherited
+    statement: Volume 7 assumes inheritance of the corrected Volume 6 release baseline central-registration-volume-6-v1.0.1.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Confirmed inheritance recorded in V7-00 and REG-705 provenance.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V12-G1
+    chapter_ref: V7-00
+  - id: ASM-V7-002
+    kind: ASM
+    title: House-authoritative doctrine holds downstream
+    statement: Volume 7 assumes the House-authoritative, Button-presents doctrine constrains all downstream interface and integration design.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Downstream API and integration definitions preserve House authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V8-G1
+    chapter_ref: V7-01
+  - id: RISK-V7-001
+    kind: RISK
+    title: Presentation could imply authority
+    statement: Presentation of status or assistance could be misread as institutional decision authority.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Usability validation that presentation does not imply authority.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-06
+    traces_to:
+      - CTRL-V7-001
+  - id: RISK-V7-002
+    kind: RISK
+    title: Bilingual meaning could diverge
+    statement: English and French governed meanings could diverge without equivalence validation.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Bilingual equivalence validation across governed content.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-07
+    traces_to:
+      - BIL-V7-001
+  - id: RISK-V7-003
+    kind: RISK
+    title: Accessibility gaps in exception and recovery paths
+    statement: Accessibility could be met on primary paths but not on exception and recovery paths.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Accessibility validation covering primary, exception, and recovery paths.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-07
+  - id: RISK-V7-004
+    kind: RISK
+    title: Privacy boundary could be blurred by operational access
+    statement: Operational access could be misread as conferring disclosure or disposition authority.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Validation that privacy prohibited-inference boundaries hold in the experience.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+    chapter_ref: V7-09
+    traces_to:
+      - PRIV-V7-002
+  - id: EXC-V7-001
+    kind: EXC
+    title: Provisional pathway derivation detail deferred
+    statement: Detailed pathway-derivation rules are deferred to downstream definition and treated as provisional in Package 1.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Downstream pathway-derivation definition and validation.
+    approval_ref: APP-V7-013
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V8-G1
+    chapter_ref: V7-03
+  - id: EXC-V7-002
+    kind: EXC
+    title: Reconciliation interaction detail time-boxed
+    statement: Financial reconciliation interaction detail is time-boxed pending downstream financial-operations definition.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Downstream reconciliation-operations definition.
+    expiry: "2026-12-31"
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+    chapter_ref: V7-03
+  - id: TEST-V7-001
+    kind: TEST
+    title: Journey-coverage completeness test
+    statement: A future test must confirm every journey stage names authority, states, and recovery.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Deterministic coverage analysis and independent review.
+    future_test_class: EXPERIENCE_COVERAGE
+    downstream_volume: Volume 9 quality and master test definition
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-10
+  - id: TEST-V7-002
+    kind: TEST
+    title: Status-semantics comprehension test
+    statement: A future test must confirm users correctly understand governed status meanings and prohibited inferences.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Usability study of status comprehension.
+    future_test_class: USABILITY
+    downstream_volume: Volume 9 quality and master test definition
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-10
+  - id: TEST-V7-003
+    kind: TEST
+    title: Accessibility conformance test
+    statement: A future test must assess accessibility conformance across primary, exception, and recovery paths.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Accessibility conformance assessment.
+    future_test_class: ACCESSIBILITY_CONFORMANCE
+    downstream_volume: Volume 9 quality and master test definition
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-10
+  - id: TEST-V7-004
+    kind: TEST
+    title: Bilingual equivalence test
+    statement: A future test must validate English and French governed-meaning equivalence.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Bilingual equivalence validation.
+    future_test_class: BILINGUAL_VALIDATION
+    downstream_volume: Volume 9 quality and master test definition
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-10
+  - id: TEST-V7-005
+    kind: TEST
+    title: Error-and-recovery coverage test
+    statement: A future test must confirm every defined error condition has a defined recovery path.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Deterministic error-and-recovery coverage analysis.
+    future_test_class: EXPERIENCE_COVERAGE
+    downstream_volume: Volume 9 quality and master test definition
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V7-10
+  - id: TEST-V7-006
+    kind: TEST
+    title: Operational-proof of experience obligations
+    statement: A future test must confirm operational realization of experience obligations under real conditions.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Operational proof under real conditions.
+    future_test_class: OPERATIONAL_PROOF
+    downstream_volume: Volume 11 operations and operational proof
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V11-G1
+    chapter_ref: V7-10
+  - id: TEST-V7-007
+    kind: TEST
+    title: Independent experience assurance
+    statement: A future independent assurance must validate the experience foundation before release acceptance.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Independent assurance and release acceptance evidence.
+    future_test_class: INDEPENDENT_ASSURANCE
+    downstream_volume: Volume 12 release assurance and independent validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V12-G1
+    chapter_ref: V7-10

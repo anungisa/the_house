@@ -1,0 +1,75 @@
+register_id: REG-703
+name: Volume 7 Decisions
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V7-001
+    title: Experience authority model
+    decision: Experience documents define experience, service, information-architecture, content, accessibility, bilingual, privacy, and recovery obligations only and never authorize implementation.
+    status: ACCEPTED
+    context: Volume 7 must establish the club-affiliation experience foundation before interface design or construction, without becoming an implementation authorization.
+    consequence: Every Volume 7 record carries authorizes_implementation false and a not-implemented posture; implementation remains ungoverned by these documents.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-00
+  - id: ADR-V7-002
+    title: House-authoritative, Button-presents doctrine
+    decision: Governed truth originates in The House; The Button presents and collects but does not independently decide.
+    status: ACCEPTED
+    context: The House is the governed system-of-record; The Button is the participant- and club-facing experience.
+    consequence: No experience record may treat the Button as a source of truth or as holding decision authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-01
+    traces_to:
+      - CTRL-V7-001
+  - id: ADR-V7-003
+    title: Club affiliation as first experience vertical
+    decision: Club affiliation is the first complete experience vertical defined in Volume 7.
+    status: ACCEPTED
+    context: The program defines one complete vertical before broadening experience scope.
+    consequence: Package 1 scopes actors, journey, blueprint, IA, semantics, accessibility, bilingual, privacy, and recovery to club affiliation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-03
+    traces_to:
+      - JOURNEY-V7-001
+  - id: ADR-V7-004
+    title: Separation of assistance, finance, provider, and authority
+    decision: Support assistance, financial confirmation, and provider acknowledgement are each distinct from institutional authority and affiliation decisions.
+    status: ACCEPTED
+    context: Channel responsibilities must not blur into decision authority.
+    consequence: The service blueprint records separation invariants enforced across the experience.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-04
+    traces_to:
+      - BLUEPRINT-V7-001
+  - id: ADR-V7-005
+    title: English and French governed-meaning equivalence
+    decision: English and French governed meanings must remain equivalent across the experience.
+    status: ACCEPTED
+    context: The organization operates bilingually and governed meaning must not diverge by language.
+    consequence: Status, content, and bilingual records carry English and French semantic requirements; conformance is deferred to a future gate.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-07
+    traces_to:
+      - BIL-V7-001
+  - id: ADR-V7-006
+    title: Access does not confer disclosure or disposition authority
+    decision: Operational access to information or evidence never confers disclosure or records-disposition authority.
+    status: ACCEPTED
+    context: Sensitive-information and evidence interactions must preserve privacy and authority boundaries.
+    consequence: Privacy records carry prohibited-inference statements enforcing this boundary.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V7-09
+    traces_to:
+      - PRIV-V7-002

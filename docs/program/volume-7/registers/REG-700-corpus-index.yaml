@@ -1,0 +1,101 @@
+register_id: REG-700
+name: Volume 7 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V7-00
+    title: Volume Control, Inheritance, and Experience-Definition Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-00-volume-control-inheritance-and-experience-definition-authority.md
+    gate: V7-G1
+  - id: V7-01
+    title: Experience Doctrine and Service Principles
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-01-experience-doctrine-and-service-principles.md
+    gate: V7-G1
+  - id: V7-02
+    title: Actors, Needs, Contexts, and Access Postures
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-02-actors-needs-contexts-and-access-postures.md
+    gate: V7-G1
+  - id: V7-03
+    title: End-to-End Club-Affiliation Journey
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-03-end-to-end-club-affiliation-journey.md
+    gate: V7-G1
+  - id: V7-04
+    title: Service Blueprint and Channel-Responsibility Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-04-service-blueprint-and-channel-responsibility-model.md
+    gate: V7-G1
+  - id: V7-05
+    title: Information Architecture and Navigation Foundation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-05-information-architecture-and-navigation-foundation.md
+    gate: V7-G1
+  - id: V7-06
+    title: Status, Action, Task, Notification, and Content Semantics
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-06-status-action-task-notification-and-content-semantics.md
+    gate: V7-G1
+  - id: V7-07
+    title: Accessibility, Bilingual Equivalence, and Inclusive-Experience Foundation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-07-accessibility-bilingual-equivalence-and-inclusive-experience-foundation.md
+    gate: V7-G1
+  - id: V7-08
+    title: Error, Exception, Interruption, Support, and Recovery Experience
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-08-error-exception-interruption-support-and-recovery-experience.md
+    gate: V7-G1
+  - id: V7-09
+    title: Sensitive Information, Evidence, Privacy Notice, and Disclosure Experience
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-09-sensitive-information-evidence-privacy-notice-and-disclosure-experience.md
+    gate: V7-G1
+  - id: V7-10
+    title: Experience Traceability, Validation Backlog, and Downstream Constraints
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-10-experience-traceability-validation-backlog-and-downstream-constraints.md
+    gate: V7-G1
+  - id: V7-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-A-package-1-closure-record.md
+    gate: V7-G1

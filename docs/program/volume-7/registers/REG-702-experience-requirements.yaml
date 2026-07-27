@@ -1,0 +1,799 @@
+register_id: REG-702
+name: Volume 7 Experience Requirements, Patterns, States, and Content Semantics
+status: RATIFIED
+version: 1.0.0
+records:
+  # --- Information architecture areas (V7-05) ---
+  - id: IA-V7-001
+    kind: IA
+    title: Club home
+    statement: The club's primary orientation area for standing and required actions.
+    purpose: Orient the representative to the club's current standing and next required actions.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View standing and required actions
+    status_semantics: Presents authoritative standing and required actions without deciding them.
+    deep_work_destination: Affiliation area
+    access_condition: Confirmed representative authority for the club.
+    privacy_posture: INTERNAL
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+      - STATUS_ANNOUNCEMENT
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-002
+    kind: IA
+    title: Affiliation
+    statement: The area where affiliation is completed, submitted, and tracked.
+    purpose: Support completion, submission, and tracking of affiliation.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - Complete and submit affiliation
+      - Track affiliation state
+    status_semantics: Presents the authoritative affiliation state.
+    deep_work_destination: Applications area
+    access_condition: Confirmed representative authority and applicable season.
+    privacy_posture: PERSONAL
+    accessibility_dependency:
+      - FORM_INSTRUCTIONS
+      - ERROR_PREVENTION_AND_RECOVERY
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-003
+    kind: IA
+    title: Membership
+    statement: The area presenting membership context relevant to affiliation.
+    purpose: Present membership context relevant to affiliation.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View membership context
+    status_semantics: Presents authoritative membership context.
+    deep_work_destination: Affiliation area
+    access_condition: Confirmed representative authority.
+    privacy_posture: PERSONAL
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-004
+    kind: IA
+    title: Compliance
+    statement: The area presenting compliance obligations and their state.
+    purpose: Present compliance obligations and their current state.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View compliance obligations and state
+    status_semantics: Presents authoritative compliance state without deciding it.
+    deep_work_destination: Applications area
+    access_condition: Confirmed representative authority.
+    privacy_posture: INTERNAL
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-005
+    kind: IA
+    title: Applications
+    statement: The area presenting affiliation applications and their review state.
+    purpose: Present applications and their review state.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View application and review state
+      - Respond to return-for-information
+    status_semantics: Presents authoritative application and review state.
+    deep_work_destination: Affiliation area
+    access_condition: Confirmed representative authority for the application.
+    privacy_posture: PERSONAL
+    accessibility_dependency:
+      - STATUS_ANNOUNCEMENT
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-006
+    kind: IA
+    title: Support
+    statement: The area where users obtain assistance without transferring authority.
+    purpose: Provide assistance without conferring institutional authority.
+    primary_actor: Support operator
+    authoritative_source: Staff
+    permitted_actions:
+      - Request and receive assistance
+    status_semantics: Presents assistance context; assistance is not decision authority.
+    deep_work_destination: Affiliation area
+    access_condition: Available to authenticated users seeking help.
+    privacy_posture: INTERNAL
+    accessibility_dependency:
+      - ACCOMMODATION_PATH
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-007
+    kind: IA
+    title: Services
+    statement: The area presenting available services relevant to the club.
+    purpose: Present available services relevant to the club.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View available services
+    status_semantics: Presents authoritative service availability.
+    deep_work_destination: Relevant service area
+    access_condition: Confirmed representative authority.
+    privacy_posture: INTERNAL
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-008
+    kind: IA
+    title: Documents
+    statement: The area presenting affiliation documents and evidence within privacy constraints.
+    purpose: Present documents and evidence within privacy constraints.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View and manage evidence within privacy constraints
+    status_semantics: Presents authoritative document and evidence state.
+    deep_work_destination: Affiliation area
+    access_condition: Confirmed representative authority and applicable privacy constraints.
+    privacy_posture: RESTRICTED_EVIDENCE
+    accessibility_dependency:
+      - EVIDENCE_INTERACTION
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-009
+    kind: IA
+    title: Organization profile
+    statement: The area presenting the club's organization profile.
+    purpose: Present and maintain the club's organization profile within governed limits.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View and correct permitted profile fields
+    status_semantics: Presents authoritative organization profile.
+    deep_work_destination: Affiliation area
+    access_condition: Confirmed representative authority.
+    privacy_posture: PERSONAL
+    accessibility_dependency:
+      - FORM_INSTRUCTIONS
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  - id: IA-V7-010
+    kind: IA
+    title: Notifications and required actions
+    statement: The area presenting notifications and required actions authoritatively.
+    purpose: Present notifications and required actions accurately and without concealment.
+    primary_actor: Authorized club representative
+    authoritative_source: House
+    permitted_actions:
+      - View notifications and required actions
+    status_semantics: Presents authoritative required actions without deciding them.
+    deep_work_destination: Relevant deep-work area
+    access_condition: Confirmed representative authority.
+    privacy_posture: INTERNAL
+    accessibility_dependency:
+      - STATUS_ANNOUNCEMENT
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-05
+  # --- Status, action, and content semantics (V7-06) ---
+  - id: STATE-V7-001
+    kind: STATE
+    title: Current status
+    statement: The authoritative present standing of the affiliation.
+    canonical_concept: current-status
+    user_facing_meaning: This is the club's present affiliation standing.
+    institutional_consequence: Determines what actions are currently available and required.
+    prohibited_inference: Does not imply any future decision or guaranteed outcome.
+    english_semantic_requirement: State the present standing plainly without implying a future outcome.
+    french_semantic_requirement: Enoncer clairement la situation actuelle sans laisser entendre un resultat futur.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-002
+    kind: STATE
+    title: Required action
+    statement: An action the user must take to progress.
+    canonical_concept: required-action
+    user_facing_meaning: You must take this action to progress.
+    institutional_consequence: Progress is blocked until the required action is completed.
+    prohibited_inference: Does not imply the affiliation is otherwise complete or approved.
+    english_semantic_requirement: State the obligation and its consequence clearly.
+    french_semantic_requirement: Enoncer clairement l'obligation et sa consequence.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-003
+    kind: STATE
+    title: Optional action
+    statement: An action the user may take but is not required.
+    canonical_concept: optional-action
+    user_facing_meaning: You may take this action but are not required to.
+    institutional_consequence: Not taking the action does not block progress.
+    prohibited_inference: Does not imply the action changes the affiliation outcome.
+    english_semantic_requirement: Distinguish clearly from a required action.
+    french_semantic_requirement: Distinguer clairement d'une action requise.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-004
+    kind: STATE
+    title: Completed action
+    statement: An action that has been completed.
+    canonical_concept: completed-action
+    user_facing_meaning: This action has been completed.
+    institutional_consequence: The related obligation is satisfied for now.
+    prohibited_inference: Does not imply the overall affiliation is decided.
+    english_semantic_requirement: Confirm completion without implying a broader outcome.
+    french_semantic_requirement: Confirmer l'achevement sans laisser entendre un resultat global.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-005
+    kind: STATE
+    title: Blocked action
+    statement: An action that cannot proceed due to an unmet condition.
+    canonical_concept: blocked-action
+    user_facing_meaning: This action cannot proceed until a condition is met.
+    institutional_consequence: Progress is blocked until the condition is resolved.
+    prohibited_inference: Does not imply refusal of the affiliation.
+    english_semantic_requirement: Name the blocking condition and the path to resolve it.
+    french_semantic_requirement: Nommer la condition bloquante et la voie de resolution.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-006
+    kind: STATE
+    title: Awaiting review
+    statement: The submission is awaiting review.
+    canonical_concept: awaiting-review
+    user_facing_meaning: Your submission is waiting to be reviewed.
+    institutional_consequence: No decision has been made yet.
+    prohibited_inference: Does not imply the submission is approved or refused.
+    english_semantic_requirement: Convey a pending state without implying an outcome.
+    french_semantic_requirement: Exprimer un etat en attente sans laisser entendre un resultat.
+    source_of_truth: House
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-007
+    kind: STATE
+    title: Returned for information
+    statement: The submission has been returned for additional information.
+    canonical_concept: returned-for-information
+    user_facing_meaning: More information is needed before review can continue.
+    institutional_consequence: The user must correct and resubmit to proceed.
+    prohibited_inference: Does not imply refusal of the affiliation.
+    english_semantic_requirement: Name what is needed and the path to resubmit.
+    french_semantic_requirement: Nommer ce qui est requis et la voie de resoumission.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-008
+    kind: STATE
+    title: Resubmitted
+    statement: The submission has been corrected and resubmitted.
+    canonical_concept: resubmitted
+    user_facing_meaning: Your corrected submission has been received.
+    institutional_consequence: The submission re-enters review.
+    prohibited_inference: Does not imply the submission is now approved.
+    english_semantic_requirement: Confirm receipt without implying an outcome.
+    french_semantic_requirement: Confirmer la reception sans laisser entendre un resultat.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-009
+    kind: STATE
+    title: Approved
+    statement: The affiliation has been approved.
+    canonical_concept: approved
+    user_facing_meaning: The affiliation has been approved.
+    institutional_consequence: Approval may still depend on activation and financial confirmation.
+    prohibited_inference: Does not by itself imply active standing.
+    english_semantic_requirement: Distinguish approval from activation.
+    french_semantic_requirement: Distinguer l'approbation de l'activation.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-010
+    kind: STATE
+    title: Reconciliation pending
+    statement: A financial or reconciliation dependency remains outstanding.
+    canonical_concept: reconciliation-pending
+    user_facing_meaning: A financial or reconciliation step is still outstanding.
+    institutional_consequence: Activation may depend on resolving this dependency.
+    prohibited_inference: Does not imply the affiliation is refused.
+    english_semantic_requirement: Show financial dependency as distinct from the affiliation decision.
+    french_semantic_requirement: Presenter la dependance financiere comme distincte de la decision d'affiliation.
+    source_of_truth: House
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-011
+    kind: STATE
+    title: Activation pending
+    statement: Activation of affiliation standing is pending.
+    canonical_concept: activation-pending
+    user_facing_meaning: Your affiliation is approved and awaiting activation.
+    institutional_consequence: Standing is not yet active.
+    prohibited_inference: Does not imply active standing.
+    english_semantic_requirement: Distinguish pending activation from active standing.
+    french_semantic_requirement: Distinguer l'activation en attente du statut actif.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-012
+    kind: STATE
+    title: Active
+    statement: The affiliation standing is active.
+    canonical_concept: active
+    user_facing_meaning: The club's affiliation is active.
+    institutional_consequence: Confers active standing subject to expiry and obligations.
+    prohibited_inference: Does not imply indefinite standing.
+    english_semantic_requirement: State active standing with any expiry clearly.
+    french_semantic_requirement: Enoncer le statut actif avec toute expiration clairement.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-013
+    kind: STATE
+    title: Expired
+    statement: The affiliation standing has expired.
+    canonical_concept: expired
+    user_facing_meaning: The club's affiliation has expired.
+    institutional_consequence: Standing is no longer active and renewal is required.
+    prohibited_inference: Does not imply refusal or permanent loss.
+    english_semantic_requirement: State expiry and the path to renew.
+    french_semantic_requirement: Enoncer l'expiration et la voie de renouvellement.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-014
+    kind: STATE
+    title: Withdrawn
+    statement: The submission has been withdrawn.
+    canonical_concept: withdrawn
+    user_facing_meaning: The submission has been withdrawn.
+    institutional_consequence: The submission is no longer in review.
+    prohibited_inference: Does not imply refusal by a reviewer.
+    english_semantic_requirement: Distinguish withdrawal from refusal.
+    french_semantic_requirement: Distinguer le retrait du refus.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-015
+    kind: STATE
+    title: Refused
+    statement: The affiliation has been refused.
+    canonical_concept: refused
+    user_facing_meaning: The affiliation has been refused.
+    institutional_consequence: Standing is not conferred; reconsideration may be available.
+    prohibited_inference: Does not imply permanent ineligibility.
+    english_semantic_requirement: State refusal, its reason, and any reconsideration path.
+    french_semantic_requirement: Enoncer le refus, son motif et toute voie de reexamen.
+    source_of_truth: House
+    staleness_posture: AUTHORITATIVE_LIVE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: STATE-V7-016
+    kind: STATE
+    title: Reconsideration
+    statement: The affiliation is under reconsideration.
+    canonical_concept: reconsideration
+    user_facing_meaning: A refused affiliation is being reconsidered.
+    institutional_consequence: No new decision has been made yet.
+    prohibited_inference: Does not imply the outcome will change.
+    english_semantic_requirement: Convey a pending reconsideration without implying an outcome.
+    french_semantic_requirement: Exprimer un reexamen en cours sans laisser entendre un resultat.
+    source_of_truth: House
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  # --- Content message semantics (V7-06) ---
+  - id: CONTENT-V7-001
+    kind: CONTENT
+    title: Consequential-action confirmation
+    statement: The message shown before a consequential action such as submission.
+    canonical_concept: consequential-confirmation
+    user_facing_meaning: Confirm that you intend to take this consequential action.
+    institutional_consequence: The action, once confirmed, produces a traceable governed outcome.
+    prohibited_inference: Does not imply the outcome of the action.
+    english_semantic_requirement: State what will happen and that the outcome is traceable.
+    french_semantic_requirement: Enoncer ce qui se produira et que le resultat est tracable.
+    source_of_truth: House
+    staleness_posture: NOT_APPLICABLE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: CONTENT-V7-002
+    kind: CONTENT
+    title: Staleness disclosure
+    statement: The message disclosing that presented information may be stale.
+    canonical_concept: staleness-disclosure
+    user_facing_meaning: This information may not reflect the latest authoritative state.
+    institutional_consequence: The user should refresh to obtain the authoritative state.
+    prohibited_inference: Does not imply the shown value is authoritative.
+    english_semantic_requirement: Disclose possible staleness and how to refresh.
+    french_semantic_requirement: Divulguer la possible obsolescence et comment actualiser.
+    source_of_truth: House
+    staleness_posture: MAY_BE_STALE_DISCLOSE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  # --- Actions (V7-06) ---
+  - id: ACTION-V7-001
+    kind: ACTION
+    title: Submit affiliation
+    statement: The user action that requests recording of a completed affiliation submission.
+    primary_actor: Authorized club representative
+    institutional_consequence: Requests a governed transition that records the submission for review.
+    status_semantics: Moves the affiliation to a submitted, awaiting-review state.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  - id: ACTION-V7-002
+    kind: ACTION
+    title: Resubmit after return
+    statement: The user action that requests recording of a corrected resubmission.
+    primary_actor: Authorized club representative
+    institutional_consequence: Requests a governed transition that returns the submission to review.
+    status_semantics: Moves the affiliation back to a submitted, awaiting-review state.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-06
+  # --- Accessibility obligations (V7-07) ---
+  - id: A11Y-V7-001
+    kind: A11Y
+    title: Keyboard interaction
+    statement: Every governed task must be operable by keyboard.
+    accessibility_requirement: All interactive elements in primary, exception, and recovery paths are keyboard operable.
+    accessibility_dependency:
+      - KEYBOARD_AND_FOCUS
+    verification_method: Future keyboard-operability assessment against each governed task.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-002
+    kind: A11Y
+    title: Focus sequence
+    statement: Focus order must follow a logical, predictable sequence.
+    accessibility_requirement: Focus order matches the logical task sequence and is never trapped.
+    accessibility_dependency:
+      - KEYBOARD_AND_FOCUS
+    verification_method: Future focus-order assessment across governed tasks.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-003
+    kind: A11Y
+    title: Semantic structure
+    statement: Content must convey structure and relationships semantically.
+    accessibility_requirement: Headings, groups, and relationships are exposed through semantics, not visual styling alone.
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    verification_method: Future semantic-structure assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-004
+    kind: A11Y
+    title: Forms and instructions
+    statement: Forms must provide clear labels and instructions.
+    accessibility_requirement: Every input has an associated label and instruction sufficient to complete it.
+    accessibility_dependency:
+      - FORM_INSTRUCTIONS
+    verification_method: Future forms-and-instructions assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-005
+    kind: A11Y
+    title: Error prevention and recovery
+    statement: Errors must be preventable and recoverable without loss of entered work.
+    accessibility_requirement: Errors are identified, described, and recoverable while preserving entered work.
+    accessibility_dependency:
+      - ERROR_PREVENTION_AND_RECOVERY
+    verification_method: Future error-prevention-and-recovery assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-006
+    kind: A11Y
+    title: Status announcements
+    statement: Status changes must be announced to assistive technology.
+    accessibility_requirement: Meaningful status changes are announced without requiring a visual cue.
+    accessibility_dependency:
+      - STATUS_ANNOUNCEMENT
+    verification_method: Future status-announcement assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-007
+    kind: A11Y
+    title: Evidence interaction
+    statement: Evidence interactions must be accessible.
+    accessibility_requirement: Uploading, previewing, and managing evidence is accessible in primary and recovery paths.
+    accessibility_dependency:
+      - EVIDENCE_INTERACTION
+    verification_method: Future evidence-interaction accessibility assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-008
+    kind: A11Y
+    title: Authentication and recovery
+    statement: Authentication and recovery flows must be accessible.
+    accessibility_requirement: Authentication and account-recovery flows are accessible and do not rely on a single modality.
+    accessibility_dependency:
+      - AUTHENTICATION_AND_RECOVERY
+    verification_method: Future authentication-and-recovery accessibility assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-009
+    kind: A11Y
+    title: Time-sensitive tasks
+    statement: Time-sensitive tasks must offer accessible accommodations.
+    accessibility_requirement: Time limits are adjustable or accommodated so tasks remain completable.
+    accessibility_dependency:
+      - TIME_SENSITIVE_TASK
+    verification_method: Future time-sensitivity accommodation assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: A11Y-V7-010
+    kind: A11Y
+    title: Alternate formats and accommodation paths
+    statement: Alternate formats and accommodation paths must be available.
+    accessibility_requirement: Alternate formats and a documented accommodation path exist for governed tasks.
+    accessibility_dependency:
+      - ALTERNATE_FORMAT
+      - ACCOMMODATION_PATH
+    verification_method: Future alternate-format and accommodation-path assessment.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  # --- Bilingual obligations (V7-07) ---
+  - id: BIL-V7-001
+    kind: BIL
+    title: Governed-meaning equivalence
+    statement: English and French governed meanings must remain equivalent.
+    english_semantic_requirement: English governed text conveys the same institutional meaning as the French.
+    french_semantic_requirement: Le texte francais regi transmet la meme signification institutionnelle que l'anglais.
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  - id: BIL-V7-002
+    kind: BIL
+    title: Status and consequence equivalence
+    statement: Status and consequence meanings must be equivalent in both languages.
+    english_semantic_requirement: Status and consequence language is equivalent to the French governed meaning.
+    french_semantic_requirement: Le libelle du statut et de la consequence est equivalent a la signification anglaise regie.
+    bilingual_dependency: ENGLISH_AND_FRENCH_EQUIVALENT
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-07
+  # --- Privacy interactions (V7-09) ---
+  - id: PRIV-V7-001
+    kind: PRIV
+    title: Collection notice
+    statement: A collection notice must accompany personal information collection.
+    privacy_posture: PERSONAL
+    prohibited_inference: Presenting a notice does not confer authority to use information beyond its stated purpose.
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-09
+  - id: PRIV-V7-002
+    kind: PRIV
+    title: Restricted evidence
+    statement: Restricted evidence must be handled within its privacy constraints.
+    privacy_posture: RESTRICTED_EVIDENCE
+    prohibited_inference: Operational access to evidence does not confer disclosure or disposition authority.
+    accessibility_dependency:
+      - EVIDENCE_INTERACTION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-09
+  - id: PRIV-V7-003
+    kind: PRIV
+    title: Evidence preview and download
+    statement: Evidence preview and download must respect privacy constraints.
+    privacy_posture: RESTRICTED_EVIDENCE
+    prohibited_inference: Ability to preview or download does not imply authority to share externally.
+    accessibility_dependency:
+      - EVIDENCE_INTERACTION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-09
+  - id: PRIV-V7-004
+    kind: PRIV
+    title: Sharing and disclosure
+    statement: Sharing and disclosure require explicit authority.
+    privacy_posture: RESTRICTED_EVIDENCE
+    prohibited_inference: Visibility of information does not imply authority to disclose it.
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-09
+  - id: PRIV-V7-005
+    kind: PRIV
+    title: Access and correction requests
+    statement: Access and correction requests must be handled through governed processes.
+    privacy_posture: PERSONAL
+    prohibited_inference: Handling a request does not confer authority to decide affiliation outcomes.
+    accessibility_dependency:
+      - FORM_INSTRUCTIONS
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-09
+  - id: PRIV-V7-006
+    kind: PRIV
+    title: Retention and legal-hold dependencies
+    statement: Retention and legal-hold dependencies constrain disposition.
+    privacy_posture: RESTRICTED_EVIDENCE
+    prohibited_inference: Operational access does not confer records-disposition authority.
+    accessibility_dependency:
+      - SEMANTIC_STRUCTURE
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-09
+  # --- Experience patterns (V7-08) ---
+  - id: PATTERN-V7-001
+    kind: PATTERN
+    title: Preserve entered work on error
+    statement: On a recoverable error, entered work is preserved where safely possible.
+    control_intent: Errors preserve entered work and present a clear recovery path.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-08
+  - id: PATTERN-V7-002
+    kind: PATTERN
+    title: Disclose degraded and interrupted states
+    statement: Degraded or interrupted states remain visible rather than hidden.
+    control_intent: Interruption and degraded states are disclosed with the authoritative fallback.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-08
+  - id: PATTERN-V7-003
+    kind: PATTERN
+    title: Support without authority transfer
+    statement: Support interactions never transfer institutional authority to support.
+    control_intent: Assistance is presented as help, never as decision, reconciliation, activation, disclosure, or disposition.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-08
+  - id: PATTERN-V7-004
+    kind: PATTERN
+    title: Traceable consequential confirmation
+    statement: Consequential actions require clear confirmation and a traceable outcome.
+    control_intent: Consequential actions are confirmed and produce a traceable governed outcome.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-08
+  # --- Experience controls (V7-06/V7-10) ---
+  - id: CTRL-V7-001
+    kind: CTRL
+    title: House-authoritative presentation
+    statement: The Button presents and collects but does not independently decide.
+    control_intent: All governed truth originates in The House; the Button never becomes the source of truth.
+    source_of_truth: House
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-01
+  - id: CTRL-V7-002
+    kind: CTRL
+    title: Minimum-necessary information
+    statement: The experience presents the minimum necessary information for each context.
+    control_intent: Progressive disclosure never conceals institutional obligations.
+    source_of_truth: House
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    chapter_ref: V7-01
