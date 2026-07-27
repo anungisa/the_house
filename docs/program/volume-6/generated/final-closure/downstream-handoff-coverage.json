@@ -1,0 +1,52 @@
+{
+  "volumes": [
+    "Volume 7",
+    "Volume 8",
+    "Volume 9",
+    "Volume 10",
+    "Volume 11",
+    "Volume 12"
+  ],
+  "coverage": {
+    "Volume 7": [
+      "TEST-V6-036",
+      "TEST-V6-048"
+    ],
+    "Volume 8": [
+      "TEST-V6-037"
+    ],
+    "Volume 9": [
+      "TEST-V6-022",
+      "TEST-V6-023",
+      "TEST-V6-024",
+      "TEST-V6-025",
+      "TEST-V6-026",
+      "TEST-V6-027",
+      "TEST-V6-028",
+      "TEST-V6-029",
+      "TEST-V6-030",
+      "TEST-V6-031",
+      "TEST-V6-035",
+      "TEST-V6-038",
+      "TEST-V6-043",
+      "TEST-V6-045",
+      "TEST-V6-046"
+    ],
+    "Volume 10": [
+      "TEST-V6-032",
+      "TEST-V6-033",
+      "TEST-V6-034",
+      "TEST-V6-039",
+      "TEST-V6-044"
+    ],
+    "Volume 11": [
+      "TEST-V6-040"
+    ],
+    "Volume 12": [
+      "TEST-V6-041",
+      "TEST-V6-042",
+      "TEST-V6-047"
+    ]
+  },
+  "volumes_without_handoff": []
+}

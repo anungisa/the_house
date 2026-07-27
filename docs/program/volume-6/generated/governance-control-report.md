@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T00:06:45.798Z
+Generated: 2026-07-27T00:58:27.015Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-27T00:06:45.798Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 49 |
+| RATIFIED | 60 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 49 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 60 |
 | REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 80 |
 | REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 110 |
-| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 44 |
-| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 44 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 57 |
+| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 57 |
+| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 71 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 68 |
 
 ## Findings by control
 
@@ -247,3 +247,25 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-057 (V6-H): Completes machine-readable Package 4 provenance after mainline merge.
 - APP-V6-057 (V6-H): Preserves the Gate V6-G4 disposition and the PACKAGE-6-4 freeze.
 - APP-V6-057 (V6-H): Reopens no substantive Package 4 content and authorizes no implementation.
+- APP-V6-058 (V6-41): Integrated trust, protection, and assurance baseline consolidates Packages 1 through 4.
+- APP-V6-058 (V6-41): Introduces no new protection capability, control, or obligation and authorizes no implementation.
+- APP-V6-059 (V6-42): Final authority, asset, boundary, threat, right, obligation, and control catalogue consolidated.
+- APP-V6-059 (V6-42): Demonstrates authority separations, adds no catalogue element, and authorizes no implementation.
+- APP-V6-060 (V6-43): Identity, authorization, privilege, and restricted-evidence synthesis preserves governed identity distinctions and fail-closed posture.
+- APP-V6-060 (V6-43): Introduces no new control and authorizes no implementation.
+- APP-V6-061 (V6-44): Privacy, data-protection, records, disclosure, and provider-trust synthesis consolidated.
+- APP-V6-061 (V6-44): Sets no retention period, reaches no legal conclusion, selects no provider, and authorizes no implementation.
+- APP-V6-062 (V6-45): Compliance, financial-control, accessibility, bilingual, and inclusive-service synthesis consolidated.
+- APP-V6-062 (V6-45): Makes no conformance or bilingual-validation claim, performs no retest, and authorizes no implementation.
+- APP-V6-063 (V6-46): Security-operations, incident, vulnerability, and notification synthesis consolidated.
+- APP-V6-063 (V6-46): Establishes no severity, timeline, or notification time, drafts no notice, and authorizes no implementation.
+- APP-V6-064 (V6-47): Resilience, backup, restore, recovery, continuity, provider-exit, and assurance synthesis consolidated.
+- APP-V6-064 (V6-47): Invents no recovery-time, recovery-point, availability, or backup-frequency target and authorizes no implementation.
+- APP-V6-065 (V6-48): House P0 protection and implementation-evidence matrix defines the fourteen P0 findings.
+- APP-V6-065 (V6-48): Every finding is defined with implementation status not-implemented or not-proven; coverage is never remediation; authorizes no implementation.
+- APP-V6-066 (V6-49): Assumptions, risks, exceptions, completed-gate references, and readiness disposition consolidated.
+- APP-V6-066 (V6-49): No completed-gate reference is active; every unresolved item is owned, evidence-bound, and routed to a future destination; authorizes no implementation.
+- APP-V6-067 (V6-50): Downstream-volume handoff and executive trust brief transfer constraints to Volumes 7 through 12.
+- APP-V6-067 (V6-50): Introduces no new authority, authorizes no procurement or material commitment, and creates no master development plan.
+- APP-V6-068 (V6-51): Integrated protection traceability and Volume 6 closure assessment records the deterministic integrity review.
+- APP-V6-068 (V6-51): Projections are non-authoritative; closure requires zero blocking errors and zero implementation authorizations; authorizes no implementation.

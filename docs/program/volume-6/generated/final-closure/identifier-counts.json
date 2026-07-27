@@ -1,0 +1,44 @@
+{
+  "REG-600": {
+    "total": 60
+  },
+  "REG-601": {
+    "total": 80,
+    "by_kind": {
+      "ASSET": 26,
+      "ACTOR": 9,
+      "TRUST_BOUNDARY": 7,
+      "THREAT": 26,
+      "ABUSE_CASE": 4,
+      "RIGHT": 8
+    }
+  },
+  "REG-602": {
+    "total": 110,
+    "by_kind": {
+      "CONTROL_OBJECTIVE": 60,
+      "PROCESSING_PURPOSE": 5,
+      "OBLIGATION": 9,
+      "COMPLIANCE_OBLIGATION": 8,
+      "ACCESSIBILITY_OBLIGATION": 4,
+      "BILINGUAL_OBLIGATION": 4,
+      "INCIDENT_FAMILY": 7,
+      "ASSURANCE_REQUIREMENT": 13
+    }
+  },
+  "REG-603": {
+    "total": 57
+  },
+  "REG-604": {
+    "total": 71,
+    "by_kind": {
+      "ASM": 9,
+      "RISK": 13,
+      "EXC": 1,
+      "TEST": 48
+    }
+  },
+  "REG-605": {
+    "total": 68
+  }
+}

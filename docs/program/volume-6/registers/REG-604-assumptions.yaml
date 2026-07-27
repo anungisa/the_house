@@ -674,3 +674,583 @@ records:
     traces_to:
       - CTRL-V6-059
       - CTRL-V6-060
+  # ==== House P0 protection and implementation-evidence matrix (V6-48) ====
+  - id: TEST-V6-022
+    kind: TEST
+    title: Resource-aware authorization P0 finding
+    owner: Security and Trust Steward
+    statement: Every governed access decision must evaluate the full governed resource context and fail closed on missing context; future testing must prove this.
+    p0_finding: Resource-aware authorization
+    protected_asset_or_right: ASSET-V6-001
+    definition_status: DEFINED
+    future_test_class: Authorization decision test
+    required_environment: Real policy-decision path
+    required_evidence: Test evidence that access decisions evaluate full resource context and deny on missing context.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-001
+  - id: TEST-V6-023
+    kind: TEST
+    title: Assigned reviewer and jurisdiction P0 finding
+    owner: Security and Trust Steward
+    statement: A review decision must require an assigned reviewer with reviewer scope and the correct jurisdiction; future testing must prove this.
+    p0_finding: Assigned reviewer and jurisdiction
+    protected_asset_or_right: ASSET-V6-001
+    definition_status: DEFINED
+    future_test_class: Authorization decision test
+    required_environment: Real policy-decision path
+    required_evidence: Test evidence that review requires assigned reviewer scope and correct jurisdiction.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-001
+  - id: TEST-V6-024
+    kind: TEST
+    title: Evidence binding and restricted-evidence protection P0 finding
+    owner: Security and Trust Steward
+    statement: Governed evidence must be bound to its case and protected under restricted-evidence controls; future testing must prove this.
+    p0_finding: Evidence binding and restricted-evidence protection
+    protected_asset_or_right: ASSET-V6-004
+    definition_status: DEFINED
+    future_test_class: Restricted-evidence access test
+    required_environment: Real evidence-access path
+    required_evidence: Test evidence that evidence is bound to its case and restricted-evidence access fails closed.
+    privacy_dependency: PENDING (privacy validation)
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-004
+  - id: TEST-V6-025
+    kind: TEST
+    title: Production dependency completeness P0 finding
+    owner: Security and Trust Steward
+    statement: Every production dependency required for a governed decision must be present and verified before the decision is trusted; future testing must prove this.
+    p0_finding: Production dependency completeness
+    protected_asset_or_right: ASSET-V6-010
+    definition_status: DEFINED
+    future_test_class: Composition verification test
+    required_environment: Real production composition
+    required_evidence: Test evidence that governed decisions require complete, verified production dependencies.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-010
+  - id: TEST-V6-026
+    kind: TEST
+    title: Affiliation lifecycle authorization P0 finding
+    owner: Security and Trust Steward
+    statement: Every affiliation lifecycle transition must be authorized through the governance kernel and never mutate governed state directly; future testing must prove this.
+    p0_finding: Affiliation lifecycle authorization
+    protected_asset_or_right: ASSET-V6-001
+    definition_status: DEFINED
+    future_test_class: Governance-kernel transition test
+    required_environment: Real governance-kernel path
+    required_evidence: Test evidence that lifecycle transitions are kernel-authorized and never mutate governed state directly.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-001
+  - id: TEST-V6-027
+    kind: TEST
+    title: Versioned policy and requirement protection P0 finding
+    owner: Security and Trust Steward
+    statement: Every governed decision must resolve to a versioned policy and protect the integrity of that requirement; future testing must prove this.
+    p0_finding: Versioned policy and requirement protection
+    protected_asset_or_right: ASSET-V6-010
+    definition_status: DEFINED
+    future_test_class: Policy-versioning integrity test
+    required_environment: Real policy-resolution path
+    required_evidence: Test evidence that decisions resolve to a versioned policy and requirement integrity is protected.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-010
+  - id: TEST-V6-028
+    kind: TEST
+    title: Return and resubmission history P0 finding
+    owner: Security and Trust Steward
+    statement: Every return and resubmission must be recorded as immutable history; future testing must prove this.
+    p0_finding: Return and resubmission history
+    protected_asset_or_right: ASSET-V6-005
+    definition_status: DEFINED
+    future_test_class: Immutable-history test
+    required_environment: Real audit-journal path
+    required_evidence: Test evidence that returns and resubmissions are recorded as immutable history.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-005
+  - id: TEST-V6-029
+    kind: TEST
+    title: Authoritative activation uniqueness and replay protection P0 finding
+    owner: Security and Trust Steward
+    statement: Activation must be unique and protected against replay; future testing must prove this.
+    p0_finding: Authoritative activation uniqueness and replay protection
+    protected_asset_or_right: ASSET-V6-001
+    definition_status: DEFINED
+    future_test_class: Idempotency and replay test
+    required_environment: Real activation path
+    required_evidence: Test evidence that activation is unique and replay is prevented.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-001
+  - id: TEST-V6-030
+    kind: TEST
+    title: Fail-closed configuration P0 finding
+    owner: Security and Trust Steward
+    statement: Missing or invalid governed configuration must fail closed; future testing must prove this.
+    p0_finding: Fail-closed configuration
+    protected_asset_or_right: ASSET-V6-010
+    definition_status: DEFINED
+    future_test_class: Fail-closed configuration test
+    required_environment: Real configuration-resolution path
+    required_evidence: Test evidence that missing or invalid configuration fails closed.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-010
+  - id: TEST-V6-031
+    kind: TEST
+    title: Outbox protection and publication evidence P0 finding
+    owner: Security and Trust Steward
+    statement: The transactional outbox must be protected and its publication evidenced; future testing must prove this.
+    p0_finding: Outbox protection and publication evidence
+    protected_asset_or_right: ASSET-V6-005
+    definition_status: DEFINED
+    future_test_class: Outbox publication-evidence test
+    required_environment: Real outbox and messaging path
+    required_evidence: Test evidence that outbox rows are protected and publication is evidenced and idempotent.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-005
+  - id: TEST-V6-032
+    kind: TEST
+    title: PostgreSQL behavioural verification P0 finding
+    owner: Security and Trust Steward
+    statement: Governed data behaviour must be verified against the real data platform, not assumed; future operational proof must establish this.
+    p0_finding: PostgreSQL behavioural verification
+    protected_asset_or_right: ASSET-V6-001
+    definition_status: DEFINED
+    future_test_class: Behavioural verification against real data platform
+    required_environment: Real data platform
+    required_evidence: Operational evidence that governed data behaviour is verified against the real data platform.
+    operational_evidence: PENDING (Volume 10 operational proof)
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    downstream_volume: Volume 10
+    target_package_or_volume: Volume 10 operational proof
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-001
+  - id: TEST-V6-033
+    kind: TEST
+    title: Production composition verification P0 finding
+    owner: Security and Trust Steward
+    statement: The composed production system must be verified, not only its parts; future operational proof must establish this.
+    p0_finding: Production composition verification
+    protected_asset_or_right: ASSET-V6-013
+    definition_status: DEFINED
+    future_test_class: Production composition verification
+    required_environment: Real composed production environment
+    required_evidence: Operational evidence that the composed production system is verified end to end.
+    operational_evidence: PENDING (Volume 10 operational proof)
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    downstream_volume: Volume 10
+    target_package_or_volume: Volume 10 operational proof
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-013
+  - id: TEST-V6-034
+    kind: TEST
+    title: Deployment-path verification P0 finding
+    owner: Security and Trust Steward
+    statement: The actual deployment path must be verified; future operational proof must establish this.
+    p0_finding: Deployment-path verification
+    protected_asset_or_right: ASSET-V6-013
+    definition_status: DEFINED
+    future_test_class: Deployment-path verification
+    required_environment: Real deployment path
+    required_evidence: Operational evidence that the actual deployment path is verified.
+    operational_evidence: PENDING (Volume 10 operational proof)
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    downstream_volume: Volume 10
+    target_package_or_volume: Volume 10 operational proof
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-013
+  - id: TEST-V6-035
+    kind: TEST
+    title: Secrets and environment configuration P0 finding
+    owner: Security and Trust Steward
+    statement: Secrets and environment configuration must be consumed only by the actual entry points that require them; future testing must prove this.
+    p0_finding: Secrets and environment configuration consumed by actual entry points
+    protected_asset_or_right: ASSET-V6-003
+    definition_status: DEFINED
+    future_test_class: Secrets and configuration consumption test
+    required_environment: Real entry-point configuration path
+    required_evidence: Test evidence that secrets and environment configuration are consumed only by the actual entry points requiring them.
+    implementation_evidence: PENDING (Volume 9+ implementation and test evidence)
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9+ implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+      - ASSET-V6-003
+  # ==== Volume 6 unresolved-readiness disposition (V6-49) ====
+  - id: TEST-V6-036
+    kind: TEST
+    title: Experience and accessible service-design readiness
+    owner: Accessibility and Bilingual Steward
+    statement: Volume 7 must design experience and service that preserve governed authority separations and present governed workflows accessibly and bilingually.
+    future_test_class: Experience and service-design validation
+    required_evidence: Volume 7 experience and service-design artifacts preserving authority separations and accessibility and bilingual presentation.
+    readiness_disposition: ACCEPTED_AS_VOLUME_7_INPUT
+    downstream_volume: Volume 7
+    target_package_or_volume: Volume 7 experience and service design
+    future_blocking_gate: V7-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-50
+  - id: TEST-V6-037
+    kind: TEST
+    title: Logical and physical design realization readiness
+    owner: Security and Trust Steward
+    statement: Volume 8 must realize the defined trust boundaries, classifications, and isolation without weakening any fail-closed posture.
+    future_test_class: Logical and physical design validation
+    required_evidence: Volume 8 design artifacts realizing trust boundaries, classifications, and isolation.
+    readiness_disposition: ACCEPTED_AS_VOLUME_8_INPUT
+    downstream_volume: Volume 8
+    target_package_or_volume: Volume 8 logical and physical design
+    future_blocking_gate: V8-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-50
+  - id: TEST-V6-038
+    kind: TEST
+    title: Implementation and test-evidence readiness
+    owner: Security and Trust Steward
+    statement: Volume 9 must produce the defined implementation and test evidence for the control objectives and House P0 findings.
+    future_test_class: Implementation and test-evidence validation
+    required_evidence: Volume 9 implementation and test evidence for control objectives and House P0 findings.
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9 implementation and testing
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-48
+  - id: TEST-V6-039
+    kind: TEST
+    title: Operational-proof readiness
+    owner: Security and Trust Steward
+    statement: Volume 10 must produce operational proof for the capabilities that require a real operating environment and preserve the separation of technical recovery from business acceptance.
+    future_test_class: Operational-proof validation
+    required_evidence: Volume 10 operational proof for real-environment capabilities.
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    downstream_volume: Volume 10
+    target_package_or_volume: Volume 10 operations and monitoring
+    future_blocking_gate: V10-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-50
+  - id: TEST-V6-040
+    kind: TEST
+    title: Independent-assurance readiness
+    owner: Assurance Steward
+    statement: Volume 11 must obtain independent validation performed by an independent party and not satisfied by self-attestation.
+    future_test_class: Independent-assurance validation
+    required_evidence: Volume 11 independent-assurance evidence produced by an independent party.
+    independent_assurance_dependency: PENDING (Volume 11 independent validation)
+    readiness_disposition: INDEPENDENT_ASSURANCE_REQUIRED
+    downstream_volume: Volume 11
+    target_package_or_volume: Volume 11 assurance and independent validation
+    future_blocking_gate: V11-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-50
+  - id: TEST-V6-041
+    kind: TEST
+    title: Material-commitment and procurement readiness
+    owner: Accountable Program Authority
+    statement: Volume 12 must decide material commitment, provider selection, procurement, staffing, cost, and delivery sequencing at the executive material-commitment gate.
+    future_test_class: Executive material-commitment validation
+    required_evidence: Volume 12 executive material-commitment decisions.
+    readiness_disposition: MATERIAL_COMMITMENT_PENDING
+    downstream_volume: Volume 12
+    target_package_or_volume: Volume 12 executive acceptance and material commitment
+    future_blocking_gate: EXEC-MCG
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-50
+  - id: TEST-V6-042
+    kind: TEST
+    title: Compliance legal-validation readiness
+    owner: Compliance Steward
+    statement: Compliance-obligation applicability that requires legal validation must be validated before any obligation is treated as confirmed.
+    future_test_class: Legal-validation review
+    required_evidence: Legal validation of compliance-obligation applicability.
+    readiness_disposition: LEGAL_VALIDATION_PENDING
+    downstream_volume: Volume 12
+    target_package_or_volume: Volume 12 legal validation
+    future_blocking_gate: EXEC-MCG
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-45
+  - id: TEST-V6-043
+    kind: TEST
+    title: Privacy-validation readiness
+    owner: Privacy Steward
+    statement: Privacy processing contexts requiring privacy validation must be validated against an authority basis before reliance.
+    future_test_class: Privacy validation
+    required_evidence: Privacy validation of processing contexts and authority basis.
+    privacy_dependency: PENDING (privacy validation)
+    readiness_disposition: PRIVACY_VALIDATION_PENDING
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9 privacy validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-44
+  - id: TEST-V6-044
+    kind: TEST
+    title: Records and retention-validation readiness
+    owner: Records Steward
+    statement: Records, retention, and disposition dependencies must be validated by the records authority before any retention period or disposition is set.
+    future_test_class: Records and retention validation
+    required_evidence: Records-authority validation of retention and disposition dependencies.
+    readiness_disposition: RECORDS_VALIDATION_PENDING
+    downstream_volume: Volume 10
+    target_package_or_volume: Volume 10 records validation
+    future_blocking_gate: V10-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-44
+  - id: TEST-V6-045
+    kind: TEST
+    title: Accessibility-validation readiness
+    owner: Accessibility and Bilingual Steward
+    statement: Accessibility obligations must be validated by the permitted verification method before any conformance is claimed.
+    future_test_class: Accessibility verification
+    required_evidence: Accessibility verification evidence by the permitted method.
+    accessibility_or_bilingual_dependency: PENDING (accessibility verification)
+    readiness_disposition: ACCESSIBILITY_VALIDATION_PENDING
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9 accessibility validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-45
+  - id: TEST-V6-046
+    kind: TEST
+    title: Bilingual-validation readiness
+    owner: Accessibility and Bilingual Steward
+    statement: Bilingual obligations must be validated for governed semantic equivalence before any bilingual validation is claimed.
+    future_test_class: Bilingual semantic-equivalence validation
+    required_evidence: Bilingual semantic-equivalence validation evidence.
+    accessibility_or_bilingual_dependency: PENDING (bilingual validation)
+    readiness_disposition: BILINGUAL_VALIDATION_PENDING
+    downstream_volume: Volume 9
+    target_package_or_volume: Volume 9 bilingual validation
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-45
+  - id: TEST-V6-047
+    kind: TEST
+    title: Provider contract-validation readiness
+    owner: Accountable Program Authority
+    statement: Provider dependencies must be validated by contract before any provider is selected or relied upon.
+    future_test_class: Contract validation
+    required_evidence: Contract validation of provider dependencies, data return, and deletion obligations.
+    readiness_disposition: CONTRACT_VALIDATION_PENDING
+    downstream_volume: Volume 12
+    target_package_or_volume: Volume 12 contract validation
+    future_blocking_gate: EXEC-MCG
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-44
+  - id: TEST-V6-048
+    kind: TEST
+    title: Policy-validation readiness
+    owner: Compliance Steward
+    statement: Obligation applicability requiring policy validation must be validated by the policy authority before reliance.
+    future_test_class: Policy validation
+    required_evidence: Policy-authority validation of obligation applicability.
+    readiness_disposition: POLICY_VALIDATION_PENDING
+    downstream_volume: Volume 7
+    target_package_or_volume: Volume 7 policy validation
+    future_blocking_gate: V7-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+      - V6-45

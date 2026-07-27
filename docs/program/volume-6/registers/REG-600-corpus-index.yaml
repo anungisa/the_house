@@ -395,3 +395,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-H-package-4-provenance-amendment.md
     gate: V6-G4
+  - id: V6-41
+    title: Integrated Trust, Protection, and Assurance Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-41-integrated-trust-protection-and-assurance-baseline.md
+    gate: V6-G5
+  - id: V6-42
+    title: Authority, Asset, Boundary, Threat, Right, Obligation, and Control Catalogue
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-42-authority-asset-boundary-threat-right-obligation-and-control-catalogue.md
+    gate: V6-G5
+  - id: V6-43
+    title: Identity, Authorization, Privilege, and Restricted-Evidence Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-43-identity-authorization-privilege-and-restricted-evidence-synthesis.md
+    gate: V6-G5
+  - id: V6-44
+    title: Privacy, Data Protection, Records, Disclosure, and Provider-Trust Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-44-privacy-data-protection-records-disclosure-and-provider-trust-synthesis.md
+    gate: V6-G5
+  - id: V6-45
+    title: Compliance, Financial Controls, Accessibility, Bilingual, and Inclusive-Service Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-45-compliance-financial-controls-accessibility-bilingual-and-inclusive-service-synthesis.md
+    gate: V6-G5
+  - id: V6-46
+    title: Security Operations, Incident, Vulnerability, and Notification Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-46-security-operations-incident-vulnerability-and-notification-synthesis.md
+    gate: V6-G5
+  - id: V6-47
+    title: Resilience, Backup, Restore, Recovery, Continuity, Provider Exit, and Assurance Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-47-resilience-backup-restore-recovery-continuity-provider-exit-and-assurance-synthesis.md
+    gate: V6-G5
+  - id: V6-48
+    title: House P0 Protection and Implementation-Evidence Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-48-house-p0-protection-and-implementation-evidence-matrix.md
+    gate: V6-G5
+  - id: V6-49
+    title: Assumptions, Risks, Exceptions, Completed-Gate References, and Readiness Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-49-assumptions-risks-exceptions-completed-gate-references-and-readiness-disposition.md
+    gate: V6-G5
+  - id: V6-50
+    title: Downstream-Volume Handoff and Executive Trust Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-50-downstream-volume-handoff-and-executive-trust-brief.md
+    gate: V6-G5
+  - id: V6-51
+    title: Integrated Protection Traceability and Volume 6 Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-51-integrated-protection-traceability-and-volume-6-closure-assessment.md
+    gate: V6-G5

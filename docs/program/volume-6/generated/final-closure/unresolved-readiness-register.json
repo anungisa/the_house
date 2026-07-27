@@ -1,0 +1,213 @@
+{
+  "total": 27,
+  "unresolved": 27,
+  "by_readiness_disposition": {
+    "IMPLEMENTATION_EVIDENCE_REQUIRED": 12,
+    "OPERATIONAL_PROOF_REQUIRED": 4,
+    "ACCEPTED_AS_VOLUME_7_INPUT": 1,
+    "ACCEPTED_AS_VOLUME_8_INPUT": 1,
+    "INDEPENDENT_ASSURANCE_REQUIRED": 1,
+    "MATERIAL_COMMITMENT_PENDING": 1,
+    "LEGAL_VALIDATION_PENDING": 1,
+    "PRIVACY_VALIDATION_PENDING": 1,
+    "RECORDS_VALIDATION_PENDING": 1,
+    "ACCESSIBILITY_VALIDATION_PENDING": 1,
+    "BILINGUAL_VALIDATION_PENDING": 1,
+    "CONTRACT_VALIDATION_PENDING": 1,
+    "POLICY_VALIDATION_PENDING": 1
+  },
+  "items": [
+    {
+      "id": "TEST-V6-022",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-023",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-024",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-025",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-026",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-027",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-028",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-029",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-030",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-031",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-032",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-033",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-034",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-035",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-036",
+      "readiness_disposition": "ACCEPTED_AS_VOLUME_7_INPUT",
+      "owner": "Accessibility and Bilingual Steward",
+      "downstream_volume": "Volume 7",
+      "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "TEST-V6-037",
+      "readiness_disposition": "ACCEPTED_AS_VOLUME_8_INPUT",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 8",
+      "future_blocking_gate": "V8-G1"
+    },
+    {
+      "id": "TEST-V6-038",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-039",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "owner": "Security and Trust Steward",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V6-040",
+      "readiness_disposition": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "owner": "Assurance Steward",
+      "downstream_volume": "Volume 11",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "TEST-V6-041",
+      "readiness_disposition": "MATERIAL_COMMITMENT_PENDING",
+      "owner": "Accountable Program Authority",
+      "downstream_volume": "Volume 12",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V6-042",
+      "readiness_disposition": "LEGAL_VALIDATION_PENDING",
+      "owner": "Compliance Steward",
+      "downstream_volume": "Volume 12",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V6-043",
+      "readiness_disposition": "PRIVACY_VALIDATION_PENDING",
+      "owner": "Privacy Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-044",
+      "readiness_disposition": "RECORDS_VALIDATION_PENDING",
+      "owner": "Records Steward",
+      "downstream_volume": "Volume 10",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "TEST-V6-045",
+      "readiness_disposition": "ACCESSIBILITY_VALIDATION_PENDING",
+      "owner": "Accessibility and Bilingual Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-046",
+      "readiness_disposition": "BILINGUAL_VALIDATION_PENDING",
+      "owner": "Accessibility and Bilingual Steward",
+      "downstream_volume": "Volume 9",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V6-047",
+      "readiness_disposition": "CONTRACT_VALIDATION_PENDING",
+      "owner": "Accountable Program Authority",
+      "downstream_volume": "Volume 12",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "TEST-V6-048",
+      "readiness_disposition": "POLICY_VALIDATION_PENDING",
+      "owner": "Compliance Steward",
+      "downstream_volume": "Volume 7",
+      "future_blocking_gate": "V7-G1"
+    }
+  ],
+  "unresolved_without_owner": [],
+  "unresolved_without_evidence": [],
+  "unresolved_without_destination": []
+}

@@ -1,0 +1,12 @@
+{
+  "gate": "V6-G5",
+  "dispositioned": false,
+  "disposition": null,
+  "closure_record": null,
+  "completed_gates": [
+    "V6-G1",
+    "V6-G2",
+    "V6-G3",
+    "V6-G4"
+  ]
+}

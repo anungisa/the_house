@@ -544,3 +544,159 @@ records:
     chapter_ref: V6-39
     traces_to:
       - CTRL-V6-060
+  - id: ADR-V6-045
+    title: The integrated trust baseline is consolidation only
+    decision: The Package 5 integrated trust, protection, and assurance baseline consolidates only capabilities already defined and frozen in Packages 1 through 4; it introduces no new protection capability, control, or obligation and must not be authored to make the corpus appear more complete than the frozen packages establish.
+    status: ACCEPTED
+    context: A closure package can be tempted to add unsupported controls to appear complete; that would misrepresent the corpus.
+    consequence: The final-closure tooling projects only existing catalogue records, and no synthetic control is added to REG-601 or REG-602.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-41
+    traces_to:
+      - V6-41
+  - id: ADR-V6-046
+    title: Institutional authority is distinct from technical custody
+    decision: Institutional authority over governed records is distinct from technical custody of the systems that hold them; a custodian acquires no governed decision authority.
+    status: ACCEPTED
+    context: Conflating custody with authority would let operators make governed decisions.
+    consequence: The cross-catalogue records custody status separately from authority owner for every asset.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-42
+    traces_to:
+      - V6-42
+  - id: ADR-V6-047
+    title: Support and monitoring access is not decision or content authority
+    decision: A support or assistance role is not a decision authority, and monitoring and detection authority is not content authority; neither acquires governed decision or unrestricted-content authority.
+    status: ACCEPTED
+    context: Support and monitoring roles must not silently gain governed authority.
+    consequence: The catalogue separates support and monitoring authority from decision and content authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-42
+    traces_to:
+      - V6-42
+  - id: ADR-V6-048
+    title: Finance authority and incident authority are bounded
+    decision: Financial authority is distinct from affiliation authority, and incident authority is distinct from business-decision authority; neither crosses into the other.
+    status: ACCEPTED
+    context: Financial and incident authorities must not override affiliation or business decisions.
+    consequence: The catalogue records these separations, and no actor exercises both sides of a separated authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-42
+    traces_to:
+      - V6-42
+  - id: ADR-V6-049
+    title: Authentication, role, and emergency access are bounded
+    decision: Authentication is not authorization, a role is not resource authority, and emergency access is not permanent authority.
+    status: ACCEPTED
+    context: Confusing identity, role, or emergency access with governed authority would break fail-closed authorization.
+    consequence: The identity synthesis preserves these distinctions and defines fail-closed denial on missing context.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-43
+    traces_to:
+      - V6-43
+  - id: ADR-V6-050
+    title: Missing governed context fails closed across the integrated model
+    decision: Where any governed access-decision input is missing, unresolved, or unknown, the defined decision is to deny across the whole integrated model.
+    status: ACCEPTED
+    context: A permissive default on missing context would be an authorization defect.
+    consequence: Every access-decision record defines a fail-closed posture and a future test class for its verification.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-43
+    traces_to:
+      - V6-43
+  - id: ADR-V6-051
+    title: Backup, restore, recovery, and business acceptance are distinct
+    decision: A backup is not a proven restore, a restore is not service recovery, and technical recovery is not business-acceptance of recovery.
+    status: ACCEPTED
+    context: Treating a backup or technical recovery as proven service recovery would create false confidence.
+    consequence: The resilience synthesis records integrity-verification, reconciliation, and business-acceptance authority separately.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-47
+    traces_to:
+      - V6-47
+  - id: ADR-V6-052
+    title: Provider certification is not end-to-end service assurance
+    decision: A provider certification is not end-to-end service assurance, and an external provider acquires no Curling Canada or House authority.
+    status: ACCEPTED
+    context: Relying on a provider certification as service assurance would misrepresent validation.
+    consequence: The provider synthesis separates certification from service assurance and requires data return, deletion evidence, and reconciliation on exit.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-47
+    traces_to:
+      - V6-47
+  - id: ADR-V6-053
+    title: Metric, exercise, and self-attestation are not proof or independent assurance
+    decision: A metric is not proof of control effectiveness, an exercise is not operational proof, and self-attestation is not independent assurance.
+    status: ACCEPTED
+    context: Accepting metrics, exercises, or self-attestation as proof or independent assurance would overstate assurance.
+    consequence: The assurance synthesis records operational-proof and independent-assurance dependencies separately from metrics and exercises.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-47
+    traces_to:
+      - V6-47
+  - id: ADR-V6-054
+    title: House P0 findings are protection definitions, not remediation
+    decision: The House P0 protection findings are protection definitions with a required future control and future evidence class; coverage of a finding by the matrix is never implementation or remediation of the finding.
+    status: ACCEPTED
+    context: Representing the P0 matrix as remediation would misstate the implementation status.
+    consequence: Every P0 finding is recorded with definition status DEFINED and implementation status not-implemented or not-proven.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-48
+    traces_to:
+      - V6-48
+  - id: ADR-V6-055
+    title: The readiness-disposition taxonomy governs unresolved items
+    decision: Every unresolved assumption, risk, exception, and validation item is classified into exactly one readiness disposition and carries an owner, required evidence, and a future destination.
+    status: ACCEPTED
+    context: Unresolved items without owners, evidence, or destinations would be untraceable.
+    consequence: The unresolved-readiness register projects owner, evidence, disposition, and future destination for every item.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-49
+    traces_to:
+      - V6-49
+  - id: ADR-V6-056
+    title: Downstream handoff and executive brief introduce no new authority
+    decision: The downstream-volume handoff and executive trust brief transfer constraints only; they introduce no new authority, control, or obligation and authorize no procurement, provider selection, or material commitment.
+    status: ACCEPTED
+    context: A handoff or executive brief could be misread as authorizing new work.
+    consequence: The handoff records constraints per volume and reserves material commitment to Volume 12 and the executive material-commitment gate.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-50
+    traces_to:
+      - V6-50
+  - id: ADR-V6-057
+    title: Gate V6-G5 disposition, whole-volume freeze, and release-tag doctrine
+    decision: Gate V6-G5 is dispositioned security, privacy, compliance, accessibility, and trust definition complete; Package 5 and the whole of Volume 6 are frozen at version 1.0.0; Volume 7 is authorized for definition work only; and the Volume 6 release tag is published on the provenance-amendment merge commit after mainline merge.
+    status: ACCEPTED
+    context: Volume 6 closure requires a clear disposition, a whole-volume freeze, a bounded downstream authorization, and a deterministic release-tag doctrine.
+    consequence: The closure record (V6-I) records the disposition and freezes; the release tag is published only after the provenance amendment merges.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-51
+    traces_to:
+      - V6-51

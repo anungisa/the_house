@@ -1,0 +1,9 @@
+{
+  "total": 3,
+  "by_control_family": {
+    "RESILIENCE": 1,
+    "CONTINUITY_AND_RECOVERY": 2
+  },
+  "controls_without_owner": [],
+  "controls_without_gate": []
+}

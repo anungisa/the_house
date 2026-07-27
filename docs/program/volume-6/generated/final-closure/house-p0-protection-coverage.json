@@ -1,0 +1,156 @@
+{
+  "total": 14,
+  "expected": 14,
+  "by_readiness_disposition": {
+    "IMPLEMENTATION_EVIDENCE_REQUIRED": 11,
+    "OPERATIONAL_PROOF_REQUIRED": 3
+  },
+  "findings": [
+    {
+      "id": "TEST-V6-022",
+      "p0_finding": "Resource-aware authorization",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "future_test_class": "Authorization decision test",
+      "required_environment": "Real policy-decision path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-023",
+      "p0_finding": "Assigned reviewer and jurisdiction",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "future_test_class": "Authorization decision test",
+      "required_environment": "Real policy-decision path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-024",
+      "p0_finding": "Evidence binding and restricted-evidence protection",
+      "protected_asset_or_right": "ASSET-V6-004",
+      "future_test_class": "Restricted-evidence access test",
+      "required_environment": "Real evidence-access path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-025",
+      "p0_finding": "Production dependency completeness",
+      "protected_asset_or_right": "ASSET-V6-010",
+      "future_test_class": "Composition verification test",
+      "required_environment": "Real production composition",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-026",
+      "p0_finding": "Affiliation lifecycle authorization",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "future_test_class": "Governance-kernel transition test",
+      "required_environment": "Real governance-kernel path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-027",
+      "p0_finding": "Versioned policy and requirement protection",
+      "protected_asset_or_right": "ASSET-V6-010",
+      "future_test_class": "Policy-versioning integrity test",
+      "required_environment": "Real policy-resolution path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-028",
+      "p0_finding": "Return and resubmission history",
+      "protected_asset_or_right": "ASSET-V6-005",
+      "future_test_class": "Immutable-history test",
+      "required_environment": "Real audit-journal path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-029",
+      "p0_finding": "Authoritative activation uniqueness and replay protection",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "future_test_class": "Idempotency and replay test",
+      "required_environment": "Real activation path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-030",
+      "p0_finding": "Fail-closed configuration",
+      "protected_asset_or_right": "ASSET-V6-010",
+      "future_test_class": "Fail-closed configuration test",
+      "required_environment": "Real configuration-resolution path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-031",
+      "p0_finding": "Outbox protection and publication evidence",
+      "protected_asset_or_right": "ASSET-V6-005",
+      "future_test_class": "Outbox publication-evidence test",
+      "required_environment": "Real outbox and messaging path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-032",
+      "p0_finding": "PostgreSQL behavioural verification",
+      "protected_asset_or_right": "ASSET-V6-001",
+      "future_test_class": "Behavioural verification against real data platform",
+      "required_environment": "Real data platform",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-033",
+      "p0_finding": "Production composition verification",
+      "protected_asset_or_right": "ASSET-V6-013",
+      "future_test_class": "Production composition verification",
+      "required_environment": "Real composed production environment",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-034",
+      "p0_finding": "Deployment-path verification",
+      "protected_asset_or_right": "ASSET-V6-013",
+      "future_test_class": "Deployment-path verification",
+      "required_environment": "Real deployment path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    },
+    {
+      "id": "TEST-V6-035",
+      "p0_finding": "Secrets and environment configuration consumed by actual entry points",
+      "protected_asset_or_right": "ASSET-V6-003",
+      "future_test_class": "Secrets and configuration consumption test",
+      "required_environment": "Real entry-point configuration path",
+      "future_blocking_gate": "V9-G1",
+      "definition_status": "DEFINED",
+      "implementation_status": "NOT_IMPLEMENTED_OR_NOT_PROVEN"
+    }
+  ],
+  "findings_without_protected_ref": [],
+  "findings_without_test_class": [],
+  "findings_without_required_evidence": [],
+  "findings_without_gate": [],
+  "findings_not_defined": [],
+  "count_mismatch": []
+}

@@ -808,3 +808,114 @@ records:
     approved_at: null
 
 
+  # ==== Package 5: chapter ratifications ====
+  - id: APP-V6-058
+    artifact_id: V6-41
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated trust, protection, and assurance baseline consolidates Packages 1 through 4.
+      - Introduces no new protection capability, control, or obligation and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-059
+    artifact_id: V6-42
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Final authority, asset, boundary, threat, right, obligation, and control catalogue consolidated.
+      - Demonstrates authority separations, adds no catalogue element, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-060
+    artifact_id: V6-43
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Identity, authorization, privilege, and restricted-evidence synthesis preserves governed identity distinctions and fail-closed posture.
+      - Introduces no new control and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-061
+    artifact_id: V6-44
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Privacy, data-protection, records, disclosure, and provider-trust synthesis consolidated.
+      - Sets no retention period, reaches no legal conclusion, selects no provider, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-062
+    artifact_id: V6-45
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Compliance, financial-control, accessibility, bilingual, and inclusive-service synthesis consolidated.
+      - Makes no conformance or bilingual-validation claim, performs no retest, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-063
+    artifact_id: V6-46
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Security-operations, incident, vulnerability, and notification synthesis consolidated.
+      - Establishes no severity, timeline, or notification time, drafts no notice, and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-064
+    artifact_id: V6-47
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Resilience, backup, restore, recovery, continuity, provider-exit, and assurance synthesis consolidated.
+      - Invents no recovery-time, recovery-point, availability, or backup-frequency target and authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-065
+    artifact_id: V6-48
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - House P0 protection and implementation-evidence matrix defines the fourteen P0 findings.
+      - Every finding is defined with implementation status not-implemented or not-proven; coverage is never remediation; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-066
+    artifact_id: V6-49
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Assumptions, risks, exceptions, completed-gate references, and readiness disposition consolidated.
+      - No completed-gate reference is active; every unresolved item is owned, evidence-bound, and routed to a future destination; authorizes no implementation.
+    approved_at: null
+  - id: APP-V6-067
+    artifact_id: V6-50
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Downstream-volume handoff and executive trust brief transfer constraints to Volumes 7 through 12.
+      - Introduces no new authority, authorizes no procurement or material commitment, and creates no master development plan.
+    approved_at: null
+  - id: APP-V6-068
+    artifact_id: V6-51
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    conditions:
+      - Integrated protection traceability and Volume 6 closure assessment records the deterministic integrity review.
+      - Projections are non-authoritative; closure requires zero blocking errors and zero implementation authorizations; authorizes no implementation.
+    approved_at: null

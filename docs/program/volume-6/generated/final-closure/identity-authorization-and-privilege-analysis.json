@@ -1,0 +1,20 @@
+{
+  "total": 13,
+  "by_control_family": {
+    "AUTHENTICATION": 2,
+    "AUTHORIZATION": 3,
+    "PRIVILEGED_ACCESS": 2,
+    "IDENTITY": 2,
+    "SESSION_AND_CREDENTIAL": 1,
+    "RESOURCE_ISOLATION": 1,
+    "DELEGATION": 1,
+    "RESTRICTED_EVIDENCE": 1
+  },
+  "by_failure_posture": {
+    "FAIL_CLOSED": 11,
+    "MANUAL_ESCALATION": 2
+  },
+  "controls_without_owner": [],
+  "controls_without_gate": [],
+  "controls_with_unresolved_protected_ref": []
+}
