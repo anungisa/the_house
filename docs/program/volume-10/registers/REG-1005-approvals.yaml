@@ -432,14 +432,14 @@ records:
       closure_artifact: V10-C
       gate: GATE-V10-G2
       freeze_artifact: PACKAGE-10-2
-      closure_authored_commit: PLACEHOLDER_CLOSURE_COMMIT
-      closure_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
-      freeze_commit: PLACEHOLDER_CLOSURE_COMMIT
-      gate_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
+      closure_authored_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      closure_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      freeze_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      gate_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
       chronology_disposition: PENDING_PROVENANCE_BINDING
     effective_date_clarification:
       gate: GATE-V10-G2
-      documentary_definition_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
+      documentary_definition_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
       implementation_effective_date: >-
         Not applicable. Documentary completeness is distinct from implementation
         completeness; Package 2 authorizes no implementation.
@@ -463,8 +463,8 @@ records:
     gate_disposition: AFFILIATION_IMPLEMENTATION_AND_TECHNICAL_DELIVERY_PLAN_READY
     requires_freeze_artifact: PACKAGE-10-2
     base_commit: 726c54c011c8139222fbb9a82324469ec697e8be
-    effective_commit: PLACEHOLDER_CLOSURE_COMMIT
-    gate_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
+    effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+    gate_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
     approved_at: null
 
   # ---------------------------------------------------------------------------
@@ -493,10 +493,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-10-2
       substantive_authoring_commit: 726c54c011c8139222fbb9a82324469ec697e8be
-      closure_authored_commit: PLACEHOLDER_CLOSURE_COMMIT
-      closure_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
-      gate_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
-      freeze_commit: PLACEHOLDER_CLOSURE_COMMIT
+      closure_authored_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      closure_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      gate_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      freeze_commit: 8c3561495399ae8491bd7acfc11592904eb13642
       provenance_binding_commit: PENDING_V10-D_AMENDMENT
       required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
       actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
@@ -512,12 +512,12 @@ records:
       source_baseline_commit: 34cbff2940506084fe4687b3705b228be3db7dd8
       branch_base_commit: 34cbff2940506084fe4687b3705b228be3db7dd8
       authoring_commit: 726c54c011c8139222fbb9a82324469ec697e8be
-      closure_authored_commit: PLACEHOLDER_CLOSURE_COMMIT
-      closure_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
-      closure_freeze_commit: PLACEHOLDER_CLOSURE_COMMIT
-      freeze_commit: PLACEHOLDER_CLOSURE_COMMIT
-      gate_effective_commit: PLACEHOLDER_CLOSURE_COMMIT
-      effective_commit: PLACEHOLDER_CLOSURE_COMMIT
+      closure_authored_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      closure_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      closure_freeze_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      freeze_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      gate_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
       provenance_binding_commit: PENDING_V10-D_AMENDMENT
       note: >-
         Volume 10 Package 2 branches from the Package 1 mainline baseline
