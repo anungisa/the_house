@@ -1,14 +1,9 @@
 {
   "gate": "V7-G1",
   "total_conditions": 20,
-  "satisfied": 19,
-  "unmet": [
-    {
-      "n": 20,
-      "title": "Package 1 receives line-level review and a separate freeze commit"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 20,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -108,7 +103,7 @@
     {
       "n": 20,
       "title": "Package 1 receives line-level review and a separate freeze commit",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
