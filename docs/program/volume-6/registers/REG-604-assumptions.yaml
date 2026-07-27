@@ -934,6 +934,11 @@ records:
     downstream_volume: Volume 10
     target_package_or_volume: Volume 10 operational proof
     future_blocking_gate: V9-G1
+    corrected_downstream_volume: Volume 9
+    corrected_target_package_or_volume: Volume 9 behavioural and implementation verification
+    corrected_future_blocking_gate: V9-G1
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; implementation and behavioural verification resolve through Volume 9 (quality and master test definition); real operational proof resolves through Volume 11; independent assurance resolves through Volume 12; original Volume 10 operational-proof destination preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
@@ -959,6 +964,11 @@ records:
     downstream_volume: Volume 10
     target_package_or_volume: Volume 10 operational proof
     future_blocking_gate: V9-G1
+    corrected_downstream_volume: Volume 11
+    corrected_target_package_or_volume: Volume 11 production-composition operational proof
+    corrected_future_blocking_gate: V11-G1
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; real operational proof of the composed production system resolves through Volume 11 (operations, migration, adoption, and operational assurance); independent assurance resolves through Volume 12; original Volume 10 destination and V9-G1 gate preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
@@ -984,6 +994,11 @@ records:
     downstream_volume: Volume 10
     target_package_or_volume: Volume 10 operational proof
     future_blocking_gate: V9-G1
+    corrected_downstream_volume: Volume 10
+    corrected_target_package_or_volume: Volume 10 deployment-path and release-planning verification
+    corrected_future_blocking_gate: V10-G1
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; deployment-path and release-planning concerns resolve through Volume 10 (delivery and release planning); real operational proof resolves through Volume 11; independent assurance resolves through Volume 12; original V9-G1 gate preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
@@ -1045,6 +1060,11 @@ records:
     downstream_volume: Volume 8
     target_package_or_volume: Volume 8 logical and physical design
     future_blocking_gate: V8-G1
+    corrected_target_package_or_volume: Volume 8 APIs, events, integrations, and provider contracts
+    corrected_downstream_volume: Volume 8
+    corrected_future_blocking_gate: V8-G1
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; Volume 8 governs APIs, events, integrations, and external and provider contracts, not logical and physical data design; original logical-and-physical-design destination preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
@@ -1081,6 +1101,11 @@ records:
     downstream_volume: Volume 10
     target_package_or_volume: Volume 10 operations and monitoring
     future_blocking_gate: V10-G1
+    corrected_downstream_volume: Volume 11
+    corrected_target_package_or_volume: Volume 11 operations and operational proof
+    corrected_future_blocking_gate: V11-G1
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; operational proof resolves through Volume 11 (operations, migration, adoption, and operational assurance), not Volume 10; original Volume 10 destination and V10-G1 gate preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
@@ -1100,6 +1125,11 @@ records:
     downstream_volume: Volume 11
     target_package_or_volume: Volume 11 assurance and independent validation
     future_blocking_gate: V11-G1
+    corrected_downstream_volume: Volume 12
+    corrected_target_package_or_volume: Volume 12 release assurance and independent validation
+    corrected_future_blocking_gate: EXEC-MCG
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; independent assurance and release-assurance validation resolve through Volume 12 (gate, release, and acceptance evidence), not Volume 11; original Volume 11 destination and V11-G1 gate preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
@@ -1173,6 +1203,11 @@ records:
     downstream_volume: Volume 10
     target_package_or_volume: Volume 10 records validation
     future_blocking_gate: V10-G1
+    corrected_downstream_volume: Volume 11
+    corrected_target_package_or_volume: Volume 11 records, retention, archival, and disposition operations
+    corrected_future_blocking_gate: V11-G1
+    routing_correction_ref: V6-K
+    routing_correction_note: Superseded by V6-K; records, retention, archival, and disposition operations resolve through Volume 11, not Volume 10; original Volume 10 destination and V10-G1 gate preserved as superseded history.
     validation_status: DEFERRED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN

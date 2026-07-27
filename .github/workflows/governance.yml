@@ -1,11 +1,12 @@
-# Documentation governance gate for the Volume 0, Volume 1 and Volume 2 corpora.
+# Documentation governance gate for the Volume 0 through Volume 6 corpora.
 #
 # This workflow runs ONLY when the governance corpus or its toolchain changes
 # (docs/program/** or the package manifest/lockfile). It NEVER deploys, requires
 # NO secrets, and contacts NO external services. It runs the executable governance
 # controls (schema conformance, identifier uniqueness, cross-reference integrity,
-# ratification integrity, authority integrity, exception expiry, and frozen-package
-# amendment integrity) and publishes the NON-AUTHORITATIVE control report.
+# ratification integrity, authority integrity, exception expiry, frozen-package
+# amendment integrity, and downstream-routing integrity) and publishes the
+# NON-AUTHORITATIVE control reports.
 #
 # It does not require any named-person approval, does not infer independent
 # assurance, and does not block unrelated runtime work (path-scoped).
@@ -56,6 +57,18 @@ jobs:
       - name: Run Volume 2 governance controls
         run: npm run governance:check:v2
 
+      - name: Run Volume 3 governance controls
+        run: npm run governance:check:v3
+
+      - name: Run Volume 4 governance controls
+        run: npm run governance:check:v4
+
+      - name: Run Volume 5 governance controls
+        run: npm run governance:check:v5
+
+      - name: Run Volume 6 governance controls
+        run: npm run governance:check:v6
+
       - name: Upload non-authoritative control report
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,4 +91,36 @@ jobs:
         with:
           name: governance-control-report-v2
           path: docs/program/volume-2/generated/governance-control-report.md
+
+      - name: Upload Volume 3 non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report-v3
+          path: docs/program/volume-3/generated/governance-control-report.md
+          if-no-files-found: warn
+
+      - name: Upload Volume 4 non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report-v4
+          path: docs/program/volume-4/generated/governance-control-report.md
+          if-no-files-found: warn
+
+      - name: Upload Volume 5 non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report-v5
+          path: docs/program/volume-5/generated/governance-control-report.md
+          if-no-files-found: warn
+
+      - name: Upload Volume 6 non-authoritative control report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-control-report-v6
+          path: docs/program/volume-6/generated/governance-control-report.md
+          if-no-files-found: warn
           if-no-files-found: warn

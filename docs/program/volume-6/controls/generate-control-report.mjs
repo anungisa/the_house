@@ -9,11 +9,13 @@ import { join } from 'node:path';
 import { VOLUME_DIR, loadContext, summarize } from './lib.mjs';
 import { run as runStructural } from './validate-volume-6.mjs';
 import { run as runReferences } from './validate-references.mjs';
+import { run as runReleaseAssurance } from './release-assurance-volume-6.mjs';
 
 export function collectFindings(ctx) {
   return {
     'Structural, schema & protection conformance': runStructural(ctx),
-    'Cross-reference & traceability integrity': runReferences(ctx)
+    'Cross-reference & traceability integrity': runReferences(ctx),
+    'Release-assurance & downstream-routing integrity': runReleaseAssurance(ctx)
   };
 }
 

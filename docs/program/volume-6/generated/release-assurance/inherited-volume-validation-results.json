@@ -1,0 +1,69 @@
+{
+  "note": "Enumerates the Volume 0-6 governance checks and lint that constitute the governed release path. Non-authoritative; actual pass/fail is recorded by running each command during the release pass and in continuous integration.",
+  "checks": [
+    {
+      "volume": "Volume 0",
+      "script": "governance:check",
+      "command": "npm run governance:check",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "Volume 1",
+      "script": "governance:check:v1",
+      "command": "npm run governance:check:v1",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "Volume 2",
+      "script": "governance:check:v2",
+      "command": "npm run governance:check:v2",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "Volume 3",
+      "script": "governance:check:v3",
+      "command": "npm run governance:check:v3",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "Volume 4",
+      "script": "governance:check:v4",
+      "command": "npm run governance:check:v4",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "Volume 5",
+      "script": "governance:check:v5",
+      "command": "npm run governance:check:v5",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "Volume 6",
+      "script": "governance:check:v6",
+      "command": "npm run governance:check:v6",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    },
+    {
+      "volume": "All",
+      "script": "lint",
+      "command": "npm run lint",
+      "defined": true,
+      "part_of_governed_release_path": true,
+      "executed_in_ci": true
+    }
+  ]
+}
