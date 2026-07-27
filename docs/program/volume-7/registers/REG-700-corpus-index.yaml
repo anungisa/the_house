@@ -539,3 +539,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-7/V7-H-1-package-4-governance-amendment.md
     gate: V7-G4
+  - id: V7-I
+    title: Volume 7 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-7/V7-I-volume-7-completion-and-release-freeze-record.md
+    gate: V7-G5

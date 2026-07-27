@@ -2,16 +2,8 @@
   "gate": "V7-G5",
   "disposition": "EXPERIENCE_AND_SERVICE_DESIGN_DEFINITION_COMPLETE",
   "total_conditions": 20,
-  "satisfied": 17,
+  "satisfied": 19,
   "unmet": [
-    {
-      "n": 1,
-      "title": "Package 4 chronology amendment inherited"
-    },
-    {
-      "n": 19,
-      "title": "Package 5 and the whole of Volume 7 receive explicit freezes"
-    },
     {
       "n": 20,
       "title": "Authoring and closure/freeze commits are properly separated"
@@ -22,7 +14,7 @@
     {
       "n": 1,
       "title": "Package 4 chronology amendment inherited",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 2,
@@ -112,7 +104,7 @@
     {
       "n": 19,
       "title": "Package 5 and the whole of Volume 7 receive explicit freezes",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 20,

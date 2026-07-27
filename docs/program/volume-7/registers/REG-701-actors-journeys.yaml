@@ -3325,7 +3325,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-33
     traces_to:
       - PROTO-V7-001
@@ -3362,7 +3362,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-33
     traces_to:
       - PROTO-V7-002
@@ -3396,7 +3396,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-33
     traces_to:
       - PROTO-V7-002
@@ -3430,7 +3430,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-33
     traces_to:
       - PROTO-V7-002
@@ -3465,7 +3465,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-33
     traces_to:
       - PROTO-V7-002
@@ -3489,7 +3489,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-34
     traces_to:
       - VALF-V7-004
@@ -3512,7 +3512,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-35
     traces_to:
       - VALF-V7-005
@@ -3535,7 +3535,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-36
     traces_to:
       - VALF-V7-006
@@ -3557,7 +3557,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
     traces_to:
       - VALF-V7-002
@@ -3579,7 +3579,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-40
     traces_to:
       - VALF-V7-007
@@ -3609,7 +3609,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-39
     traces_to:
       - PROTO-V7-001
@@ -3636,7 +3636,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-39
     traces_to:
       - PROTO-V7-002
@@ -3663,7 +3663,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-39
     traces_to:
       - PROTO-V7-002
@@ -3687,7 +3687,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-40
     traces_to:
       - VALF-V7-007
@@ -3712,7 +3712,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-40
     traces_to:
       - CGOV-V7-001

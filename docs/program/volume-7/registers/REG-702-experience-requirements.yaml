@@ -1713,7 +1713,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-002
     kind: VALIDATION_FAMILY
@@ -1734,7 +1734,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-003
     kind: VALIDATION_FAMILY
@@ -1755,7 +1755,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-004
     kind: VALIDATION_FAMILY
@@ -1776,7 +1776,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-005
     kind: VALIDATION_FAMILY
@@ -1797,7 +1797,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-006
     kind: VALIDATION_FAMILY
@@ -1818,7 +1818,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-007
     kind: VALIDATION_FAMILY
@@ -1839,7 +1839,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-008
     kind: VALIDATION_FAMILY
@@ -1860,7 +1860,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   - id: VALF-V7-009
     kind: VALIDATION_FAMILY
@@ -1881,7 +1881,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFERRED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V9-G1
     chapter_ref: V7-32
   # --- Measurement definitions (V7-38) ---
   - id: MEAS-V7-001
@@ -1896,7 +1896,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-38
   - id: MEAS-V7-002
     kind: MEASUREMENT_DEFINITION
@@ -1910,7 +1910,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-38
   # --- Content governance rules (V7-37) ---
   - id: CGOV-V7-001
@@ -1925,7 +1925,7 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-37
   - id: CGOV-V7-002
     kind: CONTENT_GOVERNANCE_RULE
@@ -1939,5 +1939,5 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: DEFINED
-    future_blocking_gate: V7-G5
+    future_blocking_gate: V11-G1
     chapter_ref: V7-37

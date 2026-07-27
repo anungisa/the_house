@@ -28,6 +28,20 @@
       "implementation_effective_date": "NOT_ESTABLISHED",
       "production_adoption_date": "NOT_ESTABLISHED",
       "operational_effective_date": "NOT_ESTABLISHED"
+    },
+    {
+      "freeze_artifact": "PACKAGE-7-5",
+      "closure_artifact": "V7-I",
+      "gate": "GATE-V7-G5",
+      "closure_authored_commit": "PENDING_PROVENANCE_BINDING",
+      "closure_effective_commit": "PENDING_PROVENANCE_BINDING",
+      "freeze_commit": "PENDING_PROVENANCE_BINDING",
+      "gate_effective_commit": "PENDING_PROVENANCE_BINDING",
+      "chronology_exception": null,
+      "documentary_definition_effective_commit": "PENDING_PROVENANCE_BINDING",
+      "implementation_effective_date": "NOT_ESTABLISHED",
+      "production_adoption_date": "NOT_ESTABLISHED",
+      "operational_effective_date": "NOT_ESTABLISHED"
     }
   ]
 }
