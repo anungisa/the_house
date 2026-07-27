@@ -1,0 +1,42 @@
+{
+  "downstream_handoff_records": 3,
+  "handoffs": [
+    {
+      "id": "HANDOFF-V8-001",
+      "title": "Quality and master-test volume handoff",
+      "downstream_volume": "Volume 9 (Quality and Master Test Definition)",
+      "handoff_items": [
+        "Contract surfaces and capability families requiring conformance verification",
+        "House P0 contract-coverage records and their required implementation evidence",
+        "Required operational proof for behavioural, composition, and deployment-path findings",
+        "Acceptance, authorization, failure, and reconciliation semantics requiring test definition"
+      ],
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "HANDOFF-V8-002",
+      "title": "Delivery and operations volume handoff",
+      "downstream_volume": "Volume 10 (Delivery and Operations)",
+      "handoff_items": [
+        "Provider lifecycle, continuity, substitution, and exit obligations",
+        "File, batch, and migration exchange obligations with provenance and reconciliation",
+        "Reconciliation owners and closure evidence for unknown-outcome and exchange paths"
+      ],
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "HANDOFF-V8-003",
+      "title": "Executive material-commitment handoff",
+      "downstream_volume": "Executive material-commitment gate",
+      "handoff_items": [
+        "Provider selection and procurement decisions requiring funded commitment",
+        "Environment provisioning and staffing for implementation and proof",
+        "Independent-assurance engagements for findings requiring external assessment"
+      ],
+      "future_blocking_gate": "EXEC-MCG"
+    }
+  ],
+  "gaps": {
+    "handoffs_without_items": []
+  }
+}

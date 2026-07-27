@@ -1,0 +1,54 @@
+{
+  "capabilities": [
+    {
+      "id": "CAP-V8-001",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-002",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-003",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-004",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-005",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-006",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-007",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-008",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-009",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-010",
+      "lifecycle_dependency": null,
+      "validation_dependency": null
+    }
+  ]
+}

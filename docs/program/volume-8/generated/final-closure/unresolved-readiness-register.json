@@ -1,0 +1,215 @@
+{
+  "readiness_records": 6,
+  "readiness": [
+    {
+      "id": "READY-V8-001",
+      "title": "Contract-surface conformance evidence required",
+      "readiness_disposition": "IMPLEMENTATION_EVIDENCE_REQUIRED",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "required_evidence": null,
+      "downstream_volume": "Volume 9 (Quality and Master Test Definition)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "READY-V8-002",
+      "title": "Behavioural, composition, and deployment-path proof required",
+      "readiness_disposition": "OPERATIONAL_PROOF_REQUIRED",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "required_evidence": null,
+      "downstream_volume": "Volume 10 (Delivery and Operations)",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "READY-V8-003",
+      "title": "Migration evidence required",
+      "readiness_disposition": "MIGRATION_EVIDENCE_REQUIRED",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "required_evidence": null,
+      "downstream_volume": "Volume 10 (Delivery and Operations)",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "READY-V8-004",
+      "title": "Independent assurance required",
+      "readiness_disposition": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "required_evidence": null,
+      "downstream_volume": "Executive material-commitment gate",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "READY-V8-005",
+      "title": "Provider selection and procurement pending",
+      "readiness_disposition": "MATERIAL_COMMITMENT_PENDING",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "required_evidence": null,
+      "downstream_volume": "Executive material-commitment gate",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "READY-V8-006",
+      "title": "Privacy and records validation pending",
+      "readiness_disposition": "PRIVACY_VALIDATION_PENDING",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "required_evidence": null,
+      "downstream_volume": "Volume 9 (Quality and Master Test Definition)",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "backlog": [
+    {
+      "id": "ASM-V8-001",
+      "kind": "ASM",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V8-002",
+      "kind": "ASM",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V8-001",
+      "kind": "RISK",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "RISK-V8-002",
+      "kind": "RISK",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "EXC-V8-001",
+      "kind": "EXC",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-001",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-002",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V8-003",
+      "kind": "ASM",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V8-003",
+      "kind": "RISK",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-003",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V8-004",
+      "kind": "ASM",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V8-004",
+      "kind": "RISK",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V8-005",
+      "kind": "RISK",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-004",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-005",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASM-V8-005",
+      "kind": "ASM",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "RISK-V8-006",
+      "kind": "RISK",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-006",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "TEST-V8-007",
+      "kind": "TEST",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "READY-V8-001",
+      "kind": "READINESS",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "READY-V8-002",
+      "kind": "READINESS",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "READY-V8-003",
+      "kind": "READINESS",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V10-G1"
+    },
+    {
+      "id": "READY-V8-004",
+      "kind": "READINESS",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "READY-V8-005",
+      "kind": "READINESS",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "READY-V8-006",
+      "kind": "READINESS",
+      "owner": "Aubert Nungisa (Accountable Program Authority)",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "gaps": {
+    "readiness_without_disposition": [],
+    "backlog_without_forward_gate": []
+  }
+}

@@ -619,4 +619,61 @@ records:
     chapter_ref: V8-39
     traces_to:
       - V8-31
+  - id: ADR-V8-034
+    title: Volume 8 is an integrated contract definition, not an implementation authorization
+    decision: >-
+      The integrated Volume 8 baseline consolidates the five packages into one
+      contract-definition corpus and authorizes no implementation, procurement,
+      or construction.
+    status: ACCEPTED
+    context: >-
+      Consolidating the packages risks being read as readiness to build; the
+      distinction between contract definition and construction must be preserved.
+    consequence: >-
+      Every controlled record remains not-implemented-or-not-proven; downstream
+      volumes and the executive material-commitment gate own build authorization.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-53
+    traces_to:
+      - V8-41
+  - id: ADR-V8-035
+    title: Cross-package reconciliation is additive and never rewrites frozen packages
+    decision: >-
+      The integrated catalogue and closure reconcile producers, consumers, trust
+      boundaries, and interaction families across the frozen packages by
+      cross-reference only, without altering any frozen artifact.
+    status: ACCEPTED
+    context: >-
+      Consolidation could be mistaken as license to edit frozen packages, which
+      would break the freeze discipline.
+    consequence: >-
+      Frozen Packages 1 through 4 remain byte-for-byte unchanged; Package 5 adds
+      an integrated view over them.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-53
+    traces_to:
+      - V8-42
+  - id: ADR-V8-036
+    title: Readiness is dispositioned honestly, never asserted as closed
+    decision: >-
+      Every open item carries an explicit readiness disposition with a rationale;
+      items requiring implementation, migration, operational proof, or independent
+      assurance are carried forward, not closed by assertion.
+    status: ACCEPTED
+    context: >-
+      Manufacturing completeness by asserting closure without evidence would
+      violate the honest fail-closed provenance model.
+    consequence: >-
+      No item is dispositioned closed without closure evidence; unresolved items
+      name a forward gate in a downstream volume.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-53
+    traces_to:
+      - V8-51
 

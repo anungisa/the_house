@@ -1,0 +1,24 @@
+{
+  "commands": [
+    {
+      "id": "CAP-V8-001",
+      "title": "Command capability family",
+      "interaction_family": "COMMAND",
+      "institutional_authority": "House",
+      "producer": "House-authorized initiators",
+      "consumer": "House affiliation-lifecycle command handler"
+    }
+  ],
+  "queries": [
+    {
+      "id": "CAP-V8-002",
+      "title": "Query capability family",
+      "interaction_family": "QUERY",
+      "institutional_authority": "House",
+      "producer": "House affiliation query handler",
+      "consumer": "Authorized read consumers including the Button"
+    }
+  ],
+  "resources": [],
+  "responses": []
+}

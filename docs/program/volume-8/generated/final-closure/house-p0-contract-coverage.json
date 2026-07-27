@@ -1,0 +1,121 @@
+{
+  "p0_contract_coverage_records": 14,
+  "coverage": [
+    {
+      "id": "P0MAP-V8-001",
+      "p0_finding": "Resource-aware authorization must evaluate full governed resource context and fail closed on missing context",
+      "contract_surface_ref": "V8-46 / CATALOG-V8-001",
+      "required_implementation_evidence": "Authorization decision proven to evaluate full resource context and deny on missing context in a real environment",
+      "required_operational_proof": "Operational evidence of fail-closed denial under missing or ambiguous authorization context",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-002",
+      "p0_finding": "A review decision must require an assigned reviewer with reviewer scope and correct jurisdiction",
+      "contract_surface_ref": "V8-43 / V8-46",
+      "required_implementation_evidence": "Review command proven to require reviewer scope and jurisdiction before acceptance",
+      "required_operational_proof": "Operational evidence of rejection when reviewer scope or jurisdiction is absent",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-003",
+      "p0_finding": "Governed evidence must be bound to its case and protected under restricted-evidence controls",
+      "contract_surface_ref": "V8-48",
+      "required_implementation_evidence": "Evidence proven bound to its case and access-controlled as restricted in a real environment",
+      "required_operational_proof": "Operational evidence of restricted-evidence access enforcement",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-004",
+      "p0_finding": "Every production dependency required for a governed decision must be present and verified before the decision is trusted",
+      "contract_surface_ref": "V8-47",
+      "required_implementation_evidence": "Governed decisions proven to fail closed on any missing production dependency",
+      "required_operational_proof": "Operational evidence of dependency verification before trusted decisions",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-005",
+      "p0_finding": "Every affiliation lifecycle transition must be authorized through the governance kernel and never mutate governed state directly",
+      "contract_surface_ref": "V8-43 / V8-44",
+      "required_implementation_evidence": "Transitions proven to flow through the kernel with no direct state mutation path",
+      "required_operational_proof": "Operational evidence that no domain path mutates governed state outside the kernel",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-006",
+      "p0_finding": "Every governed decision must resolve to a versioned policy and protect the integrity of that requirement",
+      "contract_surface_ref": "V8-49",
+      "required_implementation_evidence": "Decisions proven to resolve to a versioned policy with protected integrity",
+      "required_operational_proof": "Operational evidence of version resolution and integrity protection",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-007",
+      "p0_finding": "Every return and resubmission must be recorded as immutable history",
+      "contract_surface_ref": "V8-43 / V8-48",
+      "required_implementation_evidence": "Return and resubmission proven recorded as immutable, append-only history",
+      "required_operational_proof": "Operational evidence of immutable return and resubmission history",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-008",
+      "p0_finding": "Authoritative activation must be unique and protected against replay",
+      "contract_surface_ref": "V8-44",
+      "required_implementation_evidence": "Activation proven unique and replay-protected in a real environment",
+      "required_operational_proof": "Operational evidence of replay rejection and single authoritative activation",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-009",
+      "p0_finding": "Missing or invalid governed configuration must fail closed",
+      "contract_surface_ref": "V8-47",
+      "required_implementation_evidence": "System proven to fail closed on missing or invalid governed configuration",
+      "required_operational_proof": "Operational evidence of fail-closed behaviour on configuration defects",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-010",
+      "p0_finding": "The transactional outbox must be protected and its publication evidenced",
+      "contract_surface_ref": "V8-44 / CAP-V8-004",
+      "required_implementation_evidence": "Outbox proven protected with evidenced publication in a real environment",
+      "required_operational_proof": "Operational evidence of outbox integrity and publication evidence",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-011",
+      "p0_finding": "Governed data behaviour must be verified against the real data platform, not assumed",
+      "contract_surface_ref": "V8-43 / V8-47",
+      "required_implementation_evidence": "Governed data behaviour proven against a real PostgreSQL platform",
+      "required_operational_proof": "Operational evidence from behavioural verification against the real data platform",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-012",
+      "p0_finding": "The composed production system must be verified, not only its parts",
+      "contract_surface_ref": "V8-41",
+      "required_implementation_evidence": "Composed production system proven verified end to end in a real environment",
+      "required_operational_proof": "Operational evidence from composition verification of the running system",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-013",
+      "p0_finding": "The actual deployment path must be verified",
+      "contract_surface_ref": "V8-45 / V8-41",
+      "required_implementation_evidence": "Actual deployment path proven verified in a real environment",
+      "required_operational_proof": "Operational evidence from deployment-path verification",
+      "definition_status": "DEFINED"
+    },
+    {
+      "id": "P0MAP-V8-014",
+      "p0_finding": "Secrets and environment configuration must be consumed only by the actual entry points that require them",
+      "contract_surface_ref": "V8-46 / V8-47",
+      "required_implementation_evidence": "Secrets proven consumed only by the entry points that require them in a real environment",
+      "required_operational_proof": "Operational evidence of scoped secret and configuration consumption",
+      "definition_status": "DEFINED"
+    }
+  ],
+  "gaps": {
+    "p0_without_definition_status": [],
+    "p0_without_implementation_evidence": []
+  }
+}

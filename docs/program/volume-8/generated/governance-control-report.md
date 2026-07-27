@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T13:58:45.784Z
+Generated: 2026-07-27T14:51:04.929Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T13:58:45.784Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 53 |
+| RATIFIED | 67 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 52 |
-| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 49 |
-| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 88 |
-| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 33 |
-| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 19 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 62 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 66 |
+| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 57 |
+| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 115 |
+| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 36 |
+| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 25 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 79 |
 
 ## Findings by control
 
@@ -89,6 +89,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
 
+### Gate V8-G5 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
 ### Event-delivery contract coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
@@ -96,6 +102,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Provider-exchange contract coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Integrated closure coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
 
@@ -211,3 +223,35 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V8-059 (GATE-V8-G4): No migration-complete, provider-assured, data-deleted, reconciliation-complete, compatibility, privacy-compliance, or operational claim is made without evidence
 - APP-V8-059 (GATE-V8-G4): No record authorizes implementation
 - APP-V8-059 (GATE-V8-G4): Genuine authoring, closure/freeze, and pre-merge binding separation is preserved
+- APP-V8-077 (GATE-V8-G5): Package 4 provenance, V8-H, and V8-H-1 are inherited
+- APP-V8-077 (GATE-V8-G5): Packages 1 through 4 remain frozen and unchanged
+- APP-V8-077 (GATE-V8-G5): One integrated contract-definition baseline exists
+- APP-V8-077 (GATE-V8-G5): House retains institutional authority over the integrated surface catalogue
+- APP-V8-077 (GATE-V8-G5): The Button is recorded as an intent initiator and consumer, not an authority
+- APP-V8-077 (GATE-V8-G5): Every catalogued surface names owner, authority, and trust boundary and is traceable
+- APP-V8-077 (GATE-V8-G5): Commands, queries, events, webhooks, callbacks, files, batches, migrations, and manual exchanges are distinct capability families
+- APP-V8-077 (GATE-V8-G5): Authentication remains distinct from authorization
+- APP-V8-077 (GATE-V8-G5): Resource-aware authorization context is complete and fail-closed
+- APP-V8-077 (GATE-V8-G5): Commands define authority, target, preconditions, idempotency, conflict, acceptance, rejection, and evidence
+- APP-V8-077 (GATE-V8-G5): Queries define source, scope, sensitivity, staleness, disclosure, and degraded posture
+- APP-V8-077 (GATE-V8-G5): Logical resources declare authoritative-or-projected status, classification, lifecycle, and version
+- APP-V8-077 (GATE-V8-G5): Event envelopes declare identity, version, provenance, scope, sensitivity, correlation, and replay
+- APP-V8-077 (GATE-V8-G5): Outbox persistence is distinct from publication, delivery, consumer effect, and reconciliation
+- APP-V8-077 (GATE-V8-G5): Exactly-once business effect is distinct from transport delivery
+- APP-V8-077 (GATE-V8-G5): Webhooks and callbacks define authentication, integrity, replay, idempotency, and reconciliation
+- APP-V8-077 (GATE-V8-G5): Errors and unknown outcomes are controlled, privacy-safe, and language-neutral
+- APP-V8-077 (GATE-V8-G5): Data minimization, classification, evidence, privacy, records, and audit are synthesised
+- APP-V8-077 (GATE-V8-G5): Provider incidents, continuity, return, deletion, residual copies, and exit remain governed
+- APP-V8-077 (GATE-V8-G5): Imports, exports, files, batches, migrations, and manual exchanges preserve authority, provenance, uncertainty, acceptance, quarantine, disclosure, and reconciliation
+- APP-V8-077 (GATE-V8-G5): Versioning, compatibility, deprecation, replacement, and change control are complete
+- APP-V8-077 (GATE-V8-G5): Accessibility and bilingual obligations cover notifications, documents, and user-facing surfaces
+- APP-V8-077 (GATE-V8-G5): House P0 findings carry complete contract and evidence mappings
+- APP-V8-077 (GATE-V8-G5): Every unresolved item has an owner, an evidence requirement, and a valid downstream gate
+- APP-V8-077 (GATE-V8-G5): No active unresolved item points to a completed Volume 8 gate or to Gate V8-G5
+- APP-V8-077 (GATE-V8-G5): Deterministic whole-volume closure analysis completes without blocking defects
+- APP-V8-077 (GATE-V8-G5): No executable interface, event, integration, exchange, or infrastructure specification is created
+- APP-V8-077 (GATE-V8-G5): No implementation, delivery, reconciliation, migration, provider, privacy, compatibility, or operational claim is made without evidence
+- APP-V8-077 (GATE-V8-G5): No infrastructure, procurement, sequencing, staffing, cost, pilot, rollout, launch, or master development plan is authorised
+- APP-V8-077 (GATE-V8-G5): No record authorizes implementation
+- APP-V8-077 (GATE-V8-G5): Package 5 and the whole of Volume 8 receive explicit freeze approvals
+- APP-V8-077 (GATE-V8-G5): Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding

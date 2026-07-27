@@ -1,6 +1,6 @@
 # Volume 8 Package 1 — Contract Governance Foundation Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T13:43:04.416Z
+Generated: 2026-07-27T14:44:48.721Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 API, event, integration, and exchange-contract governance foundation
@@ -36,8 +36,8 @@ Generated: 2026-07-27T13:43:04.416Z
 | replay_requirements | 2 |
 | reconciliation_requirements | 1 |
 | compatibility_rules | 7 |
-| decisions | 33 |
-| backlog | 19 |
+| decisions | 36 |
+| backlog | 25 |
 
 ## Coverage backlog signals (non-blocking)
 

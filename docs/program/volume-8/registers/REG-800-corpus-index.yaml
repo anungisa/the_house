@@ -420,3 +420,115 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-H-1-package-4-governance-amendment.md
     gate: V8-G4
+  - id: V8-41
+    title: Integrated API, Event, Integration, and Exchange-Contract Baseline
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-41-integrated-api-event-integration-and-exchange-contract-baseline.md
+    gate: V8-G5
+  - id: V8-42
+    title: Authority, Surface, Producer, Consumer, and Trust-Boundary Catalogue
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-42-authority-surface-producer-consumer-and-trust-boundary-catalogue.md
+    gate: V8-G5
+  - id: V8-43
+    title: Affiliation Command, Query, Resource, Response, and Acceptance Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-43-affiliation-command-query-resource-response-and-acceptance-synthesis.md
+    gate: V8-G5
+  - id: V8-44
+    title: Event, Outbox, Webhook, Notification, and Delivery Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-44-event-outbox-webhook-notification-and-delivery-synthesis.md
+    gate: V8-G5
+  - id: V8-45
+    title: Provider, File, Batch, Migration, and Exchange Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-45-provider-file-batch-migration-and-exchange-synthesis.md
+    gate: V8-G5
+  - id: V8-46
+    title: Identity, Service Identity, Authorization Context, and Institutional-Trust Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-46-identity-service-identity-authorization-context-and-institutional-trust-synthesis.md
+    gate: V8-G5
+  - id: V8-47
+    title: Error, Conflict, Retry, Unknown-Outcome, Compensation, and Reconciliation Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-47-error-conflict-retry-unknown-outcome-compensation-and-reconciliation-synthesis.md
+    gate: V8-G5
+  - id: V8-48
+    title: Data Classification, Minimization, Evidence, Privacy, Records, and Audit-Contract Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-48-data-classification-minimization-evidence-privacy-records-and-audit-contract-synthesis.md
+    gate: V8-G5
+  - id: V8-49
+    title: Versioning, Compatibility, Deprecation, Replacement, and Change-Control Synthesis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-49-versioning-compatibility-deprecation-replacement-and-change-control-synthesis.md
+    gate: V8-G5
+  - id: V8-50
+    title: House P0 Contract and Integration-Evidence Matrix
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-50-house-p0-contract-and-integration-evidence-matrix.md
+    gate: V8-G5
+  - id: V8-51
+    title: Assumptions, Risks, Exceptions, Completed-Gate References, and Readiness Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-51-assumptions-risks-exceptions-completed-gate-references-and-readiness-disposition.md
+    gate: V8-G5
+  - id: V8-52
+    title: Downstream-Volume Handoff and Executive Contract Brief
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-52-downstream-volume-handoff-and-executive-contract-brief.md
+    gate: V8-G5
+  - id: V8-53
+    title: Integrated Contract Traceability and Volume 8 Closure Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-53-integrated-contract-traceability-and-volume-8-closure-assessment.md
+    gate: V8-G5
+  - id: V8-I
+    title: Volume 8 Completion and Release-Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-I-volume-8-completion-and-release-freeze-record.md
+    gate: V8-G5

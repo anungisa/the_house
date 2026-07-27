@@ -16,8 +16,10 @@ import { run as runGate } from './gate-volume-8.mjs';
 import { run as runGateG2 } from './gate-g2-volume-8.mjs';
 import { run as runGateG3 } from './gate-g3-volume-8.mjs';
 import { run as runGateG4 } from './gate-g4-volume-8.mjs';
+import { run as runGateG5 } from './gate-g5-volume-8.mjs';
 import { run as runEventDelivery } from './event-delivery-volume-8.mjs';
 import { run as runProviderExchange } from './provider-exchange-volume-8.mjs';
+import { run as runFinalClosure } from './final-closure-volume-8.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -29,8 +31,10 @@ export function collectFindings(ctx) {
     'Gate V8-G2 readiness': runGateG2(ctx),
     'Gate V8-G3 readiness': runGateG3(ctx),
     'Gate V8-G4 readiness': runGateG4(ctx),
+    'Gate V8-G5 readiness': runGateG5(ctx),
     'Event-delivery contract coverage': runEventDelivery(ctx),
-    'Provider-exchange contract coverage': runProviderExchange(ctx)
+    'Provider-exchange contract coverage': runProviderExchange(ctx),
+    'Integrated closure coverage': runFinalClosure(ctx)
   };
 }
 

@@ -1281,3 +1281,326 @@ records:
         definition effectiveness is distinct from, and never implies, any
         implementation or operational effective date.
     approved_at: null
+  - id: APP-V8-063
+    artifact_id: V8-41
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-064
+    artifact_id: V8-42
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-065
+    artifact_id: V8-43
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-066
+    artifact_id: V8-44
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-067
+    artifact_id: V8-45
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-068
+    artifact_id: V8-46
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-069
+    artifact_id: V8-47
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-070
+    artifact_id: V8-48
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-071
+    artifact_id: V8-49
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-072
+    artifact_id: V8-50
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-073
+    artifact_id: V8-51
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-074
+    artifact_id: V8-52
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-075
+    artifact_id: V8-53
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-076
+    artifact_id: V8-I
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: true
+    closure_binding:
+      closure_artifact: V8-I
+      gate: GATE-V8-G5
+      freeze_artifact: PACKAGE-8-5
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      chronology_disposition: >-
+        The substantive authoring commit precedes the closure commit; the closure,
+        Gate V8-G5 disposition, and dual freeze of Package 5 and the whole of
+        Volume 8 are recorded together in the closure commit and bound to it in
+        the immediately following provenance-binding commit.
+    effective_date_clarification:
+      gate: GATE-V8-G5
+      documentary_definition_effective_commit: d4b7e6d
+      implementation_effective_date: >-
+        Not applicable. Volume 8 authorizes no implementation; documentary
+        definition effectiveness is distinct from any future implementation date.
+    next_package_disposition: >-
+      Volume 8 is the final contract-definition volume of the programme.
+      Subsequent volumes inherit the Volume 8 contracts as inputs and own the
+      authorization of verification definition, implementation, operational
+      proof, independent assurance, procurement, and the master development plan.
+      No executable API implementation, event schema, file or payload schema,
+      endpoint, wire schema, SDK, broker or transport configuration, runtime
+      authorization, identity or cryptographic configuration, provider
+      integration, file transfer, migration script, adapter, payment or
+      settlement mechanism, procurement, pilot, rollout, launch, or master
+      development plan is authorized.
+    approved_at: null
+  - id: APP-V8-077
+    artifact_id: GATE-V8-G5
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: API_EVENT_INTEGRATION_AND_EXCHANGE_CONTRACT_DEFINITION_COMPLETE
+    requires_freeze_artifact: PACKAGE-8-5
+    effective_commit: d4b7e6d
+    gate_effective_commit: d4b7e6d
+    conditions:
+      - Package 4 provenance, V8-H, and V8-H-1 are inherited
+      - Packages 1 through 4 remain frozen and unchanged
+      - One integrated contract-definition baseline exists
+      - House retains institutional authority over the integrated surface catalogue
+      - The Button is recorded as an intent initiator and consumer, not an authority
+      - Every catalogued surface names owner, authority, and trust boundary and is traceable
+      - Commands, queries, events, webhooks, callbacks, files, batches, migrations, and manual exchanges are distinct capability families
+      - Authentication remains distinct from authorization
+      - Resource-aware authorization context is complete and fail-closed
+      - Commands define authority, target, preconditions, idempotency, conflict, acceptance, rejection, and evidence
+      - Queries define source, scope, sensitivity, staleness, disclosure, and degraded posture
+      - Logical resources declare authoritative-or-projected status, classification, lifecycle, and version
+      - Event envelopes declare identity, version, provenance, scope, sensitivity, correlation, and replay
+      - Outbox persistence is distinct from publication, delivery, consumer effect, and reconciliation
+      - Exactly-once business effect is distinct from transport delivery
+      - Webhooks and callbacks define authentication, integrity, replay, idempotency, and reconciliation
+      - Errors and unknown outcomes are controlled, privacy-safe, and language-neutral
+      - Data minimization, classification, evidence, privacy, records, and audit are synthesised
+      - Provider incidents, continuity, return, deletion, residual copies, and exit remain governed
+      - Imports, exports, files, batches, migrations, and manual exchanges preserve authority, provenance, uncertainty, acceptance, quarantine, disclosure, and reconciliation
+      - Versioning, compatibility, deprecation, replacement, and change control are complete
+      - Accessibility and bilingual obligations cover notifications, documents, and user-facing surfaces
+      - House P0 findings carry complete contract and evidence mappings
+      - Every unresolved item has an owner, an evidence requirement, and a valid downstream gate
+      - No active unresolved item points to a completed Volume 8 gate or to Gate V8-G5
+      - Deterministic whole-volume closure analysis completes without blocking defects
+      - No executable interface, event, integration, exchange, or infrastructure specification is created
+      - No implementation, delivery, reconciliation, migration, provider, privacy, compatibility, or operational claim is made without evidence
+      - No infrastructure, procurement, sequencing, staffing, cost, pilot, rollout, launch, or master development plan is authorised
+      - No record authorizes implementation
+      - Package 5 and the whole of Volume 8 receive explicit freeze approvals
+      - Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding
+    approved_at: null
+  - id: APP-V8-078
+    artifact_id: PACKAGE-8-5
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Frozen artifacts are superseded, never overwritten. A narrow
+      post-merge provenance amendment is recorded as V8-J, and a subsequent
+      governance amendment is recorded as V8-J-1. Volume 8 is tagged
+      central-registration-volume-8-v1.0.0 after the Package 5 provenance and
+      governance amendments are merged.
+    frozen: true
+    frozen_artifacts:
+      - id: V8-41
+        version: 1.0.0
+      - id: V8-42
+        version: 1.0.0
+      - id: V8-43
+        version: 1.0.0
+      - id: V8-44
+        version: 1.0.0
+      - id: V8-45
+        version: 1.0.0
+      - id: V8-46
+        version: 1.0.0
+      - id: V8-47
+        version: 1.0.0
+      - id: V8-48
+        version: 1.0.0
+      - id: V8-49
+        version: 1.0.0
+      - id: V8-50
+        version: 1.0.0
+      - id: V8-51
+        version: 1.0.0
+      - id: V8-52
+        version: 1.0.0
+      - id: V8-53
+        version: 1.0.0
+      - id: V8-I
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-8-5
+      substantive_authoring_commit: df19266
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      provenance_binding_commit: PENDING_V8-J_AMENDMENT
+      required_sequence: >-
+        Substantive authoring precedes closure; closure and dual freeze precede
+        the provenance binding.
+      actual_sequence: >-
+        Substantive authoring in the first commit; closure, Gate V8-G5
+        disposition, and dual freeze of Package 5 and the whole of Volume 8 in the
+        second commit; commit-hash binding in the third commit.
+      sequence_disposition: COMPLIANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      source_baseline_commit: a1aaa75
+      branch_base_commit: a1aaa75
+      authoring_commit: df19266
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      closure_freeze_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      effective_commit: d4b7e6d
+      provenance_binding_commit: PENDING_V8-J_AMENDMENT
+      note: >-
+        Package 5 was authored in a substantive authoring commit and frozen in a
+        separate closure and dual-freeze commit after line-level review; the
+        commit-hash bindings for the closure, Gate V8-G5 disposition, and dual
+        freeze are recorded in the immediately following provenance-binding commit
+        on the same branch. The Package 5 merge commit and the release tag are
+        recorded in the V8-J provenance amendment.
+    approved_at: null
+  - id: APP-V8-079
+    artifact_id: VOLUME-8
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. The whole-volume freeze supersedes nothing and overwrites
+      nothing; it records that the whole of Volume 8, across Packages 1 through 5,
+      is complete and frozen. Volume 8 is tagged central-registration-volume-8-v1.0.0
+      after the Package 5 provenance and governance amendments are merged.
+    frozen: true
+    frozen_artifacts:
+      - id: PACKAGE-8-1
+        version: 1.0.0
+      - id: PACKAGE-8-2
+        version: 1.0.0
+      - id: PACKAGE-8-3
+        version: 1.0.0
+      - id: PACKAGE-8-4
+        version: 1.0.0
+      - id: PACKAGE-8-5
+        version: 1.0.0
+      - id: V8-I
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: VOLUME-8
+      substantive_authoring_commit: df19266
+      closure_authored_commit: d4b7e6d
+      closure_effective_commit: d4b7e6d
+      gate_effective_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      provenance_binding_commit: PENDING_V8-J_AMENDMENT
+      required_sequence: >-
+        The whole-volume freeze is recorded together with the Package 5 closure
+        and freeze and bound in the following provenance-binding commit.
+      actual_sequence: >-
+        Substantive authoring in the first commit; Package 5 closure, Gate V8-G5
+        disposition, and dual freeze of Package 5 and the whole of Volume 8 in the
+        second commit; commit-hash binding in the third commit.
+      sequence_disposition: COMPLIANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      source_baseline_commit: a1aaa75
+      branch_base_commit: a1aaa75
+      authoring_commit: df19266
+      closure_freeze_commit: d4b7e6d
+      freeze_commit: d4b7e6d
+      effective_commit: d4b7e6d
+      provenance_binding_commit: PENDING_V8-J_AMENDMENT
+      note: >-
+        Whole-volume freeze for Volume 8. Records that Packages 1 through 5 are
+        complete and frozen. The commit-hash bindings for the whole-volume freeze
+        are recorded in the immediately following provenance-binding commit. The
+        release tag central-registration-volume-8-v1.0.0 is applied after the
+        Package 5 provenance and governance amendments are merged and is recorded
+        in the V8-J provenance amendment.
+    approved_at: null
