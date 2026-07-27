@@ -2,14 +2,9 @@
   "gate": "V11-G3",
   "disposition_target": "OPERATIONS_MIGRATION_ADOPTION_SUPPORT_CONTINUITY_AND_OPERATIONAL_ASSURANCE_DEFINITION_COMPLETE",
   "total_conditions": 44,
-  "satisfied": 43,
-  "unmet": [
-    {
-      "n": 43,
-      "title": "Genuine closure, gate, freeze, and pre-merge provenance-binding separation is preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 44,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -229,7 +224,7 @@
     {
       "n": 43,
       "title": "Genuine closure, gate, freeze, and pre-merge provenance-binding separation is preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

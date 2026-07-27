@@ -580,7 +580,7 @@ records:
       Pilot, rollout, deployment, release, and launch: NOT AUTHORIZED.
     effective_date_clarification:
       gate: V11-G3
-      documentary_definition_effective_commit: PENDING_COMMIT_B3
+      documentary_definition_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
       implementation_effective_date: >-
         Not applicable — the integrated operating definition is distinct from
         implementation effectiveness and from operational effectiveness.
@@ -590,10 +590,10 @@ records:
       closure_artifact: V11-E
       gate: V11-G3
       freeze_artifact: PACKAGE-11-3
-      closure_authored_commit: PENDING_COMMIT_B3
-      closure_effective_commit: PENDING_COMMIT_B3
-      freeze_commit: PENDING_COMMIT_B3
-      gate_effective_commit: PENDING_COMMIT_B3
+      closure_authored_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      closure_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      gate_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
   - id: APP-V11-045
     artifact_id: GATE-V11-G3
     approver_role: Executive Sponsor
@@ -603,8 +603,8 @@ records:
     authorizes_operations: false
     gate_disposition: OPERATIONS_MIGRATION_ADOPTION_SUPPORT_CONTINUITY_AND_OPERATIONAL_ASSURANCE_DEFINITION_COMPLETE
     requires_freeze_artifact: PACKAGE-11-3
-    effective_commit: PENDING_COMMIT_B3
-    gate_effective_commit: PENDING_COMMIT_B3
+    effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+    gate_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
   - id: APP-V11-046
     artifact_id: PACKAGE-11-3
     approver_role: Executive Sponsor
@@ -643,10 +643,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-11-3
       substantive_authoring_commit: 551491e8e543e29f143ace32e442307a4fb26d7e
-      closure_authored_commit: PENDING_COMMIT_B3
-      closure_effective_commit: PENDING_COMMIT_B3
-      gate_effective_commit: PENDING_COMMIT_B3
-      freeze_commit: PENDING_COMMIT_B3
+      closure_authored_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      closure_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      gate_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
       provenance_binding_commit: PENDING_COMMIT_C3
       required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_DUAL_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_DUAL_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
@@ -662,12 +662,12 @@ records:
       source_baseline_commit: 053378a7e1fb1ad36a5061ffb393d76ce133e688
       branch_base_commit: 053378a7e1fb1ad36a5061ffb393d76ce133e688
       authoring_commit: 551491e8e543e29f143ace32e442307a4fb26d7e
-      closure_authored_commit: PENDING_COMMIT_B3
-      closure_effective_commit: PENDING_COMMIT_B3
-      closure_freeze_commit: PENDING_COMMIT_B3
-      freeze_commit: PENDING_COMMIT_B3
-      gate_effective_commit: PENDING_COMMIT_B3
-      effective_commit: PENDING_COMMIT_B3
+      closure_authored_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      closure_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      closure_freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      gate_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
       provenance_binding_commit: PENDING_COMMIT_C3
       original_package_merge_commit: PENDING_COMMIT_C3
       note: >-
@@ -771,9 +771,9 @@ records:
       base_release_tag: central-registration-volume-10-v1.0.0
       source_baseline_commit: 053378a7e1fb1ad36a5061ffb393d76ce133e688
       authoring_commit: 551491e8e543e29f143ace32e442307a4fb26d7e
-      closure_freeze_commit: PENDING_COMMIT_B3
-      freeze_commit: PENDING_COMMIT_B3
-      effective_commit: PENDING_COMMIT_B3
+      closure_freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
       note: >-
         Whole-volume freeze of Volume 11. The frozen artifacts are every Volume 11
         chapter and record across Packages 1, 2, and 3 and their amendment and

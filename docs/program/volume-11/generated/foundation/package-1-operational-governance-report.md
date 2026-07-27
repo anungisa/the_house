@@ -1,6 +1,6 @@
 # Volume 11 Package 1 Operational-Governance Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T23:24:28.276Z
+Generated: 2026-07-27T23:25:03.509Z
 
 > Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.
 
