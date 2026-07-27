@@ -315,3 +315,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-F-package-3-provenance-amendment.md
     gate: V8-G3
+  - id: V8-F-1
+    title: Package 3 Governance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-F-1-package-3-governance-amendment.md
+    gate: V8-G3
