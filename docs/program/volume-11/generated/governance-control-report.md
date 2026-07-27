@@ -1,6 +1,6 @@
 # Volume 11 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T22:01:23.597Z
+Generated: 2026-07-27T22:05:31.016Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 11 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,28 +15,28 @@ Generated: 2026-07-27T22:01:23.597Z
 
 ## Summary
 
-- Total findings: 2
+- Total findings: 1
 - Errors: 0
 - Warnings: 0
-- Info: 2
+- Info: 1
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 13 |
+| RATIFIED | 14 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 13 |
+| REG-1100 | Volume 11 Corpus Index | RATIFIED | 1.0.0 | 14 |
 | REG-1101 | Services, Capabilities, Owners, Operating States, Support Classes, and Providers | RATIFIED | 1.0.0 | 26 |
 | REG-1102 | Operational Requirements, Procedures, Scenarios, Evidence, Acceptance, and Handoffs | RATIFIED | 1.0.0 | 16 |
 | REG-1103 | Volume 11 Operational-Governance Decisions | RATIFIED | 1.0.0 | 3 |
 | REG-1104 | Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps | RATIFIED | 1.0.0 | 5 |
-| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 15 |
+| REG-1105 | Volume 11 Approvals | RATIFIED | 1.0.0 | 16 |
 
 ## Findings by control
 
@@ -60,9 +60,9 @@ Errors: 0 | Warnings: 0 | Info: 1
 
 ### Provenance-integrity enforcement
 
-Errors: 0 | Warnings: 0 | Info: 1
+Errors: 0 | Warnings: 0 | Info: 0
 
-- INFO PROVENANCE_AMENDMENT_PENDING [REG-1105]: No REG-1105 approval yet carries a provenance_role_classification block; the post-merge provenance amendment (V11-B-1) is pending
+- (no findings)
 
 ### Gate V11-G1 readiness
 
