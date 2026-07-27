@@ -10,11 +10,31 @@
 //      fully effective before its freeze condition was satisfied).
 //   3. CLOSURE_NEXT_PACKAGE_DISPOSITION_MISSING — a closure record that omits the
 //      bounded next-package disposition for the following package.
+//   4. PACKAGE_CLOSED_WITHOUT_FREEZE — a package dispositioned as closed at its
+//      gate while a required freeze condition remains unmet.
+//   5. CLOSURE_EFFECTIVE_COMMIT_MISSING — a separation-enforced closure with no
+//      recorded closure effective commit bound to the package freeze.
+//   6. CLOSURE_EFFECTIVE_MISMATCH — a closure or gate effective commit that
+//      differs from the required package freeze commit.
+//   7. CLOSURE_TBD_AFTER_GATE_COMPLETED — unresolved-at-gate effective-date
+//      wording when the named gate is already completed, unless the record
+//      explicitly distinguishes documentary from implementation effectiveness.
+//
+// From Package 3 onward the closure artifact, gate disposition, and freeze must
+// be recorded separately from substantive authoring; earlier packages that were
+// already reconciled by their own governance amendments are grandfathered.
 //
 // The control is read-only and register-driven. It reads REG-700 (corpus index)
-// and REG-705 (approvals) from the loaded context.
+// and REG-705 (approvals) and the parsed chapters from the loaded context.
 
-import { Severity, makeFinding, runStandalone } from './lib.mjs';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { Severity, VOLUME_DIR, completedGates, loadContext, makeFinding, runStandalone } from './lib.mjs';
+
+// The separation discipline (closure/gate/freeze committed apart from authoring)
+// is enforced from Package 3 (Gate V7-G3) onward. Earlier packages that were
+// already reconciled by their own governance amendments are grandfathered.
+const ENFORCE_SEPARATION_FROM = 3;
 
 function approvals(ctx) {
   return ctx.registers?.['REG-705']?.doc?.records ?? [];
@@ -22,6 +42,47 @@ function approvals(ctx) {
 
 function corpusRows(ctx) {
   return ctx.registers?.['REG-700']?.doc?.records ?? [];
+}
+
+function gateNumber(id) {
+  const m = /^GATE-V7-G([0-9])$/.exec(id ?? '');
+  return m ? Number(m[1]) : null;
+}
+
+function normalizeGate(g) {
+  return String(g ?? '').replace(/^GATE-/, '');
+}
+
+// Index the freeze commit declared by each frozen freeze artifact.
+function freezeCommitIndex(ctx) {
+  const map = new Map();
+  for (const a of approvals(ctx)) {
+    if (a.frozen !== true) continue;
+    const commit = a.package_provenance?.freeze_commit ?? a.package_provenance?.closure_freeze_commit;
+    if (commit) map.set(a.artifact_id, commit);
+  }
+  return map;
+}
+
+// Index closure-effective bindings by the freeze artifact they close against.
+function closureBindingIndex(ctx) {
+  const map = new Map();
+  for (const a of approvals(ctx)) {
+    const b = a.closure_binding;
+    const freezeArtifact = b?.freeze_artifact ?? a.requires_freeze_artifact;
+    const closureEffective = b?.closure_effective_commit ?? a.closure_effective_commit;
+    if (freezeArtifact && closureEffective) {
+      map.set(freezeArtifact, {
+        approval: a,
+        binding: b ?? null,
+        closureAuthored: b?.closure_authored_commit ?? null,
+        closureEffective,
+        gateEffective: b?.gate_effective_commit ?? a.gate_effective_commit ?? null,
+        chronologyException: b?.chronology_exception ?? a.chronology_exception ?? null
+      });
+    }
+  }
+  return map;
 }
 
 // Defect 1: source baseline conflated with the authoring commit.
@@ -133,9 +194,153 @@ export function run(ctx) {
   checkSourceConflation(ctx, findings);
   checkGateChronology(ctx, findings);
   checkClosureDisposition(ctx, findings);
+  checkClosureFreezeChronology(ctx, findings);
+  checkEffectiveDateWording(ctx, findings);
   return findings;
 }
 
+// Defects 4-6: closure-versus-freeze chronology for separation-enforced gates.
+function checkClosureFreezeChronology(ctx, findings) {
+  const freezeIdx = freezeCommitIndex(ctx);
+  const closureIdx = closureBindingIndex(ctx);
+  for (const a of approvals(ctx)) {
+    const n = gateNumber(a.artifact_id);
+    if (n === null) continue;
+    if (a.approval_state !== 'ratified' || !a.gate_disposition) continue;
+    if (n < ENFORCE_SEPARATION_FROM) continue; // earlier packages grandfathered
+    const freezeArtifact = a.requires_freeze_artifact;
+    if (!freezeArtifact) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'PACKAGE_CLOSED_WITHOUT_FREEZE',
+          `Gate ${a.artifact_id} is dispositioned but declares no required freeze artifact`,
+          a.id
+        )
+      );
+      continue;
+    }
+    const freezeCommit = freezeIdx.get(freezeArtifact);
+    if (!freezeCommit) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'PACKAGE_CLOSED_WITHOUT_FREEZE',
+          `Gate ${a.artifact_id} is dispositioned while the required freeze ${freezeArtifact} is not frozen or declares no freeze commit`,
+          a.id
+        )
+      );
+      continue;
+    }
+    const closure = closureIdx.get(freezeArtifact);
+    if (!closure) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'CLOSURE_EFFECTIVE_COMMIT_MISSING',
+          `No closure approval declares a closure effective commit bound to freeze ${freezeArtifact} for gate ${a.artifact_id}`,
+          a.id
+        )
+      );
+      continue;
+    }
+    if (closure.closureEffective !== freezeCommit) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'CLOSURE_EFFECTIVE_MISMATCH',
+          `Closure effective commit ${closure.closureEffective} for freeze ${freezeArtifact} does not match the freeze commit ${freezeCommit}`,
+          closure.approval.id
+        )
+      );
+    }
+    if (closure.gateEffective && closure.gateEffective !== freezeCommit) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'CLOSURE_EFFECTIVE_MISMATCH',
+          `Gate effective commit ${closure.gateEffective} for freeze ${freezeArtifact} does not match the freeze commit ${freezeCommit}`,
+          closure.approval.id
+        )
+      );
+    }
+  }
+}
+
+// Defect 7: unresolved-at-gate effective-date wording after the gate is complete.
+function checkEffectiveDateWording(ctx, findings) {
+  const done = completedGates(ctx);
+  const clarifiedGates = new Set();
+  for (const a of approvals(ctx)) {
+    const c = a.effective_date_clarification;
+    if (c?.gate && c?.documentary_definition_effective_commit && c?.implementation_effective_date) {
+      clarifiedGates.add(normalizeGate(c.gate));
+    }
+  }
+  for (const ch of ctx.chapters ?? []) {
+    const m = /TBD \(Gate (V7-G[0-9])\)/.exec(ch.body ?? '');
+    if (!m) continue;
+    const gate = m[1];
+    const num = Number(gate.slice(-1));
+    if (num < ENFORCE_SEPARATION_FROM) continue; // earlier packages grandfathered
+    if (!done.has(gate)) continue; // gate not yet completed — wording is acceptable
+    if (!clarifiedGates.has(gate)) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'CLOSURE_TBD_AFTER_GATE_COMPLETED',
+          `Chapter ${ch.fileId} uses unresolved-at-gate wording for completed gate ${gate} without a documentary-versus-implementation effectiveness clarification`,
+          ch.fileId
+        )
+      );
+    }
+  }
+}
+
+// Non-authoritative deterministic chronology projection, one record per package
+// that declares a closure-effective binding.
+export function generate(ctx = loadContext()) {
+  const closureIdx = closureBindingIndex(ctx);
+  const freezeIdx = freezeCommitIndex(ctx);
+  const clarByGate = new Map();
+  for (const a of approvals(ctx)) {
+    const c = a.effective_date_clarification;
+    if (c?.gate) clarByGate.set(normalizeGate(c.gate), c);
+  }
+  const packages = [];
+  for (const [freezeArtifact, closure] of closureIdx) {
+    const gate = normalizeGate(closure.binding?.gate ?? '');
+    const clar = clarByGate.get(gate) ?? null;
+    packages.push({
+      freeze_artifact: freezeArtifact,
+      closure_artifact: closure.binding?.closure_artifact ?? null,
+      gate: closure.binding?.gate ?? null,
+      closure_authored_commit: closure.closureAuthored,
+      closure_effective_commit: closure.closureEffective,
+      freeze_commit: freezeIdx.get(freezeArtifact) ?? null,
+      gate_effective_commit: closure.gateEffective,
+      chronology_exception: closure.chronologyException,
+      documentary_definition_effective_commit: clar?.documentary_definition_effective_commit ?? null,
+      implementation_effective_date: clar?.implementation_effective_date ?? null,
+      production_adoption_date: clar?.production_adoption_date ?? null,
+      operational_effective_date: clar?.operational_effective_date ?? null
+    });
+  }
+  const outDir = join(VOLUME_DIR, 'generated', 'provenance');
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(
+    join(outDir, 'package-chronology.json'),
+    JSON.stringify(
+      { note: 'NON-AUTHORITATIVE projection of closure/freeze chronology and effective-date clarifications.', packages },
+      null,
+      2
+    ) + '\n',
+    'utf8'
+  );
+  return { packages: packages.length };
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
+  generate();
   runStandalone('Provenance & gate-chronology integrity', run);
 }
