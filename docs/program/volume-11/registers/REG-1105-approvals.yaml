@@ -789,3 +789,46 @@ records:
     evidence_label: AUTHOR-VERIFIED
     authorizes_implementation: false
     authorizes_operations: false
+  # --- Package 3 provenance-role classification and Volume 11 release tag (V11-F-1) ---
+  - id: APP-V11-049
+    artifact_id: V11-F-1
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    requires_freeze_artifact: PACKAGE-11-3
+    provenance_role_classification:
+      package: PACKAGE-11-3
+      source_baseline: 053378a7e1fb1ad36a5061ffb393d76ce133e688
+      substantive_authoring: 551491e8e543e29f143ace32e442307a4fb26d7e
+      closure_and_freeze: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      pre_merge_provenance_binding: 863963797328310c7c5091061e9626265f11b545
+      original_package_merge: 7e17a6e8a0784d7052e154020ed7c133dbfc37cd
+      provenance_amendment_authoring: 36f65fb1f2f5b02877a2ef59212f2fb76e9e4663
+      provenance_amendment_merge: cafa542bb0fc1412f78f4e46d89bfd42e090dd19
+      inherited_release_tag: central-registration-volume-10-v1.0.0
+      applied_release_tag: central-registration-volume-11-v1.0.0
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-10-v1.0.0
+      base_release_tag: central-registration-volume-10-v1.0.0
+      source_baseline_commit: 053378a7e1fb1ad36a5061ffb393d76ce133e688
+      branch_base_commit: 053378a7e1fb1ad36a5061ffb393d76ce133e688
+      authoring_commit: 551491e8e543e29f143ace32e442307a4fb26d7e
+      closure_authored_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      closure_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      closure_freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      freeze_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      gate_effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      effective_commit: 3b6d9520e3d273df7840722c1dee30a8222a4c51
+      provenance_binding_commit: 863963797328310c7c5091061e9626265f11b545
+      original_package_merge_commit: 7e17a6e8a0784d7052e154020ed7c133dbfc37cd
+      provenance_amendment_authoring_commit: 36f65fb1f2f5b02877a2ef59212f2fb76e9e4663
+      provenance_amendment_merge_commit: cafa542bb0fc1412f78f4e46d89bfd42e090dd19
+      note: >-
+        Final Package 3 provenance-role classification. Each provenance role is bound
+        to exactly one commit: source baseline, substantive authoring, closure and
+        dual freeze, pre-merge provenance binding, original package merge, and the
+        provenance-amendment authoring and merge commits. The Volume 11 release tag
+        central-registration-volume-11-v1.0.0 is applied on this amendment's merge
+        commit and records a documentary release only.

@@ -331,3 +331,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-11/V11-F.md
     gate: V11-G3
+  - id: V11-F-1
+    title: Package 3 Provenance-Role Classification and Volume 11 Release Tag
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-F-1.md
+    gate: V11-G3
