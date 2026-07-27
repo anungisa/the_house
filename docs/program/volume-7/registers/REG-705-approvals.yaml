@@ -735,3 +735,24 @@ records:
       freeze_commit: 85451f3
       note: Package 4 was line-level reviewed and frozen at commit 85451f3; the commit-hash bindings for the gate and freeze are recorded in the immediately following provenance-binding commit on the same branch. The Package 4 merge commit is recorded in the V7-H provenance amendment. Volume 7 is not tagged after Package 4.
     approved_at: null
+  - id: APP-V7-061
+    artifact_id: V7-H
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Records the Package 4 branch base baseline, the reviewed freeze commit, the provenance-binding commit, and the mainline merge commit after merge. Supersedes and overwrites nothing in the frozen Package 4 corpus. Volume 7 is not tagged after Package 4.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_baseline_commit: "c99603a"
+      branch_base_commit: "c99603a"
+      authoring_commit: "85451f3"
+      closure_freeze_commit: "85451f3"
+      freeze_commit: "85451f3"
+      effective_commit: "85451f3"
+      provenance_amendment_commit: "a0d6b4a"
+      original_package_merge_commit: "5447e80"
+      note: Narrow post-merge provenance amendment for Package 4. Records the branch base baseline c99603a, the reviewed freeze commit 85451f3 that carried authoring, closure, gate disposition, and freeze, the provenance-binding commit a0d6b4a, and the mainline merge commit 5447e80. Confirms Gate V7-G4 became effective at the freeze commit 85451f3. Volume 7 is not tagged after Package 4.
+    approved_at: null
