@@ -581,3 +581,59 @@ records:
         25fa0962bd5646c0ba4fccde54345b6119d43eba. Volume 10 is not tagged after
         Package 2.
     approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # V10-D-1 provenance-role classification (additive; completes V10-D)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-033
+    artifact_id: V10-D-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    requires_freeze_artifact: PACKAGE-10-2
+    amendment_process: >-
+      Additive governance amendment. Records the complete, role-correct Volume 10
+      Package 2 provenance-role classification, including the V10-D provenance
+      amendment's own authoring and merge commits. It corrects no earlier record;
+      it completes the V10-D classification. Reopens and overwrites nothing in the
+      frozen Package 2 corpus, and preserves the Gate V10-G2 disposition and the
+      PACKAGE-10-2 freeze. Volume 10 is not tagged after Package 2.
+    provenance_role_classification:
+      package: PACKAGE-10-2
+      source_baseline: 34cbff2940506084fe4687b3705b228be3db7dd8
+      substantive_authoring: 726c54c011c8139222fbb9a82324469ec697e8be
+      closure_and_freeze: 8c3561495399ae8491bd7acfc11592904eb13642
+      pre_merge_provenance_binding: 80bba9c8aa7f937cf80106f759b6d3bd5397737d
+      original_package_merge: 25fa0962bd5646c0ba4fccde54345b6119d43eba
+      provenance_amendment_authoring: e5b866ad7d5fec3a2ee7365c40895c1938933c30
+      provenance_amendment_merge: f4d10edbcbe0fad137536030755ee9d165c5e6e1
+      inherited_release_tag: central-registration-volume-9-v1.0.0
+      historical_sequence_exception: NONE
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-9-v1.0.0
+      base_release_tag: central-registration-volume-9-v1.0.0
+      source_baseline_commit: 34cbff2940506084fe4687b3705b228be3db7dd8
+      branch_base_commit: 34cbff2940506084fe4687b3705b228be3db7dd8
+      authoring_commit: 726c54c011c8139222fbb9a82324469ec697e8be
+      closure_authored_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      closure_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      closure_freeze_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      freeze_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      gate_effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      effective_commit: 8c3561495399ae8491bd7acfc11592904eb13642
+      provenance_binding_commit: 80bba9c8aa7f937cf80106f759b6d3bd5397737d
+      original_package_merge_commit: 25fa0962bd5646c0ba4fccde54345b6119d43eba
+      provenance_amendment_authoring_commit: e5b866ad7d5fec3a2ee7365c40895c1938933c30
+      provenance_amendment_merge_commit: f4d10edbcbe0fad137536030755ee9d165c5e6e1
+      note: >-
+        Volume 10 Package 2 complete provenance-role classification. Source
+        baseline 34cbff2940506084fe4687b3705b228be3db7dd8; substantive authoring
+        726c54c011c8139222fbb9a82324469ec697e8be; closure, gate, and freeze
+        8c3561495399ae8491bd7acfc11592904eb13642; pre-merge provenance binding
+        80bba9c8aa7f937cf80106f759b6d3bd5397737d; original Package 2 merge
+        25fa0962bd5646c0ba4fccde54345b6119d43eba; V10-D provenance-amendment
+        authoring e5b866ad7d5fec3a2ee7365c40895c1938933c30; V10-D
+        provenance-amendment merge f4d10edbcbe0fad137536030755ee9d165c5e6e1.
+        Volume 10 is not tagged after Package 2.
+    approved_at: null
