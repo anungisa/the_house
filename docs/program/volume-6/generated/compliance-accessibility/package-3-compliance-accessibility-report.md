@@ -1,6 +1,6 @@
 # Volume 6 Package 3 Compliance and Inclusive-Service Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T23:58:10.437Z
+Generated: 2026-07-27T00:02:15.816Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 3 defines the compliance,

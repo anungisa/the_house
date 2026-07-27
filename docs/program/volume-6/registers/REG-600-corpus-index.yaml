@@ -379,3 +379,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-40-package-4-incident-resilience-recovery-and-assurance-traceability-assessment.md
     gate: V6-G4
+  - id: V6-G
+    title: Package 4 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-G-package-4-closure-record.md
+    gate: V6-G4

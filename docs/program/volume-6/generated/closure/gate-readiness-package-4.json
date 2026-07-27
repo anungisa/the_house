@@ -1,11 +1,12 @@
 {
   "gate": "V6-G4",
-  "dispositioned": false,
-  "disposition": null,
-  "closure_record": null,
+  "dispositioned": true,
+  "disposition": "INCIDENT_RESILIENCE_RECOVERY_AND_ASSURANCE_CONTROL_MODEL_READY",
+  "closure_record": "V6-G",
   "completed_gates": [
     "V6-G1",
     "V6-G2",
-    "V6-G3"
+    "V6-G3",
+    "V6-G4"
   ]
 }
