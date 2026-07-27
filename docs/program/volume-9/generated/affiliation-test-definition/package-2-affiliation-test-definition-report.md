@@ -1,6 +1,6 @@
 # Volume 9 Package 2 — Club-Affiliation Test-Definition Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T16:29:37.357Z
+Generated: 2026-07-27T16:35:18.121Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 Package 2 affiliation test-definition corpus. It is not a source of
