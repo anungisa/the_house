@@ -2,14 +2,9 @@
   "gate": "V11-G1",
   "disposition_target": "OPERATIONS_MIGRATION_ADOPTION_AND_ASSURANCE_GOVERNANCE_FOUNDATION_READY",
   "total_conditions": 33,
-  "satisfied": 32,
-  "unmet": [
-    {
-      "n": 33,
-      "title": "Genuine authoring, closure-freeze, and pre-merge provenance-binding separation preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 33,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -174,7 +169,7 @@
     {
       "n": 33,
       "title": "Genuine authoring, closure-freeze, and pre-merge provenance-binding separation preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
