@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "service-model.schema.json",
+  "title": "REG-1101 Services, Capabilities, Owners, Operating States, Support Classes, and Providers",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1101" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "validation_status",
+          "authorizes_implementation",
+          "authorizes_operations",
+          "implementation_status",
+          "operational_status",
+          "execution_status",
+          "chapter_ref",
+          "future_gate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(SERVICE|CAP|OWNER|STATE|SUPPORT|PROVIDER)-V11-[0-9]{3}$" },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "SERVICE",
+              "CAPABILITY",
+              "OWNER",
+              "OPERATING_STATE",
+              "SUPPORT_CLASS",
+              "PROVIDER"
+            ]
+          },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "operational_definition": { "type": "string" },
+          "scope": { "type": "string" },
+          "excluded_scope": { "type": "string" },
+          "material_service_capability": { "type": "boolean" },
+          "operational_owner": { "type": "string" },
+          "institutional_authority": { "type": "string" },
+          "authority_domain": { "$ref": "common.schema.json#/definitions/authorityDomain" },
+          "operational_domain": { "$ref": "common.schema.json#/definitions/operationalDomain" },
+          "decision_rights": { "type": "string" },
+          "escalation_route": { "type": "string" },
+          "accountabilities": { "type": "string" },
+          "evidence_control": { "type": "string" },
+          "governed_ownership_gap": { "type": "string" },
+          "operating_state": { "$ref": "common.schema.json#/definitions/operatingState" },
+          "state_entry_condition": { "type": "string" },
+          "state_exit_condition": { "type": "string" },
+          "state_distinction": { "type": "string" },
+          "support_class_kind": { "$ref": "common.schema.json#/definitions/supportClassKind" },
+          "access_boundary": { "type": "string" },
+          "mutation_boundary": { "type": "string" },
+          "provider_role": { "type": "string" },
+          "provider_certification_boundary": { "type": "string" },
+          "end_to_end_assurance_boundary": { "type": "string" },
+          "required_capabilities": { "type": "array", "items": { "type": "string" } },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "affected_capability": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "sensitivity": { "$ref": "common.schema.json#/definitions/sensitivity" },
+          "accessibility_bilingual_obligation": { "type": "string" },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "evidence_label": { "$ref": "common.schema.json#/definitions/evidenceLabel" },
+          "authorizes_implementation": { "type": "boolean", "const": false },
+          "authorizes_operations": { "type": "boolean", "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "operational_status": { "$ref": "common.schema.json#/definitions/operationalStatus" },
+          "execution_status": { "$ref": "common.schema.json#/definitions/executionStatus" },
+          "chapter_ref": { "type": "string" },
+          "future_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

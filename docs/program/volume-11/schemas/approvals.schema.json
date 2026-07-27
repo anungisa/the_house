@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "approvals.schema.json",
+  "title": "REG-1105 Volume 11 Approvals",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1105" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "artifact_id", "approver_role", "approval_state", "evidence_label", "authorizes_implementation", "authorizes_operations"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^APP-V11-[0-9]{3}$" },
+          "artifact_id": { "type": "string", "pattern": "^(V11-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?|GATE-V11-G[0-9]|PACKAGE-11-[0-9]|VOLUME-11)$" },
+          "approver_role": { "type": "string" },
+          "approval_state": { "type": "string", "enum": ["ratified", "pending", "withdrawn"] },
+          "evidence_label": { "$ref": "common.schema.json#/definitions/evidenceLabel" },
+          "authorizes_implementation": { "const": false },
+          "authorizes_operations": { "const": false },
+          "gate_disposition": { "type": "string" },
+          "base_commit": { "type": "string" },
+          "effective_commit": { "type": "string" },
+          "requires_freeze_artifact": { "type": "string" },
+          "closure_effective_commit": { "type": "string" },
+          "gate_effective_commit": { "type": "string" },
+          "chronology_exception": { "type": "string" },
+          "closure_binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "closure_artifact": { "type": "string" },
+              "gate": { "type": "string" },
+              "freeze_artifact": { "type": "string" },
+              "closure_authored_commit": { "type": "string" },
+              "closure_effective_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "gate_effective_commit": { "type": "string" },
+              "chronology_exception": { "type": "string" },
+              "chronology_disposition": { "type": "string" }
+            }
+          },
+          "effective_date_clarification": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "gate": { "type": "string" },
+              "documentary_definition_effective_commit": { "type": "string" },
+              "implementation_effective_date": { "type": "string" },
+              "operational_effective_date": { "type": "string" },
+              "production_adoption_date": { "type": "string" },
+              "commitment_effective_date": { "type": "string" }
+            }
+          },
+          "authoring_closure_separation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "freeze_artifact": { "type": "string" },
+              "substantive_authoring_commit": { "type": "string" },
+              "closure_authored_commit": { "type": "string" },
+              "closure_effective_commit": { "type": "string" },
+              "gate_effective_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "provenance_binding_commit": { "type": "string" },
+              "required_sequence": { "type": "string" },
+              "actual_sequence": { "type": "string" },
+              "sequence_disposition": { "type": "string" },
+              "separation_status": { "type": "string" },
+              "substantive_package_reopened": { "type": "boolean" },
+              "gate_reopened": { "type": "boolean" },
+              "package_freeze_reopened": { "type": "boolean" },
+              "future_separation_required": { "type": "boolean" }
+            }
+          },
+          "closure_record": { "type": "boolean" },
+          "next_package_disposition": { "type": "string" },
+          "supersedes": { "type": "array", "items": { "type": "string" } },
+          "amendment_process": { "type": "string" },
+          "frozen": { "type": "boolean" },
+          "frozen_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "version"],
+              "properties": {
+                "id": { "type": "string" },
+                "version": { "$ref": "common.schema.json#/definitions/semver" }
+              }
+            }
+          },
+          "package_provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "inherited_baseline_tag": { "type": "string" },
+              "base_release_tag": { "type": "string" },
+              "source_snapshot_commit": { "type": "string" },
+              "source_baseline_commit": { "type": "string" },
+              "branch_base_commit": { "type": "string" },
+              "authoring_commit": { "type": "string" },
+              "closure_authored_commit": { "type": "string" },
+              "closure_effective_commit": { "type": "string" },
+              "closure_freeze_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "gate_effective_commit": { "type": "string" },
+              "effective_commit": { "type": "string" },
+              "provenance_binding_commit": { "type": "string" },
+              "original_package_merge_commit": { "type": "string" },
+              "provenance_amendment_authoring_commit": { "type": "string" },
+              "provenance_amendment_merge_commit": { "type": "string" },
+              "provenance_amendment_commit": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          },
+          "provenance_role_classification": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "package": { "type": "string" },
+              "source_baseline": { "type": "string" },
+              "substantive_authoring": { "type": "string" },
+              "closure_and_freeze": { "type": "string" },
+              "pre_merge_provenance_binding": { "type": "string" },
+              "original_package_merge": { "type": "string" },
+              "provenance_amendment_authoring": { "type": "string" },
+              "provenance_amendment_merge": { "type": "string" },
+              "inherited_release_tag": { "type": "string" },
+              "applied_release_tag": { "type": "string" },
+              "historical_sequence_exception": { "type": "string" },
+              "supersedes_classification_in": { "type": "string" },
+              "corrected_field_in_superseded_record": { "type": "string" }
+            }
+          },
+          "conditions": { "type": "array", "items": { "type": "string" } },
+          "approved_at": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

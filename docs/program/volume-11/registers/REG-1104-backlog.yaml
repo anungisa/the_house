@@ -1,0 +1,117 @@
+register_id: REG-1104
+name: Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V11-001
+    kind: ASSUMPTION
+    title: Released Volume 10 Foundation Remains Authoritative
+    statement: >-
+      It is assumed that the released Volume 10 delivery-planning governance and the
+      central registration record remain authoritative and unchanged as the basis for
+      Volume 11 operational governance.
+    source: V11-00
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Operational definitions could be built on a shifting foundation.
+    required_action_or_evidence: Confirm inherited Volume 10 provenance at the start of any operational-readiness package.
+    operational_impact: Foundational to all Volume 11 operational governance.
+    traces_to:
+      - V11-00
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: RISK-V11-001
+    kind: RISK
+    title: Operational Definition Mistaken For Operational Readiness
+    statement: >-
+      There is a risk that documentary operational definitions are misread as
+      operational readiness, recovery capability, or acceptance.
+    source: V11-00
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Premature reliance on unproven operations.
+    required_action_or_evidence: Preserve non-authorizing posture and evidence-bound acceptance in every future operational package.
+    likelihood_or_occurrence: Medium
+    operational_impact: Could lead to unsafe operational assumptions.
+    escalation_threshold: Any external claim of operational readiness sourced from Volume 11.
+    traces_to:
+      - V11-09
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: MIGBL-V11-001
+    kind: MIGRATION_BACKLOG
+    title: Source Qualification Evidence Not Yet Available
+    statement: >-
+      Source qualification, extraction, and provenance-capture evidence for legacy
+      records has not yet been produced and is required before any migration authorization.
+    source: V11-06
+    affected_service: SERVICE-V11-002
+    owner: OWNER-V11-003
+    current_status: OPEN
+    impact_if_unresolved: Migration cannot be authorized without qualified source evidence.
+    required_action_or_evidence: Produce source-qualification and provenance-capture evidence in a future migration package.
+    migration_impact: Blocks cutover authorization.
+    traces_to:
+      - V11-06
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ADOPTBL-V11-001
+    kind: ADOPTION_BACKLOG
+    title: Bilingual Training Materials Not Yet Defined In Detail
+    statement: >-
+      Detailed bilingual and accessible training materials for each audience have not
+      yet been produced and are required before adoption can be measured.
+    source: V11-07
+    owner: OWNER-V11-002
+    current_status: OPEN
+    impact_if_unresolved: Adoption cannot be delivered or measured without materials.
+    required_action_or_evidence: Produce bilingual, accessible training materials in a future adoption package.
+    adoption_impact: Blocks sustained adoption measurement.
+    bilingual_impact: Both official languages must be supported.
+    accessibility_impact: Accessibility obligations must be met.
+    traces_to:
+      - V11-07
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1
+  - id: ASSGAP-V11-001
+    kind: ASSURANCE_GAP
+    title: Independent Operational-Acceptance Evidence Not Yet Produced
+    statement: >-
+      Independent operational-acceptance evidence, distinct from delivery, has not yet
+      been produced and is required before any operational acceptance.
+    source: V11-09
+    affected_service: SERVICE-V11-001
+    owner: OWNER-V11-004
+    current_status: OPEN
+    impact_if_unresolved: Operational acceptance cannot be granted without independent evidence.
+    required_action_or_evidence: Produce independent operational-acceptance evidence in a future assurance package.
+    assurance_impact: Blocks operational acceptance.
+    traces_to:
+      - V11-09
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    future_blocking_gate: V12-G1

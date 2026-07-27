@@ -1,0 +1,27 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "evidence_requirements": [
+    {
+      "id": "EVID-V11-001",
+      "title": "Operational Evidence Binding Requirement",
+      "binds_environment": "Evidence binds to the specific environment in which it was produced.",
+      "binds_config": "Evidence binds to the exact configuration in effect.",
+      "binds_version": "Evidence binds to the exact software and policy version.",
+      "binds_identity": "Evidence binds to the acting identity.",
+      "binds_org": "Evidence binds to the organization context.",
+      "binds_jurisdiction": "Evidence binds to the applicable jurisdiction.",
+      "binds_data_classification": "Evidence binds to the data classification of the subject data.",
+      "binds_provider_state": "Evidence binds to the relevant provider state.",
+      "binds_time": "Evidence binds to the time of production."
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ACCEPT-V11-001",
+      "title": "Operational Acceptance Criterion",
+      "independence": "INDEPENDENT",
+      "acceptance_authority": "OWNER-V11-004",
+      "future_gate": "V12-G1"
+    }
+  ]
+}

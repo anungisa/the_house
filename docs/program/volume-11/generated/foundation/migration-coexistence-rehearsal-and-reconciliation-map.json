@@ -1,0 +1,57 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "migration_stages": [
+    {
+      "id": "MIG-V11-001",
+      "title": "Mapping and Validation Stage",
+      "stage": "MAPPING",
+      "source_authority": "The source system remains authoritative throughout this stage.",
+      "provenance": "Every mapped record retains its source provenance and lineage.",
+      "uncertainty": "Uncertain mappings are preserved as uncertain and never silently resolved.",
+      "identity_candidate": "Identity candidates are treated as candidates and not asserted as resolved identities.",
+      "quarantine": "Records failing validation are quarantined rather than admitted.",
+      "rehearsal_boundary": "This stage is rehearsal-only and authorizes no migration.",
+      "cutover_boundary": "This stage authorizes no cutover.",
+      "acceptance_boundary": "This stage authorizes no business acceptance.",
+      "rollback": "This stage is fully reversible; no source state is mutated.",
+      "source_retirement": "This stage authorizes no source retirement.",
+      "mapping_vs_identity": "Mapping complete is not identity resolved."
+    },
+    {
+      "id": "MIG-V11-002",
+      "title": "Rehearsal Stage",
+      "stage": "REHEARSAL",
+      "source_authority": "The source system remains authoritative during rehearsal.",
+      "provenance": "Rehearsal preserves provenance for every record processed.",
+      "uncertainty": "Rehearsal preserves and reports uncertainty rather than resolving it.",
+      "identity_candidate": "Identity candidates remain candidates during rehearsal.",
+      "quarantine": "Quarantine behaviour is exercised without admitting quarantined records.",
+      "rehearsal_boundary": "Rehearsal is not migration authorization.",
+      "cutover_boundary": "Rehearsal authorizes no cutover.",
+      "acceptance_boundary": "Rehearsal authorizes no acceptance.",
+      "rollback": "Rehearsal is fully reversible and mutates no source or target of record.",
+      "source_retirement": "Rehearsal authorizes no source retirement."
+    },
+    {
+      "id": "MIG-V11-003",
+      "title": "Cutover Authorization Stage",
+      "stage": "CUTOVER_AUTHORIZATION",
+      "source_authority": "Source authority persists until an explicit, evidenced cutover authorization.",
+      "provenance": "Cutover authorization depends on complete provenance evidence.",
+      "uncertainty": "Outstanding uncertainty blocks cutover authorization.",
+      "identity_candidate": "Unresolved identity candidates block cutover authorization.",
+      "quarantine": "Outstanding quarantine blocks cutover authorization.",
+      "rehearsal_boundary": "A successful rehearsal is a precondition but is not itself authorization.",
+      "cutover_boundary": "Cutover is not acceptance and is not source retirement.",
+      "acceptance_boundary": "Business acceptance is a distinct, later obligation.",
+      "rollback": "A defined rollback must exist before cutover authorization.",
+      "source_retirement": "Source retirement is a distinct, later authorization."
+    }
+  ],
+  "reconciliations": [
+    {
+      "id": "RECON-V11-001",
+      "reconciliation": "Reconciliation compares migrated records against source and governed state, reporting differences with retained evidence and no silent correction."
+    }
+  ]
+}

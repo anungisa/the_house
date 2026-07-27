@@ -1,0 +1,25 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "signals": [
+    {
+      "id": "SIGNAL-V11-001",
+      "title": "Affiliation Decision Latency Signal",
+      "context": "Observed within the affiliation application service under governed operation; interpreted only with organization, season, and jurisdiction context.",
+      "sensitivity": "INTERNAL",
+      "owner": "OWNER-V11-002",
+      "alert_dependency": "An alert on this signal depends on a defined threshold, a responsible owner, and a governed response procedure.",
+      "evidence_binding": "Signal observations bind to environment, configuration, version, identity, organization, jurisdiction, and time.",
+      "detection_vs_response": "Detection of a threshold breach is distinct from response to it."
+    },
+    {
+      "id": "SIGNAL-V11-002",
+      "title": "Evidence Custody Integrity Signal",
+      "context": "Observed within the evidence and document handling capability under governed operation.",
+      "sensitivity": "RESTRICTED_EVIDENCE",
+      "owner": "OWNER-V11-002",
+      "alert_dependency": "An alert depends on a defined integrity threshold and a governed response procedure.",
+      "evidence_binding": "Observations bind to environment, version, identity, data classification, and time.",
+      "detection_vs_response": "Detection of an integrity anomaly is distinct from response and from reconciliation."
+    }
+  ]
+}

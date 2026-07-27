@@ -1,0 +1,19 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "providers": [
+    {
+      "id": "PROVIDER-V11-001",
+      "title": "Cloud Platform Provider",
+      "provider_role": "Runtime platform, storage, and messaging provider.",
+      "certification_boundary": "Provider certification covers the provider platform only.",
+      "end_to_end_assurance_boundary": "Provider certification is not end-to-end assurance of the affiliated service."
+    },
+    {
+      "id": "PROVIDER-V11-002",
+      "title": "Identity Provider",
+      "provider_role": "Identity and authentication provider.",
+      "certification_boundary": "Provider certification covers the identity platform only.",
+      "end_to_end_assurance_boundary": "Provider certification is not end-to-end assurance of governed authorization."
+    }
+  ]
+}

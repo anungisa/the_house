@@ -1,0 +1,93 @@
+register_id: REG-1100
+name: Volume 11 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V11-00
+    title: Volume 11 Charter, Inheritance, and Operational-Governance Boundary
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-00.md
+    gate: V11-G1
+  - id: V11-01
+    title: Service Operating Model, Ownership, and Institutional Authority
+    owner: OWNER-V11-001
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-01.md
+    gate: V11-G1
+  - id: V11-02
+    title: Service Lifecycle and Operating States
+    owner: OWNER-V11-001
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-02.md
+    gate: V11-G1
+  - id: V11-03
+    title: Support, Incident, Problem, and Escalation Model
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-03.md
+    gate: V11-G1
+  - id: V11-04
+    title: Observability, Audit, and Incident-Response Model
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-04.md
+    gate: V11-G1
+  - id: V11-05
+    title: Continuity, Backup, Restore, and Recovery Model
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-05.md
+    gate: V11-G1
+  - id: V11-06
+    title: Migration, Coexistence, Rehearsal, and Reconciliation Model
+    owner: OWNER-V11-003
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-06.md
+    gate: V11-G1
+  - id: V11-07
+    title: Training, Communications, Adoption, and Accessibility Model
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-07.md
+    gate: V11-G1
+  - id: V11-08
+    title: Provider Operations, Continuity, and Exit Model
+    owner: OWNER-V11-003
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-08.md
+    gate: V11-G1
+  - id: V11-09
+    title: Operational Evidence, Assurance, Acceptance, and Volume 12 Handoff
+    owner: OWNER-V11-004
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-09.md
+    gate: V11-G1
+  - id: V11-10
+    title: Non-Authoritative Operational-Governance Projections
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-10.md
+    gate: V11-G1

@@ -1,0 +1,370 @@
+register_id: REG-1102
+name: Operational Requirements, Procedures, Scenarios, Evidence, Acceptance, and Handoffs
+status: RATIFIED
+version: 1.0.0
+records:
+  # --- Observability signals ---
+  - id: SIGNAL-V11-001
+    kind: OBSERVABILITY_SIGNAL
+    title: Affiliation Decision Latency Signal
+    statement: A governed observability signal that would characterise the latency of affiliation decisions once the service operates.
+    objective: Define the signal, its context, its owner, and its evidence binding as a documentary obligation.
+    affected_service: SERVICE-V11-001
+    signal_context: Observed within the affiliation application service under governed operation; interpreted only with organization, season, and jurisdiction context.
+    signal_sensitivity: INTERNAL
+    signal_owner: OWNER-V11-002
+    alert_dependency: An alert on this signal depends on a defined threshold, a responsible owner, and a governed response procedure.
+    evidence_binding: Signal observations bind to environment, configuration, version, identity, organization, jurisdiction, and time.
+    detection_vs_response_distinction: Detection of a threshold breach is distinct from response to it.
+    traces_to:
+      - V11-04
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-04
+    future_gate: V12-G1
+  - id: SIGNAL-V11-002
+    kind: OBSERVABILITY_SIGNAL
+    title: Evidence Custody Integrity Signal
+    statement: A governed observability signal characterising the integrity of evidence custody once the service operates.
+    objective: Define the signal, context, owner, and evidence binding as a documentary obligation.
+    affected_capability: CAP-V11-001
+    signal_context: Observed within the evidence and document handling capability under governed operation.
+    signal_sensitivity: RESTRICTED_EVIDENCE
+    signal_owner: OWNER-V11-002
+    alert_dependency: An alert depends on a defined integrity threshold and a governed response procedure.
+    evidence_binding: Observations bind to environment, version, identity, data classification, and time.
+    detection_vs_response_distinction: Detection of an integrity anomaly is distinct from response and from reconciliation.
+    traces_to:
+      - V11-04
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-04
+    future_gate: V12-G1
+  # --- Operational procedure ---
+  - id: PROC-V11-001
+    kind: OPERATIONAL_PROCEDURE
+    title: Governed Operational Procedure Definition
+    statement: A documentary definition of what a governed operational procedure must contain, distinct from executing any procedure.
+    objective: Define the required structure of an operational procedure obligation.
+    scope: Definition of procedure structure and evidence obligations.
+    excluded_scope: Execution of any procedure.
+    affected_service: SERVICE-V11-001
+    traces_to:
+      - V11-03
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-03
+    future_gate: V12-G1
+  # --- Continuity scenario ---
+  - id: CONT-V11-001
+    kind: CONTINUITY_SCENARIO
+    title: Provider Platform Outage Continuity Scenario
+    statement: A governed continuity scenario describing preserved work, prohibited actions, degraded mode, fallback, and recovery for a provider platform outage.
+    objective: Define continuity obligations for a provider platform outage as a documentary definition.
+    affected_service: SERVICE-V11-001
+    preserved_work: In-flight affiliation applications and their evidence are preserved and never silently discarded.
+    prohibited_action: No destructive action, no silent status mutation, and no bypass of governed transitions during the outage.
+    degraded_mode: A controlled degraded mode that accepts intake but defers decisions with participant notification.
+    fallback_procedure: A defined fallback that queues governed work for later processing under retained provenance.
+    recovery_procedure: A defined recovery that reconciles queued work against governed state before resuming decisions.
+    continuity_distinction: Continuity is distinct from backup, from restore, and from recovery.
+    traces_to:
+      - V11-05
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-05
+    future_gate: V12-G1
+  # --- Backup requirement ---
+  - id: BACKUP-V11-001
+    kind: BACKUP_REQUIREMENT
+    title: Governed Record Backup Requirement
+    statement: A governed backup requirement distinguishing backup completion, backup verification, and backup restorability.
+    objective: Define backup obligations as a documentary definition, executing no backup.
+    affected_service: SERVICE-V11-002
+    backup_completion_definition: A backup is complete when the defined dataset has been captured to the defined target with a recorded manifest.
+    backup_verification_definition: A backup is verified only when its integrity and completeness have been independently checked against the manifest.
+    restoration_definition: A backup is restorable only when a governed restore has reproduced the dataset in a target environment.
+    traces_to:
+      - V11-05
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-05
+    future_gate: V12-G1
+  # --- Restore requirement ---
+  - id: RESTORE-V11-001
+    kind: RESTORE_REQUIREMENT
+    title: Governed Restore Requirement
+    statement: A governed restore requirement defining restoration distinct from recovery and reconciliation.
+    objective: Define restore obligations as a documentary definition, executing no restore.
+    affected_service: SERVICE-V11-002
+    restoration_definition: Restoration reproduces a verified dataset in a target environment without asserting business recovery or reconciliation.
+    recovery_definition: Recovery of business service is a distinct obligation beyond restoration.
+    reconciliation_definition: Reconciliation of restored data against governed state is a further distinct obligation.
+    traces_to:
+      - V11-05
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-05
+    future_gate: V12-G1
+  # --- Recovery requirement ---
+  - id: RECOVERY-V11-001
+    kind: RECOVERY_REQUIREMENT
+    title: Governed Service Recovery Requirement
+    statement: A governed recovery requirement defining recovery of business service distinct from restoration.
+    objective: Define recovery obligations as a documentary definition, executing no recovery.
+    affected_service: SERVICE-V11-001
+    recovery_definition: Recovery returns the governed service to an accepted operating state with reconciled state and retained evidence.
+    reconciliation_definition: Recovery depends on a completed reconciliation of restored state.
+    traces_to:
+      - V11-05
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-05
+    future_gate: V12-G1
+  # --- Migration stages ---
+  - id: MIG-V11-001
+    kind: MIGRATION_STAGE
+    title: Mapping and Validation Stage
+    statement: A governed migration stage covering mapping and validation, preserving source authority, provenance, and uncertainty.
+    objective: Define the mapping and validation stage obligations as a documentary definition.
+    migration_stage: MAPPING
+    source_authority_preservation: The source system remains authoritative throughout this stage.
+    provenance_preservation: Every mapped record retains its source provenance and lineage.
+    uncertainty_preservation: Uncertain mappings are preserved as uncertain and never silently resolved.
+    identity_candidate_treatment: Identity candidates are treated as candidates and not asserted as resolved identities.
+    quarantine_treatment: Records failing validation are quarantined rather than admitted.
+    rehearsal_boundary: This stage is rehearsal-only and authorizes no migration.
+    cutover_boundary: This stage authorizes no cutover.
+    acceptance_boundary: This stage authorizes no business acceptance.
+    rollback_definition: This stage is fully reversible; no source state is mutated.
+    source_retirement_boundary: This stage authorizes no source retirement.
+    mapping_vs_identity_distinction: Mapping complete is not identity resolved.
+    traces_to:
+      - V11-06
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-06
+    future_gate: V12-G1
+  - id: MIG-V11-002
+    kind: MIGRATION_STAGE
+    title: Rehearsal Stage
+    statement: A governed migration rehearsal stage that proves the migration approach without authorizing migration.
+    objective: Define the rehearsal stage obligations as a documentary definition.
+    migration_stage: REHEARSAL
+    source_authority_preservation: The source system remains authoritative during rehearsal.
+    provenance_preservation: Rehearsal preserves provenance for every record processed.
+    uncertainty_preservation: Rehearsal preserves and reports uncertainty rather than resolving it.
+    identity_candidate_treatment: Identity candidates remain candidates during rehearsal.
+    quarantine_treatment: Quarantine behaviour is exercised without admitting quarantined records.
+    rehearsal_boundary: Rehearsal is not migration authorization.
+    cutover_boundary: Rehearsal authorizes no cutover.
+    acceptance_boundary: Rehearsal authorizes no acceptance.
+    rollback_definition: Rehearsal is fully reversible and mutates no source or target of record.
+    source_retirement_boundary: Rehearsal authorizes no source retirement.
+    traces_to:
+      - V11-06
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-06
+    future_gate: V12-G1
+  - id: MIG-V11-003
+    kind: MIGRATION_STAGE
+    title: Cutover Authorization Stage
+    statement: A governed cutover-authorization stage defining the conditions under which cutover could later be authorized.
+    objective: Define the cutover-authorization stage obligations as a documentary definition.
+    migration_stage: CUTOVER_AUTHORIZATION
+    source_authority_preservation: Source authority persists until an explicit, evidenced cutover authorization.
+    provenance_preservation: Cutover authorization depends on complete provenance evidence.
+    uncertainty_preservation: Outstanding uncertainty blocks cutover authorization.
+    identity_candidate_treatment: Unresolved identity candidates block cutover authorization.
+    quarantine_treatment: Outstanding quarantine blocks cutover authorization.
+    rehearsal_boundary: A successful rehearsal is a precondition but is not itself authorization.
+    cutover_boundary: Cutover is not acceptance and is not source retirement.
+    acceptance_boundary: Business acceptance is a distinct, later obligation.
+    rollback_definition: A defined rollback must exist before cutover authorization.
+    source_retirement_boundary: Source retirement is a distinct, later authorization.
+    traces_to:
+      - V11-06
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-06
+    future_gate: V12-G1
+  # --- Reconciliation requirement ---
+  - id: RECON-V11-001
+    kind: RECONCILIATION_REQUIREMENT
+    title: Post-Migration Reconciliation Requirement
+    statement: A governed reconciliation requirement defining how migrated state is reconciled against source and governed state.
+    objective: Define reconciliation obligations as a documentary definition, executing no reconciliation.
+    affected_service: SERVICE-V11-002
+    reconciliation_definition: Reconciliation compares migrated records against source and governed state, reporting differences with retained evidence and no silent correction.
+    traces_to:
+      - V11-06
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-06
+    future_gate: V12-G1
+  # --- Training audience ---
+  - id: TRAIN-V11-001
+    kind: TRAINING_AUDIENCE
+    title: Affiliation Reviewer Training Audience
+    statement: A governed training audience definition for affiliation reviewers, distinguishing content, delivery, competence, onboarding, and sustained adoption.
+    objective: Define training obligations for reviewers as a documentary definition, delivering no training.
+    training_content: The knowledge reviewers require to operate governed affiliation decisions.
+    training_delivery: The delivery method by which that content would be provided.
+    competence_definition: The demonstrable competence a reviewer must hold, distinct from mere content exposure.
+    onboarding_definition: The onboarding path for a new reviewer, distinct from sustained adoption.
+    sustained_adoption_definition: The sustained adoption expected of reviewers over time.
+    accessibility_obligation: All training must meet accessibility obligations.
+    bilingual_obligation: All training must be available bilingually.
+    traces_to:
+      - V11-07
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-07
+    future_gate: V12-G1
+  # --- Adoption measure ---
+  - id: ADOPT-V11-001
+    kind: ADOPTION_MEASURE
+    title: Reviewer Sustained Adoption Measure
+    statement: A governed adoption measure defining sustained adoption of the governed service by reviewers.
+    objective: Define an adoption measure as a documentary definition, measuring nothing operationally.
+    sustained_adoption_definition: Sustained adoption is defined as continued governed use with demonstrated competence, distinct from initial onboarding.
+    accessibility_obligation: The measure must not disadvantage users with accessibility needs.
+    bilingual_obligation: The measure must apply equally across both official languages.
+    traces_to:
+      - V11-07
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-07
+    future_gate: V12-G1
+  # --- Evidence requirement ---
+  - id: EVID-V11-001
+    kind: EVIDENCE_REQUIREMENT
+    title: Operational Evidence Binding Requirement
+    statement: A governed evidence requirement that binds operational evidence to its full operating context.
+    objective: Define the binding obligations for operational evidence as a documentary definition.
+    affected_service: SERVICE-V11-001
+    evidence_binds_environment: Evidence binds to the specific environment in which it was produced.
+    evidence_binds_config: Evidence binds to the exact configuration in effect.
+    evidence_binds_version: Evidence binds to the exact software and policy version.
+    evidence_binds_identity: Evidence binds to the acting identity.
+    evidence_binds_org: Evidence binds to the organization context.
+    evidence_binds_jurisdiction: Evidence binds to the applicable jurisdiction.
+    evidence_binds_data_classification: Evidence binds to the data classification of the subject data.
+    evidence_binds_provider_state: Evidence binds to the relevant provider state.
+    evidence_binds_time: Evidence binds to the time of production.
+    traces_to:
+      - V11-09
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-09
+    future_gate: V12-G1
+  # --- Acceptance criterion ---
+  - id: ACCEPT-V11-001
+    kind: ACCEPTANCE_CRITERION
+    title: Operational Acceptance Criterion
+    statement: A governed operational-acceptance criterion requiring independent judgement distinct from delivery.
+    objective: Define an operational-acceptance criterion as a documentary definition.
+    affected_service: SERVICE-V11-001
+    independence_requirement: INDEPENDENT
+    acceptance_authority: OWNER-V11-004
+    traces_to:
+      - V11-09
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-09
+    future_gate: V12-G1
+  # --- Handoff ---
+  - id: HANDOFF-V11-001
+    kind: HANDOFF
+    title: Volume 12 Operational-Readiness Handoff
+    statement: A governed handoff of the Volume 11 operational-governance foundation to Volume 12 for operational readiness definition.
+    objective: Define the handoff destination and target as a documentary definition.
+    handoff_destination: Volume 12 operational-readiness governance package.
+    handoff_target_volume: Volume 12
+    traces_to:
+      - V11-09
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-09
+    future_gate: V12-G1
