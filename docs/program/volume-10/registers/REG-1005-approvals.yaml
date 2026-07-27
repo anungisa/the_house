@@ -111,14 +111,14 @@ records:
       closure_artifact: V10-A
       gate: GATE-V10-G1
       freeze_artifact: PACKAGE-10-1
-      closure_authored_commit: PENDING_V10-B_AMENDMENT
-      closure_effective_commit: PENDING_V10-B_AMENDMENT
-      freeze_commit: PENDING_V10-B_AMENDMENT
-      gate_effective_commit: PENDING_V10-B_AMENDMENT
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
       chronology_disposition: PENDING_PROVENANCE_BINDING
     effective_date_clarification:
       gate: GATE-V10-G1
-      documentary_definition_effective_commit: PENDING_V10-B_AMENDMENT
+      documentary_definition_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
       implementation_effective_date: >-
         Not applicable. Documentary completeness is distinct from implementation
         completeness; Package 1 authorizes no implementation.
@@ -141,9 +141,9 @@ records:
     authorizes_implementation: false
     gate_disposition: DELIVERY_AND_MASTER_DEVELOPMENT_PLAN_GOVERNANCE_FOUNDATION_READY
     requires_freeze_artifact: PACKAGE-10-1
-    base_commit: PENDING_V10-B_AMENDMENT
-    effective_commit: PENDING_V10-B_AMENDMENT
-    gate_effective_commit: PENDING_V10-B_AMENDMENT
+    base_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+    effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+    gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
     approved_at: null
 
   # ---------------------------------------------------------------------------
@@ -171,11 +171,11 @@ records:
         version: 1.0.0
     authoring_closure_separation:
       freeze_artifact: PACKAGE-10-1
-      substantive_authoring_commit: PENDING_V10-B_AMENDMENT
-      closure_authored_commit: PENDING_V10-B_AMENDMENT
-      closure_effective_commit: PENDING_V10-B_AMENDMENT
-      gate_effective_commit: PENDING_V10-B_AMENDMENT
-      freeze_commit: PENDING_V10-B_AMENDMENT
+      substantive_authoring_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
       provenance_binding_commit: PENDING_V10-B_AMENDMENT
       required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
       actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
@@ -188,15 +188,15 @@ records:
     package_provenance:
       inherited_baseline_tag: central-registration-volume-9-v1.0.0
       base_release_tag: central-registration-volume-9-v1.0.0
-      source_baseline_commit: PENDING_V10-B_AMENDMENT
-      branch_base_commit: PENDING_V10-B_AMENDMENT
-      authoring_commit: PENDING_V10-B_AMENDMENT
-      closure_authored_commit: PENDING_V10-B_AMENDMENT
-      closure_effective_commit: PENDING_V10-B_AMENDMENT
-      closure_freeze_commit: PENDING_V10-B_AMENDMENT
-      freeze_commit: PENDING_V10-B_AMENDMENT
-      gate_effective_commit: PENDING_V10-B_AMENDMENT
-      effective_commit: PENDING_V10-B_AMENDMENT
+      source_baseline_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      branch_base_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      authoring_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
       provenance_binding_commit: PENDING_V10-B_AMENDMENT
       note: >-
         Volume 10 Package 1 inherits the released Volume 9 baseline

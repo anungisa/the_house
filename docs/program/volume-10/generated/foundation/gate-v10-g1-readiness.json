@@ -2,14 +2,9 @@
   "gate": "V10-G1",
   "disposition_target": "DELIVERY_AND_MASTER_DEVELOPMENT_PLAN_GOVERNANCE_FOUNDATION_READY",
   "total_conditions": 32,
-  "satisfied": 31,
-  "unmet": [
-    {
-      "n": 32,
-      "title": "Genuine authoring, closure-freeze, and pre-merge provenance-binding separation preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 32,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -169,7 +164,7 @@
     {
       "n": 32,
       "title": "Genuine authoring, closure-freeze, and pre-merge provenance-binding separation preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
