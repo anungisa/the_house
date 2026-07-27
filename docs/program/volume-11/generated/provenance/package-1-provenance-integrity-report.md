@@ -1,6 +1,6 @@
 # Volume 11 Package 1 Provenance-Integrity Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T22:50:15.350Z
+Generated: 2026-07-27T22:53:59.334Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 11 corpus. It proves provenance coherence deterministically; it confers no
@@ -31,6 +31,21 @@ Generated: 2026-07-27T22:50:15.350Z
 ## Conditions
 
 ### APP-V11-016 (PACKAGE-11-1)
+
+- PASS 1: Source baseline differs from substantive authoring
+- PASS 2: Substantive authoring differs from closure and freeze
+- PASS 3: Closure effective commit equals freeze commit
+- PASS 4: Gate effective commit equals freeze commit
+- PASS 5: Required freeze artifact exists and is frozen
+- PASS 6: No unresolved provenance placeholder
+- PASS 7: Completed gate has no unresolved required binding
+- PASS 8: Provenance-binding commit not conflated with an amendment commit
+- PASS 9: Post-merge amendment records authoring and merge commits
+- PASS 10: Closure carries bounded next-package authorization
+- PASS 11: Documentary effectiveness not treated as implementation or operational effectiveness
+- PASS 12: No record authorizes implementation or operations
+
+### APP-V11-031 (PACKAGE-11-2)
 
 - PASS 1: Source baseline differs from substantive authoring
 - PASS 2: Substantive authoring differs from closure and freeze
