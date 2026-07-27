@@ -1,5 +1,5 @@
 {
-  "chapters": 62,
+  "chapters": 63,
   "assets": 26,
   "actors": 9,
   "trust_boundaries": 7,
@@ -16,7 +16,7 @@
     "INCIDENT_FAMILY": 7,
     "ASSURANCE_REQUIREMENT": 13
   },
-  "decisions": 57,
+  "decisions": 59,
   "backlog_items": 71,
-  "approvals": 73
+  "approvals": 74
 }

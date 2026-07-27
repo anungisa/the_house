@@ -50,6 +50,8 @@
               "original_package_merge_commit": { "type": "string" },
               "provenance_amendment_commit": { "type": "string" },
               "inherited_baseline_tag": { "type": "string" },
+              "base_release_tag": { "type": "string" },
+              "base_release_commit": { "type": "string" },
               "note": { "type": "string" }
             }
           },

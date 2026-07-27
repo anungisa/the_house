@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T01:10:50.342Z
+Generated: 2026-07-27T01:57:43.709Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-27T01:10:50.342Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 62 |
+| RATIFIED | 63 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 62 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 63 |
 | REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 80 |
 | REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 110 |
-| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 57 |
+| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 59 |
 | REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 71 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 73 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 74 |
 
 ## Findings by control
 
@@ -55,6 +55,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Cross-reference & traceability integrity
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Release-assurance & downstream-routing integrity
 
 Errors: 0 | Warnings: 0 | Info: 0
 
@@ -308,3 +314,6 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-073 (V6-J): Completes machine-readable Package 5 provenance after mainline merge.
 - APP-V6-073 (V6-J): Preserves the Gate V6-G5 disposition, the PACKAGE-6-5 freeze, and the VOLUME-6 freeze.
 - APP-V6-073 (V6-J): Reopens no substantive Volume 6 content and authorizes no implementation.
+- APP-V6-074 (V6-K): Corrects downstream routing additively and preserves every frozen original destination as superseded history.
+- APP-V6-074 (V6-K): Preserves the Gate V6-G5 disposition, the PACKAGE-6-5 freeze, the VOLUME-6 freeze, and the immutable central-registration-volume-6-v1.0.0 tag.
+- APP-V6-074 (V6-K): Modifies no runtime application code, reopens no substantive Volume 6 content, and authorizes no implementation.

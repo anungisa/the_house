@@ -700,3 +700,27 @@ records:
     chapter_ref: V6-51
     traces_to:
       - V6-51
+  - id: ADR-V6-058
+    title: Canonical Volume 7 to Volume 12 downstream-routing map and additive supersession
+    decision: Downstream routing of Volume 6 readiness, House P0 evidence, and handoff records must follow the canonical program map (Volume 7 experience and service design; Volume 8 APIs, events, integrations, and external contracts; Volume 9 quality and master test definition; Volume 10 delivery and release planning; Volume 11 operations, migration, adoption, and operational assurance; Volume 12 gate, release, and acceptance evidence); incorrect destinations are corrected additively by preserving the frozen original as superseded history and recording the corrected destination alongside, never by overwriting a frozen record.
+    status: ACCEPTED
+    context: Several released readiness and handoff records routed work to a volume whose canonical responsibility did not match; those routes cannot become inherited authority for later volumes without correction, and the whole-volume freeze forbids silent overwrite.
+    consequence: A deterministic routing-integrity control validates effective routing against the canonical map, and seven REG-604 records carry additive corrected-destination fields while retaining their frozen originals.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-K
+    traces_to:
+      - V6-K
+  - id: ADR-V6-059
+    title: Inherited-volume release validation and continuous-integration governance coverage
+    decision: The governed release path runs the inherited Volume 1 through Volume 5 governance checks together with the Volume 6 check and lint, and the continuous-integration governance workflow is extended to execute the currently supported Volume 0 through Volume 6 checks; this is a release-assurance discipline and governance tooling only and asserts no operational, conformance, or assurance outcome.
+    status: ACCEPTED
+    context: The recorded release pass evidenced Volume 6 validation and lint but not the inherited Volume 1 through Volume 5 validation, and the continuous-integration governance workflow exercised only the earliest volumes.
+    consequence: The release-assurance control enumerates the Volume 0 through Volume 6 governed release-path checks, and the governance workflow runs them; runtime application code is not modified.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-K
+    traces_to:
+      - V6-K

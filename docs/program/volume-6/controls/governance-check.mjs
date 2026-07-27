@@ -15,6 +15,7 @@ import { generate as generateControlModel } from './control-model-volume-6.mjs';
 import { generate as generateComplianceAccessibility } from './compliance-accessibility-volume-6.mjs';
 import { generate as generateIncidentResilienceAssurance } from './incident-resilience-assurance-volume-6.mjs';
 import { generate as generateFinalClosure } from './final-closure-volume-6.mjs';
+import { generate as generateReleaseAssurance } from './release-assurance-volume-6.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -44,6 +45,7 @@ generateControlModel(ctx);
 generateComplianceAccessibility(ctx);
 generateIncidentResilienceAssurance(ctx);
 generateFinalClosure(ctx);
+generateReleaseAssurance(ctx);
 
 console.log('\n=== Volume 6 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

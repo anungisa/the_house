@@ -1164,3 +1164,20 @@ records:
       - Preserves the Gate V6-G5 disposition, the PACKAGE-6-5 freeze, and the VOLUME-6 freeze.
       - Reopens no substantive Volume 6 content and authorizes no implementation.
     approved_at: null
+  - id: APP-V6-074
+    artifact_id: V6-K
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    base_commit: dbc9d11
+    amendment_process: Additive release-assurance amendment; corrects downstream routing of seven REG-604 records additively by preserving frozen originals and recording corrected destinations alongside; adds a deterministic routing-integrity control, records inherited Volume 1 through Volume 5 release validation, and extends continuous-integration governance coverage to Volume 0 through Volume 6; preserves Gate V6-G5, the Package 5 freeze, and the whole-volume freeze; reopens no substantive Volume 6 content; modifies no runtime application code.
+    package_provenance:
+      base_release_tag: central-registration-volume-6-v1.0.0
+      base_release_commit: dbc9d11
+      note: 'This amendment branches from the immutable released tag central-registration-volume-6-v1.0.0 (commit dbc9d11). On this amendment mainline merge, after green continuous integration, a new annotated tag central-registration-volume-6-v1.0.1 is published on the amendment merge commit; central-registration-volume-6-v1.0.0 is not moved and remains the original released pointer. The still-empty branch docs/volume-7-experience-and-service-design is recreated from central-registration-volume-6-v1.0.1. Amendment authoring and merge commits are recorded in the amendment history, mirroring the Package 1 through Package 5 provenance discipline.'
+    conditions:
+      - Corrects downstream routing additively and preserves every frozen original destination as superseded history.
+      - Preserves the Gate V6-G5 disposition, the PACKAGE-6-5 freeze, the VOLUME-6 freeze, and the immutable central-registration-volume-6-v1.0.0 tag.
+      - Modifies no runtime application code, reopens no substantive Volume 6 content, and authorizes no implementation.
+    approved_at: null

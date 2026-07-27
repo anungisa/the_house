@@ -1,0 +1,74 @@
+[
+  {
+    "volume": "Volume 7",
+    "responsibility": "Experience and service design",
+    "canonical_gate": "V7-Gx",
+    "foreign_responsibility_phrases": [
+      "physical design",
+      "api contract",
+      "operational proof",
+      "independent validation",
+      "release assurance",
+      "routine operations"
+    ]
+  },
+  {
+    "volume": "Volume 8",
+    "responsibility": "APIs, events, integrations, and external contracts",
+    "canonical_gate": "V8-Gx",
+    "foreign_responsibility_phrases": [
+      "logical and physical design",
+      "physical data design",
+      "physical design",
+      "operational proof",
+      "routine operations"
+    ]
+  },
+  {
+    "volume": "Volume 9",
+    "responsibility": "Quality and master test definition",
+    "canonical_gate": "V9-Gx",
+    "foreign_responsibility_phrases": [
+      "operational proof",
+      "release planning",
+      "independent validation",
+      "release assurance"
+    ]
+  },
+  {
+    "volume": "Volume 10",
+    "responsibility": "Delivery and release planning",
+    "canonical_gate": "V10-Gx",
+    "foreign_responsibility_phrases": [
+      "operational proof",
+      "security operations",
+      "independent validation",
+      "independent assurance",
+      "records validation",
+      "final release assurance",
+      "routine operations"
+    ]
+  },
+  {
+    "volume": "Volume 11",
+    "responsibility": "Operations, migration, adoption, and operational assurance",
+    "canonical_gate": "V11-Gx",
+    "foreign_responsibility_phrases": [
+      "final release assurance",
+      "release assurance",
+      "independent validation",
+      "independent assurance",
+      "acceptance evidence",
+      "routine operations"
+    ]
+  },
+  {
+    "volume": "Volume 12",
+    "responsibility": "Gate, release, and acceptance evidence",
+    "canonical_gate": "EXEC-MCG",
+    "foreign_responsibility_phrases": [
+      "routine operations",
+      "physical design"
+    ]
+  }
+]

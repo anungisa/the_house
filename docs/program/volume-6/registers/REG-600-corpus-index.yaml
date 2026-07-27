@@ -499,3 +499,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-J-package-5-provenance-amendment.md
     gate: V6-G5
+  - id: V6-K
+    title: Volume 6 Release-Assurance and Downstream-Routing Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-K-volume-6-release-assurance-and-downstream-routing-amendment.md
+    gate: V6-G5
