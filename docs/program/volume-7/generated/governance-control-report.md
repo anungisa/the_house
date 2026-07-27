@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T09:49:28.993Z
+Generated: 2026-07-27T10:05:09.231Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T09:49:28.993Z
 
 ## Summary
 
-- Total findings: 0
+- Total findings: 1
 - Errors: 0
 - Warnings: 0
-- Info: 0
+- Info: 1
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 53 |
+| RATIFIED | 54 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 53 |
+| REG-700 | Volume 7 Corpus Index | RATIFIED | 1.0.0 | 54 |
 | REG-701 | Volume 7 Actors, Needs, Journeys, Blueprints, Surfaces, Views, Flows, and Workbenches | RATIFIED | 1.0.0 | 137 |
 | REG-702 | Volume 7 Experience Requirements, Patterns, States, and Content Semantics | RATIFIED | 1.0.0 | 131 |
 | REG-703 | Volume 7 Decisions | RATIFIED | 1.0.0 | 31 |
 | REG-704 | Volume 7 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 39 |
-| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 61 |
+| REG-705 | Volume 7 Approvals | RATIFIED | 1.0.0 | 62 |
 
 ## Findings by control
 
@@ -91,9 +91,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Provenance & gate-chronology integrity
 
-Errors: 0 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 1
 
-- (no findings)
+- INFO AUTHORING_CLOSURE_HISTORICAL_EXCEPTION [APP-V7-062]: Package PACKAGE-7-4 recorded a historical sequence exception at commit 85451f3; the exception remains visible and does not satisfy the future separation requirement (future_separation_required=true)
 
 ### Validation-handoff coverage
 
