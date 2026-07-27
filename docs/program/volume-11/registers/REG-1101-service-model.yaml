@@ -512,3 +512,832 @@ records:
     execution_status: NOT_EXECUTED
     chapter_ref: V11-08
     future_gate: V12-G1
+  # --- Package 2: Affiliation services ---
+  - id: AFFSVC-V11-001
+    kind: AFFILIATION_SERVICE
+    title: Representative Authority Service
+    statement: >-
+      The governed affiliation service that maintains documentary operating
+      boundaries for establishing, verifying, and disputing representative
+      authority for clubs and organizations in the affiliation vertical.
+    material_service_capability: true
+    institutional_authority: CurlingCanada
+    operational_owner: OWNER-V11-001
+    product_owner: OWNER-V11-001
+    domain_owner: OWNER-V11-001
+    technical_owner: OWNER-V11-003
+    data_owner: OWNER-V11-004
+    security_owner: OWNER-V11-004
+    privacy_owner: OWNER-V11-004
+    accessibility_bilingual_owner: OWNER-V11-002
+    support_owner: OWNER-V11-002
+    provider_owner: OWNER-V11-003
+    operational_boundary: >-
+      House authority is distinct from Button interaction; service ownership is
+      distinct from institutional decision authority.
+    upstream_dependencies:
+      - central-registration-volume-10-v1.0.0
+    downstream_dependencies:
+      - AFFSVC-V11-003
+    evidence_responsibility: Operational evidence obligations defined in REG-1102.
+    escalation_authority: Service owner to operations owner to executive sponsor.
+    operational_acceptance_authority: Operational-acceptance authority is independent of the service owner.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    sensitivity: PERSONAL_INFORMATION
+    accessibility_bilingual_obligation: Bilingual and accessible operation required.
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFSVC-V11-002
+    kind: AFFILIATION_SERVICE
+    title: Club and Organization Identity Service
+    statement: >-
+      The governed affiliation service that maintains documentary operating
+      boundaries for club and organization identity resolution and custody.
+    material_service_capability: true
+    institutional_authority: CurlingCanada
+    operational_owner: OWNER-V11-001
+    product_owner: OWNER-V11-001
+    domain_owner: OWNER-V11-001
+    technical_owner: OWNER-V11-003
+    data_owner: OWNER-V11-004
+    security_owner: OWNER-V11-004
+    privacy_owner: OWNER-V11-004
+    accessibility_bilingual_owner: OWNER-V11-002
+    support_owner: OWNER-V11-002
+    provider_owner: OWNER-V11-003
+    operational_boundary: Technical custody is distinct from data or records authority.
+    upstream_dependencies:
+      - central-registration-volume-10-v1.0.0
+    downstream_dependencies:
+      - AFFSVC-V11-003
+    evidence_responsibility: Operational evidence obligations defined in REG-1102.
+    escalation_authority: Service owner to operations owner to executive sponsor.
+    operational_acceptance_authority: Operational-acceptance authority is independent of the service owner.
+    authority_domain: House
+    operational_domain: DATA_OWNERSHIP
+    sensitivity: PERSONAL_INFORMATION
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFSVC-V11-003
+    kind: AFFILIATION_SERVICE
+    title: Affiliation Case Service
+    statement: >-
+      The governed affiliation service that maintains documentary operating
+      boundaries for affiliation case intake, review, return, and decision.
+    material_service_capability: true
+    institutional_authority: CurlingCanada
+    operational_owner: OWNER-V11-001
+    product_owner: OWNER-V11-001
+    domain_owner: OWNER-V11-001
+    technical_owner: OWNER-V11-003
+    data_owner: OWNER-V11-004
+    security_owner: OWNER-V11-004
+    privacy_owner: OWNER-V11-004
+    accessibility_bilingual_owner: OWNER-V11-002
+    support_owner: OWNER-V11-002
+    provider_owner: OWNER-V11-003
+    operational_boundary: Service ownership is distinct from institutional decision authority.
+    upstream_dependencies:
+      - AFFSVC-V11-001
+    downstream_dependencies:
+      - AFFSVC-V11-004
+    evidence_responsibility: Operational evidence obligations defined in REG-1102.
+    escalation_authority: Service owner to operations owner to executive sponsor.
+    operational_acceptance_authority: Operational-acceptance authority is independent of the service owner.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    sensitivity: PERSONAL_INFORMATION
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFSVC-V11-004
+    kind: AFFILIATION_SERVICE
+    title: Finance and Reconciliation Service
+    statement: >-
+      The governed affiliation service that maintains documentary operating
+      boundaries for affiliation finance, acknowledgement, and reconciliation.
+    material_service_capability: true
+    institutional_authority: CurlingCanada
+    operational_owner: OWNER-V11-004
+    product_owner: OWNER-V11-001
+    domain_owner: OWNER-V11-004
+    technical_owner: OWNER-V11-003
+    data_owner: OWNER-V11-004
+    security_owner: OWNER-V11-004
+    privacy_owner: OWNER-V11-004
+    accessibility_bilingual_owner: OWNER-V11-002
+    support_owner: OWNER-V11-002
+    provider_owner: OWNER-V11-003
+    operational_boundary: Provider custody is distinct from Curling Canada authority.
+    upstream_dependencies:
+      - AFFSVC-V11-003
+    downstream_dependencies:
+      - central-registration-volume-10-v1.0.0
+    evidence_responsibility: Operational evidence obligations defined in REG-1102.
+    escalation_authority: Service owner to finance owner to executive sponsor.
+    operational_acceptance_authority: Operational-acceptance authority is independent of the service owner.
+    authority_domain: House
+    operational_domain: FINANCE_AND_RECONCILIATION
+    sensitivity: FINANCIAL
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  # --- Package 2: Affiliation operational capabilities ---
+  - id: AFFCAP-V11-001
+    kind: AFFILIATION_OPERATIONAL_CAPABILITY
+    title: Affiliation Submission Capability
+    statement: Documentary operational capability for affiliation submission intake within the affiliation case service.
+    material_service_capability: true
+    operational_owner: OWNER-V11-001
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFCAP-V11-002
+    kind: AFFILIATION_OPERATIONAL_CAPABILITY
+    title: Affiliation Review and Return Capability
+    statement: Documentary operational capability for affiliation review, return, and resubmission.
+    material_service_capability: true
+    operational_owner: OWNER-V11-001
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  # --- Package 2: Owner-assignment requirements (twelve dimensions) ---
+  - id: AFFOWN-V11-001
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Institutional Ownership Assignment
+    statement: Every material affiliation service names an institutional authority.
+    ownership_dimension: INSTITUTIONAL
+    assigned_role: CurlingCanada
+    ownership_distinction: Institutional authority is distinct from service ownership.
+    authority_domain: CurlingCanada
+    operational_domain: EXECUTIVE_SPONSORSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-002
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Service Ownership Assignment
+    statement: Every material affiliation service names a service owner.
+    ownership_dimension: SERVICE
+    assigned_role: OWNER-V11-001
+    ownership_distinction: Service ownership does not confer institutional decision authority.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-003
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Product Ownership Assignment
+    statement: Every material affiliation service names a product owner.
+    ownership_dimension: PRODUCT
+    assigned_role: OWNER-V11-001
+    ownership_distinction: Product ownership is distinct from technical custody.
+    authority_domain: House
+    operational_domain: PRODUCT_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-004
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Domain Ownership Assignment
+    statement: Every material affiliation service names a domain owner.
+    ownership_dimension: DOMAIN
+    assigned_role: OWNER-V11-001
+    ownership_distinction: Domain ownership is distinct from institutional authority.
+    authority_domain: House
+    operational_domain: DOMAIN_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-005
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Technical Ownership Assignment
+    statement: Every material affiliation service names a technical owner.
+    ownership_dimension: TECHNICAL
+    assigned_role: OWNER-V11-003
+    ownership_distinction: Technical custody is distinct from data or records authority.
+    authority_domain: House
+    operational_domain: TECHNICAL_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-006
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Data Ownership Assignment
+    statement: Every material affiliation service names a data owner.
+    ownership_dimension: DATA
+    assigned_role: OWNER-V11-004
+    ownership_distinction: Data authority is distinct from technical custody.
+    authority_domain: House
+    operational_domain: DATA_OWNERSHIP
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-007
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Security Ownership Assignment
+    statement: Every material affiliation service names a security owner.
+    ownership_dimension: SECURITY
+    assigned_role: OWNER-V11-004
+    ownership_distinction: Security ownership is distinct from privacy and records authority.
+    authority_domain: House
+    operational_domain: SECURITY
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-008
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Privacy and Records Ownership Assignment
+    statement: Every material affiliation service names a privacy and records owner.
+    ownership_dimension: PRIVACY
+    assigned_role: OWNER-V11-004
+    ownership_distinction: Privacy and records authority is distinct from data custody.
+    authority_domain: House
+    operational_domain: PRIVACY_AND_RECORDS
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-009
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Accessibility Ownership Assignment
+    statement: Every material affiliation service names an accessibility owner.
+    ownership_dimension: ACCESSIBILITY
+    assigned_role: OWNER-V11-002
+    ownership_distinction: Accessibility ownership is distinct from bilingual-content ownership.
+    authority_domain: House
+    operational_domain: ACCESSIBILITY
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-010
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Bilingual-Content Ownership Assignment
+    statement: Every material affiliation service names a bilingual-content owner.
+    ownership_dimension: BILINGUAL
+    assigned_role: OWNER-V11-002
+    ownership_distinction: Bilingual-content ownership is distinct from accessibility ownership.
+    authority_domain: House
+    operational_domain: BILINGUAL_CONTENT
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-011
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Support Ownership Assignment
+    statement: Every material affiliation service names a support owner.
+    ownership_dimension: SUPPORT
+    assigned_role: OWNER-V11-002
+    ownership_distinction: Support access is distinct from mutation authority and from decision authority.
+    authority_domain: House
+    operational_domain: SUPPORT
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: AFFOWN-V11-012
+    kind: AFFILIATION_OWNER_ASSIGNMENT_REQUIREMENT
+    title: Provider Ownership Assignment
+    statement: Every material affiliation service names a provider owner.
+    ownership_dimension: PROVIDER
+    assigned_role: OWNER-V11-003
+    ownership_distinction: Provider custody is distinct from Curling Canada authority.
+    authority_domain: Provider
+    operational_domain: PROVIDER_MANAGEMENT
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  # --- Package 2: Affiliation operating states ---
+  - id: AFFSTATE-V11-001
+    kind: AFFILIATION_OPERATING_STATE
+    title: Operationally Accepted State
+    statement: Documentary operating-state definition for the operationally accepted affiliation service.
+    operating_state: OPERATIONALLY_ACCEPTED
+    state_scenario: Stabilization after migration or deployment.
+    required_implementation_evidence: Implementation evidence bound to environment, configuration, and version.
+    required_test_evidence: Independent test evidence bound to the release candidate.
+    required_operational_evidence: Operational-acceptance evidence independent of the service owner.
+    permitted_operations: Governed operational-acceptance review only.
+    prohibited_operations: Live operation, migration execution, and release authorization.
+    rollback_or_suspension_dependency: Suspension dependency defined in the continuity procedures.
+    outstanding_obligations: Outstanding reconciliation obligations tracked to closure.
+    decision_authority: Operational-acceptance authority independent of the service owner.
+    exit_criteria: Operationally prepared is distinct from operationally accepted.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-12
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-12
+    future_gate: V12-G1
+  - id: AFFSTATE-V11-002
+    kind: AFFILIATION_OPERATING_STATE
+    title: Stabilizing State
+    statement: Documentary operating-state definition for the stabilizing affiliation service.
+    operating_state: STABILIZING
+    state_scenario: Reconciliation backlog and delayed event delivery.
+    required_implementation_evidence: Implementation evidence bound to environment and version.
+    required_test_evidence: Test evidence bound to the deployment.
+    required_operational_evidence: Stabilization evidence bound to the operating environment.
+    permitted_operations: Governed stabilization observation only.
+    prohibited_operations: Operation, migration execution, and acceptance claims.
+    rollback_or_suspension_dependency: Rollback dependency defined in the migration runbooks.
+    outstanding_obligations: Outstanding obligations tracked to reconciliation closure.
+    decision_authority: Service owner within governed policy.
+    exit_criteria: Stabilizing is distinct from operating.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    traces_to:
+      - V11-12
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-12
+    future_gate: V12-G1
+  - id: AFFSTATE-V11-003
+    kind: AFFILIATION_OPERATING_STATE
+    title: Degraded State
+    statement: Documentary operating-state definition for the degraded affiliation service.
+    operating_state: DEGRADED
+    state_scenario: Provider outage and stale projections.
+    required_implementation_evidence: Implementation evidence bound to the degraded posture.
+    required_test_evidence: Test evidence bound to fallback procedures.
+    required_operational_evidence: Degraded-operation evidence bound to the fallback exercise.
+    permitted_operations: Governed degraded-mode documentation only.
+    prohibited_operations: Live operation and recovery-capability claims.
+    rollback_or_suspension_dependency: Suspension dependency defined in continuity procedures.
+    outstanding_obligations: Outstanding obligations preserved through the degraded posture.
+    decision_authority: Continuity decision authority.
+    exit_criteria: Recovering is distinct from operating.
+    authority_domain: House
+    operational_domain: CONTINUITY_AND_RECOVERY
+    traces_to:
+      - V11-12
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-12
+    future_gate: V12-G1
+  # --- Package 2: Affiliation support classes ---
+  - id: AFFSUP-V11-001
+    kind: AFFILIATION_SUPPORT_CLASS
+    title: Account and Access Assistance Support Class
+    statement: Documentary support class for account and access assistance in the affiliation vertical.
+    support_class_kind: USER_ASSISTANCE
+    requester: Authorized club representative or administrator.
+    receiving_role: Affiliation support role.
+    authority_boundary: Support access is distinct from mutation authority and from decision authority.
+    minimum_necessary_access: Minimum-necessary diagnostic access only.
+    priority_method_dependency: Priority method defined by governed support policy.
+    diagnostic_evidence: Diagnostic evidence bound to the request.
+    communication_obligation: Bilingual and accessible communication obligations apply.
+    privacy_restriction: Personal information restricted to minimum necessary.
+    resolution_authority: Support resolution authority within governed policy.
+    closure_evidence: Closure evidence bound to the request.
+    reopening_criteria: Reopening criteria defined for unresolved requests.
+    escalation_route: Support to incident to problem escalation.
+    sensitivity: PERSONAL_INFORMATION
+    authority_domain: House
+    operational_domain: SUPPORT
+    traces_to:
+      - V11-13
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-13
+    future_gate: V12-G1
+  - id: AFFSUP-V11-002
+    kind: AFFILIATION_SUPPORT_CLASS
+    title: Finance and Reconciliation Issue Support Class
+    statement: Documentary support class for finance and reconciliation issues in the affiliation vertical.
+    support_class_kind: FINANCE_AND_RECONCILIATION_ISSUE
+    requester: Club administrator or finance staff.
+    receiving_role: Finance support role.
+    authority_boundary: Support access is distinct from mutation authority and from decision authority.
+    minimum_necessary_access: Minimum-necessary financial diagnostic access only.
+    priority_method_dependency: Priority method defined by governed finance policy.
+    diagnostic_evidence: Diagnostic evidence bound to the reconciliation mismatch.
+    communication_obligation: Bilingual and accessible communication obligations apply.
+    privacy_restriction: Financial information restricted to minimum necessary.
+    resolution_authority: Finance resolution authority within governed policy.
+    closure_evidence: Reconciliation closure evidence bound to the issue.
+    reopening_criteria: Reopening criteria defined for unresolved mismatches.
+    escalation_route: Finance support to reconciliation to institutional decision.
+    sensitivity: FINANCIAL
+    authority_domain: House
+    operational_domain: FINANCE_AND_RECONCILIATION
+    traces_to:
+      - V11-13
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-13
+    future_gate: V12-G1
+  # --- Package 2: Affiliation signals ---
+  - id: AFFSIG-V11-001
+    kind: AFFILIATION_SIGNAL
+    title: Outbox Backlog Signal
+    statement: Documentary observability signal for outbox backlog in the affiliation vertical.
+    signal_source: Outbox processing telemetry.
+    required_correlation_context: Correlation and causation identifiers.
+    alert_destination: Affiliation operations owner.
+    containment_action_class: Documentary containment action class only.
+    recovery_dependency: Recovery dependency defined in continuity procedures.
+    reconciliation_requirement: Reconciliation required after backlog clearance.
+    evidence_required: Evidence bound to the signal and containment.
+    escalation_authority: Operations owner to executive sponsor.
+    operational_owner: OWNER-V11-002
+    sensitivity: INTERNAL
+    authority_domain: House
+    operational_domain: OBSERVABILITY_AND_INCIDENT
+    traces_to:
+      - V11-14
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-14
+    future_gate: V12-G1
+  - id: AFFSIG-V11-002
+    kind: AFFILIATION_SIGNAL
+    title: Provider Availability Signal
+    statement: Documentary observability signal for provider availability in the affiliation vertical.
+    signal_source: Provider availability telemetry.
+    required_correlation_context: Provider and service correlation context.
+    alert_destination: Affiliation operations owner.
+    containment_action_class: Documentary containment action class only.
+    recovery_dependency: Provider substitution dependency defined in provider runbooks.
+    reconciliation_requirement: Reconciliation required after provider recovery.
+    evidence_required: Evidence bound to the provider signal.
+    escalation_authority: Operations owner to provider owner.
+    operational_owner: OWNER-V11-003
+    sensitivity: INTERNAL
+    authority_domain: Provider
+    operational_domain: OBSERVABILITY_AND_INCIDENT
+    traces_to:
+      - V11-14
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-14
+    future_gate: V12-G1
+  # --- Package 2: Provider contexts ---
+  - id: AFFPROV-V11-001
+    kind: AFFILIATION_PROVIDER_CONTEXT
+    title: Payments and Accounting Provider Context
+    statement: Documentary provider context for payments and accounting in the affiliation vertical.
+    institutional_owner: CurlingCanada
+    contract_owner: OWNER-V11-004
+    operational_owner: OWNER-V11-003
+    service_dependency: AFFSVC-V11-004
+    data_custody: Provider custody of payment data; Curling Canada retains records authority.
+    authority_retained: Authority retained by Curling Canada.
+    authentication_dependency: Provider authentication dependency defined.
+    authority_domain: Provider
+    operational_domain: PROVIDER_MANAGEMENT
+    sensitivity: FINANCIAL
+    traces_to:
+      - V11-19
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-19
+    future_gate: V12-G1
+  - id: AFFPROV-V11-002
+    kind: AFFILIATION_PROVIDER_CONTEXT
+    title: Identity Provider Context
+    statement: Documentary provider context for identity and authentication in the affiliation vertical.
+    institutional_owner: CurlingCanada
+    contract_owner: OWNER-V11-003
+    operational_owner: OWNER-V11-003
+    service_dependency: AFFSVC-V11-001
+    data_custody: Provider custody of authentication data; Curling Canada retains authority.
+    authority_retained: Authority retained by Curling Canada.
+    authentication_dependency: Governed authorization remains a House responsibility.
+    authority_domain: Provider
+    operational_domain: PROVIDER_MANAGEMENT
+    sensitivity: PERSONAL_INFORMATION
+    traces_to:
+      - V11-19
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-19
+    future_gate: V12-G1
+  # --- Package 2: Data-quality and reconciliation operations ---
+  - id: DQOP-V11-001
+    kind: DATA_QUALITY_OPERATION
+    title: Duplicate Organization Data-Quality Operation
+    statement: Documentary data-quality operation for duplicate organizations and clubs.
+    authoritative_source: Central registration record.
+    detection_dependency: Duplicate-detection dependency defined.
+    operational_owner: OWNER-V11-001
+    institutional_decision_owner: CurlingCanada
+    quarantine_status: Quarantine is distinct from rejection and from correction.
+    permitted_actions: Documentary quarantine and escalation only.
+    prohibited_actions: Institutional resolution and history rewrite.
+    correction_method_dependency: Correction method dependency defined.
+    reconciliation_method: Reconciliation method bound to authoritative source.
+    escalation_route: Operational owner to institutional decision owner.
+    closure_authority: Institutional decision owner.
+    residual_risk_posture: Residual risk tracked to closure.
+    authority_domain: House
+    operational_domain: RECONCILIATION
+    traces_to:
+      - V11-17
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-17
+    future_gate: V12-G1
+  - id: DQOP-V11-002
+    kind: DATA_QUALITY_OPERATION
+    title: Financial Mismatch Data-Quality Operation
+    statement: Documentary data-quality operation for financial mismatches and provider acknowledgements.
+    authoritative_source: Finance and reconciliation record.
+    detection_dependency: Mismatch-detection dependency defined.
+    operational_owner: OWNER-V11-004
+    institutional_decision_owner: CurlingCanada
+    quarantine_status: Acknowledgement is distinct from reconciliation.
+    permitted_actions: Documentary quarantine and reconciliation escalation only.
+    prohibited_actions: Accounting confirmation and history rewrite.
+    correction_method_dependency: Correction method dependency defined.
+    reconciliation_method: Reconciliation method bound to the finance record.
+    escalation_route: Finance owner to institutional decision owner.
+    closure_authority: Institutional decision owner.
+    residual_risk_posture: Residual risk tracked to reconciliation closure.
+    authority_domain: House
+    operational_domain: FINANCE_AND_RECONCILIATION
+    traces_to:
+      - V11-17
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-17
+    future_gate: V12-G1
+  - id: RECONOP-V11-001
+    kind: RECONCILIATION_OPERATION
+    title: Post-Recovery Reconciliation Operation
+    statement: Documentary reconciliation operation for post-recovery and post-migration state.
+    authoritative_source: Central registration record.
+    detection_dependency: Reconciliation-mismatch detection dependency defined.
+    operational_owner: OWNER-V11-002
+    institutional_decision_owner: CurlingCanada
+    reconciliation_method: Reconciliation method bound to authoritative source.
+    closure_authority: Institutional decision owner.
+    residual_risk_posture: Compensation is distinct from history rewrite.
+    authority_domain: House
+    operational_domain: RECONCILIATION
+    traces_to:
+      - V11-17
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-17
+    future_gate: V12-G1
+  # --- Package 2: Adoption audiences ---
+  - id: AUD-V11-001
+    kind: ADOPTION_AUDIENCE
+    title: Authorized Club Representative Audience
+    statement: Documentary adoption audience for authorized club representatives.
+    role_and_authority: Authorized club representative with governed representative authority.
+    required_knowledge: Affiliation submission, evidence, and support knowledge.
+    required_task_competence: Task competence in submission and resubmission.
+    adoption_measure: Adoption measured by governed evidence; account provisioned is not authority established.
+    readiness_criterion: Onboarding completed is not sustained adoption.
+    reinforcement_requirement: Post-launch reinforcement required.
+    authority_domain: House
+    operational_domain: TRAINING_AND_ADOPTION
+    traces_to:
+      - V11-18
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-18
+    future_gate: V12-G1
+  - id: AUD-V11-002
+    kind: ADOPTION_AUDIENCE
+    title: Reviewer Audience
+    statement: Documentary adoption audience for affiliation reviewers.
+    role_and_authority: Reviewer with governed reviewer scope.
+    required_knowledge: Review, return, and decision-disclosure knowledge.
+    required_task_competence: Task competence in review and return.
+    adoption_measure: Adoption measured by governed evidence; training delivered is not competence demonstrated.
+    readiness_criterion: Competence demonstrated through assessment.
+    reinforcement_requirement: Post-launch reinforcement required.
+    authority_domain: House
+    operational_domain: TRAINING_AND_ADOPTION
+    traces_to:
+      - V11-18
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-18
+    future_gate: V12-G1

@@ -1,0 +1,37 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "evidence_requirements": [
+    {
+      "id": "OEV-V11-001",
+      "title": "Affiliation Operational-Evidence Requirement",
+      "binds_environment": "Operational evidence binds the environment.",
+      "binds_config": "Operational evidence binds the configuration.",
+      "binds_version": "Operational evidence binds the version.",
+      "binds_identity": "Operational evidence binds the identity.",
+      "binds_org": "Operational evidence binds the organization.",
+      "binds_jurisdiction": "Operational evidence binds the jurisdiction.",
+      "binds_data_classification": "Operational evidence binds the data classification.",
+      "binds_provider_state": "Operational evidence binds the provider state.",
+      "binds_time": "Operational evidence binds the time.",
+      "evidence_destination": "Operational-evidence destination defined.",
+      "volume_12_destination": "Volume 12 operational-evidence governance package.",
+      "future_gate": "V12-G1"
+    },
+    {
+      "id": "OEV-V11-002",
+      "title": "Migration Operational-Evidence Requirement",
+      "binds_environment": "Migration evidence binds the environment.",
+      "binds_config": "Migration evidence binds the configuration.",
+      "binds_version": "Migration evidence binds the version.",
+      "binds_identity": "Migration evidence binds the identity.",
+      "binds_org": "Migration evidence binds the organization.",
+      "binds_jurisdiction": "Migration evidence binds the jurisdiction.",
+      "binds_data_classification": "Migration evidence binds the data classification.",
+      "binds_provider_state": "Migration evidence binds the provider state.",
+      "binds_time": "Migration evidence binds the time.",
+      "evidence_destination": "Migration operational-evidence destination defined.",
+      "volume_12_destination": "Volume 12 migration operational-evidence governance package.",
+      "future_gate": "V12-G1"
+    }
+  ]
+}

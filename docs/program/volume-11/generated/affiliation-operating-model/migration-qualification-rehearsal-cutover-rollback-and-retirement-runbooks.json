@@ -1,0 +1,50 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "migration_runbooks": [
+    {
+      "id": "MIGRB-V11-001",
+      "title": "Club Migration Runbook",
+      "source": "Legacy club registration source.",
+      "source_authority": "Source authority remains with the originating system until retirement authorization.",
+      "target_service": "AFFSVC-V11-002",
+      "entry_criteria": "Source qualification entry criteria defined.",
+      "provenance": "Provenance captured for every source record.",
+      "mapping": "Mapping dependency defined; source record is not resolved identity.",
+      "uncertainty": "Duplicate and uncertainty treatment defined.",
+      "identity_candidate": "Identity candidates treated as candidates only.",
+      "quarantine": "Quarantine posture defined for unresolved records.",
+      "rehearsal": "Rehearsal required before cutover authorization.",
+      "acceptance": "Business acceptance criteria defined; cutover completed is not business accepted.",
+      "reconciliation": "Reconciliation method bound to authoritative source.",
+      "rollback": "Rollback dependency defined.",
+      "cutover_boundary": "Cutover completed is not business accepted.",
+      "source_retirement": "Business accepted is not source retired.",
+      "evidence_required": "Evidence bound to every migration stage.",
+      "decision_authority": "Cutover authorization authority independent of the migration operator."
+    }
+  ],
+  "rehearsals": [
+    {
+      "id": "REH-V11-001",
+      "title": "Migration Rehearsal Requirement"
+    }
+  ],
+  "cutovers": [
+    {
+      "id": "CUT-V11-001",
+      "title": "Cutover Requirement"
+    }
+  ],
+  "rollbacks": [
+    {
+      "id": "RBK-V11-001",
+      "title": "Rollback Requirement"
+    }
+  ],
+  "source_retirements": [
+    {
+      "id": "SRET-V11-001",
+      "title": "Source Retirement Requirement"
+    }
+  ]
+}

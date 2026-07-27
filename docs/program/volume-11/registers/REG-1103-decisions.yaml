@@ -87,3 +87,154 @@ records:
     execution_status: NOT_EXECUTED
     chapter_ref: V11-08
     future_gate: V12-G1
+  # --- Package 2 decisions ---
+  - id: ADR-V11-004
+    kind: DECISION
+    title: Club Affiliation Is the First Operational Vertical
+    statement: >-
+      Club affiliation is the first operational vertical for which the House defines
+      a complete documentary operating system.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Package 2 translates the Package 1 governance foundation into the detailed
+      documentary operating system for the club-affiliation vertical only.
+    consequences: >-
+      The affiliation operating model, runbooks, and evidence obligations are defined
+      before any affiliation service operation or operational exercise is authorized.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as authorizing any affiliation operation.
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: ADR-V11-005
+    kind: DECISION_BOUNDARY
+    title: House Authority Is Distinct From Button Interaction
+    statement: >-
+      House institutional authority is distinct from Button interaction, and service
+      ownership does not confer institutional decision authority.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The affiliation operating model must not conflate the House system-of-record
+      authority with the Button experience layer or with service ownership.
+    consequences: >-
+      Ownership assignments in REG-1101 distinguish institutional authority, service
+      ownership, and the Button interaction boundary.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as granting the Button governed lifecycle authority.
+    traces_to:
+      - V11-11
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-11
+    future_gate: V12-G1
+  - id: ADR-V11-006
+    kind: DECISION_BOUNDARY
+    title: Support Access Does Not Confer Mutation Authority
+    statement: >-
+      Support access is distinct from mutation authority and from decision authority;
+      incident closure does not establish problem elimination.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Support, incident, and problem runbooks must preserve the separation of access,
+      mutation, and decision authority.
+    consequences: >-
+      Support classes and runbooks in REG-1101 and REG-1102 record explicit authority
+      boundaries and separate closure from problem elimination.
+    decision_authority: OWNER-V11-002
+    prohibited_inference: This decision must not be read as granting support roles mutation or decision authority.
+    traces_to:
+      - V11-13
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-13
+    future_gate: V12-G1
+  - id: ADR-V11-007
+    kind: DECISION_BOUNDARY
+    title: Backup, Restore, Recovery, and Reconciliation Are Distinct
+    statement: >-
+      Backup completion does not establish restorability; service restoration does not
+      establish reconciliation.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Continuity, backup, restore, and recovery procedures must preserve the chain of
+      distinctions from backup generation through reconciliation.
+    consequences: >-
+      Continuity and backup procedures in REG-1102 record separate completion,
+      verification, restoration, recovery, and reconciliation definitions.
+    decision_authority: OWNER-V11-002
+    prohibited_inference: This decision must not be read as claiming any recovery capability.
+    traces_to:
+      - V11-15
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-15
+    future_gate: V12-G1
+  - id: ADR-V11-008
+    kind: DECISION_BOUNDARY
+    title: Rehearsal, Cutover, Acceptance, and Source Retirement Are Distinct
+    statement: >-
+      Migration rehearsal does not authorize migration; cutover does not establish
+      business acceptance; business acceptance does not authorize source retirement.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Migration runbooks must preserve the separation of rehearsal, authorization,
+      cutover, acceptance, and source retirement.
+    consequences: >-
+      Migration runbooks and stage requirements in REG-1102 record each distinction as
+      a separate governed boundary.
+    decision_authority: OWNER-V11-003
+    prohibited_inference: This decision must not be read as authorizing any migration or source retirement.
+    traces_to:
+      - V11-16
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-16
+    future_gate: V12-G1
+  - id: ADR-V11-009
+    kind: DECISION_BOUNDARY
+    title: Training and Onboarding Do Not Establish Competence or Adoption
+    statement: >-
+      Training delivery does not establish competence; onboarding does not establish
+      sustained adoption; provider certification does not establish end-to-end assurance.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Training, adoption, and provider operating plans must preserve the separation of
+      delivery, competence, adoption, and assurance.
+    consequences: >-
+      Training, onboarding, adoption, and provider requirements in REG-1101 and
+      REG-1102 record each distinction explicitly.
+    decision_authority: OWNER-V11-002
+    prohibited_inference: This decision must not be read as claiming competence, adoption, or assurance.
+    traces_to:
+      - V11-18
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-18
+    future_gate: V12-G1

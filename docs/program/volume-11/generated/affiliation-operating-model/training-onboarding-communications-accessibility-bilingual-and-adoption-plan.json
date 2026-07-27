@@ -1,0 +1,52 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 Package 2 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "audiences": [
+    {
+      "id": "AUD-V11-001",
+      "title": "Authorized Club Representative Audience",
+      "role_and_authority": "Authorized club representative with governed representative authority.",
+      "required_knowledge": "Affiliation submission, evidence, and support knowledge.",
+      "required_task_competence": "Task competence in submission and resubmission.",
+      "adoption_measure": "Adoption measured by governed evidence; account provisioned is not authority established.",
+      "readiness_criterion": "Onboarding completed is not sustained adoption.",
+      "reinforcement_requirement": "Post-launch reinforcement required."
+    },
+    {
+      "id": "AUD-V11-002",
+      "title": "Reviewer Audience",
+      "role_and_authority": "Reviewer with governed reviewer scope.",
+      "required_knowledge": "Review, return, and decision-disclosure knowledge.",
+      "required_task_competence": "Task competence in review and return.",
+      "adoption_measure": "Adoption measured by governed evidence; training delivered is not competence demonstrated.",
+      "readiness_criterion": "Competence demonstrated through assessment.",
+      "reinforcement_requirement": "Post-launch reinforcement required."
+    }
+  ],
+  "training_requirements": [
+    {
+      "id": "TRNG-V11-001",
+      "title": "Reviewer Training Requirement",
+      "content": "Review, return, and decision-disclosure content.",
+      "delivery": "Delivery-method dependency defined.",
+      "competence": "Competence demonstrated through assessment.",
+      "english_french": "English and French semantic equivalence required.",
+      "accessibility": "Accessibility requirements apply.",
+      "assessment": "Assessment method bound to competence."
+    }
+  ],
+  "onboarding_requirements": [
+    {
+      "id": "ONB-V11-001",
+      "title": "Club Onboarding Requirement",
+      "onboarding_evidence": "Onboarding evidence bound to governed authority establishment."
+    }
+  ],
+  "adoption_requirements": [
+    {
+      "id": "ADOPTR-V11-001",
+      "title": "Adoption Monitoring Requirement",
+      "adoption_measure": "Adoption measured by governed evidence.",
+      "reinforcement_requirement": "Post-launch reinforcement and remediation for low adoption required."
+    }
+  ]
+}

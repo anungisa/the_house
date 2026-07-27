@@ -115,3 +115,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-11/V11-B-1.md
     gate: V11-G1
+  - id: V11-11
+    title: Affiliation Service Catalogue, Ownership, and Operating Boundaries
+    owner: OWNER-V11-001
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-11.md
+    gate: V11-G2
+  - id: V11-12
+    title: Affiliation Operating States, Lifecycle Transitions, and Stabilization Model
+    owner: OWNER-V11-001
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-12.md
+    gate: V11-G2
+  - id: V11-13
+    title: Support, Service Request, Affiliation Escalation, Incident, and Problem Runbooks
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-13.md
+    gate: V11-G2
+  - id: V11-14
+    title: Observability, Incident Response, Problem Management, and Reconciliation Runbooks
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-14.md
+    gate: V11-G2
+  - id: V11-15
+    title: Continuity, Backup, Restore, Recovery, and Degraded-Operation Procedures
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-15.md
+    gate: V11-G2
+  - id: V11-16
+    title: Migration Qualification, Rehearsal, Cutover, Rollback, and Source-Retirement Runbooks
+    owner: OWNER-V11-003
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-16.md
+    gate: V11-G2
+  - id: V11-17
+    title: Data-Quality, Quarantine, Reconciliation, and Outstanding-Obligation Operations
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-17.md
+    gate: V11-G2
+  - id: V11-18
+    title: Training, Onboarding, Communications, Bilingual Delivery, Accessibility, and Adoption Plan
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-18.md
+    gate: V11-G2
+  - id: V11-19
+    title: Provider Operations, Continuity, Incident, Return, Deletion, Substitution, and Exit Runbooks
+    owner: OWNER-V11-003
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-19.md
+    gate: V11-G2
+  - id: V11-20
+    title: Integrated Operating-Model Coverage, Operational-Evidence Plan, and Backlog Assessment
+    owner: OWNER-V11-004
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-20.md
+    gate: V11-G2
+  - id: V11-C
+    title: Package 2 Closure Record and Bounded Package 3 Authorization
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-C.md
+    gate: V11-G2

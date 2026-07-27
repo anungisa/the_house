@@ -1,0 +1,185 @@
+{
+  "gate": "V11-G2",
+  "disposition_target": "AFFILIATION_OPERATING_MODEL_MIGRATION_CONTINUITY_ADOPTION_AND_OPERATIONAL_EVIDENCE_PLAN_READY",
+  "total_conditions": 35,
+  "satisfied": 35,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1 lineage, V11-B, and V11-B-1 are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Package 1 remains frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Club affiliation remains the first operational vertical",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "House institutional authority remains distinct from Button interaction",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every material affiliation service has an owner or governed owner gap",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "All twelve ownership dimensions are represented",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Operating states and transition evidence are defined",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Lifecycle states remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Support classes define requester, receiver, authority boundary, sensitivity, escalation, communication, resolution, and closure evidence",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Support access remains distinct from mutation and decision authority",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Incident and problem runbooks include signal, triage, containment, recovery, reconciliation, escalation, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Telemetry, alerting, incident declaration, incident resolution, problem elimination, and reconciliation remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Continuity procedures define preserved work, prohibited actions, degraded posture, fallback, recovery, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Backup generation, verification, restoration, recovery, and reconciliation remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Migration runbooks preserve source authority, provenance, mapping, uncertainty, identity candidates, quarantine, rehearsal, cutover, acceptance, rollback, and retirement distinctions",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Mapping remains distinct from identity resolution",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Rehearsal remains distinct from migration authorization",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Cutover remains distinct from business acceptance and source retirement",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Data-quality and quarantine procedures define owners, permitted actions, prohibited actions, correction, reconciliation, escalation, and closure authority",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Financial acknowledgement, accounting confirmation, reconciliation, activation, and standing remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Training content, approval, delivery, competence, onboarding, and sustained adoption remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Accessibility and bilingual obligations apply to training, support, communications, documents, and operational procedures",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Provider runbooks cover incidents, continuity, subcontractors, return, deletion evidence, residual copies, backups, substitution, reconciliation, and exit",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Provider certification remains distinct from end-to-end assurance",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Operational evidence binds environment, configuration, version, identity, organization, jurisdiction, data, provider state, and time",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Volume 12 operational-evidence destinations are defined",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "House P0 findings have operational-proof and release-evidence destinations",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Every unresolved item has an owner, required evidence, and valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "No active unresolved item points to a completed Volume 11 gate",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Deterministic Package 2 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No runtime code, monitoring, service-desk tooling, support queue, environment, credential, migration tooling, training delivery, provider integration, or operational infrastructure is created",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "No migration, rehearsal, cutover, reconciliation, backup, restore, recovery, incident, training, onboarding, provider, or operational procedure is executed",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "No operational-readiness, recovery, migration-success, adoption, provider-assurance, continuity, or acceptance claim is made without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "No record authorizes implementation or operations",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation is preserved",
+      "satisfied": true
+    }
+  ]
+}
