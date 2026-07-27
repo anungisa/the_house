@@ -29,10 +29,27 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(OUTCOME|CAP|STREAM|WORK|DELIV|DEP)-V10-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(OUTCOME|CAP|STREAM|WORK|DELIV|DEP|AOUT|AWS|IWP|TDS|EDS|MDS|CES|IDS|TES|P0D)-V10-[0-9]{3}$" },
           "kind": {
             "type": "string",
-            "enum": ["OUTCOME", "CAPABILITY", "WORKSTREAM", "WORK_PACKAGE", "DELIVERABLE", "DEPENDENCY"]
+            "enum": [
+              "OUTCOME",
+              "CAPABILITY",
+              "WORKSTREAM",
+              "WORK_PACKAGE",
+              "DELIVERABLE",
+              "DEPENDENCY",
+              "AFFILIATION_OUTCOME",
+              "AFFILIATION_WORKSTREAM",
+              "IMPLEMENTATION_WORK_PACKAGE",
+              "TECHNICAL_DELIVERY_SLICE",
+              "EXPERIENCE_DELIVERY_SLICE",
+              "MIGRATION_DELIVERY_SLICE",
+              "CONTROL_ENABLEMENT_SLICE",
+              "INTEGRATION_DELIVERY_SLICE",
+              "TEST_ENABLEMENT_SLICE",
+              "HOUSE_P0_DELIVERY_DESTINATION"
+            ]
           },
           "title": { "type": "string" },
           "statement": { "type": "string" },
@@ -61,6 +78,51 @@
           "evidence_obligations": { "type": "string" },
           "security_privacy_obligations": { "type": "string" },
           "accessibility_bilingual_obligations": { "type": "string" },
+          "included_scope": { "type": "string" },
+          "house_responsibility": { "type": "string" },
+          "button_responsibility": { "type": "string" },
+          "external_system_responsibility": { "type": "string" },
+          "primary_actors": { "type": "string" },
+          "lifecycle_states": { "type": "string" },
+          "data_and_contract_dependencies": { "type": "string" },
+          "affected_application_layers": { "type": "string" },
+          "delivery_layer": { "type": "string" },
+          "domain_boundary": { "type": "string" },
+          "application_boundary": { "type": "string" },
+          "persistence_dependency": { "type": "string" },
+          "contract_dependency": { "type": "string" },
+          "security_boundary": { "type": "string" },
+          "data_integrity_invariant": { "type": "string" },
+          "migration_dependency": { "type": "string" },
+          "database_behaviour_evidence": { "type": "string" },
+          "integration_evidence": { "type": "string" },
+          "rollback_dependency": { "type": "string" },
+          "completion_evidence": { "type": "string" },
+          "experience_outcome": { "type": "string" },
+          "volume_7_action": { "type": "string" },
+          "house_command_or_query_dependency": { "type": "string" },
+          "authorization_context_dependency": { "type": "string" },
+          "states_and_error_states": { "type": "string" },
+          "accessibility_obligations": { "type": "string" },
+          "bilingual_content_dependencies": { "type": "string" },
+          "privacy_and_disclosure_limits": { "type": "string" },
+          "telemetry_requirement": { "type": "string" },
+          "producer": { "type": "string" },
+          "consumer": { "type": "string" },
+          "institutional_authority": { "type": "string" },
+          "trust_boundary": { "type": "string" },
+          "idempotency_dependency": { "type": "string" },
+          "ordering_posture": { "type": "string" },
+          "failure_posture": { "type": "string" },
+          "reconciliation_dependency": { "type": "string" },
+          "compatibility_obligation": { "type": "string" },
+          "provider_dependency": { "type": "string" },
+          "affected_house_p0_finding": { "type": "string" },
+          "implementation_evidence": { "type": "string" },
+          "test_enablement_destination": { "type": "string" },
+          "operational_proof_destination": { "type": "string" },
+          "proof_destination": { "type": "string" },
+          "release_gate": { "$ref": "common.schema.json#/definitions/futureGateId" },
           "estimate_status": { "$ref": "common.schema.json#/definitions/estimateStatus" },
           "dependency_kind": { "$ref": "common.schema.json#/definitions/dependencyKind" },
           "owner": { "type": "string" },
@@ -131,6 +193,100 @@
                 "availability_status",
                 "conflict_of_interest_constraint",
                 "escalation_route"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "IMPLEMENTATION_WORK_PACKAGE" } } },
+            "then": {
+              "required": [
+                "objective",
+                "scope",
+                "excluded_scope",
+                "source_requirements",
+                "affected_application_layers",
+                "responsible_role",
+                "dependencies",
+                "deliverables",
+                "definition_of_ready",
+                "definition_of_done",
+                "implementation_evidence",
+                "evidence_obligations",
+                "security_privacy_obligations",
+                "accessibility_bilingual_obligations",
+                "operational_proof_destination",
+                "test_enablement_destination"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "AFFILIATION_OUTCOME" } } },
+            "then": {
+              "required": [
+                "objective",
+                "scope",
+                "excluded_scope",
+                "house_responsibility",
+                "button_responsibility",
+                "external_system_responsibility",
+                "lifecycle_states",
+                "security_privacy_obligations",
+                "accessibility_bilingual_obligations",
+                "release_gate"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "TECHNICAL_DELIVERY_SLICE" } } },
+            "then": {
+              "required": [
+                "delivery_layer",
+                "domain_boundary",
+                "persistence_dependency",
+                "contract_dependency",
+                "data_integrity_invariant",
+                "database_behaviour_evidence",
+                "rollback_dependency",
+                "completion_evidence"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "EXPERIENCE_DELIVERY_SLICE" } } },
+            "then": {
+              "required": [
+                "experience_outcome",
+                "volume_7_action",
+                "house_command_or_query_dependency",
+                "authorization_context_dependency",
+                "accessibility_obligations",
+                "bilingual_content_dependencies",
+                "privacy_and_disclosure_limits"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "INTEGRATION_DELIVERY_SLICE" } } },
+            "then": {
+              "required": [
+                "producer",
+                "consumer",
+                "institutional_authority",
+                "trust_boundary",
+                "idempotency_dependency",
+                "provider_dependency"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "HOUSE_P0_DELIVERY_DESTINATION" } } },
+            "then": {
+              "required": [
+                "affected_house_p0_finding",
+                "implementation_evidence",
+                "test_enablement_destination",
+                "operational_proof_destination",
+                "proof_destination"
               ]
             }
           }

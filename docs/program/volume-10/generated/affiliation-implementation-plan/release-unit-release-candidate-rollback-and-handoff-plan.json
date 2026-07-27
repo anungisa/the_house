@@ -1,0 +1,129 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "release_candidate_requirements": [
+    {
+      "id": "RC-V10-201",
+      "title": "Release-candidate requirement RU-1: platform, repository, and configuration baseline",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-202",
+      "title": "Release-candidate requirement RU-2: identity, representative authority, and organization records",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-203",
+      "title": "Release-candidate requirement RU-3: affiliation case lifecycle and requirements",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-204",
+      "title": "Release-candidate requirement RU-4: submission, review, return, and resubmission",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-205",
+      "title": "Release-candidate requirement RU-5: decision, finance, and reconciliation",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-206",
+      "title": "Release-candidate requirement RU-6: exactly-once activation and standing",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-207",
+      "title": "Release-candidate requirement RU-7: Button experience and staff workbenches",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-208",
+      "title": "Release-candidate requirement RU-8: provider, file, batch, and exchange integration",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-209",
+      "title": "Release-candidate requirement RU-9: data migration, coexistence, and cutover",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    },
+    {
+      "id": "RC-V10-210",
+      "title": "Release-candidate requirement RU-10: operational hardening and handoff",
+      "contained_work_packages": [
+        "IWP-V10-201"
+      ],
+      "rollback_dependency": "Requires a rehearsed rollback path recorded in the rollback requirements.",
+      "acceptance_authority": "Executive Acceptance Authority",
+      "release_gate": "V12-G1"
+    }
+  ],
+  "rollback_requirements": [
+    {
+      "id": "RB-V10-201",
+      "title": "Lifecycle and activation rollback requirement",
+      "rollback_dependency": "Requires a rehearsed, evidenced rollback path validated at a future gate."
+    },
+    {
+      "id": "RB-V10-202",
+      "title": "Migration and cutover rollback requirement",
+      "rollback_dependency": "Requires a rehearsed, evidenced rollback path validated at a future gate."
+    }
+  ],
+  "handoff_requirements": [
+    {
+      "id": "OHREQ-V10-201",
+      "title": "Runbook, monitoring, and support handoff requirement",
+      "handoff_requirement_basis": "Identifies the runbook, monitoring, support, and continuity dependencies a later package must satisfy."
+    },
+    {
+      "id": "OHREQ-V10-202",
+      "title": "Continuity and incident handoff requirement",
+      "handoff_requirement_basis": "Identifies the runbook, monitoring, support, and continuity dependencies a later package must satisfy."
+    }
+  ]
+}

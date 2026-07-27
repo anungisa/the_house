@@ -1,7 +1,7 @@
 register_id: REG-1003
 name: Volume 10 Delivery-Planning Decisions
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: ADR-V10-001
     kind: DECISION
@@ -84,4 +84,200 @@ records:
     planning_status: DOCUMENTARY_PLAN_ONLY
     commitment_status: NOT_COMMITTED
     chapter_ref: V10-A
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Package 2 affiliation implementation decisions
+  # ---------------------------------------------------------------------------
+  - id: ADR-V10-201
+    kind: DECISION
+    title: Club affiliation is the first implementation vertical
+    statement: The affiliation vertical is selected as the first implementation vertical for the House.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: The affiliation lifecycle exercises the full governed pathway and House P0 findings.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-202
+    kind: DECISION
+    title: House and Button responsibilities remain distinct
+    statement: House institutional authority is separated from Button client experience.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: The Button remains a governed consumer of House contracts and performs no independent institutional mutation.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-203
+    kind: DECISION
+    title: The Governance Kernel is the sole lifecycle authority
+    statement: All affiliation lifecycle transitions are executed through the Governance Kernel.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: Domain modules request transitions but never mutate governed state directly.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-204
+    kind: DECISION
+    title: Exactly-once activation is a business invariant
+    statement: Activation uniqueness is treated as a business invariant.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: Exactly-once activation is a business invariant and is not a transport claim.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-205
+    kind: DECISION
+    title: Migration mapping is distinct from identity resolution
+    statement: Migration mapping produces candidate inputs to identity resolution.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: Mapping completed is not identity resolved.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-206
+    kind: DECISION
+    title: Provider requirements are distinct from provider engagement
+    statement: Provider requirements are recorded without selecting or engaging any provider.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: A provider requirement is not a provider selection and is not a provider engagement.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-207
+    kind: DECISION
+    title: Environment definition is distinct from provisioning
+    statement: Environments are defined at planning level only.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: Environment definition is not provisioning and is not qualification.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-208
+    kind: DECISION
+    title: Test-enablement planning is distinct from test execution
+    statement: Test enablement is planned without authoring or executing any test.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: Test-enablement planning is not an executable test and does not execute any test.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-209
+    kind: DECISION
+    title: Estimates are planning estimates only
+    statement: All cost and effort figures are planning estimates.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: An estimate is not a budget, a quote, a procurement, or a contract.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-210
+    kind: DECISION
+    title: Release units are documentary sequencing units
+    statement: Release units sequence work packages for planning purposes.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: A release candidate is not an accepted release and is not a deployment.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-211
+    kind: DECISION
+    title: All Package 2 execution is bound to future authorization gates
+    statement: Every execution step is bound to a future authorization gate.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: No construction, provisioning, or execution proceeds under this package.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - id: ADR-V10-212
+    kind: DECISION_BOUNDARY
+    title: Package 2 grants no implementation authorization
+    statement: Package 2 is a documentary plan and grants no implementation authorization.
+    decision_status: APPROVED_FOR_PLANNING
+    context: Recorded during authoring of the Volume 10 Package 2 affiliation implementation and technical-delivery plan.
+    consequences: No record in Package 2 authorizes implementation, procurement, staffing, provisioning, test execution, release, or deployment.
+    prohibited_inference: This decision authorizes no construction, provisioning, procurement, staffing, test execution, release, or deployment.
+    decision_authority: Accountable Program Authority
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-11
     future_gate: V11-G1

@@ -1,0 +1,32 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "integration_slices": [
+    {
+      "id": "IDS-V10-201",
+      "title": "Integration slice: Command, query, and outbox contract slice",
+      "producer": "The House",
+      "consumer": "The Button and downstream consumers",
+      "institutional_authority": "Curling Canada retains institutional decision authority; providers acknowledge only.",
+      "idempotency_dependency": "Depends on idempotent processing and reconciliation; exactly-once activation is a business invariant and is not a transport claim.",
+      "provider_dependency": "Names a provider requirement only; selects and engages no provider."
+    },
+    {
+      "id": "IDS-V10-202",
+      "title": "Integration slice: Provider exchange, file, and batch slice",
+      "producer": "The House",
+      "consumer": "External providers",
+      "institutional_authority": "Curling Canada retains institutional decision authority; providers acknowledge only.",
+      "idempotency_dependency": "Depends on idempotent processing and reconciliation; exactly-once activation is a business invariant and is not a transport claim.",
+      "provider_dependency": "Names a provider requirement only; selects and engages no provider."
+    },
+    {
+      "id": "IDS-V10-203",
+      "title": "Integration slice: Notification and webhook slice",
+      "producer": "The House",
+      "consumer": "Notification and callback consumers",
+      "institutional_authority": "Curling Canada retains institutional decision authority; providers acknowledge only.",
+      "idempotency_dependency": "Depends on idempotent processing and reconciliation; exactly-once activation is a business invariant and is not a transport claim.",
+      "provider_dependency": "Names a provider requirement only; selects and engages no provider."
+    }
+  ]
+}

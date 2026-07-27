@@ -1,0 +1,14 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "outcomes": [
+    {
+      "id": "AOUT-V10-201",
+      "title": "Club-affiliation implementation delivery outcome",
+      "house_responsibility": "The House owns institutional authority, lifecycle state, authorization, evidence, and the system of record.",
+      "button_responsibility": "The Button remains a governed consumer of House contracts and performs no independent institutional mutation.",
+      "external_system_responsibility": "External providers acknowledge and exchange only; they retain no institutional decision authority.",
+      "lifecycle_states": "requirement, evidence, completeness, submission, review, return, resubmission, decision, reconciliation, activation, standing, expiry.",
+      "release_gate": "V11-G1"
+    }
+  ]
+}

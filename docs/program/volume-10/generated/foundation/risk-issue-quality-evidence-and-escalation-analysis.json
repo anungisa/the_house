@@ -6,12 +6,29 @@
       "owner": "Engineering Delivery Lead",
       "likelihood": "MEDIUM",
       "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-201",
+      "owner": "Engineering Delivery Lead",
+      "likelihood": "MEDIUM",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "RISK-V10-202",
+      "owner": "Accountable Program Authority",
+      "likelihood": "MEDIUM",
+      "future_blocking_gate": "EXEC-MCG"
     }
   ],
   "issues": [
     {
       "id": "ISSUE-V10-001",
       "owner": "Accountable Program Authority",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "ISSUE-V10-201",
+      "owner": "Engineering Delivery Lead",
       "future_blocking_gate": "V11-G1"
     }
   ],

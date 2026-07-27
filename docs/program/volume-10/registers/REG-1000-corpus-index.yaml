@@ -1,7 +1,7 @@
 register_id: REG-1000
 name: Volume 10 Corpus Index
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   - id: V10-00
     title: Volume Control, Inheritance, and Planning Authority
@@ -99,3 +99,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-10/V10-A-package-1-closure-record.md
     gate: V10-G1
+  - id: V10-11
+    title: Affiliation Delivery Scope, Outcomes, and Implementation-Boundary Decomposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-11-affiliation-delivery-scope-outcomes-and-implementation-boundary.md
+    gate: V10-G2
+  - id: V10-12
+    title: Affiliation Workstream, Work-Package, Deliverable, and Dependency Catalogue
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-12-affiliation-workstream-work-package-deliverable-and-dependency-catalogue.md
+    gate: V10-G2
+  - id: V10-13
+    title: House Domain, Application, Persistence, and Infrastructure Delivery Slices
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-13-house-domain-application-persistence-and-infrastructure-slices.md
+    gate: V10-G2
+  - id: V10-14
+    title: Button Experience, Content, Staff-Workbench, and Client-Delivery Slices
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-14-button-experience-content-and-staff-workbench-slices.md
+    gate: V10-G2
+  - id: V10-15
+    title: Data, Database, Migration, Coexistence, and Cutover-Readiness Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-15-data-database-migration-coexistence-and-cutover-readiness.md
+    gate: V10-G2
+  - id: V10-16
+    title: Identity, Security, Privacy, Records, Accessibility, and Bilingual Implementation-Enablement Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-16-identity-security-privacy-records-accessibility-and-bilingual-enablement.md
+    gate: V10-G2
+  - id: V10-17
+    title: API, Event, Provider, File, Batch, and Exchange Implementation Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-17-api-event-provider-file-batch-and-exchange-implementation.md
+    gate: V10-G2
+  - id: V10-18
+    title: Environment, Test-Enablement, CI/CD, Evidence-Capture, and Assurance Plan
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-18-environment-test-enablement-ci-and-evidence-capture.md
+    gate: V10-G2
+  - id: V10-19
+    title: Capability, Estimate, Cost, Funding, Procurement-Readiness, Dependency, and Risk Analysis
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-19-capability-estimate-cost-funding-procurement-dependency-and-risk.md
+    gate: V10-G2
+  - id: V10-20
+    title: Release Increments, Release-Candidate Definition, Rollback, Operational Handoff, and Integrated Readiness
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-20-release-increments-rollback-operational-handoff-and-integrated-readiness.md
+    gate: V10-G2
+  - id: V10-C
+    title: Package 2 Closure Record and Gate V10-G2 Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-C-package-2-closure-record.md
+    gate: V10-G2

@@ -29,10 +29,26 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(MILE|ENV|REL|READY|EVID|ACCEPT)-V10-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(MILE|ENV|REL|READY|EVID|ACCEPT|IMILE|ENVREQ|TENREQ|MIGREQ|RC|RB|OHREQ|IEVID|OEVID)-V10-[0-9]{3}$" },
           "kind": {
             "type": "string",
-            "enum": ["MILESTONE", "ENVIRONMENT", "RELEASE_UNIT", "EVIDENCE_REQUIREMENT", "READINESS_CONDITION", "ACCEPTANCE_CRITERION"]
+            "enum": [
+              "MILESTONE",
+              "ENVIRONMENT",
+              "RELEASE_UNIT",
+              "EVIDENCE_REQUIREMENT",
+              "READINESS_CONDITION",
+              "ACCEPTANCE_CRITERION",
+              "IMPLEMENTATION_MILESTONE",
+              "ENVIRONMENT_ENABLEMENT_REQUIREMENT",
+              "TEST_ENABLEMENT_REQUIREMENT",
+              "MIGRATION_READINESS_REQUIREMENT",
+              "RELEASE_CANDIDATE_REQUIREMENT",
+              "ROLLBACK_REQUIREMENT",
+              "OPERATIONAL_HANDOFF_REQUIREMENT",
+              "IMPLEMENTATION_EVIDENCE_REQUIREMENT",
+              "OPERATIONAL_EVIDENCE_REQUIREMENT"
+            ]
           },
           "title": { "type": "string" },
           "statement": { "type": "string" },
@@ -76,6 +92,19 @@
           "required_evidence": { "type": "string" },
           "impact_if_unresolved": { "type": "string" },
           "acceptance_criterion_basis": { "type": "string" },
+          "required_infrastructure_capability": { "type": "string" },
+          "execution_authority_status": { "type": "string" },
+          "migration_requirement_basis": { "type": "string" },
+          "rehearsal_requirement": { "type": "string" },
+          "reconciliation_requirement": { "type": "string" },
+          "rollback_requirement_basis": { "type": "string" },
+          "handoff_requirement_basis": { "type": "string" },
+          "release_candidate_basis": { "type": "string" },
+          "entry_dependencies": { "type": "string" },
+          "known_limitations": { "type": "string" },
+          "database_behaviour_evidence": { "type": "string" },
+          "implementation_evidence_basis": { "type": "string" },
+          "operational_evidence_basis": { "type": "string" },
           "traces_to": { "type": "array", "items": { "type": "string" } },
           "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
           "authorizes_implementation": { "const": false },
@@ -135,6 +164,45 @@
             "if": { "properties": { "kind": { "const": "EVIDENCE_REQUIREMENT" } } },
             "then": {
               "required": ["evidence_type", "provenance_requirement", "reproducibility_requirement"]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "ENVIRONMENT_ENABLEMENT_REQUIREMENT" } } },
+            "then": {
+              "required": [
+                "environment_class",
+                "purpose",
+                "data_classification",
+                "production_data_prohibition",
+                "qualification_criteria",
+                "provisioning_status",
+                "provisioning_gate",
+                "execution_authority_status"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "RELEASE_CANDIDATE_REQUIREMENT" } } },
+            "then": {
+              "required": [
+                "release_candidate_basis",
+                "contained_work_packages",
+                "required_test_evidence",
+                "rollback_dependency",
+                "acceptance_authority",
+                "release_gate"
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "kind": { "const": "MIGRATION_READINESS_REQUIREMENT" } } },
+            "then": {
+              "required": [
+                "migration_requirement_basis",
+                "rehearsal_requirement",
+                "reconciliation_requirement",
+                "rollback_dependency"
+              ]
             }
           }
         ]

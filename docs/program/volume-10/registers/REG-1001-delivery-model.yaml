@@ -1,7 +1,7 @@
 register_id: REG-1001
 name: Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ---------------------------------------------------------------------------
   # Program outcome
@@ -398,4 +398,911 @@ records:
     planning_status: DOCUMENTARY_PLAN_ONLY
     commitment_status: NOT_COMMITTED
     chapter_ref: V10-05
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Package 2 delivery records (affiliation implementation and technical delivery)
+  # ---------------------------------------------------------------------------
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AOUT-V10-201
+    kind: AFFILIATION_OUTCOME
+    title: Club-affiliation implementation delivery outcome
+    statement: Documentary outcome for implementing the club-affiliation vertical as the first implementation vertical. Defines the outcome only; authorizes no construction, provisioning, test execution, release, or deployment.
+    objective: Deliver a governed, tenant-isolated, evidence-bearing club-affiliation lifecycle capability across House and Button responsibilities.
+    scope: The full affiliation lifecycle from representative authority through requirements, evidence, submission, review, return, resubmission, decision, reconciliation, exactly-once activation, standing, and expiry.
+    excluded_scope: No runtime code, environment, executable test, dataset, identity, secret, provider engagement, migration, or infrastructure is produced or authorized.
+    house_responsibility: The House owns institutional authority, lifecycle state, authorization, evidence, and the system of record.
+    button_responsibility: The Button remains a governed consumer of House contracts and performs no independent institutional mutation.
+    external_system_responsibility: External providers acknowledge and exchange only; they retain no institutional decision authority.
+    lifecycle_states: requirement, evidence, completeness, submission, review, return, resubmission, decision, reconciliation, activation, standing, expiry.
+    security_privacy_obligations: Tenant isolation, row-level-security, minimum-necessary collection, restricted evidence, and records retention are embedded obligations.
+    accessibility_bilingual_obligations: Accessibility and English/French bilingual obligations are first-class acceptance obligations.
+    release_gate: V11-G1
+    chapter_ref: V10-11
+    future_gate: V11-G1
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-201
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Platform and repository enablement'
+    statement: Coordinating workstream grouping the documentary work packages for platform and repository enablement. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-12
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-202
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Identity and representative authority'
+    statement: Coordinating workstream grouping the documentary work packages for identity and representative authority. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-16
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-203
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Club and organization records'
+    statement: Coordinating workstream grouping the documentary work packages for club and organization records. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-204
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Affiliation case lifecycle'
+    statement: Coordinating workstream grouping the documentary work packages for affiliation case lifecycle. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-205
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Requirements, responses, and evidence'
+    statement: Coordinating workstream grouping the documentary work packages for requirements, responses, and evidence. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-206
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Submission and review'
+    statement: Coordinating workstream grouping the documentary work packages for submission and review. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-207
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Decision, finance, and reconciliation'
+    statement: Coordinating workstream grouping the documentary work packages for decision, finance, and reconciliation. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-208
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Activation and standing'
+    statement: Coordinating workstream grouping the documentary work packages for activation and standing. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-209
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Button experience'
+    statement: Coordinating workstream grouping the documentary work packages for button experience. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-14
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-210
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Staff workbenches'
+    statement: Coordinating workstream grouping the documentary work packages for staff workbenches. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-14
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-211
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: API and event contracts'
+    statement: Coordinating workstream grouping the documentary work packages for api and event contracts. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-17
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-212
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Provider and exchange integration'
+    statement: Coordinating workstream grouping the documentary work packages for provider and exchange integration. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-17
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-213
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Data migration and coexistence'
+    statement: Coordinating workstream grouping the documentary work packages for data migration and coexistence. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-214
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Security, privacy, records, accessibility, and bilingual enablement'
+    statement: Coordinating workstream grouping the documentary work packages for security, privacy, records, accessibility, and bilingual enablement. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-16
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-215
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Testing and assurance enablement'
+    statement: Coordinating workstream grouping the documentary work packages for testing and assurance enablement. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: AWS-V10-216
+    kind: AFFILIATION_WORKSTREAM
+    title: 'Affiliation workstream: Deployment and operational handoff'
+    statement: Coordinating workstream grouping the documentary work packages for deployment and operational handoff. Planning grouping only; authorizes no execution.
+    chapter_ref: V10-20
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IWP-V10-201
+    kind: IMPLEMENTATION_WORK_PACKAGE
+    title: Affiliation lifecycle state-machine implementation plan
+    statement: Documentary implementation work package for affiliation lifecycle state-machine implementation plan. This is a plan; it begins and authorizes no construction, persistence change, or execution.
+    objective: Define the construction plan for affiliation lifecycle state-machine implementation plan as a documentary plan bound to a future authorization gate.
+    scope: Implementation planning across the domain, application, persistence, transactional state change layers for the affiliation vertical.
+    excluded_scope: No runtime code, schema migration, environment, executable test, dataset, identity, secret, or deployment is produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+    affected_application_layers: domain, application, persistence, transactional state change
+    responsible_role: Engineering Delivery Lead
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: Inherited obligations mapped, dependencies identified with owners, and environments defined at planning level.
+    definition_of_done: Construction plan complete and traceable; every execution step bound to a future authorization gate; no execution occurs.
+    implementation_evidence: Plans reproducible implementation evidence a later gate will require; no evidence is produced now.
+    evidence_obligations: Plans the provenance-bearing evidence later verification and release-acceptance gates require.
+    security_privacy_obligations: Embeds tenant-isolation, row-level-security, privacy, and records-retention obligations.
+    accessibility_bilingual_obligations: Embeds accessibility and English/French bilingual obligations.
+    operational_proof_destination: V10-20
+    test_enablement_destination: V10-18
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IWP-V10-202
+    kind: IMPLEMENTATION_WORK_PACKAGE
+    title: Requirements, evidence, and completeness implementation plan
+    statement: Documentary implementation work package for requirements, evidence, and completeness implementation plan. This is a plan; it begins and authorizes no construction, persistence change, or execution.
+    objective: Define the construction plan for requirements, evidence, and completeness implementation plan as a documentary plan bound to a future authorization gate.
+    scope: Implementation planning across the domain, application, persistence, read projection layers for the affiliation vertical.
+    excluded_scope: No runtime code, schema migration, environment, executable test, dataset, identity, secret, or deployment is produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+    affected_application_layers: domain, application, persistence, read projection
+    responsible_role: Engineering Delivery Lead
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: Inherited obligations mapped, dependencies identified with owners, and environments defined at planning level.
+    definition_of_done: Construction plan complete and traceable; every execution step bound to a future authorization gate; no execution occurs.
+    implementation_evidence: Plans reproducible implementation evidence a later gate will require; no evidence is produced now.
+    evidence_obligations: Plans the provenance-bearing evidence later verification and release-acceptance gates require.
+    security_privacy_obligations: Embeds tenant-isolation, row-level-security, privacy, and records-retention obligations.
+    accessibility_bilingual_obligations: Embeds accessibility and English/French bilingual obligations.
+    operational_proof_destination: V10-20
+    test_enablement_destination: V10-18
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IWP-V10-203
+    kind: IMPLEMENTATION_WORK_PACKAGE
+    title: Submission, review, return, and resubmission implementation plan
+    statement: Documentary implementation work package for submission, review, return, and resubmission implementation plan. This is a plan; it begins and authorizes no construction, persistence change, or execution.
+    objective: Define the construction plan for submission, review, return, and resubmission implementation plan as a documentary plan bound to a future authorization gate.
+    scope: Implementation planning across the application, authorization context, audit evidence layers for the affiliation vertical.
+    excluded_scope: No runtime code, schema migration, environment, executable test, dataset, identity, secret, or deployment is produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+    affected_application_layers: application, authorization context, audit evidence
+    responsible_role: Engineering Delivery Lead
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: Inherited obligations mapped, dependencies identified with owners, and environments defined at planning level.
+    definition_of_done: Construction plan complete and traceable; every execution step bound to a future authorization gate; no execution occurs.
+    implementation_evidence: Plans reproducible implementation evidence a later gate will require; no evidence is produced now.
+    evidence_obligations: Plans the provenance-bearing evidence later verification and release-acceptance gates require.
+    security_privacy_obligations: Embeds tenant-isolation, row-level-security, privacy, and records-retention obligations.
+    accessibility_bilingual_obligations: Embeds accessibility and English/French bilingual obligations.
+    operational_proof_destination: V10-20
+    test_enablement_destination: V10-18
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IWP-V10-204
+    kind: IMPLEMENTATION_WORK_PACKAGE
+    title: Decision, finance, and reconciliation implementation plan
+    statement: Documentary implementation work package for decision, finance, and reconciliation implementation plan. This is a plan; it begins and authorizes no construction, persistence change, or execution.
+    objective: Define the construction plan for decision, finance, and reconciliation implementation plan as a documentary plan bound to a future authorization gate.
+    scope: Implementation planning across the domain, application, persistence, outbox layers for the affiliation vertical.
+    excluded_scope: No runtime code, schema migration, environment, executable test, dataset, identity, secret, or deployment is produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+    affected_application_layers: domain, application, persistence, outbox
+    responsible_role: Engineering Delivery Lead
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: Inherited obligations mapped, dependencies identified with owners, and environments defined at planning level.
+    definition_of_done: Construction plan complete and traceable; every execution step bound to a future authorization gate; no execution occurs.
+    implementation_evidence: Plans reproducible implementation evidence a later gate will require; no evidence is produced now.
+    evidence_obligations: Plans the provenance-bearing evidence later verification and release-acceptance gates require.
+    security_privacy_obligations: Embeds tenant-isolation, row-level-security, privacy, and records-retention obligations.
+    accessibility_bilingual_obligations: Embeds accessibility and English/French bilingual obligations.
+    operational_proof_destination: V10-20
+    test_enablement_destination: V10-18
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IWP-V10-205
+    kind: IMPLEMENTATION_WORK_PACKAGE
+    title: Exactly-once activation and standing implementation plan
+    statement: Documentary implementation work package for exactly-once activation and standing implementation plan. This is a plan; it begins and authorizes no construction, persistence change, or execution.
+    objective: Define the construction plan for exactly-once activation and standing implementation plan as a documentary plan bound to a future authorization gate.
+    scope: Implementation planning across the domain, persistence, transactional state change, outbox layers for the affiliation vertical.
+    excluded_scope: No runtime code, schema migration, environment, executable test, dataset, identity, secret, or deployment is produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+    affected_application_layers: domain, persistence, transactional state change, outbox
+    responsible_role: Engineering Delivery Lead
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: Inherited obligations mapped, dependencies identified with owners, and environments defined at planning level.
+    definition_of_done: Construction plan complete and traceable; every execution step bound to a future authorization gate; no execution occurs.
+    implementation_evidence: Plans reproducible implementation evidence a later gate will require; no evidence is produced now.
+    evidence_obligations: Plans the provenance-bearing evidence later verification and release-acceptance gates require.
+    security_privacy_obligations: Embeds tenant-isolation, row-level-security, privacy, and records-retention obligations.
+    accessibility_bilingual_obligations: Embeds accessibility and English/French bilingual obligations.
+    operational_proof_destination: V10-20
+    test_enablement_destination: V10-18
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IWP-V10-206
+    kind: IMPLEMENTATION_WORK_PACKAGE
+    title: Button experience and staff-workbench implementation plan
+    statement: Documentary implementation work package for button experience and staff-workbench implementation plan. This is a plan; it begins and authorizes no construction, persistence change, or execution.
+    objective: Define the construction plan for button experience and staff-workbench implementation plan as a documentary plan bound to a future authorization gate.
+    scope: Implementation planning across the experience, authorization context layers for the affiliation vertical.
+    excluded_scope: No runtime code, schema migration, environment, executable test, dataset, identity, secret, or deployment is produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+    affected_application_layers: experience, authorization context
+    responsible_role: Engineering Delivery Lead
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: Inherited obligations mapped, dependencies identified with owners, and environments defined at planning level.
+    definition_of_done: Construction plan complete and traceable; every execution step bound to a future authorization gate; no execution occurs.
+    implementation_evidence: Plans reproducible implementation evidence a later gate will require; no evidence is produced now.
+    evidence_obligations: Plans the provenance-bearing evidence later verification and release-acceptance gates require.
+    security_privacy_obligations: Embeds tenant-isolation, row-level-security, privacy, and records-retention obligations.
+    accessibility_bilingual_obligations: Embeds accessibility and English/French bilingual obligations.
+    operational_proof_destination: V10-20
+    test_enablement_destination: V10-18
+    chapter_ref: V10-14
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TDS-V10-201
+    kind: TECHNICAL_DELIVERY_SLICE
+    title: 'House technical slice: Affiliation lifecycle state-machine slice'
+    statement: Documentary House technical delivery slice for affiliation lifecycle state-machine slice. Plan only; authorizes no construction, persistence change, or execution.
+    delivery_layer: domain
+    domain_boundary: Affiliation governance domain within the House modular monolith.
+    persistence_dependency: Governed affiliation state persistence
+    contract_dependency: Depends on House command and query contracts defined in Volume 8.
+    data_integrity_invariant: A single active affiliation per club-season is a business invariant.
+    database_behaviour_evidence: PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.
+    rollback_dependency: Depends on the rollback requirements planned in V10-20.
+    completion_evidence: Plans the implementation and integration evidence a later gate will require.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TDS-V10-202
+    kind: TECHNICAL_DELIVERY_SLICE
+    title: 'House technical slice: Activation-uniqueness slice'
+    statement: Documentary House technical delivery slice for activation-uniqueness slice. Plan only; authorizes no construction, persistence change, or execution.
+    delivery_layer: persistence
+    domain_boundary: Affiliation governance domain within the House modular monolith.
+    persistence_dependency: Activation uniqueness constraint and outbox coupling
+    contract_dependency: Depends on House command and query contracts defined in Volume 8.
+    data_integrity_invariant: Exactly-once activation is a business invariant and is not a transport claim.
+    database_behaviour_evidence: PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.
+    rollback_dependency: Depends on the rollback requirements planned in V10-20.
+    completion_evidence: Plans the implementation and integration evidence a later gate will require.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TDS-V10-203
+    kind: TECHNICAL_DELIVERY_SLICE
+    title: 'House technical slice: Outbox and reconciliation slice'
+    statement: Documentary House technical delivery slice for outbox and reconciliation slice. Plan only; authorizes no construction, persistence change, or execution.
+    delivery_layer: application
+    domain_boundary: Affiliation governance domain within the House modular monolith.
+    persistence_dependency: Transactional outbox persistence
+    contract_dependency: Depends on House command and query contracts defined in Volume 8.
+    data_integrity_invariant: An outbox implemented is not delivery and reconciliation proven.
+    database_behaviour_evidence: PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.
+    rollback_dependency: Depends on the rollback requirements planned in V10-20.
+    completion_evidence: Plans the implementation and integration evidence a later gate will require.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TDS-V10-204
+    kind: TECHNICAL_DELIVERY_SLICE
+    title: 'House technical slice: Evidence-binding and audit slice'
+    statement: Documentary House technical delivery slice for evidence-binding and audit slice. Plan only; authorizes no construction, persistence change, or execution.
+    delivery_layer: persistence
+    domain_boundary: Affiliation governance domain within the House modular monolith.
+    persistence_dependency: Immutable evidence and audit references
+    contract_dependency: Depends on House command and query contracts defined in Volume 8.
+    data_integrity_invariant: A schema created is not an invariant enforced.
+    database_behaviour_evidence: PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.
+    rollback_dependency: Depends on the rollback requirements planned in V10-20.
+    completion_evidence: Plans the implementation and integration evidence a later gate will require.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDS-V10-201
+    kind: EXPERIENCE_DELIVERY_SLICE
+    title: 'Button experience slice: Affiliation initiation and requirement completion'
+    statement: Documentary experience delivery slice for affiliation initiation and requirement completion. The Button remains a governed consumer of House contracts and performs no independent institutional mutation.
+    experience_outcome: Client can complete affiliation initiation and requirement completion within governed House contracts.
+    volume_7_action: submit affiliation requirements
+    house_command_or_query_dependency: Depends on a House command or query; performs no independent mutation.
+    authorization_context_dependency: Depends on a House-issued authorization context.
+    accessibility_obligations: Semantic structure, keyboard operation, focus management, and screen-reader status are required.
+    bilingual_content_dependencies: English and French content, errors, and notifications are required.
+    privacy_and_disclosure_limits: Discloses only minimum-necessary information within House disclosure limits.
+    chapter_ref: V10-14
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDS-V10-202
+    kind: EXPERIENCE_DELIVERY_SLICE
+    title: 'Button experience slice: Submission, return, and resubmission experience'
+    statement: Documentary experience delivery slice for submission, return, and resubmission experience. The Button remains a governed consumer of House contracts and performs no independent institutional mutation.
+    experience_outcome: Client can complete submission, return, and resubmission experience within governed House contracts.
+    volume_7_action: submit and resubmit affiliation case
+    house_command_or_query_dependency: Depends on a House command or query; performs no independent mutation.
+    authorization_context_dependency: Depends on a House-issued authorization context.
+    accessibility_obligations: Semantic structure, keyboard operation, focus management, and screen-reader status are required.
+    bilingual_content_dependencies: English and French content, errors, and notifications are required.
+    privacy_and_disclosure_limits: Discloses only minimum-necessary information within House disclosure limits.
+    chapter_ref: V10-14
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: EDS-V10-203
+    kind: EXPERIENCE_DELIVERY_SLICE
+    title: 'Button experience slice: Staff review and finance workbench'
+    statement: Documentary experience delivery slice for staff review and finance workbench. The Button remains a governed consumer of House contracts and performs no independent institutional mutation.
+    experience_outcome: Client can complete staff review and finance workbench within governed House contracts.
+    volume_7_action: review and reconcile affiliation case
+    house_command_or_query_dependency: Depends on a House command or query; performs no independent mutation.
+    authorization_context_dependency: Depends on a House-issued authorization context.
+    accessibility_obligations: Semantic structure, keyboard operation, focus management, and screen-reader status are required.
+    bilingual_content_dependencies: English and French content, errors, and notifications are required.
+    privacy_and_disclosure_limits: Discloses only minimum-necessary information within House disclosure limits.
+    chapter_ref: V10-14
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDS-V10-201
+    kind: MIGRATION_DELIVERY_SLICE
+    title: 'Migration slice: Source inventory and provenance slice'
+    statement: Documentary migration delivery slice for source inventory and provenance slice. Plan only; no migration is created or executed and no source system is modified or retired.
+    migration_dependency: Depends on the migration-readiness requirements planned in V10-15 and REG-1002.
+    data_integrity_invariant: A source record is not a resolved person, account, membership, or representative authority.
+    rollback_dependency: Depends on the migration rollback requirements planned in V10-15.
+    reconciliation_dependency: Depends on reconciliation evidence a later gate will require.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDS-V10-202
+    kind: MIGRATION_DELIVERY_SLICE
+    title: 'Migration slice: Mapping and identity-candidate slice'
+    statement: Documentary migration delivery slice for mapping and identity-candidate slice. Plan only; no migration is created or executed and no source system is modified or retired.
+    migration_dependency: Depends on the migration-readiness requirements planned in V10-15 and REG-1002.
+    data_integrity_invariant: Mapping completed is not identity resolved.
+    rollback_dependency: Depends on the migration rollback requirements planned in V10-15.
+    reconciliation_dependency: Depends on reconciliation evidence a later gate will require.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MDS-V10-203
+    kind: MIGRATION_DELIVERY_SLICE
+    title: 'Migration slice: Coexistence, reconciliation, and cutover slice'
+    statement: Documentary migration delivery slice for coexistence, reconciliation, and cutover slice. Plan only; no migration is created or executed and no source system is modified or retired.
+    migration_dependency: Depends on the migration-readiness requirements planned in V10-15 and REG-1002.
+    data_integrity_invariant: A migration executed is not a business acceptance and is not a source retirement.
+    rollback_dependency: Depends on the migration rollback requirements planned in V10-15.
+    reconciliation_dependency: Depends on reconciliation evidence a later gate will require.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CES-V10-201
+    kind: CONTROL_ENABLEMENT_SLICE
+    title: 'Control-enablement slice: Identity, authorization, and fail-closed configuration enablement'
+    statement: Documentary control-enablement slice for identity, authorization, and fail-closed configuration enablement. Plan only; no identity, credential, secret, certificate, or policy is created or configured.
+    security_boundary: Fail-closed authorization and configuration boundary for the affiliation vertical.
+    security_privacy_obligations: Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded.
+    completion_evidence: Plans implementation, independent-review, and acceptance evidence a later gate will require.
+    chapter_ref: V10-16
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CES-V10-202
+    kind: CONTROL_ENABLEMENT_SLICE
+    title: 'Control-enablement slice: Privacy, records, and retention enablement'
+    statement: Documentary control-enablement slice for privacy, records, and retention enablement. Plan only; no identity, credential, secret, certificate, or policy is created or configured.
+    security_boundary: Fail-closed authorization and configuration boundary for the affiliation vertical.
+    security_privacy_obligations: Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded.
+    completion_evidence: Plans implementation, independent-review, and acceptance evidence a later gate will require.
+    chapter_ref: V10-16
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: CES-V10-203
+    kind: CONTROL_ENABLEMENT_SLICE
+    title: 'Control-enablement slice: Accessibility and bilingual enablement'
+    statement: Documentary control-enablement slice for accessibility and bilingual enablement. Plan only; no identity, credential, secret, certificate, or policy is created or configured.
+    security_boundary: Fail-closed authorization and configuration boundary for the affiliation vertical.
+    security_privacy_obligations: Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded.
+    completion_evidence: Plans implementation, independent-review, and acceptance evidence a later gate will require.
+    chapter_ref: V10-16
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IDS-V10-201
+    kind: INTEGRATION_DELIVERY_SLICE
+    title: 'Integration slice: Command, query, and outbox contract slice'
+    statement: Documentary integration delivery slice for command, query, and outbox contract slice. Plan only; no endpoint, event, queue, webhook, or integration is implemented. A provider requirement is not a provider selection and is not a provider engagement.
+    producer: The House
+    consumer: The Button and downstream consumers
+    institutional_authority: Curling Canada retains institutional decision authority; providers acknowledge only.
+    trust_boundary: Contract and authorization trust boundary between the House and its consumers or providers.
+    idempotency_dependency: Depends on idempotent processing and reconciliation; exactly-once activation is a business invariant and is not a transport claim.
+    provider_dependency: Names a provider requirement only; selects and engages no provider.
+    chapter_ref: V10-17
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IDS-V10-202
+    kind: INTEGRATION_DELIVERY_SLICE
+    title: 'Integration slice: Provider exchange, file, and batch slice'
+    statement: Documentary integration delivery slice for provider exchange, file, and batch slice. Plan only; no endpoint, event, queue, webhook, or integration is implemented. A provider requirement is not a provider selection and is not a provider engagement.
+    producer: The House
+    consumer: External providers
+    institutional_authority: Curling Canada retains institutional decision authority; providers acknowledge only.
+    trust_boundary: Contract and authorization trust boundary between the House and its consumers or providers.
+    idempotency_dependency: Depends on idempotent processing and reconciliation; exactly-once activation is a business invariant and is not a transport claim.
+    provider_dependency: Names a provider requirement only; selects and engages no provider.
+    chapter_ref: V10-17
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IDS-V10-203
+    kind: INTEGRATION_DELIVERY_SLICE
+    title: 'Integration slice: Notification and webhook slice'
+    statement: Documentary integration delivery slice for notification and webhook slice. Plan only; no endpoint, event, queue, webhook, or integration is implemented. A provider requirement is not a provider selection and is not a provider engagement.
+    producer: The House
+    consumer: Notification and callback consumers
+    institutional_authority: Curling Canada retains institutional decision authority; providers acknowledge only.
+    trust_boundary: Contract and authorization trust boundary between the House and its consumers or providers.
+    idempotency_dependency: Depends on idempotent processing and reconciliation; exactly-once activation is a business invariant and is not a transport claim.
+    provider_dependency: Names a provider requirement only; selects and engages no provider.
+    chapter_ref: V10-17
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TES-V10-201
+    kind: TEST_ENABLEMENT_SLICE
+    title: 'Test-enablement slice: Database-behaviour and contract test enablement'
+    statement: Documentary test-enablement slice for database-behaviour and contract test enablement. Test-enablement planning is not an executable test and does not execute any test.
+    test_enablement_destination: V10-18
+    completion_evidence: Plans the reproducible verification evidence a later gate will require; runs no test.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TES-V10-202
+    kind: TEST_ENABLEMENT_SLICE
+    title: 'Test-enablement slice: Integration, accessibility, and bilingual test enablement'
+    statement: Documentary test-enablement slice for integration, accessibility, and bilingual test enablement. Test-enablement planning is not an executable test and does not execute any test.
+    test_enablement_destination: V10-18
+    completion_evidence: Plans the reproducible verification evidence a later gate will require; runs no test.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-201
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: resource-aware authorization'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "resource-aware authorization". Plan only; authorizes no implementation.
+    affected_house_p0_finding: resource-aware authorization
+    implementation_evidence: Implementation destination for "resource-aware authorization" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-202
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: reviewer assignment and jurisdiction'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "reviewer assignment and jurisdiction". Plan only; authorizes no implementation.
+    affected_house_p0_finding: reviewer assignment and jurisdiction
+    implementation_evidence: Implementation destination for "reviewer assignment and jurisdiction" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-203
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: evidence binding'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "evidence binding". Plan only; authorizes no implementation.
+    affected_house_p0_finding: evidence binding
+    implementation_evidence: Implementation destination for "evidence binding" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-204
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: production-dependency completeness'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "production-dependency completeness". Plan only; authorizes no implementation.
+    affected_house_p0_finding: production-dependency completeness
+    implementation_evidence: Implementation destination for "production-dependency completeness" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-205
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: composite tenant-parent integrity'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "composite tenant-parent integrity". Plan only; authorizes no implementation.
+    affected_house_p0_finding: composite tenant-parent integrity
+    implementation_evidence: Implementation destination for "composite tenant-parent integrity" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-206
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: affiliation lifecycle'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "affiliation lifecycle". Plan only; authorizes no implementation.
+    affected_house_p0_finding: affiliation lifecycle
+    implementation_evidence: Implementation destination for "affiliation lifecycle" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-207
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: versioned requirements'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "versioned requirements". Plan only; authorizes no implementation.
+    affected_house_p0_finding: versioned requirements
+    implementation_evidence: Implementation destination for "versioned requirements" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-208
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: return and resubmission'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "return and resubmission". Plan only; authorizes no implementation.
+    affected_house_p0_finding: return and resubmission
+    implementation_evidence: Implementation destination for "return and resubmission" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-209
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: exactly-once activation'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "exactly-once activation". Plan only; authorizes no implementation.
+    affected_house_p0_finding: exactly-once activation
+    implementation_evidence: Implementation destination for "exactly-once activation" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-210
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: fail-closed configuration'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "fail-closed configuration". Plan only; authorizes no implementation.
+    affected_house_p0_finding: fail-closed configuration
+    implementation_evidence: Implementation destination for "fail-closed configuration" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-211
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: outbox publication'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "outbox publication". Plan only; authorizes no implementation.
+    affected_house_p0_finding: outbox publication
+    implementation_evidence: Implementation destination for "outbox publication" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-212
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: PostgreSQL behavioural verification'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "PostgreSQL behavioural verification". Plan only; authorizes no implementation.
+    affected_house_p0_finding: PostgreSQL behavioural verification
+    implementation_evidence: Implementation destination for "PostgreSQL behavioural verification" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-213
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: production-composition verification'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "production-composition verification". Plan only; authorizes no implementation.
+    affected_house_p0_finding: production-composition verification
+    implementation_evidence: Implementation destination for "production-composition verification" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: P0D-V10-214
+    kind: HOUSE_P0_DELIVERY_DESTINATION
+    title: 'House P0 delivery destination: deployment-path, secret, and entry-point configuration'
+    statement: Documentary implementation, test-enablement, operational-proof, and release-evidence destination for the House P0 finding "deployment-path, secret, and entry-point configuration". Plan only; authorizes no implementation.
+    affected_house_p0_finding: deployment-path, secret, and entry-point configuration
+    implementation_evidence: Implementation destination for "deployment-path, secret, and entry-point configuration" is planned in the House and integration slices; no implementation occurs.
+    test_enablement_destination: V10-18
+    operational_proof_destination: V10-20
+    proof_destination: V10-20
+    chapter_ref: V10-13
     future_gate: V11-G1

@@ -7,18 +7,34 @@
       "confidence": "INDICATIVE_ONLY",
       "estimate_status": "PLANNING_ESTIMATE",
       "approval_status": "Not approved; planning estimate only."
+    },
+    {
+      "id": "COST-V10-201",
+      "range": "Indicative range only; not a committed figure.",
+      "confidence": "INDICATIVE_ONLY",
+      "estimate_status": "PLANNING_ESTIMATE",
+      "approval_status": "NOT_APPROVED"
     }
   ],
   "funding": [
     {
       "id": "FUND-V10-001",
       "status": "NOT_SECURED"
+    },
+    {
+      "id": "FUND-V10-201",
+      "status": "PLANNING_ONLY"
     }
   ],
   "procurement": [
     {
       "id": "PROC-V10-001",
       "status": "NOT_AUTHORIZED",
+      "commitment_status": "NOT_COMMITTED"
+    },
+    {
+      "id": "PROC-V10-201",
+      "status": "PLANNING_ONLY",
       "commitment_status": "NOT_COMMITTED"
     }
   ]

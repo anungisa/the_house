@@ -1,0 +1,185 @@
+{
+  "gate": "V10-G2",
+  "disposition_target": "AFFILIATION_IMPLEMENTATION_AND_TECHNICAL_DELIVERY_PLAN_READY",
+  "total_conditions": 35,
+  "satisfied": 35,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1 lineage, V10-B, and V10-B-1 are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Package 1 remains frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Club affiliation remains the first implementation vertical",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "The full affiliation lifecycle has delivery destinations",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "House and Button responsibilities remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "External providers retain no institutional decision authority",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Every material inherited requirement maps to a work package or governed disposition",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Work packages define scope, exclusions, dependencies, deliverables, readiness, completion, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "House domain, application, persistence, and infrastructure slices are represented",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Button experience and staff-workbench slices are represented",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Actor, organization, jurisdiction, authority, delegation, assignment, and service-identity boundaries are represented",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Requirement, evidence, completeness, submission, review, return, resubmission, decision, reconciliation, activation, standing, and expiry are represented",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Database-integrity and PostgreSQL-behaviour evidence destinations are defined",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Exactly-once activation remains a business invariant rather than a transport claim",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "API, query, event, outbox, webhook, provider, file, batch, and exchange implementation destinations are defined",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Provider requirements remain distinct from provider selection or engagement",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Migration planning preserves provenance, uncertainty, quarantine, coexistence, reconciliation, rollback, and acceptance distinctions",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Identity resolution remains distinct from migration mapping",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Security, privacy, records, accessibility, bilingual, data, financial, and audit obligations are embedded",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Environment and test-enablement requirements trace to Volume 9",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Environment planning remains distinct from provisioning and qualification",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Test-enablement planning remains distinct from executable tests and execution",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Estimates identify basis, range, confidence, assumptions, dependencies, and approval status",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Estimates remain distinct from budgets, quotes, procurements, and contracts",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Capability requirements remain distinct from staffing assignments or engagements",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Release units identify required evidence, rollback dependencies, acceptance authority, and future gates",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Release units remain distinct from accepted releases and deployments",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "House P0 findings have implementation, test-enablement, operational-proof, and release-evidence destinations",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Every unresolved item has an owner, required evidence, and valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Deterministic Package 2 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No runtime code, executable tests, environment, dataset, identity, credential, secret, provider integration, migration, or infrastructure is created",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "No procurement, expenditure, staff assignment, provider engagement, provisioning, test execution, pilot, rollout, deployment, release, or launch is authorized",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "No estimate, target date, resource model, implementation-readiness state, or release-candidate state is represented as approved without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation is preserved",
+      "satisfied": true
+    }
+  ]
+}

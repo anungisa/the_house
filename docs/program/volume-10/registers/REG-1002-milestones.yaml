@@ -1,7 +1,7 @@
 register_id: REG-1002
 name: Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria
 status: RATIFIED
-version: 1.0.0
+version: 1.1.0
 records:
   # ---------------------------------------------------------------------------
   # Planning milestone (target date, not committed date)
@@ -180,4 +180,549 @@ records:
     planning_status: DOCUMENTARY_PLAN_ONLY
     commitment_status: NOT_COMMITTED
     chapter_ref: V10-09
+    future_gate: V12-G1
+
+  # ---------------------------------------------------------------------------
+  # Package 2 implementation milestones, environments, release candidates, and evidence
+  # ---------------------------------------------------------------------------
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IMILE-V10-201
+    kind: IMPLEMENTATION_MILESTONE
+    title: Affiliation implementation-plan foundation complete
+    statement: Documentary implementation milestone for affiliation implementation-plan foundation complete. A milestone target is not a committed date and authorizes no execution.
+    target_date_status: PLANNING_TARGET_ONLY
+    committed_date_status: NOT_COMMITTED
+    chapter_ref: V10-11
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IMILE-V10-202
+    kind: IMPLEMENTATION_MILESTONE
+    title: Affiliation delivery decomposition complete
+    statement: Documentary implementation milestone for affiliation delivery decomposition complete. A milestone target is not a committed date and authorizes no execution.
+    target_date_status: PLANNING_TARGET_ONLY
+    committed_date_status: NOT_COMMITTED
+    chapter_ref: V10-12
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ENVREQ-V10-201
+    kind: ENVIRONMENT_ENABLEMENT_REQUIREMENT
+    title: 'Environment enablement requirement: LOCAL_DEVELOPMENT'
+    statement: Documentary environment enablement requirement for the LOCAL_DEVELOPMENT class. Environment definition is not provisioning and is not qualification; nothing is provisioned or qualified by this record.
+    environment_class: LOCAL_DEVELOPMENT
+    purpose: Support local construction planning of the affiliation vertical.
+    required_infrastructure_capability: Planned dependency on a cloud database and messaging capability; no infrastructure is created.
+    data_classification: SYNTHETIC
+    production_data_prohibition: Real personal, financial, and restricted-evidence data are prohibited; only synthetic data is permitted.
+    qualification_criteria: Qualified only when tenant isolation, row-level security, deterministic reset, and evidence capture are demonstrated at a future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    execution_authority_status: NOT_AUTHORIZED
+    evidence_capture_requirements: Planned reproducible, provenance-bearing capture of verification evidence.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ENVREQ-V10-202
+    kind: ENVIRONMENT_ENABLEMENT_REQUIREMENT
+    title: 'Environment enablement requirement: COMPONENT_TEST'
+    statement: Documentary environment enablement requirement for the COMPONENT_TEST class. Environment definition is not provisioning and is not qualification; nothing is provisioned or qualified by this record.
+    environment_class: COMPONENT_TEST
+    purpose: Support planned component and database-behaviour verification.
+    required_infrastructure_capability: Planned dependency on a cloud database and messaging capability; no infrastructure is created.
+    data_classification: SYNTHETIC
+    production_data_prohibition: Real personal, financial, and restricted-evidence data are prohibited; only synthetic data is permitted.
+    qualification_criteria: Qualified only when tenant isolation, row-level security, deterministic reset, and evidence capture are demonstrated at a future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    execution_authority_status: NOT_AUTHORIZED
+    evidence_capture_requirements: Planned reproducible, provenance-bearing capture of verification evidence.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ENVREQ-V10-203
+    kind: ENVIRONMENT_ENABLEMENT_REQUIREMENT
+    title: 'Environment enablement requirement: INTEGRATION_TEST'
+    statement: Documentary environment enablement requirement for the INTEGRATION_TEST class. Environment definition is not provisioning and is not qualification; nothing is provisioned or qualified by this record.
+    environment_class: INTEGRATION_TEST
+    purpose: Support planned integration and contract verification.
+    required_infrastructure_capability: Planned dependency on a cloud database and messaging capability; no infrastructure is created.
+    data_classification: SYNTHETIC
+    production_data_prohibition: Real personal, financial, and restricted-evidence data are prohibited; only synthetic data is permitted.
+    qualification_criteria: Qualified only when tenant isolation, row-level security, deterministic reset, and evidence capture are demonstrated at a future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    execution_authority_status: NOT_AUTHORIZED
+    evidence_capture_requirements: Planned reproducible, provenance-bearing capture of verification evidence.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ENVREQ-V10-204
+    kind: ENVIRONMENT_ENABLEMENT_REQUIREMENT
+    title: 'Environment enablement requirement: SYSTEM_TEST'
+    statement: Documentary environment enablement requirement for the SYSTEM_TEST class. Environment definition is not provisioning and is not qualification; nothing is provisioned or qualified by this record.
+    environment_class: SYSTEM_TEST
+    purpose: Support planned end-to-end verification of governed lifecycle behaviour.
+    required_infrastructure_capability: Planned dependency on a cloud database and messaging capability; no infrastructure is created.
+    data_classification: SYNTHETIC
+    production_data_prohibition: Real personal, financial, and restricted-evidence data are prohibited; only synthetic data is permitted.
+    qualification_criteria: Qualified only when tenant isolation, row-level security, deterministic reset, and evidence capture are demonstrated at a future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    execution_authority_status: NOT_AUTHORIZED
+    evidence_capture_requirements: Planned reproducible, provenance-bearing capture of verification evidence.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ENVREQ-V10-205
+    kind: ENVIRONMENT_ENABLEMENT_REQUIREMENT
+    title: 'Environment enablement requirement: PRE_PRODUCTION'
+    statement: Documentary environment enablement requirement for the PRE_PRODUCTION class. Environment definition is not provisioning and is not qualification; nothing is provisioned or qualified by this record.
+    environment_class: PRE_PRODUCTION
+    purpose: Support planned pre-production and production-path validation.
+    required_infrastructure_capability: Planned dependency on a cloud database and messaging capability; no infrastructure is created.
+    data_classification: SYNTHETIC
+    production_data_prohibition: Real personal, financial, and restricted-evidence data are prohibited; only synthetic data is permitted.
+    qualification_criteria: Qualified only when tenant isolation, row-level security, deterministic reset, and evidence capture are demonstrated at a future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    execution_authority_status: NOT_AUTHORIZED
+    evidence_capture_requirements: Planned reproducible, provenance-bearing capture of verification evidence.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: ENVREQ-V10-206
+    kind: ENVIRONMENT_ENABLEMENT_REQUIREMENT
+    title: 'Environment enablement requirement: RECOVERY_EXERCISE'
+    statement: Documentary environment enablement requirement for the RECOVERY_EXERCISE class. Environment definition is not provisioning and is not qualification; nothing is provisioned or qualified by this record.
+    environment_class: RECOVERY_EXERCISE
+    purpose: Support planned migration rehearsal and recovery exercises.
+    required_infrastructure_capability: Planned dependency on a cloud database and messaging capability; no infrastructure is created.
+    data_classification: SYNTHETIC
+    production_data_prohibition: Real personal, financial, and restricted-evidence data are prohibited; only synthetic data is permitted.
+    qualification_criteria: Qualified only when tenant isolation, row-level security, deterministic reset, and evidence capture are demonstrated at a future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    execution_authority_status: NOT_AUTHORIZED
+    evidence_capture_requirements: Planned reproducible, provenance-bearing capture of verification evidence.
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TENREQ-V10-201
+    kind: TEST_ENABLEMENT_REQUIREMENT
+    title: Database-behaviour test enablement requirement
+    statement: Documentary test-enablement requirement for database-behaviour test enablement requirement. Test-enablement planning is not an executable test and does not execute any test.
+    permitted_test_levels:
+      - COMPONENT_TEST
+      - INTEGRATION_TEST
+      - SYSTEM_TEST
+    evidence_capture_requirements: Plans reproducible verification evidence a later gate will require.
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TENREQ-V10-202
+    kind: TEST_ENABLEMENT_REQUIREMENT
+    title: Contract and integration test enablement requirement
+    statement: Documentary test-enablement requirement for contract and integration test enablement requirement. Test-enablement planning is not an executable test and does not execute any test.
+    permitted_test_levels:
+      - COMPONENT_TEST
+      - INTEGRATION_TEST
+      - SYSTEM_TEST
+    evidence_capture_requirements: Plans reproducible verification evidence a later gate will require.
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: TENREQ-V10-203
+    kind: TEST_ENABLEMENT_REQUIREMENT
+    title: Accessibility and bilingual test enablement requirement
+    statement: Documentary test-enablement requirement for accessibility and bilingual test enablement requirement. Test-enablement planning is not an executable test and does not execute any test.
+    permitted_test_levels:
+      - COMPONENT_TEST
+      - INTEGRATION_TEST
+      - SYSTEM_TEST
+    evidence_capture_requirements: Plans reproducible verification evidence a later gate will require.
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+    chapter_ref: V10-18
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MIGREQ-V10-201
+    kind: MIGRATION_READINESS_REQUIREMENT
+    title: Source-provenance and quarantine migration readiness requirement
+    statement: Documentary migration-readiness requirement for source-provenance and quarantine migration readiness requirement. A migration executed is not a business acceptance and is not a source retirement; no migration is performed.
+    migration_requirement_basis: Derived from Volume 9 migration and coexistence obligations and the House P0 findings.
+    rehearsal_requirement: Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.
+    reconciliation_requirement: Requires reconciliation evidence between source and House records.
+    rollback_dependency: Requires a rehearsed rollback path; rollback remains a planning concept only.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MIGREQ-V10-202
+    kind: MIGRATION_READINESS_REQUIREMENT
+    title: Reconciliation and coexistence migration readiness requirement
+    statement: Documentary migration-readiness requirement for reconciliation and coexistence migration readiness requirement. A migration executed is not a business acceptance and is not a source retirement; no migration is performed.
+    migration_requirement_basis: Derived from Volume 9 migration and coexistence obligations and the House P0 findings.
+    rehearsal_requirement: Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.
+    reconciliation_requirement: Requires reconciliation evidence between source and House records.
+    rollback_dependency: Requires a rehearsed rollback path; rollback remains a planning concept only.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: MIGREQ-V10-203
+    kind: MIGRATION_READINESS_REQUIREMENT
+    title: Cutover and rollback migration readiness requirement
+    statement: Documentary migration-readiness requirement for cutover and rollback migration readiness requirement. A migration executed is not a business acceptance and is not a source retirement; no migration is performed.
+    migration_requirement_basis: Derived from Volume 9 migration and coexistence obligations and the House P0 findings.
+    rehearsal_requirement: Requires rehearsed migration in a recovery-exercise environment before any cutover consideration.
+    reconciliation_requirement: Requires reconciliation evidence between source and House records.
+    rollback_dependency: Requires a rehearsed rollback path; rollback remains a planning concept only.
+    chapter_ref: V10-15
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-201
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-1: platform, repository, and configuration baseline'
+    statement: Documentary release-candidate requirement for the platform, repository, and configuration baseline release unit (RU-1). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for platform, repository, and configuration baseline must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-202
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-2: identity, representative authority, and organization records'
+    statement: Documentary release-candidate requirement for the identity, representative authority, and organization records release unit (RU-2). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for identity, representative authority, and organization records must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-203
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-3: affiliation case lifecycle and requirements'
+    statement: Documentary release-candidate requirement for the affiliation case lifecycle and requirements release unit (RU-3). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for affiliation case lifecycle and requirements must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-204
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-4: submission, review, return, and resubmission'
+    statement: Documentary release-candidate requirement for the submission, review, return, and resubmission release unit (RU-4). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for submission, review, return, and resubmission must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-205
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-5: decision, finance, and reconciliation'
+    statement: Documentary release-candidate requirement for the decision, finance, and reconciliation release unit (RU-5). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for decision, finance, and reconciliation must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-206
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-6: exactly-once activation and standing'
+    statement: Documentary release-candidate requirement for the exactly-once activation and standing release unit (RU-6). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for exactly-once activation and standing must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-207
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-7: Button experience and staff workbenches'
+    statement: Documentary release-candidate requirement for the Button experience and staff workbenches release unit (RU-7). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for Button experience and staff workbenches must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-208
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-8: provider, file, batch, and exchange integration'
+    statement: Documentary release-candidate requirement for the provider, file, batch, and exchange integration release unit (RU-8). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for provider, file, batch, and exchange integration must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-209
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-9: data migration, coexistence, and cutover'
+    statement: Documentary release-candidate requirement for the data migration, coexistence, and cutover release unit (RU-9). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for data migration, coexistence, and cutover must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RC-V10-210
+    kind: RELEASE_CANDIDATE_REQUIREMENT
+    title: 'Release-candidate requirement RU-10: operational hardening and handoff'
+    statement: Documentary release-candidate requirement for the operational hardening and handoff release unit (RU-10). A release candidate is not an accepted release and is not a deployment.
+    release_candidate_basis: Requirements a release candidate for operational hardening and handoff must satisfy before any acceptance consideration.
+    contained_work_packages:
+      - IWP-V10-201
+    required_test_evidence: Requires implementation, integration, security, privacy, accessibility, and bilingual evidence.
+    rollback_dependency: Requires a rehearsed rollback path recorded in the rollback requirements.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    known_limitations: Documentary planning unit only; no release candidate exists or is accepted.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RB-V10-201
+    kind: ROLLBACK_REQUIREMENT
+    title: Lifecycle and activation rollback requirement
+    statement: Documentary rollback requirement for lifecycle and activation rollback requirement. Plan only; no rollback capability is built or executed.
+    rollback_requirement_basis: Derived from release, migration, and operational obligations; identifies trigger conditions, recovery dependency, and evidence.
+    rollback_dependency: Requires a rehearsed, evidenced rollback path validated at a future gate.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: RB-V10-202
+    kind: ROLLBACK_REQUIREMENT
+    title: Migration and cutover rollback requirement
+    statement: Documentary rollback requirement for migration and cutover rollback requirement. Plan only; no rollback capability is built or executed.
+    rollback_requirement_basis: Derived from release, migration, and operational obligations; identifies trigger conditions, recovery dependency, and evidence.
+    rollback_dependency: Requires a rehearsed, evidenced rollback path validated at a future gate.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OHREQ-V10-201
+    kind: OPERATIONAL_HANDOFF_REQUIREMENT
+    title: Runbook, monitoring, and support handoff requirement
+    statement: Documentary operational-handoff requirement for runbook, monitoring, and support handoff requirement. Plan only; no operational capability is provisioned or handed off.
+    handoff_requirement_basis: Identifies the runbook, monitoring, support, and continuity dependencies a later package must satisfy.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OHREQ-V10-202
+    kind: OPERATIONAL_HANDOFF_REQUIREMENT
+    title: Continuity and incident handoff requirement
+    statement: Documentary operational-handoff requirement for continuity and incident handoff requirement. Plan only; no operational capability is provisioned or handed off.
+    handoff_requirement_basis: Identifies the runbook, monitoring, support, and continuity dependencies a later package must satisfy.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IEVID-V10-201
+    kind: IMPLEMENTATION_EVIDENCE_REQUIREMENT
+    title: Governed-lifecycle implementation evidence requirement
+    statement: Documentary implementation-evidence requirement for governed-lifecycle implementation evidence requirement. A schema created is not an invariant enforced; evidence is planned, not produced.
+    implementation_evidence_basis: Requires reproducible, provenance-bearing implementation and database-behaviour evidence.
+    database_behaviour_evidence: PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: IEVID-V10-202
+    kind: IMPLEMENTATION_EVIDENCE_REQUIREMENT
+    title: PostgreSQL-behaviour implementation evidence requirement
+    statement: Documentary implementation-evidence requirement for postgresql-behaviour implementation evidence requirement. A schema created is not an invariant enforced; evidence is planned, not produced.
+    implementation_evidence_basis: Requires reproducible, provenance-bearing implementation and database-behaviour evidence.
+    database_behaviour_evidence: PostgreSQL-behaviour evidence is planned as a reproducible verification obligation, not a proven claim.
+    chapter_ref: V10-13
+    future_gate: V11-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OEVID-V10-201
+    kind: OPERATIONAL_EVIDENCE_REQUIREMENT
+    title: Release-acceptance operational evidence requirement
+    statement: Documentary operational-evidence requirement for release-acceptance operational evidence requirement. Plan only; no operational evidence is produced.
+    operational_evidence_basis: Requires operational-readiness, rollback, and continuity evidence prior to any acceptance.
+    chapter_ref: V10-20
+    future_gate: V12-G1
+  - validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    id: OEVID-V10-202
+    kind: OPERATIONAL_EVIDENCE_REQUIREMENT
+    title: Rollback and continuity operational evidence requirement
+    statement: Documentary operational-evidence requirement for rollback and continuity operational evidence requirement. Plan only; no operational evidence is produced.
+    operational_evidence_basis: Requires operational-readiness, rollback, and continuity evidence prior to any acceptance.
+    chapter_ref: V10-20
     future_gate: V12-G1

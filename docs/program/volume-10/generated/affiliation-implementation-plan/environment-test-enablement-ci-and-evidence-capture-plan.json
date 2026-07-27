@@ -1,0 +1,100 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 Package 2 corpus. Confers no ratification and authorizes no implementation. Documentary and implementation-neutral.",
+  "environment_requirements": [
+    {
+      "id": "ENVREQ-V10-201",
+      "environment_class": "LOCAL_DEVELOPMENT",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-202",
+      "environment_class": "COMPONENT_TEST",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-203",
+      "environment_class": "INTEGRATION_TEST",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-204",
+      "environment_class": "SYSTEM_TEST",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-205",
+      "environment_class": "PRE_PRODUCTION",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    },
+    {
+      "id": "ENVREQ-V10-206",
+      "environment_class": "RECOVERY_EXERCISE",
+      "provisioning_status": "NOT_AUTHORIZED",
+      "provisioning_gate": "V11-G1",
+      "execution_authority_status": "NOT_AUTHORIZED",
+      "production_data_prohibition": true
+    }
+  ],
+  "test_enablement_requirements": [
+    {
+      "id": "TENREQ-V10-201",
+      "permitted_test_levels": [
+        "COMPONENT_TEST",
+        "INTEGRATION_TEST",
+        "SYSTEM_TEST"
+      ],
+      "traces_to": [
+        "central-registration-volume-9-v1.0.0"
+      ]
+    },
+    {
+      "id": "TENREQ-V10-202",
+      "permitted_test_levels": [
+        "COMPONENT_TEST",
+        "INTEGRATION_TEST",
+        "SYSTEM_TEST"
+      ],
+      "traces_to": [
+        "central-registration-volume-9-v1.0.0"
+      ]
+    },
+    {
+      "id": "TENREQ-V10-203",
+      "permitted_test_levels": [
+        "COMPONENT_TEST",
+        "INTEGRATION_TEST",
+        "SYSTEM_TEST"
+      ],
+      "traces_to": [
+        "central-registration-volume-9-v1.0.0"
+      ]
+    }
+  ],
+  "test_enablement_slices": [
+    {
+      "id": "TES-V10-201",
+      "title": "Test-enablement slice: Database-behaviour and contract test enablement",
+      "test_enablement_destination": "V10-18"
+    },
+    {
+      "id": "TES-V10-202",
+      "title": "Test-enablement slice: Integration, accessibility, and bilingual test enablement",
+      "test_enablement_destination": "V10-18"
+    }
+  ]
+}
