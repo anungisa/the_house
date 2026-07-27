@@ -179,3 +179,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-10/V10-20-release-increments-rollback-operational-handoff-and-integrated-readiness.md
     gate: V10-G2
+  - id: V10-C
+    title: Package 2 Closure Record and Gate V10-G2 Disposition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-10/V10-C-package-2-closure-record.md
+    gate: V10-G2

@@ -1,6 +1,6 @@
 # Volume 10 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T20:03:25.152Z
+Generated: 2026-07-27T20:06:45.198Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It is not a source of truth, does not confer ratification, and
@@ -24,18 +24,18 @@ Generated: 2026-07-27T20:03:25.152Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 24 |
+| RATIFIED | 25 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1000 | Volume 10 Corpus Index | RATIFIED | 1.1.0 | 22 |
+| REG-1000 | Volume 10 Corpus Index | RATIFIED | 1.1.0 | 23 |
 | REG-1001 | Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies | RATIFIED | 1.1.0 | 67 |
 | REG-1002 | Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria | RATIFIED | 1.1.0 | 38 |
 | REG-1003 | Volume 10 Delivery-Planning Decisions | RATIFIED | 1.1.0 | 15 |
 | REG-1004 | Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog | RATIFIED | 1.1.0 | 16 |
-| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.1.0 | 27 |
+| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.1.0 | 30 |
 
 ## Findings by control
 
