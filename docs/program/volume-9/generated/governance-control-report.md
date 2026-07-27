@@ -1,6 +1,6 @@
 # Volume 9 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T17:19:10.387Z
+Generated: 2026-07-27T17:20:05.476Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,11 +15,11 @@ Generated: 2026-07-27T17:19:10.387Z
 
 ## Summary
 
-- Total findings: 1
-- Errors: 1
+- Total findings: 0
+- Errors: 0
 - Warnings: 0
 - Info: 0
-- Overall: FAIL (quality/test-governance integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -90,9 +90,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V9-G3 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V9_G3_CONDITION_UNMET [GATE-V9-G3]: Condition 36 not satisfied: Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved
+- (no findings)
 
 ## Recorded conditions (from REG-905 approvals)
 

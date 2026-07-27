@@ -2,14 +2,9 @@
   "gate": "V9-G3",
   "disposition_target": "SECURITY_PRIVACY_ACCESSIBILITY_BILINGUAL_FINANCIAL_RECORDS_RESILIENCE_RECOVERY_AND_OPERATIONAL_ASSURANCE_TEST_DEFINITION_READY",
   "total_conditions": 36,
-  "satisfied": 35,
-  "unmet": [
-    {
-      "n": 36,
-      "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 36,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -189,7 +184,7 @@
     {
       "n": 36,
       "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

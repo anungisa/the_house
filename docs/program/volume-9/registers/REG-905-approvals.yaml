@@ -659,13 +659,13 @@ records:
       closure_artifact: V9-E
       gate: GATE-V9-G3
       freeze_artifact: PACKAGE-9-3
-      closure_authored_commit: PENDING_COMMIT_C
-      closure_effective_commit: PENDING_COMMIT_C
-      freeze_commit: PENDING_COMMIT_C
-      gate_effective_commit: PENDING_COMMIT_C
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      freeze_commit: 2e7332b
+      gate_effective_commit: 2e7332b
     effective_date_clarification:
       gate: GATE-V9-G3
-      documentary_definition_effective_commit: PENDING_COMMIT_C
+      documentary_definition_effective_commit: 2e7332b
       implementation_effective_date: >-
         Not applicable. Documentary effectiveness is distinct from implementation
         effectiveness; Package 3 authorizes no implementation.
@@ -682,8 +682,8 @@ records:
     gate_disposition: SECURITY_PRIVACY_ACCESSIBILITY_BILINGUAL_FINANCIAL_RECORDS_RESILIENCE_RECOVERY_AND_OPERATIONAL_ASSURANCE_TEST_DEFINITION_READY
     requires_freeze_artifact: PACKAGE-9-3
     base_commit: ef104f0
-    effective_commit: PENDING_COMMIT_C
-    gate_effective_commit: PENDING_COMMIT_C
+    effective_commit: 2e7332b
+    gate_effective_commit: 2e7332b
     approved_at: null
   - id: APP-V9-047
     artifact_id: PACKAGE-9-3
@@ -708,10 +708,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-9-3
       substantive_authoring_commit: b8d35cc
-      closure_authored_commit: PENDING_COMMIT_C
-      closure_effective_commit: PENDING_COMMIT_C
-      gate_effective_commit: PENDING_COMMIT_C
-      freeze_commit: PENDING_COMMIT_C
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      gate_effective_commit: 2e7332b
+      freeze_commit: 2e7332b
       provenance_binding_commit: PENDING_V9-F_AMENDMENT
       required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
       actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
@@ -725,12 +725,12 @@ records:
       source_baseline_commit: ef104f0
       inherited_baseline_tag: central-registration-volume-8-v1.0.0
       authoring_commit: b8d35cc
-      closure_authored_commit: PENDING_COMMIT_C
-      closure_effective_commit: PENDING_COMMIT_C
-      closure_freeze_commit: PENDING_COMMIT_C
-      freeze_commit: PENDING_COMMIT_C
-      gate_effective_commit: PENDING_COMMIT_C
-      effective_commit: PENDING_COMMIT_C
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      closure_freeze_commit: 2e7332b
+      freeze_commit: 2e7332b
+      gate_effective_commit: 2e7332b
+      effective_commit: 2e7332b
       provenance_binding_commit: PENDING_V9-F_AMENDMENT
       note: >-
         The original-package-merge and post-merge provenance-amendment commits are
