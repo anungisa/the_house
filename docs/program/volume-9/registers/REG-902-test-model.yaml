@@ -1104,3 +1104,603 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-17
+  - id: ORACLE-V9-008
+    kind: TEST_ORACLE
+    title: "Test oracle: Security and authorization oracle"
+    statement: >-
+      Defines the authoritative basis by which a future security, authentication, authorization,
+      isolation, or privileged-action result would be judged, holding authentication strictly
+      distinct from authorization and treating missing or unavailable policy and authority context
+      as a fail-closed denial rather than an implicit grant.
+    authoritative_basis: Volume 8 identity, authorization, delegation, assignment, and tenancy specifications
+    derived_from: Derived from the governed authorization policy, resource scoping, and isolation contracts
+    prohibited_basis: An authenticated session treated as authorization, or an absent policy treated as a grant
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-22
+  - id: ORACLE-V9-009
+    kind: TEST_ORACLE
+    title: "Test oracle: Privacy, records, and disclosure oracle"
+    statement: >-
+      Defines the authoritative basis by which a future privacy, minimization, evidence-reference,
+      logging, export, legal-hold, retention, or disposition result would be judged, holding a
+      privacy test outcome strictly distinct from a legal or regulatory compliance determination.
+    authoritative_basis: Volume 4-8 privacy, evidence, and records-retention specifications
+    derived_from: Derived from the governed minimization, disclosure, and retention contracts
+    prohibited_basis: A privacy test outcome treated as legal compliance, or read access treated as export authority
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: ORACLE-V9-010
+    kind: TEST_ORACLE
+    title: "Test oracle: Accessibility and assistive-technology oracle"
+    statement: >-
+      Defines the authoritative basis by which a future accessibility result would be judged,
+      holding automated static analysis strictly distinct from manual inspection, keyboard
+      completion, and assistive-technology completion.
+    authoritative_basis: Volume 7 accessibility specifications and governed task inventory
+    derived_from: Derived from the governed accessibility obligations and semantic requirements
+    prohibited_basis: An automated scan treated as manual, keyboard, or assistive-technology evidence
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-24
+  - id: ORACLE-V9-011
+    kind: TEST_ORACLE
+    title: "Test oracle: Bilingual semantic-equivalence oracle"
+    statement: >-
+      Defines the authoritative basis by which a future bilingual result would be judged, holding
+      the presence of a translated string strictly distinct from accurate translation and governed
+      semantic equivalence across statuses, actions, errors, decisions, and documents.
+    authoritative_basis: Volume 3-7 bilingual, terminology, and official-languages specifications
+    derived_from: Derived from the governed canonical concepts and semantic-equivalence contracts
+    prohibited_basis: String presence or machine translation treated as governed semantic equivalence
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-25
+  - id: ORACLE-V9-012
+    kind: TEST_ORACLE
+    title: "Test oracle: Financial-control and reconciliation oracle"
+    statement: >-
+      Defines the authoritative basis by which a future financial-control result would be judged,
+      holding payment acknowledgement strictly distinct from accounting confirmation and
+      reconciliation, and approval strictly distinct from activation authorization, activation
+      execution, and active standing.
+    authoritative_basis: Volume 6-8 financial, accounting, reconciliation, and activation specifications
+    derived_from: Derived from the governed financial-control and decision-authority contracts
+    prohibited_basis: An acknowledgement treated as reconciliation, or an approval treated as activation
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-26
+  - id: ORACLE-V9-013
+    kind: TEST_ORACLE
+    title: "Test oracle: Resilience, backup-restore, and recovery oracle"
+    statement: >-
+      Defines the authoritative basis by which a future resilience, backup, restore, or recovery
+      result would be judged, holding backup completion strictly distinct from restorability, and
+      restoration strictly distinct from service recovery and business reconciliation.
+    authoritative_basis: Volume 5-8 resilience, backup, recovery, and continuity specifications
+    derived_from: Derived from the governed dependency, backup, restore, and recovery contracts
+    prohibited_basis: A completed backup treated as restorable, or a restore treated as recovery or reconciliation
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: ORACLE-V9-014
+    kind: TEST_ORACLE
+    title: "Test oracle: Observability, incident, and deployment-path oracle"
+    statement: >-
+      Defines the authoritative basis by which a future observability, incident-response, or
+      deployment-path result would be judged, holding telemetry emission strictly distinct from
+      alert delivery, incident detection, and incident handling, and successful build strictly
+      distinct from a valid deployment path and functioning production composition.
+    authoritative_basis: Volume 5-8 observability, incident, and deployment specifications
+    derived_from: Derived from the governed audit, monitoring, incident, and deployment contracts
+    prohibited_basis: Telemetry treated as an alert, or a successful build treated as a valid deployment path
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: ORACLE-V9-015
+    kind: TEST_ORACLE
+    title: "Test oracle: Provider-continuity and exit oracle"
+    statement: >-
+      Defines the authoritative basis by which a future provider-continuity, substitution, return,
+      deletion, or exit result would be judged, holding provider certification strictly distinct
+      from end-to-end assurance, and contract termination strictly distinct from data returned,
+      deleted, and reconciled.
+    authoritative_basis: Volume 6-8 provider, continuity, substitution, and exit specifications
+    derived_from: Derived from the governed provider-continuity, portability, and exit contracts
+    prohibited_basis: Provider certification treated as end-to-end assurance, or termination treated as deletion
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-29
+  - id: EVID-V9-004
+    kind: TEST_EVIDENCE_REQUIREMENT
+    title: "Evidence requirement: Cross-cutting assurance evidence binding"
+    statement: >-
+      Defines the future evidence obligations for cross-cutting assurance; every assurance evidence
+      artifact must bind environment, configuration, version, identity, organization, jurisdiction,
+      data, and time. No evidence is asserted to exist.
+    provenance_requirement: Evidence must record the exact commit, policy version, identity, organization, jurisdiction, data reference, and time of the run.
+    configuration_requirement: Evidence must record the full environment configuration, secret dependency references, and composition under test.
+    environment_requirement: Evidence must name the environment class in which it was produced and bind it to the configuration.
+    version_requirement: Evidence must record the artifact, schema, and policy versions under test.
+    reproducibility_requirement: Evidence must be reproducible from the recorded environment, configuration, version, identity, data, and time.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30
+  - id: SECREQ-V9-001
+    kind: SECURITY_TEST_REQUIREMENT
+    title: "Security test requirement: Resource-aware authorization distinct from authentication"
+    statement: >-
+      Defines a future security test obligation that resource-aware authorization is evaluated
+      independently of authentication across organization, jurisdiction, resource, lifecycle,
+      delegation, assignment, and service identity, and asserts no executed test.
+    source_requirement: Volume 8 identity, authorization, delegation, and assignment obligations
+    object_under_test: Authorization decision service and isolation boundary
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: SECURITY_TEST
+    expected_outcome: >-
+      Authorization is granted only when the authenticated identity holds resolved authority for the
+      specific organization, jurisdiction, resource, and lifecycle state; isolation is preserved.
+    negative_outcome: >-
+      An authenticated identity without resolved authority, or a missing policy context, is denied
+      and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-22
+  - id: PRIVREQ-V9-001
+    kind: PRIVACY_TEST_REQUIREMENT
+    title: "Privacy test requirement: Minimum-necessary fields and privacy-safe logging"
+    statement: >-
+      Defines a future privacy test obligation that governed reads, exports, logs, and traces carry
+      only the minimum-necessary fields and that restricted-evidence access and disclosure are
+      controlled, and asserts no executed test and no legal-compliance determination.
+    source_requirement: Volume 4-8 privacy minimization, disclosure, and logging obligations
+    object_under_test: Privacy minimization and disclosure control surface
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: PRIVACY_TEST
+    expected_outcome: >-
+      Reads, exports, logs, and traces expose only the minimum-necessary fields; restricted-evidence
+      access and disclosure require resolved authority.
+    negative_outcome: >-
+      An over-collecting read, log, trace, or export, or an unauthorized disclosure, is detected and
+      fails closed; the negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: RECREQ-V9-001
+    kind: RECORDS_TEST_REQUIREMENT
+    title: "Records test requirement: Legal hold, retention, and disposition"
+    statement: >-
+      Defines a future records test obligation that legal hold suspends disposition, that retention
+      dependencies are honoured, and that authoritative disposition is held distinct from projection
+      deletion, and asserts no executed test and no legal-compliance determination.
+    source_requirement: Volume 4-8 records retention, legal-hold, and disposition obligations
+    object_under_test: Records retention and disposition service
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: PRIVACY_TEST
+    expected_outcome: >-
+      Disposition occurs only when retention is satisfied and no legal hold applies; authoritative
+      disposition is distinct from deletion of a downstream projection.
+    negative_outcome: >-
+      A disposition attempted under an active legal hold or unmet retention is detected and fails
+      closed; the negative expectation must be exercised.
+    evidence_tier_required: SYSTEM
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: ACCSREQ-V9-001
+    kind: ACCESSIBILITY_STATIC_TEST_REQUIREMENT
+    title: "Accessibility static test requirement: Automated semantic and structural analysis"
+    statement: >-
+      Defines a future accessibility static test obligation for automated semantic and structural
+      analysis, held strictly distinct from manual, keyboard, and assistive-technology evidence, and
+      asserts no executed test and no conformance claim.
+    source_requirement: Volume 7 accessibility semantic and structural obligations
+    object_under_test: Governed experience surface (static representation)
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: ACCESSIBILITY_STATIC_TEST
+    expected_outcome: >-
+      Automated analysis reports governed semantic and structural findings without being treated as
+      a conformance determination.
+    negative_outcome: >-
+      An automated pass treated as full accessibility conformance is detected and rejected; the
+      negative expectation must be exercised.
+    evidence_tier_required: STATIC_ANALYSIS
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-24
+  - id: ACCMREQ-V9-001
+    kind: ACCESSIBILITY_MANUAL_TEST_REQUIREMENT
+    title: "Accessibility manual test requirement: Keyboard completion and focus management"
+    statement: >-
+      Defines a future accessibility manual test obligation for keyboard completion, focus
+      management, zoom and reflow across primary, exception, staff, interruption, degraded, and
+      recovery tasks, and asserts no executed test and no conformance claim.
+    source_requirement: Volume 7 accessibility keyboard and focus obligations
+    object_under_test: Governed experience surface (interactive tasks)
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: ACCESSIBILITY_MANUAL_TEST
+    expected_outcome: >-
+      Every governed task is completable by keyboard with correct focus order and management under
+      zoom and reflow.
+    negative_outcome: >-
+      A task that cannot be completed by keyboard, or that loses focus, is detected and rejected;
+      the negative expectation must be exercised.
+    evidence_tier_required: MANUAL_VERIFICATION
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-24
+  - id: ATREQ-V9-001
+    kind: ASSISTIVE_TECHNOLOGY_TEST_REQUIREMENT
+    title: "Assistive-technology test requirement: Screen-reader interaction and announcements"
+    statement: >-
+      Defines a future assistive-technology test obligation for screen-reader interaction, status
+      announcements, and error recovery, held strictly distinct from automated static analysis, and
+      asserts no executed test and no conformance claim.
+    source_requirement: Volume 7 assistive-technology and announcement obligations
+    object_under_test: Governed experience surface (assistive-technology interaction)
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: ASSISTIVE_TECHNOLOGY_TEST
+    expected_outcome: >-
+      Status changes, errors, and recovery are perceivable and operable through assistive technology
+      with governed announcements.
+    negative_outcome: >-
+      A silent status change or an unannounced error under assistive technology is detected and
+      rejected; the negative expectation must be exercised.
+    evidence_tier_required: ASSISTIVE_TECHNOLOGY
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-24
+  - id: BILREQ-V9-001
+    kind: BILINGUAL_SEMANTIC_TEST_REQUIREMENT
+    title: "Bilingual semantic test requirement: Semantic equivalence across statuses and documents"
+    statement: >-
+      Defines a future bilingual semantic test obligation that statuses, actions, errors, denials,
+      notifications, financial concepts, decisions, and documents carry governed semantic
+      equivalence in English and French, held strictly distinct from mere string presence, and
+      asserts no executed test.
+    source_requirement: Volume 3-7 bilingual and semantic-equivalence obligations
+    object_under_test: Governed bilingual concept and document surface
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: BILINGUAL_SEMANTIC_REVIEW
+    expected_outcome: >-
+      Each governed concept, status, action, error, decision, and document conveys the same governed
+      meaning in both official languages.
+    negative_outcome: >-
+      A translated string that diverges in governed meaning is detected and rejected; the negative
+      expectation must be exercised.
+    evidence_tier_required: EXPERT_REVIEW
+    independence_requirement: ACCESSIBILITY_OR_BILINGUAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-25
+  - id: FINREQ-V9-001
+    kind: FINANCIAL_CONTROL_TEST_REQUIREMENT
+    title: "Financial-control test requirement: Reconciliation and activation distinctions"
+    statement: >-
+      Defines a future financial-control test obligation that payment acknowledgement, accounting
+      confirmation, reconciliation, activation, and standing are held distinct and that
+      decision-authority boundaries are preserved, and asserts no executed test.
+    source_requirement: Volume 6-8 financial, accounting, reconciliation, and activation obligations
+    object_under_test: Financial-control and reconciliation service
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: INTEGRATION_TEST
+    expected_outcome: >-
+      Acknowledgement, accounting confirmation, reconciliation, activation authorization, activation
+      execution, and standing each remain distinct governed determinations.
+    negative_outcome: >-
+      An acknowledgement treated as reconciliation, or an approval treated as activation, is detected
+      and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-26
+  - id: RESREQ-V9-001
+    kind: RESILIENCE_TEST_REQUIREMENT
+    title: "Resilience test requirement: Dependency failure, delay, duplication, and interruption"
+    statement: >-
+      Defines a future resilience test obligation for dependency failure, delay, duplication,
+      interruption, backlog, quarantine growth, and stale projections, and asserts no executed test
+      and no recovery-time or recovery-point objective.
+    source_requirement: Volume 5-8 resilience and dependency obligations
+    object_under_test: Governed dependency, outbox, and projection surfaces
+    institutional_invariant_ref: INVAR-V9-003
+    applicable_test_level: RESILIENCE_TEST
+    expected_outcome: >-
+      Under dependency failure, delay, duplication, or interruption the system degrades safely,
+      preserves governed invariants, and never silently loses or duplicates state.
+    negative_outcome: >-
+      A dependency failure that corrupts, duplicates, or silently drops governed state is detected
+      and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: SYSTEM
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: BRREQ-V9-001
+    kind: BACKUP_RESTORE_TEST_REQUIREMENT
+    title: "Backup-restore test requirement: Backup integrity distinct from restoration"
+    statement: >-
+      Defines a future backup-restore test obligation that backup integrity is held strictly
+      distinct from demonstrated restoration, and asserts no executed test and no recovery result.
+    source_requirement: Volume 5-8 backup and restoration obligations
+    object_under_test: Backup and restoration procedure
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: BACKUP_RESTORE_TEST
+    expected_outcome: >-
+      A restoration from backup reproduces the governed authoritative state; backup completion alone
+      is never treated as restorability.
+    negative_outcome: >-
+      A completed backup that cannot be restored, or a restore that diverges from authoritative
+      state, is detected and rejected; the negative expectation must be exercised.
+    evidence_tier_required: OPERATIONAL_EXERCISE
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: RCVREQ-V9-001
+    kind: RECOVERY_EXERCISE_REQUIREMENT
+    title: "Recovery exercise requirement: Restoration distinct from recovery and reconciliation"
+    statement: >-
+      Defines a future recovery exercise obligation that restoration is held distinct from service
+      recovery and business reconciliation, and that recovery includes authoritative-state and
+      outstanding-obligation reconciliation, and asserts no executed exercise and no recovery result.
+    source_requirement: Volume 5-8 recovery and continuity obligations
+    object_under_test: Recovery and reconciliation procedure
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: RECOVERY_EXERCISE
+    expected_outcome: >-
+      Recovery restores service, reconciles authoritative state, and reconciles outstanding
+      obligations; restoration alone is never treated as recovery.
+    negative_outcome: >-
+      A restoration treated as recovery without reconciling authoritative state and outstanding
+      obligations is detected and rejected; the negative expectation must be exercised.
+    evidence_tier_required: OPERATIONAL_EXERCISE
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: OBSREQ-V9-001
+    kind: OBSERVABILITY_TEST_REQUIREMENT
+    title: "Observability test requirement: Structured audit, correlation, and privacy-safe diagnostics"
+    statement: >-
+      Defines a future observability test obligation for structured audit evidence, correlation and
+      causation, security signals, and privacy-safe diagnostics, held strictly distinct from
+      incident handling, and asserts no executed test.
+    source_requirement: Volume 5-8 observability and audit obligations
+    object_under_test: Governed audit, tracing, and monitoring surface
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: OBSERVABILITY_TEST
+    expected_outcome: >-
+      Governed events emit structured audit evidence with correlation and causation and privacy-safe
+      diagnostics; emission is never treated as detection or handling.
+    negative_outcome: >-
+      A governed event that emits no audit evidence, or leaks restricted fields in diagnostics, is
+      detected and rejected; the negative expectation must be exercised.
+    evidence_tier_required: SYSTEM
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: IRREQ-V9-001
+    kind: INCIDENT_RESPONSE_TEST_REQUIREMENT
+    title: "Incident-response test requirement: Detection, declaration, containment, and reconciliation"
+    statement: >-
+      Defines a future incident-response test obligation that telemetry, alerts, incident detection,
+      declaration, investigation, containment, recovery, and post-incident reconciliation are held
+      distinct, and asserts no executed test.
+    source_requirement: Volume 5-8 incident detection and response obligations
+    object_under_test: Incident-response procedure
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: OPERATIONAL_EXERCISE
+    expected_outcome: >-
+      An incident is detected, declared, investigated, contained, recovered, and reconciled through
+      distinct governed stages with evidence at each stage.
+    negative_outcome: >-
+      Telemetry treated as detection, or containment treated as reconciliation, is detected and
+      rejected; the negative expectation must be exercised.
+    evidence_tier_required: OPERATIONAL_EXERCISE
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: DEPREQ-V9-001
+    kind: DEPLOYMENT_PATH_TEST_REQUIREMENT
+    title: "Deployment-path test requirement: Configuration, secrets, composition, and rollback"
+    statement: >-
+      Defines a future deployment-path test obligation for configuration completeness, secret and
+      entry-point dependencies, composition evidence, and rollback, held strictly distinct from a
+      successful build, and asserts no executed test.
+    source_requirement: Volume 5-8 deployment and configuration obligations
+    object_under_test: Deployment path and production composition
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: DEPLOYMENT_PATH_TEST
+    expected_outcome: >-
+      A validated deployment path composes the required configuration, secrets, and entry points and
+      supports governed rollback; a successful build alone is never treated as a valid path.
+    negative_outcome: >-
+      A successful build with a missing configuration or secret dependency, or without rollback
+      evidence, is detected and fails closed; the negative expectation must be exercised.
+    evidence_tier_required: PRODUCTION_PATH
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: PCREQ-V9-001
+    kind: PROVIDER_CONTINUITY_TEST_REQUIREMENT
+    title: "Provider-continuity test requirement: Substitution, return, deletion, and exit"
+    statement: >-
+      Defines a future provider-continuity test obligation for provider incidents, continuity,
+      substitution, portability, data return, deletion evidence, residual copies, backups,
+      reconciliation, and exit acceptance, held strictly distinct from provider certification and
+      end-to-end assurance, and asserts no executed test.
+    source_requirement: Volume 6-8 provider, continuity, substitution, and exit obligations
+    object_under_test: Provider-continuity and exit procedure
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: INTEGRATION_TEST
+    expected_outcome: >-
+      Provider substitution, data return, deletion, residual-copy handling, and reconciliation are
+      each demonstrated with governed evidence at exit; termination alone is never treated as
+      deletion.
+    negative_outcome: >-
+      A contract termination treated as data returned and deleted without reconciliation evidence is
+      detected and rejected; the negative expectation must be exercised.
+    evidence_tier_required: INTEGRATION
+    independence_requirement: OPERATIONAL_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-29
+  - id: IAREQ-V9-001
+    kind: INDEPENDENT_ASSURANCE_REQUIREMENT
+    title: "Independent-assurance requirement: Independence and acceptance controls"
+    statement: >-
+      Defines a future independent-assurance obligation that cross-cutting assurance evidence is
+      subject to independence and acceptance controls proportionate to risk, and asserts no executed
+      assurance and no acceptance.
+    source_requirement: Volume 9 governance charter independence and acceptance obligations
+    object_under_test: Independent-assurance and acceptance control
+    institutional_invariant_ref: INVAR-V9-008
+    applicable_test_level: INDEPENDENT_ASSURANCE
+    expected_outcome: >-
+      High-risk assurance evidence is reviewed and accepted with the required independence; author
+      self-check is never treated as independent assurance.
+    negative_outcome: >-
+      An acceptance claimed without the required independence or evidence is detected and fails
+      closed; the negative expectation must be exercised.
+    evidence_tier_required: INDEPENDENT_ASSURANCE
+    independence_requirement: INDEPENDENT_ASSURANCE
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30
+  - id: DENY-V9-003
+    kind: DENIAL_TEST_SCENARIO
+    title: "Denial scenario: Service identity without resolved policy fails closed"
+    statement: >-
+      A denial scenario in which a service identity acts without a resolved authorization policy or
+      authority context; the request must be denied and fail closed rather than proceed on
+      assumption.
+    actor_or_service: Service identity acting without resolved authorization policy
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Governed privileged action
+    lifecycle_state_context: Under review
+    scenario_disposition: DENIED_FAIL_CLOSED
+    evidence_tier_required: INTEGRATION
+    expected_result_oracle_ref: ORACLE-V9-008
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-22
+  - id: NEG-V9-002
+    kind: NEGATIVE_TEST_SCENARIO
+    title: "Negative scenario: Over-collecting export rejected"
+    statement: >-
+      A negative scenario in which an export requests more than the minimum-necessary fields; the
+      over-collection must be detected and rejected. The negative expectation must be exercised.
+    actor_or_service: Authorized reviewer requesting an export
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Restricted evidence export
+    lifecycle_state_context: Under review
+    scenario_disposition: NEGATIVE_EXPECTATION_EXERCISED
+    evidence_tier_required: INTEGRATION
+    expected_result_oracle_ref: ORACLE-V9-009
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: DEGR-V9-002
+    kind: DEGRADED_TEST_SCENARIO
+    title: "Degraded scenario: Provider outage degrades safely"
+    statement: >-
+      A degraded scenario in which a downstream provider is unavailable; the system must degrade
+      safely, preserve governed invariants, and never silently lose or duplicate state.
+    actor_or_service: Outbox processor during provider outage
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Provider exchange and outbox
+    lifecycle_state_context: Active
+    scenario_disposition: DEGRADED_SAFE
+    evidence_tier_required: SYSTEM
+    expected_result_oracle_ref: ORACLE-V9-013
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: RECOV-V9-002
+    kind: RECOVERY_TEST_SCENARIO
+    title: "Recovery scenario: Restore then reconcile authoritative state"
+    statement: >-
+      A recovery scenario in which service is restored from backup and then authoritative state and
+      outstanding obligations are reconciled; restoration alone must not be treated as recovery.
+    actor_or_service: Recovery operator following a restoration
+    tenant_context: Single governed tenant (club organization)
+    jurisdiction_context: Home provincial jurisdiction
+    resource_context: Restored governed state and outstanding obligations
+    lifecycle_state_context: Recovery
+    scenario_disposition: RECOVERY_VERIFIED
+    evidence_tier_required: OPERATIONAL_EXERCISE
+    expected_result_oracle_ref: ORACLE-V9-013
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27

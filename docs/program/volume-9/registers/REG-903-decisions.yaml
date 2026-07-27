@@ -203,3 +203,171 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-19
+  - id: ADR-V9-019
+    title: Authentication is not authorization
+    decision: >-
+      Authentication is held strictly distinct from authorization; every security obligation
+      evaluates resource-aware authority independently of identity proof.
+    status: ACCEPTED
+    context: A valid session establishes identity, not the authority to act on a specific resource.
+    consequence: Security testing carries distinct authentication and resource-aware authorization obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-22
+  - id: ADR-V9-020
+    title: Every success path carries a denial counterpart
+    decision: >-
+      Every governed success path in the assurance domains carries an explicit denial or negative
+      counterpart, and missing authority or policy context fails closed.
+    status: ACCEPTED
+    context: A demonstrated success path does not establish that unauthorized paths are refused.
+    consequence: Assurance testing carries denial, negative, and fail-closed scenario obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-22
+  - id: ADR-V9-021
+    title: Privacy testing is not legal compliance
+    decision: >-
+      A privacy test outcome is held strictly distinct from a legal or regulatory compliance
+      determination.
+    status: ACCEPTED
+    context: A passing privacy test does not by itself establish legal or regulatory compliance.
+    consequence: Privacy testing carries a minimization and disclosure obligation, not a compliance claim.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: ADR-V9-022
+    title: Logging and tracing carry the minimum necessary
+    decision: >-
+      Governed logs and traces carry only the minimum-necessary fields, and read access is held
+      distinct from export authority.
+    status: ACCEPTED
+    context: Diagnostics and logs can silently over-collect restricted information.
+    consequence: Privacy testing carries minimum-necessary logging and export-authority obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: ADR-V9-023
+    title: Automated accessibility scanning is incomplete
+    decision: >-
+      Automated accessibility scanning is held strictly distinct from manual inspection, keyboard
+      completion, and assistive-technology evidence.
+    status: ACCEPTED
+    context: An automated scan cannot establish keyboard operability or assistive-technology usability.
+    consequence: Accessibility testing carries distinct static, manual, keyboard, and assistive-technology obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-24
+  - id: ADR-V9-024
+    title: A bilingual string is not semantic equivalence
+    decision: >-
+      The presence of a translated string is held strictly distinct from accurate translation and
+      governed semantic equivalence.
+    status: ACCEPTED
+    context: A present translated string can still diverge in governed meaning.
+    consequence: Bilingual testing carries a semantic-equivalence obligation across statuses, actions, errors, and documents.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-25
+  - id: ADR-V9-025
+    title: Payment acknowledgement is not accounting reconciliation
+    decision: >-
+      Payment acknowledgement is held strictly distinct from accounting confirmation and
+      reconciliation, and approval is held distinct from activation and standing.
+    status: ACCEPTED
+    context: An acknowledgement of receipt does not establish that accounts reconcile.
+    consequence: Financial-control testing carries distinct acknowledgement, reconciliation, and activation obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-26
+  - id: ADR-V9-026
+    title: Backup completion is not restore evidence
+    decision: >-
+      Backup completion is held strictly distinct from demonstrated restorability.
+    status: ACCEPTED
+    context: A completed backup that cannot be restored provides no recovery assurance.
+    consequence: Resilience testing carries a distinct backup-integrity and restoration obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: ADR-V9-027
+    title: Restore is not recovery or reconciliation
+    decision: >-
+      Restoration is held strictly distinct from service recovery and business reconciliation;
+      recovery includes authoritative-state and outstanding-obligation reconciliation.
+    status: ACCEPTED
+    context: A restored dataset does not by itself establish that service and obligations are reconciled.
+    consequence: Recovery testing carries a distinct restoration, recovery, and reconciliation obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: ADR-V9-028
+    title: Telemetry is not incident response
+    decision: >-
+      Telemetry emission is held strictly distinct from alert delivery, incident detection, and
+      incident handling.
+    status: ACCEPTED
+    context: Emitted telemetry does not establish that an incident is detected or handled.
+    consequence: Operational-assurance testing carries distinct observability and incident-response obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: ADR-V9-029
+    title: Build success is not deployment-path evidence
+    decision: >-
+      A successful build is held strictly distinct from a valid deployment path and a functioning
+      production composition.
+    status: ACCEPTED
+    context: A build can succeed while configuration, secrets, or entry points are missing at deployment.
+    consequence: Deployment-path testing carries configuration, secret-dependency, composition, and rollback obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: ADR-V9-030
+    title: Provider certification is not end-to-end assurance
+    decision: >-
+      Provider certification and provider-managed tests are held strictly distinct from end-to-end
+      assurance, and contract termination is held distinct from data returned, deleted, and
+      reconciled.
+    status: ACCEPTED
+    context: A provider certificate does not establish end-to-end behaviour in the governed system.
+    consequence: Provider-assurance testing carries distinct continuity, substitution, return, deletion, and exit obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-29
+  - id: ADR-V9-031
+    title: An exception or waiver is not a passing test
+    decision: >-
+      A governed exception or waiver is held strictly distinct from a passing test and requires an
+      owner, an expiry, and an approval.
+    status: ACCEPTED
+    context: An unresolved exception can be mistaken for demonstrated conformance.
+    consequence: Backlog exceptions and waivers carry owner, expiry, and approval obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30
+  - id: ADR-V9-032
+    title: Operational proof requires environment- and configuration-bound evidence
+    decision: >-
+      Operational and assurance evidence must bind environment, configuration, version, identity,
+      organization, jurisdiction, data, and time to be admissible.
+    status: ACCEPTED
+    context: Evidence detached from its environment and configuration cannot be reproduced or trusted.
+    consequence: Assurance evidence carries an environment- and configuration-binding obligation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30

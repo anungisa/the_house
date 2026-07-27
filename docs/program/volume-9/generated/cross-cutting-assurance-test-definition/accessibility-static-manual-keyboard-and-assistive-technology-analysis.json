@@ -1,0 +1,6 @@
+{
+  "accessibility_static_requirements": 1,
+  "accessibility_manual_requirements": 1,
+  "assistive_technology_requirements": 1,
+  "note": "Automated static analysis, semantic inspection, keyboard completion, focus management, zoom/reflow, screen-reader interaction, status announcements, error recovery, document access, and recovery tasks are catalogued as distinct obligations. Automated scan is distinct from manual inspection, keyboard completion, and assistive-technology completion. No conformance claim is created."
+}

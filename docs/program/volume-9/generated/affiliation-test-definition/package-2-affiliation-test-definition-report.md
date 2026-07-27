@@ -1,6 +1,6 @@
 # Volume 9 Package 2 — Club-Affiliation Test-Definition Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T16:35:18.121Z
+Generated: 2026-07-27T17:20:05.502Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 Package 2 affiliation test-definition corpus. It is not a source of
@@ -27,9 +27,9 @@ Generated: 2026-07-27T16:35:18.121Z
 | migration_coverage_records | 1 |
 | house_p0_coverage_records | 1 |
 | affiliation_test_requirements | 14 |
-| affiliation_test_scenarios | 10 |
-| test_oracles | 7 |
-| evidence_requirements | 3 |
+| affiliation_test_scenarios | 14 |
+| test_oracles | 15 |
+| evidence_requirements | 4 |
 
 ## Requirement coverage by kind
 
@@ -49,15 +49,15 @@ Generated: 2026-07-27T16:35:18.121Z
 
 | Scenario kind | Count |
 | --- | --- |
-| NEGATIVE_TEST_SCENARIO | 1 |
-| DENIAL_TEST_SCENARIO | 2 |
+| NEGATIVE_TEST_SCENARIO | 2 |
+| DENIAL_TEST_SCENARIO | 3 |
 | CONFLICT_TEST_SCENARIO | 1 |
 | STALE_STATE_TEST_SCENARIO | 1 |
-| DEGRADED_TEST_SCENARIO | 1 |
+| DEGRADED_TEST_SCENARIO | 2 |
 | INTERRUPTION_TEST_SCENARIO | 1 |
 | DUPLICATE_TEST_SCENARIO | 1 |
 | REPLAY_TEST_SCENARIO | 1 |
-| RECOVERY_TEST_SCENARIO | 1 |
+| RECOVERY_TEST_SCENARIO | 2 |
 
 ## Coverage backlog signals (non-blocking)
 

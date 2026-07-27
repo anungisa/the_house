@@ -1,0 +1,6 @@
+{
+  "security_requirements": 1,
+  "denial_scenarios": 3,
+  "negative_scenarios": 2,
+  "note": "Authentication, account state, resource-aware authorization, organization/jurisdiction isolation, delegation, assignment, service-identity, privileged-action, and fail-closed obligations are catalogued. Authentication success is never the authorization oracle."
+}

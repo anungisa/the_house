@@ -17,7 +17,7 @@
         "additionalProperties": false,
         "required": ["id", "kind", "title", "statement", "validation_status", "authorizes_implementation", "implementation_status", "chapter_ref"],
         "properties": {
-          "id": { "type": "string", "pattern": "^(TESTREQ|SCENARIO|CASE|ORACLE|ENV|DATASET|EVID|RESULT|FREQ|WREQ|CREQ|EREQ|WHREQ|PREQ|DQREQ|DBREQ|MREQ|NEG|DENY|CONF|STALE|DEGR|INTR|DUP|REPLAY|RECOV)-V9-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(TESTREQ|SCENARIO|CASE|ORACLE|ENV|DATASET|EVID|RESULT|FREQ|WREQ|CREQ|EREQ|WHREQ|PREQ|DQREQ|DBREQ|MREQ|NEG|DENY|CONF|STALE|DEGR|INTR|DUP|REPLAY|RECOV|SECREQ|PRIVREQ|RECREQ|ACCSREQ|ACCMREQ|ATREQ|BILREQ|FINREQ|RESREQ|BRREQ|RCVREQ|OBSREQ|IRREQ|DEPREQ|PCREQ|IAREQ)-V9-[0-9]{3}$" },
           "kind": { "$ref": "common.schema.json#/definitions/testModelKind" },
           "title": { "type": "string" },
           "statement": { "type": "string" },

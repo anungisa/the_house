@@ -1,0 +1,6 @@
+{
+  "provider_continuity_requirements": 1,
+  "independent_assurance_requirements": 1,
+  "degraded_scenarios": 2,
+  "note": "Provider authentication/integrity, subcontractors, incidents, continuity, degraded service, substitution, portability, data return, deletion evidence, residual copies, backups, reconciliation, termination, and exit acceptance are catalogued. Provider certification is distinct from end-to-end assurance; contract termination is distinct from data returned, deleted, and reconciled; provider test result is distinct from operational evidence."
+}

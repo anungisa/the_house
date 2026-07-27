@@ -13,6 +13,8 @@ import { run as runProvenance } from './provenance-integrity-volume-9.mjs';
 import { run as runGate } from './gate-g1-volume-9.mjs';
 import { run as runAffiliation } from './affiliation-test-definition-volume-9.mjs';
 import { run as runGate2 } from './gate-g2-volume-9.mjs';
+import { run as runAssurance } from './cross-cutting-assurance-test-definition-volume-9.mjs';
+import { run as runGate3 } from './gate-g3-volume-9.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -20,9 +22,11 @@ export function collectFindings(ctx) {
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Quality & master-test-governance-foundation coverage': runFoundation(ctx),
     'Affiliation test-definition coverage': runAffiliation(ctx),
+    'Cross-cutting assurance test-definition coverage': runAssurance(ctx),
     'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V9-G1 readiness': runGate(ctx),
-    'Gate V9-G2 readiness': runGate2(ctx)
+    'Gate V9-G2 readiness': runGate2(ctx),
+    'Gate V9-G3 readiness': runGate3(ctx)
   };
 }
 

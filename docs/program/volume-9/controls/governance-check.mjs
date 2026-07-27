@@ -14,6 +14,8 @@ import { generate as generateProvenance } from './provenance-integrity-volume-9.
 import { generate as generateGate } from './gate-g1-volume-9.mjs';
 import { generate as generateAffiliation } from './affiliation-test-definition-volume-9.mjs';
 import { generate as generateGate2 } from './gate-g2-volume-9.mjs';
+import { generate as generateAssurance } from './cross-cutting-assurance-test-definition-volume-9.mjs';
+import { generate as generateGate3 } from './gate-g3-volume-9.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -39,6 +41,8 @@ generateProvenance(ctx);
 generateGate(ctx);
 generateAffiliation(ctx);
 generateGate2(ctx);
+generateAssurance(ctx);
+generateGate3(ctx);
 
 console.log('\n=== Volume 9 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

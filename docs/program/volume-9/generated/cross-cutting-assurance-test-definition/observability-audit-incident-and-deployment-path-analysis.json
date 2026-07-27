@@ -1,0 +1,6 @@
+{
+  "observability_requirements": 1,
+  "incident_response_requirements": 1,
+  "deployment_path_requirements": 1,
+  "note": "Structured audit evidence, correlation/causation, security signals, privacy-safe diagnostics, tracing, outbox/consumer monitoring, reconciliation monitoring, provider incident signals, alert evidence, incident declaration/investigation/containment/recovery, post-incident reconciliation, deployment-path validation, configuration completeness, secret/entry-point dependencies, composition evidence, and rollback are catalogued. Telemetry emitted is distinct from alert delivered, incident detected, and incident handled; successful build is distinct from valid deployment path and functioning production composition."
+}

@@ -3,8 +3,8 @@
   "test_requirements": 4,
   "test_scenarios": 3,
   "test_cases": 3,
-  "test_oracles": 7,
-  "evidence_requirements": 3,
+  "test_oracles": 15,
+  "evidence_requirements": 4,
   "result_models": 2,
   "cases_without_oracle": [],
   "oracles_without_authoritative_basis": []

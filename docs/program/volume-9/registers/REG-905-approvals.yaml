@@ -567,3 +567,173 @@ records:
         Not applicable. Documentary effectiveness is distinct from operational
         effectiveness; Package 2 authorizes no operation.
     approved_at: null
+  - id: APP-V9-035
+    artifact_id: V9-21
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-036
+    artifact_id: V9-22
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-037
+    artifact_id: V9-23
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-038
+    artifact_id: V9-24
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-039
+    artifact_id: V9-25
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-040
+    artifact_id: V9-26
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-041
+    artifact_id: V9-27
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-042
+    artifact_id: V9-28
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-043
+    artifact_id: V9-29
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-044
+    artifact_id: V9-30
+    approver_role: Accountable Program Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V9-045
+    artifact_id: V9-E
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: >-
+      Package 4 is authorized to a bounded scope only: AUTHORIZED FOR INTEGRATED
+      MASTER-TEST BASELINE, COVERAGE, ACCEPTANCE, RELEASE-EVIDENCE HANDOFF, AND
+      VOLUME 9 CLOSURE DEFINITION ONLY. Package 4 remains test-definition and
+      definitional only. Executable tests, test execution, test environments, test
+      data, assurance services, implementation, procurement, pilot, rollout,
+      release, and launch are NOT AUTHORIZED. Any expansion beyond that bounded
+      scope requires a separate, explicit authorization.
+    amendment_process: >-
+      Amendments to the frozen Package 3 corpus are made only through a recorded,
+      additive amendment; the frozen chapters and registers are not reopened.
+    closure_binding:
+      closure_artifact: V9-E
+      gate: GATE-V9-G3
+      freeze_artifact: PACKAGE-9-3
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      freeze_commit: 2e7332b
+      gate_effective_commit: 2e7332b
+    effective_date_clarification:
+      gate: GATE-V9-G3
+      documentary_definition_effective_commit: 2e7332b
+      implementation_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from implementation
+        effectiveness; Package 3 authorizes no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from operational
+        effectiveness; Package 3 authorizes no operation.
+    approved_at: null
+  - id: APP-V9-046
+    artifact_id: GATE-V9-G3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    gate_disposition: SECURITY_PRIVACY_ACCESSIBILITY_BILINGUAL_FINANCIAL_RECORDS_RESILIENCE_RECOVERY_AND_OPERATIONAL_ASSURANCE_TEST_DEFINITION_READY
+    requires_freeze_artifact: PACKAGE-9-3
+    base_commit: ef104f0
+    effective_commit: 2e7332b
+    gate_effective_commit: 2e7332b
+    approved_at: null
+  - id: APP-V9-047
+    artifact_id: PACKAGE-9-3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    frozen: true
+    frozen_artifacts:
+      - id: REG-900
+        version: 1.0.0
+      - id: REG-901
+        version: 1.0.0
+      - id: REG-902
+        version: 1.0.0
+      - id: REG-903
+        version: 1.0.0
+      - id: REG-904
+        version: 1.0.0
+      - id: REG-905
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-9-3
+      substantive_authoring_commit: b8d35cc
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      gate_effective_commit: 2e7332b
+      freeze_commit: 2e7332b
+      provenance_binding_commit: PENDING_V9-F_AMENDMENT
+      required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      sequence_disposition: CONFORMANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      source_baseline_commit: ef104f0
+      inherited_baseline_tag: central-registration-volume-8-v1.0.0
+      authoring_commit: b8d35cc
+      closure_authored_commit: 2e7332b
+      closure_effective_commit: 2e7332b
+      closure_freeze_commit: 2e7332b
+      freeze_commit: 2e7332b
+      gate_effective_commit: 2e7332b
+      effective_commit: 2e7332b
+      provenance_binding_commit: PENDING_V9-F_AMENDMENT
+      note: >-
+        The original-package-merge and post-merge provenance-amendment commits are
+        recorded separately in the V9-F provenance amendment and the V9-F-1
+        provenance-role classification. Volume 9 is not tagged after Package 3.
+    approved_at: null

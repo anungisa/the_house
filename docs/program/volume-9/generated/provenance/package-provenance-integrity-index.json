@@ -1,0 +1,44 @@
+{
+  "generated": "2026-07-27T17:20:05.480Z",
+  "authoritative_record_count": 2,
+  "packages": [
+    {
+      "package": "PACKAGE-9-1",
+      "source_record": "APP-V9-018",
+      "conditions_total": 12,
+      "conditions_satisfied": 12,
+      "all_conditions_satisfied": true,
+      "failed_conditions": [],
+      "roles": {
+        "sourceBaseline": "25ae779",
+        "authoring": "c8337a2",
+        "closureFreeze": "287541d",
+        "binding": "e29e6e0",
+        "originalMerge": "dcd7787",
+        "amendmentAuthoring": "fa4475f",
+        "amendmentMerge": "9b98752",
+        "inheritedTag": "central-registration-volume-8-v1.0.0"
+      }
+    },
+    {
+      "package": "PACKAGE-9-2",
+      "source_record": "APP-V9-034",
+      "conditions_total": 12,
+      "conditions_satisfied": 12,
+      "all_conditions_satisfied": true,
+      "failed_conditions": [],
+      "roles": {
+        "sourceBaseline": "624650e",
+        "authoring": "933bd44",
+        "closureFreeze": "375ed50",
+        "binding": "ece3d7e",
+        "originalMerge": "8ce710a",
+        "amendmentAuthoring": "753416f",
+        "amendmentMerge": "4bb7475",
+        "inheritedTag": "central-registration-volume-8-v1.0.0"
+      }
+    }
+  ],
+  "all_packages_satisfied": true,
+  "note": "Package-indexed projection of every authoritative Package 1-N provenance-role-classification record. Non-authoritative; confers no ratification and authorizes no implementation."
+}

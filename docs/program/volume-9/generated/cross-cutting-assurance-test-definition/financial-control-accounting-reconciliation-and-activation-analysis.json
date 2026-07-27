@@ -1,0 +1,6 @@
+{
+  "financial_control_requirements": 1,
+  "duplicate_scenarios": 1,
+  "stale_state_scenarios": 1,
+  "note": "Obligations, fees, exemptions/waivers, provider acknowledgements, accounting confirmation, duplicates, delays, disputes/reversals, reconciliation mismatch and resolution, activation authorization/execution, and standing are catalogued. Payment acknowledgement is distinct from accounting confirmation and reconciliation; approval is distinct from activation authorization, execution, and standing."
+}

@@ -1,0 +1,9 @@
+{
+  "resilience_requirements": 1,
+  "backup_restore_requirements": 1,
+  "recovery_exercise_requirements": 1,
+  "degraded_scenarios": 2,
+  "interruption_scenarios": 1,
+  "recovery_scenarios": 2,
+  "note": "Dependency unavailability, provider outage, database interruption, delayed/duplicated delivery, outbox backlog, quarantine growth, interrupted uploads, partial batch failure, stale projections, backup integrity, restoration, recovery reconciliation, and continuity are catalogued. Backup completed is distinct from backup restorable; restore completed is distinct from service recovered and data reconciled. No recovery-time or recovery-point target is established."
+}

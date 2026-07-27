@@ -1,0 +1,72 @@
+{
+  "inherited_baseline": "central-registration-volume-8-v1.0.0",
+  "assurance_coverage_records": 9,
+  "coverage_by_kind": {
+    "SECURITY_TEST_COVERAGE": 1,
+    "PRIVACY_RECORDS_TEST_COVERAGE": 1,
+    "ACCESSIBILITY_TEST_COVERAGE": 1,
+    "BILINGUAL_SEMANTIC_TEST_COVERAGE": 1,
+    "FINANCIAL_CONTROL_TEST_COVERAGE": 1,
+    "RESILIENCE_RECOVERY_TEST_COVERAGE": 1,
+    "OPERATIONAL_ASSURANCE_TEST_COVERAGE": 1,
+    "PROVIDER_ASSURANCE_TEST_COVERAGE": 1,
+    "HOUSE_P0_ASSURANCE_COVERAGE": 1
+  },
+  "coverage": [
+    {
+      "id": "SECCOV-V9-001",
+      "kind": "SECURITY_TEST_COVERAGE",
+      "dimension": "Identity, authorization, isolation, and privilege",
+      "source": "Volume 8 identity, authorization, and tenancy specifications"
+    },
+    {
+      "id": "PRIVCOV-V9-001",
+      "kind": "PRIVACY_RECORDS_TEST_COVERAGE",
+      "dimension": "Privacy minimization, evidence, logging, export, and records disposition",
+      "source": "Volume 4-8 privacy and records-retention specifications"
+    },
+    {
+      "id": "ACCCOV-V9-001",
+      "kind": "ACCESSIBILITY_TEST_COVERAGE",
+      "dimension": "Static, manual, keyboard, and assistive-technology accessibility",
+      "source": "Volume 7 accessibility specifications"
+    },
+    {
+      "id": "BILCOV-V9-001",
+      "kind": "BILINGUAL_SEMANTIC_TEST_COVERAGE",
+      "dimension": "Bilingual semantic equivalence across statuses, actions, errors, and documents",
+      "source": "Volume 3-7 bilingual and official-languages specifications"
+    },
+    {
+      "id": "FINCOV-V9-001",
+      "kind": "FINANCIAL_CONTROL_TEST_COVERAGE",
+      "dimension": "Acknowledgement, accounting, reconciliation, activation, and standing",
+      "source": "Volume 6-8 financial and accounting specifications"
+    },
+    {
+      "id": "RESCOV-V9-001",
+      "kind": "RESILIENCE_RECOVERY_TEST_COVERAGE",
+      "dimension": "Dependency, backup, restore, recovery, and continuity",
+      "source": "Volume 5-8 resilience and recovery specifications"
+    },
+    {
+      "id": "OPSCOV-V9-001",
+      "kind": "OPERATIONAL_ASSURANCE_TEST_COVERAGE",
+      "dimension": "Observability, incident response, and deployment-path assurance",
+      "source": "Volume 5-8 observability and operations specifications"
+    },
+    {
+      "id": "PROVCOV-V9-001",
+      "kind": "PROVIDER_ASSURANCE_TEST_COVERAGE",
+      "dimension": "Provider continuity, substitution, return, deletion, and exit",
+      "source": "Volume 6-8 provider and continuity specifications"
+    },
+    {
+      "id": "P0ACOV-V9-001",
+      "kind": "HOUSE_P0_ASSURANCE_COVERAGE",
+      "dimension": "House priority-zero cross-cutting assurance obligations",
+      "source": "House P0 cross-cutting assurance specifications in Volumes 4-8"
+    }
+  ],
+  "note": "Each cross-cutting assurance domain is decomposed into a governed coverage record naming its authoritative obligation, protected asset, evidence standard, and future gate. Control definition is held distinct from control implementation, operation, and effectiveness; no execution is authorized."
+}
