@@ -1,0 +1,241 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "Volume 9 common definitions",
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registerStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentId": {
+      "type": "string",
+      "pattern": "^V9-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?$"
+    },
+    "v9GateId": {
+      "type": "string",
+      "pattern": "^V9-G[0-9]$"
+    },
+    "futureGateId": {
+      "type": "string",
+      "pattern": "^(V9-G[0-9]|V1[012]-G[0-9]|EXEC-MCG)$"
+    },
+    "evidenceLabel": {
+      "type": ["string", "null"],
+      "enum": [
+        "AUTHOR-VERIFIED",
+        "SELF-ATTESTED",
+        "SELF-ATTESTED / AUTHOR-VERIFIED",
+        "DOMAIN-VALIDATED",
+        "PEER-REVIEWED",
+        "AUTOMATED-EVIDENCE",
+        "INDEPENDENTLY-ASSESSED",
+        "EXECUTIVE-ACCEPTED",
+        "PRODUCTION-PROVEN",
+        null
+      ]
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ].*)?$"
+    },
+    "implementationStatus": {
+      "type": "string",
+      "enum": ["NOT_IMPLEMENTED_OR_NOT_PROVEN"]
+    },
+    "authorityDomain": {
+      "type": "string",
+      "enum": ["House", "CurlingCanada", "Button", "External", "Internal", "Provider", "Staff", "Shared", "Independent", "Neither"]
+    },
+    "qualityAttributeKind": {
+      "type": "string",
+      "enum": [
+        "QUALITY_ATTRIBUTE",
+        "TEST_OBJECT",
+        "INSTITUTIONAL_INVARIANT",
+        "COVERAGE_RECORD",
+        "TEST_LEVEL",
+        "EVIDENCE_TIER",
+        "INDEPENDENCE_LEVEL",
+        "CONTROL"
+      ]
+    },
+    "testModelKind": {
+      "type": "string",
+      "enum": [
+        "TEST_REQUIREMENT",
+        "TEST_SCENARIO",
+        "TEST_CASE",
+        "TEST_ORACLE",
+        "TEST_ENVIRONMENT_CLASS",
+        "TEST_DATA_REQUIREMENT",
+        "TEST_EVIDENCE_REQUIREMENT",
+        "TEST_RESULT_MODEL"
+      ]
+    },
+    "backlogKind": {
+      "type": "string",
+      "enum": ["ASM", "RISK", "EXC", "DEFECT", "WAIVER", "REMEDIATION", "RETEST", "REGRESSION", "TEST", "READINESS"]
+    },
+    "testLevel": {
+      "type": "string",
+      "enum": [
+        "DOCUMENT_REVIEW",
+        "SCHEMA_VALIDATION",
+        "STATIC_ANALYSIS",
+        "UNIT_TEST",
+        "COMPONENT_TEST",
+        "APPLICATION_SERVICE_TEST",
+        "DOMAIN_BEHAVIOUR_TEST",
+        "DATABASE_BEHAVIOUR_TEST",
+        "CONTRACT_TEST",
+        "EVENT_CONTRACT_TEST",
+        "PROVIDER_CONTRACT_TEST",
+        "INTEGRATION_TEST",
+        "SYSTEM_TEST",
+        "END_TO_END_TEST",
+        "WORKFLOW_TEST",
+        "DATA_QUALITY_TEST",
+        "MIGRATION_TEST",
+        "SECURITY_TEST",
+        "PRIVACY_TEST",
+        "ACCESSIBILITY_STATIC_TEST",
+        "ACCESSIBILITY_MANUAL_TEST",
+        "ASSISTIVE_TECHNOLOGY_TEST",
+        "BILINGUAL_SEMANTIC_REVIEW",
+        "PERFORMANCE_TEST",
+        "CAPACITY_TEST",
+        "RESILIENCE_TEST",
+        "BACKUP_RESTORE_TEST",
+        "RECOVERY_EXERCISE",
+        "OBSERVABILITY_TEST",
+        "DEPLOYMENT_PATH_TEST",
+        "OPERATIONAL_EXERCISE",
+        "USER_ACCEPTANCE_TEST",
+        "INDEPENDENT_ASSURANCE",
+        "RELEASE_ACCEPTANCE",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "evidenceTier": {
+      "type": "string",
+      "enum": [
+        "DOCUMENTARY_DEFINITION",
+        "EXPERT_REVIEW",
+        "STATIC_ANALYSIS",
+        "UNIT_COMPONENT",
+        "CONTRACT",
+        "INTEGRATION",
+        "SYSTEM",
+        "END_TO_END",
+        "MANUAL_VERIFICATION",
+        "ASSISTIVE_TECHNOLOGY",
+        "MIGRATION",
+        "OPERATIONAL_EXERCISE",
+        "PRODUCTION_PATH",
+        "INDEPENDENT_ASSURANCE",
+        "EXECUTIVE_ACCEPTANCE"
+      ]
+    },
+    "independenceLevel": {
+      "type": "string",
+      "enum": [
+        "AUTHOR_SELF_CHECK",
+        "PEER_REVIEW",
+        "DOMAIN_REVIEW",
+        "SECURITY_OR_PRIVACY_REVIEW",
+        "ACCESSIBILITY_OR_BILINGUAL_REVIEW",
+        "OPERATIONAL_REVIEW",
+        "INDEPENDENT_ASSURANCE",
+        "EXECUTIVE_ACCEPTANCE"
+      ]
+    },
+    "environmentClass": {
+      "type": "string",
+      "enum": [
+        "LOCAL_DEVELOPMENT",
+        "COMPONENT_TEST",
+        "INTEGRATION_TEST",
+        "SYSTEM_TEST",
+        "PRE_PRODUCTION",
+        "PRODUCTION_PATH_VALIDATION",
+        "RECOVERY_EXERCISE",
+        "INDEPENDENT_ASSURANCE"
+      ]
+    },
+    "dataClassification": {
+      "type": "string",
+      "enum": [
+        "SYNTHETIC",
+        "ANONYMIZED",
+        "PSEUDONYMIZED",
+        "MASKED",
+        "REAL_PERSONAL_INFORMATION",
+        "REAL_FINANCIAL",
+        "REAL_RESTRICTED_EVIDENCE",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "resultDisposition": {
+      "type": "string",
+      "enum": [
+        "NOT_EXECUTED",
+        "PASSED",
+        "FAILED",
+        "INCONCLUSIVE",
+        "BLOCKED",
+        "ERROR",
+        "WAIVED",
+        "ACCEPTED_WITH_EXCEPTION"
+      ]
+    },
+    "defectState": {
+      "type": "string",
+      "enum": [
+        "DEFECT",
+        "OBSERVATION",
+        "EVIDENCE_GAP",
+        "TEST_BLOCKER",
+        "ENVIRONMENT_FAILURE",
+        "DATA_FAILURE",
+        "DEPENDENCY_FAILURE",
+        "INCONCLUSIVE_RESULT",
+        "ACCEPTED_EXCEPTION",
+        "TIME_BOUNDED_WAIVER",
+        "REMEDIATION",
+        "RETEST",
+        "REGRESSION",
+        "CLOSURE",
+        "REOPENED"
+      ]
+    },
+    "readinessDisposition": {
+      "type": "string",
+      "enum": [
+        "CLOSED_WITH_EVIDENCE",
+        "ACCEPTED_AS_VOLUME_10_INPUT",
+        "ACCEPTED_AS_VOLUME_11_INPUT",
+        "ACCEPTED_AS_VOLUME_12_INPUT",
+        "TEST_DEFINITION_PENDING",
+        "TEST_EXECUTION_EVIDENCE_REQUIRED",
+        "ENVIRONMENT_PROVISIONING_PENDING",
+        "TEST_DATA_GOVERNANCE_PENDING",
+        "INDEPENDENT_ASSURANCE_REQUIRED",
+        "MIGRATION_EVIDENCE_REQUIRED",
+        "OPERATIONAL_PROOF_REQUIRED",
+        "DEFECT_REQUIRING_AMENDMENT"
+      ]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": ["DEFINED", "CONSTRAINED", "ASSUMED", "PENDING_VALIDATION", "DEFERRED"]
+    }
+  }
+}

@@ -1,0 +1,538 @@
+register_id: REG-902
+name: Volume 9 Test Requirements, Scenarios, Cases, Oracles, Evidence, and Results
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: TESTREQ-V9-001
+    kind: TEST_REQUIREMENT
+    title: "Test requirement: Tenant isolation under governed read"
+    statement: >-
+      Defines a future test obligation for "Tenant isolation under governed read"; names the
+      governed invariant it protects without asserting any executed test.
+    source_requirement: Institutional invariant INVAR-V9-001
+    object_under_test: OBJECT-V9-004
+    institutional_invariant_ref: INVAR-V9-001
+    applicable_test_level: SECURITY_TEST
+    expected_outcome: >-
+      The governed behaviour upholds tenant isolation under governed read under the specified
+      conditions.
+    negative_outcome: >-
+      A violation of tenant isolation under governed read is detected and fails closed; the negative
+      expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: SECURITY_OR_PRIVACY_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: TESTREQ-V9-002
+    kind: TEST_REQUIREMENT
+    title: "Test requirement: Governed-state mutation only through the kernel"
+    statement: >-
+      Defines a future test obligation for "Governed-state mutation only through the kernel"; names
+      the governed invariant it protects without asserting any executed test.
+    source_requirement: Institutional invariant INVAR-V9-002
+    object_under_test: OBJECT-V9-001
+    institutional_invariant_ref: INVAR-V9-002
+    applicable_test_level: DOMAIN_BEHAVIOUR_TEST
+    expected_outcome: >-
+      The governed behaviour upholds governed-state mutation only through the kernel under the
+      specified conditions.
+    negative_outcome: >-
+      A violation of governed-state mutation only through the kernel is detected and fails closed;
+      the negative expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: TESTREQ-V9-003
+    kind: TEST_REQUIREMENT
+    title: "Test requirement: Unknown transition fails closed"
+    statement: >-
+      Defines a future test obligation for "Unknown transition fails closed"; names the governed
+      invariant it protects without asserting any executed test.
+    source_requirement: Institutional invariant INVAR-V9-003
+    object_under_test: OBJECT-V9-001
+    institutional_invariant_ref: INVAR-V9-003
+    applicable_test_level: DOMAIN_BEHAVIOUR_TEST
+    expected_outcome: The governed behaviour upholds unknown transition fails closed under the specified conditions.
+    negative_outcome: >-
+      A violation of unknown transition fails closed is detected and fails closed; the negative
+      expectation must be exercised.
+    evidence_tier_required: CONTRACT
+    independence_requirement: DOMAIN_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: TESTREQ-V9-004
+    kind: TEST_REQUIREMENT
+    title: "Test requirement: Unknown guard blocks transition"
+    statement: >-
+      Defines a future test obligation for "Unknown guard blocks transition"; names the governed
+      invariant it protects without asserting any executed test.
+    source_requirement: Institutional invariant INVAR-V9-004
+    object_under_test: OBJECT-V9-002
+    institutional_invariant_ref: INVAR-V9-004
+    applicable_test_level: COMPONENT_TEST
+    expected_outcome: The governed behaviour upholds unknown guard blocks transition under the specified conditions.
+    negative_outcome: >-
+      A violation of unknown guard blocks transition is detected and fails closed; the negative
+      expectation must be exercised.
+    evidence_tier_required: UNIT_COMPONENT
+    independence_requirement: PEER_REVIEW
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: SCENARIO-V9-001
+    kind: TEST_SCENARIO
+    title: "Test scenario: Affiliation reviewer approves within jurisdiction"
+    statement: >-
+      Defines the governed context of a future test scenario for "Affiliation reviewer approves
+      within jurisdiction"; no test is asserted to exist or have run.
+    actor_or_service: Reviewer (staff actor)
+    tenant_context: Single provincial member tenant
+    jurisdiction_context: Ontario provincial jurisdiction
+    resource_context: AffiliationApplication resource
+    lifecycle_state_context: under_review
+    scenario_disposition: POSITIVE_PATH
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: SCENARIO-V9-002
+    kind: TEST_SCENARIO
+    title: "Test scenario: Cross-tenant read is denied"
+    statement: >-
+      Defines the governed context of a future test scenario for "Cross-tenant read is denied"; no
+      test is asserted to exist or have run.
+    actor_or_service: Reviewer of tenant A
+    tenant_context: Two distinct member tenants
+    jurisdiction_context: Federal jurisdiction
+    resource_context: AffiliationApplication of tenant B
+    lifecycle_state_context: submitted
+    scenario_disposition: NEGATIVE_PATH
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: SCENARIO-V9-003
+    kind: TEST_SCENARIO
+    title: "Test scenario: Unauthorized actor cannot approve"
+    statement: >-
+      Defines the governed context of a future test scenario for "Unauthorized actor cannot
+      approve"; no test is asserted to exist or have run.
+    actor_or_service: Actor without reviewer scope
+    tenant_context: Single member tenant
+    jurisdiction_context: Quebec provincial jurisdiction
+    resource_context: AffiliationApplication resource
+    lifecycle_state_context: under_review
+    scenario_disposition: NEGATIVE_PATH
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: CASE-V9-001
+    kind: TEST_CASE
+    title: "Test case: Approve transition writes state, journal, audit, and evidence"
+    statement: >-
+      Defines the shape of a future test case for "Approve transition writes state, journal, audit,
+      and evidence"; contains no executable code and asserts no result.
+    preconditions:
+      - Application is in under_review
+      - Actor holds reviewer scope
+      - Required documents are present
+    action_or_stimulus: Reviewer requests the approve transition through the Governance Kernel
+    expected_result_oracle_ref: ORACLE-V9-001
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: CASE-V9-002
+    kind: TEST_CASE
+    title: "Test case: Cross-tenant read returns no rows"
+    statement: >-
+      Defines the shape of a future test case for "Cross-tenant read returns no rows"; contains no
+      executable code and asserts no result.
+    preconditions:
+      - Two tenants exist
+      - Actor is bound to tenant A
+    action_or_stimulus: Actor requests a governed read scoped to tenant B
+    expected_result_oracle_ref: ORACLE-V9-002
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: CASE-V9-003
+    kind: TEST_CASE
+    title: "Test case: Unknown guard blocks the transition"
+    statement: >-
+      Defines the shape of a future test case for "Unknown guard blocks the transition"; contains no
+      executable code and asserts no result.
+    preconditions:
+      - A transition names an unregistered guard code
+    action_or_stimulus: The transition is requested through the Governance Kernel
+    expected_result_oracle_ref: ORACLE-V9-003
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: ORACLE-V9-001
+    kind: TEST_ORACLE
+    title: "Test oracle: Kernel transition oracle"
+    statement: >-
+      Defines the authoritative basis by which a future result would be judged for "Kernel
+      transition oracle".
+    authoritative_basis: Governance Kernel state-machine specification and transition history contract
+    derived_from: Derived from the versioned state-machine policy and audit specification
+    prohibited_basis: Tester intuition, undocumented expectation, or implementation output
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: ORACLE-V9-002
+    kind: TEST_ORACLE
+    title: "Test oracle: Tenant-isolation oracle"
+    statement: >-
+      Defines the authoritative basis by which a future result would be judged for "Tenant-isolation
+      oracle".
+    authoritative_basis: Row-level-security specification and tenancy contract
+    derived_from: Derived from the RLS policy and tenancy specification
+    prohibited_basis: Observed behaviour of an unverified environment or tester assumption
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: ORACLE-V9-003
+    kind: TEST_ORACLE
+    title: "Test oracle: Guard-registry oracle"
+    statement: >-
+      Defines the authoritative basis by which a future result would be judged for "Guard-registry
+      oracle".
+    authoritative_basis: Guard-registry specification and fail-closed contract
+    derived_from: Derived from the guard-registry specification
+    prohibited_basis: Any inference that an unknown guard is satisfied
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: ENV-V9-001
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: LOCAL_DEVELOPMENT"
+    statement: >-
+      Defines the LOCAL_DEVELOPMENT environment class as a future provisioning obligation; no
+      environment is asserted to exist.
+    environment_class: LOCAL_DEVELOPMENT
+    permitted_test_families:
+      - UNIT_TEST
+      - COMPONENT_TEST
+    data_classification: SYNTHETIC
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-002
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: COMPONENT_TEST"
+    statement: >-
+      Defines the COMPONENT_TEST environment class as a future provisioning obligation; no
+      environment is asserted to exist.
+    environment_class: COMPONENT_TEST
+    permitted_test_families:
+      - COMPONENT_TEST
+      - DOMAIN_BEHAVIOUR_TEST
+    data_classification: SYNTHETIC
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-003
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: INTEGRATION_TEST"
+    statement: >-
+      Defines the INTEGRATION_TEST environment class as a future provisioning obligation; no
+      environment is asserted to exist.
+    environment_class: INTEGRATION_TEST
+    permitted_test_families:
+      - INTEGRATION_TEST
+      - CONTRACT_TEST
+      - DATA_QUALITY_TEST
+    data_classification: SYNTHETIC
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-004
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: SYSTEM_TEST"
+    statement: >-
+      Defines the SYSTEM_TEST environment class as a future provisioning obligation; no environment
+      is asserted to exist.
+    environment_class: SYSTEM_TEST
+    permitted_test_families:
+      - SYSTEM_TEST
+      - WORKFLOW_TEST
+      - END_TO_END_TEST
+    data_classification: ANONYMIZED
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-005
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: PRE_PRODUCTION"
+    statement: >-
+      Defines the PRE_PRODUCTION environment class as a future provisioning obligation; no
+      environment is asserted to exist.
+    environment_class: PRE_PRODUCTION
+    permitted_test_families:
+      - USER_ACCEPTANCE_TEST
+      - SECURITY_TEST
+    data_classification: PSEUDONYMIZED
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-006
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: PRODUCTION_PATH_VALIDATION"
+    statement: >-
+      Defines the PRODUCTION_PATH_VALIDATION environment class as a future provisioning obligation;
+      no environment is asserted to exist.
+    environment_class: PRODUCTION_PATH_VALIDATION
+    permitted_test_families:
+      - DEPLOYMENT_PATH_TEST
+      - OBSERVABILITY_TEST
+    data_classification: MASKED
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-007
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: RECOVERY_EXERCISE"
+    statement: >-
+      Defines the RECOVERY_EXERCISE environment class as a future provisioning obligation; no
+      environment is asserted to exist.
+    environment_class: RECOVERY_EXERCISE
+    permitted_test_families:
+      - BACKUP_RESTORE_TEST
+      - RECOVERY_EXERCISE
+      - RESILIENCE_TEST
+    data_classification: SYNTHETIC
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: ENV-V9-008
+    kind: TEST_ENVIRONMENT_CLASS
+    title: "Environment class: INDEPENDENT_ASSURANCE"
+    statement: >-
+      Defines the INDEPENDENT_ASSURANCE environment class as a future provisioning obligation; no
+      environment is asserted to exist.
+    environment_class: INDEPENDENT_ASSURANCE
+    permitted_test_families:
+      - INDEPENDENT_ASSURANCE
+      - RELEASE_ACCEPTANCE
+    data_classification: ANONYMIZED
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited in this
+      environment class absent a separate purpose-limited authorization.
+    provisioning_gate: V10-G1
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: DATASET-V9-001
+    kind: TEST_DATA_REQUIREMENT
+    title: "Test-data requirement: Synthetic affiliation records"
+    statement: >-
+      Defines a future test-data obligation for "Synthetic affiliation records"; no dataset is
+      asserted to exist and real production data is prohibited.
+    data_category: Synthetic affiliation records
+    data_classification: SYNTHETIC
+    minimization_posture: Only the minimum synthetic fields required to exercise the scenario are generated.
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited under Package
+      1; a separate purpose-limited authorization is required.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: DATASET-V9-002
+    kind: TEST_DATA_REQUIREMENT
+    title: "Test-data requirement: Anonymized aggregate data"
+    statement: >-
+      Defines a future test-data obligation for "Anonymized aggregate data"; no dataset is asserted
+      to exist and real production data is prohibited.
+    data_category: Anonymized aggregate data
+    data_classification: ANONYMIZED
+    minimization_posture: Direct and indirect identifiers are removed before any use.
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited under Package
+      1; a separate purpose-limited authorization is required.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: DATASET-V9-003
+    kind: TEST_DATA_REQUIREMENT
+    title: "Test-data requirement: Pseudonymized reviewer identities"
+    statement: >-
+      Defines a future test-data obligation for "Pseudonymized reviewer identities"; no dataset is
+      asserted to exist and real production data is prohibited.
+    data_category: Pseudonymized reviewer identities
+    data_classification: PSEUDONYMIZED
+    minimization_posture: Identities are replaced with stable pseudonyms held under separate control.
+    production_data_prohibition: >-
+      Real production personal, financial, or restricted-evidence data is prohibited under Package
+      1; a separate purpose-limited authorization is required.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-05
+  - id: EVID-V9-001
+    kind: TEST_EVIDENCE_REQUIREMENT
+    title: "Evidence requirement: Kernel-behaviour evidence"
+    statement: >-
+      Defines the future evidence obligations for "Kernel-behaviour evidence"; no evidence is
+      asserted to exist.
+    provenance_requirement: Evidence must record the exact commit, policy version, and correlation identifiers of the run.
+    configuration_requirement: Evidence must record the full environment configuration and kernel version.
+    environment_requirement: Evidence must name the environment class in which it was produced.
+    version_requirement: Evidence must record the artifact and schema versions under test.
+    reproducibility_requirement: Evidence must be reproducible from the recorded inputs and configuration.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVID-V9-002
+    kind: TEST_EVIDENCE_REQUIREMENT
+    title: "Evidence requirement: Tenant-isolation evidence"
+    statement: >-
+      Defines the future evidence obligations for "Tenant-isolation evidence"; no evidence is
+      asserted to exist.
+    provenance_requirement: Evidence must record the tenant context and query provenance.
+    configuration_requirement: Evidence must record the RLS policy version and session settings.
+    environment_requirement: Evidence must name the integration-test environment class.
+    version_requirement: Evidence must record the schema and policy versions.
+    reproducibility_requirement: Evidence must be reproducible from the recorded tenant context.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: EVID-V9-003
+    kind: TEST_EVIDENCE_REQUIREMENT
+    title: "Evidence requirement: Migration evidence"
+    statement: >-
+      Defines the future evidence obligations for "Migration evidence"; no evidence is asserted to
+      exist.
+    provenance_requirement: Evidence must record the source and target schema commits.
+    configuration_requirement: Evidence must record the migration configuration and ordering.
+    environment_requirement: Evidence must name the migration environment class.
+    version_requirement: Evidence must record the migration set version.
+    reproducibility_requirement: Evidence must be reproducible from the recorded migration inputs.
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-01
+  - id: RESULT-V9-001
+    kind: TEST_RESULT_MODEL
+    title: "Result model: Governed test-result model"
+    statement: >-
+      Defines the disposition vocabulary for "Governed test-result model"; an inconclusive result is
+      held strictly distinct from a passing result.
+    disposition_values:
+      - NOT_EXECUTED
+      - PASSED
+      - FAILED
+      - INCONCLUSIVE
+      - BLOCKED
+      - ERROR
+      - WAIVED
+      - ACCEPTED_WITH_EXCEPTION
+    inconclusive_distinct_from_pass: true
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04
+  - id: RESULT-V9-002
+    kind: TEST_RESULT_MODEL
+    title: "Result model: Acceptance result model"
+    statement: >-
+      Defines the disposition vocabulary for "Acceptance result model"; an inconclusive result is
+      held strictly distinct from a passing result.
+    disposition_values:
+      - NOT_EXECUTED
+      - PASSED
+      - FAILED
+      - INCONCLUSIVE
+      - WAIVED
+      - ACCEPTED_WITH_EXCEPTION
+    inconclusive_distinct_from_pass: true
+    acceptance_authority: Executive Acceptance Authority (future release gate)
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-04

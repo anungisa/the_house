@@ -1,0 +1,6 @@
+{
+  "environment_classes": 8,
+  "test_data_requirements": 3,
+  "environments_without_production_data_prohibition": [],
+  "datasets_without_minimization": []
+}

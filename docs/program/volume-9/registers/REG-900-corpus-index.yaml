@@ -1,0 +1,101 @@
+register_id: REG-900
+name: Volume 9 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V9-00
+    title: Volume Control, Inheritance, and Test-Definition Authority
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-00-volume-control-and-authority.md
+    gate: V9-G1
+  - id: V9-01
+    title: Quality Doctrine and Evidence Hierarchy
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-01-quality-doctrine-and-evidence-hierarchy.md
+    gate: V9-G1
+  - id: V9-02
+    title: Quality Attributes and Institutional Invariants
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-02-quality-attributes-and-invariants.md
+    gate: V9-G1
+  - id: V9-03
+    title: Verification, Validation, Assurance, and the Test-Level Taxonomy
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-03-verification-validation-and-test-levels.md
+    gate: V9-G1
+  - id: V9-04
+    title: Test Object, Requirement, Scenario, Case, Oracle, Evidence, and Result Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-04-test-object-and-master-test-model.md
+    gate: V9-G1
+  - id: V9-05
+    title: Environment, Configuration, Identity, Jurisdiction, and Test-Data Governance
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-05-environment-identity-and-test-data-governance.md
+    gate: V9-G1
+  - id: V9-06
+    title: Functional, Contract, Integration, Workflow, Data, and Migration Test Foundation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-06-functional-contract-integration-data-migration.md
+    gate: V9-G1
+  - id: V9-07
+    title: Security, Privacy, Accessibility, Bilingual, Records, Resilience, and Operational Assurance Foundation
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-07-security-privacy-accessibility-resilience-operational.md
+    gate: V9-G1
+  - id: V9-08
+    title: Defect, Exception, Waiver, Remediation, Retest, and Regression Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-08-defect-exception-waiver-retest-regression.md
+    gate: V9-G1
+  - id: V9-09
+    title: Traceability, Coverage, Independence, Acceptance, and Release-Evidence Handoff
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-09-traceability-independence-and-release-handoff.md
+    gate: V9-G1
+  - id: V9-10
+    title: Package 1 Traceability, Governance Assessment, and Validation Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-10-package-1-traceability-and-validation-backlog.md
+    gate: V9-G1
+  - id: V9-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-A-package-1-closure-record.md
+    gate: V9-G1

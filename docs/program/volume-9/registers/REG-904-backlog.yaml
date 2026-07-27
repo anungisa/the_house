@@ -1,0 +1,119 @@
+register_id: REG-904
+name: Volume 9 Assumptions, Risks, Exceptions, Defects, Waivers, and Validation Backlog
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V9-001
+    kind: ASM
+    title: Volume 8 baseline is stable
+    statement: Assumes the released Volume 8 contract baseline remains the stable input to Volume 9.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: RISK-V9-001
+    kind: RISK
+    title: Environment provisioning may lag test definition
+    statement: Risk that test environments are not provisioned when execution is authorized.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V11-G1
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: EXC-V9-001
+    kind: EXC
+    title: Performance test level deferred
+    statement: Exception recording that performance-test definition depth is deferred to a later package.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V11-G1
+    expiry: "2027-12-31"
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: DEFECT-V9-001
+    kind: DEFECT
+    title: Traceability gap for provider-contract level
+    statement: "Documentary defect: provider-contract test requirements are not yet fully traced."
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: DEFECT
+    retest_requirement: Re-verify traceability once provider-contract requirements are authored.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: WAIVER-V9-001
+    kind: WAIVER
+    title: Capacity-test depth waived for Package 1
+    statement: Time-bounded waiver for capacity-test definition depth in Package 1.
+    owner: Nolan (Executive Acceptance Authority)
+    future_blocking_gate: V11-G1
+    defect_state: TIME_BOUNDED_WAIVER
+    expiry: "2027-06-30"
+    approval_ref: APP-V9-013
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: REMED-V9-001
+    kind: REMEDIATION
+    title: Remediate provider-contract traceability
+    statement: Remediation obligation to close DEFECT-V9-001.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: REMEDIATION
+    remediation_ref: DEFECT-V9-001
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: RETEST-V9-001
+    kind: RETEST
+    title: Retest after remediation
+    statement: Retest obligation to re-verify traceability after remediation.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: RETEST
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: REGRESSION-V9-001
+    kind: REGRESSION
+    title: Regression watch on invariant coverage
+    statement: Regression obligation to ensure invariant coverage is not lost in later packages.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    defect_state: REGRESSION
+    regression_impact: Loss of institutional-invariant coverage across packages.
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: TEST-V9-001
+    kind: TEST
+    title: Club-affiliation functional test definition
+    statement: Bounded test-definition backlog item for Package 2 club-affiliation scope.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    future_blocking_gate: V10-G1
+    future_test_level: WORKFLOW_TEST
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10
+  - id: READY-V9-001
+    kind: READINESS
+    title: Release-evidence handoff readiness
+    statement: Readiness obligation for the Volume 10-12 release-evidence handoff.
+    owner: Nolan (Executive Acceptance Authority)
+    future_blocking_gate: V12-G1
+    readiness_disposition: ACCEPTED_AS_VOLUME_10_INPUT
+    disposition_rationale: The test-definition foundation is accepted as an input to Volume 10 planning.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-10

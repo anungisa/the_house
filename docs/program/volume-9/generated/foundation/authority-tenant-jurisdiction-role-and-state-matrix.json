@@ -1,0 +1,4 @@
+{
+  "test_scenarios": 3,
+  "note": "Each governed scenario carries actor/service, tenant, jurisdiction, resource, and lifecycle-state context."
+}

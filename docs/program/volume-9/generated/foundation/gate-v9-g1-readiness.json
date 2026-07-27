@@ -1,0 +1,155 @@
+{
+  "gate": "V9-G1",
+  "disposition_target": "QUALITY_AND_MASTER_TEST_GOVERNANCE_FOUNDATION_READY",
+  "total_conditions": 29,
+  "satisfied": 29,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Released Volume 8 provenance inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Volume control and test-definition authority controlled",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Test definition held distinct from test execution and acceptance",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Quality doctrine and evidence hierarchy defined",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Evidence tiers ranked with substitution prohibition",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Quality attributes catalogued",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Every quality attribute names purpose, source, levels, evidence, prohibited inference, and acceptance authority",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Institutional invariants catalogued with required negative expectations",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Verification, validation, assurance, and acceptance distinguished",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Test-level taxonomy present",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Every test level names object under test, permitted evidence, prohibited inference, environment, and independence",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Test object, requirement, scenario, case, oracle, evidence, and result model defined",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Test requirements trace to governed invariants and name expected and negative outcomes",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Test cases name preconditions, a stimulus, and an oracle",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Oracles derive from an authoritative basis, not tester intuition",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Environment, configuration, identity, jurisdiction, and data governance defined",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Environment classes name data classification, production-data prohibition, and provisioning gate",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Test-data governance prohibits unauthorized real production data",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Scenarios carry authority, tenant, jurisdiction, resource, and lifecycle-state context",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Functional, contract, integration, workflow, data, and migration-test foundation defined",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Security, privacy, accessibility, bilingual, resilience, and operational-assurance test foundation defined",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Defect, exception, waiver, remediation, retest, and regression model defined",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Traceability, coverage, and independence model defined",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Result models keep inconclusive distinct from pass and name an acceptance authority",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Release-evidence handoff to Volumes 10-12 defined",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Deterministic Package 1 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "No prohibited implementation, executable-test, or coded-artifact leakage created",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Unresolved items have owners and future gates, and no record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Package 1 receives line-level review, a separate freeze commit, and no unresolved required commit binding",
+      "satisfied": true
+    }
+  ]
+}
