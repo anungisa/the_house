@@ -1,0 +1,109 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "operating_states": [
+    {
+      "id": "STATE-V11-001",
+      "title": "Defined",
+      "operating_state": "DEFINED",
+      "entry": "Operational definition authored and governed.",
+      "exit": "Implementation authorized under a future gate.",
+      "distinction": "A defined service is not an implemented service."
+    },
+    {
+      "id": "STATE-V11-002",
+      "title": "Implemented",
+      "operating_state": "IMPLEMENTED",
+      "entry": "Implementation completed under future authorization.",
+      "exit": "Verification completed.",
+      "distinction": "An implemented service is not a verified service."
+    },
+    {
+      "id": "STATE-V11-003",
+      "title": "Verified",
+      "operating_state": "VERIFIED",
+      "entry": "Verification evidence accepted.",
+      "exit": "Release candidate formed.",
+      "distinction": "A verified service is not a release candidate."
+    },
+    {
+      "id": "STATE-V11-004",
+      "title": "Release Candidate",
+      "operating_state": "RELEASE_CANDIDATE",
+      "entry": "Release candidate assembled and accepted.",
+      "exit": "Operational preparation completed.",
+      "distinction": "A release candidate is not an operationally prepared service."
+    },
+    {
+      "id": "STATE-V11-005",
+      "title": "Operationally Prepared",
+      "operating_state": "OPERATIONALLY_PREPARED",
+      "entry": "Operational-readiness evidence assembled.",
+      "exit": "Operational acceptance granted.",
+      "distinction": "Operationally prepared is distinct from operationally accepted."
+    },
+    {
+      "id": "STATE-V11-006",
+      "title": "Operationally Accepted",
+      "operating_state": "OPERATIONALLY_ACCEPTED",
+      "entry": "Independent operational acceptance granted.",
+      "exit": "Deployment authorized.",
+      "distinction": "Operationally accepted is distinct from deployed."
+    },
+    {
+      "id": "STATE-V11-007",
+      "title": "Deployed",
+      "operating_state": "DEPLOYED",
+      "entry": "Deployment completed under future authorization.",
+      "exit": "Stabilization commenced.",
+      "distinction": "Deployed is distinct from stabilizing."
+    },
+    {
+      "id": "STATE-V11-008",
+      "title": "Stabilizing",
+      "operating_state": "STABILIZING",
+      "entry": "Post-deployment stabilization commenced.",
+      "exit": "Steady operation reached.",
+      "distinction": "Stabilizing is distinct from operating."
+    },
+    {
+      "id": "STATE-V11-009",
+      "title": "Operating",
+      "operating_state": "OPERATING",
+      "entry": "Steady operation reached and accepted.",
+      "exit": "Degradation, suspension, recovery, or retirement.",
+      "distinction": "Operating is distinct from degraded and from suspended."
+    },
+    {
+      "id": "STATE-V11-010",
+      "title": "Degraded",
+      "operating_state": "DEGRADED",
+      "entry": "Degradation detected and controlled.",
+      "exit": "Recovery to operating or escalation to suspended.",
+      "distinction": "A degraded service is a controlled state, not an uncontrolled failure."
+    },
+    {
+      "id": "STATE-V11-011",
+      "title": "Suspended",
+      "operating_state": "SUSPENDED",
+      "entry": "Governed suspension decision.",
+      "exit": "Recovery or retirement.",
+      "distinction": "A suspended service is deliberately controlled, not abandoned."
+    },
+    {
+      "id": "STATE-V11-012",
+      "title": "Recovering",
+      "operating_state": "RECOVERING",
+      "entry": "Recovery procedure invoked.",
+      "exit": "Return to operating or escalation.",
+      "distinction": "Recovering is distinct from operating and from retired."
+    },
+    {
+      "id": "STATE-V11-013",
+      "title": "Retired",
+      "operating_state": "RETIRED",
+      "entry": "Governed retirement decision with retained evidence.",
+      "exit": "Terminal state.",
+      "distinction": "A retired service is a controlled terminal state with retained evidence."
+    }
+  ]
+}

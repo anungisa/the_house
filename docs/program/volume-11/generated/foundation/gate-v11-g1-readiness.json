@@ -1,0 +1,175 @@
+{
+  "gate": "V11-G1",
+  "disposition_target": "OPERATIONS_MIGRATION_ADOPTION_AND_ASSURANCE_GOVERNANCE_FOUNDATION_READY",
+  "total_conditions": 33,
+  "satisfied": 33,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Released Volume 10 provenance inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Operational definition held distinct from operational execution",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Service ownership held distinct from institutional authority",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Every material service capability has an operational owner or a governed ownership gap",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Decision rights, escalation, and evidence control defined",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Prepared, accepted, deployed, stabilizing, and operating held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Degraded, suspended, recovering, and retired states controlled",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Request, incident, problem, workaround, defect, and obligation-closure held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Support access held distinct from mutation and institutional authority",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Observability identifies signal, context, sensitivity, owner, alert dependency, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Telemetry, alerting, detection, response, recovery, and reconciliation held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Continuity scenarios define preserved work, prohibited actions, degraded mode, fallback, recovery, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Backup completion held distinct from verification and restoration",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Restoration held distinct from recovery and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Migration stages preserve source authority, provenance, uncertainty, identity candidates, quarantine, rehearsal, cutover, acceptance, rollback, and retirement",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Mapping held distinct from identity resolution",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Rehearsal held distinct from migration authorization",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Cutover held distinct from acceptance and source retirement",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Training content, delivery, competence, onboarding, and sustained adoption held distinct",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Accessibility and bilingual obligations apply to training, support, communications, and procedures",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Provider operations include incident, continuity, return, deletion, residual, substitution, reconciliation, and exit",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Provider certification held distinct from end-to-end assurance",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Operational evidence binds environment, configuration, version, identity, organization, jurisdiction, data classification, provider state, and time",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Independence and operational-acceptance authorities controlled",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Volume 12 handoff destinations defined",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Every unresolved item has an owner, evidence, and a valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "No active unresolved item points to a completed Volume 11 gate",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Deterministic Package 1 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "No runtime, tooling, environments, credentials, monitoring, queues, migration tooling, training platforms, provider integration, or production operations created",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "No migration, rehearsal, backup, restore, recovery, training, onboarding, incident, provider, or operational exercise executed",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No readiness, recovery, migration, adoption, provider-assurance, or acceptance claim made without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "No record authorizes implementation or operations",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "Genuine authoring, closure-freeze, and pre-merge provenance-binding separation preserved",
+      "satisfied": true
+    }
+  ]
+}

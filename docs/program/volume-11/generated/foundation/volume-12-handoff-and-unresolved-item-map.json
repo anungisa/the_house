@@ -1,0 +1,54 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "handoffs": [
+    {
+      "id": "HANDOFF-V11-001",
+      "title": "Volume 12 Operational-Readiness Handoff",
+      "destination": "Volume 12 operational-readiness governance package.",
+      "target_volume": "Volume 12",
+      "future_gate": "V12-G1"
+    }
+  ],
+  "unresolved_items": [
+    {
+      "id": "ASM-V11-001",
+      "kind": "ASSUMPTION",
+      "owner": "OWNER-V11-002",
+      "evidence": "Confirm inherited Volume 10 provenance at the start of any operational-readiness package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "RISK-V11-001",
+      "kind": "RISK",
+      "owner": "OWNER-V11-002",
+      "evidence": "Preserve non-authorizing posture and evidence-bound acceptance in every future operational package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "MIGBL-V11-001",
+      "kind": "MIGRATION_BACKLOG",
+      "owner": "OWNER-V11-003",
+      "evidence": "Produce source-qualification and provenance-capture evidence in a future migration package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ADOPTBL-V11-001",
+      "kind": "ADOPTION_BACKLOG",
+      "owner": "OWNER-V11-002",
+      "evidence": "Produce bilingual, accessible training materials in a future adoption package.",
+      "future_blocking_gate": "V12-G1"
+    },
+    {
+      "id": "ASSGAP-V11-001",
+      "kind": "ASSURANCE_GAP",
+      "owner": "OWNER-V11-004",
+      "evidence": "Produce independent operational-acceptance evidence in a future assurance package.",
+      "future_blocking_gate": "V12-G1"
+    }
+  ],
+  "downstream_gates": [
+    "V11-G1",
+    "V12-G1",
+    "EXEC-MCG"
+  ]
+}

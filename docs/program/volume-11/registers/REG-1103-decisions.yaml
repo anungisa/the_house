@@ -1,0 +1,89 @@
+register_id: REG-1103
+name: Volume 11 Operational-Governance Decisions
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V11-001
+    kind: DECISION
+    title: Operational Definition Is Distinct From Operational Execution
+    statement: >-
+      Volume 11 Package 1 defines operational, migration, adoption, and assurance
+      governance obligations only. Authoring an operational definition never
+      constitutes, authorizes, or implies operational execution.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Volume 11 inherits the released Volume 10 delivery-planning governance and the
+      central registration record. A clear boundary is required so that documentary
+      operational definition is never mistaken for operation, migration, backup,
+      recovery, training, provider engagement, or acceptance.
+    alternatives_considered:
+      - Allow selective operational execution under Package 1 (rejected as scope violation).
+      - Defer all operational definition to a later volume (rejected as it blocks governed planning).
+    consequences: >-
+      Every Volume 11 record carries non-authorizing posture fields and asserts no
+      implementation, operation, or execution. Operational execution requires future
+      governance and is out of scope here.
+    decision_authority: OWNER-V11-002
+    prohibited_inference: This decision must not be read as authorizing any operation, migration, or acceptance.
+    traces_to:
+      - V11-00
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-00
+    future_gate: V12-G1
+  - id: ADR-V11-002
+    kind: DECISION
+    title: Service Ownership Is Distinct From Institutional Authority
+    statement: >-
+      Operational service ownership confers operational decision rights within
+      governed policy but never institutional authority, which remains with the
+      sanctioning body.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Operational ownership must be assignable without transferring the institutional
+      authority that governs affiliation outcomes.
+    consequences: >-
+      Owners in REG-1101 carry decision rights and escalation routes but no
+      institutional authority; material service capabilities without an owner are
+      recorded as governed ownership gaps.
+    decision_authority: OWNER-V11-001
+    prohibited_inference: This decision must not be read as delegating institutional authority to operational owners.
+    traces_to:
+      - V11-01
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  - id: ADR-V11-003
+    kind: DECISION_BOUNDARY
+    title: Provider Certification Is Not End-to-End Assurance
+    statement: >-
+      Provider certifications bound the provider platform only and never constitute
+      end-to-end assurance of the governed affiliated service.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Provider operations introduce external certifications that must not be mistaken
+      for assurance of the governed service outcome.
+    consequences: >-
+      Providers in REG-1101 record a certification boundary and a separate
+      end-to-end assurance boundary; assurance remains an independent obligation.
+    decision_authority: OWNER-V11-004
+    prohibited_inference: This decision must not be read as accepting provider certification in place of independent assurance.
+    traces_to:
+      - V11-08
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-08
+    future_gate: V12-G1

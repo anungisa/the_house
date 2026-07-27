@@ -1,0 +1,514 @@
+register_id: REG-1101
+name: Services, Capabilities, Owners, Operating States, Support Classes, and Providers
+status: RATIFIED
+version: 1.0.0
+records:
+  # --- Services ---
+  - id: SERVICE-V11-001
+    kind: SERVICE
+    title: Affiliation Application Service
+    statement: >-
+      The governed affiliation application service through which participants,
+      clubs, and organizations submit, progress, and receive decisions on
+      affiliation applications, operated on top of the released Volume 0-10
+      governance kernel and central registration record.
+    operational_definition: >-
+      A documentary definition of the operational service boundary, its owner,
+      its operating states, and its support and evidence obligations. This is an
+      operational definition only and is distinct from an operating service.
+    scope: Affiliation application intake, review, decision, and lifecycle operation.
+    excluded_scope: Runtime implementation, environment provisioning, and any live operation.
+    material_service_capability: true
+    operational_owner: OWNER-V11-001
+    institutional_authority: CurlingCanada
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    decision_rights: Service owner holds operational decision rights within governed policy; institutional authority remains with the sanctioning body.
+    escalation_route: Service owner to operations owner to executive sponsor.
+    accountabilities: Availability of governed operational definition, support model, and evidence obligations for the service.
+    evidence_control: Operational evidence obligations defined in REG-1102 and Chapter V11-09.
+    required_capabilities:
+      - CAP-V11-001
+    dependencies:
+      - central-registration-volume-10-v1.0.0
+    affected_capability: CAP-V11-001
+    traces_to:
+      - V11-01
+    sensitivity: PERSONAL_INFORMATION
+    accessibility_bilingual_obligation: Bilingual and accessible operation required for all participant-facing interactions.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  - id: SERVICE-V11-002
+    kind: SERVICE
+    title: Central Registration Records Service
+    statement: >-
+      The governed service that maintains authoritative central registration
+      records, provenance, and evidence for affiliated entities and participants.
+    operational_definition: >-
+      A documentary operational definition of the records service boundary,
+      ownership, and evidence obligations. Operational definition only; distinct
+      from an operating service.
+    scope: Central registration record maintenance, provenance, and evidence custody.
+    excluded_scope: Runtime implementation and live data operation.
+    material_service_capability: true
+    operational_owner: OWNER-V11-001
+    institutional_authority: CurlingCanada
+    authority_domain: House
+    operational_domain: DATA_OWNERSHIP
+    decision_rights: Service owner holds operational decision rights within governed policy.
+    escalation_route: Service owner to operations owner to executive sponsor.
+    accountabilities: Governed operational definition of record custody and evidence.
+    evidence_control: Evidence obligations defined in REG-1102.
+    required_capabilities:
+      - CAP-V11-002
+    dependencies:
+      - central-registration-volume-10-v1.0.0
+    affected_capability: CAP-V11-002
+    traces_to:
+      - V11-01
+    sensitivity: PERSONAL_INFORMATION
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  # --- Capabilities ---
+  - id: CAP-V11-001
+    kind: CAPABILITY
+    title: Evidence and Document Handling Capability
+    statement: The capability to receive, classify, and retain governed evidence and documents supporting affiliation decisions.
+    material_service_capability: true
+    operational_owner: OWNER-V11-001
+    institutional_authority: CurlingCanada
+    operational_domain: PRIVACY_AND_RECORDS
+    decision_rights: Capability owner defines evidence-handling obligations within governed policy.
+    escalation_route: Capability owner to operations owner.
+    traces_to:
+      - V11-01
+    sensitivity: RESTRICTED_EVIDENCE
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  - id: CAP-V11-002
+    kind: CAPABILITY
+    title: Reconciliation and Finance Capability
+    statement: The capability to reconcile financial and registration state across the service and providers.
+    material_service_capability: true
+    operational_owner: OWNER-V11-002
+    institutional_authority: CurlingCanada
+    operational_domain: FINANCE_AND_RECONCILIATION
+    decision_rights: Capability owner defines reconciliation obligations within governed policy.
+    escalation_route: Capability owner to operations owner.
+    traces_to:
+      - V11-01
+    sensitivity: FINANCIAL
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  # --- Owners ---
+  - id: OWNER-V11-001
+    kind: OWNER
+    title: Service Owner
+    statement: The accountable operational owner of a governed service, holding operational decision rights within governed policy while institutional authority remains with the sanctioning body.
+    authority_domain: House
+    operational_domain: SERVICE_OWNERSHIP
+    decision_rights: Operational decision rights within governed policy; no institutional authority.
+    escalation_route: Service owner to operations owner to executive sponsor.
+    accountabilities: Governed operational definition, support model, and evidence obligations.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  - id: OWNER-V11-002
+    kind: OWNER
+    title: Operations Owner
+    statement: The accountable owner of the cross-service operations, support, observability, and continuity model.
+    authority_domain: House
+    operational_domain: OBSERVABILITY_AND_INCIDENT
+    decision_rights: Operational decision rights over the operations and support model within governed policy.
+    escalation_route: Operations owner to executive sponsor.
+    accountabilities: Governed operations, support, and continuity definition.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-01
+    future_gate: V12-G1
+  - id: OWNER-V11-003
+    kind: OWNER
+    title: Migration Owner
+    statement: The accountable owner of the migration, coexistence, rehearsal, cutover, and reconciliation model.
+    authority_domain: House
+    operational_domain: MIGRATION
+    decision_rights: Operational decision rights over the migration model within governed policy; no cutover or source-retirement authority in Package 1.
+    escalation_route: Migration owner to operations owner to executive sponsor.
+    accountabilities: Governed migration and reconciliation definition.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-06
+    future_gate: V12-G1
+  - id: OWNER-V11-004
+    kind: OWNER
+    title: Independent Assurance Authority
+    statement: The independent authority accountable for operational-acceptance assurance, separate from the delivery and operations owners.
+    authority_domain: Independent
+    operational_domain: INDEPENDENT_ASSURANCE
+    decision_rights: Independent assurance judgement over operational acceptance; no delivery or operations authority.
+    escalation_route: Independent assurance to executive sponsor.
+    accountabilities: Independent operational-acceptance assurance definition.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-09
+    future_gate: V12-G1
+  # --- Operating states ---
+  - id: STATE-V11-001
+    kind: OPERATING_STATE
+    title: Defined
+    statement: The service operational definition exists but nothing is implemented.
+    operating_state: DEFINED
+    state_entry_condition: Operational definition authored and governed.
+    state_exit_condition: Implementation authorized under a future gate.
+    state_distinction: A defined service is not an implemented service.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-002
+    kind: OPERATING_STATE
+    title: Implemented
+    statement: The service has been implemented but not yet verified.
+    operating_state: IMPLEMENTED
+    state_entry_condition: Implementation completed under future authorization.
+    state_exit_condition: Verification completed.
+    state_distinction: An implemented service is not a verified service.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-003
+    kind: OPERATING_STATE
+    title: Verified
+    statement: The service has been verified but is not yet a release candidate.
+    operating_state: VERIFIED
+    state_entry_condition: Verification evidence accepted.
+    state_exit_condition: Release candidate formed.
+    state_distinction: A verified service is not a release candidate.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-004
+    kind: OPERATING_STATE
+    title: Release Candidate
+    statement: The service is a release candidate but not operationally prepared.
+    operating_state: RELEASE_CANDIDATE
+    state_entry_condition: Release candidate assembled and accepted.
+    state_exit_condition: Operational preparation completed.
+    state_distinction: A release candidate is not an operationally prepared service.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-005
+    kind: OPERATING_STATE
+    title: Operationally Prepared
+    statement: The service is operationally prepared but not operationally accepted.
+    operating_state: OPERATIONALLY_PREPARED
+    state_entry_condition: Operational-readiness evidence assembled.
+    state_exit_condition: Operational acceptance granted.
+    state_distinction: Operationally prepared is distinct from operationally accepted.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-006
+    kind: OPERATING_STATE
+    title: Operationally Accepted
+    statement: The service is operationally accepted but not deployed.
+    operating_state: OPERATIONALLY_ACCEPTED
+    state_entry_condition: Independent operational acceptance granted.
+    state_exit_condition: Deployment authorized.
+    state_distinction: Operationally accepted is distinct from deployed.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-007
+    kind: OPERATING_STATE
+    title: Deployed
+    statement: The service is deployed but not yet stabilizing under operation.
+    operating_state: DEPLOYED
+    state_entry_condition: Deployment completed under future authorization.
+    state_exit_condition: Stabilization commenced.
+    state_distinction: Deployed is distinct from stabilizing.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-008
+    kind: OPERATING_STATE
+    title: Stabilizing
+    statement: The service is stabilizing but not yet steadily operating.
+    operating_state: STABILIZING
+    state_entry_condition: Post-deployment stabilization commenced.
+    state_exit_condition: Steady operation reached.
+    state_distinction: Stabilizing is distinct from operating.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-009
+    kind: OPERATING_STATE
+    title: Operating
+    statement: The service is steadily operating within governed policy.
+    operating_state: OPERATING
+    state_entry_condition: Steady operation reached and accepted.
+    state_exit_condition: Degradation, suspension, recovery, or retirement.
+    state_distinction: Operating is distinct from degraded and from suspended.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-010
+    kind: OPERATING_STATE
+    title: Degraded
+    statement: The service is operating in a controlled degraded mode.
+    operating_state: DEGRADED
+    state_entry_condition: Degradation detected and controlled.
+    state_exit_condition: Recovery to operating or escalation to suspended.
+    state_distinction: A degraded service is a controlled state, not an uncontrolled failure.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-011
+    kind: OPERATING_STATE
+    title: Suspended
+    statement: The service is deliberately suspended under governed control.
+    operating_state: SUSPENDED
+    state_entry_condition: Governed suspension decision.
+    state_exit_condition: Recovery or retirement.
+    state_distinction: A suspended service is deliberately controlled, not abandoned.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-012
+    kind: OPERATING_STATE
+    title: Recovering
+    statement: The service is recovering under a governed recovery procedure.
+    operating_state: RECOVERING
+    state_entry_condition: Recovery procedure invoked.
+    state_exit_condition: Return to operating or escalation.
+    state_distinction: Recovering is distinct from operating and from retired.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  - id: STATE-V11-013
+    kind: OPERATING_STATE
+    title: Retired
+    statement: The service is retired under governed control with retained evidence.
+    operating_state: RETIRED
+    state_entry_condition: Governed retirement decision with retained evidence.
+    state_exit_condition: Terminal state.
+    state_distinction: A retired service is a controlled terminal state with retained evidence.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-02
+    future_gate: V12-G1
+  # --- Support classes ---
+  - id: SUPPORT-V11-001
+    kind: SUPPORT_CLASS
+    title: Service Request
+    statement: A governed request for assistance or a standard change that does not itself mutate governed state or confer institutional authority.
+    support_class_kind: SERVICE_REQUEST
+    access_boundary: Support access is read-and-assist within governed policy.
+    mutation_boundary: Support access is distinct from mutation of governed state.
+    escalation_route: Support to operations owner.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-03
+    future_gate: V12-G1
+  - id: SUPPORT-V11-002
+    kind: SUPPORT_CLASS
+    title: Incident
+    statement: A governed incident representing an unplanned interruption or reduction in service quality.
+    support_class_kind: INCIDENT
+    access_boundary: Incident handling access is governed and bounded.
+    mutation_boundary: Incident response does not confer institutional authority.
+    escalation_route: Incident to operations owner to executive sponsor.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-03
+    future_gate: V12-G1
+  - id: SUPPORT-V11-003
+    kind: SUPPORT_CLASS
+    title: Problem
+    statement: A governed problem representing the underlying cause of one or more incidents, distinct from a workaround and from a defect.
+    support_class_kind: PROBLEM
+    access_boundary: Problem analysis access is governed and bounded.
+    mutation_boundary: Problem management is distinct from mutation of governed state.
+    escalation_route: Problem to operations owner.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-03
+    future_gate: V12-G1
+  # --- Providers ---
+  - id: PROVIDER-V11-001
+    kind: PROVIDER
+    title: Cloud Platform Provider
+    statement: The external provider supplying the runtime platform on which the services will operate.
+    authority_domain: Provider
+    operational_domain: PROVIDER_MANAGEMENT
+    provider_role: Runtime platform, storage, and messaging provider.
+    provider_certification_boundary: Provider certification covers the provider platform only.
+    end_to_end_assurance_boundary: Provider certification is not end-to-end assurance of the affiliated service.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-08
+    future_gate: V12-G1
+  - id: PROVIDER-V11-002
+    kind: PROVIDER
+    title: Identity Provider
+    statement: The external provider supplying identity and authentication services.
+    authority_domain: Provider
+    operational_domain: PROVIDER_MANAGEMENT
+    provider_role: Identity and authentication provider.
+    provider_certification_boundary: Provider certification covers the identity platform only.
+    end_to_end_assurance_boundary: Provider certification is not end-to-end assurance of governed authorization.
+    validation_status: DEFINED
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    chapter_ref: V11-08
+    future_gate: V12-G1

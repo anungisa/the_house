@@ -1,0 +1,34 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "continuity_scenarios": [
+    {
+      "id": "CONT-V11-001",
+      "title": "Provider Platform Outage Continuity Scenario",
+      "preserved_work": "In-flight affiliation applications and their evidence are preserved and never silently discarded.",
+      "prohibited_action": "No destructive action, no silent status mutation, and no bypass of governed transitions during the outage.",
+      "degraded_mode": "A controlled degraded mode that accepts intake but defers decisions with participant notification.",
+      "fallback": "A defined fallback that queues governed work for later processing under retained provenance.",
+      "recovery": "A defined recovery that reconciles queued work against governed state before resuming decisions."
+    }
+  ],
+  "backups": [
+    {
+      "id": "BACKUP-V11-001",
+      "completion": "A backup is complete when the defined dataset has been captured to the defined target with a recorded manifest.",
+      "verification": "A backup is verified only when its integrity and completeness have been independently checked against the manifest."
+    }
+  ],
+  "restores": [
+    {
+      "id": "RESTORE-V11-001",
+      "restoration": "Restoration reproduces a verified dataset in a target environment without asserting business recovery or reconciliation."
+    }
+  ],
+  "recoveries": [
+    {
+      "id": "RECOVERY-V11-001",
+      "recovery": "Recovery returns the governed service to an accepted operating state with reconciled state and retained evidence.",
+      "reconciliation": "Recovery depends on a completed reconciliation of restored state."
+    }
+  ]
+}

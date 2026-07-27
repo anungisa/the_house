@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decisions.schema.json",
+  "title": "REG-1103 Volume 11 Decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1103" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "decision_status",
+          "context",
+          "consequences",
+          "decision_authority",
+          "validation_status",
+          "authorizes_implementation",
+          "authorizes_operations",
+          "implementation_status",
+          "operational_status",
+          "execution_status",
+          "chapter_ref",
+          "future_gate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^ADR-V11-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/decisionKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "decision_status": { "$ref": "common.schema.json#/definitions/decisionStatus" },
+          "context": { "type": "string" },
+          "alternatives_considered": { "type": "array", "items": { "type": "string" } },
+          "consequences": { "type": "string" },
+          "decision_authority": { "type": "string" },
+          "prohibited_inference": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "authorizes_operations": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "operational_status": { "$ref": "common.schema.json#/definitions/operationalStatus" },
+          "execution_status": { "$ref": "common.schema.json#/definitions/executionStatus" },
+          "chapter_ref": { "type": "string" },
+          "future_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
+        }
+      }
+    }
+  }
+}

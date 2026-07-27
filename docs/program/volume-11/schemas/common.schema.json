@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "Volume 11 common definitions",
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registerStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentId": {
+      "type": "string",
+      "pattern": "^V11-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?$"
+    },
+    "v11GateId": {
+      "type": "string",
+      "pattern": "^V11-G[0-9]$"
+    },
+    "futureGateId": {
+      "type": "string",
+      "pattern": "^(V11-G[0-9]|V12-G[0-9]|EXEC-MCG)$"
+    },
+    "evidenceLabel": {
+      "type": ["string", "null"],
+      "enum": [
+        "AUTHOR-VERIFIED",
+        "SELF-ATTESTED",
+        "SELF-ATTESTED / AUTHOR-VERIFIED",
+        "DOMAIN-VALIDATED",
+        "PEER-REVIEWED",
+        "AUTOMATED-EVIDENCE",
+        "INDEPENDENTLY-ASSESSED",
+        "EXECUTIVE-ACCEPTED",
+        "PRODUCTION-PROVEN",
+        null
+      ]
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ].*)?$"
+    },
+    "implementationStatus": {
+      "type": "string",
+      "enum": ["NOT_IMPLEMENTED_OR_NOT_PROVEN"]
+    },
+    "operationalStatus": {
+      "type": "string",
+      "enum": ["NOT_OPERATIONAL_OR_NOT_PROVEN"]
+    },
+    "executionStatus": {
+      "type": "string",
+      "enum": ["NOT_EXECUTED"]
+    },
+    "authorityDomain": {
+      "type": "string",
+      "enum": ["House", "CurlingCanada", "Button", "External", "Internal", "Provider", "Staff", "Shared", "Independent", "Neither"]
+    },
+    "operatingState": {
+      "type": "string",
+      "enum": [
+        "DEFINED",
+        "IMPLEMENTED",
+        "VERIFIED",
+        "RELEASE_CANDIDATE",
+        "OPERATIONALLY_PREPARED",
+        "OPERATIONALLY_ACCEPTED",
+        "DEPLOYED",
+        "STABILIZING",
+        "OPERATING",
+        "DEGRADED",
+        "SUSPENDED",
+        "RECOVERING",
+        "RETIRED"
+      ]
+    },
+    "operationalDomain": {
+      "type": "string",
+      "enum": [
+        "EXECUTIVE_SPONSORSHIP",
+        "SERVICE_OWNERSHIP",
+        "PRODUCT_OWNERSHIP",
+        "DOMAIN_OWNERSHIP",
+        "TECHNICAL_OWNERSHIP",
+        "DATA_OWNERSHIP",
+        "SECURITY",
+        "PRIVACY_AND_RECORDS",
+        "ACCESSIBILITY",
+        "BILINGUAL_CONTENT",
+        "SUPPORT",
+        "OBSERVABILITY_AND_INCIDENT",
+        "CONTINUITY_AND_RECOVERY",
+        "MIGRATION",
+        "RECONCILIATION",
+        "TRAINING_AND_ADOPTION",
+        "PROVIDER_MANAGEMENT",
+        "FINANCE_AND_RECONCILIATION",
+        "INDEPENDENT_ASSURANCE"
+      ]
+    },
+    "migrationStage": {
+      "type": "string",
+      "enum": [
+        "SOURCE_QUALIFICATION",
+        "EXTRACTION",
+        "PROVENANCE_CAPTURE",
+        "MAPPING",
+        "VALIDATION",
+        "IDENTITY_CANDIDATE_TREATMENT",
+        "DUPLICATE_AND_UNCERTAINTY_TREATMENT",
+        "QUARANTINE",
+        "REHEARSAL",
+        "RECONCILIATION",
+        "CUTOVER_AUTHORIZATION",
+        "CUTOVER",
+        "BUSINESS_ACCEPTANCE",
+        "STABILIZATION",
+        "SOURCE_RETIREMENT_AUTHORIZATION"
+      ]
+    },
+    "supportClassKind": {
+      "type": "string",
+      "enum": [
+        "SERVICE_REQUEST",
+        "USER_ASSISTANCE",
+        "AFFILIATION_CASE_ESCALATION",
+        "ACCESS_AND_AUTHORITY_ISSUE",
+        "EVIDENCE_AND_DOCUMENT_ISSUE",
+        "FINANCE_AND_RECONCILIATION_ISSUE",
+        "PROVIDER_ISSUE",
+        "INCIDENT",
+        "PROBLEM",
+        "KNOWN_ERROR"
+      ]
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "PERSONAL_INFORMATION", "FINANCIAL", "RESTRICTED_EVIDENCE", "NOT_APPLICABLE"]
+    },
+    "independenceLevel": {
+      "type": "string",
+      "enum": ["SELF", "PEER", "DOMAIN", "INDEPENDENT", "EXECUTIVE", "NOT_APPLICABLE"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH", "INDICATIVE_ONLY"]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": ["DEFINED", "CONSTRAINED", "ASSUMED", "PENDING_VALIDATION", "DEFERRED"]
+    },
+    "decisionKind": {
+      "type": "string",
+      "enum": ["DECISION", "RECOMMENDED_DECISION", "DECISION_BOUNDARY"]
+    },
+    "decisionStatus": {
+      "type": "string",
+      "enum": ["RECOMMENDED", "PROPOSED", "APPROVED_FOR_PLANNING", "PENDING", "DEFERRED"]
+    },
+    "backlogKind": {
+      "type": "string",
+      "enum": [
+        "ASSUMPTION",
+        "RISK",
+        "ISSUE",
+        "INCIDENT",
+        "PROBLEM",
+        "MIGRATION_BACKLOG",
+        "ADOPTION_BACKLOG",
+        "ASSURANCE_GAP"
+      ]
+    }
+  }
+}

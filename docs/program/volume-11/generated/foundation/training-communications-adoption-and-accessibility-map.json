@@ -1,0 +1,23 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "training_audiences": [
+    {
+      "id": "TRAIN-V11-001",
+      "title": "Affiliation Reviewer Training Audience",
+      "content": "The knowledge reviewers require to operate governed affiliation decisions.",
+      "delivery": "The delivery method by which that content would be provided.",
+      "competence": "The demonstrable competence a reviewer must hold, distinct from mere content exposure.",
+      "onboarding": "The onboarding path for a new reviewer, distinct from sustained adoption.",
+      "sustained_adoption": "The sustained adoption expected of reviewers over time.",
+      "accessibility": "All training must meet accessibility obligations.",
+      "bilingual": "All training must be available bilingually."
+    }
+  ],
+  "adoption_measures": [
+    {
+      "id": "ADOPT-V11-001",
+      "title": "Reviewer Sustained Adoption Measure",
+      "sustained_adoption": "Sustained adoption is defined as continued governed use with demonstrated competence, distinct from initial onboarding."
+    }
+  ]
+}

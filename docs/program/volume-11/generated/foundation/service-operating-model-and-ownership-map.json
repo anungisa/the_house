@@ -1,0 +1,65 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "services": [
+    {
+      "id": "SERVICE-V11-001",
+      "title": "Affiliation Application Service",
+      "operational_owner": "OWNER-V11-001",
+      "institutional_authority": "CurlingCanada",
+      "material": true,
+      "governed_ownership_gap": null
+    },
+    {
+      "id": "SERVICE-V11-002",
+      "title": "Central Registration Records Service",
+      "operational_owner": "OWNER-V11-001",
+      "institutional_authority": "CurlingCanada",
+      "material": true,
+      "governed_ownership_gap": null
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-V11-001",
+      "title": "Evidence and Document Handling Capability",
+      "operational_owner": "OWNER-V11-001",
+      "material": true
+    },
+    {
+      "id": "CAP-V11-002",
+      "title": "Reconciliation and Finance Capability",
+      "operational_owner": "OWNER-V11-002",
+      "material": true
+    }
+  ],
+  "owners": [
+    {
+      "id": "OWNER-V11-001",
+      "title": "Service Owner",
+      "decision_rights": "Operational decision rights within governed policy; no institutional authority.",
+      "escalation_route": "Service owner to operations owner to executive sponsor.",
+      "authority_domain": "House"
+    },
+    {
+      "id": "OWNER-V11-002",
+      "title": "Operations Owner",
+      "decision_rights": "Operational decision rights over the operations and support model within governed policy.",
+      "escalation_route": "Operations owner to executive sponsor.",
+      "authority_domain": "House"
+    },
+    {
+      "id": "OWNER-V11-003",
+      "title": "Migration Owner",
+      "decision_rights": "Operational decision rights over the migration model within governed policy; no cutover or source-retirement authority in Package 1.",
+      "escalation_route": "Migration owner to operations owner to executive sponsor.",
+      "authority_domain": "House"
+    },
+    {
+      "id": "OWNER-V11-004",
+      "title": "Independent Assurance Authority",
+      "decision_rights": "Independent assurance judgement over operational acceptance; no delivery or operations authority.",
+      "escalation_route": "Independent assurance to executive sponsor.",
+      "authority_domain": "Independent"
+    }
+  ]
+}

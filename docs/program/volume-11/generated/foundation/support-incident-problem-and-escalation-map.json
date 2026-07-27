@@ -1,0 +1,31 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 11 corpus. Confers no ratification and authorizes no implementation or operations.",
+  "support_classes": [
+    {
+      "id": "SUPPORT-V11-001",
+      "title": "Service Request",
+      "support_class_kind": "SERVICE_REQUEST",
+      "access_boundary": "Support access is read-and-assist within governed policy.",
+      "mutation_boundary": "Support access is distinct from mutation of governed state.",
+      "escalation_route": "Support to operations owner."
+    },
+    {
+      "id": "SUPPORT-V11-002",
+      "title": "Incident",
+      "support_class_kind": "INCIDENT",
+      "access_boundary": "Incident handling access is governed and bounded.",
+      "mutation_boundary": "Incident response does not confer institutional authority.",
+      "escalation_route": "Incident to operations owner to executive sponsor."
+    },
+    {
+      "id": "SUPPORT-V11-003",
+      "title": "Problem",
+      "support_class_kind": "PROBLEM",
+      "access_boundary": "Problem analysis access is governed and bounded.",
+      "mutation_boundary": "Problem management is distinct from mutation of governed state.",
+      "escalation_route": "Problem to operations owner."
+    }
+  ],
+  "incidents": [],
+  "problems": []
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "backlog.schema.json",
+  "title": "REG-1104 Assumptions, Risks, Issues, Incidents, Migration Backlog, Adoption Backlog, and Assurance Gaps",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1104" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "owner",
+          "current_status",
+          "impact_if_unresolved",
+          "required_action_or_evidence",
+          "validation_status",
+          "authorizes_implementation",
+          "authorizes_operations",
+          "implementation_status",
+          "operational_status",
+          "execution_status",
+          "future_blocking_gate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^(ASM|RISK|ISSUE|INCIDENT|PROBLEM|MIGBL|ADOPTBL|ASSGAP)-V11-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/backlogKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "source": { "type": "string" },
+          "affected_service": { "type": "string" },
+          "affected_capability": { "type": "string" },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "owner": { "type": "string" },
+          "current_status": { "type": "string" },
+          "impact_if_unresolved": { "type": "string" },
+          "required_action_or_evidence": { "type": "string" },
+          "target_resolution_window": { "type": "string" },
+          "likelihood_or_occurrence": { "type": "string" },
+          "authority_impact": { "type": "string" },
+          "security_impact": { "type": "string" },
+          "privacy_impact": { "type": "string" },
+          "accessibility_impact": { "type": "string" },
+          "bilingual_impact": { "type": "string" },
+          "data_impact": { "type": "string" },
+          "operational_impact": { "type": "string" },
+          "migration_impact": { "type": "string" },
+          "adoption_impact": { "type": "string" },
+          "assurance_impact": { "type": "string" },
+          "escalation_threshold": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "authorizes_operations": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "operational_status": { "$ref": "common.schema.json#/definitions/operationalStatus" },
+          "execution_status": { "$ref": "common.schema.json#/definitions/executionStatus" },
+          "future_blocking_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
+        }
+      }
+    }
+  }
+}
