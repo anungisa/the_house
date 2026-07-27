@@ -91,3 +91,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-10-package-1-traceability-and-validation-backlog.md
     gate: V9-G1
+  - id: V9-A
+    title: Package 1 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-A-package-1-closure-record.md
+    gate: V9-G1

@@ -1,6 +1,6 @@
 # Volume 9 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T15:39:27.770Z
+Generated: 2026-07-27T15:41:52.293Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 corpus. It is not a source of truth, does not confer ratification, and
@@ -25,18 +25,18 @@ Generated: 2026-07-27T15:39:27.770Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 11 |
+| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 12 |
 | REG-901 | Volume 9 Quality Attributes, Test Objects, Institutional Invariants, and Coverage | RATIFIED | 1.0.0 | 96 |
 | REG-902 | Volume 9 Test Requirements, Scenarios, Cases, Oracles, Evidence, and Results | RATIFIED | 1.0.0 | 29 |
 | REG-903 | Volume 9 Decisions | RATIFIED | 1.0.0 | 4 |
 | REG-904 | Volume 9 Assumptions, Risks, Exceptions, Defects, Waivers, and Validation Backlog | RATIFIED | 1.0.0 | 10 |
-| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 12 |
+| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 15 |
 
 ## Findings by control
 
