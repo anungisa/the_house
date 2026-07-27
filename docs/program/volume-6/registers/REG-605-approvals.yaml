@@ -786,4 +786,25 @@ records:
       - The freeze is committed separately from authoring.
     approved_at: null
 
+  # ==== Package 4: provenance amendment ====
+  - id: APP-V6-057
+    artifact_id: V6-H
+    approver_role: Accountable Program Authority (Aubert Nungisa)
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    base_commit: dcee956
+    amendment_process: Narrow additive provenance amendment; preserves Gate V6-G4 and the Package 4 freeze; does not reopen substantive Package 4 content.
+    package_provenance:
+      source_snapshot_commit: 6fdf67d
+      closure_freeze_commit: b7abf0d
+      original_package_merge_commit: dcee956
+      inherited_baseline_tag: central-registration-volume-5-v1.0.0
+      note: 'Package 4 branched from the Package 3 provenance-amendment baseline 6fdf67d; authoring commit 9dc9c8f; closure and freeze commit b7abf0d; original package merge dcee956. Provenance-amendment authoring and merge commits are recorded in the amendment history, mirroring the Package 1, Package 2, and Package 3 provenance discipline.'
+    conditions:
+      - Completes machine-readable Package 4 provenance after mainline merge.
+      - Preserves the Gate V6-G4 disposition and the PACKAGE-6-4 freeze.
+      - Reopens no substantive Package 4 content and authorizes no implementation.
+    approved_at: null
+
 

@@ -1,6 +1,6 @@
 # Volume 6 Package 2 Control-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T00:02:15.814Z
+Generated: 2026-07-27T00:06:45.807Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 2 defines the identity,
