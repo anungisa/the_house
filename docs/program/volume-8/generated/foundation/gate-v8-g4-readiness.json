@@ -1,0 +1,155 @@
+{
+  "gate": "V8-G4",
+  "disposition_target": "EXTERNAL_PROVIDER_FILE_BATCH_MIGRATION_AND_EXCHANGE_CONTRACT_DEFINITION_READY",
+  "total_conditions": 28,
+  "satisfied": 27,
+  "unmet": [
+    {
+      "n": 28,
+      "title": "Package 4 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 3 provenance, V8-F, and V8-F-1 are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Packages 1 through 3 remain frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Provider and exchange authority doctrine is controlled",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Provider custody remains distinct from institutional authority",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Provider, import, export, file, batch, migration, and manual-exchange contexts are catalogued",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every exchange identifies producer, consumer, owner, purpose, authority, classification, and trust boundary",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Files and batches define identity, provenance, version, manifest, counts, integrity, and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Structural validity remains distinct from semantic and institutional validity",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Imports define acceptance, rejection, quarantine, duplicate, correction, and partial-success semantics",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Rejected and quarantined records remain non-authoritative",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Imports cannot silently create governed authority",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Exports require explicit disclosure and recipient authority",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Read access remains distinct from export authority",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Export generation, delivery, receipt, processing, and reconciliation remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Migration contracts preserve source provenance and uncertainty",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Mapping remains distinct from identity resolution and authority confirmation",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Migration completion remains distinct from business acceptance and source retirement",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Provider incidents, continuity, substitution, return, deletion, residual copies, and exit are governed",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Provider certification remains distinct from service assurance",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Batch idempotency, replay, ordering, concurrency, partial failure, compensation, and reconciliation are controlled",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Manual and transitional exchanges remain governed and auditable",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Accessible and bilingual requirements apply to documents and exchange communications",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Every unresolved item has an owner, an evidence requirement, and a valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Deterministic Package 4 assessment completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "No executable file schema, endpoint, transfer, migration script, provider integration, or infrastructure is created",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "No migration-complete, provider-assured, data-deleted, reconciliation-complete, compatibility, privacy, or operational claim is made without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Package 4 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding",
+      "satisfied": false
+    }
+  ]
+}

@@ -715,4 +715,367 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     future_blocking_gate: V9-G1
     chapter_ref: V8-29
+  - id: PROVSURF-V8-001
+    kind: PROVIDER_CONTRACT_SURFACE
+    title: Identity-provider contract surface
+    statement: >-
+      The governed contract surface for an external identity provider that holds
+      custody of authentication material. Custody confers no institutional
+      authority over governed identity facts, which remain determined by the
+      House.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    trust_boundary: >-
+      The boundary between the House domain and the external identity provider;
+      provider assertions are inputs, not determinations.
+    incident_notification_dependency: >-
+      The provider is required to notify the House of incidents affecting
+      governed identity data within the governed relationship.
+    continuity_dependency: >-
+      A degraded or unavailable identity provider is handled without silent loss
+      of governed meaning.
+    exit_dependency: >-
+      Provider exit requires evidenced data return and deletion before the
+      relationship is treated as closed.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: HIGH
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-31
+  - id: PROVSURF-V8-002
+    kind: PROVIDER_CONTRACT_SURFACE
+    title: Payment-provider contract surface
+    statement: >-
+      The governed contract surface for an external payment provider that holds
+      custody of settlement data. A provider settlement assertion is an input to
+      House determination, never a substitute for it.
+    institutional_authority: House
+    authoritative_source: House affiliation lifecycle state
+    trust_boundary: >-
+      The boundary between the House domain and the external payment provider;
+      settlement assertions are reconciled, never presumed authoritative.
+    incident_notification_dependency: >-
+      The provider is required to notify the House of incidents affecting
+      governed payment data within the governed relationship.
+    continuity_dependency: >-
+      A degraded or unavailable payment provider is handled without silent loss
+      of governed meaning.
+    exit_dependency: >-
+      Provider exit requires evidenced data return and deletion before the
+      relationship is treated as closed.
+    classification: FINANCIAL_STATUS
+    sensitivity: HIGH
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-31
+  - id: IMPCTX-V8-001
+    kind: IMPORT_CONTEXT
+    title: Provincial-territorial membership import context
+    statement: >-
+      The governed context for importing membership records asserted by a
+      provincial or territorial system. Received records are untrusted until
+      evaluated and are never authoritative on receipt.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: Provincial or territorial source system
+    consumer: House affiliation domain
+    purpose: Intake externally asserted membership records for governed evaluation
+    classification: PERSONAL_INFORMATION
+    sensitivity: HIGH
+    trust_boundary: >-
+      The boundary a provincial or territorial system crosses inbound; records
+      are untrusted until authenticated, integrity-verified, and evaluated.
+    validation_dependency: >-
+      Imported records depend on structural, semantic, and authority evaluation
+      before any governed effect.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-34
+  - id: IMPCTX-V8-002
+    kind: IMPORT_CONTEXT
+    title: Provider settlement-reconciliation import context
+    statement: >-
+      The governed context for importing settlement outcomes asserted by a
+      payment provider for reconciliation. Provider assertions are reconciled,
+      not accepted as authoritative on receipt.
+    institutional_authority: House
+    owner: House finance authority
+    producer: External payment provider
+    consumer: House affiliation and finance domain
+    purpose: Intake provider settlement outcomes for governed reconciliation
+    classification: FINANCIAL_STATUS
+    sensitivity: HIGH
+    trust_boundary: >-
+      The boundary a payment provider crosses inbound; outcomes are untrusted
+      until authenticated, integrity-verified, and reconciled.
+    validation_dependency: >-
+      Imported settlement outcomes depend on reconciliation before any governed
+      financial effect.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-34
+  - id: EXPCTX-V8-001
+    kind: EXPORT_CONTEXT
+    title: Provincial-territorial reporting export context
+    statement: >-
+      The governed context for exporting reporting extracts to a provincial or
+      territorial recipient. Only the minimum necessary content crosses the
+      boundary under an explicit disclosure basis.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: House affiliation domain
+    consumer: Provincial or territorial recipient
+    purpose: Disclose governed reporting extracts to an entitled external recipient
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    trust_boundary: >-
+      The boundary the House crosses outbound; only content the recipient is
+      entitled to receive crosses it under a recorded disclosure basis.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-35
+  - id: EXPCTX-V8-002
+    kind: EXPORT_CONTEXT
+    title: Finance-exchange export context
+    statement: >-
+      The governed context for exporting governed financial extracts to an
+      accounting recipient. Export authority is distinct from internal read
+      access.
+    institutional_authority: House
+    owner: House finance authority
+    producer: House affiliation and finance domain
+    consumer: External accounting recipient
+    purpose: Disclose governed financial extracts to an entitled accounting recipient
+    classification: FINANCIAL_STATUS
+    sensitivity: HIGH
+    trust_boundary: >-
+      The boundary the House crosses outbound to an accounting recipient under a
+      recorded disclosure basis.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-35
+  - id: FILECTX-V8-001
+    kind: FILE_EXCHANGE_CONTEXT
+    title: Bulk membership file-exchange context
+    statement: >-
+      The governed context for a bulk membership file exchange. A received file
+      is evaluated for structure, integrity, and meaning before any governed
+      effect; file receipt is not file acceptance.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: External or provincial source system
+    consumer: House affiliation domain
+    purpose: Exchange bulk membership data as governed files
+    classification: PERSONAL_INFORMATION
+    sensitivity: HIGH
+    trust_boundary: >-
+      The boundary a file crosses inbound or outbound; inbound files are
+      untrusted until authenticated and integrity-verified.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-33
+  - id: BATCHCTX-V8-001
+    kind: BATCH_EXCHANGE_CONTEXT
+    title: Scheduled batch-exchange context
+    statement: >-
+      The governed context for a scheduled batch exchange. A batch is idempotent
+      under a stable key and reconciled; retry does not reprocess records twice.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: House affiliation domain or external source system
+    consumer: House affiliation domain or external recipient
+    purpose: Exchange records in governed scheduled batches
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    trust_boundary: >-
+      The boundary a batch crosses; batches are reconciled and produce no
+      duplicate governed effect on retry.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-38
+  - id: MIGCTX-V8-001
+    kind: MIGRATION_CONTEXT
+    title: Legacy membership migration context
+    statement: >-
+      The governed context for migrating legacy membership data. A source record
+      is not a resolved person, account, or authority; migration mapping is not
+      identity resolution.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: Legacy source system
+    consumer: House affiliation domain
+    purpose: Migrate legacy membership data into the governed system-of-record
+    classification: MIGRATION_OR_QUARANTINE
+    sensitivity: HIGH
+    trust_boundary: >-
+      The boundary migrated data crosses; unresolved and ambiguous records are
+      quarantined rather than forced into false certainty.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-36
+  - id: MIGCTX-V8-002
+    kind: MIGRATION_CONTEXT
+    title: Legacy affiliation-standing migration context
+    statement: >-
+      The governed context for migrating legacy affiliation standing and history.
+      Migration completion is not business acceptance and does not retire the
+      source.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: Legacy source system
+    consumer: House affiliation domain
+    purpose: Migrate legacy affiliation standing and decision history for governed evaluation
+    classification: MIGRATION_OR_QUARANTINE
+    sensitivity: HIGH
+    trust_boundary: >-
+      The boundary migrated standing crosses; coexistence and cutover are
+      governed before the source ceases to be authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-36
+  - id: MANCTX-V8-001
+    kind: MANUAL_EXCHANGE_CONTEXT
+    title: Manual document-based exchange context
+    statement: >-
+      The governed context for a manual, document-based exchange conducted by
+      staff during a transition. A manual exchange is governed and auditable to
+      the same standard as an automated one.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: House staff or external correspondent
+    consumer: House affiliation domain
+    purpose: Conduct governed manual and transitional document exchanges
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    trust_boundary: >-
+      The boundary a manually handled document crosses; it is recorded and
+      evidenced rather than trusted implicitly.
+    records_dependency: >-
+      Every manual exchange produces a governed record; an exchange that
+      produces no record is not accepted.
+    evidence_requirement: >-
+      Every manual exchange produces evidence of what was exchanged and by whom.
+    accessibility_requirement: >-
+      Manual and document exchanges meet the platform accessibility obligation
+      for their audience.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-39
+  - id: MANCTX-V8-002
+    kind: MANUAL_EXCHANGE_CONTEXT
+    title: Transitional bilingual correspondence context
+    statement: >-
+      The governed context for transitional bilingual correspondence with
+      stakeholders. Where a bilingual obligation applies, governed meaning is
+      available in both English and French.
+    institutional_authority: House
+    owner: House affiliation authority
+    producer: House staff
+    consumer: Applicant or member organization
+    purpose: Conduct governed transitional correspondence under bilingual obligations
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    trust_boundary: >-
+      The boundary correspondence crosses to a stakeholder; it is recorded and
+      evidenced.
+    records_dependency: >-
+      Every correspondence exchange produces a governed record.
+    accessibility_requirement: >-
+      Correspondence meets the platform accessibility obligation for its
+      audience.
+    english_semantic: The governed correspondence meaning stated in English.
+    french_semantic: The governed correspondence meaning stated in equivalent French.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-39
+  - id: PROVTRUST-V8-001
+    kind: PROVIDER_TRUST_BOUNDARY
+    title: House-to-provider outbound provider trust boundary
+    statement: >-
+      The boundary the House crosses to deliver governed data to an external
+      provider. Only content the provider is entitled to receive crosses it.
+    trust_boundary: >-
+      The outbound boundary between the House domain and an external provider
+      context.
+    fail_closed_posture: >-
+      An outbound provider exchange is refused unless it resolves to a trusted
+      provider and carries only entitled content.
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-31
+  - id: PROVTRUST-V8-002
+    kind: PROVIDER_TRUST_BOUNDARY
+    title: Provider-to-House inbound provider trust boundary
+    statement: >-
+      The boundary an external provider crosses to reach the House domain.
+      Inbound provider signals are untrusted until authenticated, integrity-
+      verified, scoped, and reconciled.
+    trust_boundary: >-
+      The inbound boundary between an external provider context and the House
+      domain.
+    fail_closed_posture: >-
+      An inbound provider signal is refused before any governed effect unless it
+      authenticates as a trusted provider, passes integrity verification, and
+      resolves to a known scope.
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-32
+    traces_to:
+      - V8-31
 

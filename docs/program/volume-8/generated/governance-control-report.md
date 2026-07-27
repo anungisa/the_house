@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T13:03:52.183Z
+Generated: 2026-07-27T13:43:04.412Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T13:03:52.183Z
 
 ## Summary
 
-- Total findings: 0
-- Errors: 0
+- Total findings: 1
+- Errors: 1
 - Warnings: 0
 - Info: 0
-- Overall: PASS (no integrity errors)
+- Overall: FAIL (contract-governance integrity errors present)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 40 |
+| RATIFIED | 50 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 40 |
-| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 35 |
-| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 72 |
-| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 20 |
-| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 15 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 47 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 50 |
+| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 49 |
+| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 88 |
+| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 33 |
+| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 19 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 57 |
 
 ## Findings by control
 
@@ -83,7 +83,19 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
 
+### Gate V8-G4 readiness
+
+Errors: 1 | Warnings: 0 | Info: 0
+
+- ERROR GATE_V8_G4_CONDITION_UNMET [GATE-V8-G4]: Condition 28 not satisfied: Package 4 uses genuine authoring, closure/freeze, and pre-merge provenance-binding separation with a resolved gate binding
+
 ### Event-delivery contract coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Provider-exchange contract coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
 

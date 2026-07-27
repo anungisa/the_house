@@ -509,6 +509,169 @@ function validateNotificationRequirements(ctx, findings) {
   }
 }
 
+// ---- Package 4: external-provider, file, batch, migration & exchange contracts ----
+// The following guards fail closed on Package 4 provider-and-exchange contract kinds.
+// Each keys on a kind introduced in Package 4, so it adds obligations without
+// altering the evaluation of any Package 1, Package 2, or Package 3 record.
+
+// Provider contract surfaces (REG-801) without retained authority, an authoritative
+// source, a trust boundary, or provider lifecycle obligations.
+function validateProviderContractSurfaces(ctx, findings) {
+  for (const s of records(ctx, 'REG-801')) {
+    if (s.kind !== 'PROVIDER_CONTRACT_SURFACE') continue;
+    if (!s.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_SURFACE_WITHOUT_AUTHORITY', `${s.id}: provider contract surface names no institutional_authority`, s.id));
+    if (!s.authoritative_source) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_SURFACE_WITHOUT_SOURCE', `${s.id}: provider contract surface names no authoritative_source`, s.id));
+    if (!s.trust_boundary) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_SURFACE_WITHOUT_TRUST_BOUNDARY', `${s.id}: provider contract surface names no trust_boundary`, s.id));
+    if (!s.incident_notification_dependency) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_SURFACE_WITHOUT_INCIDENT', `${s.id}: provider contract surface names no incident_notification_dependency`, s.id));
+    if (!s.continuity_dependency) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_SURFACE_WITHOUT_CONTINUITY', `${s.id}: provider contract surface names no continuity_dependency`, s.id));
+    if (!s.exit_dependency) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_SURFACE_WITHOUT_EXIT', `${s.id}: provider contract surface names no exit_dependency`, s.id));
+  }
+}
+
+// Import/export/file/batch/migration/manual exchange contexts (REG-801) without
+// ownership, purpose, producer, consumer, a trust boundary, or a classification.
+function validateExchangeContexts(ctx, findings) {
+  const kinds = new Set(['IMPORT_CONTEXT', 'EXPORT_CONTEXT', 'FILE_EXCHANGE_CONTEXT', 'BATCH_EXCHANGE_CONTEXT', 'MIGRATION_CONTEXT', 'MANUAL_EXCHANGE_CONTEXT']);
+  for (const s of records(ctx, 'REG-801')) {
+    if (!kinds.has(s.kind)) continue;
+    const k = s.kind.toLowerCase();
+    if (!s.owner && !s.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_CONTEXT_WITHOUT_OWNERSHIP', `${s.id}: ${k} names no owner or institutional_authority`, s.id));
+    if (!s.purpose) findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_CONTEXT_WITHOUT_PURPOSE', `${s.id}: ${k} names no purpose`, s.id));
+    if (!s.producer) findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_CONTEXT_WITHOUT_PRODUCER', `${s.id}: ${k} names no producer`, s.id));
+    if (!s.consumer) findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_CONTEXT_WITHOUT_CONSUMER', `${s.id}: ${k} names no consumer`, s.id));
+    if (!s.trust_boundary) findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_CONTEXT_WITHOUT_TRUST_BOUNDARY', `${s.id}: ${k} names no trust_boundary`, s.id));
+    if (!s.classification) findings.push(makeFinding(Severity.ERROR, 'EXCHANGE_CONTEXT_WITHOUT_CLASSIFICATION', `${s.id}: ${k} names no classification`, s.id));
+  }
+}
+
+// Provider trust boundaries (REG-801) without a fail-closed posture.
+function validateProviderTrustBoundaries(ctx, findings) {
+  for (const s of records(ctx, 'REG-801')) {
+    if (s.kind !== 'PROVIDER_TRUST_BOUNDARY') continue;
+    if (!s.fail_closed_posture) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_BOUNDARY_WITHOUT_FAIL_CLOSED', `${s.id}: provider trust boundary names no fail_closed_posture`, s.id));
+    if (!s.trust_boundary) findings.push(makeFinding(Severity.ERROR, 'PROVIDER_BOUNDARY_WITHOUT_BOUNDARY', `${s.id}: provider trust boundary names no trust_boundary`, s.id));
+  }
+}
+
+// File-manifest and batch-envelope requirements (REG-802) without manifest fields,
+// an integrity dependency, source provenance, or a version distinction.
+function validateFileBatchManifests(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'FILE_MANIFEST_REQUIREMENT' && r.kind !== 'BATCH_ENVELOPE_REQUIREMENT') continue;
+    if (!(r.manifest_fields && r.manifest_fields.length > 0)) findings.push(makeFinding(Severity.ERROR, 'MANIFEST_WITHOUT_FIELDS', `${r.id}: file/batch manifest requirement names no manifest_fields`, r.id));
+    if (!r.integrity_dependency) findings.push(makeFinding(Severity.ERROR, 'MANIFEST_WITHOUT_INTEGRITY', `${r.id}: file/batch manifest requirement names no integrity_dependency`, r.id));
+    if (!r.source_provenance) findings.push(makeFinding(Severity.ERROR, 'MANIFEST_WITHOUT_PROVENANCE', `${r.id}: file/batch manifest requirement names no source_provenance`, r.id));
+    if (!r.version_distinction) findings.push(makeFinding(Severity.ERROR, 'MANIFEST_WITHOUT_VERSION_DISTINCTION', `${r.id}: file/batch manifest requirement names no version_distinction`, r.id));
+  }
+}
+
+// Import requirements without source authority, acceptance authority, reject and
+// quarantine conditions, a partial-success posture, an authoritative-state
+// consequence, or a reconciliation requirement.
+function validateImportRequirements(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'IMPORT_REQUIREMENT') continue;
+    if (!r.source_authority) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_SOURCE_AUTHORITY', `${r.id}: import requirement names no source_authority`, r.id));
+    if (!r.acceptance_authority) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_ACCEPTANCE_AUTHORITY', `${r.id}: import requirement names no acceptance_authority`, r.id));
+    if (!r.reject_conditions) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_REJECT_CONDITIONS', `${r.id}: import requirement names no reject_conditions`, r.id));
+    if (!r.quarantine_conditions) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_QUARANTINE_CONDITIONS', `${r.id}: import requirement names no quarantine_conditions`, r.id));
+    if (!r.partial_success_posture) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_PARTIAL_SUCCESS', `${r.id}: import requirement names no partial_success_posture`, r.id));
+    if (!r.authoritative_state_consequence) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_STATE_CONSEQUENCE', `${r.id}: import requirement names no authoritative_state_consequence`, r.id));
+    if (!r.reconciliation_dependency) findings.push(makeFinding(Severity.ERROR, 'IMPORT_WITHOUT_RECONCILIATION', `${r.id}: import requirement names no reconciliation_dependency`, r.id));
+  }
+}
+
+// Export requirements without export authority, recipient authority status,
+// disclosure basis, minimum-necessary content, delivery/receipt evidence, or
+// reconciliation.
+function validateExportRequirements(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'EXPORT_REQUIREMENT') continue;
+    if (!r.export_authority) findings.push(makeFinding(Severity.ERROR, 'EXPORT_WITHOUT_AUTHORITY', `${r.id}: export requirement names no export_authority`, r.id));
+    if (!r.recipient_authority_status) findings.push(makeFinding(Severity.ERROR, 'EXPORT_WITHOUT_RECIPIENT_AUTHORITY', `${r.id}: export requirement names no recipient_authority_status`, r.id));
+    if (!r.disclosure_basis_status) findings.push(makeFinding(Severity.ERROR, 'EXPORT_WITHOUT_DISCLOSURE_BASIS', `${r.id}: export requirement names no disclosure_basis_status`, r.id));
+    if (!r.minimum_necessary_content) findings.push(makeFinding(Severity.ERROR, 'EXPORT_WITHOUT_MINIMUM_NECESSARY', `${r.id}: export requirement names no minimum_necessary_content`, r.id));
+    if (!r.delivery_evidence && !r.receipt_evidence) findings.push(makeFinding(Severity.ERROR, 'EXPORT_WITHOUT_DELIVERY_EVIDENCE', `${r.id}: export requirement names no delivery_evidence or receipt_evidence`, r.id));
+    if (!r.reconciliation_dependency) findings.push(makeFinding(Severity.ERROR, 'EXPORT_WITHOUT_RECONCILIATION', `${r.id}: export requirement names no reconciliation_dependency`, r.id));
+  }
+}
+
+// Acceptance / rejection / partial-success semantics without an explicit posture
+// and a non-authoritative treatment for rejected/quarantined content.
+function validateAcceptanceSemantics(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind === 'ACCEPTANCE_SEMANTIC') {
+      if (!r.acceptance_posture) findings.push(makeFinding(Severity.ERROR, 'ACCEPTANCE_WITHOUT_POSTURE', `${r.id}: acceptance semantic names no acceptance_posture`, r.id));
+    } else if (r.kind === 'REJECTION_SEMANTIC') {
+      if (!r.non_authoritative_posture) findings.push(makeFinding(Severity.ERROR, 'REJECTION_WITHOUT_NON_AUTHORITATIVE', `${r.id}: rejection semantic names no non_authoritative_posture`, r.id));
+    } else if (r.kind === 'PARTIAL_SUCCESS_SEMANTIC') {
+      if (!r.partial_success_posture) findings.push(makeFinding(Severity.ERROR, 'PARTIAL_SUCCESS_WITHOUT_POSTURE', `${r.id}: partial-success semantic names no partial_success_posture`, r.id));
+    }
+  }
+}
+
+// Migration mapping requirements without source provenance, an explicit mapping
+// posture, an uncertainty posture, or an identity-resolution dependency.
+function validateMigrationMapping(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'MIGRATION_MAPPING_REQUIREMENT') continue;
+    if (!r.source_provenance) findings.push(makeFinding(Severity.ERROR, 'MIGRATION_WITHOUT_PROVENANCE', `${r.id}: migration mapping requirement names no source_provenance`, r.id));
+    if (!r.mapping_posture) findings.push(makeFinding(Severity.ERROR, 'MIGRATION_WITHOUT_MAPPING_POSTURE', `${r.id}: migration mapping requirement names no mapping_posture`, r.id));
+    if (!r.uncertainty_posture) findings.push(makeFinding(Severity.ERROR, 'MIGRATION_WITHOUT_UNCERTAINTY', `${r.id}: migration mapping requirement names no uncertainty_posture`, r.id));
+    if (!r.identity_resolution_dependency) findings.push(makeFinding(Severity.ERROR, 'MIGRATION_WITHOUT_IDENTITY_DEPENDENCY', `${r.id}: migration mapping requirement names no identity_resolution_dependency`, r.id));
+  }
+}
+
+// Identity-resolution requirements without an explicit resolution posture, an
+// uncertainty posture, or an unresolved posture.
+function validateIdentityResolution(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'IDENTITY_RESOLUTION_REQUIREMENT') continue;
+    if (!r.resolution_posture) findings.push(makeFinding(Severity.ERROR, 'IDENTITY_WITHOUT_RESOLUTION_POSTURE', `${r.id}: identity resolution requirement names no resolution_posture`, r.id));
+    if (!r.uncertainty_posture) findings.push(makeFinding(Severity.ERROR, 'IDENTITY_WITHOUT_UNCERTAINTY', `${r.id}: identity resolution requirement names no uncertainty_posture`, r.id));
+    if (!r.unresolved_posture) findings.push(makeFinding(Severity.ERROR, 'IDENTITY_WITHOUT_UNRESOLVED_POSTURE', `${r.id}: identity resolution requirement names no unresolved_posture`, r.id));
+  }
+}
+
+// Provider continuity requirements without a continuity posture, a substitution
+// posture, or an incident linkage.
+function validateProviderContinuity(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'PROVIDER_CONTINUITY_REQUIREMENT') continue;
+    if (!r.continuity_posture) findings.push(makeFinding(Severity.ERROR, 'CONTINUITY_WITHOUT_POSTURE', `${r.id}: provider continuity requirement names no continuity_posture`, r.id));
+    if (!r.substitution_posture) findings.push(makeFinding(Severity.ERROR, 'CONTINUITY_WITHOUT_SUBSTITUTION', `${r.id}: provider continuity requirement names no substitution_posture`, r.id));
+    if (!r.incident_linkage) findings.push(makeFinding(Severity.ERROR, 'CONTINUITY_WITHOUT_INCIDENT_LINKAGE', `${r.id}: provider continuity requirement names no incident_linkage`, r.id));
+  }
+}
+
+// Data return / deletion evidence / provider exit requirements without their
+// governing postures and distinctions.
+function validateDataReturnDeletionExit(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind === 'DATA_RETURN_REQUIREMENT') {
+      if (!r.return_posture) findings.push(makeFinding(Severity.ERROR, 'DATA_RETURN_WITHOUT_POSTURE', `${r.id}: data return requirement names no return_posture`, r.id));
+    } else if (r.kind === 'DELETION_EVIDENCE_REQUIREMENT') {
+      if (!r.deletion_evidence_posture) findings.push(makeFinding(Severity.ERROR, 'DELETION_WITHOUT_EVIDENCE_POSTURE', `${r.id}: deletion evidence requirement names no deletion_evidence_posture`, r.id));
+      if (!r.residual_copy_posture) findings.push(makeFinding(Severity.ERROR, 'DELETION_WITHOUT_RESIDUAL_POSTURE', `${r.id}: deletion evidence requirement names no residual_copy_posture`, r.id));
+    } else if (r.kind === 'PROVIDER_EXIT_REQUIREMENT') {
+      if (!r.exit_posture) findings.push(makeFinding(Severity.ERROR, 'EXIT_WITHOUT_POSTURE', `${r.id}: provider exit requirement names no exit_posture`, r.id));
+      if (!r.termination_distinction) findings.push(makeFinding(Severity.ERROR, 'EXIT_WITHOUT_TERMINATION_DISTINCTION', `${r.id}: provider exit requirement names no termination_distinction`, r.id));
+    }
+  }
+}
+
+// Exchange reconciliation requirements without a reconciliation owner, a replay
+// authority, a partial-success posture, or closure evidence.
+function validateExchangeReconciliation(ctx, findings) {
+  for (const r of records(ctx, 'REG-802')) {
+    if (r.kind !== 'EXCHANGE_RECONCILIATION_REQUIREMENT') continue;
+    if (!r.reconciliation_owner_status) findings.push(makeFinding(Severity.ERROR, 'RECONCILIATION_WITHOUT_OWNER', `${r.id}: exchange reconciliation requirement names no reconciliation_owner_status`, r.id));
+    if (!r.replay_authority) findings.push(makeFinding(Severity.ERROR, 'RECONCILIATION_WITHOUT_REPLAY_AUTHORITY', `${r.id}: exchange reconciliation requirement names no replay_authority`, r.id));
+    if (!r.partial_success_posture) findings.push(makeFinding(Severity.ERROR, 'RECONCILIATION_WITHOUT_PARTIAL_SUCCESS', `${r.id}: exchange reconciliation requirement names no partial_success_posture`, r.id));
+    if (!r.closure_evidence) findings.push(makeFinding(Severity.ERROR, 'RECONCILIATION_WITHOUT_CLOSURE_EVIDENCE', `${r.id}: exchange reconciliation requirement names no closure_evidence`, r.id));
+  }
+}
+
 // Exceptions without expiry or approval; assumptions/risks/tests without owner or
 // future gate.
 function validateBacklog(ctx, findings) {
@@ -587,6 +750,18 @@ export function run(ctx) {
   validateWebhookAndCallbackRequirements(ctx, findings);
   validateQuarantineRequirements(ctx, findings);
   validateNotificationRequirements(ctx, findings);
+  validateProviderContractSurfaces(ctx, findings);
+  validateExchangeContexts(ctx, findings);
+  validateProviderTrustBoundaries(ctx, findings);
+  validateFileBatchManifests(ctx, findings);
+  validateImportRequirements(ctx, findings);
+  validateExportRequirements(ctx, findings);
+  validateAcceptanceSemantics(ctx, findings);
+  validateMigrationMapping(ctx, findings);
+  validateIdentityResolution(ctx, findings);
+  validateProviderContinuity(ctx, findings);
+  validateDataReturnDeletionExit(ctx, findings);
+  validateExchangeReconciliation(ctx, findings);
   validateBacklog(ctx, findings);
   validateGateForwardOnly(ctx, findings);
   validateLeakage(ctx, findings);

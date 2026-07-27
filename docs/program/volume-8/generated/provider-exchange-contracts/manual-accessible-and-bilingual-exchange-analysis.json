@@ -1,0 +1,36 @@
+{
+  "manual_exchange_contexts": 2,
+  "manual": [
+    {
+      "id": "MANCTX-V8-001",
+      "purpose": "Conduct governed manual and transitional document exchanges",
+      "classification": "INTERNAL_OPERATIONAL",
+      "records_dependency": "Every manual exchange produces a governed record; an exchange that produces no record is not accepted.",
+      "accessibility_requirement": "Manual and document exchanges meet the platform accessibility obligation for their audience."
+    },
+    {
+      "id": "MANCTX-V8-002",
+      "purpose": "Conduct governed transitional correspondence under bilingual obligations",
+      "classification": "INTERNAL_OPERATIONAL",
+      "records_dependency": "Every correspondence exchange produces a governed record.",
+      "accessibility_requirement": "Correspondence meets the platform accessibility obligation for its audience."
+    }
+  ],
+  "exports_bilingual": [
+    {
+      "id": "EXPORT-V8-001",
+      "english_semantic": false,
+      "french_semantic": false,
+      "accessibility_requirement": false
+    },
+    {
+      "id": "EXPORT-V8-002",
+      "english_semantic": true,
+      "french_semantic": true,
+      "accessibility_requirement": true
+    }
+  ],
+  "gaps": {
+    "manual_exchanges_without_records_or_evidence": []
+  }
+}

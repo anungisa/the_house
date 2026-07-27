@@ -1,0 +1,17 @@
+{
+  "exchange_reconciliation_requirements": 1,
+  "reconciliations": [
+    {
+      "id": "EXRECON-V8-001",
+      "reconciliation_owner_status": "Every reconciliation names its owner; an unowned reconciliation is not complete.",
+      "replay_authority": "Replay proceeds only under recorded replay authority and produces replay evidence.",
+      "partial_success_posture": "Partial failure is explicit; failed records are quarantined and remain non-authoritative rather than silently dropped.",
+      "replacement_posture": null,
+      "compensation_limitation": "Compensation reverses or offsets a prior effect within declared limits and does not delete governed history.",
+      "closure_evidence": "An exchange is closed only when its reconciliation is owned, evidenced, and complete."
+    }
+  ],
+  "gaps": {
+    "reconciliations_without_owner_or_closure_evidence": []
+  }
+}

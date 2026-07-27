@@ -1,0 +1,39 @@
+{
+  "provider_continuity_requirements": 1,
+  "data_return_requirements": 1,
+  "deletion_evidence_requirements": 1,
+  "provider_exit_requirements": 1,
+  "continuity": [
+    {
+      "id": "PROVCONT-V8-001",
+      "continuity_posture": "A degraded or unavailable provider is handled so that governed meaning is preserved and no governed effect is silently lost.",
+      "substitution_posture": "Introducing a replacement provider is a governed change, distinct from continuity, with its own trust establishment.",
+      "incident_linkage": "Continuity and substitution events are linked to governed incident records."
+    }
+  ],
+  "data_return": [
+    {
+      "id": "DATARET-V8-001",
+      "return_posture": "Governed data is returned in a usable, portable form as a distinct, evidenced obligation on termination.",
+      "portability_posture": "Returned data is portable so that governed meaning survives the provider relationship."
+    }
+  ],
+  "deletion": [
+    {
+      "id": "DELEVID-V8-001",
+      "deletion_evidence_posture": "Deletion is evidenced; a provider assertion of deletion is a certification, not House confirmation.",
+      "residual_copy_posture": "Residual copies, backups, and derivatives are explicitly addressed before deletion is treated as complete."
+    }
+  ],
+  "exit": [
+    {
+      "id": "PROVEXIT-V8-001",
+      "exit_posture": "Exit completes only when its constituent obligations are evidenced; otherwise it remains incomplete.",
+      "termination_distinction": "Provider termination is distinct from data return, deletion, and exit completion.",
+      "exit_acceptance": "Exit is accepted as closed only on evidence of return, deletion, and reconciliation."
+    }
+  ],
+  "gaps": {
+    "providers_without_incident_continuity_or_exit": []
+  }
+}

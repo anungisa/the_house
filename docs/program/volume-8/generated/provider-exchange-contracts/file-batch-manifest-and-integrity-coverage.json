@@ -1,0 +1,25 @@
+{
+  "file_manifest_requirements": 1,
+  "batch_envelope_requirements": 1,
+  "manifests": [
+    {
+      "id": "MANIFEST-V8-001",
+      "kind": "FILE_MANIFEST_REQUIREMENT",
+      "manifest_field_count": 11,
+      "integrity_dependency": "The file declares an integrity dependency; its content is verifiably intact and attributable to its declared source before evaluation.",
+      "source_provenance": "The file declares its source system, extract time, and generated time as governed provenance.",
+      "version_distinction": "The file's schema or format version is distinct from the business-rule and requirement versions that govern the meaning of its records."
+    },
+    {
+      "id": "BATCHENV-V8-001",
+      "kind": "BATCH_ENVELOPE_REQUIREMENT",
+      "manifest_field_count": 10,
+      "integrity_dependency": "The batch declares an integrity dependency; its content is verifiably intact and attributable to its declared source before processing.",
+      "source_provenance": "The batch declares its source system and generated time as governed provenance.",
+      "version_distinction": "The batch's schema or format version is distinct from the business-rule and requirement versions that govern the meaning of its records."
+    }
+  ],
+  "gaps": {
+    "manifests_without_integrity_or_fields": []
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "provider_contract_surfaces": 2,
+  "provider_trust_boundaries": 2,
+  "providers": [
+    {
+      "id": "PROVSURF-V8-001",
+      "institutional_authority": "House",
+      "authoritative_source": "House affiliation lifecycle state",
+      "trust_boundary": "The boundary between the House domain and the external identity provider; provider assertions are inputs, not determinations."
+    },
+    {
+      "id": "PROVSURF-V8-002",
+      "institutional_authority": "House",
+      "authoritative_source": "House affiliation lifecycle state",
+      "trust_boundary": "The boundary between the House domain and the external payment provider; settlement assertions are reconciled, never presumed authoritative."
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "PROVTRUST-V8-001",
+      "fail_closed_posture": true,
+      "trust_boundary": "The outbound boundary between the House domain and an external provider context."
+    },
+    {
+      "id": "PROVTRUST-V8-002",
+      "fail_closed_posture": true,
+      "trust_boundary": "The inbound boundary between an external provider context and the House domain."
+    }
+  ],
+  "gaps": {
+    "providers_without_authority_or_source": [],
+    "exchanges_without_trust_boundary": []
+  }
+}

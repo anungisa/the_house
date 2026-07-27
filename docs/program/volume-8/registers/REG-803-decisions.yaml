@@ -384,4 +384,239 @@ records:
     chapter_ref: V8-30
     traces_to:
       - V8-07
+  - id: ADR-V8-021
+    title: Provider custody is not institutional authority
+    decision: >-
+      Provider custody of governed data is a handling relationship and confers no
+      authority to determine governed facts or bind Curling Canada.
+    status: ACCEPTED
+    context: >-
+      Treating a provider's custody or assertion as authority would let external
+      parties determine governed facts and erode institutional authority.
+    consequence: >-
+      A provider assertion is an input to institutional determination; authority
+      over governed facts is retained internally across every exchange.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-31
+    traces_to:
+      - V8-32
+  - id: ADR-V8-022
+    title: File receipt is not file acceptance and imported records are not authoritative on receipt
+    decision: >-
+      File received, file accepted, records imported, and imported records
+      authoritative are distinct governed boundaries that are never collapsed.
+    status: ACCEPTED
+    context: >-
+      Collapsing receipt into acceptance would let unevaluated content acquire
+      governed effect.
+    consequence: >-
+      Received content is evaluated before acceptance; acceptance is evaluated
+      before any record becomes authoritative.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: ADR-V8-023
+    title: Structural validity is not semantic or institutional validity
+    decision: >-
+      A complete manifest and a verified integrity check establish structure only
+      and are distinct from semantic and institutional validity.
+    status: ACCEPTED
+    context: >-
+      Treating a well-formed, intact file as valid content would admit
+      structurally correct but institutionally invalid records.
+    consequence: >-
+      Files pass structural, then semantic, then institutional evaluation; each is
+      distinct and none implies the next.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-33
+    traces_to:
+      - V8-31
+  - id: ADR-V8-024
+    title: Partial success is explicit and rejected or quarantined records are non-authoritative
+    decision: >-
+      Partial success enumerates each record's disposition, and rejected or
+      quarantined records remain non-authoritative.
+    status: ACCEPTED
+    context: >-
+      A silent partial success or a silent discard would hide which records took
+      governed effect.
+    consequence: >-
+      Every import outcome names accepted, rejected, and quarantined records
+      explicitly and preserves the original exchange record.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: ADR-V8-025
+    title: Imports cannot silently create governed authority
+    decision: >-
+      Importing a record that asserts a role or standing does not confer that role
+      or standing; authority is granted only through the governed lifecycle.
+    status: ACCEPTED
+    context: >-
+      Allowing file intake to grant authority would bypass governed
+      authorization.
+    consequence: >-
+      Every import declares its authoritative-state consequence, defaulting to no
+      governed effect for unauthorized content.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-34
+    traces_to:
+      - V8-31
+  - id: ADR-V8-026
+    title: Export authority is distinct from read access
+    decision: >-
+      Authority to export governed information outside the institution is a
+      separate, explicit grant and is never inferred from internal read access.
+    status: ACCEPTED
+    context: >-
+      Inferring export authority from read access would let any reader disclose
+      governed information externally.
+    consequence: >-
+      Every export names an explicit export authority, recipient authority, and
+      disclosure basis under minimum-necessary content.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-35
+    traces_to:
+      - V8-31
+  - id: ADR-V8-027
+    title: Export generation, delivery, receipt, processing, and reconciliation are distinct
+    decision: >-
+      Generating, delivering, receiving, processing, and reconciling an export are
+      distinct outcomes and none is presumed from another.
+    status: ACCEPTED
+    context: >-
+      Presuming delivery or processing from generation would overstate what an
+      export achieved.
+    consequence: >-
+      Each export declares delivery, receipt, processing, and reconciliation
+      evidence; unknown outcomes are held until reconciled.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-35
+    traces_to:
+      - V8-31
+  - id: ADR-V8-028
+    title: Migration mapping is not identity resolution or authority confirmation
+    decision: >-
+      Migration mapping proposes translations, identity resolution determines
+      correspondence, and authority confirmation determines standing; the three
+      are distinct.
+    status: ACCEPTED
+    context: >-
+      Treating a mapping as resolved identity or confirmed authority would
+      fabricate governed standing.
+    consequence: >-
+      Mappings declare an identity-resolution dependency; unresolved and ambiguous
+      records are quarantined, not presumed resolved.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-36
+    traces_to:
+      - V8-31
+  - id: ADR-V8-029
+    title: Migration completion is not business acceptance or source retirement
+    decision: >-
+      Completing a migration does not by itself accept its content as
+      authoritative or retire the source system.
+    status: ACCEPTED
+    context: >-
+      Equating migration completion with acceptance or source retirement would
+      make unevaluated migrated data authoritative.
+    consequence: >-
+      Coexistence and cutover are governed; the source ceases to be authoritative
+      only when cutover conditions are met.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-36
+    traces_to:
+      - V8-31
+  - id: ADR-V8-030
+    title: Provider termination is not data return, deletion, or exit completion
+    decision: >-
+      Provider termination, data return, deletion evidence, and exit completion
+      are distinct, separately evidenced obligations.
+    status: ACCEPTED
+    context: >-
+      Treating termination as return or deletion would leave governed data
+      unaccounted for at the end of a provider relationship.
+    consequence: >-
+      Exit completes only on evidenced data return, evidenced deletion with
+      residual copies addressed, and reconciliation.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-37
+    traces_to:
+      - V8-31
+  - id: ADR-V8-031
+    title: Provider certification is not Curling Canada confirmation
+    decision: >-
+      A provider's certification of an outcome, including deletion, is an input and
+      is not Curling Canada confirmation.
+    status: ACCEPTED
+    context: >-
+      Accepting provider certification as confirmation would delegate institutional
+      assurance to the provider.
+    consequence: >-
+      Provider certifications are reconciled and confirmed internally before they
+      carry governed effect.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-37
+    traces_to:
+      - V8-31
+  - id: ADR-V8-032
+    title: Batch replay creates no new governed authority
+    decision: >-
+      Replaying a batch re-runs a prior exchange under recorded authority and
+      produces evidence, but creates no new governed authority.
+    status: ACCEPTED
+    context: >-
+      Allowing replay to create authority would let re-runs manufacture governed
+      effects the original did not carry.
+    consequence: >-
+      Replay proceeds only under recorded replay authority; idempotency prevents
+      duplicate governed effect.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-38
+    traces_to:
+      - V8-31
+  - id: ADR-V8-033
+    title: Manual and transitional exchanges are governed to the same standard
+    decision: >-
+      Manual, document-based, and transitional exchanges are governed, recorded,
+      evidenced, and where applicable bilingual and accessible.
+    status: ACCEPTED
+    context: >-
+      Treating manual exchanges as ungoverned would create an unaudited path
+      around governance.
+    consequence: >-
+      Every manual exchange produces a governed record and evidence and meets its
+      bilingual and accessibility obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-39
+    traces_to:
+      - V8-31
 
