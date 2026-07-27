@@ -1943,3 +1943,509 @@ records:
     chapter_ref: V8-40
     traces_to:
       - V8-31
+  - id: CAP-V8-001
+    kind: CONTRACT_CAPABILITY
+    title: Command capability family
+    statement: >-
+      The integrated command capability: synchronous, authenticated, authorized,
+      idempotent requests for governed affiliation-lifecycle transitions, with
+      acceptance distinct from business-outcome completion.
+    institutional_authority: House
+    interaction_family: COMMAND
+    producer: House-authorized initiators
+    consumer: House affiliation-lifecycle command handler
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-43
+  - id: CAP-V8-002
+    kind: CONTRACT_CAPABILITY
+    title: Query capability family
+    statement: >-
+      The integrated query capability: authorized, scoped, staleness-aware reads
+      of authoritative state that confer no authority and mutate no governed
+      state.
+    institutional_authority: House
+    interaction_family: QUERY
+    producer: House affiliation query handler
+    consumer: Authorized read consumers including the Button
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-43
+  - id: CAP-V8-003
+    kind: CONTRACT_CAPABILITY
+    title: Event capability family
+    statement: >-
+      The integrated domain-event capability: committed governed state changes
+      emitted with a versioned envelope and replay posture for internal
+      consumers.
+    institutional_authority: House
+    interaction_family: EVENT
+    producer: House affiliation event producer
+    consumer: House-internal event consumers
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-44
+  - id: CAP-V8-004
+    kind: CONTRACT_CAPABILITY
+    title: Outbox capability family
+    statement: >-
+      The integrated transactional-outbox capability: atomic persistence of state
+      change, journal, audit, evidence, and outbox row, with publication only
+      after commit.
+    institutional_authority: House
+    interaction_family: OUTBOX
+    producer: House affiliation transactional outbox
+    consumer: House outbox publisher
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-44
+  - id: CAP-V8-005
+    kind: CONTRACT_CAPABILITY
+    title: Webhook capability family
+    statement: >-
+      The integrated inbound webhook capability: authenticated, integrity-checked,
+      replay-protected, idempotent inbound signals reconciled before any governed
+      effect.
+    institutional_authority: House
+    interaction_family: WEBHOOK
+    producer: External providers
+    consumer: House inbound integration handler
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-44
+  - id: CAP-V8-006
+    kind: CONTRACT_CAPABILITY
+    title: Provider-callback capability family
+    statement: >-
+      The integrated provider-callback capability: bounded, authenticated
+      provider responses that are reconciled against authoritative state and never
+      trusted on arrival alone.
+    institutional_authority: House
+    interaction_family: CALLBACK
+    producer: External providers
+    consumer: House inbound integration handler
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-44
+  - id: CAP-V8-007
+    kind: CONTRACT_CAPABILITY
+    title: Notification capability family
+    statement: >-
+      The integrated notification capability: outbound, minimum-necessary,
+      bilingual, accessible informational messages that are never a governed
+      authority or institutional record.
+    institutional_authority: House
+    interaction_family: NOTIFICATION
+    producer: House notification service
+    consumer: Notification recipients
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-44
+  - id: CAP-V8-008
+    kind: CONTRACT_CAPABILITY
+    title: File-exchange capability family
+    statement: >-
+      The integrated file-exchange capability: provenance-bearing, integrity-
+      checked, reconciled file imports and exports whose structural validity is
+      distinct from institutional authority.
+    institutional_authority: House
+    interaction_family: FILE
+    producer: External providers and House export processes
+    consumer: House import and reconciliation processes
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-45
+  - id: CAP-V8-009
+    kind: CONTRACT_CAPABILITY
+    title: Batch-exchange capability family
+    statement: >-
+      The integrated batch-exchange capability: idempotent, replay-safe,
+      partial-failure-aware batch transfers reconciled before acceptance, with
+      batch completion distinct from business acceptance.
+    institutional_authority: House
+    interaction_family: BATCH
+    producer: External batch providers
+    consumer: House batch import and reconciliation processes
+    classification: INTERNAL_OPERATIONAL
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-45
+  - id: CAP-V8-010
+    kind: CONTRACT_CAPABILITY
+    title: Migration-exchange capability family
+    statement: >-
+      The integrated migration capability: provenance-preserving, uncertainty-
+      recording migration exchanges where unresolved identities are quarantined
+      and migration completion is distinct from source retirement.
+    institutional_authority: House
+    interaction_family: MIGRATION
+    producer: Legacy and external source systems
+    consumer: House migration import and reconciliation processes
+    classification: MIGRATION_OR_QUARANTINE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-41
+    traces_to:
+      - V8-45
+  - id: P0MAP-V8-001
+    kind: P0_CONTRACT_COVERAGE
+    title: Resource-aware authorization contract coverage
+    statement: >-
+      Maps the resource-aware authorization P0 finding to the identity and
+      authorization-context contract; the access decision evaluates the full
+      authorization context and fails closed on missing context.
+    p0_finding: Resource-aware authorization must evaluate full governed resource context and fail closed on missing context
+    contract_surface_ref: V8-46 / CATALOG-V8-001
+    required_implementation_evidence: Authorization decision proven to evaluate full resource context and deny on missing context in a real environment
+    required_operational_proof: Operational evidence of fail-closed denial under missing or ambiguous authorization context
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-46
+  - id: P0MAP-V8-002
+    kind: P0_CONTRACT_COVERAGE
+    title: Assigned reviewer and jurisdiction contract coverage
+    statement: >-
+      Maps the assigned-reviewer-and-jurisdiction P0 finding to the command and
+      authorization contracts; a review command requires reviewer scope and the
+      correct jurisdiction.
+    p0_finding: A review decision must require an assigned reviewer with reviewer scope and correct jurisdiction
+    contract_surface_ref: V8-43 / V8-46
+    required_implementation_evidence: Review command proven to require reviewer scope and jurisdiction before acceptance
+    required_operational_proof: Operational evidence of rejection when reviewer scope or jurisdiction is absent
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-43
+  - id: P0MAP-V8-003
+    kind: P0_CONTRACT_COVERAGE
+    title: Evidence binding and restricted-evidence contract coverage
+    statement: >-
+      Maps the evidence-binding P0 finding to the evidence and privacy contract;
+      governed evidence is bound to its case and protected under restricted-
+      evidence controls.
+    p0_finding: Governed evidence must be bound to its case and protected under restricted-evidence controls
+    contract_surface_ref: V8-48
+    required_implementation_evidence: Evidence proven bound to its case and access-controlled as restricted in a real environment
+    required_operational_proof: Operational evidence of restricted-evidence access enforcement
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-48
+  - id: P0MAP-V8-004
+    kind: P0_CONTRACT_COVERAGE
+    title: Production dependency completeness contract coverage
+    statement: >-
+      Maps the production-dependency-completeness P0 finding to the error and
+      reconciliation contract; missing dependencies yield governed failure, never
+      assumed success.
+    p0_finding: Every production dependency required for a governed decision must be present and verified before the decision is trusted
+    contract_surface_ref: V8-47
+    required_implementation_evidence: Governed decisions proven to fail closed on any missing production dependency
+    required_operational_proof: Operational evidence of dependency verification before trusted decisions
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-47
+  - id: P0MAP-V8-005
+    kind: P0_CONTRACT_COVERAGE
+    title: Affiliation lifecycle authorization contract coverage
+    statement: >-
+      Maps the affiliation-lifecycle-authorization P0 finding to the command and
+      event contracts; every transition flows through the governance kernel and
+      never mutates governed state directly.
+    p0_finding: Every affiliation lifecycle transition must be authorized through the governance kernel and never mutate governed state directly
+    contract_surface_ref: V8-43 / V8-44
+    required_implementation_evidence: Transitions proven to flow through the kernel with no direct state mutation path
+    required_operational_proof: Operational evidence that no domain path mutates governed state outside the kernel
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-43
+  - id: P0MAP-V8-006
+    kind: P0_CONTRACT_COVERAGE
+    title: Versioned policy and requirement contract coverage
+    statement: >-
+      Maps the versioned-policy P0 finding to the versioning and change-control
+      contract; every governed decision resolves to a versioned contract.
+    p0_finding: Every governed decision must resolve to a versioned policy and protect the integrity of that requirement
+    contract_surface_ref: V8-49
+    required_implementation_evidence: Decisions proven to resolve to a versioned policy with protected integrity
+    required_operational_proof: Operational evidence of version resolution and integrity protection
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-49
+  - id: P0MAP-V8-007
+    kind: P0_CONTRACT_COVERAGE
+    title: Return and resubmission history contract coverage
+    statement: >-
+      Maps the return-and-resubmission P0 finding to the command and records
+      contracts; return and resubmission are recorded as immutable history.
+    p0_finding: Every return and resubmission must be recorded as immutable history
+    contract_surface_ref: V8-43 / V8-48
+    required_implementation_evidence: Return and resubmission proven recorded as immutable, append-only history
+    required_operational_proof: Operational evidence of immutable return and resubmission history
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-43
+  - id: P0MAP-V8-008
+    kind: P0_CONTRACT_COVERAGE
+    title: Activation uniqueness and replay-protection contract coverage
+    statement: >-
+      Maps the activation-uniqueness P0 finding to the event and delivery
+      contract; activation is unique and protected against replay.
+    p0_finding: Authoritative activation must be unique and protected against replay
+    contract_surface_ref: V8-44
+    required_implementation_evidence: Activation proven unique and replay-protected in a real environment
+    required_operational_proof: Operational evidence of replay rejection and single authoritative activation
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-44
+  - id: P0MAP-V8-009
+    kind: P0_CONTRACT_COVERAGE
+    title: Fail-closed configuration contract coverage
+    statement: >-
+      Maps the fail-closed-configuration P0 finding to the error contract; missing
+      or invalid governed configuration must fail closed.
+    p0_finding: Missing or invalid governed configuration must fail closed
+    contract_surface_ref: V8-47
+    required_implementation_evidence: System proven to fail closed on missing or invalid governed configuration
+    required_operational_proof: Operational evidence of fail-closed behaviour on configuration defects
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-47
+  - id: P0MAP-V8-010
+    kind: P0_CONTRACT_COVERAGE
+    title: Outbox protection and publication-evidence contract coverage
+    statement: >-
+      Maps the outbox-protection P0 finding to the outbox and event contract; the
+      transactional outbox is protected and its publication evidenced.
+    p0_finding: The transactional outbox must be protected and its publication evidenced
+    contract_surface_ref: V8-44 / CAP-V8-004
+    required_implementation_evidence: Outbox proven protected with evidenced publication in a real environment
+    required_operational_proof: Operational evidence of outbox integrity and publication evidence
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-44
+  - id: P0MAP-V8-011
+    kind: P0_CONTRACT_COVERAGE
+    title: PostgreSQL behavioural verification contract coverage
+    statement: >-
+      Maps the behavioural-verification P0 finding to the resource and
+      reconciliation contracts; governed data behaviour is verified against the
+      real data platform, not assumed.
+    p0_finding: Governed data behaviour must be verified against the real data platform, not assumed
+    contract_surface_ref: V8-43 / V8-47
+    required_implementation_evidence: Governed data behaviour proven against a real PostgreSQL platform
+    required_operational_proof: Operational evidence from behavioural verification against the real data platform
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-47
+  - id: P0MAP-V8-012
+    kind: P0_CONTRACT_COVERAGE
+    title: Production composition verification contract coverage
+    statement: >-
+      Maps the composition-verification P0 finding to the integrated baseline; the
+      composed production system is verified, not only its parts.
+    p0_finding: The composed production system must be verified, not only its parts
+    contract_surface_ref: V8-41
+    required_implementation_evidence: Composed production system proven verified end to end in a real environment
+    required_operational_proof: Operational evidence from composition verification of the running system
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-41
+  - id: P0MAP-V8-013
+    kind: P0_CONTRACT_COVERAGE
+    title: Deployment-path verification contract coverage
+    statement: >-
+      Maps the deployment-path P0 finding to the provider and exchange contract
+      and the integrated baseline; the actual deployment path is verified.
+    p0_finding: The actual deployment path must be verified
+    contract_surface_ref: V8-45 / V8-41
+    required_implementation_evidence: Actual deployment path proven verified in a real environment
+    required_operational_proof: Operational evidence from deployment-path verification
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-45
+  - id: P0MAP-V8-014
+    kind: P0_CONTRACT_COVERAGE
+    title: Secrets and environment configuration contract coverage
+    statement: >-
+      Maps the secrets-and-environment P0 finding to the identity and error
+      contracts; secrets and environment configuration are consumed only by the
+      entry points that require them.
+    p0_finding: Secrets and environment configuration must be consumed only by the actual entry points that require them
+    contract_surface_ref: V8-46 / V8-47
+    required_implementation_evidence: Secrets proven consumed only by the entry points that require them in a real environment
+    required_operational_proof: Operational evidence of scoped secret and configuration consumption
+    definition_status: DEFINED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-50
+    traces_to:
+      - V8-46
+  - id: HANDOFF-V8-001
+    kind: DOWNSTREAM_HANDOFF
+    title: Quality and master-test volume handoff
+    statement: >-
+      Hands the Volume 8 contract surfaces and their required implementation
+      evidence and operational proof to the quality-and-master-test volume for
+      verification definition.
+    downstream_volume: Volume 9 (Quality and Master Test Definition)
+    handoff_items:
+      - Contract surfaces and capability families requiring conformance verification
+      - House P0 contract-coverage records and their required implementation evidence
+      - Required operational proof for behavioural, composition, and deployment-path findings
+      - Acceptance, authorization, failure, and reconciliation semantics requiring test definition
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-52
+    traces_to:
+      - V8-50
+  - id: HANDOFF-V8-002
+    kind: DOWNSTREAM_HANDOFF
+    title: Delivery and operations volume handoff
+    statement: >-
+      Hands the provider, migration, exchange, and reconciliation obligations to
+      the delivery and operations volumes for build and operational planning.
+    downstream_volume: Volume 10 (Delivery and Operations)
+    handoff_items:
+      - Provider lifecycle, continuity, substitution, and exit obligations
+      - File, batch, and migration exchange obligations with provenance and reconciliation
+      - Reconciliation owners and closure evidence for unknown-outcome and exchange paths
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-52
+    traces_to:
+      - V8-45
+  - id: HANDOFF-V8-003
+    kind: DOWNSTREAM_HANDOFF
+    title: Executive material-commitment handoff
+    statement: >-
+      Hands the items requiring funded commitment — provider selection and
+      procurement, environment provisioning, staffing, and independent assurance —
+      to the executive material-commitment gate.
+    downstream_volume: Executive material-commitment gate
+    handoff_items:
+      - Provider selection and procurement decisions requiring funded commitment
+      - Environment provisioning and staffing for implementation and proof
+      - Independent-assurance engagements for findings requiring external assessment
+    future_blocking_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V8-52
+    traces_to:
+      - V8-51

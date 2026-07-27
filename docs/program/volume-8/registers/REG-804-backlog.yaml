@@ -291,4 +291,124 @@ records:
     chapter_ref: V8-37
     traces_to:
       - V8-36
+  - id: READY-V8-001
+    kind: READINESS
+    title: Contract-surface conformance evidence required
+    statement: >-
+      The Volume 8 contract surfaces and capability families are defined but not
+      proven; conformance of any future implementation to these contracts requires
+      implementation evidence in a real environment.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    readiness_disposition: IMPLEMENTATION_EVIDENCE_REQUIRED
+    disposition_rationale: >-
+      Contract definition cannot supply conformance evidence; the quality volume
+      must define the verifications and a later volume must produce the evidence.
+    downstream_volume: Volume 9 (Quality and Master Test Definition)
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-51
+    traces_to:
+      - V8-50
+  - id: READY-V8-002
+    kind: READINESS
+    title: Behavioural, composition, and deployment-path proof required
+    statement: >-
+      The behavioural-verification, composition-verification, and deployment-path
+      P0 findings require a real environment for their proof and cannot be
+      evidenced by contract definition alone.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    readiness_disposition: OPERATIONAL_PROOF_REQUIRED
+    disposition_rationale: >-
+      Operational proof against real platforms and the real deployment path is
+      required; it is carried forward, not asserted.
+    downstream_volume: Volume 10 (Delivery and Operations)
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V10-G1
+    chapter_ref: V8-51
+    traces_to:
+      - V8-50
+  - id: READY-V8-003
+    kind: READINESS
+    title: Migration evidence required
+    statement: >-
+      Migration exchange contracts are defined but no migration has been performed
+      or accepted; migration evidence is required before any migrated record is
+      treated as authoritative.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    readiness_disposition: MIGRATION_EVIDENCE_REQUIRED
+    disposition_rationale: >-
+      Migration completion, business acceptance, and source retirement are
+      distinct and each requires evidence carried forward.
+    downstream_volume: Volume 10 (Delivery and Operations)
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V10-G1
+    chapter_ref: V8-51
+    traces_to:
+      - V8-45
+  - id: READY-V8-004
+    kind: READINESS
+    title: Independent assurance required
+    statement: >-
+      Findings requiring external assessment — including security, privacy, and
+      records assurance of the contracted surfaces — require independent assurance
+      that contract definition cannot supply.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    readiness_disposition: INDEPENDENT_ASSURANCE_REQUIRED
+    disposition_rationale: >-
+      Independent assurance is an external engagement carried forward to the
+      executive material-commitment gate.
+    downstream_volume: Executive material-commitment gate
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: EXEC-MCG
+    chapter_ref: V8-51
+    traces_to:
+      - V8-52
+  - id: READY-V8-005
+    kind: READINESS
+    title: Provider selection and procurement pending
+    statement: >-
+      Provider selection and procurement are inputs to downstream planning and
+      require funded commitment; Volume 8 selects no vendor and commits no budget.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    readiness_disposition: MATERIAL_COMMITMENT_PENDING
+    disposition_rationale: >-
+      Procurement and vendor selection are the province of the executive
+      material-commitment gate and the master development plan, not of this
+      contract definition.
+    downstream_volume: Executive material-commitment gate
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: EXEC-MCG
+    chapter_ref: V8-51
+    traces_to:
+      - V8-52
+  - id: READY-V8-006
+    kind: READINESS
+    title: Privacy and records validation pending
+    statement: >-
+      The data-classification, privacy, records, and audit contracts require
+      validation by the accountable privacy and records authorities before
+      implementation proceeds.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    readiness_disposition: PRIVACY_VALIDATION_PENDING
+    disposition_rationale: >-
+      Privacy and records validation is an authority review carried forward as a
+      downstream input, not closed by documentary assertion.
+    downstream_volume: Volume 9 (Quality and Master Test Definition)
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-51
+    traces_to:
+      - V8-48
 

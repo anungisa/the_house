@@ -1,0 +1,64 @@
+{
+  "capabilities": [
+    {
+      "id": "CAP-V8-001",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-002",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-003",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-004",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-005",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-006",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-007",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-008",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-009",
+      "classification": "INTERNAL_OPERATIONAL",
+      "privacy_constraint": null,
+      "records_dependency": null
+    },
+    {
+      "id": "CAP-V8-010",
+      "classification": "MIGRATION_OR_QUARANTINE",
+      "privacy_constraint": null,
+      "records_dependency": null
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "gate": "V8-G5",
+  "disposition_target": "API_EVENT_INTEGRATION_AND_EXCHANGE_CONTRACT_DEFINITION_COMPLETE",
+  "total_conditions": 32,
+  "satisfied": 30,
+  "unmet": [
+    {
+      "n": 31,
+      "title": "Package 5 and the whole of Volume 8 receive explicit freeze approvals"
+    },
+    {
+      "n": 32,
+      "title": "Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 4 provenance, V8-H, and V8-H-1 are inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Packages 1 through 4 remain frozen and unchanged",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "One integrated contract-definition baseline exists",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "House retains institutional authority over the integrated surface catalogue",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "The Button is recorded as an intent initiator and consumer, not an authority",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Every catalogued surface names owner, authority, and trust boundary and is traceable",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Commands, queries, events, webhooks, callbacks, files, batches, migrations, and manual exchanges are distinct capability families",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Authentication remains distinct from authorization",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Resource-aware authorization context is complete and fail-closed",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Commands define authority, target, preconditions, idempotency, conflict, acceptance, rejection, and evidence",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Queries define source, scope, sensitivity, staleness, disclosure, and degraded posture",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Logical resources declare authoritative-or-projected status, classification, lifecycle, and version",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Event envelopes declare identity, version, provenance, scope, sensitivity, correlation, and replay",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Outbox persistence is distinct from publication, delivery, consumer effect, and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Exactly-once business effect is distinct from transport delivery",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Webhooks and callbacks define authentication, integrity, replay, idempotency, and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Errors and unknown outcomes are controlled, privacy-safe, and language-neutral",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Data minimization, classification, evidence, privacy, records, and audit are synthesised",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Provider incidents, continuity, return, deletion, residual copies, and exit remain governed",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Imports, exports, files, batches, migrations, and manual exchanges preserve authority, provenance, uncertainty, acceptance, quarantine, disclosure, and reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Versioning, compatibility, deprecation, replacement, and change control are complete",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Accessibility and bilingual obligations cover notifications, documents, and user-facing surfaces",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "House P0 findings carry complete contract and evidence mappings",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Every unresolved item has an owner, an evidence requirement, and a valid downstream gate",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "No active unresolved item points to a completed Volume 8 gate or to Gate V8-G5",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Deterministic whole-volume closure analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "No executable interface, event, integration, exchange, or infrastructure specification is created",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "No implementation, delivery, reconciliation, migration, provider, privacy, compatibility, or operational claim is made without evidence",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "No infrastructure, procurement, sequencing, staffing, cost, pilot, rollout, launch, or master development plan is authorised",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "No record authorizes implementation",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "Package 5 and the whole of Volume 8 receive explicit freeze approvals",
+      "satisfied": false
+    },
+    {
+      "n": 32,
+      "title": "Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding",
+      "satisfied": false
+    }
+  ]
+}

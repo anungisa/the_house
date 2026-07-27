@@ -25,11 +25,13 @@ function collectKnownIds(ctx) {
   ids.add('PACKAGE-8-2');
   ids.add('PACKAGE-8-3');
   ids.add('PACKAGE-8-4');
+  ids.add('PACKAGE-8-5');
   ids.add('VOLUME-8');
   ids.add('GATE-V8-G1');
   ids.add('GATE-V8-G2');
   ids.add('GATE-V8-G3');
   ids.add('GATE-V8-G4');
+  ids.add('GATE-V8-G5');
   return ids;
 }
 

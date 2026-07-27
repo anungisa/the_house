@@ -1,0 +1,54 @@
+{
+  "capabilities": [
+    {
+      "id": "CAP-V8-001",
+      "interaction_family": "COMMAND",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-002",
+      "interaction_family": "QUERY",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-003",
+      "interaction_family": "EVENT",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-004",
+      "interaction_family": "OUTBOX",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-005",
+      "interaction_family": "WEBHOOK",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-006",
+      "interaction_family": "CALLBACK",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-007",
+      "interaction_family": "NOTIFICATION",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-008",
+      "interaction_family": "FILE",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-009",
+      "interaction_family": "BATCH",
+      "validation_dependency": null
+    },
+    {
+      "id": "CAP-V8-010",
+      "interaction_family": "MIGRATION",
+      "validation_dependency": null
+    }
+  ]
+}

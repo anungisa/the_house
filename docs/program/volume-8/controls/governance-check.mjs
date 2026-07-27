@@ -15,8 +15,10 @@ import { generate as generateGate } from './gate-volume-8.mjs';
 import { generate as generateGateG2 } from './gate-g2-volume-8.mjs';
 import { generate as generateGateG3 } from './gate-g3-volume-8.mjs';
 import { generate as generateGateG4 } from './gate-g4-volume-8.mjs';
+import { generate as generateGateG5 } from './gate-g5-volume-8.mjs';
 import { generate as generateEventDelivery } from './event-delivery-volume-8.mjs';
 import { generate as generateProviderExchange } from './provider-exchange-volume-8.mjs';
+import { generate as generateFinalClosure } from './final-closure-volume-8.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -43,8 +45,10 @@ generateGate(ctx);
 generateGateG2(ctx);
 generateGateG3(ctx);
 generateGateG4(ctx);
+generateGateG5(ctx);
 generateEventDelivery(ctx);
 generateProviderExchange(ctx);
+generateFinalClosure(ctx);
 
 console.log('\n=== Volume 8 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

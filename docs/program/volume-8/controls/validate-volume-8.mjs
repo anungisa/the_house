@@ -704,6 +704,69 @@ function validateGateForwardOnly(ctx, findings) {
   scan('REG-804');
 }
 
+// ---- Package 5: integrated contract baseline & closure synthesis ----
+// The following guards fail closed on Package 5 synthesis, catalogue, P0-coverage,
+// downstream-handoff, and readiness-disposition kinds. Each keys on a kind
+// introduced in Package 5, so it adds obligations without altering the evaluation
+// of any Package 1 through Package 4 record.
+
+// Integrated contract-capability baseline (REG-802 CONTRACT_CAPABILITY) without an
+// institutional authority, interaction family, producer, or consumer.
+function validateContractCapabilities(ctx, findings) {
+  for (const c of records(ctx, 'REG-802')) {
+    if (c.kind !== 'CONTRACT_CAPABILITY') continue;
+    if (!c.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'CAPABILITY_WITHOUT_AUTHORITY', `${c.id}: contract capability names no institutional_authority`, c.id));
+    if (!c.interaction_family) findings.push(makeFinding(Severity.ERROR, 'CAPABILITY_WITHOUT_INTERACTION_FAMILY', `${c.id}: contract capability names no interaction_family`, c.id));
+    if (!c.producer) findings.push(makeFinding(Severity.ERROR, 'CAPABILITY_WITHOUT_PRODUCER', `${c.id}: contract capability names no producer`, c.id));
+    if (!c.consumer) findings.push(makeFinding(Severity.ERROR, 'CAPABILITY_WITHOUT_CONSUMER', `${c.id}: contract capability names no consumer`, c.id));
+  }
+}
+
+// Integrated surface-catalogue entries (REG-801 INTEGRATED_SURFACE_CATALOGUE_ENTRY)
+// without a contract owner, an institutional authority, or a trust boundary.
+function validateIntegratedCatalogue(ctx, findings) {
+  for (const s of records(ctx, 'REG-801')) {
+    if (s.kind !== 'INTEGRATED_SURFACE_CATALOGUE_ENTRY') continue;
+    if (!s.contract_owner) findings.push(makeFinding(Severity.ERROR, 'CATALOGUE_WITHOUT_CONTRACT_OWNER', `${s.id}: integrated surface catalogue entry names no contract_owner`, s.id));
+    if (!s.institutional_authority) findings.push(makeFinding(Severity.ERROR, 'CATALOGUE_WITHOUT_AUTHORITY', `${s.id}: integrated surface catalogue entry names no institutional_authority`, s.id));
+    if (!s.trust_boundary) findings.push(makeFinding(Severity.ERROR, 'CATALOGUE_WITHOUT_TRUST_BOUNDARY', `${s.id}: integrated surface catalogue entry names no trust_boundary`, s.id));
+  }
+}
+
+// House P0 contract-coverage records (REG-802 P0_CONTRACT_COVERAGE) without a named
+// P0 finding, a contract-surface reference, required implementation evidence, or a
+// definition status.
+function validateP0Coverage(ctx, findings) {
+  for (const p of records(ctx, 'REG-802')) {
+    if (p.kind !== 'P0_CONTRACT_COVERAGE') continue;
+    if (!p.p0_finding) findings.push(makeFinding(Severity.ERROR, 'P0_WITHOUT_FINDING', `${p.id}: P0 coverage record names no p0_finding`, p.id));
+    if (!p.contract_surface_ref) findings.push(makeFinding(Severity.ERROR, 'P0_WITHOUT_CONTRACT_SURFACE', `${p.id}: P0 coverage record names no contract_surface_ref`, p.id));
+    if (!p.required_implementation_evidence) findings.push(makeFinding(Severity.ERROR, 'P0_WITHOUT_IMPLEMENTATION_EVIDENCE', `${p.id}: P0 coverage record names no required_implementation_evidence`, p.id));
+    if (!p.definition_status) findings.push(makeFinding(Severity.ERROR, 'P0_WITHOUT_DEFINITION_STATUS', `${p.id}: P0 coverage record names no definition_status`, p.id));
+  }
+}
+
+// Downstream-handoff records (REG-802 DOWNSTREAM_HANDOFF) without a receiving
+// volume, a set of handoff items, or a receiving gate.
+function validateDownstreamHandoff(ctx, findings) {
+  for (const h of records(ctx, 'REG-802')) {
+    if (h.kind !== 'DOWNSTREAM_HANDOFF') continue;
+    if (!h.downstream_volume) findings.push(makeFinding(Severity.ERROR, 'HANDOFF_WITHOUT_VOLUME', `${h.id}: downstream handoff record names no downstream_volume`, h.id));
+    if (!(h.handoff_items && h.handoff_items.length > 0)) findings.push(makeFinding(Severity.ERROR, 'HANDOFF_WITHOUT_ITEMS', `${h.id}: downstream handoff record names no handoff_items`, h.id));
+    if (!h.future_blocking_gate) findings.push(makeFinding(Severity.ERROR, 'HANDOFF_WITHOUT_GATE', `${h.id}: downstream handoff record names no future_blocking_gate`, h.id));
+  }
+}
+
+// Readiness-disposition records (REG-804 READINESS) without an explicit
+// disposition. Ownership and forward-gate discipline are enforced by
+// validateBacklog and validateGateForwardOnly.
+function validateReadinessDispositions(ctx, findings) {
+  for (const r of records(ctx, 'REG-804')) {
+    if (r.kind !== 'READINESS') continue;
+    if (!r.readiness_disposition) findings.push(makeFinding(Severity.ERROR, 'READINESS_WITHOUT_DISPOSITION', `${r.id}: readiness record names no readiness_disposition`, r.id));
+  }
+}
+
 // Executable/contract leakage: chapter prose must not embed DDL/IAM/migration/
 // key-material, coded interface, or executable contract specifications.
 function validateLeakage(ctx, findings) {
@@ -762,6 +825,11 @@ export function run(ctx) {
   validateProviderContinuity(ctx, findings);
   validateDataReturnDeletionExit(ctx, findings);
   validateExchangeReconciliation(ctx, findings);
+  validateContractCapabilities(ctx, findings);
+  validateIntegratedCatalogue(ctx, findings);
+  validateP0Coverage(ctx, findings);
+  validateDownstreamHandoff(ctx, findings);
+  validateReadinessDispositions(ctx, findings);
   validateBacklog(ctx, findings);
   validateGateForwardOnly(ctx, findings);
   validateLeakage(ctx, findings);

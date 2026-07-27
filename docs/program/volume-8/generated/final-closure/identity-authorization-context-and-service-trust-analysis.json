@@ -1,0 +1,57 @@
+{
+  "capabilities": [
+    {
+      "id": "CAP-V8-001",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-002",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-003",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-004",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-005",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-006",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-007",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-008",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-009",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    },
+    {
+      "id": "CAP-V8-010",
+      "authorization_context": null,
+      "institutional_authority": "House"
+    }
+  ],
+  "gaps": {
+    "capabilities_without_interaction_family": []
+  }
+}

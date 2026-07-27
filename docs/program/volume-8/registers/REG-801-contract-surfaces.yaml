@@ -1078,4 +1078,212 @@ records:
     chapter_ref: V8-32
     traces_to:
       - V8-31
+  - id: CATALOG-V8-001
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Affiliation command surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for the affiliation-lifecycle command surface.
+      The House holds institutional authority over the governed meaning and
+      lifecycle of this surface; requesting parties hold no governed authority by
+      requesting a command.
+    institutional_authority: House
+    contract_owner: House affiliation governance
+    contract_type: Synchronous command surface
+    interaction_family: COMMAND
+    producer: House-authorized initiators (staff tools, experience layers)
+    consumer: House affiliation-lifecycle command handler
+    trust_boundary: >-
+      The boundary between a requesting party and the House command handler;
+      requests are untrusted until authenticated and authorized in context.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-02
+      - V8-04
+  - id: CATALOG-V8-002
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Affiliation query surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for the affiliation query surface. The House
+      holds institutional authority over the authoritative state; consumers,
+      including the Button, may read permitted views but acquire no authority and
+      never mutate governed state.
+    institutional_authority: House
+    contract_owner: House affiliation governance
+    contract_type: Synchronous query surface
+    interaction_family: QUERY
+    producer: House affiliation query handler
+    consumer: The Button and other authorized read consumers
+    trust_boundary: >-
+      The boundary between a read consumer and the House query handler; reads are
+      scoped to the consumer's authorization context and disclosure basis.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-02
+      - V8-04
+  - id: CATALOG-V8-003
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Affiliation domain-event surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for the affiliation domain-event surface.
+      Committed governed state changes are emitted through the transactional
+      outbox; the House retains authority over event meaning and provenance.
+    institutional_authority: House
+    contract_owner: House affiliation governance
+    contract_type: Domain-event surface
+    interaction_family: EVENT
+    producer: House affiliation transactional outbox
+    consumer: House-internal event consumers
+    trust_boundary: >-
+      The boundary between the House event producer and internal consumers;
+      consumers subscribe under a tenant-scoped grant.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-05
+  - id: CATALOG-V8-004
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Provider webhook and callback surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for inbound provider webhook and callback
+      surfaces. Inbound signals are untrusted until authenticated and integrity-
+      checked; the House retains authority over the governed effect.
+    institutional_authority: House
+    contract_owner: House integration governance
+    contract_type: Inbound webhook and callback surface
+    interaction_family: WEBHOOK
+    producer: External providers
+    consumer: House inbound integration handler
+    trust_boundary: >-
+      The inbound provider trust boundary; a signal is refused before any
+      governed effect unless authenticated and integrity-verified.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-05
+      - V8-32
+  - id: CATALOG-V8-005
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Notification and delivery surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for the outbound notification and delivery
+      surface. Notifications are informational side effects carrying minimum-
+      necessary content; they are never a governed authority or institutional
+      record.
+    institutional_authority: House
+    contract_owner: House communications governance
+    contract_type: Outbound notification surface
+    interaction_family: NOTIFICATION
+    producer: House notification service
+    consumer: Notification recipients
+    trust_boundary: >-
+      The outbound boundary between the House notification service and
+      recipients; disclosure is bounded by audience and disclosure authority.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-05
+  - id: CATALOG-V8-006
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: File and batch exchange surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for file and batch exchange surfaces. Exchanges
+      declare provenance, integrity, and reconciliation; structural validity is
+      never mistaken for institutional authority.
+    institutional_authority: House
+    contract_owner: House exchange governance
+    contract_type: File and batch exchange surface
+    interaction_family: FILE
+    producer: External providers and House export processes
+    consumer: House import and reconciliation processes
+    trust_boundary: >-
+      The exchange boundary between an external file or batch source and the
+      House domain; records are non-authoritative until accepted and reconciled.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-31
+      - V8-32
+  - id: CATALOG-V8-007
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Batch exchange surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for the recurring batch exchange surface.
+      Batches declare idempotency, replay, partial-failure, compensation, and
+      reconciliation; batch completion is distinct from business acceptance.
+    institutional_authority: House
+    contract_owner: House exchange governance
+    contract_type: Recurring batch exchange surface
+    interaction_family: BATCH
+    producer: External batch providers
+    consumer: House batch import and reconciliation processes
+    trust_boundary: >-
+      The exchange boundary for recurring batch transfers; each batch is scoped,
+      integrity-verified, and reconciled before its records are trusted.
+    classification: INTERNAL_OPERATIONAL
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-31
+  - id: CATALOG-V8-008
+    kind: INTEGRATED_SURFACE_CATALOGUE_ENTRY
+    title: Migration exchange surface (integrated catalogue entry)
+    statement: >-
+      Consolidated catalogue entry for the migration exchange surface. Migration
+      preserves source provenance and records uncertainty; migration completion is
+      distinct from business acceptance and from source retirement.
+    institutional_authority: House
+    contract_owner: House migration governance
+    contract_type: Migration exchange surface
+    interaction_family: MIGRATION
+    producer: Legacy and external source systems
+    consumer: House migration import and reconciliation processes
+    trust_boundary: >-
+      The migration boundary between a source system and the House domain;
+      unresolved identities are quarantined, never assumed authoritative.
+    classification: MIGRATION_OR_QUARANTINE
+    sensitivity: MODERATE
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V9-G1
+    chapter_ref: V8-42
+    traces_to:
+      - V8-31
+      - V8-36
 

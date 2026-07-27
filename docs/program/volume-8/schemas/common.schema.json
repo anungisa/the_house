@@ -148,7 +148,8 @@
         "BATCH_EXCHANGE_CONTEXT",
         "MIGRATION_CONTEXT",
         "MANUAL_EXCHANGE_CONTEXT",
-        "PROVIDER_TRUST_BOUNDARY"
+        "PROVIDER_TRUST_BOUNDARY",
+        "INTEGRATED_SURFACE_CATALOGUE_ENTRY"
       ]
     },
     "requirementKind": {
@@ -190,12 +191,36 @@
         "DATA_RETURN_REQUIREMENT",
         "DELETION_EVIDENCE_REQUIREMENT",
         "PROVIDER_EXIT_REQUIREMENT",
-        "EXCHANGE_RECONCILIATION_REQUIREMENT"
+        "EXCHANGE_RECONCILIATION_REQUIREMENT",
+        "CONTRACT_CAPABILITY",
+        "P0_CONTRACT_COVERAGE",
+        "DOWNSTREAM_HANDOFF"
       ]
     },
     "backlogKind": {
       "type": "string",
-      "enum": ["ASM", "RISK", "EXC", "TEST"]
+      "enum": ["ASM", "RISK", "EXC", "TEST", "READINESS"]
+    },
+    "readinessDisposition": {
+      "type": "string",
+      "enum": [
+        "CLOSED_WITH_EVIDENCE",
+        "ACCEPTED_AS_VOLUME_9_INPUT",
+        "ACCEPTED_AS_VOLUME_10_INPUT",
+        "ACCEPTED_AS_VOLUME_11_INPUT",
+        "ACCEPTED_AS_VOLUME_12_INPUT",
+        "MATERIAL_COMMITMENT_PENDING",
+        "POLICY_VALIDATION_PENDING",
+        "LEGAL_VALIDATION_PENDING",
+        "CONTRACT_VALIDATION_PENDING",
+        "PRIVACY_VALIDATION_PENDING",
+        "RECORDS_VALIDATION_PENDING",
+        "IMPLEMENTATION_EVIDENCE_REQUIRED",
+        "MIGRATION_EVIDENCE_REQUIRED",
+        "OPERATIONAL_PROOF_REQUIRED",
+        "INDEPENDENT_ASSURANCE_REQUIRED",
+        "DEFECT_REQUIRING_AMENDMENT"
+      ]
     },
     "validationStatus": {
       "type": "string",

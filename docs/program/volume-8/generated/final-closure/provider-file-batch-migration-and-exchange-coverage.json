@@ -1,0 +1,34 @@
+{
+  "providers": [],
+  "files": [
+    {
+      "id": "CAP-V8-008",
+      "title": "File-exchange capability family",
+      "interaction_family": "FILE",
+      "institutional_authority": "House",
+      "producer": "External providers and House export processes",
+      "consumer": "House import and reconciliation processes"
+    }
+  ],
+  "batches": [
+    {
+      "id": "CAP-V8-009",
+      "title": "Batch-exchange capability family",
+      "interaction_family": "BATCH",
+      "institutional_authority": "House",
+      "producer": "External batch providers",
+      "consumer": "House batch import and reconciliation processes"
+    }
+  ],
+  "migrations": [
+    {
+      "id": "CAP-V8-010",
+      "title": "Migration-exchange capability family",
+      "interaction_family": "MIGRATION",
+      "institutional_authority": "House",
+      "producer": "Legacy and external source systems",
+      "consumer": "House migration import and reconciliation processes"
+    }
+  ],
+  "manual_exchanges": []
+}

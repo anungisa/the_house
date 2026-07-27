@@ -1,0 +1,105 @@
+{
+  "integrated_catalogue_entries": 8,
+  "catalogue": [
+    {
+      "id": "CATALOG-V8-001",
+      "title": "Affiliation command surface (integrated catalogue entry)",
+      "contract_type": "Synchronous command surface",
+      "interaction_family": "COMMAND",
+      "institutional_authority": "House",
+      "producer": "House-authorized initiators (staff tools, experience layers)",
+      "consumer": "House affiliation-lifecycle command handler",
+      "contract_owner": "House affiliation governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The boundary between a requesting party and the House command handler; requests are untrusted until authenticated and authorized in context."
+    },
+    {
+      "id": "CATALOG-V8-002",
+      "title": "Affiliation query surface (integrated catalogue entry)",
+      "contract_type": "Synchronous query surface",
+      "interaction_family": "QUERY",
+      "institutional_authority": "House",
+      "producer": "House affiliation query handler",
+      "consumer": "The Button and other authorized read consumers",
+      "contract_owner": "House affiliation governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The boundary between a read consumer and the House query handler; reads are scoped to the consumer's authorization context and disclosure basis."
+    },
+    {
+      "id": "CATALOG-V8-003",
+      "title": "Affiliation domain-event surface (integrated catalogue entry)",
+      "contract_type": "Domain-event surface",
+      "interaction_family": "EVENT",
+      "institutional_authority": "House",
+      "producer": "House affiliation transactional outbox",
+      "consumer": "House-internal event consumers",
+      "contract_owner": "House affiliation governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The boundary between the House event producer and internal consumers; consumers subscribe under a tenant-scoped grant."
+    },
+    {
+      "id": "CATALOG-V8-004",
+      "title": "Provider webhook and callback surface (integrated catalogue entry)",
+      "contract_type": "Inbound webhook and callback surface",
+      "interaction_family": "WEBHOOK",
+      "institutional_authority": "House",
+      "producer": "External providers",
+      "consumer": "House inbound integration handler",
+      "contract_owner": "House integration governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The inbound provider trust boundary; a signal is refused before any governed effect unless authenticated and integrity-verified."
+    },
+    {
+      "id": "CATALOG-V8-005",
+      "title": "Notification and delivery surface (integrated catalogue entry)",
+      "contract_type": "Outbound notification surface",
+      "interaction_family": "NOTIFICATION",
+      "institutional_authority": "House",
+      "producer": "House notification service",
+      "consumer": "Notification recipients",
+      "contract_owner": "House communications governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The outbound boundary between the House notification service and recipients; disclosure is bounded by audience and disclosure authority."
+    },
+    {
+      "id": "CATALOG-V8-006",
+      "title": "File and batch exchange surface (integrated catalogue entry)",
+      "contract_type": "File and batch exchange surface",
+      "interaction_family": "FILE",
+      "institutional_authority": "House",
+      "producer": "External providers and House export processes",
+      "consumer": "House import and reconciliation processes",
+      "contract_owner": "House exchange governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The exchange boundary between an external file or batch source and the House domain; records are non-authoritative until accepted and reconciled."
+    },
+    {
+      "id": "CATALOG-V8-007",
+      "title": "Batch exchange surface (integrated catalogue entry)",
+      "contract_type": "Recurring batch exchange surface",
+      "interaction_family": "BATCH",
+      "institutional_authority": "House",
+      "producer": "External batch providers",
+      "consumer": "House batch import and reconciliation processes",
+      "contract_owner": "House exchange governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The exchange boundary for recurring batch transfers; each batch is scoped, integrity-verified, and reconciled before its records are trusted."
+    },
+    {
+      "id": "CATALOG-V8-008",
+      "title": "Migration exchange surface (integrated catalogue entry)",
+      "contract_type": "Migration exchange surface",
+      "interaction_family": "MIGRATION",
+      "institutional_authority": "House",
+      "producer": "Legacy and external source systems",
+      "consumer": "House migration import and reconciliation processes",
+      "contract_owner": "House migration governance",
+      "operational_owner_status": null,
+      "trust_boundary": "The migration boundary between a source system and the House domain; unresolved identities are quarantined, never assumed authoritative."
+    }
+  ],
+  "gaps": {
+    "catalogue_without_trust_boundary": [],
+    "catalogue_without_traceability": []
+  }
+}

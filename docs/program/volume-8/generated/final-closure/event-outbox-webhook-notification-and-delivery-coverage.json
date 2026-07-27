@@ -1,0 +1,43 @@
+{
+  "events": [
+    {
+      "id": "CAP-V8-003",
+      "title": "Event capability family",
+      "interaction_family": "EVENT",
+      "institutional_authority": "House",
+      "producer": "House affiliation event producer",
+      "consumer": "House-internal event consumers"
+    }
+  ],
+  "outbox": [
+    {
+      "id": "CAP-V8-004",
+      "title": "Outbox capability family",
+      "interaction_family": "OUTBOX",
+      "institutional_authority": "House",
+      "producer": "House affiliation transactional outbox",
+      "consumer": "House outbox publisher"
+    }
+  ],
+  "webhooks": [
+    {
+      "id": "CAP-V8-005",
+      "title": "Webhook capability family",
+      "interaction_family": "WEBHOOK",
+      "institutional_authority": "House",
+      "producer": "External providers",
+      "consumer": "House inbound integration handler"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "CAP-V8-007",
+      "title": "Notification capability family",
+      "interaction_family": "NOTIFICATION",
+      "institutional_authority": "House",
+      "producer": "House notification service",
+      "consumer": "Notification recipients"
+    }
+  ],
+  "delivery": []
+}

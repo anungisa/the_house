@@ -1281,3 +1281,94 @@ records:
         definition effectiveness is distinct from, and never implies, any
         implementation or operational effective date.
     approved_at: null
+  - id: APP-V8-063
+    artifact_id: V8-41
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-064
+    artifact_id: V8-42
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-065
+    artifact_id: V8-43
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-066
+    artifact_id: V8-44
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-067
+    artifact_id: V8-45
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-068
+    artifact_id: V8-46
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-069
+    artifact_id: V8-47
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-070
+    artifact_id: V8-48
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-071
+    artifact_id: V8-49
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-072
+    artifact_id: V8-50
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-073
+    artifact_id: V8-51
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-074
+    artifact_id: V8-52
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null
+  - id: APP-V8-075
+    artifact_id: V8-53
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    approved_at: null

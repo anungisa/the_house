@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T13:58:45.784Z
+Generated: 2026-07-27T14:44:48.717Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,28 +16,28 @@ Generated: 2026-07-27T13:58:45.784Z
 
 ## Summary
 
-- Total findings: 0
-- Errors: 0
+- Total findings: 2
+- Errors: 2
 - Warnings: 0
 - Info: 0
-- Overall: PASS (no integrity errors)
+- Overall: FAIL (contract-governance integrity errors present)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 53 |
+| RATIFIED | 66 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 52 |
-| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 49 |
-| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 88 |
-| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 33 |
-| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 19 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 62 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 65 |
+| REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 57 |
+| REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 115 |
+| REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 36 |
+| REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 25 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 75 |
 
 ## Findings by control
 
@@ -89,6 +89,13 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 - (no findings)
 
+### Gate V8-G5 readiness
+
+Errors: 2 | Warnings: 0 | Info: 0
+
+- ERROR GATE_V8_G5_CONDITION_UNMET [GATE-V8-G5]: Condition 31 not satisfied: Package 5 and the whole of Volume 8 receive explicit freeze approvals
+- ERROR GATE_V8_G5_CONDITION_UNMET [GATE-V8-G5]: Condition 32 not satisfied: Package 5 uses genuine authoring, closure/dual-freeze, and pre-merge provenance-binding separation with a resolved gate binding
+
 ### Event-delivery contract coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
@@ -96,6 +103,12 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Provider-exchange contract coverage
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Integrated closure coverage
 
 Errors: 0 | Warnings: 0 | Info: 0
 

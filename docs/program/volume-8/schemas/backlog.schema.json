@@ -17,7 +17,7 @@
         "additionalProperties": false,
         "required": ["id", "kind", "title", "statement", "owner", "validation_status", "authorizes_implementation", "implementation_status", "future_blocking_gate", "chapter_ref"],
         "properties": {
-          "id": { "type": "string", "pattern": "^(ASM|RISK|EXC|TEST)-V8-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(ASM|RISK|EXC|TEST|READY)-V8-[0-9]{3}$" },
           "kind": { "$ref": "common.schema.json#/definitions/backlogKind" },
           "title": { "type": "string" },
           "statement": { "type": "string" },
@@ -25,6 +25,8 @@
           "required_evidence": { "type": "string" },
           "future_test_class": { "type": "string" },
           "downstream_volume": { "type": "string" },
+          "readiness_disposition": { "$ref": "common.schema.json#/definitions/readinessDisposition" },
+          "disposition_rationale": { "type": "string" },
           "expiry": { "$ref": "common.schema.json#/definitions/isoDate" },
           "approval_ref": { "type": "string" },
           "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
