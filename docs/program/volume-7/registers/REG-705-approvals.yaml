@@ -1174,3 +1174,24 @@ records:
       freeze_commit: d2d85b1
       note: The whole-volume freeze becomes documentary-effective at the Package 5 freeze commit, whose hash is bound in the immediately following provenance-binding commit. The single Volume 7 release tag central-registration-volume-7-v1.0.0 is applied on main only after the Package 5 provenance amendment V7-J has merged.
     approved_at: null
+  - id: APP-V7-080
+    artifact_id: V7-J
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Records the Package 5 branch base baseline, the substantive authoring commit, the closure and freeze commit, the provenance-binding commit, and the mainline merge commit after merge. Supersedes and overwrites nothing in the frozen Package 5 corpus or the whole-of-Volume-7 freeze. The Volume 7 release tag central-registration-volume-7-v1.0.0 is applied on main only after this amendment has merged.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_baseline_commit: "9565fbc"
+      branch_base_commit: "9565fbc"
+      authoring_commit: "20bde2d"
+      closure_freeze_commit: "d2d85b1"
+      freeze_commit: "d2d85b1"
+      effective_commit: "d2d85b1"
+      provenance_amendment_commit: "51ee8c0"
+      original_package_merge_commit: "8301360"
+      note: Narrow post-merge provenance amendment for Package 5. Records the branch base baseline 9565fbc, the substantive authoring commit 20bde2d, the closure and freeze commit d2d85b1 that carried the V7-I closure record, the Gate V7-G5 disposition, the PACKAGE-7-5 freeze, and the VOLUME-7 freeze, the provenance-binding commit 51ee8c0, and the mainline merge commit 8301360. Confirms Gate V7-G5, the Package 5 freeze, and the whole-of-Volume-7 freeze became effective at the freeze commit d2d85b1. The Volume 7 release tag follows this amendment.
+    approved_at: null
