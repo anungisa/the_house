@@ -1,6 +1,6 @@
 {
   "package": "PACKAGE-10-1",
-  "closure_effective_equals_freeze": false,
-  "gate_effective_equals_freeze": false,
-  "gate_freeze_effectiveness": "PENDING"
+  "closure_effective_equals_freeze": true,
+  "gate_effective_equals_freeze": true,
+  "gate_freeze_effectiveness": "SATISFIED"
 }

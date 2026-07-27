@@ -260,3 +260,70 @@ records:
         7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a. Volume 10 is not tagged after
         Package 1.
     approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # V10-B-1 provenance-role classification (additive; completes V10-B)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-017
+    artifact_id: V10-B-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    requires_freeze_artifact: PACKAGE-10-1
+    amendment_process: >-
+      Additive governance amendment. Records the complete, role-correct Volume 10
+      Package 1 provenance-role classification, including the V10-B provenance
+      amendment's own authoring and merge commits. It corrects no earlier record;
+      it completes the V10-B classification. Reopens and overwrites nothing in the
+      frozen Package 1 corpus, and preserves the Gate V10-G1 disposition and the
+      PACKAGE-10-1 freeze. Volume 10 is not tagged after Package 1.
+    provenance_role_classification:
+      package: PACKAGE-10-1
+      source_baseline: e1b3109875cf2750bba1acaff11cae5fefca374d
+      substantive_authoring: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_and_freeze: 997052d3e952057189e81fb870535b87ab9c1dfc
+      pre_merge_provenance_binding: fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b
+      original_package_merge: 7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a
+      provenance_amendment_authoring: c6e1e9c7d167d8bfd93d52c100ac7d771de70b96
+      provenance_amendment_merge: 15befbfbae14d7cd6f93b8be7ca2a4d168debde9
+      inherited_release_tag: central-registration-volume-9-v1.0.0
+      historical_sequence_exception: NONE
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-9-v1.0.0
+      base_release_tag: central-registration-volume-9-v1.0.0
+      source_baseline_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      branch_base_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      authoring_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      provenance_binding_commit: fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b
+      original_package_merge_commit: 7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a
+      provenance_amendment_authoring_commit: c6e1e9c7d167d8bfd93d52c100ac7d771de70b96
+      provenance_amendment_merge_commit: 15befbfbae14d7cd6f93b8be7ca2a4d168debde9
+      note: >-
+        Complete Volume 10 Package 1 provenance. Source baseline
+        e1b3109875cf2750bba1acaff11cae5fefca374d; substantive authoring
+        54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55; closure, gate, and freeze
+        997052d3e952057189e81fb870535b87ab9c1dfc; pre-merge provenance binding
+        fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b; original Package 1 merge
+        7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a; V10-B provenance-amendment
+        authoring c6e1e9c7d167d8bfd93d52c100ac7d771de70b96; V10-B
+        provenance-amendment merge 15befbfbae14d7cd6f93b8be7ca2a4d168debde9. The
+        fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b commit is the pre-merge provenance
+        binding and is recorded in the provenance_binding_commit property, not a
+        provenance-amendment property. Volume 10 is not tagged after Package 1.
+    effective_date_clarification:
+      gate: GATE-V10-G1
+      documentary_definition_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      implementation_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from implementation
+        effectiveness; Package 1 authorizes no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from operational
+        effectiveness; Package 1 authorizes no operation.
+    approved_at: null
