@@ -106,13 +106,13 @@ records:
       closure_artifact: V9-A
       gate: GATE-V9-G1
       freeze_artifact: PACKAGE-9-1
-      closure_authored_commit: PENDING_COMMIT_C
-      closure_effective_commit: PENDING_COMMIT_C
-      freeze_commit: PENDING_COMMIT_C
-      gate_effective_commit: PENDING_COMMIT_C
+      closure_authored_commit: 287541d
+      closure_effective_commit: 287541d
+      freeze_commit: 287541d
+      gate_effective_commit: 287541d
     effective_date_clarification:
       gate: GATE-V9-G1
-      documentary_definition_effective_commit: PENDING_COMMIT_C
+      documentary_definition_effective_commit: 287541d
       implementation_effective_date: >-
         Not applicable. Documentary effectiveness is distinct from implementation
         effectiveness; Package 1 authorizes no implementation.
@@ -129,8 +129,8 @@ records:
     gate_disposition: QUALITY_AND_MASTER_TEST_GOVERNANCE_FOUNDATION_READY
     requires_freeze_artifact: PACKAGE-9-1
     base_commit: 25ae779
-    effective_commit: PENDING_COMMIT_C
-    gate_effective_commit: PENDING_COMMIT_C
+    effective_commit: 287541d
+    gate_effective_commit: 287541d
     approved_at: null
   - id: APP-V9-015
     artifact_id: PACKAGE-9-1
@@ -155,10 +155,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-9-1
       substantive_authoring_commit: c8337a2
-      closure_authored_commit: PENDING_COMMIT_C
-      closure_effective_commit: PENDING_COMMIT_C
-      gate_effective_commit: PENDING_COMMIT_C
-      freeze_commit: PENDING_COMMIT_C
+      closure_authored_commit: 287541d
+      closure_effective_commit: 287541d
+      gate_effective_commit: 287541d
+      freeze_commit: 287541d
       provenance_binding_commit: PENDING_V9-B_AMENDMENT
       required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
       actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
@@ -172,12 +172,12 @@ records:
       source_baseline_commit: 25ae779
       inherited_baseline_tag: central-registration-volume-8-v1.0.0
       authoring_commit: c8337a2
-      closure_authored_commit: PENDING_COMMIT_C
-      closure_effective_commit: PENDING_COMMIT_C
-      closure_freeze_commit: PENDING_COMMIT_C
-      freeze_commit: PENDING_COMMIT_C
-      gate_effective_commit: PENDING_COMMIT_C
-      effective_commit: PENDING_COMMIT_C
+      closure_authored_commit: 287541d
+      closure_effective_commit: 287541d
+      closure_freeze_commit: 287541d
+      freeze_commit: 287541d
+      gate_effective_commit: 287541d
+      effective_commit: 287541d
       provenance_binding_commit: PENDING_V9-B_AMENDMENT
       note: >-
         The original-package-merge and post-merge provenance-amendment commits are

@@ -2,14 +2,9 @@
   "gate": "V9-G1",
   "disposition_target": "QUALITY_AND_MASTER_TEST_GOVERNANCE_FOUNDATION_READY",
   "total_conditions": 29,
-  "satisfied": 28,
-  "unmet": [
-    {
-      "n": 29,
-      "title": "Package 1 receives line-level review, a separate freeze commit, and no unresolved required commit binding"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 29,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -154,7 +149,7 @@
     {
       "n": 29,
       "title": "Package 1 receives line-level review, a separate freeze commit, and no unresolved required commit binding",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
