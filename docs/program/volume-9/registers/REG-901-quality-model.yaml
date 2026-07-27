@@ -2039,3 +2039,191 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-20
+  - id: SECCOV-V9-001
+    kind: SECURITY_TEST_COVERAGE
+    title: "Security coverage: Identity, authorization, isolation, and privilege obligations"
+    statement: >-
+      Records that identity, authentication, account-state, resource-aware authorization,
+      organization and jurisdiction isolation, delegation, assignment, service-identity, and
+      privileged-action obligations carry governed security test requirements and denial scenarios.
+      Authentication is held distinct from authorization; missing authority context fails closed. No
+      security control is asserted to be implemented, operating, or effective.
+    coverage_dimension: Identity, authorization, isolation, and privilege
+    coverage_basis: Volume 8 identity, authority, delegation, assignment, and tenancy contracts
+    measurement_posture: >-
+      Coverage is measured by governed security requirement and denial-scenario presence across
+      authentication, authorization, isolation, and privilege; it asserts no control effectiveness.
+    authoritative_source: Volume 8 identity, authorization, and tenancy specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-22
+  - id: PRIVCOV-V9-001
+    kind: PRIVACY_RECORDS_TEST_COVERAGE
+    title: "Privacy and records coverage: Minimization, evidence, logging, export, and disposition"
+    statement: >-
+      Records that collection and purpose limitation, minimum-necessary fields, evidence references
+      versus copies, restricted-evidence access, logging and trace minimization, exports, legal
+      hold, retention dependencies, and disposition carry governed privacy and records test
+      requirements and denial scenarios. Privacy testing is held distinct from legal or regulatory
+      compliance. No privacy, records, or legal-compliance result is asserted.
+    coverage_dimension: Privacy minimization, evidence, logging, export, and records disposition
+    coverage_basis: Volume 4-8 privacy, evidence, and records-retention contracts
+    measurement_posture: >-
+      Coverage is measured by governed privacy and records requirement presence; it asserts no
+      privacy, records, or legal-compliance result.
+    authoritative_source: Volume 4-8 privacy and records-retention specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-23
+  - id: ACCCOV-V9-001
+    kind: ACCESSIBILITY_TEST_COVERAGE
+    title: "Accessibility coverage: Static, manual, keyboard, and assistive-technology obligations"
+    statement: >-
+      Records that automated static analysis, semantic inspection, keyboard completion, focus
+      management, zoom and reflow, screen-reader interaction, status announcement, error recovery,
+      document access, and recovery-task accessibility carry governed accessibility test
+      requirements. Automated scanning is held distinct from manual, keyboard, and
+      assistive-technology evidence. No accessibility conformance result is asserted.
+    coverage_dimension: Static, manual, keyboard, and assistive-technology accessibility
+    coverage_basis: Volume 7 experience accessibility obligations and governed task inventory
+    measurement_posture: >-
+      Coverage is measured by governed static, manual, and assistive-technology requirement
+      presence; it asserts no accessibility conformance result.
+    authoritative_source: Volume 7 accessibility specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-24
+  - id: BILCOV-V9-001
+    kind: BILINGUAL_SEMANTIC_TEST_COVERAGE
+    title: "Bilingual coverage: Semantic equivalence of statuses, actions, errors, and documents"
+    statement: >-
+      Records that canonical concepts, English and French semantic requirements, statuses, actions,
+      errors, denials, notices, financial distinctions, decisions, notifications, documents, and
+      historical terminology carry governed bilingual semantic test requirements. String presence is
+      held distinct from accurate translation and governed semantic equivalence. No bilingual
+      conformance result is asserted.
+    coverage_dimension: Bilingual semantic equivalence across statuses, actions, errors, and documents
+    coverage_basis: Volume 3-7 bilingual and terminology contracts
+    measurement_posture: >-
+      Coverage is measured by governed bilingual semantic requirement presence; it asserts no
+      translation or bilingual conformance result.
+    authoritative_source: Volume 3-7 bilingual and official-languages specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-25
+  - id: FINCOV-V9-001
+    kind: FINANCIAL_CONTROL_TEST_COVERAGE
+    title: "Financial-control coverage: Acknowledgement, accounting, reconciliation, and activation"
+    statement: >-
+      Records that obligations, fees, exemptions and waivers, provider acknowledgements, accounting
+      confirmation, duplicates, delays, disputes and reversals, reconciliation mismatch and
+      resolution, activation authorization and execution, and standing carry governed
+      financial-control test requirements. Payment acknowledgement is held distinct from accounting
+      confirmation and reconciliation; approval is held distinct from activation and standing. No
+      financial-control effectiveness is asserted.
+    coverage_dimension: Acknowledgement, accounting, reconciliation, activation, and standing
+    coverage_basis: Volume 6-8 financial, accounting, and activation contracts
+    measurement_posture: >-
+      Coverage is measured by governed financial-control requirement presence; it asserts no
+      accounting, reconciliation, or control-effectiveness result.
+    authoritative_source: Volume 6-8 financial and accounting specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-26
+  - id: RESCOV-V9-001
+    kind: RESILIENCE_RECOVERY_TEST_COVERAGE
+    title: "Resilience and recovery coverage: Dependency, backup, restore, recovery, and continuity"
+    statement: >-
+      Records that dependency unavailability, provider outage, database interruption, delayed and
+      duplicated delivery, outbox backlog, quarantine growth, interrupted uploads, partial batch
+      failure, stale projections, backup integrity, restoration, recovery reconciliation, and
+      continuity carry governed resilience, backup-restore, and recovery-exercise test requirements
+      and degraded, interruption, and recovery scenarios. Backup completion is held distinct from
+      restorability; restoration is held distinct from service recovery and business reconciliation.
+      No recovery-time or recovery-point objective is established and no recovery result is asserted.
+    coverage_dimension: Dependency, backup, restore, recovery, and continuity
+    coverage_basis: Volume 5-8 resilience, backup, recovery, and continuity contracts
+    measurement_posture: >-
+      Coverage is measured by governed resilience, backup-restore, and recovery requirement and
+      scenario presence; it asserts no recovery objective and no recovery result.
+    authoritative_source: Volume 5-8 resilience and recovery specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-27
+  - id: OPSCOV-V9-001
+    kind: OPERATIONAL_ASSURANCE_TEST_COVERAGE
+    title: "Operational-assurance coverage: Observability, incident, and deployment-path obligations"
+    statement: >-
+      Records that structured audit evidence, correlation and causation, security signals,
+      privacy-safe diagnostics, tracing, outbox and consumer monitoring, reconciliation monitoring,
+      provider incident signals, alert evidence, incident declaration, investigation, containment,
+      recovery, post-incident reconciliation, deployment-path validation, configuration
+      completeness, secret and entry-point dependencies, composition evidence, and rollback carry
+      governed observability, incident-response, and deployment-path test requirements. Telemetry
+      emission is held distinct from alert delivery, incident detection, and incident handling;
+      successful build is held distinct from a valid deployment path. No operational result is
+      asserted.
+    coverage_dimension: Observability, incident response, and deployment-path assurance
+    coverage_basis: Volume 5-8 observability, incident, and deployment contracts
+    measurement_posture: >-
+      Coverage is measured by governed observability, incident-response, and deployment-path
+      requirement presence; it asserts no operational or deployment result.
+    authoritative_source: Volume 5-8 observability and operations specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-28
+  - id: PROVCOV-V9-001
+    kind: PROVIDER_ASSURANCE_TEST_COVERAGE
+    title: "Provider-assurance coverage: Continuity, substitution, return, deletion, and exit"
+    statement: >-
+      Records that provider authentication and integrity, subcontractors, incidents, continuity,
+      degraded service, substitution, portability, data return, deletion evidence, residual copies,
+      backups, reconciliation, termination, and exit acceptance carry governed provider-continuity
+      and independent-assurance test requirements. Provider certification is held distinct from
+      end-to-end assurance; contract termination is held distinct from data returned, deleted, and
+      reconciled. No provider-assurance result is asserted.
+    coverage_dimension: Provider continuity, substitution, return, deletion, and exit
+    coverage_basis: Volume 6-8 provider, continuity, and exit contracts
+    measurement_posture: >-
+      Coverage is measured by governed provider-continuity and independent-assurance requirement
+      presence; it asserts no provider-assurance or exit result.
+    authoritative_source: Volume 6-8 provider and continuity specifications
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-29
+  - id: P0ACOV-V9-001
+    kind: HOUSE_P0_ASSURANCE_COVERAGE
+    title: "House P0 assurance coverage: Priority-zero cross-cutting assurance obligations"
+    statement: >-
+      Records that House priority-zero cross-cutting assurance obligations - security, privacy,
+      records, accessibility, bilingual, financial-control, resilience, recovery, observability,
+      provider-continuity, and operational assurance - are covered by governed test requirements and
+      by negative, denial, degraded, interruption, and recovery scenarios. Coverage confers no
+      execution, no passing result, and no acceptance.
+    coverage_dimension: House priority-zero cross-cutting assurance obligations
+    coverage_basis: House P0 cross-cutting assurance requirements inherited from Volumes 4-8
+    measurement_posture: >-
+      Coverage is measured by governed requirement and scenario presence for each priority-zero
+      assurance obligation; it asserts no execution or acceptance.
+    authoritative_source: House P0 cross-cutting assurance specifications in Volumes 4-8
+    future_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30

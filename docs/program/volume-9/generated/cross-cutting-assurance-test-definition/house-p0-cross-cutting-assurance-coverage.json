@@ -1,0 +1,6 @@
+{
+  "house_p0_assurance_coverage_records": 1,
+  "assurance_test_requirements": 16,
+  "assurance_test_scenarios": 14,
+  "note": "House P0 cross-cutting assurance obligations are covered by governed test requirements and scenarios; coverage confers no execution and no result."
+}

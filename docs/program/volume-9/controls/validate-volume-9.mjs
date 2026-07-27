@@ -449,6 +449,77 @@ function validateAffiliationTestModel(ctx, findings) {
   }
 }
 
+// Package 3 coverage records (fail closed): security, privacy/records,
+// accessibility, bilingual-semantic, financial-control, resilience/recovery,
+// operational-assurance, provider-assurance, and House-P0 assurance coverage are
+// modelled as coverage-shaped quality records. Each must name a coverage dimension,
+// a coverage basis, a measurement posture, an authoritative source, and a forward
+// execution gate. They confer no execution and no result.
+const ASSURANCE_COVERAGE_KINDS = new Set([
+  'SECURITY_TEST_COVERAGE',
+  'PRIVACY_RECORDS_TEST_COVERAGE',
+  'ACCESSIBILITY_TEST_COVERAGE',
+  'BILINGUAL_SEMANTIC_TEST_COVERAGE',
+  'FINANCIAL_CONTROL_TEST_COVERAGE',
+  'RESILIENCE_RECOVERY_TEST_COVERAGE',
+  'OPERATIONAL_ASSURANCE_TEST_COVERAGE',
+  'PROVIDER_ASSURANCE_TEST_COVERAGE',
+  'HOUSE_P0_ASSURANCE_COVERAGE'
+]);
+function validateAssuranceCoverage(ctx, findings) {
+  for (const c of records(ctx, 'REG-901')) {
+    if (!ASSURANCE_COVERAGE_KINDS.has(c.kind)) continue;
+    if (!c.coverage_dimension) findings.push(makeFinding(Severity.ERROR, 'ASSURE_COVERAGE_WITHOUT_DIMENSION', `${c.id}: ${c.kind} names no coverage_dimension`, c.id));
+    if (!c.coverage_basis) findings.push(makeFinding(Severity.ERROR, 'ASSURE_COVERAGE_WITHOUT_BASIS', `${c.id}: ${c.kind} names no coverage_basis`, c.id));
+    if (!c.measurement_posture) findings.push(makeFinding(Severity.ERROR, 'ASSURE_COVERAGE_WITHOUT_MEASUREMENT', `${c.id}: ${c.kind} names no measurement_posture`, c.id));
+    if (!c.authoritative_source) findings.push(makeFinding(Severity.ERROR, 'ASSURE_COVERAGE_WITHOUT_SOURCE', `${c.id}: ${c.kind} names no authoritative_source`, c.id));
+    if (!c.future_gate) findings.push(makeFinding(Severity.ERROR, 'ASSURE_COVERAGE_WITHOUT_FUTURE_GATE', `${c.id}: ${c.kind} names no future_gate`, c.id));
+  }
+}
+
+// Package 3 test-model records (fail closed): the security, privacy, records,
+// accessibility-static, accessibility-manual, assistive-technology, bilingual-
+// semantic, financial-control, resilience, backup-restore, recovery-exercise,
+// observability, incident-response, deployment-path, provider-continuity, and
+// independent-assurance requirement kinds are requirement-shaped and must carry the
+// same governed-authority, negative-outcome, evidence, independence, and forward-
+// gate obligations as a base TEST_REQUIREMENT, and must trace to a governed
+// institutional invariant in REG-901. Unknown invariant references block.
+const ASSURANCE_REQUIREMENT_KINDS = new Set([
+  'SECURITY_TEST_REQUIREMENT',
+  'PRIVACY_TEST_REQUIREMENT',
+  'RECORDS_TEST_REQUIREMENT',
+  'ACCESSIBILITY_STATIC_TEST_REQUIREMENT',
+  'ACCESSIBILITY_MANUAL_TEST_REQUIREMENT',
+  'ASSISTIVE_TECHNOLOGY_TEST_REQUIREMENT',
+  'BILINGUAL_SEMANTIC_TEST_REQUIREMENT',
+  'FINANCIAL_CONTROL_TEST_REQUIREMENT',
+  'RESILIENCE_TEST_REQUIREMENT',
+  'BACKUP_RESTORE_TEST_REQUIREMENT',
+  'RECOVERY_EXERCISE_REQUIREMENT',
+  'OBSERVABILITY_TEST_REQUIREMENT',
+  'INCIDENT_RESPONSE_TEST_REQUIREMENT',
+  'DEPLOYMENT_PATH_TEST_REQUIREMENT',
+  'PROVIDER_CONTINUITY_TEST_REQUIREMENT',
+  'INDEPENDENT_ASSURANCE_REQUIREMENT'
+]);
+function validateAssuranceTestModel(ctx, findings) {
+  const invariants = new Set(records(ctx, 'REG-901').filter((r) => r.kind === 'INSTITUTIONAL_INVARIANT').map((r) => r.id));
+  for (const t of records(ctx, 'REG-902')) {
+    if (!ASSURANCE_REQUIREMENT_KINDS.has(t.kind)) continue;
+    if (!t.source_requirement) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_SOURCE', `${t.id}: ${t.kind} names no source_requirement`, t.id));
+    if (!t.object_under_test) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_OBJECT', `${t.id}: ${t.kind} names no object_under_test`, t.id));
+    if (!t.institutional_invariant_ref) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_INVARIANT', `${t.id}: ${t.kind} names no institutional_invariant_ref`, t.id));
+    else if (!invariants.has(t.institutional_invariant_ref)) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_INVARIANT_UNRESOLVED', `${t.id}: institutional_invariant_ref "${t.institutional_invariant_ref}" resolves to no INSTITUTIONAL_INVARIANT`, t.id));
+    if (!t.applicable_test_level) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_LEVEL', `${t.id}: ${t.kind} names no applicable_test_level`, t.id));
+    if (!t.expected_outcome) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_EXPECTED', `${t.id}: ${t.kind} names no expected_outcome`, t.id));
+    if (!t.negative_outcome) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_NEGATIVE', `${t.id}: ${t.kind} names no negative_outcome`, t.id));
+    if (!t.evidence_tier_required) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_EVIDENCE_TIER', `${t.id}: ${t.kind} names no evidence_tier_required`, t.id));
+    if (!t.independence_requirement) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_INDEPENDENCE', `${t.id}: ${t.kind} names no independence_requirement`, t.id));
+    if (!t.future_gate) findings.push(makeFinding(Severity.ERROR, 'ASSURE_REQ_WITHOUT_FUTURE_GATE', `${t.id}: ${t.kind} names no future_gate`, t.id));
+  }
+}
+
 // Backlog: items without owners or future gates; exceptions and waivers without an
 // expiry or approval; defect-family records without a defect state.
 function validateBacklog(ctx, findings) {
@@ -523,6 +594,8 @@ export function run(ctx) {
   validateModelTraceability(ctx, findings);
   validateAffiliationCoverage(ctx, findings);
   validateAffiliationTestModel(ctx, findings);
+  validateAssuranceCoverage(ctx, findings);
+  validateAssuranceTestModel(ctx, findings);
   validateBacklog(ctx, findings);
   validateGateForwardOnly(ctx, findings);
   validateLeakage(ctx, findings);

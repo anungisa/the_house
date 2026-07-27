@@ -231,3 +231,82 @@ records:
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     chapter_ref: V9-20
+  - id: ASM-V9-004
+    kind: ASM
+    title: Assurance context and authorities assumption
+    statement: >-
+      Assumes that identity-provider, service-identity, policy and configuration, evidence
+      classifications, logging and trace fields, export authority, retention and legal-hold rules,
+      accessibility task inventory, assistive-technology matrix, bilingual reviewer qualifications,
+      financial-provider and accounting authorities, backup technology, restore environment,
+      continuity and provider-assurance authorities, deployment topology, data-return and deletion
+      authorities, operational ownership, and independent-assurance authority will be resolved
+      before any assurance test is authorized. No such context is asserted to exist.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Resolved and governed assurance context, authorities, and inventories recorded as an accepted input.
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30
+  - id: RISK-V9-004
+    kind: RISK
+    title: Assurance environments and datasets not yet authorized
+    statement: >-
+      Risk that security, privacy, accessibility, resilience, recovery, observability, and provider
+      assurance obligations cannot be exercised until governed environments, synthetic datasets,
+      credentials, tools, and services are separately authorized. Package 3 authorizes none of these.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Separately authorized governed test environments, synthetic datasets, and tooling with purpose-limited approval.
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30
+  - id: RISK-V9-005
+    kind: RISK
+    title: Provider continuity, deletion, and exit assurance unproven
+    statement: >-
+      Risk that provider continuity, substitution, data return, deletion, residual-copy handling,
+      reconciliation, and exit acceptance cannot be demonstrated until provider sandboxes,
+      recovery exercises, and independent assurance are separately authorized. Package 3 authorizes
+      none of these.
+    owner: Nolan (Executive Acceptance Authority)
+    required_evidence: Authorized provider sandbox exercises, recovery exercises, and independent assurance with governed evidence.
+    future_blocking_gate: V10-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-29
+  - id: TEST-V9-003
+    kind: TEST
+    title: Cross-cutting assurance test definition
+    statement: >-
+      Bounded test-definition backlog item for Package 3 security, privacy, records, accessibility,
+      bilingual, financial-control, resilience, recovery, observability, provider-continuity, and
+      operational-assurance scope.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Governed cross-cutting assurance test requirements, scenarios, oracles, and evidence standards accepted as an input.
+    future_blocking_gate: V10-G1
+    future_test_level: SECURITY_TEST
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30
+  - id: READY-V9-003
+    kind: READINESS
+    title: Package 4 integrated master-test input readiness
+    statement: >-
+      Readiness obligation confirming the cross-cutting assurance test-definition corpus is an
+      accepted input to the bounded Package 4 integrated master-test-baseline, coverage, acceptance,
+      release-evidence-handoff, and Volume 9 closure definition.
+    owner: Nolan (Executive Acceptance Authority)
+    future_blocking_gate: V10-G1
+    readiness_disposition: TEST_DEFINITION_PENDING
+    disposition_rationale: >-
+      The cross-cutting assurance test definition is accepted as an input to the bounded Package 4
+      integrated master-test definition; no execution, environment, or implementation is authorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V9-30

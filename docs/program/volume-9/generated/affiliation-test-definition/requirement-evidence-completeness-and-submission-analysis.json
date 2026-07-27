@@ -1,6 +1,6 @@
 {
   "functional_requirements": 4,
-  "evidence_requirements": 3,
+  "evidence_requirements": 4,
   "requirements_without_evidence_tier": [],
   "note": "Requirement, response, attestation, evidence, and completeness obligations are defined; submission receipt is held distinct from approval and activation."
 }

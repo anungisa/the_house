@@ -250,6 +250,28 @@ export function generate(ctx = loadContext()) {
   writeFileSync(join(outDir, 'gate-freeze-effectiveness.json'), JSON.stringify(gateFreezeEffectiveness, null, 2) + '\n', 'utf8');
   writeFileSync(join(outDir, 'provenance-role-classification.json'), JSON.stringify(roleClassification, null, 2) + '\n', 'utf8');
 
+  // Package-indexed provenance-integrity projection (supplements, does not replace,
+  // the primary-record projections above). Automated consumers must be able to read
+  // the complete Volume 9 provenance state without mistaking a single-package
+  // projection for the whole. Every authoritative package record is listed with its
+  // package identifier, twelve-condition result, and failed-condition list.
+  const packageIndex = {
+    generated: new Date().toISOString(),
+    authoritative_record_count: results.length,
+    packages: results.map((r) => ({
+      package: r.package,
+      source_record: r.record,
+      conditions_total: r.checks.length,
+      conditions_satisfied: r.checks.length - r.failed.length,
+      all_conditions_satisfied: r.failed.length === 0,
+      failed_conditions: r.failed.map((c) => ({ n: c.n, title: c.title })),
+      roles: r.roles
+    })),
+    all_packages_satisfied: results.every((r) => r.failed.length === 0),
+    note: 'Package-indexed projection of every authoritative Package 1-N provenance-role-classification record. Non-authoritative; confers no ratification and authorizes no implementation.'
+  };
+  writeFileSync(join(outDir, 'package-provenance-integrity-index.json'), JSON.stringify(packageIndex, null, 2) + '\n', 'utf8');
+
   const allFailed = results.flatMap((r) => r.failed);
   const now = new Date().toISOString();
   const md = `# Volume 9 Package 1 Provenance-Integrity Report (NON-AUTHORITATIVE)

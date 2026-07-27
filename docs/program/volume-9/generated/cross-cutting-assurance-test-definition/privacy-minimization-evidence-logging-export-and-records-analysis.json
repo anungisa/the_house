@@ -1,0 +1,6 @@
+{
+  "privacy_requirements": 1,
+  "records_requirements": 1,
+  "denial_scenarios": 3,
+  "note": "Collection/purpose limitation, minimum-necessary fields, evidence references vs copies, restricted-evidence access, logging/trace minimization, exports, legal hold, retention dependencies, and disposition are catalogued. Read access is distinct from export authority; projection deletion is distinct from authoritative disposition. No legal, privacy, or records compliance is claimed."
+}

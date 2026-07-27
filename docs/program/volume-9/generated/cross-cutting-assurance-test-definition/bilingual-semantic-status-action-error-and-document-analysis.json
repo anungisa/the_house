@@ -1,0 +1,4 @@
+{
+  "bilingual_semantic_requirements": 1,
+  "note": "Canonical concepts, English and French semantic requirements, statuses, actions, errors, denials, notices, financial distinctions, decisions, notifications, documents, and historical terminology are catalogued. String existence is distinct from accurate translation and governed semantic equivalence. Machine translation and literal string matching cannot satisfy semantic-equivalence evidence."
+}

@@ -219,3 +219,83 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-D-1-package-2-provenance-role-classification.md
     gate: V9-G2
+  - id: V9-21
+    title: Cross-Cutting Assurance Domain, Scope, and Evidence-Boundary Map
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-21-cross-cutting-assurance-domain-scope-and-evidence-boundary-map.md
+    gate: V9-G3
+  - id: V9-22
+    title: Security, Identity, Authorization, Isolation, and Privilege Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-22-security-identity-authorization-isolation-and-privilege-test-definition.md
+    gate: V9-G3
+  - id: V9-23
+    title: Privacy, Minimization, Evidence, Logging, Export, and Records Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-23-privacy-minimization-evidence-logging-export-and-records-test-definition.md
+    gate: V9-G3
+  - id: V9-24
+    title: Accessibility Static, Manual, Keyboard, and Assistive-Technology Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-24-accessibility-static-manual-keyboard-and-assistive-technology-test-definition.md
+    gate: V9-G3
+  - id: V9-25
+    title: Bilingual Semantic Status, Action, Error, and Document Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-25-bilingual-semantic-status-action-error-and-document-test-definition.md
+    gate: V9-G3
+  - id: V9-26
+    title: Financial-Control, Accounting, Reconciliation, and Activation Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-26-financial-control-accounting-reconciliation-and-activation-test-definition.md
+    gate: V9-G3
+  - id: V9-27
+    title: Resilience, Dependency, Backup, Restore, Recovery, and Continuity Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-27-resilience-dependency-backup-restore-recovery-and-continuity-test-definition.md
+    gate: V9-G3
+  - id: V9-28
+    title: Observability, Audit, Incident, and Deployment-Path Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-28-observability-audit-incident-and-deployment-path-test-definition.md
+    gate: V9-G3
+  - id: V9-29
+    title: Provider Continuity, Return, Deletion, Substitution, and Exit Test Definition
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-29-provider-continuity-return-deletion-substitution-and-exit-test-definition.md
+    gate: V9-G3
+  - id: V9-30
+    title: Integrated Cross-Cutting Assurance Coverage and Validation Backlog
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-30-integrated-cross-cutting-assurance-coverage-and-backlog.md
+    gate: V9-G3
