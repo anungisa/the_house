@@ -1,6 +1,6 @@
 # Volume 11 Package 1 Provenance-Integrity Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T21:56:12.503Z
+Generated: 2026-07-27T22:01:23.621Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 11 corpus. It proves provenance coherence deterministically; it confers no
