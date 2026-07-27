@@ -1086,3 +1086,55 @@ records:
         9 release tag central-registration-volume-9-v1.0.0 is applied only after the
         V9-H-1 provenance-role classification is merged, on the V9-H-1 merge commit.
     approved_at: null
+  - id: APP-V9-067
+    artifact_id: V9-H
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 4 mainline history after merge and binds
+      the pre-merge provenance-binding reference to a concrete commit. Reopens and
+      overwrites nothing in the frozen Package 4 corpus or the frozen Volume 9
+      corpus. Preserves the Gate V9-G4 disposition, the PACKAGE-9-4 freeze, and the
+      VOLUME-9 whole-volume freeze, and preserves the Package 1, Package 2, and
+      Package 3 foundations, their Gate V9-G1, Gate V9-G2, and Gate V9-G3
+      dispositions, and the PACKAGE-9-1, PACKAGE-9-2, and PACKAGE-9-3 freezes. The
+      Volume 9 release tag is applied on the V9-H-1 merge commit.
+    approved_at: null
+  - id: APP-V9-068
+    artifact_id: PACKAGE-9-4
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 4 substantive authoring commit, the
+      separate closure and freeze commit, the pre-merge provenance-binding commit,
+      and the mainline merge commit after merge. Supersedes and overwrites nothing
+      in the frozen Package 4 corpus or the frozen Volume 9 corpus. Preserves the
+      Gate V9-G4 disposition, the PACKAGE-9-4 freeze, and the VOLUME-9 whole-volume
+      freeze. The complete provenance-role classification, including this
+      amendment's own authoring and merge commits, is recorded in the subsequent
+      amendment (V9-H-1). The Volume 9 release tag is applied on the V9-H-1 merge
+      commit.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-8-v1.0.0
+      base_release_tag: central-registration-volume-8-v1.0.0
+      source_baseline_commit: de2fcdb
+      branch_base_commit: de2fcdb
+      authoring_commit: 3f673c8
+      closure_authored_commit: 5f08d64
+      closure_effective_commit: 5f08d64
+      closure_freeze_commit: 5f08d64
+      freeze_commit: 5f08d64
+      gate_effective_commit: 5f08d64
+      effective_commit: 5f08d64
+      provenance_binding_commit: 85ef721
+      original_package_merge_commit: 4a5bf8c
+      note: >-
+        Volume 9 Package 4 mainline history. Source baseline de2fcdb; substantive
+        authoring 3f673c8; closure, gate, and freeze 5f08d64; pre-merge provenance
+        binding 85ef721; original Package 4 merge 4a5bf8c. The Volume 9 release tag
+        central-registration-volume-9-v1.0.0 is applied on the V9-H-1 merge commit.
+    approved_at: null
