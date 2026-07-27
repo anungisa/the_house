@@ -299,3 +299,83 @@ records:
     version: 1.0.0
     path: docs/program/volume-6/V6-F-package-3-provenance-amendment.md
     gate: V6-G3
+  - id: V6-31
+    title: Security-Operations and Control-Operation Governance Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-31-security-operations-and-control-operation-governance-model.md
+    gate: V6-G4
+  - id: V6-32
+    title: Security Event, Alert, Detection, Triage, and Investigation Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-32-security-event-alert-detection-triage-and-investigation-control-model.md
+    gate: V6-G4
+  - id: V6-33
+    title: Incident Classification, Command, Containment, and Decision-Authority Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-33-incident-classification-command-containment-and-decision-authority-control-model.md
+    gate: V6-G4
+  - id: V6-34
+    title: Breach Assessment, Notification, Communications, and Disclosure Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-34-breach-assessment-notification-communications-and-disclosure-control-model.md
+    gate: V6-G4
+  - id: V6-35
+    title: Vulnerability, Dependency, Patch, Configuration, and Security-Exception Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-35-vulnerability-dependency-patch-configuration-and-security-exception-control-model.md
+    gate: V6-G4
+  - id: V6-36
+    title: Resilience, Dependency-Failure, Degraded-Mode, and Fail-Closed Continuity Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-36-resilience-dependency-failure-degraded-mode-and-fail-closed-continuity-control-model.md
+    gate: V6-G4
+  - id: V6-37
+    title: Backup, Restore, Recovery, Continuity, and Business-Acceptance Evidence Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-37-backup-restore-recovery-continuity-and-business-acceptance-evidence-control-model.md
+    gate: V6-G4
+  - id: V6-38
+    title: Provider Incident, Continuity, Exit, Data-Return, and Deletion-Assurance Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-38-provider-incident-continuity-exit-data-return-and-deletion-assurance-control-model.md
+    gate: V6-G4
+  - id: V6-39
+    title: Control Metrics, Assurance Evidence, Exercises, and Independent-Validation Control Model
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-39-control-metrics-assurance-evidence-exercises-and-independent-validation-control-model.md
+    gate: V6-G4
+  - id: V6-40
+    title: Package 4 Incident, Resilience, Recovery, and Assurance Traceability Assessment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-6/V6-40-package-4-incident-resilience-recovery-and-assurance-traceability-assessment.md
+    gate: V6-G4

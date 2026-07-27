@@ -1,6 +1,6 @@
 # Volume 6 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T22:37:57.363Z
+Generated: 2026-07-26T23:58:10.426Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 6 corpus. It is not a source of truth, does not confer ratification, and
@@ -33,18 +33,18 @@ Generated: 2026-07-26T22:37:57.363Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 37 |
+| RATIFIED | 47 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 37 |
-| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 56 |
-| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 82 |
-| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 31 |
-| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 28 |
-| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 43 |
+| REG-600 | Volume 6 Corpus Index | RATIFIED | 1.0.0 | 47 |
+| REG-601 | Volume 6 Assets, Actors, Boundaries, Threats, and Rights | RATIFIED | 1.0.0 | 80 |
+| REG-602 | Volume 6 Obligations, Controls, Accessibility, and Assurance | RATIFIED | 1.0.0 | 110 |
+| REG-603 | Volume 6 Decision Register | RATIFIED | 1.0.0 | 44 |
+| REG-604 | Volume 6 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 44 |
+| REG-605 | Volume 6 Approval Register | RATIFIED | 1.0.0 | 53 |
 
 ## Findings by control
 
@@ -202,3 +202,23 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V6-043 (V6-F): Completes machine-readable Package 3 provenance after mainline merge.
 - APP-V6-043 (V6-F): Preserves the Gate V6-G3 disposition and the PACKAGE-6-3 freeze.
 - APP-V6-043 (V6-F): Reopens no substantive Package 3 content and authorizes no implementation.
+- APP-V6-044 (V6-31): Security-operations and control-operation governance model defined.
+- APP-V6-044 (V6-31): Stands up no operations function and authorizes no implementation.
+- APP-V6-045 (V6-32): Security-event, alert, detection, triage, and investigation control model defined.
+- APP-V6-045 (V6-32): Writes no detection rule or alert and authorizes no implementation.
+- APP-V6-046 (V6-33): Incident classification, command, containment, and decision-authority control model defined.
+- APP-V6-046 (V6-33): Writes no incident-response procedure and authorizes no implementation.
+- APP-V6-047 (V6-34): Breach assessment, notification, communications, and disclosure control model defined.
+- APP-V6-047 (V6-34): Reaches no legal conclusion, drafts no notice, and authorizes no implementation.
+- APP-V6-048 (V6-35): Vulnerability, dependency, patch, configuration, and security-exception control model defined.
+- APP-V6-048 (V6-35): Runs no scan, applies no patch, and authorizes no implementation.
+- APP-V6-049 (V6-36): Resilience, dependency-failure, degraded-mode, and fail-closed continuity control model defined.
+- APP-V6-049 (V6-36): Sets no availability or recovery target and authorizes no implementation.
+- APP-V6-050 (V6-37): Backup, restore, recovery, continuity, and business-acceptance evidence control model defined.
+- APP-V6-050 (V6-37): Configures no backup, performs no restore, and authorizes no implementation.
+- APP-V6-051 (V6-38): Provider incident, continuity, exit, data-return, and deletion-assurance control model defined.
+- APP-V6-051 (V6-38): Selects no provider, signs no contract, and authorizes no implementation.
+- APP-V6-052 (V6-39): Control metrics, assurance evidence, exercises, and independent-validation control model defined.
+- APP-V6-052 (V6-39): Runs no exercise, produces no assurance evidence, and authorizes no implementation.
+- APP-V6-053 (V6-40): Package 4 incident, resilience, recovery, and assurance traceability, validation backlog, and downstream constraints defined.
+- APP-V6-053 (V6-40): Records that no active protection-register record references a completed gate; closes no validation item and authorizes no implementation.

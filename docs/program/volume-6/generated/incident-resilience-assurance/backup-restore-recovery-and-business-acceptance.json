@@ -1,0 +1,23 @@
+{
+  "total": 2,
+  "controls": [
+    {
+      "id": "CTRL-V6-056",
+      "backup_dependency": "A backup is a protected copy, not recovery.",
+      "restore_dependency": "A backup provides no proven recovery until restore-tested.",
+      "integrity_verification_requirement": "A restored state must be confirmed complete and correct before reliance.",
+      "business_acceptance_authority": null,
+      "reconciliation_requirement": null
+    },
+    {
+      "id": "CTRL-V6-057",
+      "backup_dependency": null,
+      "restore_dependency": null,
+      "integrity_verification_requirement": null,
+      "business_acceptance_authority": "PENDING (business-acceptance authority appointment)",
+      "reconciliation_requirement": "Work performed, deferred, or lost during disruption must be reconciled on recovery."
+    }
+  ],
+  "controls_without_owner": [],
+  "controls_with_unresolved_protected_ref": []
+}

@@ -1,8 +1,8 @@
 {
-  "total": 4,
+  "total": 6,
   "by_control_family": {
     "LOGGING_AND_AUDIT": 2,
-    "MONITORING_AND_DETECTION": 2
+    "MONITORING_AND_DETECTION": 4
   },
   "controls": [
     {
@@ -31,6 +31,20 @@
       "control_family": "MONITORING_AND_DETECTION",
       "protected_asset_or_right": "ASSET-V6-005",
       "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-046",
+      "control_family": "MONITORING_AND_DETECTION",
+      "protected_asset_or_right": "ASSET-V6-017",
+      "implementation_evidence_class": null,
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-047",
+      "control_family": "MONITORING_AND_DETECTION",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "implementation_evidence_class": null,
       "future_blocking_gate": "V9-G1"
     }
   ]

@@ -1,0 +1,154 @@
+{
+  "total": 16,
+  "by_control_family": {
+    "SECURITY_OPERATIONS": 1,
+    "MONITORING_AND_DETECTION": 2,
+    "INCIDENT_RESPONSE": 4,
+    "VULNERABILITY_MANAGEMENT": 1,
+    "CONFIGURATION": 1,
+    "EXCEPTION_AND_RECOVERY": 1,
+    "RESILIENCE": 1,
+    "CONTINUITY_AND_RECOVERY": 2,
+    "PROVIDER_ASSURANCE": 1,
+    "CONTROL_ASSURANCE": 2
+  },
+  "by_failure_posture": {
+    "FAIL_CLOSED": 11,
+    "FAIL_SAFE": 3,
+    "MANUAL_ESCALATION": 2
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-045",
+      "control_family": "SECURITY_OPERATIONS",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-017",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-046",
+      "control_family": "MONITORING_AND_DETECTION",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_SAFE",
+      "protected_asset_or_right": "ASSET-V6-017",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-047",
+      "control_family": "MONITORING_AND_DETECTION",
+      "owner": "Privacy Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-002",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-048",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "MANUAL_ESCALATION",
+      "protected_asset_or_right": "ASSET-V6-018",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-049",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_SAFE",
+      "protected_asset_or_right": "ASSET-V6-018",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-050",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "MANUAL_ESCALATION",
+      "protected_asset_or_right": "RIGHT-V6-008",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-051",
+      "control_family": "INCIDENT_RESPONSE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-025",
+      "future_blocking_gate": "V11-G1"
+    },
+    {
+      "id": "CTRL-V6-052",
+      "control_family": "VULNERABILITY_MANAGEMENT",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-019",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-053",
+      "control_family": "CONFIGURATION",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-019",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-054",
+      "control_family": "EXCEPTION_AND_RECOVERY",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-019",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-055",
+      "control_family": "RESILIENCE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-021",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-056",
+      "control_family": "CONTINUITY_AND_RECOVERY",
+      "owner": "Data Governance Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-022",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-057",
+      "control_family": "CONTINUITY_AND_RECOVERY",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-023",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-058",
+      "control_family": "PROVIDER_ASSURANCE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-024",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-059",
+      "control_family": "CONTROL_ASSURANCE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_SAFE",
+      "protected_asset_or_right": "ASSET-V6-026",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-060",
+      "control_family": "CONTROL_ASSURANCE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-026",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "controls_without_owner": [],
+  "controls_without_required_evidence": [],
+  "controls_without_gate": [],
+  "controls_with_unresolved_protected_ref": []
+}

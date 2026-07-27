@@ -1,9 +1,9 @@
 {
-  "total": 4,
+  "total": 5,
   "by_control_family": {
     "PRIVILEGED_ACCESS": 2,
     "DELEGATION": 1,
-    "EXCEPTION_AND_RECOVERY": 1
+    "EXCEPTION_AND_RECOVERY": 2
   },
   "controls": [
     {
@@ -33,10 +33,18 @@
       "protected_asset_or_right": "ASSET-V6-007",
       "implementation_evidence_class": "DESIGN_EVIDENCE_REQUIRED",
       "future_blocking_gate": "V7-G1"
+    },
+    {
+      "id": "CTRL-V6-054",
+      "control_family": "EXCEPTION_AND_RECOVERY",
+      "protected_asset_or_right": "ASSET-V6-019",
+      "implementation_evidence_class": null,
+      "future_blocking_gate": "V9-G1"
     }
   ],
   "obligations_referencing": [
     "OBL-V6-004",
-    "OBL-V6-005"
+    "OBL-V6-005",
+    "OBL-V6-008"
   ]
 }

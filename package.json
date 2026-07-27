@@ -72,6 +72,7 @@
     "governance:foundation:v6": "node docs/program/volume-6/controls/foundation-volume-6.mjs",
     "governance:controlmodel:v6": "node docs/program/volume-6/controls/control-model-volume-6.mjs",
     "governance:complianceaccessibility:v6": "node docs/program/volume-6/controls/compliance-accessibility-volume-6.mjs",
+    "governance:incidentresilienceassurance:v6": "node docs/program/volume-6/controls/incident-resilience-assurance-volume-6.mjs",
     "governance:closure:v6": "node docs/program/volume-6/controls/closure-volume-6.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",

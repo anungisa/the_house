@@ -1,0 +1,25 @@
+{
+  "total": 2,
+  "controls": [
+    {
+      "id": "CTRL-V6-046",
+      "detection_objective": "PENDING (per-family detection objective definition)",
+      "triage_authority": "PENDING (triage authority appointment)",
+      "investigation_authority": null,
+      "false_positive_posture": "An unconfirmed alert must neither trigger unwarranted response nor conceal a real condition.",
+      "escalation_condition": "PENDING (escalation-to-incident condition definition)",
+      "privacy_constraint": null
+    },
+    {
+      "id": "CTRL-V6-047",
+      "detection_objective": null,
+      "triage_authority": null,
+      "investigation_authority": "PENDING (investigation authority appointment)",
+      "false_positive_posture": null,
+      "escalation_condition": null,
+      "privacy_constraint": "Access to personal data is limited to the minimum necessary for the investigative purpose, with no inference beyond it."
+    }
+  ],
+  "controls_without_owner": [],
+  "controls_with_unresolved_protected_ref": []
+}

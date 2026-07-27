@@ -1,6 +1,6 @@
 # Volume 6 Package 3 Compliance and Inclusive-Service Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T22:37:57.379Z
+Generated: 2026-07-26T23:58:10.437Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 3 defines the compliance,
@@ -11,16 +11,16 @@ Generated: 2026-07-26T22:37:57.379Z
 
 ## Compliance applicability and obligation coverage
 
-- Compliance obligations: 7
-- Source families in use: 7
+- Compliance obligations: 8
+- Source families in use: 8
 - Obligations with an unresolved control-objective reference: 0
 
 ## Policy, control, evidence, exception, and assurance mapping
 
-- Obligations mapped: 14
-- Control objectives: 44
+- Obligations mapped: 17
+- Control objectives: 60
 - Control objectives with an unresolved protected asset/right: 0
-- Assurance requirements: 8
+- Assurance requirements: 13
 
 ## Records, retention, legal-hold, and disposition dependencies
 
@@ -55,7 +55,7 @@ Generated: 2026-07-26T22:37:57.379Z
 
 - Verification-and-remediation controls: 1
 - Verification controls without a retest requirement: 0
-- Assurance requirements: 8
+- Assurance requirements: 13
 
 ## Compliance-accessibility model integrity
 

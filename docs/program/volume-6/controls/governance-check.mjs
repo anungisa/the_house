@@ -13,6 +13,7 @@ import { generate as generateTrace } from './trace-volume-6.mjs';
 import { generate as generateFoundation } from './foundation-volume-6.mjs';
 import { generate as generateControlModel } from './control-model-volume-6.mjs';
 import { generate as generateComplianceAccessibility } from './compliance-accessibility-volume-6.mjs';
+import { generate as generateIncidentResilienceAssurance } from './incident-resilience-assurance-volume-6.mjs';
 
 const ctx = loadContext();
 const grouped = collectFindings(ctx);
@@ -40,6 +41,7 @@ generateTrace(ctx);
 generateFoundation(ctx);
 generateControlModel(ctx);
 generateComplianceAccessibility(ctx);
+generateIncidentResilienceAssurance(ctx);
 
 console.log('\n=== Volume 6 governance check summary ===');
 console.log(`  Registers checked: ${Object.keys(ctx.registers).length}`);

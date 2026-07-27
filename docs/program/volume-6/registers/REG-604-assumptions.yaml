@@ -431,3 +431,246 @@ records:
     traces_to:
       - CTRL-V6-042
       - CTRL-V6-043
+
+  # ==== Package 4 assumptions ====
+  - id: ASM-V6-007
+    kind: ASM
+    title: Security operations will be staffed and operated in later volumes
+    owner: Security and Trust Steward
+    statement: Volume 6 assumes a security-operations capability to detect, triage, investigate, and respond will be staffed and operated under a later volume and gate.
+    confidence: MEDIUM
+    target_package_or_volume: Volume 7+ security operations
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-31
+    traces_to:
+      - CTRL-V6-045
+  - id: ASM-V6-008
+    kind: ASM
+    title: Recovery and continuity capability will be designed in later volumes
+    owner: Security and Trust Steward
+    statement: Volume 6 assumes backup, restore, recovery, and continuity capability will be designed, tested, and accepted under a later volume and gate.
+    confidence: MEDIUM
+    target_package_or_volume: Volume 7+ recovery operations
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - CTRL-V6-056
+  - id: ASM-V6-009
+    kind: ASM
+    title: Providers can meet continuity, exit, and deletion assurance
+    owner: Security and Trust Steward
+    statement: Volume 6 assumes an external provider can meet the continuity, exit, data-return, and deletion-assurance requirements to be validated in later volumes.
+    confidence: LOW
+    target_package_or_volume: Volume 9+ provider assurance
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - CTRL-V6-058
+
+  # ==== Package 4 risks ====
+  - id: RISK-V6-009
+    kind: RISK
+    title: Detection and monitoring capability unbuilt
+    owner: Security and Trust Steward
+    statement: No detection, monitoring, or alerting capability exists, so a governed condition could go unobserved until one is built and validated.
+    assurance_classification: OPERATIONAL_PROOF_REQUIRED
+    current_evidence: PENDING (detection objectives defined only)
+    required_evidence: PENDING (detection capability build and validation)
+    implementation_implication: No monitoring or detection effectiveness may be claimed until a capability is proven.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - CTRL-V6-046
+  - id: RISK-V6-010
+    kind: RISK
+    title: Incident-response readiness unproven
+    owner: Security and Trust Steward
+    statement: No incident-response capability has been exercised, so incident readiness is unproven.
+    assurance_classification: OPERATIONAL_PROOF_REQUIRED
+    current_evidence: PENDING (incident model defined only)
+    required_evidence: PENDING (incident-response exercise and validation)
+    implementation_implication: No incident readiness may be claimed until response is exercised and validated.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - CTRL-V6-048
+  - id: RISK-V6-011
+    kind: RISK
+    title: Restore capability untested
+    owner: Data Governance Steward
+    statement: No backup has been restore-tested, so recovery capability is unproven and business acceptance is undefined.
+    assurance_classification: OPERATIONAL_PROOF_REQUIRED
+    current_evidence: PENDING (recovery model defined only)
+    required_evidence: PENDING (restore-test and business-acceptance evidence)
+    implementation_implication: No verified restore or continuity readiness may be claimed until proven.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - CTRL-V6-056
+  - id: RISK-V6-012
+    kind: RISK
+    title: Breach-notification applicability unvalidated
+    owner: Security and Trust Steward
+    statement: The applicability and timing of any breach-notification duty is not yet validated and no law is interpreted in Volume 6.
+    assurance_classification: LEGAL_VALIDATION_PENDING
+    current_evidence: PENDING (breach model defined only)
+    required_evidence: PENDING (legal and contractual notification validation)
+    implementation_implication: No notification duty may be asserted or discharged until validated.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - CTRL-V6-050
+  - id: RISK-V6-013
+    kind: RISK
+    title: Independent assurance unavailable
+    owner: Security and Trust Steward
+    statement: No independent assurance of control effectiveness exists, so effectiveness cannot be relied upon.
+    assurance_classification: INDEPENDENT_ASSURANCE_REQUIRED
+    current_evidence: PENDING (self-attested definition only)
+    required_evidence: PENDING (independent assurance evidence)
+    implementation_implication: No control effectiveness or independent assurance may be claimed until validated.
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - CTRL-V6-060
+
+  # ==== Package 4 validation backlog ====
+  - id: TEST-V6-014
+    kind: TEST
+    title: Detection, triage, and investigation validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove detection coverage, triage disposition, and investigation-access constraint operate under minimum-necessary access with evidence preservation.
+    future_test_class: Detection and investigation validation
+    target_package_or_volume: Volume 9+ security operations
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - CTRL-V6-046
+      - CTRL-V6-047
+  - id: TEST-V6-015
+    kind: TEST
+    title: Incident-response and containment validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove incident classification, command, containment, evidence preservation, closure, and post-incident review operate as defined.
+    future_test_class: Incident-response validation
+    target_package_or_volume: Volume 9+ incident operations
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - CTRL-V6-048
+      - CTRL-V6-049
+  - id: TEST-V6-016
+    kind: TEST
+    title: Breach applicability and notification validation
+    owner: Security and Trust Steward
+    statement: Future validation must confirm breach applicability, notification duties, communication authority, and minimum-necessary accessible bilingual disclosure.
+    future_test_class: Breach-notification validation
+    target_package_or_volume: Volume 9+ notification governance
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - CTRL-V6-050
+      - CTRL-V6-051
+  - id: TEST-V6-017
+    kind: TEST
+    title: Vulnerability remediation and security-exception validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove vulnerability remediation with retest, configuration integrity, and security-exception expiry with compensating controls.
+    future_test_class: Vulnerability-management validation
+    target_package_or_volume: Volume 9+ vulnerability management
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - CTRL-V6-052
+      - CTRL-V6-054
+  - id: TEST-V6-018
+    kind: TEST
+    title: Resilience and degraded-mode validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove dependency-failure detection and fail-closed degraded operation that retains governed authority and reconciles on recovery.
+    future_test_class: Resilience validation
+    target_package_or_volume: Volume 9+ resilience operations
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-36
+    traces_to:
+      - CTRL-V6-055
+  - id: TEST-V6-019
+    kind: TEST
+    title: Restore and business-acceptance validation
+    owner: Data Governance Steward
+    statement: Future validation must prove restore with integrity verification and a business-acceptance decision distinct from technical recovery.
+    future_test_class: Recovery validation
+    target_package_or_volume: Volume 9+ recovery operations
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - CTRL-V6-056
+      - CTRL-V6-057
+  - id: TEST-V6-020
+    kind: TEST
+    title: Provider continuity, exit, and deletion validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove provider continuity, substitution, exit, usable data return, and deletion assurance including residual copies.
+    future_test_class: Provider-assurance validation
+    target_package_or_volume: Volume 9+ provider assurance
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - CTRL-V6-058
+  - id: TEST-V6-021
+    kind: TEST
+    title: Control-metric, exercise, and independent-assurance validation
+    owner: Security and Trust Steward
+    statement: Future validation must prove control metrics, exercises, and independent validation are produced, accepted, and distinguished from self-attestation.
+    future_test_class: Control-assurance validation
+    target_package_or_volume: Volume 9+ control assurance
+    future_blocking_gate: V9-G1
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - CTRL-V6-059
+      - CTRL-V6-060

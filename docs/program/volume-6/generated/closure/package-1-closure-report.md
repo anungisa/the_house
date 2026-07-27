@@ -1,6 +1,6 @@
 # Volume 6 Package 1 Closure Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T22:33:11.803Z
+Generated: 2026-07-26T23:58:57.993Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 1 authorizes no
@@ -19,6 +19,6 @@ Generated: 2026-07-26T22:33:11.803Z
 
 ## Authorization posture
 
-- Total controlled records: 197
+- Total controlled records: 278
 - Records authorizing implementation: 0 (must be 0)
 - Records not marked not-implemented/not-proven: 0 (must be 0)

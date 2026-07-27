@@ -1,6 +1,6 @@
 # Volume 6 Package 2 Control-Model Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-26T22:37:57.372Z
+Generated: 2026-07-26T23:58:10.434Z
 
 > Generated projection of the source-controlled Volume 6 corpus. Not a source of
 > truth and not a basis for ratification. Volume 6 Package 2 defines the identity,
@@ -10,10 +10,10 @@ Generated: 2026-07-26T22:37:57.372Z
 
 ## Control-family catalogue and evidence semantics
 
-- Control objectives: 44
-- Control families in use: 33
+- Control objectives: 60
+- Control families in use: 39
 - Controls without a control family: 0
-- Controls without an implementation-evidence class: 20 (informational; the evidence class is a Package 2 attribute and is optional for Package 1 controls)
+- Controls without an implementation-evidence class: 36 (informational; the evidence class is a Package 2 attribute and is optional for Package 1 controls)
 - Controls with an unresolved protected asset/right: 0
 
 ## Identity and authentication coverage
@@ -28,12 +28,12 @@ Generated: 2026-07-26T22:37:57.372Z
 
 ## Delegation and privileged-access analysis
 
-- Delegation, privileged-access, and segregation controls: 4
-- Obligations referencing them: 2
+- Delegation, privileged-access, and segregation controls: 5
+- Obligations referencing them: 3
 
 ## Data-protection and secret requirements
 
-- Data-protection, cryptography, secrets, and configuration controls: 6
+- Data-protection, cryptography, secrets, and configuration controls: 7
 - Cryptographic requirements defined with selection pending: 1
 
 ## Restricted-evidence control coverage
@@ -47,11 +47,11 @@ Generated: 2026-07-26T22:37:57.372Z
 
 ## Logging, monitoring, and detection coverage
 
-- Logging, monitoring, and detection controls: 4
+- Logging, monitoring, and detection controls: 6
 
 ## Provider trust and contractual assurance
 
-- Service-trust and provider-assurance controls: 4
+- Service-trust and provider-assurance controls: 5
 - Independent-assurance dependencies: 1
 
 ## Control-model integrity

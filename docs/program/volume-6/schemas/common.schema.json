@@ -135,7 +135,11 @@
         "SEGREGATION_OF_DUTIES",
         "ACCOMMODATION",
         "INCLUSIVE_SERVICE",
-        "VERIFICATION_AND_REMEDIATION"
+        "VERIFICATION_AND_REMEDIATION",
+        "SECURITY_OPERATIONS",
+        "VULNERABILITY_MANAGEMENT",
+        "RESILIENCE",
+        "CONTROL_ASSURANCE"
       ]
     },
     "obligationSourceType": {

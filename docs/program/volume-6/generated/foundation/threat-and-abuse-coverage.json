@@ -1,6 +1,6 @@
 {
-  "threats": 15,
-  "abuse_cases": 2,
+  "threats": 26,
+  "abuse_cases": 4,
   "boundaries_without_threat": [],
   "threats_without_preventive": [],
   "threats_without_detective": [],

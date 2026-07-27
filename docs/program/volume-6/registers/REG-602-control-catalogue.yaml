@@ -1680,3 +1680,560 @@ records:
     chapter_ref: V6-29
     traces_to:
       - BIL-V6-003
+
+  # ==== Package 4 control objectives (V6-31..V6-39) ====
+  - id: CTRL-V6-045
+    kind: CONTROL_OBJECTIVE
+    title: Security-operations governance control objective
+    statement: Every operable control must name an owner, an operator status, a failure posture, and its monitoring, escalation, review, and assurance dependencies before reliance.
+    control_family: SECURITY_OPERATIONS
+    owner: Security and Trust Steward
+    required_evidence: PENDING (control-operation ownership and posture validation)
+    control_operator_status: PENDING (Volume 7+ security operations)
+    monitoring_dependency: PENDING (detection capability under V6-32)
+    escalation_dependency: PENDING (escalation path under V6-33)
+    review_dependency: PENDING (control-review cadence)
+    assurance_dependency: PENDING (assurance evidence under V6-39)
+    compensating_control_requirement: Where a defined control cannot be operated, a validated compensating control must exist before the exposure is accepted.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-017
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-31
+    traces_to:
+      - ASSET-V6-017
+  - id: CTRL-V6-046
+    kind: CONTROL_OBJECTIVE
+    title: Detection and triage control objective
+    statement: Each security-event family must carry a detection objective, required context, a triage authority, a false-positive posture, and an escalation condition before detection is relied upon.
+    control_family: MONITORING_AND_DETECTION
+    owner: Security and Trust Steward
+    required_evidence: PENDING (detection capability validation)
+    event_source: Governed security events and telemetry.
+    detection_objective: PENDING (per-family detection objective definition)
+    required_context: Minimum governed context an alert must carry to be actionable.
+    triage_authority: PENDING (triage authority appointment)
+    false_positive_posture: An unconfirmed alert must neither trigger unwarranted response nor conceal a real condition.
+    escalation_condition: PENDING (escalation-to-incident condition definition)
+    incident_linkage: Escalation hands a candidate incident to the incident-classification model in V6-33.
+    failure_posture: FAIL_SAFE
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-017
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - ASSET-V6-017
+  - id: CTRL-V6-047
+    kind: CONTROL_OBJECTIVE
+    title: Investigation-access constraint control objective
+    statement: Investigation must operate under a named investigation authority, minimum-necessary access to personal data, and evidence preservation with integrity.
+    control_family: MONITORING_AND_DETECTION
+    owner: Privacy Steward
+    required_evidence: PENDING (investigation-access constraint validation)
+    investigation_authority: PENDING (investigation authority appointment)
+    privacy_constraint: Access to personal data is limited to the minimum necessary for the investigative purpose, with no inference beyond it.
+    evidence_preservation: Preserve investigation evidence with integrity.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-002
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - ASSET-V6-002
+  - id: CTRL-V6-048
+    kind: CONTROL_OBJECTIVE
+    title: Incident classification and command control objective
+    statement: Each incident must carry a classification authority, an incident-command status, and a decision authority distinct from business-acceptance authority.
+    control_family: INCIDENT_RESPONSE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (incident-command validation)
+    classification_authority: PENDING (classification authority appointment)
+    incident_command_status: PENDING (Volume 7+ incident operations)
+    business_authority_boundary: Authority to direct technical response is distinct from authority to accept business consequences under V6-37.
+    decision_authority: Security and Trust Steward
+    failure_posture: MANUAL_ESCALATION
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-018
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - ASSET-V6-018
+  - id: CTRL-V6-049
+    kind: CONTROL_OBJECTIVE
+    title: Containment, closure, and incident-evidence control objective
+    statement: Each incident must define a containment objective, evidence preservation with integrity, a closure authority, and a post-incident review.
+    control_family: INCIDENT_RESPONSE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (containment and closure validation)
+    containment_objective: Limit or isolate ongoing harm without destroying evidence.
+    evidence_preservation: Preserve incident-relevant state with integrity before and during containment.
+    privacy_authority_dependency: PENDING (privacy authority for personal data handled during an incident)
+    records_authority_dependency: PENDING (records authority for governed records handled during an incident)
+    closure_authority: PENDING (closure authority appointment)
+    post_incident_review: PENDING (post-incident review process)
+    recovery_dependency: PENDING (recovery under V6-37)
+    failure_posture: FAIL_SAFE
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-018
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - ASSET-V6-018
+  - id: CTRL-V6-050
+    kind: CONTROL_OBJECTIVE
+    title: Breach assessment and notification control objective
+    statement: Whether an incident constitutes a breach requiring notification must be a governed determination pending legal and contractual validation before any notification duty is confirmed.
+    control_family: INCIDENT_RESPONSE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (breach applicability and notification validation)
+    affected_party: Affected data subjects and affected parties.
+    potential_notification_obligation: PENDING (notification-obligation family determination)
+    legal_validation_dependency: Legal validation required; no statute or regulation is interpreted in this volume.
+    contractual_dependency: PENDING (contractual notification validation)
+    failure_posture: MANUAL_ESCALATION
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: RIGHT-V6-008
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - RIGHT-V6-008
+  - id: CTRL-V6-051
+    kind: CONTROL_OBJECTIVE
+    title: Incident-communications control objective
+    statement: Any communication arising from an incident must disclose only the minimum necessary, under a named communication authority, in an accessible and semantically equivalent form, and must be recorded as evidence.
+    control_family: INCIDENT_RESPONSE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (communication authority and equivalence validation)
+    minimum_necessary_disclosure: Disclose only the minimum necessary information.
+    communication_authority: PENDING (communication authority appointment)
+    language_and_accessibility_requirement: Communications must be accessible and semantically equivalent across official languages, inheriting the Package 3 obligations.
+    records_requirement: The fact and content of each communication must be recorded as governed evidence.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V11-G1
+    protected_asset_or_right: ASSET-V6-025
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - ASSET-V6-025
+  - id: CTRL-V6-052
+    kind: CONTROL_OBJECTIVE
+    title: Vulnerability-management and remediation control objective
+    statement: Vulnerabilities must carry a detection source, a risk owner, a remediation-owner status, governed deployment of corrections, and a retest before closure.
+    control_family: VULNERABILITY_MANAGEMENT
+    owner: Security and Trust Steward
+    required_evidence: PENDING (vulnerability remediation and retest validation)
+    detection_source: PENDING (vulnerability detection-source definition)
+    classification_method_status: PENDING (no severity scale is defined in Volume 6)
+    risk_owner: Security and Trust Steward
+    remediation_owner_status: PENDING (Volume 9+ vulnerability management)
+    deployment_dependency: Corrections must pass through the governed change and evidence path before being considered applied.
+    retest_requirement: A vulnerability is closed only when a retest confirms resolution with evidence.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-019
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - ASSET-V6-019
+  - id: CTRL-V6-053
+    kind: CONTROL_OBJECTIVE
+    title: Configuration-integrity control objective
+    statement: Configuration and policy-definition data governing authorization, isolation, or evidence must be integrity-protected and fail closed on compromise.
+    control_family: CONFIGURATION
+    owner: Security and Trust Steward
+    required_evidence: PENDING (configuration-integrity validation)
+    integrity_verification_requirement: Configuration integrity must be verifiable and monitored.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-019
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - ASSET-V6-019
+  - id: CTRL-V6-054
+    kind: CONTROL_OBJECTIVE
+    title: Security-exception and expiry control objective
+    statement: A security exception may be recorded only under a named exception authority, with a compensating-control requirement and a mandatory expiry that reverts to an open condition.
+    control_family: EXCEPTION_AND_RECOVERY
+    owner: Security and Trust Steward
+    required_evidence: PENDING (security-exception governance validation)
+    exception_authority: PENDING (exception authority appointment)
+    compensating_control_requirement: A validated compensating control must exist for the exception period.
+    expiry_requirement: Every security exception carries a mandatory expiry and reverts to an open, unremediated condition on expiry.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-019
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - ASSET-V6-019
+  - id: CTRL-V6-055
+    kind: CONTROL_OBJECTIVE
+    title: Resilience and degraded-mode control objective
+    statement: Dependency failure must be detectable, and degraded operation must define permitted and prohibited operations, retain governed authority, fail closed on unresolved context, and remain visible and reconcilable.
+    control_family: RESILIENCE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (resilience and degraded-mode validation)
+    dependency: Governed components, providers, and boundaries that may fail.
+    failure_detection_requirement: A dependency failure must be observable rather than silent.
+    permitted_operations: PENDING (per-mode permitted-operation definition)
+    prohibited_operations: PENDING (per-mode prohibited-operation definition)
+    authority_retained: Governed authorization, tenant isolation, evidence integrity, and consent controls continue to apply in degraded mode.
+    user_visible_status_dependency: Affected parties must not be misled about service state.
+    reconciliation_requirement: Work performed or deferred during degradation must be reconciled on recovery.
+    audit_evidence: Entry into and exit from degraded mode must be recorded.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-021
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-36
+    traces_to:
+      - ASSET-V6-021
+  - id: CTRL-V6-056
+    kind: CONTROL_OBJECTIVE
+    title: Backup and restore-integrity control objective
+    statement: A backup must inherit the protection of its authoritative source, and a restore must be validated with integrity verification before it is relied upon for recovery.
+    control_family: CONTINUITY_AND_RECOVERY
+    owner: Data Governance Steward
+    required_evidence: PENDING (restore capability and integrity validation)
+    authoritative_source: The governed source a backup protects.
+    backup_dependency: A backup is a protected copy, not recovery.
+    protection_requirement: A backup inherits the confidentiality, integrity, and tenant isolation of its source.
+    restore_dependency: A backup provides no proven recovery until restore-tested.
+    integrity_verification_requirement: A restored state must be confirmed complete and correct before reliance.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-022
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - ASSET-V6-022
+  - id: CTRL-V6-057
+    kind: CONTROL_OBJECTIVE
+    title: Recovery business-acceptance control objective
+    statement: Resuming governed service after recovery requires a business-acceptance decision distinct from technical recovery, with reconciliation and evidence of what was recovered.
+    control_family: CONTINUITY_AND_RECOVERY
+    owner: Security and Trust Steward
+    required_evidence: PENDING (business-acceptance validation)
+    business_acceptance_authority: PENDING (business-acceptance authority appointment)
+    reconciliation_requirement: Work performed, deferred, or lost during disruption must be reconciled on recovery.
+    operational_proof_status: PENDING (no recovery has been proven)
+    recovery_owner_status: PENDING (Volume 7+ recovery operations)
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-023
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - ASSET-V6-023
+  - id: CTRL-V6-058
+    kind: CONTROL_OBJECTIVE
+    title: Provider continuity, exit, and deletion-assurance control objective
+    statement: Reliance on a provider requires retained institutional accountability, incident surfacing, continuity and substitution, a defined exit, usable data return, and deletion assurance including residual copies.
+    control_family: PROVIDER_ASSURANCE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (provider continuity, exit, and deletion-assurance validation)
+    institutional_authority_retained: The accountable authority for governed data and outcomes remains The House regardless of provider arrangements.
+    provider_responsibility: PENDING (provider responsibility definition)
+    incident_notification_dependency: Provider incidents are surfaced under governed incident obligations.
+    continuity_dependency: Continuity of governed service must not depend on a single unrecoverable provider.
+    substitution_dependency: PENDING (provider substitution validation)
+    exit_trigger: PENDING (exit-trigger definition)
+    data_return_requirement: Governed data must be returnable to institutional control in a usable form with integrity.
+    deletion_evidence_requirement: Provider deletion must be evidenced, including residual and backup copies.
+    residual_copy_posture: Residual and backup copies held by a provider must be accounted for and disposed of under evidence.
+    contract_validation_status: PENDING (contractual and assurance evidence validation)
+    independent_assurance_dependency: Provider certification is not service assurance; independent assurance evidence is required.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-024
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - ASSET-V6-024
+  - id: CTRL-V6-059
+    kind: CONTROL_OBJECTIVE
+    title: Control-metrics and assurance-evidence control objective
+    statement: Control metrics and exercises indicate operation but do not prove effectiveness, and assurance evidence must have a defined producer, accepted evidence, and prohibited evidence.
+    control_family: CONTROL_ASSURANCE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (assurance evidence validation)
+    objective: Indicate whether a control is operating.
+    scope: The controls a metric or exercise measures.
+    evidence_producer: PENDING (evidence-producer definition)
+    evidence_accepted: PENDING (accepted-evidence definition)
+    evidence_prohibited: Self-attestation must not be treated as independent assurance.
+    operational_proof_limitation: A metric indicates operation but does not by itself prove effectiveness.
+    defect_treatment: Defects found in an exercise are findings requiring remediation, not proof of readiness.
+    failure_posture: FAIL_SAFE
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-026
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - ASSET-V6-026
+  - id: CTRL-V6-060
+    kind: CONTROL_OBJECTIVE
+    title: Independent-validation control objective
+    statement: Reliance on a control's effectiveness requires independent validation distinct from self-attestation, time-bounded and renewed.
+    control_family: CONTROL_ASSURANCE
+    owner: Security and Trust Steward
+    required_evidence: PENDING (independent validation evidence)
+    evidence_producer: An independent party distinct from the control operator.
+    period_dependency: Assurance is time-bounded and must be renewed.
+    operational_proof_limitation: This volume is self-attested and author-verified and claims no independent assurance.
+    failure_posture: FAIL_CLOSED
+    future_blocking_gate: V9-G1
+    protected_asset_or_right: ASSET-V6-026
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - ASSET-V6-026
+
+  # ==== Package 4 incident families (V6-33..V6-37) ====
+  - id: INC-V6-004
+    kind: INCIDENT_FAMILY
+    title: Security-detection and monitoring-failure incident
+    statement: Incidents involving failure of detection or monitoring so that a governed condition is missed or unobservable.
+    trigger: Detected gap in detection coverage or a condition found to have gone unobserved.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve telemetry, triage records, and timeline with integrity.
+    containment_objective: Restore observability and contain the missed condition.
+    recovery_objective: Confirm detection coverage is restored and validated.
+    decision_authority: Security and Trust Steward
+    operational_owner_status: PENDING (Volume 7+ security operations)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Detection-capability validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - THREAT-V6-016
+      - THREAT-V6-017
+  - id: INC-V6-005
+    kind: INCIDENT_FAMILY
+    title: Vulnerability and configuration incident
+    statement: Incidents involving exploitation or exposure through an unremediated vulnerability, configuration compromise, or expired security exception.
+    trigger: Detected exploitation, configuration compromise, or reliance on an expired exception.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve configuration state, exception records, and forensic evidence with integrity.
+    containment_objective: Contain exposure and isolate affected configuration.
+    recovery_objective: Restore integrity and confirm remediation with retest.
+    decision_authority: Security and Trust Steward
+    operational_owner_status: PENDING (Volume 9+ vulnerability management)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Vulnerability-response validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - THREAT-V6-025
+  - id: INC-V6-006
+    kind: INCIDENT_FAMILY
+    title: Provider incident
+    statement: Incidents originating with or affecting an external provider that holds governed data or capability.
+    trigger: Provider-reported or detected incident affecting governed data or service.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve provider notifications, timeline, and governed-data impact with integrity.
+    containment_objective: Contain governed-data impact and invoke continuity or substitution where required.
+    recovery_objective: Restore governed service and confirm provider remediation.
+    decision_authority: Security and Trust Steward
+    operational_owner_status: PENDING (Volume 9+ provider assurance)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Provider-incident validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - THREAT-V6-024
+  - id: INC-V6-007
+    kind: INCIDENT_FAMILY
+    title: Recovery and continuity incident
+    statement: Incidents involving failure to recover governed state or to resume governed service under business acceptance.
+    trigger: Detected restore failure, integrity gap, or resumption without business acceptance.
+    severity_classification_status: PENDING (severity model definition)
+    evidence_preservation: Preserve recovery timeline, integrity-verification results, and acceptance records.
+    containment_objective: Halt reliance on unverified recovered state.
+    recovery_objective: Achieve verified recovery accepted by the business-acceptance authority.
+    decision_authority: Security and Trust Steward
+    operational_owner_status: PENDING (Volume 7+ recovery operations)
+    post_incident_review: PENDING (post-incident review process)
+    future_test_class: Recovery-and-continuity validation
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - THREAT-V6-022
+      - THREAT-V6-023
+
+  # ==== Package 4 obligations (V6-34, V6-35) ====
+  - id: OBL-V6-008
+    kind: OBLIGATION
+    title: Security-exception expiry obligation
+    statement: A security exception must not be relied upon after its expiry and must revert to an open, unremediated condition owned by the exception authority.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Security and Trust Steward
+    control_objective_ref: CTRL-V6-054
+    required_evidence: PENDING (exception expiry and revert validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-35
+    traces_to:
+      - THREAT-V6-025
+  - id: OBL-V6-009
+    kind: OBLIGATION
+    title: Minimum-necessary incident-disclosure obligation
+    statement: A communication arising from an incident must disclose only the minimum necessary information under the governing communication authority.
+    applicability_status: APPLICABLE_CONFIRMED
+    authority_owner: Security and Trust Steward
+    control_objective_ref: CTRL-V6-051
+    required_evidence: PENDING (communication authority and disclosure validation)
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - THREAT-V6-020
+
+  # ==== Package 4 compliance obligation (V6-34) ====
+  - id: COMP-V6-008
+    kind: COMPLIANCE_OBLIGATION
+    title: Incident and breach-notification compliance obligation
+    statement: Incidents and breaches must be assessed and, where a validated duty applies, notified under applicable requirements with minimum-necessary disclosure.
+    source_type: INCIDENT_AND_BREACH
+    applicability_status: LEGAL_VALIDATION_PENDING
+    authority_owner: Accountable Program Authority (Aubert Nungisa)
+    control_objective_ref: CTRL-V6-050
+    required_evidence: PENDING (breach applicability and notification validation)
+    independent_validation_requirement: Legal validation required; no statute or regulation is interpreted in Volume 6.
+    review_frequency_status: PENDING (review cadence definition)
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-34
+    traces_to:
+      - RIGHT-V6-008
+
+  # ==== Package 4 assurance requirements (V6-32..V6-39) ====
+  - id: ASSR-V6-009
+    kind: ASSURANCE_REQUIREMENT
+    title: Detection-capability validation
+    statement: Detection coverage and objectives must be validated before any monitoring or detection effectiveness is claimed.
+    owner: Security and Trust Steward
+    required_evidence: PENDING (detection-capability validation evidence)
+    assurance_classification: OPERATIONAL_PROOF_REQUIRED
+    independent_validation_requirement: Operational validation of detection coverage required.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-32
+    traces_to:
+      - CTRL-V6-046
+  - id: ASSR-V6-010
+    kind: ASSURANCE_REQUIREMENT
+    title: Incident-response exercise validation
+    statement: Incident-response obligations must be exercised and validated before any incident-readiness claim is made.
+    owner: Security and Trust Steward
+    required_evidence: PENDING (incident-response exercise evidence)
+    assurance_classification: OPERATIONAL_PROOF_REQUIRED
+    independent_validation_requirement: Exercise-based validation required; defects are findings, not readiness.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-33
+    traces_to:
+      - CTRL-V6-048
+  - id: ASSR-V6-011
+    kind: ASSURANCE_REQUIREMENT
+    title: Restore and business-acceptance validation
+    statement: Restore capability and business-acceptance of recovery must be validated before any verified-recovery or continuity-readiness claim is made.
+    owner: Data Governance Steward
+    required_evidence: PENDING (restore-test and business-acceptance evidence)
+    assurance_classification: OPERATIONAL_PROOF_REQUIRED
+    independent_validation_requirement: Restore-test and acceptance validation required.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-37
+    traces_to:
+      - CTRL-V6-056
+  - id: ASSR-V6-012
+    kind: ASSURANCE_REQUIREMENT
+    title: Provider continuity and deletion-assurance validation
+    statement: Provider continuity, exit, data return, and deletion must be independently validated before provider assurance is relied upon.
+    owner: Security and Trust Steward
+    required_evidence: PENDING (provider assurance and deletion evidence)
+    assurance_classification: INDEPENDENT_ASSURANCE_REQUIRED
+    independent_validation_requirement: Independent provider-assurance evidence required; certification is not assurance.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-38
+    traces_to:
+      - CTRL-V6-058
+  - id: ASSR-V6-013
+    kind: ASSURANCE_REQUIREMENT
+    title: Independent control-effectiveness validation
+    statement: Control effectiveness must be independently validated, distinct from self-attestation, before effectiveness is claimed.
+    owner: Security and Trust Steward
+    required_evidence: PENDING (independent control-effectiveness evidence)
+    assurance_classification: INDEPENDENT_ASSURANCE_REQUIRED
+    independent_validation_requirement: Independent validation required; self-attestation is not assurance.
+    confidence: LOW
+    future_blocking_gate: V9-G1
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    chapter_ref: V6-39
+    traces_to:
+      - CTRL-V6-060

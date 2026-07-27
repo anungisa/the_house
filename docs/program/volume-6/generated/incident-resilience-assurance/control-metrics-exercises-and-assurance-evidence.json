@@ -1,0 +1,62 @@
+{
+  "control_objectives": 2,
+  "assurance_requirements": 5,
+  "by_assurance_classification": {
+    "OPERATIONAL_PROOF_REQUIRED": 3,
+    "INDEPENDENT_ASSURANCE_REQUIRED": 2
+  },
+  "controls": [
+    {
+      "id": "CTRL-V6-059",
+      "control_family": "CONTROL_ASSURANCE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_SAFE",
+      "protected_asset_or_right": "ASSET-V6-026",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "CTRL-V6-060",
+      "control_family": "CONTROL_ASSURANCE",
+      "owner": "Security and Trust Steward",
+      "failure_posture": "FAIL_CLOSED",
+      "protected_asset_or_right": "ASSET-V6-026",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "ASSR-V6-009",
+      "owner": "Security and Trust Steward",
+      "assurance_classification": "OPERATIONAL_PROOF_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASSR-V6-010",
+      "owner": "Security and Trust Steward",
+      "assurance_classification": "OPERATIONAL_PROOF_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASSR-V6-011",
+      "owner": "Data Governance Steward",
+      "assurance_classification": "OPERATIONAL_PROOF_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASSR-V6-012",
+      "owner": "Security and Trust Steward",
+      "assurance_classification": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    },
+    {
+      "id": "ASSR-V6-013",
+      "owner": "Security and Trust Steward",
+      "assurance_classification": "INDEPENDENT_ASSURANCE_REQUIRED",
+      "future_blocking_gate": "V9-G1"
+    }
+  ],
+  "assurance_without_owner": [],
+  "assurance_without_required_evidence": [],
+  "assurance_without_classification": [],
+  "assurance_without_gate": []
+}
