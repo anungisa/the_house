@@ -1,6 +1,6 @@
 # Volume 9 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T15:49:42.784Z
+Generated: 2026-07-27T15:54:13.987Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,28 +15,28 @@ Generated: 2026-07-27T15:49:42.784Z
 
 ## Summary
 
-- Total findings: 1
+- Total findings: 0
 - Errors: 0
 - Warnings: 0
-- Info: 1
+- Info: 0
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 13 |
+| RATIFIED | 14 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 13 |
+| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 14 |
 | REG-901 | Volume 9 Quality Attributes, Test Objects, Institutional Invariants, and Coverage | RATIFIED | 1.0.0 | 96 |
 | REG-902 | Volume 9 Test Requirements, Scenarios, Cases, Oracles, Evidence, and Results | RATIFIED | 1.0.0 | 29 |
 | REG-903 | Volume 9 Decisions | RATIFIED | 1.0.0 | 4 |
 | REG-904 | Volume 9 Assumptions, Risks, Exceptions, Defects, Waivers, and Validation Backlog | RATIFIED | 1.0.0 | 10 |
-| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 17 |
+| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 18 |
 
 ## Findings by control
 
@@ -60,9 +60,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Provenance-integrity enforcement
 
-Errors: 0 | Warnings: 0 | Info: 1
+Errors: 0 | Warnings: 0 | Info: 0
 
-- INFO PROVENANCE_AMENDMENT_PENDING [REG-905]: No REG-905 approval yet carries a provenance_role_classification block; the post-merge provenance amendment (V9-B) is pending
+- (no findings)
 
 ### Gate V9-G1 readiness
 

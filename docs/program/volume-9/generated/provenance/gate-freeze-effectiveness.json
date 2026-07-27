@@ -1,6 +1,6 @@
 {
-  "package": null,
-  "closure_effective_equals_freeze": false,
-  "gate_effective_equals_freeze": false,
-  "gate_freeze_effectiveness": "VIOLATED"
+  "package": "PACKAGE-9-1",
+  "closure_effective_equals_freeze": true,
+  "gate_effective_equals_freeze": true,
+  "gate_freeze_effectiveness": "SATISFIED"
 }

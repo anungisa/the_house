@@ -1,35 +1,35 @@
 {
-  "package": null,
-  "inherited_release_tag": null,
+  "package": "PACKAGE-9-1",
+  "inherited_release_tag": "central-registration-volume-8-v1.0.0",
   "sequence": [
     {
       "role": "SOURCE_BASELINE",
-      "commit": null
+      "commit": "25ae779"
     },
     {
       "role": "SUBSTANTIVE_AUTHORING",
-      "commit": null
+      "commit": "c8337a2"
     },
     {
       "role": "CLOSURE_GATE_AND_FREEZE",
-      "commit": null
+      "commit": "287541d"
     },
     {
       "role": "PRE_MERGE_PROVENANCE_BINDING",
-      "commit": null
+      "commit": "e29e6e0"
     },
     {
       "role": "ORIGINAL_PACKAGE_MERGE",
-      "commit": null
+      "commit": "dcd7787"
     },
     {
       "role": "PROVENANCE_AMENDMENT_AUTHORING",
-      "commit": null
+      "commit": "fa4475f"
     },
     {
       "role": "PROVENANCE_AMENDMENT_MERGE",
-      "commit": null
+      "commit": "9b98752"
     }
   ],
-  "historical_sequence_exception": "UNKNOWN"
+  "historical_sequence_exception": "NONE"
 }
