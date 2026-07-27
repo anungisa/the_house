@@ -712,3 +712,149 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
     approved_at: null
+  - id: APP-V8-043
+    artifact_id: V8-E
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: true
+    closure_binding:
+      closure_artifact: V8-E
+      gate: GATE-V8-G3
+      freeze_artifact: PACKAGE-8-3
+      closure_authored_commit: PENDING_V8-E_CLOSURE_COMMIT
+      closure_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
+      gate_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      chronology_disposition: >-
+        The substantive authoring commit precedes the closure commit; the closure,
+        Gate V8-G3 disposition, and freeze are recorded together in the closure
+        commit and bound to it in the immediately following provenance-binding
+        commit.
+    effective_date_clarification:
+      gate: GATE-V8-G3
+      documentary_definition_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      implementation_effective_date: >-
+        Not applicable. Package 3 authorizes no implementation; documentary
+        definition effectiveness is distinct from any future implementation date.
+    next_package_disposition: >-
+      A subsequent governed contract-definition package, if commissioned, is
+      authorized for documentary definition only. No executable API
+      implementation, event schema, endpoint, wire schema, SDK, broker or
+      transport configuration, runtime authorization, identity or cryptographic
+      configuration, provider integration, payment or settlement mechanism,
+      procurement, pilot, rollout, or launch is authorized.
+    approved_at: null
+  - id: APP-V8-044
+    artifact_id: GATE-V8-G3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: AFFILIATION_EVENT_AND_DELIVERY_CONTRACT_DEFINITION_READY
+    requires_freeze_artifact: PACKAGE-8-3
+    effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+    gate_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+    conditions:
+      - Package 3 inherits the frozen Package 1 and Package 2 corpora and the corrected Package 2 provenance
+      - Affiliation event-contract doctrine, taxonomy, ownership, and authority defined
+      - Events are governed facts distinct from commands
+      - Event types are classified into domain, integration, notification, audit, webhook, and callback kinds
+      - Every event names an owning authority and an authoritative source
+      - Affiliation lifecycle event catalogue defined for the governed transitions
+      - The event envelope defines identity, version, provenance, scope, correlation, causation, timing, sensitivity, and replay marking
+      - Every event maps to its triggering committed transition
+      - The authoritative state change and its outbox record share one atomicity requirement
+      - Publication is distinct from persistence and eligible only after commit
+      - Delivery is at-least-once at the transport boundary
+      - Exactly-once effect is a business invariant, not a transport guarantee
+      - Consumers are idempotent and deduplicate within a named scope
+      - Ordering is scoped and global ordering is not presumed
+      - Replay requires authority, provenance, and evidence
+      - Webhooks and callbacks define authentication, integrity, replay protection, scope, idempotency, and reconciliation
+      - Acknowledgement is distinct from reconciliation and unknown outcomes are held until reconciled
+      - Failure preserves history and correction is forward compensation
+      - Notifications are minimum-necessary, accessible, and bilingual
+      - Restricted evidence is excluded from routine event content
+      - Provider boundaries fail closed
+      - Event compatibility is evaluated against known consumers with evidence
+      - Affiliation event and delivery decisions recorded for authority, envelope, delivery, and compatibility
+      - Every affiliation event and delivery contract names a forward blocking gate
+      - Deterministic Package 3 analysis completes without blocking defects
+      - No prohibited implementation, coded, executable-schema, endpoint, broker, or transport artifacts are created
+      - Unresolved Package 3 items have owners, evidence requirements, and future gates
+      - Package 3 receives a closure record and a separate freeze commit, no record authorizes implementation, and the completed gate has no unresolved required commit binding
+    approved_at: null
+  - id: APP-V8-045
+    artifact_id: PACKAGE-8-3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Frozen artifacts are superseded, never overwritten. A narrow
+      post-merge provenance amendment is recorded as V8-F, and a subsequent
+      governance amendment is recorded as V8-F-1. Volume 8 is not tagged after
+      Package 3.
+    frozen: true
+    frozen_artifacts:
+      - id: V8-21
+        version: 1.0.0
+      - id: V8-22
+        version: 1.0.0
+      - id: V8-23
+        version: 1.0.0
+      - id: V8-24
+        version: 1.0.0
+      - id: V8-25
+        version: 1.0.0
+      - id: V8-26
+        version: 1.0.0
+      - id: V8-27
+        version: 1.0.0
+      - id: V8-28
+        version: 1.0.0
+      - id: V8-29
+        version: 1.0.0
+      - id: V8-30
+        version: 1.0.0
+      - id: V8-E
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-8-3
+      substantive_authoring_commit: f636fa4
+      closure_authored_commit: PENDING_V8-E_CLOSURE_COMMIT
+      closure_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      gate_effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
+      provenance_binding_commit: PENDING_V8-F_AMENDMENT
+      required_sequence: >-
+        Substantive authoring precedes closure; closure and freeze precede the
+        provenance binding.
+      actual_sequence: >-
+        Substantive authoring in the first commit; closure, gate disposition, and
+        freeze in the second commit; commit-hash binding in the third commit.
+      sequence_disposition: COMPLIANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      branch_base_commit: 8d476a1
+      authoring_commit: f636fa4
+      closure_freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
+      freeze_commit: PENDING_V8-E_CLOSURE_COMMIT
+      effective_commit: PENDING_V8-E_CLOSURE_COMMIT
+      note: >-
+        Package 3 was authored in a substantive authoring commit and frozen in a
+        separate closure commit after line-level review; the commit-hash bindings
+        for the closure, gate, and freeze are recorded in the immediately
+        following provenance-binding commit on the same branch. The Package 3
+        merge commit is recorded in the V8-F provenance amendment. Volume 8 is not
+        tagged after Package 3.
+    approved_at: null

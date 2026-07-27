@@ -299,3 +299,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-30-affiliation-event-contract-traceability-compatibility-and-validation-backlog.md
     gate: V8-G3
+  - id: V8-E
+    title: Package 3 Closure Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-E-package-3-closure-record.md
+    gate: V8-G3

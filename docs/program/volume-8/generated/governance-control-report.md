@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T12:47:11.256Z
+Generated: 2026-07-27T12:53:31.790Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -26,18 +26,18 @@ Generated: 2026-07-27T12:47:11.256Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 37 |
+| RATIFIED | 38 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 37 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 38 |
 | REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 35 |
 | REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 72 |
 | REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 20 |
 | REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 15 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 42 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 45 |
 
 ## Findings by control
 
@@ -143,3 +143,31 @@ Errors: 0 | Warnings: 0 | Info: 0
 - APP-V8-029 (GATE-V8-G2): Package 2 receives a closure record and a separate freeze commit
 - APP-V8-029 (GATE-V8-G2): Gate V8-G2 disposition recorded as affiliation logical-contract definition ready
 - APP-V8-029 (GATE-V8-G2): Completed gate has no unresolved required commit binding
+- APP-V8-044 (GATE-V8-G3): Package 3 inherits the frozen Package 1 and Package 2 corpora and the corrected Package 2 provenance
+- APP-V8-044 (GATE-V8-G3): Affiliation event-contract doctrine, taxonomy, ownership, and authority defined
+- APP-V8-044 (GATE-V8-G3): Events are governed facts distinct from commands
+- APP-V8-044 (GATE-V8-G3): Event types are classified into domain, integration, notification, audit, webhook, and callback kinds
+- APP-V8-044 (GATE-V8-G3): Every event names an owning authority and an authoritative source
+- APP-V8-044 (GATE-V8-G3): Affiliation lifecycle event catalogue defined for the governed transitions
+- APP-V8-044 (GATE-V8-G3): The event envelope defines identity, version, provenance, scope, correlation, causation, timing, sensitivity, and replay marking
+- APP-V8-044 (GATE-V8-G3): Every event maps to its triggering committed transition
+- APP-V8-044 (GATE-V8-G3): The authoritative state change and its outbox record share one atomicity requirement
+- APP-V8-044 (GATE-V8-G3): Publication is distinct from persistence and eligible only after commit
+- APP-V8-044 (GATE-V8-G3): Delivery is at-least-once at the transport boundary
+- APP-V8-044 (GATE-V8-G3): Exactly-once effect is a business invariant, not a transport guarantee
+- APP-V8-044 (GATE-V8-G3): Consumers are idempotent and deduplicate within a named scope
+- APP-V8-044 (GATE-V8-G3): Ordering is scoped and global ordering is not presumed
+- APP-V8-044 (GATE-V8-G3): Replay requires authority, provenance, and evidence
+- APP-V8-044 (GATE-V8-G3): Webhooks and callbacks define authentication, integrity, replay protection, scope, idempotency, and reconciliation
+- APP-V8-044 (GATE-V8-G3): Acknowledgement is distinct from reconciliation and unknown outcomes are held until reconciled
+- APP-V8-044 (GATE-V8-G3): Failure preserves history and correction is forward compensation
+- APP-V8-044 (GATE-V8-G3): Notifications are minimum-necessary, accessible, and bilingual
+- APP-V8-044 (GATE-V8-G3): Restricted evidence is excluded from routine event content
+- APP-V8-044 (GATE-V8-G3): Provider boundaries fail closed
+- APP-V8-044 (GATE-V8-G3): Event compatibility is evaluated against known consumers with evidence
+- APP-V8-044 (GATE-V8-G3): Affiliation event and delivery decisions recorded for authority, envelope, delivery, and compatibility
+- APP-V8-044 (GATE-V8-G3): Every affiliation event and delivery contract names a forward blocking gate
+- APP-V8-044 (GATE-V8-G3): Deterministic Package 3 analysis completes without blocking defects
+- APP-V8-044 (GATE-V8-G3): No prohibited implementation, coded, executable-schema, endpoint, broker, or transport artifacts are created
+- APP-V8-044 (GATE-V8-G3): Unresolved Package 3 items have owners, evidence requirements, and future gates
+- APP-V8-044 (GATE-V8-G3): Package 3 receives a closure record and a separate freeze commit, no record authorizes implementation, and the completed gate has no unresolved required commit binding
