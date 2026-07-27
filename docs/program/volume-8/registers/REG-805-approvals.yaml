@@ -1031,3 +1031,150 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
     approved_at: null
+  - id: APP-V8-058
+    artifact_id: V8-G
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    closure_record: true
+    closure_binding:
+      closure_artifact: V8-G
+      gate: GATE-V8-G4
+      freeze_artifact: PACKAGE-8-4
+      closure_authored_commit: PENDING_V8-G_CLOSURE_COMMIT
+      closure_effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+      freeze_commit: PENDING_V8-G_CLOSURE_COMMIT
+      gate_effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+      chronology_disposition: >-
+        The substantive authoring commit precedes the closure commit; the closure,
+        Gate V8-G4 disposition, and freeze are recorded together in the closure
+        commit and bound to it in the immediately following provenance-binding
+        commit.
+    effective_date_clarification:
+      gate: GATE-V8-G4
+      documentary_definition_effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+      implementation_effective_date: >-
+        Not applicable. Package 4 authorizes no implementation; documentary
+        definition effectiveness is distinct from any future implementation date.
+    next_package_disposition: >-
+      A subsequent governed contract-definition package, if commissioned, is
+      authorized for documentary definition only. No executable API
+      implementation, event schema, file or payload schema, endpoint, wire
+      schema, SDK, broker or transport configuration, runtime authorization,
+      identity or cryptographic configuration, provider integration, file
+      transfer, migration script, adapter, payment or settlement mechanism,
+      procurement, pilot, rollout, or launch is authorized.
+    approved_at: null
+  - id: APP-V8-059
+    artifact_id: GATE-V8-G4
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    gate_disposition: EXTERNAL_PROVIDER_FILE_BATCH_MIGRATION_AND_EXCHANGE_CONTRACT_DEFINITION_READY
+    requires_freeze_artifact: PACKAGE-8-4
+    effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+    gate_effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+    conditions:
+      - Package 3 provenance, V8-F, and V8-F-1 are inherited
+      - Packages 1 through 3 remain frozen and unchanged
+      - Provider and exchange authority doctrine is controlled
+      - Provider custody remains distinct from institutional authority
+      - Provider, import, export, file, batch, migration, and manual-exchange contexts are catalogued
+      - Every exchange identifies producer, consumer, owner, purpose, authority, classification, and trust boundary
+      - Files and batches define identity, provenance, version, manifest, counts, integrity, and reconciliation
+      - Structural validity remains distinct from semantic and institutional validity
+      - Imports define acceptance, rejection, quarantine, duplicate, correction, and partial-success semantics
+      - Rejected and quarantined records remain non-authoritative
+      - Imports cannot silently create governed authority
+      - Exports require explicit disclosure and recipient authority
+      - Read access remains distinct from export authority
+      - Export generation, delivery, receipt, processing, and reconciliation remain distinct
+      - Migration contracts preserve source provenance and uncertainty
+      - Mapping remains distinct from identity resolution and authority confirmation
+      - Migration completion remains distinct from business acceptance and source retirement
+      - Provider incidents, continuity, substitution, return, deletion, residual copies, and exit are governed
+      - Provider certification remains distinct from service assurance
+      - Batch idempotency, replay, ordering, concurrency, partial failure, compensation, and reconciliation are controlled
+      - Manual and transitional exchanges remain governed and auditable
+      - Accessible and bilingual requirements apply to documents and exchange communications
+      - Every unresolved item has an owner, evidence requirement, and valid future gate
+      - Deterministic Package 4 assessment completes without blocking defects
+      - No executable file schema, endpoint, transfer mechanism, migration script, provider integration, infrastructure, procurement, sequence, staffing, cost, pilot, rollout, or master development plan is created
+      - No migration-complete, provider-assured, data-deleted, reconciliation-complete, compatibility, privacy-compliance, or operational claim is made without evidence
+      - No record authorizes implementation
+      - Genuine authoring, closure/freeze, and pre-merge binding separation is preserved
+    approved_at: null
+  - id: APP-V8-060
+    artifact_id: PACKAGE-8-4
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Frozen artifacts are superseded, never overwritten. A narrow
+      post-merge provenance amendment is recorded as V8-H, and a subsequent
+      governance amendment is recorded as V8-H-1. Volume 8 is not tagged after
+      Package 4.
+    frozen: true
+    frozen_artifacts:
+      - id: V8-31
+        version: 1.0.0
+      - id: V8-32
+        version: 1.0.0
+      - id: V8-33
+        version: 1.0.0
+      - id: V8-34
+        version: 1.0.0
+      - id: V8-35
+        version: 1.0.0
+      - id: V8-36
+        version: 1.0.0
+      - id: V8-37
+        version: 1.0.0
+      - id: V8-38
+        version: 1.0.0
+      - id: V8-39
+        version: 1.0.0
+      - id: V8-40
+        version: 1.0.0
+      - id: V8-G
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-8-4
+      substantive_authoring_commit: 96c9e28
+      closure_authored_commit: PENDING_V8-G_CLOSURE_COMMIT
+      closure_effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+      gate_effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+      freeze_commit: PENDING_V8-G_CLOSURE_COMMIT
+      provenance_binding_commit: PENDING_V8-H_AMENDMENT
+      required_sequence: >-
+        Substantive authoring precedes closure; closure and freeze precede the
+        provenance binding.
+      actual_sequence: >-
+        Substantive authoring in the first commit; closure, gate disposition, and
+        freeze in the second commit; commit-hash binding in the third commit.
+      sequence_disposition: COMPLIANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-7-v1.0.0
+      base_release_tag: central-registration-volume-7-v1.0.0
+      base_release_commit: 624081e
+      branch_base_commit: d41600a
+      authoring_commit: 96c9e28
+      closure_freeze_commit: PENDING_V8-G_CLOSURE_COMMIT
+      freeze_commit: PENDING_V8-G_CLOSURE_COMMIT
+      effective_commit: PENDING_V8-G_CLOSURE_COMMIT
+      note: >-
+        Package 4 was authored in a substantive authoring commit and frozen in a
+        separate closure commit after line-level review; the commit-hash bindings
+        for the closure, gate, and freeze are recorded in the immediately
+        following provenance-binding commit on the same branch. The Package 4
+        merge commit is recorded in the V8-H provenance amendment. Volume 8 is not
+        tagged after Package 4.
+    approved_at: null
