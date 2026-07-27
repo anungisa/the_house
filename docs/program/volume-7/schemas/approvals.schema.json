@@ -56,6 +56,27 @@
               "operational_effective_date": { "type": "string" }
             }
           },
+          "authoring_closure_separation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "freeze_artifact": { "type": "string" },
+              "substantive_authoring_commit": { "type": "string" },
+              "closure_authored_commit": { "type": "string" },
+              "closure_effective_commit": { "type": "string" },
+              "gate_effective_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "provenance_binding_commit": { "type": "string" },
+              "required_sequence": { "type": "string" },
+              "actual_sequence": { "type": "string" },
+              "sequence_disposition": { "type": "string" },
+              "separation_status": { "type": "string" },
+              "substantive_package_reopened": { "type": "boolean" },
+              "gate_reopened": { "type": "boolean" },
+              "package_freeze_reopened": { "type": "boolean" },
+              "future_separation_required": { "type": "boolean" }
+            }
+          },
           "closure_record": { "type": "boolean" },
           "next_package_disposition": { "type": "string" },
           "supersedes": { "type": "array", "items": { "type": "string" } },

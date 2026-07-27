@@ -1,0 +1,18 @@
+{
+  "note": "NON-AUTHORITATIVE projection of authoring-versus-closure commit separation and recorded historical sequence exceptions.",
+  "separations": [
+    {
+      "freeze_artifact": "PACKAGE-7-4",
+      "approval": "APP-V7-062",
+      "substantive_authoring_commit": "85451f3",
+      "closure_authored_commit": "85451f3",
+      "closure_effective_commit": "85451f3",
+      "freeze_commit": "85451f3",
+      "gate_effective_commit": "85451f3",
+      "provenance_binding_commit": "a0d6b4a",
+      "authoring_closure_separation": "NOT_SATISFIED_HISTORICALLY",
+      "chronology_exception": "RECORDED",
+      "future_separation_required": true
+    }
+  ]
+}

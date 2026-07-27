@@ -19,6 +19,13 @@
 //   7. CLOSURE_TBD_AFTER_GATE_COMPLETED — unresolved-at-gate effective-date
 //      wording when the named gate is already completed, unless the record
 //      explicitly distinguishes documentary from implementation effectiveness.
+//   8. AUTHORING_CLOSURE_NOT_SEPARATED — a package whose substantive authoring
+//      commit equals its closure authoring commit without a recorded historical
+//      sequence exception. The substantive authoring commit must not introduce
+//      the closure chapter, gate disposition, or freeze approval; the closure
+//      and gate effective commits must equal the package freeze commit; and a
+//      recorded historical sequence exception remains visible and does not
+//      satisfy the future separation requirement for later packages.
 //
 // From Package 3 onward the closure artifact, gate disposition, and freeze must
 // be recorded separately from substantive authoring; earlier packages that were
@@ -49,8 +56,27 @@ function gateNumber(id) {
   return m ? Number(m[1]) : null;
 }
 
+function packageNumber(id) {
+  const m = /^PACKAGE-7-([0-9])$/.exec(id ?? '');
+  return m ? Number(m[1]) : null;
+}
+
+function isHistoricalException(value) {
+  return /HISTORICAL_SEQUENCE_EXCEPTION_RECORDED|^RECORDED$/.test(String(value ?? '').trim().toUpperCase());
+}
+
 function normalizeGate(g) {
   return String(g ?? '').replace(/^GATE-/, '');
+}
+
+// Index authoring-versus-closure separation records by the freeze artifact.
+function separationIndex(ctx) {
+  const map = new Map();
+  for (const a of approvals(ctx)) {
+    const s = a.authoring_closure_separation;
+    if (s?.freeze_artifact) map.set(s.freeze_artifact, { approval: a, separation: s });
+  }
+  return map;
 }
 
 // Index the freeze commit declared by each frozen freeze artifact.
@@ -195,8 +221,70 @@ export function run(ctx) {
   checkGateChronology(ctx, findings);
   checkClosureDisposition(ctx, findings);
   checkClosureFreezeChronology(ctx, findings);
+  checkAuthoringClosureSeparation(ctx, findings);
   checkEffectiveDateWording(ctx, findings);
   return findings;
+}
+
+// Defect 8: substantive authoring must be committed separately from the package
+// closure chapter, gate disposition, and freeze approval. A recorded historical
+// sequence exception remains visible and does not satisfy the future separation
+// requirement. Closure-effective and gate-effective commits must equal the
+// required package freeze commit.
+function checkAuthoringClosureSeparation(ctx, findings) {
+  for (const a of approvals(ctx)) {
+    const s = a.authoring_closure_separation;
+    if (!s || !s.freeze_artifact) continue;
+    const n = packageNumber(s.freeze_artifact);
+    if (n === null || n < ENFORCE_SEPARATION_FROM) continue;
+    const exception =
+      isHistoricalException(s.sequence_disposition) ||
+      isHistoricalException(s.chronology_exception) ||
+      isHistoricalException(a.chronology_exception);
+    const same =
+      s.substantive_authoring_commit &&
+      s.closure_authored_commit &&
+      s.substantive_authoring_commit === s.closure_authored_commit;
+    if (same && !exception) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'AUTHORING_CLOSURE_NOT_SEPARATED',
+          `Package ${s.freeze_artifact} substantive authoring commit ${s.substantive_authoring_commit} equals the closure authoring commit; the closure, gate disposition, and freeze must be committed separately from substantive authoring, and no historical sequence exception is recorded`,
+          a.id
+        )
+      );
+    } else if (same && exception) {
+      findings.push(
+        makeFinding(
+          Severity.INFO,
+          'AUTHORING_CLOSURE_HISTORICAL_EXCEPTION',
+          `Package ${s.freeze_artifact} recorded a historical sequence exception at commit ${s.substantive_authoring_commit}; the exception remains visible and does not satisfy the future separation requirement (future_separation_required=${s.future_separation_required !== false})`,
+          a.id
+        )
+      );
+    }
+    if (s.closure_effective_commit && s.freeze_commit && s.closure_effective_commit !== s.freeze_commit) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'SEPARATION_CLOSURE_EFFECTIVE_MISMATCH',
+          `Package ${s.freeze_artifact} closure effective commit ${s.closure_effective_commit} does not match the freeze commit ${s.freeze_commit}`,
+          a.id
+        )
+      );
+    }
+    if (s.gate_effective_commit && s.freeze_commit && s.gate_effective_commit !== s.freeze_commit) {
+      findings.push(
+        makeFinding(
+          Severity.ERROR,
+          'SEPARATION_GATE_EFFECTIVE_MISMATCH',
+          `Package ${s.freeze_artifact} gate effective commit ${s.gate_effective_commit} does not match the freeze commit ${s.freeze_commit}`,
+          a.id
+        )
+      );
+    }
+  }
 }
 
 // Defects 4-6: closure-versus-freeze chronology for separation-enforced gates.
@@ -337,7 +425,36 @@ export function generate(ctx = loadContext()) {
     ) + '\n',
     'utf8'
   );
-  return { packages: packages.length };
+  const sepIdx = separationIndex(ctx);
+  const separations = [];
+  for (const [freezeArtifact, entry] of sepIdx) {
+    const s = entry.separation;
+    const same = s.substantive_authoring_commit && s.closure_authored_commit && s.substantive_authoring_commit === s.closure_authored_commit;
+    const exception = isHistoricalException(s.sequence_disposition) || isHistoricalException(s.chronology_exception) || isHistoricalException(entry.approval.chronology_exception);
+    separations.push({
+      freeze_artifact: freezeArtifact,
+      approval: entry.approval.id,
+      substantive_authoring_commit: s.substantive_authoring_commit ?? null,
+      closure_authored_commit: s.closure_authored_commit ?? null,
+      closure_effective_commit: s.closure_effective_commit ?? null,
+      freeze_commit: s.freeze_commit ?? null,
+      gate_effective_commit: s.gate_effective_commit ?? null,
+      provenance_binding_commit: s.provenance_binding_commit ?? null,
+      authoring_closure_separation: same ? (exception ? 'NOT_SATISFIED_HISTORICALLY' : 'NOT_SATISFIED') : 'SATISFIED',
+      chronology_exception: exception ? 'RECORDED' : null,
+      future_separation_required: s.future_separation_required !== false
+    });
+  }
+  writeFileSync(
+    join(outDir, 'authoring-closure-separation.json'),
+    JSON.stringify(
+      { note: 'NON-AUTHORITATIVE projection of authoring-versus-closure commit separation and recorded historical sequence exceptions.', separations },
+      null,
+      2
+    ) + '\n',
+    'utf8'
+  );
+  return { packages: packages.length, separations: separations.length };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

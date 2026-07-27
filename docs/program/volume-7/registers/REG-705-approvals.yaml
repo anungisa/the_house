@@ -756,3 +756,62 @@ records:
       original_package_merge_commit: "5447e80"
       note: Narrow post-merge provenance amendment for Package 4. Records the branch base baseline c99603a, the reviewed freeze commit 85451f3 that carried authoring, closure, gate disposition, and freeze, the provenance-binding commit a0d6b4a, and the mainline merge commit 5447e80. Confirms Gate V7-G4 became effective at the freeze commit 85451f3. Volume 7 is not tagged after Package 4.
     approved_at: null
+  - id: APP-V7-062
+    artifact_id: V7-H-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: Additive only. Records the Package 4 combined authoring-closure-gate-freeze historical sequence exception, preserves the documentary-versus-implementation effectiveness posture, strengthens the deterministic authoring-versus-closure separation control, and structurally surfaces the bounded Package 5 authorization. Supersedes and overwrites nothing in the frozen Package 4 corpus. Does not consume V7-I or V7-J reserved for Package 5 closure and provenance. Volume 7 is not tagged after Package 4.
+    requires_freeze_artifact: PACKAGE-7-4
+    closure_effective_commit: "85451f3"
+    gate_effective_commit: "85451f3"
+    chronology_exception: HISTORICAL_SEQUENCE_EXCEPTION_RECORDED
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-7-4
+      substantive_authoring_commit: "85451f3"
+      closure_authored_commit: "85451f3"
+      closure_effective_commit: "85451f3"
+      gate_effective_commit: "85451f3"
+      freeze_commit: "85451f3"
+      provenance_binding_commit: "a0d6b4a"
+      required_sequence: substantive_authoring -> separate_closure_gate_and_freeze -> provenance_binding
+      actual_sequence: substantive_authoring_and_closure_gate_freeze_combined -> provenance_binding
+      sequence_disposition: HISTORICAL_SEQUENCE_EXCEPTION_RECORDED
+      separation_status: NOT_SATISFIED_HISTORICALLY
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: true
+    closure_binding:
+      closure_artifact: V7-G
+      gate: GATE-V7-G4
+      freeze_artifact: PACKAGE-7-4
+      closure_authored_commit: "85451f3"
+      closure_effective_commit: "85451f3"
+      freeze_commit: "85451f3"
+      gate_effective_commit: "85451f3"
+      chronology_exception: RECORDED
+      chronology_disposition: HISTORICAL_SEQUENCE_EXCEPTION_RECORDED
+    effective_date_clarification:
+      gate: GATE-V7-G4
+      documentary_definition_effective_commit: "85451f3"
+      implementation_effective_date: NOT_ESTABLISHED
+      production_adoption_date: NOT_ESTABLISHED
+      operational_effective_date: NOT_ESTABLISHED
+    next_package_disposition: Package 5 is authorized for integrated experience baseline and Volume 7 closure definition only. Actual user research is not authorized. Usability validation claims are not authorized. Accessibility conformance claims are not authorized. Bilingual validation claims are not authorized. Production design approval is not authorized. Runtime implementation is not authorized. Procurement, pilot, rollout, and launch are not authorized. A master development plan remains pending.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-6-v1.0.1
+      base_release_tag: central-registration-volume-6-v1.0.1
+      base_release_commit: ae11b076
+      source_baseline_commit: "5087d71"
+      branch_base_commit: "5087d71"
+      authoring_commit: "85451f3"
+      closure_freeze_commit: "85451f3"
+      freeze_commit: "85451f3"
+      effective_commit: "85451f3"
+      provenance_amendment_commit: "a0d6b4a"
+      original_package_merge_commit: "5447e80"
+      provenance_amendment_merge_commit: "5087d71"
+      note: Narrow post-merge governance amendment for Package 4. Records the combined authoring-closure-gate-freeze historical sequence exception at commit 85451f3 with provenance binding at a0d6b4a, preserves the Gate V7-G4 effective ratification at freeze commit 85451f3, and requires future separation of substantive authoring from the closure, gate, and freeze commit. Volume 7 is not tagged after Package 4.
+    approved_at: null
