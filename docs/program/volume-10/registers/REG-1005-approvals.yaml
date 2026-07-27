@@ -206,3 +206,57 @@ records:
         amendment and the V10-B-1 provenance-role classification. Volume 10 is not
         tagged upon Package 1 closure.
     approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # V10-B post-merge provenance amendment (additive; binds pre-merge and merge)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-015
+    artifact_id: V10-B
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 1 mainline history after merge and binds
+      the pre-merge provenance-binding reference to a concrete commit. Reopens and
+      overwrites nothing in the frozen Package 1 corpus. Preserves the Gate V10-G1
+      disposition and the PACKAGE-10-1 freeze. Volume 10 is not tagged after
+      Package 1.
+    approved_at: null
+  - id: APP-V10-016
+    artifact_id: PACKAGE-10-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 1 substantive authoring commit, the
+      separate closure and freeze commit, the pre-merge provenance-binding commit,
+      and the mainline merge commit after merge. Supersedes and overwrites nothing
+      in the frozen Package 1 corpus. Preserves the Gate V10-G1 disposition and the
+      PACKAGE-10-1 freeze. The complete provenance-role classification, including
+      this amendment's own authoring and merge commits, is recorded in the
+      subsequent amendment (V10-B-1). Volume 10 is not tagged after Package 1.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-9-v1.0.0
+      base_release_tag: central-registration-volume-9-v1.0.0
+      source_baseline_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      branch_base_commit: e1b3109875cf2750bba1acaff11cae5fefca374d
+      authoring_commit: 54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55
+      closure_authored_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      closure_freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      freeze_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      gate_effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      effective_commit: 997052d3e952057189e81fb870535b87ab9c1dfc
+      provenance_binding_commit: fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b
+      original_package_merge_commit: 7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a
+      note: >-
+        Volume 10 Package 1 mainline history. Source baseline
+        e1b3109875cf2750bba1acaff11cae5fefca374d; substantive authoring
+        54bdcbb82f6b1bb4bb7845f96cb6febd2a77bc55; closure, gate, and freeze
+        997052d3e952057189e81fb870535b87ab9c1dfc; pre-merge provenance binding
+        fe1fbd02eec49c67aba9ddffa6a39d7c8aede59b; original Package 1 merge
+        7b0ad7ea230cedb4fa7ee2a19d65520d1fe7cd0a. Volume 10 is not tagged after
+        Package 1.
+    approved_at: null
