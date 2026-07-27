@@ -91,3 +91,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-11/V11-10.md
     gate: V11-G1
+  - id: V11-A
+    title: Package 1 Closure Record and Bounded Package 2 Authorization
+    owner: OWNER-V11-002
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-11/V11-A.md
+    gate: V11-G1

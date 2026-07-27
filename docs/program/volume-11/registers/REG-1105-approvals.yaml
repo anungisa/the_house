@@ -80,3 +80,124 @@ records:
     evidence_label: AUTHOR-VERIFIED
     authorizes_implementation: false
     authorizes_operations: false
+  - id: APP-V11-012
+    artifact_id: V11-A
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    closure_record: true
+    next_package_disposition: >-
+      AUTHORIZED FOR AFFILIATION OPERATING MODEL, SUPPORT MODEL, MIGRATION RUNBOOK
+      DEFINITION, RECONCILIATION MODEL, CONTINUITY AND RECOVERY PROCEDURE
+      DEFINITION, TRAINING AND ADOPTION PLAN, PROVIDER OPERATIONS, AND
+      OPERATIONAL-EVIDENCE PLAN ONLY. Runtime, environments, credentials, migration
+      execution, backup/restore/recovery execution, training delivery, provider
+      engagement, and pilot/rollout are NOT AUTHORIZED.
+    effective_date_clarification:
+      gate: V11-G1
+      documentary_definition_effective_commit: PENDING_COMMIT_B
+      implementation_effective_date: >-
+        Not applicable — the documentary operational definition is distinct from
+        implementation effectiveness and from operational effectiveness.
+      operational_effective_date: >-
+        Not applicable — no operation is authorized by Package 1.
+    closure_binding:
+      closure_artifact: V11-A
+      gate: V11-G1
+      freeze_artifact: PACKAGE-11-1
+      closure_authored_commit: PENDING_COMMIT_B
+      closure_effective_commit: PENDING_COMMIT_B
+      freeze_commit: PENDING_COMMIT_B
+      gate_effective_commit: PENDING_COMMIT_B
+  - id: APP-V11-013
+    artifact_id: GATE-V11-G1
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    gate_disposition: OPERATIONS_MIGRATION_ADOPTION_AND_ASSURANCE_GOVERNANCE_FOUNDATION_READY
+    requires_freeze_artifact: PACKAGE-11-1
+    effective_commit: PENDING_COMMIT_B
+    gate_effective_commit: PENDING_COMMIT_B
+  - id: APP-V11-014
+    artifact_id: PACKAGE-11-1
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    frozen: true
+    frozen_artifacts:
+      - id: V11-00
+        version: 1.0.0
+      - id: V11-01
+        version: 1.0.0
+      - id: V11-02
+        version: 1.0.0
+      - id: V11-03
+        version: 1.0.0
+      - id: V11-04
+        version: 1.0.0
+      - id: V11-05
+        version: 1.0.0
+      - id: V11-06
+        version: 1.0.0
+      - id: V11-07
+        version: 1.0.0
+      - id: V11-08
+        version: 1.0.0
+      - id: V11-09
+        version: 1.0.0
+      - id: V11-10
+        version: 1.0.0
+      - id: V11-A
+        version: 1.0.0
+      - id: REG-1100
+        version: 1.0.0
+      - id: REG-1101
+        version: 1.0.0
+      - id: REG-1102
+        version: 1.0.0
+      - id: REG-1103
+        version: 1.0.0
+      - id: REG-1104
+        version: 1.0.0
+      - id: REG-1105
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-11-1
+      substantive_authoring_commit: 19c4e3c623c65984617ec922ca4d018f3ea54754
+      closure_authored_commit: PENDING_COMMIT_B
+      closure_effective_commit: PENDING_COMMIT_B
+      gate_effective_commit: PENDING_COMMIT_B
+      freeze_commit: PENDING_COMMIT_B
+      provenance_binding_commit: PENDING_COMMIT_C
+      required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
+      actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
+      sequence_disposition: SATISFIED
+      separation_status: SATISFIED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-10-v1.0.0
+      base_release_tag: central-registration-volume-10-v1.0.0
+      source_baseline_commit: b35659eb878537afe1ec9b69ad609acd9039da32
+      branch_base_commit: b35659eb878537afe1ec9b69ad609acd9039da32
+      authoring_commit: 19c4e3c623c65984617ec922ca4d018f3ea54754
+      closure_authored_commit: PENDING_COMMIT_B
+      closure_effective_commit: PENDING_COMMIT_B
+      closure_freeze_commit: PENDING_COMMIT_B
+      freeze_commit: PENDING_COMMIT_B
+      gate_effective_commit: PENDING_COMMIT_B
+      effective_commit: PENDING_COMMIT_B
+      provenance_binding_commit: PENDING_COMMIT_C
+      note: >-
+        Commit A is the substantive authoring commit; Commit B authors the closure,
+        gate disposition, and freeze; Commit C records the pre-merge provenance
+        binding. The original-merge and provenance-amendment commits are bound by
+        the post-merge amendments V11-B and V11-B-1.
