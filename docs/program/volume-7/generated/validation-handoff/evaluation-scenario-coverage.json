@@ -1,0 +1,104 @@
+{
+  "evaluation_scenarios": [
+    {
+      "id": "SCEN-V7-001",
+      "title": "Club representative end-to-end affiliation scenario",
+      "covers_stages": [
+        "STAGE-V7-001",
+        "STAGE-V7-002",
+        "STAGE-V7-003",
+        "STAGE-V7-004",
+        "STAGE-V7-005",
+        "STAGE-V7-006",
+        "STAGE-V7-007",
+        "STAGE-V7-008",
+        "STAGE-V7-009",
+        "STAGE-V7-010",
+        "STAGE-V7-011",
+        "STAGE-V7-012",
+        "STAGE-V7-013",
+        "STAGE-V7-014",
+        "STAGE-V7-015",
+        "STAGE-V7-016"
+      ],
+      "states": [
+        "primary",
+        "exception",
+        "denied",
+        "stale",
+        "degraded",
+        "recovery"
+      ]
+    },
+    {
+      "id": "SCEN-V7-002",
+      "title": "Jurisdiction reviewer scenario",
+      "covers_stages": [
+        "STAGE-V7-008",
+        "STAGE-V7-009",
+        "STAGE-V7-010",
+        "STAGE-V7-011"
+      ],
+      "states": [
+        "primary",
+        "exception",
+        "denied",
+        "stale",
+        "degraded",
+        "recovery"
+      ]
+    },
+    {
+      "id": "SCEN-V7-003",
+      "title": "Finance operator reconciliation scenario",
+      "covers_stages": [
+        "STAGE-V7-012",
+        "STAGE-V7-013"
+      ],
+      "states": [
+        "primary",
+        "exception",
+        "denied",
+        "stale",
+        "degraded",
+        "recovery"
+      ]
+    },
+    {
+      "id": "SCEN-V7-004",
+      "title": "Support operator assistance scenario",
+      "covers_stages": [
+        "STAGE-V7-006",
+        "STAGE-V7-007"
+      ],
+      "states": [
+        "primary",
+        "exception",
+        "denied",
+        "stale",
+        "degraded",
+        "recovery"
+      ]
+    },
+    {
+      "id": "SCEN-V7-005",
+      "title": "Privacy or records function scenario",
+      "covers_stages": [
+        "STAGE-V7-014",
+        "STAGE-V7-015",
+        "STAGE-V7-016"
+      ],
+      "states": [
+        "primary",
+        "exception",
+        "denied",
+        "stale",
+        "degraded",
+        "recovery"
+      ]
+    }
+  ],
+  "stages_without_evaluation_scenario": [],
+  "missing_scenario_path_classes": [],
+  "underspecified_evaluation_scenarios": []
+}

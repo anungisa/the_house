@@ -336,7 +336,7 @@ records:
     validation_status: ASSUMED
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G4
+    future_blocking_gate: V7-G5
     chapter_ref: V7-31
     traces_to:
       - VIS-V7-001
@@ -349,7 +349,7 @@ records:
     validation_status: PENDING_VALIDATION
     authorizes_implementation: false
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
-    future_blocking_gate: V7-G4
+    future_blocking_gate: V7-G5
     chapter_ref: V7-31
     traces_to:
       - PROTO-V7-001
@@ -383,3 +383,149 @@ records:
     chapter_ref: V7-31
     traces_to:
       - TERM-V7-001
+  # --- Package 4 validation backlog (V7-42) ---
+  - id: TEST-V7-013
+    kind: TEST
+    title: Usability research execution
+    statement: A future package must execute the usability research plan and record accepted results.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Observed behaviour and reported experience of qualified representative sessions, accepted by the named authority.
+    future_test_class: USABILITY_VALIDATION
+    downstream_volume: Volume 7 validation execution
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - VALF-V7-004
+  - id: TEST-V7-014
+    kind: TEST
+    title: Accessibility verification execution
+    statement: A future package must execute the accessibility verification plan across assistive technologies and record accepted results.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Combined automated, manual, and assistive-technology evidence under qualified judgement, accepted by the named authority.
+    future_test_class: ACCESSIBILITY_VALIDATION
+    downstream_volume: Volume 7 validation execution
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - VALF-V7-005
+  - id: TEST-V7-015
+    kind: TEST
+    title: Bilingual semantic validation execution
+    statement: A future package must execute the bilingual semantic validation plan and record accepted results.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Qualified human judgement of institutional equivalence against the canonical concept, accepted by the named authority.
+    future_test_class: BILINGUAL_VALIDATION
+    downstream_volume: Volume 7 validation execution
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - VALF-V7-006
+  - id: TEST-V7-016
+    kind: TEST
+    title: Content approval and localization execution
+    statement: A future package must approve and localize governed content under the content governance model and record accepted results.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Approved content with validated English and French equivalents, accepted by the content authority.
+    future_test_class: CONTENT_VALIDATION
+    downstream_volume: Volume 7 validation execution
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - CGOV-V7-001
+  - id: TEST-V7-017
+    kind: TEST
+    title: Measurement collection under consent
+    statement: A future package must collect experience measurements only under explicit consent and interpretation limits.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Consented measurement collection honouring interpretation and aggregation rules, accepted by the named authority.
+    future_test_class: MEASUREMENT_VALIDATION
+    downstream_volume: Volume 7 validation execution
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - MEAS-V7-001
+  - id: TEST-V7-018
+    kind: TEST
+    title: Implementation-conformance evaluation
+    statement: A future implementation must be evaluated for conformance against the handoff artifacts and accepted by the named authority.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Implementation and design-review evidence across every conformance dimension, accepted by the named authority.
+    future_test_class: CONFORMANCE_VALIDATION
+    downstream_volume: Volume 9 interface validation
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - HAND-V7-001
+  - id: TEST-V7-019
+    kind: TEST
+    title: Service-readiness assessment
+    statement: A future package must assess service readiness against the readiness dimensions and record accepted results.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Demonstrated capability of each function against its readiness dimension, accepted by the named authority.
+    future_test_class: OPERATIONAL_VALIDATION
+    downstream_volume: Volume 7 validation execution
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - HAND-V7-004
+  - id: ASM-V7-012
+    kind: ASM
+    title: Validation families remain the accepted decomposition
+    statement: The defined validation families remain the accepted decomposition of experience validation through execution.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Confirmation at execution that the family decomposition still holds.
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - VALF-V7-001
+  - id: RISK-V7-011
+    kind: RISK
+    title: One validation family's evidence mistaken for another's
+    statement: There is a risk that evidence from one validation family is treated as proof for another, weakening the evidence boundaries.
+    owner: Aubert Nungisa (Accountable Program Authority)
+    required_evidence: Execution controls that keep each family's evidence bounded to its own claims.
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - VALF-V7-001
+  - id: EXC-V7-003
+    kind: EXC
+    title: Validation results not yet established at Package 4 close
+    statement: Package 4 defines validation but establishes no validation result; this defined gap is accepted until execution.
+    owner: Nolan (Executive Acceptance Authority)
+    required_evidence: Accepted validation results at the forward gate.
+    expiry: "2027-12-31"
+    validation_status: DEFERRED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-42
+    traces_to:
+      - VALF-V7-004

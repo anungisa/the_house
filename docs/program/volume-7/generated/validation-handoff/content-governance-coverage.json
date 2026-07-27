@@ -1,0 +1,13 @@
+{
+  "content_governance_rules": [
+    {
+      "id": "CGOV-V7-001",
+      "title": "Content approval and lifecycle rule"
+    },
+    {
+      "id": "CGOV-V7-002",
+      "title": "Content sensitivity and disclosure rule"
+    }
+  ],
+  "underspecified_content_governance_rules": []
+}

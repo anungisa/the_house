@@ -1693,3 +1693,251 @@ records:
     implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
     validation_status: PENDING_VALIDATION
     chapter_ref: V7-28
+  # --- Validation families and evidence boundaries (V7-32) ---
+  - id: VALF-V7-001
+    kind: VALIDATION_FAMILY
+    title: Design-completeness validation family
+    statement: Confirmation that a specification names every required state, source, and constraint.
+    spec_class: design-completeness
+    validation_objective: Confirm that each specification is complete against its required fields.
+    validation_scope: The frozen Package 1, 2, and 3 specifications.
+    permitted_evidence:
+      - Structural completeness of the specification against its required fields
+    prohibited_inference: Completeness of a specification never implies that the experience is usable, accessible, translated, or accepted.
+    qualification_requirement: A qualified reviewer of the governed specification conventions.
+    evaluation_environment: The source-controlled corpus.
+    defect_treatment: Missing fields are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected specification is re-checked for completeness before the defect is closed.
+    acceptance_authority: Accountable Program Authority, distinct from the artifact author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-002
+    kind: VALIDATION_FAMILY
+    title: Expert-review validation family
+    statement: Qualified judgement that a specification is coherent and defensible.
+    spec_class: expert-review
+    validation_objective: Confirm that a specification is internally coherent and defensible by qualified judgement.
+    validation_scope: The governed experience specifications and their rationale.
+    permitted_evidence:
+      - Documented qualified expert judgement against named criteria
+    prohibited_inference: Expert review never establishes usability, accessibility conformance, bilingual equivalence, or acceptance.
+    qualification_requirement: A reviewer qualified in the governed domain and independent of authorship.
+    evaluation_environment: A structured review against the frozen corpus.
+    defect_treatment: Findings are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A revised specification is re-reviewed before the finding is closed.
+    acceptance_authority: Executive Acceptance Authority, distinct from the artifact author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-003
+    kind: VALIDATION_FAMILY
+    title: Prototype-evaluation validation family
+    statement: Examination of a reference candidate for internal consistency.
+    spec_class: prototype-evaluation
+    validation_objective: Confirm that a reference prototype is internally consistent with its governed sources.
+    validation_scope: The Package 3 reference prototypes as reference candidates that are not approved.
+    permitted_evidence:
+      - Documented consistency of a reference prototype with its governed semantic sources
+    prohibited_inference: Prototype evaluation never establishes usability, approval, or production finality.
+    qualification_requirement: A qualified reviewer of the interaction and design corpus.
+    evaluation_environment: A structured walkthrough of the reference candidate.
+    defect_treatment: Inconsistencies are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected prototype is re-walked before the inconsistency is closed.
+    acceptance_authority: Accountable Program Authority, distinct from the artifact author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-004
+    kind: VALIDATION_FAMILY
+    title: Usability validation family
+    statement: Observation of representative participants attempting governed tasks.
+    spec_class: usability
+    validation_objective: Observe whether representative participants can complete the governed affiliation tasks with understanding and confidence.
+    validation_scope: The governed task protocols and their path classes.
+    permitted_evidence:
+      - Observed behaviour and reported experience of qualified representative sessions
+    prohibited_inference: A small or unrepresentative sample proves nothing about the population, and the absence of an observed failure is not proof of success.
+    qualification_requirement: A qualified researcher conducting and interpreting sessions.
+    evaluation_environment: A representative environment including low-bandwidth and interrupted-service conditions.
+    defect_treatment: Findings are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected artifact is re-evaluated with representative participants before the finding is closed.
+    acceptance_authority: Accountable Program Authority, distinct from the experience author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-005
+    kind: VALIDATION_FAMILY
+    title: Accessibility validation family
+    statement: Verification of conformance obligations against assistive technology.
+    spec_class: accessibility
+    validation_objective: Verify that the governed experience meets its accessibility obligations through assistive technology.
+    validation_scope: The accessibility obligations and complete-state specifications of the frozen corpus.
+    permitted_evidence:
+      - Combined automated, manual, and assistive-technology evidence under qualified judgement
+    prohibited_inference: A passed automated scan is not a conformance claim, and no partial evidence establishes conformance.
+    qualification_requirement: A qualified accessibility evaluator using representative assistive technologies.
+    evaluation_environment: A representative environment covering the complete-state set.
+    defect_treatment: Defects are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected artifact is re-evaluated before the defect is closed; no defect closes on a design-file change alone.
+    acceptance_authority: Accountable Program Authority, distinct from the experience author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-006
+    kind: VALIDATION_FAMILY
+    title: Bilingual validation family
+    statement: Confirmation of semantic equivalence of English and French.
+    spec_class: bilingual
+    validation_objective: Confirm that English and French expressions of each governed concept carry the same institutional meaning.
+    validation_scope: The content terms and semantic requirements of the frozen corpus.
+    permitted_evidence:
+      - Qualified human judgement of institutional equivalence against the canonical concept
+    prohibited_inference: Machine translation and literal word-for-word matching are insufficient evidence of semantic equivalence.
+    qualification_requirement: A validator fluent in both languages and literate in the governed domain.
+    evaluation_environment: The governed contexts including status, error, and recovery messaging.
+    defect_treatment: Defects are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A corrected translation is re-validated before the defect is closed.
+    acceptance_authority: Accountable Program Authority, distinct from the content author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-007
+    kind: VALIDATION_FAMILY
+    title: Operational validation family
+    statement: Confirmation that support, staff, and service processes can sustain the experience.
+    spec_class: operational
+    validation_objective: Confirm that the service functions can sustain the governed experience and its recovery paths.
+    validation_scope: The service-readiness dimensions of the handoff.
+    permitted_evidence:
+      - Demonstrated capability of each function against its readiness dimension
+    prohibited_inference: Operational readiness never establishes usability, accessibility, bilingual equivalence, or stakeholder acceptance.
+    qualification_requirement: A qualified assessor of service readiness independent of authorship.
+    evaluation_environment: A representative operating context.
+    defect_treatment: Gaps are recorded as governed backlog items with owners and forward gates.
+    retest_rule: A remediated function is re-assessed before the gap is closed.
+    acceptance_authority: Executive Acceptance Authority, distinct from the experience author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-008
+    kind: VALIDATION_FAMILY
+    title: Stakeholder-acceptance validation family
+    statement: A governed decision that the defined experience is acceptable to proceed.
+    spec_class: stakeholder-acceptance
+    validation_objective: Record a governed decision that the defined and validated experience is acceptable to proceed to implementation planning.
+    validation_scope: The accepted results of the preceding validation families.
+    permitted_evidence:
+      - A recorded governed acceptance decision citing the accepted validation evidence
+    prohibited_inference: Stakeholder acceptance is not production approval and authorizes no construction.
+    qualification_requirement: The governed acceptance authority.
+    evaluation_environment: A governed acceptance review.
+    defect_treatment: Unmet conditions are recorded as governed backlog items with owners and forward gates.
+    retest_rule: Acceptance is reconsidered when a cited validation result changes.
+    acceptance_authority: Executive Acceptance Authority, distinct from the experience author.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  - id: VALF-V7-009
+    kind: VALIDATION_FAMILY
+    title: Production-approval validation family
+    statement: A separate future authorization to build, distinct from every other family.
+    spec_class: production-approval
+    validation_objective: Name the separate future authorization required before any production implementation may begin.
+    validation_scope: A future authorization outside Package 4.
+    permitted_evidence:
+      - A separate future governed authorization recorded outside Package 4
+    prohibited_inference: No Package 4 artifact grants production approval, and no other family substitutes for it.
+    qualification_requirement: The future authorizing authority named at a forward gate.
+    evaluation_environment: A future governed authorization outside Volume 7 Package 4.
+    defect_treatment: Not applicable; production approval is not exercised in Package 4.
+    retest_rule: Not applicable; production approval is not exercised in Package 4.
+    acceptance_authority: A future authorizing authority named at a forward gate.
+    future_gate_authority: V7-G5
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFERRED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-32
+  # --- Measurement definitions (V7-38) ---
+  - id: MEAS-V7-001
+    kind: MEASUREMENT_DEFINITION
+    title: Governed-task completion measure
+    statement: A bounded measure of whether a governed affiliation task was completed within a session.
+    measure_definition: The observed completion of a governed task protocol within a consented session.
+    consent_basis: Explicit, purpose-bound, revocable consent obtained before observation.
+    interpretation_limit: Completion describes observed interaction only and is never the institutional truth of an affiliation.
+    aggregation_rule: Aggregates are shared only above a named threshold with protection demonstrated; aggregation is not anonymization.
+    prohibited_inference: A favourable completion measure does not establish usability, accessibility, bilingual equivalence, or acceptance.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-38
+  - id: MEAS-V7-002
+    kind: MEASUREMENT_DEFINITION
+    title: Recovery-path traversal measure
+    statement: A bounded measure of whether a participant recovered after a governed failure state.
+    measure_definition: The observed traversal of a recovery path following a governed failure within a consented session.
+    consent_basis: Explicit, purpose-bound, revocable consent obtained before observation.
+    interpretation_limit: Recovery traversal identifies a question for governed decision, not a verdict, and never overrides the source of truth.
+    aggregation_rule: Aggregates are shared only above a named threshold with protection demonstrated; aggregation is not anonymization.
+    prohibited_inference: An unfavourable recovery measure identifies a question, not a failure of the experience as a whole.
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-38
+  # --- Content governance rules (V7-37) ---
+  - id: CGOV-V7-001
+    kind: CONTENT_GOVERNANCE_RULE
+    title: Content approval and lifecycle rule
+    statement: Governed content moves through draft, review, approval, and supersession under a named authority.
+    governance_rule: Content expresses a canonical governed concept and never becomes the source of truth.
+    approval_authority: The content authority that owns the canonical concept, distinct from the author.
+    lifecycle_rule: A change to approved content re-enters review, and superseded content is retained rather than overwritten.
+    localization_rule: An approved English content item requires a French equivalent validated under the bilingual family before it is complete.
+    canonical_concept: Governed content lifecycle and approval
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-37
+  - id: CGOV-V7-002
+    kind: CONTENT_GOVERNANCE_RULE
+    title: Content sensitivity and disclosure rule
+    statement: Content governance honours the inherited privacy and disclosure postures.
+    governance_rule: Content discloses no more than the governed experience permits and embeds no sensitive information as sample material.
+    approval_authority: The privacy or records function in concert with the content authority.
+    lifecycle_rule: A change affecting sensitivity re-enters review before approval.
+    localization_rule: Sensitivity constraints apply equally to English and French expressions of the concept.
+    canonical_concept: Governed content sensitivity and disclosure
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    validation_status: DEFINED
+    future_blocking_gate: V7-G5
+    chapter_ref: V7-37
