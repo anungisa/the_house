@@ -99,3 +99,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-A-package-1-closure-record.md
     gate: V9-G1
+  - id: V9-B
+    title: Package 1 Provenance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-B-package-1-provenance-amendment.md
+    gate: V9-G1
