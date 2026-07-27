@@ -1138,3 +1138,71 @@ records:
         binding 85ef721; original Package 4 merge 4a5bf8c. The Volume 9 release tag
         central-registration-volume-9-v1.0.0 is applied on the V9-H-1 merge commit.
     approved_at: null
+  - id: APP-V9-069
+    artifact_id: V9-H-1
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    requires_freeze_artifact: PACKAGE-9-4
+    amendment_process: >-
+      Additive governance amendment. Records the complete, role-correct Volume 9
+      Package 4 provenance-role classification, including the V9-H provenance
+      amendment's own authoring and merge commits. It corrects no earlier record;
+      it completes the V9-H classification. Reopens and overwrites nothing in the
+      frozen Package 4 corpus or the frozen Volume 9 corpus, and preserves the Gate
+      V9-G4 disposition, the PACKAGE-9-4 freeze, and the VOLUME-9 whole-volume
+      freeze. It also preserves the Package 1, Package 2, and Package 3
+      foundations, their Gate V9-G1, Gate V9-G2, and Gate V9-G3 dispositions, and
+      the PACKAGE-9-1, PACKAGE-9-2, and PACKAGE-9-3 freezes. Package 4 closes the
+      whole of Volume 9; the annotated release tag
+      central-registration-volume-9-v1.0.0 is applied on the mainline merge commit
+      of this amendment (V9-H-1). The inherited baseline tag
+      central-registration-volume-8-v1.0.0 is preserved unchanged.
+    provenance_role_classification:
+      package: PACKAGE-9-4
+      source_baseline: de2fcdb
+      substantive_authoring: 3f673c8
+      closure_and_freeze: 5f08d64
+      pre_merge_provenance_binding: 85ef721
+      original_package_merge: 4a5bf8c
+      provenance_amendment_authoring: 6710ea6
+      provenance_amendment_merge: 57fd863
+      inherited_release_tag: central-registration-volume-8-v1.0.0
+      applied_release_tag: central-registration-volume-9-v1.0.0
+      historical_sequence_exception: NONE
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-8-v1.0.0
+      base_release_tag: central-registration-volume-8-v1.0.0
+      source_baseline_commit: de2fcdb
+      branch_base_commit: de2fcdb
+      authoring_commit: 3f673c8
+      closure_authored_commit: 5f08d64
+      closure_effective_commit: 5f08d64
+      closure_freeze_commit: 5f08d64
+      freeze_commit: 5f08d64
+      gate_effective_commit: 5f08d64
+      effective_commit: 5f08d64
+      provenance_binding_commit: 85ef721
+      original_package_merge_commit: 4a5bf8c
+      provenance_amendment_authoring_commit: 6710ea6
+      provenance_amendment_merge_commit: 57fd863
+      note: >-
+        Complete Volume 9 Package 4 provenance. Source baseline de2fcdb;
+        substantive authoring 3f673c8; closure, gate, and freeze 5f08d64;
+        pre-merge provenance binding 85ef721; original Package 4 merge 4a5bf8c;
+        V9-H provenance-amendment authoring 6710ea6; V9-H provenance-amendment
+        merge 57fd863. The 85ef721 commit is the pre-merge provenance binding and
+        is recorded in the provenance_binding_commit property, not a
+        provenance-amendment property. Package 4 closes Volume 9; the release tag
+        central-registration-volume-9-v1.0.0 is applied on the V9-H-1 merge commit.
+    effective_date_clarification:
+      gate: GATE-V9-G4
+      documentary_definition_effective_commit: 5f08d64
+      implementation_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from implementation
+        effectiveness; Package 4 authorizes no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary effectiveness is distinct from operational
+        effectiveness; Package 4 authorizes no operation.
+    approved_at: null

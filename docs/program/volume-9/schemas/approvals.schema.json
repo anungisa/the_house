@@ -156,6 +156,7 @@
               "provenance_amendment_authoring": { "type": "string" },
               "provenance_amendment_merge": { "type": "string" },
               "inherited_release_tag": { "type": "string" },
+              "applied_release_tag": { "type": "string" },
               "historical_sequence_exception": { "type": "string" },
               "supersedes_classification_in": { "type": "string" },
               "corrected_field_in_superseded_record": { "type": "string" }
