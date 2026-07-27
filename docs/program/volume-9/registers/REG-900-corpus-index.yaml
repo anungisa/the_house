@@ -419,3 +419,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-42-integrated-traceability-and-closure-assessment.md
     gate: V9-G4
+  - id: V9-G
+    title: Volume 9 Completion and Release Freeze Record
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-G-volume-9-completion-and-release-freeze-record.md
+    gate: V9-G4

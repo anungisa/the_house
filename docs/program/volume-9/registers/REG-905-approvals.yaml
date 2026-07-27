@@ -928,3 +928,161 @@ records:
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
     approved_at: null
+  - id: APP-V9-063
+    artifact_id: V9-G
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    closure_record: true
+    next_package_disposition: >-
+      Volume 10 is authorized to a bounded scope only: AUTHORIZED FOR DELIVERY AND
+      RELEASE PLANNING, SEQUENCING, AND MASTER DEVELOPMENT PLAN DEFINITION ONLY.
+      Volume 10 remains planning and definitional only. Executable tests, test
+      execution, test environments, test data, assurance services, implementation,
+      procurement, staffing, cost commitment, pilot, rollout, release, and launch
+      are NOT AUTHORIZED. Volume 10 may plan; it may not infer release
+      authorization from this definition. Any expansion beyond that bounded scope
+      requires a separate, explicit authorization.
+    amendment_process: >-
+      Amendments to the frozen Package 4 corpus and to the frozen Volume 9 corpus
+      are made only through a recorded, additive amendment; the frozen chapters and
+      registers are not reopened.
+    closure_binding:
+      closure_artifact: V9-G
+      gate: GATE-V9-G4
+      freeze_artifact: PACKAGE-9-4
+      volume_freeze_artifact: VOLUME-9
+      closure_authored_commit: PENDING_COMMIT_C
+      closure_effective_commit: PENDING_COMMIT_C
+      freeze_commit: PENDING_COMMIT_C
+      gate_effective_commit: PENDING_COMMIT_C
+    effective_date_clarification:
+      gate: GATE-V9-G4
+      documentary_definition_effective_commit: PENDING_COMMIT_C
+      implementation_effective_date: >-
+        Not applicable. Documentary completeness is distinct from implementation
+        completeness; Package 4 and Volume 9 authorize no implementation.
+      operational_effective_date: >-
+        Not applicable. Documentary completeness is distinct from operational
+        effectiveness; Package 4 and Volume 9 authorize no operation.
+    approved_at: null
+  - id: APP-V9-064
+    artifact_id: GATE-V9-G4
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    gate_disposition: QUALITY_AND_MASTER_TEST_DEFINITION_COMPLETE
+    requires_freeze_artifact: PACKAGE-9-4
+    base_commit: 3f673c8
+    effective_commit: PENDING_COMMIT_C
+    gate_effective_commit: PENDING_COMMIT_C
+    approved_at: null
+  - id: APP-V9-065
+    artifact_id: PACKAGE-9-4
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    frozen: true
+    frozen_artifacts:
+      - id: REG-900
+        version: 1.0.0
+      - id: REG-901
+        version: 1.0.0
+      - id: REG-902
+        version: 1.0.0
+      - id: REG-903
+        version: 1.0.0
+      - id: REG-904
+        version: 1.0.0
+      - id: REG-905
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-9-4
+      substantive_authoring_commit: 3f673c8
+      closure_authored_commit: PENDING_COMMIT_C
+      closure_effective_commit: PENDING_COMMIT_C
+      gate_effective_commit: PENDING_COMMIT_C
+      freeze_commit: PENDING_COMMIT_C
+      provenance_binding_commit: PENDING_V9-H_AMENDMENT
+      required_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      actual_sequence: authoring -> closure_and_freeze -> pre_merge_provenance_binding
+      sequence_disposition: CONFORMANT
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      source_baseline_commit: de2fcdb
+      inherited_baseline_tag: central-registration-volume-8-v1.0.0
+      authoring_commit: 3f673c8
+      closure_authored_commit: PENDING_COMMIT_C
+      closure_effective_commit: PENDING_COMMIT_C
+      closure_freeze_commit: PENDING_COMMIT_C
+      freeze_commit: PENDING_COMMIT_C
+      gate_effective_commit: PENDING_COMMIT_C
+      effective_commit: PENDING_COMMIT_C
+      provenance_binding_commit: PENDING_V9-H_AMENDMENT
+      note: >-
+        The original-package-merge and post-merge provenance-amendment commits are
+        recorded separately in the V9-H provenance amendment and the V9-H-1
+        provenance-role classification. After the V9-H-1 amendment is recorded, the
+        whole Volume 9 corpus is tagged central-registration-volume-9-v1.0.0 on the
+        V9-H-1 merge commit.
+    approved_at: null
+  - id: APP-V9-066
+    artifact_id: VOLUME-9
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: EXECUTIVE-ACCEPTED
+    authorizes_implementation: false
+    frozen: true
+    whole_volume_closure: true
+    frozen_artifacts:
+      - id: REG-900
+        version: 1.0.0
+      - id: REG-901
+        version: 1.0.0
+      - id: REG-902
+        version: 1.0.0
+      - id: REG-903
+        version: 1.0.0
+      - id: REG-904
+        version: 1.0.0
+      - id: REG-905
+        version: 1.0.0
+    frozen_packages:
+      - PACKAGE-9-1
+      - PACKAGE-9-2
+      - PACKAGE-9-3
+      - PACKAGE-9-4
+    whole_volume_freeze:
+      volume: VOLUME-9
+      gate: GATE-V9-G4
+      closure_artifact: V9-G
+      packages_preserved:
+        - PACKAGE-9-1
+        - PACKAGE-9-2
+        - PACKAGE-9-3
+        - PACKAGE-9-4
+      gates_preserved:
+        - GATE-V9-G1
+        - GATE-V9-G2
+        - GATE-V9-G3
+        - GATE-V9-G4
+      release_tag: central-registration-volume-9-v1.0.0
+      release_tag_binding: PENDING_V9-H-1_MERGE_COMMIT
+      closure_effective_commit: PENDING_COMMIT_C
+      freeze_commit: PENDING_COMMIT_C
+      substantive_package_reopened: false
+      prior_gate_reopened: false
+      prior_freeze_reopened: false
+      note: >-
+        The whole-volume freeze preserves every prior gate disposition, package
+        freeze, and provenance amendment in Volume 9 without alteration. The Volume
+        9 release tag central-registration-volume-9-v1.0.0 is applied only after the
+        V9-H-1 provenance-role classification is merged, on the V9-H-1 merge commit.
+    approved_at: null

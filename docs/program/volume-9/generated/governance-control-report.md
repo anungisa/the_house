@@ -1,6 +1,6 @@
 # Volume 9 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T18:15:22.170Z
+Generated: 2026-07-27T18:20:49.177Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 9 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,8 +15,8 @@ Generated: 2026-07-27T18:15:22.170Z
 
 ## Summary
 
-- Total findings: 2
-- Errors: 2
+- Total findings: 1
+- Errors: 1
 - Warnings: 0
 - Info: 0
 - Overall: FAIL (quality/test-governance integrity errors present)
@@ -25,18 +25,18 @@ Generated: 2026-07-27T18:15:22.170Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 52 |
+| RATIFIED | 53 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 52 |
+| REG-900 | Volume 9 Corpus Index | RATIFIED | 1.0.0 | 53 |
 | REG-901 | Volume 9 Quality Attributes, Test Objects, Institutional Invariants, and Coverage | RATIFIED | 1.0.0 | 133 |
 | REG-902 | Volume 9 Test Requirements, Scenarios, Cases, Oracles, Evidence, and Results | RATIFIED | 1.0.0 | 103 |
 | REG-903 | Volume 9 Decisions | RATIFIED | 1.0.0 | 43 |
 | REG-904 | Volume 9 Assumptions, Risks, Exceptions, Defects, Waivers, and Validation Backlog | RATIFIED | 1.0.0 | 45 |
-| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 62 |
+| REG-905 | Volume 9 Approvals | RATIFIED | 1.0.0 | 66 |
 
 ## Findings by control
 
@@ -102,9 +102,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V9-G4 readiness
 
-Errors: 2 | Warnings: 0 | Info: 0
+Errors: 1 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V9_G4_CONDITION_UNMET [GATE-V9-G4]: Condition 37 not satisfied: Package 4 and the whole Volume 9 corpus carry explicit freeze approvals and the gate disposition is complete
 - ERROR GATE_V9_G4_CONDITION_UNMET [GATE-V9-G4]: Condition 38 not satisfied: Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved
 
 ## Recorded conditions (from REG-905 approvals)

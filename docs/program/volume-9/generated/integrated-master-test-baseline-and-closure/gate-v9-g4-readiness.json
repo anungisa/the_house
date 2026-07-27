@@ -2,12 +2,8 @@
   "gate": "V9-G4",
   "disposition_target": "QUALITY_AND_MASTER_TEST_DEFINITION_COMPLETE",
   "total_conditions": 38,
-  "satisfied": 36,
+  "satisfied": 37,
   "unmet": [
-    {
-      "n": 37,
-      "title": "Package 4 and the whole Volume 9 corpus carry explicit freeze approvals and the gate disposition is complete"
-    },
     {
       "n": 38,
       "title": "Genuine authoring, closure-and-freeze, and pre-merge provenance-binding separation is preserved"
@@ -198,7 +194,7 @@
     {
       "n": 37,
       "title": "Package 4 and the whole Volume 9 corpus carry explicit freeze approvals and the gate disposition is complete",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 38,

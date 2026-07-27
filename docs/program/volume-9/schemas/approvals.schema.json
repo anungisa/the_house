@@ -37,6 +37,7 @@
               "closure_artifact": { "type": "string" },
               "gate": { "type": "string" },
               "freeze_artifact": { "type": "string" },
+              "volume_freeze_artifact": { "type": "string" },
               "closure_authored_commit": { "type": "string" },
               "closure_effective_commit": { "type": "string" },
               "freeze_commit": { "type": "string" },
@@ -78,6 +79,27 @@
             }
           },
           "closure_record": { "type": "boolean" },
+          "whole_volume_closure": { "type": "boolean" },
+          "frozen_packages": { "type": "array", "items": { "type": "string" } },
+          "whole_volume_freeze": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "volume": { "type": "string" },
+              "gate": { "type": "string" },
+              "closure_artifact": { "type": "string" },
+              "packages_preserved": { "type": "array", "items": { "type": "string" } },
+              "gates_preserved": { "type": "array", "items": { "type": "string" } },
+              "release_tag": { "type": "string" },
+              "release_tag_binding": { "type": "string" },
+              "closure_effective_commit": { "type": "string" },
+              "freeze_commit": { "type": "string" },
+              "substantive_package_reopened": { "type": "boolean" },
+              "prior_gate_reopened": { "type": "boolean" },
+              "prior_freeze_reopened": { "type": "boolean" },
+              "note": { "type": "string" }
+            }
+          },
           "next_package_disposition": { "type": "string" },
           "supersedes": { "type": "array", "items": { "type": "string" } },
           "amendment_process": { "type": "string" },
