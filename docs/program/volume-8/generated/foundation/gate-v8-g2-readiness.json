@@ -2,16 +2,8 @@
   "gate": "V8-G2",
   "disposition_target": "AFFILIATION_LOGICAL_CONTRACT_DEFINITION_READY",
   "total_conditions": 27,
-  "satisfied": 24,
+  "satisfied": 26,
   "unmet": [
-    {
-      "n": 25,
-      "title": "Package 2 receives a closure record and a separate freeze commit"
-    },
-    {
-      "n": 26,
-      "title": "Gate V8-G2 disposition recorded as affiliation logical-contract definition ready"
-    },
     {
       "n": 27,
       "title": "Completed gate has no unresolved required commit binding"
@@ -142,12 +134,12 @@
     {
       "n": 25,
       "title": "Package 2 receives a closure record and a separate freeze commit",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 26,
       "title": "Gate V8-G2 disposition recorded as affiliation logical-contract definition ready",
-      "satisfied": false
+      "satisfied": true
     },
     {
       "n": 27,

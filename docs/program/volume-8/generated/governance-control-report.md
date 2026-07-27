@@ -1,6 +1,6 @@
 # Volume 8 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T11:58:14.711Z
+Generated: 2026-07-27T12:01:55.222Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 8 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,8 +16,8 @@ Generated: 2026-07-27T11:58:14.711Z
 
 ## Summary
 
-- Total findings: 3
-- Errors: 3
+- Total findings: 1
+- Errors: 1
 - Warnings: 0
 - Info: 0
 - Overall: FAIL (contract-governance integrity errors present)
@@ -26,18 +26,18 @@ Generated: 2026-07-27T11:58:14.711Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 24 |
+| RATIFIED | 25 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 24 |
+| REG-800 | Volume 8 Corpus Index | RATIFIED | 1.0.0 | 25 |
 | REG-801 | Volume 8 Contract Surfaces, Producers, Consumers, and Trust Boundaries | RATIFIED | 1.0.0 | 23 |
 | REG-802 | Volume 8 Contract Requirements, Messages, Errors, Delivery, and Compatibility | RATIFIED | 1.0.0 | 40 |
 | REG-803 | Volume 8 Decisions | RATIFIED | 1.0.0 | 8 |
 | REG-804 | Volume 8 Assumptions, Risks, Exceptions, and Validation Backlog | RATIFIED | 1.0.0 | 10 |
-| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 27 |
+| REG-805 | Volume 8 Approvals | RATIFIED | 1.0.0 | 30 |
 
 ## Findings by control
 
@@ -73,10 +73,8 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V8-G2 readiness
 
-Errors: 3 | Warnings: 0 | Info: 0
+Errors: 1 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V8_G2_CONDITION_UNMET [GATE-V8-G2]: Condition 25 not satisfied: Package 2 receives a closure record and a separate freeze commit
-- ERROR GATE_V8_G2_CONDITION_UNMET [GATE-V8-G2]: Condition 26 not satisfied: Gate V8-G2 disposition recorded as affiliation logical-contract definition ready
 - ERROR GATE_V8_G2_CONDITION_UNMET [GATE-V8-G2]: Condition 27 not satisfied: Completed gate has no unresolved required commit binding
 
 ## Recorded conditions (from REG-805 approvals)
@@ -106,3 +104,30 @@ Errors: 3 | Warnings: 0 | Info: 0
 - APP-V8-014 (GATE-V8-G1): Unresolved items carry owners, evidence requirements, and future gates
 - APP-V8-014 (GATE-V8-G1): No record authorizes implementation
 - APP-V8-014 (GATE-V8-G1): Package 1 receives line-level review and a separate freeze commit
+- APP-V8-029 (GATE-V8-G2): Affiliation contract-domain decomposition and scope defined
+- APP-V8-029 (GATE-V8-G2): Package 2 inherits the Package 1 contract-governance foundation
+- APP-V8-029 (GATE-V8-G2): Affiliation authorization-context and actor contracts defined
+- APP-V8-029 (GATE-V8-G2): Applicant-to-House trust boundary defined and fail-closed
+- APP-V8-029 (GATE-V8-G2): Affiliation logical resource contracts defined
+- APP-V8-029 (GATE-V8-G2): Every logical resource names authority, source, and purpose
+- APP-V8-029 (GATE-V8-G2): Requirement, response, and acceptance semantics defined
+- APP-V8-029 (GATE-V8-G2): Evidence, attestation, and completeness contracts defined
+- APP-V8-029 (GATE-V8-G2): Draft and submission command contracts defined
+- APP-V8-029 (GATE-V8-G2): Query and projection contracts defined
+- APP-V8-029 (GATE-V8-G2): Review, return, and resubmission contracts defined
+- APP-V8-029 (GATE-V8-G2): Decision, finance, reconciliation, and activation contracts defined
+- APP-V8-029 (GATE-V8-G2): Staff boundaries, error, compatibility, and traceability assessment defined
+- APP-V8-029 (GATE-V8-G2): Affiliation commands name preconditions and result semantics
+- APP-V8-029 (GATE-V8-G2): Affiliation queries name authority and staleness posture
+- APP-V8-029 (GATE-V8-G2): Affiliation integration events name envelope and delivery posture
+- APP-V8-029 (GATE-V8-G2): Affiliation errors name canonical codes and privacy or logging constraints
+- APP-V8-029 (GATE-V8-G2): Affiliation compatibility rules name compatibility state and consumer evidence
+- APP-V8-029 (GATE-V8-G2): Affiliation decisions recorded for authority, resources, evidence, and finance
+- APP-V8-029 (GATE-V8-G2): Every affiliation contract names a forward blocking gate
+- APP-V8-029 (GATE-V8-G2): Deterministic Package 2 analysis completes without blocking defects
+- APP-V8-029 (GATE-V8-G2): No prohibited implementation, coded, or executable-contract artifacts are created
+- APP-V8-029 (GATE-V8-G2): Unresolved Package 2 items have owners, evidence requirements, and future gates
+- APP-V8-029 (GATE-V8-G2): No record authorizes implementation
+- APP-V8-029 (GATE-V8-G2): Package 2 receives a closure record and a separate freeze commit
+- APP-V8-029 (GATE-V8-G2): Gate V8-G2 disposition recorded as affiliation logical-contract definition ready
+- APP-V8-029 (GATE-V8-G2): Completed gate has no unresolved required commit binding
