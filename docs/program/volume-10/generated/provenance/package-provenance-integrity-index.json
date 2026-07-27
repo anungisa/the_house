@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-27T21:02:56.366Z",
-  "authoritative_record_count": 2,
+  "generated": "2026-07-27T21:07:48.982Z",
+  "authoritative_record_count": 3,
   "packages": [
     {
       "package": "PACKAGE-10-1",
@@ -35,6 +35,24 @@
         "originalMerge": "25fa0962bd5646c0ba4fccde54345b6119d43eba",
         "amendmentAuthoring": "e5b866ad7d5fec3a2ee7365c40895c1938933c30",
         "amendmentMerge": "f4d10edbcbe0fad137536030755ee9d165c5e6e1",
+        "inheritedTag": "central-registration-volume-9-v1.0.0"
+      }
+    },
+    {
+      "package": "PACKAGE-10-3",
+      "source_record": "APP-V10-052",
+      "conditions_total": 12,
+      "conditions_satisfied": 12,
+      "all_conditions_satisfied": true,
+      "failed_conditions": [],
+      "roles": {
+        "sourceBaseline": "c6fc6a5b60034524e486472e2b46556eeab0fc60",
+        "authoring": "b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05",
+        "closureFreeze": "251d915593fd7566f1a9856ad07288ec8689f1ff",
+        "binding": "e20c389e143bcefda4cfa725e2e998942f56e33e",
+        "originalMerge": "1f1e054dd24ac8f6ceb62d5e696d4de40be2a018",
+        "amendmentAuthoring": "0f5c17ce11515e7408cb10dd3a6d83b06e20e4ef",
+        "amendmentMerge": "6afb792f18c4412a179496ad16d23b41c1e6bc50",
         "inheritedTag": "central-registration-volume-9-v1.0.0"
       }
     }
