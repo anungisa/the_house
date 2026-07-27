@@ -1,0 +1,57 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "work_packages": [
+    {
+      "id": "WORK-V10-001",
+      "title": "Club-affiliation lifecycle implementation plan",
+      "source_requirements": [
+        "V9-39",
+        "V9-40",
+        "central-registration-volume-9-v1.0.0"
+      ],
+      "deliverables": [
+        "DELIV-V10-001"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "WORK-V10-002",
+      "title": "Test-enablement plan for club-affiliation verification",
+      "source_requirements": [
+        "central-registration-volume-9-v1.0.0",
+        "V9-41"
+      ],
+      "deliverables": [
+        "DELIV-V10-002"
+      ],
+      "future_gate": "V11-G1"
+    },
+    {
+      "id": "WORK-V10-003",
+      "title": "Environment and provider-readiness plan",
+      "source_requirements": [
+        "V9-40"
+      ],
+      "deliverables": [
+        "DELIV-V10-002"
+      ],
+      "future_gate": "V11-G1"
+    }
+  ],
+  "house_p0_findings": [
+    "resource-aware authorization",
+    "reviewer assignment and jurisdiction",
+    "evidence binding",
+    "production-dependency completeness",
+    "composite tenant-parent integrity",
+    "affiliation lifecycle",
+    "versioned requirements",
+    "return and resubmission",
+    "exactly-once activation",
+    "fail-closed configuration",
+    "outbox publication",
+    "PostgreSQL behavioural verification",
+    "production-composition verification",
+    "deployment-path, secret, and entry-point configuration"
+  ]
+}

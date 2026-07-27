@@ -1,0 +1,24 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "risks": [
+    {
+      "id": "RISK-V10-001",
+      "owner": "Engineering Delivery Lead",
+      "likelihood": "MEDIUM",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "issues": [
+    {
+      "id": "ISSUE-V10-001",
+      "owner": "Accountable Program Authority",
+      "future_blocking_gate": "V11-G1"
+    }
+  ],
+  "evidence_requirements": [
+    {
+      "id": "EVID-V10-001",
+      "type": "Deterministic verification results demonstrating governed lifecycle transitions, guard outcomes, evidence creation, and outbox behaviour."
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+register_id: REG-1002
+name: Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria
+status: RATIFIED
+version: 1.0.0
+records:
+  # ---------------------------------------------------------------------------
+  # Planning milestone (target date, not committed date)
+  # ---------------------------------------------------------------------------
+  - id: MILE-V10-001
+    kind: MILESTONE
+    title: Club-affiliation delivery-planning foundation complete
+    statement: >-
+      Planning milestone marking completion of the Volume 10 delivery-planning
+      governance foundation. A milestone target is not a committed date.
+    target_date_status: PLANNING_TARGET_ONLY
+    committed_date_status: NOT_COMMITTED
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-01
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Environment (defined only; not provisioned, not qualified)
+  # ---------------------------------------------------------------------------
+  - id: ENV-V10-001
+    kind: ENVIRONMENT
+    title: System-test environment (defined, not provisioned)
+    statement: >-
+      Definition of a system-test environment class required to verify the
+      club-affiliation outcome. Definition only; nothing is provisioned or
+      qualified by this record.
+    environment_class: SYSTEM_TEST
+    purpose: >-
+      Support planned end-to-end verification of governed lifecycle transitions,
+      guards, evidence, and outbox behaviour once construction is authorized.
+    data_classification: SYNTHETIC
+    production_data_prohibition: >-
+      Real personal, financial, and restricted-evidence data are prohibited in this
+      environment class; only synthetic data is permitted.
+    qualification_criteria: >-
+      Environment is considered qualified only when tenant isolation, row-level
+      security, deterministic reset, and evidence capture are demonstrated at a
+      future provisioning gate.
+    provisioning_status: NOT_AUTHORIZED
+    provisioning_gate: V11-G1
+    identity_requirements: >-
+      Service and actor identities are planned as synthetic, environment-scoped, and
+      non-production; no identity is created by this record.
+    synthetic_data_requirements: >-
+      Synthetic, reproducible datasets only; generation is planned, not executed.
+    secret_dependencies: >-
+      Environment-scoped secret references are planned via a secret provider; no
+      secret is created or stored by this record.
+    provider_dependencies: >-
+      Planned dependency on a cloud database and messaging provider; no provider is
+      engaged, selected, or integrated by this record.
+    observability_requirements: >-
+      Planned structured logging, audit capture, and evidence export.
+    isolation_reset_requirements: >-
+      Planned deterministic isolation and reset between verification runs.
+    evidence_capture_requirements: >-
+      Planned reproducible, provenance-bearing capture of verification evidence.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-05
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Release unit (release candidate is not an accepted release, not a deployment)
+  # ---------------------------------------------------------------------------
+  - id: REL-V10-001
+    kind: RELEASE_UNIT
+    title: Club-affiliation release unit (defined only)
+    statement: >-
+      Definition of the release unit that will package the club-affiliation
+      outcome. A defined release unit is not a release candidate, an accepted
+      release, or a deployment.
+    release_unit_state: DEFINED
+    contained_work_packages:
+      - WORK-V10-001
+      - WORK-V10-002
+    configuration_baseline: >-
+      Planned configuration baseline reference; no baseline is cut by this record.
+    data_migration_dependencies: >-
+      Planned dependency on migration and coexistence planning; no migration is
+      performed.
+    required_test_evidence: >-
+      Requires the reproducible verification evidence planned in EVID-V10-001.
+    security_privacy_evidence: >-
+      Requires tenant-isolation, row-level-security, and privacy evidence prior to
+      acceptance.
+    accessibility_bilingual_evidence: >-
+      Requires accessibility and bilingual evidence prior to acceptance.
+    operational_evidence: >-
+      Requires operational-readiness and rollback evidence prior to acceptance.
+    rollback_dependency: >-
+      Requires a planned, tested rollback path; rollback remains a planning concept
+      only.
+    acceptance_authority: Executive Acceptance Authority
+    release_gate: V12-G1
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-09
+    future_gate: V12-G1
+
+  # ---------------------------------------------------------------------------
+  # Evidence requirement
+  # ---------------------------------------------------------------------------
+  - id: EVID-V10-001
+    kind: EVIDENCE_REQUIREMENT
+    title: Reproducible club-affiliation verification evidence requirement
+    statement: >-
+      Defines the reproducible, provenance-bearing verification evidence that later
+      verification and release-acceptance gates will require.
+    evidence_type: >-
+      Deterministic verification results demonstrating governed lifecycle
+      transitions, guard outcomes, evidence creation, and outbox behaviour.
+    provenance_requirement: >-
+      Evidence must be traceable to a configuration baseline, environment, and
+      authored obligation, with a verifiable chain of custody.
+    reproducibility_requirement: >-
+      Evidence must be reproducible from synthetic inputs in a qualified
+      environment.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-08
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Readiness condition (owner + evidence + future gate)
+  # ---------------------------------------------------------------------------
+  - id: READY-V10-001
+    kind: READINESS_CONDITION
+    title: Environment qualification readiness condition
+    statement: >-
+      Construction and verification may not begin until the required environments
+      are provisioned and qualified at a future gate.
+    readiness_disposition: ENVIRONMENT_QUALIFICATION_PENDING
+    owner: Engineering Delivery Lead
+    required_evidence: >-
+      Environment qualification evidence per ENV-V10-001 qualification criteria.
+    impact_if_unresolved: >-
+      Implementation readiness cannot be admitted; execution remains unauthorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-05
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Acceptance criterion
+  # ---------------------------------------------------------------------------
+  - id: ACCEPT-V10-001
+    kind: ACCEPTANCE_CRITERION
+    title: Club-affiliation release-acceptance criterion (planning definition)
+    statement: >-
+      Defines, at planning level, the acceptance criterion for the club-affiliation
+      release unit: all required security, privacy, accessibility, bilingual,
+      operational, and rollback evidence present and independently assessed.
+    acceptance_criterion_basis: >-
+      Derived from inherited Volume 9 quality obligations and the House P0 findings;
+      an acceptance criterion definition is not an acceptance decision.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-09
+    future_gate: V12-G1

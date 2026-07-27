@@ -1,0 +1,272 @@
+// Control: Volume 10 provenance-integrity enforcement (deterministic, NON-AUTHORITATIVE).
+//
+// Proves, from the source-controlled Volume 10 corpus alone, that Package 1's
+// recorded provenance is coherent and role-correct. It evaluates the authoritative
+// provenance record(s) - the REG-1005 approval(s) carrying a
+// provenance_role_classification block - against twelve fail-closed conditions and
+// emits deterministic projections. It never disposes a gate or confers ratification.
+//
+// A package's authoritative provenance record is the latest (governance-amendment)
+// approval that carries provenance_role_classification. The classification is
+// recorded only by the post-merge provenance amendment (V10-B-1), because it must
+// bind the original-merge and amendment commits, which do not exist until after the
+// Package 1 merge. Before that amendment this control is not applicable and reports
+// an INFO signal; it does NOT pass judgement on absent evidence.
+
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { Severity, VOLUME_DIR, loadContext, makeFinding, runStandalone } from './lib.mjs';
+
+const PLACEHOLDER_RE = /(PENDING|UNKNOWN|TBD|PLACEHOLDER|UNRESOLVED)/i;
+
+export function isPlaceholder(value) {
+  return typeof value === 'string' && PLACEHOLDER_RE.test(value);
+}
+
+const RC_COMMIT_KEYS = Object.freeze([
+  'source_baseline',
+  'substantive_authoring',
+  'closure_and_freeze',
+  'pre_merge_provenance_binding',
+  'original_package_merge',
+  'provenance_amendment_authoring',
+  'provenance_amendment_merge',
+  'inherited_release_tag'
+]);
+
+function placeholderFields(rc, pp) {
+  const found = [];
+  for (const [k, v] of Object.entries(pp)) {
+    if (k.endsWith('_commit') && isPlaceholder(v)) found.push(`pp.${k}=${v}`);
+  }
+  for (const k of RC_COMMIT_KEYS) {
+    if (isPlaceholder(rc[k])) found.push(`rc.${k}=${rc[k]}`);
+  }
+  return found;
+}
+
+function approvals(ctx) {
+  return ctx.registers?.['REG-1005']?.doc?.records ?? [];
+}
+
+const REQUIRED_BINDING_FIELDS = Object.freeze([
+  'authoring_commit',
+  'closure_authored_commit',
+  'closure_effective_commit',
+  'freeze_commit',
+  'gate_effective_commit',
+  'provenance_binding_commit'
+]);
+
+function gateApproval(ctx) {
+  return approvals(ctx).find((a) => /^GATE-V10-G[0-9]$/.test(a.artifact_id ?? '') && a.approval_state === 'ratified' && a.gate_disposition);
+}
+
+function freezeApproval(ctx, freezeArtifact) {
+  return approvals(ctx).find((a) => a.artifact_id === freezeArtifact && a.approval_state === 'ratified' && a.frozen === true);
+}
+
+function closureApproval(ctx) {
+  return approvals(ctx).find((a) => a.closure_record === true && a.approval_state === 'ratified');
+}
+
+// Evaluate a single authoritative provenance record. Returns { checks, failed }.
+export function evaluateRecord(ctx, record) {
+  const rc = record.provenance_role_classification ?? {};
+  const pp = record.package_provenance ?? {};
+  const checks = [];
+  const add = (n, title, ok, detail) => checks.push({ n, title, satisfied: ok, detail });
+
+  const sourceBaseline = rc.source_baseline ?? pp.source_baseline_commit;
+  const authoring = rc.substantive_authoring ?? pp.authoring_commit;
+  const closureFreeze = rc.closure_and_freeze ?? pp.freeze_commit;
+  const binding = rc.pre_merge_provenance_binding ?? pp.provenance_binding_commit;
+  const amendmentAuthoring = rc.provenance_amendment_authoring ?? pp.provenance_amendment_authoring_commit;
+  const amendmentMerge = rc.provenance_amendment_merge ?? pp.provenance_amendment_merge_commit;
+  const freezeArtifact = record.requires_freeze_artifact ?? rc.package ?? 'PACKAGE-10-1';
+
+  add(1, 'Source baseline differs from substantive authoring', Boolean(sourceBaseline && authoring && sourceBaseline !== authoring),
+    `source_baseline=${sourceBaseline} authoring=${authoring}`);
+  add(2, 'Substantive authoring differs from closure and freeze', Boolean(authoring && closureFreeze && authoring !== closureFreeze),
+    `authoring=${authoring} closure_and_freeze=${closureFreeze}`);
+  add(3, 'Closure effective commit equals freeze commit', Boolean(pp.closure_effective_commit && pp.freeze_commit && pp.closure_effective_commit === pp.freeze_commit),
+    `closure_effective=${pp.closure_effective_commit} freeze=${pp.freeze_commit}`);
+  add(4, 'Gate effective commit equals freeze commit', Boolean(pp.gate_effective_commit && pp.freeze_commit && pp.gate_effective_commit === pp.freeze_commit),
+    `gate_effective=${pp.gate_effective_commit} freeze=${pp.freeze_commit}`);
+  const freeze = freezeApproval(ctx, freezeArtifact);
+  add(5, 'Required freeze artifact exists and is frozen', Boolean(freeze), `freeze_artifact=${freezeArtifact}`);
+  const placeholderValues = placeholderFields(rc, pp);
+  add(6, 'No unresolved provenance placeholder', placeholderValues.length === 0, `placeholders=${placeholderValues.join(',') || 'none'}`);
+  const gate = gateApproval(ctx);
+  const unresolvedBindings = REQUIRED_BINDING_FIELDS.filter((f) => pp[f] !== undefined && isPlaceholder(pp[f]));
+  const gateBindingUnresolved = gate ? [gate.effective_commit, gate.gate_effective_commit].filter((v) => isPlaceholder(v)) : [];
+  add(7, 'Completed gate has no unresolved required binding', unresolvedBindings.length === 0 && gateBindingUnresolved.length === 0,
+    `unresolved=${[...unresolvedBindings, ...gateBindingUnresolved].join(',') || 'none'}`);
+  const bindingConflated =
+    (amendmentAuthoring && binding && amendmentAuthoring === binding) ||
+    (pp.provenance_amendment_commit && binding && pp.provenance_amendment_commit === binding && !pp.provenance_binding_commit);
+  add(8, 'Provenance-binding commit not conflated with an amendment commit', !bindingConflated,
+    `binding=${binding} amendment_authoring=${amendmentAuthoring}`);
+  add(9, 'Post-merge amendment records authoring and merge commits',
+    Boolean(amendmentAuthoring && amendmentMerge && !isPlaceholder(amendmentAuthoring) && !isPlaceholder(amendmentMerge)),
+    `amendment_authoring=${amendmentAuthoring} amendment_merge=${amendmentMerge}`);
+  const closure = closureApproval(ctx);
+  add(10, 'Closure carries bounded next-package authorization', Boolean(closure && typeof closure.next_package_disposition === 'string' && closure.next_package_disposition.trim().length > 0),
+    `closure=${closure?.id ?? 'none'}`);
+  const edc = record.effective_date_clarification ?? closure?.effective_date_clarification ?? {};
+  const impl = String(edc.implementation_effective_date ?? '');
+  const documentaryNotImplementation = /not applicable|no implementation|distinct from/i.test(impl);
+  add(11, 'Documentary effectiveness not treated as implementation effectiveness', documentaryNotImplementation,
+    `implementation_effective_date=${impl || '(missing)'}`);
+  const anyAuthorizesImpl = approvals(ctx).some((a) => a.authorizes_implementation !== false);
+  add(12, 'No record authorizes implementation', !anyAuthorizesImpl);
+
+  const failed = checks.filter((c) => !c.satisfied);
+  return {
+    record: record.id,
+    package: freezeArtifact,
+    roles: { sourceBaseline, authoring, closureFreeze, binding, originalMerge: rc.original_package_merge ?? pp.original_package_merge_commit, amendmentAuthoring, amendmentMerge, inheritedTag: rc.inherited_release_tag ?? pp.inherited_baseline_tag },
+    checks,
+    failed
+  };
+}
+
+function authoritativeRecords(ctx) {
+  return approvals(ctx).filter((a) => a.provenance_role_classification && typeof a.provenance_role_classification === 'object');
+}
+
+export function run(ctx) {
+  const findings = [];
+  const recs = authoritativeRecords(ctx);
+  if (recs.length === 0) {
+    findings.push(makeFinding(Severity.INFO, 'PROVENANCE_AMENDMENT_PENDING', 'No REG-1005 approval yet carries a provenance_role_classification block; the post-merge provenance amendment (V10-B-1) is pending', 'REG-1005'));
+    return findings;
+  }
+  for (const rec of recs) {
+    const result = evaluateRecord(ctx, rec);
+    for (const c of result.failed) {
+      findings.push(makeFinding(Severity.ERROR, 'PROVENANCE_INTEGRITY_VIOLATION', `${result.record}: condition ${c.n} failed - ${c.title} (${c.detail ?? ''})`, result.record));
+    }
+  }
+  return findings;
+}
+
+export function generate(ctx = loadContext()) {
+  const recs = authoritativeRecords(ctx);
+  const results = recs.map((r) => evaluateRecord(ctx, r));
+  const outDir = join(VOLUME_DIR, 'generated', 'provenance');
+  mkdirSync(outDir, { recursive: true });
+
+  const primary = results[0];
+  const roles = primary?.roles ?? {};
+
+  const chronology = {
+    package: primary?.package ?? 'PACKAGE-10-1',
+    inherited_release_tag: roles.inheritedTag ?? 'central-registration-volume-9-v1.0.0',
+    sequence: [
+      { role: 'SOURCE_BASELINE', commit: roles.sourceBaseline ?? null },
+      { role: 'SUBSTANTIVE_AUTHORING', commit: roles.authoring ?? null },
+      { role: 'CLOSURE_GATE_AND_FREEZE', commit: roles.closureFreeze ?? null },
+      { role: 'PRE_MERGE_PROVENANCE_BINDING', commit: roles.binding ?? null },
+      { role: 'ORIGINAL_PACKAGE_MERGE', commit: roles.originalMerge ?? null },
+      { role: 'PROVENANCE_AMENDMENT_AUTHORING', commit: roles.amendmentAuthoring ?? null },
+      { role: 'PROVENANCE_AMENDMENT_MERGE', commit: roles.amendmentMerge ?? null }
+    ],
+    historical_sequence_exception: primary ? (recs[0].provenance_role_classification.historical_sequence_exception ?? 'NONE') : 'NOT_YET_APPLICABLE'
+  };
+
+  const sep = primary?.checks.find((c) => c.n === 2);
+  const authoringClosureSeparation = {
+    package: primary?.package ?? 'PACKAGE-10-1',
+    substantive_authoring: roles.authoring ?? null,
+    closure_and_freeze: roles.closureFreeze ?? null,
+    distinct: Boolean(roles.authoring && roles.closureFreeze && roles.authoring !== roles.closureFreeze),
+    authoring_closure_separation: primary ? (sep?.satisfied ? 'SATISFIED' : 'VIOLATED') : 'PENDING'
+  };
+
+  const c3 = primary?.checks.find((c) => c.n === 3);
+  const c4 = primary?.checks.find((c) => c.n === 4);
+  const gateFreezeEffectiveness = {
+    package: primary?.package ?? 'PACKAGE-10-1',
+    closure_effective_equals_freeze: Boolean(c3?.satisfied),
+    gate_effective_equals_freeze: Boolean(c4?.satisfied),
+    gate_freeze_effectiveness: primary ? (c3?.satisfied && c4?.satisfied ? 'SATISFIED' : 'VIOLATED') : 'PENDING'
+  };
+
+  const c8 = primary?.checks.find((c) => c.n === 8);
+  const roleClassification = {
+    package: primary?.package ?? 'PACKAGE-10-1',
+    classification: {
+      [roles.binding ?? 'unknown']: 'PRE_MERGE_PROVENANCE_BINDING',
+      [roles.amendmentAuthoring ?? 'unknown']: 'V10_B_PROVENANCE_AMENDMENT_AUTHORING',
+      [roles.amendmentMerge ?? 'unknown']: 'V10_B_PROVENANCE_AMENDMENT_MERGE'
+    },
+    binding_not_conflated_with_amendment: Boolean(c8?.satisfied),
+    role_classification: primary ? (c8?.satisfied ? 'SATISFIED' : 'VIOLATED') : 'PENDING'
+  };
+
+  const placeholderCheck = primary?.checks.find((c) => c.n === 6);
+  const placeholderList = (placeholderCheck?.detail ?? '').replace(/^placeholders=/, '');
+  const placeholderCount = !primary || placeholderCheck?.satisfied || placeholderList === 'none' ? 0 : placeholderList.split(',').filter(Boolean).length;
+
+  writeFileSync(join(outDir, 'package-chronology.json'), JSON.stringify(chronology, null, 2) + '\n', 'utf8');
+  writeFileSync(join(outDir, 'authoring-closure-separation.json'), JSON.stringify(authoringClosureSeparation, null, 2) + '\n', 'utf8');
+  writeFileSync(join(outDir, 'gate-freeze-effectiveness.json'), JSON.stringify(gateFreezeEffectiveness, null, 2) + '\n', 'utf8');
+  writeFileSync(join(outDir, 'provenance-role-classification.json'), JSON.stringify(roleClassification, null, 2) + '\n', 'utf8');
+
+  const packageIndex = {
+    generated: new Date().toISOString(),
+    authoritative_record_count: results.length,
+    packages: results.map((r) => ({
+      package: r.package,
+      source_record: r.record,
+      conditions_total: r.checks.length,
+      conditions_satisfied: r.checks.length - r.failed.length,
+      all_conditions_satisfied: r.failed.length === 0,
+      failed_conditions: r.failed.map((c) => ({ n: c.n, title: c.title })),
+      roles: r.roles
+    })),
+    all_packages_satisfied: results.every((r) => r.failed.length === 0),
+    note: 'Package-indexed projection of every authoritative Package 1-N provenance-role-classification record. Non-authoritative; confers no ratification and authorizes no implementation.'
+  };
+  writeFileSync(join(outDir, 'package-provenance-integrity-index.json'), JSON.stringify(packageIndex, null, 2) + '\n', 'utf8');
+
+  const allFailed = results.flatMap((r) => r.failed);
+  const now = new Date().toISOString();
+  const md = `# Volume 10 Package 1 Provenance-Integrity Report (NON-AUTHORITATIVE)
+
+Generated: ${now}
+
+> This report is a generated, non-authoritative projection of the source-controlled
+> Volume 10 corpus. It proves provenance coherence deterministically; it confers no
+> ratification and authorizes no implementation.
+
+## Result
+
+- authoring_closure_separation: ${authoringClosureSeparation.authoring_closure_separation}
+- gate_freeze_effectiveness: ${gateFreezeEffectiveness.gate_freeze_effectiveness}
+- placeholder_count: ${placeholderCount}
+- role_classification: ${roleClassification.role_classification}
+- historical_sequence_exception: ${chronology.historical_sequence_exception}
+- integrity: ${!primary ? 'PENDING (post-merge provenance amendment not yet recorded)' : allFailed.length === 0 ? 'SATISFIED' : 'VIOLATED'}
+
+## Commit lineage
+
+| Role | Commit |
+| --- | --- |
+${chronology.sequence.map((s) => `| ${s.role} | ${s.commit ?? '(pending)'} |`).join('\n')}
+| INHERITED_RELEASE_TAG | ${chronology.inherited_release_tag ?? '(none)'} |
+
+## Conditions
+
+${results.length === 0 ? '- (post-merge provenance amendment pending; no authoritative record yet)' : results.map((r) => `### ${r.record} (${r.package})\n\n${r.checks.map((c) => `- ${c.satisfied ? 'PASS' : 'FAIL'} ${c.n}: ${c.title}`).join('\n')}`).join('\n\n')}
+`;
+  writeFileSync(join(outDir, 'package-1-provenance-integrity-report.md'), md, 'utf8');
+
+  return { outDir, violations: allFailed.length };
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generate();
+  runStandalone('Provenance-integrity', run);
+}

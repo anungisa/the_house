@@ -1,0 +1,62 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 10 corpus. Confers no ratification and authorizes no implementation.",
+  "findings": [
+    {
+      "finding": "resource-aware authorization",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "reviewer assignment and jurisdiction",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "evidence binding",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "production-dependency completeness",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "composite tenant-parent integrity",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "affiliation lifecycle",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "versioned requirements",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "return and resubmission",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "exactly-once activation",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "fail-closed configuration",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "outbox publication",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "PostgreSQL behavioural verification",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "production-composition verification",
+      "has_planning_destination": true
+    },
+    {
+      "finding": "deployment-path, secret, and entry-point configuration",
+      "has_planning_destination": true
+    }
+  ],
+  "all_mapped": true
+}

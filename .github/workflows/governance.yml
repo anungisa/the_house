@@ -84,6 +84,12 @@ jobs:
       - name: Run Volume 9 provenance-integrity control
         run: npm run governance:provenance:v9
 
+      - name: Run Volume 10 governance controls
+        run: npm run governance:check:v10
+
+      - name: Run Volume 10 provenance-integrity control
+        run: npm run governance:provenance:v10
+
       - name: Upload non-authoritative control report
         if: always()
         uses: actions/upload-artifact@v4

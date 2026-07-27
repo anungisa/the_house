@@ -1,0 +1,401 @@
+register_id: REG-1001
+name: Delivery Outcomes, Capabilities, Workstreams, Work Packages, Deliverables, and Dependencies
+status: RATIFIED
+version: 1.0.0
+records:
+  # ---------------------------------------------------------------------------
+  # Program outcome
+  # ---------------------------------------------------------------------------
+  - id: OUTCOME-V10-001
+    kind: OUTCOME
+    title: Governed club-affiliation delivery outcome
+    statement: >-
+      The House provides a governed, tenant-isolated, evidence-bearing
+      club-affiliation lifecycle capability as a documented program outcome. This
+      record defines the outcome only; it does not authorize construction,
+      environment provisioning, test execution, release, or deployment, all of
+      which remain gated to later authorization-bearing packages.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-02
+    future_gate: V11-G1
+    traces_to:
+      - central-registration-volume-9-v1.0.0
+      - V9-42
+
+  # ---------------------------------------------------------------------------
+  # Capabilities (with decision rights, independence, escalation)
+  # ---------------------------------------------------------------------------
+  - id: CAP-V10-001
+    kind: CAPABILITY
+    title: Delivery governance and program-management capability
+    statement: >-
+      Capability required to plan, coordinate, and govern delivery of the
+      club-affiliation outcome without authorizing implementation.
+    capability_domain: PRODUCT_SERVICE_OWNERSHIP
+    responsible_role: Accountable Program Authority
+    decision_rights: >-
+      Holds planning-level decision rights over scope baseline, work-package
+      definition, and gate readiness recommendations; holds no implementation,
+      procurement, provisioning, or release authorization rights.
+    accountabilities: >-
+      Accountable for the integrity, completeness, and fail-closed posture of the
+      delivery-planning governance foundation.
+    required_competence: >-
+      Program governance, phase-gate delivery, and evidence-based readiness
+      assessment for regulated non-profit sport administration.
+    independence_requirement: >-
+      Planning authority is separated from implementation authority; the same
+      role may not both author a plan and authorize its execution.
+    capacity_assumption: >-
+      Planning-estimate only; no staffing assignment, engagement, or hiring is
+      represented or committed by this record.
+    availability_status: ASSUMED
+    conflict_of_interest_constraint: >-
+      A role authoring an estimate, decision, or readiness recommendation may not
+      independently approve it for execution.
+    escalation_route: >-
+      Unresolved planning conflicts escalate to the Executive Acceptance Authority
+      and the future executive master-coordination gate (EXEC-MCG).
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-06
+    future_gate: V11-G1
+
+  - id: CAP-V10-002
+    kind: CAPABILITY
+    title: Application and data engineering capability
+    statement: >-
+      Capability required to construct the club-affiliation lifecycle once
+      implementation is authorized at a later gate.
+    capability_domain: APPLICATION_ENGINEERING
+    responsible_role: Engineering Delivery Lead
+    decision_rights: >-
+      Planning-level input to work-package definition-of-done and technical
+      readiness criteria; no authority to begin construction under this package.
+    accountabilities: >-
+      Accountable for translating governed obligations into work-package plans and
+      definition-of-ready/definition-of-done statements.
+    required_competence: >-
+      PostgreSQL, tenant isolation and row-level-security-aware data access,
+      transactional outbox, and deterministic workflow engineering.
+    independence_requirement: >-
+      Construction planning is separated from independent quality assurance and
+      from release-acceptance authority.
+    capacity_assumption: >-
+      Planning-estimate only; no engagement or assignment is represented.
+    availability_status: ASSUMED
+    conflict_of_interest_constraint: >-
+      Engineering may not self-accept its own release evidence.
+    escalation_route: >-
+      Technical readiness disputes escalate to the Accountable Program Authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-06
+    future_gate: V11-G1
+
+  - id: CAP-V10-003
+    kind: CAPABILITY
+    title: Quality engineering and independent assurance capability
+    statement: >-
+      Capability required to plan verification, evidence, and independent
+      assurance for the club-affiliation outcome.
+    capability_domain: INDEPENDENT_ASSURANCE
+    responsible_role: Independent Assurance Lead
+    decision_rights: >-
+      Planning-level definition of evidence obligations and acceptance criteria;
+      no authority to execute tests or accept releases under this package.
+    accountabilities: >-
+      Accountable for defining reproducible, provenance-bearing evidence
+      obligations that later gates will require.
+    required_competence: >-
+      Test-enablement design, deterministic verification, evidence provenance, and
+      independent assurance for governed lifecycle systems.
+    independence_requirement: >-
+      Assurance is organizationally independent from construction and from the
+      role that authored the artifact under assessment.
+    capacity_assumption: >-
+      Planning-estimate only; no assignment or engagement represented.
+    availability_status: ASSUMED
+    conflict_of_interest_constraint: >-
+      Assurance may not assess artifacts it authored.
+    escalation_route: >-
+      Assurance findings escalate to the Executive Acceptance Authority.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-06
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Workstream
+  # ---------------------------------------------------------------------------
+  - id: STREAM-V10-001
+    kind: WORKSTREAM
+    title: Club-affiliation delivery workstream
+    statement: >-
+      Coordinating workstream that groups the work packages required to deliver the
+      club-affiliation outcome. Planning grouping only; authorizes no execution.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-02
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Work packages (full obligation set)
+  # ---------------------------------------------------------------------------
+  - id: WORK-V10-001
+    kind: WORK_PACKAGE
+    title: Club-affiliation lifecycle implementation plan
+    statement: >-
+      Plan for constructing the governed club-affiliation lifecycle through the
+      Governance Kernel. This is a plan; it does not begin or authorize
+      construction.
+    objective: >-
+      Define the construction plan for the club-affiliation lifecycle state
+      machine, guards, evidence, and outbox integration as a documentary plan.
+    scope: >-
+      Lifecycle transitions, guard planning, evidence-obligation planning, and
+      outbox-integration planning for club affiliation.
+    excluded_scope: >-
+      No runtime code, no schema migration, no environment, no executable test, no
+      dataset, no identity, no secret, and no deployment are produced or authorized.
+    source_requirements:
+      - V9-39
+      - V9-40
+      - central-registration-volume-9-v1.0.0
+    responsible_role: Engineering Delivery Lead
+    required_capabilities:
+      - CAP-V10-001
+      - CAP-V10-002
+    dependencies:
+      - DEP-V10-001
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-001
+    definition_of_ready: >-
+      Inherited Volume 9 obligations mapped, dependencies identified with owners,
+      and required environments defined at planning level.
+    definition_of_done: >-
+      Construction plan is complete, traceable to inherited obligations, and every
+      execution step is bound to a future authorization gate; no execution occurs.
+    evidence_obligations: >-
+      Plans the reproducible, provenance-bearing evidence that later verification
+      and release-acceptance gates will require (EVID-V10-001).
+    security_privacy_obligations: >-
+      Embeds tenant-isolation, row-level-security, privacy, and records-retention
+      obligations inherited from the House P0 findings into the work-package plan.
+    accessibility_bilingual_obligations: >-
+      Embeds accessibility and English/French bilingual obligations into the
+      work-package plan.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-02
+    future_gate: V11-G1
+
+  - id: WORK-V10-002
+    kind: WORK_PACKAGE
+    title: Test-enablement plan for club-affiliation verification
+    statement: >-
+      Plan for the test-enablement required to verify the club-affiliation
+      lifecycle. Test-enablement planning is not an executable test and does not
+      execute any test.
+    objective: >-
+      Define, at planning level, the test-enablement (fixtures, synthetic data
+      requirements, environment classes, oracles) needed to verify the outcome.
+    scope: >-
+      Test-enablement design tracing to inherited Volume 9 master-test obligations.
+    excluded_scope: >-
+      No executable test, no test execution, no environment provisioning, and no
+      dataset are produced or authorized.
+    source_requirements:
+      - central-registration-volume-9-v1.0.0
+      - V9-41
+    responsible_role: Independent Assurance Lead
+    required_capabilities:
+      - CAP-V10-003
+    dependencies:
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-002
+    definition_of_ready: >-
+      Inherited master-test obligations identified and environment classes defined
+      at planning level.
+    definition_of_done: >-
+      Test-enablement plan is complete and traceable; no test is authored or run.
+    evidence_obligations: >-
+      Plans reproducible verification evidence (EVID-V10-001) required by later gates.
+    security_privacy_obligations: >-
+      Plans synthetic-data-only test enablement; prohibits real personal, financial,
+      or restricted evidence data in non-production environments.
+    accessibility_bilingual_obligations: >-
+      Plans accessibility and bilingual verification obligations.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-05
+    future_gate: V11-G1
+
+  - id: WORK-V10-003
+    kind: WORK_PACKAGE
+    title: Environment and provider-readiness plan
+    statement: >-
+      Plan for the environments and provider readiness required to construct,
+      verify, and release the outcome. Environment definition is not provisioning
+      and not qualification.
+    objective: >-
+      Define environment classes, qualification criteria, identity/secret/provider
+      dependencies, and provisioning gates at planning level only.
+    scope: >-
+      Environment definitions and provider-readiness planning traced to work
+      packages.
+    excluded_scope: >-
+      No environment is provisioned or qualified; no identity, secret, provider
+      integration, or infrastructure is created; no provider is engaged.
+    source_requirements:
+      - V9-40
+    responsible_role: Engineering Delivery Lead
+    required_capabilities:
+      - CAP-V10-002
+    dependencies:
+      - DEP-V10-002
+    deliverables:
+      - DELIV-V10-002
+    definition_of_ready: >-
+      Environment classes and qualification criteria defined at planning level.
+    definition_of_done: >-
+      Environment plan is complete and every provisioning step is bound to a future
+      provisioning gate; nothing is provisioned.
+    evidence_obligations: >-
+      Plans environment-qualification evidence required by later gates.
+    security_privacy_obligations: >-
+      Plans production-data prohibition and synthetic-data-only posture for
+      non-production environments.
+    accessibility_bilingual_obligations: >-
+      Plans accessibility of tooling and bilingual operational readiness.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-05
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Deliverables
+  # ---------------------------------------------------------------------------
+  - id: DELIV-V10-001
+    kind: DELIVERABLE
+    title: Club-affiliation lifecycle construction-plan document
+    statement: >-
+      Documentary deliverable capturing the construction plan produced by
+      WORK-V10-001. Not runtime software.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-02
+    future_gate: V11-G1
+
+  - id: DELIV-V10-002
+    kind: DELIVERABLE
+    title: Test-enablement and environment-readiness plan document
+    statement: >-
+      Documentary deliverable capturing the test-enablement and environment plans
+      produced by WORK-V10-002 and WORK-V10-003. Not executable tests or provisioned
+      environments.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-05
+    future_gate: V11-G1
+
+  # ---------------------------------------------------------------------------
+  # Dependencies (with owner, evidence requirement, and future gate)
+  # ---------------------------------------------------------------------------
+  - id: DEP-V10-001
+    kind: DEPENDENCY
+    title: Inherited Volume 9 master-test and quality-model dependency
+    statement: >-
+      Club-affiliation verification planning depends on the released Volume 9
+      integrated quality and master-test definition.
+    dependency_kind: DEPENDENCY
+    owner: Independent Assurance Lead
+    source: central-registration-volume-9-v1.0.0
+    affected_work_packages:
+      - WORK-V10-001
+      - WORK-V10-002
+    required_decision_or_evidence: >-
+      Confirmation that inherited master-test obligations are fully mapped into
+      work-package plans, evidenced by the Package 1 foundation projections.
+    target_resolution_window: >-
+      Planning window only; resolution is a documentary confirmation, not a
+      committed date.
+    current_status: PENDING_VALIDATION
+    impact_if_unresolved: >-
+      Verification planning would be incomplete and could not be admitted to a
+      future implementation-readiness gate.
+    fallback_status: >-
+      Governed disposition recorded; no execution proceeds until resolved at a
+      future gate.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-04
+    future_gate: V11-G1
+
+  - id: DEP-V10-002
+    kind: DEPENDENCY
+    title: Environment provisioning and provider-readiness dependency
+    statement: >-
+      Construction and verification planning depend on future qualified
+      environments and provider readiness that this package does not create.
+    dependency_kind: READINESS_CONDITION
+    owner: Engineering Delivery Lead
+    source: V10-05
+    affected_work_packages:
+      - WORK-V10-001
+      - WORK-V10-002
+      - WORK-V10-003
+    required_decision_or_evidence: >-
+      Environment qualification evidence and provider-readiness confirmation
+      required at a future provisioning gate.
+    target_resolution_window: >-
+      Deferred to a future provisioning gate; no committed date.
+    current_status: ENVIRONMENT_QUALIFICATION_PENDING
+    impact_if_unresolved: >-
+      Construction and verification cannot begin; nothing may be provisioned under
+      this package.
+    fallback_status: >-
+      Governed disposition recorded; provisioning remains unauthorized.
+    validation_status: DEFINED
+    authorizes_implementation: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    planning_status: DOCUMENTARY_PLAN_ONLY
+    commitment_status: NOT_COMMITTED
+    chapter_ref: V10-05
+    future_gate: V11-G1
