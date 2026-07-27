@@ -1,6 +1,6 @@
 # Volume 10 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T19:11:18.819Z
+Generated: 2026-07-27T19:11:38.482Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 10 corpus. It is not a source of truth, does not confer ratification, and
@@ -14,8 +14,8 @@ Generated: 2026-07-27T19:11:18.819Z
 
 ## Summary
 
-- Total findings: 4
-- Errors: 2
+- Total findings: 3
+- Errors: 1
 - Warnings: 0
 - Info: 2
 - Overall: FAIL (delivery-planning-governance integrity errors present)
@@ -24,7 +24,7 @@ Generated: 2026-07-27T19:11:18.819Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 11 |
+| RATIFIED | 12 |
 
 ## Register health
 
@@ -35,7 +35,7 @@ Generated: 2026-07-27T19:11:18.819Z
 | REG-1002 | Milestones, Environments, Release Units, Evidence Requirements, Readiness Conditions, and Acceptance Criteria | RATIFIED | 1.0.0 | 6 |
 | REG-1003 | Volume 10 Delivery-Planning Decisions | RATIFIED | 1.0.0 | 3 |
 | REG-1004 | Assumptions, Risks, Issues, Changes, Commitments, Estimates, Funding, and Procurement Backlog | RATIFIED | 1.0.0 | 8 |
-| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.0.0 | 11 |
+| REG-1005 | Volume 10 Delivery-Planning Approvals and Provenance | RATIFIED | 1.0.0 | 14 |
 
 ## Findings by control
 
@@ -47,9 +47,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Cross-reference & traceability integrity
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR INDEX_ROW_WITHOUT_CHAPTER [REG-1000]: REG-1000 indexes V10-A but no matching chapter file is present
+- (no findings)
 
 ### Delivery-planning-foundation coverage
 
