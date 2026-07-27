@@ -1,0 +1,35 @@
+{
+  "package": "PACKAGE-8-1",
+  "inherited_release_tag": "central-registration-volume-7-v1.0.0",
+  "sequence": [
+    {
+      "role": "SOURCE_BASELINE",
+      "commit": "624081e"
+    },
+    {
+      "role": "SUBSTANTIVE_AUTHORING",
+      "commit": "a572cdf"
+    },
+    {
+      "role": "CLOSURE_GATE_AND_FREEZE",
+      "commit": "506fe51"
+    },
+    {
+      "role": "PRE_MERGE_PROVENANCE_BINDING",
+      "commit": "15c3f03"
+    },
+    {
+      "role": "ORIGINAL_PACKAGE_MERGE",
+      "commit": "e944116"
+    },
+    {
+      "role": "PROVENANCE_AMENDMENT_AUTHORING",
+      "commit": "67c8adc"
+    },
+    {
+      "role": "PROVENANCE_AMENDMENT_MERGE",
+      "commit": "52d2e10"
+    }
+  ],
+  "historical_sequence_exception": "NONE"
+}

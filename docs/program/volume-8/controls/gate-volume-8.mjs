@@ -11,6 +11,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Severity, VOLUME_DIR, loadContext, makeFinding, summarize, runStandalone } from './lib.mjs';
 import { run as runStructural } from './validate-volume-8.mjs';
+import { isPlaceholder } from './provenance-integrity-volume-8.mjs';
 
 function records(ctx, regId) {
   return ctx.registers[regId]?.doc?.records ?? [];
@@ -62,6 +63,32 @@ export function evaluate(ctx) {
   const freezeApproval = approvals.some((a) => a.artifact_id === 'PACKAGE-8-1' && a.approval_state === 'ratified');
   const closureApproval = approvals.some((a) => a.artifact_id === 'V8-A' && a.approval_state === 'ratified');
 
+  // Fail-closed provenance binding: a completed gate must not report ready while any
+  // required gate/closure/freeze effectiveness binding remains an unresolved
+  // placeholder (PENDING/UNKNOWN/TBD/PLACEHOLDER/UNRESOLVED). The forward-referencing
+  // provenance-amendment fields are excluded; they are validated by role classification.
+  const gateApproval = approvals.find((a) => a.artifact_id === 'GATE-V8-G1' && a.approval_state === 'ratified');
+  const closureRecord = approvals.find((a) => a.artifact_id === 'V8-A' && a.approval_state === 'ratified');
+  const freezeRecord = approvals.find((a) => a.artifact_id === 'PACKAGE-8-1' && a.approval_state === 'ratified');
+  const bindingValues = [
+    gateApproval?.effective_commit,
+    gateApproval?.gate_effective_commit,
+    closureRecord?.closure_binding?.closure_authored_commit,
+    closureRecord?.closure_binding?.closure_effective_commit,
+    closureRecord?.closure_binding?.freeze_commit,
+    closureRecord?.closure_binding?.gate_effective_commit,
+    freezeRecord?.authoring_closure_separation?.substantive_authoring_commit,
+    freezeRecord?.authoring_closure_separation?.closure_authored_commit,
+    freezeRecord?.authoring_closure_separation?.closure_effective_commit,
+    freezeRecord?.authoring_closure_separation?.gate_effective_commit,
+    freezeRecord?.authoring_closure_separation?.freeze_commit,
+    freezeRecord?.package_provenance?.authoring_commit,
+    freezeRecord?.package_provenance?.closure_freeze_commit,
+    freezeRecord?.package_provenance?.freeze_commit,
+    freezeRecord?.package_provenance?.effective_commit
+  ];
+  const gateBindingsResolved = gateApproval && bindingValues.filter((v) => v !== undefined).length > 0 && !bindingValues.some((v) => isPlaceholder(v));
+
   add(1, 'Released Volume 7 provenance inherited', bodyMentions(ctx, 'V8-00', 'central-registration-volume-7-v1.0.0'));
   add(2, 'Contract authority and amendment rules controlled', hasChapter(ctx, 'V8-00'));
   add(3, 'Contract-authority doctrine defined', hasChapter(ctx, 'V8-01'));
@@ -87,6 +114,7 @@ export function evaluate(ctx) {
   add(23, 'Unresolved items have owners, evidence requirements, and future gates', backlogComplete);
   add(24, 'No record authorizes implementation', allNotImplemented);
   add(25, 'Package 1 receives line-level review and a separate freeze commit', closureApproval && freezeApproval);
+  add(26, 'Completed gate has no unresolved required commit binding', gateBindingsResolved);
 
   return conditions;
 }

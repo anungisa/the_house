@@ -10,6 +10,7 @@ import { join } from 'node:path';
 import { VOLUME_DIR, loadContext, printFindings } from './lib.mjs';
 import { collectFindings, buildReport } from './generate-control-report.mjs';
 import { generate as generateFoundation } from './foundation-volume-8.mjs';
+import { generate as generateProvenance } from './provenance-integrity-volume-8.mjs';
 import { generate as generateGate } from './gate-volume-8.mjs';
 
 const ctx = loadContext();
@@ -32,6 +33,7 @@ const outPath = join(outDir, 'governance-control-report.md');
 writeFileSync(outPath, markdown, 'utf8');
 
 generateFoundation(ctx);
+generateProvenance(ctx);
 generateGate(ctx);
 
 console.log('\n=== Volume 8 governance check summary ===');

@@ -1,8 +1,8 @@
 {
   "gate": "V8-G1",
   "disposition_target": "API_EVENT_INTEGRATION_CONTRACT_GOVERNANCE_FOUNDATION_READY",
-  "total_conditions": 25,
-  "satisfied": 25,
+  "total_conditions": 26,
+  "satisfied": 26,
   "unmet": [],
   "readiness": "READY",
   "conditions": [
@@ -129,6 +129,11 @@
     {
       "n": 25,
       "title": "Package 1 receives line-level review and a separate freeze commit",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Completed gate has no unresolved required commit binding",
       "satisfied": true
     }
   ]

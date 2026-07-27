@@ -11,6 +11,7 @@ import { VOLUME_DIR, loadContext, summarize } from './lib.mjs';
 import { run as runStructural } from './validate-volume-8.mjs';
 import { run as runReferences } from './validate-references.mjs';
 import { run as runFoundation } from './foundation-volume-8.mjs';
+import { run as runProvenance } from './provenance-integrity-volume-8.mjs';
 import { run as runGate } from './gate-volume-8.mjs';
 
 export function collectFindings(ctx) {
@@ -18,6 +19,7 @@ export function collectFindings(ctx) {
     'Structural, schema & contract-governance conformance': runStructural(ctx),
     'Cross-reference & traceability integrity': runReferences(ctx),
     'Contract-governance-foundation coverage': runFoundation(ctx),
+    'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V8-G1 readiness': runGate(ctx)
   };
 }

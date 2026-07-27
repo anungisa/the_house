@@ -1,0 +1,6 @@
+{
+  "package": "PACKAGE-8-1",
+  "closure_effective_equals_freeze": true,
+  "gate_effective_equals_freeze": true,
+  "gate_freeze_effectiveness": "SATISFIED"
+}

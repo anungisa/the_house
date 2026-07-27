@@ -107,3 +107,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-8/V8-B-package-1-provenance-amendment.md
     gate: V8-G1
+  - id: V8-B-1
+    title: Package 1 Governance Amendment
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-8/V8-B-1-package-1-governance-amendment.md
+    gate: V8-G1
