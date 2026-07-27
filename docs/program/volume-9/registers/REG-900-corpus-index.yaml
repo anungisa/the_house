@@ -315,3 +315,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-9/V9-F-package-3-provenance-amendment.md
     gate: V9-G3
+  - id: V9-F-1
+    title: Package 3 Provenance-Role Classification
+    owner: Aubert Nungisa (Accountable Program Authority)
+    approver: Nolan (Executive Acceptance Authority)
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-9/V9-F-1-package-3-provenance-role-classification.md
+    gate: V9-G3
