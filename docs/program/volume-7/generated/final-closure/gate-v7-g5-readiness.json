@@ -2,14 +2,9 @@
   "gate": "V7-G5",
   "disposition": "EXPERIENCE_AND_SERVICE_DESIGN_DEFINITION_COMPLETE",
   "total_conditions": 20,
-  "satisfied": 19,
-  "unmet": [
-    {
-      "n": 20,
-      "title": "Authoring and closure/freeze commits are properly separated"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 20,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -109,7 +104,7 @@
     {
       "n": 20,
       "title": "Authoring and closure/freeze commits are properly separated",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

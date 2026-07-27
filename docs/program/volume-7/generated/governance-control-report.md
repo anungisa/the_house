@@ -1,6 +1,6 @@
 # Volume 7 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-27T10:31:25.415Z
+Generated: 2026-07-27T10:32:44.036Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 7 corpus. It is not a source of truth, does not confer ratification, and
@@ -16,11 +16,11 @@ Generated: 2026-07-27T10:31:25.415Z
 
 ## Summary
 
-- Total findings: 2
-- Errors: 1
+- Total findings: 1
+- Errors: 0
 - Warnings: 0
 - Info: 1
-- Overall: FAIL (experience/service-design integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -115,9 +115,9 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 ### Gate V7-G5 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V7_G5_CONDITION_UNMET [GATE-V7-G5]: Condition 20 not satisfied: Authoring and closure/freeze commits are properly separated
+- (no findings)
 
 ## Recorded conditions (from REG-705 approvals)
 

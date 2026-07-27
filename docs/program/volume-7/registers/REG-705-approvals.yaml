@@ -918,14 +918,14 @@ records:
       closure_artifact: V7-I
       gate: GATE-V7-G5
       freeze_artifact: PACKAGE-7-5
-      closure_authored_commit: PENDING_PROVENANCE_BINDING
-      closure_effective_commit: PENDING_PROVENANCE_BINDING
-      freeze_commit: PENDING_PROVENANCE_BINDING
-      gate_effective_commit: PENDING_PROVENANCE_BINDING
+      closure_authored_commit: d2d85b1
+      closure_effective_commit: d2d85b1
+      freeze_commit: d2d85b1
+      gate_effective_commit: d2d85b1
       chronology_disposition: Substantive authoring is committed separately from the closure, gate disposition, and freeze. The closure record, Gate V7-G5 disposition, and freeze are authored and made documentary-effective at the same reviewed freeze commit, which is distinct from the substantive authoring commit; the commit-hash bindings are recorded in the immediately following provenance-binding commit.
     effective_date_clarification:
       gate: GATE-V7-G5
-      documentary_definition_effective_commit: PENDING_PROVENANCE_BINDING
+      documentary_definition_effective_commit: d2d85b1
       implementation_effective_date: NOT_ESTABLISHED
       production_adoption_date: NOT_ESTABLISHED
       operational_effective_date: NOT_ESTABLISHED
@@ -938,7 +938,7 @@ records:
     authorizes_implementation: false
     gate_disposition: EXPERIENCE_AND_SERVICE_DESIGN_DEFINITION_COMPLETE
     requires_freeze_artifact: PACKAGE-7-5
-    effective_commit: PENDING_PROVENANCE_BINDING
+    effective_commit: d2d85b1
     conditions:
       - Package 4 chronology amendment inherited
       - Packages 1-4 remain frozen and unchanged
@@ -967,6 +967,21 @@ records:
     approval_state: ratified
     evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
     authorizes_implementation: false
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-7-5
+      substantive_authoring_commit: "20bde2d"
+      closure_authored_commit: "d2d85b1"
+      closure_effective_commit: "d2d85b1"
+      gate_effective_commit: "d2d85b1"
+      freeze_commit: "d2d85b1"
+      required_sequence: Substantive authoring is committed first; the closure record, gate disposition, and freeze follow in a separate commit; the commit-hash bindings follow in a third provenance-binding commit.
+      actual_sequence: Substantive authoring at 20bde2d, then the closure record, Gate V7-G5 disposition, and Package 5 and Volume 7 freezes at d2d85b1, then the provenance binding in the immediately following commit on the same branch.
+      sequence_disposition: SEPARATED_AS_REQUIRED
+      separation_status: SEPARATED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
     amendment_process: Additive only. Frozen artifacts are superseded, never overwritten. A narrow post-merge provenance amendment is recorded as V7-J. Volume 7 is tagged central-registration-volume-7-v1.0.0 only after V7-J has merged.
     frozen: true
     frozen_artifacts:
@@ -1004,7 +1019,7 @@ records:
       base_release_commit: ae11b076
       branch_base_commit: "9565fbc"
       authoring_commit: "20bde2d"
-      freeze_commit: PENDING_PROVENANCE_BINDING
+      freeze_commit: d2d85b1
       note: Package 5 substantive authoring is committed at 20bde2d; the closure record V7-I, the Gate V7-G5 disposition, and the Package 5 freeze are committed at a separate reviewed freeze commit whose hash is bound in the immediately following provenance-binding commit. The Package 5 merge commit is recorded in the V7-J provenance amendment. Volume 7 is tagged only after V7-J has merged.
     approved_at: null
   - id: APP-V7-079
@@ -1156,6 +1171,6 @@ records:
       inherited_baseline_tag: central-registration-volume-6-v1.0.1
       base_release_tag: central-registration-volume-6-v1.0.1
       base_release_commit: ae11b076
-      freeze_commit: PENDING_PROVENANCE_BINDING
+      freeze_commit: d2d85b1
       note: The whole-volume freeze becomes documentary-effective at the Package 5 freeze commit, whose hash is bound in the immediately following provenance-binding commit. The single Volume 7 release tag central-registration-volume-7-v1.0.0 is applied on main only after the Package 5 provenance amendment V7-J has merged.
     approved_at: null
