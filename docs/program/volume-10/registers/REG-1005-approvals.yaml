@@ -887,3 +887,61 @@ records:
       released under the tag central-registration-volume-10-v1.0.0 only after the
       V10-F provenance amendment and the V10-F-1 provenance-role classification.
     approved_at: null
+
+  # ---------------------------------------------------------------------------
+  # V10-F post-merge provenance amendment (additive; binds pre-merge and merge)
+  # ---------------------------------------------------------------------------
+  - id: APP-V10-050
+    artifact_id: V10-F
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 3 mainline history after merge and binds
+      the pre-merge provenance-binding reference and the original-package-merge
+      reference to concrete commits. Reopens and overwrites nothing in the frozen
+      Package 3 corpus. Preserves the Gate V10-G3 disposition, the PACKAGE-10-3
+      freeze, and the VOLUME-10 whole-volume freeze. Volume 10 is released under
+      the tag central-registration-volume-10-v1.0.0 only after the V10-F-1
+      provenance-role classification, applied to the V10-F-1 mainline merge commit.
+    approved_at: null
+  - id: APP-V10-051
+    artifact_id: PACKAGE-10-3
+    approver_role: Executive Acceptance Authority
+    approval_state: ratified
+    evidence_label: SELF-ATTESTED / AUTHOR-VERIFIED
+    authorizes_implementation: false
+    amendment_process: >-
+      Additive only. Records the Package 3 substantive authoring commit, the
+      separate closure, dual-freeze, and gate commit, the pre-merge
+      provenance-binding commit, and the mainline merge commit after merge.
+      Supersedes and overwrites nothing in the frozen Package 3 corpus. Preserves
+      the Gate V10-G3 disposition, the PACKAGE-10-3 freeze, and the VOLUME-10
+      whole-volume freeze. The complete provenance-role classification, including
+      this amendment's own authoring and merge commits, is recorded in the
+      subsequent amendment (V10-F-1). Volume 10 is released under the tag
+      central-registration-volume-10-v1.0.0 only after V10-F-1.
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-9-v1.0.0
+      base_release_tag: central-registration-volume-9-v1.0.0
+      source_baseline_commit: c6fc6a5b60034524e486472e2b46556eeab0fc60
+      branch_base_commit: c6fc6a5b60034524e486472e2b46556eeab0fc60
+      authoring_commit: b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05
+      closure_authored_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      closure_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      closure_freeze_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      freeze_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      gate_effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      effective_commit: 251d915593fd7566f1a9856ad07288ec8689f1ff
+      provenance_binding_commit: e20c389e143bcefda4cfa725e2e998942f56e33e
+      original_package_merge_commit: 1f1e054dd24ac8f6ceb62d5e696d4de40be2a018
+      note: >-
+        Volume 10 Package 3 mainline history. Source baseline
+        c6fc6a5b60034524e486472e2b46556eeab0fc60; substantive authoring
+        b7d3b4cf60963f541bbeced3f4dfd0e64cc54c05; closure, gate, and dual freeze
+        251d915593fd7566f1a9856ad07288ec8689f1ff; pre-merge provenance binding
+        e20c389e143bcefda4cfa725e2e998942f56e33e; original Package 3 merge
+        1f1e054dd24ac8f6ceb62d5e696d4de40be2a018. Volume 10 is released under the
+        tag central-registration-volume-10-v1.0.0 only after V10-F-1.
+    approved_at: null
