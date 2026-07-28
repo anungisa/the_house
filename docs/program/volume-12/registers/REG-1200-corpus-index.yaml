@@ -195,3 +195,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-20.md
     gate: V12-G2
+  - id: V12-C
+    title: Package 2 Closure Record and Bounded Package 3 Authorization
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-C.md
+    gate: V12-G2
