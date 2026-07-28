@@ -2,14 +2,9 @@
   "gate": "V12-G2",
   "disposition_target": "AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY",
   "total_conditions": 39,
-  "satisfied": 38,
-  "unmet": [
-    {
-      "n": 39,
-      "title": "Genuine authoring, closure/freeze, and gate-binding separation preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 39,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -204,7 +199,7 @@
     {
       "n": 39,
       "title": "Genuine authoring, closure/freeze, and gate-binding separation preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }
