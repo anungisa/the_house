@@ -100,6 +100,16 @@ import {
   handleButtonContext,
   type ButtonContextHttpDeps,
 } from './button/index.js';
+import {
+  handleAffiliationOverview,
+  handleAffiliationInitiate,
+  handleAffiliationGet,
+  handleAffiliationSaveDraft,
+  handleAffiliationAssociateEvidence,
+  handleAffiliationRemoveEvidence,
+  type ButtonAffiliationHttpDeps,
+  type ButtonAffiliationHttpResult,
+} from './button/affiliation/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -218,6 +228,15 @@ export interface AffiliationHttpServerDeps {
    */
   readonly buttonContext?: ButtonContextHttpDeps;
   /**
+   * Optional Button club-affiliation DRAFT transport (Slice C). When provided, the bounded
+   * `/v1/button/affiliation` overview + `/v1/button/affiliation/applications...` draft endpoints
+   * are served; when omitted they 404. This surface assembles a representative-safe projection
+   * over {@link AffiliationDraftService}: it re-authorizes the target organization server-side,
+   * saves DRAFT responses and ASSOCIATES governed evidence, and NEVER mutates governed lifecycle
+   * state, invokes the kernel, submits an application, or writes audit/evidence/outbox directly.
+   */
+  readonly buttonAffiliation?: ButtonAffiliationHttpDeps;
+  /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
    * dependency is unavailable. When omitted, `/readyz` stays shallow (process-level only).
@@ -247,6 +266,18 @@ const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
 
 /** The Button representative-context read endpoint (GET only). */
 const BUTTON_CONTEXT_PATH = '/v1/button/context';
+
+/** The Button club-affiliation DRAFT surface (Slice C). */
+const BUTTON_AFFILIATION_OVERVIEW_PATH = '/v1/button/affiliation';
+const BUTTON_AFFILIATION_APPLICATIONS_PATH = '/v1/button/affiliation/applications';
+const BUTTON_AFFILIATION_DRAFT_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/draft\/?$/;
+const BUTTON_AFFILIATION_EVIDENCE_LINK_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/evidence-links\/([^/]+)\/?$/;
+const BUTTON_AFFILIATION_EVIDENCE_LINKS_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/evidence-links\/?$/;
+const BUTTON_AFFILIATION_APPLICATION_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/?$/;
 
 /** GET list of quarantine events (exact path). */
 const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
@@ -818,6 +849,144 @@ async function handleButtonContextRoute(
   sendJson(res, result);
 }
 
+/** Emit a Button-affiliation result, propagating any adapter headers (e.g. ETag) before the body. */
+function sendButtonAffiliation(res: ServerResponse, result: ButtonAffiliationHttpResult): void {
+  if (result.headers !== undefined) {
+    for (const [name, value] of Object.entries(result.headers)) {
+      res.setHeader(name, value);
+    }
+  }
+  sendJson(res, { status: result.status, body: result.body });
+}
+
+function methodNotAllowed(res: ServerResponse, allow: string, requestId: string): void {
+  res.setHeader('allow', allow);
+  sendJson(res, {
+    status: 405,
+    body: {
+      status: 'error',
+      code: 'METHOD_NOT_ALLOWED',
+      message: `Only ${allow} is allowed for this endpoint.`,
+      requestId,
+    },
+  });
+}
+
+/**
+ * Serve the Button club-affiliation DRAFT surface (Slice C). The path is matched first, then the
+ * method (405 with the correct `Allow` header on mismatch), so a non-matching method on a known
+ * path never falls through to a 404. Bodies are size-capped and JSON-parsed exactly like the other
+ * write surfaces. This handler NEVER mutates governed lifecycle state or invokes the kernel.
+ */
+async function handleButtonAffiliationRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  buttonAffiliation: ButtonAffiliationHttpDeps,
+  path: string,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+  maxBodyBytes: number,
+): Promise<void> {
+  const method = req.method ?? 'GET';
+  const headers = headerMap(req);
+  const query = queryMap(req.url);
+
+  // Overview: GET /v1/button/affiliation
+  if (path === BUTTON_AFFILIATION_OVERVIEW_PATH) {
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    const result = await handleAffiliationOverview(
+      buttonAffiliation,
+      { headers, query, params: {} },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  // Initiate / resume: POST /v1/button/affiliation/applications
+  if (path === BUTTON_AFFILIATION_APPLICATIONS_PATH) {
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    const result = await handleAffiliationInitiate(
+      buttonAffiliation,
+      { headers, query, params: {}, body },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  // Draft save: PUT /v1/button/affiliation/applications/:id/draft
+  const draftMatch = BUTTON_AFFILIATION_DRAFT_ROUTE.exec(path);
+  if (draftMatch !== null) {
+    if (method !== 'PUT') return methodNotAllowed(res, 'PUT', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    const result = await handleAffiliationSaveDraft(
+      buttonAffiliation,
+      { headers, query, params: { applicationId: draftMatch[1] }, body },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  // Remove evidence link: DELETE /v1/button/affiliation/applications/:id/evidence-links/:linkId
+  const evidenceLinkMatch = BUTTON_AFFILIATION_EVIDENCE_LINK_ROUTE.exec(path);
+  if (evidenceLinkMatch !== null) {
+    if (method !== 'DELETE') return methodNotAllowed(res, 'DELETE', requestId);
+    const result = await handleAffiliationRemoveEvidence(
+      buttonAffiliation,
+      {
+        headers,
+        query,
+        params: { applicationId: evidenceLinkMatch[1], linkId: evidenceLinkMatch[2] },
+      },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  // Associate evidence: POST /v1/button/affiliation/applications/:id/evidence-links
+  const evidenceLinksMatch = BUTTON_AFFILIATION_EVIDENCE_LINKS_ROUTE.exec(path);
+  if (evidenceLinksMatch !== null) {
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    const result = await handleAffiliationAssociateEvidence(
+      buttonAffiliation,
+      { headers, query, params: { applicationId: evidenceLinksMatch[1] }, body },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  // Detail: GET /v1/button/affiliation/applications/:id
+  const applicationMatch = BUTTON_AFFILIATION_APPLICATION_ROUTE.exec(path);
+  if (applicationMatch !== null) {
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    const result = await handleAffiliationGet(
+      buttonAffiliation,
+      { headers, query, params: { applicationId: applicationMatch[1] } },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  // Known prefix, unknown sub-path.
+  sendJson(res, {
+    status: 404,
+    body: {
+      status: 'error',
+      code: 'NOT_FOUND',
+      message: 'Resource not found.',
+      requestId,
+    },
+  });
+}
+
+
 /** Serve the read-only participant list endpoint (GET only). */
 async function handleParticipantListRoute(
   req: IncomingMessage,
@@ -1324,6 +1493,22 @@ function classifyRoute(method: string, path: string): string {
   if (WORKFLOW_DETAIL_ROUTE.test(path)) return `${method} /v1/workflows/:id`;
   if (path === ORGANIZATION_LIST_PATH) return `${method} /v1/organizations`;
   if (path === BUTTON_CONTEXT_PATH) return `${method} /v1/button/context`;
+  if (path === BUTTON_AFFILIATION_OVERVIEW_PATH) return `${method} /v1/button/affiliation`;
+  if (BUTTON_AFFILIATION_DRAFT_ROUTE.test(path)) {
+    return `${method} /v1/button/affiliation/applications/:id/draft`;
+  }
+  if (BUTTON_AFFILIATION_EVIDENCE_LINK_ROUTE.test(path)) {
+    return `${method} /v1/button/affiliation/applications/:id/evidence-links/:linkId`;
+  }
+  if (BUTTON_AFFILIATION_EVIDENCE_LINKS_ROUTE.test(path)) {
+    return `${method} /v1/button/affiliation/applications/:id/evidence-links`;
+  }
+  if (path === BUTTON_AFFILIATION_APPLICATIONS_PATH) {
+    return `${method} /v1/button/affiliation/applications`;
+  }
+  if (BUTTON_AFFILIATION_APPLICATION_ROUTE.test(path)) {
+    return `${method} /v1/button/affiliation/applications/:id`;
+  }
   if (ORGANIZATION_PARTICIPANT_STATUS_TRANSITIONS_ROUTE.test(path)) {
     return `${method} /v1/organizations/:id/participants/:id/status-transitions`;
   }
@@ -1520,6 +1705,25 @@ async function handleRequest(
   // isolated, representative-safe. A non-GET on the known path returns 405 rather than 404.
   if (deps.buttonContext !== undefined && path === BUTTON_CONTEXT_PATH) {
     await handleButtonContextRoute(req, res, deps.buttonContext, requestId, deps.resolver);
+    return;
+  }
+
+  // Button club-affiliation DRAFT transport (only when wired). The whole `/v1/button/affiliation`
+  // prefix is delegated so method mismatches on known paths return 405 rather than falling through.
+  if (
+    deps.buttonAffiliation !== undefined &&
+    (path === BUTTON_AFFILIATION_OVERVIEW_PATH ||
+      path.startsWith(`${BUTTON_AFFILIATION_OVERVIEW_PATH}/`))
+  ) {
+    await handleButtonAffiliationRoute(
+      req,
+      res,
+      deps.buttonAffiliation,
+      path,
+      requestId,
+      deps.resolver,
+      maxBytes,
+    );
     return;
   }
 

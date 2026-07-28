@@ -72,6 +72,76 @@ const en = {
 
   'error.unauthenticated.heading': 'Sign-in required',
   'error.unauthenticated.body': 'Your session is not active. Please sign in again.',
+
+  'affiliation.overview.beginTitle': 'Start your affiliation',
+  'affiliation.overview.beginBody':
+    'Begin a new affiliation application for the selected organization and season. You can save your progress and return at any time.',
+  'affiliation.overview.begin': 'Start affiliation',
+  'affiliation.overview.resumeTitle': 'Resume your draft',
+  'affiliation.overview.resumeBody':
+    'You have a saved affiliation draft. Continue where you left off — nothing is submitted until you choose to.',
+  'affiliation.overview.resume': 'Continue draft',
+  'affiliation.overview.lastSaved': 'Last saved: {when}',
+  'affiliation.overview.notSaved': 'Not yet saved',
+  'affiliation.overview.progress': '{completed} of {total} requirements complete',
+
+  'affiliation.requirements.title': 'Requirements',
+  'affiliation.requirements.heading': 'Affiliation requirements',
+  'affiliation.requirements.intro':
+    'Complete each applicable requirement below. Requirements and their versions are set by policy; your responses are saved as a draft and are not submitted here.',
+  'affiliation.requirements.progress': '{completed} of {total} complete',
+  'affiliation.requirements.back': 'Back to overview',
+  'affiliation.requirements.open': 'Open',
+  'affiliation.requirements.blockedBy': 'Complete {codes} first',
+  'affiliation.requirements.nextActionsHeading': 'What to do next',
+  'affiliation.requirements.noSubmit':
+    'Submission is not available in this release. Your draft is saved as you go.',
+  'affiliation.requirements.allComplete':
+    'All applicable requirements are complete. Submission will be available in a later release.',
+  'affiliation.requirements.empty': 'No requirements apply to this application yet.',
+
+  'affiliation.status.blocked': 'Blocked',
+  'affiliation.status.not_started': 'Not started',
+  'affiliation.status.in_progress': 'In progress',
+  'affiliation.status.evidence_required': 'Document required',
+  'affiliation.status.answered': 'Complete',
+  'affiliation.status.evidence_associated': 'Complete',
+
+  'affiliation.requirement.title': 'Requirement',
+  'affiliation.requirement.appliesBecause': 'Why this applies',
+  'affiliation.requirement.version': 'Version {version}',
+  'affiliation.requirement.guidance': 'Guidance',
+  'affiliation.requirement.save': 'Save response',
+  'affiliation.requirement.saving': 'Saving\u2026',
+  'affiliation.requirement.saved': 'Response saved',
+  'affiliation.requirement.back': 'Back to requirements',
+  'affiliation.requirement.evidence': 'Supporting document',
+  'affiliation.requirement.evidenceRequiredNote': 'A supporting document is required for this requirement.',
+  'affiliation.requirement.attach': 'Attach document',
+  'affiliation.requirement.attaching': 'Attaching\u2026',
+  'affiliation.requirement.remove': 'Remove',
+  'affiliation.requirement.evidenceNote':
+    'Attaching a document associates it with this requirement. Association is not acceptance \u2014 it will be reviewed separately.',
+  'affiliation.requirement.noEvidence': 'No document attached yet.',
+  'affiliation.requirement.associatedAt': 'Attached {when}',
+  'affiliation.requirement.conflict':
+    'This draft was changed elsewhere. We reloaded the latest version \u2014 please re-enter and save your changes.',
+  'affiliation.requirement.saveError': 'We could not save your response. Please try again.',
+  'affiliation.requirement.evidenceError': 'We could not attach the document. Please try again.',
+  'affiliation.requirement.blockedNote': 'Complete {codes} before this requirement can be started.',
+
+  'affiliation.control.acknowledge': 'I confirm the information on file is current and accurate.',
+  'affiliation.control.confirm': 'I confirm this requirement is met.',
+  'affiliation.control.text': 'Your response',
+  'affiliation.control.document': 'Document description or reference',
+  'affiliation.control.contact.name': 'Contact name',
+  'affiliation.control.contact.role': 'Role',
+  'affiliation.control.contact.email': 'Email',
+  'affiliation.control.contact.phone': 'Phone',
+
+  'affiliation.error.notFound.heading': 'Application not found',
+  'affiliation.error.notFound.body':
+    'This affiliation application is not available for your current context.',
 } as const;
 
 export type TranslationKey = keyof typeof en;
@@ -138,6 +208,76 @@ const fr: Record<TranslationKey, string> = {
 
   'error.unauthenticated.heading': 'Connexion requise',
   'error.unauthenticated.body': 'Votre session n\u2019est pas active. Veuillez vous reconnecter.',
+
+  'affiliation.overview.beginTitle': 'Commencer votre affiliation',
+  'affiliation.overview.beginBody':
+    'Commencez une nouvelle demande d\u2019affiliation pour l\u2019organisation et la saison s\u00e9lectionn\u00e9es. Vous pouvez enregistrer votre progression et revenir \u00e0 tout moment.',
+  'affiliation.overview.begin': 'Commencer l\u2019affiliation',
+  'affiliation.overview.resumeTitle': 'Reprendre votre brouillon',
+  'affiliation.overview.resumeBody':
+    'Vous avez un brouillon d\u2019affiliation enregistr\u00e9. Reprenez l\u00e0 o\u00f9 vous \u00eatiez \u2014 rien n\u2019est soumis tant que vous ne le choisissez pas.',
+  'affiliation.overview.resume': 'Continuer le brouillon',
+  'affiliation.overview.lastSaved': 'Derni\u00e8re sauvegarde : {when}',
+  'affiliation.overview.notSaved': 'Pas encore enregistr\u00e9',
+  'affiliation.overview.progress': '{completed} des {total} exigences compl\u00e9t\u00e9es',
+
+  'affiliation.requirements.title': 'Exigences',
+  'affiliation.requirements.heading': 'Exigences d\u2019affiliation',
+  'affiliation.requirements.intro':
+    'Compl\u00e9tez chaque exigence applicable ci-dessous. Les exigences et leurs versions sont d\u00e9finies par la politique; vos r\u00e9ponses sont enregistr\u00e9es comme brouillon et ne sont pas soumises ici.',
+  'affiliation.requirements.progress': '{completed} sur {total} compl\u00e9t\u00e9es',
+  'affiliation.requirements.back': 'Retour \u00e0 l\u2019aper\u00e7u',
+  'affiliation.requirements.open': 'Ouvrir',
+  'affiliation.requirements.blockedBy': 'Compl\u00e9tez d\u2019abord {codes}',
+  'affiliation.requirements.nextActionsHeading': 'Prochaines \u00e9tapes',
+  'affiliation.requirements.noSubmit':
+    'La soumission n\u2019est pas disponible dans cette version. Votre brouillon est enregistr\u00e9 au fur et \u00e0 mesure.',
+  'affiliation.requirements.allComplete':
+    'Toutes les exigences applicables sont compl\u00e9t\u00e9es. La soumission sera disponible dans une version ult\u00e9rieure.',
+  'affiliation.requirements.empty': 'Aucune exigence ne s\u2019applique encore \u00e0 cette demande.',
+
+  'affiliation.status.blocked': 'Bloqu\u00e9',
+  'affiliation.status.not_started': 'Non commenc\u00e9',
+  'affiliation.status.in_progress': 'En cours',
+  'affiliation.status.evidence_required': 'Document requis',
+  'affiliation.status.answered': 'Compl\u00e9t\u00e9',
+  'affiliation.status.evidence_associated': 'Compl\u00e9t\u00e9',
+
+  'affiliation.requirement.title': 'Exigence',
+  'affiliation.requirement.appliesBecause': 'Pourquoi cela s\u2019applique',
+  'affiliation.requirement.version': 'Version {version}',
+  'affiliation.requirement.guidance': 'Directives',
+  'affiliation.requirement.save': 'Enregistrer la r\u00e9ponse',
+  'affiliation.requirement.saving': 'Enregistrement\u2026',
+  'affiliation.requirement.saved': 'R\u00e9ponse enregistr\u00e9e',
+  'affiliation.requirement.back': 'Retour aux exigences',
+  'affiliation.requirement.evidence': 'Document justificatif',
+  'affiliation.requirement.evidenceRequiredNote': 'Un document justificatif est requis pour cette exigence.',
+  'affiliation.requirement.attach': 'Joindre un document',
+  'affiliation.requirement.attaching': 'Ajout en cours\u2026',
+  'affiliation.requirement.remove': 'Retirer',
+  'affiliation.requirement.evidenceNote':
+    'Joindre un document l\u2019associe \u00e0 cette exigence. L\u2019association n\u2019est pas une acceptation \u2014 il sera examin\u00e9 s\u00e9par\u00e9ment.',
+  'affiliation.requirement.noEvidence': 'Aucun document joint pour l\u2019instant.',
+  'affiliation.requirement.associatedAt': 'Joint le {when}',
+  'affiliation.requirement.conflict':
+    'Ce brouillon a \u00e9t\u00e9 modifi\u00e9 ailleurs. Nous avons recharg\u00e9 la derni\u00e8re version \u2014 veuillez r\u00e9inscrire et enregistrer vos modifications.',
+  'affiliation.requirement.saveError': 'Nous n\u2019avons pas pu enregistrer votre r\u00e9ponse. Veuillez r\u00e9essayer.',
+  'affiliation.requirement.evidenceError': 'Nous n\u2019avons pas pu joindre le document. Veuillez r\u00e9essayer.',
+  'affiliation.requirement.blockedNote': 'Compl\u00e9tez {codes} avant de commencer cette exigence.',
+
+  'affiliation.control.acknowledge': 'Je confirme que les renseignements au dossier sont \u00e0 jour et exacts.',
+  'affiliation.control.confirm': 'Je confirme que cette exigence est satisfaite.',
+  'affiliation.control.text': 'Votre r\u00e9ponse',
+  'affiliation.control.document': 'Description ou r\u00e9f\u00e9rence du document',
+  'affiliation.control.contact.name': 'Nom de la personne-ressource',
+  'affiliation.control.contact.role': 'R\u00f4le',
+  'affiliation.control.contact.email': 'Courriel',
+  'affiliation.control.contact.phone': 'T\u00e9l\u00e9phone',
+
+  'affiliation.error.notFound.heading': 'Demande introuvable',
+  'affiliation.error.notFound.body':
+    'Cette demande d\u2019affiliation n\u2019est pas disponible pour votre contexte actuel.',
 };
 
 export const RESOURCES: Record<ButtonLocale, Record<TranslationKey, string>> = {

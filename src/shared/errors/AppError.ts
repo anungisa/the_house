@@ -85,6 +85,21 @@ export const ErrorCode = {
   FINANCIAL_OBLIGATION_NOT_FOUND: 'FINANCIAL_OBLIGATION_NOT_FOUND',
   /** A referenced affiliation standing does not exist for the tenant. */
   AFFILIATION_STANDING_NOT_FOUND: 'AFFILIATION_STANDING_NOT_FOUND',
+  /**
+   * A referenced affiliation application does not exist for the tenant OR the representative is
+   * not authorized for it. Deliberately conflates both to avoid cross-tenant existence disclosure.
+   * Maps to 404.
+   */
+  AFFILIATION_APPLICATION_NOT_FOUND: 'AFFILIATION_APPLICATION_NOT_FOUND',
+  /** A draft save was rejected because the optimistic-concurrency token was stale. Maps to 409. */
+  AFFILIATION_DRAFT_VERSION_CONFLICT: 'AFFILIATION_DRAFT_VERSION_CONFLICT',
+  /** A referenced requirement is not bound to (applicable for) the application. Maps to 404. */
+  AFFILIATION_REQUIREMENT_UNKNOWN: 'AFFILIATION_REQUIREMENT_UNKNOWN',
+  /**
+   * An evidence reference could not be validated for the tenant (missing payload, digest mismatch,
+   * or a cross-tenant reference). Deliberately generic to avoid existence disclosure. Maps to 400.
+   */
+  AFFILIATION_EVIDENCE_REFERENCE_INVALID: 'AFFILIATION_EVIDENCE_REFERENCE_INVALID',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
