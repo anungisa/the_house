@@ -22,6 +22,26 @@ describe('Button affiliation reviewer workbench', () => {
     await user.click(screen.getByRole('button', { name: 'Start review' }));
     expect(await screen.findByText('Under review')).toBeInTheDocument();
     expect(screen.getByText('Assigned to you')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('link', { name: 'Open case' }));
+    await screen.findByRole('heading', { name: 'Review submitted affiliation' });
+    expect(
+      screen.getByRole('heading', { name: 'Confirm organization profile' }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('governing-document.pdf')).toBeInTheDocument();
+
+    await user.selectOptions(
+      screen.getByLabelText('Requirement to correct'),
+      'GOVERNING_DOCUMENT',
+    );
+    await user.type(
+      screen.getByLabelText('Reason for correction'),
+      'Upload the signed version.',
+    );
+    await user.click(screen.getByRole('button', { name: 'Send correction request' }));
+    expect(
+      await screen.findByText(/Correction request sent/),
+    ).toBeInTheDocument();
   });
 
   it('denies a representative without reviewer capability', async () => {

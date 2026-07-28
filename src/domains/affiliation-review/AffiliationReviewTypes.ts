@@ -29,6 +29,34 @@ export interface AffiliationReviewQueueItem {
   readonly assignedAt?: string;
 }
 
+export interface AffiliationReviewRequirement {
+  readonly code: string;
+  readonly version: number;
+  readonly titleEn: string;
+  readonly titleFr: string;
+  readonly guidanceEn: string;
+  readonly guidanceFr: string;
+  readonly appliesBecause: string;
+  readonly response: Readonly<Record<string, unknown>>;
+  readonly evidence: readonly {
+    readonly evidenceObjectId: string;
+    readonly contentType: string;
+    readonly displayName?: string;
+  }[];
+}
+
+export interface AffiliationReviewCase {
+  readonly applicationId: string;
+  readonly organizationId?: string;
+  readonly seasonId: string;
+  readonly pathway?: string;
+  readonly lifecycleState: 'under_review';
+  readonly submissionSequence: number;
+  readonly submittedAt: string;
+  readonly assignedReviewerUserId: string;
+  readonly requirements: readonly AffiliationReviewRequirement[];
+}
+
 export interface StartAffiliationReviewInput {
   readonly tenantId: string;
   readonly applicationId: string;
