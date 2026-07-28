@@ -410,3 +410,85 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 3 — WHOLE-CORPUS DISPOSITIONS ==============================
+  - id: GAP-V12-004
+    kind: EVIDENCE_GAP
+    title: Whole-program traceability gaps carried to a future gate
+    statement: >-
+      Every requirement, evidence requirement, acceptance class, and House P0
+      finding without a resolved link is recorded as an identified traceability gap
+      with an owner and a future gate, never silently treated as complete.
+    source: Whole-program traceability coverage.
+    owner: Evidence Governance Authority
+    current_status: Open — traceability gaps are dispositioned to a future gate.
+    impact_if_unresolved: Whole-corpus sufficiency cannot be asserted while links remain unresolved.
+    required_action_or_evidence: Resolve each orphaned link by governed reference or carry it to the implementation-authorization decision.
+    traces_to:
+      - V12-22
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPTBL-V12-003
+    kind: ACCEPTANCE_BACKLOG
+    title: Whole-corpus acceptance backlog carried beyond corpus closure
+    statement: >-
+      Every acceptance class defined across the corpus remains unaccepted at corpus
+      closure and is carried as an acceptance backlog to a separately authorized
+      acceptance and release decision.
+    source: Integrated final-evidence baseline and final-dossier model.
+    owner: Release Governance Authority
+    current_status: Open — no acceptance class is granted at corpus closure.
+    impact_if_unresolved: No release may proceed until each acceptance class is granted on sufficient evidence.
+    required_action_or_evidence: Grant each acceptance class through its named authority on accepted evidence.
+    traces_to:
+      - V12-26
+      - V12-27
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: BLOCKER-V12-004
+    kind: RELEASE_BLOCKER
+    title: Implementation authorization is a standing whole-corpus release blocker
+    statement: >-
+      Implementation, evidence acceptance, system release, and production authority
+      remain withheld at corpus closure and constitute a standing release blocker
+      until a separate implementation-authorization decision package grants them.
+    source: Corpus-closure and implementation-authorization handoff model.
+    owner: Executive Sponsor
+    current_status: Standing release blocker until a separate authorization decision is taken.
+    impact_if_unresolved: No implementation, acceptance, release, or production may proceed on the corpus alone.
+    required_action_or_evidence: A separately authorized implementation-authorization decision package supported by accepted evidence.
+    release_impact: All implementation, acceptance, release, and production authority is blocked at corpus closure.
+    affected_release_gate: EXEC-MCG
+    required_evidence: The implementation-authorization decision package inputs defined by the handoff model.
+    traces_to:
+      - V12-31
+      - V12-32
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

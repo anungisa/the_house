@@ -1,0 +1,28 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "executive_decision_model": [
+    {
+      "id": "MODEL-V12-009",
+      "kind": "EXECUTIVE_DECISION_MODEL",
+      "title": "Executive decision brief and release-authorization record model",
+      "statement": "The shape of the executive release-decision brief and release-authorization record that a future, separately authorized release decision would populate, defining the decision without taking it.",
+      "prohibited_inference": "A decision brief is not a decision, and a release-authorization record model is not a granted release authorization.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-29",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "executive_decision_evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-050",
+      "kind": "EXECUTIVE_DECISION_EVIDENCE_REQUIREMENT",
+      "title": "Executive decision evidence requirement",
+      "statement": "The requirement that any executive release decision be supported by the full decision brief, accepted dossiers, outstanding blockers, residual-risk statement, and explicit statement of what the decision does not authorize.",
+      "prohibited_inference": "A decision brief is not a decision.",
+      "chapter_ref": "V12-29",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "unresolved": [
+    {
+      "id": "GAP-V12-004",
+      "kind": "EVIDENCE_GAP",
+      "title": "Whole-program traceability gaps carried to a future gate",
+      "source": "Whole-program traceability coverage.",
+      "owner": "Evidence Governance Authority",
+      "required_action_or_evidence": "Resolve each orphaned link by governed reference or carry it to the implementation-authorization decision.",
+      "future_blocking_gate": "EXEC-MCG",
+      "validation_status": "CONSTRAINED"
+    },
+    {
+      "id": "ACCEPTBL-V12-003",
+      "kind": "ACCEPTANCE_BACKLOG",
+      "title": "Whole-corpus acceptance backlog carried beyond corpus closure",
+      "source": "Integrated final-evidence baseline and final-dossier model.",
+      "owner": "Release Governance Authority",
+      "required_action_or_evidence": "Grant each acceptance class through its named authority on accepted evidence.",
+      "future_blocking_gate": "EXEC-MCG",
+      "validation_status": "CONSTRAINED"
+    },
+    {
+      "id": "BLOCKER-V12-004",
+      "kind": "RELEASE_BLOCKER",
+      "title": "Implementation authorization is a standing whole-corpus release blocker",
+      "source": "Corpus-closure and implementation-authorization handoff model.",
+      "owner": "Executive Sponsor",
+      "required_action_or_evidence": "A separately authorized implementation-authorization decision package supported by accepted evidence.",
+      "future_blocking_gate": "EXEC-MCG",
+      "validation_status": "CONSTRAINED"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "program_gate_matrix": [
+    {
+      "id": "MODEL-V12-003",
+      "kind": "PROGRAM_GATE_MATRIX",
+      "title": "Integrated program-gate matrix, criteria, authority, and escalation",
+      "statement": "The complete gate hierarchy from definition through execution, evidence intake, acceptance, release authorization, deployment, and stabilization, recording each gate's criteria, evidence, decisions, authority, independence, dispositions, blocking conditions, and escalation route.",
+      "prohibited_inference": "Earlier gate passed is not later gate passed, and definition gate is not execution authorization.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-23",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "gate_evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-045",
+      "kind": "GATE_EVIDENCE_REQUIREMENT",
+      "title": "Gate-entry evidence requirement",
+      "statement": "The requirement that every gate in the program-gate matrix name the evidence and decisions required to enter it, without asserting that any such evidence exists.",
+      "prohibited_inference": "Earlier gate passed is not later gate passed.",
+      "chapter_ref": "V12-23",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

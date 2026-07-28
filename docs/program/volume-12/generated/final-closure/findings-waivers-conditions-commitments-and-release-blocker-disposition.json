@@ -1,0 +1,40 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "release_blocker_model": [
+    {
+      "id": "MODEL-V12-005",
+      "kind": "RELEASE_BLOCKER_MODEL",
+      "title": "Findings, waivers, conditions, commitments, and release-blocker disposition",
+      "statement": "The integrated disposition model for every finding, gap, exception, waiver, condition, compensating control, material commitment, deferred obligation, release blocker, expired condition, and reopened finding, with allowed final dispositions and fail-closed treatment of expired conditions and unresolved blockers.",
+      "prohibited_inference": "Waiver approved is not failed result converted to pass, and no active unresolved item may point to a completed Volume 12 gate.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-25",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "release_blocker_requirements": [
+    {
+      "id": "EVIDREQ-V12-049",
+      "kind": "RELEASE_BLOCKER_REQUIREMENT",
+      "title": "Release-blocker disposition requirement",
+      "statement": "The requirement that every finding, condition, waiver, and unresolved obligation carry a governed disposition and that expired conditions and unresolved release blockers fail closed.",
+      "prohibited_inference": "Waiver approved is not failed result converted to pass.",
+      "chapter_ref": "V12-25",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "material_commitment_evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-055",
+      "kind": "MATERIAL_COMMITMENT_EVIDENCE_REQUIREMENT",
+      "title": "Material commitment evidence requirement",
+      "statement": "The requirement that every material commitment and deferred obligation carry required evidence, an owner, an effective period, and a revalidation condition before it can be relied upon at any gate.",
+      "prohibited_inference": "Commitment recorded is not commitment discharged.",
+      "chapter_ref": "V12-25",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

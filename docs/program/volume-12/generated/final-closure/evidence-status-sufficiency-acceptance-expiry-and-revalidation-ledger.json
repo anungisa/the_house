@@ -1,0 +1,52 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "evidence_status_model": [
+    {
+      "id": "MODEL-V12-004",
+      "kind": "EVIDENCE_STATUS_MODEL",
+      "title": "Evidence status, sufficiency, acceptance, expiry, and revalidation ledger",
+      "statement": "The authoritative evidence status vocabulary and per-requirement ledger controlling evidence, validity, sufficiency, and acceptance state, scope, version, environment, configuration, expiry, and revalidation trigger.",
+      "prohibited_inference": "Submitted is not valid, valid is not sufficient, sufficient is not accepted, and accepted is not current indefinitely.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-24",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "evidence_sufficiency_requirements": [
+    {
+      "id": "EVIDREQ-V12-046",
+      "kind": "EVIDENCE_SUFFICIENCY_REQUIREMENT",
+      "title": "Evidence sufficiency requirement",
+      "statement": "The requirement that accepted evidence be assessed for sufficiency against its authoritative requirement, scope, and coverage before it can support any acceptance.",
+      "prohibited_inference": "Valid is not sufficient.",
+      "chapter_ref": "V12-24",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "evidence_acceptance_requirements": [
+    {
+      "id": "EVIDREQ-V12-047",
+      "kind": "EVIDENCE_ACCEPTANCE_REQUIREMENT",
+      "title": "Evidence acceptance requirement",
+      "statement": "The requirement that acceptance of any evidence be recorded by the named acceptance authority against sufficient, valid, and current evidence.",
+      "prohibited_inference": "Sufficient is not accepted.",
+      "chapter_ref": "V12-24",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "evidence_revalidation_requirements": [
+    {
+      "id": "EVIDREQ-V12-048",
+      "kind": "EVIDENCE_REVALIDATION_REQUIREMENT",
+      "title": "Evidence revalidation requirement",
+      "statement": "The requirement that accepted evidence be revalidated when its scope, configuration, environment, or expiry changes, so that stale evidence cannot support a current acceptance.",
+      "prohibited_inference": "Accepted is not current indefinitely.",
+      "chapter_ref": "V12-24",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

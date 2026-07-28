@@ -1,0 +1,53 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "implementation_authorization_handoff": [
+    {
+      "id": "MODEL-V12-011",
+      "kind": "IMPLEMENTATION_AUTHORIZATION_HANDOFF",
+      "title": "Program-corpus implementation-authorization handoff",
+      "statement": "The empty governed destination defining the inputs a separate implementation-authorization decision package would require, carrying no authorization and implying no Volume 13.",
+      "prohibited_inference": "Definition corpus complete is not implementation authorized, and master development plan complete is not funding approved is not staff assigned.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-31",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "corpus_release_decision": [
+    {
+      "id": "MODEL-V12-012",
+      "kind": "CORPUS_RELEASE_DECISION",
+      "title": "Documentary corpus release decision",
+      "statement": "The disciplined decision to close and publish the documentary definition corpus as complete, internally consistent, traceable, and frozen, while implementation, evidence acceptance, system release, and production authority remain explicitly withheld.",
+      "prohibited_inference": "Corpus release is not product release, and documentary corpus release must never be represented as software release, evidence acceptance, gate passage beyond the Volume 12 definition gates, or production authorization.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-32",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "implementation_authorization_input_requirements": [
+    {
+      "id": "EVIDREQ-V12-053",
+      "kind": "IMPLEMENTATION_AUTHORIZATION_INPUT_REQUIREMENT",
+      "title": "Implementation-authorization input requirement",
+      "statement": "The requirement that a separate implementation-authorization decision package be supported by the frozen corpus reference, master development plan, integrated evidence baseline, gate matrix, disposition ledger, and funding, staffing, and procurement decisions.",
+      "prohibited_inference": "Definition corpus complete is not implementation authorized.",
+      "chapter_ref": "V12-31",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "corpus_release_record_requirements": [
+    {
+      "id": "EVIDREQ-V12-054",
+      "kind": "CORPUS_RELEASE_RECORD_REQUIREMENT",
+      "title": "Corpus release-record requirement",
+      "statement": "The requirement that the documentary corpus release be recorded as a completeness, consistency, traceability, and freeze assertion only, with implementation, evidence acceptance, system release, and production authority explicitly withheld.",
+      "prohibited_inference": "Corpus release is not product release.",
+      "chapter_ref": "V12-32",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

@@ -48,6 +48,12 @@
       "owner": "Release Governance Authority",
       "future_blocking_gate": "EXEC-MCG",
       "required_action_or_evidence": "Evidence and resolve each House P0 finding to its release destination."
+    },
+    {
+      "id": "BLOCKER-V12-004",
+      "owner": "Executive Sponsor",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "A separately authorized implementation-authorization decision package supported by accepted evidence."
     }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "integrated_final_evidence_baseline": [
+    {
+      "id": "MODEL-V12-001",
+      "kind": "INTEGRATED_FINAL_EVIDENCE_BASELINE",
+      "title": "Integrated final-evidence, gate, acceptance, and release-definition baseline",
+      "statement": "The consolidated obligation set that unites every Volume 12 evidence, gate, acceptance, and release-decision model into one integrated baseline recording, per obligation, its source, invariant, required evidence, acceptance authority, gate destination, and current evidence, acceptance, and release status.",
+      "prohibited_inference": "Evidence requirement defined is not evidence produced is not evidence validated is not evidence accepted.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-21",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "final_evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-044",
+      "kind": "FINAL_EVIDENCE_REQUIREMENT",
+      "title": "Integrated final-evidence requirement",
+      "statement": "The requirement that each obligation in the integrated final-evidence baseline name its authoritative source, required evidence class, provenance, environment, acceptance authority, gate destination, and current evidence, acceptance, and release status.",
+      "prohibited_inference": "Evidence requirement defined is not evidence produced is not evidence validated is not evidence accepted.",
+      "chapter_ref": "V12-21",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

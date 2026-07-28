@@ -2002,3 +2002,221 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 3 — INTEGRATED FINAL-EVIDENCE, GATE, ACCEPTANCE, AND RELEASE MODELS ===
+  - id: MODEL-V12-001
+    kind: INTEGRATED_FINAL_EVIDENCE_BASELINE
+    title: Integrated final-evidence, gate, acceptance, and release-definition baseline
+    statement: The consolidated obligation set that unites every Volume 12 evidence, gate, acceptance, and release-decision model into one integrated baseline recording, per obligation, its source, invariant, required evidence, acceptance authority, gate destination, and current evidence, acceptance, and release status.
+    prohibited_inference: Evidence requirement defined is not evidence produced is not evidence validated is not evidence accepted.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-21
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-002
+    kind: WHOLE_PROGRAM_TRACEABILITY_COVERAGE
+    title: Whole-program requirement-to-evidence-to-acceptance traceability coverage
+    statement: The end-to-end trace binding every institutional outcome through requirement, use case, experience, architecture, data, work package, test, operational obligation, evidence requirement, and acceptance authority to a release gate, with every orphaned link recorded as an identified gap.
+    prohibited_inference: A requirement traced to a gate is not a requirement met, and no missing link may be silently treated as complete.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-22
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-003
+    kind: PROGRAM_GATE_MATRIX
+    title: Integrated program-gate matrix, criteria, authority, and escalation
+    statement: The complete gate hierarchy from definition through execution, evidence intake, acceptance, release authorization, deployment, and stabilization, recording each gate's criteria, evidence, decisions, authority, independence, dispositions, blocking conditions, and escalation route.
+    prohibited_inference: Earlier gate passed is not later gate passed, and definition gate is not execution authorization.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-23
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-004
+    kind: EVIDENCE_STATUS_MODEL
+    title: Evidence status, sufficiency, acceptance, expiry, and revalidation ledger
+    statement: The authoritative evidence status vocabulary and per-requirement ledger controlling evidence, validity, sufficiency, and acceptance state, scope, version, environment, configuration, expiry, and revalidation trigger.
+    prohibited_inference: Submitted is not valid, valid is not sufficient, sufficient is not accepted, and accepted is not current indefinitely.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-24
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-005
+    kind: RELEASE_BLOCKER_MODEL
+    title: Findings, waivers, conditions, commitments, and release-blocker disposition
+    statement: The integrated disposition model for every finding, gap, exception, waiver, condition, compensating control, material commitment, deferred obligation, release blocker, expired condition, and reopened finding, with allowed final dispositions and fail-closed treatment of expired conditions and unresolved blockers.
+    prohibited_inference: Waiver approved is not failed result converted to pass, and no active unresolved item may point to a completed Volume 12 gate.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-25
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-006
+    kind: FINAL_DOSSIER_MODEL
+    title: Cross-domain final-dossier composition and authoritative-source model
+    statement: The consolidated set of required final dossiers and their authoritative sources, coverage requirements, known limitations, decision authorities, and gate destinations, with generated summaries remaining non-authoritative projections.
+    prohibited_inference: Dossier defined is not dossier populated, and dossier populated is not acceptance granted.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-26
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-007
+    kind: AFFILIATION_ACCEPTANCE_SYNTHESIS
+    title: Affiliation release-candidate, acceptance, and release-decision synthesis
+    statement: The documentary acceptance synthesis for the club-affiliation vertical across its complete lifecycle, drawing together every evidence class the vertical would require without producing, accepting, or releasing any of it.
+    prohibited_inference: Affiliation evidence definition complete is not affiliation evidence available is not affiliation acceptance granted is not affiliation release authorized.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-27
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-008
+    kind: INDEPENDENCE_AND_CHALLENGE_MODEL
+    title: Independence, segregation, challenge, dissent, revocation, and reopening
+    statement: The controls that keep evidence ownership, execution, review, acceptance, independent assurance, and release authority segregated, and that govern conflict, dissent, challenge, contradiction, invalidation, revocation, and gate reopening.
+    prohibited_inference: Evidence producer is not evidence reviewer is not acceptance authority, and prior acceptance is not irrevocable acceptance.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-28
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-009
+    kind: EXECUTIVE_DECISION_MODEL
+    title: Executive decision brief and release-authorization record model
+    statement: The shape of the executive release-decision brief and release-authorization record that a future, separately authorized release decision would populate, defining the decision without taking it.
+    prohibited_inference: A decision brief is not a decision, and a release-authorization record model is not a granted release authorization.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-29
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-010
+    kind: POST_RELEASE_OBLIGATION_MODEL
+    title: Deployment, stabilization, rollback, and post-release obligation model
+    statement: The evidence and obligations that would follow a release authorization across deployment, stabilization, rollback, hypercare, and sustained post-release obligation, defining what must be shown after a release without authorizing any release or deployment.
+    prohibited_inference: Release authorized is not deployed, deployed is not functioning correctly, service available is not stabilized, and stabilized is not institutional outcomes accepted.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-30
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-011
+    kind: IMPLEMENTATION_AUTHORIZATION_HANDOFF
+    title: Program-corpus implementation-authorization handoff
+    statement: The empty governed destination defining the inputs a separate implementation-authorization decision package would require, carrying no authorization and implying no Volume 13.
+    prohibited_inference: Definition corpus complete is not implementation authorized, and master development plan complete is not funding approved is not staff assigned.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-31
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: MODEL-V12-012
+    kind: CORPUS_RELEASE_DECISION
+    title: Documentary corpus release decision
+    statement: The disciplined decision to close and publish the documentary definition corpus as complete, internally consistent, traceable, and frozen, while implementation, evidence acceptance, system release, and production authority remain explicitly withheld.
+    prohibited_inference: Corpus release is not product release, and documentary corpus release must never be represented as software release, evidence acceptance, gate passage beyond the Volume 12 definition gates, or production authorization.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-32
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

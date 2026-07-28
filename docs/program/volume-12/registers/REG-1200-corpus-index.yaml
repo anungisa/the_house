@@ -195,6 +195,102 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-20.md
     gate: V12-G2
+  - id: V12-21
+    title: Integrated Final-Evidence, Gate, Acceptance, and Release-Definition Baseline
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-21.md
+    gate: V12-G3
+  - id: V12-22
+    title: Whole-Program Requirement-to-Evidence-to-Acceptance Traceability
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-22.md
+    gate: V12-G3
+  - id: V12-23
+    title: Integrated Program-Gate Matrix, Criteria, Authority, and Escalation
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-23.md
+    gate: V12-G3
+  - id: V12-24
+    title: Evidence Status, Sufficiency, Acceptance, Expiry, and Revalidation Ledger
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-24.md
+    gate: V12-G3
+  - id: V12-25
+    title: Findings, Waivers, Conditions, Material Commitments, and Release-Blocker Disposition
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-25.md
+    gate: V12-G3
+  - id: V12-26
+    title: Cross-Domain Final-Dossier Composition and Authoritative-Source Model
+    owner: Independent Assurance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-26.md
+    gate: V12-G3
+  - id: V12-27
+    title: Affiliation Release-Candidate, Acceptance, and Release-Decision Synthesis
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-27.md
+    gate: V12-G3
+  - id: V12-28
+    title: Independence, Segregation, Challenge, Dissent, Revocation, and Reopening
+    owner: Independent Assurance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-28.md
+    gate: V12-G3
+  - id: V12-29
+    title: Executive Decision Brief and Release-Authorization Record Model
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-29.md
+    gate: V12-G3
+  - id: V12-30
+    title: Deployment, Stabilization, Rollback, and Post-Release Obligation Model
+    owner: Operational Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-30.md
+    gate: V12-G3
+  - id: V12-31
+    title: Program-Corpus Closure and Implementation-Authorization Handoff
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-31.md
+    gate: V12-G3
+  - id: V12-32
+    title: Integrated Closure, Blocker, and Release-Definition Assessment
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-32.md
+    gate: V12-G3
   - id: V12-C
     title: Package 2 Closure Record and Bounded Package 3 Authorization
     owner: Release Governance Authority

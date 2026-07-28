@@ -34,7 +34,7 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(GATE|CRITERIA|ECLASS|ACCEPT|AUTH|RELEASE|AEDOM)-V12-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(GATE|CRITERIA|ECLASS|ACCEPT|AUTH|RELEASE|AEDOM|MODEL)-V12-[0-9]{3}$" },
           "kind": { "$ref": "common.schema.json#/definitions/gateModelKind" },
           "title": { "type": "string" },
           "statement": { "type": "string" },
