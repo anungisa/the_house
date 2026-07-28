@@ -203,3 +203,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-C.md
     gate: V12-G2
+  - id: V12-D
+    title: Package 2 Post-Merge Provenance Amendment
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-D.md
+    gate: V12-G2
