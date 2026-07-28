@@ -3,6 +3,8 @@
  *
  * Mirrors db/migrations/0002_affiliation_application_v1_seed.sql so unit tests exercise
  * the identical FSM the database serves. Kept in sync by hand (single small slice).
+ * Migration 0013 additionally binds AFFILIATION_FINANCIALLY_CLEARED to `activate` and
+ * `reinstate` (financial activation gate); that binding is reflected here.
  */
 
 import { AFFILIATION_APPLICATION_ENTITY_TYPE } from '../../domains/affiliation/index.js';
@@ -45,9 +47,9 @@ const SPECS: TransitionSpec[] = [
   { trigger: 'review_start', fromState: 'submitted', toState: 'under_review', risk: 'low', evidence: false, approval: false, guards: ['ACTOR_HAS_REVIEWER_SCOPE'] },
   { trigger: 'approve', fromState: 'under_review', toState: 'approved', risk: 'high', evidence: true, approval: true, guards: ['AFFILIATION_NO_OPEN_COMPLIANCE_FLAGS', 'AFFILIATION_FEES_PAID', 'ACTOR_HAS_REVIEWER_SCOPE'] },
   { trigger: 'reject', fromState: 'under_review', toState: 'rejected', risk: 'high', evidence: true, approval: true, guards: ['ACTOR_HAS_REVIEWER_SCOPE'] },
-  { trigger: 'activate', fromState: 'approved', toState: 'active', risk: 'low', evidence: false, approval: false, guards: ['SEASON_IS_CURRENT', 'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE'] },
+  { trigger: 'activate', fromState: 'approved', toState: 'active', risk: 'low', evidence: false, approval: false, guards: ['SEASON_IS_CURRENT', 'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE', 'AFFILIATION_FINANCIALLY_CLEARED'] },
   { trigger: 'suspend', fromState: 'active', toState: 'suspended', risk: 'high', evidence: true, approval: true, guards: ['ACTOR_HAS_REVIEWER_SCOPE'] },
-  { trigger: 'reinstate', fromState: 'suspended', toState: 'active', risk: 'high', evidence: true, approval: true, guards: ['AFFILIATION_NO_OPEN_COMPLIANCE_FLAGS', 'ACTOR_HAS_REVIEWER_SCOPE', 'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE'] },
+  { trigger: 'reinstate', fromState: 'suspended', toState: 'active', risk: 'high', evidence: true, approval: true, guards: ['AFFILIATION_NO_OPEN_COMPLIANCE_FLAGS', 'ACTOR_HAS_REVIEWER_SCOPE', 'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE', 'AFFILIATION_FINANCIALLY_CLEARED'] },
   { trigger: 'revoke', fromState: 'active', toState: 'revoked', risk: 'high', evidence: true, approval: true, guards: ['ACTOR_HAS_REVIEWER_SCOPE'] },
   { trigger: 'revoke', fromState: 'suspended', toState: 'revoked', risk: 'high', evidence: true, approval: true, guards: ['ACTOR_HAS_REVIEWER_SCOPE'] },
   { trigger: 'close', fromState: 'revoked', toState: 'closed', risk: 'high', evidence: true, approval: false, guards: ['ACTOR_HAS_REVIEWER_SCOPE'] },

@@ -81,6 +81,8 @@ export const ErrorCode = {
   FACILITY_ALREADY_EXISTS: 'FACILITY_ALREADY_EXISTS',
   /** A facility's referenced organization does not exist for the tenant (covers cross-tenant orgs). */
   FACILITY_ORGANIZATION_NOT_FOUND: 'FACILITY_ORGANIZATION_NOT_FOUND',
+  /** A referenced financial obligation does not exist for the tenant. */
+  FINANCIAL_OBLIGATION_NOT_FOUND: 'FINANCIAL_OBLIGATION_NOT_FOUND',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

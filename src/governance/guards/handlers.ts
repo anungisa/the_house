@@ -35,6 +35,13 @@ export interface AffiliationGuardRepository {
    * subject and season (a uniqueness conflict). The guard FAILS when this is true.
    */
   hasConflictingActiveStanding(input: GuardEvaluationInput): Promise<boolean> | boolean;
+  /**
+   * True when the application still has AT LEAST ONE blocking financial obligation that has not
+   * reached a cleared terminal state (reconciled / waived / exempt). The guard FAILS when true.
+   * Financial clearance is a DERIVED fact from governed obligation state — never a direct flag
+   * and never equivalent to activation authorization.
+   */
+  hasUnclearedBlockingFinancialObligation(input: GuardEvaluationInput): Promise<boolean> | boolean;
 }
 
 interface AffiliationFacts {
@@ -44,6 +51,7 @@ interface AffiliationFacts {
   readonly feesPaid?: boolean;
   readonly seasonIsCurrent?: boolean;
   readonly conflictingActiveStanding?: boolean;
+  readonly unclearedBlockingFinancialObligation?: boolean;
 }
 
 const REVIEWER_ROLES: ReadonlySet<string> = new Set(['reviewer', 'approver', 'admin']);
@@ -85,8 +93,11 @@ export class PayloadBackedAffiliationGuardRepository implements AffiliationGuard
     // Defaults to "no conflict" when unspecified; only an explicit true blocks.
     return readFacts(input).conflictingActiveStanding === true;
   }
+  hasUnclearedBlockingFinancialObligation(input: GuardEvaluationInput): boolean {
+    // Defaults to "cleared" (no uncleared obligation) when unspecified; only an explicit true blocks.
+    return readFacts(input).unclearedBlockingFinancialObligation === true;
+  }
 }
-
 function pass(code: string): GuardEvaluationResult {
   return { guardCode: code, passed: true };
 }
@@ -148,6 +159,14 @@ export function createAffiliationGuardHandlers(
             'Another application already holds active standing for this organization scope and season.',
           )
         : pass('AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE'),
+
+    AFFILIATION_FINANCIALLY_CLEARED: async (input) =>
+      (await repo.hasUnclearedBlockingFinancialObligation(input))
+        ? fail(
+            'AFFILIATION_FINANCIALLY_CLEARED',
+            'The application has unresolved blocking financial obligations.',
+          )
+        : pass('AFFILIATION_FINANCIALLY_CLEARED'),
   };
 }
 

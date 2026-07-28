@@ -12,6 +12,7 @@ import type {
   AuditEventInput,
   GuardEvaluationResult,
   TransitionActor,
+  TransitionContext,
 } from '../types/TransitionTypes.js';
 import type { WorkflowInstanceInsert, WorkflowStepInsert } from '../workflow/WorkflowTypes.js';
 
@@ -288,6 +289,81 @@ export interface GovernanceTx {
 
   /** Insert the ordered review steps for a workflow instance, in the same transaction. */
   insertWorkflowSteps(inputs: readonly WorkflowStepInsert[]): Promise<void>;
+
+  /**
+   * Escape hatch for a registered {@link TransitionDomainEffect} to write DOMAIN facts in the
+   * SAME governed transaction (so domain writes commit/rollback atomically with the governed
+   * state mutation, journal, audit, evidence, and outbox). Returns a query client bound to the
+   * governed transaction's connection (tenant context / RLS already applied).
+   *
+   * Only the PostgreSQL store implements this. The in-memory store OMITS it (its domain
+   * effects write to an injected in-memory domain store instead), so a domain effect must be
+   * written to work against BOTH: use `tx.raw?.()` and branch on its presence.
+   */
+  raw?(): DomainEffectQueryClient;
+}
+
+// -----------------------------------------------------------------------------
+// Transition domain-effect port — a per-entity-type hook that persists DOMAIN
+// facts atomically with the governed transition (inside the kernel transaction).
+// -----------------------------------------------------------------------------
+
+/**
+ * Minimal query client a PostgreSQL-backed {@link TransitionDomainEffect} uses to write its
+ * domain tables through the governed transaction's own connection. Structurally satisfied by
+ * the db layer's QueryClient; declared here so the kernel port stays decoupled from the pg
+ * driver and the db module.
+ */
+export interface DomainEffectQueryClient {
+  query<T extends Record<string, unknown> = Record<string, unknown>>(
+    sql: string,
+    params?: readonly unknown[],
+  ): Promise<T[]>;
+}
+
+/** The governed transition context handed to a domain effect (read-only). */
+export interface DomainEffectContext {
+  readonly tenantId: string;
+  readonly entityType: string;
+  readonly entityId: string;
+  readonly trigger: string;
+  readonly fromState: string;
+  readonly toState: string;
+  /** The id of the immutable state_transition journal row just appended for this transition. */
+  readonly stateTransitionId: string;
+  readonly actor: TransitionActor;
+  readonly context: TransitionContext;
+  /** The opaque domain payload supplied with the transition (command inputs). */
+  readonly payload: Readonly<Record<string, unknown>>;
+}
+
+/** Optional outputs a domain effect contributes back to the governed transition. */
+export interface DomainEffectResult {
+  /**
+   * Fragment merged into the governance evidence manifest under `domainEffect` when the
+   * transition creates evidence metadata (evidence-required transitions). Ignored for
+   * low-risk transitions that create no evidence object.
+   */
+  readonly evidenceManifest?: Readonly<Record<string, unknown>>;
+}
+
+/**
+ * A per-entity-type hook that persists DOMAIN facts atomically with a governed transition.
+ *
+ * The kernel invokes the effect registered for the transition's entity type INSIDE the
+ * governed transaction, ONLY on the executed (state-mutating) branch, AFTER the immutable
+ * state_transition journal row is appended and BEFORE evidence/outbox are written. This is the
+ * seam that lets a DOMAIN record rich facts (amounts, references, reconciliation outcomes)
+ * transactionally with the kernel-owned state — without the domain-agnostic kernel knowing the
+ * domain's schema, and without the domain mutating governed state directly.
+ *
+ * Effects MUST be idempotent-safe within a single transition (the kernel calls them at most
+ * once per fresh execution; idempotent replays never re-invoke the effect) and MUST NOT
+ * perform external side effects (those go through the outbox). Registered per entity type on
+ * the kernel; absent → transitions behave exactly as before.
+ */
+export interface TransitionDomainEffect {
+  apply(tx: GovernanceTx, ctx: DomainEffectContext): Promise<DomainEffectResult | void>;
 }
 
 // -----------------------------------------------------------------------------

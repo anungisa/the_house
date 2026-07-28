@@ -77,6 +77,8 @@ export class GuardRegistry {
  *  - ACTOR_HAS_REVIEWER_SCOPE              : actor holds reviewer scope for this entity
  *  - AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE   : no other application already holds active
  *                                            standing for the same scope and season
+ *  - AFFILIATION_FINANCIALLY_CLEARED       : every blocking financial obligation for the
+ *                                            application is in a cleared terminal state
  */
 export const AFFILIATION_GUARD_CODES = [
   'AFFILIATION_REQUIRED_FIELDS_COMPLETE',
@@ -86,6 +88,22 @@ export const AFFILIATION_GUARD_CODES = [
   'SEASON_IS_CURRENT',
   'ACTOR_HAS_REVIEWER_SCOPE',
   'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE',
+  'AFFILIATION_FINANCIALLY_CLEARED',
 ] as const;
 
 export type AffiliationGuardCode = (typeof AFFILIATION_GUARD_CODES)[number];
+
+/**
+ * Required AffiliationFinancialObligation v1 guard codes (persisted-fact preconditions only;
+ * authority is enforced by the FinancialObligationPermissionChecker, not by guards):
+ *  - FINANCIAL_ACCOUNTING_CONFIRMED : an accounting confirmation exists for the obligation
+ *  - FINANCIAL_AMOUNTS_MATCH        : the confirmed amount equals the assessed amount
+ *  - FINANCIAL_AMOUNTS_DIFFER       : the confirmed amount differs from the assessed amount
+ */
+export const FINANCIAL_GUARD_CODES = [
+  'FINANCIAL_ACCOUNTING_CONFIRMED',
+  'FINANCIAL_AMOUNTS_MATCH',
+  'FINANCIAL_AMOUNTS_DIFFER',
+] as const;
+
+export type FinancialGuardCode = (typeof FINANCIAL_GUARD_CODES)[number];
