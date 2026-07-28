@@ -39,11 +39,22 @@ import {
   PgFinancialObligationStore,
   FinancialObligationService,
 } from '../domains/affiliation-finance/index.js';
+import {
+  AFFILIATION_STANDING_ENTITY_TYPE,
+  AffiliationStandingSerializationResolver,
+  AffiliationStandingService,
+  DomainBackedStandingGuardRepository,
+  PgAffiliationStandingEffect,
+  PgAffiliationStandingStore,
+} from '../domains/affiliation-standing/index.js';
 import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { registerFinancialObligationGuards } from '../governance/guards/financialHandlers.js';
+import { registerStandingGuards } from '../governance/guards/standingHandlers.js';
 import { DefaultPermissionChecker } from '../governance/permissions/PermissionChecker.js';
 import { FinancialObligationPermissionChecker } from '../governance/permissions/FinancialObligationPermissionChecker.js';
+import { StandingPermissionChecker } from '../governance/permissions/StandingPermissionChecker.js';
+import { systemClock } from '../shared/time/clock.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
 import type { TransitionSerializationKeyResolver } from '../governance/kernel/ports.js';
 import type { TransitionDomainEffect } from '../governance/kernel/ports.js';
@@ -105,6 +116,7 @@ export function createPgGovernanceKernel(): GovernanceKernel {
   const registry = new GuardRegistry();
   const affiliationStore = new PgAffiliationApplicationStore();
   const financialStore = new PgFinancialObligationStore();
+  const standingStore = new PgAffiliationStandingStore();
 
   // Affiliation guards gain the finance clearance reader so activation observes financial state.
   registerAffiliationGuards(
@@ -116,6 +128,11 @@ export function createPgGovernanceKernel(): GovernanceKernel {
     registry,
     new DomainBackedFinancialGuardRepository(financialStore),
   );
+  // Standing term/renewal-window guards read the persisted effective period against the clock.
+  registerStandingGuards(
+    registry,
+    new DomainBackedStandingGuardRepository(standingStore, systemClock),
+  );
 
   const serializationKeyResolvers = new Map<string, TransitionSerializationKeyResolver>([
     [
@@ -126,26 +143,40 @@ export function createPgGovernanceKernel(): GovernanceKernel {
       AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE,
       new FinancialObligationSerializationResolver(),
     ],
+    [AFFILIATION_STANDING_ENTITY_TYPE, new AffiliationStandingSerializationResolver()],
   ]);
 
-  // Financial facts persist atomically with the governed transition via the kernel effect port.
+  // Financial + standing facts persist atomically with the governed transition via the effect port.
   const domainEffects = new Map<string, TransitionDomainEffect>([
     [AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE, new PgFinancialObligationEffect()],
+    [AFFILIATION_STANDING_ENTITY_TYPE, new PgAffiliationStandingEffect()],
   ]);
 
   return new GovernanceKernel({
     store: new PgGovernanceStore(),
     guards: registry,
     workflowPlanner: new AffiliationWorkflowPlanner(),
-    // Segregated financial authority for AffiliationFinancialObligation; default reviewer-class
-    // policy for every other entity type.
-    permissions: new FinancialObligationPermissionChecker(new DefaultPermissionChecker()),
+    // Segregated financial authority for AffiliationFinancialObligation and segregated standing
+    // authority for AffiliationStanding; default reviewer-class policy for every other entity type.
+    permissions: new StandingPermissionChecker(
+      new FinancialObligationPermissionChecker(new DefaultPermissionChecker()),
+    ),
     // Exactly-once activation: serialize concurrent transitions that grant ACTIVE affiliation
-    // standing (activate / reinstate) per tenant + subject + season, and concurrent reconciliation
-    // of ONE financial obligation, via transaction-scoped advisory locks.
+    // standing (activate / reinstate) per tenant + subject + season, concurrent reconciliation of
+    // ONE financial obligation, and concurrent renewal/expiry of ONE standing, via
+    // transaction-scoped advisory locks.
     serializationKeyResolvers,
     domainEffects,
   });
+}
+
+/**
+ * Build the production-intended {@link AffiliationStandingService} backed by PostgreSQL. Shares the
+ * SAME kernel wiring as the affiliation and finance services (guards, effects, serialization,
+ * authority). Standing facts persist atomically with the governed transition.
+ */
+export function createPgAffiliationStandingService(): AffiliationStandingService {
+  return new AffiliationStandingService(createPgGovernanceKernel());
 }
 
 /**
@@ -346,6 +377,7 @@ export function createPgAffiliationHttpServer(
   return createAffiliationHttpServer({
     executor: createPgAffiliationApplicationService(),
     financialExecutor: createPgFinancialObligationService(),
+    standingExecutor: createPgAffiliationStandingService(),
     resolver: createAuthContextResolver(config),
     telemetry,
     evidence: createEvidenceHttpDeps(telemetry),

@@ -83,6 +83,8 @@ export const ErrorCode = {
   FACILITY_ORGANIZATION_NOT_FOUND: 'FACILITY_ORGANIZATION_NOT_FOUND',
   /** A referenced financial obligation does not exist for the tenant. */
   FINANCIAL_OBLIGATION_NOT_FOUND: 'FINANCIAL_OBLIGATION_NOT_FOUND',
+  /** A referenced affiliation standing does not exist for the tenant. */
+  AFFILIATION_STANDING_NOT_FOUND: 'AFFILIATION_STANDING_NOT_FOUND',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
