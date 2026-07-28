@@ -158,4 +158,15 @@ export class InMemoryAffiliationApplicationStore implements AffiliationApplicati
     }
     return false;
   }
+
+  async getActiveStandingSubject(
+    tenantId: string,
+    applicationId: string,
+  ): Promise<{ readonly subject: string; readonly seasonId: string } | undefined> {
+    const me = await this.getApplicationFacts(tenantId, applicationId);
+    if (me === undefined) return undefined;
+    const subject = me.scopeId ?? me.localOrganizationId ?? me.organizationId;
+    if (subject === undefined) return undefined;
+    return { subject, seasonId: me.seasonId };
+  }
 }

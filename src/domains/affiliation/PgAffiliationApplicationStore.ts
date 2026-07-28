@@ -184,4 +184,24 @@ export class PgAffiliationApplicationStore implements AffiliationApplicationStor
       return (rows[0]?.n ?? 0) > 0;
     });
   }
+
+  getActiveStandingSubject(
+    tenantId: string,
+    applicationId: string,
+  ): Promise<{ readonly subject: string; readonly seasonId: string } | undefined> {
+    return withTenantTransaction(tenantId, async (client: QueryClient) => {
+      // Subject definition MUST match hasConflictingActiveAffiliation() so the serialization
+      // key and the uniqueness guard agree on the governed scope.
+      const rows = await client.query<{ subject: string | null; season_id: string }>(
+        `SELECT COALESCE(scope_id, local_organization_id, organization_id) AS subject,
+                season_id
+           FROM affiliation.affiliation_application
+          WHERE id = $1`,
+        [applicationId],
+      );
+      const row = rows[0];
+      if (row === undefined || row.subject === null) return undefined;
+      return { subject: row.subject, seasonId: row.season_id };
+    });
+  }
 }

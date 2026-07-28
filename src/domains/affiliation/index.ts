@@ -114,3 +114,4 @@ export type {
 export { InMemoryAffiliationApplicationStore } from './InMemoryAffiliationApplicationStore.js';
 export { PgAffiliationApplicationStore } from './PgAffiliationApplicationStore.js';
 export { DomainBackedAffiliationGuardRepository } from './DomainBackedAffiliationGuardRepository.js';
+export { AffiliationActiveStandingSerializationResolver } from './AffiliationActiveStandingSerializationResolver.js';

@@ -11,6 +11,7 @@ import { buildAffiliationSeed } from '../../src/governance/store/affiliationSeed
 import { fixedClock } from '../../src/shared/time/clock.js';
 import type { IdGenerator } from '../../src/shared/uuid/id.js';
 import type { WorkflowPlanner } from '../../src/governance/workflow/WorkflowPlanner.js';
+import type { TransitionSerializationKeyResolver } from '../../src/governance/kernel/ports.js';
 import type {
   TransitionActor,
   TransitionContext,
@@ -48,6 +49,7 @@ export function buildKernelHarness(
     registerGuards?: boolean;
     guardRepo?: AffiliationGuardRepository;
     workflowPlanner?: WorkflowPlanner;
+    serializationKeyResolvers?: ReadonlyMap<string, TransitionSerializationKeyResolver>;
   } = {},
 ): KernelHarness {
   const clock = fixedClock(1_700_000_000_000);
@@ -75,6 +77,9 @@ export function buildKernelHarness(
     clock,
     outboxMaxRetries: 5,
     ...(options.workflowPlanner !== undefined ? { workflowPlanner: options.workflowPlanner } : {}),
+    ...(options.serializationKeyResolvers !== undefined
+      ? { serializationKeyResolvers: options.serializationKeyResolvers }
+      : {}),
   });
   return { kernel, store, outbox, registry, tenantId: TENANT };
 }

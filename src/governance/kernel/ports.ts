@@ -201,6 +201,21 @@ export interface MarkTransitionRequestExecutedInput {
 // -----------------------------------------------------------------------------
 
 export interface GovernanceTx {
+  /**
+   * Acquire a TRANSACTION-SCOPED PostgreSQL advisory lock (`pg_advisory_xact_lock`) on the
+   * governed transaction's own connection, keyed by an opaque string. The lock is held for
+   * the remainder of the transaction and released automatically on COMMIT or ROLLBACK — so it
+   * serializes concurrent governed transitions that share the same key while remaining bound
+   * to the SAME transaction as the authoritative state mutation and outbox enqueue.
+   *
+   * The kernel is domain-agnostic: it only acquires whatever opaque keys a registered
+   * {@link TransitionSerializationKeyResolver} returns. The in-memory store implements this as
+   * a no-op (its transactions are not truly concurrent); the concurrency invariant is proven
+   * against PostgreSQL. Keys MUST be globally unique across tenants (advisory locks are
+   * cluster-global) — include the tenant id in the key.
+   */
+  acquireSerializationLock(key: string): Promise<void>;
+
   /** Resolve the active state machine for an entity type (global or tenant). */
   loadActiveStateMachine(entityType: string): Promise<StateMachineRow | undefined>;
 
@@ -299,6 +314,37 @@ export interface GovernanceStore {
 
   /** Run `fn` inside a transaction with tenant context (RLS) applied. */
   runInTransaction<T>(tenantId: string, fn: (tx: GovernanceTx) => Promise<T>): Promise<T>;
+}
+
+// -----------------------------------------------------------------------------
+// Transition serialization port — domain-supplied concurrency keys the kernel
+// locks (transaction-scoped) before evaluating guards and mutating state.
+// -----------------------------------------------------------------------------
+
+/** The transition being resolved, as seen by a serialization-key resolver. */
+export interface TransitionSerializationInput {
+  readonly tenantId: string;
+  readonly entityType: string;
+  readonly entityId: string;
+  readonly trigger: string;
+  readonly fromState: string;
+  readonly toState: string;
+}
+
+/**
+ * Resolves the transaction-scoped advisory lock keys that must be acquired before a governed
+ * transition evaluates its guards and mutates state. This is the seam that lets a DOMAIN
+ * declare a concurrency-serialization scope (e.g. "one ACTIVE affiliation standing per
+ * tenant + subject + season") WITHOUT the domain-agnostic kernel knowing the domain's rules.
+ *
+ * Registered per entity type on the kernel. Implementations MUST be read-only and
+ * deterministic: the same transition resolves to the same key(s). Returning an empty array
+ * means "no serialization required for this transition". Keys must incorporate the tenant id
+ * (advisory locks are cluster-global). Derive keys only from IMMUTABLE facts so that two
+ * racing transitions for the same governed scope compute an identical key.
+ */
+export interface TransitionSerializationKeyResolver {
+  resolveKeys(input: TransitionSerializationInput): Promise<readonly string[]>;
 }
 
 // -----------------------------------------------------------------------------

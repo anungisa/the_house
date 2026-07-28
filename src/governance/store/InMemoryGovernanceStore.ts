@@ -221,6 +221,12 @@ class InMemoryGovernanceTx implements GovernanceTx {
     private readonly ids: IdGenerator,
   ) {}
 
+  acquireSerializationLock(_key: string): Promise<void> {
+    // No-op: in-memory transactions are not truly concurrent, so there is nothing to
+    // serialize. The transaction-scoped advisory lock invariant is proven against PostgreSQL.
+    return Promise.resolve();
+  }
+
   loadActiveStateMachine(entityType: string): Promise<StateMachineRow | undefined> {
     return Promise.resolve(this.data.stateMachines.find((m) => m.entityType === entityType));
   }
