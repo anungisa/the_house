@@ -160,6 +160,26 @@ export interface AffiliationReviewCase {
   }[];
 }
 
+export interface AffiliationDecisionState {
+  readonly workflowInstanceId: string;
+  readonly outcome: 'approve' | 'reject';
+  readonly status: 'pending' | 'approved' | 'rejected' | 'cancelled';
+  readonly currentStepCode?: string;
+  readonly executable: boolean;
+  readonly executed: boolean;
+  readonly steps: readonly {
+    readonly stepCode: string;
+    readonly stepOrder: number;
+    readonly reviewTier: 'regional_review' | 'national_review';
+    readonly required: boolean;
+    readonly status: 'pending' | 'approved' | 'rejected' | 'skipped';
+    readonly assignedRoleKey?: string;
+    readonly decidedByUserId?: string;
+    readonly decidedAt?: string;
+    readonly decisionReason?: string;
+  }[];
+}
+
 export interface CorrectionReason {
   readonly requirementCode: string;
   readonly reason: string;

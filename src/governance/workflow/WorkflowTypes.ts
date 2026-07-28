@@ -119,6 +119,8 @@ export interface WorkflowInstanceSummaryView {
   readonly currentStepCode?: string;
   readonly createdAt: string;
   readonly updatedAt: string;
+  /** Lifecycle state requested by the governing transition. */
+  readonly requestedToState?: string;
   /** Whether the governing transition request has already been consumed/executed. */
   readonly executed: boolean;
 }

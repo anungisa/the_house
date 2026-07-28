@@ -18,6 +18,8 @@ export const affiliationKeys = {
   reviewQueue: () => ['affiliation', 'review-queue'] as const,
   reviewCase: (applicationId: string) =>
     ['affiliation', 'review-case', applicationId] as const,
+  decisionState: (applicationId: string) =>
+    ['affiliation', 'decision-state', applicationId] as const,
   submissionState: (applicationId: string) =>
     ['affiliation', 'submission-state', applicationId] as const,
 };
@@ -197,6 +199,72 @@ export function useOpenAffiliationCorrection(applicationId: string) {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() });
       void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewCase(applicationId) });
+    },
+  });
+}
+
+export function useAffiliationDecisionState(applicationId: string | undefined) {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.decisionState(applicationId ?? ''),
+    enabled: applicationId !== undefined,
+    queryFn: () => {
+      if (client.getDecisionState === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Decision workflow is unavailable.');
+      }
+      return client.getDecisionState(applicationId!);
+    },
+    retry: retryTransient,
+  });
+}
+
+export function useProposeAffiliationDecision(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (input: { outcome: 'approve' | 'reject'; reason: string }) => {
+      if (client.proposeDecision === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Decision proposal is unavailable.');
+      }
+      return client.proposeDecision(applicationId, input.outcome, input.reason);
+    },
+    onSuccess: (state) =>
+      queryClient.setQueryData(affiliationKeys.decisionState(applicationId), state),
+  });
+}
+
+export function useRecordAffiliationTierDecision(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (input: {
+      state: import('../api/affiliationTypes').AffiliationDecisionState;
+      decision: 'approve' | 'reject';
+      reason: string;
+    }) => {
+      if (client.decideTier === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Tier decision is unavailable.');
+      }
+      return client.decideTier(applicationId, input.state, input.decision, input.reason);
+    },
+    onSuccess: (state) =>
+      queryClient.setQueryData(affiliationKeys.decisionState(applicationId), state),
+  });
+}
+
+export function useExecuteAffiliationDecision(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (state: import('../api/affiliationTypes').AffiliationDecisionState) => {
+      if (client.executeDecision === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Decision execution is unavailable.');
+      }
+      return client.executeDecision(applicationId, state);
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.decisionState(applicationId) });
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() });
     },
   });
 }

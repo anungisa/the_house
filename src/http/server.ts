@@ -115,12 +115,19 @@ import {
   type ButtonAffiliationHttpResult,
 } from './button/affiliation/index.js';
 import {
+  handleAffiliationDecisionExecute,
+  handleAffiliationDecisionProposal,
+  handleAffiliationDecisionState,
+  handleAffiliationTierDecision,
   handleAffiliationReviewCase,
   handleAffiliationReviewQueue,
   handleAffiliationReviewStart,
   type ButtonAffiliationReviewHttpResult,
 } from './button/review/index.js';
-import type { AffiliationReviewService } from '../domains/affiliation-review/index.js';
+import type {
+  AffiliationDecisionService,
+  AffiliationReviewService,
+} from '../domains/affiliation-review/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -249,6 +256,8 @@ export interface AffiliationHttpServerDeps {
   readonly buttonAffiliation?: ButtonAffiliationHttpDeps;
   /** Optional resource-scoped affiliation reviewer queue and review-start command surface. */
   readonly buttonReview?: AffiliationReviewService;
+  /** Optional assigned-case affiliation decision orchestration surface. */
+  readonly buttonDecision?: AffiliationDecisionService;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -304,6 +313,14 @@ const BUTTON_AFFILIATION_REVIEW_START_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-start\/?$/;
 const BUTTON_AFFILIATION_REVIEW_CASE_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-case\/?$/;
+const BUTTON_AFFILIATION_DECISION_STATE_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/decision-state\/?$/;
+const BUTTON_AFFILIATION_DECISION_PROPOSAL_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/decision-proposals\/?$/;
+const BUTTON_AFFILIATION_TIER_DECISION_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/tier-decisions\/?$/;
+const BUTTON_AFFILIATION_DECISION_EXECUTE_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/decision-executions\/?$/;
 
 /** GET list of quarantine events (exact path). */
 const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
@@ -913,6 +930,7 @@ async function handleButtonAffiliationRoute(
   res: ServerResponse,
   buttonAffiliation: ButtonAffiliationHttpDeps,
   buttonReview: AffiliationReviewService | undefined,
+  buttonDecision: AffiliationDecisionService | undefined,
   path: string,
   requestId: string,
   resolver: AuthContextResolver | undefined,
@@ -921,6 +939,56 @@ async function handleButtonAffiliationRoute(
   const method = req.method ?? 'GET';
   const headers = headerMap(req);
   const query = queryMap(req.url);
+
+  const decisionRoutes: ReadonlyArray<{
+    route: RegExp;
+    method: 'GET' | 'POST';
+    handler: typeof handleAffiliationDecisionState;
+  }> = [
+    {
+      route: BUTTON_AFFILIATION_DECISION_STATE_ROUTE,
+      method: 'GET',
+      handler: handleAffiliationDecisionState,
+    },
+    {
+      route: BUTTON_AFFILIATION_DECISION_PROPOSAL_ROUTE,
+      method: 'POST',
+      handler: handleAffiliationDecisionProposal,
+    },
+    {
+      route: BUTTON_AFFILIATION_TIER_DECISION_ROUTE,
+      method: 'POST',
+      handler: handleAffiliationTierDecision,
+    },
+    {
+      route: BUTTON_AFFILIATION_DECISION_EXECUTE_ROUTE,
+      method: 'POST',
+      handler: handleAffiliationDecisionExecute,
+    },
+  ];
+  for (const decisionRoute of decisionRoutes) {
+    const match = decisionRoute.route.exec(path);
+    if (match === null) continue;
+    if (buttonDecision === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== decisionRoute.method) {
+      return methodNotAllowed(res, decisionRoute.method, requestId);
+    }
+    const body = method === 'POST' ? await readJsonBody(req, maxBodyBytes) : undefined;
+    return sendButtonReview(
+      res,
+      await decisionRoute.handler(
+        buttonDecision,
+        { headers, query, params: { applicationId: match[1] }, body },
+        requestId,
+        resolver,
+      ),
+    );
+  }
 
   if (path === BUTTON_AFFILIATION_REVIEW_QUEUE_PATH) {
     if (buttonReview === undefined) {
@@ -1871,6 +1939,7 @@ async function handleRequest(
       res,
       deps.buttonAffiliation,
       deps.buttonReview,
+      deps.buttonDecision,
       path,
       requestId,
       deps.resolver,

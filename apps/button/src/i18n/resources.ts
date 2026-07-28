@@ -88,6 +88,26 @@ const en = {
   'review.case.correctionSent': 'Correction request sent. The selected requirement is now editable by the applicant.',
   'review.case.correctionError':
     'The correction request could not be sent. Reload the case and try again.',
+  'review.decision.heading': 'Governed decision',
+  'review.decision.intro':
+    'Propose an outcome for two-tier review. Reviewer sign-off and lifecycle execution remain separate audited actions.',
+  'review.decision.outcome': 'Proposed outcome',
+  'review.decision.approve': 'Approve affiliation',
+  'review.decision.reject': 'Reject affiliation',
+  'review.decision.reason': 'Decision rationale',
+  'review.decision.propose': 'Create decision workflow',
+  'review.decision.proposing': 'Creating workflow\u2026',
+  'review.decision.pending': 'Two-tier review is in progress.',
+  'review.decision.currentStep': 'Current review tier: {step}',
+  'review.decision.support': 'Support proposed outcome',
+  'review.decision.oppose': 'Reject proposed outcome',
+  'review.decision.recording': 'Recording decision\u2026',
+  'review.decision.approved': 'Both review tiers approved the proposed outcome.',
+  'review.decision.rejected': 'The proposed outcome was rejected during review.',
+  'review.decision.execute': 'Execute governed outcome',
+  'review.decision.executing': 'Executing outcome\u2026',
+  'review.decision.executed': 'Governed outcome executed. Lifecycle state: {state}.',
+  'review.decision.error': 'The governed decision action could not be completed.',
 
   'affiliation.correction.heading': 'Correction requested',
   'affiliation.correction.intro':
@@ -306,6 +326,26 @@ const fr: Record<TranslationKey, string> = {
     'Demande de correction envoy\u00e9e. L\u2019exigence s\u00e9lectionn\u00e9e peut maintenant \u00eatre modifi\u00e9e.',
   'review.case.correctionError':
     'La demande de correction n\u2019a pas pu \u00eatre envoy\u00e9e. Rechargez le dossier et r\u00e9essayez.',
+  'review.decision.heading': 'D\u00e9cision gouvern\u00e9e',
+  'review.decision.intro':
+    'Proposez un r\u00e9sultat pour l\u2019examen \u00e0 deux niveaux. L\u2019approbation et l\u2019ex\u00e9cution du cycle de vie demeurent des actions audit\u00e9es distinctes.',
+  'review.decision.outcome': 'R\u00e9sultat propos\u00e9',
+  'review.decision.approve': 'Approuver l\u2019affiliation',
+  'review.decision.reject': 'Refuser l\u2019affiliation',
+  'review.decision.reason': 'Justification de la d\u00e9cision',
+  'review.decision.propose': 'Cr\u00e9er le processus d\u00e9cisionnel',
+  'review.decision.proposing': 'Cr\u00e9ation du processus\u2026',
+  'review.decision.pending': 'L\u2019examen \u00e0 deux niveaux est en cours.',
+  'review.decision.currentStep': 'Niveau d\u2019examen actuel : {step}',
+  'review.decision.support': 'Appuyer le r\u00e9sultat propos\u00e9',
+  'review.decision.oppose': 'Rejeter le r\u00e9sultat propos\u00e9',
+  'review.decision.recording': 'Enregistrement de la d\u00e9cision\u2026',
+  'review.decision.approved': 'Les deux niveaux ont approuv\u00e9 le r\u00e9sultat propos\u00e9.',
+  'review.decision.rejected': 'Le r\u00e9sultat propos\u00e9 a \u00e9t\u00e9 rejet\u00e9 pendant l\u2019examen.',
+  'review.decision.execute': 'Ex\u00e9cuter le r\u00e9sultat gouvern\u00e9',
+  'review.decision.executing': 'Ex\u00e9cution du r\u00e9sultat\u2026',
+  'review.decision.executed': '\u00c9tat gouvern\u00e9 ex\u00e9cut\u00e9. \u00c9tat du cycle de vie : {state}.',
+  'review.decision.error': 'L\u2019action de d\u00e9cision gouvern\u00e9e n\u2019a pas pu \u00eatre effectu\u00e9e.',
 
   'affiliation.correction.heading': 'Correction demand\u00e9e',
   'affiliation.correction.intro':

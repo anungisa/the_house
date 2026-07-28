@@ -66,11 +66,13 @@ const INSTANCE_COLUMNS = `id, tenant_id, transition_request_id, entity_type, ent
 type SummaryRow = InstanceRow & {
   created_at: string;
   updated_at: string;
+  requested_to_state: string | null;
   executed: boolean;
 };
 
 const SUMMARY_COLUMNS = `wi.id, wi.tenant_id, wi.transition_request_id, wi.entity_type,
   wi.entity_id, wi.workflow_type, wi.status, wi.current_step_code, wi.created_at, wi.updated_at,
+  tr.requested_to_state,
   COALESCE(tr.status = 'executed', false) AS executed`;
 
 function clampLimit(requested: number | undefined): number {
@@ -93,6 +95,7 @@ function toSummaryView(r: SummaryRow): WorkflowInstanceSummaryView {
     ...(r.current_step_code !== null ? { currentStepCode: r.current_step_code } : {}),
     createdAt: r.created_at,
     updatedAt: r.updated_at,
+    ...(r.requested_to_state !== null ? { requestedToState: r.requested_to_state } : {}),
     executed: r.executed,
   };
 }

@@ -309,7 +309,15 @@ export class ButtonContextService {
     }
     if (
       actor.roleKeys.some((role) =>
-        ['reviewer', 'approver', 'admin', 'platform_admin'].includes(role),
+        [
+          'reviewer',
+          'approver',
+          'regional_reviewer',
+          'national_reviewer',
+          'workflow_admin',
+          'admin',
+          'platform_admin',
+        ].includes(role),
       )
     ) {
       capabilities.push(ButtonCapability.ReviewAffiliation);

@@ -22,6 +22,7 @@ import {
   type SubmissionReceipt,
   type AffiliationReviewQueueItem,
   type AffiliationReviewCase,
+  type AffiliationDecisionState,
   type CorrectionReason,
   type CorrectionRequestView,
   type AffiliationSubmissionState,
@@ -83,6 +84,22 @@ export interface AffiliationApiClient {
     applicationId: string,
     reasons: readonly CorrectionReason[],
   ): Promise<CorrectionRequestView>;
+  getDecisionState?(applicationId: string): Promise<AffiliationDecisionState | null>;
+  proposeDecision?(
+    applicationId: string,
+    outcome: 'approve' | 'reject',
+    reason: string,
+  ): Promise<AffiliationDecisionState>;
+  decideTier?(
+    applicationId: string,
+    state: AffiliationDecisionState,
+    decision: 'approve' | 'reject',
+    reason: string,
+  ): Promise<AffiliationDecisionState>;
+  executeDecision?(
+    applicationId: string,
+    state: AffiliationDecisionState,
+  ): Promise<{ lifecycleState: string; idempotentReplay: boolean }>;
   getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
   resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
@@ -302,6 +319,76 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
     );
   }
 
+  async getDecisionState(applicationId: string): Promise<AffiliationDecisionState | null> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/decision-state`,
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { decisionState: AffiliationDecisionState | null }).decisionState,
+    );
+  }
+
+  async proposeDecision(
+    applicationId: string,
+    outcome: 'approve' | 'reject',
+    reason: string,
+  ): Promise<AffiliationDecisionState> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/decision-proposals`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'idempotency-key': `decision-proposal-${applicationId}-${outcome}`,
+        },
+        body: JSON.stringify({ outcome, reason }),
+      },
+      (body) => (body as { decisionState: AffiliationDecisionState }).decisionState,
+    );
+  }
+
+  async decideTier(
+    applicationId: string,
+    state: AffiliationDecisionState,
+    decision: 'approve' | 'reject',
+    reason: string,
+  ): Promise<AffiliationDecisionState> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/tier-decisions`,
+      {
+        method: 'POST',
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+        body: JSON.stringify({
+          workflowInstanceId: state.workflowInstanceId,
+          stepCode: state.currentStepCode,
+          decision,
+          reason,
+        }),
+      },
+      (body) => (body as { decisionState: AffiliationDecisionState }).decisionState,
+    );
+  }
+
+  async executeDecision(
+    applicationId: string,
+    state: AffiliationDecisionState,
+  ): Promise<{ lifecycleState: string; idempotentReplay: boolean }> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/decision-executions`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'idempotency-key': `decision-execution-${state.workflowInstanceId}`,
+        },
+        body: JSON.stringify({ workflowInstanceId: state.workflowInstanceId }),
+      },
+      (body) =>
+        (body as { execution: { lifecycleState: string; idempotentReplay: boolean } }).execution,
+    );
+  }
+
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
     return this.request(
       `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/submission-state`,
@@ -345,6 +432,7 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
     },
   ];
   constructor(private readonly store: AffiliationMockStore = new AffiliationMockStore()) {}
+  private decisionState: AffiliationDecisionState | null = null;
 
   async getOverview(input: GetOverviewInput): Promise<AffiliationOverview> {
     return this.store.overview(input.organizationId, input.season, input.pathway ?? 'new_affiliation');
@@ -461,6 +549,76 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
       reasons,
       openedAt: '2026-01-15T00:10:00.000Z',
     };
+  }
+
+  async getDecisionState(): Promise<AffiliationDecisionState | null> {
+    return this.decisionState;
+  }
+
+  async proposeDecision(
+    _applicationId: string,
+    outcome: 'approve' | 'reject',
+  ): Promise<AffiliationDecisionState> {
+    this.decisionState = {
+      workflowInstanceId: 'workflow-review-1',
+      outcome,
+      status: 'pending',
+      currentStepCode: 'regional_signoff',
+      executable: false,
+      executed: false,
+      steps: [
+        {
+          stepCode: 'regional_signoff',
+          stepOrder: 1,
+          reviewTier: 'regional_review',
+          required: true,
+          status: 'pending',
+          assignedRoleKey: 'regional_reviewer',
+        },
+        {
+          stepCode: 'national_signoff',
+          stepOrder: 2,
+          reviewTier: 'national_review',
+          required: true,
+          status: 'pending',
+          assignedRoleKey: 'national_reviewer',
+        },
+      ],
+    };
+    return this.decisionState;
+  }
+
+  async decideTier(
+    _applicationId: string,
+    state: AffiliationDecisionState,
+    decision: 'approve' | 'reject',
+  ): Promise<AffiliationDecisionState> {
+    const current = state.currentStepCode;
+    const steps = state.steps.map((step) =>
+      step.stepCode === current
+        ? { ...step, status: decision === 'approve' ? ('approved' as const) : ('rejected' as const) }
+        : step,
+    );
+    const next =
+      decision === 'approve'
+        ? steps.find((step) => step.status === 'pending')?.stepCode
+        : undefined;
+    this.decisionState = {
+      ...state,
+      steps,
+      status: decision === 'reject' ? 'rejected' : next ? 'pending' : 'approved',
+      ...(next ? { currentStepCode: next } : {}),
+      executable: decision === 'approve' && next === undefined,
+    };
+    return this.decisionState;
+  }
+
+  async executeDecision(
+    _applicationId: string,
+    state: AffiliationDecisionState,
+  ): Promise<{ lifecycleState: string; idempotentReplay: boolean }> {
+    this.decisionState = { ...state, executable: false, executed: true };
+    return { lifecycleState: state.outcome === 'approve' ? 'approved' : 'rejected', idempotentReplay: false };
   }
 
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
