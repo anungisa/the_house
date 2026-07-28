@@ -449,7 +449,7 @@ records:
       closure_effective_commit: 896f2c51be32c667205556398fe3c2bbf9562064
       gate_effective_commit: 896f2c51be32c667205556398fe3c2bbf9562064
       freeze_commit: 896f2c51be32c667205556398fe3c2bbf9562064
-      provenance_binding_commit: PENDING_COMMIT_C
+      provenance_binding_commit: a366e33d27d0da0adb3124c5c2e6d6d960f6dd7b
       required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       sequence_disposition: SATISFIED
@@ -470,11 +470,19 @@ records:
       freeze_commit: 896f2c51be32c667205556398fe3c2bbf9562064
       gate_effective_commit: 896f2c51be32c667205556398fe3c2bbf9562064
       effective_commit: 896f2c51be32c667205556398fe3c2bbf9562064
-      provenance_binding_commit: PENDING_COMMIT_C
-      original_package_merge_commit: PENDING_MERGE
+      provenance_binding_commit: a366e33d27d0da0adb3124c5c2e6d6d960f6dd7b
+      original_package_merge_commit: ec38ead03e1d803c9c170e856a3fb9a5bbf16349
       note: >-
         Commit A is the substantive authoring commit; Commit B authors the closure,
         gate disposition, and freeze; Commit C records the pre-merge provenance
         binding; the original-merge commit integrates Package 2 into the mainline.
         The provenance-amendment commits are bound by the post-merge amendment
         V12-D-1.
+  - id: APP-V12-030
+    artifact_id: V12-D
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
