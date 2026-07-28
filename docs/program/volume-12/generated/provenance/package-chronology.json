@@ -4,32 +4,32 @@
   "sequence": [
     {
       "role": "SOURCE_BASELINE",
-      "commit": null
+      "commit": "33596f6103b18ae82ac50ce7a885c62c849104a0"
     },
     {
       "role": "SUBSTANTIVE_AUTHORING",
-      "commit": null
+      "commit": "498d1e49140de5358e0724ffb15f678b1c856f7d"
     },
     {
       "role": "CLOSURE_GATE_AND_FREEZE",
-      "commit": null
+      "commit": "2104d359ea77d4a65df08c40658161e4ff69a74c"
     },
     {
       "role": "PRE_MERGE_PROVENANCE_BINDING",
-      "commit": null
+      "commit": "d6f6bbf4d4653fa4bd5ffa0e43a7f84323abd8a6"
     },
     {
       "role": "ORIGINAL_PACKAGE_MERGE",
-      "commit": null
+      "commit": "ea85829d23bee351b919fc7c6d736644aec0a9fd"
     },
     {
       "role": "PROVENANCE_AMENDMENT_AUTHORING",
-      "commit": null
+      "commit": "62d7a3b859e6f30b5046a75ac42230730773de45"
     },
     {
       "role": "PROVENANCE_AMENDMENT_MERGE",
-      "commit": null
+      "commit": "9355885beb7ba4d10c997a82fae60f549f8626b7"
     }
   ],
-  "historical_sequence_exception": "NOT_YET_APPLICABLE"
+  "historical_sequence_exception": "NONE"
 }

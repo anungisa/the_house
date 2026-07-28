@@ -229,3 +229,42 @@ records:
     authorizes_implementation: false
     authorizes_operations: false
     authorizes_release: false
+  - id: APP-V12-016
+    artifact_id: V12-B-1
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    requires_freeze_artifact: PACKAGE-12-1
+    provenance_role_classification:
+      package: PACKAGE-12-1
+      source_baseline: 33596f6103b18ae82ac50ce7a885c62c849104a0
+      substantive_authoring: 498d1e49140de5358e0724ffb15f678b1c856f7d
+      closure_and_freeze: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      pre_merge_provenance_binding: d6f6bbf4d4653fa4bd5ffa0e43a7f84323abd8a6
+      original_package_merge: ea85829d23bee351b919fc7c6d736644aec0a9fd
+      provenance_amendment_authoring: 62d7a3b859e6f30b5046a75ac42230730773de45
+      provenance_amendment_merge: 9355885beb7ba4d10c997a82fae60f549f8626b7
+      inherited_release_tag: central-registration-volume-11-v1.0.0
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-11-v1.0.0
+      base_release_tag: central-registration-volume-11-v1.0.0
+      source_baseline_commit: 33596f6103b18ae82ac50ce7a885c62c849104a0
+      branch_base_commit: 33596f6103b18ae82ac50ce7a885c62c849104a0
+      authoring_commit: 498d1e49140de5358e0724ffb15f678b1c856f7d
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      provenance_binding_commit: d6f6bbf4d4653fa4bd5ffa0e43a7f84323abd8a6
+      original_package_merge_commit: ea85829d23bee351b919fc7c6d736644aec0a9fd
+      provenance_amendment_authoring_commit: 62d7a3b859e6f30b5046a75ac42230730773de45
+      provenance_amendment_merge_commit: 9355885beb7ba4d10c997a82fae60f549f8626b7
+      note: >-
+        Authoritative provenance-role classification for Package 1. Each commit is
+        bound to exactly one role; authoring, closure and freeze, pre-merge binding,
+        original merge, and provenance amendment are never conflated.
