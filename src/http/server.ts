@@ -33,6 +33,10 @@ import {
   handleFinancialObligationHttpTransition,
   type FinancialObligationCommandExecutor,
 } from './finance/FinancialObligationHttpAdapter.js';
+import {
+  handleStandingHttpTransition,
+  type StandingCommandExecutor,
+} from './standing/AffiliationStandingHttpAdapter.js';
 import type { AuthContextResolver } from './auth/AuthContextResolver.js';
 import type { ReadinessCheck } from './readiness.js';
 import {
@@ -103,6 +107,13 @@ export interface AffiliationHttpServerDeps {
    * exactly once — the adapter never mutates governed state or writes audit/evidence/outbox.
    */
   readonly financialExecutor?: FinancialObligationCommandExecutor;
+  /**
+   * Optional AffiliationStanding command boundary (AffiliationStandingService). When provided,
+   * `POST /v1/affiliation/standings/:id/transitions/:action` is served; when omitted that path
+   * 404s. Every governed change flows through the SAME Governance Kernel exactly once — the
+   * adapter never mutates governed state or writes audit/evidence/outbox.
+   */
+  readonly standingExecutor?: StandingCommandExecutor;
   /**
    * Edge-identity resolver. When omitted the adapter falls back to its LOCAL/DEMO default
    * (body-trusted). Production wiring injects a config-selected resolver (see composition).
@@ -217,6 +228,8 @@ const TRANSITION_ROUTE =
 
 const FINANCIAL_OBLIGATION_TRANSITION_ROUTE =
   /^\/v1\/affiliation\/financial-obligations\/([^/]+)\/transitions\/([^/]+)\/?$/;
+const STANDING_TRANSITION_ROUTE =
+  /^\/v1\/affiliation\/standings\/([^/]+)\/transitions\/([^/]+)\/?$/;
 
 const EVIDENCE_UPLOAD_PATH = '/v1/evidence/objects';
 const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
@@ -1292,6 +1305,9 @@ function classifyRoute(method: string, path: string): string {
   if (FINANCIAL_OBLIGATION_TRANSITION_ROUTE.test(path)) {
     return `${method} /v1/affiliation/financial-obligations/:id/transitions/:action`;
   }
+  if (STANDING_TRANSITION_ROUTE.test(path)) {
+    return `${method} /v1/affiliation/standings/:id/transitions/:action`;
+  }
   return 'unmatched';
 }
 
@@ -1740,6 +1756,48 @@ async function handleRequest(
       deps.resolver,
     );
     sendJson(res, financialResult);
+    return;
+  }
+
+  // AffiliationStanding transitions (only when the standing executor is wired).
+  const standingMatch = STANDING_TRANSITION_ROUTE.exec(path);
+  if (standingMatch !== null) {
+    if (deps.standingExecutor === undefined) {
+      sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Resource not found.', requestId },
+      });
+      return;
+    }
+    if (method !== 'POST') {
+      res.setHeader('allow', 'POST');
+      sendJson(res, {
+        status: 405,
+        body: {
+          status: 'error',
+          code: 'METHOD_NOT_ALLOWED',
+          message: 'Only POST is allowed for transition endpoints.',
+          requestId,
+        },
+      });
+      return;
+    }
+    const standingId = decodeURIComponent(standingMatch[1] ?? '');
+    const standingAction = decodeURIComponent(standingMatch[2] ?? '');
+    let standingBody: unknown;
+    try {
+      standingBody = await readJsonBody(req, maxBytes);
+    } catch (err) {
+      sendJson(res, errorToHttpResult(err, requestId));
+      return;
+    }
+    const standingResult = await handleStandingHttpTransition(
+      deps.standingExecutor,
+      { standingId, action: standingAction, headers: headerMap(req), body: standingBody },
+      requestId,
+      deps.resolver,
+    );
+    sendJson(res, standingResult);
     return;
   }
 

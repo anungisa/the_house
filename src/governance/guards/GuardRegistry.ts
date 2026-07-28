@@ -107,3 +107,18 @@ export const FINANCIAL_GUARD_CODES = [
 ] as const;
 
 export type FinancialGuardCode = (typeof FINANCIAL_GUARD_CODES)[number];
+
+/**
+ * Required AffiliationStanding v1 guard codes (persisted-fact + clock preconditions only;
+ * authority is enforced by the StandingPermissionChecker, not by guards):
+ *  - STANDING_WITHIN_EFFECTIVE_PERIOD : the clock is within the current effective period
+ *  - STANDING_TERM_HAS_ENDED          : the current effective period has ended
+ *  - STANDING_RENEWAL_WINDOW_OPEN     : the renewal grace window is open (early renewal)
+ */
+export const STANDING_GUARD_CODES = [
+  'STANDING_WITHIN_EFFECTIVE_PERIOD',
+  'STANDING_TERM_HAS_ENDED',
+  'STANDING_RENEWAL_WINDOW_OPEN',
+] as const;
+
+export type StandingGuardCode = (typeof STANDING_GUARD_CODES)[number];
