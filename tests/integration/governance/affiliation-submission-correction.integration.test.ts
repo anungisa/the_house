@@ -300,6 +300,30 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
       lifecycleState: 'under_review',
       assignedReviewerUserId: reviewerUserId,
     });
+    const reviewCase = await reviews.getCase(tenantId, reviewer, draft.applicationId);
+    expect(reviewCase.requirements).toHaveLength(4);
+    expect(reviewCase.requirements.find((item) => item.code === 'GOVERNING_DOCUMENT')).toMatchObject({
+      response: { attached: true },
+      evidence: [
+        expect.objectContaining({
+          contentType: 'application/pdf',
+        }),
+      ],
+    });
+    expect(
+      reviewCase.requirements
+        .flatMap((item) => item.evidence)
+        .some((item) => 'contentHash' in item),
+    ).toBe(false);
+    await expect(
+      reviews.getCase(
+        tenantId,
+        { ...reviewer, userId: randomUUID() },
+        draft.applicationId,
+      ),
+    ).rejects.toMatchObject({
+      code: ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
+    } satisfies Partial<AppError>);
 
     await withTenantTransaction(tenantId, async (client) => {
       const state = await client.query<{ current_state: string }>(

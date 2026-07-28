@@ -2,6 +2,7 @@ import { useAffiliationReviewQueue, useStartAffiliationReview } from '../../hook
 import { useI18n } from '../../i18n/I18nProvider';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { StatusPanel } from '../../components/StatusPanel';
+import { Link } from 'react-router-dom';
 
 export function AffiliationReviewQueuePage(): JSX.Element {
   const { t } = useI18n();
@@ -77,7 +78,12 @@ export function AffiliationReviewQueuePage(): JSX.Element {
                   {start.isPending ? t('review.queue.starting') : t('review.queue.start')}
                 </button>
               ) : (
-                <p role="status">{t('review.queue.assignedToYou')}</p>
+                <>
+                  <p role="status">{t('review.queue.assignedToYou')}</p>
+                  <Link to={`/button/review/${encodeURIComponent(item.applicationId)}`}>
+                    {t('review.queue.open')}
+                  </Link>
+                </>
               )}
             </li>
           ))}

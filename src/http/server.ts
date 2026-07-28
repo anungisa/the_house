@@ -115,6 +115,7 @@ import {
   type ButtonAffiliationHttpResult,
 } from './button/affiliation/index.js';
 import {
+  handleAffiliationReviewCase,
   handleAffiliationReviewQueue,
   handleAffiliationReviewStart,
   type ButtonAffiliationReviewHttpResult,
@@ -301,6 +302,8 @@ const BUTTON_AFFILIATION_APPLICATION_ROUTE =
 const BUTTON_AFFILIATION_REVIEW_QUEUE_PATH = '/v1/button/affiliation/review-queue';
 const BUTTON_AFFILIATION_REVIEW_START_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-start\/?$/;
+const BUTTON_AFFILIATION_REVIEW_CASE_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-case\/?$/;
 
 /** GET list of quarantine events (exact path). */
 const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
@@ -953,6 +956,26 @@ async function handleButtonAffiliationRoute(
       await handleAffiliationReviewStart(
         buttonReview,
         { headers, query, params: { applicationId: reviewStartMatch[1] }, body },
+        requestId,
+        resolver,
+      ),
+    );
+  }
+
+  const reviewCaseMatch = BUTTON_AFFILIATION_REVIEW_CASE_ROUTE.exec(path);
+  if (reviewCaseMatch !== null) {
+    if (buttonReview === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    return sendButtonReview(
+      res,
+      await handleAffiliationReviewCase(
+        buttonReview,
+        { headers, query, params: { applicationId: reviewCaseMatch[1] } },
         requestId,
         resolver,
       ),

@@ -21,6 +21,9 @@ import {
   type DraftResponseInput,
   type SubmissionReceipt,
   type AffiliationReviewQueueItem,
+  type AffiliationReviewCase,
+  type CorrectionReason,
+  type CorrectionRequestView,
   type AffiliationSubmissionState,
 } from './affiliationTypes';
 import { AffiliationMockStore } from './affiliationMockData';
@@ -75,6 +78,11 @@ export interface AffiliationApiClient {
   submit?(input: SubmitAffiliationInput): Promise<SubmissionReceipt>;
   listReviewQueue?(): Promise<readonly AffiliationReviewQueueItem[]>;
   startReview?(applicationId: string, idempotencyKey: string): Promise<AffiliationReviewQueueItem>;
+  getReviewCase?(applicationId: string): Promise<AffiliationReviewCase>;
+  openCorrection?(
+    applicationId: string,
+    reasons: readonly CorrectionReason[],
+  ): Promise<CorrectionRequestView>;
   getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
   resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
@@ -271,6 +279,29 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
     );
   }
 
+  async getReviewCase(applicationId: string): Promise<AffiliationReviewCase> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/review-case`,
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { reviewCase: AffiliationReviewCase }).reviewCase,
+    );
+  }
+
+  async openCorrection(
+    applicationId: string,
+    reasons: readonly CorrectionReason[],
+  ): Promise<CorrectionRequestView> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/corrections`,
+      {
+        method: 'POST',
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+        body: JSON.stringify({ reasons }),
+      },
+      (body) => (body as { correction: CorrectionRequestView }).correction,
+    );
+  }
+
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
     return this.request(
       `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/submission-state`,
@@ -363,6 +394,73 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
       item.applicationId === applicationId ? assigned : item,
     );
     return assigned;
+  }
+
+  async getReviewCase(applicationId: string): Promise<AffiliationReviewCase> {
+    const item = this.reviewQueue.find(
+      (candidate) =>
+        candidate.applicationId === applicationId && candidate.lifecycleState === 'under_review',
+    );
+    if (item?.assignedReviewerUserId === undefined) {
+      throw new AffiliationApiError('not-found', 404, 'Affiliation application not found.');
+    }
+    return {
+      applicationId,
+      ...(item.organizationId !== undefined ? { organizationId: item.organizationId } : {}),
+      seasonId: item.seasonId,
+      ...(item.pathway !== undefined ? { pathway: item.pathway } : {}),
+      lifecycleState: 'under_review',
+      submissionSequence: item.submissionSequence,
+      submittedAt: item.submittedAt,
+      assignedReviewerUserId: item.assignedReviewerUserId,
+      requirements: [
+        {
+          code: 'ORG_PROFILE_CONFIRMATION',
+          version: 1,
+          titleEn: 'Confirm organization profile',
+          titleFr: 'Confirmer le profil de l\u2019organisation',
+          guidanceEn: 'Confirm the submitted organization details.',
+          guidanceFr: 'Confirmez les renseignements soumis sur l\u2019organisation.',
+          appliesBecause: 'Required for this affiliation pathway.',
+          response: { acknowledged: true },
+          evidence: [],
+        },
+        {
+          code: 'GOVERNING_DOCUMENT',
+          version: 1,
+          titleEn: 'Governing document',
+          titleFr: 'Document constitutif',
+          guidanceEn: 'Review the submitted governing document reference.',
+          guidanceFr: 'Examinez la r\u00e9f\u00e9rence du document constitutif soumis.',
+          appliesBecause: 'Required documentary evidence.',
+          response: { attached: true },
+          evidence: [
+            {
+              evidenceObjectId: 'evidence-review-1',
+              contentType: 'application/pdf',
+              displayName: 'governing-document.pdf',
+            },
+          ],
+        },
+      ],
+    };
+  }
+
+  async openCorrection(
+    applicationId: string,
+    reasons: readonly CorrectionReason[],
+  ): Promise<CorrectionRequestView> {
+    if (reasons.length === 0) {
+      throw new AffiliationApiError('invalid-input', 400, 'A correction reason is required.');
+    }
+    return {
+      correctionRequestId: `correction-${applicationId}`,
+      applicationId,
+      status: 'open',
+      requirementCodes: reasons.map((reason) => reason.requirementCode),
+      reasons,
+      openedAt: '2026-01-15T00:10:00.000Z',
+    };
   }
 
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {

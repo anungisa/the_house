@@ -104,6 +104,26 @@ export async function handleAffiliationReviewQueue(
   }
 }
 
+export async function handleAffiliationReviewCase(
+  service: AffiliationReviewService,
+  request: ButtonAffiliationReviewHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_RESOLVER,
+): Promise<ButtonAffiliationReviewHttpResult> {
+  try {
+    const auth = await resolveOrganizationAuth(resolver, request.headers);
+    const applicationId = requireValue(request.params.applicationId, 'applicationId');
+    const reviewCase = await service.getCase(
+      auth.tenantId,
+      actorFromAuth(auth.actor),
+      applicationId,
+    );
+    return { status: 200, body: { status: 'ok', requestId, reviewCase } };
+  } catch (error) {
+    return errorResult(error, requestId);
+  }
+}
+
 export async function handleAffiliationReviewStart(
   service: AffiliationReviewService,
   request: ButtonAffiliationReviewHttpRequest,

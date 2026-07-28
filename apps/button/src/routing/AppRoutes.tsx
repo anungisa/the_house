@@ -12,6 +12,7 @@ import { ServiceUnavailablePage } from '../routes/ServiceUnavailablePage';
 import { RequireAffiliation } from './guards';
 import { RequireAffiliationReview } from './guards';
 import { AffiliationReviewQueuePage } from '../routes/review/AffiliationReviewQueuePage';
+import { AffiliationReviewCasePage } from '../routes/review/AffiliationReviewCasePage';
 import type { ButtonTelemetry } from '../observability/telemetry';
 
 /**
@@ -45,10 +46,13 @@ export function AppRoutes({ telemetry }: { readonly telemetry: ButtonTelemetry }
           path="review"
           element={
             <RequireAffiliationReview telemetry={telemetry}>
-              <AffiliationReviewQueuePage />
+              <Outlet />
             </RequireAffiliationReview>
           }
-        />
+        >
+          <Route index element={<AffiliationReviewQueuePage />} />
+          <Route path=":applicationId" element={<AffiliationReviewCasePage />} />
+        </Route>
         <Route path="access-denied" element={<AccessDeniedPage />} />
         <Route path="authority-expired" element={<AuthorityExpiredPage />} />
         <Route path="service-unavailable" element={<ServiceUnavailablePage />} />

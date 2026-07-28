@@ -3,6 +3,8 @@ import { withTenantTransaction } from '../../db/pool.js';
 import type { AffiliationApplicationService } from '../affiliation/AffiliationApplicationService.js';
 import type {
   AffiliationReviewQueueFilter,
+  AffiliationReviewCase,
+  AffiliationReviewRequirement,
   AffiliationReviewQueueItem,
   AffiliationReviewerActor,
   StartAffiliationReviewInput,
@@ -178,5 +180,136 @@ export class AffiliationReviewService {
       throw new AppError(ErrorCode.CONFIG_ERROR, 'Review started without a visible assignment.');
     }
     return assigned;
+  }
+
+  async getCase(
+    tenantId: string,
+    actor: AffiliationReviewerActor,
+    applicationId: string,
+  ): Promise<AffiliationReviewCase> {
+    assertReviewer(actor);
+    const visible = await this.listQueue(tenantId, actor, { state: 'under_review' });
+    const queueItem = visible.find((candidate) => candidate.applicationId === applicationId);
+    if (
+      queueItem === undefined ||
+      queueItem.assignedReviewerUserId === undefined ||
+      (!isGlobalReviewer(actor) && queueItem.assignedReviewerUserId !== actor.userId)
+    ) {
+      throw new AppError(
+        ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
+        'Affiliation application not found.',
+      );
+    }
+    const assignedReviewerUserId = queueItem.assignedReviewerUserId;
+
+    return withTenantTransaction(tenantId, async (client) => {
+      const rows = await client.query<{
+        snapshot: {
+          requirementVersions?: unknown;
+          responses?: unknown;
+          evidenceReferences?: unknown;
+        };
+      }>(
+        `SELECT snapshot
+           FROM affiliation.submission_snapshot
+          WHERE application_id = $1
+          ORDER BY sequence DESC LIMIT 1`,
+        [applicationId],
+      );
+      const snapshot = rows[0]?.snapshot;
+      if (snapshot === undefined) {
+        throw new AppError(
+          ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
+          'Affiliation application not found.',
+        );
+      }
+      const requirements = Array.isArray(snapshot.requirementVersions)
+        ? snapshot.requirementVersions
+        : [];
+      const responses =
+        snapshot.responses !== null &&
+        typeof snapshot.responses === 'object' &&
+        !Array.isArray(snapshot.responses)
+          ? (snapshot.responses as Record<string, unknown>)
+          : {};
+      const evidence = Array.isArray(snapshot.evidenceReferences)
+        ? snapshot.evidenceReferences
+        : [];
+      const safeRequirements: AffiliationReviewRequirement[] = [];
+      for (const raw of requirements) {
+          const requirement =
+            raw !== null && typeof raw === 'object'
+              ? (raw as Record<string, unknown>)
+              : {};
+          const code = typeof requirement['code'] === 'string' ? requirement['code'] : '';
+          const version =
+            typeof requirement['version'] === 'number' ? requirement['version'] : 0;
+          const definitions = await client.query<{
+            title_en: string;
+            title_fr: string;
+            guidance_en: string;
+            guidance_fr: string;
+          }>(
+            `SELECT title_en, title_fr, guidance_en, guidance_fr
+               FROM affiliation.requirement_definition
+              WHERE code = $1 AND version = $2`,
+            [code, version],
+          );
+          const definition = definitions[0];
+          if (code === '' || version <= 0 || definition === undefined) {
+            throw new AppError(ErrorCode.CONFIG_ERROR, 'Submission requirement metadata is invalid.');
+          }
+          const response = responses[code];
+          safeRequirements.push({
+            code,
+            version,
+            titleEn: definition.title_en,
+            titleFr: definition.title_fr,
+            guidanceEn: definition.guidance_en,
+            guidanceFr: definition.guidance_fr,
+            appliesBecause:
+              typeof requirement['appliesBecause'] === 'string'
+                ? requirement['appliesBecause']
+                : '',
+            response:
+              response !== null && typeof response === 'object' && !Array.isArray(response)
+                ? (response as Readonly<Record<string, unknown>>)
+                : {},
+            evidence: evidence.flatMap((rawEvidence) => {
+              if (rawEvidence === null || typeof rawEvidence !== 'object') return [];
+              const item = rawEvidence as Record<string, unknown>;
+              if (
+                item['requirementCode'] !== code ||
+                typeof item['evidenceObjectId'] !== 'string' ||
+                typeof item['contentType'] !== 'string'
+              ) {
+                return [];
+              }
+              return [
+                {
+                  evidenceObjectId: item['evidenceObjectId'],
+                  contentType: item['contentType'],
+                  ...(typeof item['displayName'] === 'string'
+                    ? { displayName: item['displayName'] }
+                    : {}),
+                },
+              ];
+            }),
+          });
+      }
+      return {
+        applicationId,
+        ...(queueItem.organizationId !== undefined
+          ? { organizationId: queueItem.organizationId }
+          : {}),
+        seasonId: queueItem.seasonId,
+        ...(queueItem.pathway !== undefined ? { pathway: queueItem.pathway } : {}),
+        lifecycleState: 'under_review',
+        submissionSequence: queueItem.submissionSequence,
+        submittedAt: queueItem.submittedAt,
+        assignedReviewerUserId,
+        requirements: safeRequirements,
+      };
+    });
   }
 }

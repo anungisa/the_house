@@ -16,6 +16,8 @@ export const affiliationKeys = {
     ['affiliation', 'overview', organizationId, season, pathway] as const,
   application: (applicationId: string) => ['affiliation', 'application', applicationId] as const,
   reviewQueue: () => ['affiliation', 'review-queue'] as const,
+  reviewCase: (applicationId: string) =>
+    ['affiliation', 'review-case', applicationId] as const,
   submissionState: (applicationId: string) =>
     ['affiliation', 'submission-state', applicationId] as const,
 };
@@ -164,6 +166,38 @@ export function useStartAffiliationReview() {
       return client.startReview(applicationId, `review-start-${applicationId}`);
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() }),
+  });
+}
+
+export function useAffiliationReviewCase(applicationId: string | undefined) {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.reviewCase(applicationId ?? ''),
+    enabled: applicationId !== undefined,
+    queryFn: () => {
+      if (client.getReviewCase === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Review case is unavailable.');
+      }
+      return client.getReviewCase(applicationId!);
+    },
+    retry: retryTransient,
+  });
+}
+
+export function useOpenAffiliationCorrection(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (reasons: readonly { requirementCode: string; reason: string }[]) => {
+      if (client.openCorrection === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Correction request is unavailable.');
+      }
+      return client.openCorrection(applicationId, reasons);
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() });
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewCase(applicationId) });
+    },
   });
 }
 
