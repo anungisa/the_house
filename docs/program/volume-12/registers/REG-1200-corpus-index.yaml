@@ -331,3 +331,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-F.md
     gate: V12-G3
+  - id: V12-F-1
+    title: Package 3 Provenance-Role Classification and Volume 12 Release-Tag Doctrine
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-F-1.md
+    gate: V12-G3
