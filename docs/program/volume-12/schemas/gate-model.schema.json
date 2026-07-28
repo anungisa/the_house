@@ -34,7 +34,7 @@
           "future_gate"
         ],
         "properties": {
-          "id": { "type": "string", "pattern": "^(GATE|CRITERIA|ECLASS|ACCEPT|AUTH|RELEASE)-V12-[0-9]{3}$" },
+          "id": { "type": "string", "pattern": "^(GATE|CRITERIA|ECLASS|ACCEPT|AUTH|RELEASE|AEDOM)-V12-[0-9]{3}$" },
           "kind": { "$ref": "common.schema.json#/definitions/gateModelKind" },
           "title": { "type": "string" },
           "statement": { "type": "string" },
@@ -83,6 +83,20 @@
           "authority_scope": { "type": "string" },
           "authority_domain": { "$ref": "common.schema.json#/definitions/authorityDomain" },
           "independence_level": { "$ref": "common.schema.json#/definitions/independenceLevel" },
+
+          "institutional_invariant": { "type": "string" },
+          "affected_actors": { "type": "string" },
+          "house_responsibility": { "type": "string" },
+          "button_responsibility": { "type": "string" },
+          "external_system_responsibility": { "type": "string" },
+          "required_evidence_classes": { "type": "string" },
+          "required_test_or_procedure_levels": { "type": "string" },
+          "environment_dependency": { "type": "string" },
+          "configuration_dependency": { "type": "string" },
+          "data_dependency": { "type": "string" },
+          "provider_dependency": { "type": "string" },
+          "dossier_destination": { "type": "string" },
+          "governed_documentary_disposition": { "type": "string" },
 
           "required_capabilities": { "type": "array", "items": { "type": "string" } },
           "dependencies": { "type": "array", "items": { "type": "string" } },

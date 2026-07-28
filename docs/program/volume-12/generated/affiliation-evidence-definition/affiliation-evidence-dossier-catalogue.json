@@ -1,0 +1,101 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "dossiers": [
+    {
+      "id": "DOSSIER-V12-010",
+      "title": "Affiliation intake domain dossier",
+      "dossier_kind": "AFFILIATION_INTAKE_DOMAIN_DOSSIER",
+      "contained_sections": "Intake functional, authorization, accessibility, and bilingual evidence.",
+      "authoritative_source": "Register REG-1202 affiliation functional and authorization evidence requirements.",
+      "final_dossier_destination": "Domain Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-011",
+      "title": "Affiliation security and privacy dossier",
+      "dossier_kind": "AFFILIATION_SECURITY_AND_PRIVACY_DOSSIER",
+      "contained_sections": "Authorization and isolation-denial, security, privacy, records, and audit-completeness evidence.",
+      "authoritative_source": "Register REG-1202 affiliation authorization, security, and privacy-records evidence requirements.",
+      "final_dossier_destination": "Security and Privacy Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-012",
+      "title": "Affiliation domain acceptance dossier",
+      "dossier_kind": "AFFILIATION_DOMAIN_ACCEPTANCE_DOSSIER",
+      "contained_sections": "Authority and delegation, activation and standing, and domain functional evidence.",
+      "authoritative_source": "Register REG-1202 affiliation activation-standing evidence requirement.",
+      "final_dossier_destination": "Domain Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-013",
+      "title": "Affiliation technical acceptance dossier",
+      "dossier_kind": "AFFILIATION_TECHNICAL_ACCEPTANCE_DOSSIER",
+      "contained_sections": "Functional, contract, integration, event and webhook, and database-behaviour evidence.",
+      "authoritative_source": "Register REG-1202 affiliation functional, contract, integration, and event evidence requirements.",
+      "final_dossier_destination": "Technical Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-014",
+      "title": "Affiliation data and financial dossier",
+      "dossier_kind": "AFFILIATION_DATA_AND_FINANCIAL_DOSSIER",
+      "contained_sections": "Data-integrity and financial-reconciliation evidence.",
+      "authoritative_source": "Register REG-1202 affiliation data-integrity and financial-reconciliation evidence requirements.",
+      "final_dossier_destination": "Data and Financial Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-015",
+      "title": "Affiliation accessibility and bilingual dossier",
+      "dossier_kind": "AFFILIATION_ACCESSIBILITY_AND_BILINGUAL_DOSSIER",
+      "contained_sections": "Accessibility and bilingual-semantic evidence.",
+      "authoritative_source": "Register REG-1202 affiliation accessibility and bilingual-semantic evidence requirements.",
+      "final_dossier_destination": "Accessibility and Bilingual Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-016",
+      "title": "Affiliation migration dossier",
+      "dossier_kind": "AFFILIATION_MIGRATION_DOSSIER",
+      "contained_sections": "Migration provenance, reconciliation, rehearsal, cutover, rollback, and business-acceptance evidence.",
+      "authoritative_source": "Register REG-1202 affiliation migration evidence requirement.",
+      "final_dossier_destination": "Migration Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-017",
+      "title": "Affiliation operational and adoption dossier",
+      "dossier_kind": "AFFILIATION_OPERATIONAL_AND_ADOPTION_DOSSIER",
+      "contained_sections": "Operational, recovery, provider-operations, training-competence, and adoption evidence.",
+      "authoritative_source": "Register REG-1202 affiliation operational, recovery, training, and adoption evidence requirements.",
+      "final_dossier_destination": "Operational Acceptance Authority and Training and Adoption Authority"
+    },
+    {
+      "id": "DOSSIER-V12-018",
+      "title": "Affiliation provider dossier",
+      "dossier_kind": "AFFILIATION_PROVIDER_DOSSIER",
+      "contained_sections": "Provider integration, continuity, subcontractor, exit, and substitution evidence.",
+      "authoritative_source": "Register REG-1202 affiliation provider evidence requirement.",
+      "final_dossier_destination": "Provider Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-019",
+      "title": "Affiliation implementation dossier",
+      "dossier_kind": "AFFILIATION_IMPLEMENTATION_DOSSIER",
+      "contained_sections": "Implementation, build-provenance, environment-qualification, and deployment-path evidence.",
+      "authoritative_source": "Register REG-1202 affiliation implementation, build, environment, and deployment-path evidence requirements.",
+      "final_dossier_destination": "Technical Acceptance Authority"
+    },
+    {
+      "id": "DOSSIER-V12-020",
+      "title": "Affiliation executive release-decision brief",
+      "dossier_kind": "AFFILIATION_EXECUTIVE_RELEASE_DECISION_BRIEF",
+      "contained_sections": "Acceptance-class outcomes, outstanding conditions, open commitments, and release blockers.",
+      "authoritative_source": "Registers REG-1201 acceptance classes and REG-1204 backlog.",
+      "final_dossier_destination": "Executive Sponsor"
+    },
+    {
+      "id": "DOSSIER-V12-021",
+      "title": "House P0 evidence and release-destination map",
+      "dossier_kind": "HOUSE_P0_EVIDENCE_AND_RELEASE_DESTINATION_MAP",
+      "contained_sections": "Each House P0 finding, its required evidence, and the release decision it blocks until resolved.",
+      "authoritative_source": "Inherited House P0 findings and Register REG-1204 release blockers.",
+      "final_dossier_destination": "Release Governance Authority and Executive Sponsor"
+    }
+  ]
+}

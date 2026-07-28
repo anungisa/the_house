@@ -268,3 +268,85 @@ records:
         Authoritative provenance-role classification for Package 1. Each commit is
         bound to exactly one role; authoring, closure and freeze, pre-merge binding,
         original merge, and provenance amendment are never conflated.
+
+  # === PACKAGE 2 — AFFILIATION EVIDENCE CHAPTER RATIFICATIONS (Commit A) ===
+  - id: APP-V12-017
+    artifact_id: V12-11
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-018
+    artifact_id: V12-12
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-019
+    artifact_id: V12-13
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-020
+    artifact_id: V12-14
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-021
+    artifact_id: V12-15
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-022
+    artifact_id: V12-16
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-023
+    artifact_id: V12-17
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-024
+    artifact_id: V12-18
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-025
+    artifact_id: V12-19
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-026
+    artifact_id: V12-20
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false

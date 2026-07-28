@@ -1,0 +1,70 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-023",
+      "kind": "DATABASE_BEHAVIOUR_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation database-behaviour evidence requirement",
+      "domain": "affiliation database behaviour",
+      "required_evidence_classes": "Automated test evidence; manual test evidence.",
+      "minimum_provenance": "Physical database state, version, and result artifact.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited data-integrity invariants and AEDOM-V12-010.",
+      "prohibited_inference": "Schema exists is not database invariant proven.",
+      "final_dossier_destination": "DOSSIER-V12-013",
+      "chapter_ref": "V12-12"
+    },
+    {
+      "id": "EVIDREQ-V12-034",
+      "kind": "DATA_INTEGRITY_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation data-integrity evidence requirement",
+      "domain": "affiliation data integrity",
+      "required_evidence_classes": "Automated test evidence; independent-review evidence.",
+      "minimum_provenance": "Integrity check records under concurrency.",
+      "acceptance_authority": "Data and Financial Acceptance Authority",
+      "affected_requirement": "Inherited data-integrity invariants and AEDOM-V12-010.",
+      "prohibited_inference": "No error observed is not integrity proven.",
+      "final_dossier_destination": "DOSSIER-V12-014",
+      "chapter_ref": "V12-15"
+    },
+    {
+      "id": "EVIDREQ-V12-035",
+      "kind": "FINANCIAL_RECONCILIATION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation financial-reconciliation evidence requirement",
+      "domain": "affiliation financial reconciliation",
+      "required_evidence_classes": "Independent-review evidence; documentary definition.",
+      "minimum_provenance": "Reconciliation record across the three parties.",
+      "acceptance_authority": "Data and Financial Acceptance Authority",
+      "affected_requirement": "Inherited financial governance and AEDOM-V12-006.",
+      "prohibited_inference": "Provider acknowledgement is not accounting confirmation is not reconciliation.",
+      "final_dossier_destination": "DOSSIER-V12-014",
+      "chapter_ref": "V12-15"
+    },
+    {
+      "id": "EVIDREQ-V12-036",
+      "kind": "MIGRATION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation migration evidence requirement",
+      "domain": "affiliation migration",
+      "required_evidence_classes": "Migration evidence; independent-review evidence.",
+      "minimum_provenance": "Stage, batch, source authority, and reconciliation record.",
+      "acceptance_authority": "Migration Acceptance Authority",
+      "affected_requirement": "Inherited migration governance and AEDOM-V12-011.",
+      "prohibited_inference": "Migration executed is not migration accepted is not source retired.",
+      "final_dossier_destination": "DOSSIER-V12-016",
+      "chapter_ref": "V12-15"
+    },
+    {
+      "id": "EVIDREQ-V12-037",
+      "kind": "ACTIVATION_STANDING_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation activation and standing evidence requirement",
+      "domain": "affiliation activation and standing",
+      "required_evidence_classes": "Automated test evidence; independent-review evidence.",
+      "minimum_provenance": "Activation and standing records bound to the system of record.",
+      "acceptance_authority": "Domain Acceptance Authority",
+      "affected_requirement": "Inherited activation governance and AEDOM-V12-009.",
+      "prohibited_inference": "Approval is not activation authorization is not activation execution is not active standing.",
+      "final_dossier_destination": "DOSSIER-V12-012",
+      "chapter_ref": "V12-15"
+    }
+  ]
+}

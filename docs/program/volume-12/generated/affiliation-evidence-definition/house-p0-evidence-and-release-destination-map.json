@@ -1,0 +1,51 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "house_p0_dossier": [
+    {
+      "id": "DOSSIER-V12-021",
+      "title": "House P0 evidence and release-destination map",
+      "contained_sections": "Each House P0 finding, its required evidence, and the release decision it blocks until resolved.",
+      "authoritative_source": "Inherited House P0 findings and Register REG-1204 release blockers."
+    }
+  ],
+  "release_blockers": [
+    {
+      "id": "BLOCKER-V12-001",
+      "owner": "Executive Sponsor",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "Complete evidence, acceptance, gating, and executive authorization in later packages."
+    },
+    {
+      "id": "BLOCKER-V12-002",
+      "owner": "Executive Sponsor",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "Complete affiliation evidence, acceptance, gating, and executive authorization in later packages."
+    },
+    {
+      "id": "BLOCKER-V12-003",
+      "owner": "Release Governance Authority",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "Evidence and resolve each House P0 finding to its release destination."
+    }
+  ],
+  "evidence_gaps": [
+    {
+      "id": "GAP-V12-001",
+      "owner": "Evidence Governance Authority",
+      "required_action_or_evidence": "Produce evidence objects to the binding template in later packages.",
+      "release_impact": "Release is blocked until the evidence base exists and is accepted."
+    },
+    {
+      "id": "GAP-V12-002",
+      "owner": "Evidence Governance Authority",
+      "required_action_or_evidence": "Produce affiliation evidence objects to the binding template in later packages.",
+      "release_impact": "Affiliation release is blocked until the evidence base exists and is accepted."
+    },
+    {
+      "id": "GAP-V12-003",
+      "owner": "Independent Assurance Authority",
+      "required_action_or_evidence": "Map each House P0 finding to its evidence and release destination and resolve it.",
+      "release_impact": "Each House P0 finding is a standing release blocker until resolved."
+    }
+  ]
+}

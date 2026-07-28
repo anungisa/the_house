@@ -1,0 +1,70 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-033",
+      "kind": "PROVIDER_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation provider integration evidence requirement",
+      "domain": "affiliation provider integration",
+      "required_evidence_classes": "Provider evidence; independent-review evidence.",
+      "minimum_provenance": "Provider state, effective period, and result artifact.",
+      "acceptance_authority": "Provider Acceptance Authority",
+      "affected_requirement": "Inherited provider governance and AEDOM-V12-006.",
+      "prohibited_inference": "Mocked provider result is not provider integration evidence is not operational proof.",
+      "final_dossier_destination": "DOSSIER-V12-018",
+      "chapter_ref": "V12-14"
+    },
+    {
+      "id": "EVIDREQ-V12-040",
+      "kind": "OPERATIONAL_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation operational evidence requirement",
+      "domain": "affiliation operations",
+      "required_evidence_classes": "Operational exercise evidence; documentary definition.",
+      "minimum_provenance": "Signal, alert, and response records.",
+      "acceptance_authority": "Operational Acceptance Authority",
+      "affected_requirement": "Inherited operational governance and AEDOM-V12-012.",
+      "prohibited_inference": "Telemetry emitted is not alert delivered is not incident handled.",
+      "final_dossier_destination": "DOSSIER-V12-017",
+      "chapter_ref": "V12-17"
+    },
+    {
+      "id": "EVIDREQ-V12-041",
+      "kind": "RECOVERY_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation recovery evidence requirement",
+      "domain": "affiliation recovery",
+      "required_evidence_classes": "Operational exercise evidence.",
+      "minimum_provenance": "Exercise scope, environment, and result artifact.",
+      "acceptance_authority": "Operational Acceptance Authority",
+      "affected_requirement": "Inherited continuity governance and AEDOM-V12-012.",
+      "prohibited_inference": "Restore completed is not service recovered is not business reconciled.",
+      "final_dossier_destination": "DOSSIER-V12-017",
+      "chapter_ref": "V12-17"
+    },
+    {
+      "id": "EVIDREQ-V12-042",
+      "kind": "TRAINING_COMPETENCE_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation training and competence evidence requirement",
+      "domain": "affiliation training and competence",
+      "required_evidence_classes": "Manual test evidence; documentary definition.",
+      "minimum_provenance": "Competence assessment records.",
+      "acceptance_authority": "Training and Adoption Authority",
+      "affected_requirement": "Inherited training governance and AEDOM-V12-012.",
+      "prohibited_inference": "Training delivered is not competence demonstrated.",
+      "final_dossier_destination": "DOSSIER-V12-017",
+      "chapter_ref": "V12-17"
+    },
+    {
+      "id": "EVIDREQ-V12-043",
+      "kind": "ADOPTION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation adoption evidence requirement",
+      "domain": "affiliation adoption",
+      "required_evidence_classes": "Documentary definition; independent-review evidence.",
+      "minimum_provenance": "Adoption measure records across windows.",
+      "acceptance_authority": "Training and Adoption Authority",
+      "affected_requirement": "Inherited adoption governance and AEDOM-V12-012.",
+      "prohibited_inference": "Onboarding completed is not sustained adoption.",
+      "final_dossier_destination": "DOSSIER-V12-017",
+      "chapter_ref": "V12-17"
+    }
+  ]
+}

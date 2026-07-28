@@ -1,0 +1,139 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "findings": [
+    {
+      "id": "FINDING-V12-001",
+      "title": "Evidence-gap finding template",
+      "owner": "Evidence Governance Authority",
+      "affected_requirement": "EVIDREQ-V12-001",
+      "retest_or_reexercise_requirement": "Closure requires the applicable retest or re-exercise evidence.",
+      "release_effect": "Blocks release until remediated or waived with expiry."
+    },
+    {
+      "id": "FINDING-V12-002",
+      "title": "Defect finding template",
+      "owner": "Technical Verification Authority",
+      "affected_requirement": "EVIDREQ-V12-005",
+      "retest_or_reexercise_requirement": "Closure requires the applicable retest evidence.",
+      "release_effect": "Blocks release until remediated or waived with expiry."
+    }
+  ],
+  "conditions": [
+    {
+      "id": "CONDITION-V12-001",
+      "title": "Conditional-acceptance template",
+      "owner": "Security and Privacy Authority",
+      "expiry": "Expiry date recorded; an expired condition is a fail-closed gate condition.",
+      "revalidation_condition": "Revalidated when the underlying evidence changes.",
+      "release_effect": "Conditional acceptance is not unconditional acceptance."
+    },
+    {
+      "id": "CONDITION-V12-002",
+      "title": "Deferred-obligation template",
+      "owner": "Operational Acceptance Authority",
+      "expiry": "Expiry date recorded.",
+      "revalidation_condition": "Revalidated at expiry or on environment change.",
+      "release_effect": "A deferred obligation does not discharge the requirement."
+    }
+  ],
+  "waivers": [
+    {
+      "id": "WAIVER-V12-001",
+      "title": "Waiver template",
+      "owner": "Accessibility Authority",
+      "expiry": "Expiry date recorded; an expired waiver is a fail-closed gate condition.",
+      "compensating_control_dependency": "Depends on a defined and operating compensating control.",
+      "release_effect": "A waiver approved is not a failure converted to success."
+    }
+  ],
+  "material_commitments": [
+    {
+      "id": "COMMIT-V12-001",
+      "title": "Material-commitment template",
+      "owner": "Migration Acceptance Authority",
+      "required_evidence": "The evidence that would evidence fulfilment.",
+      "expiry": "Expiry date recorded.",
+      "release_effect": "A commitment recorded is not a commitment fulfilled."
+    }
+  ],
+  "decision_boundaries": [
+    {
+      "id": "ADR-V12-005",
+      "title": "Club affiliation is the first evidence-definition vertical",
+      "decision_authority": "Release Governance Authority",
+      "prohibited_inference": "An affiliation evidence definition is never another vertical's evidence."
+    },
+    {
+      "id": "ADR-V12-006",
+      "title": "Dossier completeness is not evidence availability is not acceptance",
+      "decision_authority": "Release Governance Authority",
+      "prohibited_inference": "Dossier section defined is never dossier populated is never acceptance granted."
+    },
+    {
+      "id": "ADR-V12-007",
+      "title": "Implementation completion is not accepted evidence",
+      "decision_authority": "Technical Acceptance Authority",
+      "prohibited_inference": "Implementation completed is never implementation evidence accepted."
+    },
+    {
+      "id": "ADR-V12-008",
+      "title": "Schema inspection is not database behaviour",
+      "decision_authority": "Technical Acceptance Authority",
+      "prohibited_inference": "Schema exists is never database invariant proven."
+    },
+    {
+      "id": "ADR-V12-009",
+      "title": "Authentication is not authorization",
+      "decision_authority": "Security and Privacy Acceptance Authority",
+      "prohibited_inference": "Authentication evidence is never authorization evidence."
+    },
+    {
+      "id": "ADR-V12-010",
+      "title": "A mocked or single-provider result is not end-to-end evidence",
+      "decision_authority": "Technical Acceptance Authority",
+      "prohibited_inference": "Mocked provider result is never provider integration evidence is never operational proof."
+    },
+    {
+      "id": "ADR-V12-011",
+      "title": "Migration execution is not migration acceptance",
+      "decision_authority": "Migration Acceptance Authority",
+      "prohibited_inference": "Migration executed is never migration accepted is never source retired."
+    },
+    {
+      "id": "ADR-V12-012",
+      "title": "Accessibility automation is not accessibility acceptance",
+      "decision_authority": "Accessibility and Bilingual Acceptance Authority",
+      "prohibited_inference": "Automated accessibility scan is never conformance determination."
+    },
+    {
+      "id": "ADR-V12-013",
+      "title": "Bilingual string checks are not semantic acceptance",
+      "decision_authority": "Accessibility and Bilingual Acceptance Authority",
+      "prohibited_inference": "English and French strings exist is never semantic equivalence."
+    },
+    {
+      "id": "ADR-V12-014",
+      "title": "Operational exercise is not operational acceptance",
+      "decision_authority": "Operational Acceptance Authority",
+      "prohibited_inference": "Operational exercise conducted is never operational acceptance granted."
+    },
+    {
+      "id": "ADR-V12-015",
+      "title": "Provider certification is not institutional assurance",
+      "decision_authority": "Provider Acceptance Authority",
+      "prohibited_inference": "Provider certification is never end-to-end operational assurance."
+    },
+    {
+      "id": "ADR-V12-016",
+      "title": "Technical acceptance is not business or executive acceptance",
+      "decision_authority": "Executive Sponsor",
+      "prohibited_inference": "Technical acceptance is never business acceptance or executive authorization."
+    },
+    {
+      "id": "ADR-V12-017",
+      "title": "Executive authorization cannot substitute for missing evidence",
+      "decision_authority": "Executive Sponsor",
+      "prohibited_inference": "Executive support is never evidence substitution."
+    }
+  ]
+}

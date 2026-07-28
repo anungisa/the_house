@@ -1,0 +1,157 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "acceptance_classes": [
+    {
+      "id": "ACCEPT-V12-013",
+      "kind": "IMPLEMENTATION_ACCEPTANCE_CLASS",
+      "title": "Affiliation implementation acceptance",
+      "decision_authority": "Technical Acceptance Authority",
+      "reviewer_qualification": "Qualified implementation reviewer.",
+      "independence_requirement": "Independent of the implementer.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Implementation, build-provenance, database-behaviour, environment, configuration, and deployment-path evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-014",
+      "kind": "TECHNICAL_ACCEPTANCE_CLASS",
+      "title": "Affiliation technical acceptance",
+      "decision_authority": "Technical Acceptance Authority",
+      "reviewer_qualification": "Qualified technical reviewer.",
+      "independence_requirement": "Independent of the implementer.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Functional, contract, integration, event, webhook, and provider evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-015",
+      "kind": "DOMAIN_ACCEPTANCE_CLASS",
+      "title": "Affiliation domain acceptance",
+      "decision_authority": "Domain Acceptance Authority",
+      "reviewer_qualification": "Qualified affiliation domain reviewer.",
+      "independence_requirement": "Independent of technical delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Domain functional, authorization, and lifecycle evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-016",
+      "kind": "SECURITY_PRIVACY_ACCEPTANCE_CLASS",
+      "title": "Affiliation security and privacy acceptance",
+      "decision_authority": "Security and Privacy Acceptance Authority",
+      "reviewer_qualification": "Qualified security and privacy reviewer.",
+      "independence_requirement": "Independent of the implementer.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with compensating controls and expiry.",
+      "required_evidence": "Authorization, security, privacy, records, and audit evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-017",
+      "kind": "ACCESSIBILITY_BILINGUAL_ACCEPTANCE_CLASS",
+      "title": "Affiliation accessibility and bilingual acceptance",
+      "decision_authority": "Accessibility and Bilingual Acceptance Authority",
+      "reviewer_qualification": "Qualified accessibility and bilingual reviewer.",
+      "independence_requirement": "Independent manual, assistive-technology, and semantic review.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Accessibility and bilingual-semantic evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-018",
+      "kind": "DATA_FINANCIAL_ACCEPTANCE_CLASS",
+      "title": "Affiliation data and financial acceptance",
+      "decision_authority": "Data and Financial Acceptance Authority",
+      "reviewer_qualification": "Qualified data and financial reviewer.",
+      "independence_requirement": "Independent reconciliation review.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Data-integrity and financial-reconciliation evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-019",
+      "kind": "MIGRATION_ACCEPTANCE_CLASS",
+      "title": "Affiliation migration acceptance",
+      "decision_authority": "Migration Acceptance Authority",
+      "reviewer_qualification": "Qualified migration reviewer.",
+      "independence_requirement": "Independent reconciliation and cutover review.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Migration provenance, reconciliation, rehearsal, cutover, rollback, and business-acceptance evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-020",
+      "kind": "OPERATIONAL_ACCEPTANCE_CLASS",
+      "title": "Affiliation operational acceptance",
+      "decision_authority": "Operational Acceptance Authority",
+      "reviewer_qualification": "Qualified operational reviewer.",
+      "independence_requirement": "Independent of delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Operational, continuity, and recovery evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-021",
+      "kind": "PROVIDER_ACCEPTANCE_CLASS",
+      "title": "Affiliation provider acceptance",
+      "decision_authority": "Provider Acceptance Authority",
+      "reviewer_qualification": "Qualified provider reviewer.",
+      "independence_requirement": "Independent end-to-end verification.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Provider integration, continuity, exit, and substitution evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-022",
+      "kind": "TRAINING_ADOPTION_ACCEPTANCE_CLASS",
+      "title": "Affiliation training and adoption acceptance",
+      "decision_authority": "Training and Adoption Authority",
+      "reviewer_qualification": "Qualified training and adoption reviewer.",
+      "independence_requirement": "Independent competence assessment.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Training-competence and adoption evidence.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-023",
+      "kind": "BUSINESS_ACCEPTANCE_CLASS",
+      "title": "Affiliation business acceptance",
+      "decision_authority": "Business Owner Authority",
+      "reviewer_qualification": "Accountable business owner.",
+      "independence_requirement": "Independent of technical delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "conditions_permitted": "Conditions with owners and expiry.",
+      "required_evidence": "Aggregated acceptance-class outcomes and outstanding-obligation register.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    }
+  ],
+  "executive_release_decisions": [
+    {
+      "id": "RELEASE-V12-004",
+      "title": "Affiliation executive release decision",
+      "decision_authority": "Executive Sponsor",
+      "required_evidence": "Executive release-decision brief aggregating all affiliation acceptance classes and open obligations.",
+      "prohibited_inference": "Executive support is not evidence substitution."
+    }
+  ]
+}

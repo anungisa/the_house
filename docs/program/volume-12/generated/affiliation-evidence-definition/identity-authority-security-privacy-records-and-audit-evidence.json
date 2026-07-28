@@ -1,0 +1,44 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-026",
+      "kind": "AUTHORIZATION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation authorization evidence requirement",
+      "domain": "affiliation authorization",
+      "required_evidence_classes": "Automated test evidence; independent-review evidence.",
+      "minimum_provenance": "Authorization decision records including denial cases.",
+      "acceptance_authority": "Security and Privacy Acceptance Authority",
+      "affected_requirement": "Inherited tenancy isolation invariants and AEDOM-V12-004.",
+      "prohibited_inference": "In-scope access shown is not cross-organization denial and cross-jurisdiction denial proven.",
+      "final_dossier_destination": "DOSSIER-V12-011",
+      "chapter_ref": "V12-13"
+    },
+    {
+      "id": "EVIDREQ-V12-027",
+      "kind": "SECURITY_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation security evidence requirement",
+      "domain": "affiliation security",
+      "required_evidence_classes": "Automated test evidence; independent-review evidence.",
+      "minimum_provenance": "Assessment scope, version, and result artifact.",
+      "acceptance_authority": "Security and Privacy Acceptance Authority",
+      "affected_requirement": "Inherited security governance and AEDOM-V12-002.",
+      "prohibited_inference": "No finding is not proof of security.",
+      "final_dossier_destination": "DOSSIER-V12-011",
+      "chapter_ref": "V12-13"
+    },
+    {
+      "id": "EVIDREQ-V12-028",
+      "kind": "PRIVACY_RECORDS_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation privacy, records, and audit evidence requirement",
+      "domain": "affiliation privacy and records",
+      "required_evidence_classes": "Independent-review evidence; documentary definition.",
+      "minimum_provenance": "Assessment scope and audit-completeness record.",
+      "acceptance_authority": "Security and Privacy Acceptance Authority",
+      "affected_requirement": "Inherited privacy and records governance.",
+      "prohibited_inference": "Audit record exists is not audit completeness is not institutional acceptance.",
+      "final_dossier_destination": "DOSSIER-V12-011",
+      "chapter_ref": "V12-13"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-029",
+      "kind": "FUNCTIONAL_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation functional evidence requirement",
+      "domain": "affiliation functional behaviour",
+      "required_evidence_classes": "Automated test evidence; manual test evidence.",
+      "minimum_provenance": "Scenario identity, environment, and result artifact.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited governance-kernel lifecycle invariants and AEDOM-V12-007.",
+      "prohibited_inference": "Submission receipt is not approval.",
+      "final_dossier_destination": "DOSSIER-V12-013",
+      "chapter_ref": "V12-14"
+    },
+    {
+      "id": "EVIDREQ-V12-030",
+      "kind": "CONTRACT_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation contract evidence requirement",
+      "domain": "affiliation contracts",
+      "required_evidence_classes": "Automated test evidence.",
+      "minimum_provenance": "Contract version, environment, and result artifact.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited contract governance covering commands, queries, resources, events, webhooks, callbacks, providers, files, batches, and migrations.",
+      "prohibited_inference": "Request timeout is not command failure.",
+      "final_dossier_destination": "DOSSIER-V12-013",
+      "chapter_ref": "V12-14"
+    },
+    {
+      "id": "EVIDREQ-V12-031",
+      "kind": "INTEGRATION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation integration evidence requirement",
+      "domain": "affiliation integration",
+      "required_evidence_classes": "Automated test evidence; manual test evidence.",
+      "minimum_provenance": "Integration scope, environment, and result artifact.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited integration governance and AEDOM-V12-007.",
+      "prohibited_inference": "Mocked provider result is not provider integration evidence is not operational proof.",
+      "final_dossier_destination": "DOSSIER-V12-013",
+      "chapter_ref": "V12-14"
+    },
+    {
+      "id": "EVIDREQ-V12-032",
+      "kind": "EVENT_WEBHOOK_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation event and webhook evidence requirement",
+      "domain": "affiliation events and webhooks",
+      "required_evidence_classes": "Automated test evidence; independent-review evidence.",
+      "minimum_provenance": "Event, webhook, and reconciliation records.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited outbox and event governance and AEDOM-V12-007.",
+      "prohibited_inference": "Event delivered is not business effect reconciled.",
+      "final_dossier_destination": "DOSSIER-V12-013",
+      "chapter_ref": "V12-14"
+    },
+    {
+      "id": "EVIDREQ-V12-033",
+      "kind": "PROVIDER_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation provider integration evidence requirement",
+      "domain": "affiliation provider integration",
+      "required_evidence_classes": "Provider evidence; independent-review evidence.",
+      "minimum_provenance": "Provider state, effective period, and result artifact.",
+      "acceptance_authority": "Provider Acceptance Authority",
+      "affected_requirement": "Inherited provider governance and AEDOM-V12-006.",
+      "prohibited_inference": "Mocked provider result is not provider integration evidence is not operational proof.",
+      "final_dossier_destination": "DOSSIER-V12-018",
+      "chapter_ref": "V12-14"
+    }
+  ]
+}

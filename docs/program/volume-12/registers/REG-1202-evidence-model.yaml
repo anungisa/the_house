@@ -991,3 +991,857 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION EVIDENCE REQUIREMENTS =======================
+  - id: EVIDREQ-V12-021
+    kind: IMPLEMENTATION_EVIDENCE_REQUIREMENT
+    title: Affiliation implementation evidence requirement
+    statement: Evidence required to demonstrate affiliation implementation exists as governed source bound to a commit and requirement.
+    domain: affiliation implementation
+    required_evidence_classes: Implementation evidence; documentary definition.
+    minimum_provenance: Version, commit, reviewed source, and dependency manifest.
+    environment_requirement: Qualified build environment.
+    independence_requirement: Peer review under segregation of duties.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited implementation governance and AEDOM-V12-001 intake capability.
+    known_evidentiary_limitations: Implementation completed is not implementation evidence accepted.
+    prohibited_inference: Source written is not evidence accepted.
+    final_dossier_destination: DOSSIER-V12-019
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-022
+    kind: BUILD_PROVENANCE_EVIDENCE_REQUIREMENT
+    title: Affiliation build-provenance evidence requirement
+    statement: Evidence required to demonstrate a reproducible, provenance-bound build of the affiliation release candidate.
+    domain: affiliation build provenance
+    required_evidence_classes: Implementation evidence; supply-chain provenance.
+    minimum_provenance: Reproducible build record bound to a reviewed commit.
+    environment_requirement: Qualified build environment.
+    independence_requirement: Peer review of build provenance.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited supply-chain provenance obligations.
+    known_evidentiary_limitations: Source present is not build reproducible.
+    prohibited_inference: Build succeeded is not deployment path proven.
+    final_dossier_destination: DOSSIER-V12-019
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-023
+    kind: DATABASE_BEHAVIOUR_EVIDENCE_REQUIREMENT
+    title: Affiliation database-behaviour evidence requirement
+    statement: Evidence required to demonstrate physical database behaviour enforcing affiliation invariants under concurrency.
+    domain: affiliation database behaviour
+    required_evidence_classes: Automated test evidence; manual test evidence.
+    minimum_provenance: Physical database state, version, and result artifact.
+    environment_requirement: Qualified physical database environment.
+    independence_requirement: Peer review of database behaviour.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited data-integrity invariants and AEDOM-V12-010.
+    known_evidentiary_limitations: Behaviour observed is bounded by the data context used.
+    prohibited_inference: Schema exists is not database invariant proven.
+    final_dossier_destination: DOSSIER-V12-013
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-024
+    kind: ENVIRONMENT_QUALIFICATION_EVIDENCE_REQUIREMENT
+    title: Affiliation environment-qualification evidence requirement
+    statement: Evidence required to demonstrate that the environment producing affiliation evidence is qualified and representative.
+    domain: affiliation environment qualification
+    required_evidence_classes: Documentary definition; independent-review evidence.
+    minimum_provenance: Environment qualification record and configuration baseline.
+    environment_requirement: The environment under qualification.
+    independence_requirement: Independent qualification review.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited environment-qualification governance.
+    known_evidentiary_limitations: Environment provisioned is not environment qualified.
+    prohibited_inference: An environment exists is not an environment representative.
+    final_dossier_destination: DOSSIER-V12-019
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-025
+    kind: DEPLOYMENT_PATH_EVIDENCE_REQUIREMENT
+    title: Affiliation deployment-path evidence requirement
+    statement: Evidence required to demonstrate the qualified release candidate traverses the governed promotion path without unrecorded mutation.
+    domain: affiliation deployment path
+    required_evidence_classes: Implementation evidence; documentary definition.
+    minimum_provenance: Promotion record bound to a release candidate.
+    environment_requirement: Governed promotion path environments.
+    independence_requirement: Independent review of promotion integrity.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited deployment-path governance.
+    known_evidentiary_limitations: Release-candidate formation is not acceptance or release.
+    prohibited_inference: Build succeeded is not deployment path proven.
+    final_dossier_destination: DOSSIER-V12-019
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-026
+    kind: AUTHORIZATION_EVIDENCE_REQUIREMENT
+    title: Affiliation authorization evidence requirement
+    statement: Evidence required to demonstrate authorization boundaries and isolation denial across the affiliation actor model.
+    domain: affiliation authorization
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Authorization decision records including denial cases.
+    environment_requirement: Representative environment with identity and authority context.
+    independence_requirement: Independent authorization review.
+    acceptance_authority: Security and Privacy Acceptance Authority
+    affected_requirement: Inherited tenancy isolation invariants and AEDOM-V12-004.
+    known_evidentiary_limitations: Authentication evidence is not authorization evidence.
+    prohibited_inference: In-scope access shown is not cross-organization denial and cross-jurisdiction denial proven.
+    final_dossier_destination: DOSSIER-V12-011
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-027
+    kind: SECURITY_EVIDENCE_REQUIREMENT
+    title: Affiliation security evidence requirement
+    statement: Evidence required to demonstrate the affiliation vertical resists its governed threat model.
+    domain: affiliation security
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Assessment scope, version, and result artifact.
+    environment_requirement: Representative environment.
+    independence_requirement: Independent security review.
+    acceptance_authority: Security and Privacy Acceptance Authority
+    affected_requirement: Inherited security governance and AEDOM-V12-002.
+    known_evidentiary_limitations: Security evidence is not privacy compliance is not legal compliance.
+    prohibited_inference: No finding is not proof of security.
+    final_dossier_destination: DOSSIER-V12-011
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-028
+    kind: PRIVACY_RECORDS_EVIDENCE_REQUIREMENT
+    title: Affiliation privacy, records, and audit evidence requirement
+    statement: Evidence required to demonstrate privacy, records, export, retention, disposition, and audit-completeness obligations.
+    domain: affiliation privacy and records
+    required_evidence_classes: Independent-review evidence; documentary definition.
+    minimum_provenance: Assessment scope and audit-completeness record.
+    environment_requirement: Representative environment.
+    independence_requirement: Independent privacy and records review.
+    acceptance_authority: Security and Privacy Acceptance Authority
+    affected_requirement: Inherited privacy and records governance.
+    known_evidentiary_limitations: A privacy assessment is not legal compliance.
+    prohibited_inference: Audit record exists is not audit completeness is not institutional acceptance.
+    final_dossier_destination: DOSSIER-V12-011
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-029
+    kind: FUNCTIONAL_EVIDENCE_REQUIREMENT
+    title: Affiliation functional evidence requirement
+    statement: Evidence required to demonstrate the affiliation workflow behaves correctly across its full behavioural surface.
+    domain: affiliation functional behaviour
+    required_evidence_classes: Automated test evidence; manual test evidence.
+    minimum_provenance: Scenario identity, environment, and result artifact.
+    environment_requirement: End-to-end environment.
+    independence_requirement: Peer review of scenario coverage.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited governance-kernel lifecycle invariants and AEDOM-V12-007.
+    known_evidentiary_limitations: Coverage is bounded to the positive, negative, denied, stale, conflict, duplicate, replay, interrupted, degraded, and recovery paths exercised.
+    prohibited_inference: Submission receipt is not approval.
+    final_dossier_destination: DOSSIER-V12-013
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-030
+    kind: CONTRACT_EVIDENCE_REQUIREMENT
+    title: Affiliation contract evidence requirement
+    statement: Evidence required to demonstrate that every governed interface conforms to its published contract.
+    domain: affiliation contracts
+    required_evidence_classes: Automated test evidence.
+    minimum_provenance: Contract version, environment, and result artifact.
+    environment_requirement: Integrated environment.
+    independence_requirement: Peer review of contract coverage.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited contract governance covering commands, queries, resources, events, webhooks, callbacks, providers, files, batches, and migrations.
+    known_evidentiary_limitations: Contract conformance is bounded by the contracts tested.
+    prohibited_inference: Request timeout is not command failure.
+    final_dossier_destination: DOSSIER-V12-013
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-031
+    kind: INTEGRATION_EVIDENCE_REQUIREMENT
+    title: Affiliation integration evidence requirement
+    statement: Evidence required to demonstrate correct end-to-end behaviour across component and system boundaries.
+    domain: affiliation integration
+    required_evidence_classes: Automated test evidence; manual test evidence.
+    minimum_provenance: Integration scope, environment, and result artifact.
+    environment_requirement: Integrated end-to-end environment.
+    independence_requirement: Peer review of integration coverage.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited integration governance and AEDOM-V12-007.
+    known_evidentiary_limitations: Integration coverage is bounded by boundaries exercised.
+    prohibited_inference: Mocked provider result is not provider integration evidence is not operational proof.
+    final_dossier_destination: DOSSIER-V12-013
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-032
+    kind: EVENT_WEBHOOK_EVIDENCE_REQUIREMENT
+    title: Affiliation event and webhook evidence requirement
+    statement: Evidence required to demonstrate emitted events, delivered webhooks, and received callbacks produce the governed business effect exactly once where required.
+    domain: affiliation events and webhooks
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Event, webhook, and reconciliation records.
+    environment_requirement: Integrated environment.
+    independence_requirement: Independent review of business-effect reconciliation.
+    acceptance_authority: Technical Acceptance Authority
+    affected_requirement: Inherited outbox and event governance and AEDOM-V12-007.
+    known_evidentiary_limitations: Delivery is bounded by the transport observed.
+    prohibited_inference: Event delivered is not business effect reconciled.
+    final_dossier_destination: DOSSIER-V12-013
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-033
+    kind: PROVIDER_EVIDENCE_REQUIREMENT
+    title: Affiliation provider integration evidence requirement
+    statement: Evidence required to demonstrate provider-mediated capabilities behave correctly against the real provider under governed conditions.
+    domain: affiliation provider integration
+    required_evidence_classes: Provider evidence; independent-review evidence.
+    minimum_provenance: Provider state, effective period, and result artifact.
+    environment_requirement: Provider environment.
+    independence_requirement: Independent end-to-end verification.
+    acceptance_authority: Provider Acceptance Authority
+    affected_requirement: Inherited provider governance and AEDOM-V12-006.
+    known_evidentiary_limitations: Provider results are bounded by the provider state observed.
+    prohibited_inference: Mocked provider result is not provider integration evidence is not operational proof.
+    final_dossier_destination: DOSSIER-V12-018
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-034
+    kind: DATA_INTEGRITY_EVIDENCE_REQUIREMENT
+    title: Affiliation data-integrity evidence requirement
+    statement: Evidence required to demonstrate tenant, parent, uniqueness, version, history, provenance, and reconciliation invariants under concurrency.
+    domain: affiliation data integrity
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Integrity check records under concurrency.
+    environment_requirement: Representative data environment.
+    independence_requirement: Independent integrity review.
+    acceptance_authority: Data and Financial Acceptance Authority
+    affected_requirement: Inherited data-integrity invariants and AEDOM-V12-010.
+    known_evidentiary_limitations: Integrity is bounded by the checks applied.
+    prohibited_inference: No error observed is not integrity proven.
+    final_dossier_destination: DOSSIER-V12-014
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-035
+    kind: FINANCIAL_RECONCILIATION_EVIDENCE_REQUIREMENT
+    title: Affiliation financial-reconciliation evidence requirement
+    statement: Evidence required to demonstrate affiliation fees are settled, recorded, and reconciled across applicant, provider, and accounting record.
+    domain: affiliation financial reconciliation
+    required_evidence_classes: Independent-review evidence; documentary definition.
+    minimum_provenance: Reconciliation record across the three parties.
+    environment_requirement: Representative environment.
+    independence_requirement: Independent financial review.
+    acceptance_authority: Data and Financial Acceptance Authority
+    affected_requirement: Inherited financial governance and AEDOM-V12-006.
+    known_evidentiary_limitations: A reconciliation is bounded by the period reconciled.
+    prohibited_inference: Provider acknowledgement is not accounting confirmation is not reconciliation.
+    final_dossier_destination: DOSSIER-V12-014
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-036
+    kind: MIGRATION_EVIDENCE_REQUIREMENT
+    title: Affiliation migration evidence requirement
+    statement: Evidence required to demonstrate migration with preserved source authority, provenance, uncertainty, identity resolution, quarantine, rehearsal, cutover, rollback, business acceptance, and source retirement.
+    domain: affiliation migration
+    required_evidence_classes: Migration evidence; independent-review evidence.
+    minimum_provenance: Stage, batch, source authority, and reconciliation record.
+    environment_requirement: Migration environment.
+    independence_requirement: Independent reconciliation review.
+    acceptance_authority: Migration Acceptance Authority
+    affected_requirement: Inherited migration governance and AEDOM-V12-011.
+    known_evidentiary_limitations: Mapping complete is not identity resolved.
+    prohibited_inference: Migration executed is not migration accepted is not source retired.
+    final_dossier_destination: DOSSIER-V12-016
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-037
+    kind: ACTIVATION_STANDING_EVIDENCE_REQUIREMENT
+    title: Affiliation activation and standing evidence requirement
+    statement: Evidence required to demonstrate exactly-once activation as a business invariant and correct sustained standing.
+    domain: affiliation activation and standing
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Activation and standing records bound to the system of record.
+    environment_requirement: Representative environment.
+    independence_requirement: Independent review of activation invariants.
+    acceptance_authority: Domain Acceptance Authority
+    affected_requirement: Inherited activation governance and AEDOM-V12-009.
+    known_evidentiary_limitations: Exactly-once activation is a business invariant and not an exactly-once transport claim.
+    prohibited_inference: Approval is not activation authorization is not activation execution is not active standing.
+    final_dossier_destination: DOSSIER-V12-012
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-038
+    kind: ACCESSIBILITY_EVIDENCE_REQUIREMENT
+    title: Affiliation accessibility evidence requirement
+    statement: Evidence required to demonstrate accessibility across automated, manual, keyboard, assistive-technology, document, interruption, and recovery layers.
+    domain: affiliation accessibility
+    required_evidence_classes: Manual test evidence; independent-review evidence.
+    minimum_provenance: Procedure, assistive-technology context, and observation record.
+    environment_requirement: Assistive-technology environment.
+    independence_requirement: Independent manual and assistive-technology review.
+    acceptance_authority: Accessibility and Bilingual Acceptance Authority
+    affected_requirement: Inherited accessibility obligations and AEDOM-V12-008.
+    known_evidentiary_limitations: An automated scan is not a conformance determination.
+    prohibited_inference: Automated accessibility scan is not manual inspection is not keyboard completion is not assistive-technology completion is not conformance determination.
+    final_dossier_destination: DOSSIER-V12-015
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-039
+    kind: BILINGUAL_SEMANTIC_EVIDENCE_REQUIREMENT
+    title: Affiliation bilingual-semantic evidence requirement
+    statement: Evidence required to demonstrate string presence, translation accuracy, semantic equivalence, and a validated bilingual experience.
+    domain: affiliation bilingual semantics
+    required_evidence_classes: Independent-review evidence.
+    minimum_provenance: Semantic review record.
+    environment_requirement: Representative content environment.
+    independence_requirement: Independent semantic review.
+    acceptance_authority: Accessibility and Bilingual Acceptance Authority
+    affected_requirement: Inherited official-languages obligations and AEDOM-V12-008.
+    known_evidentiary_limitations: String presence is not semantic equivalence.
+    prohibited_inference: English and French strings exist is not translation accuracy is not semantic equivalence is not validated bilingual experience.
+    final_dossier_destination: DOSSIER-V12-015
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-040
+    kind: OPERATIONAL_EVIDENCE_REQUIREMENT
+    title: Affiliation operational evidence requirement
+    statement: Evidence required to demonstrate support, observability, incidents, continuity, and stabilization obligations.
+    domain: affiliation operations
+    required_evidence_classes: Operational exercise evidence; documentary definition.
+    minimum_provenance: Signal, alert, and response records.
+    environment_requirement: Representative operational environment.
+    independence_requirement: Independent review of response.
+    acceptance_authority: Operational Acceptance Authority
+    affected_requirement: Inherited operational governance and AEDOM-V12-012.
+    known_evidentiary_limitations: A signal defined is not a signal proven.
+    prohibited_inference: Telemetry emitted is not alert delivered is not incident handled.
+    final_dossier_destination: DOSSIER-V12-017
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-041
+    kind: RECOVERY_EVIDENCE_REQUIREMENT
+    title: Affiliation recovery evidence requirement
+    statement: Evidence required to demonstrate backup, verification, restorability, restoration, service recovery, and business reconciliation.
+    domain: affiliation recovery
+    required_evidence_classes: Operational exercise evidence.
+    minimum_provenance: Exercise scope, environment, and result artifact.
+    environment_requirement: Recovery environment.
+    independence_requirement: Independent observation of recovery.
+    acceptance_authority: Operational Acceptance Authority
+    affected_requirement: Inherited continuity governance and AEDOM-V12-012.
+    known_evidentiary_limitations: Backup completed is not backup verified is not backup restorable.
+    prohibited_inference: Restore completed is not service recovered is not business reconciled.
+    final_dossier_destination: DOSSIER-V12-017
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-042
+    kind: TRAINING_COMPETENCE_EVIDENCE_REQUIREMENT
+    title: Affiliation training and competence evidence requirement
+    statement: Evidence required to demonstrate trained and demonstrably competent operators and administrators.
+    domain: affiliation training and competence
+    required_evidence_classes: Manual test evidence; documentary definition.
+    minimum_provenance: Competence assessment records.
+    environment_requirement: Training environment.
+    independence_requirement: Independent competence assessment.
+    acceptance_authority: Training and Adoption Authority
+    affected_requirement: Inherited training governance and AEDOM-V12-012.
+    known_evidentiary_limitations: Attendance is not competence.
+    prohibited_inference: Training delivered is not competence demonstrated.
+    final_dossier_destination: DOSSIER-V12-017
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-043
+    kind: ADOPTION_EVIDENCE_REQUIREMENT
+    title: Affiliation adoption evidence requirement
+    statement: Evidence required to demonstrate sustained correct use by the operating community over time.
+    domain: affiliation adoption
+    required_evidence_classes: Documentary definition; independent-review evidence.
+    minimum_provenance: Adoption measure records across windows.
+    environment_requirement: Representative environment.
+    independence_requirement: Independent review of adoption measures.
+    acceptance_authority: Training and Adoption Authority
+    affected_requirement: Inherited adoption governance and AEDOM-V12-012.
+    known_evidentiary_limitations: A single window is not sustained adoption.
+    prohibited_inference: Onboarding completed is not sustained adoption.
+    final_dossier_destination: DOSSIER-V12-017
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION ACCEPTANCE DOSSIERS =========================
+  - id: DOSSIER-V12-010
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation intake domain dossier
+    statement: The dossier that would contain affiliation intake domain evidence and route it to domain acceptance.
+    dossier_kind: AFFILIATION_INTAKE_DOMAIN_DOSSIER
+    contained_sections: Intake functional, authorization, accessibility, and bilingual evidence.
+    authoritative_source: Register REG-1202 affiliation functional and authorization evidence requirements.
+    final_dossier_destination: Domain Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-11
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-011
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation security and privacy dossier
+    statement: The dossier that would contain affiliation authorization, security, privacy, records, and audit evidence.
+    dossier_kind: AFFILIATION_SECURITY_AND_PRIVACY_DOSSIER
+    contained_sections: Authorization and isolation-denial, security, privacy, records, and audit-completeness evidence.
+    authoritative_source: Register REG-1202 affiliation authorization, security, and privacy-records evidence requirements.
+    final_dossier_destination: Security and Privacy Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-012
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation domain acceptance dossier
+    statement: The dossier that would contain affiliation domain, authority, and activation-standing evidence.
+    dossier_kind: AFFILIATION_DOMAIN_ACCEPTANCE_DOSSIER
+    contained_sections: Authority and delegation, activation and standing, and domain functional evidence.
+    authoritative_source: Register REG-1202 affiliation activation-standing evidence requirement.
+    final_dossier_destination: Domain Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-013
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation technical acceptance dossier
+    statement: The dossier that would contain affiliation functional, contract, integration, event, and database-behaviour evidence.
+    dossier_kind: AFFILIATION_TECHNICAL_ACCEPTANCE_DOSSIER
+    contained_sections: Functional, contract, integration, event and webhook, and database-behaviour evidence.
+    authoritative_source: Register REG-1202 affiliation functional, contract, integration, and event evidence requirements.
+    final_dossier_destination: Technical Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-014
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation data and financial dossier
+    statement: The dossier that would contain affiliation data-integrity and financial-reconciliation evidence.
+    dossier_kind: AFFILIATION_DATA_AND_FINANCIAL_DOSSIER
+    contained_sections: Data-integrity and financial-reconciliation evidence.
+    authoritative_source: Register REG-1202 affiliation data-integrity and financial-reconciliation evidence requirements.
+    final_dossier_destination: Data and Financial Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-015
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation accessibility and bilingual dossier
+    statement: The dossier that would contain affiliation accessibility and bilingual-semantic evidence.
+    dossier_kind: AFFILIATION_ACCESSIBILITY_AND_BILINGUAL_DOSSIER
+    contained_sections: Accessibility and bilingual-semantic evidence.
+    authoritative_source: Register REG-1202 affiliation accessibility and bilingual-semantic evidence requirements.
+    final_dossier_destination: Accessibility and Bilingual Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-016
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation migration dossier
+    statement: The dossier that would contain affiliation migration evidence and cutover acceptance.
+    dossier_kind: AFFILIATION_MIGRATION_DOSSIER
+    contained_sections: Migration provenance, reconciliation, rehearsal, cutover, rollback, and business-acceptance evidence.
+    authoritative_source: Register REG-1202 affiliation migration evidence requirement.
+    final_dossier_destination: Migration Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-017
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation operational and adoption dossier
+    statement: The dossier that would contain affiliation operational, recovery, provider, training, and adoption evidence.
+    dossier_kind: AFFILIATION_OPERATIONAL_AND_ADOPTION_DOSSIER
+    contained_sections: Operational, recovery, provider-operations, training-competence, and adoption evidence.
+    authoritative_source: Register REG-1202 affiliation operational, recovery, training, and adoption evidence requirements.
+    final_dossier_destination: Operational Acceptance Authority and Training and Adoption Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-018
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation provider dossier
+    statement: The dossier that would contain affiliation provider integration, continuity, exit, and substitution evidence.
+    dossier_kind: AFFILIATION_PROVIDER_DOSSIER
+    contained_sections: Provider integration, continuity, subcontractor, exit, and substitution evidence.
+    authoritative_source: Register REG-1202 affiliation provider evidence requirement.
+    final_dossier_destination: Provider Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-019
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation implementation dossier
+    statement: The dossier that would contain affiliation implementation, build, environment, and deployment-path evidence.
+    dossier_kind: AFFILIATION_IMPLEMENTATION_DOSSIER
+    contained_sections: Implementation, build-provenance, environment-qualification, and deployment-path evidence.
+    authoritative_source: Register REG-1202 affiliation implementation, build, environment, and deployment-path evidence requirements.
+    final_dossier_destination: Technical Acceptance Authority
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-020
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: Affiliation executive release-decision brief
+    statement: The dossier that would aggregate all affiliation acceptance-class outcomes for the executive release decision.
+    dossier_kind: AFFILIATION_EXECUTIVE_RELEASE_DECISION_BRIEF
+    contained_sections: Acceptance-class outcomes, outstanding conditions, open commitments, and release blockers.
+    authoritative_source: Registers REG-1201 acceptance classes and REG-1204 backlog.
+    final_dossier_destination: Executive Sponsor
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-021
+    kind: ACCEPTANCE_DOSSIER_REQUIREMENT
+    title: House P0 evidence and release-destination map
+    statement: The dossier that would map inherited House P0 findings to their evidence and release destinations.
+    dossier_kind: HOUSE_P0_EVIDENCE_AND_RELEASE_DESTINATION_MAP
+    contained_sections: Each House P0 finding, its required evidence, and the release decision it blocks until resolved.
+    authoritative_source: Inherited House P0 findings and Register REG-1204 release blockers.
+    final_dossier_destination: Release Governance Authority and Executive Sponsor
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-20
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
