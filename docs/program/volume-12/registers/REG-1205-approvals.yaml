@@ -623,3 +623,197 @@ records:
     authorizes_implementation: false
     authorizes_operations: false
     authorizes_release: false
+
+  # === PACKAGE 3 — CLOSURE, GATE DISPOSITION, AND TRIPLE FREEZE ===========
+  - id: APP-V12-044
+    artifact_id: V12-E
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    closure_record: true
+    next_package_disposition: >-
+      AUTHORIZED FOR IMPLEMENTATION-AUTHORIZATION DECISION-PACKAGE AND
+      EXECUTION-READINESS PLANNING DEFINITION ONLY. Runtime implementation,
+      production operations, environment provisioning or qualification, test,
+      migration, recovery, or operational execution, evidence production,
+      evidence acceptance, provider engagement, procurement, expenditure, and
+      staffing, and pilot, rollout, deployment, release, and launch are NOT
+      AUTHORIZED. The next action after corpus closure is a separate
+      implementation-authorization decision package, not an implied Volume 13.
+    effective_date_clarification:
+      gate: V12-G3
+      documentary_definition_effective_commit: PENDING_COMMIT_B
+      implementation_effective_date: >-
+        Not applicable — the documentary final-evidence, gate, acceptance, and
+        corpus-release definition is distinct from implementation effectiveness,
+        from evidence acceptance, from system release, and from executed proof.
+      operational_effective_date: >-
+        Not applicable — no implementation, operation, evidence, acceptance, or
+        release is authorized by Package 3 or by the corpus closure.
+    closure_binding:
+      closure_artifact: V12-E
+      gate: V12-G3
+      freeze_artifact: PACKAGE-12-3
+      closure_authored_commit: PENDING_COMMIT_B
+      closure_effective_commit: PENDING_COMMIT_B
+      freeze_commit: PENDING_COMMIT_B
+      gate_effective_commit: PENDING_COMMIT_B
+  - id: APP-V12-045
+    artifact_id: GATE-V12-G3
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    gate_disposition: INTEGRATED_FINAL_EVIDENCE_GATE_ACCEPTANCE_AND_CORPUS_RELEASE_DEFINITION_COMPLETE
+    requires_freeze_artifact: PACKAGE-12-3
+    effective_commit: PENDING_COMMIT_B
+    gate_effective_commit: PENDING_COMMIT_B
+  - id: APP-V12-046
+    artifact_id: PACKAGE-12-3
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    frozen: true
+    frozen_artifacts:
+      - id: V12-21
+        version: 1.0.0
+      - id: V12-22
+        version: 1.0.0
+      - id: V12-23
+        version: 1.0.0
+      - id: V12-24
+        version: 1.0.0
+      - id: V12-25
+        version: 1.0.0
+      - id: V12-26
+        version: 1.0.0
+      - id: V12-27
+        version: 1.0.0
+      - id: V12-28
+        version: 1.0.0
+      - id: V12-29
+        version: 1.0.0
+      - id: V12-30
+        version: 1.0.0
+      - id: V12-31
+        version: 1.0.0
+      - id: V12-32
+        version: 1.0.0
+      - id: V12-E
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-12-3
+      substantive_authoring_commit: 5e00ca42375291dd934fdafb8797fa0f2ea78171
+      closure_authored_commit: PENDING_COMMIT_B
+      closure_effective_commit: PENDING_COMMIT_B
+      gate_effective_commit: PENDING_COMMIT_B
+      freeze_commit: PENDING_COMMIT_B
+      provenance_binding_commit: PENDING_COMMIT_C
+      required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
+      actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
+      sequence_disposition: SATISFIED
+      separation_status: SATISFIED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-11-v1.0.0
+      base_release_tag: central-registration-volume-11-v1.0.0
+      source_baseline_commit: 3ae246163ae9396ae8e4b89502894e204c9a5b00
+      branch_base_commit: 3ae246163ae9396ae8e4b89502894e204c9a5b00
+      authoring_commit: 5e00ca42375291dd934fdafb8797fa0f2ea78171
+      closure_authored_commit: PENDING_COMMIT_B
+      closure_effective_commit: PENDING_COMMIT_B
+      closure_freeze_commit: PENDING_COMMIT_B
+      freeze_commit: PENDING_COMMIT_B
+      gate_effective_commit: PENDING_COMMIT_B
+      effective_commit: PENDING_COMMIT_B
+      provenance_binding_commit: PENDING_COMMIT_C
+      original_package_merge_commit: PENDING_MERGE
+      note: >-
+        Commit A is the substantive authoring commit; Commit B authors the closure,
+        gate disposition, and triple freeze; Commit C records the pre-merge provenance
+        binding; the original-merge commit integrates Package 3 into the mainline.
+        The provenance-amendment commits are bound by the post-merge amendment V12-F
+        and the provenance-role classification V12-F-1.
+  - id: APP-V12-047
+    artifact_id: VOLUME-12
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    frozen: true
+    frozen_artifacts:
+      - id: V12-A
+        version: 1.0.0
+      - id: V12-B
+        version: 1.0.0
+      - id: V12-B-1
+        version: 1.0.0
+      - id: V12-C
+        version: 1.0.0
+      - id: V12-D
+        version: 1.0.0
+      - id: V12-D-1
+        version: 1.0.0
+      - id: V12-E
+        version: 1.0.0
+      - id: REG-1200
+        version: 1.0.0
+      - id: REG-1201
+        version: 1.0.0
+      - id: REG-1202
+        version: 1.0.0
+      - id: REG-1203
+        version: 1.0.0
+      - id: REG-1204
+        version: 1.0.0
+      - id: REG-1205
+        version: 1.0.0
+  - id: APP-V12-048
+    artifact_id: CENTRAL-REGISTRATION-DEFINITION-CORPUS
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    frozen: true
+    frozen_artifacts:
+      - id: VOLUME-00
+        version: 1.0.0
+      - id: VOLUME-01
+        version: 1.0.0
+      - id: VOLUME-02
+        version: 1.0.0
+      - id: VOLUME-03
+        version: 1.0.0
+      - id: VOLUME-04
+        version: 1.0.0
+      - id: VOLUME-05
+        version: 1.0.0
+      - id: VOLUME-06
+        version: 1.0.0
+      - id: VOLUME-07
+        version: 1.0.0
+      - id: VOLUME-08
+        version: 1.0.0
+      - id: VOLUME-09
+        version: 1.0.0
+      - id: VOLUME-10
+        version: 1.0.0
+      - id: VOLUME-11
+        version: 1.0.0
+      - id: VOLUME-12
+        version: 1.0.0

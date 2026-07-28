@@ -76,7 +76,7 @@ export function evaluate(ctx) {
   const closureApproval = approvals.some((a) => a.artifact_id === 'V12-E' && a.approval_state === 'ratified' && a.closure_record === true);
   const p3FreezeApproval = approvals.some((a) => a.artifact_id === 'PACKAGE-12-3' && a.approval_state === 'ratified' && a.frozen === true);
   const volumeFreezeApproval = approvals.some((a) => a.artifact_id === 'VOLUME-12' && a.approval_state === 'ratified' && a.frozen === true);
-  const corpusFreezeApproval = approvals.some((a) => a.artifact_id === 'CENTRAL-REGISTRATION-CORPUS' && a.approval_state === 'ratified' && a.frozen === true);
+  const corpusFreezeApproval = approvals.some((a) => a.artifact_id === 'CENTRAL-REGISTRATION-DEFINITION-CORPUS' && a.approval_state === 'ratified' && a.frozen === true);
   const gateApproval = approvals.find((a) => a.artifact_id === 'GATE-V12-G3' && a.approval_state === 'ratified');
   const closureRecord = approvals.find((a) => a.artifact_id === 'V12-E' && a.approval_state === 'ratified');
   const freezeRecord = approvals.find((a) => a.artifact_id === 'PACKAGE-12-3' && a.approval_state === 'ratified');

@@ -315,3 +315,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-D-1.md
     gate: V12-G2
+  - id: V12-E
+    title: Package 3 Closure, Volume 12 Whole-Volume Closure, Corpus Closure, and Bounded Implementation-Authorization Authorization
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-E.md
+    gate: V12-G3
