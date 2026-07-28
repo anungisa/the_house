@@ -110,6 +110,18 @@ export interface DraftResponseInput {
   readonly value: Record<string, unknown>;
 }
 
+/** Immutable representative-safe acknowledgement of a submission command. */
+export interface SubmissionReceipt {
+  readonly receiptId: string;
+  readonly applicationId: string;
+  readonly sequence: number;
+  readonly sourceDraftVersion: number;
+  readonly submittedAt: string;
+  readonly submittedBy: string;
+  readonly stateTransitionId?: string;
+  readonly idempotencyKey: string;
+}
+
 /** Stable, non-leaking error categories the affiliation UI can branch on. */
 export type AffiliationErrorCategory =
   | 'unauthenticated'

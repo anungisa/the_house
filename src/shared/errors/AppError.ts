@@ -93,6 +93,12 @@ export const ErrorCode = {
   AFFILIATION_APPLICATION_NOT_FOUND: 'AFFILIATION_APPLICATION_NOT_FOUND',
   /** A draft save was rejected because the optimistic-concurrency token was stale. Maps to 409. */
   AFFILIATION_DRAFT_VERSION_CONFLICT: 'AFFILIATION_DRAFT_VERSION_CONFLICT',
+  /** Submission was attempted before every applicable requirement was complete. Maps to 409. */
+  AFFILIATION_SUBMISSION_NOT_READY: 'AFFILIATION_SUBMISSION_NOT_READY',
+  /** A referenced correction request does not exist or is not visible to the tenant. Maps to 404. */
+  AFFILIATION_CORRECTION_NOT_FOUND: 'AFFILIATION_CORRECTION_NOT_FOUND',
+  /** A correction request conflicts with the current application/correction posture. Maps to 409. */
+  AFFILIATION_CORRECTION_CONFLICT: 'AFFILIATION_CORRECTION_CONFLICT',
   /** A referenced requirement is not bound to (applicable for) the application. Maps to 404. */
   AFFILIATION_REQUIREMENT_UNKNOWN: 'AFFILIATION_REQUIREMENT_UNKNOWN',
   /**

@@ -7,6 +7,7 @@ import {
   type AffiliationErrorCategory,
   type AffiliationOverview,
   type DraftResponseInput,
+  type SubmissionReceipt,
 } from '../api/affiliationTypes';
 
 /** Stable query keys for the affiliation surface. */
@@ -106,6 +107,31 @@ export function useRemoveEvidence(applicationId: string) {
       client.removeEvidence({ applicationId, linkId: input.linkId }),
     onSuccess: (application) => {
       queryClient.setQueryData(affiliationKeys.application(applicationId), application);
+    },
+  });
+}
+
+/** Execute the consequential governed submission and receive an immutable receipt. */
+export function useSubmitAffiliation(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation<SubmissionReceipt, unknown, { expectedVersion: string; idempotencyKey: string }>({
+    mutationFn: (input) => {
+      if (client.submit === undefined) {
+        throw new AffiliationApiError(
+          'service-unavailable',
+          503,
+          'Affiliation submission is unavailable.',
+        );
+      }
+      return client.submit({
+          applicationId,
+          expectedVersion: input.expectedVersion,
+          idempotencyKey: input.idempotencyKey,
+        });
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.application(applicationId) });
     },
   });
 }

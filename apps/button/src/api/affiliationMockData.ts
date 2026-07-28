@@ -18,6 +18,7 @@ import {
   type RequirementResponseType,
   type RequirementStatus,
   type RequirementView,
+  type SubmissionReceipt,
 } from './affiliationTypes';
 
 interface MockRequirementDef {
@@ -104,6 +105,7 @@ interface DraftState {
   lastSavedAt: string;
   readonly responses: Map<string, Record<string, unknown>>;
   readonly evidence: Map<string, DraftEvidenceLinkView[]>;
+  lifecycleStatus: 'draft' | 'submitted';
 }
 
 function isAnswered(response: Record<string, unknown> | undefined): boolean {
@@ -195,7 +197,7 @@ function project(state: DraftState): AffiliationApplicationProjection {
     organizationId: state.organizationId,
     seasonId: state.seasonId,
     pathway: state.pathway,
-    lifecycleStatus: 'draft',
+    lifecycleStatus: state.lifecycleStatus,
     concurrencyToken: String(state.version),
     lastSavedAt: state.lastSavedAt,
     requirements,
@@ -206,6 +208,7 @@ function project(state: DraftState): AffiliationApplicationProjection {
 /** A stateful, in-memory affiliation store shared by the mock client. */
 export class AffiliationMockStore {
   private readonly drafts = new Map<string, DraftState>();
+  private readonly submissionReceipts = new Map<string, SubmissionReceipt>();
   private seq = 0;
   private linkSeq = 0;
 
@@ -227,7 +230,7 @@ export class AffiliationMockStore {
       application: existing
         ? {
             applicationId: existing.applicationId,
-            lifecycleStatus: 'draft',
+            lifecycleStatus: existing.lifecycleStatus,
             lastSavedAt: existing.lastSavedAt,
             completeness: project(existing).completeness,
           }
@@ -255,6 +258,7 @@ export class AffiliationMockStore {
       lastSavedAt: new Date(0).toISOString(),
       responses: new Map(),
       evidence: new Map(),
+      lifecycleStatus: 'draft',
     };
     this.drafts.set(applicationId, state);
     return project(state);
@@ -327,5 +331,37 @@ export class AffiliationMockStore {
       }
     }
     throw new AffiliationApiError('not-found', 404, 'Evidence association not found.');
+  }
+
+  submit(
+    applicationId: string,
+    expectedVersion: string,
+    idempotencyKey: string,
+  ): SubmissionReceipt {
+    const state = this.require(applicationId);
+    const existing = this.submissionReceipts.get(applicationId);
+    if (existing !== undefined) {
+      if (existing.idempotencyKey === idempotencyKey) return existing;
+      throw new AffiliationApiError('version-conflict', 409, 'The application is already submitted.');
+    }
+    if (expectedVersion !== String(state.version)) {
+      throw new AffiliationApiError('version-conflict', 409, 'The draft was changed elsewhere.');
+    }
+    const projected = project(state);
+    if (!projected.completeness.eligibleForSubmission) {
+      throw new AffiliationApiError('version-conflict', 409, 'The application is not ready.');
+    }
+    state.lifecycleStatus = 'submitted';
+    const receipt: SubmissionReceipt = {
+      receiptId: `receipt-${applicationId}-1`,
+      applicationId,
+      sequence: 1,
+      sourceDraftVersion: state.version,
+      submittedAt: new Date(state.version * 1000 + 1000).toISOString(),
+      submittedBy: 'representative',
+      idempotencyKey,
+    };
+    this.submissionReceipts.set(applicationId, receipt);
+    return receipt;
   }
 }

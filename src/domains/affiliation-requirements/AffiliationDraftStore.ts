@@ -82,6 +82,7 @@ export interface SaveDraftInput {
 export type DraftMutationResult =
   | { readonly ok: true; readonly newVersion: number; readonly lastSavedAt: string }
   | { readonly ok: false; readonly reason: 'not_found' }
+  | { readonly ok: false; readonly reason: 'not_editable' | 'outside_correction_scope' }
   | { readonly ok: false; readonly reason: 'version_conflict'; readonly currentVersion: number };
 
 /** Input to associate an existing evidence payload reference with a bound requirement. */
@@ -99,7 +100,14 @@ export interface AddEvidenceLinkInput {
 /** Result of adding an evidence association. */
 export type AddEvidenceLinkResult =
   | { readonly ok: true; readonly link: StoredEvidenceLinkRow; readonly newVersion: number }
-  | { readonly ok: false; readonly reason: 'not_found' | 'unknown_requirement' };
+  | {
+      readonly ok: false;
+      readonly reason:
+        | 'not_found'
+        | 'unknown_requirement'
+        | 'not_editable'
+        | 'outside_correction_scope';
+    };
 
 /** Input to remove a draft evidence association (never deletes a governed evidence object). */
 export interface RemoveEvidenceLinkInput {
@@ -112,7 +120,10 @@ export interface RemoveEvidenceLinkInput {
 /** Result of removing an evidence association. */
 export type RemoveEvidenceLinkResult =
   | { readonly ok: true; readonly newVersion: number }
-  | { readonly ok: false; readonly reason: 'not_found' };
+  | {
+      readonly ok: false;
+      readonly reason: 'not_found' | 'not_editable' | 'outside_correction_scope';
+    };
 
 /** A full read of an application's draft working set. */
 export interface DraftSnapshot {

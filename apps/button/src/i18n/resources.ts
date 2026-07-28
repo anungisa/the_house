@@ -99,6 +99,25 @@ const en = {
   'affiliation.requirements.allComplete':
     'All applicable requirements are complete. Submission will be available in a later release.',
   'affiliation.requirements.empty': 'No requirements apply to this application yet.',
+  'affiliation.submission.readyHeading': 'Ready to submit',
+  'affiliation.submission.readyBody':
+    'Review your responses before submitting. Submission creates a receipt; it does not approve the application.',
+  'affiliation.submission.review': 'Review and submit',
+  'affiliation.submission.confirmHeading': 'Confirm submission',
+  'affiliation.submission.confirmBody':
+    'After submission, the application is read-only unless an authorized reviewer requests a correction.',
+  'affiliation.submission.confirm': 'Submit application',
+  'affiliation.submission.submitting': 'Submitting\u2026',
+  'affiliation.submission.cancel': 'Cancel',
+  'affiliation.submission.error':
+    'We could not submit the application. Reload the latest version and try again.',
+  'affiliation.submission.receiptHeading': 'Submission receipt',
+  'affiliation.submission.receiptBody':
+    'Your application was submitted. This receipt confirms submission, not approval.',
+  'affiliation.submission.receiptNumber': 'Receipt number',
+  'affiliation.submission.sequence': 'Submission sequence',
+  'affiliation.submission.submitted':
+    'This application has been submitted and is read-only while it is reviewed.',
 
   'affiliation.status.blocked': 'Blocked',
   'affiliation.status.not_started': 'Not started',
@@ -235,6 +254,25 @@ const fr: Record<TranslationKey, string> = {
   'affiliation.requirements.allComplete':
     'Toutes les exigences applicables sont compl\u00e9t\u00e9es. La soumission sera disponible dans une version ult\u00e9rieure.',
   'affiliation.requirements.empty': 'Aucune exigence ne s\u2019applique encore \u00e0 cette demande.',
+  'affiliation.submission.readyHeading': 'Pr\u00eate \u00e0 soumettre',
+  'affiliation.submission.readyBody':
+    'V\u00e9rifiez vos r\u00e9ponses avant de soumettre. La soumission cr\u00e9e un re\u00e7u; elle n\u2019approuve pas la demande.',
+  'affiliation.submission.review': 'V\u00e9rifier et soumettre',
+  'affiliation.submission.confirmHeading': 'Confirmer la soumission',
+  'affiliation.submission.confirmBody':
+    'Apr\u00e8s la soumission, la demande est en lecture seule, sauf si une personne autoris\u00e9e demande une correction.',
+  'affiliation.submission.confirm': 'Soumettre la demande',
+  'affiliation.submission.submitting': 'Soumission en cours\u2026',
+  'affiliation.submission.cancel': 'Annuler',
+  'affiliation.submission.error':
+    'Nous n\u2019avons pas pu soumettre la demande. Rechargez la derni\u00e8re version et r\u00e9essayez.',
+  'affiliation.submission.receiptHeading': 'Re\u00e7u de soumission',
+  'affiliation.submission.receiptBody':
+    'Votre demande a \u00e9t\u00e9 soumise. Ce re\u00e7u confirme la soumission, et non l\u2019approbation.',
+  'affiliation.submission.receiptNumber': 'Num\u00e9ro du re\u00e7u',
+  'affiliation.submission.sequence': 'S\u00e9quence de soumission',
+  'affiliation.submission.submitted':
+    'Cette demande a \u00e9t\u00e9 soumise et est en lecture seule pendant son examen.',
 
   'affiliation.status.blocked': 'Bloqu\u00e9',
   'affiliation.status.not_started': 'Non commenc\u00e9',

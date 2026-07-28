@@ -107,6 +107,9 @@ import {
   handleAffiliationSaveDraft,
   handleAffiliationAssociateEvidence,
   handleAffiliationRemoveEvidence,
+  handleAffiliationSubmit,
+  handleAffiliationOpenCorrection,
+  handleAffiliationResubmitCorrection,
   type ButtonAffiliationHttpDeps,
   type ButtonAffiliationHttpResult,
 } from './button/affiliation/index.js';
@@ -276,6 +279,12 @@ const BUTTON_AFFILIATION_EVIDENCE_LINK_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/evidence-links\/([^/]+)\/?$/;
 const BUTTON_AFFILIATION_EVIDENCE_LINKS_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/evidence-links\/?$/;
+const BUTTON_AFFILIATION_SUBMISSIONS_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/submissions\/?$/;
+const BUTTON_AFFILIATION_CORRECTIONS_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/corrections\/?$/;
+const BUTTON_AFFILIATION_CORRECTION_RESUBMISSIONS_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/corrections\/([^/]+)\/resubmissions\/?$/;
 const BUTTON_AFFILIATION_APPLICATION_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/?$/;
 
@@ -955,6 +964,54 @@ async function handleButtonAffiliationRoute(
     const result = await handleAffiliationAssociateEvidence(
       buttonAffiliation,
       { headers, query, params: { applicationId: evidenceLinksMatch[1] }, body },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  const correctionResubmissionMatch =
+    BUTTON_AFFILIATION_CORRECTION_RESUBMISSIONS_ROUTE.exec(path);
+  if (correctionResubmissionMatch !== null) {
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    const result = await handleAffiliationResubmitCorrection(
+      buttonAffiliation,
+      {
+        headers,
+        query,
+        params: {
+          applicationId: correctionResubmissionMatch[1],
+          correctionId: correctionResubmissionMatch[2],
+        },
+        body,
+      },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  const correctionsMatch = BUTTON_AFFILIATION_CORRECTIONS_ROUTE.exec(path);
+  if (correctionsMatch !== null) {
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    const result = await handleAffiliationOpenCorrection(
+      buttonAffiliation,
+      { headers, query, params: { applicationId: correctionsMatch[1] }, body },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  const submissionsMatch = BUTTON_AFFILIATION_SUBMISSIONS_ROUTE.exec(path);
+  if (submissionsMatch !== null) {
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    const result = await handleAffiliationSubmit(
+      buttonAffiliation,
+      { headers, query, params: { applicationId: submissionsMatch[1] }, body },
       requestId,
       resolver,
     );

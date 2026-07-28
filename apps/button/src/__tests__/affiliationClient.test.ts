@@ -107,6 +107,48 @@ describe('MockAffiliationApiClient (synthetic surface parity)', () => {
     expect(app.completeness.eligibleForSubmission).toBe(false);
   });
 
+  it('submits a complete draft once and replays the immutable receipt by idempotency key', async () => {
+    const client = new MockAffiliationApiClient();
+    let app = await client.initiate({ organizationId: 'club-1', seasonId: '2025-26' });
+    app = await client.saveDraft({
+      applicationId: app.applicationId,
+      expectedVersion: app.concurrencyToken,
+      responses: [
+        { requirementCode: 'ORG_PROFILE_CONFIRMATION', value: { acknowledged: true } },
+        { requirementCode: 'PRIMARY_CONTACT_DETAILS', value: { name: 'Dana' } },
+        { requirementCode: 'GOVERNING_DOCUMENT', value: { attached: true } },
+        { requirementCode: 'INSURANCE_CONFIRMATION', value: { confirmed: true } },
+      ],
+    });
+    app = await client.associateEvidence({
+      applicationId: app.applicationId,
+      requirementCode: 'GOVERNING_DOCUMENT',
+      file: newFile('bylaws.pdf'),
+    });
+    app = await client.associateEvidence({
+      applicationId: app.applicationId,
+      requirementCode: 'INSURANCE_CONFIRMATION',
+      file: newFile('insurance.pdf'),
+    });
+    expect(app.completeness.eligibleForSubmission).toBe(true);
+
+    const input = {
+      applicationId: app.applicationId,
+      expectedVersion: app.concurrencyToken,
+      idempotencyKey: 'submit-app-1-v2',
+    };
+    const first = await client.submit(input);
+    const replay = await client.submit(input);
+    expect(replay).toEqual(first);
+    expect(first).toMatchObject({
+      applicationId: app.applicationId,
+      sequence: 1,
+      sourceDraftVersion: 2,
+      idempotencyKey: input.idempotencyKey,
+    });
+    expect((await client.getApplication(app.applicationId)).lifecycleStatus).toBe('submitted');
+  });
+
   it('fails closed for an organization the representative cannot represent (opaque not-found)', async () => {
     const client = new MockAffiliationApiClient();
     await expect(

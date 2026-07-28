@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { useI18n } from '../../i18n/I18nProvider';
 import type { TranslationKey } from '../../i18n/resources';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { StatusPanel } from '../../components/StatusPanel';
-import { useAffiliationApplication, toAffiliationCategory } from '../../hooks/useAffiliation';
+import {
+  useAffiliationApplication,
+  useSubmitAffiliation,
+  toAffiliationCategory,
+} from '../../hooks/useAffiliation';
 import type { RequirementStatus, RequirementView } from '../../api/affiliationTypes';
 import { requirementText } from './requirementText';
 
@@ -24,6 +29,8 @@ export function AffiliationRequirementsPage(): JSX.Element {
   usePageTitle('affiliation.requirements.title');
   const { applicationId } = useParams<{ applicationId: string }>();
   const query = useAffiliationApplication(applicationId);
+  const submit = useSubmitAffiliation(applicationId ?? '');
+  const [confirming, setConfirming] = useState(false);
 
   if (query.isLoading) {
     return (
@@ -64,6 +71,13 @@ export function AffiliationRequirementsPage(): JSX.Element {
 
   const application = query.data;
   const { completeness, requirements } = application;
+  const submitted = application.lifecycleStatus !== 'draft';
+  const onSubmit = (): void => {
+    submit.mutate({
+      expectedVersion: application.concurrencyToken,
+      idempotencyKey: `button-submit-${application.applicationId}-${application.concurrencyToken}`,
+    });
+  };
 
   return (
     <section aria-labelledby="requirements-heading">
@@ -108,9 +122,54 @@ export function AffiliationRequirementsPage(): JSX.Element {
       )}
 
       {completeness.eligibleForSubmission ? (
-        <p className="affiliation-note affiliation-note--complete" role="status">
-          {t('affiliation.requirements.allComplete')}
-        </p>
+        submit.data ? (
+          <section className="affiliation-card" aria-labelledby="submission-receipt-heading">
+            <h2 id="submission-receipt-heading">{t('affiliation.submission.receiptHeading')}</h2>
+            <p role="status">{t('affiliation.submission.receiptBody')}</p>
+            <dl className="context-summary">
+              <div>
+                <dt>{t('affiliation.submission.receiptNumber')}</dt>
+                <dd>{submit.data.receiptId}</dd>
+              </div>
+              <div>
+                <dt>{t('affiliation.submission.sequence')}</dt>
+                <dd>{String(submit.data.sequence)}</dd>
+              </div>
+            </dl>
+          </section>
+        ) : submitted ? (
+          <p className="affiliation-note affiliation-note--complete" role="status">
+            {t('affiliation.submission.submitted')}
+          </p>
+        ) : (
+          <section className="affiliation-card" aria-labelledby="submission-heading">
+            <h2 id="submission-heading">{t('affiliation.submission.readyHeading')}</h2>
+            <p>{t('affiliation.submission.readyBody')}</p>
+            {confirming ? (
+              <div role="group" aria-label={t('affiliation.submission.confirmHeading')}>
+                <p><strong>{t('affiliation.submission.confirmHeading')}</strong></p>
+                <p>{t('affiliation.submission.confirmBody')}</p>
+                <button type="button" onClick={onSubmit} disabled={submit.isPending}>
+                  {submit.isPending
+                    ? t('affiliation.submission.submitting')
+                    : t('affiliation.submission.confirm')}
+                </button>
+                <button type="button" onClick={() => setConfirming(false)} disabled={submit.isPending}>
+                  {t('affiliation.submission.cancel')}
+                </button>
+              </div>
+            ) : (
+              <button type="button" onClick={() => setConfirming(true)}>
+                {t('affiliation.submission.review')}
+              </button>
+            )}
+            {toAffiliationCategory(submit.error) !== undefined ? (
+              <p className="affiliation-note affiliation-note--error" role="alert">
+                {t('affiliation.submission.error')}
+              </p>
+            ) : null}
+          </section>
+        )
       ) : (
         <p className="affiliation-note">{t('affiliation.requirements.noSubmit')}</p>
       )}

@@ -19,6 +19,7 @@ import {
   type AffiliationErrorCategory,
   type AffiliationOverview,
   type DraftResponseInput,
+  type SubmissionReceipt,
 } from './affiliationTypes';
 import { AffiliationMockStore } from './affiliationMockData';
 
@@ -51,6 +52,12 @@ export interface RemoveEvidenceInput {
   readonly linkId: string;
 }
 
+export interface SubmitAffiliationInput {
+  readonly applicationId: string;
+  readonly expectedVersion: string;
+  readonly idempotencyKey: string;
+}
+
 export interface AffiliationApiClient {
   getOverview(input: GetOverviewInput): Promise<AffiliationOverview>;
   initiate(input: InitiateInput): Promise<AffiliationApplicationProjection>;
@@ -58,6 +65,8 @@ export interface AffiliationApiClient {
   saveDraft(input: SaveDraftInput): Promise<AffiliationApplicationProjection>;
   associateEvidence(input: AssociateEvidenceInput): Promise<AffiliationApplicationProjection>;
   removeEvidence(input: RemoveEvidenceInput): Promise<AffiliationApplicationProjection>;
+  /** Slice D command; optional for legacy Slice C-only test doubles. */
+  submit?(input: SubmitAffiliationInput): Promise<SubmissionReceipt>;
 }
 
 function categoryFor(status: number, code: string | undefined): AffiliationErrorCategory {
@@ -207,6 +216,23 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
       (body) => (body as { application: AffiliationApplicationProjection }).application,
     );
   }
+
+  async submit(input: SubmitAffiliationInput): Promise<SubmissionReceipt> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(input.applicationId)}/submissions`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'If-Match': `"${input.expectedVersion}"`,
+          'Idempotency-Key': input.idempotencyKey,
+        },
+        body: JSON.stringify({ expectedVersion: input.expectedVersion }),
+      },
+      (body) => (body as { receipt: SubmissionReceipt }).receipt,
+    );
+  }
 }
 
 /**
@@ -238,6 +264,10 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
 
   async removeEvidence(input: RemoveEvidenceInput): Promise<AffiliationApplicationProjection> {
     return this.store.removeEvidence(input.applicationId, input.linkId);
+  }
+
+  async submit(input: SubmitAffiliationInput): Promise<SubmissionReceipt> {
+    return this.store.submit(input.applicationId, input.expectedVersion, input.idempotencyKey);
   }
 }
 
