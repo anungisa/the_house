@@ -26,6 +26,12 @@
       "owner": "Release Governance Authority",
       "future_blocking_gate": "EXEC-MCG",
       "required_action_or_evidence": "Evidence and resolve each House P0 finding to its release destination."
+    },
+    {
+      "id": "BLOCKER-V12-004",
+      "owner": "Executive Sponsor",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "A separately authorized implementation-authorization decision package supported by accepted evidence."
     }
   ],
   "evidence_gaps": [
@@ -46,6 +52,11 @@
       "owner": "Independent Assurance Authority",
       "required_action_or_evidence": "Map each House P0 finding to its evidence and release destination and resolve it.",
       "release_impact": "Each House P0 finding is a standing release blocker until resolved."
+    },
+    {
+      "id": "GAP-V12-004",
+      "owner": "Evidence Governance Authority",
+      "required_action_or_evidence": "Resolve each orphaned link by governed reference or carry it to the implementation-authorization decision."
     }
   ]
 }

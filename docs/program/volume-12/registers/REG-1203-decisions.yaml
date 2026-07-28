@@ -535,3 +535,235 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 3 — CORPUS-CLOSURE DECISIONS ===============================
+  - id: ADR-V12-018
+    kind: DECISION_BOUNDARY
+    title: Documentary corpus release is not software release
+    statement: >-
+      The documentary corpus release asserts completeness, internal consistency,
+      traceability, and freeze of the definition corpus only, and never a software
+      release, evidence acceptance, or production authorization.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Closing and publishing the corpus creates the risk that a documentary
+      release is read as a system release. The boundary fails closed against it.
+    alternatives_considered:
+      - Withhold any corpus release tag — rejected as it denies traceable closure.
+      - Treat corpus release as release readiness — rejected as fail-open.
+    consequences: >-
+      The corpus-release decision model records withheld implementation, evidence
+      acceptance, release, and production authority alongside the documentary tag.
+    decision_authority: Executive Sponsor
+    prohibited_inference: Corpus release is not product release.
+    traces_to:
+      - V12-32
+    chapter_ref: V12-32
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-019
+    kind: DECISION
+    title: Consolidate Volume 12 into one integrated final-evidence baseline
+    statement: >-
+      Package 3 consolidates every Volume 12 evidence, gate, acceptance, and
+      release-decision model into a single integrated baseline for traceability.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Dispersed models across Packages 1 and 2 must be unified to assess whole-
+      corpus sufficiency without reopening the frozen packages.
+    consequences: >-
+      REG-1201 records the integrated baseline and traceability coverage kinds.
+    decision_authority: Evidence Governance Authority
+    prohibited_inference: An integrated baseline is not produced evidence.
+    traces_to:
+      - V12-21
+      - V12-22
+    chapter_ref: V12-21
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-020
+    kind: DECISION_BOUNDARY
+    title: No orphaned obligation may be silently treated as complete
+    statement: >-
+      Every requirement, evidence requirement, acceptance class, and House P0
+      finding must trace to a release gate or be recorded as an identified gap.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Whole-program traceability fails closed against silent omission.
+    consequences: >-
+      The traceability coverage records each orphaned link as a governed gap.
+    decision_authority: Evidence Governance Authority
+    prohibited_inference: A requirement traced to a gate is not a requirement met.
+    traces_to:
+      - V12-22
+    chapter_ref: V12-22
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-021
+    kind: DECISION_BOUNDARY
+    title: Authority does not leak across gates
+    statement: >-
+      Definition, execution, evidence-intake, acceptance, release-authorization,
+      deployment, and stabilization gates are distinct and independently passed.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The program-gate matrix must prevent an earlier gate from being read as a
+      later gate.
+    consequences: >-
+      The gate matrix records distinct criteria, authority, and dispositions.
+    decision_authority: Release Governance Authority
+    prohibited_inference: Definition gate is not execution authorization.
+    traces_to:
+      - V12-23
+    chapter_ref: V12-23
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-022
+    kind: DECISION_BOUNDARY
+    title: Expired conditions and unresolved release blockers fail closed
+    statement: >-
+      No active unresolved finding, expired condition, or open release blocker may
+      point to a completed Volume 12 gate.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The disposition model must not allow open items to be attached to gates
+      already dispositioned.
+    consequences: >-
+      REG-1204 blockers carry EXEC-MCG as their future blocking gate.
+    decision_authority: Release Governance Authority
+    prohibited_inference: Waiver approved is not failed result converted to pass.
+    traces_to:
+      - V12-25
+    chapter_ref: V12-25
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-023
+    kind: DECISION_BOUNDARY
+    title: Segregation of evidence, acceptance, and release authority is preserved
+    statement: >-
+      Evidence producer, evidence reviewer, acceptance authority, independent
+      assurer, and executive release authority remain segregated roles.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The independence model must prevent role collapse that would let a producer
+      accept their own evidence.
+    consequences: >-
+      The independence and challenge model records prohibited role combinations.
+    decision_authority: Independent Assurance Authority
+    prohibited_inference: Evidence producer is not evidence reviewer is not acceptance authority.
+    traces_to:
+      - V12-28
+    chapter_ref: V12-28
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-024
+    kind: DECISION_BOUNDARY
+    title: The next action after corpus closure is a separate authorization decision
+    statement: >-
+      Corpus closure hands off to a separate implementation-authorization decision
+      package and never implies a Volume 13 or an authorized implementation.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Closure must not be read as continuation authority.
+    consequences: >-
+      An empty handoff branch is created without substantive content.
+    decision_authority: Release Governance Authority
+    prohibited_inference: Definition corpus complete is not implementation authorized.
+    traces_to:
+      - V12-31
+    chapter_ref: V12-31
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-025
+    kind: DECISION
+    title: Apply a documentary corpus release tag on the final provenance amendment
+    statement: >-
+      The tag central-registration-volume-12-v1.0.0 is applied to the merge commit
+      of the Package 3 provenance-role classification as a documentary corpus release.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      A traceable release point is required to close the corpus without asserting a
+      software release.
+    alternatives_considered:
+      - Withhold any tag — rejected as it denies a citable closure point.
+    consequences: >-
+      The applied release tag is recorded in the Package 3 provenance-role record.
+    decision_authority: Executive Sponsor
+    prohibited_inference: A documentary release tag is not a software release.
+    traces_to:
+      - V12-32
+    chapter_ref: V12-32
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

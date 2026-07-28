@@ -1,0 +1,40 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "post_release_obligation_model": [
+    {
+      "id": "MODEL-V12-010",
+      "kind": "POST_RELEASE_OBLIGATION_MODEL",
+      "title": "Deployment, stabilization, rollback, and post-release obligation model",
+      "statement": "The evidence and obligations that would follow a release authorization across deployment, stabilization, rollback, hypercare, and sustained post-release obligation, defining what must be shown after a release without authorizing any release or deployment.",
+      "prohibited_inference": "Release authorized is not deployed, deployed is not functioning correctly, service available is not stabilized, and stabilized is not institutional outcomes accepted.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-30",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "deployment_evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-051",
+      "kind": "DEPLOYMENT_EVIDENCE_REQUIREMENT",
+      "title": "Deployment evidence requirement",
+      "statement": "The requirement that deployment execution and verification evidence be defined for any release, without authorizing any deployment.",
+      "prohibited_inference": "Release authorized is not deployed.",
+      "chapter_ref": "V12-30",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "stabilization_evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-052",
+      "kind": "STABILIZATION_EVIDENCE_REQUIREMENT",
+      "title": "Stabilization evidence requirement",
+      "statement": "The requirement that stabilization, hypercare, incident, and rollback evidence be defined for any deployment, without asserting that any service has stabilized.",
+      "prohibited_inference": "Service available is not stabilized.",
+      "chapter_ref": "V12-30",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

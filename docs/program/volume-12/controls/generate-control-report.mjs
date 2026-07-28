@@ -13,6 +13,8 @@ import { run as runProvenance } from './provenance-integrity-volume-12.mjs';
 import { run as runGate } from './gate-g1-volume-12.mjs';
 import { run as runAffiliation } from './foundation-affiliation-volume-12.mjs';
 import { run as runGate2 } from './gate-g2-volume-12.mjs';
+import { run as runFinalClosure } from './final-closure-volume-12.mjs';
+import { run as runGate3 } from './gate-g3-volume-12.mjs';
 
 export function collectFindings(ctx) {
   return {
@@ -22,7 +24,9 @@ export function collectFindings(ctx) {
     'Provenance-integrity enforcement': runProvenance(ctx),
     'Gate V12-G1 readiness': runGate(ctx),
     'Affiliation evidence & acceptance-dossier coverage': runAffiliation(ctx),
-    'Gate V12-G2 readiness': runGate2(ctx)
+    'Gate V12-G2 readiness': runGate2(ctx),
+    'Integrated final-evidence & corpus-closure coverage': runFinalClosure(ctx),
+    'Gate V12-G3 readiness': runGate3(ctx)
   };
 }
 

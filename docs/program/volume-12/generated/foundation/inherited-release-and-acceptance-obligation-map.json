@@ -132,6 +132,11 @@
       "id": "ACCEPTBL-V12-002",
       "owner": "Business Owner Authority",
       "future_blocking_gate": "EXEC-MCG"
+    },
+    {
+      "id": "ACCEPTBL-V12-003",
+      "owner": "Release Governance Authority",
+      "future_blocking_gate": "EXEC-MCG"
     }
   ]
 }

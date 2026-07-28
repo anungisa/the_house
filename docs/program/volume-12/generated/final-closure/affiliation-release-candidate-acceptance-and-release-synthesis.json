@@ -1,0 +1,16 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "affiliation_acceptance_synthesis": [
+    {
+      "id": "MODEL-V12-007",
+      "kind": "AFFILIATION_ACCEPTANCE_SYNTHESIS",
+      "title": "Affiliation release-candidate, acceptance, and release-decision synthesis",
+      "statement": "The documentary acceptance synthesis for the club-affiliation vertical across its complete lifecycle, drawing together every evidence class the vertical would require without producing, accepting, or releasing any of it.",
+      "prohibited_inference": "Affiliation evidence definition complete is not affiliation evidence available is not affiliation acceptance granted is not affiliation release authorized.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-27",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

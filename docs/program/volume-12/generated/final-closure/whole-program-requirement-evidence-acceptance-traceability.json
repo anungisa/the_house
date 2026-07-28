@@ -1,0 +1,16 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "whole_program_traceability_coverage": [
+    {
+      "id": "MODEL-V12-002",
+      "kind": "WHOLE_PROGRAM_TRACEABILITY_COVERAGE",
+      "title": "Whole-program requirement-to-evidence-to-acceptance traceability coverage",
+      "statement": "The end-to-end trace binding every institutional outcome through requirement, use case, experience, architecture, data, work package, test, operational obligation, evidence requirement, and acceptance authority to a release gate, with every orphaned link recorded as an identified gap.",
+      "prohibited_inference": "A requirement traced to a gate is not a requirement met, and no missing link may be silently treated as complete.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-22",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

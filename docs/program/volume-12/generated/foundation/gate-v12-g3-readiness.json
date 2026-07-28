@@ -1,0 +1,235 @@
+{
+  "gate": "V12-G3",
+  "disposition_target": "INTEGRATED_FINAL_EVIDENCE_GATE_ACCEPTANCE_AND_CORPUS_RELEASE_DEFINITION_COMPLETE",
+  "total_conditions": 45,
+  "satisfied": 45,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1, V12-B, and V12-B-1 lineage inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Package 2, V12-D, and V12-D-1 lineage inherited",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Full V12-D-1 authoring and merge commits preserved",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Package 1 remains frozen",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Package 2 remains frozen",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "The integrated baseline consolidates Packages 1 and 2",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "The integrated final-evidence requirement is present",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "The governing evidence distinction is preserved",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "The end-to-end requirement-to-gate trace is present",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "No missing link may be silently treated as complete",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "The program-gate matrix is present",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Earlier gate passed is not later gate passed",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Definition gate is not execution authorization",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Evidence-intake gate is not evidence-acceptance gate",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Release authorization is not deployment authorization",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "The evidence status model is present",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "The evidence status ladder distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Sufficiency, acceptance, and revalidation requirements are present",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "The release-blocker disposition model is present",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Waiver approved is not failed result converted to pass",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Expired conditions and unresolved release blockers fail closed",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "No active unresolved item may point to a completed Volume 12 gate",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Release-blocker and material-commitment requirements are present",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "The final-dossier model and its requirements are present",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Generated summaries remain non-authoritative projections",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "The affiliation acceptance synthesis is present",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "The affiliation acceptance ladder distinction is preserved",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "The independence and challenge model is present",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "The segregation distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "The executive decision model and its evidence requirement are present",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "A decision brief is not a decision and no decision is fabricated",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "The post-release obligation model and its requirements are present",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "The post-release distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "The corpus-closure and handoff models are present",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "The corpus-closure distinctions are preserved",
+      "satisfied": true
+    },
+    {
+      "n": 36,
+      "title": "The implementation-authorization input and corpus-release record requirements are present",
+      "satisfied": true
+    },
+    {
+      "n": 37,
+      "title": "The integrated closure assessment consolidates every Package 3 model",
+      "satisfied": true
+    },
+    {
+      "n": 38,
+      "title": "Documentary corpus release is never represented as software release, acceptance, gate passage, or production authorization",
+      "satisfied": true
+    },
+    {
+      "n": 39,
+      "title": "House P0 findings have final evidence, acceptance, and release destinations",
+      "satisfied": true
+    },
+    {
+      "n": 40,
+      "title": "All twelve Package 3 model kinds are present",
+      "satisfied": true
+    },
+    {
+      "n": 41,
+      "title": "All thirteen Package 3 requirement kinds are present",
+      "satisfied": true
+    },
+    {
+      "n": 42,
+      "title": "Deterministic Package 3 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 43,
+      "title": "No evidence, acceptance, release, runtime, or execution is fabricated",
+      "satisfied": true
+    },
+    {
+      "n": 44,
+      "title": "Every unresolved item has an owner, required evidence, and a valid future gate, and no record authorizes implementation, operations, or release",
+      "satisfied": true
+    },
+    {
+      "n": 45,
+      "title": "Genuine closure, gate, package, whole-volume, and whole-corpus freeze separation is preserved",
+      "satisfied": true
+    }
+  ]
+}

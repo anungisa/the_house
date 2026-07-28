@@ -139,6 +139,8 @@
     "governance:gate1:v12": "node docs/program/volume-12/controls/gate-g1-volume-12.mjs",
     "governance:affiliation:v12": "node docs/program/volume-12/controls/foundation-affiliation-volume-12.mjs",
     "governance:gate2:v12": "node docs/program/volume-12/controls/gate-g2-volume-12.mjs",
+    "governance:finalclosure:v12": "node docs/program/volume-12/controls/final-closure-volume-12.mjs",
+    "governance:gate3:v12": "node docs/program/volume-12/controls/gate-g3-volume-12.mjs",
     "qualification:base44": "node docs/program/volume-1/controls/inventory-base44.mjs",
     "qualification:house": "node docs/program/volume-1/controls/inventory-house.mjs",
     "qualification:ecosystem": "node docs/program/volume-1/controls/inventory-ecosystem.mjs",

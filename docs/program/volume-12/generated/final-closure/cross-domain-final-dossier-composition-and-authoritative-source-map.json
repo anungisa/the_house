@@ -1,0 +1,28 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "final_dossier_model": [
+    {
+      "id": "MODEL-V12-006",
+      "kind": "FINAL_DOSSIER_MODEL",
+      "title": "Cross-domain final-dossier composition and authoritative-source model",
+      "statement": "The consolidated set of required final dossiers and their authoritative sources, coverage requirements, known limitations, decision authorities, and gate destinations, with generated summaries remaining non-authoritative projections.",
+      "prohibited_inference": "Dossier defined is not dossier populated, and dossier populated is not acceptance granted.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-26",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ],
+  "final_dossier_requirements": [
+    {
+      "id": "DOSSIER-V12-022",
+      "kind": "FINAL_DOSSIER_REQUIREMENT",
+      "title": "Consolidated final-dossier requirement",
+      "statement": "The requirement that each required final dossier name its authoritative contents, evidence sources, coverage, limitations, decision authority, and gate destination, with generated summaries remaining non-authoritative projections.",
+      "prohibited_inference": "Dossier defined is not dossier populated is not acceptance granted.",
+      "chapter_ref": "V12-26",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}

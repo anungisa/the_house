@@ -1845,3 +1845,226 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 3 — INTEGRATED FINAL-EVIDENCE REQUIREMENTS ==================
+  - id: EVIDREQ-V12-044
+    kind: FINAL_EVIDENCE_REQUIREMENT
+    title: Integrated final-evidence requirement
+    statement: The requirement that each obligation in the integrated final-evidence baseline name its authoritative source, required evidence class, provenance, environment, acceptance authority, gate destination, and current evidence, acceptance, and release status.
+    prohibited_inference: Evidence requirement defined is not evidence produced is not evidence validated is not evidence accepted.
+    chapter_ref: V12-21
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-045
+    kind: GATE_EVIDENCE_REQUIREMENT
+    title: Gate-entry evidence requirement
+    statement: The requirement that every gate in the program-gate matrix name the evidence and decisions required to enter it, without asserting that any such evidence exists.
+    prohibited_inference: Earlier gate passed is not later gate passed.
+    chapter_ref: V12-23
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-046
+    kind: EVIDENCE_SUFFICIENCY_REQUIREMENT
+    title: Evidence sufficiency requirement
+    statement: The requirement that accepted evidence be assessed for sufficiency against its authoritative requirement, scope, and coverage before it can support any acceptance.
+    prohibited_inference: Valid is not sufficient.
+    chapter_ref: V12-24
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-047
+    kind: EVIDENCE_ACCEPTANCE_REQUIREMENT
+    title: Evidence acceptance requirement
+    statement: The requirement that acceptance of any evidence be recorded by the named acceptance authority against sufficient, valid, and current evidence.
+    prohibited_inference: Sufficient is not accepted.
+    chapter_ref: V12-24
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-048
+    kind: EVIDENCE_REVALIDATION_REQUIREMENT
+    title: Evidence revalidation requirement
+    statement: The requirement that accepted evidence be revalidated when its scope, configuration, environment, or expiry changes, so that stale evidence cannot support a current acceptance.
+    prohibited_inference: Accepted is not current indefinitely.
+    chapter_ref: V12-24
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-049
+    kind: RELEASE_BLOCKER_REQUIREMENT
+    title: Release-blocker disposition requirement
+    statement: The requirement that every finding, condition, waiver, and unresolved obligation carry a governed disposition and that expired conditions and unresolved release blockers fail closed.
+    prohibited_inference: Waiver approved is not failed result converted to pass.
+    chapter_ref: V12-25
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-055
+    kind: MATERIAL_COMMITMENT_EVIDENCE_REQUIREMENT
+    title: Material commitment evidence requirement
+    statement: The requirement that every material commitment and deferred obligation carry required evidence, an owner, an effective period, and a revalidation condition before it can be relied upon at any gate.
+    prohibited_inference: Commitment recorded is not commitment discharged.
+    chapter_ref: V12-25
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-022
+    kind: FINAL_DOSSIER_REQUIREMENT
+    title: Consolidated final-dossier requirement
+    statement: The requirement that each required final dossier name its authoritative contents, evidence sources, coverage, limitations, decision authority, and gate destination, with generated summaries remaining non-authoritative projections.
+    prohibited_inference: Dossier defined is not dossier populated is not acceptance granted.
+    chapter_ref: V12-26
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-050
+    kind: EXECUTIVE_DECISION_EVIDENCE_REQUIREMENT
+    title: Executive decision evidence requirement
+    statement: The requirement that any executive release decision be supported by the full decision brief, accepted dossiers, outstanding blockers, residual-risk statement, and explicit statement of what the decision does not authorize.
+    prohibited_inference: A decision brief is not a decision.
+    chapter_ref: V12-29
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-051
+    kind: DEPLOYMENT_EVIDENCE_REQUIREMENT
+    title: Deployment evidence requirement
+    statement: The requirement that deployment execution and verification evidence be defined for any release, without authorizing any deployment.
+    prohibited_inference: Release authorized is not deployed.
+    chapter_ref: V12-30
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-052
+    kind: STABILIZATION_EVIDENCE_REQUIREMENT
+    title: Stabilization evidence requirement
+    statement: The requirement that stabilization, hypercare, incident, and rollback evidence be defined for any deployment, without asserting that any service has stabilized.
+    prohibited_inference: Service available is not stabilized.
+    chapter_ref: V12-30
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-053
+    kind: IMPLEMENTATION_AUTHORIZATION_INPUT_REQUIREMENT
+    title: Implementation-authorization input requirement
+    statement: The requirement that a separate implementation-authorization decision package be supported by the frozen corpus reference, master development plan, integrated evidence baseline, gate matrix, disposition ledger, and funding, staffing, and procurement decisions.
+    prohibited_inference: Definition corpus complete is not implementation authorized.
+    chapter_ref: V12-31
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-054
+    kind: CORPUS_RELEASE_RECORD_REQUIREMENT
+    title: Corpus release-record requirement
+    statement: The requirement that the documentary corpus release be recorded as a completeness, consistency, traceability, and freeze assertion only, with implementation, evidence acceptance, system release, and production authority explicitly withheld.
+    prohibited_inference: Corpus release is not product release.
+    chapter_ref: V12-32
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

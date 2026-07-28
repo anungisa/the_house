@@ -1,0 +1,16 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 3 corpus. Confers no ratification and authorizes no implementation, evidence acceptance, system release, or production.",
+  "independence_and_challenge_model": [
+    {
+      "id": "MODEL-V12-008",
+      "kind": "INDEPENDENCE_AND_CHALLENGE_MODEL",
+      "title": "Independence, segregation, challenge, dissent, revocation, and reopening",
+      "statement": "The controls that keep evidence ownership, execution, review, acceptance, independent assurance, and release authority segregated, and that govern conflict, dissent, challenge, contradiction, invalidation, revocation, and gate reopening.",
+      "prohibited_inference": "Evidence producer is not evidence reviewer is not acceptance authority, and prior acceptance is not irrevocable acceptance.",
+      "downstream_gate": "EXEC-MCG",
+      "chapter_ref": "V12-28",
+      "future_gate": "EXEC-MCG",
+      "validation_status": "DEFINED"
+    }
+  ]
+}
