@@ -41,6 +41,33 @@ function toIso(value: unknown): string {
 export class PgAffiliationDraftStore implements AffiliationDraftStore {
   constructor(private readonly pool: pg.Pool = getPool()) {}
 
+  /**
+   * null => ordinary pre-submission draft (all bound requirements editable);
+   * Set => submitted posture with an open bounded correction;
+   * empty Set => read-only lifecycle posture.
+   */
+  private async editableRequirementCodes(
+    client: QueryClient,
+    applicationId: string,
+  ): Promise<ReadonlySet<string> | null> {
+    const states = await client.query<{ current_state: string }>(
+      `SELECT current_state FROM governance.entity_state
+        WHERE entity_type = 'AffiliationApplication' AND entity_id = $1`,
+      [applicationId],
+    );
+    const state = states[0]?.current_state;
+    if (state === undefined || state === 'draft') return null;
+    if (state !== 'submitted' && state !== 'under_review') return new Set();
+    const correction = await client.query<{ requirement_codes: string[] }>(
+      `SELECT requirement_codes
+         FROM affiliation.correction_request
+        WHERE application_id = $1 AND status = 'open'
+        FOR UPDATE`,
+      [applicationId],
+    );
+    return new Set(correction[0]?.requirement_codes ?? []);
+  }
+
   async findApplicationBySubject(
     tenantId: string,
     organizationId: string,
@@ -284,6 +311,13 @@ export class PgAffiliationDraftStore implements AffiliationDraftStore {
         if (current.version !== input.expectedVersion) {
           return { ok: false, reason: 'version_conflict', currentVersion: current.version } as const;
         }
+        const editable = await this.editableRequirementCodes(client, input.applicationId);
+        if (editable !== null) {
+          if (editable.size === 0) return { ok: false, reason: 'not_editable' } as const;
+          if (input.responses.some((response) => !editable.has(response.requirementCode))) {
+            return { ok: false, reason: 'outside_correction_scope' } as const;
+          }
+        }
 
         const boundRows = await client.query<{ requirement_code: string }>(
           `SELECT requirement_code FROM affiliation.application_requirement WHERE application_id = $1`,
@@ -341,6 +375,13 @@ export class PgAffiliationDraftStore implements AffiliationDraftStore {
           [input.applicationId],
         );
         if (locked[0] === undefined) return { ok: false, reason: 'not_found' } as const;
+        const editable = await this.editableRequirementCodes(client, input.applicationId);
+        if (editable !== null) {
+          if (editable.size === 0) return { ok: false, reason: 'not_editable' } as const;
+          if (!editable.has(input.requirementCode)) {
+            return { ok: false, reason: 'outside_correction_scope' } as const;
+          }
+        }
 
         const boundRows = await client.query<{ requirement_code: string }>(
           `SELECT requirement_code FROM affiliation.application_requirement
@@ -416,6 +457,20 @@ export class PgAffiliationDraftStore implements AffiliationDraftStore {
           [input.applicationId],
         );
         if (locked[0] === undefined) return { ok: false, reason: 'not_found' } as const;
+        const editable = await this.editableRequirementCodes(client, input.applicationId);
+        if (editable !== null) {
+          if (editable.size === 0) return { ok: false, reason: 'not_editable' } as const;
+          const link = await client.query<{ requirement_code: string }>(
+            `SELECT requirement_code FROM affiliation.draft_evidence_link
+              WHERE application_id = $1 AND id = $2`,
+            [input.applicationId, input.linkId],
+          );
+          const requirementCode = link[0]?.requirement_code;
+          if (requirementCode === undefined) return { ok: false, reason: 'not_found' } as const;
+          if (!editable.has(requirementCode)) {
+            return { ok: false, reason: 'outside_correction_scope' } as const;
+          }
+        }
 
         const deleted = await client.query<{ id: string }>(
           `DELETE FROM affiliation.draft_evidence_link

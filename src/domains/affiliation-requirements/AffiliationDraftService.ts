@@ -232,10 +232,25 @@ export class AffiliationDraftService {
           'Affiliation application not found.',
         );
       }
+      if (
+        result.reason === 'not_editable' ||
+        result.reason === 'outside_correction_scope'
+      ) {
+        throw new AppError(
+          ErrorCode.AFFILIATION_CORRECTION_CONFLICT,
+          result.reason === 'not_editable'
+            ? 'The submitted application is read-only.'
+            : 'That requirement is outside the authorized correction scope.',
+        );
+      }
       throw new AppError(
         ErrorCode.AFFILIATION_DRAFT_VERSION_CONFLICT,
         'The draft was modified since it was loaded. Reload and reapply your changes.',
-        { details: { currentVersion: result.currentVersion } },
+        {
+          details: {
+            currentVersion: 'currentVersion' in result ? result.currentVersion : input.expectedVersion,
+          },
+        },
       );
     }
     return this.getProjection(input.tenantId, input.applicationId);
@@ -274,6 +289,17 @@ export class AffiliationDraftService {
           'Affiliation application not found.',
         );
       }
+      if (
+        result.reason === 'not_editable' ||
+        result.reason === 'outside_correction_scope'
+      ) {
+        throw new AppError(
+          ErrorCode.AFFILIATION_CORRECTION_CONFLICT,
+          result.reason === 'not_editable'
+            ? 'The submitted application is read-only.'
+            : 'That requirement is outside the authorized correction scope.',
+        );
+      }
       throw new AppError(
         ErrorCode.AFFILIATION_REQUIREMENT_UNKNOWN,
         'The requirement is not applicable to this application.',
@@ -302,6 +328,17 @@ export class AffiliationDraftService {
       actor: input.actor,
     });
     if (!result.ok) {
+      if (
+        result.reason === 'not_editable' ||
+        result.reason === 'outside_correction_scope'
+      ) {
+        throw new AppError(
+          ErrorCode.AFFILIATION_CORRECTION_CONFLICT,
+          result.reason === 'not_editable'
+            ? 'The submitted application is read-only.'
+            : 'That requirement is outside the authorized correction scope.',
+        );
+      }
       throw new AppError(
         ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
         'Affiliation application or evidence association not found.',

@@ -7,9 +7,10 @@
  * authority. Cross-tenant or non-representable references fail closed as an opaque 404 (no
  * existence disclosure); an inactive/expired authority fails as 403.
  *
- * This surface NEVER exposes a generic kernel transition endpoint, NEVER mutates governed state,
- * NEVER invokes the kernel, and NEVER submits an application (submission is Slice D). Every error
- * maps to a sanitized `{ status, code, message, requestId }` envelope.
+ * This surface NEVER exposes a generic kernel transition endpoint. Draft edits remain outside the
+ * kernel; the Slice D submission command delegates to the bounded affiliation service, which alone
+ * invokes the governed transition. Every error maps to a sanitized
+ * `{ status, code, message, requestId }` envelope.
  */
 
 import { randomUUID } from 'node:crypto';
@@ -33,6 +34,10 @@ import type {
   RepresentativeAuthorityProvider,
 } from '../ButtonContextService.js';
 import type { AffiliationDraftService } from '../../../domains/affiliation-requirements/index.js';
+import type {
+  AffiliationSubmissionService,
+  CorrectionReason,
+} from '../../../domains/affiliation-submission/index.js';
 
 const DEFAULT_DEMO_RESOLVER: AuthContextResolver = new DemoAuthContextResolver();
 
@@ -42,7 +47,7 @@ const ALLOWED_PATHWAYS: ReadonlySet<string> = new Set(['new_affiliation', 'renew
 export interface ButtonAffiliationHttpRequest {
   readonly headers: Readonly<Record<string, string | undefined>>;
   readonly query: Readonly<Record<string, string | undefined>>;
-  readonly params: Readonly<{ applicationId?: string; linkId?: string }>;
+  readonly params: Readonly<{ applicationId?: string; linkId?: string; correctionId?: string }>;
   readonly body?: unknown;
 }
 
@@ -54,6 +59,8 @@ export interface ButtonAffiliationHttpResult {
 
 export interface ButtonAffiliationHttpDeps {
   readonly service: AffiliationDraftService;
+  /** Slice D command surface. Omitted by Slice C-only test/composition fixtures. */
+  readonly submissions?: AffiliationSubmissionService;
   readonly organizations: OrganizationReadStore;
   readonly authorities: RepresentativeAuthorityProvider;
   readonly jurisdictions: JurisdictionResolver;
@@ -73,8 +80,11 @@ function appErrorHttpStatus(code: ErrorCode): number {
       return 403;
     case ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND:
     case ErrorCode.AFFILIATION_REQUIREMENT_UNKNOWN:
+    case ErrorCode.AFFILIATION_CORRECTION_NOT_FOUND:
       return 404;
     case ErrorCode.AFFILIATION_DRAFT_VERSION_CONFLICT:
+    case ErrorCode.AFFILIATION_SUBMISSION_NOT_READY:
+    case ErrorCode.AFFILIATION_CORRECTION_CONFLICT:
       return 409;
     default:
       return 500;
@@ -148,6 +158,13 @@ function asRecord(body: unknown): Record<string, unknown> {
     throw new AppError(ErrorCode.INVALID_INPUT, 'A JSON object body is required.');
   }
   return body as Record<string, unknown>;
+}
+
+function submissionService(deps: ButtonAffiliationHttpDeps): AffiliationSubmissionService {
+  if (deps.submissions === undefined) {
+    throw new AppError(ErrorCode.CONFIG_ERROR, 'Affiliation submission is not configured.');
+  }
+  return deps.submissions;
 }
 
 /** Parse the optimistic-concurrency precondition from `If-Match` header or body.expectedVersion. */
@@ -396,6 +413,105 @@ export async function handleAffiliationRemoveEvidence(
   }
 }
 
+/** POST /v1/button/affiliation/applications/:applicationId/submissions. */
+export async function handleAffiliationSubmit(
+  deps: ButtonAffiliationHttpDeps,
+  req: ButtonAffiliationHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<ButtonAffiliationHttpResult> {
+  try {
+    const auth = await resolveOrganizationAuth(resolver, req.headers);
+    const applicationId = requireString(req.params.applicationId, 'applicationId');
+    const body = asRecord(req.body);
+    const expectedDraftVersion = parseExpectedVersion(req.headers, body);
+    const idempotencyKey = requireString(
+      req.headers['idempotency-key'] ?? body['idempotencyKey'],
+      'Idempotency-Key',
+    );
+    const current = await deps.service.getProjection(auth.tenantId, applicationId);
+    await authorizeOrganization(deps, auth, current.organizationId);
+    const receipt = await submissionService(deps).submit({
+      tenantId: auth.tenantId,
+      applicationId,
+      expectedDraftVersion,
+      idempotencyKey,
+      actorUserId: auth.actor.userId,
+      actorRoleKeys: auth.actor.roleKeys,
+      seasonId: current.seasonId,
+      organizationId: current.organizationId,
+      correlationId: requestId,
+    });
+    emit(deps, 'submit', TelemetryResult.success);
+    return { status: 201, body: { status: 'ok', requestId, receipt } };
+  } catch (err) {
+    emit(deps, 'submit', TelemetryResult.failure);
+    return errorResult(err, requestId);
+  }
+}
+
+/** POST /v1/button/affiliation/applications/:applicationId/corrections (reviewer-only). */
+export async function handleAffiliationOpenCorrection(
+  deps: ButtonAffiliationHttpDeps,
+  req: ButtonAffiliationHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<ButtonAffiliationHttpResult> {
+  try {
+    const auth = await resolveOrganizationAuth(resolver, req.headers);
+    const applicationId = requireString(req.params.applicationId, 'applicationId');
+    const body = asRecord(req.body);
+    const reasons = parseCorrectionReasons(body['reasons']);
+    const correction = await submissionService(deps).openCorrection({
+      tenantId: auth.tenantId,
+      applicationId,
+      reviewerUserId: auth.actor.userId,
+      reviewerRoleKeys: auth.actor.roleKeys,
+      reasons,
+    });
+    emit(deps, 'open_correction', TelemetryResult.success);
+    return { status: 201, body: { status: 'ok', requestId, correction } };
+  } catch (err) {
+    emit(deps, 'open_correction', TelemetryResult.failure);
+    return errorResult(err, requestId);
+  }
+}
+
+/** POST /applications/:id/corrections/:correctionId/resubmissions. */
+export async function handleAffiliationResubmitCorrection(
+  deps: ButtonAffiliationHttpDeps,
+  req: ButtonAffiliationHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<ButtonAffiliationHttpResult> {
+  try {
+    const auth = await resolveOrganizationAuth(resolver, req.headers);
+    const applicationId = requireString(req.params.applicationId, 'applicationId');
+    const correctionRequestId = requireString(req.params.correctionId, 'correctionId');
+    const body = asRecord(req.body);
+    const expectedDraftVersion = parseExpectedVersion(req.headers, body);
+    const idempotencyKey = requireString(
+      req.headers['idempotency-key'] ?? body['idempotencyKey'],
+      'Idempotency-Key',
+    );
+    const current = await deps.service.getProjection(auth.tenantId, applicationId);
+    await authorizeOrganization(deps, auth, current.organizationId);
+    const receipt = await submissionService(deps).resubmitCorrection({
+      tenantId: auth.tenantId,
+      applicationId,
+      correctionRequestId,
+      expectedDraftVersion,
+      idempotencyKey,
+      actorUserId: auth.actor.userId,
+    });
+    emit(deps, 'resubmit_correction', TelemetryResult.success);
+    return { status: 201, body: { status: 'ok', requestId, receipt } };
+  } catch (err) {
+    emit(deps, 'resubmit_correction', TelemetryResult.failure);
+    return errorResult(err, requestId);
+  }
+}
+
 function normalizePathway(value: unknown): string {
   if (value === undefined || value === null || value === '') return 'new_affiliation';
   if (typeof value !== 'string' || !ALLOWED_PATHWAYS.has(value)) {
@@ -421,5 +537,21 @@ function parseResponses(
       throw new AppError(ErrorCode.INVALID_INPUT, `responses[${index}].value must be an object.`);
     }
     return { requirementCode, value: responseValue as Record<string, unknown> };
+  });
+}
+
+function parseCorrectionReasons(value: unknown): readonly CorrectionReason[] {
+  if (!Array.isArray(value) || value.length === 0) {
+    throw new AppError(ErrorCode.INVALID_INPUT, "'reasons' must be a non-empty array.");
+  }
+  return value.map((entry, index) => {
+    const record = asRecord(entry);
+    return {
+      requirementCode: requireString(
+        record['requirementCode'],
+        `reasons[${index}].requirementCode`,
+      ),
+      reason: requireString(record['reason'], `reasons[${index}].reason`),
+    };
   });
 }

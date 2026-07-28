@@ -82,9 +82,23 @@ export class PgAffiliationApplicationStore implements AffiliationApplicationStor
   areRequiredFieldsComplete(tenantId: string, applicationId: string): Promise<boolean> {
     return withTenantTransaction(tenantId, async (client: QueryClient) => {
       const rows = await client.query<{ ok: boolean }>(
-        `SELECT required_fields_complete AS ok
-           FROM affiliation.affiliation_application
-          WHERE id = $1`,
+        `SELECT CASE
+           WHEN EXISTS (
+             SELECT 1 FROM affiliation.application_draft d WHERE d.application_id = a.id
+           ) THEN NOT EXISTS (
+             SELECT 1
+               FROM affiliation.application_requirement ar
+          LEFT JOIN affiliation.draft_response dr
+                 ON dr.tenant_id = ar.tenant_id
+                AND dr.application_id = ar.application_id
+                AND dr.requirement_code = ar.requirement_code
+              WHERE ar.application_id = a.id
+                AND (dr.requirement_code IS NULL OR dr.response_value = '{}'::jsonb)
+           )
+           ELSE a.required_fields_complete
+         END AS ok
+           FROM affiliation.affiliation_application a
+          WHERE a.id = $1`,
         [applicationId],
       );
       return rows[0]?.ok === true;
@@ -93,11 +107,34 @@ export class PgAffiliationApplicationStore implements AffiliationApplicationStor
 
   areRequiredDocumentsPresent(tenantId: string, applicationId: string): Promise<boolean> {
     return withTenantTransaction(tenantId, async (client: QueryClient) => {
-      const exists = await client.query<{ n: number }>(
-        `SELECT count(*)::int AS n FROM affiliation.affiliation_application WHERE id = $1`,
+      const exists = await client.query<{ n: number; has_draft: boolean }>(
+        `SELECT count(*)::int AS n,
+                EXISTS (
+                  SELECT 1 FROM affiliation.application_draft d WHERE d.application_id = $1
+                ) AS has_draft
+           FROM affiliation.affiliation_application WHERE id = $1`,
         [applicationId],
       );
       if ((exists[0]?.n ?? 0) === 0) return false;
+      if (exists[0]?.has_draft === true) {
+        const missing = await client.query<{ n: number }>(
+          `SELECT count(*)::int AS n
+             FROM affiliation.application_requirement ar
+             JOIN affiliation.requirement_definition rd
+               ON rd.code = ar.requirement_code AND rd.version = ar.requirement_version
+            WHERE ar.application_id = $1
+              AND rd.evidence_required
+              AND NOT EXISTS (
+                SELECT 1
+                  FROM affiliation.draft_evidence_link de
+                 WHERE de.tenant_id = ar.tenant_id
+                   AND de.application_id = ar.application_id
+                   AND de.requirement_code = ar.requirement_code
+              )`,
+          [applicationId],
+        );
+        return (missing[0]?.n ?? 0) === 0;
+      }
       const blocking = await client.query<{ n: number }>(
         `SELECT count(*)::int AS n
            FROM affiliation.application_document

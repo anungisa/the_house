@@ -31,6 +31,10 @@ import { PgAffiliationApplicationStore } from '../domains/affiliation/PgAffiliat
 import { AffiliationActiveStandingSerializationResolver } from '../domains/affiliation/AffiliationActiveStandingSerializationResolver.js';
 import { AFFILIATION_APPLICATION_ENTITY_TYPE } from '../domains/affiliation/index.js';
 import {
+  AffiliationSubmissionService,
+  PgAffiliationSubmissionEffect,
+} from '../domains/affiliation-submission/index.js';
+import {
   AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE,
   DomainBackedFinancialGuardRepository,
   FinancialObligationSerializationResolver,
@@ -169,6 +173,7 @@ export function createPgGovernanceKernel(): GovernanceKernel {
 
   // Financial + standing facts persist atomically with the governed transition via the effect port.
   const domainEffects = new Map<string, TransitionDomainEffect>([
+    [AFFILIATION_APPLICATION_ENTITY_TYPE, new PgAffiliationSubmissionEffect()],
     [AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE, new PgFinancialObligationEffect()],
     [AFFILIATION_STANDING_ENTITY_TYPE, new PgAffiliationStandingEffect()],
   ]);
@@ -408,6 +413,7 @@ export function createButtonAffiliationHttpDeps(telemetry?: Telemetry): ButtonAf
   });
   return {
     service,
+    submissions: new AffiliationSubmissionService(createPgAffiliationApplicationService()),
     organizations: new PgOrganizationRegistryStore(),
     authorities: new RoleDerivedRepresentativeAuthorityProvider(),
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
