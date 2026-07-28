@@ -1,0 +1,166 @@
+register_id: REG-1204
+name: Volume 12 Assumptions, Risks, Evidence Gaps, Material Commitments, Acceptance Backlog, and Release Blockers
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ASM-V12-001
+    kind: ASSUMPTION
+    title: Package 2 will define concrete evidence requirements
+    statement: >-
+      It is assumed that a subsequent package will define the concrete,
+      per-requirement evidence and acceptance dossiers for the affiliation
+      workload within this framework.
+    source: V12-A closure record.
+    owner: Release Governance Authority
+    current_status: Open assumption pending Package 2.
+    impact_if_unresolved: The framework cannot be exercised against a real workload.
+    required_action_or_evidence: Author Package 2 evidence-requirement and acceptance-dossier definitions.
+    volume_12_destination: Package 2 evidence-requirement definition.
+    traces_to:
+      - V12-05
+    future_blocking_gate: EXEC-MCG
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: RISK-V12-001
+    kind: RISK
+    title: Risk of collapsing evidence and acceptance decisions
+    statement: >-
+      There is a risk that downstream work collapses evidence sufficiency and
+      acceptance into a single sign-off, defeating segregation of duties.
+    source: V12-02 decision-class analysis.
+    owner: Independent Assurance Authority
+    current_status: Open risk mitigated by the decision-class framework.
+    impact_if_unresolved: Unsafe acceptance and release.
+    required_action_or_evidence: Enforce decision-class separation in Package 2 acceptance dossiers.
+    likelihood_or_occurrence: Assessed by a defined method in later packages.
+    escalation_threshold: Any collapse of decision classes escalates to the Executive Sponsor.
+    traces_to:
+      - V12-02
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: GAP-V12-001
+    kind: EVIDENCE_GAP
+    title: No concrete evidence objects exist yet
+    statement: >-
+      No concrete evidence objects have been produced; only the binding template
+      and requirements are defined.
+    source: REG-1202 evidence-object template.
+    owner: Evidence Governance Authority
+    current_status: Expected gap for a documentary foundation package.
+    impact_if_unresolved: No obligation can be evidenced until objects are produced.
+    required_action_or_evidence: Produce evidence objects to the binding template in later packages.
+    evidence_impact: Every requirement remains unevidenced.
+    release_impact: Release is blocked until the evidence base exists and is accepted.
+    required_evidence: Evidence objects bound per EVID-V12-001.
+    traces_to:
+      - V12-03
+    future_blocking_gate: EXEC-MCG
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: COMMIT-V12-001
+    kind: MATERIAL_COMMITMENT
+    title: Commitment to define acceptance dossiers before any release
+    statement: >-
+      A material commitment that no release decision is taken until the final
+      dossier and all acceptance dossiers are complete and independently assured.
+    source: V12-06 release-gate criteria.
+    owner: Release Governance Authority
+    current_status: Standing commitment.
+    impact_if_unresolved: Premature release without a complete evidence base.
+    required_action_or_evidence: Complete final and acceptance dossiers with independent assurance.
+    release_impact: Release is blocked until the commitment is fulfilled.
+    required_evidence: Complete dossiers per REG-1202.
+    expiry: Reviewed at each release-gate evaluation.
+    revalidation_condition: Revalidated whenever the release candidate changes.
+    traces_to:
+      - V12-06
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPTBL-V12-001
+    kind: ACCEPTANCE_BACKLOG
+    title: Acceptance authorities to be seated for Package 2
+    statement: >-
+      The acceptance authorities defined in REG-1201 must be seated with named,
+      independent role-holders before any acceptance decision is taken.
+    source: REG-1201 authority definitions.
+    owner: Business Owner Authority
+    current_status: Open backlog pending role seating.
+    impact_if_unresolved: No valid acceptance decision can be taken.
+    required_action_or_evidence: Seat independent acceptance authorities with recorded qualifications.
+    acceptance_authority: Business Owner Authority
+    readiness_disposition: Not ready; acceptance authorities not seated.
+    traces_to:
+      - V12-07
+    future_blocking_gate: EXEC-MCG
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: BLOCKER-V12-001
+    kind: RELEASE_BLOCKER
+    title: No release authorized under Volume 12 Package 1
+    statement: >-
+      Volume 12 Package 1 is a documentary foundation and authorizes no release.
+      This standing release blocker records that no release may occur under this
+      package.
+    source: V12-00 non-authorizing posture.
+    owner: Executive Sponsor
+    current_status: Standing release blocker for Package 1.
+    impact_if_unresolved: Any release under this package would be unauthorized.
+    required_action_or_evidence: Complete evidence, acceptance, gating, and executive authorization in later packages.
+    release_impact: Release is not authorized under Package 1 by design.
+    affected_release_gate: EXEC-MCG
+    required_evidence: A complete, accepted, and gated release candidate.
+    traces_to:
+      - V12-00
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

@@ -1,0 +1,41 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "findings": [
+    {
+      "id": "FINDING-V12-001",
+      "title": "Evidence-gap finding template",
+      "owner": "Evidence Governance Authority",
+      "affected_decision": "EXEC-MCG",
+      "required_evidence": "The evidence class named by the affected requirement."
+    },
+    {
+      "id": "FINDING-V12-002",
+      "title": "Defect finding template",
+      "owner": "Technical Verification Authority",
+      "affected_decision": "EXEC-MCG",
+      "required_evidence": "Automated or manual test evidence covering the defect."
+    }
+  ],
+  "conditions": [
+    {
+      "id": "CONDITION-V12-001",
+      "title": "Conditional-acceptance template",
+      "expiry": "Expiry date recorded; an expired condition is a fail-closed gate condition.",
+      "revalidation_condition": "Revalidated when the underlying evidence changes."
+    },
+    {
+      "id": "CONDITION-V12-002",
+      "title": "Deferred-obligation template",
+      "expiry": "Expiry date recorded.",
+      "revalidation_condition": "Revalidated at expiry or on environment change."
+    }
+  ],
+  "release_blockers": [
+    {
+      "id": "BLOCKER-V12-001",
+      "owner": "Executive Sponsor",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "Complete evidence, acceptance, gating, and executive authorization in later packages."
+    }
+  ]
+}

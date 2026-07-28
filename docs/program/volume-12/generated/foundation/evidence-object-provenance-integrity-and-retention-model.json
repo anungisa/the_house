@@ -1,0 +1,30 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "evidence_objects": [
+    {
+      "id": "EVID-V12-001",
+      "title": "Controlled evidence object binding template",
+      "binds": {
+        "requirement": "Bound to a named evidence requirement.",
+        "version": "Bound to a version.",
+        "commit": "Bound to a commit.",
+        "configuration": "Bound to a configuration baseline.",
+        "environment": "Bound to a qualified environment.",
+        "identity": "Bound to an identity and authority context.",
+        "organization": "Bound to an organization and jurisdiction.",
+        "jurisdiction": "Bound to the applicable jurisdiction.",
+        "data": "Bound to a dataset, fixture, migration batch, or operational data context.",
+        "provider_state": "Bound to a recorded provider state.",
+        "time": "Bound to an execution time."
+      },
+      "integrity_mechanism": "Cryptographic hash and source-controlled custody.",
+      "reproducibility": "Reproduction procedure recorded; a reproducible procedure is not a reproduced result.",
+      "retention_dependency": "Retained per the applicable records obligation.",
+      "expiry_or_revalidation_date": "Revalidation date recorded per evidence class.",
+      "executor": "Recorded executor.",
+      "reviewer": "Recorded independent reviewer.",
+      "independence_level": "INDEPENDENT",
+      "acceptance_disposition": "Not accepted; disposition reserved to the acceptance authority."
+    }
+  ]
+}

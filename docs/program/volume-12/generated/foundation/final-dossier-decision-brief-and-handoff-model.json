@@ -1,0 +1,77 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "dossiers": [
+    {
+      "id": "DOSSIER-V12-001",
+      "title": "Final evidence dossier",
+      "dossier_kind": "FINAL_EVIDENCE_DOSSIER",
+      "contained_sections": "Release-candidate identity; scope and excluded scope; institutional outcomes; requirement coverage; implementation, test, security and privacy, accessibility, bilingual, financial, migration, operational, provider, and training and adoption evidence; defects and evidence gaps; exceptions and waivers; material commitments; independent assurance; acceptance decisions; dissent and conditions; rollback dependency; release authorization; post-deployment obligations.",
+      "authoritative_source": "Registers REG-1201 and REG-1202 and the ratified chapters.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-002",
+      "title": "Technical evidence dossier",
+      "dossier_kind": "TECHNICAL_EVIDENCE_DOSSIER",
+      "contained_sections": "Implementation, test, security, privacy, accessibility, bilingual, and data evidence.",
+      "authoritative_source": "Register REG-1202 evidence requirements and objects.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-003",
+      "title": "Operational-readiness dossier",
+      "dossier_kind": "OPERATIONAL_READINESS_DOSSIER",
+      "contained_sections": "Operational, continuity, recovery, observability, and provider evidence.",
+      "authoritative_source": "Register REG-1202 evidence requirements.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-004",
+      "title": "Migration-acceptance dossier",
+      "dossier_kind": "MIGRATION_ACCEPTANCE_DOSSIER",
+      "contained_sections": "Migration and reconciliation evidence and acceptance decisions.",
+      "authoritative_source": "Register REG-1202 migration evidence requirement.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-005",
+      "title": "Independent-assurance summary",
+      "dossier_kind": "INDEPENDENT_ASSURANCE_SUMMARY",
+      "contained_sections": "Independent assurance conclusions and qualifications.",
+      "authoritative_source": "Register REG-1201 independent-assurance criterion.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-006",
+      "title": "Business-acceptance brief",
+      "dossier_kind": "BUSINESS_ACCEPTANCE_BRIEF",
+      "contained_sections": "Business, financial, training, and adoption evidence and acceptance decisions.",
+      "authoritative_source": "Register REG-1202 business-acceptance evidence requirement.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-007",
+      "title": "Executive decision brief",
+      "dossier_kind": "EXECUTIVE_DECISION_BRIEF",
+      "contained_sections": "Summary of accepted evidence, dissent, conditions, and material commitments.",
+      "authoritative_source": "Registers REG-1201 and REG-1202.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-008",
+      "title": "Release authorization record",
+      "dossier_kind": "RELEASE_AUTHORIZATION_RECORD",
+      "contained_sections": "Release candidate identity, gate status, conditions, and authorization.",
+      "authoritative_source": "Register REG-1201 release decisions.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    },
+    {
+      "id": "DOSSIER-V12-009",
+      "title": "Stabilization and post-release obligations",
+      "dossier_kind": "STABILIZATION_AND_POST_RELEASE_OBLIGATIONS",
+      "contained_sections": "Post-deployment obligations and stabilization acceptance criteria.",
+      "authoritative_source": "Register REG-1201 post-deployment criterion.",
+      "projection_boundary": "Generated summaries are projections and are never authoritative."
+    }
+  ]
+}

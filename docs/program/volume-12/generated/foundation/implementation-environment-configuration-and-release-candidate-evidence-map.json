@@ -1,0 +1,35 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-001",
+      "title": "Implementation evidence requirement",
+      "domain": "implementation",
+      "environment_requirement": "Qualified build environment.",
+      "configuration_requirement": "Configuration baseline recorded.",
+      "prohibited_inference": "Implementation complete is not verification complete."
+    }
+  ],
+  "all_evidence_requirement_domains": [
+    "implementation",
+    "unit and component verification",
+    "PostgreSQL behavioural verification",
+    "contract and integration testing",
+    "end-to-end workflow testing",
+    "security",
+    "privacy and records",
+    "accessibility",
+    "bilingual semantic equivalence",
+    "financial controls and reconciliation",
+    "data integrity",
+    "migration",
+    "backup, restore, and recovery",
+    "continuity",
+    "observability and incident response",
+    "provider operations",
+    "training and competence",
+    "adoption",
+    "business acceptance",
+    "independent assurance"
+  ]
+}

@@ -1,0 +1,93 @@
+register_id: REG-1200
+name: Volume 12 Corpus Index
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: V12-00
+    title: Volume Control, Inheritance, and Evidence-Decision Authority
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-00.md
+    gate: V12-G1
+  - id: V12-01
+    title: Evidence Doctrine, Hierarchy, Sufficiency, and Claim Boundaries
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-01.md
+    gate: V12-G1
+  - id: V12-02
+    title: Gate Architecture, Acceptance Classes, Decision Rights, and Segregation of Duties
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-02.md
+    gate: V12-G1
+  - id: V12-03
+    title: Evidence Object, Provenance, Integrity, Reproducibility, and Retention Model
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-03.md
+    gate: V12-G1
+  - id: V12-04
+    title: Material Commitments, Defects, Exceptions, Waivers, Conditions, and Expiry
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-04.md
+    gate: V12-G1
+  - id: V12-05
+    title: Cross-Domain Evidence-Intake and Sufficiency Model
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-05.md
+    gate: V12-G1
+  - id: V12-06
+    title: Implementation, Environment, Configuration, Deployment-Path, and Release-Candidate Evidence Model
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-06.md
+    gate: V12-G1
+  - id: V12-07
+    title: Business, Operational, Stakeholder, Executive, and Release-Authorization Model
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-07.md
+    gate: V12-G1
+  - id: V12-08
+    title: Evidence Deficiency, Contradiction, Challenge, Revalidation, and Revocation Model
+    owner: Independent Assurance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-08.md
+    gate: V12-G1
+  - id: V12-09
+    title: Final Evidence Dossier, Decision Brief, Release Note, and Handoff Model
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-09.md
+    gate: V12-G1
+  - id: V12-10
+    title: Package 1 Gate, Release, and Acceptance-Governance Assessment
+    owner: Independent Assurance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-10.md
+    gate: V12-G1

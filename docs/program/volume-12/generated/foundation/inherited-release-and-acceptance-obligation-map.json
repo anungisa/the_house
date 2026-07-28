@@ -1,0 +1,132 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "inherited_release_tag": "central-registration-volume-11-v1.0.0",
+  "acceptance_classes": [
+    {
+      "id": "ACCEPT-V12-001",
+      "title": "Technical acceptance",
+      "acceptance_class": "TECHNICAL_ACCEPTANCE",
+      "decision_authority": "Technical Verification Authority",
+      "independence_requirement": "Independent of the implementer.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-002",
+      "title": "Domain acceptance",
+      "acceptance_class": "DOMAIN_ACCEPTANCE",
+      "decision_authority": "Domain Acceptance Authority",
+      "independence_requirement": "Independent of technical delivery.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-003",
+      "title": "Security and privacy acceptance",
+      "acceptance_class": "SECURITY_AND_PRIVACY_ACCEPTANCE",
+      "decision_authority": "Security and Privacy Authority",
+      "independence_requirement": "Independent of the implementer.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-004",
+      "title": "Accessibility acceptance",
+      "acceptance_class": "ACCESSIBILITY_ACCEPTANCE",
+      "decision_authority": "Accessibility Authority",
+      "independence_requirement": "Independent manual and assistive-technology review.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-005",
+      "title": "Bilingual acceptance",
+      "acceptance_class": "BILINGUAL_ACCEPTANCE",
+      "decision_authority": "Bilingual Content Authority",
+      "independence_requirement": "Independent semantic review.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-006",
+      "title": "Migration acceptance",
+      "acceptance_class": "MIGRATION_ACCEPTANCE",
+      "decision_authority": "Migration Acceptance Authority",
+      "independence_requirement": "Independent reconciliation review.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-007",
+      "title": "Operational acceptance",
+      "acceptance_class": "OPERATIONAL_ACCEPTANCE",
+      "decision_authority": "Operational Acceptance Authority",
+      "independence_requirement": "Independent of delivery.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-008",
+      "title": "Provider acceptance",
+      "acceptance_class": "PROVIDER_ACCEPTANCE",
+      "decision_authority": "Provider Acceptance Authority",
+      "independence_requirement": "Independent end-to-end verification.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-009",
+      "title": "Training and adoption acceptance",
+      "acceptance_class": "TRAINING_AND_ADOPTION_ACCEPTANCE",
+      "decision_authority": "Training and Adoption Authority",
+      "independence_requirement": "Independent competence assessment.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-010",
+      "title": "Business-owner acceptance",
+      "acceptance_class": "BUSINESS_OWNER_ACCEPTANCE",
+      "decision_authority": "Business Owner Authority",
+      "independence_requirement": "Independent of technical delivery.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-011",
+      "title": "Executive acceptance",
+      "acceptance_class": "EXECUTIVE_ACCEPTANCE",
+      "decision_authority": "Executive Sponsor",
+      "independence_requirement": "Independent of technical verification.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-012",
+      "title": "Release authorization",
+      "acceptance_class": "RELEASE_AUTHORIZATION",
+      "decision_authority": "Executive Sponsor",
+      "independence_requirement": "Independent of delivery and deployment.",
+      "release_effect": "Authorizes release only within the named candidate and conditions."
+    }
+  ],
+  "release_decisions": [
+    {
+      "id": "RELEASE-V12-001",
+      "title": "Release-gate decision record",
+      "decision_class": "RELEASE_GATE_DECISION",
+      "decision_authority": "Release Governance Authority",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "RELEASE-V12-002",
+      "title": "Executive release authorization record",
+      "decision_class": "EXECUTIVE_RELEASE_AUTHORIZATION",
+      "decision_authority": "Executive Sponsor",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "RELEASE-V12-003",
+      "title": "Deployment authorization record",
+      "decision_class": "DEPLOYMENT_AUTHORIZATION",
+      "decision_authority": "Release Governance Authority",
+      "downstream_gate": "EXEC-MCG"
+    }
+  ],
+  "outstanding_acceptance_backlog": [
+    {
+      "id": "ACCEPTBL-V12-001",
+      "owner": "Business Owner Authority",
+      "future_blocking_gate": "EXEC-MCG"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "Volume 12 common definitions",
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "registerStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "IN_REVIEW", "RATIFIED", "SUPERSEDED", "WITHDRAWN"]
+    },
+    "documentId": {
+      "type": "string",
+      "pattern": "^V12-([0-9]{2}|[A-Z])(-[A-Z0-9]+)?$"
+    },
+    "v12GateId": {
+      "type": "string",
+      "pattern": "^V12-G[0-9]$"
+    },
+    "futureGateId": {
+      "type": "string",
+      "pattern": "^(V12-G[0-9]|EXEC-MCG)$"
+    },
+    "evidenceLabel": {
+      "type": ["string", "null"],
+      "enum": [
+        "AUTHOR-VERIFIED",
+        "SELF-ATTESTED",
+        "SELF-ATTESTED / AUTHOR-VERIFIED",
+        "DOMAIN-VALIDATED",
+        "PEER-REVIEWED",
+        "AUTOMATED-EVIDENCE",
+        "INDEPENDENTLY-ASSESSED",
+        "EXECUTIVE-ACCEPTED",
+        "PRODUCTION-PROVEN",
+        null
+      ]
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ].*)?$"
+    },
+    "implementationStatus": {
+      "type": "string",
+      "enum": ["NOT_IMPLEMENTED_OR_NOT_PROVEN"]
+    },
+    "operationalStatus": {
+      "type": "string",
+      "enum": ["NOT_OPERATIONAL_OR_NOT_PROVEN"]
+    },
+    "executionStatus": {
+      "type": "string",
+      "enum": ["NOT_EXECUTED"]
+    },
+    "evidenceStatus": {
+      "type": "string",
+      "enum": ["NOT_AVAILABLE_OR_NOT_ACCEPTED"]
+    },
+    "acceptanceStatus": {
+      "type": "string",
+      "enum": ["NOT_ACCEPTED"]
+    },
+    "releaseStatus": {
+      "type": "string",
+      "enum": ["NOT_AUTHORIZED"]
+    },
+    "authorityDomain": {
+      "type": "string",
+      "enum": ["House", "CurlingCanada", "Button", "External", "Internal", "Provider", "Staff", "Shared", "Independent", "Neither"]
+    },
+    "operatingState": {
+      "type": "string",
+      "enum": [
+        "DEFINED",
+        "IMPLEMENTED",
+        "VERIFIED",
+        "RELEASE_CANDIDATE",
+        "OPERATIONALLY_PREPARED",
+        "OPERATIONALLY_ACCEPTED",
+        "DEPLOYED",
+        "STABILIZING",
+        "OPERATING",
+        "DEGRADED",
+        "SUSPENDED",
+        "RECOVERING",
+        "RETIRED"
+      ]
+    },
+    "evidenceClass": {
+      "type": "string",
+      "enum": [
+        "DOCUMENTARY_DEFINITION",
+        "IMPLEMENTATION_EVIDENCE",
+        "AUTOMATED_TEST_EVIDENCE",
+        "MANUAL_TEST_EVIDENCE",
+        "INDEPENDENT_REVIEW_EVIDENCE",
+        "MIGRATION_EVIDENCE",
+        "OPERATIONAL_EXERCISE_EVIDENCE",
+        "PROVIDER_EVIDENCE",
+        "BUSINESS_ACCEPTANCE_EVIDENCE",
+        "EXECUTIVE_DECISION_EVIDENCE",
+        "RELEASE_EVIDENCE",
+        "PRODUCTION_AND_STABILIZATION_EVIDENCE"
+      ]
+    },
+    "decisionClass": {
+      "type": "string",
+      "enum": [
+        "EVIDENCE_INTAKE_DECISION",
+        "EVIDENCE_VALIDITY_DECISION",
+        "EVIDENCE_SUFFICIENCY_DECISION",
+        "DOMAIN_ACCEPTANCE_DECISION",
+        "OPERATIONAL_ACCEPTANCE_DECISION",
+        "BUSINESS_ACCEPTANCE_DECISION",
+        "INDEPENDENT_ASSURANCE_CONCLUSION",
+        "MATERIAL_COMMITMENT_DECISION",
+        "RELEASE_GATE_DECISION",
+        "EXECUTIVE_RELEASE_AUTHORIZATION",
+        "DEPLOYMENT_AUTHORIZATION",
+        "POST_DEPLOYMENT_STABILIZATION_ACCEPTANCE"
+      ]
+    },
+    "acceptanceClass": {
+      "type": "string",
+      "enum": [
+        "TECHNICAL_ACCEPTANCE",
+        "DOMAIN_ACCEPTANCE",
+        "SECURITY_AND_PRIVACY_ACCEPTANCE",
+        "ACCESSIBILITY_ACCEPTANCE",
+        "BILINGUAL_ACCEPTANCE",
+        "MIGRATION_ACCEPTANCE",
+        "OPERATIONAL_ACCEPTANCE",
+        "PROVIDER_ACCEPTANCE",
+        "TRAINING_AND_ADOPTION_ACCEPTANCE",
+        "BUSINESS_OWNER_ACCEPTANCE",
+        "EXECUTIVE_ACCEPTANCE",
+        "RELEASE_AUTHORIZATION"
+      ]
+    },
+    "gateModelKind": {
+      "type": "string",
+      "enum": ["GATE", "GATE_CRITERION", "EVIDENCE_CLASS", "ACCEPTANCE_CLASS", "AUTHORITY", "RELEASE_DECISION"]
+    },
+    "evidenceModelKind": {
+      "type": "string",
+      "enum": ["EVIDENCE_REQUIREMENT", "EVIDENCE_OBJECT", "FINDING", "CONDITION", "WAIVER", "MATERIAL_COMMITMENT", "DOSSIER"]
+    },
+    "operationalDomain": {
+      "type": "string",
+      "enum": [
+        "EXECUTIVE_SPONSORSHIP",
+        "SERVICE_OWNERSHIP",
+        "PRODUCT_OWNERSHIP",
+        "DOMAIN_OWNERSHIP",
+        "TECHNICAL_OWNERSHIP",
+        "DATA_OWNERSHIP",
+        "SECURITY",
+        "PRIVACY_AND_RECORDS",
+        "ACCESSIBILITY",
+        "BILINGUAL_CONTENT",
+        "SUPPORT",
+        "OBSERVABILITY_AND_INCIDENT",
+        "CONTINUITY_AND_RECOVERY",
+        "MIGRATION",
+        "RECONCILIATION",
+        "TRAINING_AND_ADOPTION",
+        "PROVIDER_MANAGEMENT",
+        "FINANCE_AND_RECONCILIATION",
+        "INDEPENDENT_ASSURANCE"
+      ]
+    },
+    "migrationStage": {
+      "type": "string",
+      "enum": [
+        "SOURCE_QUALIFICATION",
+        "EXTRACTION",
+        "PROVENANCE_CAPTURE",
+        "MAPPING",
+        "VALIDATION",
+        "IDENTITY_CANDIDATE_TREATMENT",
+        "DUPLICATE_AND_UNCERTAINTY_TREATMENT",
+        "QUARANTINE",
+        "REHEARSAL",
+        "RECONCILIATION",
+        "CUTOVER_AUTHORIZATION",
+        "CUTOVER",
+        "BUSINESS_ACCEPTANCE",
+        "STABILIZATION",
+        "SOURCE_RETIREMENT_AUTHORIZATION"
+      ]
+    },
+    "supportClassKind": {
+      "type": "string",
+      "enum": [
+        "SERVICE_REQUEST",
+        "USER_ASSISTANCE",
+        "AFFILIATION_CASE_ESCALATION",
+        "ACCESS_AND_AUTHORITY_ISSUE",
+        "EVIDENCE_AND_DOCUMENT_ISSUE",
+        "FINANCE_AND_RECONCILIATION_ISSUE",
+        "PROVIDER_ISSUE",
+        "INCIDENT",
+        "PROBLEM",
+        "KNOWN_ERROR"
+      ]
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "PERSONAL_INFORMATION", "FINANCIAL", "RESTRICTED_EVIDENCE", "NOT_APPLICABLE"]
+    },
+    "independenceLevel": {
+      "type": "string",
+      "enum": ["SELF", "PEER", "DOMAIN", "INDEPENDENT", "EXECUTIVE", "NOT_APPLICABLE"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH", "INDICATIVE_ONLY"]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": ["DEFINED", "CONSTRAINED", "ASSUMED", "PENDING_VALIDATION", "DEFERRED"]
+    },
+    "decisionKind": {
+      "type": "string",
+      "enum": ["DECISION", "RECOMMENDED_DECISION", "DECISION_BOUNDARY"]
+    },
+    "decisionStatus": {
+      "type": "string",
+      "enum": ["RECOMMENDED", "PROPOSED", "APPROVED_FOR_PLANNING", "PENDING", "DEFERRED"]
+    },
+    "backlogKind": {
+      "type": "string",
+      "enum": [
+        "ASSUMPTION",
+        "RISK",
+        "EVIDENCE_GAP",
+        "MATERIAL_COMMITMENT",
+        "ACCEPTANCE_BACKLOG",
+        "RELEASE_BLOCKER"
+      ]
+    }
+  }
+}

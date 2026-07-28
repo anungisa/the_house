@@ -1,0 +1,190 @@
+{
+  "gate": "V12-G1",
+  "disposition_target": "GATE_RELEASE_AND_ACCEPTANCE_EVIDENCE_GOVERNANCE_FOUNDATION_READY",
+  "total_conditions": 35,
+  "satisfied": 34,
+  "unmet": [
+    {
+      "n": 35,
+      "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation preserved"
+    }
+  ],
+  "readiness": "NOT_READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Released Volume 11 provenance inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "V11-F-1 authoring commit retrieved and preserved",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Evidence requirement, submission, validity, sufficiency, acceptance, gate passage, release authorization, and deployment remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Evidence classes and evidentiary limits controlled",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every permitted claim has a corresponding prohibited-inference boundary",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Gate criteria, decision rights, and escalation paths controlled",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Evidence ownership, review, acceptance, and release authority segregated",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Technical, domain, operational, business, executive, and release acceptance remain distinct",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Evidence objects bind requirement, version, commit, configuration, environment, identity, organization, jurisdiction, data, provider state, and time",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Evidence integrity, reproducibility, retention, expiry, and revalidation controlled",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Failed, partial, stale, conflicting, and inconclusive evidence remain visible",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Inconclusive evidence cannot be represented as a pass",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Defects, evidence gaps, exceptions, waivers, conditions, commitments, expiry, revocation, and reopening controlled",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Waivers and conditional acceptance do not convert failures into successful results",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "Defect closure requires applicable retest or re-exercise evidence",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Cross-domain evidence requirements cover the full program",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Test execution remains distinct from accepted evidence and conformance",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Operational evidence remains distinct from operational readiness and release authorization",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Migration execution remains distinct from migration acceptance and source retirement",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Provider certifications and provider-managed results remain distinct from end-to-end assurance",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Accessibility and bilingual evidence preserve their manual, semantic, and independent-review boundaries",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Security and privacy evidence is not represented as automatic legal-compliance proof",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Implementation, environment, configuration, database, deployment-path, and release-candidate evidence requirements controlled",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Release-candidate formation remains distinct from acceptance and release authorization",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Acceptance decisions identify evidence, authority, independence, conditions, dissent, and release effect",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Evidence challenge, contradiction, revalidation, invalidation, and revocation procedures controlled",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Final evidence-dossier and executive-decision structures defined",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "Every unresolved item has an owner, required evidence, and a valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "No active unresolved item points to a completed Volume 12 gate",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Deterministic Package 1 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "No evidence, approval, assurance conclusion, acceptance, or release decision fabricated",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "No runtime code, tests, environments, identities, credentials, migrations, operational exercises, provider engagement, or infrastructure created or executed",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "No procurement, expenditure, staffing, pilot, rollout, deployment, release, or launch authorized",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "No record authorizes implementation, operations, or release",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation preserved",
+      "satisfied": false
+    }
+  ]
+}
