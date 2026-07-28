@@ -10,7 +10,15 @@ import type {
   StartAffiliationReviewInput,
 } from './AffiliationReviewTypes.js';
 
-const REVIEWER_ROLES = new Set(['reviewer', 'approver', 'admin', 'platform_admin']);
+const REVIEWER_ROLES = new Set([
+  'reviewer',
+  'approver',
+  'regional_reviewer',
+  'national_reviewer',
+  'workflow_admin',
+  'admin',
+  'platform_admin',
+]);
 const GLOBAL_REVIEWER_ROLES = new Set(['admin', 'platform_admin']);
 const UUID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
@@ -34,6 +42,12 @@ function actorScopeIds(actor: AffiliationReviewerActor): readonly string[] {
 
 function isGlobalReviewer(actor: AffiliationReviewerActor): boolean {
   return actor.roleKeys.some((role) => GLOBAL_REVIEWER_ROLES.has(role));
+}
+
+function isTierReviewer(actor: AffiliationReviewerActor): boolean {
+  return actor.roleKeys.some((role) =>
+    ['regional_reviewer', 'national_reviewer', 'workflow_admin'].includes(role),
+  );
 }
 
 function toIso(value: unknown): string {
@@ -97,6 +111,7 @@ export class AffiliationReviewService {
               es.current_state = 'submitted'
               OR ra.reviewer_user_id = $5
               OR $3::boolean
+              OR $6::boolean
             )
           ORDER BY ss.submitted_at ASC, a.id ASC`,
         [
@@ -105,6 +120,7 @@ export class AffiliationReviewService {
           isGlobalReviewer(actor),
           scopeIds,
           actor.userId,
+          isTierReviewer(actor),
         ],
       );
       return rows.map((row) => ({
@@ -193,7 +209,9 @@ export class AffiliationReviewService {
     if (
       queueItem === undefined ||
       queueItem.assignedReviewerUserId === undefined ||
-      (!isGlobalReviewer(actor) && queueItem.assignedReviewerUserId !== actor.userId)
+      (!isGlobalReviewer(actor) &&
+        !isTierReviewer(actor) &&
+        queueItem.assignedReviewerUserId !== actor.userId)
     ) {
       throw new AppError(
         ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,

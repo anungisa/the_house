@@ -3,7 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 
 import {
   useAffiliationReviewCase,
+  useAffiliationDecisionState,
+  useExecuteAffiliationDecision,
   useOpenAffiliationCorrection,
+  useProposeAffiliationDecision,
+  useRecordAffiliationTierDecision,
 } from '../../hooks/useAffiliation';
 import { useI18n } from '../../i18n/I18nProvider';
 import { usePageTitle } from '../../hooks/usePageTitle';
@@ -21,8 +25,15 @@ export function AffiliationReviewCasePage(): JSX.Element {
   usePageTitle('review.case.title');
   const reviewCase = useAffiliationReviewCase(applicationId);
   const correction = useOpenAffiliationCorrection(applicationId ?? '');
+  const decisionState = useAffiliationDecisionState(applicationId);
+  const proposeDecision = useProposeAffiliationDecision(applicationId ?? '');
+  const recordTierDecision = useRecordAffiliationTierDecision(applicationId ?? '');
+  const executeDecision = useExecuteAffiliationDecision(applicationId ?? '');
   const [requirementCode, setRequirementCode] = useState('');
   const [reason, setReason] = useState('');
+  const [outcome, setOutcome] = useState<'approve' | 'reject'>('approve');
+  const [decisionReason, setDecisionReason] = useState('');
+  const [executedState, setExecutedState] = useState<string>();
 
   if (reviewCase.isLoading) {
     return (
@@ -150,6 +161,118 @@ export function AffiliationReviewCasePage(): JSX.Element {
           </button>
         )}
       </form>
+
+      <section aria-labelledby="decision-heading">
+        <h2 id="decision-heading">{t('review.decision.heading')}</h2>
+        <p>{t('review.decision.intro')}</p>
+        {proposeDecision.error || recordTierDecision.error || executeDecision.error ? (
+          <p role="alert">{t('review.decision.error')}</p>
+        ) : null}
+        {executedState !== undefined ? (
+          <p role="status">
+            {t('review.decision.executed', { state: executedState })}
+          </p>
+        ) : decisionState.data?.executed ? (
+          <p role="status">
+            {t('review.decision.executed', {
+              state: decisionState.data.outcome === 'approve' ? 'approved' : 'rejected',
+            })}
+          </p>
+        ) : decisionState.isLoading ? (
+          <p role="status">{t('state.loading')}</p>
+        ) : decisionState.error ? (
+          <p role="alert">{t('review.decision.error')}</p>
+        ) : decisionState.data === null || decisionState.data === undefined ? (
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (decisionReason.trim() === '') return;
+              proposeDecision.mutate({ outcome, reason: decisionReason.trim() });
+            }}
+          >
+            <label htmlFor="decision-outcome">{t('review.decision.outcome')}</label>
+            <select
+              id="decision-outcome"
+              value={outcome}
+              onChange={(event) => setOutcome(event.target.value as 'approve' | 'reject')}
+            >
+              <option value="approve">{t('review.decision.approve')}</option>
+              <option value="reject">{t('review.decision.reject')}</option>
+            </select>
+            <label htmlFor="decision-reason">{t('review.decision.reason')}</label>
+            <textarea
+              id="decision-reason"
+              value={decisionReason}
+              onChange={(event) => setDecisionReason(event.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              disabled={proposeDecision.isPending || decisionReason.trim() === ''}
+            >
+              {proposeDecision.isPending
+                ? t('review.decision.proposing')
+                : t('review.decision.propose')}
+            </button>
+          </form>
+        ) : decisionState.data.status === 'pending' ? (
+          <div>
+            <p role="status">{t('review.decision.pending')}</p>
+            <p>
+              {t('review.decision.currentStep', {
+                step: decisionState.data.currentStepCode ?? '',
+              })}
+            </p>
+            <button
+              type="button"
+              disabled={recordTierDecision.isPending}
+              onClick={() =>
+                recordTierDecision.mutate({
+                  state: decisionState.data!,
+                  decision: 'approve',
+                  reason: decisionReason,
+                })
+              }
+            >
+              {recordTierDecision.isPending
+                ? t('review.decision.recording')
+                : t('review.decision.support')}
+            </button>
+            <button
+              type="button"
+              disabled={recordTierDecision.isPending}
+              onClick={() =>
+                recordTierDecision.mutate({
+                  state: decisionState.data!,
+                  decision: 'reject',
+                  reason: decisionReason,
+                })
+              }
+            >
+              {t('review.decision.oppose')}
+            </button>
+          </div>
+        ) : decisionState.data.status === 'approved' ? (
+          <div>
+            <p role="status">{t('review.decision.approved')}</p>
+            <button
+              type="button"
+              disabled={!decisionState.data.executable || executeDecision.isPending}
+              onClick={() =>
+                executeDecision.mutate(decisionState.data!, {
+                  onSuccess: (result) => setExecutedState(result.lifecycleState),
+                })
+              }
+            >
+              {executeDecision.isPending
+                ? t('review.decision.executing')
+                : t('review.decision.execute')}
+            </button>
+          </div>
+        ) : (
+          <p role="status">{t('review.decision.rejected')}</p>
+        )}
+      </section>
     </section>
   );
 }

@@ -34,7 +34,10 @@ import {
   AffiliationSubmissionService,
   PgAffiliationSubmissionEffect,
 } from '../domains/affiliation-submission/index.js';
-import { AffiliationReviewService } from '../domains/affiliation-review/index.js';
+import {
+  AffiliationDecisionService,
+  AffiliationReviewService,
+} from '../domains/affiliation-review/index.js';
 import {
   AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE,
   DomainBackedFinancialGuardRepository,
@@ -357,6 +360,19 @@ export function createWorkflowReadHttpDeps(telemetry?: Telemetry): WorkflowReadH
   };
 }
 
+export function createAffiliationDecisionService(): AffiliationDecisionService {
+  const transitions = createPgAffiliationApplicationService();
+  const reviews = new AffiliationReviewService(transitions);
+  const workflows = new PgWorkflowStore();
+  return new AffiliationDecisionService(
+    reviews,
+    transitions,
+    workflows,
+    new WorkflowDecisionService(workflows),
+    new ApprovedWorkflowExecutionService(createPgGovernanceKernel(), workflows),
+  );
+}
+
 /**
  * Build the read-only Organization Registry transport backed by PostgreSQL. Reads run through
  * the RLS-enforced {@link PgOrganizationRegistryStore}; the adapter is read-only and never
@@ -506,6 +522,7 @@ export function createPgAffiliationHttpServer(
     buttonContext: createButtonContextHttpDeps(telemetry),
     buttonAffiliation: createButtonAffiliationHttpDeps(telemetry),
     buttonReview: new AffiliationReviewService(createPgAffiliationApplicationService()),
+    buttonDecision: createAffiliationDecisionService(),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),

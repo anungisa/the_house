@@ -42,6 +42,32 @@ describe('Button affiliation reviewer workbench', () => {
     expect(
       await screen.findByText(/Correction request sent/),
     ).toBeInTheDocument();
+
+    await user.type(
+      screen.getByLabelText('Decision rationale'),
+      'All submitted requirements are satisfied.',
+    );
+    await user.click(screen.getByRole('button', { name: 'Create decision workflow' }));
+    expect(await screen.findByText('Two-tier review is in progress.')).toBeInTheDocument();
+    expect(screen.getByText(/regional_signoff/)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Support proposed outcome' }));
+    expect(await screen.findByText(/national_signoff/)).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Support proposed outcome' }));
+    expect(
+      await screen.findByText('Both review tiers approved the proposed outcome.'),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Execute governed outcome' }));
+    expect(await screen.findByText(/Lifecycle state: approved/)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Français' }));
+    expect(
+      await screen.findByText(/État du cycle de vie : approved/),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Exécuter le résultat gouverné' }),
+    ).not.toBeInTheDocument();
   });
 
   it('denies a representative without reviewer capability', async () => {

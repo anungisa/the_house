@@ -13,7 +13,10 @@ import {
 } from '../../../src/domains/affiliation-requirements/index.js';
 import { AffiliationSubmissionService } from '../../../src/domains/affiliation-submission/index.js';
 import { AffiliationReviewService } from '../../../src/domains/affiliation-review/index.js';
-import { createPgAffiliationApplicationService } from '../../../src/http/composition.js';
+import {
+  createAffiliationDecisionService,
+  createPgAffiliationApplicationService,
+} from '../../../src/http/composition.js';
 import { closePool, withTenantTransaction } from '../../../src/db/pool.js';
 import { AppError, ErrorCode } from '../../../src/shared/errors/AppError.js';
 
@@ -325,6 +328,71 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
       code: ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
     } satisfies Partial<AppError>);
 
+    const decisionService = createAffiliationDecisionService();
+    const proposed = await decisionService.propose({
+      tenantId,
+      applicationId: draft.applicationId,
+      actor: reviewer,
+      outcome: 'reject',
+      reason: 'Submitted evidence does not establish eligibility.',
+      idempotencyKey: `decision-proposal:${draft.applicationId}:reject`,
+    });
+    expect(proposed).toMatchObject({
+      outcome: 'reject',
+      status: 'pending',
+      currentStepCode: 'regional_signoff',
+      executable: false,
+    });
+    const stateBeforeDecisions = await withTenantTransaction(tenantId, (client) =>
+      client.query<{ current_state: string }>(
+        `SELECT current_state FROM governance.entity_state
+          WHERE entity_type = 'AffiliationApplication' AND entity_id = $1`,
+        [draft.applicationId],
+      ),
+    );
+    expect(stateBeforeDecisions[0]?.current_state).toBe('under_review');
+
+    const regional = {
+      userId: randomUUID(),
+      roleKeys: ['regional_reviewer'],
+      scopeType: 'local_organization' as const,
+      organizationId,
+    };
+    const regionalApproved = await decisionService.decide({
+      tenantId,
+      applicationId: draft.applicationId,
+      actor: regional,
+      workflowInstanceId: proposed.workflowInstanceId,
+      stepCode: 'regional_signoff',
+      decision: 'approve',
+      reason: 'Regional review supports the proposed rejection.',
+    });
+    expect(regionalApproved.currentStepCode).toBe('national_signoff');
+    const national = {
+      userId: randomUUID(),
+      roleKeys: ['national_reviewer'],
+      scopeType: 'local_organization' as const,
+      organizationId,
+    };
+    const fullyApproved = await decisionService.decide({
+      tenantId,
+      applicationId: draft.applicationId,
+      actor: national,
+      workflowInstanceId: proposed.workflowInstanceId,
+      stepCode: 'national_signoff',
+      decision: 'approve',
+      reason: 'National review confirms the proposed rejection.',
+    });
+    expect(fullyApproved).toMatchObject({ status: 'approved', executable: true });
+    const executed = await decisionService.execute({
+      tenantId,
+      applicationId: draft.applicationId,
+      actor: reviewer,
+      workflowInstanceId: proposed.workflowInstanceId,
+      idempotencyKey: `decision-execution:${proposed.workflowInstanceId}`,
+    });
+    expect(executed).toEqual({ lifecycleState: 'rejected', idempotentReplay: false });
+
     await withTenantTransaction(tenantId, async (client) => {
       const state = await client.query<{ current_state: string }>(
         `SELECT current_state FROM governance.entity_state
@@ -340,7 +408,7 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
            FROM affiliation.review_assignment WHERE application_id = $1`,
         [draft.applicationId],
       );
-      expect(state[0]?.current_state).toBe('under_review');
+      expect(state[0]?.current_state).toBe('rejected');
       expect(assignment[0]).toMatchObject({
         reviewer_user_id: reviewerUserId,
         reviewer_scope_id: organizationId,
