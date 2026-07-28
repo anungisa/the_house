@@ -107,3 +107,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-B.md
     gate: V12-G1
+  - id: V12-B-1
+    title: Package 1 Provenance-Role Classification
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-B-1.md
+    gate: V12-G1
