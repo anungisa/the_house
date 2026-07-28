@@ -1,0 +1,139 @@
+register_id: REG-1203
+name: Volume 12 Decisions
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: ADR-V12-001
+    kind: DECISION_BOUNDARY
+    title: Documentary approval is distinct from executed proof
+    statement: >-
+      Documentary approval of a governance artifact is distinct from executed
+      proof of an obligation. Ratification of Volume 12 defines the gate,
+      release, and acceptance-evidence framework; it does not constitute, accept,
+      or substitute for any evidence, acceptance decision, or release
+      authorization.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Volume 12 Package 1 establishes the documentary foundation for evidence,
+      acceptance, gating, and release governance. It must be impossible to read
+      ratification as evidence that the governed obligations are met.
+    alternatives_considered:
+      - Treat ratification as conditional acceptance — rejected as unsafe.
+      - Defer the distinction to implementation — rejected as fail-open.
+    consequences: >-
+      Every Volume 12 record carries a non-authorizing posture. No documentary
+      artifact admits, validates, accepts, gates, or authorizes release of any
+      evidence.
+    decision_authority: Release Governance Authority
+    prohibited_inference: Documentary approval is never executed proof.
+    traces_to:
+      - V12-00
+    chapter_ref: V12-00
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-002
+    kind: DECISION_BOUNDARY
+    title: Evidence, acceptance, gate, and release are separate decisions
+    statement: >-
+      Evidence existence, evidence validity, evidence sufficiency, acceptance,
+      gate passage, and release authorization are separate decisions taken by
+      separate authorities and must never be collapsed.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Collapsing these decisions is the most common cause of unsafe release. The
+      framework separates them by authority, independence, and disposition.
+    alternatives_considered:
+      - A single combined sign-off — rejected as unsafe.
+    consequences: >-
+      Each decision class has a defined authority, independence requirement, and
+      prohibited inference in REG-1201.
+    decision_authority: Release Governance Authority
+    prohibited_inference: One decision in the chain never implies another.
+    traces_to:
+      - V12-02
+    chapter_ref: V12-02
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-003
+    kind: DECISION_BOUNDARY
+    title: Waivers and conditions do not convert failure to success
+    statement: >-
+      A waiver or conditional acceptance records a bounded, owned, and expiring
+      exception with a compensating control. It never converts a failed or
+      absent obligation into a met obligation.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Exceptions are unavoidable but must be visible, expiring, and owned, never
+      a silent path to release.
+    alternatives_considered:
+      - Permanent waivers — rejected as fail-open.
+    consequences: >-
+      Every waiver and condition in REG-1202 carries an owner, expiry,
+      compensating control, and release effect. Expiry is a fail-closed gate
+      condition.
+    decision_authority: Release Governance Authority
+    prohibited_inference: A waiver approved is never a failure converted to success.
+    traces_to:
+      - V12-04
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-004
+    kind: DECISION_BOUNDARY
+    title: Generated foundation artifacts are non-authoritative projections
+    statement: >-
+      Foundation reports and projections generated from the Volume 12 registers
+      are non-authoritative reflections of the ratified corpus. The registers and
+      chapters remain the sole source of authority.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Generated summaries aid review but must never be mistaken for the
+      authoritative record or for evidence.
+    alternatives_considered:
+      - Treat generated reports as authoritative — rejected.
+    consequences: >-
+      Every generated projection is labelled non-authoritative and derives only
+      from the ratified registers.
+    decision_authority: Release Governance Authority
+    prohibited_inference: A projection is never authoritative and never evidence.
+    traces_to:
+      - V12-10
+    chapter_ref: V12-10
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

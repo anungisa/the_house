@@ -1,0 +1,223 @@
+register_id: REG-1205
+name: Volume 12 Approvals
+status: RATIFIED
+version: 1.0.0
+records:
+  - id: APP-V12-001
+    artifact_id: V12-00
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-002
+    artifact_id: V12-01
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-003
+    artifact_id: V12-02
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-004
+    artifact_id: V12-03
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-005
+    artifact_id: V12-04
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-006
+    artifact_id: V12-05
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-007
+    artifact_id: V12-06
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-008
+    artifact_id: V12-07
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-009
+    artifact_id: V12-08
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-010
+    artifact_id: V12-09
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-011
+    artifact_id: V12-10
+    approver_role: Release Governance Authority
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+  - id: APP-V12-012
+    artifact_id: V12-A
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    closure_record: true
+    next_package_disposition: >-
+      AUTHORIZED FOR AFFILIATION IMPLEMENTATION, TEST, SECURITY, PRIVACY,
+      ACCESSIBILITY, BILINGUAL, FINANCIAL, DATA, MIGRATION, OPERATIONAL, PROVIDER,
+      TRAINING, ADOPTION, BUSINESS, AND EXECUTIVE EVIDENCE-REQUIREMENT AND
+      ACCEPTANCE-DOSSIER DEFINITION ONLY. Implementation, test, security, privacy,
+      accessibility, bilingual, financial, data, migration, and operational
+      execution, provider engagement, training delivery, adoption activity,
+      evidence production, acceptance decisions, gate passage against a real
+      workload, release authorization, and deployment are NOT AUTHORIZED.
+    effective_date_clarification:
+      gate: V12-G1
+      documentary_definition_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      implementation_effective_date: >-
+        Not applicable — the documentary evidence and acceptance definition is
+        distinct from implementation effectiveness, from operational
+        effectiveness, and from executed proof.
+      operational_effective_date: >-
+        Not applicable — no operation, evidence, acceptance, or release is
+        authorized by Package 1.
+    closure_binding:
+      closure_artifact: V12-A
+      gate: V12-G1
+      freeze_artifact: PACKAGE-12-1
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+  - id: APP-V12-013
+    artifact_id: GATE-V12-G1
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    gate_disposition: GATE_RELEASE_AND_ACCEPTANCE_EVIDENCE_GOVERNANCE_FOUNDATION_READY
+    requires_freeze_artifact: PACKAGE-12-1
+    effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+    gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+  - id: APP-V12-014
+    artifact_id: PACKAGE-12-1
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    frozen: true
+    frozen_artifacts:
+      - id: V12-00
+        version: 1.0.0
+      - id: V12-01
+        version: 1.0.0
+      - id: V12-02
+        version: 1.0.0
+      - id: V12-03
+        version: 1.0.0
+      - id: V12-04
+        version: 1.0.0
+      - id: V12-05
+        version: 1.0.0
+      - id: V12-06
+        version: 1.0.0
+      - id: V12-07
+        version: 1.0.0
+      - id: V12-08
+        version: 1.0.0
+      - id: V12-09
+        version: 1.0.0
+      - id: V12-10
+        version: 1.0.0
+      - id: V12-A
+        version: 1.0.0
+      - id: REG-1200
+        version: 1.0.0
+      - id: REG-1201
+        version: 1.0.0
+      - id: REG-1202
+        version: 1.0.0
+      - id: REG-1203
+        version: 1.0.0
+      - id: REG-1204
+        version: 1.0.0
+      - id: REG-1205
+        version: 1.0.0
+    authoring_closure_separation:
+      freeze_artifact: PACKAGE-12-1
+      substantive_authoring_commit: 498d1e49140de5358e0724ffb15f678b1c856f7d
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      provenance_binding_commit: PENDING_COMMIT_C
+      required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
+      actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
+      sequence_disposition: SATISFIED
+      separation_status: SATISFIED
+      substantive_package_reopened: false
+      gate_reopened: false
+      package_freeze_reopened: false
+      future_separation_required: false
+    package_provenance:
+      inherited_baseline_tag: central-registration-volume-11-v1.0.0
+      base_release_tag: central-registration-volume-11-v1.0.0
+      source_baseline_commit: 33596f6103b18ae82ac50ce7a885c62c849104a0
+      branch_base_commit: 33596f6103b18ae82ac50ce7a885c62c849104a0
+      authoring_commit: 498d1e49140de5358e0724ffb15f678b1c856f7d
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      provenance_binding_commit: PENDING_COMMIT_C
+      original_package_merge_commit: PENDING_COMMIT_C
+      note: >-
+        Commit A is the substantive authoring commit; Commit B authors the closure,
+        gate disposition, and freeze; Commit C records the pre-merge provenance
+        binding; the original-merge commit integrates Package 1 into the mainline.
+        The provenance-amendment commits are bound by the post-merge amendment
+        V12-B-1.

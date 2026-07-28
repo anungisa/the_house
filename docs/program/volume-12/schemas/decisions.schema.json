@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decisions.schema.json",
+  "title": "REG-1203 Volume 12 Decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["register_id", "name", "status", "version", "records"],
+  "properties": {
+    "register_id": { "const": "REG-1203" },
+    "name": { "type": "string" },
+    "status": { "$ref": "common.schema.json#/definitions/registerStatus" },
+    "version": { "$ref": "common.schema.json#/definitions/semver" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "statement",
+          "decision_status",
+          "context",
+          "consequences",
+          "decision_authority",
+          "validation_status",
+          "authorizes_implementation",
+          "authorizes_operations",
+          "authorizes_release",
+          "implementation_status",
+          "operational_status",
+          "execution_status",
+          "evidence_status",
+          "acceptance_status",
+          "release_status",
+          "chapter_ref",
+          "future_gate"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^ADR-V12-[0-9]{3}$" },
+          "kind": { "$ref": "common.schema.json#/definitions/decisionKind" },
+          "title": { "type": "string" },
+          "statement": { "type": "string" },
+          "decision_status": { "$ref": "common.schema.json#/definitions/decisionStatus" },
+          "context": { "type": "string" },
+          "alternatives_considered": { "type": "array", "items": { "type": "string" } },
+          "consequences": { "type": "string" },
+          "decision_authority": { "type": "string" },
+          "prohibited_inference": { "type": "string" },
+          "traces_to": { "type": "array", "items": { "type": "string" } },
+          "validation_status": { "$ref": "common.schema.json#/definitions/validationStatus" },
+          "authorizes_implementation": { "const": false },
+          "authorizes_operations": { "const": false },
+          "authorizes_release": { "const": false },
+          "implementation_status": { "$ref": "common.schema.json#/definitions/implementationStatus" },
+          "operational_status": { "$ref": "common.schema.json#/definitions/operationalStatus" },
+          "execution_status": { "$ref": "common.schema.json#/definitions/executionStatus" },
+          "evidence_status": { "$ref": "common.schema.json#/definitions/evidenceStatus" },
+          "acceptance_status": { "$ref": "common.schema.json#/definitions/acceptanceStatus" },
+          "release_status": { "$ref": "common.schema.json#/definitions/releaseStatus" },
+          "chapter_ref": { "type": "string" },
+          "future_gate": { "$ref": "common.schema.json#/definitions/futureGateId" }
+        }
+      }
+    }
+  }
+}

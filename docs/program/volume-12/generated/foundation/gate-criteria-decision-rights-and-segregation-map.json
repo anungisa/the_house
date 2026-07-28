@@ -1,0 +1,198 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "gates": [
+    {
+      "id": "GATE-V12-001",
+      "title": "Gate V12-G1 — Gate, Release, and Acceptance-Evidence Governance Foundation Ready",
+      "gate_disposition_target": "GATE_RELEASE_AND_ACCEPTANCE_EVIDENCE_GOVERNANCE_FOUNDATION_READY",
+      "decision_authority": "Release Governance Authority",
+      "escalation_path": "Escalates unmet conditions to the Executive Sponsor for disposition."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "CRITERIA-V12-001",
+      "title": "Evidence-intake decision",
+      "decision_class": "EVIDENCE_INTAKE_DECISION",
+      "decision_authority": "Evidence Governance Authority",
+      "required_independence": "Independent of the evidence executor.",
+      "permitted_disposition": "Admit, reject, or return for provenance.",
+      "prohibited_inference": "Intake is not validity and is not sufficiency.",
+      "escalation_path": "Escalates to the Release Governance Authority.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-002",
+      "title": "Evidence-validity decision",
+      "decision_class": "EVIDENCE_VALIDITY_DECISION",
+      "decision_authority": "Evidence Governance Authority",
+      "required_independence": "Independent of the evidence owner.",
+      "permitted_disposition": "Valid, invalid, or inconclusive.",
+      "prohibited_inference": "Validity is not sufficiency and is not acceptance.",
+      "escalation_path": "Escalates to the Independent Assurance Authority.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-003",
+      "title": "Evidence-sufficiency decision",
+      "decision_class": "EVIDENCE_SUFFICIENCY_DECISION",
+      "decision_authority": "Domain Acceptance Authority",
+      "required_independence": "Independent of the evidence executor.",
+      "permitted_disposition": "Sufficient, insufficient, or conditionally sufficient.",
+      "prohibited_inference": "Sufficiency for one object is not system-wide conformance.",
+      "escalation_path": "Escalates to the Release Governance Authority.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-004",
+      "title": "Domain-acceptance decision",
+      "decision_class": "DOMAIN_ACCEPTANCE_DECISION",
+      "decision_authority": "Domain Acceptance Authority",
+      "required_independence": "Independent of technical delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "prohibited_inference": "Domain acceptance is not business acceptance.",
+      "escalation_path": "Escalates to the Business Owner Authority.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-005",
+      "title": "Operational-acceptance decision",
+      "decision_class": "OPERATIONAL_ACCEPTANCE_DECISION",
+      "decision_authority": "Operational Acceptance Authority",
+      "required_independence": "Independent of delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "prohibited_inference": "Operational acceptance is not release authorization.",
+      "escalation_path": "Escalates to the Release Governance Authority.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-006",
+      "title": "Business-acceptance decision",
+      "decision_class": "BUSINESS_ACCEPTANCE_DECISION",
+      "decision_authority": "Business Owner Authority",
+      "required_independence": "Independent of technical delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "prohibited_inference": "Business acceptance is not operational acceptance.",
+      "escalation_path": "Escalates to the Executive Sponsor.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-007",
+      "title": "Independent-assurance conclusion",
+      "decision_class": "INDEPENDENT_ASSURANCE_CONCLUSION",
+      "decision_authority": "Independent Assurance Authority",
+      "required_independence": "Independent of owner, executor, and acceptance authority.",
+      "permitted_disposition": "Concur, qualify, or dissent.",
+      "prohibited_inference": "An assurance conclusion is not a substitute for evidence.",
+      "escalation_path": "Escalates to the Executive Sponsor.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-008",
+      "title": "Material-commitment decision",
+      "decision_class": "MATERIAL_COMMITMENT_DECISION",
+      "decision_authority": "Release Governance Authority",
+      "required_independence": "Independent of the committing party.",
+      "permitted_disposition": "Approve with expiry, reject, or defer.",
+      "prohibited_inference": "A waiver is not a failure converted to success.",
+      "escalation_path": "Escalates to the Executive Sponsor.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-009",
+      "title": "Release-gate decision",
+      "decision_class": "RELEASE_GATE_DECISION",
+      "decision_authority": "Release Governance Authority",
+      "required_independence": "Independent of delivery.",
+      "permitted_disposition": "Gate passed or gate held.",
+      "prohibited_inference": "Gate passed is not release authorized.",
+      "escalation_path": "Escalates to the Executive Sponsor.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-010",
+      "title": "Executive release authorization",
+      "decision_class": "EXECUTIVE_RELEASE_AUTHORIZATION",
+      "decision_authority": "Executive Sponsor",
+      "required_independence": "Independent of technical verification.",
+      "permitted_disposition": "Authorize, decline, or authorize with conditions.",
+      "prohibited_inference": "Executive approval is not evidence substitution.",
+      "escalation_path": "Escalates to the governing body.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-011",
+      "title": "Deployment authorization",
+      "decision_class": "DEPLOYMENT_AUTHORIZATION",
+      "decision_authority": "Release Governance Authority",
+      "required_independence": "Independent of the deploying party.",
+      "permitted_disposition": "Authorize, hold, or authorize with rollback conditions.",
+      "prohibited_inference": "Deployment authorized is not deployment executed.",
+      "escalation_path": "Escalates to the Executive Sponsor.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "CRITERIA-V12-012",
+      "title": "Post-deployment stabilization acceptance",
+      "decision_class": "POST_DEPLOYMENT_STABILIZATION_ACCEPTANCE",
+      "decision_authority": "Operational Acceptance Authority",
+      "required_independence": "Independent of the deploying party.",
+      "permitted_disposition": "Accept, hold, or accept with obligations.",
+      "prohibited_inference": "Deployment completed is not institutional outcome accepted.",
+      "escalation_path": "Escalates to the Executive Sponsor.",
+      "downstream_gate": "EXEC-MCG"
+    }
+  ],
+  "authorities": [
+    {
+      "id": "AUTH-V12-001",
+      "title": "Evidence owner",
+      "authority_scope": "Owns evidence production and custody.",
+      "required_competence": "Evidence production competence.",
+      "required_independence": "None required for ownership.",
+      "conflict_of_interest_treatment": "May not review or accept its own evidence.",
+      "delegation_rule": "Custody delegable; accountability retained.",
+      "segregation_boundary": "Separated from evidence review, acceptance, and release authority."
+    },
+    {
+      "id": "AUTH-V12-002",
+      "title": "Evidence reviewer",
+      "authority_scope": "Reviews evidence validity and integrity.",
+      "required_competence": "Evidence-review competence.",
+      "required_independence": "Independent of the evidence owner.",
+      "conflict_of_interest_treatment": "Recuses on owned or executed evidence.",
+      "delegation_rule": "Delegable to a qualified peer reviewer.",
+      "segregation_boundary": "Separated from evidence ownership, acceptance, and release authority."
+    },
+    {
+      "id": "AUTH-V12-003",
+      "title": "Acceptance authority",
+      "authority_scope": "Accepts evidence against defined obligations.",
+      "required_competence": "Domain or business competence.",
+      "required_independence": "Independent of the evidence owner and reviewer.",
+      "conflict_of_interest_treatment": "Recuses on delivered work.",
+      "delegation_rule": "Non-delegable for high-risk acceptance.",
+      "segregation_boundary": "Separated from evidence ownership, review, and release authority."
+    },
+    {
+      "id": "AUTH-V12-004",
+      "title": "Release authority",
+      "authority_scope": "Authorizes release of an accepted, gated candidate.",
+      "required_competence": "Executive release accountability.",
+      "required_independence": "Independent of delivery and deployment.",
+      "conflict_of_interest_treatment": "Recuses on conflicts.",
+      "delegation_rule": "Non-delegable.",
+      "segregation_boundary": "Separated from evidence ownership, review, and acceptance."
+    },
+    {
+      "id": "AUTH-V12-005",
+      "title": "Independent assurance authority",
+      "authority_scope": "Concludes independently on evidence sufficiency.",
+      "required_competence": "Independent assurance competence.",
+      "required_independence": "Independent of owner, reviewer, acceptance, and release authority.",
+      "conflict_of_interest_treatment": "Recuses on any prior involvement.",
+      "delegation_rule": "Non-delegable.",
+      "segregation_boundary": "Separated from all production and acceptance authorities."
+    }
+  ]
+}

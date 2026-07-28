@@ -1,0 +1,993 @@
+register_id: REG-1202
+name: Volume 12 Evidence Requirements, Evidence Objects, Findings, Conditions, Waivers, Commitments, and Dossiers
+status: RATIFIED
+version: 1.0.0
+records:
+  # --- Evidence requirements (one per program domain) -----------------------
+  - id: EVIDREQ-V12-001
+    kind: EVIDENCE_REQUIREMENT
+    title: Implementation evidence requirement
+    statement: Evidence required to demonstrate implementation completion with provenance.
+    domain: implementation
+    required_evidence_classes: Implementation evidence; documentary definition.
+    minimum_provenance: Version, commit, build record, and dependency manifest.
+    environment_requirement: Qualified build environment.
+    configuration_requirement: Configuration baseline recorded.
+    data_requirement: Not applicable.
+    independence_requirement: Peer review of build provenance.
+    acceptance_authority: Technical Verification Authority
+    known_evidentiary_limitations: A successful build is not a proven deployment path.
+    prohibited_substitution: A build log is not verification evidence.
+    prohibited_inference: Implementation complete is not verification complete.
+    expiry_or_revalidation_dependency: Revalidated on source or dependency change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-06
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-002
+    kind: EVIDENCE_REQUIREMENT
+    title: Unit and component verification evidence requirement
+    statement: Evidence required to demonstrate unit and component verification.
+    domain: unit and component verification
+    required_evidence_classes: Automated test evidence.
+    minimum_provenance: Test identity, version, and result artifact.
+    environment_requirement: Qualified test environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Fixture data context recorded.
+    independence_requirement: Peer review of scope.
+    acceptance_authority: Technical Verification Authority
+    known_evidentiary_limitations: Absence of observed failure is not absence of defect.
+    prohibited_substitution: Coverage percentage is not correctness evidence.
+    prohibited_inference: Unit pass is not system conformance.
+    expiry_or_revalidation_dependency: Revalidated on code change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-003
+    kind: EVIDENCE_REQUIREMENT
+    title: PostgreSQL behavioural verification evidence requirement
+    statement: Evidence required to demonstrate physical database behaviour.
+    domain: PostgreSQL behavioural verification
+    required_evidence_classes: Automated test evidence; manual test evidence.
+    minimum_provenance: Database state, version, and result artifact.
+    environment_requirement: Qualified database environment.
+    configuration_requirement: Physical configuration recorded.
+    data_requirement: Representative data context recorded.
+    independence_requirement: Peer review of database behaviour.
+    acceptance_authority: Technical Verification Authority
+    known_evidentiary_limitations: Behaviour observed is bounded by the data context used.
+    prohibited_substitution: An ORM mock is not physical database behaviour.
+    prohibited_inference: Schema present is not behaviour proven.
+    expiry_or_revalidation_dependency: Revalidated on schema or configuration change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-004
+    kind: EVIDENCE_REQUIREMENT
+    title: Contract and integration testing evidence requirement
+    statement: Evidence required to demonstrate contract and integration conformance.
+    domain: contract and integration testing
+    required_evidence_classes: Automated test evidence.
+    minimum_provenance: Contract version, environment, and result artifact.
+    environment_requirement: Integrated environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Integration data context recorded.
+    independence_requirement: Peer review of contract coverage.
+    acceptance_authority: Technical Verification Authority
+    known_evidentiary_limitations: Contract conformance is bounded by the contracts tested.
+    prohibited_substitution: A unit test is not an integration test.
+    prohibited_inference: Integration pass is not end-to-end conformance.
+    expiry_or_revalidation_dependency: Revalidated on contract change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-005
+    kind: EVIDENCE_REQUIREMENT
+    title: End-to-end workflow testing evidence requirement
+    statement: Evidence required to demonstrate end-to-end workflow behaviour.
+    domain: end-to-end workflow testing
+    required_evidence_classes: Automated test evidence; manual test evidence.
+    minimum_provenance: Workflow identity, environment, and result artifact.
+    environment_requirement: End-to-end environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Workflow data context recorded.
+    independence_requirement: Peer review of workflow coverage.
+    acceptance_authority: Domain Acceptance Authority
+    known_evidentiary_limitations: Workflow coverage is bounded by scenarios exercised.
+    prohibited_substitution: A component test is not a workflow test.
+    prohibited_inference: Workflow pass is not operational readiness.
+    expiry_or_revalidation_dependency: Revalidated on workflow change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-006
+    kind: EVIDENCE_REQUIREMENT
+    title: Security evidence requirement
+    statement: Evidence required to demonstrate security obligations.
+    domain: security
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Assessment scope, version, and result artifact.
+    environment_requirement: Representative environment.
+    configuration_requirement: Security configuration recorded.
+    data_requirement: Not applicable.
+    independence_requirement: Independent security review.
+    acceptance_authority: Security and Privacy Authority
+    known_evidentiary_limitations: Security testing is not privacy or legal compliance.
+    prohibited_substitution: A scan is not a manual security review.
+    prohibited_inference: No finding is not proof of security.
+    expiry_or_revalidation_dependency: Revalidated on change or schedule.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-007
+    kind: EVIDENCE_REQUIREMENT
+    title: Privacy and records evidence requirement
+    statement: Evidence required to demonstrate privacy and records obligations.
+    domain: privacy and records
+    required_evidence_classes: Independent-review evidence; documentary definition.
+    minimum_provenance: Assessment scope and record.
+    environment_requirement: Representative environment.
+    configuration_requirement: Records configuration recorded.
+    data_requirement: Personal-information handling context recorded.
+    independence_requirement: Independent privacy review.
+    acceptance_authority: Security and Privacy Authority
+    known_evidentiary_limitations: A privacy assessment is not legal compliance.
+    prohibited_substitution: Security evidence is not privacy evidence.
+    prohibited_inference: Privacy assessed is not privacy compliant in law.
+    expiry_or_revalidation_dependency: Revalidated on change or schedule.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-008
+    kind: EVIDENCE_REQUIREMENT
+    title: Accessibility evidence requirement
+    statement: Evidence required to demonstrate accessibility obligations.
+    domain: accessibility
+    required_evidence_classes: Manual test evidence; independent-review evidence.
+    minimum_provenance: Procedure, assistive-technology context, and observation record.
+    environment_requirement: Assistive-technology environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Not applicable.
+    independence_requirement: Independent manual and assistive-technology review.
+    acceptance_authority: Accessibility Authority
+    known_evidentiary_limitations: An automated scan is not a conformance determination.
+    prohibited_substitution: An automated accessibility scan is not manual evidence.
+    prohibited_inference: Scan clean is not accessible.
+    expiry_or_revalidation_dependency: Revalidated on interface change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-009
+    kind: EVIDENCE_REQUIREMENT
+    title: Bilingual semantic-equivalence evidence requirement
+    statement: Evidence required to demonstrate bilingual semantic equivalence.
+    domain: bilingual semantic equivalence
+    required_evidence_classes: Independent-review evidence.
+    minimum_provenance: Semantic review record.
+    environment_requirement: Representative content environment.
+    configuration_requirement: Content configuration recorded.
+    data_requirement: Content context recorded.
+    independence_requirement: Independent semantic review.
+    acceptance_authority: Bilingual Content Authority
+    known_evidentiary_limitations: String presence is not semantic equivalence.
+    prohibited_substitution: A translation memory match is not semantic evidence.
+    prohibited_inference: Both languages present is not equivalent meaning.
+    expiry_or_revalidation_dependency: Revalidated on content change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-010
+    kind: EVIDENCE_REQUIREMENT
+    title: Financial controls and reconciliation evidence requirement
+    statement: Evidence required to demonstrate financial controls and reconciliation.
+    domain: financial controls and reconciliation
+    required_evidence_classes: Independent-review evidence; documentary definition.
+    minimum_provenance: Reconciliation record and control assessment.
+    environment_requirement: Representative environment.
+    configuration_requirement: Financial configuration recorded.
+    data_requirement: Financial data context recorded.
+    independence_requirement: Independent financial review.
+    acceptance_authority: Business Owner Authority
+    known_evidentiary_limitations: A reconciliation is bounded by the period reconciled.
+    prohibited_substitution: A report is not a reconciliation.
+    prohibited_inference: Totals matched is not controls effective.
+    expiry_or_revalidation_dependency: Revalidated each period.
+    final_dossier_destination: Business-acceptance brief.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-011
+    kind: EVIDENCE_REQUIREMENT
+    title: Data integrity evidence requirement
+    statement: Evidence required to demonstrate data integrity.
+    domain: data integrity
+    required_evidence_classes: Automated test evidence; independent-review evidence.
+    minimum_provenance: Integrity check record and data context.
+    environment_requirement: Representative data environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Data context recorded.
+    independence_requirement: Independent integrity review.
+    acceptance_authority: Domain Acceptance Authority
+    known_evidentiary_limitations: Integrity is bounded by the checks applied.
+    prohibited_substitution: A row count is not an integrity proof.
+    prohibited_inference: No error observed is not integrity proven.
+    expiry_or_revalidation_dependency: Revalidated on data or schema change.
+    final_dossier_destination: Technical evidence dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-012
+    kind: EVIDENCE_REQUIREMENT
+    title: Migration evidence requirement
+    statement: Evidence required to demonstrate migration obligations.
+    domain: migration
+    required_evidence_classes: Migration evidence; independent-review evidence.
+    minimum_provenance: Stage, batch, source authority, and reconciliation record.
+    environment_requirement: Migration environment.
+    configuration_requirement: Mapping configuration recorded.
+    data_requirement: Migration batch context recorded.
+    independence_requirement: Independent reconciliation review.
+    acceptance_authority: Migration Acceptance Authority
+    known_evidentiary_limitations: Migration execution is not migration acceptance.
+    prohibited_substitution: A rehearsal is not a cutover.
+    prohibited_inference: Mapping complete is not identity resolved.
+    expiry_or_revalidation_dependency: Revalidated on source change.
+    final_dossier_destination: Migration-acceptance dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-013
+    kind: EVIDENCE_REQUIREMENT
+    title: Backup, restore, and recovery evidence requirement
+    statement: Evidence required to demonstrate backup, restore, and recovery obligations.
+    domain: backup, restore, and recovery
+    required_evidence_classes: Operational exercise evidence.
+    minimum_provenance: Exercise scope, environment, and result artifact.
+    environment_requirement: Recovery environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Recovery data context recorded.
+    independence_requirement: Independent observation of recovery.
+    acceptance_authority: Operational Acceptance Authority
+    known_evidentiary_limitations: Backup completed is not backup restorable.
+    prohibited_substitution: A backup log is not a restore proof.
+    prohibited_inference: Restoration is not recovery.
+    expiry_or_revalidation_dependency: Revalidated on schedule or change.
+    final_dossier_destination: Operational-readiness dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-014
+    kind: EVIDENCE_REQUIREMENT
+    title: Continuity evidence requirement
+    statement: Evidence required to demonstrate continuity obligations.
+    domain: continuity
+    required_evidence_classes: Operational exercise evidence.
+    minimum_provenance: Scenario, environment, and result artifact.
+    environment_requirement: Continuity environment.
+    configuration_requirement: Configuration recorded.
+    data_requirement: Not applicable.
+    independence_requirement: Independent observation.
+    acceptance_authority: Operational Acceptance Authority
+    known_evidentiary_limitations: A single exercise is not sustained continuity.
+    prohibited_substitution: A plan is not an exercise.
+    prohibited_inference: Continuity defined is not continuity proven.
+    expiry_or_revalidation_dependency: Revalidated on schedule.
+    final_dossier_destination: Operational-readiness dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-015
+    kind: EVIDENCE_REQUIREMENT
+    title: Observability and incident-response evidence requirement
+    statement: Evidence required to demonstrate observability and incident response.
+    domain: observability and incident response
+    required_evidence_classes: Operational exercise evidence; documentary definition.
+    minimum_provenance: Signal, alert, and response record.
+    environment_requirement: Representative environment.
+    configuration_requirement: Observability configuration recorded.
+    data_requirement: Not applicable.
+    independence_requirement: Independent review of response.
+    acceptance_authority: Operational Acceptance Authority
+    known_evidentiary_limitations: A signal defined is not a signal proven.
+    prohibited_substitution: A dashboard is not an incident exercise.
+    prohibited_inference: Telemetry present is not detection proven.
+    expiry_or_revalidation_dependency: Revalidated on change.
+    final_dossier_destination: Operational-readiness dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-016
+    kind: EVIDENCE_REQUIREMENT
+    title: Provider operations evidence requirement
+    statement: Evidence required to demonstrate provider operations obligations.
+    domain: provider operations
+    required_evidence_classes: Provider evidence; independent-review evidence.
+    minimum_provenance: Provider certification scope, effective period, and artifact.
+    environment_requirement: Provider environment.
+    configuration_requirement: Provider configuration recorded.
+    data_requirement: Provider data context recorded.
+    independence_requirement: Independent end-to-end verification.
+    acceptance_authority: Provider Acceptance Authority
+    known_evidentiary_limitations: Provider certification is not end-to-end assurance.
+    prohibited_substitution: A provider report is not end-to-end proof.
+    prohibited_inference: Provider certified is not service assured.
+    expiry_or_revalidation_dependency: Revalidated on provider state change.
+    final_dossier_destination: Operational-readiness dossier.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-017
+    kind: EVIDENCE_REQUIREMENT
+    title: Training and competence evidence requirement
+    statement: Evidence required to demonstrate training and competence obligations.
+    domain: training and competence
+    required_evidence_classes: Manual test evidence; documentary definition.
+    minimum_provenance: Competence assessment record.
+    environment_requirement: Training environment.
+    configuration_requirement: Not applicable.
+    data_requirement: Not applicable.
+    independence_requirement: Independent competence assessment.
+    acceptance_authority: Training and Adoption Authority
+    known_evidentiary_limitations: Training delivered is not competence achieved.
+    prohibited_substitution: Attendance is not competence.
+    prohibited_inference: Material published is not audience trained.
+    expiry_or_revalidation_dependency: Revalidated on role or content change.
+    final_dossier_destination: Business-acceptance brief.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-018
+    kind: EVIDENCE_REQUIREMENT
+    title: Adoption evidence requirement
+    statement: Evidence required to demonstrate adoption obligations.
+    domain: adoption
+    required_evidence_classes: Documentary definition; independent-review evidence.
+    minimum_provenance: Adoption measure record.
+    environment_requirement: Representative environment.
+    configuration_requirement: Not applicable.
+    data_requirement: Adoption measurement context recorded.
+    independence_requirement: Independent review of adoption measures.
+    acceptance_authority: Training and Adoption Authority
+    known_evidentiary_limitations: Onboarding is not sustained adoption.
+    prohibited_substitution: A launch is not adoption.
+    prohibited_inference: Access granted is not use achieved.
+    expiry_or_revalidation_dependency: Revalidated each measurement window.
+    final_dossier_destination: Business-acceptance brief.
+    chapter_ref: V12-05
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-019
+    kind: EVIDENCE_REQUIREMENT
+    title: Business acceptance evidence requirement
+    statement: Evidence required to demonstrate business acceptance obligations.
+    domain: business acceptance
+    required_evidence_classes: Business-acceptance evidence.
+    minimum_provenance: Business-owner decision record.
+    environment_requirement: Not applicable.
+    configuration_requirement: Not applicable.
+    data_requirement: Not applicable.
+    independence_requirement: Business owner independent of delivery.
+    acceptance_authority: Business Owner Authority
+    known_evidentiary_limitations: Business acceptance is bounded by reviewed evidence.
+    prohibited_substitution: Stakeholder support is not accountable approval.
+    prohibited_inference: Business acceptance is not release authorization.
+    expiry_or_revalidation_dependency: Revalidated on scope change.
+    final_dossier_destination: Business-acceptance brief.
+    chapter_ref: V12-07
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: EVIDREQ-V12-020
+    kind: EVIDENCE_REQUIREMENT
+    title: Independent assurance evidence requirement
+    statement: Evidence required to demonstrate independent assurance obligations.
+    domain: independent assurance
+    required_evidence_classes: Independent-review evidence.
+    minimum_provenance: Independent-assurance summary record.
+    environment_requirement: Not applicable.
+    configuration_requirement: Not applicable.
+    data_requirement: Not applicable.
+    independence_requirement: Independent of owner, executor, and acceptance authority.
+    acceptance_authority: Independent Assurance Authority
+    known_evidentiary_limitations: An assurance conclusion is bounded by its inputs.
+    prohibited_substitution: An assurance conclusion is not the underlying evidence.
+    prohibited_inference: Assurance concluded is not evidence unnecessary.
+    expiry_or_revalidation_dependency: Revalidated on evidence change.
+    final_dossier_destination: Independent-assurance summary.
+    chapter_ref: V12-08
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # --- Evidence object (controlled template) --------------------------------
+  - id: EVID-V12-001
+    kind: EVIDENCE_OBJECT
+    title: Controlled evidence object binding template
+    statement: >-
+      The controlled binding template that every future evidence object must
+      satisfy. No concrete evidence is bound here; the template defines the
+      binding obligation only.
+    evidence_binds_requirement: Bound to a named evidence requirement.
+    evidence_binds_procedure: Bound to a test, procedure, migration stage, or operational obligation.
+    evidence_binds_system: Bound to the system or service under evidence.
+    evidence_binds_component: Bound to the component or capability under evidence.
+    evidence_binds_version: Bound to a version.
+    evidence_binds_commit: Bound to a commit.
+    evidence_binds_configuration: Bound to a configuration baseline.
+    evidence_binds_environment: Bound to a qualified environment.
+    evidence_binds_identity: Bound to an identity and authority context.
+    evidence_binds_organization: Bound to an organization and jurisdiction.
+    evidence_binds_jurisdiction: Bound to the applicable jurisdiction.
+    evidence_binds_data: Bound to a dataset, fixture, migration batch, or operational data context.
+    evidence_binds_provider_state: Bound to a recorded provider state.
+    evidence_binds_time: Bound to an execution time.
+    integrity_mechanism: Cryptographic hash and source-controlled custody.
+    reproducibility: Reproduction procedure recorded; a reproducible procedure is not a reproduced result.
+    retention_dependency: Retained per the applicable records obligation.
+    expiry_or_revalidation_date: Revalidation date recorded per evidence class.
+    executor: Recorded executor.
+    reviewer: Recorded independent reviewer.
+    independence_level: INDEPENDENT
+    acceptance_disposition: Not accepted; disposition reserved to the acceptance authority.
+    chapter_ref: V12-03
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # --- Findings -------------------------------------------------------------
+  - id: FINDING-V12-001
+    kind: FINDING
+    title: Evidence-gap finding template
+    statement: The controlled template for recording an evidence gap against a requirement.
+    affected_requirement: EVIDREQ-V12-001
+    affected_invariant: Requirement coverage invariant.
+    affected_release_gate: EXEC-MCG
+    authority_impact: None until dispositioned.
+    security_privacy_impact: Assessed per finding.
+    accessibility_bilingual_impact: Assessed per finding.
+    financial_impact: Assessed per finding.
+    migration_impact: Assessed per finding.
+    operational_impact: Assessed per finding.
+    severity_method_dependency: Severity assigned by a defined method.
+    owner: Evidence Governance Authority
+    required_remediation: Produce the missing evidence to the required provenance.
+    required_evidence: The evidence class named by the affected requirement.
+    retest_or_reexercise_requirement: Closure requires the applicable retest or re-exercise evidence.
+    release_effect: Blocks release until remediated or waived with expiry.
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: FINDING-V12-002
+    kind: FINDING
+    title: Defect finding template
+    statement: The controlled template for recording a defect requiring retest.
+    affected_requirement: EVIDREQ-V12-005
+    affected_invariant: Workflow conformance invariant.
+    affected_release_gate: EXEC-MCG
+    authority_impact: None until dispositioned.
+    security_privacy_impact: Assessed per finding.
+    accessibility_bilingual_impact: Assessed per finding.
+    financial_impact: Assessed per finding.
+    migration_impact: Assessed per finding.
+    operational_impact: Assessed per finding.
+    severity_method_dependency: Severity assigned by a defined method.
+    owner: Technical Verification Authority
+    required_remediation: Correct the defect and re-verify.
+    required_evidence: Automated or manual test evidence covering the defect.
+    retest_or_reexercise_requirement: Closure requires the applicable retest evidence.
+    release_effect: Blocks release until remediated or waived with expiry.
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # --- Conditions -----------------------------------------------------------
+  - id: CONDITION-V12-001
+    kind: CONDITION
+    title: Conditional-acceptance template
+    statement: The controlled template for a conditional acceptance with expiry.
+    affected_requirement: EVIDREQ-V12-006
+    affected_release_gate: EXEC-MCG
+    owner: Security and Privacy Authority
+    required_evidence: The evidence that would discharge the condition.
+    approving_authority: Release Governance Authority
+    effective_period: Bounded effective period.
+    expiry: Expiry date recorded; an expired condition is a fail-closed gate condition.
+    revalidation_condition: Revalidated when the underlying evidence changes.
+    compensating_control_dependency: Depends on a defined compensating control.
+    release_effect: Conditional acceptance is not unconditional acceptance.
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CONDITION-V12-002
+    kind: CONDITION
+    title: Deferred-obligation template
+    statement: The controlled template for a deferred obligation with revalidation.
+    affected_requirement: EVIDREQ-V12-013
+    affected_release_gate: EXEC-MCG
+    owner: Operational Acceptance Authority
+    required_evidence: The exercise evidence that would discharge the obligation.
+    approving_authority: Release Governance Authority
+    effective_period: Bounded effective period.
+    expiry: Expiry date recorded.
+    revalidation_condition: Revalidated at expiry or on environment change.
+    compensating_control_dependency: Depends on a defined compensating control.
+    release_effect: A deferred obligation does not discharge the requirement.
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # --- Waivers --------------------------------------------------------------
+  - id: WAIVER-V12-001
+    kind: WAIVER
+    title: Waiver template
+    statement: The controlled template for a waiver that does not convert failure to success.
+    affected_requirement: EVIDREQ-V12-008
+    affected_release_gate: EXEC-MCG
+    owner: Accessibility Authority
+    required_evidence: The evidence that would remove the need for the waiver.
+    approving_authority: Executive Sponsor
+    effective_period: Bounded effective period.
+    expiry: Expiry date recorded; an expired waiver is a fail-closed gate condition.
+    revalidation_condition: Revalidated at expiry.
+    compensating_control_dependency: Depends on a defined and operating compensating control.
+    release_effect: A waiver approved is not a failure converted to success.
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # --- Material commitments -------------------------------------------------
+  - id: COMMIT-V12-001
+    kind: MATERIAL_COMMITMENT
+    title: Material-commitment template
+    statement: The controlled template for a material commitment with an owner and expiry.
+    affected_requirement: EVIDREQ-V12-012
+    affected_release_gate: EXEC-MCG
+    owner: Migration Acceptance Authority
+    required_remediation: Fulfil the committed remediation.
+    required_evidence: The evidence that would evidence fulfilment.
+    approving_authority: Release Governance Authority
+    effective_period: Bounded effective period.
+    expiry: Expiry date recorded.
+    revalidation_condition: Revalidated at expiry.
+    compensating_control_dependency: Depends on a defined compensating control.
+    release_effect: A commitment recorded is not a commitment fulfilled.
+    chapter_ref: V12-04
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # --- Dossiers -------------------------------------------------------------
+  - id: DOSSIER-V12-001
+    kind: DOSSIER
+    title: Final evidence dossier
+    statement: The controlled final evidence dossier drawing from authoritative records.
+    dossier_kind: FINAL_EVIDENCE_DOSSIER
+    contained_sections: >-
+      Release-candidate identity; scope and excluded scope; institutional outcomes;
+      requirement coverage; implementation, test, security and privacy,
+      accessibility, bilingual, financial, migration, operational, provider, and
+      training and adoption evidence; defects and evidence gaps; exceptions and
+      waivers; material commitments; independent assurance; acceptance decisions;
+      dissent and conditions; rollback dependency; release authorization;
+      post-deployment obligations.
+    authoritative_source: Registers REG-1201 and REG-1202 and the ratified chapters.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-002
+    kind: DOSSIER
+    title: Technical evidence dossier
+    statement: The technical evidence dossier.
+    dossier_kind: TECHNICAL_EVIDENCE_DOSSIER
+    contained_sections: Implementation, test, security, privacy, accessibility, bilingual, and data evidence.
+    authoritative_source: Register REG-1202 evidence requirements and objects.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-003
+    kind: DOSSIER
+    title: Operational-readiness dossier
+    statement: The operational-readiness dossier.
+    dossier_kind: OPERATIONAL_READINESS_DOSSIER
+    contained_sections: Operational, continuity, recovery, observability, and provider evidence.
+    authoritative_source: Register REG-1202 evidence requirements.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-004
+    kind: DOSSIER
+    title: Migration-acceptance dossier
+    statement: The migration-acceptance dossier.
+    dossier_kind: MIGRATION_ACCEPTANCE_DOSSIER
+    contained_sections: Migration and reconciliation evidence and acceptance decisions.
+    authoritative_source: Register REG-1202 migration evidence requirement.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-005
+    kind: DOSSIER
+    title: Independent-assurance summary
+    statement: The independent-assurance summary.
+    dossier_kind: INDEPENDENT_ASSURANCE_SUMMARY
+    contained_sections: Independent assurance conclusions and qualifications.
+    authoritative_source: Register REG-1201 independent-assurance criterion.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-006
+    kind: DOSSIER
+    title: Business-acceptance brief
+    statement: The business-acceptance brief.
+    dossier_kind: BUSINESS_ACCEPTANCE_BRIEF
+    contained_sections: Business, financial, training, and adoption evidence and acceptance decisions.
+    authoritative_source: Register REG-1202 business-acceptance evidence requirement.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-007
+    kind: DOSSIER
+    title: Executive decision brief
+    statement: The executive decision brief supporting release authorization.
+    dossier_kind: EXECUTIVE_DECISION_BRIEF
+    contained_sections: Summary of accepted evidence, dissent, conditions, and material commitments.
+    authoritative_source: Registers REG-1201 and REG-1202.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-008
+    kind: DOSSIER
+    title: Release authorization record
+    statement: The release authorization record artifact.
+    dossier_kind: RELEASE_AUTHORIZATION_RECORD
+    contained_sections: Release candidate identity, gate status, conditions, and authorization.
+    authoritative_source: Register REG-1201 release decisions.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: DOSSIER-V12-009
+    kind: DOSSIER
+    title: Stabilization and post-release obligations
+    statement: The stabilization and post-release obligations artifact.
+    dossier_kind: STABILIZATION_AND_POST_RELEASE_OBLIGATIONS
+    contained_sections: Post-deployment obligations and stabilization acceptance criteria.
+    authoritative_source: Register REG-1201 post-deployment criterion.
+    projection_boundary: Generated summaries are projections and are never authoritative.
+    chapter_ref: V12-09
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

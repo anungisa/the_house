@@ -1,0 +1,166 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "acceptance_classes": [
+    {
+      "id": "ACCEPT-V12-001",
+      "title": "Technical acceptance",
+      "acceptance_class": "TECHNICAL_ACCEPTANCE",
+      "decision_authority": "Technical Verification Authority",
+      "reviewer_qualification": "Qualified technical reviewer.",
+      "independence_requirement": "Independent of the implementer.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-002",
+      "title": "Domain acceptance",
+      "acceptance_class": "DOMAIN_ACCEPTANCE",
+      "decision_authority": "Domain Acceptance Authority",
+      "reviewer_qualification": "Qualified domain reviewer.",
+      "independence_requirement": "Independent of technical delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-003",
+      "title": "Security and privacy acceptance",
+      "acceptance_class": "SECURITY_AND_PRIVACY_ACCEPTANCE",
+      "decision_authority": "Security and Privacy Authority",
+      "reviewer_qualification": "Qualified security and privacy reviewer.",
+      "independence_requirement": "Independent of the implementer.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-004",
+      "title": "Accessibility acceptance",
+      "acceptance_class": "ACCESSIBILITY_ACCEPTANCE",
+      "decision_authority": "Accessibility Authority",
+      "reviewer_qualification": "Qualified accessibility reviewer.",
+      "independence_requirement": "Independent manual and assistive-technology review.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-005",
+      "title": "Bilingual acceptance",
+      "acceptance_class": "BILINGUAL_ACCEPTANCE",
+      "decision_authority": "Bilingual Content Authority",
+      "reviewer_qualification": "Qualified bilingual reviewer.",
+      "independence_requirement": "Independent semantic review.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-006",
+      "title": "Migration acceptance",
+      "acceptance_class": "MIGRATION_ACCEPTANCE",
+      "decision_authority": "Migration Acceptance Authority",
+      "reviewer_qualification": "Qualified migration reviewer.",
+      "independence_requirement": "Independent reconciliation review.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-007",
+      "title": "Operational acceptance",
+      "acceptance_class": "OPERATIONAL_ACCEPTANCE",
+      "decision_authority": "Operational Acceptance Authority",
+      "reviewer_qualification": "Qualified operational reviewer.",
+      "independence_requirement": "Independent of delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-008",
+      "title": "Provider acceptance",
+      "acceptance_class": "PROVIDER_ACCEPTANCE",
+      "decision_authority": "Provider Acceptance Authority",
+      "reviewer_qualification": "Qualified provider reviewer.",
+      "independence_requirement": "Independent end-to-end verification.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Release Governance Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-009",
+      "title": "Training and adoption acceptance",
+      "acceptance_class": "TRAINING_AND_ADOPTION_ACCEPTANCE",
+      "decision_authority": "Training and Adoption Authority",
+      "reviewer_qualification": "Qualified training reviewer.",
+      "independence_requirement": "Independent competence assessment.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Business Owner Authority.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-010",
+      "title": "Business-owner acceptance",
+      "acceptance_class": "BUSINESS_OWNER_ACCEPTANCE",
+      "decision_authority": "Business Owner Authority",
+      "reviewer_qualification": "Accountable business owner.",
+      "independence_requirement": "Independent of technical delivery.",
+      "permitted_disposition": "Accept, reject, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the Executive Sponsor.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-011",
+      "title": "Executive acceptance",
+      "acceptance_class": "EXECUTIVE_ACCEPTANCE",
+      "decision_authority": "Executive Sponsor",
+      "reviewer_qualification": "Executive authority.",
+      "independence_requirement": "Independent of technical verification.",
+      "permitted_disposition": "Accept, decline, or accept with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the governing body.",
+      "release_effect": "Necessary but not sufficient for release."
+    },
+    {
+      "id": "ACCEPT-V12-012",
+      "title": "Release authorization",
+      "acceptance_class": "RELEASE_AUTHORIZATION",
+      "decision_authority": "Executive Sponsor",
+      "reviewer_qualification": "Executive release authority.",
+      "independence_requirement": "Independent of delivery and deployment.",
+      "permitted_disposition": "Authorize, decline, or authorize with conditions.",
+      "dissent_treatment": "Recorded dissent escalates to the governing body.",
+      "release_effect": "Authorizes release only within the named candidate and conditions."
+    }
+  ],
+  "release_decisions": [
+    {
+      "id": "RELEASE-V12-001",
+      "title": "Release-gate decision record",
+      "decision_class": "RELEASE_GATE_DECISION",
+      "decision_authority": "Release Governance Authority",
+      "required_evidence": "Complete final dossier and all acceptance decisions.",
+      "prohibited_inference": "Gate passed is not release authorized.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "RELEASE-V12-002",
+      "title": "Executive release authorization record",
+      "decision_class": "EXECUTIVE_RELEASE_AUTHORIZATION",
+      "decision_authority": "Executive Sponsor",
+      "required_evidence": "Executive decision brief and passed release gate.",
+      "prohibited_inference": "Release authorized is not deployment executed.",
+      "downstream_gate": "EXEC-MCG"
+    },
+    {
+      "id": "RELEASE-V12-003",
+      "title": "Deployment authorization record",
+      "decision_class": "DEPLOYMENT_AUTHORIZATION",
+      "decision_authority": "Release Governance Authority",
+      "required_evidence": "Deployment-path and rollback evidence.",
+      "prohibited_inference": "Deployment authorized is not deployment executed.",
+      "downstream_gate": "EXEC-MCG"
+    }
+  ]
+}

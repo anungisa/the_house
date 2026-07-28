@@ -1,0 +1,58 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 corpus. Confers no ratification and authorizes no implementation, operations, or release.",
+  "findings": [
+    {
+      "id": "FINDING-V12-001",
+      "owner": "Evidence Governance Authority",
+      "affected_requirement": "EVIDREQ-V12-001",
+      "retest_or_reexercise_requirement": "Closure requires the applicable retest or re-exercise evidence.",
+      "release_effect": "Blocks release until remediated or waived with expiry."
+    },
+    {
+      "id": "FINDING-V12-002",
+      "owner": "Technical Verification Authority",
+      "affected_requirement": "EVIDREQ-V12-005",
+      "retest_or_reexercise_requirement": "Closure requires the applicable retest evidence.",
+      "release_effect": "Blocks release until remediated or waived with expiry."
+    }
+  ],
+  "conditions": [
+    {
+      "id": "CONDITION-V12-001",
+      "owner": "Security and Privacy Authority",
+      "approving_authority": "Release Governance Authority",
+      "expiry": "Expiry date recorded; an expired condition is a fail-closed gate condition.",
+      "revalidation_condition": "Revalidated when the underlying evidence changes.",
+      "release_effect": "Conditional acceptance is not unconditional acceptance."
+    },
+    {
+      "id": "CONDITION-V12-002",
+      "owner": "Operational Acceptance Authority",
+      "approving_authority": "Release Governance Authority",
+      "expiry": "Expiry date recorded.",
+      "revalidation_condition": "Revalidated at expiry or on environment change.",
+      "release_effect": "A deferred obligation does not discharge the requirement."
+    }
+  ],
+  "waivers": [
+    {
+      "id": "WAIVER-V12-001",
+      "owner": "Accessibility Authority",
+      "approving_authority": "Executive Sponsor",
+      "effective_period": "Bounded effective period.",
+      "expiry": "Expiry date recorded; an expired waiver is a fail-closed gate condition.",
+      "compensating_control_dependency": "Depends on a defined and operating compensating control.",
+      "release_effect": "A waiver approved is not a failure converted to success."
+    }
+  ],
+  "material_commitments": [
+    {
+      "id": "COMMIT-V12-001",
+      "owner": "Migration Acceptance Authority",
+      "required_remediation": "Fulfil the committed remediation.",
+      "required_evidence": "The evidence that would evidence fulfilment.",
+      "expiry": "Expiry date recorded.",
+      "release_effect": "A commitment recorded is not a commitment fulfilled."
+    }
+  ]
+}
