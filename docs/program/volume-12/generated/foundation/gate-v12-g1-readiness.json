@@ -2,14 +2,9 @@
   "gate": "V12-G1",
   "disposition_target": "GATE_RELEASE_AND_ACCEPTANCE_EVIDENCE_GOVERNANCE_FOUNDATION_READY",
   "total_conditions": 35,
-  "satisfied": 34,
-  "unmet": [
-    {
-      "n": 35,
-      "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation preserved"
-    }
-  ],
-  "readiness": "NOT_READY",
+  "satisfied": 35,
+  "unmet": [],
+  "readiness": "READY",
   "conditions": [
     {
       "n": 1,
@@ -184,7 +179,7 @@
     {
       "n": 35,
       "title": "Genuine authoring, closure/freeze, and pre-merge provenance-binding separation preserved",
-      "satisfied": false
+      "satisfied": true
     }
   ]
 }

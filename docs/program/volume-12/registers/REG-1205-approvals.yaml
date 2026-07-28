@@ -111,7 +111,7 @@ records:
       workload, release authorization, and deployment are NOT AUTHORIZED.
     effective_date_clarification:
       gate: V12-G1
-      documentary_definition_effective_commit: PENDING_COMMIT_B
+      documentary_definition_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
       implementation_effective_date: >-
         Not applicable — the documentary evidence and acceptance definition is
         distinct from implementation effectiveness, from operational
@@ -123,10 +123,10 @@ records:
       closure_artifact: V12-A
       gate: V12-G1
       freeze_artifact: PACKAGE-12-1
-      closure_authored_commit: PENDING_COMMIT_B
-      closure_effective_commit: PENDING_COMMIT_B
-      freeze_commit: PENDING_COMMIT_B
-      gate_effective_commit: PENDING_COMMIT_B
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
   - id: APP-V12-013
     artifact_id: GATE-V12-G1
     approver_role: Executive Sponsor
@@ -137,8 +137,8 @@ records:
     authorizes_release: false
     gate_disposition: GATE_RELEASE_AND_ACCEPTANCE_EVIDENCE_GOVERNANCE_FOUNDATION_READY
     requires_freeze_artifact: PACKAGE-12-1
-    effective_commit: PENDING_COMMIT_B
-    gate_effective_commit: PENDING_COMMIT_B
+    effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+    gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
   - id: APP-V12-014
     artifact_id: PACKAGE-12-1
     approver_role: Executive Sponsor
@@ -187,11 +187,11 @@ records:
         version: 1.0.0
     authoring_closure_separation:
       freeze_artifact: PACKAGE-12-1
-      substantive_authoring_commit: 498d1e4
-      closure_authored_commit: PENDING_COMMIT_B
-      closure_effective_commit: PENDING_COMMIT_B
-      gate_effective_commit: PENDING_COMMIT_B
-      freeze_commit: PENDING_COMMIT_B
+      substantive_authoring_commit: 498d1e49140de5358e0724ffb15f678b1c856f7d
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
       provenance_binding_commit: PENDING_COMMIT_C
       required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
@@ -206,13 +206,13 @@ records:
       base_release_tag: central-registration-volume-11-v1.0.0
       source_baseline_commit: 33596f6103b18ae82ac50ce7a885c62c849104a0
       branch_base_commit: 33596f6103b18ae82ac50ce7a885c62c849104a0
-      authoring_commit: 498d1e4
-      closure_authored_commit: PENDING_COMMIT_B
-      closure_effective_commit: PENDING_COMMIT_B
-      closure_freeze_commit: PENDING_COMMIT_B
-      freeze_commit: PENDING_COMMIT_B
-      gate_effective_commit: PENDING_COMMIT_B
-      effective_commit: PENDING_COMMIT_B
+      authoring_commit: 498d1e49140de5358e0724ffb15f678b1c856f7d
+      closure_authored_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      closure_freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      freeze_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      gate_effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
+      effective_commit: 2104d359ea77d4a65df08c40658161e4ff69a74c
       provenance_binding_commit: PENDING_COMMIT_C
       original_package_merge_commit: PENDING_COMMIT_C
       note: >-
