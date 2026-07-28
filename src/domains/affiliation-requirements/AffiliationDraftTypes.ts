@@ -60,7 +60,7 @@ export interface CompletenessSummary {
   readonly completedCount: number;
   readonly unresolvedBlockers: readonly string[];
   readonly requiredNextActions: readonly string[];
-  /** Whether the draft is eligible for a FUTURE submission action (Slice D). Never submits here. */
+  /** Whether the draft is eligible for the separate governed submission command. */
   readonly eligibleForSubmission: boolean;
 }
 

@@ -3,6 +3,7 @@ import { withTenantTransaction, type QueryClient } from '../../db/pool.js';
 import type { AffiliationApplicationService } from '../affiliation/AffiliationApplicationService.js';
 import type {
   CorrectionRequestView,
+  AffiliationSubmissionStateView,
   OpenCorrectionInput,
   ResubmitCorrectionInput,
   SubmissionReceipt,
@@ -83,12 +84,25 @@ export class AffiliationSubmissionService {
       const application = await client.query<{
         applicant_user_id: string | null;
         current_state: string | null;
+        organization_id: string | null;
+        organization_unit_id: string | null;
+        national_organization_id: string | null;
+        regional_organization_id: string | null;
+        local_organization_id: string | null;
+        scope_id: string | null;
+        assigned_reviewer_user_id: string | null;
       }>(
-        `SELECT a.applicant_user_id, es.current_state
+        `SELECT a.applicant_user_id, es.current_state, a.organization_id,
+                a.organization_unit_id, a.national_organization_id,
+                a.regional_organization_id, a.local_organization_id, a.scope_id,
+                ra.reviewer_user_id AS assigned_reviewer_user_id
            FROM affiliation.affiliation_application a
            JOIN governance.entity_state es
              ON es.tenant_id = a.tenant_id AND es.entity_type = 'AffiliationApplication'
             AND es.entity_id = a.id
+      LEFT JOIN affiliation.review_assignment ra
+             ON ra.tenant_id = a.tenant_id AND ra.application_id = a.id
+            AND ra.released_at IS NULL
           WHERE a.id = $1
           FOR UPDATE OF a`,
         [input.applicationId],
@@ -102,6 +116,38 @@ export class AffiliationSubmissionService {
       }
       if (app.applicant_user_id === input.reviewerUserId) {
         throw new AppError(ErrorCode.FORBIDDEN, 'A representative cannot review their own application.');
+      }
+      const isGlobalReviewer = input.reviewerRoleKeys.some(
+        (role) => role === 'admin' || role === 'platform_admin',
+      );
+      const delegatedScopeIds = [
+        input.reviewerScopeId,
+        input.reviewerOrganizationId,
+        input.reviewerOrganizationUnitId,
+        input.reviewerNationalOrganizationId,
+        input.reviewerRegionalOrganizationId,
+        input.reviewerLocalOrganizationId,
+      ].filter((value): value is string => value !== undefined);
+      const applicationScopeIds = [
+        app.organization_id,
+        app.organization_unit_id,
+        app.national_organization_id,
+        app.regional_organization_id,
+        app.local_organization_id,
+        app.scope_id,
+      ].filter((value): value is string => value !== null);
+      if (
+        !isGlobalReviewer &&
+        !applicationScopeIds.some((scopeId) => delegatedScopeIds.includes(scopeId))
+      ) {
+        throw new AppError(ErrorCode.FORBIDDEN, 'The application is outside reviewer scope.');
+      }
+      if (
+        app.current_state === 'under_review' &&
+        !isGlobalReviewer &&
+        app.assigned_reviewer_user_id !== input.reviewerUserId
+      ) {
+        throw new AppError(ErrorCode.FORBIDDEN, 'The application is assigned to another reviewer.');
       }
       if (app.current_state !== 'submitted' && app.current_state !== 'under_review') {
         throw new AppError(
@@ -175,6 +221,82 @@ export class AffiliationSubmissionService {
         requirementCodes: codes,
         reasons: input.reasons,
         openedAt: toIso(row.opened_at),
+      };
+    });
+  }
+
+  async getApplicantSubmissionState(
+    tenantId: string,
+    applicationId: string,
+    actorUserId: string,
+  ): Promise<AffiliationSubmissionStateView> {
+    return withTenantTransaction(tenantId, async (client) => {
+      const application = await client.query<{ applicant_user_id: string | null }>(
+        `SELECT applicant_user_id FROM affiliation.affiliation_application WHERE id = $1`,
+        [applicationId],
+      );
+      if (
+        application[0] === undefined ||
+        application[0].applicant_user_id === null ||
+        application[0].applicant_user_id !== actorUserId
+      ) {
+        throw new AppError(
+          ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
+          'Affiliation application not found.',
+        );
+      }
+      const receiptRows = await client.query<{
+        id: string;
+        sequence: number;
+        source_draft_version: number;
+        submitted_at: unknown;
+        submitted_by: string;
+        state_transition_id: string | null;
+        idempotency_key: string;
+      }>(
+        `SELECT id, sequence, source_draft_version, submitted_at, submitted_by,
+                state_transition_id, idempotency_key
+           FROM affiliation.submission_snapshot
+          WHERE application_id = $1 ORDER BY sequence ASC`,
+        [applicationId],
+      );
+      const correctionRows = await client.query<{
+        id: string;
+        requirement_codes: string[];
+        reasons: readonly { requirementCode: string; reason: string }[];
+        opened_at: unknown;
+      }>(
+        `SELECT id, requirement_codes, reasons, opened_at
+           FROM affiliation.correction_request
+          WHERE application_id = $1 AND status = 'open'`,
+        [applicationId],
+      );
+      const correction = correctionRows[0];
+      return {
+        receipts: receiptRows.map((row) => ({
+          receiptId: row.id,
+          applicationId,
+          sequence: row.sequence,
+          sourceDraftVersion: row.source_draft_version,
+          submittedAt: toIso(row.submitted_at),
+          submittedBy: row.submitted_by,
+          ...(row.state_transition_id !== null
+            ? { stateTransitionId: row.state_transition_id }
+            : {}),
+          idempotencyKey: row.idempotency_key,
+        })),
+        ...(correction !== undefined
+          ? {
+              openCorrection: {
+                correctionRequestId: correction.id,
+                applicationId,
+                status: 'open' as const,
+                requirementCodes: correction.requirement_codes,
+                reasons: correction.reasons,
+                openedAt: toIso(correction.opened_at),
+              },
+            }
+          : {}),
       };
     });
   }

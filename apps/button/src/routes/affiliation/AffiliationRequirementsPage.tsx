@@ -7,6 +7,8 @@ import { usePageTitle } from '../../hooks/usePageTitle';
 import { StatusPanel } from '../../components/StatusPanel';
 import {
   useAffiliationApplication,
+  useAffiliationSubmissionState,
+  useResubmitAffiliationCorrection,
   useSubmitAffiliation,
   toAffiliationCategory,
 } from '../../hooks/useAffiliation';
@@ -20,8 +22,8 @@ function statusLabelKey(status: RequirementStatus): TranslationKey {
 /**
  * Requirements checklist for one draft application. Every posture — blocked, not started, in
  * progress, document required, and complete — is server-derived and rendered with a distinct text
- * label (never colour-only). Submission is intentionally absent (Slice D); the draft is saved as
- * the representative works. Deep-linking to this URL re-fetches the projection, so a representative
+ * label (never colour-only). Governed submission is offered only after server-derived completeness.
+ * Deep-linking to this URL re-fetches the projection, so a representative
  * can safely leave and resume later.
  */
 export function AffiliationRequirementsPage(): JSX.Element {
@@ -30,6 +32,11 @@ export function AffiliationRequirementsPage(): JSX.Element {
   const { applicationId } = useParams<{ applicationId: string }>();
   const query = useAffiliationApplication(applicationId);
   const submit = useSubmitAffiliation(applicationId ?? '');
+  const submissionState = useAffiliationSubmissionState(
+    applicationId,
+    query.data?.lifecycleStatus !== undefined && query.data.lifecycleStatus !== 'draft',
+  );
+  const resubmit = useResubmitAffiliationCorrection(applicationId ?? '');
   const [confirming, setConfirming] = useState(false);
 
   if (query.isLoading) {
@@ -72,10 +79,22 @@ export function AffiliationRequirementsPage(): JSX.Element {
   const application = query.data;
   const { completeness, requirements } = application;
   const submitted = application.lifecycleStatus !== 'draft';
+  const correction = submissionState.data?.openCorrection;
+  const latestReceipt =
+    submit.data ??
+    submissionState.data?.receipts[submissionState.data.receipts.length - 1];
   const onSubmit = (): void => {
     submit.mutate({
       expectedVersion: application.concurrencyToken,
       idempotencyKey: `button-submit-${application.applicationId}-${application.concurrencyToken}`,
+    });
+  };
+  const onResubmit = (): void => {
+    if (correction === undefined) return;
+    resubmit.mutate({
+      correctionRequestId: correction.correctionRequestId,
+      expectedVersion: application.concurrencyToken,
+      idempotencyKey: `button-resubmit-${correction.correctionRequestId}-${application.concurrencyToken}`,
     });
   };
 
@@ -122,18 +141,42 @@ export function AffiliationRequirementsPage(): JSX.Element {
       )}
 
       {completeness.eligibleForSubmission ? (
-        submit.data ? (
+        correction ? (
+          <section className="affiliation-card" aria-labelledby="correction-heading">
+            <h2 id="correction-heading">{t('affiliation.correction.heading')}</h2>
+            <p>{t('affiliation.correction.intro')}</p>
+            <ul>
+              {correction.reasons.map((reason) => (
+                <li key={`${reason.requirementCode}:${reason.reason}`}>
+                  <strong>{reason.requirementCode}: </strong>
+                  {reason.reason}
+                </li>
+              ))}
+            </ul>
+            <p>{t('affiliation.correction.scope')}</p>
+            <button type="button" onClick={onResubmit} disabled={resubmit.isPending}>
+              {resubmit.isPending
+                ? t('affiliation.correction.resubmitting')
+                : t('affiliation.correction.resubmit')}
+            </button>
+            {resubmit.error ? (
+              <p role="alert" className="affiliation-note affiliation-note--error">
+                {t('affiliation.correction.resubmitError')}
+              </p>
+            ) : null}
+          </section>
+        ) : latestReceipt ? (
           <section className="affiliation-card" aria-labelledby="submission-receipt-heading">
             <h2 id="submission-receipt-heading">{t('affiliation.submission.receiptHeading')}</h2>
             <p role="status">{t('affiliation.submission.receiptBody')}</p>
             <dl className="context-summary">
               <div>
                 <dt>{t('affiliation.submission.receiptNumber')}</dt>
-                <dd>{submit.data.receiptId}</dd>
+                <dd>{latestReceipt.receiptId}</dd>
               </div>
               <div>
                 <dt>{t('affiliation.submission.sequence')}</dt>
-                <dd>{String(submit.data.sequence)}</dd>
+                <dd>{String(latestReceipt.sequence)}</dd>
               </div>
             </dl>
           </section>

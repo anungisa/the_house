@@ -20,6 +20,8 @@ import {
   type AffiliationOverview,
   type DraftResponseInput,
   type SubmissionReceipt,
+  type AffiliationReviewQueueItem,
+  type AffiliationSubmissionState,
 } from './affiliationTypes';
 import { AffiliationMockStore } from './affiliationMockData';
 
@@ -58,6 +60,10 @@ export interface SubmitAffiliationInput {
   readonly idempotencyKey: string;
 }
 
+export interface ResubmitCorrectionInput extends SubmitAffiliationInput {
+  readonly correctionRequestId: string;
+}
+
 export interface AffiliationApiClient {
   getOverview(input: GetOverviewInput): Promise<AffiliationOverview>;
   initiate(input: InitiateInput): Promise<AffiliationApplicationProjection>;
@@ -67,6 +73,10 @@ export interface AffiliationApiClient {
   removeEvidence(input: RemoveEvidenceInput): Promise<AffiliationApplicationProjection>;
   /** Slice D command; optional for legacy Slice C-only test doubles. */
   submit?(input: SubmitAffiliationInput): Promise<SubmissionReceipt>;
+  listReviewQueue?(): Promise<readonly AffiliationReviewQueueItem[]>;
+  startReview?(applicationId: string, idempotencyKey: string): Promise<AffiliationReviewQueueItem>;
+  getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
+  resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
 
 function categoryFor(status: number, code: string | undefined): AffiliationErrorCategory {
@@ -233,6 +243,58 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
       (body) => (body as { receipt: SubmissionReceipt }).receipt,
     );
   }
+
+  async listReviewQueue(): Promise<readonly AffiliationReviewQueueItem[]> {
+    return this.request(
+      '/v1/button/affiliation/review-queue',
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { items: readonly AffiliationReviewQueueItem[] }).items,
+    );
+  }
+
+  async startReview(
+    applicationId: string,
+    idempotencyKey: string,
+  ): Promise<AffiliationReviewQueueItem> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/review-start`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'idempotency-key': idempotencyKey,
+        },
+        body: '{}',
+      },
+      (body) => (body as { item: AffiliationReviewQueueItem }).item,
+    );
+  }
+
+  async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/submission-state`,
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { submissionState: AffiliationSubmissionState }).submissionState,
+    );
+  }
+
+  async resubmitCorrection(input: ResubmitCorrectionInput): Promise<SubmissionReceipt> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(input.applicationId)}/corrections/${encodeURIComponent(input.correctionRequestId)}/resubmissions`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'if-match': `"${input.expectedVersion}"`,
+          'idempotency-key': input.idempotencyKey,
+        },
+        body: '{}',
+      },
+      (body) => (body as { receipt: SubmissionReceipt }).receipt,
+    );
+  }
 }
 
 /**
@@ -240,6 +302,17 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
  * in-memory store that mirrors the governed surface (versioning, conflicts, evidence association).
  */
 export class MockAffiliationApiClient implements AffiliationApiClient {
+  private reviewQueue: AffiliationReviewQueueItem[] = [
+    {
+      applicationId: 'review-app-0001',
+      organizationId: 'club-1',
+      seasonId: '2025-26',
+      pathway: 'new_affiliation',
+      lifecycleState: 'submitted',
+      submittedAt: '2026-01-15T00:00:00.000Z',
+      submissionSequence: 1,
+    },
+  ];
   constructor(private readonly store: AffiliationMockStore = new AffiliationMockStore()) {}
 
   async getOverview(input: GetOverviewInput): Promise<AffiliationOverview> {
@@ -268,6 +341,41 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
 
   async submit(input: SubmitAffiliationInput): Promise<SubmissionReceipt> {
     return this.store.submit(input.applicationId, input.expectedVersion, input.idempotencyKey);
+  }
+
+  async listReviewQueue(): Promise<readonly AffiliationReviewQueueItem[]> {
+    return this.reviewQueue;
+  }
+
+  async startReview(applicationId: string): Promise<AffiliationReviewQueueItem> {
+    const current = this.reviewQueue.find((item) => item.applicationId === applicationId);
+    if (current === undefined) {
+      throw new AffiliationApiError('not-found', 404, 'Affiliation application not found.');
+    }
+    if (current.lifecycleState === 'under_review') return current;
+    const assigned: AffiliationReviewQueueItem = {
+      ...current,
+      lifecycleState: 'under_review',
+      assignedReviewerUserId: 'reviewer',
+      assignedAt: '2026-01-15T00:05:00.000Z',
+    };
+    this.reviewQueue = this.reviewQueue.map((item) =>
+      item.applicationId === applicationId ? assigned : item,
+    );
+    return assigned;
+  }
+
+  async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
+    return this.store.getSubmissionState(applicationId);
+  }
+
+  async resubmitCorrection(input: ResubmitCorrectionInput): Promise<SubmissionReceipt> {
+    return this.store.resubmitCorrection(
+      input.applicationId,
+      input.correctionRequestId,
+      input.expectedVersion,
+      input.idempotencyKey,
+    );
   }
 }
 

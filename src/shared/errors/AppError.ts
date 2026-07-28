@@ -99,6 +99,8 @@ export const ErrorCode = {
   AFFILIATION_CORRECTION_NOT_FOUND: 'AFFILIATION_CORRECTION_NOT_FOUND',
   /** A correction request conflicts with the current application/correction posture. Maps to 409. */
   AFFILIATION_CORRECTION_CONFLICT: 'AFFILIATION_CORRECTION_CONFLICT',
+  /** Review assignment/start conflicts with the application's current governed posture. */
+  AFFILIATION_REVIEW_CONFLICT: 'AFFILIATION_REVIEW_CONFLICT',
   /** A referenced requirement is not bound to (applicable for) the application. Maps to 404. */
   AFFILIATION_REQUIREMENT_UNKNOWN: 'AFFILIATION_REQUIREMENT_UNKNOWN',
   /**

@@ -233,6 +233,7 @@ export class ButtonContextService {
     const capabilities = this.deriveCapabilities(
       accessibleOrganizations.length > 0,
       currentContext,
+      auth.actor,
     );
 
     return {
@@ -299,11 +300,19 @@ export class ButtonContextService {
   private deriveCapabilities(
     hasAccessibleOrgs: boolean,
     currentContext: SelectedContextView | null,
+    actor: AuthActor,
   ): readonly ButtonCapability[] {
     const capabilities: ButtonCapability[] = [];
     if (hasAccessibleOrgs) capabilities.push(ButtonCapability.SelectContext);
     if (currentContext !== null && currentContext.authorityStatus === 'active') {
       capabilities.push(ButtonCapability.ViewAffiliation);
+    }
+    if (
+      actor.roleKeys.some((role) =>
+        ['reviewer', 'approver', 'admin', 'platform_admin'].includes(role),
+      )
+    ) {
+      capabilities.push(ButtonCapability.ReviewAffiliation);
     }
     return capabilities;
   }

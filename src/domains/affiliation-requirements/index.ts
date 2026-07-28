@@ -5,7 +5,7 @@
  * catalog, per-application requirement-version bindings, saved responses, associated governed
  * evidence references, server-derived completeness, and optimistic-concurrency draft saves. This
  * module owns NO governed lifecycle state (that lives in governance.entity_state and is written
- * EXCLUSIVELY by the Governance Kernel) and NEVER invokes the kernel — submission is Slice D.
+ * EXCLUSIVELY by the Governance Kernel) and NEVER invokes the kernel.
  */
 
 export * from './RequirementCatalog.js';

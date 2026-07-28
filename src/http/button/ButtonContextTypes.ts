@@ -36,6 +36,8 @@ export const ButtonCapability = {
   SelectContext: 'context.select',
   /** May view the representative affiliation overview for the selected context. */
   ViewAffiliation: 'affiliation.view',
+  /** May open the resource-scoped affiliation review workbench. */
+  ReviewAffiliation: 'affiliation.review',
 } as const;
 export type ButtonCapability = (typeof ButtonCapability)[keyof typeof ButtonCapability];
 
