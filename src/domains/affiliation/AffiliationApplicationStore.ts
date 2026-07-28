@@ -63,4 +63,15 @@ export interface AffiliationApplicationStore {
 
   /** True only when a season row marked current matches `seasonId` for the tenant. */
   isSeasonCurrent(tenantId: string, seasonId: string): Promise<boolean>;
+
+  /**
+   * True when ANOTHER application currently holds ACTIVE governed standing for the same
+   * affiliation subject (COALESCE(scope_id, local_organization_id, organization_id)) and
+   * season as `applicationId`. Enforces the "exactly-once activation" invariant.
+   *
+   * Authoritative lifecycle state is read from governance.entity_state (kernel-owned);
+   * this method performs NO mutation. Returns false when the subject cannot be determined
+   * (no scope/organization recorded) — absence of a subject cannot assert a duplicate.
+   */
+  hasConflictingActiveAffiliation(tenantId: string, applicationId: string): Promise<boolean>;
 }

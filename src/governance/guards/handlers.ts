@@ -30,6 +30,11 @@ export interface AffiliationGuardRepository {
   feesPaid(input: GuardEvaluationInput): Promise<boolean> | boolean;
   seasonIsCurrent(input: GuardEvaluationInput): Promise<boolean> | boolean;
   actorHasReviewerScope(input: GuardEvaluationInput): Promise<boolean> | boolean;
+  /**
+   * True when ANOTHER application already holds active standing for the same affiliation
+   * subject and season (a uniqueness conflict). The guard FAILS when this is true.
+   */
+  hasConflictingActiveStanding(input: GuardEvaluationInput): Promise<boolean> | boolean;
 }
 
 interface AffiliationFacts {
@@ -38,6 +43,7 @@ interface AffiliationFacts {
   readonly openComplianceFlags?: boolean;
   readonly feesPaid?: boolean;
   readonly seasonIsCurrent?: boolean;
+  readonly conflictingActiveStanding?: boolean;
 }
 
 const REVIEWER_ROLES: ReadonlySet<string> = new Set(['reviewer', 'approver', 'admin']);
@@ -75,6 +81,10 @@ export class PayloadBackedAffiliationGuardRepository implements AffiliationGuard
     const roles = input.actor.roles ?? [];
     return roles.some((r) => REVIEWER_ROLES.has(r));
   }
+  hasConflictingActiveStanding(input: GuardEvaluationInput): boolean {
+    // Defaults to "no conflict" when unspecified; only an explicit true blocks.
+    return readFacts(input).conflictingActiveStanding === true;
+  }
 }
 
 function pass(code: string): GuardEvaluationResult {
@@ -86,7 +96,7 @@ function fail(code: string, message: string): GuardEvaluationResult {
 }
 
 /**
- * Build the six AffiliationApplication guard handlers bound to a repository.
+ * Build the AffiliationApplication guard handlers bound to a repository.
  */
 export function createAffiliationGuardHandlers(
   repo: AffiliationGuardRepository,
@@ -130,11 +140,19 @@ export function createAffiliationGuardHandlers(
       (await repo.actorHasReviewerScope(input))
         ? pass('ACTOR_HAS_REVIEWER_SCOPE')
         : fail('ACTOR_HAS_REVIEWER_SCOPE', 'Actor does not hold reviewer scope.'),
+
+    AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE: async (input) =>
+      (await repo.hasConflictingActiveStanding(input))
+        ? fail(
+            'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE',
+            'Another application already holds active standing for this organization scope and season.',
+          )
+        : pass('AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE'),
   };
 }
 
 /**
- * Register all six AffiliationApplication guards on a registry.
+ * Register all AffiliationApplication guards on a registry.
  *
  * `repo` is REQUIRED and explicit: production callers pass a persistence-backed repository
  * (the affiliation domain's `DomainBackedAffiliationGuardRepository`); tests may pass the

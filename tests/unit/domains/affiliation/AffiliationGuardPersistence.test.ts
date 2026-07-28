@@ -6,6 +6,7 @@ import {
 } from '../../../helpers/affiliationKernel.js';
 import { InMemoryAffiliationApplicationStore } from '../../../../src/domains/affiliation/InMemoryAffiliationApplicationStore.js';
 import { DomainBackedAffiliationGuardRepository } from '../../../../src/domains/affiliation/DomainBackedAffiliationGuardRepository.js';
+import { createAffiliationGuardHandlers } from '../../../../src/governance/guards/handlers.js';
 import type { GuardEvaluationInput } from '../../../../src/governance/types/TransitionTypes.js';
 
 const TENANT = '11111111-1111-1111-1111-111111111111';
@@ -182,5 +183,74 @@ describe('DomainBackedAffiliationGuardRepository actor scope', () => {
     } as unknown as GuardEvaluationInput;
     expect(repo.actorHasReviewerScope(reviewer)).toBe(true);
     expect(repo.actorHasReviewerScope(member)).toBe(false);
+  });
+});
+
+describe('AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE (exactly-once activation)', () => {
+  const SUBJECT = '33333333-3333-3333-3333-333333333333';
+  const OTHER = 'app-2';
+
+  function activateInput(entityId: string): GuardEvaluationInput {
+    return {
+      guardCode: 'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE',
+      parameters: {},
+      entityType: 'AffiliationApplication',
+      entityId,
+      trigger: 'activate',
+      fromState: 'approved',
+      toState: 'active',
+      actor: reviewerActor(TENANT),
+      context: { tenantId: TENANT },
+    } as unknown as GuardEvaluationInput;
+  }
+
+  it('detects a conflict when another application already holds active standing for the same scope+season', async () => {
+    const store = new InMemoryAffiliationApplicationStore();
+    store.seedApplication({ id: APP, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    store.seedApplication({ id: OTHER, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    store.markActiveStanding(TENANT, OTHER);
+    const repo = new DomainBackedAffiliationGuardRepository(store);
+    expect(await repo.hasConflictingActiveStanding(activateInput(APP))).toBe(true);
+  });
+
+  it('reports NO conflict when no other application holds active standing', async () => {
+    const store = new InMemoryAffiliationApplicationStore();
+    store.seedApplication({ id: APP, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    store.seedApplication({ id: OTHER, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    const repo = new DomainBackedAffiliationGuardRepository(store);
+    expect(await repo.hasConflictingActiveStanding(activateInput(APP))).toBe(false);
+  });
+
+  it('reports NO conflict when the active application targets a DIFFERENT season', async () => {
+    const store = new InMemoryAffiliationApplicationStore();
+    store.seedApplication({ id: APP, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    store.seedApplication({ id: OTHER, tenantId: TENANT, seasonId: '2024-25', scopeId: SUBJECT });
+    store.markActiveStanding(TENANT, OTHER);
+    const repo = new DomainBackedAffiliationGuardRepository(store);
+    expect(await repo.hasConflictingActiveStanding(activateInput(APP))).toBe(false);
+  });
+
+  it('reports NO conflict when the application has no affiliation subject (cannot assert duplicate)', async () => {
+    const store = new InMemoryAffiliationApplicationStore();
+    store.seedApplication({ id: APP, tenantId: TENANT, seasonId: '2025-26' });
+    store.seedApplication({ id: OTHER, tenantId: TENANT, seasonId: '2025-26' });
+    store.markActiveStanding(TENANT, OTHER);
+    const repo = new DomainBackedAffiliationGuardRepository(store);
+    expect(await repo.hasConflictingActiveStanding(activateInput(APP))).toBe(false);
+  });
+
+  it('handler FAILS the guard on a conflict and PASSES otherwise', async () => {
+    const store = new InMemoryAffiliationApplicationStore();
+    store.seedApplication({ id: APP, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    store.seedApplication({ id: OTHER, tenantId: TENANT, seasonId: '2025-26', scopeId: SUBJECT });
+    const handlers = createAffiliationGuardHandlers(new DomainBackedAffiliationGuardRepository(store));
+
+    const clean = await handlers.AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE(activateInput(APP));
+    expect(clean.passed).toBe(true);
+
+    store.markActiveStanding(TENANT, OTHER);
+    const blocked = await handlers.AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE(activateInput(APP));
+    expect(blocked.passed).toBe(false);
+    expect(blocked.message).toMatch(/active standing/i);
   });
 });

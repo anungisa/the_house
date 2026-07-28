@@ -51,4 +51,8 @@ export class DomainBackedAffiliationGuardRepository implements AffiliationGuardR
     const roles = input.actor.roles ?? [];
     return roles.some((r) => REVIEWER_ROLES.has(r));
   }
+
+  hasConflictingActiveStanding(input: GuardEvaluationInput): Promise<boolean> {
+    return this.store.hasConflictingActiveAffiliation(input.context.tenantId, input.entityId);
+  }
 }
