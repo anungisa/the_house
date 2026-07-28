@@ -645,7 +645,7 @@ records:
       implementation-authorization decision package, not an implied Volume 13.
     effective_date_clarification:
       gate: V12-G3
-      documentary_definition_effective_commit: PENDING_COMMIT_B
+      documentary_definition_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       implementation_effective_date: >-
         Not applicable — the documentary final-evidence, gate, acceptance, and
         corpus-release definition is distinct from implementation effectiveness,
@@ -657,10 +657,10 @@ records:
       closure_artifact: V12-E
       gate: V12-G3
       freeze_artifact: PACKAGE-12-3
-      closure_authored_commit: PENDING_COMMIT_B
-      closure_effective_commit: PENDING_COMMIT_B
-      freeze_commit: PENDING_COMMIT_B
-      gate_effective_commit: PENDING_COMMIT_B
+      closure_authored_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      closure_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      freeze_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      gate_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
   - id: APP-V12-045
     artifact_id: GATE-V12-G3
     approver_role: Executive Sponsor
@@ -671,8 +671,8 @@ records:
     authorizes_release: false
     gate_disposition: INTEGRATED_FINAL_EVIDENCE_GATE_ACCEPTANCE_AND_CORPUS_RELEASE_DEFINITION_COMPLETE
     requires_freeze_artifact: PACKAGE-12-3
-    effective_commit: PENDING_COMMIT_B
-    gate_effective_commit: PENDING_COMMIT_B
+    effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+    gate_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
   - id: APP-V12-046
     artifact_id: PACKAGE-12-3
     approver_role: Executive Sponsor
@@ -712,10 +712,10 @@ records:
     authoring_closure_separation:
       freeze_artifact: PACKAGE-12-3
       substantive_authoring_commit: 5e00ca42375291dd934fdafb8797fa0f2ea78171
-      closure_authored_commit: PENDING_COMMIT_B
-      closure_effective_commit: PENDING_COMMIT_B
-      gate_effective_commit: PENDING_COMMIT_B
-      freeze_commit: PENDING_COMMIT_B
+      closure_authored_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      closure_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      gate_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      freeze_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       provenance_binding_commit: PENDING_COMMIT_C
       required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
@@ -731,12 +731,12 @@ records:
       source_baseline_commit: 3ae246163ae9396ae8e4b89502894e204c9a5b00
       branch_base_commit: 3ae246163ae9396ae8e4b89502894e204c9a5b00
       authoring_commit: 5e00ca42375291dd934fdafb8797fa0f2ea78171
-      closure_authored_commit: PENDING_COMMIT_B
-      closure_effective_commit: PENDING_COMMIT_B
-      closure_freeze_commit: PENDING_COMMIT_B
-      freeze_commit: PENDING_COMMIT_B
-      gate_effective_commit: PENDING_COMMIT_B
-      effective_commit: PENDING_COMMIT_B
+      closure_authored_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      closure_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      closure_freeze_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      freeze_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      gate_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
+      effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       provenance_binding_commit: PENDING_COMMIT_C
       original_package_merge_commit: PENDING_MERGE
       note: >-

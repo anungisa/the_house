@@ -1,6 +1,6 @@
 # Volume 12 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-28T03:25:56.597Z
+Generated: 2026-07-28T03:26:46.859Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 12 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,11 +15,11 @@ Generated: 2026-07-28T03:25:56.597Z
 
 ## Summary
 
-- Total findings: 4
-- Errors: 1
+- Total findings: 3
+- Errors: 0
 - Warnings: 0
 - Info: 3
-- Overall: FAIL (operational-governance integrity errors present)
+- Overall: PASS (no integrity errors)
 
 ## Chapter status
 
@@ -90,6 +90,6 @@ Errors: 0 | Warnings: 0 | Info: 1
 
 ### Gate V12-G3 readiness
 
-Errors: 1 | Warnings: 0 | Info: 0
+Errors: 0 | Warnings: 0 | Info: 0
 
-- ERROR GATE_V12_G3_CONDITION_UNMET [GATE-V12-G3]: Condition 45 not satisfied: Genuine closure, gate, package, whole-volume, and whole-corpus freeze separation is preserved
+- (no findings)
