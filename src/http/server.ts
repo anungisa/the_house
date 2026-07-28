@@ -96,6 +96,10 @@ import {
   type FacilityReadHttpDeps,
   type FacilityWriteHttpDeps,
 } from './facility/index.js';
+import {
+  handleButtonContext,
+  type ButtonContextHttpDeps,
+} from './button/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -207,6 +211,13 @@ export interface AffiliationHttpServerDeps {
    */
   readonly facilityWrite?: FacilityWriteHttpDeps;
   /**
+   * Optional Button representative-context READ transport. When provided, `GET /v1/button/context`
+   * is served; when omitted it 404s. This endpoint NEVER mutates state, enqueues outbox messages,
+   * touches governed tables, or invokes the kernel — it is a thin, tenant-isolated, representative-
+   * safe projection assembled from the trusted identity context + Organization Registry read.
+   */
+  readonly buttonContext?: ButtonContextHttpDeps;
+  /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
    * dependency is unavailable. When omitted, `/readyz` stays shallow (process-level only).
@@ -233,6 +244,9 @@ const STANDING_TRANSITION_ROUTE =
 
 const EVIDENCE_UPLOAD_PATH = '/v1/evidence/objects';
 const EVIDENCE_DOWNLOAD_PATH = '/v1/evidence/objects/read';
+
+/** The Button representative-context read endpoint (GET only). */
+const BUTTON_CONTEXT_PATH = '/v1/button/context';
 
 /** GET list of quarantine events (exact path). */
 const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
@@ -774,6 +788,36 @@ async function handleOrganizationDetailRoute(
   sendJson(res, result);
 }
 
+/** Serve the Button representative-context read endpoint (GET only). */
+async function handleButtonContextRoute(
+  req: IncomingMessage,
+  res: ServerResponse,
+  buttonContext: ButtonContextHttpDeps,
+  requestId: string,
+  resolver: AuthContextResolver | undefined,
+): Promise<void> {
+  if ((req.method ?? 'GET') !== 'GET') {
+    res.setHeader('allow', 'GET');
+    sendJson(res, {
+      status: 405,
+      body: {
+        status: 'error',
+        code: 'METHOD_NOT_ALLOWED',
+        message: 'Only GET is allowed for the Button context endpoint.',
+        requestId,
+      },
+    });
+    return;
+  }
+  const result = await handleButtonContext(
+    buttonContext,
+    { headers: headerMap(req), query: queryMap(req.url) },
+    requestId,
+    resolver,
+  );
+  sendJson(res, result);
+}
+
 /** Serve the read-only participant list endpoint (GET only). */
 async function handleParticipantListRoute(
   req: IncomingMessage,
@@ -1279,6 +1323,7 @@ function classifyRoute(method: string, path: string): string {
   if (path === WORKFLOW_LIST_PATH) return `${method} /v1/workflows`;
   if (WORKFLOW_DETAIL_ROUTE.test(path)) return `${method} /v1/workflows/:id`;
   if (path === ORGANIZATION_LIST_PATH) return `${method} /v1/organizations`;
+  if (path === BUTTON_CONTEXT_PATH) return `${method} /v1/button/context`;
   if (ORGANIZATION_PARTICIPANT_STATUS_TRANSITIONS_ROUTE.test(path)) {
     return `${method} /v1/organizations/:id/participants/:id/status-transitions`;
   }
@@ -1469,6 +1514,13 @@ async function handleRequest(
       );
       return;
     }
+  }
+
+  // Button representative-context READ transport (only when wired). GET only; read-only, tenant-
+  // isolated, representative-safe. A non-GET on the known path returns 405 rather than 404.
+  if (deps.buttonContext !== undefined && path === BUTTON_CONTEXT_PATH) {
+    await handleButtonContextRoute(req, res, deps.buttonContext, requestId, deps.resolver);
+    return;
   }
 
   // Participant Registry transport (read and/or write, only when wired). The path is matched
