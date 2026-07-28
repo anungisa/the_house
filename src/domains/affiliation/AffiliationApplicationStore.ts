@@ -74,4 +74,19 @@ export interface AffiliationApplicationStore {
    * (no scope/organization recorded) — absence of a subject cannot assert a duplicate.
    */
   hasConflictingActiveAffiliation(tenantId: string, applicationId: string): Promise<boolean>;
+
+  /**
+   * Resolve the IMMUTABLE governed-scope identity for the exactly-once activation invariant:
+   * the affiliation subject (COALESCE(scope_id, local_organization_id, organization_id)) and
+   * the season for `applicationId`. Used to derive a deterministic serialization key so two
+   * racing activations for the same subject + season compute an identical key.
+   *
+   * Returns undefined when the application is missing OR when the subject cannot be determined
+   * (no scope/organization recorded) — absent a subject there is no governed scope to
+   * serialize. Read-only and tenant-scoped.
+   */
+  getActiveStandingSubject(
+    tenantId: string,
+    applicationId: string,
+  ): Promise<{ readonly subject: string; readonly seasonId: string } | undefined>;
 }

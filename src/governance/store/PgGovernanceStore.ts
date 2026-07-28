@@ -61,6 +61,14 @@ export class PgGovernanceStore implements GovernanceStore {
 class PgGovernanceTx implements GovernanceTx {
   constructor(private readonly client: QueryClient) {}
 
+  async acquireSerializationLock(key: string): Promise<void> {
+    // Transaction-scoped advisory lock on THIS transaction's connection. Auto-released on
+    // COMMIT/ROLLBACK, so it serializes concurrent governed transitions that share `key`
+    // while remaining bound to the same transaction as the authoritative mutation + outbox.
+    // hashtextextended() maps the opaque key to a stable bigint lock id.
+    await this.client.query(`SELECT pg_advisory_xact_lock(hashtextextended($1, 0))`, [key]);
+  }
+
   async loadActiveStateMachine(entityType: string): Promise<StateMachineRow | undefined> {
     const rows = await this.client.query<{
       id: string;

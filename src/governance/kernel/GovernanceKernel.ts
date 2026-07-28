@@ -21,6 +21,7 @@ import type {
   StateMachineRow,
   TransitionDefinitionRow,
   TransitionRequestForExecutionRow,
+  TransitionSerializationKeyResolver,
 } from './ports.js';
 import type { WorkflowPlanner } from '../workflow/WorkflowPlanner.js';
 
@@ -41,6 +42,17 @@ export interface GovernanceKernelDeps {
    * returns no plan, approval-required transitions behave exactly as before.
    */
   readonly workflowPlanner?: WorkflowPlanner;
+
+  /**
+   * Optional per-entity-type transition serialization-key resolvers. Before a governed
+   * transition evaluates its guards and mutates state, the kernel asks the resolver registered
+   * for the entity type for the transaction-scoped advisory lock keys to acquire. This lets a
+   * DOMAIN declare a concurrency-serialization scope (e.g. exactly-one ACTIVE affiliation
+   * standing per tenant + subject + season) without the domain-agnostic kernel knowing the
+   * domain's rules. When absent, or when a resolver returns no keys, transitions behave
+   * exactly as before.
+   */
+  readonly serializationKeyResolvers?: ReadonlyMap<string, TransitionSerializationKeyResolver>;
 }
 
 /**
@@ -69,6 +81,10 @@ export class GovernanceKernel {
   private readonly clock: Clock;
   private readonly outboxMaxRetries: number;
   private readonly workflowPlanner: WorkflowPlanner | undefined;
+  private readonly serializationKeyResolvers: ReadonlyMap<
+    string,
+    TransitionSerializationKeyResolver
+  >;
 
   constructor(deps: GovernanceKernelDeps) {
     this.store = deps.store;
@@ -77,6 +93,7 @@ export class GovernanceKernel {
     this.clock = deps.clock ?? systemClock;
     this.outboxMaxRetries = deps.outboxMaxRetries ?? 10;
     this.workflowPlanner = deps.workflowPlanner;
+    this.serializationKeyResolvers = deps.serializationKeyResolvers ?? new Map();
   }
 
   async transition(input: TransitionInput): Promise<TransitionResult> {
@@ -154,6 +171,29 @@ export class GovernanceKernel {
           decision.reasonCode ?? ErrorCode.PERMISSION_DENIED,
           decision.reasonMessage ?? 'Permission denied.',
         );
+      }
+
+      // 2e-i) Acquire any domain-declared transaction-scoped serialization lock(s) BEFORE
+      // evaluating guards, for transitions that DIRECTLY execute (mutate) here. This
+      // serializes concurrent governed transitions that resolve to the same governed scope
+      // (e.g. one ACTIVE affiliation standing per tenant + subject + season): the loser blocks
+      // here until the winner COMMITS, so its uniqueness guard then observes the winner's
+      // committed state and fails closed. The lock is bound to THIS transaction and released
+      // on COMMIT/ROLLBACK, holding through the state mutation and outbox write below.
+      //
+      // Approval-required transitions do NOT mutate state here (they only record a request);
+      // their authoritative serialization happens when the approved request is EXECUTED (see
+      // executeApprovedTransitionRequest). Acquiring the lock only on the mutating branch keeps
+      // it bound to the transaction that actually grants standing.
+      if (!def.approvalRequired) {
+        await this.acquireSerializationLocks(tx, {
+          tenantId,
+          entityType: input.entityType,
+          entityId: input.entityId,
+          trigger: input.trigger,
+          fromState,
+          toState: def.toState,
+        });
       }
 
       // 2f) Load guards; deny unknown guard code (fail closed).
@@ -510,6 +550,21 @@ export class GovernanceKernel {
         );
       }
 
+      // 7-i) Acquire any domain-declared transaction-scoped serialization lock(s) BEFORE
+      // re-running guards. Governed transitions granting the same scope (e.g. ACTIVE
+      // affiliation standing per tenant + subject + season) are serialized whether they run
+      // via the direct-execute path or this approved-execution path: the loser blocks until
+      // the winner COMMITS, so its uniqueness guard observes the committed state and fails
+      // closed. Bound to THIS transaction; released on COMMIT/ROLLBACK.
+      await this.acquireSerializationLocks(tx, {
+        tenantId,
+        entityType: req.entityType,
+        entityId: req.entityId,
+        trigger: req.trigger,
+        fromState: req.fromState,
+        toState: def.toState,
+      });
+
       // 8) RE-RUN guards against the RECORDED request payload (fail closed on unknown code).
       const context = this.executionContext(input, req);
       const bindings = await tx.loadGuards(def.id);
@@ -758,6 +813,33 @@ export class GovernanceKernel {
       stateTransitionId: prior.id,
       idempotencyKey,
     };
+  }
+
+  /**
+   * Acquire every transaction-scoped serialization lock that the entity type's registered
+   * {@link TransitionSerializationKeyResolver} declares for this transition, on the governed
+   * transaction's own connection, BEFORE guards run and state mutates. Keys are sorted so
+   * concurrent transitions acquire multiple locks in a consistent order (deadlock-free). A
+   * no-op when no resolver is registered or the resolver returns no keys.
+   */
+  private async acquireSerializationLocks(
+    tx: GovernanceTx,
+    input: {
+      readonly tenantId: string;
+      readonly entityType: string;
+      readonly entityId: string;
+      readonly trigger: string;
+      readonly fromState: string;
+      readonly toState: string;
+    },
+  ): Promise<void> {
+    const resolver = this.serializationKeyResolvers.get(input.entityType);
+    if (resolver === undefined) return;
+    const keys = await resolver.resolveKeys(input);
+    if (keys.length === 0) return;
+    for (const key of [...new Set(keys)].sort()) {
+      await tx.acquireSerializationLock(key);
+    }
   }
 
   private toGuardInserts(

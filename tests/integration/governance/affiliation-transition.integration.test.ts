@@ -10,6 +10,7 @@ import { registerAffiliationGuards } from '../../../src/governance/guards/handle
 import { PgGovernanceStore } from '../../../src/governance/store/PgGovernanceStore.js';
 import { PgAffiliationApplicationStore } from '../../../src/domains/affiliation/PgAffiliationApplicationStore.js';
 import { DomainBackedAffiliationGuardRepository } from '../../../src/domains/affiliation/DomainBackedAffiliationGuardRepository.js';
+import { AffiliationActiveStandingSerializationResolver } from '../../../src/domains/affiliation/AffiliationActiveStandingSerializationResolver.js';
 import { ErrorCode } from '../../../src/shared/errors/AppError.js';
 import {
   closePool,
@@ -75,11 +76,18 @@ async function applyMigrations(): Promise<void> {
 function makeKernel(): GovernanceKernel {
   const registry = new GuardRegistry();
   // PRODUCTION wiring: guards read PERSISTED affiliation domain facts, not payload facts.
+  const affiliationStore = new PgAffiliationApplicationStore();
   registerAffiliationGuards(
     registry,
-    new DomainBackedAffiliationGuardRepository(new PgAffiliationApplicationStore()),
+    new DomainBackedAffiliationGuardRepository(affiliationStore),
   );
-  return new GovernanceKernel({ store: new PgGovernanceStore(), guards: registry });
+  return new GovernanceKernel({
+    store: new PgGovernanceStore(),
+    guards: registry,
+    serializationKeyResolvers: new Map([
+      [ENTITY_TYPE, new AffiliationActiveStandingSerializationResolver(affiliationStore)],
+    ]),
+  });
 }
 
 function input(

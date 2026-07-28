@@ -28,6 +28,8 @@ import { loadConfig } from '../config/index.js';
 import { AffiliationApplicationService } from '../domains/affiliation/AffiliationApplicationService.js';
 import { DomainBackedAffiliationGuardRepository } from '../domains/affiliation/DomainBackedAffiliationGuardRepository.js';
 import { PgAffiliationApplicationStore } from '../domains/affiliation/PgAffiliationApplicationStore.js';
+import { AffiliationActiveStandingSerializationResolver } from '../domains/affiliation/AffiliationActiveStandingSerializationResolver.js';
+import { AFFILIATION_APPLICATION_ENTITY_TYPE } from '../domains/affiliation/index.js';
 import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
@@ -76,14 +78,24 @@ import type { Server } from 'node:http';
  */
 export function createPgGovernanceKernel(): GovernanceKernel {
   const registry = new GuardRegistry();
+  const affiliationStore = new PgAffiliationApplicationStore();
   registerAffiliationGuards(
     registry,
-    new DomainBackedAffiliationGuardRepository(new PgAffiliationApplicationStore()),
+    new DomainBackedAffiliationGuardRepository(affiliationStore),
   );
   return new GovernanceKernel({
     store: new PgGovernanceStore(),
     guards: registry,
     workflowPlanner: new AffiliationWorkflowPlanner(),
+    // Exactly-once activation: serialize concurrent transitions that grant ACTIVE affiliation
+    // standing (activate / reinstate) per tenant + subject + season via a transaction-scoped
+    // advisory lock, so at most one commits ACTIVE for a governed scope.
+    serializationKeyResolvers: new Map([
+      [
+        AFFILIATION_APPLICATION_ENTITY_TYPE,
+        new AffiliationActiveStandingSerializationResolver(affiliationStore),
+      ],
+    ]),
   });
 }
 
