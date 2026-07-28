@@ -1,6 +1,6 @@
 # Volume 12 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-28T00:37:55.255Z
+Generated: 2026-07-28T00:43:00.361Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 12 corpus. It is not a source of truth, does not confer ratification, and
@@ -25,18 +25,18 @@ Generated: 2026-07-28T00:37:55.255Z
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 12 |
+| RATIFIED | 13 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1200 | Volume 12 Corpus Index | RATIFIED | 1.0.0 | 12 |
+| REG-1200 | Volume 12 Corpus Index | RATIFIED | 1.0.0 | 13 |
 | REG-1201 | Volume 12 Gates, Criteria, Evidence Classes, Acceptance Classes, Authorities, and Release Decisions | RATIFIED | 1.0.0 | 45 |
 | REG-1202 | Volume 12 Evidence Requirements, Evidence Objects, Findings, Conditions, Waivers, Commitments, and Dossiers | RATIFIED | 1.0.0 | 36 |
 | REG-1203 | Volume 12 Decisions | RATIFIED | 1.0.0 | 4 |
 | REG-1204 | Volume 12 Assumptions, Risks, Evidence Gaps, Material Commitments, Acceptance Backlog, and Release Blockers | RATIFIED | 1.0.0 | 6 |
-| REG-1205 | Volume 12 Approvals | RATIFIED | 1.0.0 | 14 |
+| REG-1205 | Volume 12 Approvals | RATIFIED | 1.0.0 | 15 |
 
 ## Findings by control
 
