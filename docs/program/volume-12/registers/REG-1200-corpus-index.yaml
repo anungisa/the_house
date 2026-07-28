@@ -323,3 +323,11 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-E.md
     gate: V12-G3
+  - id: V12-F
+    title: Package 3 Post-Merge Provenance Amendment
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-F.md
+    gate: V12-G3

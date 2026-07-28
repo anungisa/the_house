@@ -716,7 +716,7 @@ records:
       closure_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       gate_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       freeze_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
-      provenance_binding_commit: PENDING_COMMIT_C
+      provenance_binding_commit: 9b4b30fabdaddb60d054433077e1e337e01e470d
       required_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       actual_sequence: SUBSTANTIVE_AUTHORING -> CLOSURE_GATE_AND_FREEZE -> PRE_MERGE_PROVENANCE_BINDING
       sequence_disposition: SATISFIED
@@ -737,8 +737,8 @@ records:
       freeze_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       gate_effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
       effective_commit: 19346d6fb277f4f40a8a6df1ecab2af8f6da9033
-      provenance_binding_commit: PENDING_COMMIT_C
-      original_package_merge_commit: PENDING_MERGE
+      provenance_binding_commit: 9b4b30fabdaddb60d054433077e1e337e01e470d
+      original_package_merge_commit: ef37588ae74c75bf7a75f1e1becd11333192f4d9
       note: >-
         Commit A is the substantive authoring commit; Commit B authors the closure,
         gate disposition, and triple freeze; Commit C records the pre-merge provenance
@@ -817,3 +817,11 @@ records:
         version: 1.0.0
       - id: VOLUME-12
         version: 1.0.0
+  - id: APP-V12-049
+    artifact_id: V12-F
+    approver_role: Executive Sponsor
+    approval_state: ratified
+    evidence_label: AUTHOR-VERIFIED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
