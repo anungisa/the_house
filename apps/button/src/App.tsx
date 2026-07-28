@@ -5,8 +5,10 @@ import type { ReactNode } from 'react';
 import { I18nProvider } from './i18n/I18nProvider';
 import type { ButtonLocale } from './api/types';
 import { ButtonContextProvider } from './context/ButtonContextProvider';
+import { AffiliationClientProvider } from './context/AffiliationClientProvider';
 import { AppRoutes } from './routing/AppRoutes';
 import { createButtonApiClient, type ButtonApiClient } from './api/client';
+import { createAffiliationApiClient, type AffiliationApiClient } from './api/affiliationClient';
 import {
   ConsoleButtonTelemetry,
   type ButtonTelemetry,
@@ -15,6 +17,8 @@ import {
 export interface AppProps {
   /** Injectable API client (defaults to the env-selected transport). */
   readonly client?: ButtonApiClient;
+  /** Injectable affiliation-draft API client (defaults to the env-selected transport). */
+  readonly affiliationClient?: AffiliationApiClient;
   /** Injectable telemetry sink (defaults to the console sink). */
   readonly telemetry?: ButtonTelemetry;
   /** Injectable initial locale (tests). */
@@ -42,12 +46,14 @@ function defaultQueryClient(): QueryClient {
  */
 export function App({
   client,
+  affiliationClient,
   telemetry,
   initialLocale,
   initialEntries,
   queryClient,
 }: AppProps): JSX.Element {
   const apiClient = client ?? createButtonApiClient();
+  const affiliationApi = affiliationClient ?? createAffiliationApiClient();
   const sink = telemetry ?? new ConsoleButtonTelemetry();
   const qc = queryClient ?? defaultQueryClient();
 
@@ -62,9 +68,11 @@ export function App({
     <QueryClientProvider client={qc}>
       <I18nProvider {...(initialLocale !== undefined ? { initialLocale } : {})}>
         <ButtonContextProvider client={apiClient} telemetry={sink}>
-          <RouterShell>
-            <AppRoutes telemetry={sink} />
-          </RouterShell>
+          <AffiliationClientProvider client={affiliationApi}>
+            <RouterShell>
+              <AppRoutes telemetry={sink} />
+            </RouterShell>
+          </AffiliationClientProvider>
         </ButtonContextProvider>
       </I18nProvider>
     </QueryClientProvider>

@@ -97,6 +97,14 @@ import {
   OrganizationTypeJurisdictionResolver,
   type ButtonContextHttpDeps,
 } from './button/index.js';
+import type { ButtonAffiliationHttpDeps } from './button/affiliation/index.js';
+import {
+  AffiliationDraftService,
+  PgAffiliationDraftStore,
+  PgRequirementCatalogStore,
+  PgAffiliationLifecycleReader,
+  StorageBackedEvidenceReferenceValidator,
+} from '../domains/affiliation-requirements/index.js';
 import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
 import {
   ParticipantRegistryService,
@@ -378,6 +386,37 @@ export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContex
 }
 
 /**
+ * Build the Button club-affiliation DRAFT transport (Slice C) backed by PostgreSQL. The draft
+ * store, requirement catalog, lifecycle reader, and evidence-reference validator all run against
+ * RLS-enforced Pg stores / tenant-partitioned evidence storage, plus the same default policy-
+ * derived authority/jurisdiction providers used by the context surface. The adapter saves DRAFT
+ * responses and ASSOCIATES governed evidence references; it NEVER mutates governed lifecycle
+ * state, invokes the kernel, submits an application, or writes audit/evidence/outbox directly.
+ */
+export function createButtonAffiliationHttpDeps(telemetry?: Telemetry): ButtonAffiliationHttpDeps {
+  const config = loadConfig();
+  const storage = createEvidenceStorage(config.evidenceStorage);
+  const service = new AffiliationDraftService({
+    store: new PgAffiliationDraftStore(),
+    catalog: new PgRequirementCatalogStore(),
+    lifecycle: new PgAffiliationLifecycleReader(),
+    evidenceValidator: new StorageBackedEvidenceReferenceValidator(
+      storage,
+      config.evidenceStorage.containerName,
+      config.evidenceStorage.provider,
+    ),
+  });
+  return {
+    service,
+    organizations: new PgOrganizationRegistryStore(),
+    authorities: new RoleDerivedRepresentativeAuthorityProvider(),
+    jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    nowIso: () => new Date().toISOString(),
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  };
+}
+
+/**
  * Build the Participant Registry WRITE transport (create + update + reference-data status
  * transition + organization-link create) backed by PostgreSQL. The command service, the write
  * pre-check read port, and the organization-existence reader all run through RLS-enforced Pg
@@ -458,6 +497,7 @@ export function createPgAffiliationHttpServer(
     workflowRead: createWorkflowReadHttpDeps(telemetry),
     organizationRead: createOrganizationReadHttpDeps(telemetry),
     buttonContext: createButtonContextHttpDeps(telemetry),
+    buttonAffiliation: createButtonAffiliationHttpDeps(telemetry),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),

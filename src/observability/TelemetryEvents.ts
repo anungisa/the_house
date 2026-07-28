@@ -38,6 +38,7 @@ export const TelemetryCounters = {
   facilityRegistryRead: 'facility.registry.read.count',
   facilityRegistryWrite: 'facility.registry.write.count',
   buttonContextRead: 'button.context.read.count',
+  buttonAffiliationOperation: 'button.affiliation.operation.count',
 } as const;
 
 /** Duration metric names (milliseconds). */

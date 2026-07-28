@@ -6,6 +6,8 @@ import { MockButtonApiClient } from '../api/client';
 import { renderApp, FakeButtonApiClient } from '../test/testUtils';
 import { contextWith } from '../test/fixtures';
 import { StatusPanel, type StatusPanelKind } from '../components/StatusPanel';
+import { MockAffiliationApiClient } from '../api/affiliationClient';
+import { AffiliationMockStore } from '../api/affiliationMockData';
 
 async function expectNoSeriousViolations(container: HTMLElement): Promise<void> {
   const results = await axe(container);
@@ -31,6 +33,36 @@ describe('Button accessibility', () => {
       initialEntries: ['/button/select-context'],
     });
     await screen.findByRole('heading', { name: 'Select context' });
+    await expectNoSeriousViolations(document.body);
+  });
+
+  it('(11d) the requirements checklist has no serious/critical a11y violations', async () => {
+    const client = new FakeButtonApiClient(() =>
+      Promise.resolve(contextWith({ selected: true, authorityStatus: 'active' })),
+    );
+    const store = new AffiliationMockStore();
+    store.initiate('club-1', '2025-26', 'new_affiliation');
+    renderApp({
+      client,
+      affiliationClient: new MockAffiliationApiClient(store),
+      initialEntries: ['/button/affiliation/app-0001'],
+    });
+    await screen.findByRole('heading', { name: 'Affiliation requirements' });
+    await expectNoSeriousViolations(document.body);
+  });
+
+  it('(11e) a requirement response form has no serious/critical a11y violations', async () => {
+    const client = new FakeButtonApiClient(() =>
+      Promise.resolve(contextWith({ selected: true, authorityStatus: 'active' })),
+    );
+    const store = new AffiliationMockStore();
+    store.initiate('club-1', '2025-26', 'new_affiliation');
+    renderApp({
+      client,
+      affiliationClient: new MockAffiliationApiClient(store),
+      initialEntries: ['/button/affiliation/app-0001/requirements/PRIMARY_CONTACT_DETAILS'],
+    });
+    await screen.findByRole('heading', { name: 'Primary affiliation contact' });
     await expectNoSeriousViolations(document.body);
   });
 
