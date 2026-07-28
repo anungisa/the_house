@@ -10,6 +10,8 @@ import { AccessDeniedPage } from '../routes/AccessDeniedPage';
 import { AuthorityExpiredPage } from '../routes/AuthorityExpiredPage';
 import { ServiceUnavailablePage } from '../routes/ServiceUnavailablePage';
 import { RequireAffiliation } from './guards';
+import { RequireAffiliationReview } from './guards';
+import { AffiliationReviewQueuePage } from '../routes/review/AffiliationReviewQueuePage';
 import type { ButtonTelemetry } from '../observability/telemetry';
 
 /**
@@ -39,6 +41,14 @@ export function AppRoutes({ telemetry }: { readonly telemetry: ButtonTelemetry }
             element={<AffiliationRequirementPage />}
           />
         </Route>
+        <Route
+          path="review"
+          element={
+            <RequireAffiliationReview telemetry={telemetry}>
+              <AffiliationReviewQueuePage />
+            </RequireAffiliationReview>
+          }
+        />
         <Route path="access-denied" element={<AccessDeniedPage />} />
         <Route path="authority-expired" element={<AuthorityExpiredPage />} />
         <Route path="service-unavailable" element={<ServiceUnavailablePage />} />

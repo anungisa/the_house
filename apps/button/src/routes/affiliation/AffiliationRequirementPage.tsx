@@ -6,6 +6,7 @@ import { usePageTitle } from '../../hooks/usePageTitle';
 import { StatusPanel } from '../../components/StatusPanel';
 import {
   useAffiliationApplication,
+  useAffiliationSubmissionState,
   useAssociateEvidence,
   useRemoveEvidence,
   useSaveDraft,
@@ -71,6 +72,10 @@ export function AffiliationRequirementPage(): JSX.Element {
     requirementCode: string;
   }>();
   const query = useAffiliationApplication(applicationId);
+  const submissionState = useAffiliationSubmissionState(
+    applicationId,
+    query.data?.lifecycleStatus !== undefined && query.data.lifecycleStatus !== 'draft',
+  );
   const application = query.data;
   const requirement = useMemo(
     () => application?.requirements.find((r) => r.code === requirementCode),
@@ -156,6 +161,10 @@ export function AffiliationRequirementPage(): JSX.Element {
   }
 
   const { title, guidance } = requirementText(requirement, locale);
+  const correction = submissionState.data?.openCorrection;
+  const editable =
+    application.lifecycleStatus === 'draft' ||
+    correction?.requirementCodes.includes(requirement.code) === true;
 
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
@@ -221,8 +230,15 @@ export function AffiliationRequirementPage(): JSX.Element {
           {t('affiliation.requirement.saved')}
         </p>
       ) : null}
+      {!editable ? (
+        <p className="affiliation-note" role="status">
+          {t('affiliation.correction.readOnlyRequirement')}
+        </p>
+      ) : null}
 
       <form onSubmit={onSubmit} className="requirement-form">
+        <fieldset disabled={!editable} className="requirement-form__fieldset">
+          <legend className="visually-hidden">{t('affiliation.correction.editingLegend')}</legend>
         {requirement.responseType === 'acknowledgement' ? (
           <div className="field field--check">
             <label>
@@ -325,6 +341,7 @@ export function AffiliationRequirementPage(): JSX.Element {
         <button type="submit" disabled={save.isPending}>
           {save.isPending ? t('affiliation.requirement.saving') : t('affiliation.requirement.save')}
         </button>
+        </fieldset>
       </form>
 
       {requirement.evidenceRequired ? (
@@ -345,7 +362,7 @@ export function AffiliationRequirementPage(): JSX.Element {
                   <button
                     type="button"
                     onClick={() => remove.mutate({ linkId: link.linkId })}
-                    disabled={remove.isPending}
+                    disabled={remove.isPending || !editable}
                   >
                     {t('affiliation.requirement.remove')}
                   </button>
@@ -361,7 +378,7 @@ export function AffiliationRequirementPage(): JSX.Element {
               ref={fileInputRef}
               type="file"
               onChange={onAttach}
-              disabled={associate.isPending}
+              disabled={associate.isPending || !editable}
             />
           </div>
           {toAffiliationCategory(associate.error) !== undefined ? (

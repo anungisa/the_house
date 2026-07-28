@@ -22,6 +22,7 @@ const en = {
   'nav.home': 'Home',
   'nav.selectContext': 'Select context',
   'nav.affiliation': 'Affiliation',
+  'nav.review': 'Review workbench',
   'nav.primary': 'Primary navigation',
 
   'lang.switch': 'Language',
@@ -40,6 +41,35 @@ const en = {
   'context.chooseSeason': 'Season',
   'context.continue': 'Continue',
   'context.selected': 'Context selected',
+
+  'review.queue.title': 'Affiliation review queue',
+  'review.queue.heading': 'Affiliation review queue',
+  'review.queue.intro':
+    'Cases shown here are limited to your delegated review scope. Starting review assigns the case to you.',
+  'review.queue.loading': 'Loading your authorized review queue\u2026',
+  'review.queue.empty': 'No affiliation cases currently require your review.',
+  'review.queue.listLabel': 'Affiliation cases awaiting or undergoing review',
+  'review.queue.case': 'Affiliation case {id}',
+  'review.queue.status': 'Review status',
+  'review.queue.submitted': 'Awaiting review',
+  'review.queue.underReview': 'Under review',
+  'review.queue.start': 'Start review',
+  'review.queue.starting': 'Starting review\u2026',
+  'review.queue.assignedToYou': 'Assigned to you',
+  'review.queue.startError': 'Review could not be started. Reload the queue and try again.',
+
+  'affiliation.correction.heading': 'Correction requested',
+  'affiliation.correction.intro':
+    'An authorized reviewer requested changes to the requirements listed below.',
+  'affiliation.correction.scope':
+    'Only the listed requirements are editable. Other submitted information remains read-only.',
+  'affiliation.correction.resubmit': 'Resubmit corrections',
+  'affiliation.correction.resubmitting': 'Resubmitting\u2026',
+  'affiliation.correction.resubmitError':
+    'The corrections could not be resubmitted. Reload the application and try again.',
+  'affiliation.correction.readOnlyRequirement':
+    'This submitted requirement is read-only because it is outside the requested correction scope.',
+  'affiliation.correction.editingLegend': 'Requirement response',
 
   'jurisdiction.national': 'National',
   'jurisdiction.regional': 'Provincial / Territorial',
@@ -95,9 +125,9 @@ const en = {
   'affiliation.requirements.blockedBy': 'Complete {codes} first',
   'affiliation.requirements.nextActionsHeading': 'What to do next',
   'affiliation.requirements.noSubmit':
-    'Submission is not available in this release. Your draft is saved as you go.',
+    'Complete the remaining requirements before submitting. Your draft is saved as you go.',
   'affiliation.requirements.allComplete':
-    'All applicable requirements are complete. Submission will be available in a later release.',
+    'All applicable requirements are complete and ready for submission.',
   'affiliation.requirements.empty': 'No requirements apply to this application yet.',
   'affiliation.submission.readyHeading': 'Ready to submit',
   'affiliation.submission.readyBody':
@@ -177,6 +207,7 @@ const fr: Record<TranslationKey, string> = {
   'nav.home': 'Accueil',
   'nav.selectContext': 'Choisir le contexte',
   'nav.affiliation': 'Affiliation',
+  'nav.review': 'Espace de travail d\u2019examen',
   'nav.primary': 'Navigation principale',
 
   'lang.switch': 'Langue',
@@ -195,6 +226,36 @@ const fr: Record<TranslationKey, string> = {
   'context.chooseSeason': 'Saison',
   'context.continue': 'Continuer',
   'context.selected': 'Contexte s\u00e9lectionn\u00e9',
+
+  'review.queue.title': 'File d\u2019examen des affiliations',
+  'review.queue.heading': 'File d\u2019examen des affiliations',
+  'review.queue.intro':
+    'Les dossiers affich\u00e9s sont limit\u00e9s \u00e0 votre port\u00e9e d\u2019examen d\u00e9l\u00e9gu\u00e9e. Le d\u00e9but de l\u2019examen vous attribue le dossier.',
+  'review.queue.loading': 'Chargement de votre file d\u2019examen autoris\u00e9e\u2026',
+  'review.queue.empty': 'Aucun dossier d\u2019affiliation ne requiert actuellement votre examen.',
+  'review.queue.listLabel': 'Dossiers d\u2019affiliation en attente ou en cours d\u2019examen',
+  'review.queue.case': 'Dossier d\u2019affiliation {id}',
+  'review.queue.status': 'Statut de l\u2019examen',
+  'review.queue.submitted': 'En attente d\u2019examen',
+  'review.queue.underReview': 'En cours d\u2019examen',
+  'review.queue.start': 'Commencer l\u2019examen',
+  'review.queue.starting': 'D\u00e9but de l\u2019examen\u2026',
+  'review.queue.assignedToYou': 'Vous est attribu\u00e9',
+  'review.queue.startError':
+    'L\u2019examen n\u2019a pas pu commencer. Rechargez la file et r\u00e9essayez.',
+
+  'affiliation.correction.heading': 'Correction demand\u00e9e',
+  'affiliation.correction.intro':
+    'Une personne autoris\u00e9e a demand\u00e9 des modifications aux exigences indiqu\u00e9es ci-dessous.',
+  'affiliation.correction.scope':
+    'Seules les exigences indiqu\u00e9es peuvent \u00eatre modifi\u00e9es. Les autres renseignements soumis demeurent en lecture seule.',
+  'affiliation.correction.resubmit': 'Soumettre de nouveau les corrections',
+  'affiliation.correction.resubmitting': 'Nouvelle soumission\u2026',
+  'affiliation.correction.resubmitError':
+    'Les corrections n\u2019ont pas pu \u00eatre soumises de nouveau. Rechargez la demande et r\u00e9essayez.',
+  'affiliation.correction.readOnlyRequirement':
+    'Cette exigence soumise est en lecture seule, car elle ne fait pas partie de la correction demand\u00e9e.',
+  'affiliation.correction.editingLegend': 'R\u00e9ponse \u00e0 l\u2019exigence',
 
   'jurisdiction.national': 'National',
   'jurisdiction.regional': 'Provincial / Territorial',
@@ -250,9 +311,9 @@ const fr: Record<TranslationKey, string> = {
   'affiliation.requirements.blockedBy': 'Compl\u00e9tez d\u2019abord {codes}',
   'affiliation.requirements.nextActionsHeading': 'Prochaines \u00e9tapes',
   'affiliation.requirements.noSubmit':
-    'La soumission n\u2019est pas disponible dans cette version. Votre brouillon est enregistr\u00e9 au fur et \u00e0 mesure.',
+    'Remplissez les exigences restantes avant de soumettre. Votre brouillon est enregistr\u00e9 au fur et \u00e0 mesure.',
   'affiliation.requirements.allComplete':
-    'Toutes les exigences applicables sont compl\u00e9t\u00e9es. La soumission sera disponible dans une version ult\u00e9rieure.',
+    'Toutes les exigences applicables sont compl\u00e9t\u00e9es et pr\u00eates \u00e0 \u00eatre soumises.',
   'affiliation.requirements.empty': 'Aucune exigence ne s\u2019applique encore \u00e0 cette demande.',
   'affiliation.submission.readyHeading': 'Pr\u00eate \u00e0 soumettre',
   'affiliation.submission.readyBody':

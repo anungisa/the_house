@@ -24,6 +24,11 @@ export interface CorrectionRequestView {
   readonly resolvedAt?: string;
 }
 
+export interface AffiliationSubmissionStateView {
+  readonly receipts: readonly SubmissionReceipt[];
+  readonly openCorrection?: CorrectionRequestView;
+}
+
 export interface SubmitAffiliationInput {
   readonly tenantId: string;
   readonly applicationId: string;
@@ -42,6 +47,12 @@ export interface OpenCorrectionInput {
   readonly applicationId: string;
   readonly reviewerUserId: string;
   readonly reviewerRoleKeys: readonly string[];
+  readonly reviewerScopeId?: string;
+  readonly reviewerOrganizationId?: string;
+  readonly reviewerOrganizationUnitId?: string;
+  readonly reviewerNationalOrganizationId?: string;
+  readonly reviewerRegionalOrganizationId?: string;
+  readonly reviewerLocalOrganizationId?: string;
   readonly reasons: readonly CorrectionReason[];
 }
 

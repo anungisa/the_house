@@ -34,7 +34,6 @@ function requiredInteger(payload: Readonly<Record<string, unknown>>, key: string
  */
 export class PgAffiliationSubmissionEffect implements TransitionDomainEffect {
   async apply(tx: GovernanceTx, ctx: DomainEffectContext): Promise<DomainEffectResult | void> {
-    if (ctx.trigger !== 'submit') return undefined;
     const raw = tx.raw?.();
     if (raw === undefined) {
       throw new AppError(
@@ -42,6 +41,11 @@ export class PgAffiliationSubmissionEffect implements TransitionDomainEffect {
         'PgAffiliationSubmissionEffect requires a raw transaction client.',
       );
     }
+    if (ctx.trigger === 'review_start') {
+      await this.assignReviewer(raw, ctx);
+      return undefined;
+    }
+    if (ctx.trigger !== 'submit') return undefined;
 
     const expectedVersion = requiredInteger(ctx.payload, 'expectedDraftVersion');
     const aggregate = await this.loadAggregate(raw, ctx.tenantId, ctx.entityId);
@@ -184,5 +188,82 @@ export class PgAffiliationSubmissionEffect implements TransitionDomainEffect {
       [tenantId, applicationId],
     );
     return rows[0];
+  }
+
+  private async assignReviewer(
+    raw: DomainEffectQueryClient,
+    ctx: DomainEffectContext,
+  ): Promise<void> {
+    const roles = new Set(ctx.actor.roles ?? []);
+    const platformReviewer = roles.has('admin') || roles.has('platform_admin');
+    const candidates: ReadonlyArray<readonly [string, string | undefined]> = [
+      ['scope', ctx.actor.scopeId],
+      ['organization', ctx.actor.organizationId],
+      ['organization_unit', ctx.actor.organizationUnitId],
+      ['national_organization', ctx.actor.nationalOrganizationId],
+      ['regional_organization', ctx.actor.regionalOrganizationId],
+      ['local_organization', ctx.actor.localOrganizationId],
+    ];
+    const scopedCandidates = candidates.filter(
+      (candidate): candidate is readonly [string, string] =>
+        typeof candidate[1] === 'string' &&
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(
+          candidate[1],
+        ),
+    );
+    const rows = await raw.query<{
+      organization_id: string | null;
+      organization_unit_id: string | null;
+      national_organization_id: string | null;
+      regional_organization_id: string | null;
+      local_organization_id: string | null;
+      scope_id: string | null;
+    }>(
+      `SELECT organization_id, organization_unit_id, national_organization_id,
+              regional_organization_id, local_organization_id, scope_id
+         FROM affiliation.affiliation_application
+        WHERE tenant_id = $1 AND id = $2`,
+      [ctx.tenantId, ctx.entityId],
+    );
+    const application = rows[0];
+    if (application === undefined) {
+      throw new AppError(
+        ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND,
+        'The affiliation application was not found.',
+      );
+    }
+    const applicationScopes = new Set(
+      [
+        application.organization_id,
+        application.organization_unit_id,
+        application.national_organization_id,
+        application.regional_organization_id,
+        application.local_organization_id,
+        application.scope_id,
+      ].filter((value): value is string => value !== null),
+    );
+    const matched = scopedCandidates.find(([, id]) => applicationScopes.has(id));
+    if (!platformReviewer && matched === undefined) {
+      throw new AppError(
+        ErrorCode.PERMISSION_DENIED,
+        'The reviewer is not authorized for this affiliation scope.',
+      );
+    }
+
+    await raw.query(
+      `INSERT INTO affiliation.review_assignment
+         (tenant_id, application_id, reviewer_user_id, reviewer_scope_type,
+          reviewer_scope_id, state_transition_id)
+       VALUES ($1, $2, $3, $4, $5, $6)
+       ON CONFLICT (tenant_id, application_id) DO NOTHING`,
+      [
+        ctx.tenantId,
+        ctx.entityId,
+        ctx.actor.actorId,
+        platformReviewer ? 'platform' : matched?.[0],
+        platformReviewer ? null : matched?.[1],
+        ctx.stateTransitionId,
+      ],
+    );
   }
 }

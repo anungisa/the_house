@@ -450,6 +450,31 @@ export async function handleAffiliationSubmit(
   }
 }
 
+/** GET /v1/button/affiliation/applications/:applicationId/submission-state. */
+export async function handleAffiliationSubmissionState(
+  deps: ButtonAffiliationHttpDeps,
+  req: ButtonAffiliationHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_DEMO_RESOLVER,
+): Promise<ButtonAffiliationHttpResult> {
+  try {
+    const auth = await resolveOrganizationAuth(resolver, req.headers);
+    const applicationId = requireString(req.params.applicationId, 'applicationId');
+    const current = await deps.service.getProjection(auth.tenantId, applicationId);
+    await authorizeOrganization(deps, auth, current.organizationId);
+    const submissionState = await submissionService(deps).getApplicantSubmissionState(
+      auth.tenantId,
+      applicationId,
+      auth.actor.userId,
+    );
+    emit(deps, 'submission_state', TelemetryResult.success);
+    return { status: 200, body: { status: 'ok', requestId, submissionState } };
+  } catch (err) {
+    emit(deps, 'submission_state', TelemetryResult.failure);
+    return errorResult(err, requestId);
+  }
+}
+
 /** POST /v1/button/affiliation/applications/:applicationId/corrections (reviewer-only). */
 export async function handleAffiliationOpenCorrection(
   deps: ButtonAffiliationHttpDeps,
@@ -467,6 +492,22 @@ export async function handleAffiliationOpenCorrection(
       applicationId,
       reviewerUserId: auth.actor.userId,
       reviewerRoleKeys: auth.actor.roleKeys,
+      ...(auth.actor.scopeId !== undefined ? { reviewerScopeId: auth.actor.scopeId } : {}),
+      ...(auth.actor.organizationId !== undefined
+        ? { reviewerOrganizationId: auth.actor.organizationId }
+        : {}),
+      ...(auth.actor.organizationUnitId !== undefined
+        ? { reviewerOrganizationUnitId: auth.actor.organizationUnitId }
+        : {}),
+      ...(auth.actor.nationalOrganizationId !== undefined
+        ? { reviewerNationalOrganizationId: auth.actor.nationalOrganizationId }
+        : {}),
+      ...(auth.actor.regionalOrganizationId !== undefined
+        ? { reviewerRegionalOrganizationId: auth.actor.regionalOrganizationId }
+        : {}),
+      ...(auth.actor.localOrganizationId !== undefined
+        ? { reviewerLocalOrganizationId: auth.actor.localOrganizationId }
+        : {}),
       reasons,
     });
     emit(deps, 'open_correction', TelemetryResult.success);

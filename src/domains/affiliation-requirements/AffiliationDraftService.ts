@@ -6,7 +6,7 @@
  *
  * STRICT SCOPE — this service does NOT:
  *  - mutate governed lifecycle state (governance.entity_state) or invoke the Governance Kernel;
- *  - execute a submission/transition (submission is a governed action delivered in Slice D);
+ *  - execute a submission/transition (owned by the bounded submission service and kernel);
  *  - accept evidence (association ≠ acceptance);
  *  - trust the browser for applicability, completeness, or authority — all are server-derived.
  *

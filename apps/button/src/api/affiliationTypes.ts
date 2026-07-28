@@ -122,6 +122,37 @@ export interface SubmissionReceipt {
   readonly idempotencyKey: string;
 }
 
+export interface AffiliationReviewQueueItem {
+  readonly applicationId: string;
+  readonly organizationId?: string;
+  readonly seasonId: string;
+  readonly pathway?: string;
+  readonly lifecycleState: 'submitted' | 'under_review';
+  readonly submittedAt: string;
+  readonly submissionSequence: number;
+  readonly assignedReviewerUserId?: string;
+  readonly assignedAt?: string;
+}
+
+export interface CorrectionReason {
+  readonly requirementCode: string;
+  readonly reason: string;
+}
+
+export interface CorrectionRequestView {
+  readonly correctionRequestId: string;
+  readonly applicationId: string;
+  readonly status: 'open' | 'resolved' | 'withdrawn';
+  readonly requirementCodes: readonly string[];
+  readonly reasons: readonly CorrectionReason[];
+  readonly openedAt: string;
+}
+
+export interface AffiliationSubmissionState {
+  readonly receipts: readonly SubmissionReceipt[];
+  readonly openCorrection?: CorrectionRequestView;
+}
+
 /** Stable, non-leaking error categories the affiliation UI can branch on. */
 export type AffiliationErrorCategory =
   | 'unauthenticated'

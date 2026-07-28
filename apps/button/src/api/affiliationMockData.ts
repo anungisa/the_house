@@ -4,8 +4,8 @@
  * NON-PRODUCTION ONLY. This mock is a faithful, in-memory mirror of the governed
  * `/v1/button/affiliation` surface: it binds the applicable versioned requirements on initiate,
  * persists responses under optimistic concurrency (rejecting a stale `expectedVersion` exactly
- * like the server's 409), associates/removes evidence WITHOUT advancing the lifecycle (association
- * ≠ acceptance), and derives completeness/blockers server-side. It lets the e2e suite and unit
+ * like the server's 409), versions evidence association changes without accepting evidence, and
+ * derives completeness/blockers server-side. It lets the e2e suite and unit
  * tests exercise the real client/hook/route/form paths without a backend.
  */
 
@@ -19,6 +19,9 @@ import {
   type RequirementStatus,
   type RequirementView,
   type SubmissionReceipt,
+  type AffiliationSubmissionState,
+  type CorrectionReason,
+  type CorrectionRequestView,
 } from './affiliationTypes';
 
 interface MockRequirementDef {
@@ -208,7 +211,8 @@ function project(state: DraftState): AffiliationApplicationProjection {
 /** A stateful, in-memory affiliation store shared by the mock client. */
 export class AffiliationMockStore {
   private readonly drafts = new Map<string, DraftState>();
-  private readonly submissionReceipts = new Map<string, SubmissionReceipt>();
+  private readonly submissionReceipts = new Map<string, SubmissionReceipt[]>();
+  private readonly corrections = new Map<string, CorrectionRequestView>();
   private seq = 0;
   private linkSeq = 0;
 
@@ -282,6 +286,15 @@ export class AffiliationMockStore {
     responses: readonly { requirementCode: string; value: Record<string, unknown> }[],
   ): AffiliationApplicationProjection {
     const state = this.require(applicationId);
+    const correction = this.corrections.get(applicationId);
+    if (state.lifecycleStatus !== 'draft') {
+      if (correction === undefined) {
+        throw new AffiliationApiError('version-conflict', 409, 'The submitted application is read-only.');
+      }
+      if (responses.some((response) => !correction.requirementCodes.includes(response.requirementCode))) {
+        throw new AffiliationApiError('version-conflict', 409, 'Requirement is outside correction scope.');
+      }
+    }
     if (expectedVersion !== String(state.version)) {
       throw new AffiliationApiError('version-conflict', 409, 'The draft was changed elsewhere.');
     }
@@ -302,6 +315,13 @@ export class AffiliationMockStore {
     displayName: string,
   ): AffiliationApplicationProjection {
     const state = this.require(applicationId);
+    const correction = this.corrections.get(applicationId);
+    if (
+      state.lifecycleStatus !== 'draft' &&
+      (correction === undefined || !correction.requirementCodes.includes(requirementCode))
+    ) {
+      throw new AffiliationApiError('version-conflict', 409, 'Requirement is outside correction scope.');
+    }
     if (!state.boundCodes.includes(requirementCode)) {
       throw new AffiliationApiError('not-found', 404, 'Requirement is not part of this application.');
     }
@@ -317,16 +337,27 @@ export class AffiliationMockStore {
     };
     const existing = state.evidence.get(requirementCode) ?? [];
     state.evidence.set(requirementCode, [...existing, link]);
-    // Association does NOT advance the lifecycle or bump the concurrency token.
+    // Evidence changes are part of the draft aggregate and invalidate stale submissions.
+    state.version += 1;
+    state.lastSavedAt = new Date(state.version * 1000).toISOString();
     return project(state);
   }
 
   removeEvidence(applicationId: string, linkId: string): AffiliationApplicationProjection {
     const state = this.require(applicationId);
+    const correction = this.corrections.get(applicationId);
     for (const [code, links] of state.evidence) {
       const next = links.filter((l) => l.linkId !== linkId);
       if (next.length !== links.length) {
+        if (
+          state.lifecycleStatus !== 'draft' &&
+          (correction === undefined || !correction.requirementCodes.includes(code))
+        ) {
+          throw new AffiliationApiError('version-conflict', 409, 'Requirement is outside correction scope.');
+        }
         state.evidence.set(code, next);
+        state.version += 1;
+        state.lastSavedAt = new Date(state.version * 1000).toISOString();
         return project(state);
       }
     }
@@ -339,7 +370,7 @@ export class AffiliationMockStore {
     idempotencyKey: string,
   ): SubmissionReceipt {
     const state = this.require(applicationId);
-    const existing = this.submissionReceipts.get(applicationId);
+    const existing = this.submissionReceipts.get(applicationId)?.[0];
     if (existing !== undefined) {
       if (existing.idempotencyKey === idempotencyKey) return existing;
       throw new AffiliationApiError('version-conflict', 409, 'The application is already submitted.');
@@ -361,7 +392,69 @@ export class AffiliationMockStore {
       submittedBy: 'representative',
       idempotencyKey,
     };
-    this.submissionReceipts.set(applicationId, receipt);
+    this.submissionReceipts.set(applicationId, [receipt]);
+    return receipt;
+  }
+
+  getSubmissionState(applicationId: string): AffiliationSubmissionState {
+    this.require(applicationId);
+    const receipts = this.submissionReceipts.get(applicationId) ?? [];
+    const correction = this.corrections.get(applicationId);
+    return {
+      receipts,
+      ...(correction !== undefined ? { openCorrection: correction } : {}),
+    };
+  }
+
+  openCorrection(
+    applicationId: string,
+    requirementCodes: readonly string[],
+    reasons: readonly CorrectionReason[],
+  ): CorrectionRequestView {
+    this.require(applicationId);
+    const correction: CorrectionRequestView = {
+      correctionRequestId: `correction-${applicationId}-1`,
+      applicationId,
+      status: 'open',
+      requirementCodes,
+      reasons,
+      openedAt: new Date(5_000).toISOString(),
+    };
+    this.corrections.set(applicationId, correction);
+    return correction;
+  }
+
+  resubmitCorrection(
+    applicationId: string,
+    correctionRequestId: string,
+    expectedVersion: string,
+    idempotencyKey: string,
+  ): SubmissionReceipt {
+    const state = this.require(applicationId);
+    const correction = this.corrections.get(applicationId);
+    if (correction?.correctionRequestId !== correctionRequestId) {
+      throw new AffiliationApiError('not-found', 404, 'Correction request not found.');
+    }
+    if (String(state.version) !== expectedVersion) {
+      throw new AffiliationApiError('version-conflict', 409, 'The draft was changed elsewhere.');
+    }
+    if (!project(state).completeness.eligibleForSubmission) {
+      throw new AffiliationApiError('version-conflict', 409, 'The application is not ready.');
+    }
+    const receipt: SubmissionReceipt = {
+      receiptId: `receipt-${applicationId}-2`,
+      applicationId,
+      sequence: 2,
+      sourceDraftVersion: state.version,
+      submittedAt: new Date(state.version * 1000 + 1000).toISOString(),
+      submittedBy: 'representative',
+      idempotencyKey,
+    };
+    this.submissionReceipts.set(applicationId, [
+      ...(this.submissionReceipts.get(applicationId) ?? []),
+      receipt,
+    ]);
+    this.corrections.delete(applicationId);
     return receipt;
   }
 }

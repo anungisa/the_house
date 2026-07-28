@@ -15,6 +15,9 @@ export const affiliationKeys = {
   overview: (organizationId: string, season: string, pathway: string) =>
     ['affiliation', 'overview', organizationId, season, pathway] as const,
   application: (applicationId: string) => ['affiliation', 'application', applicationId] as const,
+  reviewQueue: () => ['affiliation', 'review-queue'] as const,
+  submissionState: (applicationId: string) =>
+    ['affiliation', 'submission-state', applicationId] as const,
 };
 
 /** Map any thrown value to a stable, non-leaking error category. */
@@ -132,6 +135,75 @@ export function useSubmitAffiliation(applicationId: string) {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: affiliationKeys.application(applicationId) });
+    },
+  });
+}
+
+export function useAffiliationReviewQueue() {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.reviewQueue(),
+    queryFn: () => {
+      if (client.listReviewQueue === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Review queue is unavailable.');
+      }
+      return client.listReviewQueue();
+    },
+    retry: retryTransient,
+  });
+}
+
+export function useStartAffiliationReview() {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (applicationId: string) => {
+      if (client.startReview === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Review start is unavailable.');
+      }
+      return client.startReview(applicationId, `review-start-${applicationId}`);
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() }),
+  });
+}
+
+export function useAffiliationSubmissionState(
+  applicationId: string | undefined,
+  enabled = true,
+) {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.submissionState(applicationId ?? ''),
+    enabled: enabled && applicationId !== undefined,
+    queryFn: () => {
+      if (client.getSubmissionState === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Submission state is unavailable.');
+      }
+      return client.getSubmissionState(applicationId!);
+    },
+    retry: retryTransient,
+  });
+}
+
+export function useResubmitAffiliationCorrection(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation<
+    SubmissionReceipt,
+    unknown,
+    { correctionRequestId: string; expectedVersion: string; idempotencyKey: string }
+  >({
+    mutationFn: (input) => {
+      if (client.resubmitCorrection === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Resubmission is unavailable.');
+      }
+      return client.resubmitCorrection({ applicationId, ...input });
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.application(applicationId) });
+      void queryClient.invalidateQueries({
+        queryKey: affiliationKeys.submissionState(applicationId),
+      });
     },
   });
 }

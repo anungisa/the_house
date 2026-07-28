@@ -112,4 +112,81 @@ describe('PgAffiliationSubmissionEffect', () => {
       code: ErrorCode.AFFILIATION_SUBMISSION_NOT_READY,
     } satisfies Partial<AppError>);
   });
+
+  it('binds review assignment to a matching actor resource scope in the governed transaction', async () => {
+    const reviewerScope = '44444444-4444-4444-8444-444444444444';
+    const reviewContext: DomainEffectContext = {
+      ...context,
+      trigger: 'review_start',
+      fromState: 'submitted',
+      toState: 'under_review',
+      actor: {
+        ...context.actor,
+        actorId: 'reviewer-1',
+        roles: ['reviewer'],
+        organizationId: reviewerScope,
+      },
+      payload: {},
+    };
+    const inserts: unknown[][] = [];
+    const client = clientWith(
+      vi.fn(async (sql: string, params?: readonly unknown[]) => {
+        if (sql.includes('SELECT organization_id')) {
+          return [
+            {
+              organization_id: reviewerScope,
+              organization_unit_id: null,
+              national_organization_id: null,
+              regional_organization_id: null,
+              local_organization_id: null,
+              scope_id: null,
+            },
+          ];
+        }
+        if (sql.includes('INSERT INTO affiliation.review_assignment')) {
+          inserts.push([...(params ?? [])]);
+        }
+        return [];
+      }),
+    );
+
+    await new PgAffiliationSubmissionEffect().apply(txWith(client), reviewContext);
+
+    expect(inserts).toHaveLength(1);
+    expect(inserts[0]?.[2]).toBe('reviewer-1');
+    expect(inserts[0]?.[4]).toBe(reviewerScope);
+    expect(inserts[0]?.[5]).toBe(context.stateTransitionId);
+  });
+
+  it('rejects review assignment outside the actor resource scope', async () => {
+    const reviewContext: DomainEffectContext = {
+      ...context,
+      trigger: 'review_start',
+      fromState: 'submitted',
+      toState: 'under_review',
+      actor: {
+        ...context.actor,
+        actorId: 'reviewer-1',
+        roles: ['reviewer'],
+        organizationId: '55555555-5555-4555-8555-555555555555',
+      },
+      payload: {},
+    };
+    const client = clientWith(
+      vi.fn(async () => [
+        {
+          organization_id: '44444444-4444-4444-8444-444444444444',
+          organization_unit_id: null,
+          national_organization_id: null,
+          regional_organization_id: null,
+          local_organization_id: null,
+          scope_id: null,
+        },
+      ]),
+    );
+
+    await expect(
+      new PgAffiliationSubmissionEffect().apply(txWith(client), reviewContext),
+    ).rejects.toMatchObject({ code: ErrorCode.PERMISSION_DENIED } satisfies Partial<AppError>);
+  });
 });

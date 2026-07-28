@@ -17,6 +17,7 @@ import {
 
 export type MockScenario =
   | 'representative'
+  | 'reviewer'
   | 'no-authority'
   | 'expired'
   | 'revoked'
@@ -69,6 +70,18 @@ export function mockContextForScenario(
       currentContext: null,
       capabilities: [],
       supportReference: 'BTN-NOACCESS',
+    };
+  }
+
+  if (scenario === 'reviewer') {
+    return {
+      user: { displayName: 'reviewer.displayNameFallback', locale },
+      locale,
+      representativeAuthorities: [],
+      accessibleOrganizations: [ORG],
+      availableSeasons: SEASONS,
+      currentContext: null,
+      capabilities: [ButtonCapability.ReviewAffiliation],
     };
   }
 

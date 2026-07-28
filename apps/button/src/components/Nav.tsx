@@ -16,6 +16,7 @@ export function Nav(): JSX.Element {
   const capabilities = view?.capabilities ?? [];
   const canSelect = capabilities.includes(ButtonCapability.SelectContext);
   const canAffiliation = capabilities.includes(ButtonCapability.ViewAffiliation);
+  const canReview = capabilities.includes(ButtonCapability.ReviewAffiliation);
 
   return (
     <nav aria-label={t('nav.primary')} className="primary-nav">
@@ -33,6 +34,11 @@ export function Nav(): JSX.Element {
         {canAffiliation && (
           <li>
             <NavLink to="/button/affiliation">{t('nav.affiliation')}</NavLink>
+          </li>
+        )}
+        {canReview && (
+          <li>
+            <NavLink to="/button/review">{t('nav.review')}</NavLink>
           </li>
         )}
       </ul>

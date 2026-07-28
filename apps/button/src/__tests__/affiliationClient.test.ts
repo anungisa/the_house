@@ -63,7 +63,7 @@ describe('MockAffiliationApiClient (synthetic surface parity)', () => {
     ).rejects.toMatchObject({ category: 'version-conflict', httpStatus: 409 });
   });
 
-  it('associates evidence WITHOUT advancing the lifecycle or bumping the token (association ≠ acceptance)', async () => {
+  it('associates evidence without advancing lifecycle and invalidates stale draft submissions', async () => {
     const store = new AffiliationMockStore();
     const client = new MockAffiliationApiClient(store);
     const app = await client.initiate({ organizationId: 'club-1', seasonId: '2025-26' });
@@ -78,7 +78,7 @@ describe('MockAffiliationApiClient (synthetic surface parity)', () => {
     expect(doc?.evidence).toHaveLength(1);
     expect(doc?.evidence[0]?.displayName).toBe('bylaws.pdf');
     expect(after.lifecycleStatus).toBe('draft');
-    expect(after.concurrencyToken).toBe(beforeToken); // association does not mutate the draft head
+    expect(after.concurrencyToken).not.toBe(beforeToken);
 
     // Remove only that link.
     const removed = await client.removeEvidence({
@@ -143,10 +143,69 @@ describe('MockAffiliationApiClient (synthetic surface parity)', () => {
     expect(first).toMatchObject({
       applicationId: app.applicationId,
       sequence: 1,
-      sourceDraftVersion: 2,
+      sourceDraftVersion: 4,
       idempotencyKey: input.idempotencyKey,
     });
     expect((await client.getApplication(app.applicationId)).lifecycleStatus).toBe('submitted');
+  });
+
+  it('exposes bounded correction scope and appends a corrected resubmission receipt', async () => {
+    const store = new AffiliationMockStore();
+    const client = new MockAffiliationApiClient(store);
+    let app = await client.initiate({ organizationId: 'club-1', seasonId: '2025-26' });
+    app = await client.saveDraft({
+      applicationId: app.applicationId,
+      expectedVersion: app.concurrencyToken,
+      responses: [
+        { requirementCode: 'ORG_PROFILE_CONFIRMATION', value: { acknowledged: true } },
+        { requirementCode: 'PRIMARY_CONTACT_DETAILS', value: { name: 'Dana' } },
+        { requirementCode: 'GOVERNING_DOCUMENT', value: { attached: true } },
+        { requirementCode: 'INSURANCE_CONFIRMATION', value: { confirmed: true } },
+      ],
+    });
+    for (const requirementCode of ['GOVERNING_DOCUMENT', 'INSURANCE_CONFIRMATION']) {
+      app = await client.associateEvidence({
+        applicationId: app.applicationId,
+        requirementCode,
+        file: newFile(`${requirementCode}.pdf`),
+      });
+    }
+    await client.submit({
+      applicationId: app.applicationId,
+      expectedVersion: app.concurrencyToken,
+      idempotencyKey: 'submit-1',
+    });
+    const correction = store.openCorrection(
+      app.applicationId,
+      ['PRIMARY_CONTACT_DETAILS'],
+      [{ requirementCode: 'PRIMARY_CONTACT_DETAILS', reason: 'Add a phone number.' }],
+    );
+    expect((await client.getSubmissionState(app.applicationId)).openCorrection).toEqual(correction);
+    await expect(
+      client.saveDraft({
+        applicationId: app.applicationId,
+        expectedVersion: app.concurrencyToken,
+        responses: [
+          { requirementCode: 'ORG_PROFILE_CONFIRMATION', value: { acknowledged: false } },
+        ],
+      }),
+    ).rejects.toMatchObject({ category: 'version-conflict', httpStatus: 409 });
+
+    app = await client.saveDraft({
+      applicationId: app.applicationId,
+      expectedVersion: app.concurrencyToken,
+      responses: [
+        { requirementCode: 'PRIMARY_CONTACT_DETAILS', value: { name: 'Dana', phone: '555-0100' } },
+      ],
+    });
+    const receipt = await client.resubmitCorrection({
+      applicationId: app.applicationId,
+      correctionRequestId: correction.correctionRequestId,
+      expectedVersion: app.concurrencyToken,
+      idempotencyKey: 'resubmit-1',
+    });
+    expect(receipt.sequence).toBe(2);
+    expect((await client.getSubmissionState(app.applicationId)).receipts).toHaveLength(2);
   });
 
   it('fails closed for an organization the representative cannot represent (opaque not-found)', async () => {

@@ -108,11 +108,18 @@ import {
   handleAffiliationAssociateEvidence,
   handleAffiliationRemoveEvidence,
   handleAffiliationSubmit,
+  handleAffiliationSubmissionState,
   handleAffiliationOpenCorrection,
   handleAffiliationResubmitCorrection,
   type ButtonAffiliationHttpDeps,
   type ButtonAffiliationHttpResult,
 } from './button/affiliation/index.js';
+import {
+  handleAffiliationReviewQueue,
+  handleAffiliationReviewStart,
+  type ButtonAffiliationReviewHttpResult,
+} from './button/review/index.js';
+import type { AffiliationReviewService } from '../domains/affiliation-review/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -239,6 +246,8 @@ export interface AffiliationHttpServerDeps {
    * state, invokes the kernel, submits an application, or writes audit/evidence/outbox directly.
    */
   readonly buttonAffiliation?: ButtonAffiliationHttpDeps;
+  /** Optional resource-scoped affiliation reviewer queue and review-start command surface. */
+  readonly buttonReview?: AffiliationReviewService;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -281,12 +290,17 @@ const BUTTON_AFFILIATION_EVIDENCE_LINKS_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/evidence-links\/?$/;
 const BUTTON_AFFILIATION_SUBMISSIONS_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/submissions\/?$/;
+const BUTTON_AFFILIATION_SUBMISSION_STATE_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/submission-state\/?$/;
 const BUTTON_AFFILIATION_CORRECTIONS_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/corrections\/?$/;
 const BUTTON_AFFILIATION_CORRECTION_RESUBMISSIONS_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/corrections\/([^/]+)\/resubmissions\/?$/;
 const BUTTON_AFFILIATION_APPLICATION_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/?$/;
+const BUTTON_AFFILIATION_REVIEW_QUEUE_PATH = '/v1/button/affiliation/review-queue';
+const BUTTON_AFFILIATION_REVIEW_START_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-start\/?$/;
 
 /** GET list of quarantine events (exact path). */
 const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
@@ -868,6 +882,10 @@ function sendButtonAffiliation(res: ServerResponse, result: ButtonAffiliationHtt
   sendJson(res, { status: result.status, body: result.body });
 }
 
+function sendButtonReview(res: ServerResponse, result: ButtonAffiliationReviewHttpResult): void {
+  sendJson(res, { status: result.status, body: result.body });
+}
+
 function methodNotAllowed(res: ServerResponse, allow: string, requestId: string): void {
   res.setHeader('allow', allow);
   sendJson(res, {
@@ -891,6 +909,7 @@ async function handleButtonAffiliationRoute(
   req: IncomingMessage,
   res: ServerResponse,
   buttonAffiliation: ButtonAffiliationHttpDeps,
+  buttonReview: AffiliationReviewService | undefined,
   path: string,
   requestId: string,
   resolver: AuthContextResolver | undefined,
@@ -899,6 +918,46 @@ async function handleButtonAffiliationRoute(
   const method = req.method ?? 'GET';
   const headers = headerMap(req);
   const query = queryMap(req.url);
+
+  if (path === BUTTON_AFFILIATION_REVIEW_QUEUE_PATH) {
+    if (buttonReview === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    return sendButtonReview(
+      res,
+      await handleAffiliationReviewQueue(
+        buttonReview,
+        { headers, query, params: {} },
+        requestId,
+        resolver,
+      ),
+    );
+  }
+
+  const reviewStartMatch = BUTTON_AFFILIATION_REVIEW_START_ROUTE.exec(path);
+  if (reviewStartMatch !== null) {
+    if (buttonReview === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    return sendButtonReview(
+      res,
+      await handleAffiliationReviewStart(
+        buttonReview,
+        { headers, query, params: { applicationId: reviewStartMatch[1] }, body },
+        requestId,
+        resolver,
+      ),
+    );
+  }
 
   // Overview: GET /v1/button/affiliation
   if (path === BUTTON_AFFILIATION_OVERVIEW_PATH) {
@@ -1012,6 +1071,18 @@ async function handleButtonAffiliationRoute(
     const result = await handleAffiliationSubmit(
       buttonAffiliation,
       { headers, query, params: { applicationId: submissionsMatch[1] }, body },
+      requestId,
+      resolver,
+    );
+    return sendButtonAffiliation(res, result);
+  }
+
+  const submissionStateMatch = BUTTON_AFFILIATION_SUBMISSION_STATE_ROUTE.exec(path);
+  if (submissionStateMatch !== null) {
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    const result = await handleAffiliationSubmissionState(
+      buttonAffiliation,
+      { headers, query, params: { applicationId: submissionStateMatch[1] } },
       requestId,
       resolver,
     );
@@ -1776,6 +1847,7 @@ async function handleRequest(
       req,
       res,
       deps.buttonAffiliation,
+      deps.buttonReview,
       path,
       requestId,
       deps.resolver,

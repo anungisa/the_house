@@ -34,6 +34,7 @@ import {
   AffiliationSubmissionService,
   PgAffiliationSubmissionEffect,
 } from '../domains/affiliation-submission/index.js';
+import { AffiliationReviewService } from '../domains/affiliation-review/index.js';
 import {
   AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE,
   DomainBackedFinancialGuardRepository,
@@ -504,6 +505,7 @@ export function createPgAffiliationHttpServer(
     organizationRead: createOrganizationReadHttpDeps(telemetry),
     buttonContext: createButtonContextHttpDeps(telemetry),
     buttonAffiliation: createButtonAffiliationHttpDeps(telemetry),
+    buttonReview: new AffiliationReviewService(createPgAffiliationApplicationService()),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),
