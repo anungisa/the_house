@@ -75,6 +75,8 @@ export class GuardRegistry {
  *  - AFFILIATION_FEES_PAID                 : applicable payment obligations are settled
  *  - SEASON_IS_CURRENT                     : the application targets the current season
  *  - ACTOR_HAS_REVIEWER_SCOPE              : actor holds reviewer scope for this entity
+ *  - AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE   : no other application already holds active
+ *                                            standing for the same scope and season
  */
 export const AFFILIATION_GUARD_CODES = [
   'AFFILIATION_REQUIRED_FIELDS_COMPLETE',
@@ -83,6 +85,7 @@ export const AFFILIATION_GUARD_CODES = [
   'AFFILIATION_FEES_PAID',
   'SEASON_IS_CURRENT',
   'ACTOR_HAS_REVIEWER_SCOPE',
+  'AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE',
 ] as const;
 
 export type AffiliationGuardCode = (typeof AFFILIATION_GUARD_CODES)[number];

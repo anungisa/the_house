@@ -34,9 +34,10 @@ describe('GuardRegistry', () => {
     expect(() => registry.registerGuard('DUP', handler)).toThrowError(AppError);
   });
 
-  it('exposes the six required AffiliationApplication guard codes (placeholders)', () => {
-    expect(AFFILIATION_GUARD_CODES).toHaveLength(6);
+  it('exposes the required AffiliationApplication guard codes (placeholders)', () => {
+    expect(AFFILIATION_GUARD_CODES).toHaveLength(7);
     expect(AFFILIATION_GUARD_CODES).toContain('ACTOR_HAS_REVIEWER_SCOPE');
     expect(AFFILIATION_GUARD_CODES).toContain('AFFILIATION_FEES_PAID');
+    expect(AFFILIATION_GUARD_CODES).toContain('AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE');
   });
 });

@@ -112,20 +112,22 @@ async function seedApplication(
     openComplianceFlag?: boolean;
     unpaid?: boolean;
     seasonCurrent?: boolean;
+    scopeId?: string;
   } = {},
 ): Promise<void> {
   const tenantId = opts.tenantId ?? TENANT_A;
   await withTenantTransaction(tenantId, async (c: QueryClient) => {
     await c.query(
       `INSERT INTO affiliation.affiliation_application
-         (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status)
-       VALUES ($1,$2,$3,$4,$4,$5)`,
+         (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status, scope_id)
+       VALUES ($1,$2,$3,$4,$4,$5,$6)`,
       [
         entityId,
         tenantId,
         SEASON,
         opts.requiredFieldsComplete ?? true,
         opts.unpaid === true ? 'unpaid' : 'paid',
+        opts.scopeId ?? null,
       ],
     );
     await c.query(
@@ -541,5 +543,80 @@ d('AffiliationApplication governed transition (integration)', () => {
     await expect(
       queryRaw(`SELECT count(*) FROM affiliation.affiliation_application`),
     ).rejects.toThrow(/TENANT_CONTEXT_MISSING/);
+  });
+
+  it('activate EXECUTES when no other application holds active standing for the scope+season', async () => {
+    const kernel = makeKernel();
+    const subject = randomUUID();
+    const entityId = randomUUID();
+    await seedApplication(entityId, { scopeId: subject, seasonCurrent: true });
+    await seedEntityStateAt(entityId, 'approved');
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'activate', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('executed');
+    expect(result.toState).toBe('active');
+  });
+
+  it('activate is REJECTED when another application already holds active standing for the same scope+season', async () => {
+    const kernel = makeKernel();
+    const subject = randomUUID();
+
+    const existing = randomUUID();
+    await seedApplication(existing, { scopeId: subject, seasonCurrent: true });
+    await seedEntityStateAt(existing, 'active');
+
+    const entityId = randomUUID();
+    await seedApplication(entityId, { scopeId: subject, seasonCurrent: true });
+    await seedEntityStateAt(entityId, 'approved');
+
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'activate', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('rejected');
+
+    // No governed mutation: the blocked application remains 'approved' and never 'active'.
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.entity_state
+          WHERE entity_id = $1 AND current_state = 'approved'`,
+        [entityId],
+      ),
+    ).toBe(1);
+    expect(
+      await count(
+        TENANT_A,
+        `SELECT count(*)::int AS n FROM governance.entity_state
+          WHERE entity_id = $1 AND current_state = 'active'`,
+        [entityId],
+      ),
+    ).toBe(0);
+  });
+
+  it('activate EXECUTES when an active application exists for a DIFFERENT season (no conflict)', async () => {
+    const kernel = makeKernel();
+    const subject = randomUUID();
+
+    const existing = randomUUID();
+    await withTenantTransaction(TENANT_A, async (c: QueryClient) => {
+      await c.query(
+        `INSERT INTO affiliation.affiliation_application
+           (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status, scope_id)
+         VALUES ($1,$2,'2024-25',true,true,'paid',$3)`,
+        [existing, TENANT_A, subject],
+      );
+    });
+    await seedEntityStateAt(existing, 'active');
+
+    const entityId = randomUUID();
+    await seedApplication(entityId, { scopeId: subject, seasonCurrent: true });
+    await seedEntityStateAt(entityId, 'approved');
+
+    const result = await kernel.transition(
+      input({ entityId, trigger: 'activate', idempotencyKey: randomUUID() }),
+    );
+    expect(result.status).toBe('executed');
+    expect(result.toState).toBe('active');
   });
 });

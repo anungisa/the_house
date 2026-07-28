@@ -154,4 +154,34 @@ export class PgAffiliationApplicationStore implements AffiliationApplicationStor
       return (rows[0]?.n ?? 0) > 0;
     });
   }
+
+  hasConflictingActiveAffiliation(tenantId: string, applicationId: string): Promise<boolean> {
+    return withTenantTransaction(tenantId, async (client: QueryClient) => {
+      // Resolve THIS application's subject + season, then count OTHER applications sharing
+      // the same subject + season that currently hold ACTIVE governed standing. Active
+      // standing is read from governance.entity_state (authoritative, kernel-owned). When
+      // the subject is NULL (no scope/organization recorded) no duplicate can be asserted.
+      const rows = await client.query<{ n: number }>(
+        `WITH me AS (
+           SELECT COALESCE(scope_id, local_organization_id, organization_id) AS subject,
+                  season_id
+             FROM affiliation.affiliation_application
+            WHERE id = $1
+         )
+         SELECT count(*)::int AS n
+           FROM me
+           JOIN affiliation.affiliation_application a
+             ON a.id <> $1
+            AND a.season_id = me.season_id
+            AND COALESCE(a.scope_id, a.local_organization_id, a.organization_id) = me.subject
+           JOIN governance.entity_state es
+             ON es.entity_id = a.id
+            AND es.entity_type = 'AffiliationApplication'
+            AND es.current_state = 'active'
+          WHERE me.subject IS NOT NULL`,
+        [applicationId],
+      );
+      return (rows[0]?.n ?? 0) > 0;
+    });
+  }
 }
