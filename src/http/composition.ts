@@ -47,6 +47,12 @@ import {
   PgAffiliationStandingEffect,
   PgAffiliationStandingStore,
 } from '../domains/affiliation-standing/index.js';
+import {
+  PgActivationEventSource,
+  PgStandingProjectionStore,
+  StandingActivationOrchestrator,
+  StandingProjectionWorker,
+} from '../domains/affiliation-standing/orchestration/index.js';
 import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
 import { registerFinancialObligationGuards } from '../governance/guards/financialHandlers.js';
@@ -177,6 +183,40 @@ export function createPgGovernanceKernel(): GovernanceKernel {
  */
 export function createPgAffiliationStandingService(): AffiliationStandingService {
   return new AffiliationStandingService(createPgGovernanceKernel());
+}
+
+/**
+ * Build the production-intended standing PROJECTION worker backed by PostgreSQL.
+ *
+ * This is the cross-aggregate orchestration for Slice A: it discovers ACTIVATED affiliation
+ * applications (cross-tenant, via the SECURITY DEFINER discovery function) and projects each into a
+ * governed AffiliationStanding by requesting the standing `open` through the SAME kernel wiring as
+ * every other governed path. It NEVER mutates governed state directly — the standing is opened only
+ * through the kernel — and records reconcilable bookkeeping (pending/projected/failed) via the
+ * RLS-enforced {@link PgStandingProjectionStore}. Idempotent + at-least-once: a duplicate/replayed
+ * activation resolves the SAME deterministic standing identity and cannot create a second standing.
+ *
+ * Retry/backoff reuses the shared outbox true-full-jitter mechanics from {@link OutboxConfig}. The
+ * operational RUNTIME HOST (interval loop / entrypoint) is a deliberate, separately-tracked follow-up
+ * (mirrors the outbox worker runtime); this factory provides the batch the host will schedule.
+ */
+export function createPgStandingProjectionWorker(): StandingProjectionWorker {
+  const config = loadConfig();
+  const orchestrator = new StandingActivationOrchestrator({
+    standing: createPgAffiliationStandingService(),
+    projections: new PgStandingProjectionStore(),
+    clock: systemClock,
+    retry: {
+      maxRetries: config.outbox.maxRetries,
+      baseDelayMs: config.outbox.baseDelayMs,
+      maxDelayMs: config.outbox.maxDelayMs,
+    },
+  });
+  return new StandingProjectionWorker({
+    source: new PgActivationEventSource(),
+    orchestrator,
+    batchSize: config.outbox.batchSize,
+  });
 }
 
 /**
