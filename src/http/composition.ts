@@ -90,6 +90,13 @@ import type {
 import type { OrganizationReadHttpDeps } from './organization/index.js';
 import type { ParticipantWriteHttpDeps } from './participant/index.js';
 import type { FacilityReadHttpDeps, FacilityWriteHttpDeps } from './facility/index.js';
+import {
+  ButtonContextService,
+  RoleDerivedRepresentativeAuthorityProvider,
+  ClockDerivedSeasonCatalog,
+  OrganizationTypeJurisdictionResolver,
+  type ButtonContextHttpDeps,
+} from './button/index.js';
 import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
 import {
   ParticipantRegistryService,
@@ -349,6 +356,28 @@ export function createOrganizationReadHttpDeps(telemetry?: Telemetry): Organizat
 }
 
 /**
+ * Build the Button representative-context READ transport backed by PostgreSQL. The context is
+ * assembled from the trusted identity context + the RLS-enforced {@link PgOrganizationRegistryStore}
+ * read projection, plus the default policy-derived authority/season/jurisdiction providers. The
+ * adapter is read-only: it never mutates state, enqueues outbox messages, touches governed tables,
+ * or invokes the kernel. The default authority provider derives representative authority from the
+ * actor's trusted role keys (a real authorization-service-backed provider is a future pass).
+ */
+export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContextHttpDeps {
+  const service = new ButtonContextService({
+    organizations: new PgOrganizationRegistryStore(),
+    authorities: new RoleDerivedRepresentativeAuthorityProvider(),
+    seasons: new ClockDerivedSeasonCatalog(),
+    jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    nowIso: () => new Date().toISOString(),
+  });
+  return {
+    service,
+    ...(telemetry !== undefined ? { telemetry } : {}),
+  };
+}
+
+/**
  * Build the Participant Registry WRITE transport (create + update + reference-data status
  * transition + organization-link create) backed by PostgreSQL. The command service, the write
  * pre-check read port, and the organization-existence reader all run through RLS-enforced Pg
@@ -428,6 +457,7 @@ export function createPgAffiliationHttpServer(
     workflowExecution: createWorkflowExecutionHttpDeps(telemetry),
     workflowRead: createWorkflowReadHttpDeps(telemetry),
     organizationRead: createOrganizationReadHttpDeps(telemetry),
+    buttonContext: createButtonContextHttpDeps(telemetry),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),
