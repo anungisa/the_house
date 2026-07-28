@@ -1,6 +1,6 @@
 # Volume 12 Governance Control Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-28T00:46:18.214Z
+Generated: 2026-07-28T02:43:19.841Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 12 corpus. It is not a source of truth, does not confer ratification, and
@@ -15,28 +15,28 @@ Generated: 2026-07-28T00:46:18.214Z
 
 ## Summary
 
-- Total findings: 1
+- Total findings: 2
 - Errors: 0
 - Warnings: 0
-- Info: 1
+- Info: 2
 - Overall: PASS (no integrity errors)
 
 ## Chapter status
 
 | Status | Count |
 | --- | --- |
-| RATIFIED | 14 |
+| RATIFIED | 25 |
 
 ## Register health
 
 | Register | Name | Status | Version | Records |
 | --- | --- | --- | --- | --- |
-| REG-1200 | Volume 12 Corpus Index | RATIFIED | 1.0.0 | 14 |
-| REG-1201 | Volume 12 Gates, Criteria, Evidence Classes, Acceptance Classes, Authorities, and Release Decisions | RATIFIED | 1.0.0 | 45 |
-| REG-1202 | Volume 12 Evidence Requirements, Evidence Objects, Findings, Conditions, Waivers, Commitments, and Dossiers | RATIFIED | 1.0.0 | 36 |
-| REG-1203 | Volume 12 Decisions | RATIFIED | 1.0.0 | 4 |
-| REG-1204 | Volume 12 Assumptions, Risks, Evidence Gaps, Material Commitments, Acceptance Backlog, and Release Blockers | RATIFIED | 1.0.0 | 6 |
-| REG-1205 | Volume 12 Approvals | RATIFIED | 1.0.0 | 16 |
+| REG-1200 | Volume 12 Corpus Index | RATIFIED | 1.0.0 | 25 |
+| REG-1201 | Volume 12 Gates, Criteria, Evidence Classes, Acceptance Classes, Authorities, and Release Decisions | RATIFIED | 1.0.0 | 77 |
+| REG-1202 | Volume 12 Evidence Requirements, Evidence Objects, Findings, Conditions, Waivers, Commitments, and Dossiers | RATIFIED | 1.0.0 | 71 |
+| REG-1203 | Volume 12 Decisions | RATIFIED | 1.0.0 | 17 |
+| REG-1204 | Volume 12 Assumptions, Risks, Evidence Gaps, Material Commitments, Acceptance Backlog, and Release Blockers | RATIFIED | 1.0.0 | 15 |
+| REG-1205 | Volume 12 Approvals | RATIFIED | 1.0.0 | 29 |
 
 ## Findings by control
 
@@ -56,7 +56,7 @@ Errors: 0 | Warnings: 0 | Info: 0
 
 Errors: 0 | Warnings: 0 | Info: 1
 
-- INFO FOUNDATION_COVERAGE [REG-1201]: Foundation coverage: 12 evidence classes, 12 gate criteria, 12 acceptance classes, 3 release decisions, 20 evidence requirements, 9 dossiers, 6 backlog items
+- INFO FOUNDATION_COVERAGE [REG-1201]: Foundation coverage: 12 evidence classes, 12 gate criteria, 12 acceptance classes, 3 release decisions, 20 evidence requirements, 9 dossiers, 15 backlog items
 
 ### Provenance-integrity enforcement
 
@@ -65,6 +65,18 @@ Errors: 0 | Warnings: 0 | Info: 0
 - (no findings)
 
 ### Gate V12-G1 readiness
+
+Errors: 0 | Warnings: 0 | Info: 0
+
+- (no findings)
+
+### Affiliation evidence & acceptance-dossier coverage
+
+Errors: 0 | Warnings: 0 | Info: 1
+
+- INFO AFFILIATION_COVERAGE [REG-1201/REG-1202]: Affiliation evidence coverage: 12 evidence domains, 8 gate criteria, 11 acceptance classes, 1 executive release decisions, 23 evidence requirements, 12 acceptance dossiers
+
+### Gate V12-G2 readiness
 
 Errors: 0 | Warnings: 0 | Info: 0
 

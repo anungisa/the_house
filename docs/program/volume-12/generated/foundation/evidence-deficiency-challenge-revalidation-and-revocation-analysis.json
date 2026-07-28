@@ -36,6 +36,18 @@
       "owner": "Executive Sponsor",
       "future_blocking_gate": "EXEC-MCG",
       "required_action_or_evidence": "Complete evidence, acceptance, gating, and executive authorization in later packages."
+    },
+    {
+      "id": "BLOCKER-V12-002",
+      "owner": "Executive Sponsor",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "Complete affiliation evidence, acceptance, gating, and executive authorization in later packages."
+    },
+    {
+      "id": "BLOCKER-V12-003",
+      "owner": "Release Governance Authority",
+      "future_blocking_gate": "EXEC-MCG",
+      "required_action_or_evidence": "Evidence and resolve each House P0 finding to its release destination."
     }
   ]
 }

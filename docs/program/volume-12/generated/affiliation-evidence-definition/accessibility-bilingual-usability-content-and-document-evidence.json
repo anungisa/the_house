@@ -1,0 +1,31 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-038",
+      "kind": "ACCESSIBILITY_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation accessibility evidence requirement",
+      "domain": "affiliation accessibility",
+      "required_evidence_classes": "Manual test evidence; independent-review evidence.",
+      "minimum_provenance": "Procedure, assistive-technology context, and observation record.",
+      "acceptance_authority": "Accessibility and Bilingual Acceptance Authority",
+      "affected_requirement": "Inherited accessibility obligations and AEDOM-V12-008.",
+      "prohibited_inference": "Automated accessibility scan is not manual inspection is not keyboard completion is not assistive-technology completion is not conformance determination.",
+      "final_dossier_destination": "DOSSIER-V12-015",
+      "chapter_ref": "V12-16"
+    },
+    {
+      "id": "EVIDREQ-V12-039",
+      "kind": "BILINGUAL_SEMANTIC_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation bilingual-semantic evidence requirement",
+      "domain": "affiliation bilingual semantics",
+      "required_evidence_classes": "Independent-review evidence.",
+      "minimum_provenance": "Semantic review record.",
+      "acceptance_authority": "Accessibility and Bilingual Acceptance Authority",
+      "affected_requirement": "Inherited official-languages obligations and AEDOM-V12-008.",
+      "prohibited_inference": "English and French strings exist is not translation accuracy is not semantic equivalence is not validated bilingual experience.",
+      "final_dossier_destination": "DOSSIER-V12-015",
+      "chapter_ref": "V12-16"
+    }
+  ]
+}

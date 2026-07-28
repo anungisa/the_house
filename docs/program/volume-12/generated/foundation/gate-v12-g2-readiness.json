@@ -1,0 +1,205 @@
+{
+  "gate": "V12-G2",
+  "disposition_target": "AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY",
+  "total_conditions": 39,
+  "satisfied": 39,
+  "unmet": [],
+  "readiness": "READY",
+  "conditions": [
+    {
+      "n": 1,
+      "title": "Package 1, V12-B, and V12-B-1 lineage inherited",
+      "satisfied": true
+    },
+    {
+      "n": 2,
+      "title": "Full V12-B-1 authoring and merge commits preserved",
+      "satisfied": true
+    },
+    {
+      "n": 3,
+      "title": "Package 1 remains frozen",
+      "satisfied": true
+    },
+    {
+      "n": 4,
+      "title": "Club affiliation is the first evidence-definition vertical",
+      "satisfied": true
+    },
+    {
+      "n": 5,
+      "title": "Every affiliation evidence domain is fully specified with a documentary disposition",
+      "satisfied": true
+    },
+    {
+      "n": 6,
+      "title": "Evidence-domain coverage is distinct from evidence availability and acceptance",
+      "satisfied": true
+    },
+    {
+      "n": 7,
+      "title": "Every affiliation evidence requirement binds an authoritative source and destination",
+      "satisfied": true
+    },
+    {
+      "n": 8,
+      "title": "Implementation, build, database, environment, and deployment-path evidence defined",
+      "satisfied": true
+    },
+    {
+      "n": 9,
+      "title": "Schema inspection remains distinct from proven database behaviour",
+      "satisfied": true
+    },
+    {
+      "n": 10,
+      "title": "Authorization and isolation-denial evidence defined",
+      "satisfied": true
+    },
+    {
+      "n": 11,
+      "title": "Cross-organization and cross-jurisdiction denial required",
+      "satisfied": true
+    },
+    {
+      "n": 12,
+      "title": "Security, privacy, records, and audit evidence defined with their limits",
+      "satisfied": true
+    },
+    {
+      "n": 13,
+      "title": "Functional evidence covers the full behavioural path surface",
+      "satisfied": true
+    },
+    {
+      "n": 14,
+      "title": "Functional, contract, integration, event, and provider evidence defined",
+      "satisfied": true
+    },
+    {
+      "n": 15,
+      "title": "A mocked provider result is not integration or operational evidence",
+      "satisfied": true
+    },
+    {
+      "n": 16,
+      "title": "Data-integrity evidence defined",
+      "satisfied": true
+    },
+    {
+      "n": 17,
+      "title": "Provider acknowledgement remains distinct from reconciliation",
+      "satisfied": true
+    },
+    {
+      "n": 18,
+      "title": "Exactly-once activation is a business invariant, not a transport claim",
+      "satisfied": true
+    },
+    {
+      "n": 19,
+      "title": "Migration and activation-standing evidence defined with their distinctions",
+      "satisfied": true
+    },
+    {
+      "n": 20,
+      "title": "Accessibility ladder preserved",
+      "satisfied": true
+    },
+    {
+      "n": 21,
+      "title": "Bilingual semantic ladder preserved",
+      "satisfied": true
+    },
+    {
+      "n": 22,
+      "title": "Operational and recovery evidence defined",
+      "satisfied": true
+    },
+    {
+      "n": 23,
+      "title": "Training and adoption distinctions preserved",
+      "satisfied": true
+    },
+    {
+      "n": 24,
+      "title": "Provider, training, and adoption evidence defined",
+      "satisfied": true
+    },
+    {
+      "n": 25,
+      "title": "Findings, conditions, waivers, and commitments controlled",
+      "satisfied": true
+    },
+    {
+      "n": 26,
+      "title": "Waivers and conditions do not convert failures to successes",
+      "satisfied": true
+    },
+    {
+      "n": 27,
+      "title": "Every affiliation acceptance class is fully specified",
+      "satisfied": true
+    },
+    {
+      "n": 28,
+      "title": "The acceptance ladder remains distinct at every rung",
+      "satisfied": true
+    },
+    {
+      "n": 29,
+      "title": "Every acceptance dossier is fully specified",
+      "satisfied": true
+    },
+    {
+      "n": 30,
+      "title": "Challenge, contradiction, dissent, invalidation, revocation, and reopening controlled",
+      "satisfied": true
+    },
+    {
+      "n": 31,
+      "title": "House P0 findings have evidence and release destinations",
+      "satisfied": true
+    },
+    {
+      "n": 32,
+      "title": "Every unresolved item has an owner, required evidence, and a valid future gate",
+      "satisfied": true
+    },
+    {
+      "n": 33,
+      "title": "No active unresolved item points to a completed Volume 12 gate",
+      "satisfied": true
+    },
+    {
+      "n": 34,
+      "title": "Deterministic Package 2 analysis completes without blocking defects",
+      "satisfied": true
+    },
+    {
+      "n": 35,
+      "title": "No evidence, assurance, acceptance, gate, or release fabricated",
+      "satisfied": true
+    },
+    {
+      "n": 36,
+      "title": "No runtime code, tests, environments, identities, migrations, or provider engagement created or executed",
+      "satisfied": true
+    },
+    {
+      "n": 37,
+      "title": "No procurement, staffing, pilot, rollout, deployment, release, or launch authorized",
+      "satisfied": true
+    },
+    {
+      "n": 38,
+      "title": "No record authorizes implementation, operations, or release",
+      "satisfied": true
+    },
+    {
+      "n": 39,
+      "title": "Genuine authoring, closure/freeze, and gate-binding separation preserved",
+      "satisfied": true
+    }
+  ]
+}

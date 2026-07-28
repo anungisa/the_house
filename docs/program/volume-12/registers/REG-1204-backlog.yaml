@@ -164,3 +164,249 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION EVIDENCE BACKLOG ============================
+  - id: ASM-V12-002
+    kind: ASSUMPTION
+    title: Package 3 will integrate the final evidence baseline and release definition
+    statement: >-
+      It is assumed that a subsequent package will integrate the affiliation
+      evidence baseline, program-gate matrix, final dossier, executive decision,
+      and Volume 12 release-definition within this framework.
+    source: V12-C closure record.
+    owner: Release Governance Authority
+    current_status: Open assumption pending Package 3.
+    impact_if_unresolved: The affiliation evidence definition cannot be integrated for release.
+    required_action_or_evidence: Author Package 3 integrated final-evidence baseline and release-definition.
+    volume_12_destination: Package 3 integrated evidence baseline.
+    traces_to:
+      - V12-11
+    future_blocking_gate: EXEC-MCG
+    validation_status: ASSUMED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: RISK-V12-002
+    kind: RISK
+    title: Risk that dossier definition is mistaken for evidence availability
+    statement: >-
+      There is a risk that the defined affiliation acceptance dossiers are
+      mistaken for populated or accepted evidence.
+    source: V12-11 evidence-domain decomposition.
+    owner: Independent Assurance Authority
+    current_status: Open risk mitigated by the non-authorizing posture of every dossier.
+    impact_if_unresolved: Premature confidence in an unevidenced vertical.
+    required_action_or_evidence: Enforce the dossier-defined is not dossier-populated boundary in Package 3.
+    likelihood_or_occurrence: Assessed by a defined method in later packages.
+    escalation_threshold: Any treatment of a defined dossier as evidence escalates to the Executive Sponsor.
+    traces_to:
+      - V12-11
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: RISK-V12-003
+    kind: RISK
+    title: Risk of executive override of missing affiliation evidence
+    statement: >-
+      There is a risk that executive support is used to authorize release of the
+      affiliation vertical despite missing, unaccepted, or expired evidence.
+    source: V12-19 acceptance-ladder analysis.
+    owner: Independent Assurance Authority
+    current_status: Open risk mitigated by the executive release-decision boundary.
+    impact_if_unresolved: Unsafe release without a complete evidence base.
+    required_action_or_evidence: Enforce the executive-support is not evidence-substitution boundary at the release gate.
+    likelihood_or_occurrence: Assessed by a defined method in later packages.
+    escalation_threshold: Any attempt to override missing evidence escalates to the Independent Assurance Authority.
+    traces_to:
+      - V12-19
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: GAP-V12-002
+    kind: EVIDENCE_GAP
+    title: No concrete affiliation evidence objects exist yet
+    statement: >-
+      No concrete affiliation evidence objects have been produced against the
+      affiliation evidence requirements; only the requirements and dossiers are
+      defined.
+    source: REG-1202 affiliation evidence requirements.
+    owner: Evidence Governance Authority
+    current_status: Expected gap for an evidence-definition package.
+    impact_if_unresolved: No affiliation obligation can be evidenced until objects are produced.
+    required_action_or_evidence: Produce affiliation evidence objects to the binding template in later packages.
+    evidence_impact: Every affiliation requirement remains unevidenced.
+    release_impact: Affiliation release is blocked until the evidence base exists and is accepted.
+    required_evidence: Evidence objects bound per EVID-V12-001 and the affiliation requirements.
+    traces_to:
+      - V12-12
+    future_blocking_gate: EXEC-MCG
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: GAP-V12-003
+    kind: EVIDENCE_GAP
+    title: Inherited House P0 findings are unresolved and unmapped
+    statement: >-
+      The inherited House P0 findings are not yet mapped to their required
+      evidence and release destinations and remain unresolved.
+    source: V12-20 House P0 mapping requirement.
+    owner: Independent Assurance Authority
+    current_status: Open gap; the mapping requirement is defined but the findings are unresolved.
+    impact_if_unresolved: Release cannot proceed while House P0 findings are open.
+    required_action_or_evidence: Map each House P0 finding to its evidence and release destination and resolve it.
+    evidence_impact: House P0 findings remain unevidenced and unresolved.
+    release_impact: Each House P0 finding is a standing release blocker until resolved.
+    required_evidence: Evidence resolving each House P0 finding to its release destination.
+    traces_to:
+      - V12-20
+    future_blocking_gate: EXEC-MCG
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: COMMIT-V12-002
+    kind: MATERIAL_COMMITMENT
+    title: Commitment to complete all affiliation acceptance dossiers before acceptance
+    statement: >-
+      A material commitment that no affiliation acceptance decision is taken until
+      the affiliation acceptance dossiers are complete and independently assured.
+    source: V12-19 acceptance-ladder criteria.
+    owner: Release Governance Authority
+    current_status: Standing commitment for the affiliation vertical.
+    impact_if_unresolved: Premature affiliation acceptance without a complete evidence base.
+    required_action_or_evidence: Complete all affiliation acceptance dossiers with independent assurance.
+    release_impact: Affiliation acceptance is blocked until the commitment is fulfilled.
+    required_evidence: Complete affiliation dossiers per REG-1202.
+    expiry: Reviewed at each affiliation acceptance evaluation.
+    revalidation_condition: Revalidated whenever the affiliation release candidate changes.
+    traces_to:
+      - V12-19
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPTBL-V12-002
+    kind: ACCEPTANCE_BACKLOG
+    title: Affiliation acceptance authorities to be seated
+    statement: >-
+      The affiliation acceptance authorities defined in REG-1201 must be seated
+      with named, independent role-holders before any affiliation acceptance
+      decision is taken.
+    source: REG-1201 affiliation acceptance-class definitions.
+    owner: Business Owner Authority
+    current_status: Open backlog pending role seating.
+    impact_if_unresolved: No valid affiliation acceptance decision can be taken.
+    required_action_or_evidence: Seat independent affiliation acceptance authorities with recorded qualifications.
+    acceptance_authority: Business Owner Authority
+    readiness_disposition: Not ready; affiliation acceptance authorities not seated.
+    traces_to:
+      - V12-19
+    future_blocking_gate: EXEC-MCG
+    validation_status: PENDING_VALIDATION
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: BLOCKER-V12-002
+    kind: RELEASE_BLOCKER
+    title: No affiliation release authorized under Volume 12 Package 2
+    statement: >-
+      Volume 12 Package 2 defines affiliation evidence requirements and
+      acceptance dossiers and authorizes no release. This standing release blocker
+      records that no affiliation release may occur under this package.
+    source: V12-11 non-authorizing posture.
+    owner: Executive Sponsor
+    current_status: Standing release blocker for Package 2.
+    impact_if_unresolved: Any affiliation release under this package would be unauthorized.
+    required_action_or_evidence: Complete affiliation evidence, acceptance, gating, and executive authorization in later packages.
+    release_impact: Affiliation release is not authorized under Package 2 by design.
+    affected_release_gate: EXEC-MCG
+    required_evidence: A complete, accepted, and gated affiliation release candidate.
+    traces_to:
+      - V12-11
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: BLOCKER-V12-003
+    kind: RELEASE_BLOCKER
+    title: Inherited House P0 findings are standing release blockers
+    statement: >-
+      Each inherited House P0 finding is a standing release blocker for the
+      affiliation vertical until it is evidenced and resolved to its release
+      destination.
+    source: V12-20 House P0 mapping requirement.
+    owner: Release Governance Authority
+    current_status: Standing release blocker until House P0 findings are resolved.
+    impact_if_unresolved: Affiliation release cannot proceed while House P0 findings are open.
+    required_action_or_evidence: Evidence and resolve each House P0 finding to its release destination.
+    release_impact: Affiliation release is blocked until every House P0 finding is resolved.
+    affected_release_gate: EXEC-MCG
+    required_evidence: Evidence resolving each House P0 finding.
+    traces_to:
+      - V12-20
+    future_blocking_gate: EXEC-MCG
+    validation_status: CONSTRAINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

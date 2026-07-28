@@ -115,3 +115,91 @@ records:
     version: 1.0.0
     path: docs/program/volume-12/V12-B-1.md
     gate: V12-G1
+  - id: V12-11
+    title: Affiliation Evidence Domain, Scope, and Acceptance-Dossier Architecture
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-11.md
+    gate: V12-G2
+  - id: V12-12
+    title: Implementation, Build, Environment, Configuration, and Deployment-Path Evidence
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-12.md
+    gate: V12-G2
+  - id: V12-13
+    title: Identity, Authority, Security, Privacy, Records, and Audit Evidence
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-13.md
+    gate: V12-G2
+  - id: V12-14
+    title: Functional, Contract, Integration, Event, Webhook, and Provider Evidence
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-14.md
+    gate: V12-G2
+  - id: V12-15
+    title: Data Integrity, Financial Reconciliation, Migration, Activation, and Standing Evidence
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-15.md
+    gate: V12-G2
+  - id: V12-16
+    title: Accessibility, Bilingual, Usability, Content, and Document Evidence
+    owner: Evidence Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-16.md
+    gate: V12-G2
+  - id: V12-17
+    title: Operational, Continuity, Recovery, Provider, Training, and Adoption Evidence
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-17.md
+    gate: V12-G2
+  - id: V12-18
+    title: Findings, Defects, Evidence Gaps, Waivers, Conditions, Commitments, and Challenge
+    owner: Independent Assurance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-18.md
+    gate: V12-G2
+  - id: V12-19
+    title: Affiliation Acceptance Matrix, Evidence Dossiers, and Release-Decision Brief
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-19.md
+    gate: V12-G2
+  - id: V12-20
+    title: Integrated Affiliation Evidence Coverage, Validation Backlog, and Projections
+    owner: Independent Assurance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-20.md
+    gate: V12-G2
+  - id: V12-C
+    title: Package 2 Closure Record and Bounded Package 3 Authorization
+    owner: Release Governance Authority
+    approver: Executive Sponsor
+    status: RATIFIED
+    version: 1.0.0
+    path: docs/program/volume-12/V12-C.md
+    gate: V12-G2

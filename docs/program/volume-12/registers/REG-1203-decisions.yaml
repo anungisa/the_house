@@ -137,3 +137,401 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION EVIDENCE DECISION BOUNDARIES ================
+  - id: ADR-V12-005
+    kind: DECISION_BOUNDARY
+    title: Club affiliation is the first evidence-definition vertical
+    statement: >-
+      Club affiliation is the first evidence-definition vertical. It defines the
+      evidence and acceptance obligations of a single governed vertical and does
+      not define, generalize, or authorize any other vertical.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Package 2 decomposes the affiliation vertical into evidence domains and
+      acceptance classes. Its scope must not be read as program-wide evidence.
+    alternatives_considered:
+      - Define evidence for all verticals at once — rejected as unbounded.
+    consequences: >-
+      The affiliation evidence requirements bind only the affiliation vertical.
+    decision_authority: Release Governance Authority
+    prohibited_inference: An affiliation evidence definition is never another vertical's evidence.
+    traces_to:
+      - V12-11
+    chapter_ref: V12-11
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-006
+    kind: DECISION_BOUNDARY
+    title: Dossier completeness is not evidence availability is not acceptance
+    statement: >-
+      A defined and structurally complete acceptance dossier is not the same as
+      available evidence, and available evidence is not the same as accepted
+      evidence.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Package 2 defines dossiers and evidence requirements only. It must be
+      impossible to read a defined dossier as populated or accepted.
+    alternatives_considered:
+      - Treat a defined dossier as evidence — rejected as fail-open.
+    consequences: >-
+      Every dossier carries a non-authorizing posture and an authoritative source.
+    decision_authority: Release Governance Authority
+    prohibited_inference: Dossier section defined is never dossier populated is never acceptance granted.
+    traces_to:
+      - V12-11
+    chapter_ref: V12-11
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-007
+    kind: DECISION_BOUNDARY
+    title: Implementation completion is not accepted evidence
+    statement: >-
+      Completion of implementation, build, environment, or deployment-path work
+      is not accepted evidence. Acceptance is a separate decision by a separate
+      authority.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The implementation evidence domain defines what would be required; it does
+      not accept anything.
+    alternatives_considered:
+      - Treat a completed build as accepted evidence — rejected.
+    consequences: >-
+      Implementation evidence requirements route to the technical acceptance authority.
+    decision_authority: Technical Acceptance Authority
+    prohibited_inference: Implementation completed is never implementation evidence accepted.
+    traces_to:
+      - V12-12
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-008
+    kind: DECISION_BOUNDARY
+    title: Schema inspection is not database behaviour
+    statement: >-
+      Inspecting a schema definition is not the same as proving physical database
+      behaviour under concurrency with representative data.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Database invariants are behavioural and must be observed, not inferred from
+      structure.
+    alternatives_considered:
+      - Accept schema inspection as behaviour evidence — rejected.
+    consequences: >-
+      The database-behaviour evidence requirement demands physical execution evidence.
+    decision_authority: Technical Acceptance Authority
+    prohibited_inference: Schema exists is never database invariant proven.
+    traces_to:
+      - V12-12
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-009
+    kind: DECISION_BOUNDARY
+    title: Authentication is not authorization
+    statement: >-
+      Demonstrating that a principal is authenticated is not the same as
+      demonstrating that authorization boundaries, including cross-organization
+      and cross-jurisdiction denial, are enforced.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Isolation and denial are the core institutional invariants of the actor
+      model and must be evidenced by denial cases.
+    alternatives_considered:
+      - Accept authentication as authorization evidence — rejected as unsafe.
+    consequences: >-
+      The authorization evidence requirement demands denial-case evidence.
+    decision_authority: Security and Privacy Acceptance Authority
+    prohibited_inference: Authentication evidence is never authorization evidence.
+    traces_to:
+      - V12-13
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-010
+    kind: DECISION_BOUNDARY
+    title: A mocked or single-provider result is not end-to-end evidence
+    statement: >-
+      A mocked dependency or an isolated provider result is not the same as
+      end-to-end integration evidence or operational proof.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Integration and provider evidence must reflect real boundaries and real
+      provider states.
+    alternatives_considered:
+      - Accept a mock as integration evidence — rejected.
+    consequences: >-
+      The integration and provider evidence requirements demand real-boundary evidence.
+    decision_authority: Technical Acceptance Authority
+    prohibited_inference: Mocked provider result is never provider integration evidence is never operational proof.
+    traces_to:
+      - V12-14
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-011
+    kind: DECISION_BOUNDARY
+    title: Migration execution is not migration acceptance
+    statement: >-
+      Executing a migration is not the same as accepting a migration. Acceptance
+      requires reconciliation, business acceptance, and only then source
+      retirement.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Migration correctness is bounded by reconciliation and identity resolution,
+      not by execution.
+    alternatives_considered:
+      - Accept a completed migration run as acceptance — rejected.
+    consequences: >-
+      The migration evidence requirement separates execution from acceptance and retirement.
+    decision_authority: Migration Acceptance Authority
+    prohibited_inference: Migration executed is never migration accepted is never source retired.
+    traces_to:
+      - V12-15
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-012
+    kind: DECISION_BOUNDARY
+    title: Accessibility automation is not accessibility acceptance
+    statement: >-
+      An automated accessibility scan is not a conformance determination and is
+      not accessibility acceptance.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Accessibility acceptance requires manual, keyboard, and assistive-technology
+      evidence beyond automation.
+    alternatives_considered:
+      - Accept a clean scan as conformance — rejected.
+    consequences: >-
+      The accessibility evidence requirement demands manual and assistive-technology evidence.
+    decision_authority: Accessibility and Bilingual Acceptance Authority
+    prohibited_inference: Automated accessibility scan is never conformance determination.
+    traces_to:
+      - V12-16
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-013
+    kind: DECISION_BOUNDARY
+    title: Bilingual string checks are not semantic acceptance
+    statement: >-
+      Confirming that English and French strings exist is not the same as
+      translation accuracy, semantic equivalence, or a validated bilingual
+      experience.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Bilingual acceptance is semantic and experiential, not a presence check.
+    alternatives_considered:
+      - Accept string presence as bilingual acceptance — rejected.
+    consequences: >-
+      The bilingual-semantic evidence requirement demands independent semantic review.
+    decision_authority: Accessibility and Bilingual Acceptance Authority
+    prohibited_inference: English and French strings exist is never semantic equivalence.
+    traces_to:
+      - V12-16
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-014
+    kind: DECISION_BOUNDARY
+    title: Operational exercise is not operational acceptance
+    statement: >-
+      Conducting an operational, recovery, or continuity exercise is not the same
+      as operational acceptance by the operational acceptance authority.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      An exercise produces evidence; acceptance is a separate reasoned decision.
+    alternatives_considered:
+      - Treat a completed exercise as acceptance — rejected.
+    consequences: >-
+      Operational evidence requirements route to the operational acceptance authority.
+    decision_authority: Operational Acceptance Authority
+    prohibited_inference: Operational exercise conducted is never operational acceptance granted.
+    traces_to:
+      - V12-17
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-015
+    kind: DECISION_BOUNDARY
+    title: Provider certification is not institutional assurance
+    statement: >-
+      A provider certification is not the same as end-to-end institutional
+      assurance of the affiliation service.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      Provider attestations are inputs; institutional assurance is independent
+      and end-to-end.
+    alternatives_considered:
+      - Accept provider certification as institutional assurance — rejected.
+    consequences: >-
+      The provider evidence requirement demands independent end-to-end verification.
+    decision_authority: Provider Acceptance Authority
+    prohibited_inference: Provider certification is never end-to-end operational assurance.
+    traces_to:
+      - V12-17
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-016
+    kind: DECISION_BOUNDARY
+    title: Technical acceptance is not business or executive acceptance
+    statement: >-
+      Technical acceptance is not business acceptance, business acceptance is not
+      operational acceptance, and none of these is executive release
+      authorization.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The acceptance ladder separates distinct authorities and dispositions.
+    alternatives_considered:
+      - Collapse the acceptance ladder — rejected as unsafe.
+    consequences: >-
+      Each acceptance class in REG-1201 has a distinct authority and disposition.
+    decision_authority: Executive Sponsor
+    prohibited_inference: Technical acceptance is never business acceptance or executive authorization.
+    traces_to:
+      - V12-19
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ADR-V12-017
+    kind: DECISION_BOUNDARY
+    title: Executive authorization cannot substitute for missing evidence
+    statement: >-
+      Executive support or authorization cannot substitute for missing,
+      unaccepted, or expired evidence. Executive release authorization presupposes
+      that the evidence and acceptance chain is complete.
+    decision_status: APPROVED_FOR_PLANNING
+    context: >-
+      The most dangerous failure mode is executive override of missing evidence.
+      The framework fails closed against it.
+    alternatives_considered:
+      - Permit executive override of missing evidence — rejected as fail-open.
+    consequences: >-
+      The executive release-decision class in REG-1201 prohibits inference from
+      support to substitution.
+    decision_authority: Executive Sponsor
+    prohibited_inference: Executive support is never evidence substitution.
+    traces_to:
+      - V12-19
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

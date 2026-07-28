@@ -1203,3 +1203,802 @@ records:
     evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
     acceptance_status: NOT_ACCEPTED
     release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION EVIDENCE DOMAINS =============================
+  - id: AEDOM-V12-001
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Club-affiliation application intake
+    statement: The capability that captures a club-affiliation application and its declared context.
+    authoritative_requirement: Inherited central-registration intake obligations and Volume 12 evidence doctrine.
+    institutional_invariant: Every intake binds an applicant, an organization, a jurisdiction, and a season.
+    affected_actors: Applicant, club administrator, reviewing authority.
+    house_responsibility: Governs intake state, validation, and system of record.
+    button_responsibility: Presents the intake experience and relays applicant input.
+    external_system_responsibility: None at intake beyond identity assertion.
+    required_evidence_classes: Functional, contract, authorization, accessibility, bilingual.
+    acceptance_authority: Domain Acceptance Authority
+    prohibited_inference: Intake captured is not application complete is not application accepted.
+    dossier_destination: DOSSIER-V12-010
+    governed_documentary_disposition: Routed to the domain acceptance dossier and functional-evidence projection.
+    chapter_ref: V12-11
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-002
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Applicant identity and account establishment
+    statement: The capability that establishes and binds applicant identity and account.
+    authoritative_requirement: Inherited identity and account governance and Volume 12 authorization doctrine.
+    institutional_invariant: Identity is authenticated before authority is evaluated.
+    affected_actors: Applicant, identity authority, administrator.
+    house_responsibility: Governs account records, authority context, and audit.
+    button_responsibility: Presents authentication and account experience.
+    external_system_responsibility: Identity provider asserts authentication only.
+    required_evidence_classes: Authorization, security, privacy, audit.
+    acceptance_authority: Security and Privacy Acceptance Authority
+    prohibited_inference: Authentication evidence is not authorization evidence.
+    dossier_destination: DOSSIER-V12-011
+    governed_documentary_disposition: Routed to the security-and-privacy acceptance dossier.
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-003
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Membership and roster context
+    statement: The capability that resolves membership and roster context for an affiliation.
+    authoritative_requirement: Inherited membership governance and Volume 12 data-integrity doctrine.
+    institutional_invariant: Roster context is scoped to the correct organization and season.
+    affected_actors: Applicant, member, roster administrator.
+    house_responsibility: Governs membership and roster system of record.
+    button_responsibility: Presents roster context and selections.
+    external_system_responsibility: None beyond inherited membership sources.
+    required_evidence_classes: Data integrity, functional, authorization.
+    acceptance_authority: Data and Financial Acceptance Authority
+    prohibited_inference: Roster shown is not roster authoritative is not roster accepted.
+    dossier_destination: DOSSIER-V12-014
+    governed_documentary_disposition: Routed to the data-and-financial acceptance dossier.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-004
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Organizational and jurisdictional scoping
+    statement: The capability that isolates affiliations by organization and jurisdiction.
+    authoritative_requirement: Inherited tenancy isolation invariants and Volume 12 authorization doctrine.
+    institutional_invariant: No actor may cross an organization or jurisdiction boundary without authority.
+    affected_actors: Administrator, reviewing authority, service identity.
+    house_responsibility: Governs isolation, denial, and audit of scoped access.
+    button_responsibility: Presents only in-scope affiliations.
+    external_system_responsibility: None.
+    required_evidence_classes: Authorization, security, audit.
+    acceptance_authority: Security and Privacy Acceptance Authority
+    prohibited_inference: In-scope access shown is not cross-scope denial proven.
+    dossier_destination: DOSSIER-V12-011
+    governed_documentary_disposition: Routed to the security-and-privacy acceptance dossier with denial evidence.
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-005
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Authority, delegation, and assignment
+    statement: The capability that grants, delegates, and assigns affiliation authority.
+    authoritative_requirement: Inherited authority-model governance and Volume 12 segregation doctrine.
+    institutional_invariant: Delegation preserves accountability and segregation boundaries.
+    affected_actors: Administrator, delegate, finance role, support role.
+    house_responsibility: Governs authority grants, delegation, and audit.
+    button_responsibility: Presents delegation and assignment actions.
+    external_system_responsibility: None.
+    required_evidence_classes: Authorization, audit, functional.
+    acceptance_authority: Domain Acceptance Authority
+    prohibited_inference: Delegation recorded is not delegation authorized is not delegation exercised.
+    dossier_destination: DOSSIER-V12-012
+    governed_documentary_disposition: Routed to the domain acceptance dossier.
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-006
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Fee determination and financial settlement
+    statement: The capability that determines affiliation fees and settles payment.
+    authoritative_requirement: Inherited financial governance and Volume 12 reconciliation doctrine.
+    institutional_invariant: A settled fee reconciles across applicant, provider, and accounting record.
+    affected_actors: Applicant, finance role, payment provider.
+    house_responsibility: Governs fee determination, financial record, and reconciliation.
+    button_responsibility: Presents fee and payment experience.
+    external_system_responsibility: Payment provider processes payment and acknowledges.
+    required_evidence_classes: Financial reconciliation, provider, data integrity.
+    acceptance_authority: Data and Financial Acceptance Authority
+    prohibited_inference: Provider acknowledgement is not accounting confirmation is not reconciliation.
+    dossier_destination: DOSSIER-V12-014
+    governed_documentary_disposition: Routed to the data-and-financial acceptance dossier.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-007
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Workflow state and lifecycle transition
+    statement: The capability that governs affiliation lifecycle state and transitions.
+    authoritative_requirement: Inherited governance-kernel lifecycle invariants and Volume 12 functional doctrine.
+    institutional_invariant: Every transition is authorized, guarded, audited, and idempotent.
+    affected_actors: Applicant, reviewing authority, service identity.
+    house_responsibility: Governs lifecycle state, transitions, and audit through the kernel.
+    button_responsibility: Requests transitions; never mutates governed state.
+    external_system_responsibility: None.
+    required_evidence_classes: Functional, contract, event and webhook, audit.
+    acceptance_authority: Technical Acceptance Authority
+    prohibited_inference: Submission receipt is not approval.
+    dossier_destination: DOSSIER-V12-013
+    governed_documentary_disposition: Routed to the technical acceptance dossier.
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-008
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Bilingual and accessible applicant experience
+    statement: The capability that delivers the applicant experience accessibly and bilingually.
+    authoritative_requirement: Inherited accessibility and official-languages obligations and Volume 12 doctrine.
+    institutional_invariant: The experience is equivalently available in English and French and to assistive technology.
+    affected_actors: Applicant, administrator.
+    house_responsibility: Governs content, notification, and document obligations.
+    button_responsibility: Renders the accessible, bilingual experience.
+    external_system_responsibility: Notification provider delivers bilingual notifications.
+    required_evidence_classes: Accessibility, bilingual semantics, functional.
+    acceptance_authority: Accessibility and Bilingual Acceptance Authority
+    prohibited_inference: English and French strings exist is not validated bilingual experience.
+    dossier_destination: DOSSIER-V12-015
+    governed_documentary_disposition: Routed to the accessibility-and-bilingual acceptance dossier.
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-009
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Affiliation activation and standing
+    statement: The capability that activates an approved affiliation and maintains standing.
+    authoritative_requirement: Inherited activation governance and Volume 12 activation-standing doctrine.
+    institutional_invariant: An approved affiliation is activated exactly once as a business invariant.
+    affected_actors: Reviewing authority, administrator, service identity.
+    house_responsibility: Governs activation, standing, and audit.
+    button_responsibility: Presents activation status and standing.
+    external_system_responsibility: None.
+    required_evidence_classes: Data integrity, functional, audit.
+    acceptance_authority: Domain Acceptance Authority
+    prohibited_inference: Approval is not activation authorization is not activation execution is not active standing.
+    dossier_destination: DOSSIER-V12-012
+    governed_documentary_disposition: Routed to the domain acceptance dossier.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-010
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Data integrity and reconciliation
+    statement: The capability that preserves affiliation data integrity and reconciles it.
+    authoritative_requirement: Inherited data-integrity invariants and Volume 12 reconciliation doctrine.
+    institutional_invariant: Tenant, parent, uniqueness, version, history, and provenance invariants hold under concurrency.
+    affected_actors: Administrator, data steward, service identity.
+    house_responsibility: Governs the affiliation system of record and reconciliation.
+    button_responsibility: Presents reconciled data only.
+    external_system_responsibility: External sources reconcile against the system of record.
+    required_evidence_classes: Data integrity, financial reconciliation, audit.
+    acceptance_authority: Data and Financial Acceptance Authority
+    prohibited_inference: Schema exists is not database invariant proven.
+    dossier_destination: DOSSIER-V12-014
+    governed_documentary_disposition: Routed to the data-and-financial acceptance dossier.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-011
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Migration of prior affiliation records
+    statement: The capability that migrates prior affiliation records into the system of record.
+    authoritative_requirement: Inherited migration governance and Volume 12 migration doctrine.
+    institutional_invariant: Migration preserves source authority, provenance, and recorded uncertainty.
+    affected_actors: Data steward, migration authority, business owner.
+    house_responsibility: Governs migration staging, quarantine, cutover, and acceptance.
+    button_responsibility: None during migration.
+    external_system_responsibility: Legacy sources provide records under recorded provenance.
+    required_evidence_classes: Migration, data integrity, audit.
+    acceptance_authority: Migration Acceptance Authority
+    prohibited_inference: Migration executed is not migration accepted is not source retired.
+    dossier_destination: DOSSIER-V12-016
+    governed_documentary_disposition: Routed to the migration acceptance dossier.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: AEDOM-V12-012
+    kind: AFFILIATION_EVIDENCE_DOMAIN
+    title: Operational support, continuity, training, and adoption
+    statement: The capability that operates, supports, and sustains the affiliation vertical.
+    authoritative_requirement: Inherited operational and adoption governance and Volume 12 operational doctrine.
+    institutional_invariant: Operability, recovery, competence, and sustained adoption are separately evidenced.
+    affected_actors: Support role, operator, trainer, operating community.
+    house_responsibility: Governs operational, continuity, training, and adoption obligations.
+    button_responsibility: Presents supported, operable experience.
+    external_system_responsibility: Providers meet operational and exit obligations.
+    required_evidence_classes: Operational, recovery, provider, training and competence, adoption.
+    acceptance_authority: Operational Acceptance Authority
+    prohibited_inference: Training delivered is not competence demonstrated.
+    dossier_destination: DOSSIER-V12-017
+    governed_documentary_disposition: Routed to the operational and training-and-adoption acceptance dossiers.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION GATE CRITERIA ===============================
+  - id: CRITERIA-V12-013
+    kind: AFFILIATION_GATE_CRITERION
+    title: Affiliation evidence-domain completeness criterion
+    statement: Every affiliation evidence domain resolves to controlled evidence requirements and an acceptance-dossier destination.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Release Governance Authority
+    escalation_path: Escalates unmet coverage to the Executive Sponsor.
+    chapter_ref: V12-11
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-014
+    kind: AFFILIATION_GATE_CRITERION
+    title: Implementation and build evidence-definition criterion
+    statement: Implementation, build-provenance, database-behaviour, environment, configuration, and deployment-path evidence are defined.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Technical Acceptance Authority
+    escalation_path: Escalates gaps to the Release Governance Authority.
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-015
+    kind: AFFILIATION_GATE_CRITERION
+    title: Authorization, security, privacy, and audit criterion
+    statement: Identity, authorization, security, privacy, records, and audit evidence, including isolation denial, are defined.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Security and Privacy Acceptance Authority
+    escalation_path: Escalates gaps to the Release Governance Authority.
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-016
+    kind: AFFILIATION_GATE_CRITERION
+    title: Functional, integration, and provider evidence criterion
+    statement: Functional, contract, integration, event, webhook, callback, and provider evidence are defined with full path coverage.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Technical Acceptance Authority
+    escalation_path: Escalates gaps to the Release Governance Authority.
+    chapter_ref: V12-14
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-017
+    kind: AFFILIATION_GATE_CRITERION
+    title: Data, financial, migration, and activation criterion
+    statement: Data-integrity, financial-reconciliation, migration, activation, and standing evidence are defined with their distinctions.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Data and Financial Acceptance Authority
+    escalation_path: Escalates gaps to the Release Governance Authority.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-018
+    kind: AFFILIATION_GATE_CRITERION
+    title: Accessibility, bilingual, operational, and adoption criterion
+    statement: Accessibility, bilingual, operational, continuity, recovery, provider, training, competence, and adoption evidence are defined.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Operational Acceptance Authority
+    escalation_path: Escalates gaps to the Release Governance Authority.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-019
+    kind: AFFILIATION_GATE_CRITERION
+    title: Findings, waivers, and challenge control criterion
+    statement: Findings, defects, gaps, waivers, conditions, commitments, expiry, revocation, reopening, and challenge are controlled without converting failures to passes.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Independent Assurance Authority
+    escalation_path: Escalates unresolved exceptions to the Executive Sponsor.
+    chapter_ref: V12-18
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: CRITERIA-V12-020
+    kind: AFFILIATION_GATE_CRITERION
+    title: Acceptance matrix and executive release-decision criterion
+    statement: Acceptance classes, evidence dossiers, and the executive release-decision brief are defined with distinct authorities and destinations.
+    gate_criterion_reference: GATE-V12-G2
+    gate_disposition_target: AFFILIATION_EVIDENCE_REQUIREMENTS_AND_ACCEPTANCE_DOSSIER_DEFINITION_READY
+    decision_authority: Release Governance Authority
+    escalation_path: Escalates unmet acceptance-structure conditions to the Executive Sponsor.
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — AFFILIATION ACCEPTANCE CLASSES ==========================
+  - id: ACCEPT-V12-013
+    kind: IMPLEMENTATION_ACCEPTANCE_CLASS
+    title: Affiliation implementation acceptance
+    statement: Acceptance that affiliation implementation, build, environment, and deployment-path evidence obligations are met.
+    decision_authority: Technical Acceptance Authority
+    reviewer_qualification: Qualified implementation reviewer.
+    independence_requirement: Independent of the implementer.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Implementation, build-provenance, database-behaviour, environment, configuration, and deployment-path evidence.
+    prohibited_inference: Implementation completed is not implementation evidence accepted.
+    dissent_treatment: Recorded dissent escalates to the Release Governance Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-12
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-014
+    kind: TECHNICAL_ACCEPTANCE_CLASS
+    title: Affiliation technical acceptance
+    statement: Acceptance that affiliation functional, contract, and integration evidence obligations are met.
+    decision_authority: Technical Acceptance Authority
+    reviewer_qualification: Qualified technical reviewer.
+    independence_requirement: Independent of the implementer.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Functional, contract, integration, event, webhook, and provider evidence.
+    prohibited_inference: Technical acceptance is not business acceptance.
+    dissent_treatment: Recorded dissent escalates to the Release Governance Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-015
+    kind: DOMAIN_ACCEPTANCE_CLASS
+    title: Affiliation domain acceptance
+    statement: Acceptance that affiliation domain behaviour obligations are met.
+    decision_authority: Domain Acceptance Authority
+    reviewer_qualification: Qualified affiliation domain reviewer.
+    independence_requirement: Independent of technical delivery.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Domain functional, authorization, and lifecycle evidence.
+    prohibited_inference: Submission receipt is not approval.
+    dissent_treatment: Recorded dissent escalates to the Business Owner Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-016
+    kind: SECURITY_PRIVACY_ACCEPTANCE_CLASS
+    title: Affiliation security and privacy acceptance
+    statement: Acceptance that affiliation security, privacy, records, and audit evidence obligations are met.
+    decision_authority: Security and Privacy Acceptance Authority
+    reviewer_qualification: Qualified security and privacy reviewer.
+    independence_requirement: Independent of the implementer.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with compensating controls and expiry.
+    required_evidence: Authorization, security, privacy, records, and audit evidence.
+    prohibited_inference: Security evidence is not privacy compliance is not legal compliance.
+    dissent_treatment: Recorded dissent escalates to the Executive Sponsor.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-13
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-017
+    kind: ACCESSIBILITY_BILINGUAL_ACCEPTANCE_CLASS
+    title: Affiliation accessibility and bilingual acceptance
+    statement: Acceptance that affiliation accessibility and bilingual evidence obligations are met.
+    decision_authority: Accessibility and Bilingual Acceptance Authority
+    reviewer_qualification: Qualified accessibility and bilingual reviewer.
+    independence_requirement: Independent manual, assistive-technology, and semantic review.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Accessibility and bilingual-semantic evidence.
+    prohibited_inference: Automated accessibility scan is not a conformance determination.
+    dissent_treatment: Recorded dissent escalates to the Executive Sponsor.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-16
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-018
+    kind: DATA_FINANCIAL_ACCEPTANCE_CLASS
+    title: Affiliation data and financial acceptance
+    statement: Acceptance that affiliation data-integrity and financial-reconciliation evidence obligations are met.
+    decision_authority: Data and Financial Acceptance Authority
+    reviewer_qualification: Qualified data and financial reviewer.
+    independence_requirement: Independent reconciliation review.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Data-integrity and financial-reconciliation evidence.
+    prohibited_inference: Provider acknowledgement is not accounting confirmation is not reconciliation.
+    dissent_treatment: Recorded dissent escalates to the Business Owner Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-019
+    kind: MIGRATION_ACCEPTANCE_CLASS
+    title: Affiliation migration acceptance
+    statement: Acceptance that affiliation migration evidence obligations are met.
+    decision_authority: Migration Acceptance Authority
+    reviewer_qualification: Qualified migration reviewer.
+    independence_requirement: Independent reconciliation and cutover review.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Migration provenance, reconciliation, rehearsal, cutover, rollback, and business-acceptance evidence.
+    prohibited_inference: Migration executed is not migration accepted is not source retired.
+    dissent_treatment: Recorded dissent escalates to the Business Owner Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-15
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-020
+    kind: OPERATIONAL_ACCEPTANCE_CLASS
+    title: Affiliation operational acceptance
+    statement: Acceptance that affiliation operational, continuity, and recovery evidence obligations are met.
+    decision_authority: Operational Acceptance Authority
+    reviewer_qualification: Qualified operational reviewer.
+    independence_requirement: Independent of delivery.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Operational, continuity, and recovery evidence.
+    prohibited_inference: Operational acceptance is not executive release authorization.
+    dissent_treatment: Recorded dissent escalates to the Release Governance Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-021
+    kind: PROVIDER_ACCEPTANCE_CLASS
+    title: Affiliation provider acceptance
+    statement: Acceptance that affiliation provider evidence obligations are met.
+    decision_authority: Provider Acceptance Authority
+    reviewer_qualification: Qualified provider reviewer.
+    independence_requirement: Independent end-to-end verification.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Provider integration, continuity, exit, and substitution evidence.
+    prohibited_inference: Provider certification is not end-to-end operational assurance.
+    dissent_treatment: Recorded dissent escalates to the Release Governance Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-022
+    kind: TRAINING_ADOPTION_ACCEPTANCE_CLASS
+    title: Affiliation training and adoption acceptance
+    statement: Acceptance that affiliation training, competence, and adoption evidence obligations are met.
+    decision_authority: Training and Adoption Authority
+    reviewer_qualification: Qualified training and adoption reviewer.
+    independence_requirement: Independent competence assessment.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Training-competence and adoption evidence.
+    prohibited_inference: Onboarding completed is not sustained adoption.
+    dissent_treatment: Recorded dissent escalates to the Business Owner Authority.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-17
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+  - id: ACCEPT-V12-023
+    kind: BUSINESS_ACCEPTANCE_CLASS
+    title: Affiliation business acceptance
+    statement: Acceptance by the accountable business owner that the affiliation vertical is fit for purpose.
+    decision_authority: Business Owner Authority
+    reviewer_qualification: Accountable business owner.
+    independence_requirement: Independent of technical delivery.
+    permitted_disposition: Accept, reject, or accept with conditions.
+    conditions_permitted: Conditions with owners and expiry.
+    required_evidence: Aggregated acceptance-class outcomes and outstanding-obligation register.
+    prohibited_inference: Business acceptance is not operational acceptance.
+    dissent_treatment: Recorded dissent escalates to the Executive Sponsor.
+    outstanding_obligation_treatment: Tracked as material commitments with expiry.
+    release_effect: Necessary but not sufficient for release.
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED
+
+  # === PACKAGE 2 — EXECUTIVE RELEASE DECISION ==============================
+  - id: RELEASE-V12-004
+    kind: EXECUTIVE_RELEASE_DECISION
+    title: Affiliation executive release decision
+    statement: The executive decision that would authorize release of the club-affiliation vertical on complete accepted evidence.
+    decision_class: EXECUTIVE_RELEASE_AUTHORIZATION
+    decision_authority: Executive Sponsor
+    required_evidence: Executive release-decision brief aggregating all affiliation acceptance classes and open obligations.
+    prohibited_inference: Executive support is not evidence substitution.
+    downstream_gate: EXEC-MCG
+    chapter_ref: V12-19
+    future_gate: EXEC-MCG
+    validation_status: DEFINED
+    authorizes_implementation: false
+    authorizes_operations: false
+    authorizes_release: false
+    implementation_status: NOT_IMPLEMENTED_OR_NOT_PROVEN
+    operational_status: NOT_OPERATIONAL_OR_NOT_PROVEN
+    execution_status: NOT_EXECUTED
+    evidence_status: NOT_AVAILABLE_OR_NOT_ACCEPTED
+    acceptance_status: NOT_ACCEPTED
+    release_status: NOT_AUTHORIZED

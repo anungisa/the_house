@@ -1,0 +1,70 @@
+{
+  "note": "Non-authoritative projection of the source-controlled Volume 12 Package 2 affiliation evidence corpus. Confers no ratification and authorizes no implementation, operations, evidence, acceptance, or release.",
+  "evidence_requirements": [
+    {
+      "id": "EVIDREQ-V12-021",
+      "kind": "IMPLEMENTATION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation implementation evidence requirement",
+      "domain": "affiliation implementation",
+      "required_evidence_classes": "Implementation evidence; documentary definition.",
+      "minimum_provenance": "Version, commit, reviewed source, and dependency manifest.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited implementation governance and AEDOM-V12-001 intake capability.",
+      "prohibited_inference": "Source written is not evidence accepted.",
+      "final_dossier_destination": "DOSSIER-V12-019",
+      "chapter_ref": "V12-12"
+    },
+    {
+      "id": "EVIDREQ-V12-022",
+      "kind": "BUILD_PROVENANCE_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation build-provenance evidence requirement",
+      "domain": "affiliation build provenance",
+      "required_evidence_classes": "Implementation evidence; supply-chain provenance.",
+      "minimum_provenance": "Reproducible build record bound to a reviewed commit.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited supply-chain provenance obligations.",
+      "prohibited_inference": "Build succeeded is not deployment path proven.",
+      "final_dossier_destination": "DOSSIER-V12-019",
+      "chapter_ref": "V12-12"
+    },
+    {
+      "id": "EVIDREQ-V12-023",
+      "kind": "DATABASE_BEHAVIOUR_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation database-behaviour evidence requirement",
+      "domain": "affiliation database behaviour",
+      "required_evidence_classes": "Automated test evidence; manual test evidence.",
+      "minimum_provenance": "Physical database state, version, and result artifact.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited data-integrity invariants and AEDOM-V12-010.",
+      "prohibited_inference": "Schema exists is not database invariant proven.",
+      "final_dossier_destination": "DOSSIER-V12-013",
+      "chapter_ref": "V12-12"
+    },
+    {
+      "id": "EVIDREQ-V12-024",
+      "kind": "ENVIRONMENT_QUALIFICATION_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation environment-qualification evidence requirement",
+      "domain": "affiliation environment qualification",
+      "required_evidence_classes": "Documentary definition; independent-review evidence.",
+      "minimum_provenance": "Environment qualification record and configuration baseline.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited environment-qualification governance.",
+      "prohibited_inference": "An environment exists is not an environment representative.",
+      "final_dossier_destination": "DOSSIER-V12-019",
+      "chapter_ref": "V12-12"
+    },
+    {
+      "id": "EVIDREQ-V12-025",
+      "kind": "DEPLOYMENT_PATH_EVIDENCE_REQUIREMENT",
+      "title": "Affiliation deployment-path evidence requirement",
+      "domain": "affiliation deployment path",
+      "required_evidence_classes": "Implementation evidence; documentary definition.",
+      "minimum_provenance": "Promotion record bound to a release candidate.",
+      "acceptance_authority": "Technical Acceptance Authority",
+      "affected_requirement": "Inherited deployment-path governance.",
+      "prohibited_inference": "Build succeeded is not deployment path proven.",
+      "final_dossier_destination": "DOSSIER-V12-019",
+      "chapter_ref": "V12-12"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Volume 12 Package 1 Gate, Release, and Acceptance-Governance Report (NON-AUTHORITATIVE)
 
-Generated: 2026-07-28T00:46:18.220Z
+Generated: 2026-07-28T02:43:19.847Z
 
 > This report is a generated, non-authoritative projection of the source-controlled
 > Volume 12 corpus. It confers no ratification and authorizes no implementation,
@@ -23,8 +23,8 @@ Generated: 2026-07-28T00:46:18.220Z
 | Waivers | 1 |
 | Material commitments | 1 |
 | Dossiers | 9 |
-| Decisions | 4 |
-| Backlog items | 6 |
+| Decisions | 17 |
+| Backlog items | 15 |
 
 ## Boundary
 
