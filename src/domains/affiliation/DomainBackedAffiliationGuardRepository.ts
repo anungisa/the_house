@@ -16,12 +16,22 @@
 import type { AffiliationGuardRepository } from '../../governance/guards/handlers.js';
 import type { GuardEvaluationInput } from '../../governance/types/TransitionTypes.js';
 import type { AffiliationApplicationStore } from './AffiliationApplicationStore.js';
+import type { FinancialClearanceReader } from '../affiliation-finance/FinancialClearanceReader.js';
 
 /** Roles that satisfy reviewer scope (identity concern, not persisted domain data). */
 const REVIEWER_ROLES: ReadonlySet<string> = new Set(['reviewer', 'approver', 'admin']);
 
 export class DomainBackedAffiliationGuardRepository implements AffiliationGuardRepository {
-  constructor(private readonly store: AffiliationApplicationStore) {}
+  /**
+   * @param store persisted affiliation facts.
+   * @param financialClearance OPTIONAL cross-domain reader for the AFFILIATION_FINANCIALLY_CLEARED
+   *   guard. When absent (e.g. deployments without the finance module), the guard treats the
+   *   application as financially cleared — the finance capability opts INTO the activation gate.
+   */
+  constructor(
+    private readonly store: AffiliationApplicationStore,
+    private readonly financialClearance?: FinancialClearanceReader,
+  ) {}
 
   hasRequiredFields(input: GuardEvaluationInput): Promise<boolean> {
     return this.store.areRequiredFieldsComplete(input.context.tenantId, input.entityId);
@@ -54,5 +64,16 @@ export class DomainBackedAffiliationGuardRepository implements AffiliationGuardR
 
   hasConflictingActiveStanding(input: GuardEvaluationInput): Promise<boolean> {
     return this.store.hasConflictingActiveAffiliation(input.context.tenantId, input.entityId);
+  }
+
+  async hasUnclearedBlockingFinancialObligation(
+    input: GuardEvaluationInput,
+  ): Promise<boolean> {
+    // Opt-in gate: without a finance reader, there are no financial obligations to clear.
+    if (this.financialClearance === undefined) return false;
+    return this.financialClearance.hasUnclearedBlockingObligation(
+      input.context.tenantId,
+      input.entityId,
+    );
   }
 }

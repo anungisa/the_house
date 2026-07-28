@@ -13,6 +13,8 @@ import type {
 import type { GuardRegistry } from '../guards/GuardRegistry.js';
 import { DefaultPermissionChecker } from '../permissions/PermissionChecker.js';
 import type {
+  DomainEffectContext,
+  DomainEffectResult,
   ExistingTransitionRow,
   GovernanceStore,
   GovernanceTx,
@@ -20,6 +22,7 @@ import type {
   PermissionChecker,
   StateMachineRow,
   TransitionDefinitionRow,
+  TransitionDomainEffect,
   TransitionRequestForExecutionRow,
   TransitionSerializationKeyResolver,
 } from './ports.js';
@@ -53,6 +56,15 @@ export interface GovernanceKernelDeps {
    * exactly as before.
    */
   readonly serializationKeyResolvers?: ReadonlyMap<string, TransitionSerializationKeyResolver>;
+
+  /**
+   * Optional per-entity-type domain-effect hooks. When a governed transition EXECUTES (mutates
+   * state), the kernel invokes the effect registered for its entity type INSIDE the governed
+   * transaction (after the state_transition journal append, before evidence/outbox), so the
+   * effect can persist DOMAIN facts atomically with the governed state. When absent, or when no
+   * effect is registered for the entity type, transitions behave exactly as before.
+   */
+  readonly domainEffects?: ReadonlyMap<string, TransitionDomainEffect>;
 }
 
 /**
@@ -85,6 +97,7 @@ export class GovernanceKernel {
     string,
     TransitionSerializationKeyResolver
   >;
+  private readonly domainEffects: ReadonlyMap<string, TransitionDomainEffect>;
 
   constructor(deps: GovernanceKernelDeps) {
     this.store = deps.store;
@@ -94,6 +107,7 @@ export class GovernanceKernel {
     this.outboxMaxRetries = deps.outboxMaxRetries ?? 10;
     this.workflowPlanner = deps.workflowPlanner;
     this.serializationKeyResolvers = deps.serializationKeyResolvers ?? new Map();
+    this.domainEffects = deps.domainEffects ?? new Map();
   }
 
   async transition(input: TransitionInput): Promise<TransitionResult> {
@@ -329,6 +343,24 @@ export class GovernanceKernel {
         this.audit(input, 'transition.executed', fromState, def.toState),
       );
 
+      // 2m-i) Domain effect (atomic): a registered per-entity-type effect persists DOMAIN facts
+      // (amounts, references, reconciliation outcomes) in the SAME governed transaction, so they
+      // commit/roll back with the state mutation, journal, audit, evidence, and outbox. Runs
+      // ONLY here on the executed branch, after the journal append. Its optional evidence
+      // manifest fragment is merged into the evidence metadata below.
+      const domainEffectResult = await this.applyDomainEffect(tx, {
+        tenantId,
+        entityType: input.entityType,
+        entityId: input.entityId,
+        trigger: input.trigger,
+        fromState,
+        toState: def.toState,
+        stateTransitionId,
+        actor: input.actor,
+        context: input.context,
+        payload: input.payload ?? {},
+      });
+
       // 2n) Evidence metadata for evidence-required (high-risk) transitions. When the caller
       // supplied a pre-computed payload binding (content hash + serialized storage ref), it is
       // persisted onto the metadata; otherwise the evidence remains metadata-only. The kernel
@@ -348,6 +380,9 @@ export class GovernanceKernel {
             actorId: input.actor.actorId,
             guardResults,
             recordedAt: this.clock.nowIso(),
+            ...(domainEffectResult?.evidenceManifest !== undefined
+              ? { domainEffect: domainEffectResult.evidenceManifest }
+              : {}),
           },
           createdBy: input.actor.actorId,
           ...(input.evidence?.contentHash !== undefined
@@ -660,6 +695,21 @@ export class GovernanceKernel {
         },
       });
 
+      // 13-i) Domain effect (atomic): mirror the direct-execute path so a registered
+      // per-entity-type effect persists DOMAIN facts in the SAME governed transaction here too.
+      const domainEffectResult = await this.applyDomainEffect(tx, {
+        tenantId,
+        entityType: req.entityType,
+        entityId: req.entityId,
+        trigger: req.trigger,
+        fromState: req.fromState,
+        toState: def.toState,
+        stateTransitionId,
+        actor: input.actor,
+        context,
+        payload: req.payload,
+      });
+
       // 14) Evidence metadata for evidence-required (high-risk) transitions.
       let evidenceObjectId: string | undefined;
       if (def.evidenceRequired) {
@@ -677,6 +727,9 @@ export class GovernanceKernel {
             transitionRequestId: req.id,
             guardResults,
             recordedAt: this.clock.nowIso(),
+            ...(domainEffectResult?.evidenceManifest !== undefined
+              ? { domainEffect: domainEffectResult.evidenceManifest }
+              : {}),
           },
           createdBy: input.actor.actorId,
         });
@@ -840,6 +893,23 @@ export class GovernanceKernel {
     for (const key of [...new Set(keys)].sort()) {
       await tx.acquireSerializationLock(key);
     }
+  }
+
+  /**
+   * Invoke the domain effect registered for the transition's entity type, if any, INSIDE the
+   * governed transaction. Called only on the executed (state-mutating) branch, after the
+   * journal append. Returns the effect's optional contribution (evidence manifest fragment), or
+   * undefined when no effect is registered. Any throw propagates and rolls back the whole
+   * governed transaction (state, journal, audit, evidence, outbox, and the domain writes).
+   */
+  private async applyDomainEffect(
+    tx: GovernanceTx,
+    ctx: DomainEffectContext,
+  ): Promise<DomainEffectResult | undefined> {
+    const effect = this.domainEffects.get(ctx.entityType);
+    if (effect === undefined) return undefined;
+    const result = await effect.apply(tx, ctx);
+    return result ?? undefined;
   }
 
   private toGuardInserts(

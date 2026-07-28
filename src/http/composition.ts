@@ -30,9 +30,23 @@ import { DomainBackedAffiliationGuardRepository } from '../domains/affiliation/D
 import { PgAffiliationApplicationStore } from '../domains/affiliation/PgAffiliationApplicationStore.js';
 import { AffiliationActiveStandingSerializationResolver } from '../domains/affiliation/AffiliationActiveStandingSerializationResolver.js';
 import { AFFILIATION_APPLICATION_ENTITY_TYPE } from '../domains/affiliation/index.js';
+import {
+  AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE,
+  DomainBackedFinancialGuardRepository,
+  FinancialObligationSerializationResolver,
+  PgFinancialClearanceReader,
+  PgFinancialObligationEffect,
+  PgFinancialObligationStore,
+  FinancialObligationService,
+} from '../domains/affiliation-finance/index.js';
 import { GuardRegistry } from '../governance/guards/GuardRegistry.js';
 import { registerAffiliationGuards } from '../governance/guards/handlers.js';
+import { registerFinancialObligationGuards } from '../governance/guards/financialHandlers.js';
+import { DefaultPermissionChecker } from '../governance/permissions/PermissionChecker.js';
+import { FinancialObligationPermissionChecker } from '../governance/permissions/FinancialObligationPermissionChecker.js';
 import { GovernanceKernel } from '../governance/kernel/GovernanceKernel.js';
+import type { TransitionSerializationKeyResolver } from '../governance/kernel/ports.js';
+import type { TransitionDomainEffect } from '../governance/kernel/ports.js';
 import { PgGovernanceStore } from '../governance/store/PgGovernanceStore.js';
 import { AffiliationWorkflowPlanner } from '../governance/workflow/AffiliationWorkflowPlanner.js';
 import { ApprovedWorkflowExecutionService } from '../governance/workflow/ApprovedWorkflowExecutionService.js';
@@ -72,31 +86,78 @@ import type { Server } from 'node:http';
 
 /**
  * Build the production-intended {@link GovernanceKernel} backed by PostgreSQL. Guards read
- * PERSISTED affiliation domain facts (never caller payloads); the review-workflow planner is
- * wired so approval-required transitions create two-tier review metadata atomically. Shared by
- * the domain command boundary and the approved-workflow execution path.
+ * PERSISTED domain facts (never caller payloads); the review-workflow planner is wired so
+ * approval-required transitions create two-tier review metadata atomically. Shared by the
+ * domain command boundary and the approved-workflow execution path.
+ *
+ * A SINGLE shared kernel serves BOTH governed entity types — AffiliationApplication and
+ * AffiliationFinancialObligation:
+ *  - Affiliation guards read affiliation facts; the AFFILIATION_FINANCIALLY_CLEARED guard also
+ *    consults the finance clearance reader so activation is blocked while a blocking obligation
+ *    is unresolved.
+ *  - Financial guards read persisted reconciliation facts; the financial permission checker
+ *    enforces segregated financial authority (falling back to the default checker for
+ *    affiliation transitions).
+ *  - The financial domain effect persists obligation facts INSIDE the governed transaction, and
+ *    the financial serialization resolver serializes concurrent reconciliation on one obligation.
  */
 export function createPgGovernanceKernel(): GovernanceKernel {
   const registry = new GuardRegistry();
   const affiliationStore = new PgAffiliationApplicationStore();
+  const financialStore = new PgFinancialObligationStore();
+
+  // Affiliation guards gain the finance clearance reader so activation observes financial state.
   registerAffiliationGuards(
     registry,
-    new DomainBackedAffiliationGuardRepository(affiliationStore),
+    new DomainBackedAffiliationGuardRepository(affiliationStore, new PgFinancialClearanceReader()),
   );
+  // Financial reconciliation guards read persisted amounts/confirmations.
+  registerFinancialObligationGuards(
+    registry,
+    new DomainBackedFinancialGuardRepository(financialStore),
+  );
+
+  const serializationKeyResolvers = new Map<string, TransitionSerializationKeyResolver>([
+    [
+      AFFILIATION_APPLICATION_ENTITY_TYPE,
+      new AffiliationActiveStandingSerializationResolver(affiliationStore),
+    ],
+    [
+      AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE,
+      new FinancialObligationSerializationResolver(),
+    ],
+  ]);
+
+  // Financial facts persist atomically with the governed transition via the kernel effect port.
+  const domainEffects = new Map<string, TransitionDomainEffect>([
+    [AFFILIATION_FINANCIAL_OBLIGATION_ENTITY_TYPE, new PgFinancialObligationEffect()],
+  ]);
+
   return new GovernanceKernel({
     store: new PgGovernanceStore(),
     guards: registry,
     workflowPlanner: new AffiliationWorkflowPlanner(),
+    // Segregated financial authority for AffiliationFinancialObligation; default reviewer-class
+    // policy for every other entity type.
+    permissions: new FinancialObligationPermissionChecker(new DefaultPermissionChecker()),
     // Exactly-once activation: serialize concurrent transitions that grant ACTIVE affiliation
-    // standing (activate / reinstate) per tenant + subject + season via a transaction-scoped
-    // advisory lock, so at most one commits ACTIVE for a governed scope.
-    serializationKeyResolvers: new Map([
-      [
-        AFFILIATION_APPLICATION_ENTITY_TYPE,
-        new AffiliationActiveStandingSerializationResolver(affiliationStore),
-      ],
-    ]),
+    // standing (activate / reinstate) per tenant + subject + season, and concurrent reconciliation
+    // of ONE financial obligation, via transaction-scoped advisory locks.
+    serializationKeyResolvers,
+    domainEffects,
   });
+}
+
+/**
+ * Build the production-intended {@link FinancialObligationService} backed by PostgreSQL. Shares
+ * the SAME kernel wiring as the affiliation service (guards, effects, serialization, authority).
+ * The reconcile decision reads persisted amounts via the RLS-enforced financial store.
+ */
+export function createPgFinancialObligationService(): FinancialObligationService {
+  return new FinancialObligationService(
+    createPgGovernanceKernel(),
+    new PgFinancialObligationStore(),
+  );
 }
 
 /**
@@ -284,6 +345,7 @@ export function createPgAffiliationHttpServer(
   const telemetry = createTelemetry(config.observability);
   return createAffiliationHttpServer({
     executor: createPgAffiliationApplicationService(),
+    financialExecutor: createPgFinancialObligationService(),
     resolver: createAuthContextResolver(config),
     telemetry,
     evidence: createEvidenceHttpDeps(telemetry),

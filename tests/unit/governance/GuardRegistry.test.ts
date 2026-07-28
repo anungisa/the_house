@@ -35,9 +35,10 @@ describe('GuardRegistry', () => {
   });
 
   it('exposes the required AffiliationApplication guard codes (placeholders)', () => {
-    expect(AFFILIATION_GUARD_CODES).toHaveLength(7);
+    expect(AFFILIATION_GUARD_CODES).toHaveLength(8);
     expect(AFFILIATION_GUARD_CODES).toContain('ACTOR_HAS_REVIEWER_SCOPE');
     expect(AFFILIATION_GUARD_CODES).toContain('AFFILIATION_FEES_PAID');
     expect(AFFILIATION_GUARD_CODES).toContain('AFFILIATION_UNIQUE_ACTIVE_FOR_SCOPE');
+    expect(AFFILIATION_GUARD_CODES).toContain('AFFILIATION_FINANCIALLY_CLEARED');
   });
 });

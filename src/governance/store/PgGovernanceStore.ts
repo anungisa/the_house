@@ -61,6 +61,16 @@ export class PgGovernanceStore implements GovernanceStore {
 class PgGovernanceTx implements GovernanceTx {
   constructor(private readonly client: QueryClient) {}
 
+  /**
+   * Escape hatch for a registered domain effect to write DOMAIN tables through THIS governed
+   * transaction's own connection. The connection already has `app.tenant_id` set (local to the
+   * transaction) so RLS is enforced, and its writes commit/roll back atomically with the
+   * governed state, journal, audit, evidence, and outbox.
+   */
+  raw(): QueryClient {
+    return this.client;
+  }
+
   async acquireSerializationLock(key: string): Promise<void> {
     // Transaction-scoped advisory lock on THIS transaction's connection. Auto-released on
     // COMMIT/ROLLBACK, so it serializes concurrent governed transitions that share `key`
