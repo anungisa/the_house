@@ -11,8 +11,10 @@ import { AuthorityExpiredPage } from '../routes/AuthorityExpiredPage';
 import { ServiceUnavailablePage } from '../routes/ServiceUnavailablePage';
 import { RequireAffiliation } from './guards';
 import { RequireAffiliationReview } from './guards';
+import { RequireAffiliationFinance } from './guards';
 import { AffiliationReviewQueuePage } from '../routes/review/AffiliationReviewQueuePage';
 import { AffiliationReviewCasePage } from '../routes/review/AffiliationReviewCasePage';
+import { FinancialObligationQueuePage } from '../routes/finance/FinancialObligationQueuePage';
 import type { ButtonTelemetry } from '../observability/telemetry';
 
 /**
@@ -52,6 +54,16 @@ export function AppRoutes({ telemetry }: { readonly telemetry: ButtonTelemetry }
         >
           <Route index element={<AffiliationReviewQueuePage />} />
           <Route path=":applicationId" element={<AffiliationReviewCasePage />} />
+        </Route>
+        <Route
+          path="finance"
+          element={
+            <RequireAffiliationFinance telemetry={telemetry}>
+              <Outlet />
+            </RequireAffiliationFinance>
+          }
+        >
+          <Route index element={<FinancialObligationQueuePage />} />
         </Route>
         <Route path="access-denied" element={<AccessDeniedPage />} />
         <Route path="authority-expired" element={<AuthorityExpiredPage />} />

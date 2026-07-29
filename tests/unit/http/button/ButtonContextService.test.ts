@@ -198,4 +198,17 @@ describe('ButtonContextService', () => {
     expect(view.accessibleOrganizations).toHaveLength(0);
     expect(view.supportReference).toBe('BTN-NOACCESS');
   });
+
+  it('(11) derives the bounded finance-workbench capability from trusted financial authority', async () => {
+    const svc = buildService([]);
+    const view = await svc.resolve(
+      auth(TENANT_A, {
+        roleKeys: ['financial_reconciler'],
+        organizationId: '22222222-2222-4222-8222-222222222222',
+      }),
+      {},
+    );
+    expect(view.capabilities).toContain(ButtonCapability.ReviewAffiliationFinance);
+    expect(view.capabilities).not.toContain(ButtonCapability.ReviewAffiliation);
+  });
 });

@@ -199,6 +199,29 @@ export interface AffiliationSubmissionState {
   readonly openCorrection?: CorrectionRequestView;
 }
 
+export interface FinancialObligationQueueItem {
+  readonly obligationId: string;
+  readonly affiliationApplicationId: string;
+  readonly season: string;
+  readonly obligationType: string;
+  readonly assessmentBasis: string;
+  readonly assessmentVersion: number;
+  readonly assessedAmount: string;
+  readonly currency: string;
+  readonly blocking: boolean;
+  readonly lifecycleState: string;
+  readonly hasAccountingConfirmation: boolean;
+  readonly canReconcile: boolean;
+  readonly confirmedAmount?: string;
+  readonly confirmedCurrency?: string;
+}
+
+export interface FinancialReconciliationResult {
+  readonly obligationId: string;
+  readonly toState?: string;
+  readonly replayed?: boolean;
+}
+
 /** Stable, non-leaking error categories the affiliation UI can branch on. */
 export type AffiliationErrorCategory =
   | 'unauthenticated'

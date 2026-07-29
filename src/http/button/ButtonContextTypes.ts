@@ -38,6 +38,8 @@ export const ButtonCapability = {
   ViewAffiliation: 'affiliation.view',
   /** May open the resource-scoped affiliation review workbench. */
   ReviewAffiliation: 'affiliation.review',
+  /** May open the tenant- and scope-bounded financial reconciliation workbench. */
+  ReviewAffiliationFinance: 'affiliation.finance.review',
 } as const;
 export type ButtonCapability = (typeof ButtonCapability)[keyof typeof ButtonCapability];
 

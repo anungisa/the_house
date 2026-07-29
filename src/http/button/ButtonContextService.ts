@@ -322,6 +322,22 @@ export class ButtonContextService {
     ) {
       capabilities.push(ButtonCapability.ReviewAffiliation);
     }
+    if (
+      actor.roleKeys.some((role) =>
+        [
+          'financial_assessor',
+          'financial_assessment_reviser',
+          'financial_provider',
+          'financial_accounting',
+          'financial_reconciler',
+          'financial_waiver_authority',
+          'admin',
+          'platform_admin',
+        ].includes(role),
+      )
+    ) {
+      capabilities.push(ButtonCapability.ReviewAffiliationFinance);
+    }
     return capabilities;
   }
 

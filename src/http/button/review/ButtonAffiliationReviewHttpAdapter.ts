@@ -90,7 +90,13 @@ export async function handleAffiliationReviewQueue(
   try {
     const auth = await resolveOrganizationAuth(resolver, request.headers);
     const state = request.query['state'];
-    if (state !== undefined && state !== 'submitted' && state !== 'under_review') {
+    if (
+      state !== undefined &&
+      state !== 'submitted' &&
+      state !== 'under_review' &&
+      state !== 'approved' &&
+      state !== 'active'
+    ) {
       throw new AppError(ErrorCode.INVALID_INPUT, "Unknown review queue 'state'.");
     }
     const filter: AffiliationReviewQueueFilter = {

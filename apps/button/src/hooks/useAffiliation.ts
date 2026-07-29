@@ -22,7 +22,37 @@ export const affiliationKeys = {
     ['affiliation', 'decision-state', applicationId] as const,
   submissionState: (applicationId: string) =>
     ['affiliation', 'submission-state', applicationId] as const,
+  financialObligations: () => ['affiliation', 'financial-obligations'] as const,
 };
+
+export function useFinancialObligations() {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.financialObligations(),
+    queryFn: () => {
+      if (client.listFinancialObligations === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Financial workbench is unavailable.');
+      }
+      return client.listFinancialObligations();
+    },
+    retry: retryTransient,
+  });
+}
+
+export function useReconcileFinancialObligation() {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (input: { obligationId: string; reason: string }) => {
+      if (client.reconcileFinancialObligation === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Financial reconciliation is unavailable.');
+      }
+      return client.reconcileFinancialObligation(input.obligationId, input.reason);
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: affiliationKeys.financialObligations() }),
+  });
+}
 
 /** Map any thrown value to a stable, non-leaking error category. */
 export function toAffiliationCategory(error: unknown): AffiliationErrorCategory | undefined {
