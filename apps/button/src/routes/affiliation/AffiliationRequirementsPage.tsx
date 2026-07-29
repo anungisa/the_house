@@ -106,6 +106,18 @@ export function AffiliationRequirementsPage(): JSX.Element {
       <h1 id="requirements-heading">{t('affiliation.requirements.heading')}</h1>
       <p>{t('affiliation.requirements.intro')}</p>
 
+      {application.lifecycleStatus !== 'draft' ? (
+        <section className="affiliation-card" aria-labelledby="outcome-heading">
+          <h2 id="outcome-heading">{t('affiliation.outcome.heading')}</h2>
+          <p role="status">
+            {t(`affiliation.outcome.${application.lifecycleStatus}` as TranslationKey)}
+          </p>
+          {application.lifecycleStatus === 'active' ? (
+            <p>{t('affiliation.outcome.activeConfirmation')}</p>
+          ) : null}
+        </section>
+      ) : null}
+
       <p className="affiliation-progress" data-testid="requirements-progress" role="status">
         {t('affiliation.requirements.progress', {
           completed: String(completeness.completedCount),

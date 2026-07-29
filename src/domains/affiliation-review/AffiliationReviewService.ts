@@ -73,7 +73,7 @@ export class AffiliationReviewService {
         organization_id: string | null;
         season_id: string;
         application_type: string | null;
-        current_state: 'submitted' | 'under_review';
+        current_state: 'submitted' | 'under_review' | 'approved' | 'active';
         submitted_at: unknown;
         sequence: number;
         reviewer_user_id: string | null;
@@ -95,7 +95,7 @@ export class AffiliationReviewService {
       LEFT JOIN affiliation.review_assignment ra
              ON ra.tenant_id = a.tenant_id AND ra.application_id = a.id
             AND ra.released_at IS NULL
-          WHERE es.current_state IN ('submitted', 'under_review')
+          WHERE es.current_state IN ('submitted', 'under_review', 'approved', 'active')
             AND ($1::text IS NULL OR a.season_id = $1)
             AND ($2::text IS NULL OR es.current_state = $2)
             AND (
@@ -204,10 +204,13 @@ export class AffiliationReviewService {
     applicationId: string,
   ): Promise<AffiliationReviewCase> {
     assertReviewer(actor);
-    const visible = await this.listQueue(tenantId, actor, { state: 'under_review' });
+    const visible = await this.listQueue(tenantId, actor);
     const queueItem = visible.find((candidate) => candidate.applicationId === applicationId);
+    const lifecycleState = queueItem?.lifecycleState;
     if (
       queueItem === undefined ||
+      lifecycleState === undefined ||
+      lifecycleState === 'submitted' ||
       queueItem.assignedReviewerUserId === undefined ||
       (!isGlobalReviewer(actor) &&
         !isTierReviewer(actor) &&
@@ -322,7 +325,7 @@ export class AffiliationReviewService {
           : {}),
         seasonId: queueItem.seasonId,
         ...(queueItem.pathway !== undefined ? { pathway: queueItem.pathway } : {}),
-        lifecycleState: 'under_review',
+        lifecycleState,
         submissionSequence: queueItem.submissionSequence,
         submittedAt: queueItem.submittedAt,
         assignedReviewerUserId,

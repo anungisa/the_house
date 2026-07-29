@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import type { AffiliationDecisionService } from '../../../../../src/domains/affiliation-review/index.js';
 import {
+  handleAffiliationActivation,
   handleAffiliationDecisionExecute,
   handleAffiliationDecisionProposal,
   handleAffiliationDecisionState,
@@ -136,5 +137,35 @@ describe('Button affiliation decision HTTP adapter', () => {
     );
     expect(invalid.status).toBe(400);
     expect(invalid.body['code']).toBe('INVALID_INPUT');
+  });
+
+  it('activates an approved application through the governed service', async () => {
+    const activate = vi.fn().mockResolvedValue({
+      lifecycleState: 'active',
+      idempotentReplay: false,
+    });
+    const result = await handleAffiliationActivation(
+      { activate } as unknown as AffiliationDecisionService,
+      {
+        headers: { ...headers(), 'idempotency-key': `activate:${APPLICATION}` },
+        query: {},
+        params: { applicationId: APPLICATION },
+        body: { reason: 'Activate approved affiliation.' },
+      },
+      'req-activate',
+    );
+
+    expect(result.status).toBe(200);
+    expect(result.body['activation']).toEqual({
+      lifecycleState: 'active',
+      idempotentReplay: false,
+    });
+    expect(activate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        tenantId: TENANT,
+        applicationId: APPLICATION,
+        idempotencyKey: `activate:${APPLICATION}`,
+      }),
+    );
   });
 });

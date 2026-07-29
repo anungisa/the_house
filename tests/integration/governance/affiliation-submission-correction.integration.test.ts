@@ -333,12 +333,12 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
       tenantId,
       applicationId: draft.applicationId,
       actor: reviewer,
-      outcome: 'reject',
-      reason: 'Submitted evidence does not establish eligibility.',
-      idempotencyKey: `decision-proposal:${draft.applicationId}:reject`,
+      outcome: 'approve',
+      reason: 'Submitted evidence establishes eligibility.',
+      idempotencyKey: `decision-proposal:${draft.applicationId}:approve`,
     });
     expect(proposed).toMatchObject({
-      outcome: 'reject',
+      outcome: 'approve',
       status: 'pending',
       currentStepCode: 'regional_signoff',
       executable: false,
@@ -365,7 +365,7 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
       workflowInstanceId: proposed.workflowInstanceId,
       stepCode: 'regional_signoff',
       decision: 'approve',
-      reason: 'Regional review supports the proposed rejection.',
+      reason: 'Regional review supports the proposed approval.',
     });
     expect(regionalApproved.currentStepCode).toBe('national_signoff');
     const national = {
@@ -381,7 +381,7 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
       workflowInstanceId: proposed.workflowInstanceId,
       stepCode: 'national_signoff',
       decision: 'approve',
-      reason: 'National review confirms the proposed rejection.',
+      reason: 'National review confirms the proposed approval.',
     });
     expect(fullyApproved).toMatchObject({ status: 'approved', executable: true });
     const executed = await decisionService.execute({
@@ -391,7 +391,31 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
       workflowInstanceId: proposed.workflowInstanceId,
       idempotencyKey: `decision-execution:${proposed.workflowInstanceId}`,
     });
-    expect(executed).toEqual({ lifecycleState: 'rejected', idempotentReplay: false });
+    expect(executed).toEqual({ lifecycleState: 'approved', idempotentReplay: false });
+    await withTenantTransaction(tenantId, (client) =>
+      client.query(
+        `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
+         VALUES ($1, $2, true)
+         ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
+        [tenantId, SEASON],
+      ),
+    );
+    const activated = await decisionService.activate({
+      tenantId,
+      applicationId: draft.applicationId,
+      actor: reviewer,
+      idempotencyKey: `activation:${draft.applicationId}`,
+      reason: 'Activate the approved affiliation.',
+    });
+    expect(activated).toEqual({ lifecycleState: 'active', idempotentReplay: false });
+    await expect(
+      decisionService.activate({
+        tenantId,
+        applicationId: draft.applicationId,
+        actor: reviewer,
+        idempotencyKey: `activation:${draft.applicationId}`,
+      }),
+    ).resolves.toEqual({ lifecycleState: 'active', idempotentReplay: true });
 
     await withTenantTransaction(tenantId, async (client) => {
       const state = await client.query<{ current_state: string }>(
@@ -408,7 +432,7 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
            FROM affiliation.review_assignment WHERE application_id = $1`,
         [draft.applicationId],
       );
-      expect(state[0]?.current_state).toBe('rejected');
+      expect(state[0]?.current_state).toBe('active');
       expect(assignment[0]).toMatchObject({
         reviewer_user_id: reviewerUserId,
         reviewer_scope_id: organizationId,

@@ -115,6 +115,7 @@ import {
   type ButtonAffiliationHttpResult,
 } from './button/affiliation/index.js';
 import {
+  handleAffiliationActivation,
   handleAffiliationDecisionExecute,
   handleAffiliationDecisionProposal,
   handleAffiliationDecisionState,
@@ -321,6 +322,8 @@ const BUTTON_AFFILIATION_TIER_DECISION_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/tier-decisions\/?$/;
 const BUTTON_AFFILIATION_DECISION_EXECUTE_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/decision-executions\/?$/;
+const BUTTON_AFFILIATION_ACTIVATION_ROUTE =
+  /^\/v1\/button\/affiliation\/applications\/([^/]+)\/activations\/?$/;
 
 /** GET list of quarantine events (exact path). */
 const QUARANTINE_LIST_PATH = '/v1/evidence/quarantine';
@@ -964,6 +967,11 @@ async function handleButtonAffiliationRoute(
       route: BUTTON_AFFILIATION_DECISION_EXECUTE_ROUTE,
       method: 'POST',
       handler: handleAffiliationDecisionExecute,
+    },
+    {
+      route: BUTTON_AFFILIATION_ACTIVATION_ROUTE,
+      method: 'POST',
+      handler: handleAffiliationActivation,
     },
   ];
   for (const decisionRoute of decisionRoutes) {

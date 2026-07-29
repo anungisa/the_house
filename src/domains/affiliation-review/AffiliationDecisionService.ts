@@ -224,4 +224,46 @@ export class AffiliationDecisionService {
       idempotentReplay: result.status === 'idempotent_replay',
     };
   }
+
+  async activate(input: {
+    tenantId: string;
+    applicationId: string;
+    actor: AffiliationReviewerActor;
+    idempotencyKey: string;
+    reason?: string;
+  }): Promise<{ readonly lifecycleState: string; readonly idempotentReplay: boolean }> {
+    const reviewCase = await this.assignedCase(input.tenantId, input.actor, input.applicationId);
+    if (reviewCase.lifecycleState === 'active') {
+      return { lifecycleState: 'active', idempotentReplay: true };
+    }
+    if (reviewCase.lifecycleState !== 'approved') {
+      throw new AppError(
+        ErrorCode.AFFILIATION_REVIEW_CONFLICT,
+        'Only an approved affiliation application can be activated.',
+      );
+    }
+    const result = await this.transitions.activateAffiliationApplication({
+      tenantId: input.tenantId,
+      applicationId: input.applicationId,
+      actor: transitionActor(input.actor),
+      context: {
+        seasonId: reviewCase.seasonId,
+        ...(reviewCase.organizationId !== undefined
+          ? { organizationId: reviewCase.organizationId }
+          : {}),
+      },
+      idempotencyKey: input.idempotencyKey,
+      ...(input.reason !== undefined ? { reason: input.reason } : {}),
+    });
+    if (result.status !== 'executed') {
+      throw new AppError(
+        ErrorCode.AFFILIATION_REVIEW_CONFLICT,
+        'The approved affiliation could not be activated.',
+      );
+    }
+    return {
+      lifecycleState: result.toState ?? 'active',
+      idempotentReplay: result.replayed === true,
+    };
+  }
 }

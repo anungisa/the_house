@@ -100,6 +100,9 @@ export interface AffiliationApiClient {
     applicationId: string,
     state: AffiliationDecisionState,
   ): Promise<{ lifecycleState: string; idempotentReplay: boolean }>;
+  activate?(
+    applicationId: string,
+  ): Promise<{ lifecycleState: string; idempotentReplay: boolean }>;
   getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
   resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
@@ -389,6 +392,25 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
     );
   }
 
+  async activate(
+    applicationId: string,
+  ): Promise<{ lifecycleState: string; idempotentReplay: boolean }> {
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/activations`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'idempotency-key': `affiliation-activation-${applicationId}`,
+        },
+        body: JSON.stringify({ reason: 'Activate approved affiliation.' }),
+      },
+      (body) =>
+        (body as { activation: { lifecycleState: string; idempotentReplay: boolean } }).activation,
+    );
+  }
+
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
     return this.request(
       `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/submission-state`,
@@ -487,9 +509,13 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
   async getReviewCase(applicationId: string): Promise<AffiliationReviewCase> {
     const item = this.reviewQueue.find(
       (candidate) =>
-        candidate.applicationId === applicationId && candidate.lifecycleState === 'under_review',
+        candidate.applicationId === applicationId && candidate.lifecycleState !== 'submitted',
     );
+    const lifecycleState = item?.lifecycleState;
     if (item?.assignedReviewerUserId === undefined) {
+      throw new AffiliationApiError('not-found', 404, 'Affiliation application not found.');
+    }
+    if (lifecycleState === undefined || lifecycleState === 'submitted') {
       throw new AffiliationApiError('not-found', 404, 'Affiliation application not found.');
     }
     return {
@@ -497,7 +523,7 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
       ...(item.organizationId !== undefined ? { organizationId: item.organizationId } : {}),
       seasonId: item.seasonId,
       ...(item.pathway !== undefined ? { pathway: item.pathway } : {}),
-      lifecycleState: 'under_review',
+      lifecycleState,
       submissionSequence: item.submissionSequence,
       submittedAt: item.submittedAt,
       assignedReviewerUserId: item.assignedReviewerUserId,
@@ -614,11 +640,35 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
   }
 
   async executeDecision(
-    _applicationId: string,
+    applicationId: string,
     state: AffiliationDecisionState,
   ): Promise<{ lifecycleState: string; idempotentReplay: boolean }> {
     this.decisionState = { ...state, executable: false, executed: true };
-    return { lifecycleState: state.outcome === 'approve' ? 'approved' : 'rejected', idempotentReplay: false };
+    const lifecycleState = state.outcome === 'approve' ? 'approved' : 'rejected';
+    if (lifecycleState === 'approved') {
+      this.reviewQueue = this.reviewQueue.map((item) =>
+        item.applicationId === applicationId ? { ...item, lifecycleState: 'approved' } : item,
+      );
+    }
+    return { lifecycleState, idempotentReplay: false };
+  }
+
+  async activate(
+    applicationId: string,
+  ): Promise<{ lifecycleState: string; idempotentReplay: boolean }> {
+    const item = this.reviewQueue.find((candidate) => candidate.applicationId === applicationId);
+    if (item?.lifecycleState === 'active') {
+      return { lifecycleState: 'active', idempotentReplay: true };
+    }
+    if (item?.lifecycleState !== 'approved') {
+      throw new AffiliationApiError('version-conflict', 409, 'Application is not approved.');
+    }
+    this.reviewQueue = this.reviewQueue.map((candidate) =>
+      candidate.applicationId === applicationId
+        ? { ...candidate, lifecycleState: 'active' }
+        : candidate,
+    );
+    return { lifecycleState: 'active', idempotentReplay: false };
   }
 
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {

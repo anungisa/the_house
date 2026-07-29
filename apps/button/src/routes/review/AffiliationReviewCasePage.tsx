@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import {
   useAffiliationReviewCase,
+  useActivateAffiliation,
   useAffiliationDecisionState,
   useExecuteAffiliationDecision,
   useOpenAffiliationCorrection,
@@ -29,11 +30,13 @@ export function AffiliationReviewCasePage(): JSX.Element {
   const proposeDecision = useProposeAffiliationDecision(applicationId ?? '');
   const recordTierDecision = useRecordAffiliationTierDecision(applicationId ?? '');
   const executeDecision = useExecuteAffiliationDecision(applicationId ?? '');
+  const activate = useActivateAffiliation(applicationId ?? '');
   const [requirementCode, setRequirementCode] = useState('');
   const [reason, setReason] = useState('');
   const [outcome, setOutcome] = useState<'approve' | 'reject'>('approve');
   const [decisionReason, setDecisionReason] = useState('');
   const [executedState, setExecutedState] = useState<string>();
+  const [activated, setActivated] = useState(false);
 
   if (reviewCase.isLoading) {
     return (
@@ -125,6 +128,7 @@ export function AffiliationReviewCasePage(): JSX.Element {
         ))}
       </ol>
 
+      {data.lifecycleState === 'under_review' ? (
       <form onSubmit={submit} aria-labelledby="correction-heading">
         <h2 id="correction-heading">{t('review.case.correctionHeading')}</h2>
         <label htmlFor="correction-requirement">{t('review.case.correctionRequirement')}</label>
@@ -161,6 +165,7 @@ export function AffiliationReviewCasePage(): JSX.Element {
           </button>
         )}
       </form>
+      ) : null}
 
       <section aria-labelledby="decision-heading">
         <h2 id="decision-heading">{t('review.decision.heading')}</h2>
@@ -273,6 +278,29 @@ export function AffiliationReviewCasePage(): JSX.Element {
           <p role="status">{t('review.decision.rejected')}</p>
         )}
       </section>
+
+      {data.lifecycleState === 'approved' || data.lifecycleState === 'active' || executedState === 'approved' ? (
+        <section aria-labelledby="activation-heading">
+          <h2 id="activation-heading">{t('review.activation.heading')}</h2>
+          {data.lifecycleState === 'active' || activated ? (
+            <p role="status">{t('review.activation.complete')}</p>
+          ) : (
+            <>
+              <p>{t('review.activation.ready')}</p>
+              <button
+                type="button"
+                disabled={activate.isPending}
+                onClick={() => activate.mutate(undefined, { onSuccess: () => setActivated(true) })}
+              >
+                {activate.isPending
+                  ? t('review.activation.activating')
+                  : t('review.activation.activate')}
+              </button>
+              {activate.error ? <p role="alert">{t('review.activation.error')}</p> : null}
+            </>
+          )}
+        </section>
+      ) : null}
     </section>
   );
 }

@@ -127,7 +127,7 @@ export interface AffiliationReviewQueueItem {
   readonly organizationId?: string;
   readonly seasonId: string;
   readonly pathway?: string;
-  readonly lifecycleState: 'submitted' | 'under_review';
+  readonly lifecycleState: 'submitted' | 'under_review' | 'approved' | 'active';
   readonly submittedAt: string;
   readonly submissionSequence: number;
   readonly assignedReviewerUserId?: string;
@@ -139,7 +139,7 @@ export interface AffiliationReviewCase {
   readonly organizationId?: string;
   readonly seasonId: string;
   readonly pathway?: string;
-  readonly lifecycleState: 'under_review';
+  readonly lifecycleState: 'under_review' | 'approved' | 'active';
   readonly submissionSequence: number;
   readonly submittedAt: string;
   readonly assignedReviewerUserId: string;
