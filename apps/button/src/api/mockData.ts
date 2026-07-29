@@ -18,6 +18,7 @@ import {
 export type MockScenario =
   | 'representative'
   | 'reviewer'
+  | 'finance'
   | 'no-authority'
   | 'expired'
   | 'revoked'
@@ -82,6 +83,18 @@ export function mockContextForScenario(
       availableSeasons: SEASONS,
       currentContext: null,
       capabilities: [ButtonCapability.ReviewAffiliation],
+    };
+  }
+
+  if (scenario === 'finance') {
+    return {
+      user: { displayName: 'finance.displayNameFallback', locale },
+      locale,
+      representativeAuthorities: [],
+      accessibleOrganizations: [ORG],
+      availableSeasons: SEASONS,
+      currentContext: null,
+      capabilities: [ButtonCapability.ReviewAffiliationFinance],
     };
   }
 

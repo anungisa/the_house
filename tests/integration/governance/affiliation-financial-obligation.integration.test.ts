@@ -7,6 +7,7 @@ import pg from 'pg';
 import { createPgGovernanceKernel } from '../../../src/http/composition.js';
 import { FinancialObligationService } from '../../../src/domains/affiliation-finance/index.js';
 import { PgFinancialObligationStore } from '../../../src/domains/affiliation-finance/index.js';
+import { FinancialObligationReviewService } from '../../../src/domains/affiliation-finance/index.js';
 import { ErrorCode } from '../../../src/shared/errors/AppError.js';
 import {
   closePool,
@@ -237,6 +238,7 @@ d('AffiliationFinancialObligation governed slice (integration)', () => {
     const svc = makeService(createPgGovernanceKernel());
     const obligationId = randomUUID();
     const applicationId = randomUUID();
+    await seedApplication(applicationId);
     await svc.assessObligation(assessReq(obligationId, applicationId, { amount: '100.00' }));
     await svc.acknowledgeObligation({
       tenantId: TENANT_A,
@@ -253,6 +255,23 @@ d('AffiliationFinancialObligation governed slice (integration)', () => {
       reason: 'accounting confirmation',
       details: { externalReference: 'ACC-1', amount: '100.00', currency: 'CAD' },
     });
+
+    const review = new FinancialObligationReviewService();
+    const confirmedQueue = await review.listQueue(TENANT_A, {
+      userId: randomUUID(),
+      roleKeys: ['admin'],
+    });
+    expect(confirmedQueue).toContainEqual(
+      expect.objectContaining({
+        obligationId,
+        affiliationApplicationId: applicationId,
+        lifecycleState: 'confirmed',
+        assessedAmount: '100.00',
+        confirmedAmount: '100.00',
+        hasAccountingConfirmation: true,
+        canReconcile: true,
+      }),
+    );
     const recon = await svc.reconcileObligation({
       tenantId: TENANT_A,
       obligationId,
@@ -262,6 +281,13 @@ d('AffiliationFinancialObligation governed slice (integration)', () => {
     });
     expect(recon.status).toBe('executed');
     if (recon.status === 'executed') expect(recon.toState).toBe('reconciled');
+    const reconciledQueue = await review.listQueue(TENANT_A, {
+      userId: randomUUID(),
+      roleKeys: ['admin'],
+    });
+    expect(reconciledQueue.find((item) => item.obligationId === obligationId)?.lifecycleState).toBe(
+      'reconciled',
+    );
 
     expect(
       await count(

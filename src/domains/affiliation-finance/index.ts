@@ -150,4 +150,10 @@ export {
   type FinancialReconciliationDecisionPort,
 } from './FinancialObligationService.js';
 
+export { FinancialObligationReviewService } from './FinancialObligationReviewService.js';
+export type {
+  FinancialObligationQueueItem,
+  FinancialReviewerActor,
+} from './FinancialObligationReviewTypes.js';
+
 export { handleFinancialObligationTransition } from './FinancialObligationHandler.js';

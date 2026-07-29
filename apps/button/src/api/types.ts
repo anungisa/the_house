@@ -14,6 +14,7 @@ export const ButtonCapability = {
   SelectContext: 'context.select',
   ViewAffiliation: 'affiliation.view',
   ReviewAffiliation: 'affiliation.review',
+  ReviewAffiliationFinance: 'affiliation.finance.review',
 } as const;
 export type ButtonCapability = (typeof ButtonCapability)[keyof typeof ButtonCapability];
 

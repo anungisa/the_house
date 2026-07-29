@@ -26,6 +26,8 @@ import {
   type CorrectionReason,
   type CorrectionRequestView,
   type AffiliationSubmissionState,
+  type FinancialObligationQueueItem,
+  type FinancialReconciliationResult,
 } from './affiliationTypes';
 import { AffiliationMockStore } from './affiliationMockData';
 
@@ -103,6 +105,11 @@ export interface AffiliationApiClient {
   activate?(
     applicationId: string,
   ): Promise<{ lifecycleState: string; idempotentReplay: boolean }>;
+  listFinancialObligations?(): Promise<readonly FinancialObligationQueueItem[]>;
+  reconcileFinancialObligation?(
+    obligationId: string,
+    reason: string,
+  ): Promise<FinancialReconciliationResult>;
   getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
   resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
@@ -411,6 +418,33 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
     );
   }
 
+  async listFinancialObligations(): Promise<readonly FinancialObligationQueueItem[]> {
+    return this.request(
+      '/v1/button/affiliation/financial-obligations',
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { items: readonly FinancialObligationQueueItem[] }).items,
+    );
+  }
+
+  async reconcileFinancialObligation(
+    obligationId: string,
+    reason: string,
+  ): Promise<FinancialReconciliationResult> {
+    return this.request(
+      `/v1/button/affiliation/financial-obligations/${encodeURIComponent(obligationId)}/reconciliations`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'idempotency-key': `financial-reconciliation-${obligationId}`,
+        },
+        body: JSON.stringify({ reason }),
+      },
+      (body) => body as FinancialReconciliationResult,
+    );
+  }
+
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
     return this.request(
       `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/submission-state`,
@@ -455,6 +489,24 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
   ];
   constructor(private readonly store: AffiliationMockStore = new AffiliationMockStore()) {}
   private decisionState: AffiliationDecisionState | null = null;
+  private financialObligations: FinancialObligationQueueItem[] = [
+    {
+      obligationId: 'obligation-0001',
+      affiliationApplicationId: 'review-app-0001',
+      season: '2025-26',
+      obligationType: 'affiliation_fee',
+      assessmentBasis: 'Annual affiliation fee',
+      assessmentVersion: 1,
+      assessedAmount: '250.00',
+      currency: 'CAD',
+      blocking: true,
+      lifecycleState: 'confirmed',
+      hasAccountingConfirmation: true,
+      canReconcile: true,
+      confirmedAmount: '250.00',
+      confirmedCurrency: 'CAD',
+    },
+  ];
 
   async getOverview(input: GetOverviewInput): Promise<AffiliationOverview> {
     return this.store.overview(input.organizationId, input.season, input.pathway ?? 'new_affiliation');
@@ -669,6 +721,30 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
         : candidate,
     );
     return { lifecycleState: 'active', idempotentReplay: false };
+  }
+
+  async listFinancialObligations(): Promise<readonly FinancialObligationQueueItem[]> {
+    return this.financialObligations;
+  }
+
+  async reconcileFinancialObligation(
+    obligationId: string,
+  ): Promise<FinancialReconciliationResult> {
+    const obligation = this.financialObligations.find((item) => item.obligationId === obligationId);
+    if (obligation === undefined) {
+      throw new AffiliationApiError('not-found', 404, 'Financial obligation not found.');
+    }
+    if (!obligation.hasAccountingConfirmation) {
+      throw new AffiliationApiError('version-conflict', 409, 'Accounting confirmation is required.');
+    }
+    if (!obligation.canReconcile) {
+      throw new AffiliationApiError('access-denied', 403, 'Reconciliation authority is required.');
+    }
+    const replayed = obligation.lifecycleState === 'reconciled';
+    this.financialObligations = this.financialObligations.map((item) =>
+      item.obligationId === obligationId ? { ...item, lifecycleState: 'reconciled' } : item,
+    );
+    return { obligationId, toState: 'reconciled', replayed };
   }
 
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {

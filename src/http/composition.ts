@@ -46,6 +46,7 @@ import {
   PgFinancialObligationEffect,
   PgFinancialObligationStore,
   FinancialObligationService,
+  FinancialObligationReviewService,
 } from '../domains/affiliation-finance/index.js';
 import {
   AFFILIATION_STANDING_ENTITY_TYPE,
@@ -523,6 +524,7 @@ export function createPgAffiliationHttpServer(
     buttonAffiliation: createButtonAffiliationHttpDeps(telemetry),
     buttonReview: new AffiliationReviewService(createPgAffiliationApplicationService()),
     buttonDecision: createAffiliationDecisionService(),
+    buttonFinance: new FinancialObligationReviewService(),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),

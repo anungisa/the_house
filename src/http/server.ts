@@ -129,6 +129,11 @@ import type {
   AffiliationDecisionService,
   AffiliationReviewService,
 } from '../domains/affiliation-review/index.js';
+import type { FinancialObligationReviewService } from '../domains/affiliation-finance/index.js';
+import {
+  handleFinancialObligationQueue,
+  handleFinancialObligationReconciliation,
+} from './button/finance/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -259,6 +264,8 @@ export interface AffiliationHttpServerDeps {
   readonly buttonReview?: AffiliationReviewService;
   /** Optional assigned-case affiliation decision orchestration surface. */
   readonly buttonDecision?: AffiliationDecisionService;
+  /** Optional tenant-scoped Button financial obligation and reconciliation workbench. */
+  readonly buttonFinance?: FinancialObligationReviewService;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -310,6 +317,10 @@ const BUTTON_AFFILIATION_CORRECTION_RESUBMISSIONS_ROUTE =
 const BUTTON_AFFILIATION_APPLICATION_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/?$/;
 const BUTTON_AFFILIATION_REVIEW_QUEUE_PATH = '/v1/button/affiliation/review-queue';
+const BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH =
+  '/v1/button/affiliation/financial-obligations';
+const BUTTON_FINANCIAL_OBLIGATION_RECONCILIATION_ROUTE =
+  /^\/v1\/button\/affiliation\/financial-obligations\/([^/]+)\/reconciliations\/?$/;
 const BUTTON_AFFILIATION_REVIEW_START_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-start\/?$/;
 const BUTTON_AFFILIATION_REVIEW_CASE_ROUTE =
@@ -934,6 +945,8 @@ async function handleButtonAffiliationRoute(
   buttonAffiliation: ButtonAffiliationHttpDeps,
   buttonReview: AffiliationReviewService | undefined,
   buttonDecision: AffiliationDecisionService | undefined,
+  buttonFinance: FinancialObligationReviewService | undefined,
+  financialExecutor: FinancialObligationCommandExecutor | undefined,
   path: string,
   requestId: string,
   resolver: AuthContextResolver | undefined,
@@ -942,6 +955,42 @@ async function handleButtonAffiliationRoute(
   const method = req.method ?? 'GET';
   const headers = headerMap(req);
   const query = queryMap(req.url);
+
+  if (path === BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH) {
+    if (buttonFinance === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    return sendJson(
+      res,
+      await handleFinancialObligationQueue(buttonFinance, { headers }, requestId, resolver),
+    );
+  }
+
+  const financialReconciliationMatch =
+    BUTTON_FINANCIAL_OBLIGATION_RECONCILIATION_ROUTE.exec(path);
+  if (financialReconciliationMatch !== null) {
+    if (financialExecutor === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const body = await readJsonBody(req, maxBodyBytes);
+    return sendJson(
+      res,
+      await handleFinancialObligationReconciliation(
+        financialExecutor,
+        { headers, params: { obligationId: financialReconciliationMatch[1] }, body },
+        requestId,
+        resolver,
+      ),
+    );
+  }
 
   const decisionRoutes: ReadonlyArray<{
     route: RegExp;
@@ -1721,6 +1770,12 @@ function classifyRoute(method: string, path: string): string {
   if (path === ORGANIZATION_LIST_PATH) return `${method} /v1/organizations`;
   if (path === BUTTON_CONTEXT_PATH) return `${method} /v1/button/context`;
   if (path === BUTTON_AFFILIATION_OVERVIEW_PATH) return `${method} /v1/button/affiliation`;
+  if (path === BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH) {
+    return `${method} /v1/button/affiliation/financial-obligations`;
+  }
+  if (BUTTON_FINANCIAL_OBLIGATION_RECONCILIATION_ROUTE.test(path)) {
+    return `${method} /v1/button/affiliation/financial-obligations/:id/reconciliations`;
+  }
   if (BUTTON_AFFILIATION_DRAFT_ROUTE.test(path)) {
     return `${method} /v1/button/affiliation/applications/:id/draft`;
   }
@@ -1948,6 +2003,8 @@ async function handleRequest(
       deps.buttonAffiliation,
       deps.buttonReview,
       deps.buttonDecision,
+      deps.buttonFinance,
+      deps.financialExecutor,
       path,
       requestId,
       deps.resolver,
