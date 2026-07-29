@@ -265,6 +265,26 @@ export function useExecuteAffiliationDecision(applicationId: string) {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: affiliationKeys.decisionState(applicationId) });
       void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() });
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewCase(applicationId) });
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.application(applicationId) });
+    },
+  });
+}
+
+export function useActivateAffiliation(applicationId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => {
+      if (client.activate === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Activation is unavailable.');
+      }
+      return client.activate(applicationId);
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewQueue() });
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.reviewCase(applicationId) });
+      void queryClient.invalidateQueries({ queryKey: affiliationKeys.application(applicationId) });
     },
   });
 }

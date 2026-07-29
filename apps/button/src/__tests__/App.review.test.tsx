@@ -60,6 +60,13 @@ describe('Button affiliation reviewer workbench', () => {
 
     await user.click(screen.getByRole('button', { name: 'Execute governed outcome' }));
     expect(await screen.findByText(/Lifecycle state: approved/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/Activation will establish the authoritative affiliation exactly once/),
+    ).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Activate affiliation' }));
+    expect(
+      await screen.findByText(/Affiliation activated/),
+    ).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: 'Français' }));
     expect(
@@ -68,6 +75,7 @@ describe('Button affiliation reviewer workbench', () => {
     expect(
       screen.queryByRole('button', { name: 'Exécuter le résultat gouverné' }),
     ).not.toBeInTheDocument();
+    expect(await screen.findByText(/Affiliation activée/)).toBeInTheDocument();
   });
 
   it('denies a representative without reviewer capability', async () => {

@@ -86,8 +86,16 @@ export function AffiliationOverviewPage(): JSX.Element {
         </StatusPanel>
       ) : overview.data?.application ? (
         <section className="affiliation-card" aria-labelledby="affiliation-resume-heading">
-          <h2 id="affiliation-resume-heading">{t('affiliation.overview.resumeTitle')}</h2>
-          <p>{t('affiliation.overview.resumeBody')}</p>
+          <h2 id="affiliation-resume-heading">
+            {overview.data.application.lifecycleStatus === 'draft'
+              ? t('affiliation.overview.resumeTitle')
+              : t('affiliation.overview.trackTitle')}
+          </h2>
+          <p>
+            {overview.data.application.lifecycleStatus === 'draft'
+              ? t('affiliation.overview.resumeBody')
+              : t('affiliation.overview.trackBody')}
+          </p>
           <p className="affiliation-progress" data-testid="overview-progress">
             {t('affiliation.overview.progress', {
               completed: String(overview.data.application.completeness.completedCount),
@@ -95,7 +103,9 @@ export function AffiliationOverviewPage(): JSX.Element {
             })}
           </p>
           <button type="button" onClick={onResume}>
-            {t('affiliation.overview.resume')}
+            {overview.data.application.lifecycleStatus === 'draft'
+              ? t('affiliation.overview.resume')
+              : t('affiliation.overview.viewOutcome')}
           </button>
         </section>
       ) : (

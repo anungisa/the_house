@@ -128,6 +128,23 @@ describe('Button affiliation requirements experience', () => {
     expect(screen.getByText('Document constitutif')).toBeInTheDocument();
   });
 
+  it('shows an authoritative active-affiliation outcome to the representative', async () => {
+    const store = new AffiliationMockStore();
+    store.initiate('club-1', '2025-26', 'new_affiliation');
+    store.setLifecycleStatus('app-0001', 'active');
+    renderApp({
+      client: activeContextClient(),
+      affiliationClient: new MockAffiliationApiClient(store),
+      initialEntries: ['/button/affiliation/app-0001'],
+    });
+
+    await screen.findByRole('heading', { name: 'Affiliation outcome' });
+    expect(screen.getByText('Your affiliation is active.')).toBeInTheDocument();
+    expect(
+      screen.getByText(/authoritative affiliation for the selected season/),
+    ).toBeInTheDocument();
+  });
+
   it('recovers from a stale-version conflict by reloading the latest draft', async () => {
     const user = userEvent.setup();
     const store = new AffiliationMockStore();

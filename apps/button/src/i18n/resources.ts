@@ -108,6 +108,32 @@ const en = {
   'review.decision.executing': 'Executing outcome\u2026',
   'review.decision.executed': 'Governed outcome executed. Lifecycle state: {state}.',
   'review.decision.error': 'The governed decision action could not be completed.',
+  'review.activation.heading': 'Activate affiliation',
+  'review.activation.ready':
+    'The governed approval is complete. Activation will establish the authoritative affiliation exactly once.',
+  'review.activation.activate': 'Activate affiliation',
+  'review.activation.activating': 'Activating affiliation\u2026',
+  'review.activation.complete': 'Affiliation activated. Authoritative standing is being established.',
+  'review.activation.error':
+    'Activation could not be completed. Confirm the season and financial clearance, then try again.',
+  'review.queue.approved': 'Approved — activation required',
+  'review.queue.active': 'Active',
+  'affiliation.outcome.heading': 'Affiliation outcome',
+  'affiliation.outcome.submitted': 'Your application has been submitted.',
+  'affiliation.outcome.under_review': 'Your application is under review.',
+  'affiliation.outcome.approved': 'Your application was approved and is awaiting activation.',
+  'affiliation.outcome.active': 'Your affiliation is active.',
+  'affiliation.outcome.suspended': 'Your affiliation is suspended.',
+  'affiliation.outcome.rejected': 'Your application was not approved.',
+  'affiliation.outcome.revoked': 'Your affiliation was revoked.',
+  'affiliation.outcome.closed': 'This affiliation record is closed.',
+  'affiliation.outcome.archived': 'This affiliation record is archived.',
+  'affiliation.outcome.activeConfirmation':
+    'Your club now has an authoritative affiliation for the selected season.',
+  'affiliation.overview.trackTitle': 'Track your affiliation',
+  'affiliation.overview.trackBody':
+    'View the governed status and latest outcome for this application.',
+  'affiliation.overview.viewOutcome': 'View affiliation status',
 
   'affiliation.correction.heading': 'Correction requested',
   'affiliation.correction.intro':
@@ -346,6 +372,33 @@ const fr: Record<TranslationKey, string> = {
   'review.decision.executing': 'Ex\u00e9cution du r\u00e9sultat\u2026',
   'review.decision.executed': '\u00c9tat gouvern\u00e9 ex\u00e9cut\u00e9. \u00c9tat du cycle de vie : {state}.',
   'review.decision.error': 'L\u2019action de d\u00e9cision gouvern\u00e9e n\u2019a pas pu \u00eatre effectu\u00e9e.',
+  'review.activation.heading': 'Activer l\u2019affiliation',
+  'review.activation.ready':
+    'L\u2019approbation gouvern\u00e9e est termin\u00e9e. L\u2019activation \u00e9tablira l\u2019affiliation officielle une seule fois.',
+  'review.activation.activate': 'Activer l\u2019affiliation',
+  'review.activation.activating': 'Activation de l\u2019affiliation\u2026',
+  'review.activation.complete':
+    'Affiliation activ\u00e9e. Le statut officiel est en cours d\u2019\u00e9tablissement.',
+  'review.activation.error':
+    'L\u2019activation n\u2019a pas pu \u00eatre effectu\u00e9e. Confirmez la saison et l\u2019autorisation financi\u00e8re, puis r\u00e9essayez.',
+  'review.queue.approved': 'Approuv\u00e9e \u2014 activation requise',
+  'review.queue.active': 'Active',
+  'affiliation.outcome.heading': 'R\u00e9sultat de l\u2019affiliation',
+  'affiliation.outcome.submitted': 'Votre demande a \u00e9t\u00e9 soumise.',
+  'affiliation.outcome.under_review': 'Votre demande est en cours d\u2019examen.',
+  'affiliation.outcome.approved': 'Votre demande a \u00e9t\u00e9 approuv\u00e9e et attend son activation.',
+  'affiliation.outcome.active': 'Votre affiliation est active.',
+  'affiliation.outcome.suspended': 'Votre affiliation est suspendue.',
+  'affiliation.outcome.rejected': 'Votre demande n\u2019a pas \u00e9t\u00e9 approuv\u00e9e.',
+  'affiliation.outcome.revoked': 'Votre affiliation a \u00e9t\u00e9 r\u00e9voqu\u00e9e.',
+  'affiliation.outcome.closed': 'Ce dossier d\u2019affiliation est ferm\u00e9.',
+  'affiliation.outcome.archived': 'Ce dossier d\u2019affiliation est archiv\u00e9.',
+  'affiliation.outcome.activeConfirmation':
+    'Votre club d\u00e9tient maintenant une affiliation officielle pour la saison s\u00e9lectionn\u00e9e.',
+  'affiliation.overview.trackTitle': 'Suivre votre affiliation',
+  'affiliation.overview.trackBody':
+    'Consultez le statut gouvern\u00e9 et le dernier r\u00e9sultat de cette demande.',
+  'affiliation.overview.viewOutcome': 'Voir le statut de l\u2019affiliation',
 
   'affiliation.correction.heading': 'Correction demand\u00e9e',
   'affiliation.correction.intro':

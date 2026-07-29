@@ -9,6 +9,12 @@ export function AffiliationReviewQueuePage(): JSX.Element {
   usePageTitle('review.queue.title');
   const queue = useAffiliationReviewQueue();
   const start = useStartAffiliationReview();
+  const statusLabel = (state: 'submitted' | 'under_review' | 'approved' | 'active'): string => {
+    if (state === 'submitted') return t('review.queue.submitted');
+    if (state === 'under_review') return t('review.queue.underReview');
+    if (state === 'approved') return t('review.queue.approved');
+    return t('review.queue.active');
+  };
 
   if (queue.isLoading) {
     return (
@@ -59,9 +65,7 @@ export function AffiliationReviewQueuePage(): JSX.Element {
                 <div>
                   <dt>{t('review.queue.status')}</dt>
                   <dd>
-                    {item.lifecycleState === 'submitted'
-                      ? t('review.queue.submitted')
-                      : t('review.queue.underReview')}
+                    {statusLabel(item.lifecycleState)}
                   </dd>
                 </div>
                 <div>

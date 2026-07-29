@@ -182,3 +182,28 @@ export async function handleAffiliationDecisionExecute(
     return errorResult(error, requestId);
   }
 }
+
+export async function handleAffiliationActivation(
+  service: AffiliationDecisionService,
+  request: ButtonAffiliationReviewHttpRequest,
+  requestId: string = randomUUID(),
+  resolver: AuthContextResolver = DEFAULT_RESOLVER,
+): Promise<ButtonAffiliationReviewHttpResult> {
+  try {
+    const auth = await resolveOrganizationAuth(resolver, request.headers);
+    const body = bodyRecord(request.body);
+    const activation = await service.activate({
+      tenantId: auth.tenantId,
+      applicationId: value(request.params.applicationId, 'applicationId'),
+      actor: actorFromAuth(auth.actor),
+      idempotencyKey: value(
+        request.headers['idempotency-key'] ?? body['idempotencyKey'],
+        'Idempotency-Key',
+      ),
+      ...(typeof body['reason'] === 'string' ? { reason: body['reason'] } : {}),
+    });
+    return { status: 200, body: { status: 'ok', requestId, activation } };
+  } catch (error) {
+    return errorResult(error, requestId);
+  }
+}

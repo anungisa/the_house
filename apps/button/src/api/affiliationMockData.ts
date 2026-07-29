@@ -12,6 +12,7 @@
 import {
   AffiliationApiError,
   type AffiliationApplicationProjection,
+  type AffiliationLifecycleStatus,
   type AffiliationOverview,
   type CompletenessSummary,
   type DraftEvidenceLinkView,
@@ -108,7 +109,7 @@ interface DraftState {
   lastSavedAt: string;
   readonly responses: Map<string, Record<string, unknown>>;
   readonly evidence: Map<string, DraftEvidenceLinkView[]>;
-  lifecycleStatus: 'draft' | 'submitted';
+  lifecycleStatus: AffiliationLifecycleStatus;
 }
 
 function isAnswered(response: Record<string, unknown> | undefined): boolean {
@@ -278,6 +279,10 @@ export class AffiliationMockStore {
 
   getApplication(applicationId: string): AffiliationApplicationProjection {
     return project(this.require(applicationId));
+  }
+
+  setLifecycleStatus(applicationId: string, lifecycleStatus: AffiliationLifecycleStatus): void {
+    this.require(applicationId).lifecycleStatus = lifecycleStatus;
   }
 
   saveDraft(
