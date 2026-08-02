@@ -41,6 +41,13 @@ function makeAppConfig(mode: AuthMode): AppConfig {
       lockSeconds: 60,
       runOnce: false,
     },
+    standingProjectionWorker: {
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-standing-projection-worker',
+      runOnce: false,
+    },
     auth: { mode },
     evidenceStorage: { provider: 'memory', connectionString: '', containerName: '', requireHash: true, uploadMaxBytes: 10_485_760 },
     evidenceMalwareScanning: { mode: 'disabled', required: false, testSignaturesEnabled: false },

@@ -241,7 +241,7 @@ export function createPgStandingProjectionWorker(): StandingProjectionWorker {
   return new StandingProjectionWorker({
     source: new PgActivationEventSource(),
     orchestrator,
-    batchSize: config.outbox.batchSize,
+    batchSize: config.standingProjectionWorker.batchSize,
   });
 }
 

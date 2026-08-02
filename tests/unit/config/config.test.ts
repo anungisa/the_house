@@ -33,6 +33,11 @@ const CONFIG_KEYS = [
   'OUTBOX_WORKER_ID',
   'OUTBOX_WORKER_LOCK_SECONDS',
   'OUTBOX_WORKER_RUN_ONCE',
+  'STANDING_PROJECTION_WORKER_ENABLED',
+  'STANDING_PROJECTION_WORKER_INTERVAL_MS',
+  'STANDING_PROJECTION_WORKER_BATCH_SIZE',
+  'STANDING_PROJECTION_WORKER_ID',
+  'STANDING_PROJECTION_WORKER_RUN_ONCE',
   'API_HOST',
   'API_PORT',
   'AUTH_MODE',
@@ -132,7 +137,40 @@ describe('loadConfig', () => {
     });
   });
 
-  // (6) Non-numeric integer config is rejected.
+  // Standing-projection worker runtime-host settings default sensibly when unset.
+  it('loads standing-projection worker runtime defaults when unset', () => {
+    const { standingProjectionWorker } = loadConfig();
+    expect(standingProjectionWorker).toEqual({
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-standing-projection-worker',
+      runOnce: false,
+    });
+  });
+
+  // Standing-projection worker runtime-host settings can be overridden from the environment.
+  it('reads standing-projection worker overrides from the environment', () => {
+    process.env['STANDING_PROJECTION_WORKER_ENABLED'] = 'false';
+    process.env['STANDING_PROJECTION_WORKER_INTERVAL_MS'] = '2500';
+    process.env['STANDING_PROJECTION_WORKER_BATCH_SIZE'] = '10';
+    process.env['STANDING_PROJECTION_WORKER_ID'] = 'sp-1';
+    process.env['STANDING_PROJECTION_WORKER_RUN_ONCE'] = 'true';
+    const { standingProjectionWorker } = loadConfig();
+    expect(standingProjectionWorker).toEqual({
+      enabled: false,
+      intervalMs: 2500,
+      batchSize: 10,
+      workerId: 'sp-1',
+      runOnce: true,
+    });
+  });
+
+  // A blank STANDING_PROJECTION_WORKER_ID fails closed (a blank worker id breaks diagnostics).
+  it('rejects a blank STANDING_PROJECTION_WORKER_ID', () => {
+    process.env['STANDING_PROJECTION_WORKER_ID'] = '   ';
+    expect(() => loadConfig()).toThrow(/must be non-empty/);
+  });
   it('rejects a non-numeric integer env value', () => {
     process.env['OUTBOX_BATCH_SIZE'] = 'not-a-number';
     expect(() => loadConfig()).toThrow(/Invalid integer/);

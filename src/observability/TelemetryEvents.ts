@@ -23,6 +23,11 @@ export const TelemetryCounters = {
   outboxBatch: 'outbox.batch.count',
   outboxMessagePublished: 'outbox.message.published.count',
   outboxMessageFailed: 'outbox.message.failed.count',
+  standingProjectionBatch: 'standing.projection.batch.count',
+  standingProjectionProjected: 'standing.projection.projected.count',
+  standingProjectionGovernedFailure: 'standing.projection.governed_failure.count',
+  standingProjectionRetry: 'standing.projection.retry.count',
+  standingProjectionExhausted: 'standing.projection.exhausted.count',
   organizationRegistryCreated: 'organization.registry.created.count',
   organizationRegistryUpdated: 'organization.registry.updated.count',
   organizationRegistryRead: 'organization.registry.read.count',
@@ -48,6 +53,7 @@ export const TelemetryDurations = {
   workflowExecution: 'workflow.execution.duration_ms',
   evidenceUpload: 'evidence.upload.duration_ms',
   outboxBatch: 'outbox.batch.duration_ms',
+  standingProjectionBatch: 'standing.projection.batch.duration_ms',
 } as const;
 
 /** Operational event names (point-in-time, sanitized). */
@@ -59,6 +65,8 @@ export const TelemetryEvents = {
   evidenceQuarantineDispositionRecorded: 'evidence.quarantine.disposition.recorded',
   outboxBatchCompleted: 'outbox.batch.completed',
   outboxBatchFailed: 'outbox.batch.failed',
+  standingProjectionBatchCompleted: 'standing.projection.batch.completed',
+  standingProjectionBatchFailed: 'standing.projection.batch.failed',
   organizationRegistryCreated: 'organization.registry.created',
   organizationRegistryStatusChanged: 'organization.registry.status_changed',
   participantRegistryCreated: 'participant.registry.created',
@@ -86,6 +94,10 @@ export const TelemetryAttributeKeys = {
   published: 'published',
   failed: 'failed',
   rescheduled: 'rescheduled',
+  projected: 'projected',
+  governedFailures: 'governedFailures',
+  retries: 'retries',
+  exhausted: 'exhausted',
 } as const;
 
 /** Stable attribute VALUES for the `result` dimension. */

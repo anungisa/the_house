@@ -324,6 +324,13 @@ function makeConfig(serviceBus: ServiceBusConfig): AppConfig {
       lockSeconds: 60,
       runOnce: true,
     },
+    standingProjectionWorker: {
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'test-standing-projection-worker',
+      runOnce: true,
+    },
     auth: { mode: 'demo' },
     evidenceStorage: { provider: 'memory', connectionString: '', containerName: '', requireHash: true, uploadMaxBytes: 10_485_760 },
     evidenceMalwareScanning: { mode: 'disabled', required: false, testSignaturesEnabled: false },
