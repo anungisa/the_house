@@ -248,7 +248,9 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     expect(projection.status).toBe(200);
     const application = projection.body['application'] as Record<string, unknown>;
     expect(application['organizationId']).toBe(organizationId);
-    expect(application['status']).toBe('draft');
+    expect(application['lifecycleStatus']).toBe('draft');
+    const completeness = application['completeness'] as Record<string, unknown>;
+    expect(completeness['eligibleForSubmission']).toBe(true);
 
     // 3) Governed submission over the real server.
     const idempotencyKey = `submit:${draft.applicationId}:${draft.version}`;
@@ -355,7 +357,7 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     expect(initiate.status).toBe(200);
     const application = initiate.body['application'] as Record<string, unknown>;
     expect(application['organizationId']).toBe(organizationId);
-    expect(application['status']).toBe('draft');
+    expect(application['lifecycleStatus']).toBe('draft');
     expect(typeof application['applicationId']).toBe('string');
 
     // The draft is readable back through the server (proves real Pg persistence).
