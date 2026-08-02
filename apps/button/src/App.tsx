@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
-import type { ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 
 import { I18nProvider } from './i18n/I18nProvider';
 import type { ButtonLocale } from './api/types';
@@ -52,10 +52,15 @@ export function App({
   initialEntries,
   queryClient,
 }: AppProps): JSX.Element {
-  const apiClient = client ?? createButtonApiClient();
-  const affiliationApi = affiliationClient ?? createAffiliationApiClient();
-  const sink = telemetry ?? new ConsoleButtonTelemetry();
-  const qc = queryClient ?? defaultQueryClient();
+  // Compose the transport/telemetry/query client ONCE per mount. This keeps the env- or
+  // query-param-selected mock scenario stable even after a guard redirect changes the URL.
+  const apiClient = useMemo(() => client ?? createButtonApiClient(), [client]);
+  const affiliationApi = useMemo(
+    () => affiliationClient ?? createAffiliationApiClient(),
+    [affiliationClient],
+  );
+  const sink = useMemo(() => telemetry ?? new ConsoleButtonTelemetry(), [telemetry]);
+  const qc = useMemo(() => queryClient ?? defaultQueryClient(), [queryClient]);
 
   const RouterShell = ({ children }: { readonly children: ReactNode }): JSX.Element =>
     initialEntries !== undefined ? (

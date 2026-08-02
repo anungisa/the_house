@@ -14,7 +14,7 @@ import {
   type ButtonContextView,
   type ButtonErrorCategory,
 } from './types';
-import { mockContextForScenario, type MockScenario } from './mockData';
+import { mockContextForScenario, isMockScenario, type MockScenario } from './mockData';
 
 export interface ButtonApiClient {
   getContext(selection: ButtonContextSelection): Promise<ButtonContextView>;
@@ -79,12 +79,25 @@ export class MockButtonApiClient implements ButtonApiClient {
 
 /**
  * Select the client from the build/runtime environment. When `VITE_BUTTON_MOCK` is set the app
- * runs fully offline against synthetic data (used by the e2e browser suite).
+ * runs fully offline against synthetic data (used by the e2e browser suite). In mock mode only, a
+ * `?mockScenario=` query parameter may override the build-time scenario so resilience journeys
+ * (expired, revoked, service-error, ...) can be exercised in a real browser. This override is inert
+ * for the real HTTP transport.
  */
 export function createButtonApiClient(): ButtonApiClient {
   if (import.meta.env.VITE_BUTTON_MOCK === '1') {
-    const scenario = (import.meta.env.VITE_BUTTON_MOCK_SCENARIO as MockScenario) ?? 'representative';
-    return new MockButtonApiClient(scenario);
+    return new MockButtonApiClient(resolveMockScenario());
   }
   return new HttpButtonApiClient();
+}
+
+function resolveMockScenario(): MockScenario {
+  try {
+    const param = new URLSearchParams(window.location.search).get('mockScenario');
+    if (isMockScenario(param)) return param;
+  } catch {
+    // No window or malformed search string — fall back to the build-time scenario.
+  }
+  const envScenario = import.meta.env.VITE_BUTTON_MOCK_SCENARIO;
+  return isMockScenario(envScenario) ? envScenario : 'representative';
 }
