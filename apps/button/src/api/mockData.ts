@@ -24,6 +24,22 @@ export type MockScenario =
   | 'revoked'
   | 'service-error';
 
+/** The closed set of synthetic scenarios the mock transport supports. */
+export const MOCK_SCENARIOS: readonly MockScenario[] = [
+  'representative',
+  'reviewer',
+  'finance',
+  'no-authority',
+  'expired',
+  'revoked',
+  'service-error',
+];
+
+/** Narrow an arbitrary string to a known {@link MockScenario} (fail closed to unknown). */
+export function isMockScenario(value: string | null | undefined): value is MockScenario {
+  return value !== null && value !== undefined && (MOCK_SCENARIOS as readonly string[]).includes(value);
+}
+
 const SEASONS: readonly SeasonView[] = [
   { id: '2024-25', label: '2024\u201325', current: false },
   { id: '2025-26', label: '2025\u201326', current: true },
