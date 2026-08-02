@@ -30,6 +30,13 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       lockSeconds: 60,
       runOnce: false,
     },
+    standingProjectionWorker: {
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-standing-projection-worker',
+      runOnce: false,
+    },
     auth: { mode: 'demo' },
     evidenceStorage: {
       provider: 'memory',

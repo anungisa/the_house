@@ -119,6 +119,13 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
       lockSeconds: config.outboxWorker.lockSeconds,
       runOnce: config.outboxWorker.runOnce,
     },
+    standingProjectionWorker: {
+      enabled: config.standingProjectionWorker.enabled,
+      intervalMs: config.standingProjectionWorker.intervalMs,
+      batchSize: config.standingProjectionWorker.batchSize,
+      workerId: config.standingProjectionWorker.workerId,
+      runOnce: config.standingProjectionWorker.runOnce,
+    },
   };
 
   const warnings: string[] = [];
@@ -165,6 +172,12 @@ export function buildConfigDiagnostics(config: AppConfig = loadConfig()): Config
   if (!config.outboxWorker.enabled && productionLike) {
     warnings.push(
       'OUTBOX_WORKER_ENABLED=false in a production-like environment: the transactional outbox will not drain.',
+    );
+  }
+
+  if (!config.standingProjectionWorker.enabled && productionLike) {
+    warnings.push(
+      'STANDING_PROJECTION_WORKER_ENABLED=false in a production-like environment: activated affiliations will not project into governed standings.',
     );
   }
 

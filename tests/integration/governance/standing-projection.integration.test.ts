@@ -12,6 +12,8 @@ import {
   PgStandingProjectionStore,
   deterministicStandingId,
 } from '../../../src/domains/affiliation-standing/orchestration/index.js';
+import { createPgStandingProjectionRuntime } from '../../../src/workers/standing-projection/composition.js';
+import { loadConfig, type AppConfig } from '../../../src/config/index.js';
 import { closePool, withTenantTransaction, type QueryClient } from '../../../src/db/pool.js';
 
 /**
@@ -164,6 +166,16 @@ async function countStandingOpenOutbox(tenantId: string, standingId: string): Pr
   return rows[0]!.n;
 }
 
+/** A run-once AppConfig for the runtime host: reuses the ambient (DATABASE_URL-backed) config but
+ * forces a single-batch drain so the host shuts itself down deterministically in tests. */
+function runOnceConfig(): AppConfig {
+  const cfg = loadConfig();
+  return {
+    ...cfg,
+    standingProjectionWorker: { ...cfg.standingProjectionWorker, runOnce: true },
+  };
+}
+
 d('AffiliationStanding activation projection (integration)', () => {
   beforeAll(async () => {
     await applyMigrations();
@@ -268,4 +280,60 @@ d('AffiliationStanding activation projection (integration)', () => {
     expect(rows[0]!.rolsuper).toBe(false);
     expect(rows[0]!.rolbypassrls).toBe(false);
   });
+
+  // --- Runtime host (StandingProjectionRuntime) drives the SAME governed projection end-to-end ---
+
+  it('projects an activated application when driven through the run-once runtime host', async () => {
+    const tenantId = randomUUID();
+    const { applicationId, subjectId, season } = await seedActivatedApplication(tenantId);
+    const standingId = deterministicStandingId(tenantId, subjectId, season);
+
+    // Build a run-once host over the shared pool. ownsPool:false so shutdown does NOT close the
+    // pool the afterAll hook owns. start() drains exactly one batch then shuts down.
+    const runtime = createPgStandingProjectionRuntime(runOnceConfig(), {
+      log: () => {},
+      onError: () => {},
+      ownsPool: false,
+    });
+    await runtime.start();
+
+    // Same governed invariants as the direct-worker path: opened ONLY through the kernel.
+    expect(await countStandingHeads(tenantId, standingId)).toBe(1);
+    expect(await countPeriods(tenantId, standingId)).toBe(1);
+    expect(await standingState(tenantId, standingId)).toBe('pending');
+    expect(await countStandingOpenOutbox(tenantId, standingId)).toBe(1);
+
+    const proj = await new PgStandingProjectionStore().getByApplication(tenantId, applicationId);
+    expect(proj?.status).toBe('projected');
+    expect(proj?.standingId).toBe(standingId);
+
+    // The host tallied the batch and reports ready-then-shutdown via its health snapshot.
+    const health = runtime.health();
+    expect(health.totals.batches).toBe(1);
+    expect(health.totals.projected).toBeGreaterThanOrEqual(1);
+    expect(health.ready).toBe(false); // run-once host shuts itself down after the batch
+    expect(health.shuttingDown).toBe(true);
+  });
+
+  it('is idempotent when the run-once runtime host runs twice (no second standing)', async () => {
+    const tenantId = randomUUID();
+    const { subjectId, season } = await seedActivatedApplication(tenantId);
+    const standingId = deterministicStandingId(tenantId, subjectId, season);
+
+    await createPgStandingProjectionRuntime(runOnceConfig(), {
+      log: () => {},
+      onError: () => {},
+      ownsPool: false,
+    }).start();
+    await createPgStandingProjectionRuntime(runOnceConfig(), {
+      log: () => {},
+      onError: () => {},
+      ownsPool: false,
+    }).start();
+
+    expect(await countStandingHeads(tenantId, standingId)).toBe(1);
+    expect(await countPeriods(tenantId, standingId)).toBe(1);
+    expect(await countStandingOpenOutbox(tenantId, standingId)).toBe(1);
+  });
 });
+

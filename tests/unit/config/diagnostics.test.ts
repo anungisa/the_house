@@ -35,6 +35,13 @@ function makeConfig(over: Partial<AppConfig> = {}): AppConfig {
       lockSeconds: 60,
       runOnce: false,
     },
+    standingProjectionWorker: {
+      enabled: true,
+      intervalMs: 5000,
+      batchSize: 25,
+      workerId: 'local-standing-projection-worker',
+      runOnce: false,
+    },
     auth: { mode: 'demo' },
     evidenceStorage: {
       provider: 'memory',
@@ -161,6 +168,25 @@ describe('config diagnostics', () => {
       }),
     );
     expect(diag.warnings.some((w) => w.includes('EVIDENCE_QUARANTINE_ENABLED=false'))).toBe(true);
+  });
+
+  // Warns when the standing-projection worker is disabled in a production-like environment.
+  it('warns when the standing-projection worker is disabled in a production-like environment', () => {
+    const diag = buildConfigDiagnostics(
+      makeConfig({
+        appEnv: 'production',
+        standingProjectionWorker: {
+          enabled: false,
+          intervalMs: 5000,
+          batchSize: 25,
+          workerId: 'local-standing-projection-worker',
+          runOnce: false,
+        },
+      }),
+    );
+    expect(
+      diag.warnings.some((w) => w.includes('STANDING_PROJECTION_WORKER_ENABLED=false')),
+    ).toBe(true);
   });
 
   // (10) Warns on disabled malware scanning with azure_blob storage.

@@ -215,6 +215,25 @@ export interface OutboxWorkerRuntimeSettings {
   readonly runOnce: boolean;
 }
 
+/**
+ * Settings for the standing-projection worker RUNTIME HOST (the interval loop that drains DUE
+ * activation events and projects each into a governed AffiliationStanding via the kernel). Mirrors
+ * {@link OutboxWorkerRuntimeSettings}. The retry/backoff MECHANICS are shared with the outbox
+ * ({@link OutboxConfig}); these settings only tune the host that schedules the batches.
+ */
+export interface StandingProjectionRuntimeSettings {
+  /** Whether the worker host should start. The entrypoint exits early / skips it when false. */
+  readonly enabled: boolean;
+  /** Delay between batch ticks (ms) in continuous mode. */
+  readonly intervalMs: number;
+  /** Max activation events processed per batch. */
+  readonly batchSize: number;
+  /** Stable worker identity used for diagnostics/telemetry. */
+  readonly workerId: string;
+  /** Process exactly one batch then shut down (useful for cron/smoke runs). */
+  readonly runOnce: boolean;
+}
+
 export interface AppConfig {
   readonly appEnv: AppEnv;
   readonly appRegion: string;
@@ -224,6 +243,7 @@ export interface AppConfig {
   readonly outbox: OutboxConfig;
   readonly api: ApiConfig;
   readonly outboxWorker: OutboxWorkerRuntimeSettings;
+  readonly standingProjectionWorker: StandingProjectionRuntimeSettings;
   readonly auth: AuthConfig;
   readonly evidenceStorage: EvidenceStorageConfig;
   readonly evidenceMalwareScanning: EvidenceMalwareScanningConfig;
@@ -306,6 +326,17 @@ function readOutboxWorkerSettings(): OutboxWorkerRuntimeSettings {
     workerId: readNonEmpty('OUTBOX_WORKER_ID', 'local-outbox-worker'),
     lockSeconds: readPositiveInt('OUTBOX_WORKER_LOCK_SECONDS', 60),
     runOnce: readBool('OUTBOX_WORKER_RUN_ONCE', false),
+  };
+}
+
+/** Resolve and validate the standing-projection worker runtime-host settings. */
+function readStandingProjectionWorkerSettings(): StandingProjectionRuntimeSettings {
+  return {
+    enabled: readBool('STANDING_PROJECTION_WORKER_ENABLED', true),
+    intervalMs: readPositiveInt('STANDING_PROJECTION_WORKER_INTERVAL_MS', 5000),
+    batchSize: readPositiveInt('STANDING_PROJECTION_WORKER_BATCH_SIZE', 25),
+    workerId: readNonEmpty('STANDING_PROJECTION_WORKER_ID', 'local-standing-projection-worker'),
+    runOnce: readBool('STANDING_PROJECTION_WORKER_RUN_ONCE', false),
   };
 }
 
@@ -604,6 +635,7 @@ export function loadConfig(): AppConfig {
       port: readInt('API_PORT', 3000),
     },
     outboxWorker: readOutboxWorkerSettings(),
+    standingProjectionWorker: readStandingProjectionWorkerSettings(),
     auth: readAuthConfig(),
     evidenceStorage: readEvidenceStorageConfig(),
     evidenceMalwareScanning: readEvidenceMalwareScanningConfig(),

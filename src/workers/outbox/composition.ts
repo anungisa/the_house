@@ -28,6 +28,13 @@ export interface PgOutboxWorkerRuntimeDeps {
   readonly log: (message: string) => void;
   /** Structured error logger for runtime failures. */
   readonly onError: (message: string, error: unknown) => void;
+  /**
+   * Whether this runtime owns the shared DB pool lifecycle. When the runtime is CO-HOSTED with the
+   * standing-projection worker in the same process, the entrypoint closes the pool once after BOTH
+   * runtimes have drained, so it passes `false` here to avoid a premature close (the per-runtime
+   * publisher is still closed regardless). Defaults to `true` (standalone).
+   */
+  readonly ownsPool?: boolean;
 }
 
 /**
@@ -71,6 +78,6 @@ export function createPgOutboxWorkerRuntime(
     closePublisher: async () => {
       await publisher.close?.();
     },
-    closePool,
+    ...((deps.ownsPool ?? true) ? { closePool } : {}),
   });
 }
