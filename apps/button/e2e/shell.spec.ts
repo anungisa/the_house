@@ -19,6 +19,23 @@ test('representative loads the shell, selects context, and reaches affiliation',
   await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
 });
 
+test('representative reaches the read-only standing views after selecting context', async ({
+  page,
+}) => {
+  await page.goto('/button/select-context');
+  await page.getByLabel('Season').selectOption('2026-27');
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
+
+  await page.getByRole('link', { name: 'Standing' }).click();
+  await expect(page.getByRole('heading', { name: 'Affiliation standing' })).toBeVisible();
+
+  await page.getByRole('link', { name: 'View standing detail' }).first().click();
+  await expect(page.getByRole('heading', { name: 'Affiliation standing detail' })).toBeVisible();
+  await page.getByRole('link', { name: 'Back to standing' }).click();
+  await expect(page.getByRole('heading', { name: 'Affiliation standing' })).toBeVisible();
+});
+
 test('language switch preserves the current route', async ({ page }) => {
   await page.goto('/button/select-context');
   await expect(page.getByRole('heading', { name: 'Select context' })).toBeVisible();

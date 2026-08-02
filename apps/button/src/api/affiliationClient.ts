@@ -28,9 +28,9 @@ import {
   type AffiliationSubmissionState,
   type FinancialObligationQueueItem,
   type FinancialReconciliationResult,
+  type StandingView,
 } from './affiliationTypes';
 import { AffiliationMockStore } from './affiliationMockData';
-
 export interface GetOverviewInput {
   readonly organizationId: string;
   readonly season: string;
@@ -110,6 +110,8 @@ export interface AffiliationApiClient {
     obligationId: string,
     reason: string,
   ): Promise<FinancialReconciliationResult>;
+  listStanding?(): Promise<readonly StandingView[]>;
+  getStanding?(standingId: string): Promise<StandingView>;
   getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
   resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
@@ -445,6 +447,22 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
     );
   }
 
+  async listStanding(): Promise<readonly StandingView[]> {
+    return this.request(
+      '/v1/button/affiliation/standing',
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { items: readonly StandingView[] }).items,
+    );
+  }
+
+  async getStanding(standingId: string): Promise<StandingView> {
+    return this.request(
+      `/v1/button/affiliation/standing/${encodeURIComponent(standingId)}`,
+      { method: 'GET', headers: { accept: 'application/json' } },
+      (body) => (body as { standing: StandingView }).standing,
+    );
+  }
+
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {
     return this.request(
       `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/submission-state`,
@@ -505,6 +523,34 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
       canReconcile: true,
       confirmedAmount: '250.00',
       confirmedCurrency: 'CAD',
+    },
+  ];
+  private standings: StandingView[] = [
+    {
+      standingId: 'standing-0001',
+      affiliationApplicationId: 'review-app-0001',
+      organizationId: 'club-1',
+      season: '2025-26',
+      status: 'active',
+      effectiveFrom: '2025-09-01T00:00:00.000Z',
+      effectiveUntil: '2026-08-31T00:00:00.000Z',
+      standingVersion: 1,
+      pathway: 'new_affiliation',
+      isExpired: false,
+      daysUntilExpiry: 120,
+    },
+    {
+      standingId: 'standing-0002',
+      affiliationApplicationId: 'review-app-0002',
+      organizationId: 'club-1',
+      season: '2024-25',
+      status: 'lapsed',
+      effectiveFrom: '2024-09-01T00:00:00.000Z',
+      effectiveUntil: '2025-08-31T00:00:00.000Z',
+      standingVersion: 1,
+      pathway: 'new_affiliation',
+      isExpired: true,
+      daysUntilExpiry: null,
     },
   ];
 
@@ -745,6 +791,18 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
       item.obligationId === obligationId ? { ...item, lifecycleState: 'reconciled' } : item,
     );
     return { obligationId, toState: 'reconciled', replayed };
+  }
+
+  async listStanding(): Promise<readonly StandingView[]> {
+    return this.standings;
+  }
+
+  async getStanding(standingId: string): Promise<StandingView> {
+    const standing = this.standings.find((item) => item.standingId === standingId);
+    if (standing === undefined) {
+      throw new AffiliationApiError('not-found', 404, 'Standing not found.');
+    }
+    return standing;
   }
 
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {

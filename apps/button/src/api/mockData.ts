@@ -127,7 +127,11 @@ export function mockContextForScenario(
     capabilities:
       status === 'active'
         ? selected
-          ? [ButtonCapability.SelectContext, ButtonCapability.ViewAffiliation]
+          ? [
+              ButtonCapability.SelectContext,
+              ButtonCapability.ViewAffiliation,
+              ButtonCapability.ViewAffiliationStanding,
+            ]
           : [ButtonCapability.SelectContext]
         : [ButtonCapability.SelectContext],
   };

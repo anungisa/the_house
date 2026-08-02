@@ -134,6 +134,11 @@ import {
   handleFinancialObligationQueue,
   handleFinancialObligationReconciliation,
 } from './button/finance/index.js';
+import type { StandingReviewService } from '../domains/affiliation-standing/index.js';
+import {
+  handleButtonStandingQueue,
+  handleButtonStandingDetail,
+} from './button/standing/index.js';
 
 export interface AffiliationHttpServerDeps {
   /** The domain command boundary (e.g. AffiliationApplicationService). */
@@ -266,6 +271,8 @@ export interface AffiliationHttpServerDeps {
   readonly buttonDecision?: AffiliationDecisionService;
   /** Optional tenant-scoped Button financial obligation and reconciliation workbench. */
   readonly buttonFinance?: FinancialObligationReviewService;
+  /** Optional tenant-scoped Button standing (expiry & renewal) READ surface (Slice F). */
+  readonly buttonStanding?: StandingReviewService;
   /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
@@ -321,6 +328,9 @@ const BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH =
   '/v1/button/affiliation/financial-obligations';
 const BUTTON_FINANCIAL_OBLIGATION_RECONCILIATION_ROUTE =
   /^\/v1\/button\/affiliation\/financial-obligations\/([^/]+)\/reconciliations\/?$/;
+const BUTTON_STANDING_QUEUE_PATH = '/v1/button/affiliation/standing';
+const BUTTON_STANDING_DETAIL_ROUTE =
+  /^\/v1\/button\/affiliation\/standing\/([^/]+)\/?$/;
 const BUTTON_AFFILIATION_REVIEW_START_ROUTE =
   /^\/v1\/button\/affiliation\/applications\/([^/]+)\/review-start\/?$/;
 const BUTTON_AFFILIATION_REVIEW_CASE_ROUTE =
@@ -947,6 +957,7 @@ async function handleButtonAffiliationRoute(
   buttonDecision: AffiliationDecisionService | undefined,
   buttonFinance: FinancialObligationReviewService | undefined,
   financialExecutor: FinancialObligationCommandExecutor | undefined,
+  buttonStanding: StandingReviewService | undefined,
   path: string,
   requestId: string,
   resolver: AuthContextResolver | undefined,
@@ -954,9 +965,7 @@ async function handleButtonAffiliationRoute(
 ): Promise<void> {
   const method = req.method ?? 'GET';
   const headers = headerMap(req);
-  const query = queryMap(req.url);
-
-  if (path === BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH) {
+  const query = queryMap(req.url);  if (path === BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH) {
     if (buttonFinance === undefined) {
       return sendJson(res, {
         status: 404,
@@ -986,6 +995,46 @@ async function handleButtonAffiliationRoute(
       await handleFinancialObligationReconciliation(
         financialExecutor,
         { headers, params: { obligationId: financialReconciliationMatch[1] }, body },
+        requestId,
+        resolver,
+      ),
+    );
+  }
+
+  // Button standing (expiry & renewal) READ surface (Slice F). GET-only; representative-scoped.
+  if (path === BUTTON_STANDING_QUEUE_PATH) {
+    if (buttonStanding === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    return sendJson(
+      res,
+      await handleButtonStandingQueue(
+        { standing: buttonStanding, authorities: buttonAffiliation.authorities, nowIso: buttonAffiliation.nowIso },
+        { headers },
+        requestId,
+        resolver,
+      ),
+    );
+  }
+
+  const standingDetailMatch = BUTTON_STANDING_DETAIL_ROUTE.exec(path);
+  if (standingDetailMatch !== null) {
+    if (buttonStanding === undefined) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'GET') return methodNotAllowed(res, 'GET', requestId);
+    return sendJson(
+      res,
+      await handleButtonStandingDetail(
+        { standing: buttonStanding, authorities: buttonAffiliation.authorities, nowIso: buttonAffiliation.nowIso },
+        { headers, params: { standingId: standingDetailMatch[1] } },
         requestId,
         resolver,
       ),
@@ -1776,6 +1825,12 @@ function classifyRoute(method: string, path: string): string {
   if (BUTTON_FINANCIAL_OBLIGATION_RECONCILIATION_ROUTE.test(path)) {
     return `${method} /v1/button/affiliation/financial-obligations/:id/reconciliations`;
   }
+  if (path === BUTTON_STANDING_QUEUE_PATH) {
+    return `${method} /v1/button/affiliation/standing`;
+  }
+  if (BUTTON_STANDING_DETAIL_ROUTE.test(path)) {
+    return `${method} /v1/button/affiliation/standing/:id`;
+  }
   if (BUTTON_AFFILIATION_DRAFT_ROUTE.test(path)) {
     return `${method} /v1/button/affiliation/applications/:id/draft`;
   }
@@ -2005,6 +2060,7 @@ async function handleRequest(
       deps.buttonDecision,
       deps.buttonFinance,
       deps.financialExecutor,
+      deps.buttonStanding,
       path,
       requestId,
       deps.resolver,

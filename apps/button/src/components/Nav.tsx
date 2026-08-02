@@ -16,6 +16,7 @@ export function Nav(): JSX.Element {
   const capabilities = view?.capabilities ?? [];
   const canSelect = capabilities.includes(ButtonCapability.SelectContext);
   const canAffiliation = capabilities.includes(ButtonCapability.ViewAffiliation);
+  const canStanding = capabilities.includes(ButtonCapability.ViewAffiliationStanding);
   const canReview = capabilities.includes(ButtonCapability.ReviewAffiliation);
   const canReviewFinance = capabilities.includes(ButtonCapability.ReviewAffiliationFinance);
 
@@ -35,6 +36,11 @@ export function Nav(): JSX.Element {
         {canAffiliation && (
           <li>
             <NavLink to="/button/affiliation">{t('nav.affiliation')}</NavLink>
+          </li>
+        )}
+        {canStanding && (
+          <li>
+            <NavLink to="/button/standing">{t('nav.standing')}</NavLink>
           </li>
         )}
         {canReview && (
