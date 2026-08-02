@@ -55,6 +55,7 @@ import {
   DomainBackedStandingGuardRepository,
   PgAffiliationStandingEffect,
   PgAffiliationStandingStore,
+  StandingReviewService,
 } from '../domains/affiliation-standing/index.js';
 import {
   PgActivationEventSource,
@@ -525,6 +526,7 @@ export function createPgAffiliationHttpServer(
     buttonReview: new AffiliationReviewService(createPgAffiliationApplicationService()),
     buttonDecision: createAffiliationDecisionService(),
     buttonFinance: new FinancialObligationReviewService(),
+    buttonStanding: new StandingReviewService(),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),

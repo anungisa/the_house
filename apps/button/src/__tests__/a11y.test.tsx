@@ -77,6 +77,19 @@ describe('Button accessibility', () => {
       unmount();
     }
   });
+
+  it('(11f) the standing views have no serious/critical a11y violations', async () => {
+    const client = new FakeButtonApiClient(() =>
+      Promise.resolve(contextWith({ selected: true, authorityStatus: 'active' })),
+    );
+    renderApp({
+      client,
+      affiliationClient: new MockAffiliationApiClient(),
+      initialEntries: ['/button/standing'],
+    });
+    await screen.findByRole('heading', { name: 'Affiliation standing' });
+    await expectNoSeriousViolations(document.body);
+  });
 });
 
 describe('Button status states are distinguishable and accessible', () => {

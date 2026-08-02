@@ -130,3 +130,8 @@ export {
   AffiliationStandingService,
   type StandingKernelPort,
 } from './AffiliationStandingService.js';
+
+export {
+  StandingReviewService,
+  type StandingReviewRecord,
+} from './StandingReviewService.js';

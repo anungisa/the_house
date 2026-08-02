@@ -56,7 +56,11 @@ export function contextWith(options: {
       : null,
     capabilities:
       hasAuthority && status === 'active' && selected
-        ? [ButtonCapability.SelectContext, ButtonCapability.ViewAffiliation]
+        ? [
+            ButtonCapability.SelectContext,
+            ButtonCapability.ViewAffiliation,
+            ButtonCapability.ViewAffiliationStanding,
+          ]
         : hasAuthority
           ? [ButtonCapability.SelectContext]
           : [],

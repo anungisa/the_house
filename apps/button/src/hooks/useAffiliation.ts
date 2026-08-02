@@ -8,6 +8,7 @@ import {
   type AffiliationOverview,
   type DraftResponseInput,
   type SubmissionReceipt,
+  type StandingView,
 } from '../api/affiliationTypes';
 
 /** Stable query keys for the affiliation surface. */
@@ -23,7 +24,40 @@ export const affiliationKeys = {
   submissionState: (applicationId: string) =>
     ['affiliation', 'submission-state', applicationId] as const,
   financialObligations: () => ['affiliation', 'financial-obligations'] as const,
+  standing: () => ['affiliation', 'standing'] as const,
+  standingDetail: (standingId: string) => ['affiliation', 'standing', standingId] as const,
 };
+
+export function useStanding(): UseQueryResult<readonly StandingView[], unknown> {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.standing(),
+    queryFn: () => {
+      if (client.listStanding === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Standing is unavailable.');
+      }
+      return client.listStanding();
+    },
+    retry: retryTransient,
+  });
+}
+
+export function useStandingDetail(
+  standingId: string | undefined,
+): UseQueryResult<StandingView, unknown> {
+  const client = useAffiliationClient();
+  return useQuery({
+    queryKey: affiliationKeys.standingDetail(standingId ?? ''),
+    enabled: standingId !== undefined && standingId !== '',
+    queryFn: () => {
+      if (client.getStanding === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Standing is unavailable.');
+      }
+      return client.getStanding(standingId as string);
+    },
+    retry: retryTransient,
+  });
+}
 
 export function useFinancialObligations() {
   const client = useAffiliationClient();

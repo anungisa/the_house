@@ -13,6 +13,7 @@ export type AuthorityStatus = 'active' | 'expired' | 'revoked';
 export const ButtonCapability = {
   SelectContext: 'context.select',
   ViewAffiliation: 'affiliation.view',
+  ViewAffiliationStanding: 'affiliation.standing.view',
   ReviewAffiliation: 'affiliation.review',
   ReviewAffiliationFinance: 'affiliation.finance.review',
 } as const;

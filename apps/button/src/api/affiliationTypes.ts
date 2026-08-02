@@ -222,6 +222,25 @@ export interface FinancialReconciliationResult {
   readonly replayed?: boolean;
 }
 
+/**
+ * A representative-safe standing projection (Slice F). `status` is the governed lifecycle state
+ * (kernel-owned; the browser never asserts it). `isExpired`/`daysUntilExpiry` are clock-derived
+ * hints only and carry no governed authority.
+ */
+export interface StandingView {
+  readonly standingId: string;
+  readonly affiliationApplicationId: string;
+  readonly organizationId: string;
+  readonly season: string;
+  readonly status: string;
+  readonly effectiveFrom: string;
+  readonly effectiveUntil: string;
+  readonly standingVersion: number;
+  readonly pathway: string;
+  readonly isExpired: boolean;
+  readonly daysUntilExpiry: number | null;
+}
+
 /** Stable, non-leaking error categories the affiliation UI can branch on. */
 export type AffiliationErrorCategory =
   | 'unauthenticated'

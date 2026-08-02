@@ -195,3 +195,36 @@ export function RequireAffiliationFinance({
   }
   return children;
 }
+
+export function RequireAffiliationStanding({
+  telemetry,
+  children,
+}: {
+  readonly telemetry: ButtonTelemetry;
+  readonly children: ReactElement;
+}): ReactElement {
+  const { view, isLoading, errorCategory } = useButtonContext();
+  if (isLoading) return <LoadingPanel />;
+  if (errorCategory === 'unauthenticated') return <UnauthenticatedPanel />;
+  if (errorCategory !== undefined || view === undefined) {
+    return (
+      <RedirectWithTelemetry
+        to={errorCategory === 'service-unavailable' ? '/button/service-unavailable' : '/button/access-denied'}
+        event="route.denied"
+        telemetry={telemetry}
+        errorCategory={errorCategory ?? 'access-denied'}
+      />
+    );
+  }
+  if (!view.capabilities.includes(ButtonCapability.ViewAffiliationStanding)) {
+    return (
+      <RedirectWithTelemetry
+        to="/button/access-denied"
+        event="route.denied"
+        telemetry={telemetry}
+        errorCategory="access-denied"
+      />
+    );
+  }
+  return children;
+}

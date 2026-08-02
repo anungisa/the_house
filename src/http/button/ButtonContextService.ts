@@ -306,6 +306,7 @@ export class ButtonContextService {
     if (hasAccessibleOrgs) capabilities.push(ButtonCapability.SelectContext);
     if (currentContext !== null && currentContext.authorityStatus === 'active') {
       capabilities.push(ButtonCapability.ViewAffiliation);
+      capabilities.push(ButtonCapability.ViewAffiliationStanding);
     }
     if (
       actor.roleKeys.some((role) =>

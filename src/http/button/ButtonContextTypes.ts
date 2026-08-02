@@ -36,6 +36,8 @@ export const ButtonCapability = {
   SelectContext: 'context.select',
   /** May view the representative affiliation overview for the selected context. */
   ViewAffiliation: 'affiliation.view',
+  /** May view the representative standing (expiry & renewal) for the selected context. */
+  ViewAffiliationStanding: 'affiliation.standing.view',
   /** May open the resource-scoped affiliation review workbench. */
   ReviewAffiliation: 'affiliation.review',
   /** May open the tenant- and scope-bounded financial reconciliation workbench. */
