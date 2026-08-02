@@ -212,3 +212,37 @@ describe('ButtonContextService', () => {
     expect(view.capabilities).not.toContain(ButtonCapability.ReviewAffiliation);
   });
 });
+
+describe('RoleDerivedRepresentativeAuthorityProvider', () => {
+  const provider = new RoleDerivedRepresentativeAuthorityProvider();
+  const representativeActor: AuthActor = {
+    userId: 'rep-1',
+    roleKeys: [CLUB_AFFILIATION_REPRESENTATIVE_ROLE],
+    permissionKeys: [],
+    organizationId: 'org-own',
+  };
+
+  it('grants active authority only for the actor\'s own representable organizations', () => {
+    const authorities = provider.authoritiesFor(TENANT_A, representativeActor, ['org-own']);
+    expect(authorities).toEqual([{ organizationId: 'org-own', status: 'active' }]);
+  });
+
+  it('fails closed: never grants authority for an organization the actor does not reference', () => {
+    // Defense-in-depth: even if a caller passes a wider accessible set, the provider intersects
+    // it with the actor's explicit organizational references and drops anything unreferenced.
+    const authorities = provider.authoritiesFor(TENANT_A, representativeActor, [
+      'org-own',
+      'org-not-mine',
+    ]);
+    expect(authorities).toEqual([{ organizationId: 'org-own', status: 'active' }]);
+  });
+
+  it('grants nothing to an actor without the representative role', () => {
+    const authorities = provider.authoritiesFor(
+      TENANT_A,
+      { userId: 'u', roleKeys: ['viewer'], permissionKeys: [], organizationId: 'org-own' },
+      ['org-own'],
+    );
+    expect(authorities).toEqual([]);
+  });
+});
