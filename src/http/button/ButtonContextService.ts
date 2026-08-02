@@ -116,10 +116,16 @@ export class RoleDerivedRepresentativeAuthorityProvider implements Representativ
     accessibleOrganizationIds: readonly string[],
   ): readonly ResolvedAuthority[] {
     if (!hasRepresentativeRole(actor)) return [];
-    return accessibleOrganizationIds.map((organizationId) => ({
-      organizationId,
-      status: 'active' as const,
-    }));
+    // Defense-in-depth: never grant authority beyond the actor's own explicit organizational
+    // references, even if a caller passes a wider accessible set. Fail closed to the intersection
+    // of the requested organizations and the actor's representable organizations.
+    const representable = new Set(representableOrganizationIds(actor));
+    return accessibleOrganizationIds
+      .filter((organizationId) => representable.has(organizationId))
+      .map((organizationId) => ({
+        organizationId,
+        status: 'active' as const,
+      }));
   }
 }
 

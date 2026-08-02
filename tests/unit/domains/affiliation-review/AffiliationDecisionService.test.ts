@@ -8,6 +8,7 @@ import type {
   WorkflowStore,
 } from '../../../../src/governance/workflow/index.js';
 import type { ApprovedWorkflowExecutionService } from '../../../../src/governance/workflow/ApprovedWorkflowExecutionService.js';
+import { ErrorCode } from '../../../../src/shared/errors/AppError.js';
 
 const reviewCase = {
   applicationId: 'app-1',
@@ -82,5 +83,76 @@ describe('AffiliationDecisionService activation', () => {
       }),
     ).resolves.toEqual({ lifecycleState: 'active', idempotentReplay: true });
     expect(subject.activateAffiliationApplication).not.toHaveBeenCalled();
+  });
+});
+
+describe('AffiliationDecisionService proposal conflict', () => {
+  const workflowDetail = {
+    instance: {
+      id: 'wf-1',
+      status: 'pending' as const,
+      requestedToState: 'approved',
+      executed: false,
+    },
+    steps: [],
+  };
+
+  function proposeService() {
+    const reviews = {
+      getCase: vi.fn().mockResolvedValue(reviewCase),
+    } as unknown as AffiliationReviewService;
+    const transitions = {
+      approveAffiliationApplication: vi.fn(),
+      rejectAffiliationApplication: vi.fn(),
+    } as unknown as AffiliationApplicationService;
+    const workflows = {
+      // An existing APPROVE decision workflow is already open for this application.
+      listWorkflows: vi
+        .fn()
+        .mockResolvedValue({ items: [{ id: 'wf-1', createdAt: '2026-01-01T00:00:00.000Z' }] }),
+      getWorkflowDetail: vi.fn().mockResolvedValue(workflowDetail),
+    } as unknown as WorkflowStore;
+    return {
+      transitions,
+      service: new AffiliationDecisionService(
+        reviews,
+        transitions,
+        workflows,
+        {} as WorkflowDecisionService,
+        {} as ApprovedWorkflowExecutionService,
+      ),
+    };
+  }
+
+  const actor = { userId: 'reviewer-1', roleKeys: ['reviewer'], organizationId: 'org-1' };
+
+  it('returns the existing decision when the same outcome is re-proposed (idempotent)', async () => {
+    const subject = proposeService();
+    const result = await subject.service.propose({
+      tenantId: 'tenant-1',
+      applicationId: 'app-1',
+      actor,
+      outcome: 'approve',
+      reason: 'Approve affiliation.',
+      idempotencyKey: 'propose:app-1',
+    });
+
+    expect(result.outcome).toBe('approve');
+    expect(subject.transitions.approveAffiliationApplication).not.toHaveBeenCalled();
+  });
+
+  it('rejects a conflicting outcome against an open decision (fail closed \u2192 AFFILIATION_REVIEW_CONFLICT)', async () => {
+    const subject = proposeService();
+    await expect(
+      subject.service.propose({
+        tenantId: 'tenant-1',
+        applicationId: 'app-1',
+        actor,
+        outcome: 'reject',
+        reason: 'Reject affiliation.',
+        idempotencyKey: 'propose:app-1',
+      }),
+    ).rejects.toMatchObject({ code: ErrorCode.AFFILIATION_REVIEW_CONFLICT });
+    expect(subject.transitions.rejectAffiliationApplication).not.toHaveBeenCalled();
   });
 });

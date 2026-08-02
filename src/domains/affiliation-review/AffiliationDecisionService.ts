@@ -105,7 +105,18 @@ export class AffiliationDecisionService {
       throw new AppError(ErrorCode.INVALID_INPUT, 'A decision proposal reason is required.');
     }
     const existing = await this.getState(input.tenantId, input.actor, input.applicationId);
-    if (existing !== undefined) return existing;
+    if (existing !== undefined) {
+      // Idempotent re-propose of the SAME outcome returns the existing decision. A proposal for a
+      // DIFFERENT outcome against an already-open decision is a conflict (fail closed → 409); we
+      // never silently discard the requested intent nor overwrite the open decision.
+      if (existing.outcome !== input.outcome) {
+        throw new AppError(
+          ErrorCode.AFFILIATION_REVIEW_CONFLICT,
+          'A decision proposal already exists for this application with a different outcome.',
+        );
+      }
+      return existing;
+    }
     const request = {
       tenantId: input.tenantId,
       applicationId: input.applicationId,
