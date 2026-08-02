@@ -71,6 +71,33 @@ async function createRuntimeRole(admin: pg.PoolClient, user: string, password: s
   await admin.query(`GRANT USAGE ON SCHEMA public TO ${roleId}`);
 }
 
+/**
+ * Grant the canonical least-privilege privileges the kernel's runtime role requires on the BASE
+ * governance tables created by migration 0001. Those grants are intentionally commented-out
+ * production guidance in 0001 (not auto-applied), and the per-suite integration harness applies
+ * them in individual `beforeAll` hooks. Applying them once here, after all migrations, makes the
+ * serialized `RUN_DB_TESTS=1` run order-independent — every suite sees a fully-provisioned runtime
+ * role regardless of which file executes first. Domain-schema tables (affiliation, organization,
+ * participant, facility, standing) are granted conditionally by their own migrations because the
+ * role already exists. Idempotent and re-runnable. Mirrors the documented 0001 grant block exactly;
+ * this only widens table ACLs — RLS still confines the role by row (it is NOSUPERUSER/NOBYPASSRLS).
+ */
+async function grantRuntimePrivileges(admin: pg.PoolClient, user: string): Promise<void> {
+  const roleId = quoteIdent(user);
+  await admin.query(`GRANT USAGE ON SCHEMA governance TO ${roleId}`);
+  await admin.query(`GRANT SELECT ON ALL TABLES IN SCHEMA governance TO ${roleId}`);
+  await admin.query(
+    `GRANT INSERT, UPDATE ON governance.entity_state, governance.transition_request,
+       governance.outbox_message TO ${roleId}`,
+  );
+  await admin.query(
+    `GRANT INSERT ON governance.state_transition, governance.transition_guard_result,
+       governance.audit_event, governance.evidence_object TO ${roleId}`,
+  );
+  await admin.query(`GRANT EXECUTE ON FUNCTION governance.current_tenant_id() TO ${roleId}`);
+  console.log(`[ci:db:bootstrap] granted base governance privileges to ${user}.`);
+}
+
 async function applyMigrations(admin: pg.PoolClient): Promise<number> {
   await admin.query(`
     CREATE TABLE IF NOT EXISTS public.schema_migrations (
@@ -144,6 +171,7 @@ async function main(): Promise<void> {
   try {
     await createRuntimeRole(client, runtimeUser, runtimePassword);
     const count = await applyMigrations(client);
+    await grantRuntimePrivileges(client, runtimeUser);
     await assertLeastPrivilege(client, runtimeUser);
     console.log(`[ci:db:bootstrap] done. ${count} migration(s) applied; runtime role ${runtimeUser} ready.`);
   } finally {
