@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page, type Response } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 interface Profile {
@@ -105,6 +105,23 @@ async function attachEvidence(
   await expect(fileInput).toHaveValue('');
 }
 
+function isDraftWriteResponse(response: Response): boolean {
+  const url = new URL(response.url());
+
+  return response.request().method() === 'PUT' && url.pathname.endsWith('/draft');
+}
+
+async function saveDraftAndWait(page: Page): Promise<Response> {
+  const responsePromise = page.waitForResponse(isDraftWriteResponse);
+
+  await page.getByRole('button', { name: 'Save response' }).click();
+
+  const response = await responsePromise;
+  expect(response.ok()).toBe(true);
+
+  return response;
+}
+
 test('real browser journey: representative draft, persistence, optimistic concurrency, submit, immutable receipt, and opaque unauthorized denial', async ({
   page,
   context,
@@ -140,36 +157,47 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await setIdentity(stalePage, 'rep-a');
   await selectContext(stalePage);
   await stalePage.goto(page.url());
-  const confirmationCheckbox = page.getByRole('checkbox').first();
-  if (await confirmationCheckbox.isChecked()) {
-    // Force a persisted mutation while returning to a valid checked state.
-    await confirmationCheckbox.uncheck();
-    await page.getByRole('button', { name: 'Save response' }).click();
-    await expect(page.getByText('Response saved')).toBeVisible();
 
-    await confirmationCheckbox.check();
-    await page.getByRole('button', { name: 'Save response' }).click();
-    await expect(page.getByText('Response saved')).toBeVisible();
-  } else {
-    await confirmationCheckbox.check();
-    await page.getByRole('button', { name: 'Save response' }).click();
-    await expect(page.getByText('Response saved')).toBeVisible();
-  }
+  // Prove stale page hydration before primary-page mutation.
+  await expect(
+    stalePage.getByRole('heading', {
+      name: 'Confirm organization profile',
+    }),
+  ).toBeVisible();
 
-  // Stale-write conflict on the same requirement using an outdated concurrency token.
-  const staleConflictResponse = stalePage.waitForResponse((response) => {
-    const url = new URL(response.url());
-
-    return (
-      response.request().method() === 'PUT' &&
-      /\/v1\/button\/affiliation\/applications\/[^/]+\/draft$/u.test(url.pathname)
-    );
+  const staleCheckbox = stalePage.getByRole('checkbox').first();
+  const staleSaveButton = stalePage.getByRole('button', {
+    name: 'Save response',
   });
 
-  const staleSubmitButton = stalePage.locator('form button[type="submit"]');
-  await expect(staleSubmitButton).toBeVisible({ timeout: 10000 });
-  await staleSubmitButton.click();
-  const conflictResponse = await staleConflictResponse;
+  await expect(staleCheckbox).toBeEnabled();
+  await expect(staleSaveButton).toBeEnabled();
+
+  const staleInitialValue = await staleCheckbox.isChecked();
+
+  // Produce and fully commit a newer server version from primary page.
+  const primaryCheckbox = page.getByRole('checkbox').first();
+
+  if (await primaryCheckbox.isChecked()) {
+    await primaryCheckbox.uncheck();
+    await saveDraftAndWait(page);
+
+    await primaryCheckbox.check();
+    await saveDraftAndWait(page);
+  } else {
+    await primaryCheckbox.check();
+    await saveDraftAndWait(page);
+  }
+  await expect(page.getByText('Response saved')).toBeVisible();
+
+  // Stale-write conflict on the same requirement using an outdated concurrency token.
+  await staleCheckbox.setChecked(!staleInitialValue);
+
+  const [conflictResponse] = await Promise.all([
+    stalePage.waitForResponse(isDraftWriteResponse),
+    staleSaveButton.click(),
+  ]);
+
   expect(conflictResponse.status()).toBe(409);
   await expect(stalePage.locator('.affiliation-note--conflict')).toBeVisible();
   await stalePage.close();
