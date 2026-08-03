@@ -1,4 +1,4 @@
-import { expect, test, type APIResponse, type Locator, type Page, type Response } from '@playwright/test';
+import { expect, test, type Locator, type Page, type Response } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 interface Profile {
@@ -77,68 +77,27 @@ async function attachEvidence(
   },
 ): Promise<void> {
   const evidenceSection = page.locator('.requirement-evidence');
-  const applicationId = currentApplicationId(page);
-  const requirementTitle = (await page.locator('#requirement-heading').textContent())?.trim();
-  if (!requirementTitle) {
-    throw new Error('Could not resolve active requirement heading for evidence association.');
-  }
-
-  const projectionResponse = await page.request.get(
-    `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}`,
-    { headers: { accept: 'application/json' } },
-  );
-  expect(projectionResponse.ok()).toBe(true);
-
-  const projection = (await projectionResponse.json()) as {
-    readonly application: {
-      readonly requirements: readonly {
-        readonly code: string;
-        readonly titleEn: string;
-        readonly titleFr: string;
-      }[];
-    };
-  };
-
-  const requirement = projection.application.requirements.find(
-    (item) => item.titleEn === requirementTitle || item.titleFr === requirementTitle,
-  );
-  if (!requirement) {
-    throw new Error(`Could not map requirement heading to code: ${requirementTitle}`);
-  }
-
-  const uploadResponse = await page.request.post('/v1/evidence/objects', {
-    headers: {
-      accept: 'application/json',
-      'content-type': input.mimeType || 'application/octet-stream',
-      'x-house-source-filename': encodeURIComponent(input.filename),
-    },
-    data: Buffer.from(input.content),
-  });
-  expect(uploadResponse.ok()).toBe(true);
-
-  const uploaded = (await uploadResponse.json()) as {
-    readonly evidenceObjectId: string;
-    readonly contentHash: string;
-    readonly contentType: string;
-  };
-
-  let associationResponse: APIResponse | null = null;
+  const fileInput = page.getByLabel('Attach document');
+  let associationResponse: Response | null = null;
   let failureDetails = '';
 
   for (let attempt = 0; attempt < 8; attempt += 1) {
-    associationResponse = await page.request.post(
-      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/evidence-links`,
-      {
-        headers: { accept: 'application/json', 'content-type': 'application/json' },
-        data: {
-          requirementCode: requirement.code,
-          evidenceObjectId: uploaded.evidenceObjectId,
-          contentHash: uploaded.contentHash,
-          contentType: uploaded.contentType,
-          displayName: input.filename,
-        },
-      },
-    );
+    const associationPromise = page.waitForResponse((response) => {
+      const url = new URL(response.url());
+
+      return (
+        response.request().method() === 'POST' &&
+        /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
+      );
+    });
+
+    await fileInput.setInputFiles({
+      name: input.filename,
+      mimeType: input.mimeType,
+      buffer: Buffer.from(input.content),
+    });
+
+    associationResponse = await associationPromise;
 
     if (associationResponse.ok()) break;
 
@@ -149,7 +108,7 @@ async function attachEvidence(
       associationResponse.status() === 400 &&
       responseBody.includes('AFFILIATION_EVIDENCE_REFERENCE_INVALID')
     ) {
-      await page.waitForTimeout(250);
+      await expect(fileInput).toHaveValue('');
       continue;
     }
 
@@ -162,11 +121,10 @@ async function attachEvidence(
 
   expect(associationResponse.ok(), `Evidence association failed: ${failureDetails}`).toBe(true);
 
-  await page.reload();
-
   // Authoritative projection has returned and rendered the linked evidence.
   await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
   await expect(evidenceSection.getByRole('button', { name: 'Remove' })).toBeVisible();
+  await expect(fileInput).toHaveValue('');
 }
 
 function isDraftWriteResponse(response: Response): boolean {
