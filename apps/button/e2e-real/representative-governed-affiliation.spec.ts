@@ -77,54 +77,32 @@ async function attachEvidence(
   },
 ): Promise<void> {
   const evidenceSection = page.locator('.requirement-evidence');
-  const fileInput = page.getByLabel('Attach document');
-  let associationResponse: Response | null = null;
-  let failureDetails = '';
+  const associationPromise = page.waitForResponse((response) => {
+    const url = new URL(response.url());
 
-  for (let attempt = 0; attempt < 8; attempt += 1) {
-    const associationPromise = page.waitForResponse((response) => {
-      const url = new URL(response.url());
+    return (
+      response.request().method() === 'POST' &&
+      /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
+    );
+  });
 
-      return (
-        response.request().method() === 'POST' &&
-        /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
-      );
-    });
+  await page.getByLabel('Attach document').setInputFiles({
+    name: input.filename,
+    mimeType: input.mimeType,
+    buffer: Buffer.from(input.content),
+  });
 
-    await fileInput.setInputFiles({
-      name: input.filename,
-      mimeType: input.mimeType,
-      buffer: Buffer.from(input.content),
-    });
-
-    associationResponse = await associationPromise;
-
-    if (associationResponse.ok()) break;
-
-    const responseBody = await associationResponse.text();
-    failureDetails = `status ${associationResponse.status()}: ${responseBody}`;
-
-    if (
-      associationResponse.status() === 400 &&
-      responseBody.includes('AFFILIATION_EVIDENCE_REFERENCE_INVALID')
-    ) {
-      await expect(fileInput).toHaveValue('');
-      continue;
-    }
-
-    break;
-  }
-
-  if (associationResponse === null) {
-    throw new Error('Evidence association did not produce a response.');
-  }
+  const associationResponse = await associationPromise;
+  const failureDetails = associationResponse.ok()
+    ? ''
+    : `status ${associationResponse.status()}: ${await associationResponse.text()}`;
 
   expect(associationResponse.ok(), `Evidence association failed: ${failureDetails}`).toBe(true);
 
   // Authoritative projection has returned and rendered the linked evidence.
   await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
   await expect(evidenceSection.getByRole('button', { name: 'Remove' })).toBeVisible();
-  await expect(fileInput).toHaveValue('');
+  await expect(page.getByLabel('Attach document')).toHaveValue('');
 }
 
 function isDraftWriteResponse(response: Response): boolean {

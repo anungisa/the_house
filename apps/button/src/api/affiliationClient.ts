@@ -133,16 +133,9 @@ interface ErrorEnvelope {
   readonly message?: string;
 }
 
-const EVIDENCE_ASSOCIATION_RETRY_LIMIT = 5;
-const EVIDENCE_ASSOCIATION_RETRY_DELAY_MS = 100;
-
 /** Real transport against the governed House HTTP surface. */
 export class HttpAffiliationApiClient implements AffiliationApiClient {
   constructor(private readonly baseUrl = '') {}
-
-  private async wait(delayMs: number): Promise<void> {
-    await new Promise((resolve) => setTimeout(resolve, delayMs));
-  }
 
   private async request<T>(
     path: string,
@@ -245,40 +238,20 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
       (body) => body as { evidenceObjectId: string; contentHash: string; contentType: string },
     );
 
-    for (let attempt = 0; attempt < EVIDENCE_ASSOCIATION_RETRY_LIMIT; attempt += 1) {
-      try {
-        return await this.request(
-          `/v1/button/affiliation/applications/${encodeURIComponent(input.applicationId)}/evidence-links`,
-          {
-            method: 'POST',
-            headers: { accept: 'application/json', 'content-type': 'application/json' },
-            body: JSON.stringify({
-              requirementCode: input.requirementCode,
-              evidenceObjectId: uploaded.evidenceObjectId,
-              contentHash: uploaded.contentHash,
-              contentType: uploaded.contentType,
-              displayName: input.file.name,
-            }),
-          },
-          (body) => (body as { application: AffiliationApplicationProjection }).application,
-        );
-      } catch (error) {
-        if (
-          error instanceof AffiliationApiError &&
-          error.category === 'evidence-invalid' &&
-          attempt + 1 < EVIDENCE_ASSOCIATION_RETRY_LIMIT
-        ) {
-          await this.wait(EVIDENCE_ASSOCIATION_RETRY_DELAY_MS);
-          continue;
-        }
-        throw error;
-      }
-    }
-
-    throw new AffiliationApiError(
-      'service-unavailable',
-      0,
-      'The service is temporarily unavailable.',
+    return this.request(
+      `/v1/button/affiliation/applications/${encodeURIComponent(input.applicationId)}/evidence-links`,
+      {
+        method: 'POST',
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+        body: JSON.stringify({
+          requirementCode: input.requirementCode,
+          evidenceObjectId: uploaded.evidenceObjectId,
+          contentHash: uploaded.contentHash,
+          contentType: uploaded.contentType,
+          displayName: input.file.name,
+        }),
+      },
+      (body) => (body as { application: AffiliationApplicationProjection }).application,
     );
   }
 

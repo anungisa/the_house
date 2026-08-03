@@ -8,14 +8,6 @@ function newFile(name: string): File {
   return new File([new Uint8Array([1, 2, 3])], name, { type: 'application/pdf' });
 }
 
-function newUploadFile(name: string): File {
-  return {
-    name,
-    type: 'application/pdf',
-    arrayBuffer: async () => new Uint8Array([1, 2, 3]).buffer,
-  } as File;
-}
-
 const originalFetch = globalThis.fetch;
 
 afterEach(() => {
@@ -235,68 +227,15 @@ describe('MockAffiliationApiClient (synthetic surface parity)', () => {
 });
 
 describe('HttpAffiliationApiClient', () => {
-  it('retries evidence association when the validator has not observed the uploaded object yet', async () => {
-    const application = {
-      applicationId: 'app-1',
-      organizationId: 'club-1',
-      seasonId: '2025-26',
-      pathway: 'new_affiliation',
-      lifecycleStatus: 'draft',
-      concurrencyToken: '2',
-      lastSavedAt: '2026-08-03T00:00:00.000Z',
-      requirements: [],
-      completeness: {
-        totalApplicable: 4,
-        completedCount: 1,
-        unresolvedBlockers: [],
-        requiredNextActions: [],
-        eligibleForSubmission: false,
-      },
-    };
-
-    globalThis.fetch = vi
-      .fn()
-      .mockResolvedValueOnce({
-        ok: true,
-        status: 201,
-        json: async () => ({
-          evidenceObjectId: 'evidence-1',
-          contentHash: 'abc123',
-          contentType: 'application/pdf',
-        }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: false,
-        status: 400,
-        json: async () => ({
-          status: 'error',
-          code: 'AFFILIATION_EVIDENCE_REFERENCE_INVALID',
-        }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: false,
-        status: 400,
-        json: async () => ({
-          status: 'error',
-          code: 'AFFILIATION_EVIDENCE_REFERENCE_INVALID',
-        }),
-      } as Response)
-      .mockResolvedValueOnce({
-        ok: true,
-        status: 200,
-        json: async () => ({ application }),
-      } as Response);
+  it('maps network failures to service-unavailable', async () => {
+    globalThis.fetch = vi.fn().mockRejectedValueOnce(new Error('network down'));
 
     const client = new HttpAffiliationApiClient();
 
-    await expect(
-      client.associateEvidence({
-        applicationId: 'app-1',
-        requirementCode: 'GOVERNING_DOCUMENT',
-        file: newUploadFile('bylaws.pdf'),
-      }),
-    ).resolves.toEqual(application);
-
-    expect(globalThis.fetch).toHaveBeenCalledTimes(4);
+    await expect(client.getOverview({ organizationId: 'club-1', season: '2025-26' })).rejects.toMatchObject(
+      {
+        category: 'service-unavailable',
+      },
+    );
   });
 });

@@ -81,6 +81,7 @@ import { PgWorkflowStore } from '../governance/workflow/PgWorkflowStore.js';
 import { WorkflowDecisionService } from '../governance/workflow/WorkflowDecisionService.js';
 import { createEvidenceStorage } from '../governance/evidence/EvidenceStorageFactory.js';
 import { GovernanceEvidenceService } from '../governance/evidence/GovernanceEvidenceService.js';
+import type { EvidenceStorage } from '../governance/evidence/EvidenceStorage.js';
 import { createEvidenceMalwareScanner } from '../governance/evidence/scanning/index.js';
 import {
   EvidenceQuarantineService,
@@ -287,6 +288,18 @@ export function createPgTelemetry(): Telemetry {
 export function createEvidenceHttpDeps(telemetry?: Telemetry): EvidenceHttpDeps {
   const config = loadConfig();
   const storage = createEvidenceStorage(config.evidenceStorage);
+  return createEvidenceHttpDepsFromStorage(config, storage, telemetry);
+}
+
+/**
+ * Build the evidence HTTP transport from an already-constructed storage boundary. Runtime
+ * composition uses this so upload and validator paths share one configured storage instance.
+ */
+export function createEvidenceHttpDepsFromStorage(
+  config: ReturnType<typeof loadConfig>,
+  storage: EvidenceStorage,
+  telemetry?: Telemetry,
+): EvidenceHttpDeps {
   return {
     uploadService: new GovernanceEvidenceService(storage),
     storage,
@@ -420,6 +433,19 @@ export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContex
 export function createButtonAffiliationHttpDeps(telemetry?: Telemetry): ButtonAffiliationHttpDeps {
   const config = loadConfig();
   const storage = createEvidenceStorage(config.evidenceStorage);
+  return createButtonAffiliationHttpDepsFromStorage(config, storage, telemetry);
+}
+
+/**
+ * Build the Button club-affiliation DRAFT transport from an already-constructed evidence
+ * storage boundary. Runtime composition uses this so upload and reference validation share
+ * one configured storage instance.
+ */
+export function createButtonAffiliationHttpDepsFromStorage(
+  config: ReturnType<typeof loadConfig>,
+  storage: EvidenceStorage,
+  telemetry?: Telemetry,
+): ButtonAffiliationHttpDeps {
   const service = new AffiliationDraftService({
     store: new PgAffiliationDraftStore(),
     catalog: new PgRequirementCatalogStore(),
@@ -507,13 +533,14 @@ export function createPgAffiliationHttpServer(
 ): Server {
   const config = loadConfig();
   const telemetry = createTelemetry(config.observability);
+  const evidenceStorage = createEvidenceStorage(config.evidenceStorage);
   return createAffiliationHttpServer({
     executor: createPgAffiliationApplicationService(),
     financialExecutor: createPgFinancialObligationService(),
     standingExecutor: createPgAffiliationStandingService(),
     resolver: createAuthContextResolver(config),
     telemetry,
-    evidence: createEvidenceHttpDeps(telemetry),
+    evidence: createEvidenceHttpDepsFromStorage(config, evidenceStorage, telemetry),
     ...(config.evidenceQuarantine.enabled
       ? { evidenceQuarantine: createEvidenceQuarantineHttpDeps(telemetry) }
       : {}),
@@ -522,7 +549,7 @@ export function createPgAffiliationHttpServer(
     workflowRead: createWorkflowReadHttpDeps(telemetry),
     organizationRead: createOrganizationReadHttpDeps(telemetry),
     buttonContext: createButtonContextHttpDeps(telemetry),
-    buttonAffiliation: createButtonAffiliationHttpDeps(telemetry),
+    buttonAffiliation: createButtonAffiliationHttpDepsFromStorage(config, evidenceStorage, telemetry),
     buttonReview: new AffiliationReviewService(createPgAffiliationApplicationService()),
     buttonDecision: createAffiliationDecisionService(),
     buttonFinance: new FinancialObligationReviewService(),
