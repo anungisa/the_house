@@ -71,7 +71,10 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   await page.getByRole('button', { name: 'Fran\u00e7ais' }).click();
     await expect(page.getByRole('heading', { name: /Aperçu/u })).toBeVisible();
-  await page.getByRole('button', { name: 'Switch to English' }).click();
+    await page
+      .getByRole('group', { name: 'Langue' })
+      .getByRole('button', { name: 'English', exact: true })
+      .click();
   await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
 
   await page.getByRole('button', { name: 'Start affiliation' }).click();
