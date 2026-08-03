@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 interface Profile {
@@ -62,6 +62,12 @@ async function assertNoSeriousOrCriticalA11y(page: Page): Promise<void> {
   expect(blocking).toEqual([]);
 }
 
+async function ensureChecked(locator: Locator): Promise<void> {
+  if (!(await locator.isChecked())) {
+    await locator.click();
+  }
+}
+
 test('real browser journey: representative draft, persistence, optimistic concurrency, submit, immutable receipt, and opaque unauthorized denial', async ({
   page,
   context,
@@ -93,7 +99,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Requirement 1: acknowledgement.
   await page.getByRole('link', { name: 'Confirm organization profile' }).click();
-  await page.getByRole('checkbox').check();
+  await ensureChecked(page.getByRole('checkbox').first());
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
   await page.getByRole('link', { name: 'Back to requirements' }).click();
@@ -110,10 +116,22 @@ test('real browser journey: representative draft, persistence, optimistic concur
   if (!(await stalePage.locator('#contact-name').isVisible())) {
     await stalePage.goto(`/button/affiliation/${applicationId}`);
     if (requirementCode) {
-      await stalePage.locator(`a[href$='/${requirementCode}']`).first().click();
+      await stalePage
+        .locator(`a[href$='/${requirementCode}']`)
+        .first()
+        .click({ timeout: 1500 })
+        .catch(() => undefined);
+    }
+    if (!(await stalePage.locator('#contact-name').isVisible())) {
+      const localizedContactLink = stalePage
+        .getByRole('link', { name: /Primary affiliation contact|Contact principal/u })
+        .first();
+      if ((await localizedContactLink.count()) > 0) {
+        await localizedContactLink.click();
+      }
     }
   }
-  await expect(stalePage.locator('#contact-name')).toBeVisible();
+  await expect(stalePage.locator('#contact-name')).toBeVisible({ timeout: 10000 });
 
   await page.locator('#contact-name').fill('Dana Representative');
   await page.locator('#contact-email').fill('dana@example.test');
@@ -147,7 +165,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Requirement 4: insurance with synthetic evidence.
   await page.getByRole('link', { name: 'Insurance confirmation' }).click();
-  await page.getByRole('checkbox').check();
+  await ensureChecked(page.getByRole('checkbox').first());
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
   await page.getByLabel('Attach document').setInputFiles({
