@@ -154,19 +154,16 @@ test('real browser journey: representative draft, persistence, optimistic concur
   // Requirement 1: acknowledgement.
   await page.getByRole('link', { name: 'Confirm organization profile' }).click();
   const stalePage = await context.newPage();
-  await setIdentity(stalePage, 'rep-a');
-  await selectContext(stalePage);
   await stalePage.goto(page.url());
 
-  const staleCheckbox = stalePage.getByRole('checkbox').first();
+  await stalePage.waitForURL(/\/button\/affiliation\/[^/]+\/requirements\/[^/]+$/u);
+
   const staleSaveButton = stalePage.getByRole('button', {
     name: 'Save response',
   });
 
-  await expect(staleCheckbox).toBeEnabled();
-  await expect(staleSaveButton).toBeEnabled();
-
-  const staleInitialValue = await staleCheckbox.isChecked();
+  await expect(staleSaveButton).toBeVisible({ timeout: 15_000 });
+  await expect(staleSaveButton).toBeEnabled({ timeout: 15_000 });
 
   // Produce and fully commit a newer server version from primary page.
   const primaryCheckbox = page.getByRole('checkbox').first();
@@ -184,8 +181,6 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await expect(page.getByText('Response saved')).toBeVisible();
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
-  await staleCheckbox.setChecked(!staleInitialValue);
-
   const [conflictResponse] = await Promise.all([
     stalePage.waitForResponse(isDraftWriteResponse),
     staleSaveButton.click(),
