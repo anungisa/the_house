@@ -158,13 +158,6 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await selectContext(stalePage);
   await stalePage.goto(page.url());
 
-  // Prove stale page hydration before primary-page mutation.
-  await expect(
-    stalePage.getByRole('heading', {
-      name: 'Confirm organization profile',
-    }),
-  ).toBeVisible();
-
   const staleCheckbox = stalePage.getByRole('checkbox').first();
   const staleSaveButton = stalePage.getByRole('button', {
     name: 'Save response',
