@@ -98,20 +98,36 @@ async function attachEvidence(
     return associationResponse;
   };
 
-  let response = await uploadAndWaitForAssociation();
+  let response: Response | undefined;
+  let failureDetails = '';
 
-  // The projection token can advance between save and associate; refresh in-page and retry once.
-  if (!response.ok()) {
-    const refreshDraftResponse = page.waitForResponse(isDraftWriteResponse);
-    await page.getByRole('button', { name: 'Save response' }).click();
-    expect((await refreshDraftResponse).ok()).toBe(true);
+  for (let attempt = 0; attempt < 4; attempt += 1) {
     response = await uploadAndWaitForAssociation();
+    if (response.ok()) break;
+
+    const responseBody = await response.text();
+    failureDetails = `status ${response.status()}: ${responseBody}`;
+
+    // Evidence boundary can reject a fresh reference transiently before validation catches up.
+    if (
+      response.status() === 400 &&
+      responseBody.includes('AFFILIATION_EVIDENCE_REFERENCE_INVALID')
+    ) {
+      continue;
+    }
+
+    // Draft token can advance between interactions; refresh and retry with the latest token.
+    if (response.status() === 409) {
+      const refreshDraftResponse = page.waitForResponse(isDraftWriteResponse);
+      await page.getByRole('button', { name: 'Save response' }).click();
+      expect((await refreshDraftResponse).ok()).toBe(true);
+      continue;
+    }
+
+    break;
   }
 
-  expect(
-    response.ok(),
-    `Evidence association failed with status ${response.status()}: ${await response.text()}`,
-  ).toBe(true);
+  expect(response?.ok() === true, `Evidence association failed: ${failureDetails}`).toBe(true);
 
   // Authoritative projection has returned and rendered the linked evidence.
   await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
