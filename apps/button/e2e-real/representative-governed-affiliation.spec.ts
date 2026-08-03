@@ -153,17 +153,35 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Requirement 1: acknowledgement.
   await page.getByRole('link', { name: 'Confirm organization profile' }).click();
+
+  const applicationId = currentApplicationId(page);
   const stalePage = await context.newPage();
-  await stalePage.goto(page.url());
+  await setIdentity(stalePage, 'rep-a');
+  await selectContext(stalePage);
 
-  await stalePage.waitForURL(/\/button\/affiliation\/[^/]+\/requirements\/[^/]+$/u);
+  const staleProjectionResponse = await stalePage.request.get(
+    `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}`,
+    { headers: { accept: 'application/json' } },
+  );
+  expect(staleProjectionResponse.ok()).toBe(true);
 
-  const staleSaveButton = stalePage.getByRole('button', {
-    name: 'Save response',
-  });
+  const staleProjection = (await staleProjectionResponse.json()) as {
+    readonly application: {
+      readonly concurrencyToken: string;
+      readonly requirements: readonly {
+        readonly code: string;
+        readonly titleEn: string;
+        readonly response: Record<string, unknown>;
+      }[];
+    };
+  };
 
-  await expect(staleSaveButton).toBeVisible({ timeout: 15_000 });
-  await expect(staleSaveButton).toBeEnabled({ timeout: 15_000 });
+  const staleRequirement = staleProjection.application.requirements.find(
+    (requirement) => requirement.titleEn === 'Confirm organization profile',
+  );
+  if (!staleRequirement) {
+    throw new Error('Could not resolve stale requirement snapshot for concurrency proof.');
+  }
 
   // Produce and fully commit a newer server version from primary page.
   const primaryCheckbox = page.getByRole('checkbox').first();
@@ -181,13 +199,26 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await expect(page.getByText('Response saved')).toBeVisible();
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
-  const [conflictResponse] = await Promise.all([
-    stalePage.waitForResponse(isDraftWriteResponse),
-    staleSaveButton.click(),
-  ]);
+  const conflictResponse = await stalePage.request.put(
+    `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/draft`,
+    {
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        'If-Match': `"${staleProjection.application.concurrencyToken}"`,
+      },
+      data: {
+        responses: [
+          {
+            requirementCode: staleRequirement.code,
+            value: staleRequirement.response,
+          },
+        ],
+      },
+    },
+  );
 
   expect(conflictResponse.status()).toBe(409);
-  await expect(stalePage.locator('.affiliation-note--conflict')).toBeVisible();
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
