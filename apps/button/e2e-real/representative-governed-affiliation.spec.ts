@@ -291,9 +291,16 @@ test('real browser journey: representative draft, persistence, optimistic concur
   expect(receiptId).toBeTruthy();
   expect(sequence).toBe('1');
 
-  // Receipt immutability through browser reload.
+  // Receipt immutability through browser reload. A full reload drops the client-held context
+  // selection (server-backed guard redirects to select-context), so re-select context and open
+  // the submitted application via in-app navigation. The receipt is re-fetched from the durable
+  // server-side record, proving it survives a browser reload unchanged.
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Submission receipt' })).toBeVisible();
+  await selectContext(page);
+  await page.getByRole('button', { name: 'View affiliation status' }).click();
+  await expect(page.getByRole('heading', { name: 'Submission receipt' })).toBeVisible({
+    timeout: 15_000,
+  });
   const receiptValuesAfterReload = await page
     .locator('section[aria-labelledby="submission-receipt-heading"] dd')
     .allTextContents();
