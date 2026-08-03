@@ -40,12 +40,17 @@ async function selectContext(page: Page): Promise<void> {
 
 async function openAffiliationChecklist(page: Page): Promise<void> {
   const begin = page.getByRole('button', { name: 'Start affiliation' });
+  const resume = page.getByRole('button', { name: 'Continue draft' });
+  // The overview's primary action depends on an async affiliation-status fetch. Wait for either
+  // action to resolve before branching so we never sample a transient state in which neither
+  // button has rendered yet (which would otherwise hang on the wrong branch).
+  await expect(begin.or(resume)).toBeVisible();
   if (await begin.isVisible()) {
     await begin.click();
     return;
   }
 
-  await page.getByRole('button', { name: 'Continue draft' }).click();
+  await resume.click();
 }
 
 function currentApplicationId(page: Page): string {

@@ -258,6 +258,85 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
     });
   });
 
+  it('serves the review case from the corrected resubmission snapshot (shape parity)', async () => {
+    const tenantId = randomUUID();
+    const organizationId = randomUUID();
+    const applicantUserId = randomUUID();
+    const reviewerUserId = randomUUID();
+    const draft = await completeDraft({ tenantId, organizationId, applicantUserId });
+    const transitions = createPgAffiliationApplicationService();
+    const submissions = new AffiliationSubmissionService(transitions);
+    const reviews = new AffiliationReviewService(transitions);
+    await submissions.submit({
+      tenantId,
+      applicationId: draft.applicationId,
+      expectedDraftVersion: draft.version,
+      idempotencyKey: `submit:${draft.applicationId}:${draft.version}`,
+      actorUserId: applicantUserId,
+      actorRoleKeys: ['applicant'],
+      seasonId: SEASON,
+      organizationId,
+    });
+
+    const reviewer = {
+      userId: reviewerUserId,
+      roleKeys: ['reviewer'],
+      scopeType: 'local_organization' as const,
+      organizationId,
+    };
+    await reviews.startReview({
+      tenantId,
+      applicationId: draft.applicationId,
+      actor: reviewer,
+      idempotencyKey: `review-start:${draft.applicationId}`,
+    });
+
+    const correction = await submissions.openCorrection({
+      tenantId,
+      applicationId: draft.applicationId,
+      reviewerUserId,
+      reviewerRoleKeys: ['reviewer'],
+      reviewerOrganizationId: organizationId,
+      reasons: [{ requirementCode: 'PRIMARY_CONTACT_DETAILS', reason: 'Add a direct phone number.' }],
+    });
+
+    const corrected = await draft.drafts.saveDraft({
+      tenantId,
+      applicationId: draft.applicationId,
+      expectedVersion: draft.version,
+      actor: applicantUserId,
+      responses: [
+        {
+          requirementCode: 'PRIMARY_CONTACT_DETAILS',
+          value: { name: 'Dana', phone: '+1 555 0100' },
+        },
+      ],
+    });
+    const receipt = await submissions.resubmitCorrection({
+      tenantId,
+      applicationId: draft.applicationId,
+      correctionRequestId: correction.correctionRequestId,
+      expectedDraftVersion: Number(corrected.concurrencyToken),
+      idempotencyKey: `resubmit:${correction.correctionRequestId}:${corrected.concurrencyToken}`,
+      actorUserId: applicantUserId,
+    });
+    expect(receipt.sequence).toBe(2);
+
+    // Regression guard: getCase reads the LATEST (resubmitted) submission snapshot. Its requirement
+    // shape must match the initial submission snapshot (`code`/`version`), or getCase throws
+    // CONFIG_ERROR and the assigned reviewer can never act on a corrected application.
+    const reviewCase = await reviews.getCase(tenantId, reviewer, draft.applicationId);
+    expect(reviewCase.requirements).toHaveLength(4);
+    for (const requirement of reviewCase.requirements) {
+      expect(requirement.code).not.toBe('');
+      expect(requirement.version).toBeGreaterThan(0);
+      expect(requirement.titleEn).not.toBe('');
+    }
+    expect(
+      reviewCase.requirements.find((item) => item.code === 'PRIMARY_CONTACT_DETAILS')?.response,
+    ).toMatchObject({ phone: '+1 555 0100' });
+  });
+
   it('filters the reviewer queue by resource scope and assigns review atomically', async () => {
     const tenantId = randomUUID();
     const organizationId = randomUUID();

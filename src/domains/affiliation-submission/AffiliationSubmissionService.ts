@@ -549,8 +549,16 @@ export class AffiliationSubmissionService {
       evidence: unknown;
     }>(
       `SELECT a.organization_id, a.season_id, a.application_type,
-              COALESCE((SELECT jsonb_agg(to_jsonb(ar) - 'tenant_id' ORDER BY ar.requirement_code)
-                FROM affiliation.application_requirement ar WHERE ar.application_id = a.id), '[]') AS requirements,
+              COALESCE((SELECT jsonb_agg(jsonb_build_object(
+                  'code', ar.requirement_code,
+                  'version', ar.requirement_version,
+                  'appliesBecause', ar.applies_because,
+                  'evidenceRequired', rd.evidence_required
+                ) ORDER BY ar.requirement_code)
+                FROM affiliation.application_requirement ar
+                JOIN affiliation.requirement_definition rd
+                  ON rd.code = ar.requirement_code AND rd.version = ar.requirement_version
+               WHERE ar.application_id = a.id), '[]') AS requirements,
               COALESCE((SELECT jsonb_object_agg(dr.requirement_code, dr.response_value)
                 FROM affiliation.draft_response dr WHERE dr.application_id = a.id), '{}') AS responses,
               COALESCE((SELECT jsonb_agg(jsonb_build_object(

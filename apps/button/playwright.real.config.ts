@@ -13,13 +13,20 @@ export default defineConfig({
   testDir: './e2e-real',
   timeout: 90_000,
   fullyParallel: false,
+  // Real full-stack journeys share one PostgreSQL instance. Force a single worker so the specs
+  // run serially and never race on shared governed state.
+  workers: 1,
   forbidOnly: !!process.env['CI'],
-  retries: process.env['CI'] ? 1 : 0,
+  // These journeys mutate durable governed state in one shared PostgreSQL instance that is NOT
+  // reset between attempts. A retry would restart from a half-mutated database and fail (or pass)
+  // for reasons unrelated to the code under test, masking the true first failure. Non-idempotent
+  // full-stack journeys must run exactly once.
+  retries: 0,
   reporter: process.env['CI'] ? [['github'], ['html', { open: 'never' }]] : [['list']],
   globalSetup: './e2e-real/support/global-setup.mjs',
   use: {
     baseURL: 'http://127.0.0.1:5273',
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: [
