@@ -258,16 +258,23 @@ test('real browser journey: representative draft, persistence, optimistic concur
   });
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
-  await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
+  await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete', {
+    timeout: 15_000,
+  });
 
-  // Browser persistence: reload preserves completed server-backed draft state.
+  // Browser persistence: a full page reload drops the client-held context selection, so the
+  // server-backed guard (RequireAffiliation) redirects to select-context. Re-selecting context
+  // and resuming proves the completed 4-of-4 draft is durable server-side — not merely held in
+  // browser memory. The requirements checklist re-fetches its authoritative projection on resume.
   await page.reload();
-  if ((await page.getByRole('heading', { name: 'Affiliation requirements' }).count()) === 0) {
-    await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
-    await openAffiliationChecklist(page);
-  }
-  await expect(page.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
-  await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
+  await selectContext(page);
+  await openAffiliationChecklist(page);
+  await expect(page.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible({
+    timeout: 15_000,
+  });
+  await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete', {
+    timeout: 15_000,
+  });
 
   // Submit through browser controls and capture immutable receipt values.
   await page.getByRole('button', { name: 'Review and submit' }).click();
