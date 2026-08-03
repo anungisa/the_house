@@ -157,10 +157,22 @@ test('real browser journey: representative draft, persistence, optimistic concur
   }
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
+  const staleConflictResponse = stalePage.waitForResponse((response) => {
+    const url = new URL(response.url());
+
+    return (
+      response.request().method() === 'PUT' &&
+      /\/v1\/button\/affiliation\/applications\/[^/]+\/draft$/u.test(url.pathname)
+    );
+  });
+
+  const staleCheckbox = stalePage.getByRole('checkbox').first();
+  await expect(staleCheckbox).toBeVisible({ timeout: 10000 });
+  await staleCheckbox.click();
   await stalePage.locator('form button[type="submit"]').click();
-  await expect(
-    stalePage.getByText('This draft was changed elsewhere. We reloaded the latest version'),
-  ).toBeVisible();
+  const conflictResponse = await staleConflictResponse;
+  expect(conflictResponse.status()).toBe(409);
+  await expect(stalePage.locator('.affiliation-note--conflict')).toBeVisible();
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
