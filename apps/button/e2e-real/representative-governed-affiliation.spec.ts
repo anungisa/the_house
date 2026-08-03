@@ -100,10 +100,11 @@ async function attachEvidence(
 
   let response = await uploadAndWaitForAssociation();
 
-  // The projection token can advance between save and associate; refresh and retry once.
+  // The projection token can advance between save and associate; refresh in-page and retry once.
   if (!response.ok()) {
-    await page.reload();
-    await expect(fileInput).toBeVisible();
+    const refreshDraftResponse = page.waitForResponse(isDraftWriteResponse);
+    await page.getByRole('button', { name: 'Save response' }).click();
+    expect((await refreshDraftResponse).ok()).toBe(true);
     response = await uploadAndWaitForAssociation();
   }
 
