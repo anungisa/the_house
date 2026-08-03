@@ -79,22 +79,32 @@ async function attachEvidence(
   const evidenceSection = page.locator('.requirement-evidence');
   const fileInput = page.getByLabel('Attach document');
 
-  const associationResponse = page.waitForResponse((response) => {
-    const url = new URL(response.url());
+  const uploadAndWaitForAssociation = async (): Promise<Response> => {
+    const associationResponse = page.waitForResponse((response) => {
+      const url = new URL(response.url());
 
-    return (
-      response.request().method() === 'POST' &&
-      /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
-    );
-  });
+      return (
+        response.request().method() === 'POST' &&
+        /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
+      );
+    });
 
-  await fileInput.setInputFiles({
-    name: input.filename,
-    mimeType: input.mimeType,
-    buffer: Buffer.from(input.content),
-  });
+    await fileInput.setInputFiles({
+      name: input.filename,
+      mimeType: input.mimeType,
+      buffer: Buffer.from(input.content),
+    });
 
-  const response = await associationResponse;
+    return associationResponse;
+  };
+
+  let response = await uploadAndWaitForAssociation();
+
+  // The projection token can advance between save and associate; retry once deterministically.
+  if (response.status() === 409) {
+    response = await uploadAndWaitForAssociation();
+  }
+
   expect(response.ok()).toBe(true);
 
   // Authoritative projection has returned and rendered the linked evidence.
