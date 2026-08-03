@@ -141,10 +141,15 @@ function waitForPost(page: Page, pathPattern: RegExp): Promise<Response> {
  */
 async function submitFreshApplication(page: Page): Promise<string> {
   const begin = page.getByRole('button', { name: 'Start affiliation' });
+  const resume = page.getByRole('button', { name: 'Continue draft' });
+  // The overview's primary action depends on an async affiliation-status fetch. Wait for either
+  // action to resolve before branching so we never sample a transient state in which neither
+  // button has rendered yet (which would otherwise hang on the wrong branch).
+  await expect(begin.or(resume)).toBeVisible();
   if (await begin.isVisible()) {
     await begin.click();
   } else {
-    await page.getByRole('button', { name: 'Continue draft' }).click();
+    await resume.click();
   }
   await expect(page.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
 
@@ -339,8 +344,22 @@ test('real browser journey: submitted affiliation through governed review, corre
     });
   });
 
-  await test.step('Reviewer proposes a governed outcome into two-tier review', async () => {
-    await setIdentity(page, 'reviewer', reviewCasePath(applicationId));
+  await test.step('Reviewer re-claims the resubmitted case and proposes a governed outcome', async () => {
+    // Resubmission returns the application to the governed `submitted` state, which releases the
+    // prior review claim. The reviewer must re-claim it through the queue before the case is
+    // visible again — a direct navigation would (correctly) resolve to an opaque not-found.
+    await setIdentity(page, 'reviewer', '/button/review');
+    await expect(page.getByRole('heading', { name: 'Affiliation review queue' })).toBeVisible();
+    const queueItem = page.locator('li.requirement-card').filter({ hasText: applicationId });
+    await expect(queueItem).toBeVisible();
+    const restartResponse = waitForPost(
+      page,
+      /\/v1\/button\/affiliation\/applications\/[^/]+\/review-start$/u,
+    );
+    await queueItem.getByRole('button', { name: 'Start review' }).click();
+    expect((await restartResponse).ok()).toBe(true);
+    await expect(queueItem.getByText('Assigned to you')).toBeVisible();
+    await queueItem.getByRole('link', { name: 'Open case' }).click();
     await expect(page.getByRole('heading', { name: 'Review submitted affiliation' })).toBeVisible();
     await page.getByLabel('Proposed outcome').selectOption({ label: 'Approve affiliation' });
     await page

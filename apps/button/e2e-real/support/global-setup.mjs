@@ -49,11 +49,6 @@ export default async function globalSetup() {
       },
       // Operational/staff identities. Their governed capabilities are derived PURELY from
       // roleKeys (no context selection), and their delegated review/finance scope is the
-      // representative organization they are authorized over (rep-a's organization). Each role
-      // is a DISTINCT identity — no single actor holds every authority — so the journey proves
-      // real separation of duties across the governed lifecycle.
-      // Operational/staff identities. Their governed capabilities are derived PURELY from
-      // roleKeys (no context selection), and their delegated review/finance scope is the
       // operational representative organization they are authorized over (op-rep's organization).
       // Each role is a DISTINCT identity — no single actor holds every authority — so the journey
       // proves real separation of duties across the governed lifecycle.
