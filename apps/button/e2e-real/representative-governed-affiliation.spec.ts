@@ -68,6 +68,43 @@ async function ensureChecked(locator: Locator): Promise<void> {
   }
 }
 
+async function attachEvidence(
+  page: Page,
+  input: {
+    readonly filename: string;
+    readonly mimeType: string;
+    readonly content: string;
+  },
+): Promise<void> {
+  const evidenceSection = page.locator('.requirement-evidence');
+  const fileInput = page.getByLabel('Attach document');
+
+  const associationResponse = page.waitForResponse((response) => {
+    const url = new URL(response.url());
+
+    return (
+      response.request().method() === 'POST' &&
+      /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
+    );
+  });
+
+  await fileInput.setInputFiles({
+    name: input.filename,
+    mimeType: input.mimeType,
+    buffer: Buffer.from(input.content),
+  });
+
+  const response = await associationResponse;
+  expect(response.ok()).toBe(true);
+
+  // Authoritative projection has returned and rendered the linked evidence.
+  await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
+  await expect(evidenceSection.getByRole('button', { name: 'Remove' })).toBeVisible();
+
+  // The component clears the input after mutation settlement.
+  await expect(fileInput).toHaveValue('');
+}
+
 test('real browser journey: representative draft, persistence, optimistic concurrency, submit, immutable receipt, and opaque unauthorized denial', async ({
   page,
   context,
@@ -109,7 +146,9 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
   await stalePage.locator('form button[type="submit"]').click();
-  await stalePage.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => undefined);
+  await expect(stalePage.getByRole('alert')).toContainText(
+    'This draft was changed elsewhere. We reloaded the latest version',
+  );
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
@@ -128,12 +167,11 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await page.getByLabel('Document description or reference').fill('Current bylaws');
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
-  await page.getByLabel('Attach document').setInputFiles({
-    name: 'bylaws.pdf',
+  await attachEvidence(page, {
+    filename: 'bylaws.pdf',
     mimeType: 'application/pdf',
-    buffer: Buffer.from('synthetic-bylaws'),
+    content: 'synthetic-bylaws',
   });
-  await expect(page.getByLabel('Attach document')).toHaveValue(/bylaws\.pdf$/);
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
   // Requirement 4: insurance with synthetic evidence.
@@ -141,12 +179,11 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await ensureChecked(page.getByRole('checkbox').first());
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
-  await page.getByLabel('Attach document').setInputFiles({
-    name: 'insurance.pdf',
+  await attachEvidence(page, {
+    filename: 'insurance.pdf',
     mimeType: 'application/pdf',
-    buffer: Buffer.from('synthetic-insurance'),
+    content: 'synthetic-insurance',
   });
-  await expect(page.getByLabel('Attach document')).toHaveValue(/insurance\.pdf$/);
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
   await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
