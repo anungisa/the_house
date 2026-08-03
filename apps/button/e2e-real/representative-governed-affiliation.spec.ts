@@ -100,12 +100,17 @@ async function attachEvidence(
 
   let response = await uploadAndWaitForAssociation();
 
-  // The projection token can advance between save and associate; retry once deterministically.
-  if (response.status() === 409) {
+  // The projection token can advance between save and associate; refresh and retry once.
+  if (!response.ok()) {
+    await page.reload();
+    await expect(fileInput).toBeVisible();
     response = await uploadAndWaitForAssociation();
   }
 
-  expect(response.ok()).toBe(true);
+  expect(
+    response.ok(),
+    `Evidence association failed with status ${response.status()}: ${await response.text()}`,
+  ).toBe(true);
 
   // Authoritative projection has returned and rendered the linked evidence.
   await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
