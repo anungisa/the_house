@@ -70,7 +70,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
   ).toBeVisible();
 
   await page.getByRole('button', { name: 'Fran\u00e7ais' }).click();
-  await expect(page.getByRole('heading', { name: 'Aper\u00e7u d\'affiliation' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Aperçu/u })).toBeVisible();
   await page.getByRole('button', { name: 'Switch to English' }).click();
   await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
 
