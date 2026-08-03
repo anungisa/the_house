@@ -77,6 +77,8 @@ async function attachEvidence(
   },
 ): Promise<void> {
   const evidenceSection = page.locator('.requirement-evidence');
+  const evidenceList = evidenceSection.getByRole('listitem');
+  const existingEvidenceCount = await evidenceList.count();
   const associationPromise = page.waitForResponse((response) => {
     const url = new URL(response.url());
 
@@ -100,7 +102,7 @@ async function attachEvidence(
   expect(associationResponse.ok(), `Evidence association failed: ${failureDetails}`).toBe(true);
 
   // Authoritative projection has returned and rendered the linked evidence.
-  await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
+  await expect(evidenceList).toHaveCount(existingEvidenceCount + 1);
   await expect(evidenceSection.getByRole('button', { name: 'Remove' })).toBeVisible();
   await expect(page.getByLabel('Attach document')).toHaveValue('');
 }
@@ -249,6 +251,11 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await ensureChecked(page.getByRole('checkbox').first());
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
+  await attachEvidence(page, {
+    filename: 'insurance.pdf',
+    mimeType: 'application/pdf',
+    content: 'synthetic-insurance-proof',
+  });
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
   await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
