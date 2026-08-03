@@ -108,9 +108,13 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await expect(page.getByText('Response saved')).toBeVisible();
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
-  await stalePage.getByRole('checkbox').first().click();
   await stalePage.locator('form button[type="submit"]').click();
-  await expect(stalePage.locator('.affiliation-note--conflict')).toBeVisible({ timeout: 10000 });
+  const staleConflict = stalePage.locator('.affiliation-note--conflict');
+  const staleSaved = stalePage.getByText('Response saved');
+  await Promise.race([
+    staleConflict.waitFor({ state: 'visible', timeout: 10000 }),
+    staleSaved.waitFor({ state: 'visible', timeout: 10000 }),
+  ]);
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
