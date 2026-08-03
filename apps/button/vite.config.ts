@@ -18,6 +18,10 @@ export default defineConfig({
         target: process.env['BUTTON_API_TARGET'] ?? 'http://127.0.0.1:8080',
         changeOrigin: true,
       },
+      '/__e2e__': {
+        target: process.env['BUTTON_API_TARGET'] ?? 'http://127.0.0.1:8080',
+        changeOrigin: true,
+      },
     },
   },
   test: {

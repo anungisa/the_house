@@ -237,6 +237,7 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
       },
       (body) => body as { evidenceObjectId: string; contentHash: string; contentType: string },
     );
+
     return this.request(
       `/v1/button/affiliation/applications/${encodeURIComponent(input.applicationId)}/evidence-links`,
       {

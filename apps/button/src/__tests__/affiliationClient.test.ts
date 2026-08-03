@@ -1,12 +1,19 @@
-import { describe, it, expect } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { MockAffiliationApiClient } from '../api/affiliationClient';
+import { HttpAffiliationApiClient, MockAffiliationApiClient } from '../api/affiliationClient';
 import { AffiliationMockStore } from '../api/affiliationMockData';
 import { AffiliationApiError } from '../api/affiliationTypes';
 
 function newFile(name: string): File {
   return new File([new Uint8Array([1, 2, 3])], name, { type: 'application/pdf' });
 }
+
+const originalFetch = globalThis.fetch;
+
+afterEach(() => {
+  globalThis.fetch = originalFetch;
+  vi.restoreAllMocks();
+});
 
 describe('MockAffiliationApiClient (synthetic surface parity)', () => {
   it('initiate binds the applicable versioned requirements and is idempotent', async () => {
@@ -216,5 +223,19 @@ describe('MockAffiliationApiClient (synthetic surface parity)', () => {
     await expect(
       client.getOverview({ organizationId: 'club-9', season: '2025-26' }),
     ).rejects.toMatchObject({ category: 'not-found', httpStatus: 404 });
+  });
+});
+
+describe('HttpAffiliationApiClient', () => {
+  it('maps network failures to service-unavailable', async () => {
+    globalThis.fetch = vi.fn().mockRejectedValueOnce(new Error('network down'));
+
+    const client = new HttpAffiliationApiClient();
+
+    await expect(client.getOverview({ organizationId: 'club-1', season: '2025-26' })).rejects.toMatchObject(
+      {
+        category: 'service-unavailable',
+      },
+    );
   });
 });

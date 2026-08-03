@@ -119,6 +119,94 @@ jobs:
       - name: End-to-end (browser, mock transport)
         run: npm run e2e
 
+  button-real-server-e2e:
+    # Full-stack browser integration: Playwright browser drives the real Button frontend against
+    # the real House HTTP API and ephemeral PostgreSQL through a trusted synthetic identity edge.
+    # This is intentionally separate from:
+    # - button-frontend (mock transport browser coverage)
+    # - postgres-integration (backend/PostgreSQL integration without a browser)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres_ci_pw
+          POSTGRES_DB: house_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d house_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      PGHOST: localhost
+      PGPORT: '5432'
+      PGDATABASE: house_test
+      CI_ADMIN_USER: postgres
+      CI_ADMIN_PASSWORD: postgres_ci_pw
+      CI_APP_USER: house_app
+      CI_APP_PASSWORD: house_app_ci_pw
+      AUTH_MODE: trusted_headers
+    defaults:
+      run:
+        working-directory: apps/button
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            apps/button/package-lock.json
+
+      - name: Install root dependencies
+        working-directory: .
+        run: npm ci
+
+      - name: Install Button dependencies
+        run: npm ci
+
+      - name: Wait for PostgreSQL readiness
+        working-directory: .
+        run: |
+          for i in $(seq 1 30); do
+            if pg_isready -h "$PGHOST" -p "$PGPORT" -U "$CI_ADMIN_USER" >/dev/null 2>&1; then
+              echo "PostgreSQL is ready."
+              exit 0
+            fi
+            echo "Waiting for PostgreSQL... ($i)"
+            sleep 2
+          done
+          echo "PostgreSQL did not become ready in time." >&2
+          exit 1
+        env:
+          PGPASSWORD: ${{ env.CI_ADMIN_PASSWORD }}
+
+      - name: Assemble synthetic connection strings
+        working-directory: .
+        run: |
+          admin_creds="${CI_ADMIN_USER}:${CI_ADMIN_PASSWORD}"
+          app_creds="${CI_APP_USER}:${CI_APP_PASSWORD}"
+          target="@${PGHOST}:${PGPORT}/${PGDATABASE}"
+          echo "MIGRATE_DATABASE_URL=postgres://${admin_creds}${target}" >> "$GITHUB_ENV"
+          echo "DATABASE_URL=postgres://${app_creds}${target}" >> "$GITHUB_ENV"
+
+      - name: Bootstrap database (create least-privilege role + apply migrations)
+        working-directory: .
+        run: npm run ci:db:bootstrap
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end (browser, real API + PostgreSQL)
+        run: npm run e2e:real
+
   postgres-integration:
     # Governed PostgreSQL integration suite. This job runs the SAME repository against an ephemeral
     # PostgreSQL service so the real migrations, forced RLS, advisory locking, transactional

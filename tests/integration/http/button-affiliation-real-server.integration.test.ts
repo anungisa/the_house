@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import type { AddressInfo } from 'node:net';
 import type { Server } from 'node:http';
 import { URL } from 'node:url';
+import { TextEncoder } from 'node:util';
 import pg from 'pg';
 
 import {
@@ -60,6 +61,7 @@ const CONTEXT: RequirementResolutionContext = {
 
 let server: Server | undefined;
 let baseUrl = '';
+let previousEvidenceStorageProvider: string | undefined;
 
 interface HttpResponse {
   readonly status: number;
@@ -93,6 +95,25 @@ async function call(
       ...(hasBody ? { 'content-type': 'application/json' } : {}),
     },
     ...(hasBody ? { body: JSON.stringify(options.body) } : {}),
+  });
+  const text = await res.text();
+  const body = text === '' ? {} : (JSON.parse(text) as Record<string, unknown>);
+  return { status: res.status, body };
+}
+
+async function uploadEvidence(
+  headers: Record<string, string>,
+  input: { filename: string; contentType: string; content: string },
+): Promise<HttpResponse> {
+  const res = await globalThis.fetch(`${baseUrl}/v1/evidence/objects`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      accept: 'application/json',
+      'content-type': input.contentType,
+      'x-house-source-filename': encodeURIComponent(input.filename),
+    },
+    body: new TextEncoder().encode(input.content),
   });
   const text = await res.text();
   const body = text === '' ? {} : (JSON.parse(text) as Record<string, unknown>);
@@ -171,6 +192,9 @@ async function buildSubmittableDraft(input: {
 
 d('Button club-affiliation representative journey over the real HTTP server (PostgreSQL)', () => {
   beforeAll(async () => {
+    previousEvidenceStorageProvider = process.env.EVIDENCE_STORAGE_PROVIDER;
+    process.env.EVIDENCE_STORAGE_PROVIDER = 'memory';
+
     const admin = new pg.Pool({
       connectionString: process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL,
     });
@@ -212,6 +236,138 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
       );
     }
     await closePool();
+    if (previousEvidenceStorageProvider === undefined) {
+      delete process.env.EVIDENCE_STORAGE_PROVIDER;
+    } else {
+      process.env.EVIDENCE_STORAGE_PROVIDER = previousEvidenceStorageProvider;
+    }
+  });
+
+  it('shares one memory evidence boundary across upload and validation and fails closed across tenants', async () => {
+    const tenantA = randomUUID();
+    const orgA = randomUUID();
+    const userA = randomUUID();
+    const tenantB = randomUUID();
+    const orgB = randomUUID();
+    const userB = randomUUID();
+
+    const admin = new pg.Pool({
+      connectionString: process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL,
+    });
+    try {
+      await seedOrganization(admin, { tenantId: tenantA, organizationId: orgA, displayName: 'Granite Club' });
+      await seedOrganization(admin, { tenantId: tenantB, organizationId: orgB, displayName: 'Summit Club' });
+    } finally {
+      await admin.end();
+    }
+
+    const headersA = representativeHeaders({ tenantId: tenantA, userId: userA, organizationId: orgA });
+    const headersB = representativeHeaders({ tenantId: tenantB, userId: userB, organizationId: orgB });
+
+    const initiateA = await call('POST', '/v1/button/affiliation/applications', {
+      headers: headersA,
+      body: { organizationId: orgA, seasonId: SEASON, pathway: 'new_affiliation' },
+    });
+    expect(initiateA.status).toBe(200);
+    const appA = String((initiateA.body['application'] as Record<string, unknown>)['applicationId']);
+
+    const uploadA = await uploadEvidence(headersA, {
+      filename: 'bylaws.pdf',
+      contentType: 'application/pdf',
+      content: 'tenant-a-bylaws',
+    });
+    expect(uploadA.status).toBe(201);
+
+    const evidenceObjectId = String(uploadA.body['evidenceObjectId']);
+    const contentHash = String(uploadA.body['contentHash']);
+    const contentType = String(uploadA.body['contentType']);
+
+    // A single same-tenant association succeeds without retry, proving upload + validator share storage.
+    const associateA = await call(
+      'POST',
+      `/v1/button/affiliation/applications/${encodeURIComponent(appA)}/evidence-links`,
+      {
+        headers: headersA,
+        body: {
+          requirementCode: 'GOVERNING_DOCUMENT',
+          evidenceObjectId,
+          contentHash,
+          contentType,
+          displayName: 'bylaws.pdf',
+        },
+      },
+    );
+    expect(associateA.status).toBe(200);
+    expect((associateA.body['link'] as Record<string, unknown>)['evidenceObjectId']).toBe(evidenceObjectId);
+
+    const wrongHash = await call(
+      'POST',
+      `/v1/button/affiliation/applications/${encodeURIComponent(appA)}/evidence-links`,
+      {
+        headers: headersA,
+        body: {
+          requirementCode: 'GOVERNING_DOCUMENT',
+          evidenceObjectId,
+          contentHash: `${contentHash}-mismatch`,
+          contentType,
+          displayName: 'bylaws.pdf',
+        },
+      },
+    );
+    expect(wrongHash.status).toBe(400);
+    expect(wrongHash.body['code']).toBe('AFFILIATION_EVIDENCE_REFERENCE_INVALID');
+
+    const fabricatedObject = await call(
+      'POST',
+      `/v1/button/affiliation/applications/${encodeURIComponent(appA)}/evidence-links`,
+      {
+        headers: headersA,
+        body: {
+          requirementCode: 'GOVERNING_DOCUMENT',
+          evidenceObjectId: randomUUID(),
+          contentHash,
+          contentType,
+          displayName: 'fake.pdf',
+        },
+      },
+    );
+    expect(fabricatedObject.status).toBe(400);
+    expect(fabricatedObject.body['code']).toBe('AFFILIATION_EVIDENCE_REFERENCE_INVALID');
+
+    const initiateB = await call('POST', '/v1/button/affiliation/applications', {
+      headers: headersB,
+      body: { organizationId: orgB, seasonId: SEASON, pathway: 'new_affiliation' },
+    });
+    expect(initiateB.status).toBe(200);
+    const appB = String((initiateB.body['application'] as Record<string, unknown>)['applicationId']);
+
+    const crossTenant = await call(
+      'POST',
+      `/v1/button/affiliation/applications/${encodeURIComponent(appB)}/evidence-links`,
+      {
+        headers: headersB,
+        body: {
+          requirementCode: 'GOVERNING_DOCUMENT',
+          evidenceObjectId,
+          contentHash,
+          contentType,
+          displayName: 'cross-tenant.pdf',
+        },
+      },
+    );
+    expect(crossTenant.status).toBe(400);
+    expect(crossTenant.body['code']).toBe('AFFILIATION_EVIDENCE_REFERENCE_INVALID');
+
+    const appBProjection = await call('GET', `/v1/button/affiliation/applications/${encodeURIComponent(appB)}`, {
+      headers: headersB,
+    });
+    expect(appBProjection.status).toBe(200);
+    const requirements = (appBProjection.body['application'] as Record<string, unknown>)[
+      'requirements'
+    ] as Array<Record<string, unknown>>;
+    const governingDocument = requirements.find((requirement) => requirement['code'] === 'GOVERNING_DOCUMENT');
+    const evidenceLinks = (governingDocument?.['evidence'] as unknown[] | undefined) ?? [];
+    expect(evidenceLinks).toHaveLength(0);
   });
 
   it('drives context, governed submission, idempotent replay, and asserts governed persistence', async () => {
