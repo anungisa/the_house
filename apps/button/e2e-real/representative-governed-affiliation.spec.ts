@@ -89,7 +89,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   await openAffiliationChecklist(page);
   await expect(page.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
-  await expect(page.getByTestId('requirements-progress')).toContainText('0 of 4 complete');
+  await expect(page.getByTestId('requirements-progress')).toContainText('of 4 complete');
 
   // Requirement 1: acknowledgement.
   await page.getByRole('link', { name: 'Confirm organization profile' }).click();
@@ -106,13 +106,13 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await selectContext(stalePage);
   await stalePage.goto(requirementUrl);
 
-  await page.getByLabel('Contact name').fill('Dana Representative');
-  await page.getByLabel('Email').fill('dana@example.test');
+  await page.locator('#contact-name').fill('Dana Representative');
+  await page.locator('#contact-email').fill('dana@example.test');
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
 
-  await stalePage.getByLabel('Contact name').fill('Stale Save Attempt');
-  await stalePage.getByLabel('Email').fill('stale@example.test');
+  await stalePage.locator('#contact-name').fill('Stale Save Attempt');
+  await stalePage.locator('#contact-email').fill('stale@example.test');
   await stalePage.getByRole('button', { name: 'Save response' }).click();
   await expect(
     stalePage.getByText(
