@@ -16,7 +16,7 @@
 import { randomUUID } from 'node:crypto';
 
 import { AppError, ErrorCode } from '../../../shared/errors/AppError.js';
-import type { AuthContext, AuthActor } from '../../auth/AuthContext.js';
+import type { AuthContext } from '../../auth/AuthContext.js';
 import type { AuthContextResolver } from '../../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../../auth/DemoAuthContextResolver.js';
 import { resolveOrganizationAuth } from '../../organization/organizationHttpAuth.js';
@@ -105,21 +105,12 @@ function errorResult(err: unknown, requestId: string): ButtonAffiliationHttpResu
 }
 
 /** The actor's explicit organizational references (fail closed — the browser cannot widen this). */
-function representableOrganizationIds(actor: AuthActor): readonly string[] {
-  const ids = [
-    actor.organizationId,
-    actor.localOrganizationId,
-    actor.scopeId,
-    actor.organizationUnitId,
-  ].filter((id): id is string => typeof id === 'string' && id.trim() !== '');
-  return [...new Set(ids)];
-}
-
 /**
- * Re-authorize a target organization: it must be one the actor explicitly references, must exist
- * and be active for the tenant, AND the actor must hold an ACTIVE representative authority over it.
- * Non-representable / missing / cross-tenant => opaque 404 (no existence disclosure); inactive
- * authority => 403.
+ * Re-authorize a target organization purely from the GOVERNED authority source: the actor must
+ * hold a representative authority over it (else opaque 404 — no existence disclosure), the
+ * organization must exist and be active for the tenant (else opaque 404), and the held authority
+ * must be currently ACTIVE (a lapsed/revoked authority => 403). A trusted role key or organization
+ * header alone never satisfies this — only a persisted, in-window, un-revoked grant does.
  */
 async function authorizeOrganization(
   deps: ButtonAffiliationHttpDeps,
@@ -129,15 +120,18 @@ async function authorizeOrganization(
   const notFound = (): AppError =>
     new AppError(ErrorCode.AFFILIATION_APPLICATION_NOT_FOUND, 'Affiliation application not found.');
 
-  if (!representableOrganizationIds(auth.actor).includes(organizationId)) throw notFound();
+  const authorities = await deps.authorities.authoritiesFor(
+    auth.tenantId,
+    auth.actor,
+    deps.nowIso(),
+  );
+  const authority = authorities.find((a) => a.organizationId === organizationId);
+  if (authority === undefined) throw notFound();
+
   const org = await deps.organizations.getById(auth.tenantId, organizationId);
   if (org === undefined || org.status !== 'active') throw notFound();
 
-  const authorities = await deps.authorities.authoritiesFor(auth.tenantId, auth.actor, [
-    organizationId,
-  ]);
-  const authority = authorities.find((a) => a.organizationId === organizationId);
-  if (authority === undefined || authority.status !== 'active') {
+  if (authority.status !== 'active') {
     throw new AppError(
       ErrorCode.FORBIDDEN,
       'Representative authority is not active for this organization.',

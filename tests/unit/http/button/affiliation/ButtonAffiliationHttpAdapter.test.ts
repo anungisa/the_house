@@ -82,7 +82,10 @@ interface Harness {
   evidence: InMemoryEvidenceReferenceValidator;
 }
 
-function build(rows: readonly OrganizationView[] = [org({ organizationId: CLUB_ID })]): Harness {
+function build(
+  rows: readonly OrganizationView[] = [org({ organizationId: CLUB_ID })],
+  authorities: ButtonAffiliationHttpDeps['authorities'] = new RoleDerivedRepresentativeAuthorityProvider(),
+): Harness {
   const telemetry = new InMemoryTelemetry();
   const evidence = new InMemoryEvidenceReferenceValidator();
   const service = new AffiliationDraftService({
@@ -94,7 +97,7 @@ function build(rows: readonly OrganizationView[] = [org({ organizationId: CLUB_I
   const deps: ButtonAffiliationHttpDeps = {
     service,
     organizations: new FakeOrganizationReadStore(rows),
-    authorities: new RoleDerivedRepresentativeAuthorityProvider(),
+    authorities,
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
     nowIso: () => NOW_ISO,
     telemetry,
@@ -188,7 +191,35 @@ describe('button affiliation HTTP adapter', () => {
     expect(result.body['code']).toBe('AFFILIATION_APPLICATION_NOT_FOUND');
   });
 
-  it('rejects an actor without an active representative authority as 403', async () => {
+  it('rejects an actor whose representative authority is not active as 403', async () => {
+    // The actor holds a governed authority record over CLUB_ID, but it has lapsed (expired). The
+    // organization exists, so this is disclosed as a 403 (authority present but inactive).
+    const h = build([org({ organizationId: CLUB_ID })], {
+      authoritiesFor: () => [{ organizationId: CLUB_ID, status: 'expired' as const }],
+    });
+    const result = await handleAffiliationInitiate(
+      h.deps,
+      {
+        headers: {
+          'x-house-tenant-id': TENANT_A,
+          'x-house-actor-user-id': 'user-1',
+          'x-house-actor-role-keys': CLUB_AFFILIATION_REPRESENTATIVE_ROLE,
+          'x-house-organization-id': CLUB_ID,
+        },
+        query: {},
+        params: {},
+        body: { organizationId: CLUB_ID, seasonId: SEASON },
+      },
+      'req-403',
+      DEMO,
+    );
+    expect(result.status).toBe(403);
+    expect(result.body['code']).toBe('FORBIDDEN');
+  });
+
+  it('rejects an actor without any governed representative authority as an opaque 404', async () => {
+    // A trusted identity with no governed authority record gets NO existence disclosure: the
+    // organization is hidden behind an opaque affiliation-not-found response (fail closed).
     const h = build();
     const result = await handleAffiliationInitiate(
       h.deps,
@@ -203,11 +234,11 @@ describe('button affiliation HTTP adapter', () => {
         params: {},
         body: { organizationId: CLUB_ID, seasonId: SEASON },
       },
-      'req-403',
+      'req-404-noauth',
       DEMO,
     );
-    expect(result.status).toBe(403);
-    expect(result.body['code']).toBe('FORBIDDEN');
+    expect(result.status).toBe(404);
+    expect(result.body['code']).toBe('AFFILIATION_APPLICATION_NOT_FOUND');
   });
 
   it('returns the ETag concurrency token on detail and persists saved responses', async () => {

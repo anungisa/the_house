@@ -109,16 +109,19 @@ describe('ButtonContextService', () => {
     expect(view.availableSeasons.some((s) => s.current)).toBe(true);
   });
 
-  it('(2) a signed-in NON-representative gets no authority and no affiliation capability', async () => {
+  it('(2) a signed-in NON-representative gets no authority and no accessible organizations', async () => {
     const svc = buildService([org({ organizationId: 'club-1' })]);
-    const view = await svc.resolve(auth(TENANT_A, { roleKeys: ['organization_reader'] }), {
-      organizationId: 'club-1',
-    });
-
+    // A trusted identity alone confers nothing: with no governed authority record, the actor has
+    // no accessible organizations, and selecting one they cannot represent is rejected (fail closed).
+    const view = await svc.resolve(auth(TENANT_A, { roleKeys: ['organization_reader'] }), {});
     expect(view.representativeAuthorities).toHaveLength(0);
-    // Selection is accessible, but with no active authority the affiliation capability is withheld.
-    expect(view.currentContext?.authorityStatus).toBe('revoked');
-    expect(view.capabilities).not.toContain(ButtonCapability.ViewAffiliation);
+    expect(view.accessibleOrganizations).toHaveLength(0);
+    expect(view.supportReference).toBe('BTN-NOACCESS');
+    await expect(
+      svc.resolve(auth(TENANT_A, { roleKeys: ['organization_reader'] }), {
+        organizationId: 'club-1',
+      }),
+    ).rejects.toMatchObject({ code: ErrorCode.FORBIDDEN });
   });
 
   it('(3) a valid selection is honoured and preserved (org + jurisdiction + season)', async () => {
@@ -223,25 +226,29 @@ describe('RoleDerivedRepresentativeAuthorityProvider', () => {
   };
 
   it('grants active authority only for the actor\'s own representable organizations', () => {
-    const authorities = provider.authoritiesFor(TENANT_A, representativeActor, ['org-own']);
+    const authorities = provider.authoritiesFor(TENANT_A, representativeActor, NOW_ISO);
     expect(authorities).toEqual([{ organizationId: 'org-own', status: 'active' }]);
   });
 
-  it('fails closed: never grants authority for an organization the actor does not reference', () => {
-    // Defense-in-depth: even if a caller passes a wider accessible set, the provider intersects
-    // it with the actor's explicit organizational references and drops anything unreferenced.
-    const authorities = provider.authoritiesFor(TENANT_A, representativeActor, [
-      'org-own',
-      'org-not-mine',
+  it('fails closed: only derives authority from the actor\'s explicit organizational references', () => {
+    // The provider never invents authority beyond the actor's own references; it enumerates
+    // exactly those (deduplicated), each as an open-ended active authority.
+    const authorities = provider.authoritiesFor(
+      TENANT_A,
+      { ...representativeActor, localOrganizationId: 'org-two' },
+      NOW_ISO,
+    );
+    expect(authorities).toEqual([
+      { organizationId: 'org-own', status: 'active' },
+      { organizationId: 'org-two', status: 'active' },
     ]);
-    expect(authorities).toEqual([{ organizationId: 'org-own', status: 'active' }]);
   });
 
   it('grants nothing to an actor without the representative role', () => {
     const authorities = provider.authoritiesFor(
       TENANT_A,
       { userId: 'u', roleKeys: ['viewer'], permissionKeys: [], organizationId: 'org-own' },
-      ['org-own'],
+      NOW_ISO,
     );
     expect(authorities).toEqual([]);
   });

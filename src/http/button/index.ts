@@ -28,3 +28,5 @@ export type {
   ButtonContextHttpRequest,
   ButtonContextHttpResult,
 } from './ButtonContextHttpAdapter.js';
+export { PgRepresentativeAuthorityProvider } from './PgRepresentativeAuthorityProvider.js';
+export type { PgRepresentativeAuthorityProviderOptions } from './PgRepresentativeAuthorityProvider.js';

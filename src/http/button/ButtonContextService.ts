@@ -40,16 +40,18 @@ export interface ResolvedAuthority {
 }
 
 /**
- * Resolves the representative authorities a trusted actor holds over a set of accessible
- * organizations. This is the SERVER-SIDE source of authority + validity — the browser never
- * supplies it. The default implementation derives authority from the actor's trusted role keys;
- * a real deployment injects a House authorization-service-backed provider.
+ * Resolves the representative authorities a trusted actor holds RIGHT NOW. This is the governed,
+ * SERVER-SIDE source of authority + validity — the browser never supplies it, and a trusted
+ * identity alone never manufactures it. The provider returns only the authorities that a persisted,
+ * in-window, un-revoked governed grant establishes for the actor; the accessible-organization set
+ * is DERIVED from those authorities, never the reverse. `nowIso` is the resolution instant so that
+ * time-bounded expiry is evaluated deterministically.
  */
 export interface RepresentativeAuthorityProvider {
   authoritiesFor(
     tenantId: string,
     actor: AuthActor,
-    accessibleOrganizationIds: readonly string[],
+    nowIso: string,
   ): Promise<readonly ResolvedAuthority[]> | readonly ResolvedAuthority[];
 }
 
@@ -104,28 +106,23 @@ function hasRepresentativeRole(actor: AuthActor): boolean {
 }
 
 /**
- * Default authority provider: derives authority from the actor's trusted role keys. When the
- * actor holds the representative role, they hold an OPEN-ENDED active authority over each
- * accessible organization. Time-bounded/revoked authority arrives from a real provider (or a
- * test double); this default never fabricates an expiry.
+ * TEST/DEMO authority provider (NOT for governed PostgreSQL deployments): derives authority from
+ * the actor's trusted role keys over their explicit organizational references. It exists only as a
+ * deterministic in-memory double and a demo-mode fallback; production wiring injects the persisted
+ * {@link RepresentativeAuthorityProvider} backed by the governed authority source. It never
+ * fabricates an expiry — every derived authority is open-ended and active.
  */
 export class RoleDerivedRepresentativeAuthorityProvider implements RepresentativeAuthorityProvider {
   authoritiesFor(
     _tenantId: string,
     actor: AuthActor,
-    accessibleOrganizationIds: readonly string[],
+    _nowIso: string,
   ): readonly ResolvedAuthority[] {
     if (!hasRepresentativeRole(actor)) return [];
-    // Defense-in-depth: never grant authority beyond the actor's own explicit organizational
-    // references, even if a caller passes a wider accessible set. Fail closed to the intersection
-    // of the requested organizations and the actor's representable organizations.
-    const representable = new Set(representableOrganizationIds(actor));
-    return accessibleOrganizationIds
-      .filter((organizationId) => representable.has(organizationId))
-      .map((organizationId) => ({
-        organizationId,
-        status: 'active' as const,
-      }));
+    return representableOrganizationIds(actor).map((organizationId) => ({
+      organizationId,
+      status: 'active' as const,
+    }));
   }
 }
 
@@ -188,12 +185,22 @@ export class ButtonContextService {
     const locale: ButtonLocale = coerceLocale(selection.locale);
     const nowIso = this.deps.nowIso();
 
-    // 2) Accessible organizations — tenant-isolated read of the actor's explicit references only.
-    const candidateIds = representableOrganizationIds(auth.actor);
+    // 2) Representative authorities — the GOVERNED source of truth (server-side; browser never
+    //    asserts these). A trusted identity alone grants nothing: the accessible organization set
+    //    is DERIVED from the authorities the actor actually holds right now.
+    const resolvedAuthorities = await this.deps.authorities.authoritiesFor(
+      auth.tenantId,
+      auth.actor,
+      nowIso,
+    );
+
+    // 3) Accessible organizations — tenant-isolated read of ONLY the organizations named by a
+    //    held authority. Missing, inactive, or cross-tenant organizations are discarded (fail
+    //    closed); an authority whose organization does not resolve confers no access.
+    const authorityOrgIds = [...new Set(resolvedAuthorities.map((a) => a.organizationId))];
     const organizations: OrganizationView[] = [];
-    for (const id of candidateIds) {
+    for (const id of authorityOrgIds) {
       const org = await this.deps.organizations.getById(auth.tenantId, id);
-      // Only surface existing, tenant-owned, active organizations.
       if (org !== undefined && org.status === 'active') {
         organizations.push(org);
       }
@@ -206,14 +213,12 @@ export class ButtonContextService {
     }));
     const accessibleById = new Map(organizations.map((o) => [o.organizationId, o]));
 
-    // 3) Representative authorities (server-side; browser never asserts these).
-    const resolvedAuthorities = await this.deps.authorities.authoritiesFor(
-      auth.tenantId,
-      auth.actor,
-      organizations.map((o) => o.organizationId),
+    // 4) Keep only authorities whose organization survived the tenant-isolated lookup.
+    const survivingAuthorities = resolvedAuthorities.filter((a) =>
+      accessibleById.has(a.organizationId),
     );
-    const authorityByOrg = new Map(resolvedAuthorities.map((a) => [a.organizationId, a]));
-    const representativeAuthorities: RepresentativeAuthorityView[] = resolvedAuthorities.map((a) => {
+    const authorityByOrg = new Map(survivingAuthorities.map((a) => [a.organizationId, a]));
+    const representativeAuthorities: RepresentativeAuthorityView[] = survivingAuthorities.map((a) => {
       const org = accessibleById.get(a.organizationId);
       return {
         organizationId: a.organizationId,
@@ -223,10 +228,10 @@ export class ButtonContextService {
       };
     });
 
-    // 4) Seasons (bounded, policy-derived).
+    // 5) Seasons (bounded, policy-derived).
     const availableSeasons = this.deps.seasons.seasons(nowIso);
 
-    // 5) Re-authorize the requested selection (fail closed on anything unaccessible).
+    // 6) Re-authorize the requested selection (fail closed on anything unaccessible).
     const currentContext = this.resolveSelection(
       selection,
       accessibleById,
@@ -235,7 +240,7 @@ export class ButtonContextService {
       auth.actor,
     );
 
-    // 6) Bounded capabilities, derived from authority (never a permission dump).
+    // 7) Bounded capabilities, derived from authority (never a permission dump).
     const capabilities = this.deriveCapabilities(
       accessibleOrganizations.length > 0,
       currentContext,

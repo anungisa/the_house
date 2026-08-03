@@ -103,7 +103,7 @@ import type { ParticipantWriteHttpDeps } from './participant/index.js';
 import type { FacilityReadHttpDeps, FacilityWriteHttpDeps } from './facility/index.js';
 import {
   ButtonContextService,
-  RoleDerivedRepresentativeAuthorityProvider,
+  PgRepresentativeAuthorityProvider,
   ClockDerivedSeasonCatalog,
   OrganizationTypeJurisdictionResolver,
   type ButtonContextHttpDeps,
@@ -125,6 +125,10 @@ import {
   FacilityRegistryService,
   PgFacilityRegistryStore,
 } from '../domains/facility-registry/index.js';
+import {
+  PgRepresentativeAuthorityStore,
+  RepresentativeAuthorityService,
+} from '../domains/representative-authority/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -401,17 +405,29 @@ export function createOrganizationReadHttpDeps(telemetry?: Telemetry): Organizat
 }
 
 /**
+ * Build the governed representative authority provider backed by PostgreSQL. Representative
+ * authority is resolved from the persisted, tenant-isolated House authority source — a trusted
+ * identity or organization header IDENTIFIES the actor but never manufactures authority. Every
+ * governed (Pg) Button surface shares this provider so authority, expiry, and revocation are
+ * consistent across context, affiliation, and standing.
+ */
+export function createPgRepresentativeAuthorityProvider(): PgRepresentativeAuthorityProvider {
+  const service = new RepresentativeAuthorityService(new PgRepresentativeAuthorityStore());
+  return new PgRepresentativeAuthorityProvider(service);
+}
+
+/**
  * Build the Button representative-context READ transport backed by PostgreSQL. The context is
  * assembled from the trusted identity context + the RLS-enforced {@link PgOrganizationRegistryStore}
- * read projection, plus the default policy-derived authority/season/jurisdiction providers. The
- * adapter is read-only: it never mutates state, enqueues outbox messages, touches governed tables,
- * or invokes the kernel. The default authority provider derives representative authority from the
- * actor's trusted role keys (a real authorization-service-backed provider is a future pass).
+ * read projection, plus the governed representative authority provider and the policy-derived
+ * season/jurisdiction providers. The adapter is read-only: it never mutates state, enqueues outbox
+ * messages, touches governed tables, or invokes the kernel. Representative authority comes ONLY
+ * from persisted, in-window, un-revoked governed grants (never from role keys alone).
  */
 export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContextHttpDeps {
   const service = new ButtonContextService({
     organizations: new PgOrganizationRegistryStore(),
-    authorities: new RoleDerivedRepresentativeAuthorityProvider(),
+    authorities: createPgRepresentativeAuthorityProvider(),
     seasons: new ClockDerivedSeasonCatalog(),
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
     nowIso: () => new Date().toISOString(),
@@ -460,7 +476,7 @@ export function createButtonAffiliationHttpDepsFromStorage(
     service,
     submissions: new AffiliationSubmissionService(createPgAffiliationApplicationService()),
     organizations: new PgOrganizationRegistryStore(),
-    authorities: new RoleDerivedRepresentativeAuthorityProvider(),
+    authorities: createPgRepresentativeAuthorityProvider(),
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
     nowIso: () => new Date().toISOString(),
     ...(telemetry !== undefined ? { telemetry } : {}),

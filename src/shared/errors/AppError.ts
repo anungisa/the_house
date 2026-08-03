@@ -108,6 +108,13 @@ export const ErrorCode = {
    * or a cross-tenant reference). Deliberately generic to avoid existence disclosure. Maps to 400.
    */
   AFFILIATION_EVIDENCE_REFERENCE_INVALID: 'AFFILIATION_EVIDENCE_REFERENCE_INVALID',
+  /** A referenced representative authority does not exist for the tenant. Maps to 404. */
+  REPRESENTATIVE_AUTHORITY_NOT_FOUND: 'REPRESENTATIVE_AUTHORITY_NOT_FOUND',
+  /**
+   * A representative authority command conflicts with current state: a live active grant already
+   * exists for the subject+organization, or the optimistic-concurrency version was stale. Maps to 409.
+   */
+  REPRESENTATIVE_AUTHORITY_CONFLICT: 'REPRESENTATIVE_AUTHORITY_CONFLICT',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
