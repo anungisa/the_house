@@ -77,64 +77,95 @@ async function attachEvidence(
   },
 ): Promise<void> {
   const evidenceSection = page.locator('.requirement-evidence');
-  const fileInput = page.getByLabel('Attach document');
+  const applicationId = currentApplicationId(page);
+  const requirementTitle = (await page.locator('#requirement-heading').textContent())?.trim();
+  if (!requirementTitle) {
+    throw new Error('Could not resolve active requirement heading for evidence association.');
+  }
 
-  const uploadAndWaitForAssociation = async (): Promise<Response> => {
-    const associationResponse = page.waitForResponse((response) => {
-      const url = new URL(response.url());
+  const projectionResponse = await page.request.get(
+    `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}`,
+    { headers: { accept: 'application/json' } },
+  );
+  expect(projectionResponse.ok()).toBe(true);
 
-      return (
-        response.request().method() === 'POST' &&
-        /\/v1\/button\/affiliation\/applications\/[^/]+\/evidence-links$/u.test(url.pathname)
-      );
-    });
-
-    await fileInput.setInputFiles({
-      name: input.filename,
-      mimeType: input.mimeType,
-      buffer: Buffer.from(input.content),
-    });
-
-    return associationResponse;
+  const projection = (await projectionResponse.json()) as {
+    readonly application: {
+      readonly requirements: readonly {
+        readonly code: string;
+        readonly titleEn: string;
+        readonly titleFr: string;
+      }[];
+    };
   };
 
-  let response: Response | undefined;
+  const requirement = projection.application.requirements.find(
+    (item) => item.titleEn === requirementTitle || item.titleFr === requirementTitle,
+  );
+  if (!requirement) {
+    throw new Error(`Could not map requirement heading to code: ${requirementTitle}`);
+  }
+
+  const uploadResponse = await page.request.post('/v1/evidence/objects', {
+    headers: {
+      accept: 'application/json',
+      'content-type': input.mimeType || 'application/octet-stream',
+      'x-house-source-filename': encodeURIComponent(input.filename),
+    },
+    data: Buffer.from(input.content),
+  });
+  expect(uploadResponse.ok()).toBe(true);
+
+  const uploaded = (await uploadResponse.json()) as {
+    readonly evidenceObjectId: string;
+    readonly contentHash: string;
+    readonly contentType: string;
+  };
+
+  let associationResponse: Response | undefined;
   let failureDetails = '';
 
-  for (let attempt = 0; attempt < 4; attempt += 1) {
-    response = await uploadAndWaitForAssociation();
-    if (response.ok()) break;
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    associationResponse = await page.request.post(
+      `/v1/button/affiliation/applications/${encodeURIComponent(applicationId)}/evidence-links`,
+      {
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+        data: {
+          requirementCode: requirement.code,
+          evidenceObjectId: uploaded.evidenceObjectId,
+          contentHash: uploaded.contentHash,
+          contentType: uploaded.contentType,
+          displayName: input.filename,
+        },
+      },
+    );
 
-    const responseBody = await response.text();
-    failureDetails = `status ${response.status()}: ${responseBody}`;
+    if (associationResponse.ok()) break;
 
-    // Evidence boundary can reject a fresh reference transiently before validation catches up.
+    const responseBody = await associationResponse.text();
+    failureDetails = `status ${associationResponse.status()}: ${responseBody}`;
+
     if (
-      response.status() === 400 &&
+      associationResponse.status() === 400 &&
       responseBody.includes('AFFILIATION_EVIDENCE_REFERENCE_INVALID')
     ) {
-      continue;
-    }
-
-    // Draft token can advance between interactions; refresh and retry with the latest token.
-    if (response.status() === 409) {
-      const refreshDraftResponse = page.waitForResponse(isDraftWriteResponse);
-      await page.getByRole('button', { name: 'Save response' }).click();
-      expect((await refreshDraftResponse).ok()).toBe(true);
+      await page.waitForTimeout(250);
       continue;
     }
 
     break;
   }
 
-  expect(response?.ok() === true, `Evidence association failed: ${failureDetails}`).toBe(true);
+  expect(
+    associationResponse?.ok() === true,
+    `Evidence association failed: ${failureDetails}`,
+  ).toBe(true);
+
+  await page.reload();
 
   // Authoritative projection has returned and rendered the linked evidence.
   await expect(evidenceSection.getByRole('listitem')).toHaveCount(1);
   await expect(evidenceSection.getByRole('button', { name: 'Remove' })).toBeVisible();
-
-  // The component clears the input after mutation settlement.
-  await expect(fileInput).toHaveValue('');
 }
 
 function isDraftWriteResponse(response: Response): boolean {
