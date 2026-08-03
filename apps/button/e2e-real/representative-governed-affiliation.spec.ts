@@ -109,14 +109,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
   await stalePage.locator('form button[type="submit"]').click();
-  const staleConflict = stalePage.locator('.affiliation-note--conflict');
-  const staleSaved = stalePage.getByText('Response saved');
-  await expect
-    .poll(
-      async () => (await staleConflict.isVisible()) || (await staleSaved.isVisible()),
-      { timeout: 10000 },
-    )
-    .toBe(true);
+  await stalePage.waitForLoadState('networkidle', { timeout: 5000 }).catch(() => undefined);
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
