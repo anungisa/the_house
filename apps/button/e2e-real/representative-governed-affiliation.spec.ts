@@ -100,13 +100,20 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Requirement 2: structured contact + optimistic concurrency stale-write conflict.
   await page.getByRole('link', { name: 'Primary affiliation contact' }).click();
+  const requirementUrl = page.url();
   const applicationId = currentApplicationId(page);
+  const requirementCode = requirementUrl.split('/').pop();
   const stalePage = await context.newPage();
   await setIdentity(stalePage, 'rep-a');
   await selectContext(stalePage);
-  await stalePage.goto(`/button/affiliation/${applicationId}`);
-  await expect(stalePage.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
-  await stalePage.getByRole('link', { name: 'Primary affiliation contact' }).click();
+  await stalePage.goto(requirementUrl);
+  if (!(await stalePage.locator('#contact-name').isVisible())) {
+    await stalePage.goto(`/button/affiliation/${applicationId}`);
+    if (requirementCode) {
+      await stalePage.locator(`a[href$='/${requirementCode}']`).first().click();
+    }
+  }
+  await expect(stalePage.locator('#contact-name')).toBeVisible();
 
   await page.locator('#contact-name').fill('Dana Representative');
   await page.locator('#contact-email').fill('dana@example.test');
