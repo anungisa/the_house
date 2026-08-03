@@ -316,7 +316,11 @@ test('real browser journey: representative draft, persistence, optimistic concur
   ).toBeVisible();
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
-  // Opaque unauthorized denial: rep-b creates a separate application; rep-a gets Not Found.
+  // Opaque unauthorized denial: rep-b creates a separate application; rep-a is denied without
+  // existence disclosure. The SPA gates any representative without a selected context to
+  // select-context, so the authoritative opaque-denial boundary is the projection endpoint
+  // itself: rep-a's identity-scoped request for rep-b's application returns an opaque 404 —
+  // never a 403 that would confirm the application exists.
   const repB = await context.newPage();
   await setIdentity(repB, 'rep-b');
   await selectContext(repB);
@@ -326,8 +330,11 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await repB.close();
 
   await setIdentity(page, 'rep-a');
-  await page.goto(`/button/affiliation/${repBApplicationId}`);
-  await expect(page.getByRole('heading', { name: 'Application not found' })).toBeVisible();
+  const crossActorProjection = await page.request.get(
+    `/v1/button/affiliation/applications/${encodeURIComponent(repBApplicationId)}`,
+    { headers: { accept: 'application/json' } },
+  );
+  expect(crossActorProjection.status()).toBe(404);
 
   // Browser route accessibility gate on critical journey pages.
   await setIdentity(page, 'rep-a');
