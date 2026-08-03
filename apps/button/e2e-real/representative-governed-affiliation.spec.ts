@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page, type Response } from '@playwright/test';
+import { expect, test, type APIResponse, type Locator, type Page, type Response } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 interface Profile {
@@ -122,7 +122,7 @@ async function attachEvidence(
     readonly contentType: string;
   };
 
-  let associationResponse: Response | undefined;
+  let associationResponse: APIResponse | null = null;
   let failureDetails = '';
 
   for (let attempt = 0; attempt < 8; attempt += 1) {
@@ -156,10 +156,11 @@ async function attachEvidence(
     break;
   }
 
-  expect(
-    associationResponse?.ok() === true,
-    `Evidence association failed: ${failureDetails}`,
-  ).toBe(true);
+  if (associationResponse === null) {
+    throw new Error('Evidence association did not produce a response.');
+  }
+
+  expect(associationResponse.ok(), `Evidence association failed: ${failureDetails}`).toBe(true);
 
   await page.reload();
 
