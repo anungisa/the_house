@@ -133,7 +133,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
     mimeType: 'application/pdf',
     buffer: Buffer.from('synthetic-bylaws'),
   });
-  await expect(page.getByText('bylaws.pdf')).toBeVisible();
+  await expect(page.getByLabel('Attach document')).toHaveValue(/bylaws\.pdf$/);
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
   // Requirement 4: insurance with synthetic evidence.
@@ -146,7 +146,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
     mimeType: 'application/pdf',
     buffer: Buffer.from('synthetic-insurance'),
   });
-  await expect(page.getByText('insurance.pdf')).toBeVisible();
+  await expect(page.getByLabel('Attach document')).toHaveValue(/insurance\.pdf$/);
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
   await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
