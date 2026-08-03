@@ -37,6 +37,7 @@ interface Fixture {
   readonly profiles: {
     readonly 'rep-a': Profile;
     readonly 'rep-b': Profile;
+    readonly 'op-rep': Profile;
     readonly reviewer: Profile;
     readonly 'reviewer-foreign': Profile;
     readonly 'regional-reviewer': Profile;
@@ -207,15 +208,15 @@ test('real browser journey: submitted affiliation through governed review, corre
 }) => {
   test.setTimeout(180_000);
   const state = await fixture(page);
-  const repA = state.profiles['rep-a'];
+  const opRep = state.profiles['op-rep'];
   const applicationPath = (id: string): string => `/v1/button/affiliation/applications/${id}`;
 
   let applicationId = '';
 
   await test.step('Representative submits a governed affiliation application', async () => {
-    await setIdentity(page, 'rep-a');
+    await setIdentity(page, 'op-rep');
     await selectContext(page);
-    await expect(page.getByText(`Affiliation for ${repA.displayName}`)).toBeVisible();
+    await expect(page.getByText(`Affiliation for ${opRep.displayName}`)).toBeVisible();
     applicationId = await submitFreshApplication(page);
   });
 
@@ -224,7 +225,7 @@ test('real browser journey: submitted affiliation through governed review, corre
       tenantId: state.tenantId,
       applicationId,
       obligationId: crypto.randomUUID(),
-      subjectId: repA.organizationId,
+      subjectId: opRep.organizationId,
       season: state.seasonId,
     });
   });
@@ -307,7 +308,7 @@ test('real browser journey: submitted affiliation through governed review, corre
   });
 
   await test.step('Representative performs the bounded correction and resubmits', async () => {
-    await setIdentity(page, 'rep-a');
+    await setIdentity(page, 'op-rep');
     await selectContext(page);
     await page.getByRole('button', { name: 'View affiliation status' }).click();
     await expect(page.getByRole('heading', { name: 'Correction requested' })).toBeVisible();
@@ -464,7 +465,7 @@ test('real browser journey: submitted affiliation through governed review, corre
   });
 
   await test.step('Representative observes the authoritative governed standing', async () => {
-    await setIdentity(page, 'rep-a');
+    await setIdentity(page, 'op-rep');
     await selectContext(page);
     await page.getByRole('link', { name: 'Standing', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Affiliation standing' })).toBeVisible();
@@ -486,7 +487,7 @@ test('real browser journey: submitted affiliation through governed review, corre
 
   await test.step('Separation of duties: cross-role and cross-actor access is denied', async () => {
     // A representative cannot reach reviewer commands.
-    await setIdentity(page, 'rep-a', '/button/review');
+    await setIdentity(page, 'op-rep', '/button/review');
     await expect(page.getByRole('heading', { name: 'Access not available' })).toBeVisible();
 
     // A reviewer cannot reach the finance workbench.

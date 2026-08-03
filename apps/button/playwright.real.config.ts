@@ -13,6 +13,9 @@ export default defineConfig({
   testDir: './e2e-real',
   timeout: 90_000,
   fullyParallel: false,
+  // Real full-stack journeys share one PostgreSQL instance. Force a single worker so the specs
+  // run serially and never race on shared governed state.
+  workers: 1,
   forbidOnly: !!process.env['CI'],
   retries: process.env['CI'] ? 1 : 0,
   reporter: process.env['CI'] ? [['github'], ['html', { open: 'never' }]] : [['list']],

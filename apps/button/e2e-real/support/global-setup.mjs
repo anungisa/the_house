@@ -20,6 +20,9 @@ export default async function globalSetup() {
 
   const repAOrganizationId = randomUUID();
   const repBOrganizationId = randomUUID();
+  // Dedicated organization for the A2 operational journey, isolated from the A1 representative
+  // orgs so the two real-server specs never collide on the same governed affiliation state.
+  const opRepOrganizationId = randomUUID();
 
   const fixture = {
     tenantId: randomUUID(),
@@ -37,41 +40,53 @@ export default async function globalSetup() {
         displayName: 'Hillcrest Curling Club',
         roleKeys: ['club_affiliation_representative'],
       },
+      // Representative for the A2 operational journey (its own organization).
+      'op-rep': {
+        userId: randomUUID(),
+        organizationId: opRepOrganizationId,
+        displayName: 'Lakeside Curling Club',
+        roleKeys: ['club_affiliation_representative'],
+      },
       // Operational/staff identities. Their governed capabilities are derived PURELY from
       // roleKeys (no context selection), and their delegated review/finance scope is the
       // representative organization they are authorized over (rep-a's organization). Each role
       // is a DISTINCT identity — no single actor holds every authority — so the journey proves
       // real separation of duties across the governed lifecycle.
+      // Operational/staff identities. Their governed capabilities are derived PURELY from
+      // roleKeys (no context selection), and their delegated review/finance scope is the
+      // operational representative organization they are authorized over (op-rep's organization).
+      // Each role is a DISTINCT identity — no single actor holds every authority — so the journey
+      // proves real separation of duties across the governed lifecycle.
       reviewer: {
         userId: randomUUID(),
-        organizationId: repAOrganizationId,
+        organizationId: opRepOrganizationId,
         displayName: 'Regional Affiliation Reviewer',
         roleKeys: ['reviewer'],
       },
-      // A reviewer whose delegated scope is a DIFFERENT organization (rep-b). Used to prove
-      // scope isolation: rep-a's submitted case must be invisible to, and opaque for, a reviewer
+      // A reviewer whose delegated scope is a DIFFERENT organization. Used to prove scope
+      // isolation: op-rep's submitted case must be invisible to, and opaque for, a reviewer
       // outside its scope even though the role key is identical.
       'reviewer-foreign': {
         userId: randomUUID(),
-        organizationId: repBOrganizationId,
+        organizationId: repAOrganizationId,
         displayName: 'Out-of-scope Affiliation Reviewer',
         roleKeys: ['reviewer'],
       },
       'regional-reviewer': {
         userId: randomUUID(),
-        organizationId: repAOrganizationId,
+        organizationId: opRepOrganizationId,
         displayName: 'Regional Sign-off Authority',
         roleKeys: ['regional_reviewer'],
       },
       'national-reviewer': {
         userId: randomUUID(),
-        organizationId: repAOrganizationId,
+        organizationId: opRepOrganizationId,
         displayName: 'National Sign-off Authority',
         roleKeys: ['national_reviewer'],
       },
       'finance-reconciler': {
         userId: randomUUID(),
-        organizationId: repAOrganizationId,
+        organizationId: opRepOrganizationId,
         displayName: 'Affiliation Finance Reconciler',
         roleKeys: ['financial_reconciler'],
       },
@@ -85,13 +100,16 @@ export default async function globalSetup() {
          (id, tenant_id, organization_type, display_name, status, source, created_at, updated_at)
        VALUES
          ($1, $2, 'local', $3, 'active', 'manual', now(), now()),
-         ($4, $2, 'local', $5, 'active', 'manual', now(), now())`,
+         ($4, $2, 'local', $5, 'active', 'manual', now(), now()),
+         ($6, $2, 'local', $7, 'active', 'manual', now(), now())`,
       [
         fixture.profiles['rep-a'].organizationId,
         fixture.tenantId,
         fixture.profiles['rep-a'].displayName,
         fixture.profiles['rep-b'].organizationId,
         fixture.profiles['rep-b'].displayName,
+        fixture.profiles['op-rep'].organizationId,
+        fixture.profiles['op-rep'].displayName,
       ],
     );
 
