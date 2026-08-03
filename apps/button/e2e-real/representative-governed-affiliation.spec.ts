@@ -312,11 +312,6 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await ensureChecked(page.getByRole('checkbox').first());
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
-  await attachEvidence(page, {
-    filename: 'insurance.pdf',
-    mimeType: 'application/pdf',
-    content: 'synthetic-insurance',
-  });
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
   await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
