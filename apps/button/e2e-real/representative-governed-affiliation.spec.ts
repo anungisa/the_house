@@ -111,10 +111,12 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await stalePage.locator('form button[type="submit"]').click();
   const staleConflict = stalePage.locator('.affiliation-note--conflict');
   const staleSaved = stalePage.getByText('Response saved');
-  await Promise.race([
-    staleConflict.waitFor({ state: 'visible', timeout: 10000 }),
-    staleSaved.waitFor({ state: 'visible', timeout: 10000 }),
-  ]);
+  await expect
+    .poll(
+      async () => (await staleConflict.isVisible()) || (await staleSaved.isVisible()),
+      { timeout: 10000 },
+    )
+    .toBe(true);
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
