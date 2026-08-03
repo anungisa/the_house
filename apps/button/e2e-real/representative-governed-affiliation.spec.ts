@@ -38,6 +38,16 @@ async function selectContext(page: Page): Promise<void> {
   await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
 }
 
+async function openAffiliationChecklist(page: Page): Promise<void> {
+  const begin = page.getByRole('button', { name: 'Start affiliation' });
+  if (await begin.isVisible()) {
+    await begin.click();
+    return;
+  }
+
+  await page.getByRole('button', { name: 'Continue draft' }).click();
+}
+
 function currentApplicationId(page: Page): string {
   const match = page.url().match(/\/button\/affiliation\/([^/]+)/u);
   if (!match?.[1]) throw new Error('Could not resolve application id from URL.');
@@ -77,7 +87,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
       .click();
   await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
 
-  await page.getByRole('button', { name: 'Start affiliation' }).click();
+  await openAffiliationChecklist(page);
   await expect(page.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
   await expect(page.getByTestId('requirements-progress')).toContainText('0 of 4 complete');
 
@@ -93,6 +103,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
   const requirementUrl = page.url();
   const stalePage = await context.newPage();
   await setIdentity(stalePage, 'rep-a');
+  await selectContext(stalePage);
   await stalePage.goto(requirementUrl);
 
   await page.getByLabel('Contact name').fill('Dana Representative');
@@ -182,7 +193,7 @@ test('real browser journey: representative draft, persistence, optimistic concur
   const repB = await context.newPage();
   await setIdentity(repB, 'rep-b');
   await selectContext(repB);
-  await repB.getByRole('button', { name: 'Start affiliation' }).click();
+  await openAffiliationChecklist(repB);
   await expect(repB.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
   const repBApplicationId = currentApplicationId(repB);
   await repB.close();
