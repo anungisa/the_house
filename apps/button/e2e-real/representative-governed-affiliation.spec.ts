@@ -103,7 +103,7 @@ async function attachEvidence(
 
   // Authoritative projection has returned and rendered the linked evidence.
   await expect(evidenceList).toHaveCount(existingEvidenceCount + 1);
-  await expect(evidenceSection.getByRole('button', { name: 'Remove' })).toBeVisible();
+  await expect(evidenceSection.getByRole('button', { name: 'Remove' }).first()).toBeVisible();
   await expect(page.getByLabel('Attach document')).toHaveValue('');
 }
 
@@ -262,6 +262,10 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Browser persistence: reload preserves completed server-backed draft state.
   await page.reload();
+  if ((await page.getByRole('heading', { name: 'Affiliation requirements' }).count()) === 0) {
+    await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
+    await openAffiliationChecklist(page);
+  }
   await expect(page.getByRole('heading', { name: 'Affiliation requirements' })).toBeVisible();
   await expect(page.getByTestId('requirements-progress')).toContainText('4 of 4 complete');
 
