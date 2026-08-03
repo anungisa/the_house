@@ -166,10 +166,9 @@ test('real browser journey: representative draft, persistence, optimistic concur
     );
   });
 
-  const staleCheckbox = stalePage.getByRole('checkbox').first();
-  await expect(staleCheckbox).toBeVisible({ timeout: 10000 });
-  await staleCheckbox.click();
-  await stalePage.locator('form button[type="submit"]').click();
+  const staleSubmitButton = stalePage.locator('form button[type="submit"]');
+  await expect(staleSubmitButton).toBeVisible({ timeout: 10000 });
+  await staleSubmitButton.click();
   const conflictResponse = await staleConflictResponse;
   expect(conflictResponse.status()).toBe(409);
   await expect(stalePage.locator('.affiliation-note--conflict')).toBeVisible();
