@@ -65,7 +65,9 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await setIdentity(page, 'rep-a');
   await selectContext(page);
 
-  await expect(page.getByText(state.profiles['rep-a'].displayName)).toBeVisible();
+  await expect(
+    page.getByText(`Affiliation for ${state.profiles['rep-a'].displayName}`),
+  ).toBeVisible();
 
   await page.getByRole('button', { name: 'Fran\u00e7ais' }).click();
   await expect(page.getByRole('heading', { name: 'Aper\u00e7u d\'affiliation' })).toBeVisible();
