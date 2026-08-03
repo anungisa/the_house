@@ -99,54 +99,27 @@ test('real browser journey: representative draft, persistence, optimistic concur
 
   // Requirement 1: acknowledgement.
   await page.getByRole('link', { name: 'Confirm organization profile' }).click();
-  await ensureChecked(page.getByRole('checkbox').first());
-  await page.getByRole('button', { name: 'Save response' }).click();
-  await expect(page.getByText('Response saved')).toBeVisible();
-  await page.getByRole('link', { name: 'Back to requirements' }).click();
-
-  // Requirement 2: structured contact + optimistic concurrency stale-write conflict.
-  await page.getByRole('link', { name: 'Primary affiliation contact' }).click();
-  const requirementUrl = page.url();
-  const applicationId = currentApplicationId(page);
-  const requirementCode = requirementUrl.split('/').pop();
   const stalePage = await context.newPage();
   await setIdentity(stalePage, 'rep-a');
   await selectContext(stalePage);
-  await stalePage.goto(requirementUrl);
-  if (!(await stalePage.locator('#contact-name').isVisible())) {
-    await stalePage.goto(`/button/affiliation/${applicationId}`);
-    if (requirementCode) {
-      await stalePage
-        .locator(`a[href$='/${requirementCode}']`)
-        .first()
-        .click({ timeout: 1500 })
-        .catch(() => undefined);
-    }
-    if (!(await stalePage.locator('#contact-name').isVisible())) {
-      const localizedContactLink = stalePage
-        .getByRole('link', { name: /Primary affiliation contact|Contact principal/u })
-        .first();
-      if ((await localizedContactLink.count()) > 0) {
-        await localizedContactLink.click();
-      }
-    }
-  }
-  await expect(stalePage.locator('#contact-name')).toBeVisible({ timeout: 10000 });
+  await stalePage.goto(page.url());
+  await ensureChecked(page.getByRole('checkbox').first());
+  await page.getByRole('button', { name: 'Save response' }).click();
+  await expect(page.getByText('Response saved')).toBeVisible();
 
+  // Stale-write conflict on the same requirement using an outdated concurrency token.
+  await stalePage.locator('form button[type="submit"]').click();
+  await expect(stalePage.locator('.affiliation-note--conflict')).toBeVisible();
+  await stalePage.close();
+
+  await page.getByRole('link', { name: 'Back to requirements' }).click();
+
+  // Requirement 2: structured contact.
+  await page.getByRole('link', { name: 'Primary affiliation contact' }).click();
   await page.locator('#contact-name').fill('Dana Representative');
   await page.locator('#contact-email').fill('dana@example.test');
   await page.getByRole('button', { name: 'Save response' }).click();
   await expect(page.getByText('Response saved')).toBeVisible();
-
-  await stalePage.locator('#contact-name').fill('Stale Save Attempt');
-  await stalePage.locator('#contact-email').fill('stale@example.test');
-  await stalePage.getByRole('button', { name: 'Save response' }).click();
-  await expect(
-    stalePage.getByText(
-      'This draft was changed elsewhere. We reloaded the latest version \u2014 please re-enter and save your changes.',
-    ),
-  ).toBeVisible();
-  await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
 
