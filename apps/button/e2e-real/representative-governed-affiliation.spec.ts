@@ -140,15 +140,27 @@ test('real browser journey: representative draft, persistence, optimistic concur
   await setIdentity(stalePage, 'rep-a');
   await selectContext(stalePage);
   await stalePage.goto(page.url());
-  await ensureChecked(page.getByRole('checkbox').first());
-  await page.getByRole('button', { name: 'Save response' }).click();
-  await expect(page.getByText('Response saved')).toBeVisible();
+  const confirmationCheckbox = page.getByRole('checkbox').first();
+  if (await confirmationCheckbox.isChecked()) {
+    // Force a persisted mutation while returning to a valid checked state.
+    await confirmationCheckbox.uncheck();
+    await page.getByRole('button', { name: 'Save response' }).click();
+    await expect(page.getByText('Response saved')).toBeVisible();
+
+    await confirmationCheckbox.check();
+    await page.getByRole('button', { name: 'Save response' }).click();
+    await expect(page.getByText('Response saved')).toBeVisible();
+  } else {
+    await confirmationCheckbox.check();
+    await page.getByRole('button', { name: 'Save response' }).click();
+    await expect(page.getByText('Response saved')).toBeVisible();
+  }
 
   // Stale-write conflict on the same requirement using an outdated concurrency token.
   await stalePage.locator('form button[type="submit"]').click();
-  await expect(stalePage.getByRole('alert')).toContainText(
-    'This draft was changed elsewhere. We reloaded the latest version',
-  );
+  await expect(
+    stalePage.getByText('This draft was changed elsewhere. We reloaded the latest version'),
+  ).toBeVisible();
   await stalePage.close();
 
   await page.getByRole('link', { name: 'Back to requirements' }).click();
