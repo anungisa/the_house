@@ -12,7 +12,11 @@
  */
 
 import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
-import { resolveEffectiveSeason, resolveEffectiveSeasons } from './effectiveSeason.js';
+import {
+  resolveEffectiveSeason,
+  resolveEffectiveSeasons,
+  resolveRenewalTargetSeasons,
+} from './effectiveSeason.js';
 import {
   type CloseSeasonWindowCommand,
   type CreateSeasonDraftCommand,
@@ -73,6 +77,31 @@ export class SeasonCatalogService {
   ): Promise<readonly EffectiveSeason[]> {
     const records = await this.store.listPublishedForTenant(tenantId);
     return resolveEffectiveSeasons(records, nowIso, locale);
+  }
+
+  /**
+   * The governed target seasons a standing in `sourceSeasonId` may RENEW into: published seasons
+   * currently accepting applications whose persisted start date is strictly LATER than the source
+   * season's (never derived by string arithmetic on the key). Empty when the source season has no
+   * persisted start date (fail closed) or none qualify. Deterministically ordered (earliest first).
+   */
+  async renewalTargetSeasons(
+    tenantId: string,
+    sourceSeasonId: string,
+    nowIso: string = this.now().toISOString(),
+    locale: SeasonLocale = 'en',
+  ): Promise<readonly EffectiveSeason[]> {
+    const [source, published] = await Promise.all([
+      this.store.getBySeasonId(tenantId, sourceSeasonId),
+      this.store.listPublishedForTenant(tenantId),
+    ]);
+    return resolveRenewalTargetSeasons(
+      published,
+      sourceSeasonId,
+      source?.seasonStartDate,
+      nowIso,
+      locale,
+    );
   }
 
   /**

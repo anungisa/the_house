@@ -86,6 +86,21 @@ export interface ButtonAffiliationHttpDeps {
   readonly telemetry?: Telemetry;
 }
 
+/**
+ * The minimal governed-authorization surface shared by every representative-facing initiation
+ * (draft, and standing renewal): the server re-resolves the actor's active authority, the target
+ * organization, the season, and the jurisdiction. Broader deps (e.g. the draft surface) satisfy
+ * this structurally, so the reusable {@link authorizeOrganization}/{@link authorizeSeason}/
+ * {@link authorizeJurisdiction} helpers stay a SINGLE source of truth across endpoints.
+ */
+export interface OrganizationInitiationAuthDeps {
+  readonly organizations: OrganizationReadStore;
+  readonly authorities: RepresentativeAuthorityProvider;
+  readonly jurisdictions: JurisdictionResolver;
+  readonly seasons: SeasonAuthorization;
+  readonly nowIso: () => string;
+}
+
 function appErrorHttpStatus(code: ErrorCode): number {
   switch (code) {
     case ErrorCode.INVALID_INPUT:
@@ -132,8 +147,8 @@ function errorResult(err: unknown, requestId: string): ButtonAffiliationHttpResu
  * must be currently ACTIVE (a lapsed/revoked authority => 403). A trusted role key or organization
  * header alone never satisfies this — only a persisted, in-window, un-revoked grant does.
  */
-async function authorizeOrganization(
-  deps: ButtonAffiliationHttpDeps,
+export async function authorizeOrganization(
+  deps: OrganizationInitiationAuthDeps,
   auth: AuthContext,
   organizationId: string,
 ): Promise<OrganizationView> {
@@ -167,14 +182,16 @@ function requireString(value: unknown, field: string): string {
   return value.trim();
 }
 
+export { requireString as requireStringField };
+
 /**
  * Re-validate a requested season against the governed catalog. `requireOpen` distinguishes VIEWING
  * (any published season, including past / closed ones) from INITIATION (only the current season
  * with an open application window). Unknown / draft / retired seasons — and, for initiation, any
  * non-current or closed season — fail closed as a generic, non-disclosing SEASON_UNAVAILABLE.
  */
-async function authorizeSeason(
-  deps: ButtonAffiliationHttpDeps,
+export async function authorizeSeason(
+  deps: OrganizationInitiationAuthDeps,
   tenantId: string,
   seasonId: string,
   requireOpen: boolean,
@@ -201,8 +218,8 @@ async function authorizeSeason(
  * raise a generic, non-disclosing JURISDICTION_UNAVAILABLE rather than guessing from its type. The
  * resolved CODE is what binds requirements + is captured as historical initiation context.
  */
-async function authorizeJurisdiction(
-  deps: ButtonAffiliationHttpDeps,
+export async function authorizeJurisdiction(
+  deps: OrganizationInitiationAuthDeps,
   tenantId: string,
   organization: OrganizationView,
 ): Promise<string> {

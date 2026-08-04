@@ -17,6 +17,7 @@ import {
   withTenantTransaction,
   type QueryClient,
 } from '../../db/pool.js';
+import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
 import type {
   AddEvidenceLinkInput,
   AddEvidenceLinkResult,
@@ -29,10 +30,24 @@ import type {
   InitiateApplicationInput,
   RemoveEvidenceLinkInput,
   RemoveEvidenceLinkResult,
+  RenewalInitiationContext,
   SaveDraftInput,
   StoredEvidenceLinkRow,
   StoredResponseRow,
 } from './AffiliationDraftStore.js';
+
+/** Governed outbox message type for a renewal application being started against a standing. */
+export const STANDING_RENEWAL_APPLICATION_INITIATED_MESSAGE_TYPE =
+  'standing.renewal_application.initiated';
+
+/** Stable outbox dedupe key: exactly one publish per (tenant, standing, target season). */
+export function renewalApplicationInitiatedDedupeKey(
+  tenantId: string,
+  standingId: string,
+  targetSeasonId: string,
+): string {
+  return `${STANDING_RENEWAL_APPLICATION_INITIATED_MESSAGE_TYPE}:${tenantId}:${standingId}:${targetSeasonId}`;
+}
 
 function toIso(value: unknown): string {
   return value instanceof Date ? value.toISOString() : String(value);
@@ -117,6 +132,28 @@ export class PgAffiliationDraftStore implements AffiliationDraftStore {
   async initiateApplication(
     input: InitiateApplicationInput,
   ): Promise<{ head: DraftApplicationHead; created: boolean }> {
+    // Store invariant (fails closed): a renewal-pathway application MUST carry a governed renewal
+    // context, and a renewal context MUST NOT ride any other pathway. This is the single physical
+    // gate that stops a browser from starting an un-attributed renewal application.
+    if (input.pathway === 'renewal' && input.renewal === undefined) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'A renewal application requires a governed renewal context.',
+      );
+    }
+    if (input.pathway !== 'renewal' && input.renewal !== undefined) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'A renewal context is only valid for the renewal pathway.',
+      );
+    }
+    if (input.renewal !== undefined && input.renewal.targetSeasonId !== input.seasonId) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'The renewal target season must match the application season.',
+      );
+    }
+
     return withTenantTransaction(
       input.tenantId,
       async (client) => {
@@ -171,6 +208,17 @@ export class PgAffiliationDraftStore implements AffiliationDraftStore {
           [input.tenantId, applicationId, input.actor],
         );
 
+        // Renewal attribution — written in the SAME transaction as the application it attributes.
+        if (input.renewal !== undefined) {
+          await this.attributeRenewal(client, {
+            tenantId: input.tenantId,
+            renewalApplicationId: applicationId,
+            organizationId: input.organizationId,
+            actor: input.actor,
+            renewal: input.renewal,
+          });
+        }
+
         return {
           head: {
             applicationId,
@@ -184,6 +232,107 @@ export class PgAffiliationDraftStore implements AffiliationDraftStore {
         };
       },
       this.pool,
+    );
+  }
+
+  /**
+   * Attribute a newly-created renewal application to the standing it renews. Writes the immutable
+   * renewal link and, ONLY when the link is genuinely new (not an idempotent replay), the audit
+   * event and transactional outbox message — all inside the caller's transaction. NEVER mutates
+   * governed standing state; the standing's lifecycle transition remains the kernel's alone.
+   */
+  private async attributeRenewal(
+    client: QueryClient,
+    args: {
+      tenantId: string;
+      renewalApplicationId: string;
+      organizationId: string;
+      actor: string;
+      renewal: RenewalInitiationContext;
+    },
+  ): Promise<void> {
+    const { tenantId, renewalApplicationId, organizationId, actor, renewal } = args;
+
+    // Defense in depth: the standing must exist for this tenant (also enforced by the link FK; a
+    // pre-check yields a clean domain error instead of a raw constraint violation).
+    const standingRows = await client.query<{ id: string }>(
+      `SELECT id FROM affiliation_standing.affiliation_standing
+        WHERE id = $1 AND tenant_id = $2`,
+      [renewal.standingId, tenantId],
+    );
+    if (standingRows[0] === undefined) {
+      throw new AppError(
+        ErrorCode.AFFILIATION_STANDING_NOT_FOUND,
+        'The standing to renew was not found for this tenant.',
+      );
+    }
+
+    const linkRows = await client.query<{ id: string }>(
+      `INSERT INTO affiliation_standing.renewal_application_link
+         (tenant_id, renewal_application_id, standing_id, source_standing_version,
+          source_season_id, target_season_id, initiated_by, idempotency_key,
+          correlation_id, causation_id)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+       ON CONFLICT (tenant_id, idempotency_key) DO NOTHING
+       RETURNING id`,
+      [
+        tenantId,
+        renewalApplicationId,
+        renewal.standingId,
+        renewal.sourceStandingVersion,
+        renewal.sourceSeasonId,
+        renewal.targetSeasonId,
+        actor,
+        renewal.idempotencyKey,
+        renewal.correlationId ?? null,
+        renewal.causationId ?? null,
+      ],
+    );
+
+    // Idempotent replay (same idempotency key): the link already exists — do not re-emit audit or
+    // outbox. A fresh link (row returned) is the sole trigger for the governed side effects.
+    if (linkRows[0] === undefined) return;
+
+    const payload = {
+      standingId: renewal.standingId,
+      renewalApplicationId,
+      organizationId,
+      sourceStandingVersion: renewal.sourceStandingVersion,
+      sourceSeasonId: renewal.sourceSeasonId,
+      targetSeasonId: renewal.targetSeasonId,
+    };
+
+    await client.query(
+      `INSERT INTO governance.audit_event
+         (tenant_id, entity_type, entity_id, action, trigger, from_state, to_state,
+          actor_user_id, correlation_id, causation_id, payload)
+       VALUES ($1, 'AffiliationStanding', $2, 'renewal_application_initiated', NULL, NULL, NULL,
+               $3, $4, $5, $6)`,
+      [
+        tenantId,
+        renewal.standingId,
+        actor,
+        renewal.correlationId ?? null,
+        renewal.causationId ?? null,
+        JSON.stringify(payload),
+      ],
+    );
+
+    await client.query(
+      `INSERT INTO governance.outbox_message
+         (tenant_id, message_type, payload, status, max_retries, dedupe_key,
+          correlation_id, causation_id)
+       VALUES ($1, $2, $3, 'pending', 8, $4, $5, $6)
+       ON CONFLICT (tenant_id, dedupe_key) WHERE dedupe_key IS NOT NULL
+       DO UPDATE SET tenant_id = governance.outbox_message.tenant_id`,
+      [
+        tenantId,
+        STANDING_RENEWAL_APPLICATION_INITIATED_MESSAGE_TYPE,
+        JSON.stringify(payload),
+        renewalApplicationInitiatedDedupeKey(tenantId, renewal.standingId, renewal.targetSeasonId),
+        renewal.correlationId ?? null,
+        renewal.causationId ?? null,
+      ],
     );
   }
 

@@ -8,15 +8,21 @@
  * (or another tenant's) is never disclosed — the queue simply omits it and the detail resolves to
  * an opaque 404 (no existence disclosure).
  *
- * This surface NEVER mutates governed lifecycle state, NEVER invokes the kernel, and NEVER exposes
- * renewal initiation (a governed command deferred to a later slice). Every error maps to a
- * sanitized `{ status, code, message, requestId }` envelope. `status` is the kernel-owned governed
- * lifecycle state (never asserted by the caller); expiry hints are clock-derived only.
+ * This surface NEVER mutates governed lifecycle state, NEVER invokes the kernel, and NEVER executes
+ * renewal (renew / renew_active stay with the kernel and the segregated standing_renewal authority).
+ * When a renewal eligibility reader is wired, the detail response carries a representative-SAFE
+ * renewal projection (posture + generic reason + selectable target seasons) so the experience can
+ * offer "start / resume renewal" — the actual start is a separate, bounded command endpoint. Every
+ * error maps to a sanitized `{ status, code, message, requestId }` envelope. `status` is the
+ * kernel-owned governed lifecycle state (never asserted by the caller); expiry hints are
+ * clock-derived only.
  */
 
 import { randomUUID } from 'node:crypto';
 
 import type {
+  StandingRenewalEligibilityService,
+  StandingRenewalView,
   StandingReviewRecord,
   StandingReviewService,
 } from '../../../domains/affiliation-standing/index.js';
@@ -41,6 +47,11 @@ export interface ButtonStandingHttpDeps {
   readonly authorities: RepresentativeAuthorityProvider;
   /** Injected clock for representative-safe, clock-derived expiry hints. */
   readonly nowIso: () => string;
+  /**
+   * Optional renewal eligibility reader. When present, the DETAIL response includes a
+   * representative-safe `renewal` projection. Additive: absent it, the response is unchanged.
+   */
+  readonly renewal?: StandingRenewalEligibilityService;
 }
 
 export interface ButtonStandingHttpRequest {
@@ -169,7 +180,17 @@ export async function handleButtonStandingDetail(
       };
     }
     const nowMs = Date.parse(deps.nowIso());
-    return { status: 200, body: { status: 'ok', requestId, standing: toView(record, nowMs) } };
+    const standing = toView(record, nowMs);
+    const body: Record<string, unknown> = { status: 'ok', requestId, standing };
+    if (deps.renewal !== undefined) {
+      const renewal: StandingRenewalView = await deps.renewal.evaluateForRecord(
+        auth.tenantId,
+        record,
+        deps.nowIso(),
+      );
+      body.renewal = renewal;
+    }
+    return { status: 200, body };
   } catch (error) {
     return errorResult(error, requestId);
   }

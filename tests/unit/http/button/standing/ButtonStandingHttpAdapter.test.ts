@@ -142,4 +142,27 @@ describe('Button standing HTTP adapter', () => {
     expect(result.status).toBe(400);
     expect(getStanding).not.toHaveBeenCalled();
   });
+
+  it('attaches a representative-safe renewal projection when a renewal reader is wired (additive)', async () => {
+    const getStanding = vi.fn().mockResolvedValue(record());
+    const evaluateForRecord = vi.fn().mockResolvedValue({
+      posture: 'eligible',
+      pathway: 'continuity',
+      targetSeasons: [{ id: '2026-27', label: '2026-27', phase: 'upcoming', acceptingApplications: true }],
+    });
+    const base = deps({ getStanding });
+    const withRenewal: ButtonStandingHttpDeps = {
+      ...base,
+      renewal: { evaluateForRecord } as unknown as ButtonStandingHttpDeps['renewal'],
+    };
+    const result = await handleButtonStandingDetail(
+      withRenewal,
+      { headers: headers(), params: { standingId: STANDING } },
+      'request-renewal',
+    );
+
+    expect(result.status).toBe(200);
+    expect(evaluateForRecord).toHaveBeenCalledWith(TENANT, expect.objectContaining({ standingId: STANDING }), NOW_ISO);
+    expect(result.body['renewal']).toMatchObject({ posture: 'eligible', pathway: 'continuity' });
+  });
 });

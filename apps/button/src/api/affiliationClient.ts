@@ -29,6 +29,8 @@ import {
   type FinancialObligationQueueItem,
   type FinancialReconciliationResult,
   type StandingView,
+  type StandingDetail,
+  type StandingRenewalInitiation,
 } from './affiliationTypes';
 import { AffiliationMockStore } from './affiliationMockData';
 export interface GetOverviewInput {
@@ -68,6 +70,13 @@ export interface SubmitAffiliationInput {
 
 export interface ResubmitCorrectionInput extends SubmitAffiliationInput {
   readonly correctionRequestId: string;
+}
+
+export interface InitiateStandingRenewalInput {
+  readonly standingId: string;
+  readonly targetSeasonId: string;
+  /** Stable Idempotency-Key so a double-submit resumes rather than duplicates. */
+  readonly idempotencyKey: string;
 }
 
 export interface AffiliationApiClient {
@@ -111,7 +120,11 @@ export interface AffiliationApiClient {
     reason: string,
   ): Promise<FinancialReconciliationResult>;
   listStanding?(): Promise<readonly StandingView[]>;
-  getStanding?(standingId: string): Promise<StandingView>;
+  getStanding?(standingId: string): Promise<StandingDetail>;
+  /** Start or resume a standing's renewal (routes into the existing application workflow). */
+  initiateStandingRenewal?(
+    input: InitiateStandingRenewalInput,
+  ): Promise<StandingRenewalInitiation>;
   getSubmissionState?(applicationId: string): Promise<AffiliationSubmissionState>;
   resubmitCorrection?(input: ResubmitCorrectionInput): Promise<SubmissionReceipt>;
 }
@@ -456,11 +469,47 @@ export class HttpAffiliationApiClient implements AffiliationApiClient {
     );
   }
 
-  async getStanding(standingId: string): Promise<StandingView> {
+  async getStanding(standingId: string): Promise<StandingDetail> {
     return this.request(
       `/v1/button/affiliation/standing/${encodeURIComponent(standingId)}`,
       { method: 'GET', headers: { accept: 'application/json' } },
-      (body) => (body as { standing: StandingView }).standing,
+      (body) => {
+        const b = body as { standing: StandingView; renewal?: StandingDetail['renewal'] };
+        return b.renewal !== undefined
+          ? { standing: b.standing, renewal: b.renewal }
+          : { standing: b.standing };
+      },
+    );
+  }
+
+  async initiateStandingRenewal(
+    input: InitiateStandingRenewalInput,
+  ): Promise<StandingRenewalInitiation> {
+    return this.request(
+      `/v1/button/affiliation/standing/${encodeURIComponent(input.standingId)}/renewals`,
+      {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'idempotency-key': input.idempotencyKey,
+        },
+        body: JSON.stringify({ targetSeasonId: input.targetSeasonId }),
+      },
+      (body) => {
+        const b = body as {
+          posture: StandingRenewalInitiation['posture'];
+          created?: boolean;
+          resumed?: boolean;
+          renewalApplicationId: string;
+        };
+        return {
+          posture: b.posture,
+          created: b.created ?? false,
+          resumed: b.resumed ?? false,
+          renewalApplicationId: b.renewalApplicationId,
+        };
+      },
     );
   }
 
@@ -798,12 +847,12 @@ export class MockAffiliationApiClient implements AffiliationApiClient {
     return this.standings;
   }
 
-  async getStanding(standingId: string): Promise<StandingView> {
+  async getStanding(standingId: string): Promise<StandingDetail> {
     const standing = this.standings.find((item) => item.standingId === standingId);
     if (standing === undefined) {
       throw new AffiliationApiError('not-found', 404, 'Standing not found.');
     }
-    return standing;
+    return { standing };
   }
 
   async getSubmissionState(applicationId: string): Promise<AffiliationSubmissionState> {

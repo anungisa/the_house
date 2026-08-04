@@ -15,6 +15,7 @@ export {
   pickSeasonLabel,
   resolveEffectiveSeason,
   resolveEffectiveSeasons,
+  resolveRenewalTargetSeasons,
   resolveSeasonPhase,
 } from './effectiveSeason.js';
 export {

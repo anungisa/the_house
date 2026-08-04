@@ -8,6 +8,12 @@
  */
 
 import { uuidGenerator, type IdGenerator } from '../../shared/uuid/id.js';
+import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
+import type { InMemoryRenewalLinkRegistry } from '../affiliation-standing/InMemoryRenewalApplicationLink.js';
+import {
+  STANDING_RENEWAL_APPLICATION_INITIATED_MESSAGE_TYPE,
+  renewalApplicationInitiatedDedupeKey,
+} from './PgAffiliationDraftStore.js';
 import type {
   AddEvidenceLinkInput,
   AddEvidenceLinkResult,
@@ -37,16 +43,45 @@ interface Record_ {
 export interface InMemoryAffiliationDraftStoreDeps {
   readonly generateId?: IdGenerator;
   readonly now?: () => Date;
+  /**
+   * Optional shared renewal-link registry. When provided, a `renewal`-pathway initiation attributes
+   * the new application to its standing here (mirroring the Pg store's renewal_application_link),
+   * and captures the audit event + outbox message it would enqueue.
+   */
+  readonly renewalLinks?: InMemoryRenewalLinkRegistry;
+}
+
+/** A captured governance side effect (audit / outbox) for in-memory renewal assertions. */
+export interface CapturedRenewalAudit {
+  readonly entityType: 'AffiliationStanding';
+  readonly entityId: string;
+  readonly action: 'renewal_application_initiated';
+  readonly actor: string;
+  readonly payload: Record<string, unknown>;
+}
+
+export interface CapturedRenewalOutbox {
+  readonly messageType: string;
+  readonly dedupeKey: string;
+  readonly payload: Record<string, unknown>;
+  readonly correlationId?: string;
+  readonly causationId?: string;
 }
 
 export class InMemoryAffiliationDraftStore implements AffiliationDraftStore {
   private readonly records = new Map<string, Record_>();
   private readonly generateId: IdGenerator;
   private readonly now: () => Date;
+  private readonly renewalLinks: InMemoryRenewalLinkRegistry | undefined;
+  /** Captured renewal audit events (test-only observability). */
+  readonly renewalAuditEvents: CapturedRenewalAudit[] = [];
+  /** Captured renewal outbox messages (test-only observability). */
+  readonly renewalOutboxMessages: CapturedRenewalOutbox[] = [];
 
   constructor(deps: InMemoryAffiliationDraftStoreDeps = {}) {
     this.generateId = deps.generateId ?? uuidGenerator;
     this.now = deps.now ?? (() => new Date());
+    this.renewalLinks = deps.renewalLinks;
   }
 
   private nowIso(): string {
@@ -82,6 +117,26 @@ export class InMemoryAffiliationDraftStore implements AffiliationDraftStore {
   async initiateApplication(
     input: InitiateApplicationInput,
   ): Promise<{ head: DraftApplicationHead; created: boolean }> {
+    // Store invariant (fails closed), mirroring the Pg store.
+    if (input.pathway === 'renewal' && input.renewal === undefined) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'A renewal application requires a governed renewal context.',
+      );
+    }
+    if (input.pathway !== 'renewal' && input.renewal !== undefined) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'A renewal context is only valid for the renewal pathway.',
+      );
+    }
+    if (input.renewal !== undefined && input.renewal.targetSeasonId !== input.seasonId) {
+      throw new AppError(
+        ErrorCode.INVALID_INPUT,
+        'The renewal target season must match the application season.',
+      );
+    }
+
     const existing = await this.findApplicationBySubject(
       input.tenantId,
       input.organizationId,
@@ -110,7 +165,68 @@ export class InMemoryAffiliationDraftStore implements AffiliationDraftStore {
         { actor: input.actor, eventType: 'application_initiated', detail: {}, occurredAt: nowIso },
       ],
     });
+
+    if (input.renewal !== undefined) {
+      this.attributeRenewal(applicationId, input.organizationId, input.actor, input.renewal, nowIso);
+    }
+
     return { head, created: true };
+  }
+
+  private attributeRenewal(
+    renewalApplicationId: string,
+    organizationId: string,
+    actor: string,
+    renewal: NonNullable<InitiateApplicationInput['renewal']>,
+    nowIso: string,
+  ): void {
+    const registry = this.renewalLinks;
+    if (registry === undefined) return;
+    const { created } = registry.insert({
+      tenantId: this.recordTenant(renewalApplicationId),
+      renewalApplicationId,
+      standingId: renewal.standingId,
+      sourceStandingVersion: renewal.sourceStandingVersion,
+      sourceSeasonId: renewal.sourceSeasonId,
+      targetSeasonId: renewal.targetSeasonId,
+      initiatedBy: actor,
+      idempotencyKey: renewal.idempotencyKey,
+      initiatedAt: nowIso,
+      ...(renewal.correlationId !== undefined ? { correlationId: renewal.correlationId } : {}),
+      ...(renewal.causationId !== undefined ? { causationId: renewal.causationId } : {}),
+    });
+    if (!created) return;
+
+    const payload = {
+      standingId: renewal.standingId,
+      renewalApplicationId,
+      organizationId,
+      sourceStandingVersion: renewal.sourceStandingVersion,
+      sourceSeasonId: renewal.sourceSeasonId,
+      targetSeasonId: renewal.targetSeasonId,
+    };
+    this.renewalAuditEvents.push({
+      entityType: 'AffiliationStanding',
+      entityId: renewal.standingId,
+      action: 'renewal_application_initiated',
+      actor,
+      payload,
+    });
+    this.renewalOutboxMessages.push({
+      messageType: STANDING_RENEWAL_APPLICATION_INITIATED_MESSAGE_TYPE,
+      dedupeKey: renewalApplicationInitiatedDedupeKey(
+        this.recordTenant(renewalApplicationId),
+        renewal.standingId,
+        renewal.targetSeasonId,
+      ),
+      payload,
+      ...(renewal.correlationId !== undefined ? { correlationId: renewal.correlationId } : {}),
+      ...(renewal.causationId !== undefined ? { causationId: renewal.causationId } : {}),
+    });
+  }
+
+  private recordTenant(applicationId: string): string {
+    return this.records.get(applicationId)?.head.tenantId ?? '';
   }
 
   async getSnapshot(tenantId: string, applicationId: string): Promise<DraftSnapshot | undefined> {
