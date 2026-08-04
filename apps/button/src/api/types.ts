@@ -19,9 +19,17 @@ export const ButtonCapability = {
 } as const;
 export type ButtonCapability = (typeof ButtonCapability)[keyof typeof ButtonCapability];
 
+/**
+ * A governed, representative-safe jurisdiction projection. `label` is ALREADY localized by the
+ * server for the request locale; the browser renders it DIRECTLY (no translation-key lookup). It
+ * carries no source reference, assignment id, parent lineage, actor, or reason.
+ */
+export type JurisdictionLevel = 'national' | 'subdivision' | 'local' | 'custom';
+
 export interface JurisdictionView {
   readonly code: string;
-  readonly labelKey: string;
+  readonly label: string;
+  readonly level: JurisdictionLevel;
 }
 
 export interface SeasonView {
@@ -36,7 +44,10 @@ export interface AccessibleOrganizationView {
   readonly organizationId: string;
   readonly displayName: string;
   readonly organizationType: string;
-  readonly jurisdiction: JurisdictionView;
+  /** Present only when a governed jurisdiction resolves; omitted (fail closed) otherwise. */
+  readonly jurisdiction?: JurisdictionView;
+  /** Whether a NEW affiliation may be initiated for this organization right now. */
+  readonly affiliationAvailable: boolean;
 }
 
 export interface RepresentativeAuthorityView {
@@ -49,7 +60,10 @@ export interface RepresentativeAuthorityView {
 export interface SelectedContextView {
   readonly organizationId: string;
   readonly organizationDisplayName: string;
-  readonly jurisdiction: JurisdictionView;
+  /** Present only when a governed jurisdiction resolves; omitted (fail closed) otherwise. */
+  readonly jurisdiction?: JurisdictionView;
+  /** Whether a NEW affiliation may be initiated in this selected context right now. */
+  readonly affiliationAvailable: boolean;
   readonly season: SeasonView;
   readonly authorityStatus: AuthorityStatus;
 }

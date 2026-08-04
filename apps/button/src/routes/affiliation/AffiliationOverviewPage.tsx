@@ -56,7 +56,7 @@ export function AffiliationOverviewPage(): JSX.Element {
           <dl className="context-summary">
             <div>
               <dt>{t('context.jurisdiction')}</dt>
-              <dd>{t(current.jurisdiction.labelKey as never)}</dd>
+              <dd>{current.jurisdiction ? current.jurisdiction.label : t('context.none')}</dd>
             </div>
             <div>
               <dt>{t('context.season')}</dt>

@@ -5,7 +5,9 @@
  *  - the resolved {@link AuthContext} (tenant + actor established by an auth resolver);
  *  - the tenant-isolated Organization Registry read projection (accessible organizations);
  *  - a {@link RepresentativeAuthorityProvider} (server-side authority + validity — NOT the browser);
- *  - a {@link SeasonCatalog} and {@link JurisdictionResolver} (bounded, policy-derived context).
+ *  - a {@link SeasonCatalog} and a governed {@link JurisdictionResolver} (bounded, tenant-isolated,
+ *    persisted context — the jurisdiction is resolved from the governed catalog + assignment
+ *    hierarchy, never inferred from organization type).
  *
  * It NEVER trusts organization/jurisdiction/season identifiers asserted by the browser: a
  * requested selection is re-authorized against the actor's accessible organizations, and an
@@ -18,6 +20,11 @@ import { AppError, ErrorCode } from '../../shared/errors/AppError.js';
 import type { AuthContext, AuthActor } from '../auth/AuthContext.js';
 import type { OrganizationReadStore } from '../organization/OrganizationReadHttpAdapter.js';
 import type { OrganizationView } from '../../domains/organization-registry/OrganizationTypes.js';
+import type { JurisdictionResolver } from '../../domains/jurisdiction/JurisdictionResolver.js';
+import type {
+  JurisdictionLocale,
+  JurisdictionResolution,
+} from '../../domains/jurisdiction/JurisdictionTypes.js';
 import {
   ButtonCapability,
   CLUB_AFFILIATION_REPRESENTATIVE_ROLE,
@@ -31,6 +38,12 @@ import {
   type SeasonView,
   type SelectedContextView,
 } from './ButtonContextTypes.js';
+
+/**
+ * Re-exported for Button HTTP adapters that compose the same governed jurisdiction contract. The
+ * canonical definition lives in the jurisdiction domain; the Button surface only consumes it.
+ */
+export type { JurisdictionResolver } from '../../domains/jurisdiction/JurisdictionResolver.js';
 
 /** A server-resolved representative authority over one organization. */
 export interface ResolvedAuthority {
@@ -68,10 +81,7 @@ export interface SeasonCatalog {
   ): Promise<readonly SeasonView[]> | readonly SeasonView[];
 }
 
-/** Resolves a bounded jurisdiction context for an organization. */
-export interface JurisdictionResolver {
-  jurisdictionFor(organization: OrganizationView, actor: AuthActor): JurisdictionView;
-}
+/** Resolves the governed jurisdiction context for an organization (see the jurisdiction domain). */
 
 export interface ButtonContextServiceDeps {
   readonly organizations: OrganizationReadStore;
@@ -159,20 +169,57 @@ export class ClockDerivedSeasonCatalog implements SeasonCatalog {
 }
 
 /**
- * Default jurisdiction resolver (POLICY-DERIVED STUB — a known gap): maps an organization to a
- * bounded jurisdiction label key by its type. A real deployment resolves the province/territory
- * from the governed organization hierarchy.
+ * Demo/test jurisdiction resolver (NOT for production wiring): resolves a bounded, localized
+ * jurisdiction view directly from an organization's type, ignoring the persisted catalog. It exists
+ * ONLY to keep in-memory Button demos + unit fixtures self-contained. Production composes the
+ * {@link GovernedJurisdictionResolver} over the persisted jurisdiction catalog + assignment
+ * hierarchy — an organization type grants no real jurisdiction.
  */
 export class OrganizationTypeJurisdictionResolver implements JurisdictionResolver {
-  jurisdictionFor(organization: OrganizationView, _actor: AuthActor): JurisdictionView {
+  jurisdictionFor(
+    _tenantId: string,
+    organization: OrganizationView,
+    _nowIso: string,
+    locale: JurisdictionLocale,
+  ): Promise<JurisdictionResolution> {
+    const fr = locale === 'fr';
     if (organization.organizationType === 'national') {
-      return { code: 'national', labelKey: 'jurisdiction.national' };
+      return Promise.resolve({
+        outcome: 'resolved',
+        jurisdiction: { code: 'national', label: 'National', level: 'national' },
+      });
     }
     if (organization.organizationType === 'regional') {
-      return { code: 'regional', labelKey: 'jurisdiction.regional' };
+      return Promise.resolve({
+        outcome: 'resolved',
+        jurisdiction: {
+          code: 'regional',
+          label: fr ? 'R\u00e9gional' : 'Regional',
+          level: 'subdivision',
+        },
+      });
     }
-    return { code: 'member', labelKey: 'jurisdiction.member' };
+    return Promise.resolve({
+      outcome: 'resolved',
+      jurisdiction: { code: 'member', label: fr ? 'Membre' : 'Member', level: 'local' },
+    });
   }
+}
+
+/**
+ * Project a governed jurisdiction resolution onto the representative-safe surface. Only a cleanly
+ * `resolved` outcome yields a jurisdiction view + an affiliation-available posture; every fail-
+ * closed outcome (unresolved / ambiguous / invalid_hierarchy) collapses to the SAME safe shape:
+ * no jurisdiction, affiliation unavailable. The client never learns WHY it failed.
+ */
+function projectJurisdiction(resolution: JurisdictionResolution): {
+  jurisdiction?: JurisdictionView;
+  affiliationAvailable: boolean;
+} {
+  if (resolution.outcome === 'resolved') {
+    return { jurisdiction: resolution.jurisdiction, affiliationAvailable: true };
+  }
+  return { affiliationAvailable: false };
 }
 
 export class ButtonContextService {
@@ -217,12 +264,22 @@ export class ButtonContextService {
         organizations.push(org);
       }
     }
-    const accessibleOrganizations: AccessibleOrganizationView[] = organizations.map((org) => ({
-      organizationId: org.organizationId,
-      displayName: org.displayName,
-      organizationType: org.organizationType,
-      jurisdiction: this.deps.jurisdictions.jurisdictionFor(org, auth.actor),
-    }));
+    const accessibleOrganizations: AccessibleOrganizationView[] = await Promise.all(
+      organizations.map(async (org) => {
+        const resolution = await this.deps.jurisdictions.jurisdictionFor(
+          auth.tenantId,
+          org,
+          nowIso,
+          locale,
+        );
+        return {
+          organizationId: org.organizationId,
+          displayName: org.displayName,
+          organizationType: org.organizationType,
+          ...projectJurisdiction(resolution),
+        };
+      }),
+    );
     const accessibleById = new Map(organizations.map((o) => [o.organizationId, o]));
 
     // 4) Keep only authorities whose organization survived the tenant-isolated lookup.
@@ -244,12 +301,14 @@ export class ButtonContextService {
     const availableSeasons = await this.deps.seasons.seasons(auth.tenantId, nowIso, locale);
 
     // 6) Re-authorize the requested selection (fail closed on anything unaccessible).
-    const currentContext = this.resolveSelection(
+    const currentContext = await this.resolveSelection(
       selection,
       accessibleById,
       authorityByOrg,
       availableSeasons,
-      auth.actor,
+      auth.tenantId,
+      nowIso,
+      locale,
     );
 
     // 7) Bounded capabilities, derived from authority (never a permission dump).
@@ -273,13 +332,15 @@ export class ButtonContextService {
     };
   }
 
-  private resolveSelection(
+  private async resolveSelection(
     selection: ButtonContextSelection,
     accessibleById: Map<string, OrganizationView>,
     authorityByOrg: Map<string, ResolvedAuthority>,
     availableSeasons: readonly SeasonView[],
-    actor: AuthActor,
-  ): SelectedContextView | null {
+    tenantId: string,
+    nowIso: string,
+    locale: JurisdictionLocale,
+  ): Promise<SelectedContextView | null> {
     const requestedOrg = selection.organizationId?.trim();
     if (requestedOrg === undefined || requestedOrg === '') return null;
 
@@ -311,10 +372,16 @@ export class ButtonContextService {
     }
 
     const authority = authorityByOrg.get(requestedOrg);
+    const resolution = await this.deps.jurisdictions.jurisdictionFor(
+      tenantId,
+      org,
+      nowIso,
+      locale,
+    );
     return {
       organizationId: org.organizationId,
       organizationDisplayName: org.displayName,
-      jurisdiction: this.deps.jurisdictions.jurisdictionFor(org, actor),
+      ...projectJurisdiction(resolution),
       season,
       authorityStatus: authority?.status ?? 'revoked',
     };

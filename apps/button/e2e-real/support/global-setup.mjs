@@ -38,6 +38,42 @@ function seedGovernedSeason(adminConnection, tenantId, seasonId) {
   );
 }
 
+/**
+ * Establish an organization's governing jurisdiction the GOVERNED way. Jurisdiction is a
+ * House-governed, tenant-isolated, PERSISTED fact the affiliation surface and the production
+ * {@link GovernedJurisdictionResolver} read from state — it is NEVER derived from organization
+ * type. Affiliation initiation now fails closed (JURISDICTION_UNAVAILABLE) unless the acting
+ * organization resolves to a published jurisdiction, so every org that initiates in the e2e
+ * journeys must be assigned one through the governed catalog service (validation + one-active-
+ * primary invariant + append-only event + audit + transactional outbox), NEVER by writing
+ * assignment rows directly. `ensure-assigned` is idempotent so re-runs REPLAY.
+ */
+function seedGovernedJurisdiction(adminConnection, tenantId, organizationId, code) {
+  execFileSync(
+    'npx',
+    [
+      'tsx',
+      join('scripts', 'e2e-jurisdiction-admin.ts'),
+      'ensure-assigned',
+      '--tenant',
+      tenantId,
+      '--org',
+      organizationId,
+      '--code',
+      code,
+      '--level',
+      'subdivision',
+      '--mode',
+      'direct',
+    ],
+    {
+      cwd: REPO_ROOT,
+      stdio: 'inherit',
+      env: { ...process.env, MIGRATE_DATABASE_URL: adminConnection },
+    },
+  );
+}
+
 const FIXTURE_PATH =
   process.env.E2E_REAL_FIXTURE_PATH ?? join(tmpdir(), 'the-house-button-real-e2e-fixture.json');
 
@@ -66,6 +102,12 @@ export default async function globalSetup() {
   // A dedicated organization for the authority-lifecycle journey, whose representative starts with
   // NO governed grant (grant/revoke is exercised live during that spec).
   const lifecycleOrganizationId = randomUUID();
+  // Dedicated organizations for the governed JURISDICTION-lifecycle journey. `jurParent` is a
+  // parent whose inheritable assignment the child should inherit; `jurRep` is the acting child
+  // organization, deliberately created with NO jurisdiction assignment so the journey proves the
+  // fail-closed → inherited → direct-override → inherited → blocked lifecycle live.
+  const jurParentOrganizationId = randomUUID();
+  const jurRepOrganizationId = randomUUID();
 
   const fixture = {
     tenantId: randomUUID(),
@@ -97,6 +139,16 @@ export default async function globalSetup() {
         userId: randomUUID(),
         organizationId: lifecycleOrganizationId,
         displayName: 'Summit Curling Club',
+        roleKeys: ['club_affiliation_representative'],
+      },
+      // Representative for the governed JURISDICTION-lifecycle journey. Its organization is a child
+      // of `jurParentOrganizationId` and starts with NO jurisdiction assignment, so the journey can
+      // drive the full resolution lifecycle without disturbing the shared representative orgs.
+      'jur-rep': {
+        userId: randomUUID(),
+        organizationId: jurRepOrganizationId,
+        parentOrganizationId: jurParentOrganizationId,
+        displayName: 'Cedar Valley Curling Club',
         roleKeys: ['club_affiliation_representative'],
       },
       // Operational/staff identities. Their governed capabilities are derived PURELY from
@@ -163,9 +215,40 @@ export default async function globalSetup() {
       ],
     );
 
+    // Governed jurisdiction-lifecycle orgs: a parent and its child (whose jurisdiction the child
+    // may inherit). Inserted with the composite parent link so the resolver can walk the chain.
+    await pool.query(
+      `INSERT INTO organization_registry.organization
+         (id, tenant_id, organization_type, display_name, status, source,
+          parent_organization_id, created_at, updated_at)
+       VALUES
+         ($1, $2, 'regional', $3, 'active', 'manual', NULL, now(), now()),
+         ($4, $2, 'local', $5, 'active', 'manual', $1, now(), now())`,
+      [
+        fixture.profiles['jur-rep'].parentOrganizationId,
+        fixture.tenantId,
+        'Cedar Valley Provincial Body',
+        fixture.profiles['jur-rep'].organizationId,
+        fixture.profiles['jur-rep'].displayName,
+      ],
+    );
+
     // Prerequisite with no user-facing setup surface: the current season is a House-governed
     // calendar fact. Seed it through the GOVERNED season catalog service (never raw season SQL).
     seedGovernedSeason(adminConnection, fixture.tenantId, fixture.seasonId);
+
+    // Prerequisite with no user-facing setup surface: each organization's governing jurisdiction
+    // is a House-governed, PERSISTED fact. Affiliation initiation fails closed unless the acting
+    // organization resolves to a published jurisdiction, so assign one (directly) to every org that
+    // initiates in the journeys, through the GOVERNED jurisdiction catalog service.
+    for (const key of ['rep-a', 'rep-b', 'op-rep', 'lifecycle-rep']) {
+      seedGovernedJurisdiction(
+        adminConnection,
+        fixture.tenantId,
+        fixture.profiles[key].organizationId,
+        'on',
+      );
+    }
 
     // Governed representative authority. Under the House authority model a trusted identity and an
     // organization header only IDENTIFY the actor — they never manufacture authority. A
@@ -173,9 +256,8 @@ export default async function globalSetup() {
     // in the `authority` schema says so. Seed one ACTIVE grant per representative profile; the
     // staff identities (reviewer/regional/national/finance) deliberately get NO grant — their
     // governed capabilities derive purely from role keys, not representative authority.
-    for (const key of ['rep-a', 'rep-b', 'op-rep']) {
-      const profile = fixture.profiles[key];
-      const subjectId = randomUUID();
+    for (const key of ['rep-a', 'rep-b', 'op-rep', 'jur-rep']) {
+      const profile = fixture.profiles[key];      const subjectId = randomUUID();
       await pool.query(
         `INSERT INTO authority.identity_subject
            (id, tenant_id, issuer, external_subject, status, source, linked_at, created_at, updated_at)

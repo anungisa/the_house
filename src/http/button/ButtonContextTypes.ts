@@ -13,6 +13,11 @@
  * facts. The shapes below are the ONLY thing the Button frontend is allowed to consume.
  */
 
+import type {
+  JurisdictionLevel,
+  JurisdictionView,
+} from '../../domains/jurisdiction/JurisdictionTypes.js';
+
 /** Supported representative-facing locales (bilingual: English + French). */
 export type ButtonLocale = 'en' | 'fr';
 
@@ -48,12 +53,13 @@ export type ButtonCapability = (typeof ButtonCapability)[keyof typeof ButtonCapa
 /** The lifecycle status of a representative authority, as resolved server-side. */
 export type AuthorityStatus = 'active' | 'expired' | 'revoked';
 
-/** A jurisdiction context (province/territory/national). Codes are stable + non-identifying. */
-export interface JurisdictionView {
-  readonly code: string;
-  /** Localization key the frontend resolves; NOT free text from another tenant. */
-  readonly labelKey: string;
-}
+/**
+ * A governed, representative-safe jurisdiction projection (resolved server-side from the persisted
+ * jurisdiction catalog + organization assignment edge). `label` is ALREADY localized for the
+ * request locale; the browser renders it directly (no key lookup). It NEVER carries a source
+ * reference, assignment id, parent lineage, actor, version, or reason code.
+ */
+export type { JurisdictionLevel, JurisdictionView };
 
 /** A season the representative may act within. */
 export interface SeasonView {
@@ -71,7 +77,18 @@ export interface AccessibleOrganizationView {
   readonly organizationId: string;
   readonly displayName: string;
   readonly organizationType: string;
-  readonly jurisdiction: JurisdictionView;
+  /**
+   * The organization's governed jurisdiction, when one resolves cleanly from the persisted
+   * catalog + assignment hierarchy. OMITTED (fail closed) when no assignment resolves, or when
+   * resolution is ambiguous / the hierarchy is broken — in which case `affiliationAvailable` is
+   * false and the client must not offer to initiate an affiliation for this organization.
+   */
+  readonly jurisdiction?: JurisdictionView;
+  /**
+   * Whether a NEW affiliation may be initiated for this organization right now: true only when a
+   * single governed jurisdiction resolves. Derived server-side; the browser never asserts it.
+   */
+  readonly affiliationAvailable: boolean;
 }
 
 /** A representative authority over one organization, with its server-resolved validity. */
@@ -87,7 +104,13 @@ export interface RepresentativeAuthorityView {
 export interface SelectedContextView {
   readonly organizationId: string;
   readonly organizationDisplayName: string;
-  readonly jurisdiction: JurisdictionView;
+  /**
+   * The selected organization's governed jurisdiction, when one resolves cleanly. OMITTED (fail
+   * closed) when unresolved / ambiguous / hierarchy broken; `affiliationAvailable` is then false.
+   */
+  readonly jurisdiction?: JurisdictionView;
+  /** Whether a NEW affiliation may be initiated in this selected context right now. */
+  readonly affiliationAvailable: boolean;
   readonly season: SeasonView;
   /** The authority backing the current selection (drives guarded routing on the client). */
   readonly authorityStatus: AuthorityStatus;

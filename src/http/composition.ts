@@ -105,7 +105,6 @@ import {
   ButtonContextService,
   PgRepresentativeAuthorityProvider,
   PgSeasonCatalog,
-  OrganizationTypeJurisdictionResolver,
   type ButtonContextHttpDeps,
 } from './button/index.js';
 import type { ButtonAffiliationHttpDeps } from './button/affiliation/index.js';
@@ -117,6 +116,10 @@ import {
   StorageBackedEvidenceReferenceValidator,
 } from '../domains/affiliation-requirements/index.js';
 import { PgOrganizationRegistryStore } from '../domains/organization-registry/index.js';
+import {
+  GovernedJurisdictionResolver,
+  PgJurisdictionStore,
+} from '../domains/jurisdiction/index.js';
 import {
   ParticipantRegistryService,
   PgParticipantRegistryStore,
@@ -435,17 +438,21 @@ export function createPgSeasonCatalog(): PgSeasonCatalog {
 /**
  * Build the Button representative-context READ transport backed by PostgreSQL. The context is
  * assembled from the trusted identity context + the RLS-enforced {@link PgOrganizationRegistryStore}
- * read projection, plus the governed representative authority provider and the policy-derived
- * season/jurisdiction providers. The adapter is read-only: it never mutates state, enqueues outbox
- * messages, touches governed tables, or invokes the kernel. Representative authority comes ONLY
- * from persisted, in-window, un-revoked governed grants (never from role keys alone).
+ * read projection, plus the governed representative authority provider, the governed season
+ * catalog, and the governed jurisdiction resolver (persisted catalog + assignment hierarchy). The
+ * adapter is read-only: it never mutates state, enqueues outbox messages, touches governed tables,
+ * or invokes the kernel. Representative authority comes ONLY from persisted, in-window, un-revoked
+ * governed grants (never from role keys alone).
  */
 export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContextHttpDeps {
   const service = new ButtonContextService({
     organizations: new PgOrganizationRegistryStore(),
     authorities: createPgRepresentativeAuthorityProvider(),
     seasons: createPgSeasonCatalog(),
-    jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    jurisdictions: new GovernedJurisdictionResolver(
+      new PgJurisdictionStore(),
+      new PgOrganizationRegistryStore(),
+    ),
     nowIso: () => new Date().toISOString(),
   });
   return {
@@ -457,10 +464,11 @@ export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContex
 /**
  * Build the Button club-affiliation DRAFT transport (Slice C) backed by PostgreSQL. The draft
  * store, requirement catalog, lifecycle reader, and evidence-reference validator all run against
- * RLS-enforced Pg stores / tenant-partitioned evidence storage, plus the same default policy-
- * derived authority/jurisdiction providers used by the context surface. The adapter saves DRAFT
- * responses and ASSOCIATES governed evidence references; it NEVER mutates governed lifecycle
- * state, invokes the kernel, submits an application, or writes audit/evidence/outbox directly.
+ * RLS-enforced Pg stores / tenant-partitioned evidence storage, plus the same governed authority
+ * provider, season catalog, and jurisdiction resolver used by the context surface. The adapter
+ * saves DRAFT responses and ASSOCIATES governed evidence references; it NEVER mutates governed
+ * lifecycle state, invokes the kernel, submits an application, or writes audit/evidence/outbox
+ * directly.
  */
 export function createButtonAffiliationHttpDeps(telemetry?: Telemetry): ButtonAffiliationHttpDeps {
   const config = loadConfig();
@@ -493,7 +501,10 @@ export function createButtonAffiliationHttpDepsFromStorage(
     submissions: new AffiliationSubmissionService(createPgAffiliationApplicationService()),
     organizations: new PgOrganizationRegistryStore(),
     authorities: createPgRepresentativeAuthorityProvider(),
-    jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    jurisdictions: new GovernedJurisdictionResolver(
+      new PgJurisdictionStore(),
+      new PgOrganizationRegistryStore(),
+    ),
     seasons: new SeasonCatalogService(new PgSeasonCatalogStore()),
     nowIso: () => new Date().toISOString(),
     ...(telemetry !== undefined ? { telemetry } : {}),
