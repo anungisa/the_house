@@ -350,6 +350,20 @@ const en = {
   'standing.back': 'Back to standing',
   'standing.error.load': 'The affiliation standing view could not be loaded.',
   'standing.error.notFound': 'This standing record is not available for your current context.',
+  'standing.renewal.heading': 'Renewal',
+  'standing.renewal.eligible': 'This standing is eligible for renewal.',
+  'standing.renewal.pathway.continuity': 'Continuity renewal',
+  'standing.renewal.pathway.renewal_with_remediation': 'Renewal with remediation',
+  'standing.renewal.selectSeason': 'Season to renew into',
+  'standing.renewal.start': 'Start renewal',
+  'standing.renewal.starting': 'Starting renewal\u2026',
+  'standing.renewal.inProgress': 'A renewal is already in progress for this standing.',
+  'standing.renewal.continue': 'Continue renewal',
+  'standing.renewal.reconciliation':
+    'This standing\u2019s status is being updated. Renewal cannot be started yet.',
+  'standing.renewal.notEligible': 'This standing is not currently eligible for renewal.',
+  'standing.renewal.noSeasons': 'No season is currently open for renewal.',
+  'standing.renewal.error': 'The renewal could not be started. Please try again.',
 } as const;
 
 export type TranslationKey = keyof typeof en;
@@ -697,6 +711,22 @@ const fr: Record<TranslationKey, string> = {
   'standing.back': 'Retour au statut',
   'standing.error.load': 'La vue du statut d\u2019affiliation n\u2019a pas pu \u00eatre charg\u00e9e.',
   'standing.error.notFound': 'Ce dossier de statut n\u2019est pas disponible pour votre contexte actuel.',
+  'standing.renewal.heading': 'Renouvellement',
+  'standing.renewal.eligible': 'Ce statut est admissible au renouvellement.',
+  'standing.renewal.pathway.continuity': 'Renouvellement en continuit\u00e9',
+  'standing.renewal.pathway.renewal_with_remediation': 'Renouvellement avec correctifs',
+  'standing.renewal.selectSeason': 'Saison de renouvellement',
+  'standing.renewal.start': 'D\u00e9marrer le renouvellement',
+  'standing.renewal.starting': 'D\u00e9marrage du renouvellement\u2026',
+  'standing.renewal.inProgress': 'Un renouvellement est d\u00e9j\u00e0 en cours pour ce statut.',
+  'standing.renewal.continue': 'Poursuivre le renouvellement',
+  'standing.renewal.reconciliation':
+    'Le statut de ce dossier est en cours de mise \u00e0 jour. Le renouvellement ne peut pas encore \u00eatre d\u00e9marr\u00e9.',
+  'standing.renewal.notEligible':
+    'Ce statut n\u2019est pas admissible au renouvellement pour le moment.',
+  'standing.renewal.noSeasons': 'Aucune saison n\u2019est actuellement ouverte au renouvellement.',
+  'standing.renewal.error':
+    'Le renouvellement n\u2019a pas pu \u00eatre d\u00e9marr\u00e9. Veuillez r\u00e9essayer.',
 };
 
 export const RESOURCES: Record<ButtonLocale, Record<TranslationKey, string>> = {

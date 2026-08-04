@@ -111,6 +111,47 @@ export function resolveEffectiveSeason(
 }
 
 /**
+ * Governed RENEWAL target-season selection.
+ *
+ * A renewal advances a standing to a LATER governed season. Candidates must be, at `nowIso`:
+ *  - published AND currently accepting applications ({@link isAcceptingApplications}); and
+ *  - strictly LATER than the source season by PERSISTED start dates — never by string arithmetic on
+ *    the season key (so "2025-26" -> "2026-27" is derived from dates, not text).
+ * The source season is identified by key; if the source season has no persisted start date, no
+ * "later" comparison can be made and the selection is empty (fail closed). The same season is never
+ * a target. Results are deterministically ordered by start date (earliest first), then by key.
+ */
+export function resolveRenewalTargetSeasons(
+  records: readonly SeasonRecord[],
+  sourceSeasonId: string,
+  sourceSeasonStartIso: string | undefined,
+  nowIso: string,
+  locale: SeasonLocale,
+): readonly EffectiveSeason[] {
+  const sourceStart = parseInstant(sourceSeasonStartIso);
+  if (sourceStart === undefined) {
+    return [];
+  }
+  return records
+    .filter((record) => record.seasonId !== sourceSeasonId)
+    .filter((record) => isAcceptingApplications(record, nowIso))
+    .filter((record) => {
+      const start = parseInstant(record.seasonStartDate);
+      return start !== undefined && start > sourceStart;
+    })
+    .slice()
+    .sort((a, b) => {
+      const delta = (parseInstant(a.seasonStartDate) ?? 0) - (parseInstant(b.seasonStartDate) ?? 0);
+      if (delta !== 0) {
+        return delta;
+      }
+      return a.seasonId < b.seasonId ? -1 : a.seasonId > b.seasonId ? 1 : 0;
+    })
+    .map((record) => resolveEffectiveSeason(record, nowIso, locale))
+    .filter((view): view is EffectiveSeason => view !== undefined);
+}
+
+/**
  * Project + order a set of records for representative display: the current season first, then most
  * recent by start date. Drafts and retired seasons are dropped.
  */

@@ -36,6 +36,23 @@ export interface BoundRequirementRow {
   readonly appliesBecause: string;
 }
 
+/**
+ * Governed renewal attribution context. Present ONLY when a `renewal`-pathway application is being
+ * initiated for a specific standing. It carries the server-resolved source facts (never
+ * browser-trusted) plus idempotency/lineage. The store uses it to physically attribute the new
+ * application to the standing (`affiliation_standing.renewal_application_link`) inside the SAME
+ * transaction, and to fail closed when a `renewal` pathway arrives WITHOUT it.
+ */
+export interface RenewalInitiationContext {
+  readonly standingId: string;
+  readonly sourceStandingVersion: number;
+  readonly sourceSeasonId: string;
+  readonly targetSeasonId: string;
+  readonly idempotencyKey: string;
+  readonly correlationId?: string;
+  readonly causationId?: string;
+}
+
 /** A saved response value keyed by requirement code. */
 export interface StoredResponseRow {
   readonly requirementCode: string;
@@ -61,6 +78,12 @@ export interface InitiateApplicationInput {
   readonly pathway: string;
   readonly actor: string;
   readonly bindings: readonly BoundRequirementRow[];
+  /**
+   * Governed renewal attribution. REQUIRED when `pathway === 'renewal'` (the store fails closed
+   * otherwise) and MUST be absent for any other pathway. When present and a NEW application is
+   * created, the store also writes the renewal link, audit event, and outbox message atomically.
+   */
+  readonly renewal?: RenewalInitiationContext;
 }
 
 /** A response value to upsert during a draft save. */

@@ -241,6 +241,48 @@ export interface StandingView {
   readonly daysUntilExpiry: number | null;
 }
 
+/** A representative-safe renewal target season (mirrors the server projection). */
+export interface RenewalTargetSeason {
+  readonly id: string;
+  readonly label: string;
+  readonly phase: 'upcoming' | 'current' | 'past';
+  readonly acceptingApplications: boolean;
+}
+
+/** Server-derived renewal posture for a standing. Never carries governed-policy internals. */
+export type StandingRenewalPosture =
+  | 'not_eligible'
+  | 'eligible'
+  | 'in_progress'
+  | 'reconciliation_required';
+
+/**
+ * The representative-safe renewal projection returned alongside a standing DETAIL. It answers
+ * "can this standing be renewed, for which season, and can I start or resume?" — the actual start
+ * is a separate, bounded command. No guard names, grace-day values, or role names are exposed.
+ */
+export interface StandingRenewal {
+  readonly posture: StandingRenewalPosture;
+  readonly reasonCode?: string;
+  readonly pathway?: 'continuity' | 'renewal_with_remediation';
+  readonly targetSeasons: readonly RenewalTargetSeason[];
+  readonly renewalApplicationId?: string;
+}
+
+/** A standing detail plus its optional renewal projection. */
+export interface StandingDetail {
+  readonly standing: StandingView;
+  readonly renewal?: StandingRenewal;
+}
+
+/** Result of starting/resuming a renewal: whether a new application was created + its id. */
+export interface StandingRenewalInitiation {
+  readonly posture: StandingRenewalPosture;
+  readonly created: boolean;
+  readonly resumed: boolean;
+  readonly renewalApplicationId: string;
+}
+
 /** Stable, non-leaking error categories the affiliation UI can branch on. */
 export type AffiliationErrorCategory =
   | 'unauthenticated'

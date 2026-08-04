@@ -9,6 +9,8 @@ import {
   type DraftResponseInput,
   type SubmissionReceipt,
   type StandingView,
+  type StandingDetail,
+  type StandingRenewalInitiation,
 } from '../api/affiliationTypes';
 
 /** Stable query keys for the affiliation surface. */
@@ -44,7 +46,7 @@ export function useStanding(): UseQueryResult<readonly StandingView[], unknown> 
 
 export function useStandingDetail(
   standingId: string | undefined,
-): UseQueryResult<StandingView, unknown> {
+): UseQueryResult<StandingDetail, unknown> {
   const client = useAffiliationClient();
   return useQuery({
     queryKey: affiliationKeys.standingDetail(standingId ?? ''),
@@ -56,6 +58,32 @@ export function useStandingDetail(
       return client.getStanding(standingId as string);
     },
     retry: retryTransient,
+  });
+}
+
+/**
+ * Start or resume a standing's renewal. On success the standing detail is invalidated so the
+ * posture reflects the now-in-progress renewal, and the caller navigates into the application.
+ */
+export function useInitiateStandingRenewal(standingId: string) {
+  const client = useAffiliationClient();
+  const queryClient = useQueryClient();
+  return useMutation<StandingRenewalInitiation, unknown, { targetSeasonId: string }>({
+    mutationFn: (input) => {
+      if (client.initiateStandingRenewal === undefined) {
+        throw new AffiliationApiError('service-unavailable', 0, 'Standing renewal is unavailable.');
+      }
+      return client.initiateStandingRenewal({
+        standingId,
+        targetSeasonId: input.targetSeasonId,
+        idempotencyKey: `standing-renewal-${standingId}-${input.targetSeasonId}`,
+      });
+    },
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: affiliationKeys.standingDetail(standingId),
+      });
+    },
   });
 }
 

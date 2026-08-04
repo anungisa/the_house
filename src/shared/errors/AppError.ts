@@ -143,6 +143,18 @@ export const ErrorCode = {
    * organization hierarchy. Deliberately generic to avoid hierarchy/existence disclosure. Maps to 409.
    */
   JURISDICTION_UNAVAILABLE: 'JURISDICTION_UNAVAILABLE',
+  /**
+   * A standing renewal cannot be initiated: the standing lifecycle/period is not renewal-eligible,
+   * no governed later season is accepting applications, or a renewal already exists for the
+   * standing + target season. Deliberately generic to avoid governed-policy disclosure. Maps to 409.
+   */
+  STANDING_RENEWAL_NOT_ELIGIBLE: 'STANDING_RENEWAL_NOT_ELIGIBLE',
+  /**
+   * A standing's governed lifecycle has not yet caught up with its effective period (active but the
+   * clock has passed effective end without a recorded expiry). Renewal cannot start until the
+   * lifecycle is reconciled by the Governance Kernel. Maps to 409.
+   */
+  STANDING_RENEWAL_RECONCILIATION_REQUIRED: 'STANDING_RENEWAL_RECONCILIATION_REQUIRED',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

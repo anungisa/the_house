@@ -135,3 +135,41 @@ export {
   StandingReviewService,
   type StandingReviewRecord,
 } from './StandingReviewService.js';
+
+export {
+  type StandingRenewalPolicy,
+  type StandingRenewalPolicyReader,
+  PgStandingRenewalPolicyReader,
+  InMemoryStandingRenewalPolicyReader,
+} from './StandingRenewalPolicyReader.js';
+
+export {
+  type RenewalApplicationLink,
+  type RenewalApplicationLinkReader,
+  PgRenewalApplicationLinkReader,
+} from './RenewalApplicationLinkStore.js';
+
+export {
+  type RenewalLinkRecord,
+  type InsertRenewalLinkInput,
+  InMemoryRenewalLinkRegistry,
+  InMemoryRenewalApplicationLinkReader,
+} from './InMemoryRenewalApplicationLink.js';
+
+export {
+  StandingRenewalEligibilityService,
+  type StandingRenewalPosture,
+  type StandingRenewalPathway,
+  type StandingRenewalReasonCode,
+  type StandingRenewalView,
+  type RenewalTargetSeasonView,
+  type StandingRecordReader,
+  type RenewalTargetSeasonReader,
+  type RenewalJurisdictionGate,
+  type StandingRenewalEligibilityDeps,
+} from './StandingRenewalEligibilityService.js';
+
+export {
+  GovernedRenewalJurisdictionGate,
+  type GateOrganizationReader,
+} from './RenewalJurisdictionGate.js';

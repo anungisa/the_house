@@ -21,7 +21,11 @@ import type {
   DraftEvidenceLinkView,
   RequirementView,
 } from './AffiliationDraftTypes.js';
-import type { AffiliationDraftStore, DraftSnapshot } from './AffiliationDraftStore.js';
+import type {
+  AffiliationDraftStore,
+  DraftSnapshot,
+  RenewalInitiationContext,
+} from './AffiliationDraftStore.js';
 import type { AffiliationLifecycleReader } from './AffiliationLifecycleReader.js';
 import type { EvidenceReferenceValidator } from './EvidenceReferenceValidator.js';
 import type { RequirementCatalogStore } from './RequirementCatalogStore.js';
@@ -46,6 +50,12 @@ export interface InitiateInput {
   readonly seasonId: string;
   readonly actor: string;
   readonly context: RequirementResolutionContext;
+  /**
+   * Governed renewal attribution. Present ONLY when the caller (the bounded renewal-initiation
+   * endpoint) has server-resolved that this is a renewal of a specific standing. Passed straight
+   * through to the store, which fails closed if `context.pathway === 'renewal'` and it is absent.
+   */
+  readonly renewal?: RenewalInitiationContext;
 }
 
 export interface OverviewInput {
@@ -86,6 +96,18 @@ export class AffiliationDraftService {
 
   /** Initiate a new application OR return the existing one for the subject (idempotent). */
   async initiate(input: InitiateInput): Promise<AffiliationApplicationProjection> {
+    const { application } = await this.initiateDetailed(input);
+    return application;
+  }
+
+  /**
+   * Initiate (or resume) an application and report whether a NEW application was created. Used by
+   * the renewal-initiation endpoint to distinguish a first start (201) from an idempotent/replayed
+   * resume (200) while sharing the SINGLE governed application workflow.
+   */
+  async initiateDetailed(
+    input: InitiateInput,
+  ): Promise<{ readonly application: AffiliationApplicationProjection; readonly created: boolean }> {
     const catalog = await this.deps.catalog.listAll();
     const active = catalog.filter((d) => d.active);
     const applicable = resolveApplicableRequirements(active, input.context);
@@ -95,16 +117,18 @@ export class AffiliationDraftService {
       appliesBecause: a.appliesBecause,
     }));
 
-    const { head } = await this.deps.store.initiateApplication({
+    const { head, created } = await this.deps.store.initiateApplication({
       tenantId: input.tenantId,
       organizationId: input.organizationId,
       seasonId: input.seasonId,
       pathway: input.context.pathway,
       actor: input.actor,
       bindings,
+      ...(input.renewal !== undefined ? { renewal: input.renewal } : {}),
     });
 
-    return this.getProjection(input.tenantId, head.applicationId);
+    const application = await this.getProjection(input.tenantId, head.applicationId);
+    return { application, created };
   }
 
   /** Overview for an org+season: whether a draft exists (resume) or can be initiated (begin). */

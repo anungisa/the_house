@@ -134,10 +134,14 @@ import {
   handleFinancialObligationQueue,
   handleFinancialObligationReconciliation,
 } from './button/finance/index.js';
-import type { StandingReviewService } from '../domains/affiliation-standing/index.js';
+import type {
+  StandingRenewalEligibilityService,
+  StandingReviewService,
+} from '../domains/affiliation-standing/index.js';
 import {
   handleButtonStandingQueue,
   handleButtonStandingDetail,
+  handleButtonStandingRenewalInitiate,
 } from './button/standing/index.js';
 
 export interface AffiliationHttpServerDeps {
@@ -274,6 +278,15 @@ export interface AffiliationHttpServerDeps {
   /** Optional tenant-scoped Button standing (expiry & renewal) READ surface (Slice F). */
   readonly buttonStanding?: StandingReviewService;
   /**
+   * Optional server-derived standing-renewal eligibility. When provided ALONGSIDE
+   * {@link buttonStanding} and {@link buttonAffiliation}, the standing DETAIL response carries a
+   * representative-safe renewal projection and the bounded
+   * `POST /v1/button/affiliation/standing/:standingId/renewals` initiation command is served
+   * (routing the representative INTO the existing application workflow; it NEVER executes the
+   * governed standing-renewal transition). When omitted, renewal is invisible and the command 404s.
+   */
+  readonly buttonStandingRenewal?: StandingRenewalEligibilityService;
+  /**
    * Optional readiness probe for `/readyz`. When provided, the endpoint performs a bounded,
    * tenant-agnostic dependency check (e.g. database `SELECT 1`) and returns 503 when the
    * dependency is unavailable. When omitted, `/readyz` stays shallow (process-level only).
@@ -329,6 +342,8 @@ const BUTTON_FINANCIAL_OBLIGATION_QUEUE_PATH =
 const BUTTON_FINANCIAL_OBLIGATION_RECONCILIATION_ROUTE =
   /^\/v1\/button\/affiliation\/financial-obligations\/([^/]+)\/reconciliations\/?$/;
 const BUTTON_STANDING_QUEUE_PATH = '/v1/button/affiliation/standing';
+const BUTTON_STANDING_RENEWALS_ROUTE =
+  /^\/v1\/button\/affiliation\/standing\/([^/]+)\/renewals\/?$/;
 const BUTTON_STANDING_DETAIL_ROUTE =
   /^\/v1\/button\/affiliation\/standing\/([^/]+)\/?$/;
 const BUTTON_AFFILIATION_REVIEW_START_ROUTE =
@@ -958,6 +973,7 @@ async function handleButtonAffiliationRoute(
   buttonFinance: FinancialObligationReviewService | undefined,
   financialExecutor: FinancialObligationCommandExecutor | undefined,
   buttonStanding: StandingReviewService | undefined,
+  buttonStandingRenewal: StandingRenewalEligibilityService | undefined,
   path: string,
   requestId: string,
   resolver: AuthContextResolver | undefined,
@@ -1021,6 +1037,39 @@ async function handleButtonAffiliationRoute(
     );
   }
 
+  const standingRenewalMatch = BUTTON_STANDING_RENEWALS_ROUTE.exec(path);
+  if (standingRenewalMatch !== null) {
+    if (
+      buttonStanding === undefined ||
+      buttonStandingRenewal === undefined
+    ) {
+      return sendJson(res, {
+        status: 404,
+        body: { status: 'error', code: 'NOT_FOUND', message: 'Not found.', requestId },
+      });
+    }
+    if (method !== 'POST') return methodNotAllowed(res, 'POST', requestId);
+    const renewalBody = await readJsonBody(req, maxBodyBytes);
+    return sendJson(
+      res,
+      await handleButtonStandingRenewalInitiate(
+        {
+          draft: buttonAffiliation.service,
+          standing: buttonStanding,
+          eligibility: buttonStandingRenewal,
+          organizations: buttonAffiliation.organizations,
+          authorities: buttonAffiliation.authorities,
+          jurisdictions: buttonAffiliation.jurisdictions,
+          seasons: buttonAffiliation.seasons,
+          nowIso: buttonAffiliation.nowIso,
+        },
+        { headers, params: { standingId: standingRenewalMatch[1] }, body: renewalBody },
+        requestId,
+        resolver,
+      ),
+    );
+  }
+
   const standingDetailMatch = BUTTON_STANDING_DETAIL_ROUTE.exec(path);
   if (standingDetailMatch !== null) {
     if (buttonStanding === undefined) {
@@ -1033,7 +1082,12 @@ async function handleButtonAffiliationRoute(
     return sendJson(
       res,
       await handleButtonStandingDetail(
-        { standing: buttonStanding, authorities: buttonAffiliation.authorities, nowIso: buttonAffiliation.nowIso },
+        {
+          standing: buttonStanding,
+          authorities: buttonAffiliation.authorities,
+          nowIso: buttonAffiliation.nowIso,
+          ...(buttonStandingRenewal !== undefined ? { renewal: buttonStandingRenewal } : {}),
+        },
         { headers, params: { standingId: standingDetailMatch[1] } },
         requestId,
         resolver,
@@ -2061,6 +2115,7 @@ async function handleRequest(
       deps.buttonFinance,
       deps.financialExecutor,
       deps.buttonStanding,
+      deps.buttonStandingRenewal,
       path,
       requestId,
       deps.resolver,

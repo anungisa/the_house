@@ -53,8 +53,12 @@ import {
   AffiliationStandingSerializationResolver,
   AffiliationStandingService,
   DomainBackedStandingGuardRepository,
+  GovernedRenewalJurisdictionGate,
   PgAffiliationStandingEffect,
   PgAffiliationStandingStore,
+  PgRenewalApplicationLinkReader,
+  PgStandingRenewalPolicyReader,
+  StandingRenewalEligibilityService,
   StandingReviewService,
 } from '../domains/affiliation-standing/index.js';
 import {
@@ -512,6 +516,29 @@ export function createButtonAffiliationHttpDepsFromStorage(
 }
 
 /**
+ * Build the server-derived standing-renewal eligibility service (read-only). It composes the
+ * standing base read model with the governed renewal-window policy (graceDays from the persisted
+ * guard binding), the governed season catalog (later accepting target seasons), the governed
+ * jurisdiction gate, and the renewal attribution link. It NEVER mutates standing state or invokes
+ * the kernel; `renew` / `renew_active` remain with the kernel and the segregated authority.
+ */
+export function createStandingRenewalEligibilityService(): StandingRenewalEligibilityService {
+  return new StandingRenewalEligibilityService({
+    standing: new StandingReviewService(),
+    policy: new PgStandingRenewalPolicyReader(),
+    seasons: new SeasonCatalogService(new PgSeasonCatalogStore()),
+    jurisdiction: new GovernedRenewalJurisdictionGate(
+      new GovernedJurisdictionResolver(
+        new PgJurisdictionStore(),
+        new PgOrganizationRegistryStore(),
+      ),
+      new PgOrganizationRegistryStore(),
+    ),
+    links: new PgRenewalApplicationLinkReader(),
+  });
+}
+
+/**
  * Build the Participant Registry WRITE transport (create + update + reference-data status
  * transition + organization-link create) backed by PostgreSQL. The command service, the write
  * pre-check read port, and the organization-existence reader all run through RLS-enforced Pg
@@ -598,6 +625,7 @@ export function createPgAffiliationHttpServer(
     buttonDecision: createAffiliationDecisionService(),
     buttonFinance: new FinancialObligationReviewService(),
     buttonStanding: new StandingReviewService(),
+    buttonStandingRenewal: createStandingRenewalEligibilityService(),
     participantWrite: createParticipantWriteHttpDeps(telemetry),
     facilityRead: createFacilityReadHttpDeps(telemetry),
     facilityWrite: createFacilityWriteHttpDeps(telemetry),
