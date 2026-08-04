@@ -17,6 +17,7 @@ import {
 import { createPgAffiliationHttpServer } from '../../../src/http/composition.js';
 import { TrustedHeadersAuthContextResolver } from '../../../src/http/auth/TrustedHeadersAuthContextResolver.js';
 import { closePool, withTenantTransaction } from '../../../src/db/pool.js';
+import { HOUSE_TRUSTED_ISSUER } from '../../../src/domains/representative-authority/index.js';
 
 /**
  * Gated PostgreSQL end-to-end test for the Button club-affiliation REPRESENTATIVE journey driven
@@ -137,6 +138,56 @@ async function seedOrganization(
 }
 
 /**
+ * Seed a GOVERNED representative authority grant (identity subject + authority head) using the
+ * admin connection. Under the governed model, a trusted role key + organization header no longer
+ * manufacture authority: it exists ONLY when a persisted, in-window, un-revoked grant says so. The
+ * `status` controls the stored authoritative state; a past `validUntil` derives as expired at read.
+ */
+async function seedAuthorityGrant(
+  admin: pg.Pool,
+  input: {
+    tenantId: string;
+    userId: string;
+    organizationId: string;
+    status?: 'active' | 'revoked';
+    validFrom?: string;
+    validUntil?: string | null;
+  },
+): Promise<void> {
+  const status = input.status ?? 'active';
+  const validFrom = input.validFrom ?? new Date(Date.now() - 3_600_000).toISOString();
+  const validUntil = input.validUntil ?? null;
+  const subjectId = randomUUID();
+  await admin.query(
+    `INSERT INTO authority.identity_subject
+       (id, tenant_id, issuer, external_subject, status, source, linked_at, created_at, updated_at)
+     VALUES ($1, $2, $3, $4, 'active', 'manual', now(), now(), now())`,
+    [subjectId, input.tenantId, HOUSE_TRUSTED_ISSUER, input.userId],
+  );
+  const revoked = status === 'revoked';
+  await admin.query(
+    `INSERT INTO authority.representative_authority
+       (id, tenant_id, identity_subject_id, organization_id, authority_type, status,
+        valid_from, valid_until, issued_by, issued_at, revoked_by, revoked_at,
+        source_reference, idempotency_key, version, created_at, updated_at)
+     VALUES ($1, $2, $3, $4, 'club_affiliation_representative', $5,
+        $6, $7, 'seed', now(), $8, $9, 'seed:test', $10, 1, now(), now())`,
+    [
+      randomUUID(),
+      input.tenantId,
+      subjectId,
+      input.organizationId,
+      status,
+      validFrom,
+      validUntil,
+      revoked ? 'seed' : null,
+      revoked ? new Date().toISOString() : null,
+      `seed-${randomUUID()}`,
+    ],
+  );
+}
+
+/**
  * Build a submittable draft over the SAME Pg-backed stores the server uses: initiate, answer all
  * seeded requirements, and associate evidence for the two document requirements. Returns the
  * application id and the current draft version (submission precondition).
@@ -217,6 +268,11 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
       await admin.query(`GRANT EXECUTE ON FUNCTION governance.current_tenant_id() TO ${role}`);
       await admin.query(`GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA affiliation TO ${role}`);
       await admin.query(`GRANT SELECT ON ALL TABLES IN SCHEMA organization_registry TO ${role}`);
+      // The governed representative authority source is READ by the Button authorization provider.
+      await admin.query(`GRANT USAGE ON SCHEMA authority TO ${role}`);
+      await admin.query(
+        `GRANT SELECT ON authority.identity_subject, authority.representative_authority TO ${role}`,
+      );
     } finally {
       await admin.end();
     }
@@ -257,6 +313,8 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     try {
       await seedOrganization(admin, { tenantId: tenantA, organizationId: orgA, displayName: 'Granite Club' });
       await seedOrganization(admin, { tenantId: tenantB, organizationId: orgB, displayName: 'Summit Club' });
+      await seedAuthorityGrant(admin, { tenantId: tenantA, userId: userA, organizationId: orgA });
+      await seedAuthorityGrant(admin, { tenantId: tenantB, userId: userB, organizationId: orgB });
     } finally {
       await admin.end();
     }
@@ -380,6 +438,7 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     });
     try {
       await seedOrganization(admin, { tenantId, organizationId, displayName: 'Riverside Club' });
+      await seedAuthorityGrant(admin, { tenantId, userId: applicantUserId, organizationId });
     } finally {
       await admin.end();
     }
@@ -501,6 +560,7 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     });
     try {
       await seedOrganization(admin, { tenantId, organizationId, displayName: 'Hillcrest Club' });
+      await seedAuthorityGrant(admin, { tenantId, userId: applicantUserId, organizationId });
     } finally {
       await admin.end();
     }
@@ -557,5 +617,104 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     );
     expect(foreign.status).toBe(404);
     expect(foreign.body['code']).toBe('AFFILIATION_APPLICATION_NOT_FOUND');
+  });
+
+  it('denies a trusted representative with NO governed grant an opaque 404 (identity ≠ authority)', async () => {
+    const tenantId = randomUUID();
+    const organizationId = randomUUID();
+    const applicantUserId = randomUUID();
+
+    const admin = new pg.Pool({
+      connectionString: process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL,
+    });
+    try {
+      // The org exists and is active, and the actor carries the representative role key + org header
+      // — but there is NO persisted authority grant, so the House grants NOTHING.
+      await seedOrganization(admin, { tenantId, organizationId, displayName: 'Ungoverned Club' });
+    } finally {
+      await admin.end();
+    }
+
+    const draft = await buildSubmittableDraft({ tenantId, organizationId, applicantUserId });
+    const headers = representativeHeaders({ tenantId, userId: applicantUserId, organizationId });
+
+    const projection = await call(
+      'GET',
+      `/v1/button/affiliation/applications/${draft.applicationId}`,
+      { headers },
+    );
+    expect(projection.status).toBe(404);
+    expect(projection.body['code']).toBe('AFFILIATION_APPLICATION_NOT_FOUND');
+
+    const initiate = await call('POST', '/v1/button/affiliation/applications', {
+      headers,
+      body: { organizationId, seasonId: SEASON, pathway: 'new_affiliation' },
+    });
+    expect(initiate.status).toBe(404);
+  });
+
+  it('denies a representative whose governed authority has EXPIRED with a 403 (time-bound)', async () => {
+    const tenantId = randomUUID();
+    const organizationId = randomUUID();
+    const applicantUserId = randomUUID();
+
+    const admin = new pg.Pool({
+      connectionString: process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL,
+    });
+    try {
+      await seedOrganization(admin, { tenantId, organizationId, displayName: 'Lapsed Club' });
+      await seedAuthorityGrant(admin, {
+        tenantId,
+        userId: applicantUserId,
+        organizationId,
+        validFrom: '2020-01-01T00:00:00.000Z',
+        validUntil: '2020-06-01T00:00:00.000Z',
+      });
+    } finally {
+      await admin.end();
+    }
+
+    const draft = await buildSubmittableDraft({ tenantId, organizationId, applicantUserId });
+    const headers = representativeHeaders({ tenantId, userId: applicantUserId, organizationId });
+
+    const projection = await call(
+      'GET',
+      `/v1/button/affiliation/applications/${draft.applicationId}`,
+      { headers },
+    );
+    expect(projection.status).toBe(403);
+    expect(projection.body['code']).toBe('FORBIDDEN');
+  });
+
+  it('denies a representative whose governed authority was REVOKED with a 403 (revocation propagates)', async () => {
+    const tenantId = randomUUID();
+    const organizationId = randomUUID();
+    const applicantUserId = randomUUID();
+
+    const admin = new pg.Pool({
+      connectionString: process.env.MIGRATE_DATABASE_URL ?? process.env.DATABASE_URL,
+    });
+    try {
+      await seedOrganization(admin, { tenantId, organizationId, displayName: 'Revoked Club' });
+      await seedAuthorityGrant(admin, {
+        tenantId,
+        userId: applicantUserId,
+        organizationId,
+        status: 'revoked',
+      });
+    } finally {
+      await admin.end();
+    }
+
+    const draft = await buildSubmittableDraft({ tenantId, organizationId, applicantUserId });
+    const headers = representativeHeaders({ tenantId, userId: applicantUserId, organizationId });
+
+    const projection = await call(
+      'GET',
+      `/v1/button/affiliation/applications/${draft.applicationId}`,
+      { headers },
+    );
+    expect(projection.status).toBe(403);
+    expect(projection.body['code']).toBe('FORBIDDEN');
   });
 });

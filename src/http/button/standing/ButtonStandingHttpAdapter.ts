@@ -21,7 +21,7 @@ import type {
   StandingReviewService,
 } from '../../../domains/affiliation-standing/index.js';
 import { AppError, ErrorCode } from '../../../shared/errors/AppError.js';
-import type { AuthActor, AuthContext } from '../../auth/AuthContext.js';
+import type { AuthContext } from '../../auth/AuthContext.js';
 import type { AuthContextResolver } from '../../auth/AuthContextResolver.js';
 import { DemoAuthContextResolver } from '../../auth/DemoAuthContextResolver.js';
 import { resolveOrganizationAuth } from '../../organization/organizationHttpAuth.js';
@@ -71,25 +71,16 @@ export interface StandingView {
   readonly daysUntilExpiry: number | null;
 }
 
-/** The actor's explicit organizational references (fail closed — the browser cannot widen this). */
-function representableOrganizationIds(actor: AuthActor): readonly string[] {
-  const ids = [
-    actor.organizationId,
-    actor.localOrganizationId,
-    actor.scopeId,
-    actor.organizationUnitId,
-  ].filter((id): id is string => typeof id === 'string' && id.trim() !== '');
-  return [...new Set(ids)];
-}
-
 /** Resolve the organization ids over which the actor holds an ACTIVE representative authority. */
 async function activeAuthorityOrganizationIds(
   deps: ButtonStandingHttpDeps,
   auth: AuthContext,
 ): Promise<readonly string[]> {
-  const orgIds = representableOrganizationIds(auth.actor);
-  if (orgIds.length === 0) return [];
-  const authorities = await deps.authorities.authoritiesFor(auth.tenantId, auth.actor, orgIds);
+  const authorities = await deps.authorities.authoritiesFor(
+    auth.tenantId,
+    auth.actor,
+    deps.nowIso(),
+  );
   return authorities.filter((a) => a.status === 'active').map((a) => a.organizationId);
 }
 
