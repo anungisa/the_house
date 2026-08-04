@@ -171,9 +171,12 @@ test('real browser journey: governed jurisdiction resolution, inheritance, overr
   await page.getByLabel('Season').selectOption(state.seasonId);
   await page.getByRole('button', { name: 'Continue' }).click();
   await expect(page.getByRole('heading', { name: 'Affiliation overview' })).toBeVisible();
-  await expect(page.getByText(provincialEn)).toBeVisible();
+  // The resolved jurisdiction surfaces in BOTH the Header and the overview summary, so the text
+  // matches multiple nodes; assert the first visible match (strict-mode safe and locale-agnostic,
+  // since the region's accessible name itself localizes when the language toggles).
+  await expect(page.getByText(provincialEn).first()).toBeVisible();
   await page.getByRole('button', { name: 'Fran\u00e7ais' }).click();
-  await expect(page.getByText(provincialFr)).toBeVisible();
+  await expect(page.getByText(provincialFr).first()).toBeVisible();
 
   // 3. A DIRECT assignment on the child OVERRIDES the inherited jurisdiction.
   jurisdictionAdmin('ensure-published', [
