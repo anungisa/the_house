@@ -28,6 +28,8 @@ export interface SeasonView {
   readonly id: string;
   readonly label: string;
   readonly current: boolean;
+  readonly phase: 'upcoming' | 'current' | 'past';
+  readonly acceptingApplications: boolean;
 }
 
 export interface AccessibleOrganizationView {

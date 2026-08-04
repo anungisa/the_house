@@ -41,9 +41,9 @@ export function isMockScenario(value: string | null | undefined): value is MockS
 }
 
 const SEASONS: readonly SeasonView[] = [
-  { id: '2024-25', label: '2024\u201325', current: false },
-  { id: '2025-26', label: '2025\u201326', current: true },
-  { id: '2026-27', label: '2026\u201327', current: false },
+  { id: '2024-25', label: '2024\u201325', current: false, phase: 'past', acceptingApplications: false },
+  { id: '2025-26', label: '2025\u201326', current: true, phase: 'current', acceptingApplications: true },
+  { id: '2026-27', label: '2026\u201327', current: false, phase: 'upcoming', acceptingApplications: false },
 ];
 
 const ORG = {

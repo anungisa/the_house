@@ -33,6 +33,7 @@ import type {
   JurisdictionResolver,
   RepresentativeAuthorityProvider,
 } from '../ButtonContextService.js';
+import type { SeasonResolution } from '../../../domains/season-catalog/index.js';
 import type { AffiliationDraftService } from '../../../domains/affiliation-requirements/index.js';
 import type {
   AffiliationSubmissionService,
@@ -43,6 +44,21 @@ const DEFAULT_DEMO_RESOLVER: AuthContextResolver = new DemoAuthContextResolver()
 
 /** Bounded set of affiliation pathways a representative may initiate. */
 const ALLOWED_PATHWAYS: ReadonlySet<string> = new Set(['new_affiliation', 'renewal']);
+
+/**
+ * Server-side season authorization port. The Button surface RE-VALIDATES every requested season
+ * against the governed catalog — an unknown / draft / retired season is never viewable, and a
+ * season that is not the current one with an open window can never be INITIATED against. A
+ * browser-supplied "current" flag is ignored entirely; only the persisted catalog decides.
+ */
+export interface SeasonAuthorization {
+  resolveSeason(
+    tenantId: string,
+    seasonId: string,
+    nowIso: string,
+    locale: 'en' | 'fr',
+  ): Promise<SeasonResolution>;
+}
 
 export interface ButtonAffiliationHttpRequest {
   readonly headers: Readonly<Record<string, string | undefined>>;
@@ -64,6 +80,8 @@ export interface ButtonAffiliationHttpDeps {
   readonly organizations: OrganizationReadStore;
   readonly authorities: RepresentativeAuthorityProvider;
   readonly jurisdictions: JurisdictionResolver;
+  /** Governed season catalog for server-side season authorization (viewing + initiation). */
+  readonly seasons: SeasonAuthorization;
   readonly nowIso: () => string;
   readonly telemetry?: Telemetry;
 }
@@ -85,6 +103,7 @@ function appErrorHttpStatus(code: ErrorCode): number {
     case ErrorCode.AFFILIATION_DRAFT_VERSION_CONFLICT:
     case ErrorCode.AFFILIATION_SUBMISSION_NOT_READY:
     case ErrorCode.AFFILIATION_CORRECTION_CONFLICT:
+    case ErrorCode.SEASON_UNAVAILABLE:
       return 409;
     default:
       return 500;
@@ -145,6 +164,33 @@ function requireString(value: unknown, field: string): string {
     throw new AppError(ErrorCode.INVALID_INPUT, `A non-empty '${field}' is required.`);
   }
   return value.trim();
+}
+
+/**
+ * Re-validate a requested season against the governed catalog. `requireOpen` distinguishes VIEWING
+ * (any published season, including past / closed ones) from INITIATION (only the current season
+ * with an open application window). Unknown / draft / retired seasons — and, for initiation, any
+ * non-current or closed season — fail closed as a generic, non-disclosing SEASON_UNAVAILABLE.
+ */
+async function authorizeSeason(
+  deps: ButtonAffiliationHttpDeps,
+  tenantId: string,
+  seasonId: string,
+  requireOpen: boolean,
+): Promise<void> {
+  const resolution = await deps.seasons.resolveSeason(tenantId, seasonId, deps.nowIso(), 'en');
+  if (resolution.outcome !== 'ok') {
+    throw new AppError(ErrorCode.SEASON_UNAVAILABLE, 'The selected season is not available.', {
+      details: { season: seasonId },
+    });
+  }
+  if (requireOpen && !(resolution.season.current && resolution.season.acceptingApplications)) {
+    throw new AppError(
+      ErrorCode.SEASON_UNAVAILABLE,
+      'The selected season is not accepting new applications.',
+      { details: { season: seasonId } },
+    );
+  }
 }
 
 function asRecord(body: unknown): Record<string, unknown> {
@@ -220,6 +266,8 @@ export async function handleAffiliationOverview(
     const seasonId = requireString(req.query['season'], 'season');
     const pathway = normalizePathway(req.query['pathway']);
     await authorizeOrganization(deps, auth, organizationId);
+    // Season is re-validated server-side: any PUBLISHED season is viewable (including past/closed).
+    await authorizeSeason(deps, auth.tenantId, seasonId, false);
     const overview = await deps.service.getOverview({
       tenantId: auth.tenantId,
       organizationId,
@@ -248,6 +296,9 @@ export async function handleAffiliationInitiate(
     const seasonId = requireString(body['seasonId'], 'seasonId');
     const pathway = normalizePathway(body['pathway']);
     const org = await authorizeOrganization(deps, auth, organizationId);
+    // Initiation requires the CURRENT season with an open window; a browser "current" flag is
+    // never trusted — only the governed catalog decides eligibility.
+    await authorizeSeason(deps, auth.tenantId, seasonId, true);
     const jurisdiction = deps.jurisdictions.jurisdictionFor(org, auth.actor).code;
     const application = await deps.service.initiate({
       tenantId: auth.tenantId,

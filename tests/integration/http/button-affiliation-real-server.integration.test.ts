@@ -138,6 +138,20 @@ async function seedOrganization(
 }
 
 /**
+ * Seed the governed current season using the admin (RLS-bypassing) connection. The affiliation
+ * application head's (tenant_id, season_id) FK to affiliation.season is immediate, so the season
+ * must exist before an application is initiated (whether over HTTP or via the draft store).
+ */
+async function seedSeason(admin: pg.Pool, input: { tenantId: string; seasonId: string }): Promise<void> {
+  await admin.query(
+    `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+     VALUES ($1, $2, 'published', true)
+     ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+    [input.tenantId, input.seasonId],
+  );
+}
+
+/**
  * Seed a GOVERNED representative authority grant (identity subject + authority head) using the
  * admin connection. Under the governed model, a trusted role key + organization header no longer
  * manufacture authority: it exists ONLY when a persisted, in-window, un-revoked grant says so. The
@@ -204,6 +218,17 @@ async function buildSubmittableDraft(input: {
     lifecycle: new PgAffiliationLifecycleReader(),
     evidenceValidator: evidence,
   });
+
+  // The affiliation_application -> season FK is immediate: seed the season before `initiate`
+  // (which inserts the application head) so the FK is satisfied.
+  await withTenantTransaction(input.tenantId, (client) =>
+    client.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1, $2, 'published', true)
+       ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+      [input.tenantId, SEASON],
+    ),
+  );
 
   let application = await drafts.initiate({
     tenantId: input.tenantId,
@@ -313,6 +338,8 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     try {
       await seedOrganization(admin, { tenantId: tenantA, organizationId: orgA, displayName: 'Granite Club' });
       await seedOrganization(admin, { tenantId: tenantB, organizationId: orgB, displayName: 'Summit Club' });
+      await seedSeason(admin, { tenantId: tenantA, seasonId: SEASON });
+      await seedSeason(admin, { tenantId: tenantB, seasonId: SEASON });
       await seedAuthorityGrant(admin, { tenantId: tenantA, userId: userA, organizationId: orgA });
       await seedAuthorityGrant(admin, { tenantId: tenantB, userId: userB, organizationId: orgB });
     } finally {
@@ -560,6 +587,7 @@ d('Button club-affiliation representative journey over the real HTTP server (Pos
     });
     try {
       await seedOrganization(admin, { tenantId, organizationId, displayName: 'Hillcrest Club' });
+      await seedSeason(admin, { tenantId, seasonId: SEASON });
       await seedAuthorityGrant(admin, { tenantId, userId: applicantUserId, organizationId });
     } finally {
       await admin.end();

@@ -32,6 +32,7 @@ import type {
 import { DemoAuthContextResolver } from '../../../../../src/http/auth/DemoAuthContextResolver.js';
 import { InMemoryTelemetry } from '../../../../../src/observability/index.js';
 import { TelemetryCounters } from '../../../../../src/observability/TelemetryEvents.js';
+import { acceptingSeasonAuthorization } from '../../../../helpers/fakeSeasonAuthorization.js';
 
 /**
  * Unit tests for the Button club-affiliation DRAFT HTTP adapter (Slice C).
@@ -99,6 +100,7 @@ function build(
     organizations: new FakeOrganizationReadStore(rows),
     authorities,
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    seasons: acceptingSeasonAuthorization,
     nowIso: () => NOW_ISO,
     telemetry,
   };

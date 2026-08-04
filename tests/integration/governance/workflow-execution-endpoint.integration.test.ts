@@ -108,6 +108,12 @@ function input(
 async function seedApplication(entityId: string): Promise<void> {
   await withTenantTransaction(TENANT_A, async (c: QueryClient) => {
     await c.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1,$2,'published',true)
+       ON CONFLICT (tenant_id, season_id) DO UPDATE SET status = 'published', is_current = true`,
+      [TENANT_A, SEASON],
+    );
+    await c.query(
       `INSERT INTO affiliation.affiliation_application
          (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status)
        VALUES ($1,$2,$3,true,true,'paid')`,
@@ -118,12 +124,6 @@ async function seedApplication(entityId: string): Promise<void> {
          (tenant_id, application_id, document_type, required, status)
        VALUES ($1,$2,'affiliation_form',true,'approved')`,
       [TENANT_A, entityId],
-    );
-    await c.query(
-      `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
-       VALUES ($1,$2,true)
-       ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
-      [TENANT_A, SEASON],
     );
   });
 }

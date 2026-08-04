@@ -214,6 +214,12 @@ async function seedApplication(
   const season = opts.season ?? SEASON;
   await withTenantTransaction(tenantId, async (c: QueryClient) => {
     await c.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1,$2,'published',true)
+       ON CONFLICT (tenant_id, season_id) DO UPDATE SET status = 'published', is_current = true`,
+      [tenantId, season],
+    );
+    await c.query(
       `INSERT INTO affiliation.affiliation_application
          (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status, scope_id)
        VALUES ($1,$2,$3,true,true,'paid',$4)`,
@@ -224,12 +230,6 @@ async function seedApplication(
          (tenant_id, application_id, document_type, required, status)
        VALUES ($1,$2,'affiliation_form',true,'approved')`,
       [tenantId, entityId],
-    );
-    await c.query(
-      `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
-       VALUES ($1,$2,true)
-       ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
-      [tenantId, season],
     );
   });
 }
@@ -373,23 +373,43 @@ d('AffiliationApplication activation atomicity — concurrency (integration)', (
     const subject = randomUUID();
     const appCurrent = randomUUID();
     const appOther = randomUUID();
+    // Under the governed season catalog (migration 0022) at most ONE season may be current per
+    // tenant (season_one_current_idx) and `activate` requires SEASON_IS_CURRENT, so two distinct
+    // CURRENT seasons cannot coexist within a single tenant. The scope that this proof exercises
+    // is (tenant, subject, season): the second distinct scope therefore lives in its own tenant,
+    // each with its own current season. Both activations still race through the barrier and both
+    // succeed because their serialization keys differ — proving distinct scopes never serialize.
+    const tenantOther = randomUUID();
     await seedApplication(appCurrent, { scopeId: subject, season: SEASON });
-    await seedApplication(appOther, { scopeId: subject, season: OTHER_SEASON });
+    await seedApplication(appOther, { tenantId: tenantOther, scopeId: subject, season: OTHER_SEASON });
     await seedEntityStateAt(appCurrent, 'approved');
-    await seedEntityStateAt(appOther, 'approved');
+    await seedEntityStateAt(appOther, 'approved', tenantOther);
 
     const barrier = makeBarrier(2);
     const kernel = makeKernel(barrierResolver(realResolver(), barrier));
 
     const [r1, r2] = await Promise.all([
       kernel.transition(input({ entityId: appCurrent, trigger: 'activate', idempotencyKey: randomUUID() })),
-      kernel.transition(input({ entityId: appOther, trigger: 'activate', idempotencyKey: randomUUID() })),
+      kernel.transition(
+        input({
+          entityId: appOther,
+          trigger: 'activate',
+          idempotencyKey: randomUUID(),
+          actor: {
+            actorId: 'reviewer-1',
+            tenantId: tenantOther,
+            scopeType: 'national_organization',
+            roles: ['reviewer'],
+          },
+          context: { tenantId: tenantOther, scopeType: 'national_organization' },
+        }),
+      ),
     ]);
 
     expect(r1.status).toBe('executed');
     expect(r2.status).toBe('executed');
     expect(await activeStandingCount(TENANT_A, subject, SEASON)).toBe(1);
-    expect(await activeStandingCount(TENANT_A, subject, OTHER_SEASON)).toBe(1);
+    expect(await activeStandingCount(tenantOther, subject, OTHER_SEASON)).toBe(1);
   });
 
   it('concurrent activations for DIFFERENT subjects both succeed (distinct governed scopes)', async () => {

@@ -74,6 +74,12 @@ async function seedApplication(
 ): Promise<void> {
   await withTenantTransaction(tenantId, async (c: QueryClient) => {
     await c.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1,$2,'published',true)
+       ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+      [tenantId, SEASON],
+    );
+    await c.query(
       `INSERT INTO affiliation.affiliation_application
          (id, tenant_id, season_id, organization_id)
        VALUES ($1,$2,$3,$4)`,

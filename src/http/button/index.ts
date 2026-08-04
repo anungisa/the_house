@@ -30,3 +30,4 @@ export type {
 } from './ButtonContextHttpAdapter.js';
 export { PgRepresentativeAuthorityProvider } from './PgRepresentativeAuthorityProvider.js';
 export type { PgRepresentativeAuthorityProviderOptions } from './PgRepresentativeAuthorityProvider.js';
+export { PgSeasonCatalog } from './PgSeasonCatalog.js';

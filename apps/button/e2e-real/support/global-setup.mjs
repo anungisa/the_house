@@ -1,8 +1,42 @@
 import { writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import pg from 'pg';
+
+// Repo root, resolved from apps/button/e2e-real/support -> up four levels. The governed season
+// admin CLI (routed through SeasonCatalogService) lives at <root>/scripts/e2e-season-admin.ts.
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', '..');
+
+/**
+ * Establish the current season the GOVERNED way. The current season is a House-governed calendar
+ * fact the activation guard (SEASON_IS_CURRENT) and the affiliation surface read from persisted
+ * state; it must be created through the season catalog service (validation + single-current
+ * invariant + append-only event + audit + transactional outbox), NEVER by writing
+ * `affiliation.season` directly. We shell out to the governed CLI so the root TypeScript service is
+ * never dragged into the Button package's typecheck.
+ */
+function seedGovernedSeason(adminConnection, tenantId, seasonId) {
+  execFileSync(
+    'npx',
+    [
+      'tsx',
+      join('scripts', 'e2e-season-admin.ts'),
+      'ensure-current-open',
+      '--tenant',
+      tenantId,
+      '--season',
+      seasonId,
+    ],
+    {
+      cwd: REPO_ROOT,
+      stdio: 'inherit',
+      env: { ...process.env, MIGRATE_DATABASE_URL: adminConnection },
+    },
+  );
+}
 
 const FIXTURE_PATH =
   process.env.E2E_REAL_FIXTURE_PATH ?? join(tmpdir(), 'the-house-button-real-e2e-fixture.json');
@@ -130,13 +164,8 @@ export default async function globalSetup() {
     );
 
     // Prerequisite with no user-facing setup surface: the current season is a House-governed
-    // calendar fact that the activation guard (SEASON_IS_CURRENT) reads from persisted state.
-    await pool.query(
-      `INSERT INTO affiliation.season (tenant_id, season_id, is_current, label)
-       VALUES ($1, $2, true, $3)
-       ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
-      [fixture.tenantId, fixture.seasonId, `Season ${fixture.seasonId}`],
-    );
+    // calendar fact. Seed it through the GOVERNED season catalog service (never raw season SQL).
+    seedGovernedSeason(adminConnection, fixture.tenantId, fixture.seasonId);
 
     // Governed representative authority. Under the House authority model a trusted identity and an
     // organization header only IDENTIFY the actor — they never manufacture authority. A

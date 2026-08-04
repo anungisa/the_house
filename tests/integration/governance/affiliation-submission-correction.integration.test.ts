@@ -44,6 +44,16 @@ async function completeDraft(input: {
   organizationId: string;
   applicantUserId: string;
 }): Promise<{ applicationId: string; version: number; drafts: AffiliationDraftService }> {
+  // The affiliation_application -> season FK is immediate: seed the season before `initiate`
+  // (which inserts the application head) so the FK is satisfied.
+  await withTenantTransaction(input.tenantId, (client) =>
+    client.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1, $2, 'published', true)
+       ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+      [input.tenantId, SEASON],
+    ),
+  );
   const evidence = new InMemoryEvidenceReferenceValidator();
   const drafts = buildDraftService(evidence);
   let application = await drafts.initiate({
@@ -473,9 +483,9 @@ d('affiliation submission and controlled correction (PostgreSQL integration)', (
     expect(executed).toEqual({ lifecycleState: 'approved', idempotentReplay: false });
     await withTenantTransaction(tenantId, (client) =>
       client.query(
-        `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
-         VALUES ($1, $2, true)
-         ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
+        `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+         VALUES ($1, $2, 'published', true)
+         ON CONFLICT (tenant_id, season_id) DO UPDATE SET status = 'published', is_current = true`,
         [tenantId, SEASON],
       ),
     );

@@ -55,9 +55,17 @@ export interface RepresentativeAuthorityProvider {
   ): Promise<readonly ResolvedAuthority[]> | readonly ResolvedAuthority[];
 }
 
-/** Bounded catalog of seasons a representative may act within. */
+/**
+ * Bounded catalog of seasons a representative may act within. The catalog is GOVERNED and
+ * tenant-isolated: it is resolved server-side from the persisted season source for the actor's
+ * tenant, at the resolution instant, in the actor's locale. The browser never supplies seasons.
+ */
 export interface SeasonCatalog {
-  seasons(nowIso: string): readonly SeasonView[];
+  seasons(
+    tenantId: string,
+    nowIso: string,
+    locale: ButtonLocale,
+  ): Promise<readonly SeasonView[]> | readonly SeasonView[];
 }
 
 /** Resolves a bounded jurisdiction context for an organization. */
@@ -127,22 +135,26 @@ export class RoleDerivedRepresentativeAuthorityProvider implements Representativ
 }
 
 /**
- * Default season catalog (POLICY-DERIVED STUB — a known Slice A/B gap): derives the current
- * season and its immediate neighbours from the clock using a Sept→Aug season window. A real
- * deployment injects the governed season catalog.
+ * TEST/DEMO season catalog (NOT for governed PostgreSQL deployments): derives the current season
+ * and its immediate neighbours from the clock using a Sept→Aug season window. It exists only as a
+ * deterministic in-memory double and a demo-mode fallback; production wiring injects the persisted,
+ * tenant-isolated {@link SeasonCatalog} backed by the governed season source. The derived current
+ * season is treated as accepting applications; neighbours are not.
  */
 export class ClockDerivedSeasonCatalog implements SeasonCatalog {
-  seasons(nowIso: string): readonly SeasonView[] {
+  seasons(_tenantId: string, nowIso: string, _locale: ButtonLocale): readonly SeasonView[] {
     const now = new Date(nowIso);
     const year = now.getUTCFullYear();
     // Season starts in September (month index 8). Before September we are in the prior window.
     const startYear = now.getUTCMonth() >= 8 ? year : year - 1;
-    const make = (start: number, current: boolean): SeasonView => ({
+    const make = (start: number, phase: SeasonView['phase']): SeasonView => ({
       id: `${start}-${String((start + 1) % 100).padStart(2, '0')}`,
       label: `${start}\u2013${start + 1}`,
-      current,
+      current: phase === 'current',
+      phase,
+      acceptingApplications: phase === 'current',
     });
-    return [make(startYear - 1, false), make(startYear, true), make(startYear + 1, false)];
+    return [make(startYear - 1, 'past'), make(startYear, 'current'), make(startYear + 1, 'upcoming')];
   }
 }
 
@@ -228,8 +240,8 @@ export class ButtonContextService {
       };
     });
 
-    // 5) Seasons (bounded, policy-derived).
-    const availableSeasons = this.deps.seasons.seasons(nowIso);
+    // 5) Seasons (governed, tenant-isolated, locale-resolved).
+    const availableSeasons = await this.deps.seasons.seasons(auth.tenantId, nowIso, locale);
 
     // 6) Re-authorize the requested selection (fail closed on anything unaccessible).
     const currentContext = this.resolveSelection(

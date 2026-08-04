@@ -60,6 +60,10 @@ export interface SeasonView {
   readonly id: string;
   readonly label: string;
   readonly current: boolean;
+  /** Derived temporal phase relative to now: an upcoming, the current, or a past season. */
+  readonly phase: 'upcoming' | 'current' | 'past';
+  /** Whether NEW applications may be initiated for this season right now (current + open window). */
+  readonly acceptingApplications: boolean;
 }
 
 /** An organization the representative may act for (safe projection). */
