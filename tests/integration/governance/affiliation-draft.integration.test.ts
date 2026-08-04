@@ -13,7 +13,7 @@ import {
   InMemoryEvidenceReferenceValidator,
   type RequirementResolutionContext,
 } from '../../../src/domains/affiliation-requirements/index.js';
-import { closePool } from '../../../src/db/pool.js';
+import { closePool, withTenantTransaction } from '../../../src/db/pool.js';
 
 /**
  * Integration tests for the affiliation DRAFT experience (Slice C) against a real PostgreSQL
@@ -98,6 +98,22 @@ function buildService(evidence?: InMemoryEvidenceReferenceValidator): Affiliatio
   });
 }
 
+/**
+ * Seed the governed season row. `initiate` inserts the affiliation_application head, whose
+ * (tenant_id, season_id) FK to affiliation.season is checked immediately, so the season must
+ * exist first.
+ */
+async function seedSeason(tenantId: string): Promise<void> {
+  await withTenantTransaction(tenantId, (client) =>
+    client.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1, $2, 'published', true)
+       ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+      [tenantId, SEASON],
+    ),
+  );
+}
+
 d('affiliation draft experience (integration)', () => {
   beforeAll(async () => {
     await applyMigrations();
@@ -112,6 +128,7 @@ d('affiliation draft experience (integration)', () => {
     const actor = randomUUID();
     const service = buildService();
 
+    await seedSeason(tenantId);
     const first = await service.initiate({ tenantId, organizationId, seasonId: SEASON, actor, context: CONTEXT });
     expect(first.lifecycleStatus).toBe('draft');
     const codes = first.requirements.map((r) => r.code).sort();
@@ -133,6 +150,7 @@ d('affiliation draft experience (integration)', () => {
   it('persists responses under optimistic concurrency and rejects a stale save', async () => {
     const tenantId = randomUUID();
     const service = buildService();
+    await seedSeason(tenantId);
     const initiated = await service.initiate({
       tenantId,
       organizationId: randomUUID(),
@@ -167,6 +185,7 @@ d('affiliation draft experience (integration)', () => {
   it('resolves concurrent conflicting saves to exactly one winner', async () => {
     const tenantId = randomUUID();
     const service = buildService();
+    await seedSeason(tenantId);
     const initiated = await service.initiate({
       tenantId,
       organizationId: randomUUID(),
@@ -204,6 +223,7 @@ d('affiliation draft experience (integration)', () => {
     const evidence = new InMemoryEvidenceReferenceValidator();
     evidence.register({ tenantId, evidenceObjectId: 'ev-1', contentHash: 'h1' });
     const service = buildService(evidence);
+    await seedSeason(tenantId);
     const initiated = await service.initiate({
       tenantId,
       organizationId: randomUUID(),
@@ -242,6 +262,7 @@ d('affiliation draft experience (integration)', () => {
     const tenantA = randomUUID();
     const tenantB = randomUUID();
     const service = buildService();
+    await seedSeason(tenantA);
     const initiated = await service.initiate({
       tenantId: tenantA,
       organizationId: randomUUID(),

@@ -115,6 +115,20 @@ export const ErrorCode = {
    * exists for the subject+organization, or the optimistic-concurrency version was stale. Maps to 409.
    */
   REPRESENTATIVE_AUTHORITY_CONFLICT: 'REPRESENTATIVE_AUTHORITY_CONFLICT',
+  /** A referenced season does not exist for the tenant. Maps to 404. */
+  SEASON_NOT_FOUND: 'SEASON_NOT_FOUND',
+  /**
+   * A governed season command conflicts with current state: the season key already exists, the
+   * head is not in a state that permits the transition, or the optimistic-concurrency version was
+   * stale. Maps to 409.
+   */
+  SEASON_CONFLICT: 'SEASON_CONFLICT',
+  /**
+   * A representative-facing season selection is not usable: the season key is unknown, a draft, a
+   * retired season, or (on initiation) not the current season with an open application window.
+   * Deliberately generic to avoid catalog/existence disclosure. Maps to 409.
+   */
+  SEASON_UNAVAILABLE: 'SEASON_UNAVAILABLE',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

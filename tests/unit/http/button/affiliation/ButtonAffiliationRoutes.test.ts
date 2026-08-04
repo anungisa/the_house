@@ -28,6 +28,7 @@ import type {
   OrganizationType,
   OrganizationView,
 } from '../../../../../src/domains/organization-registry/OrganizationTypes.js';
+import { acceptingSeasonAuthorization } from '../../../../helpers/fakeSeasonAuthorization.js';
 
 /**
  * Transport-only tests for the Button club-affiliation DRAFT routes wired into the native HTTP
@@ -81,6 +82,7 @@ function buttonAffiliation(): ButtonAffiliationHttpDeps {
     organizations: new FakeOrganizationReadStore(),
     authorities: new RoleDerivedRepresentativeAuthorityProvider(),
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    seasons: acceptingSeasonAuthorization,
     nowIso: () => '2026-01-15T00:00:00.000Z',
   };
 }

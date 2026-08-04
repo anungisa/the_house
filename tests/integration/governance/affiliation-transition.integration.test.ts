@@ -125,6 +125,17 @@ async function seedApplication(
 ): Promise<void> {
   const tenantId = opts.tenantId ?? TENANT_A;
   await withTenantTransaction(tenantId, async (c: QueryClient) => {
+    // The affiliation_application -> season FK is immediate: a matching season row must exist
+    // BEFORE the application insert. `is_current` reflects the SEASON_IS_CURRENT guard fixture and
+    // never downgrades an already-current season (upsert with OR).
+    await c.query(
+      `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+       VALUES ($1,$2,'published',$3)
+       ON CONFLICT (tenant_id, season_id)
+         DO UPDATE SET status = 'published',
+                       is_current = affiliation.season.is_current OR EXCLUDED.is_current`,
+      [tenantId, SEASON, opts.seasonCurrent === true],
+    );
     await c.query(
       `INSERT INTO affiliation.affiliation_application
          (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status, scope_id)
@@ -158,14 +169,6 @@ async function seedApplication(
            (tenant_id, application_id, obligation_type, status, amount_cents)
          VALUES ($1,$2,'affiliation_fee','unpaid',5000)`,
         [tenantId, entityId],
-      );
-    }
-    if (opts.seasonCurrent === true) {
-      await c.query(
-        `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
-         VALUES ($1,$2,true)
-         ON CONFLICT (tenant_id, season_id) DO UPDATE SET is_current = true`,
-        [tenantId, SEASON],
       );
     }
   });
@@ -608,6 +611,12 @@ d('AffiliationApplication governed transition (integration)', () => {
 
     const existing = randomUUID();
     await withTenantTransaction(TENANT_A, async (c: QueryClient) => {
+      await c.query(
+        `INSERT INTO affiliation.season (tenant_id, season_id, is_current)
+         VALUES ($1,'2024-25',false)
+         ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+        [TENANT_A],
+      );
       await c.query(
         `INSERT INTO affiliation.affiliation_application
            (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status, scope_id)

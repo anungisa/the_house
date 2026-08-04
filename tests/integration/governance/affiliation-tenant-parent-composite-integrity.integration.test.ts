@@ -31,6 +31,12 @@ async function expectSqlState(promise: Promise<unknown>, code: string): Promise<
 
 async function insertApplication(tenantId: string, applicationId: string): Promise<void> {
   await admin.query(
+    `INSERT INTO affiliation.season (tenant_id, season_id, status, is_current)
+     VALUES ($1, '2025-26', 'published', true)
+     ON CONFLICT (tenant_id, season_id) DO NOTHING`,
+    [tenantId],
+  );
+  await admin.query(
     `INSERT INTO affiliation.affiliation_application
        (id, tenant_id, season_id, required_fields_complete, documents_verified, payment_status)
      VALUES ($1, $2, '2025-26', true, true, 'paid')`,

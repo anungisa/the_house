@@ -104,7 +104,7 @@ import type { FacilityReadHttpDeps, FacilityWriteHttpDeps } from './facility/ind
 import {
   ButtonContextService,
   PgRepresentativeAuthorityProvider,
-  ClockDerivedSeasonCatalog,
+  PgSeasonCatalog,
   OrganizationTypeJurisdictionResolver,
   type ButtonContextHttpDeps,
 } from './button/index.js';
@@ -129,6 +129,10 @@ import {
   PgRepresentativeAuthorityStore,
   RepresentativeAuthorityService,
 } from '../domains/representative-authority/index.js';
+import {
+  PgSeasonCatalogStore,
+  SeasonCatalogService,
+} from '../domains/season-catalog/index.js';
 import type { Server } from 'node:http';
 
 /**
@@ -417,6 +421,18 @@ export function createPgRepresentativeAuthorityProvider(): PgRepresentativeAutho
 }
 
 /**
+ * Build the governed season catalog backed by PostgreSQL. Seasons are the persisted, tenant-
+ * isolated, operationally governed source of truth (migration 0022): only PUBLISHED seasons are
+ * projected, phase + application-window state are derived at read time, and the single-current
+ * invariant is enforced in the database. Every Button surface shares this catalog so the Button and
+ * the kernel interpret "the current season" identically.
+ */
+export function createPgSeasonCatalog(): PgSeasonCatalog {
+  const service = new SeasonCatalogService(new PgSeasonCatalogStore());
+  return new PgSeasonCatalog(service);
+}
+
+/**
  * Build the Button representative-context READ transport backed by PostgreSQL. The context is
  * assembled from the trusted identity context + the RLS-enforced {@link PgOrganizationRegistryStore}
  * read projection, plus the governed representative authority provider and the policy-derived
@@ -428,7 +444,7 @@ export function createButtonContextHttpDeps(telemetry?: Telemetry): ButtonContex
   const service = new ButtonContextService({
     organizations: new PgOrganizationRegistryStore(),
     authorities: createPgRepresentativeAuthorityProvider(),
-    seasons: new ClockDerivedSeasonCatalog(),
+    seasons: createPgSeasonCatalog(),
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
     nowIso: () => new Date().toISOString(),
   });
@@ -478,6 +494,7 @@ export function createButtonAffiliationHttpDepsFromStorage(
     organizations: new PgOrganizationRegistryStore(),
     authorities: createPgRepresentativeAuthorityProvider(),
     jurisdictions: new OrganizationTypeJurisdictionResolver(),
+    seasons: new SeasonCatalogService(new PgSeasonCatalogStore()),
     nowIso: () => new Date().toISOString(),
     ...(telemetry !== undefined ? { telemetry } : {}),
   };
