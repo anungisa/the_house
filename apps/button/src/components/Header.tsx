@@ -1,5 +1,4 @@
 import { useI18n } from '../i18n/I18nProvider';
-import type { TranslationKey } from '../i18n/resources';
 import { useButtonContext } from '../context/ButtonContextProvider';
 import { LanguageSwitch } from './LanguageSwitch';
 import { Nav } from './Nav';
@@ -32,7 +31,7 @@ export function Header({ telemetry }: { readonly telemetry: ButtonTelemetry }): 
             </div>
             <div>
               <dt>{t('context.jurisdiction')}</dt>
-              <dd>{t(current.jurisdiction.labelKey as TranslationKey)}</dd>
+              <dd>{current.jurisdiction ? current.jurisdiction.label : t('context.none')}</dd>
             </div>
             <div>
               <dt>{t('context.season')}</dt>

@@ -16,7 +16,8 @@ const ORG = {
   organizationId: 'club-1',
   displayName: 'Riverside Curling Club',
   organizationType: 'local',
-  jurisdiction: { code: 'member', labelKey: 'jurisdiction.member' },
+  jurisdiction: { code: 'member', label: 'Member', level: 'local' },
+  affiliationAvailable: true,
 } as const;
 
 export function contextWith(options: {
@@ -50,6 +51,7 @@ export function contextWith(options: {
           organizationId: ORG.organizationId,
           organizationDisplayName: ORG.displayName,
           jurisdiction: ORG.jurisdiction,
+          affiliationAvailable: ORG.affiliationAvailable,
           season: SEASONS[1]!,
           authorityStatus: status,
         }

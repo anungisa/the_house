@@ -124,6 +124,9 @@ async function uploadEvidence(
 /**
  * Seed one ACTIVE local organization for the tenant using the admin (RLS-bypassing) connection,
  * so the representative's target org exists and is representable for the Button authorization gate.
+ * Also assigns it a single published `member` jurisdiction (directly), because affiliation
+ * initiation is now governed by the persisted jurisdiction resolver and fails closed
+ * (JURISDICTION_UNAVAILABLE) unless exactly one jurisdiction resolves for the acting organization.
  */
 async function seedOrganization(
   admin: pg.Pool,
@@ -134,6 +137,21 @@ async function seedOrganization(
        (id, tenant_id, organization_type, display_name, status, source, created_at, updated_at)
      VALUES ($1, $2, 'local', $3, 'active', 'manual', now(), now())`,
     [input.organizationId, input.tenantId, input.displayName],
+  );
+  // Published `member` jurisdiction (once per tenant) + a direct active assignment for this org.
+  const jurisdiction = await admin.query<{ id: string }>(
+    `INSERT INTO organization_registry.jurisdiction
+       (tenant_id, code, jurisdiction_level, label_en, label_fr, status)
+     VALUES ($1, 'member', 'local', 'Member', 'Membre', 'published')
+     ON CONFLICT (tenant_id, code) DO UPDATE SET code = EXCLUDED.code
+     RETURNING id`,
+    [input.tenantId],
+  );
+  await admin.query(
+    `INSERT INTO organization_registry.organization_jurisdiction
+       (tenant_id, organization_id, jurisdiction_id, inheritance_mode, status)
+     VALUES ($1, $2, $3, 'direct', 'active')`,
+    [input.tenantId, input.organizationId, jurisdiction.rows[0]!.id],
   );
 }
 

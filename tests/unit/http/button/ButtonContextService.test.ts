@@ -131,7 +131,7 @@ describe('ButtonContextService', () => {
     expect(view.currentContext).not.toBeNull();
     expect(view.currentContext?.organizationId).toBe('club-1');
     expect(view.currentContext?.season.id).toBe('2026-27');
-    expect(view.currentContext?.jurisdiction.code).toBe('member');
+    expect(view.currentContext?.jurisdiction?.code).toBe('member');
     expect(view.currentContext?.authorityStatus).toBe('active');
     expect(view.capabilities).toContain(ButtonCapability.ViewAffiliation);
   });

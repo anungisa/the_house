@@ -104,6 +104,7 @@ function appErrorHttpStatus(code: ErrorCode): number {
     case ErrorCode.AFFILIATION_SUBMISSION_NOT_READY:
     case ErrorCode.AFFILIATION_CORRECTION_CONFLICT:
     case ErrorCode.SEASON_UNAVAILABLE:
+    case ErrorCode.JURISDICTION_UNAVAILABLE:
       return 409;
     default:
       return 500;
@@ -191,6 +192,33 @@ async function authorizeSeason(
       { details: { season: seasonId } },
     );
   }
+}
+
+/**
+ * Resolve the organization's GOVERNED jurisdiction for an initiation, failing closed. The persisted
+ * catalog + assignment hierarchy is the sole authority: an organization with no cleanly resolved
+ * jurisdiction (unresolved / ambiguous / broken hierarchy) can never initiate an affiliation — we
+ * raise a generic, non-disclosing JURISDICTION_UNAVAILABLE rather than guessing from its type. The
+ * resolved CODE is what binds requirements + is captured as historical initiation context.
+ */
+async function authorizeJurisdiction(
+  deps: ButtonAffiliationHttpDeps,
+  tenantId: string,
+  organization: OrganizationView,
+): Promise<string> {
+  const resolution = await deps.jurisdictions.jurisdictionFor(
+    tenantId,
+    organization,
+    deps.nowIso(),
+    'en',
+  );
+  if (resolution.outcome !== 'resolved') {
+    throw new AppError(
+      ErrorCode.JURISDICTION_UNAVAILABLE,
+      'A governing jurisdiction is not available for this organization.',
+    );
+  }
+  return resolution.jurisdiction.code;
 }
 
 function asRecord(body: unknown): Record<string, unknown> {
@@ -299,7 +327,9 @@ export async function handleAffiliationInitiate(
     // Initiation requires the CURRENT season with an open window; a browser "current" flag is
     // never trusted — only the governed catalog decides eligibility.
     await authorizeSeason(deps, auth.tenantId, seasonId, true);
-    const jurisdiction = deps.jurisdictions.jurisdictionFor(org, auth.actor).code;
+    // Jurisdiction is resolved from the governed catalog + assignment hierarchy (fail closed when
+    // none resolves); the resolved code binds requirements + is captured as initiation context.
+    const jurisdiction = await authorizeJurisdiction(deps, auth.tenantId, org);
     const application = await deps.service.initiate({
       tenantId: auth.tenantId,
       organizationId,

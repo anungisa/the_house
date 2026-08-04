@@ -129,6 +129,20 @@ export const ErrorCode = {
    * Deliberately generic to avoid catalog/existence disclosure. Maps to 409.
    */
   SEASON_UNAVAILABLE: 'SEASON_UNAVAILABLE',
+  /** A referenced jurisdiction (catalog entry or assignment) does not exist for the tenant. Maps to 404. */
+  JURISDICTION_NOT_FOUND: 'JURISDICTION_NOT_FOUND',
+  /**
+   * A governed jurisdiction command conflicts with current state: the jurisdiction code already
+   * exists, an active primary assignment already exists for the organization, the head is not in a
+   * state that permits the transition, or the optimistic-concurrency version was stale. Maps to 409.
+   */
+  JURISDICTION_CONFLICT: 'JURISDICTION_CONFLICT',
+  /**
+   * A representative-facing organization has no governed jurisdiction that resolves right now: no
+   * active primary assignment (direct or inherited), an ambiguous resolution, or a broken/cyclic
+   * organization hierarchy. Deliberately generic to avoid hierarchy/existence disclosure. Maps to 409.
+   */
+  JURISDICTION_UNAVAILABLE: 'JURISDICTION_UNAVAILABLE',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

@@ -50,7 +50,8 @@ const ORG = {
   organizationId: 'club-1',
   displayName: 'Riverside Curling Club',
   organizationType: 'local',
-  jurisdiction: { code: 'member', labelKey: 'jurisdiction.member' },
+  jurisdiction: { code: 'member', label: 'Member association', level: 'local' },
+  affiliationAvailable: true,
 } as const;
 
 function currentSeason(selection: ButtonContextSelection): SeasonView {
@@ -136,6 +137,7 @@ export function mockContextForScenario(
           organizationId: ORG.organizationId,
           organizationDisplayName: ORG.displayName,
           jurisdiction: ORG.jurisdiction,
+          affiliationAvailable: ORG.affiliationAvailable,
           season,
           authorityStatus: status,
         }
